@@ -13,3 +13,13 @@ c:\users\root\documents\visual studio 2010\Projects\Donor\Donor\obj\Debug\Donor.
 c:\users\root\documents\visual studio 2010\Projects\Donor\Donor\obj\Debug\Donor.dll
 c:\users\root\documents\visual studio 2010\Projects\Donor\Donor\obj\Debug\Donor.pdb
 c:\users\root\documents\visual studio 2010\Projects\Donor\Donor\obj\Debug\XapCacheFile.xml
+c:\users\root\documents\visual studio 2010\Projects\Donor\Donor\obj\Debug\CalendarMonthPage.g.i.cs
+c:\users\root\documents\visual studio 2010\Projects\Donor\Donor\obj\Debug\CalendarYearPage.g.i.cs
+c:\users\root\documents\visual studio 2010\Projects\Donor\Donor\obj\Debug\EventEditPage.g.i.cs
+c:\users\root\documents\visual studio 2010\Projects\Donor\Donor\obj\Debug\EventPage.g.i.cs
+c:\users\root\documents\visual studio 2010\Projects\Donor\Donor\obj\Debug\NewsList.g.i.cs
+c:\users\root\documents\visual studio 2010\Projects\Donor\Donor\obj\Debug\NewsPage.g.i.cs
+c:\users\root\documents\visual studio 2010\Projects\Donor\Donor\obj\Debug\ProfilePage.g.i.cs
+c:\users\root\documents\visual studio 2010\Projects\Donor\Donor\obj\Debug\Donor.Resources.AppResources.resources
+c:\users\root\documents\visual studio 2010\Projects\Donor\Donor\obj\Debug\GenerateResource.read.1.tlog
+c:\users\root\documents\visual studio 2010\Projects\Donor\Donor\obj\Debug\GenerateResource.write.1.tlog

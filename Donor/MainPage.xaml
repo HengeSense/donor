@@ -23,17 +23,14 @@
  
             <!--Panorama item one-->
             <controls:PanoramaItem Header="Меню">
-                <!--Double line list with text wrapping-->
-                <ListBox Margin="0,0,-12,0" ItemsSource="{Binding Items}">
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel Margin="0,0,0,17" Width="432" Height="78">
-                                <TextBlock Text="{Binding LineOne}" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
-                                <TextBlock Text="{Binding LineTwo}" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
-                            </StackPanel>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
+                <StackPanel>
+                    <TextBlock Margin="0,4" Text="Календарь" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
+                    <TextBlock Margin="0,4" Text="Станции" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
+                    <TextBlock Margin="0,4" Text="Объявления" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
+                    <TextBlock Margin="0,4" Text="Новости" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
+                    <TextBlock Margin="0,4" Text="Справка" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
+                    <TextBlock Margin="0,4" Text="Профиль" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
+                </StackPanel>
             </controls:PanoramaItem>
  
             <!--Panorama item two-->
@@ -69,10 +66,30 @@
                     </ListBox.ItemTemplate>
                 </ListBox>
             </controls:PanoramaItem>
+            
 
             <controls:PanoramaItem Header="Профиль">
+                <StackPanel Margin="0,10">
+                    <StackPanel >
+                        <TextBlock Text="Имя" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
+                        <TextBlock Text="Эльза" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                    </StackPanel>
+                    <StackPanel Margin="0,10">
+                        <TextBlock Text="Пол" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
+                        <TextBlock Text="Женский" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                    </StackPanel>
+                    <StackPanel Margin="0,10">
+                        <TextBlock Text="Группа крови" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
+                        <TextBlock Text="A(II) Rh+" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                    </StackPanel>
+                    <StackPanel Margin="0,10">
+                        <TextBlock Text="Записано кроводач" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
+                        <TextBlock Text="18" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                    </StackPanel>
+                    <TextBlock Margin="0,20" Text="Изменить" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
+                </StackPanel>
                 <!--Double line list with text wrapping-->
-                <ListBox Margin="0,0,-12,0" ItemsSource="{Binding Items}">
+                <!--<ListBox Margin="0,0,-12,0" ItemsSource="{Binding Items}">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Margin="0,0,0,17" Width="432" Height="78">
@@ -81,7 +98,7 @@
                             </StackPanel>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
-                </ListBox>
+                </ListBox>-->
             </controls:PanoramaItem>
 
         </controls:Panorama>
