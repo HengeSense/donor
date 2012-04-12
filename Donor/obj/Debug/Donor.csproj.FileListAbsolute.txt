@@ -1,0 +1,15 @@
+c:\users\root\documents\visual studio 2010\Projects\Donor\Donor\Bin\Debug\ApplicationIcon.png
+c:\users\root\documents\visual studio 2010\Projects\Donor\Donor\Bin\Debug\Background.png
+c:\users\root\documents\visual studio 2010\Projects\Donor\Donor\Bin\Debug\Donor.dll
+c:\users\root\documents\visual studio 2010\Projects\Donor\Donor\Bin\Debug\Donor.pdb
+c:\users\root\documents\visual studio 2010\Projects\Donor\Donor\Bin\Debug\AppManifest.xaml
+c:\users\root\documents\visual studio 2010\Projects\Donor\Donor\Bin\Debug\Donor.xap
+c:\users\root\documents\visual studio 2010\Projects\Donor\Donor\Bin\Debug\Microsoft.Phone.Controls.dll
+c:\users\root\documents\visual studio 2010\Projects\Donor\Donor\Bin\Debug\Microsoft.Phone.Controls.xml
+c:\users\root\documents\visual studio 2010\Projects\Donor\Donor\obj\Debug\ResolveAssemblyReference.cache
+c:\users\root\documents\visual studio 2010\Projects\Donor\Donor\obj\Debug\App.g.i.cs
+c:\users\root\documents\visual studio 2010\Projects\Donor\Donor\obj\Debug\MainPage.g.i.cs
+c:\users\root\documents\visual studio 2010\Projects\Donor\Donor\obj\Debug\Donor.g.resources
+c:\users\root\documents\visual studio 2010\Projects\Donor\Donor\obj\Debug\Donor.dll
+c:\users\root\documents\visual studio 2010\Projects\Donor\Donor\obj\Debug\Donor.pdb
+c:\users\root\documents\visual studio 2010\Projects\Donor\Donor\obj\Debug\XapCacheFile.xml
