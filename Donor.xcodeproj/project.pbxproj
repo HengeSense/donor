@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		404C66D3154888B0003F15E7 /* HSUserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 404C66CB154888B0003F15E7 /* HSUserDefaults.m */; };
+		404C66D4154888B0003F15E7 /* HSTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 404C66CE154888B0003F15E7 /* HSTabBarController.m */; };
+		404C66D5154888B0003F15E7 /* HSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 404C66D0154888B0003F15E7 /* HSViewController.m */; };
+		404C66D6154888B0003F15E7 /* HSWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 404C66D2154888B0003F15E7 /* HSWindow.m */; };
 		404F77F61547E39A0004B9C7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 404F77F51547E39A0004B9C7 /* UIKit.framework */; };
 		404F77F81547E39A0004B9C7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 404F77F71547E39A0004B9C7 /* Foundation.framework */; };
 		404F77FA1547E39A0004B9C7 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 404F77F91547E39A0004B9C7 /* CoreGraphics.framework */; };
@@ -16,9 +20,6 @@
 		404F78281547ED060004B9C7 /* Calendar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 404F78241547ED060004B9C7 /* Calendar@2x.png */; };
 		404F78291547ED060004B9C7 /* Stations.png in Resources */ = {isa = PBXBuildFile; fileRef = 404F78251547ED060004B9C7 /* Stations.png */; };
 		404F782A1547ED060004B9C7 /* Stations@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 404F78261547ED060004B9C7 /* Stations@2x.png */; };
-		404F782E1547F0A40004B9C7 /* HSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 404F782D1547F0A40004B9C7 /* HSViewController.m */; };
-		404F78311547F53C0004B9C7 /* HSWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 404F78301547F53C0004B9C7 /* HSWindow.m */; };
-		404F78341547F5D00004B9C7 /* HSTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 404F78331547F5D00004B9C7 /* HSTabBarController.m */; };
 		404F78471547F7AD0004B9C7 /* HSDonorApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 404F783C1547F7AD0004B9C7 /* HSDonorApplication.m */; };
 		404F78481547F7AD0004B9C7 /* HSDonorViewCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 404F783E1547F7AD0004B9C7 /* HSDonorViewCalendar.m */; };
 		404F78491547F7AD0004B9C7 /* HSDonorViewInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = 404F78401547F7AD0004B9C7 /* HSDonorViewInformation.m */; };
@@ -36,6 +37,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		404C66CA154888B0003F15E7 /* HSUserDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSUserDefaults.h; sourceTree = "<group>"; };
+		404C66CB154888B0003F15E7 /* HSUserDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSUserDefaults.m; sourceTree = "<group>"; };
+		404C66CD154888B0003F15E7 /* HSTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSTabBarController.h; sourceTree = "<group>"; };
+		404C66CE154888B0003F15E7 /* HSTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSTabBarController.m; sourceTree = "<group>"; };
+		404C66CF154888B0003F15E7 /* HSViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSViewController.h; sourceTree = "<group>"; };
+		404C66D0154888B0003F15E7 /* HSViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSViewController.m; sourceTree = "<group>"; };
+		404C66D1154888B0003F15E7 /* HSWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSWindow.h; sourceTree = "<group>"; };
+		404C66D2154888B0003F15E7 /* HSWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSWindow.m; sourceTree = "<group>"; };
 		404F77F11547E39A0004B9C7 /* Donor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Donor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		404F77F51547E39A0004B9C7 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		404F77F71547E39A0004B9C7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -48,12 +57,6 @@
 		404F78241547ED060004B9C7 /* Calendar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Calendar@2x.png"; sourceTree = "<group>"; };
 		404F78251547ED060004B9C7 /* Stations.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Stations.png; sourceTree = "<group>"; };
 		404F78261547ED060004B9C7 /* Stations@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Stations@2x.png"; sourceTree = "<group>"; };
-		404F782C1547F0A40004B9C7 /* HSViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSViewController.h; sourceTree = "<group>"; };
-		404F782D1547F0A40004B9C7 /* HSViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSViewController.m; sourceTree = "<group>"; };
-		404F782F1547F53C0004B9C7 /* HSWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSWindow.h; sourceTree = "<group>"; };
-		404F78301547F53C0004B9C7 /* HSWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSWindow.m; sourceTree = "<group>"; };
-		404F78321547F5D00004B9C7 /* HSTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSTabBarController.h; sourceTree = "<group>"; };
-		404F78331547F5D00004B9C7 /* HSTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSTabBarController.m; sourceTree = "<group>"; };
 		404F783B1547F7AD0004B9C7 /* HSDonorApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSDonorApplication.h; sourceTree = "<group>"; };
 		404F783C1547F7AD0004B9C7 /* HSDonorApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSDonorApplication.m; sourceTree = "<group>"; };
 		404F783D1547F7AD0004B9C7 /* HSDonorViewCalendar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSDonorViewCalendar.h; sourceTree = "<group>"; };
@@ -90,6 +93,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		404C66C9154888B0003F15E7 /* NextStep */ = {
+			isa = PBXGroup;
+			children = (
+				404C66CA154888B0003F15E7 /* HSUserDefaults.h */,
+				404C66CB154888B0003F15E7 /* HSUserDefaults.m */,
+			);
+			path = NextStep;
+			sourceTree = "<group>";
+		};
+		404C66CC154888B0003F15E7 /* UIKit */ = {
+			isa = PBXGroup;
+			children = (
+				404C66CD154888B0003F15E7 /* HSTabBarController.h */,
+				404C66CE154888B0003F15E7 /* HSTabBarController.m */,
+				404C66CF154888B0003F15E7 /* HSViewController.h */,
+				404C66D0154888B0003F15E7 /* HSViewController.m */,
+				404C66D1154888B0003F15E7 /* HSWindow.h */,
+				404C66D2154888B0003F15E7 /* HSWindow.m */,
+			);
+			path = UIKit;
+			sourceTree = "<group>";
+		};
 		404F77E61547E39A0004B9C7 = {
 			isa = PBXGroup;
 			children = (
@@ -167,12 +192,8 @@
 		404F782B1547F0750004B9C7 /* HintSolutions */ = {
 			isa = PBXGroup;
 			children = (
-				404F78321547F5D00004B9C7 /* HSTabBarController.h */,
-				404F78331547F5D00004B9C7 /* HSTabBarController.m */,
-				404F782C1547F0A40004B9C7 /* HSViewController.h */,
-				404F782D1547F0A40004B9C7 /* HSViewController.m */,
-				404F782F1547F53C0004B9C7 /* HSWindow.h */,
-				404F78301547F53C0004B9C7 /* HSWindow.m */,
+				404C66C9154888B0003F15E7 /* NextStep */,
+				404C66CC154888B0003F15E7 /* UIKit */,
 			);
 			path = HintSolutions;
 			sourceTree = "<group>";
@@ -282,15 +303,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				404F78021547E39A0004B9C7 /* main.m in Sources */,
-				404F782E1547F0A40004B9C7 /* HSViewController.m in Sources */,
-				404F78311547F53C0004B9C7 /* HSWindow.m in Sources */,
-				404F78341547F5D00004B9C7 /* HSTabBarController.m in Sources */,
 				404F78471547F7AD0004B9C7 /* HSDonorApplication.m in Sources */,
 				404F78481547F7AD0004B9C7 /* HSDonorViewCalendar.m in Sources */,
 				404F78491547F7AD0004B9C7 /* HSDonorViewInformation.m in Sources */,
 				404F784A1547F7AD0004B9C7 /* HSDonorViewStations.m in Sources */,
 				404F78561547F8930004B9C7 /* HSDonorViewSettings.m in Sources */,
 				404F785D1547FB220004B9C7 /* HSDonor.m in Sources */,
+				404C66D3154888B0003F15E7 /* HSUserDefaults.m in Sources */,
+				404C66D4154888B0003F15E7 /* HSTabBarController.m in Sources */,
+				404C66D5154888B0003F15E7 /* HSViewController.m in Sources */,
+				404C66D6154888B0003F15E7 /* HSWindow.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -392,6 +414,7 @@
 				404F781F1547E39A0004B9C7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
