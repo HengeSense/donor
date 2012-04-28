@@ -1,18 +1,16 @@
 /*--------------------------------------------------*/
 
-#import <UIKit/UIKit.h>
+#import "HSDonor.h"
 
 /*--------------------------------------------------*/
 
-#import "HSNavigationController.h"
-#import "HSBarButtonItem.h"
-#import "HSTabBarController.h"
+#import "HSViewController.h"
 
 /*--------------------------------------------------*/
 
-@interface UIViewController (HintSolutions)
-
-+ (id) viewWithNibName:(NSString*)name bundle:(NSBundle*)bundle;
+@interface HSDonorViewProfileEdit : UIViewController
+{
+}
 
 @end
 

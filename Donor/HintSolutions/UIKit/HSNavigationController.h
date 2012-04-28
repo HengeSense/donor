@@ -4,9 +4,9 @@
 
 /*--------------------------------------------------*/
 
-@interface UINavigationBarController (HintSolutions)
+@interface UINavigationController (HintSolutions)
 
-+ (id) navigaionBarWithRootViewController:(UIViewController*)view;
++ (id) navigaionWithRootViewController:(UIViewController*)view;
 
 @end
 

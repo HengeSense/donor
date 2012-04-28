@@ -7,7 +7,7 @@
 #import "HSDonorViewCalendar.h"
 #import "HSDonorViewStations.h"
 #import "HSDonorViewInformation.h"
-#import "HSDonorViewSettings.h"
+#import "HSDonorViewProfile.h"
 
 /*--------------------------------------------------*/
 
@@ -32,13 +32,17 @@
         mTabBar = [[UITabBarController tabBar] retain];
         if(mTabBar != nil)
         {
-            mTabBar.viewControllers = [NSArray arrayWithObjects:
-                                       [[HSDonorViewCalendar viewWithNibName:@"HSDonorViewCalendar" bundle:nil] retain],
-                                       [[HSDonorViewStations viewWithNibName:@"HSDonorViewStations" bundle:nil] retain],
-                                       [[HSDonorViewInformation viewWithNibName:@"HSDonorViewInformation" bundle:nil] retain],
-                                       [[HSDonorViewSettings viewWithNibName:@"HSDonorViewSettings" bundle:nil] retain],
-                                       nil];
-            mWindow.rootViewController = mTabBar;
+            [mTabBar setViewControllers:[NSArray arrayWithObjects:
+                                         [UINavigationController navigaionWithRootViewController:
+                                          [HSDonorViewCalendar viewWithNibName:@"HSDonorViewCalendar" bundle:nil]],
+                                         [UINavigationController navigaionWithRootViewController:
+                                          [HSDonorViewStations viewWithNibName:@"HSDonorViewStations" bundle:nil]],
+                                         [UINavigationController navigaionWithRootViewController:
+                                          [HSDonorViewInformation viewWithNibName:@"HSDonorViewInformation" bundle:nil]],
+                                         [UINavigationController navigaionWithRootViewController:
+                                          [HSDonorViewProfile viewWithNibName:@"HSDonorViewProfile" bundle:nil]],
+                                         nil]];
+            [mWindow setRootViewController:mTabBar];
         }
         [mWindow makeKeyAndVisible];
     }

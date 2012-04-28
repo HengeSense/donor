@@ -47,7 +47,7 @@ static HSDonor *HSDonorShared = nil;
     self = [super init];
     if(self != nil)
     {
-        NSUserDefaults* user = [NSUserDefaults standardUserDefaults];
+        NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
         if(user != nil)
         {
             mLogin = [user stringForKey:@"Login" asDefaults:@""];
@@ -99,7 +99,7 @@ static HSDonor *HSDonorShared = nil;
 
 - (void) synchronize
 {
-    NSUserDefaults* user = [NSUserDefaults standardUserDefaults];
+    NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
     if(user != nil)
     {
         [user setObject:mLogin forKey:@"Login"];

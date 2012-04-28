@@ -1,2 +1,13 @@
 /* Localized versions of Info.plist keys */
 
+"Calendar" = "Календарь";
+"Stations" = "Станции";
+"Information" = "Информация";
+"Profile" = "Профиль";
+"ProfileShow" = "Профиль";
+"ProfileShowBack" = "Назад";
+"ProfileEdit" = "Профиль";
+"ProfileEditBack" = "Назад";
+"ProfileRegistred" = "Регистрация";
+"ProfilePreference" = "Настройки";
+"ProfilePreferenceBack" = "Назад";

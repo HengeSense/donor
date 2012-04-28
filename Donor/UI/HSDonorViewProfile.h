@@ -8,8 +8,11 @@
 
 /*--------------------------------------------------*/
 
-@interface HSDonorViewSettings : UIViewController
+@interface HSDonorViewProfile : UIViewController
 {
+    IBOutlet UILabel *invalid;
+    IBOutlet UITextField *login;
+    IBOutlet UITextField *password;
 }
 
 @end

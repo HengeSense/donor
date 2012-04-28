@@ -11,10 +11,20 @@
 		404C66D4154888B0003F15E7 /* HSTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 404C66CE154888B0003F15E7 /* HSTabBarController.m */; };
 		404C66D5154888B0003F15E7 /* HSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 404C66D0154888B0003F15E7 /* HSViewController.m */; };
 		404C66D6154888B0003F15E7 /* HSWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 404C66D2154888B0003F15E7 /* HSWindow.m */; };
+		404C66D8154926B4003F15E7 /* HSDonorViewProfileEdit.xib in Resources */ = {isa = PBXBuildFile; fileRef = 404C66D7154926B4003F15E7 /* HSDonorViewProfileEdit.xib */; };
+		404C66DB15492964003F15E7 /* HSDonorViewProfileEdit.m in Sources */ = {isa = PBXBuildFile; fileRef = 404C66DA15492964003F15E7 /* HSDonorViewProfileEdit.m */; };
+		404C66DD15492AC3003F15E7 /* HSDonorViewProfileRegistred.xib in Resources */ = {isa = PBXBuildFile; fileRef = 404C66DC15492AC3003F15E7 /* HSDonorViewProfileRegistred.xib */; };
+		404C66DF15492AE0003F15E7 /* HSDonorViewProfilePreference.xib in Resources */ = {isa = PBXBuildFile; fileRef = 404C66DE15492AE0003F15E7 /* HSDonorViewProfilePreference.xib */; };
+		404C66E4154930B0003F15E7 /* HSDonorViewProfilePreference.m in Sources */ = {isa = PBXBuildFile; fileRef = 404C66E1154930B0003F15E7 /* HSDonorViewProfilePreference.m */; };
+		404C66E5154930B0003F15E7 /* HSDonorViewProfileRegistred.m in Sources */ = {isa = PBXBuildFile; fileRef = 404C66E3154930B0003F15E7 /* HSDonorViewProfileRegistred.m */; };
+		404C66F615493E11003F15E7 /* HSNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 404C66F515493E11003F15E7 /* HSNavigationController.m */; };
+		404C66FD154941C2003F15E7 /* HSBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 404C66FC154941C2003F15E7 /* HSBarButtonItem.m */; };
+		404C66FF15494D54003F15E7 /* HSDonorViewProfileShow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 404C66FE15494D54003F15E7 /* HSDonorViewProfileShow.xib */; };
+		404C6702154950C9003F15E7 /* HSDonorViewProfileShow.m in Sources */ = {isa = PBXBuildFile; fileRef = 404C6701154950C9003F15E7 /* HSDonorViewProfileShow.m */; };
 		404F77F61547E39A0004B9C7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 404F77F51547E39A0004B9C7 /* UIKit.framework */; };
 		404F77F81547E39A0004B9C7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 404F77F71547E39A0004B9C7 /* Foundation.framework */; };
 		404F77FA1547E39A0004B9C7 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 404F77F91547E39A0004B9C7 /* CoreGraphics.framework */; };
-		404F78001547E39A0004B9C7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 404F77FE1547E39A0004B9C7 /* InfoPlist.strings */; };
+		404F78001547E39A0004B9C7 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 404F77FE1547E39A0004B9C7 /* Localizable.strings */; };
 		404F78021547E39A0004B9C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 404F78011547E39A0004B9C7 /* main.m */; };
 		404F78271547ED060004B9C7 /* Calendar.png in Resources */ = {isa = PBXBuildFile; fileRef = 404F78231547ED060004B9C7 /* Calendar.png */; };
 		404F78281547ED060004B9C7 /* Calendar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 404F78241547ED060004B9C7 /* Calendar@2x.png */; };
@@ -29,10 +39,10 @@
 		404F784D1547F7AD0004B9C7 /* HSDonorViewStations.xib in Resources */ = {isa = PBXBuildFile; fileRef = 404F78461547F7AD0004B9C7 /* HSDonorViewStations.xib */; };
 		404F78501547F8290004B9C7 /* Information.png in Resources */ = {isa = PBXBuildFile; fileRef = 404F784E1547F8290004B9C7 /* Information.png */; };
 		404F78511547F8290004B9C7 /* Information@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 404F784F1547F8290004B9C7 /* Information@2x.png */; };
-		404F78531547F8810004B9C7 /* HSDonorViewSettings.xib in Resources */ = {isa = PBXBuildFile; fileRef = 404F78521547F8810004B9C7 /* HSDonorViewSettings.xib */; };
-		404F78561547F8930004B9C7 /* HSDonorViewSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 404F78551547F8930004B9C7 /* HSDonorViewSettings.m */; };
-		404F78591547F8EB0004B9C7 /* Settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 404F78571547F8EB0004B9C7 /* Settings.png */; };
-		404F785A1547F8EB0004B9C7 /* Settings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 404F78581547F8EB0004B9C7 /* Settings@2x.png */; };
+		404F78531547F8810004B9C7 /* HSDonorViewProfile.xib in Resources */ = {isa = PBXBuildFile; fileRef = 404F78521547F8810004B9C7 /* HSDonorViewProfile.xib */; };
+		404F78561547F8930004B9C7 /* HSDonorViewProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 404F78551547F8930004B9C7 /* HSDonorViewProfile.m */; };
+		404F78591547F8EB0004B9C7 /* Profile.png in Resources */ = {isa = PBXBuildFile; fileRef = 404F78571547F8EB0004B9C7 /* Profile.png */; };
+		404F785A1547F8EB0004B9C7 /* Profile@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 404F78581547F8EB0004B9C7 /* Profile@2x.png */; };
 		404F785D1547FB220004B9C7 /* HSDonor.m in Sources */ = {isa = PBXBuildFile; fileRef = 404F785C1547FB220004B9C7 /* HSDonor.m */; };
 /* End PBXBuildFile section */
 
@@ -45,12 +55,28 @@
 		404C66D0154888B0003F15E7 /* HSViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSViewController.m; sourceTree = "<group>"; };
 		404C66D1154888B0003F15E7 /* HSWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSWindow.h; sourceTree = "<group>"; };
 		404C66D2154888B0003F15E7 /* HSWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSWindow.m; sourceTree = "<group>"; };
+		404C66D7154926B4003F15E7 /* HSDonorViewProfileEdit.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HSDonorViewProfileEdit.xib; sourceTree = "<group>"; };
+		404C66D915492964003F15E7 /* HSDonorViewProfileEdit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSDonorViewProfileEdit.h; sourceTree = "<group>"; };
+		404C66DA15492964003F15E7 /* HSDonorViewProfileEdit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSDonorViewProfileEdit.m; sourceTree = "<group>"; };
+		404C66DC15492AC3003F15E7 /* HSDonorViewProfileRegistred.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HSDonorViewProfileRegistred.xib; sourceTree = "<group>"; };
+		404C66DE15492AE0003F15E7 /* HSDonorViewProfilePreference.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HSDonorViewProfilePreference.xib; sourceTree = "<group>"; };
+		404C66E0154930B0003F15E7 /* HSDonorViewProfilePreference.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSDonorViewProfilePreference.h; sourceTree = "<group>"; };
+		404C66E1154930B0003F15E7 /* HSDonorViewProfilePreference.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSDonorViewProfilePreference.m; sourceTree = "<group>"; };
+		404C66E2154930B0003F15E7 /* HSDonorViewProfileRegistred.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSDonorViewProfileRegistred.h; sourceTree = "<group>"; };
+		404C66E3154930B0003F15E7 /* HSDonorViewProfileRegistred.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSDonorViewProfileRegistred.m; sourceTree = "<group>"; };
+		404C66F415493E11003F15E7 /* HSNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSNavigationController.h; sourceTree = "<group>"; };
+		404C66F515493E11003F15E7 /* HSNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSNavigationController.m; sourceTree = "<group>"; };
+		404C66FB154941C2003F15E7 /* HSBarButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSBarButtonItem.h; sourceTree = "<group>"; };
+		404C66FC154941C2003F15E7 /* HSBarButtonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSBarButtonItem.m; sourceTree = "<group>"; };
+		404C66FE15494D54003F15E7 /* HSDonorViewProfileShow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HSDonorViewProfileShow.xib; sourceTree = "<group>"; };
+		404C6700154950C9003F15E7 /* HSDonorViewProfileShow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSDonorViewProfileShow.h; sourceTree = "<group>"; };
+		404C6701154950C9003F15E7 /* HSDonorViewProfileShow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSDonorViewProfileShow.m; sourceTree = "<group>"; };
 		404F77F11547E39A0004B9C7 /* Donor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Donor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		404F77F51547E39A0004B9C7 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		404F77F71547E39A0004B9C7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		404F77F91547E39A0004B9C7 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		404F77FD1547E39A0004B9C7 /* Donor-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Donor-Info.plist"; sourceTree = "<group>"; };
-		404F77FF1547E39A0004B9C7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		404F77FF1547E39A0004B9C7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		404F78011547E39A0004B9C7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		404F78031547E39A0004B9C7 /* Donor-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Donor-Prefix.pch"; sourceTree = "<group>"; };
 		404F78231547ED060004B9C7 /* Calendar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Calendar.png; sourceTree = "<group>"; };
@@ -70,11 +96,11 @@
 		404F78461547F7AD0004B9C7 /* HSDonorViewStations.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HSDonorViewStations.xib; sourceTree = "<group>"; };
 		404F784E1547F8290004B9C7 /* Information.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Information.png; sourceTree = "<group>"; };
 		404F784F1547F8290004B9C7 /* Information@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Information@2x.png"; sourceTree = "<group>"; };
-		404F78521547F8810004B9C7 /* HSDonorViewSettings.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HSDonorViewSettings.xib; sourceTree = "<group>"; };
-		404F78541547F8930004B9C7 /* HSDonorViewSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSDonorViewSettings.h; sourceTree = "<group>"; };
-		404F78551547F8930004B9C7 /* HSDonorViewSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSDonorViewSettings.m; sourceTree = "<group>"; };
-		404F78571547F8EB0004B9C7 /* Settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Settings.png; sourceTree = "<group>"; };
-		404F78581547F8EB0004B9C7 /* Settings@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Settings@2x.png"; sourceTree = "<group>"; };
+		404F78521547F8810004B9C7 /* HSDonorViewProfile.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HSDonorViewProfile.xib; sourceTree = "<group>"; };
+		404F78541547F8930004B9C7 /* HSDonorViewProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSDonorViewProfile.h; sourceTree = "<group>"; };
+		404F78551547F8930004B9C7 /* HSDonorViewProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSDonorViewProfile.m; sourceTree = "<group>"; };
+		404F78571547F8EB0004B9C7 /* Profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Profile.png; sourceTree = "<group>"; };
+		404F78581547F8EB0004B9C7 /* Profile@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Profile@2x.png"; sourceTree = "<group>"; };
 		404F785B1547FB220004B9C7 /* HSDonor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSDonor.h; sourceTree = "<group>"; };
 		404F785C1547FB220004B9C7 /* HSDonor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSDonor.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -105,14 +131,34 @@
 		404C66CC154888B0003F15E7 /* UIKit */ = {
 			isa = PBXGroup;
 			children = (
-				404C66CD154888B0003F15E7 /* HSTabBarController.h */,
-				404C66CE154888B0003F15E7 /* HSTabBarController.m */,
-				404C66CF154888B0003F15E7 /* HSViewController.h */,
-				404C66D0154888B0003F15E7 /* HSViewController.m */,
 				404C66D1154888B0003F15E7 /* HSWindow.h */,
 				404C66D2154888B0003F15E7 /* HSWindow.m */,
+				404C66CF154888B0003F15E7 /* HSViewController.h */,
+				404C66D0154888B0003F15E7 /* HSViewController.m */,
+				404C66F415493E11003F15E7 /* HSNavigationController.h */,
+				404C66F515493E11003F15E7 /* HSNavigationController.m */,
+				404C66CD154888B0003F15E7 /* HSTabBarController.h */,
+				404C66CE154888B0003F15E7 /* HSTabBarController.m */,
+				404C66FB154941C2003F15E7 /* HSBarButtonItem.h */,
+				404C66FC154941C2003F15E7 /* HSBarButtonItem.m */,
 			);
 			path = UIKit;
+			sourceTree = "<group>";
+		};
+		404C670315495417003F15E7 /* ENG */ = {
+			isa = PBXGroup;
+			children = (
+				404F77FE1547E39A0004B9C7 /* Localizable.strings */,
+				404F78441547F7AD0004B9C7 /* HSDonorViewCalendar.xib */,
+				404F78451547F7AD0004B9C7 /* HSDonorViewInformation.xib */,
+				404F78461547F7AD0004B9C7 /* HSDonorViewStations.xib */,
+				404F78521547F8810004B9C7 /* HSDonorViewProfile.xib */,
+				404C66FE15494D54003F15E7 /* HSDonorViewProfileShow.xib */,
+				404C66D7154926B4003F15E7 /* HSDonorViewProfileEdit.xib */,
+				404C66DC15492AC3003F15E7 /* HSDonorViewProfileRegistred.xib */,
+				404C66DE15492AE0003F15E7 /* HSDonorViewProfilePreference.xib */,
+			);
+			name = ENG;
 			sourceTree = "<group>";
 		};
 		404F77E61547E39A0004B9C7 = {
@@ -159,7 +205,6 @@
 			isa = PBXGroup;
 			children = (
 				404F77FD1547E39A0004B9C7 /* Donor-Info.plist */,
-				404F77FE1547E39A0004B9C7 /* InfoPlist.strings */,
 				404F78011547E39A0004B9C7 /* main.m */,
 				404F78031547E39A0004B9C7 /* Donor-Prefix.pch */,
 			);
@@ -183,8 +228,8 @@
 				404F78261547ED060004B9C7 /* Stations@2x.png */,
 				404F784E1547F8290004B9C7 /* Information.png */,
 				404F784F1547F8290004B9C7 /* Information@2x.png */,
-				404F78571547F8EB0004B9C7 /* Settings.png */,
-				404F78581547F8EB0004B9C7 /* Settings@2x.png */,
+				404F78571547F8EB0004B9C7 /* Profile.png */,
+				404F78581547F8EB0004B9C7 /* Profile@2x.png */,
 			);
 			path = TabBar;
 			sourceTree = "<group>";
@@ -209,8 +254,16 @@
 				404F78421547F7AD0004B9C7 /* HSDonorViewStations.m */,
 				404F783F1547F7AD0004B9C7 /* HSDonorViewInformation.h */,
 				404F78401547F7AD0004B9C7 /* HSDonorViewInformation.m */,
-				404F78541547F8930004B9C7 /* HSDonorViewSettings.h */,
-				404F78551547F8930004B9C7 /* HSDonorViewSettings.m */,
+				404F78541547F8930004B9C7 /* HSDonorViewProfile.h */,
+				404F78551547F8930004B9C7 /* HSDonorViewProfile.m */,
+				404C6700154950C9003F15E7 /* HSDonorViewProfileShow.h */,
+				404C6701154950C9003F15E7 /* HSDonorViewProfileShow.m */,
+				404C66D915492964003F15E7 /* HSDonorViewProfileEdit.h */,
+				404C66DA15492964003F15E7 /* HSDonorViewProfileEdit.m */,
+				404C66E2154930B0003F15E7 /* HSDonorViewProfileRegistred.h */,
+				404C66E3154930B0003F15E7 /* HSDonorViewProfileRegistred.m */,
+				404C66E0154930B0003F15E7 /* HSDonorViewProfilePreference.h */,
+				404C66E1154930B0003F15E7 /* HSDonorViewProfilePreference.m */,
 				404F78431547F7AD0004B9C7 /* XIB */,
 			);
 			path = UI;
@@ -219,10 +272,7 @@
 		404F78431547F7AD0004B9C7 /* XIB */ = {
 			isa = PBXGroup;
 			children = (
-				404F78441547F7AD0004B9C7 /* HSDonorViewCalendar.xib */,
-				404F78451547F7AD0004B9C7 /* HSDonorViewInformation.xib */,
-				404F78461547F7AD0004B9C7 /* HSDonorViewStations.xib */,
-				404F78521547F8810004B9C7 /* HSDonorViewSettings.xib */,
+				404C670315495417003F15E7 /* ENG */,
 			);
 			path = XIB;
 			sourceTree = "<group>";
@@ -279,7 +329,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				404F78001547E39A0004B9C7 /* InfoPlist.strings in Resources */,
+				404F78001547E39A0004B9C7 /* Localizable.strings in Resources */,
 				404F78271547ED060004B9C7 /* Calendar.png in Resources */,
 				404F78281547ED060004B9C7 /* Calendar@2x.png in Resources */,
 				404F78291547ED060004B9C7 /* Stations.png in Resources */,
@@ -289,9 +339,13 @@
 				404F784D1547F7AD0004B9C7 /* HSDonorViewStations.xib in Resources */,
 				404F78501547F8290004B9C7 /* Information.png in Resources */,
 				404F78511547F8290004B9C7 /* Information@2x.png in Resources */,
-				404F78531547F8810004B9C7 /* HSDonorViewSettings.xib in Resources */,
-				404F78591547F8EB0004B9C7 /* Settings.png in Resources */,
-				404F785A1547F8EB0004B9C7 /* Settings@2x.png in Resources */,
+				404F78531547F8810004B9C7 /* HSDonorViewProfile.xib in Resources */,
+				404F78591547F8EB0004B9C7 /* Profile.png in Resources */,
+				404F785A1547F8EB0004B9C7 /* Profile@2x.png in Resources */,
+				404C66D8154926B4003F15E7 /* HSDonorViewProfileEdit.xib in Resources */,
+				404C66DD15492AC3003F15E7 /* HSDonorViewProfileRegistred.xib in Resources */,
+				404C66DF15492AE0003F15E7 /* HSDonorViewProfilePreference.xib in Resources */,
+				404C66FF15494D54003F15E7 /* HSDonorViewProfileShow.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -307,24 +361,31 @@
 				404F78481547F7AD0004B9C7 /* HSDonorViewCalendar.m in Sources */,
 				404F78491547F7AD0004B9C7 /* HSDonorViewInformation.m in Sources */,
 				404F784A1547F7AD0004B9C7 /* HSDonorViewStations.m in Sources */,
-				404F78561547F8930004B9C7 /* HSDonorViewSettings.m in Sources */,
+				404F78561547F8930004B9C7 /* HSDonorViewProfile.m in Sources */,
 				404F785D1547FB220004B9C7 /* HSDonor.m in Sources */,
 				404C66D3154888B0003F15E7 /* HSUserDefaults.m in Sources */,
 				404C66D4154888B0003F15E7 /* HSTabBarController.m in Sources */,
 				404C66D5154888B0003F15E7 /* HSViewController.m in Sources */,
 				404C66D6154888B0003F15E7 /* HSWindow.m in Sources */,
+				404C66DB15492964003F15E7 /* HSDonorViewProfileEdit.m in Sources */,
+				404C66E4154930B0003F15E7 /* HSDonorViewProfilePreference.m in Sources */,
+				404C66E5154930B0003F15E7 /* HSDonorViewProfileRegistred.m in Sources */,
+				404C66F615493E11003F15E7 /* HSNavigationController.m in Sources */,
+				404C66FD154941C2003F15E7 /* HSBarButtonItem.m in Sources */,
+				404C6702154950C9003F15E7 /* HSDonorViewProfileShow.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		404F77FE1547E39A0004B9C7 /* InfoPlist.strings */ = {
+		404F77FE1547E39A0004B9C7 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
 				404F77FF1547E39A0004B9C7 /* en */,
 			);
-			name = InfoPlist.strings;
+			name = Localizable.strings;
+			path = ../..;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

@@ -1,12 +1,12 @@
 /*--------------------------------------------------*/
 
-#import "HSNavigationBarController.h"
+#import "HSNavigationController.h"
 
 /*--------------------------------------------------*/
 
-@implementation UINavigationBarController (HintSolutions)
+@implementation UINavigationController (HintSolutions)
 
-+ (id) navigaionBarWithRootViewController:(UIViewController*)view;
++ (id) navigaionWithRootViewController:(UIViewController*)view;
 {
     return [[[self alloc] initWithRootViewController:view] autorelease];
 }

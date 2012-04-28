@@ -5,8 +5,9 @@
 /*--------------------------------------------------*/
 
 #import "HSWindow.h"
-#import "HSTabBarController.h"
 #import "HSViewController.h"
+#import "HSNavigationController.h"
+#import "HSTabBarController.h"
 
 /*--------------------------------------------------*/
 
