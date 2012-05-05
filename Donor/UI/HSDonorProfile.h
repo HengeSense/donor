@@ -8,7 +8,7 @@
 
 /*--------------------------------------------------*/
 
-@interface HSDonorViewProfile : UIViewController
+@interface HSDonorProfile : UIViewController
 {
     IBOutlet UILabel *invalid;
     IBOutlet UITextField *login;

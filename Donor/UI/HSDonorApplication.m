@@ -4,10 +4,10 @@
 
 /*--------------------------------------------------*/
 
-#import "HSDonorViewCalendar.h"
-#import "HSDonorViewStations.h"
-#import "HSDonorViewInformation.h"
-#import "HSDonorViewProfile.h"
+#import "HSDonorCalendar.h"
+#import "HSDonorStations.h"
+#import "HSDonorHelp.h"
+#import "HSDonorProfile.h"
 
 /*--------------------------------------------------*/
 
@@ -16,14 +16,14 @@
 @synthesize window = mWindow;
 @synthesize tabBar = mTabBar;
 
-- (void)dealloc
+- (void) dealloc
 {
     [mTabBar release];
     [mWindow release];
     [super dealloc];
 }
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+- (BOOL) application:(UIApplication*)application didFinishLaunchingWithOptions:(NSDictionary*)options
 {
     CGRect frame = [[UIScreen mainScreen] bounds];
     mWindow = [[UIWindow windowWithFrame:frame] retain];
@@ -34,13 +34,13 @@
         {
             [mTabBar setViewControllers:[NSArray arrayWithObjects:
                                          [UINavigationController navigaionWithRootViewController:
-                                          [HSDonorViewCalendar viewWithNibName:@"HSDonorViewCalendar" bundle:nil]],
+                                          [HSDonorCalendar viewWithNibName:@"HSDonorCalendar" bundle:nil]],
                                          [UINavigationController navigaionWithRootViewController:
-                                          [HSDonorViewStations viewWithNibName:@"HSDonorViewStations" bundle:nil]],
+                                          [HSDonorStations viewWithNibName:@"HSDonorStations" bundle:nil]],
                                          [UINavigationController navigaionWithRootViewController:
-                                          [HSDonorViewInformation viewWithNibName:@"HSDonorViewInformation" bundle:nil]],
+                                          [HSDonorHelp viewWithNibName:@"HSDonorHelp" bundle:nil]],
                                          [UINavigationController navigaionWithRootViewController:
-                                          [HSDonorViewProfile viewWithNibName:@"HSDonorViewProfile" bundle:nil]],
+                                          [HSDonorProfile viewWithNibName:@"HSDonorProfile" bundle:nil]],
                                          nil]];
             [mWindow setRootViewController:mTabBar];
         }

@@ -11,7 +11,7 @@
 
 /*--------------------------------------------------*/
 
-@interface HSDonorApplication : UIResponder <UIApplicationDelegate, UITabBarControllerDelegate>
+@interface HSDonorApplication : UIResponder< UIApplicationDelegate, UITabBarControllerDelegate >
 {
     UIWindow *mWindow;
     UITabBarController *mTabBar;

@@ -8,7 +8,7 @@
 
 /*--------------------------------------------------*/
 
-@interface HSDonorViewCalendar : UIViewController
+@interface HSDonorCalendar : UIViewController
 {
 }
 

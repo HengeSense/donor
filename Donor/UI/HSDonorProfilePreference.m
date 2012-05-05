@@ -1,21 +1,21 @@
 /*--------------------------------------------------*/
 
-#import "HSDonorViewProfilePreference.h"
+#import "HSDonorProfilePreference.h"
 
 /*--------------------------------------------------*/
 
-@implementation HSDonorViewProfilePreference
+@implementation HSDonorProfilePreference
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (id) initWithNibName:(NSString *)nib bundle:(NSBundle *)bundle
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    self = [super initWithNibName:nib bundle:bundle];
     if(self != nil)
     {
     }
     return self;
 }
 
-- (void)viewDidLoad
+- (void) viewDidLoad
 {
     [super viewDidLoad];
     
@@ -26,7 +26,7 @@
 	[[self navigationItem] setLeftBarButtonItem:navBack];
 }
 
-- (void)viewDidUnload
+- (void) viewDidUnload
 {
     [super viewDidUnload];
 }

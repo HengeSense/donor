@@ -8,7 +8,7 @@
 
 /*--------------------------------------------------*/
 
-@interface HSDonorViewProfileEdit : UIViewController
+@interface HSDonorProfileEdit : UIViewController
 {
 }
 

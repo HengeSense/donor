@@ -8,7 +8,7 @@
 
 /*--------------------------------------------------*/
 
-@interface HSDonorViewProfileShow : UIViewController
+@interface HSDonorProfileShow : UIViewController
 {
     IBOutlet UITableView *info;
 }

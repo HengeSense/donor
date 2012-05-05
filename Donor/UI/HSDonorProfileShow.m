@@ -1,14 +1,14 @@
 /*--------------------------------------------------*/
 
-#import "HSDonorViewProfileShow.h"
+#import "HSDonorProfileShow.h"
 
 /*--------------------------------------------------*/
 
-@implementation HSDonorViewProfileShow
+@implementation HSDonorProfileShow
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (id) initWithNibName:(NSString *)nib bundle:(NSBundle *)bundle
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    self = [super initWithNibName:nib bundle:bundle];
     if(self != nil)
     {
     }

@@ -1,14 +1,14 @@
 /*--------------------------------------------------*/
 
-#import "HSDonorViewInformation.h"
+#import "HSDonorHelp.h"
 
 /*--------------------------------------------------*/
 
-@implementation HSDonorViewInformation
+@implementation HSDonorHelp
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (id) initWithNibName:(NSString *)nib bundle:(NSBundle *)bundle
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    self = [super initWithNibName:nib bundle:bundle];
     if(self != nil)
     {
         [self setTitle:NSLocalizedString(@"Information", @"Information")];
@@ -17,12 +17,12 @@
     return self;
 }
 
-- (void)viewDidLoad
+- (void) viewDidLoad
 {
     [super viewDidLoad];
 }
 
-- (void)viewDidUnload
+- (void) viewDidUnload
 {
     [super viewDidUnload];
 }

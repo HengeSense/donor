@@ -8,7 +8,7 @@
 
 /*--------------------------------------------------*/
 
-@interface HSDonorViewStations : UIViewController
+@interface HSDonorStations : UIViewController
 {
 }
 

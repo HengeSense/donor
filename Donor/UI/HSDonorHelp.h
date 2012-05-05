@@ -8,7 +8,7 @@
 
 /*--------------------------------------------------*/
 
-@interface HSDonorViewInformation : UIViewController
+@interface HSDonorHelp : UIViewController
 {
 }
 

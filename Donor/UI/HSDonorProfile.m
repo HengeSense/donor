@@ -1,18 +1,18 @@
 /*--------------------------------------------------*/
 
-#import "HSDonorViewProfile.h"
+#import "HSDonorProfile.h"
 
 /*--------------------------------------------------*/
 
-#import "HSDonorViewProfilePreference.h"
+#import "HSDonorProfilePreference.h"
 
 /*--------------------------------------------------*/
 
-@implementation HSDonorViewProfile
+@implementation HSDonorProfile
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (id) initWithNibName:(NSString *)nib bundle:(NSBundle *)bundle
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    self = [super initWithNibName:nib bundle:bundle];
     if(self != nil)
     {
         [self setTitle:NSLocalizedString(@"Profile", @"Profile")];
@@ -29,7 +29,7 @@
     [super dealloc];
 }
 
-- (void)viewDidLoad
+- (void) viewDidLoad
 {
     [super viewDidLoad];
     
@@ -40,7 +40,7 @@
 	[[self navigationItem] setLeftBarButtonItem:navPreference];
 }
 
-- (void)viewDidUnload
+- (void) viewDidUnload
 {
     if(invalid != nil)
     {
@@ -70,7 +70,7 @@
 
 - (void) preference:(id)sender
 {
-    HSDonorViewProfilePreference *view = [HSDonorViewProfilePreference viewWithNibName:@"HSDonorViewProfilePreference" bundle:nil];
+    HSDonorProfilePreference *view = [HSDonorProfilePreference viewWithNibName:@"HSDonorProfilePreference" bundle:nil];
     if(view != nil)
     {
         [[self navigationController] pushViewController:view animated:YES];
