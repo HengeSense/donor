@@ -13,7 +13,6 @@
 		401AAAFA155C233E00B2F72E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 401AAAF9155C233E00B2F72E /* main.m */; };
 		401AAAFE155C233E00B2F72E /* BDApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 401AAAFD155C233E00B2F72E /* BDApplication.m */; };
 		4046FD20155C4C1A0082193B /* BloodDonor.m in Sources */ = {isa = PBXBuildFile; fileRef = 4046FD1F155C4C1A0082193B /* BloodDonor.m */; };
-		4046FD2C155C4E960082193B /* HSPullView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4046FD2B155C4E960082193B /* HSPullView.m */; };
 		4047CC6A155C29D300820475 /* HSUserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 4047CC5E155C29D300820475 /* HSUserDefaults.m */; };
 		4047CC6B155C29D300820475 /* HSBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4047CC61155C29D300820475 /* HSBarButtonItem.m */; };
 		4047CC6C155C29D300820475 /* HSNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4047CC63155C29D300820475 /* HSNavigationController.m */; };
@@ -71,6 +70,8 @@
 		40B0599B155CE5DE002C765F /* HSPanGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 40B05998155CE5DE002C765F /* HSPanGestureRecognizer.m */; };
 		40B0599C155CE5DE002C765F /* HSTapGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 40B0599A155CE5DE002C765F /* HSTapGestureRecognizer.m */; };
 		40B0599F155CE65C002C765F /* HSGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 40B0599E155CE65C002C765F /* HSGestureRecognizer.m */; };
+		40B059CD155CF15E002C765F /* HSCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 40B059C8155CF15E002C765F /* HSCalendarView.m */; };
+		40B059CE155CF15E002C765F /* HSPullView.m in Sources */ = {isa = PBXBuildFile; fileRef = 40B059CA155CF15E002C765F /* HSPullView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -85,8 +86,6 @@
 		401AAAFD155C233E00B2F72E /* BDApplication.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDApplication.m; sourceTree = "<group>"; };
 		4046FD1E155C4C1A0082193B /* BloodDonor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BloodDonor.h; sourceTree = "<group>"; };
 		4046FD1F155C4C1A0082193B /* BloodDonor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BloodDonor.m; sourceTree = "<group>"; };
-		4046FD2A155C4E960082193B /* HSPullView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSPullView.h; sourceTree = "<group>"; };
-		4046FD2B155C4E960082193B /* HSPullView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSPullView.m; sourceTree = "<group>"; };
 		4047CC5D155C29D300820475 /* HSUserDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSUserDefaults.h; sourceTree = "<group>"; };
 		4047CC5E155C29D300820475 /* HSUserDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSUserDefaults.m; sourceTree = "<group>"; };
 		4047CC60155C29D300820475 /* HSBarButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSBarButtonItem.h; sourceTree = "<group>"; };
@@ -173,6 +172,10 @@
 		40B0599A155CE5DE002C765F /* HSTapGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSTapGestureRecognizer.m; sourceTree = "<group>"; };
 		40B0599D155CE65C002C765F /* HSGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSGestureRecognizer.h; sourceTree = "<group>"; };
 		40B0599E155CE65C002C765F /* HSGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSGestureRecognizer.m; sourceTree = "<group>"; };
+		40B059C7155CF15E002C765F /* HSCalendarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSCalendarView.h; sourceTree = "<group>"; };
+		40B059C8155CF15E002C765F /* HSCalendarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSCalendarView.m; sourceTree = "<group>"; };
+		40B059C9155CF15E002C765F /* HSPullView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSPullView.h; sourceTree = "<group>"; };
+		40B059CA155CF15E002C765F /* HSPullView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSPullView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -260,13 +263,12 @@
 		4047CC5F155C29D300820475 /* UIKit */ = {
 			isa = PBXGroup;
 			children = (
+				40B059C2155CF15E002C765F /* Control */,
 				40B05996155CE5DE002C765F /* GestureRecognizer */,
 				4047CC60155C29D300820475 /* HSBarButtonItem.h */,
 				4047CC61155C29D300820475 /* HSBarButtonItem.m */,
 				4047CC62155C29D300820475 /* HSNavigationController.h */,
 				4047CC63155C29D300820475 /* HSNavigationController.m */,
-				4046FD2A155C4E960082193B /* HSPullView.h */,
-				4046FD2B155C4E960082193B /* HSPullView.m */,
 				4047CC64155C29D300820475 /* HSTabBarController.h */,
 				4047CC65155C29D300820475 /* HSTabBarController.m */,
 				40B05992155CE447002C765F /* HSView.h */,
@@ -414,6 +416,17 @@
 			path = GestureRecognizer;
 			sourceTree = "<group>";
 		};
+		40B059C2155CF15E002C765F /* Control */ = {
+			isa = PBXGroup;
+			children = (
+				40B059C7155CF15E002C765F /* HSCalendarView.h */,
+				40B059C8155CF15E002C765F /* HSCalendarView.m */,
+				40B059C9155CF15E002C765F /* HSPullView.h */,
+				40B059CA155CF15E002C765F /* HSPullView.m */,
+			);
+			path = Control;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -532,11 +545,12 @@
 				4047CCF6155C486C00820475 /* BDRecomView.m in Sources */,
 				4047CCFB155C489F00820475 /* BDСontraView.m in Sources */,
 				4046FD20155C4C1A0082193B /* BloodDonor.m in Sources */,
-				4046FD2C155C4E960082193B /* HSPullView.m in Sources */,
 				40B05994155CE447002C765F /* HSView.m in Sources */,
 				40B0599B155CE5DE002C765F /* HSPanGestureRecognizer.m in Sources */,
 				40B0599C155CE5DE002C765F /* HSTapGestureRecognizer.m in Sources */,
 				40B0599F155CE65C002C765F /* HSGestureRecognizer.m in Sources */,
+				40B059CD155CF15E002C765F /* HSCalendarView.m in Sources */,
+				40B059CE155CF15E002C765F /* HSPullView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
