@@ -12,6 +12,8 @@
 		401AAAF2155C233D00B2F72E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 401AAAF1155C233D00B2F72E /* CoreGraphics.framework */; };
 		401AAAFA155C233E00B2F72E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 401AAAF9155C233E00B2F72E /* main.m */; };
 		401AAAFE155C233E00B2F72E /* BDApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 401AAAFD155C233E00B2F72E /* BDApplication.m */; };
+		4046FD20155C4C1A0082193B /* BloodDonor.m in Sources */ = {isa = PBXBuildFile; fileRef = 4046FD1F155C4C1A0082193B /* BloodDonor.m */; };
+		4046FD2C155C4E960082193B /* HSPullView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4046FD2B155C4E960082193B /* HSPullView.m */; };
 		4047CC6A155C29D300820475 /* HSUserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 4047CC5E155C29D300820475 /* HSUserDefaults.m */; };
 		4047CC6B155C29D300820475 /* HSBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4047CC61155C29D300820475 /* HSBarButtonItem.m */; };
 		4047CC6C155C29D300820475 /* HSNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4047CC63155C29D300820475 /* HSNavigationController.m */; };
@@ -65,6 +67,10 @@
 		4047CCF7155C486C00820475 /* BDRecomView-iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4047CCF5155C486800820475 /* BDRecomView-iPhone.xib */; };
 		4047CCFB155C489F00820475 /* BDСontraView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4047CCF9155C489A00820475 /* BDСontraView.m */; };
 		4047CCFC155C489F00820475 /* BDСontraView-iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4047CCFA155C489D00820475 /* BDСontraView-iPhone.xib */; };
+		40B05994155CE447002C765F /* HSView.m in Sources */ = {isa = PBXBuildFile; fileRef = 40B05993155CE447002C765F /* HSView.m */; };
+		40B0599B155CE5DE002C765F /* HSPanGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 40B05998155CE5DE002C765F /* HSPanGestureRecognizer.m */; };
+		40B0599C155CE5DE002C765F /* HSTapGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 40B0599A155CE5DE002C765F /* HSTapGestureRecognizer.m */; };
+		40B0599F155CE65C002C765F /* HSGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 40B0599E155CE65C002C765F /* HSGestureRecognizer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -77,6 +83,10 @@
 		401AAAFB155C233E00B2F72E /* BloodDonor-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BloodDonor-Prefix.pch"; sourceTree = "<group>"; };
 		401AAAFC155C233E00B2F72E /* BDApplication.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDApplication.h; sourceTree = "<group>"; };
 		401AAAFD155C233E00B2F72E /* BDApplication.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDApplication.m; sourceTree = "<group>"; };
+		4046FD1E155C4C1A0082193B /* BloodDonor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BloodDonor.h; sourceTree = "<group>"; };
+		4046FD1F155C4C1A0082193B /* BloodDonor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BloodDonor.m; sourceTree = "<group>"; };
+		4046FD2A155C4E960082193B /* HSPullView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSPullView.h; sourceTree = "<group>"; };
+		4046FD2B155C4E960082193B /* HSPullView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSPullView.m; sourceTree = "<group>"; };
 		4047CC5D155C29D300820475 /* HSUserDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSUserDefaults.h; sourceTree = "<group>"; };
 		4047CC5E155C29D300820475 /* HSUserDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSUserDefaults.m; sourceTree = "<group>"; };
 		4047CC60155C29D300820475 /* HSBarButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSBarButtonItem.h; sourceTree = "<group>"; };
@@ -155,6 +165,14 @@
 		4047CCF8155C489700820475 /* BDСontraView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BDСontraView.h"; sourceTree = "<group>"; };
 		4047CCF9155C489A00820475 /* BDСontraView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BDСontraView.m"; sourceTree = "<group>"; };
 		4047CCFA155C489D00820475 /* BDСontraView-iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "BDСontraView-iPhone.xib"; sourceTree = "<group>"; };
+		40B05992155CE447002C765F /* HSView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSView.h; sourceTree = "<group>"; };
+		40B05993155CE447002C765F /* HSView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSView.m; sourceTree = "<group>"; };
+		40B05997155CE5DE002C765F /* HSPanGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSPanGestureRecognizer.h; sourceTree = "<group>"; };
+		40B05998155CE5DE002C765F /* HSPanGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSPanGestureRecognizer.m; sourceTree = "<group>"; };
+		40B05999155CE5DE002C765F /* HSTapGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSTapGestureRecognizer.h; sourceTree = "<group>"; };
+		40B0599A155CE5DE002C765F /* HSTapGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSTapGestureRecognizer.m; sourceTree = "<group>"; };
+		40B0599D155CE65C002C765F /* HSGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSGestureRecognizer.h; sourceTree = "<group>"; };
+		40B0599E155CE65C002C765F /* HSGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSGestureRecognizer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -201,6 +219,8 @@
 		401AAAF3155C233D00B2F72E /* BloodDonor */ = {
 			isa = PBXGroup;
 			children = (
+				4046FD1E155C4C1A0082193B /* BloodDonor.h */,
+				4046FD1F155C4C1A0082193B /* BloodDonor.m */,
 				4047CC70155C2A0800820475 /* UserInterface */,
 				4047CC5B155C29D300820475 /* HintSolutions */,
 				4047CC87155C3ED200820475 /* Images */,
@@ -240,12 +260,17 @@
 		4047CC5F155C29D300820475 /* UIKit */ = {
 			isa = PBXGroup;
 			children = (
+				40B05996155CE5DE002C765F /* GestureRecognizer */,
 				4047CC60155C29D300820475 /* HSBarButtonItem.h */,
 				4047CC61155C29D300820475 /* HSBarButtonItem.m */,
 				4047CC62155C29D300820475 /* HSNavigationController.h */,
 				4047CC63155C29D300820475 /* HSNavigationController.m */,
+				4046FD2A155C4E960082193B /* HSPullView.h */,
+				4046FD2B155C4E960082193B /* HSPullView.m */,
 				4047CC64155C29D300820475 /* HSTabBarController.h */,
 				4047CC65155C29D300820475 /* HSTabBarController.m */,
+				40B05992155CE447002C765F /* HSView.h */,
+				40B05993155CE447002C765F /* HSView.m */,
 				4047CC66155C29D300820475 /* HSViewController.h */,
 				4047CC67155C29D300820475 /* HSViewController.m */,
 				4047CC68155C29D300820475 /* HSWindow.h */,
@@ -376,6 +401,19 @@
 			path = TabBar;
 			sourceTree = "<group>";
 		};
+		40B05996155CE5DE002C765F /* GestureRecognizer */ = {
+			isa = PBXGroup;
+			children = (
+				40B0599D155CE65C002C765F /* HSGestureRecognizer.h */,
+				40B0599E155CE65C002C765F /* HSGestureRecognizer.m */,
+				40B05997155CE5DE002C765F /* HSPanGestureRecognizer.h */,
+				40B05998155CE5DE002C765F /* HSPanGestureRecognizer.m */,
+				40B05999155CE5DE002C765F /* HSTapGestureRecognizer.h */,
+				40B0599A155CE5DE002C765F /* HSTapGestureRecognizer.m */,
+			);
+			path = GestureRecognizer;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -493,6 +531,12 @@
 				4047CCF1155C482E00820475 /* BDHelpInfoView.m in Sources */,
 				4047CCF6155C486C00820475 /* BDRecomView.m in Sources */,
 				4047CCFB155C489F00820475 /* BDСontraView.m in Sources */,
+				4046FD20155C4C1A0082193B /* BloodDonor.m in Sources */,
+				4046FD2C155C4E960082193B /* HSPullView.m in Sources */,
+				40B05994155CE447002C765F /* HSView.m in Sources */,
+				40B0599B155CE5DE002C765F /* HSPanGestureRecognizer.m in Sources */,
+				40B0599C155CE5DE002C765F /* HSTapGestureRecognizer.m in Sources */,
+				40B0599F155CE65C002C765F /* HSGestureRecognizer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
