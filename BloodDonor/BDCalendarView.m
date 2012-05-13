@@ -34,6 +34,11 @@
         [[self view] addSubview:mPullView];
 
     }
+    
+    if([[BloodDonor shared] isAuthenticated] == NO)
+    {
+        [[self tabBarController] setSelectedIndex:3];
+    }
 }
 
 - (void) viewDidUnload

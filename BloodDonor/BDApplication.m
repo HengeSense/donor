@@ -7,16 +7,13 @@
 @implementation BDApplication
 
 @synthesize window = mWindow;
+@synthesize tabBar = mTabBar;
 
 - (void) dealloc
 {
     [self setWindow:nil];
+    [self setTabBar:nil];
     [super dealloc];
-}
-
-- (void) applicationDidFinishLaunching:(UIApplication*)application
-{
-    [mWindow makeKeyAndVisible];
 }
 
 - (void) tabBarController:(UITabBarController*)tabBar didSelectViewController:(UIViewController*)view

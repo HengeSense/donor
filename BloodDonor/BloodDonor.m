@@ -88,7 +88,7 @@ static BloodDonor *BloodDonorShared = nil;
     PFUser *user = [PFUser currentUser];
     if([user isAuthenticated] == YES)
     {
-        return [[user objectForKey:@"Sex"] integerValue];
+        return [[user objectForKey:@"Sex"] unsignedIntegerValue];
     }
     return BloodDonorSexUnknown;
 }
@@ -107,7 +107,7 @@ static BloodDonor *BloodDonorShared = nil;
     PFUser *user = [PFUser currentUser];
     if([user isAuthenticated] == YES)
     {
-        return [[user objectForKey:@"BloodGroup"] integerValue];
+        return [[user objectForKey:@"BloodGroup"] unsignedIntegerValue];
     }
     return BloodDonorGroupUnknown;
 }
@@ -126,9 +126,28 @@ static BloodDonor *BloodDonorShared = nil;
     PFUser *user = [PFUser currentUser];
     if([user isAuthenticated] == YES)
     {
-        return [[user objectForKey:@"BloodRh"] integerValue];
+        return [[user objectForKey:@"BloodRh"] unsignedIntegerValue];
     }
     return BloodDonorRhUnknown;
+}
+
+- (void) setProfileEvents:(NSArray*)value
+{
+    PFUser *user = [PFUser currentUser];
+    if([user isAuthenticated] == YES)
+    {
+        [user setObject:value forKey:@"Events"];
+    }
+}
+
+- (NSArray*) profileEvents
+{
+    PFUser *user = [PFUser currentUser];
+    if([user isAuthenticated] == YES)
+    {
+        return [user objectForKey:@"Events"];
+    }
+    return [NSArray array];
 }
 
 - (void) setPreferenceVerifyPassword:(BOOL)value
@@ -228,6 +247,11 @@ static BloodDonor *BloodDonorShared = nil;
 
 #pragma mark -
 #pragma mark Parse application
+
+- (BOOL) isAuthenticated
+{
+    return [[PFUser currentUser] isAuthenticated];
+}
 
 - (void) setApplicationId:(NSString*)applicationId 
                 clientKey:(NSString*)clientKey
@@ -351,6 +375,76 @@ static BloodDonor *BloodDonorShared = nil;
 {
     return self;
 }
+
+@end
+
+/*--------------------------------------------------*/
+
+@implementation BloodDonorEvent
+
+#pragma mark Property setter/getter
+
+- (void) setDate:(NSDate*)value
+{
+    [self setObject:value forKey:@"Date"];
+}
+
+- (NSDate*) date
+{
+    return [self objectForKey:@"Date"];
+}
+
+- (void) setType:(BloodDonorEventType)value
+{
+    [self setObject:[NSNumber numberWithUnsignedInteger:value] forKey:@"Type"];
+}
+
+- (BloodDonorEventType) type
+{
+    return [[self objectForKey:@"Type"] unsignedIntegerValue];
+}
+
+- (void) setDelivery:(BloodDonorEventDelivery)value
+{
+    [self setObject:[NSNumber numberWithUnsignedInteger:value] forKey:@"Delivery"];
+}
+
+- (BloodDonorEventDelivery) delivery
+{
+    return [[self objectForKey:@"Delivery"] unsignedIntegerValue];
+}
+
+- (void) setNotice:(BloodDonorEventNotice)value
+{
+    [self setObject:[NSNumber numberWithUnsignedInteger:value] forKey:@"Notice"];
+}
+
+- (BloodDonorEventNotice) notice
+{
+    return [[self objectForKey:@"Notice"] unsignedIntegerValue];
+}
+
+- (void) setAnalysisResult:(BOOL)value
+{
+    [self setObject:[NSNumber numberWithBool:value] forKey:@"AnalysisResult"];
+}
+
+- (BOOL) analysisResult
+{
+    return [[self objectForKey:@"AnalysisResult"] boolValue];
+}
+
+- (void) setComment:(NSString*)value
+{
+    [self setObject:value forKey:@"Comment"];
+}
+
+- (NSString*) comment
+{
+    return [self objectForKey:@"Comment"];
+}
+
+#pragma mark -
 
 @end
 
