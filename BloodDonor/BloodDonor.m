@@ -4,30 +4,215 @@
 
 /*--------------------------------------------------*/
 
-#import "HSUserDefaults.h"
-
-/*--------------------------------------------------*/
-
 static BloodDonor *BloodDonorShared = nil;
 
 /*--------------------------------------------------*/
 
 @implementation BloodDonor
 
-@synthesize login = mLogin;
-@synthesize password = mPassword;
-@synthesize name = mName;
-@synthesize sex = mSex;
-@synthesize bloodGroup = mBloodGroup;
-@synthesize bloodRh = mBloodRh;
-@synthesize verifyPassword = mVerifyPassword;
-@synthesize showPushNotice = mShowPushNotice;
-@synthesize searchBloodGroup = mSearchBloodGroup;
-@synthesize calendarReminders = mCalendarReminders;
-@synthesize calendarCloseEvent = mCalendarCloseEvent;
-@synthesize bloodUsePlatelets = mBloodUsePlatelets;
-@synthesize bloodUseWhole = mBloodUseWhole;
-@synthesize bloodUsePlasma = mBloodUsePlasma;
+#pragma mark Property synthesize
+
+@synthesize preference = mPreference;
+
+#pragma mark -
+#pragma mark Property setter/getter
+
+- (void) setProfileUsername:(NSString*)value
+{
+    PFUser *user = [PFUser currentUser];
+    if([user isAuthenticated] == YES)
+    {
+        [user setUsername:value];
+    }
+}
+
+- (NSString*) profileUsername
+{
+    PFUser *user = [PFUser currentUser];
+    if([user isAuthenticated] == YES)
+    {
+        return [user username];
+    }
+    return @"";
+}
+
+- (void) setProfilePassword:(NSString*)value
+{
+    PFUser *user = [PFUser currentUser];
+    if([user isAuthenticated] == YES)
+    {
+        [user setPassword:value];
+    }
+}
+
+- (NSString*) profilePassword
+{
+    PFUser *user = [PFUser currentUser];
+    if([user isAuthenticated] == YES)
+    {
+        return [user password];
+    }
+    return @"";
+}
+
+- (void) setProfileName:(NSString*)value
+{
+    PFUser *user = [PFUser currentUser];
+    if([user isAuthenticated] == YES)
+    {
+        [user setObject:value forKey:@"Name"];
+    }
+}
+
+- (NSString*) profileName
+{
+    PFUser *user = [PFUser currentUser];
+    if([user isAuthenticated] == YES)
+    {
+        return [user objectForKey:@"Name"];
+    }
+    return @"";
+}
+
+- (void) setProfileSex:(BloodDonorSex)value
+{
+    PFUser *user = [PFUser currentUser];
+    if([user isAuthenticated] == YES)
+    {
+        [user setObject:[NSNumber numberWithUnsignedInteger:value] forKey:@"Sex"];
+    }
+}
+
+- (BloodDonorSex) profileSex
+{
+    PFUser *user = [PFUser currentUser];
+    if([user isAuthenticated] == YES)
+    {
+        return [[user objectForKey:@"Sex"] integerValue];
+    }
+    return BloodDonorSexUnknown;
+}
+
+- (void) setProfileBloodGroup:(BloodDonorGroup)value
+{
+    PFUser *user = [PFUser currentUser];
+    if([user isAuthenticated] == YES)
+    {
+        [user setObject:[NSNumber numberWithUnsignedInteger:value] forKey:@"BloodGroup"];
+    }
+}
+
+- (BloodDonorGroup) profileBloodGroup
+{
+    PFUser *user = [PFUser currentUser];
+    if([user isAuthenticated] == YES)
+    {
+        return [[user objectForKey:@"BloodGroup"] integerValue];
+    }
+    return BloodDonorGroupUnknown;
+}
+
+- (void) setProfileBloodRh:(BloodDonorRh)value
+{
+    PFUser *user = [PFUser currentUser];
+    if([user isAuthenticated] == YES)
+    {
+        [user setObject:[NSNumber numberWithUnsignedInteger:value] forKey:@"BloodRh"];
+    }
+}
+
+- (BloodDonorRh) profileBloodRh
+{
+    PFUser *user = [PFUser currentUser];
+    if([user isAuthenticated] == YES)
+    {
+        return [[user objectForKey:@"BloodRh"] integerValue];
+    }
+    return BloodDonorRhUnknown;
+}
+
+- (void) setPreferenceVerifyPassword:(BOOL)value
+{
+    [mPreference setObject:[NSNumber numberWithBool:value] forKey:@"VerifyPassword"];
+}
+
+- (BOOL) preferenceVerifyPassword
+{
+    return [[mPreference objectForKey:@"VerifyPassword"] boolValue];
+}
+
+- (void) setPreferenceShowPushNotice:(BOOL)value
+{
+    [mPreference setObject:[NSNumber numberWithBool:value] forKey:@"ShowPushNotice"];
+}
+
+- (BOOL) preferenceShowPushNotice
+{
+    return [[mPreference objectForKey:@"ShowPushNotice"] boolValue];
+}
+
+- (void) setPreferenceSearchBloodGroup:(BOOL)value
+{
+    [mPreference setObject:[NSNumber numberWithBool:value] forKey:@"SearchBloodGroup"];
+}
+
+- (BOOL) preferenceSearchBloodGroup
+{
+    return [[mPreference objectForKey:@"SearchBloodGroup"] boolValue];
+}
+
+- (void) setPreferenceCalendarReminders:(BOOL)value
+{
+    [mPreference setObject:[NSNumber numberWithBool:value] forKey:@"CalendarReminders"];
+}
+
+- (BOOL) preferenceCalendarReminders
+{
+    return [[mPreference objectForKey:@"CalendarReminders"] boolValue];
+}
+
+- (void) setPreferenceCalendarCloseEvent:(BOOL)value
+{
+    [mPreference setObject:[NSNumber numberWithBool:value] forKey:@"CalendarCloseEvent"];
+}
+
+- (BOOL) preferenceCalendarCloseEvent
+{
+    return [[mPreference objectForKey:@"CalendarCloseEvent"] boolValue];
+}
+
+- (void) setPreferenceBloodUsePlatelets:(BOOL)value
+{
+    [mPreference setObject:[NSNumber numberWithBool:value] forKey:@"BloodUsePlatelets"];
+}
+
+- (BOOL) preferenceBloodUsePlatelets
+{
+    return [[mPreference objectForKey:@"BloodUsePlatelets"] boolValue];
+}
+
+- (void) setPreferenceBloodUseWhole:(BOOL)value
+{
+    [mPreference setObject:[NSNumber numberWithBool:value] forKey:@"BloodUseWhole"];
+}
+
+- (BOOL) preferenceBloodUseWhole
+{
+    return [[mPreference objectForKey:@"BloodUseWhole"] boolValue];
+}
+
+- (void) setPreferenceBloodUsePlasma:(BOOL)value
+{
+    [mPreference setObject:[NSNumber numberWithBool:value] forKey:@"BloodUsePlasma"];
+}
+
+- (BOOL) preferenceBloodUsePlasma
+{
+    return [[mPreference objectForKey:@"BloodUsePlasma"] boolValue];
+}
+
+#pragma mark -
+#pragma mark Singleton
 
 + (BloodDonor*) shared
 {
@@ -41,6 +226,91 @@ static BloodDonor *BloodDonorShared = nil;
     return BloodDonorShared;
 }
 
+#pragma mark -
+#pragma mark Parse application
+
+- (void) setApplicationId:(NSString*)applicationId 
+                clientKey:(NSString*)clientKey
+{
+    [Parse setApplicationId:applicationId
+                  clientKey:clientKey];
+}
+
+#pragma mark -
+#pragma mark Parse authentication
+
+- (void) signUpWithUsername:(NSString*)username
+                   password:(NSString*)password
+                       name:(NSString*)name
+                        sex:(BloodDonorSex)sex
+                 bloodGroup:(BloodDonorGroup)bloodGroup
+                    bloodRh:(BloodDonorRh)bloodRh
+                     target:(id)target
+                    success:(SEL)success
+                    failure:(SEL)failure
+{
+    PFUser *user = [PFUser user];
+    if(user != nil)
+    {
+        [user setUsername:username];
+        [user setPassword:password];
+        [user setObject:name forKey:@"Name"];
+        [user setObject:[NSNumber numberWithUnsignedInteger:sex] forKey:@"Sex"];
+        [user setObject:[NSNumber numberWithUnsignedInteger:bloodGroup] forKey:@"BloodGroup"];
+        [user setObject:[NSNumber numberWithUnsignedInteger:bloodRh] forKey:@"BloodRh"];
+        
+        [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            if(error != nil)
+            {
+                if([target respondsToSelector:success] == YES)
+                {
+                    [target performSelector:success withObject:self];
+                }
+            }
+            else
+            {
+                if([target respondsToSelector:failure] == YES)
+                {
+                    [target performSelector:failure withObject:error];
+                }
+            }
+        }];
+    }
+}
+
+- (void) logInWithUsername:(NSString*)username
+                  password:(NSString*)password
+                    target:(id)target
+                   success:(SEL)success
+                   failure:(SEL)failure
+{
+    [PFUser logInWithUsernameInBackground:username
+                                 password:password
+                                    block:^(PFUser *user, NSError *error) {
+                                        if(user != nil)
+                                        {
+                                            if([target respondsToSelector:success] == YES)
+                                            {
+                                                [target performSelector:success withObject:self];
+                                            }
+                                        }
+                                        else
+                                        {
+                                            if([target respondsToSelector:failure] == YES)
+                                            {
+                                                [target performSelector:failure withObject:error];
+                                            }
+                                        }
+                                    }];
+}
+
+- (void) logOut
+{
+    [PFUser logOut];
+}
+
+#pragma mark -
+
 + (id) allocWithZone:(NSZone*)zone
 {
     return [[self shared] retain];
@@ -51,26 +321,15 @@ static BloodDonor *BloodDonorShared = nil;
     self = [super init];
     if(self != nil)
     {
-        NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
-        if(user != nil)
-        {
-            mLogin = [user stringForKey:@"Login" asDefaults:@""];
-            mPassword = [user stringForKey:@"Password" asDefaults:@""];
-            mName = [user stringForKey:@"Name" asDefaults:@""];
-            mSex = [user integerForKey:@"Sex" asDefaults:BloodDonorSexUnknown];
-            mBloodGroup = [user integerForKey:@"BloodGroup" asDefaults:BloodDonorGroupUnknown];
-            mBloodRh = [user integerForKey:@"BloodRh" asDefaults:BloodDonorRhUnknown];
-            mVerifyPassword = [user boolForKey:@"VerifyPassword" asDefaults:NO];
-            mShowPushNotice = [user boolForKey:@"ShowPushNotice" asDefaults:NO];
-            mSearchBloodGroup = [user boolForKey:@"SearchBloodGroup" asDefaults:NO];
-            mCalendarReminders = [user boolForKey:@"CalendarReminders" asDefaults:NO];
-            mCalendarCloseEvent = [user boolForKey:@"CalendarCloseEvent" asDefaults:NO];
-            mBloodUsePlatelets = [user boolForKey:@"BloodUsePlatelets" asDefaults:NO];
-            mBloodUseWhole = [user boolForKey:@"BloodUseWhole" asDefaults:NO];
-            mBloodUsePlasma = [user boolForKey:@"BloodUsePlasma" asDefaults:NO];
-        }
+        mPreference = [[PFObject objectWithClassName:@"Preference"] retain];
     }
     return self;
+}
+
+- (void) dealloc
+{
+    [mPreference release];
+    [super dealloc];
 }
 
 - (id) copyWithZone:(NSZone*)zone
@@ -91,36 +350,6 @@ static BloodDonor *BloodDonorShared = nil;
 - (id) autorelease
 {
     return self;
-}
-
-- (void) loginWithInternet
-{
-}
-
-- (void) logoutWithInternet
-{
-}
-
-- (void) synchronize
-{
-    NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
-    if(user != nil)
-    {
-        [user setObject:mLogin forKey:@"Login"];
-        [user setObject:mPassword forKey:@"Password"];
-        [user setObject:mName forKey:@"Name"];
-        [user setInteger:mSex forKey:@"Sex"];
-        [user setInteger:mBloodGroup forKey:@"BloodGroup"];
-        [user setInteger:mBloodRh forKey:@"BloodRh"];
-        [user setBool:mVerifyPassword forKey:@"VerifyPassword"];
-        [user setBool:mShowPushNotice forKey:@"ShowPushNotice"];
-        [user setBool:mSearchBloodGroup forKey:@"SearchBloodGroup"];
-        [user setBool:mCalendarReminders forKey:@"CalendarReminders"];
-        [user setBool:mCalendarCloseEvent forKey:@"CalendarCloseEvent"];
-        [user setBool:mBloodUsePlatelets forKey:@"BloodUsePlatelets"];
-        [user setBool:mBloodUseWhole forKey:@"BloodUseWhole"];
-        [user setBool:mBloodUsePlasma forKey:@"BloodUsePlasma"];
-    }
 }
 
 @end

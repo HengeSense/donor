@@ -4,6 +4,15 @@
 
 /*--------------------------------------------------*/
 
+#import <Parse/Parse.h>
+
+/*--------------------------------------------------*/
+
+#define BD_PARSE_APPLICATION_ID @"EIpakVdZblHedhqgxMgiEVnIGCRGvWdy9v8gkKZu"
+#define BD_PARSE_CLIENT_KEY @"uNarhakSf1on8lJjrAVs1VWmPlG1D6ZJf9dO5QZY"
+
+/*--------------------------------------------------*/
+
 enum
 {
     BloodDonorSexUnknown,
@@ -41,43 +50,47 @@ typedef NSInteger BloodDonorRh;
 
 @interface BloodDonor : NSObject
 {
-    NSString* mLogin;
-    NSString* mPassword;
-    NSString* mName;
-    BloodDonorSex mSex;
-    BloodDonorGroup mBloodGroup;
-    BloodDonorRh mBloodRh;
-    BOOL mVerifyPassword;
-    BOOL mShowPushNotice;
-    BOOL mSearchBloodGroup;
-    BOOL mCalendarReminders;
-    BOOL mCalendarCloseEvent;
-    BOOL mBloodUsePlatelets;
-    BOOL mBloodUseWhole;
-    BOOL mBloodUsePlasma;
+    PFObject *mPreference;
 }
 
-@property (nonatomic, retain) NSString* login;
-@property (nonatomic, retain) NSString* password;
-@property (nonatomic, retain) NSString* name;
-@property (nonatomic, assign) BloodDonorSex sex;
-@property (nonatomic, assign) BloodDonorGroup bloodGroup;
-@property (nonatomic, assign) BloodDonorRh bloodRh;
-@property (nonatomic, assign) BOOL verifyPassword;
-@property (nonatomic, assign) BOOL showPushNotice;
-@property (nonatomic, assign) BOOL searchBloodGroup;
-@property (nonatomic, assign) BOOL calendarReminders;
-@property (nonatomic, assign) BOOL calendarCloseEvent;
-@property (nonatomic, assign) BOOL bloodUsePlatelets;
-@property (nonatomic, assign) BOOL bloodUseWhole;
-@property (nonatomic, assign) BOOL bloodUsePlasma;
+@property (nonatomic, readonly, retain) PFObject *preference;
 
-+ (BloodDonor*) shared;
+@property (nonatomic, readwrite, assign) NSString *profileUsername;
+@property (nonatomic, readwrite, assign) NSString *profilePassword;
+@property (nonatomic, readwrite, assign) NSString *profileName;
+@property (nonatomic, readwrite, assign) BloodDonorSex profileSex;
+@property (nonatomic, readwrite, assign) BloodDonorGroup profileBloodGroup;
+@property (nonatomic, readwrite, assign) BloodDonorRh profileBloodRh;
 
-- (void) loginWithInternet;
-- (void) logoutWithInternet;
+@property (nonatomic, readwrite, assign) BOOL preferenceVerifyPassword;
+@property (nonatomic, readwrite, assign) BOOL preferenceShowPushNotice;
+@property (nonatomic, readwrite, assign) BOOL preferenceSearchBloodGroup;
+@property (nonatomic, readwrite, assign) BOOL preferenceCalendarReminders;
+@property (nonatomic, readwrite, assign) BOOL preferenceCalendarCloseEvent;
+@property (nonatomic, readwrite, assign) BOOL preferenceBloodUsePlatelets;
+@property (nonatomic, readwrite, assign) BOOL preferenceBloodUseWhole;
+@property (nonatomic, readwrite, assign) BOOL preferenceBloodUsePlasma;
 
-- (void) synchronize;
+- (void) setApplicationId:(NSString*)applicationId 
+                clientKey:(NSString*)clientKey;
+
+- (void) signUpWithUsername:(NSString*)username
+                   password:(NSString*)password
+                       name:(NSString*)name
+                        sex:(BloodDonorSex)sex
+                 bloodGroup:(BloodDonorGroup)bloodGroup
+                    bloodRh:(BloodDonorRh)bloodRh
+                     target:(id)target
+                    success:(SEL)success
+                    failure:(SEL)failure;
+
+- (void) logInWithUsername:(NSString*)username
+                  password:(NSString*)password
+                    target:(id)target
+                   success:(SEL)success
+                   failure:(SEL)failure;
+
+- (void) logOut;
 
 @end
 

@@ -66,6 +66,14 @@
 		4047CCF7155C486C00820475 /* BDRecomView-iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4047CCF5155C486800820475 /* BDRecomView-iPhone.xib */; };
 		4047CCFB155C489F00820475 /* BDСontraView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4047CCF9155C489A00820475 /* BDСontraView.m */; };
 		4047CCFC155C489F00820475 /* BDСontraView-iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4047CCFA155C489D00820475 /* BDСontraView-iPhone.xib */; };
+		40A09EEB155F9EFA00EE24FF /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40A09EEA155F9EFA00EE24FF /* Parse.framework */; };
+		40A09EED155FA93A00EE24FF /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40A09EEC155FA93A00EE24FF /* AudioToolbox.framework */; };
+		40A09EEF155FA94200EE24FF /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40A09EEE155FA94200EE24FF /* CFNetwork.framework */; };
+		40A09EF1155FA94B00EE24FF /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40A09EF0155FA94B00EE24FF /* SystemConfiguration.framework */; };
+		40A09EF3155FA95300EE24FF /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40A09EF2155FA95300EE24FF /* MobileCoreServices.framework */; };
+		40A09EF5155FA96000EE24FF /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40A09EF4155FA96000EE24FF /* Security.framework */; };
+		40A09EF7155FA96700EE24FF /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40A09EF6155FA96700EE24FF /* QuartzCore.framework */; };
+		40A09EF9155FA97300EE24FF /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 40A09EF8155FA97300EE24FF /* libz.dylib */; };
 		40B05994155CE447002C765F /* HSView.m in Sources */ = {isa = PBXBuildFile; fileRef = 40B05993155CE447002C765F /* HSView.m */; };
 		40B0599B155CE5DE002C765F /* HSPanGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 40B05998155CE5DE002C765F /* HSPanGestureRecognizer.m */; };
 		40B0599C155CE5DE002C765F /* HSTapGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 40B0599A155CE5DE002C765F /* HSTapGestureRecognizer.m */; };
@@ -164,6 +172,14 @@
 		4047CCF8155C489700820475 /* BDСontraView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BDСontraView.h"; sourceTree = "<group>"; };
 		4047CCF9155C489A00820475 /* BDСontraView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BDСontraView.m"; sourceTree = "<group>"; };
 		4047CCFA155C489D00820475 /* BDСontraView-iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "BDСontraView-iPhone.xib"; sourceTree = "<group>"; };
+		40A09EEA155F9EFA00EE24FF /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = ../../Frameworks/Parse.framework; sourceTree = "<group>"; };
+		40A09EEC155FA93A00EE24FF /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		40A09EEE155FA94200EE24FF /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		40A09EF0155FA94B00EE24FF /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		40A09EF2155FA95300EE24FF /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		40A09EF4155FA96000EE24FF /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		40A09EF6155FA96700EE24FF /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		40A09EF8155FA97300EE24FF /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		40B05992155CE447002C765F /* HSView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSView.h; sourceTree = "<group>"; };
 		40B05993155CE447002C765F /* HSView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSView.m; sourceTree = "<group>"; };
 		40B05997155CE5DE002C765F /* HSPanGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSPanGestureRecognizer.h; sourceTree = "<group>"; };
@@ -183,9 +199,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				40A09EEB155F9EFA00EE24FF /* Parse.framework in Frameworks */,
 				401AAAEE155C233D00B2F72E /* UIKit.framework in Frameworks */,
 				401AAAF0155C233D00B2F72E /* Foundation.framework in Frameworks */,
 				401AAAF2155C233D00B2F72E /* CoreGraphics.framework in Frameworks */,
+				40A09EF7155FA96700EE24FF /* QuartzCore.framework in Frameworks */,
+				40A09EED155FA93A00EE24FF /* AudioToolbox.framework in Frameworks */,
+				40A09EEF155FA94200EE24FF /* CFNetwork.framework in Frameworks */,
+				40A09EF1155FA94B00EE24FF /* SystemConfiguration.framework in Frameworks */,
+				40A09EF3155FA95300EE24FF /* MobileCoreServices.framework in Frameworks */,
+				40A09EF5155FA96000EE24FF /* Security.framework in Frameworks */,
+				40A09EF9155FA97300EE24FF /* libz.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -212,9 +236,17 @@
 		401AAAEC155C233D00B2F72E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				40A09EF4155FA96000EE24FF /* Security.framework */,
+				40A09EF2155FA95300EE24FF /* MobileCoreServices.framework */,
+				40A09EF0155FA94B00EE24FF /* SystemConfiguration.framework */,
+				40A09EEA155F9EFA00EE24FF /* Parse.framework */,
 				401AAAED155C233D00B2F72E /* UIKit.framework */,
 				401AAAEF155C233D00B2F72E /* Foundation.framework */,
 				401AAAF1155C233D00B2F72E /* CoreGraphics.framework */,
+				40A09EF6155FA96700EE24FF /* QuartzCore.framework */,
+				40A09EEE155FA94200EE24FF /* CFNetwork.framework */,
+				40A09EEC155FA93A00EE24FF /* AudioToolbox.framework */,
+				40A09EF8155FA97300EE24FF /* libz.dylib */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -564,6 +596,7 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = "~/Dropbox/ObjC/Frameworks/";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -590,6 +623,7 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = "~/Dropbox/ObjC/Frameworks/";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -607,6 +641,10 @@
 		401AAB02155C233E00B2F72E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../Frameworks\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BloodDonor/BloodDonor-Prefix.pch";
 				INFOPLIST_FILE = "BloodDonor/BloodDonor-Info.plist";
@@ -619,6 +657,10 @@
 		401AAB03155C233E00B2F72E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../Frameworks\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BloodDonor/BloodDonor-Prefix.pch";
 				INFOPLIST_FILE = "BloodDonor/BloodDonor-Info.plist";
