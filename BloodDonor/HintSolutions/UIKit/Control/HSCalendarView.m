@@ -10,6 +10,8 @@
 
 @implementation HSCalendarView
 
+#pragma mark Property synthesize
+
 @synthesize delegate = mDelegate;
 @synthesize calendar = mCalendar;
 @synthesize selectedDate = mSelectedDate;
@@ -19,31 +21,8 @@
 @synthesize weekBarHeight = mWeekBarHeight;
 @synthesize gridMargin = mGridMargin;
 
-- (id) initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame: frame];
-    if(self != nil)
-    {
-        [self setBackgroundColor:[UIColor clearColor]];
-        [self setSelectedDate:nil];
-        [self setDisplayedDate:[NSDate date]];
-
-        mMonthBarHeight = 48;
-        mMonthBarButtonWidth = 64;
-        mWeekBarHeight = 32;
-        mGridMargin = 4;
-    }
-    return self;
-}
-
-- (void) dealloc
-{
-    [mDisplayedDate release];
-    [mSelectedDate release];
-    [mCalendar release];
-
-    [super dealloc];
-}
+#pragma mark -
+#pragma mark Property setter/getter
 
 - (NSCalendar*) calendar
 {
@@ -258,6 +237,34 @@
     return mDayCells;
 }
 
+#pragma mark -
+
+- (id) initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame: frame];
+    if(self != nil)
+    {
+        [self setBackgroundColor:[UIColor clearColor]];
+        [self setSelectedDate:nil];
+        [self setDisplayedDate:[NSDate date]];
+
+        mMonthBarHeight = 48;
+        mMonthBarButtonWidth = 64;
+        mWeekBarHeight = 32;
+        mGridMargin = 4;
+    }
+    return self;
+}
+
+- (void) dealloc
+{
+    [mDisplayedDate release];
+    [mSelectedDate release];
+    [mCalendar release];
+
+    [super dealloc];
+}
+
 - (void) touchedCellView:(HSCalendarCellView*)cell
 {
     [self setSelectedDate:[cell dateWithBaseDate:[self displayedDate]
@@ -365,7 +372,12 @@
 
 @implementation HSCalendarCellView
 
+#pragma mark Property synthesize
+
 @synthesize day = mDay;
+
+#pragma mark -
+#pragma mark Property setter/getter
 
 - (void) setDay:(NSUInteger)day
 {
@@ -375,6 +387,8 @@
         [self setTitle: [NSString stringWithFormat: @"%d", mDay] forState: UIControlStateNormal];
     }
 }
+
+#pragma mark -
 
 - (NSDate*) dateWithBaseDate:(NSDate*)date calendar:(NSCalendar*)calendar
 {

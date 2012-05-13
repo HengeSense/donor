@@ -18,6 +18,22 @@
 - (void) viewDidLoad
 {
     [super viewDidLoad];
+    
+    CGRect frame = [[self view] frame];
+    mPullView = [HSPullView viewWithSuperViewFrame:frame
+                                        headerSize:40.0f
+                                         direction:HSPullDirectionBottom
+                                            opened:NO];
+    if(mPullView != nil)
+    {
+        [[mPullView handleView] setBackgroundColor:[UIColor redColor]];
+        [[mPullView clientView] setBackgroundColor:[UIColor greenColor]];
+        [mPullView setBackgroundColor:[UIColor blueColor]];
+        [mPullView setDelegate:self];
+        
+        [[self view] addSubview:mPullView];
+
+    }
 }
 
 - (void) viewDidUnload

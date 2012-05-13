@@ -227,19 +227,19 @@
 				4047CC70155C2A0800820475 /* UserInterface */,
 				4047CC5B155C29D300820475 /* HintSolutions */,
 				4047CC87155C3ED200820475 /* Images */,
-				401AAAF4155C233E00B2F72E /* Supporting Files */,
+				401AAAF4155C233E00B2F72E /* Supporting */,
 			);
 			path = BloodDonor;
 			sourceTree = "<group>";
 		};
-		401AAAF4155C233E00B2F72E /* Supporting Files */ = {
+		401AAAF4155C233E00B2F72E /* Supporting */ = {
 			isa = PBXGroup;
 			children = (
 				401AAAF5155C233E00B2F72E /* BloodDonor-Info.plist */,
 				401AAAFB155C233E00B2F72E /* BloodDonor-Prefix.pch */,
 				401AAAF9155C233E00B2F72E /* main.m */,
 			);
-			name = "Supporting Files";
+			name = Supporting;
 			sourceTree = "<group>";
 		};
 		4047CC5B155C29D300820475 /* HintSolutions */ = {

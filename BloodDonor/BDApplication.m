@@ -19,6 +19,10 @@
     [mWindow makeKeyAndVisible];
 }
 
+- (void) tabBarController:(UITabBarController*)tabBar didSelectViewController:(UIViewController*)view
+{
+}
+
 @end
 
 /*--------------------------------------------------*/

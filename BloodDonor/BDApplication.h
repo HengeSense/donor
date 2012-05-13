@@ -4,7 +4,7 @@
 
 /*--------------------------------------------------*/
 
-@interface BDApplication : NSObject< UIApplicationDelegate >
+@interface BDApplication : NSObject< UIApplicationDelegate, UITabBarControllerDelegate >
 {
     UIWindow *mWindow;
 }
