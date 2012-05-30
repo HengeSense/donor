@@ -13,21 +13,25 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Collections.ObjectModel;
 using Parse;
-
+using Parse.Queries;
 
 namespace Donor
-{
-    
-
+{   
     public class MainViewModel : INotifyPropertyChanged
     {
         public const string APPLICATION_ID = "EIpakVdZblHedhqgxMgiEVnIGCRGvWdy9v8gkKZu";
         public const string REST_API_KEY = "uNarhakSf1on8lJjrAVs1VWmPlG1D6ZJf9dO5QZY";
+
+        //public Driver Parse;
+        //public parse;
+
         public MainViewModel()
         {            
             this.Items = new ObservableCollection<ItemViewModel>();
 
             ParseConfiguration.Configure(APPLICATION_ID, REST_API_KEY);
+            //this.Parse = new Driver();
+            var parse = new Driver();
         }
 
         /// <summary>

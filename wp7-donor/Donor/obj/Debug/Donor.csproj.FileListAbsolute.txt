@@ -52,3 +52,4 @@ E:\Visual Studio 2010\Projects\Donor\wp7-donor\Donor\obj\Debug\GenerateResource.
 E:\Visual Studio 2010\Projects\Donor\wp7-donor\Donor\obj\Debug\Donor.dll
 E:\Visual Studio 2010\Projects\Donor\wp7-donor\Donor\obj\Debug\Donor.pdb
 E:\Visual Studio 2010\Projects\Donor\wp7-donor\Donor\obj\Debug\XapCacheFile.xml
+E:\Visual Studio 2010\Projects\Donor\wp7-donor\Donor\obj\Debug\RegisterUser.g.i.cs

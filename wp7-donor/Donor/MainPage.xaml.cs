@@ -33,5 +33,10 @@ namespace Donor
                 App.ViewModel.LoadData();
             }
         }
+
+        private void TextBlock_Tap(object sender, GestureEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/RegisterUser.xaml", UriKind.Relative));
+        }
     }
 }
