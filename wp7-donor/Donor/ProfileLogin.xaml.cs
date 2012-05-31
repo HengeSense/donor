@@ -14,17 +14,16 @@ using Donor.ViewModels;
 
 namespace Donor
 {
-    public partial class RegisterUser : PhoneApplicationPage
+    public partial class ProfileLogin : PhoneApplicationPage
     {
-        public RegisterUser()
+        public ProfileLogin()
         {
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
             var user = new DonorUser { UserName = "test", Password = "test" };
-            //App.ViewModel.Parse.Users.Register(user);
         }
     }
 }

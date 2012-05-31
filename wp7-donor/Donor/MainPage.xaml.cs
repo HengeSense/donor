@@ -34,9 +34,9 @@ namespace Donor
             }
         }
 
-        private void TextBlock_Tap(object sender, GestureEventArgs e)
+        private void TextBlock_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
-            NavigationService.Navigate(new Uri("/RegisterUser.xaml", UriKind.Relative));
+            NavigationService.Navigate(new Uri("/ProfileLogin.xaml", UriKind.Relative));
         }
     }
 }

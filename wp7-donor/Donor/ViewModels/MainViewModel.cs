@@ -23,7 +23,6 @@ namespace Donor
         public const string REST_API_KEY = "uNarhakSf1on8lJjrAVs1VWmPlG1D6ZJf9dO5QZY";
 
         //public Driver Parse;
-        //public parse;
 
         public MainViewModel()
         {            
@@ -31,7 +30,7 @@ namespace Donor
 
             ParseConfiguration.Configure(APPLICATION_ID, REST_API_KEY);
             //this.Parse = new Driver();
-            var parse = new Driver();
+            //var parse = new Driver();
         }
 
         /// <summary>

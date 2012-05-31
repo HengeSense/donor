@@ -1,0 +1,59 @@
+﻿<phone:PhoneApplicationPage
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:toolkitPrimitives="clr-namespace:Microsoft.Phone.Controls.Primitives;assembly=Microsoft.Phone.Controls.Toolkit" xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit" 
+    x:Class="Donor.ProfileLogin" 
+    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="768"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait"  Orientation="Portrait"
+    shell:SystemTray.IsVisible="True">
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <!--Pivot Control-->
+        <controls:Pivot Title="профиль">
+            <!--Pivot item one-->
+            <controls:PivotItem Header="аккаунт">
+                <Grid>
+                    <StackPanel>
+                        <TextBlock Text="Введите e-mail" />
+                        <TextBox x:Name="email" />
+                        <TextBlock Text="Введите пароль" />
+                        <PasswordBox x:Name="password" />
+                        <Button Content="Вход" Click="Button_Click" />
+                        <TextBlock Text="Если у вас нет аккаунта, введите пароль и e-mail для начала регистрации." TextWrapping="Wrap" />
+                    </StackPanel>
+                </Grid>
+            </controls:PivotItem>
+
+            <!--Pivot item two-->
+            <controls:PivotItem Header="настройки">
+                <Grid>
+                    <ScrollViewer>
+                    <StackPanel>
+                	<toolkit:ToggleSwitch Margin="0" d:LayoutOverrides="Width, Height" Header="Пароль" />
+                    <toolkit:ToggleSwitch Margin="0" d:LayoutOverrides="Width, Height" Header="Push-уведомления" />
+                    <toolkit:ToggleSwitch Margin="0" d:LayoutOverrides="Width, Height" Header="Срочный поиск" />
+                        <TextBlock Text="Поиск объявлений по вашей группе крови" />
+                        <TextBlock Text="Календарь" Style="{StaticResource PhoneTextTitle2Style}" />
+                        <toolkit:ToggleSwitch Margin="0" d:LayoutOverrides="Width, Height" Header="Напоминания" />
+                        <toolkit:ToggleSwitch Margin="0" d:LayoutOverrides="Width, Height" Header="Закрытие события" />
+                        <TextBlock Text="Календарь" Style="{StaticResource PhoneTextTitle2Style}" />
+                        <CheckBox Content="Тромбоциты" />
+                        <CheckBox Content="Цельная" />
+                        <CheckBox Content="Плазма" />
+                    </StackPanel>
+                    </ScrollViewer>
+                </Grid>
+            </controls:PivotItem>
+        </controls:Pivot>
+    </Grid>
+    
+</phone:PhoneApplicationPage>
