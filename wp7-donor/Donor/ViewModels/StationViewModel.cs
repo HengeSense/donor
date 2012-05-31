@@ -8,12 +8,33 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
+using System.Collections.ObjectModel;
 
 namespace Donor.ViewModels
 {
+    public class StationsLitViewModel
+    {
+        public StationsLitViewModel()
+        {
+        }
+
+        public ObservableCollection<StationViewModel> Items { get; set; }
+    }
+
+
     public class StationViewModel
     {
         public StationViewModel() {
+        }
+
+        /// <summary>
+        /// Station title
+        /// </summary>
+        private string _title;
+        public string Title
+        {
+            get { return _title; }
+            set { _title = value; }
         }
 
         /// <summary>

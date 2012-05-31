@@ -106,6 +106,7 @@
     <Compile Include="ViewModels\EventViewModel.cs" />
     <Compile Include="ViewModels\ItemViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\NewsViewModel.cs" />
     <Compile Include="ViewModels\StationViewModel.cs" />
     <Compile Include="ViewModels\UserViewModel.cs" />
   </ItemGroup>
