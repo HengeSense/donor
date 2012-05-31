@@ -25,7 +25,7 @@
             <controls:PanoramaItem Header="Меню">
                 <StackPanel>
                     <TextBlock Margin="0,4" Text="Календарь" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
-                    <TextBlock Margin="0,4" Text="Станции" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
+                    <TextBlock Margin="0,4" Text="Станции" TextWrapping="Wrap" Name="Stations" Style="{StaticResource PhoneTextExtraLargeStyle}" Tap="Stations_Tap" />
                     <TextBlock Margin="0,4" Text="Объявления" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
                     <TextBlock Margin="0,4" Text="Новости" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
                     <TextBlock Margin="0,4" Text="Справка" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}"/>

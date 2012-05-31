@@ -38,5 +38,10 @@ namespace Donor
         {
             NavigationService.Navigate(new Uri("/ProfileLogin.xaml", UriKind.Relative));
         }
+
+        private void Stations_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+
+        }
     }
 }

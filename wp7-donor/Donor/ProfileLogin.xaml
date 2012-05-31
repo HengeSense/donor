@@ -27,8 +27,10 @@
                         <TextBox x:Name="email" />
                         <TextBlock Text="Введите пароль" />
                         <PasswordBox x:Name="password" />
-                        <Button Content="Вход" Click="Button_Click" />
+                        <Button Name="Login" Content="Вход" />
                         <TextBlock Text="Если у вас нет аккаунта, введите пароль и e-mail для начала регистрации." TextWrapping="Wrap" />
+
+                        <Button Name="RestorePassword" Content="Восстановить пароль" />
                     </StackPanel>
                 </Grid>
             </controls:PivotItem>
