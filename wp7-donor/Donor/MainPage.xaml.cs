@@ -10,6 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
+using Donor.ViewModels;
 
 namespace Donor
 {
@@ -42,6 +43,23 @@ namespace Donor
         private void Stations_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
 
+        }
+
+        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+                string id = ((sender as ListBox).SelectedItem as NewsViewModel).Id;
+                NavigationService.Navigate(new Uri("/NewsPage.xaml?id=" + id, UriKind.Relative));
+            }
+            catch
+            {
+            }
+        }
+
+        private void NewMenuItem_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/NewsList.xaml", UriKind.Relative));
         }
     }
 }

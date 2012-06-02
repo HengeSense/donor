@@ -51,3 +51,5 @@ E:\Visual Studio 2010\Projects\Donor\wp7-donor\Donor\obj\Debug\XapCacheFile.xml
 E:\Visual Studio 2010\Projects\Donor\wp7-donor\Donor\obj\Debug\ProfileLogin.g.i.cs
 E:\Visual Studio 2010\Projects\Donor\wp7-donor\Donor\Bin\Debug\Microsoft.Phone.Controls.Toolkit.dll
 E:\Visual Studio 2010\Projects\Donor\wp7-donor\Donor\obj\Debug\StationsSearch.g.i.cs
+E:\Visual Studio 2010\Projects\Donor\wp7-donor\Donor\Bin\Debug\Newtonsoft.Json.dll
+E:\Visual Studio 2010\Projects\Donor\wp7-donor\Donor\Bin\Debug\Newtonsoft.Json.xml

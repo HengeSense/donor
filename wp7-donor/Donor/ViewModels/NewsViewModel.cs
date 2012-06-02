@@ -16,6 +16,7 @@ namespace Donor.ViewModels
     {
         public NewsListViewModel()
         {
+            this.Items = new ObservableCollection<NewsViewModel>();
         }
 
         public ObservableCollection<NewsViewModel> Items { get; set; }
@@ -43,5 +44,8 @@ namespace Donor.ViewModels
                 _title = value;
             }
         }
+
+        public string Id { get; set; }
+        public string Description { get; set; }
     }
 }
