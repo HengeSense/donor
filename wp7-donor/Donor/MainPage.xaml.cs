@@ -61,5 +61,22 @@ namespace Donor
         {
             NavigationService.Navigate(new Uri("/NewsList.xaml", UriKind.Relative));
         }
+
+        private void EventsList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+                string id = ((sender as ListBox).SelectedItem as EventViewModel).Id;
+                NavigationService.Navigate(new Uri("/EventPage.xaml?id=" + id, UriKind.Relative));
+            }
+            catch
+            {
+            }
+        }
+
+        private void CalendarMenuText_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/CalendarMonthPage.xaml", UriKind.Relative));
+        }
     }
 }

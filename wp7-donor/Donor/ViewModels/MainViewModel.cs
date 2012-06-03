@@ -34,6 +34,7 @@ namespace Donor
             //var parse = new Driver();
 
             News = new NewsListViewModel();
+            Events = new EventsListViewModel();
         }
 
         /// <summary>
@@ -42,27 +43,7 @@ namespace Donor
         public ObservableCollection<ItemViewModel> Items { get; private set; }
 
         public NewsListViewModel News { get; set; }
-
-        /*private string _sampleProperty = "Sample Runtime Property Value";
-        /// <summary>
-        /// Sample ViewModel property; this property is used in the view to display its value using a Binding
-        /// </summary>
-        /// <returns></returns>
-        public string SampleProperty
-        {
-            get
-            {
-                return _sampleProperty;
-            }
-            set
-            {
-                if (value != _sampleProperty)
-                {
-                    _sampleProperty = value;
-                    NotifyPropertyChanged("SampleProperty");
-                }
-            }
-        }*/
+        public EventsListViewModel Events { get; set; }
 
         public bool IsDataLoaded
         {
@@ -75,10 +56,19 @@ namespace Donor
         /// </summary>
         public void LoadData()
         {
-            // Sample data; replace with real data
-            /*this.Items.Add(new ItemViewModel() { LineOne = "runtime one", LineTwo = "Maecenas praesent accumsan bibendum", LineThree = "Facilisi faucibus habitant inceptos interdum lobortis nascetur pharetra placerat pulvinar sagittis senectus sociosqu" });
-            this.Items.Add(new ItemViewModel() { LineOne = "runtime two", LineTwo = "Dictumst eleifend facilisi faucibus", LineThree = "Suscipit torquent ultrices vehicula volutpat maecenas praesent accumsan bibendum dictumst eleifend facilisi faucibus" });
-            this.Items.Add(new ItemViewModel() { LineOne = "runtime three", LineTwo = "Habitant inceptos interdum lobortis", LineThree = "Habitant inceptos interdum lobortis nascetur pharetra placerat pulvinar sagittis senectus sociosqu suscipit torquent" });*/
+
+            try
+            {
+                var user = new DonorUser { UserName = "Test1", Password = "pass" };
+                //this.Parse.Objects.Save(user);
+            }
+            catch
+            {
+            };
+
+            this.Events.Items.Add(new EventViewModel() { Title = "Сдана цельная кровь", Description = "", Id = "1" });
+            this.Events.Items.Add(new EventViewModel() { Title = "Запланирован анализ", Description = "Dictumst eleifend facilisi faucibus", Id = "2" });
+            this.Events.Items.Add(new EventViewModel() { Title = "Запланированы тромбоциты", Description = "Habitant inceptos interdum lobortis", Id = "3" });
 
             this.News.Items.Add(new NewsViewModel() { Title = "runtime one", Description = "Maecenas praesent accumsan bibendum", Id = "1" });
             this.News.Items.Add(new NewsViewModel() { Title = "runtime two", Description = "Dictumst eleifend facilisi faucibus", Id = "2" });

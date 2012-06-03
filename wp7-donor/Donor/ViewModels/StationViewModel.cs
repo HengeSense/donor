@@ -81,5 +81,55 @@ namespace Donor.ViewModels
                 _lon = value;
             }
         }
+        
+        /// <summary>
+        /// Station site url
+        /// </summary>
+        private string _url;
+        public string Url
+        {
+            get { return _url; }
+            set { _url = value; }
+        }
+
+        /// <summary>
+        /// Station description
+        /// </summary>
+        private string _description;
+        public string Description
+        {
+            get { return _description; }
+            set { _description = value; }
+        }
+
+        /// <summary>
+        /// Station phone
+        /// </summary>
+        private string _phone;
+        public string Phone
+        {
+            get { return _phone; }
+            set { _phone = value; }
+        }
+
+        /// <summary>
+        /// Blood for ...
+        /// </summary>
+        private string _bloodFor;
+        public string BloodFor
+        {
+            get { return _bloodFor; }
+            set { _bloodFor = value; }
+        }        
+
+        /// <summary>
+        /// Время приема
+        /// </summary>
+        private string _receiptTime;
+        public string ReceiptTime
+        {
+            get { return _receiptTime; }
+            set { _receiptTime = value; }
+        }
     }
 }

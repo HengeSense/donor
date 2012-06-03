@@ -8,11 +8,30 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
+using System.Collections.ObjectModel;
 
 namespace Donor.ViewModels
 {
     public class EventViewModel
     {
+        public EventViewModel()
+        {
+            this.Date = DateTime.Now;
+        }
 
+        public string Id { get; set; }
+        public string Title { get; set; }
+        public string Description {get; set; }
+        public DateTime Date { get; set; }
+    }
+
+    public class EventsListViewModel
+    {
+        public EventsListViewModel()
+        {
+            Items = new ObservableCollection<EventViewModel>();
+        }
+
+        public ObservableCollection<EventViewModel> Items { get; set; }
     }
 }

@@ -1,12 +1,12 @@
-﻿<xapCache source="E:\Visual Studio 2010\Projects\Donor\wp7-donor\Donor\Bin\Debug\Donor.xap" wasSigned="False" certificateThumbprint="" TimeStampUrl="" lastWriteTime="03.06.2012 0:24:15">
+﻿<xapCache source="E:\Visual Studio 2010\Projects\Donor\wp7-donor\Donor\Bin\Debug\Donor.xap" wasSigned="False" certificateThumbprint="" TimeStampUrl="" lastWriteTime="03.06.2012 19:05:48">
   <file source="E:\Visual Studio 2010\Projects\Donor\wp7-donor\Donor\Bin\Debug\WMAppManifest.xml" archivePath="WMAppManifest.xml" lastWriteTime="12.04.2012 21:46:55" />
   <file source="E:\Visual Studio 2010\Projects\Donor\wp7-donor\Donor\Background.png" archivePath="Background.png" lastWriteTime="12.04.2012 21:46:46" />
   <file source="E:\Visual Studio 2010\Projects\Donor\wp7-donor\Donor\ApplicationIcon.png" archivePath="ApplicationIcon.png" lastWriteTime="12.04.2012 21:46:46" />
-  <file source="E:\Visual Studio 2010\Projects\Donor\wp7-donor\Donor\obj\Debug\Donor.dll" archivePath="Donor.dll" lastWriteTime="03.06.2012 0:24:14" />
+  <file source="E:\Visual Studio 2010\Projects\Donor\wp7-donor\Donor\obj\Debug\Donor.dll" archivePath="Donor.dll" lastWriteTime="03.06.2012 19:05:47" />
   <file source="C:\Program Files\Microsoft SDKs\Windows Phone\v7.1\Libraries\Silverlight\Microsoft.Phone.Controls.dll" archivePath="Microsoft.Phone.Controls.dll" lastWriteTime="19.03.2012 16:29:06" />
   <file source="E:\Visual Studio 2010\Projects\Donor\wp7-donor\packages\SilverlightToolkitWP.4.2011.12.14\lib\sl4-windowsphone71\Microsoft.Phone.Controls.Toolkit.dll" archivePath="Microsoft.Phone.Controls.Toolkit.dll" lastWriteTime="31.05.2012 10:25:40" />
   <file source="E:\Visual Studio 2010\Projects\Donor\wp7-donor\packages\Newtonsoft.Json.4.5.6\lib\sl4-windowsphone71\Newtonsoft.Json.dll" archivePath="Newtonsoft.Json.dll" lastWriteTime="02.06.2012 23:49:33" />
-  <file source="E:\Visual Studio 2010\Projects\Donor\wp7-donor\Donor\Bin\Debug\Parse.dll" archivePath="Parse.dll" lastWriteTime="31.05.2012 9:31:51" />
+  <file source="E:\Visual Studio 2010\Projects\Donor\wp7-donor\packages\parse.0.4.1\lib\Parse.dll" archivePath="Parse.dll" lastWriteTime="03.06.2012 14:55:41" />
   <file source="E:\Visual Studio 2010\Projects\Donor\wp7-donor\Donor\Toolkit.Content\ApplicationBar.Cancel.png" archivePath="Toolkit.Content\ApplicationBar.Cancel.png" lastWriteTime="31.05.2012 10:25:41" />
   <file source="E:\Visual Studio 2010\Projects\Donor\wp7-donor\Donor\Toolkit.Content\ApplicationBar.Check.png" archivePath="Toolkit.Content\ApplicationBar.Check.png" lastWriteTime="31.05.2012 10:25:41" />
   <file source="E:\Visual Studio 2010\Projects\Donor\wp7-donor\Donor\Toolkit.Content\ApplicationBar.Delete.png" archivePath="Toolkit.Content\ApplicationBar.Delete.png" lastWriteTime="31.05.2012 10:25:41" />
