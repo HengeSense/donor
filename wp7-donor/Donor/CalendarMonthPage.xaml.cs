@@ -18,6 +18,8 @@ namespace Donor
         public CalendarMonthPage()
         {
             InitializeComponent();
+            DataContext = App.ViewModel;
+            this.Calendar1.Items = App.ViewModel.Events.Items;
         }
     }
 }

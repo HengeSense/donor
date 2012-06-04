@@ -12,8 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Collections.ObjectModel;
-//using Parse;
-//using Parse.Queries;
+using Parse;
+using Parse.Queries;
 using Donor.ViewModels;
 
 namespace Donor
@@ -29,7 +29,7 @@ namespace Donor
         {            
             this.Items = new ObservableCollection<ItemViewModel>();
 
-            //ParseConfiguration.Configure(APPLICATION_ID, REST_API_KEY);
+            ParseConfiguration.Configure(APPLICATION_ID, REST_API_KEY);
             //this.Parse = new Driver();
             //var parse = new Driver();
 
@@ -66,9 +66,11 @@ namespace Donor
             {
             };
 
-            this.Events.Items.Add(new EventViewModel() { Title = "Сдана цельная кровь", Description = "", Id = "1" });
-            this.Events.Items.Add(new EventViewModel() { Title = "Запланирован анализ", Description = "Dictumst eleifend facilisi faucibus", Id = "2" });
-            this.Events.Items.Add(new EventViewModel() { Title = "Запланированы тромбоциты", Description = "Habitant inceptos interdum lobortis", Id = "3" });
+            this.Events.Items.Add(new EventViewModel() { Title = "Сдана цельная кровь", Description = "", Id = "1", Date = new DateTime(2012, 06, 10), Image = "/images/drop.png" });
+            this.Events.Items.Add(new EventViewModel() { Title = "Запланирован анализ", Description = "Dictumst eleifend facilisi faucibus", Id = "2", Date = new DateTime(2012, 06, 13), Image = "/images/drop.png" });
+            this.Events.Items.Add(new EventViewModel() { Title = "Запланированы тромбоциты", Description = "Habitant inceptos interdum lobortis", Id = "3", Date = new DateTime(2012, 06, 6), Image = "/images/drop.png" });
+
+            this.Events.Items.Add(new EventViewModel() { Title = "День России", Description = "День России, или же День принятия Декларации о государственном суверенитете России, как именовался этот праздник до 2002 года, — это один из самых «молодых» государственных праздников в стране.", Id = "4", Date = new DateTime(2012, 06, 12), Image = "/images/h.png", Type="Праздник" });
 
             this.News.Items.Add(new NewsViewModel() { Title = "runtime one", Description = "Maecenas praesent accumsan bibendum", Id = "1" });
             this.News.Items.Add(new NewsViewModel() { Title = "runtime two", Description = "Dictumst eleifend facilisi faucibus", Id = "2" });

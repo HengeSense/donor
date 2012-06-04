@@ -3,5 +3,7 @@
     <AssemblyPart x:Name="Donor" Source="Donor.dll" />
     <AssemblyPart x:Name="Microsoft.Phone.Controls" Source="Microsoft.Phone.Controls.dll" />
     <AssemblyPart x:Name="Microsoft.Phone.Controls.Toolkit" Source="Microsoft.Phone.Controls.Toolkit.dll" />
+    <AssemblyPart x:Name="Parse" Source="Parse.dll" />
+    <AssemblyPart x:Name="WPExtensions" Source="WPExtensions.dll" />
   </Deployment.Parts>
 </Deployment>

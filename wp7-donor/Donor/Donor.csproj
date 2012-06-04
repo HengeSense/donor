@@ -54,12 +54,18 @@
       <HintPath>..\packages\SilverlightToolkitWP.4.2011.12.14\lib\sl4-windowsphone71\Microsoft.Phone.Controls.Toolkit.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Phone.Interop" />
+    <Reference Include="Parse">
+      <HintPath>libs\Parse.dll</HintPath>
+    </Reference>
     <Reference Include="System.Windows" />
     <Reference Include="system" />
     <Reference Include="System.Core" />
     <Reference Include="System.Net" />
     <Reference Include="System.Xml" />
     <Reference Include="mscorlib.extensions" />
+    <Reference Include="WPExtensions">
+      <HintPath>..\packages\WPExtensions.1.3.7\lib\sl4-wp71\WPExtensions.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -70,6 +76,9 @@
     </Compile>
     <Compile Include="CalendarYearPage.xaml.cs">
       <DependentUpon>CalendarYearPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\DayInCalendarControl.xaml.cs">
+      <DependentUpon>DayInCalendarControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\MonthCalendar.xaml.cs">
       <DependentUpon>MonthCalendar.xaml</DependentUpon>
@@ -124,6 +133,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CalendarYearPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\DayInCalendarControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -185,6 +198,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Resource Include="images\logo.png" />
+    <Content Include="images\drop.png" />
+    <Content Include="images\h.png" />
+    <Content Include="images\x.png" />
     <Content Include="Toolkit.Content\ApplicationBar.Cancel.png" />
     <Content Include="Toolkit.Content\ApplicationBar.Check.png" />
     <Content Include="Toolkit.Content\ApplicationBar.Delete.png" />
