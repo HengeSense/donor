@@ -19,8 +19,11 @@
     <Grid x:Name="LayoutRoot" Background="Transparent">
  
         <!--Panorama control-->
-        <controls:Panorama Title="Донор">
- 
+        <controls:Panorama>
+            <controls:Panorama.Title>
+                <Image Source="/Donor;component/images/logo.png" Margin="-10,75,0,0"/>
+            </controls:Panorama.Title>
+
             <!--Panorama item one-->
             <controls:PanoramaItem Header="Меню">
                 <StackPanel>

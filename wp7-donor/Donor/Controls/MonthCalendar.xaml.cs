@@ -25,7 +25,8 @@ namespace Donor.Controls
         public DateTime Date { get; set; }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
-        {            
+        {
+            this.CalendarDays.Children.Clear();
             Date = DateTime.Now;
             DateTime FirstDay = new DateTime(Date.Year, Date.Month, 1);
             int daysbefore = (int)FirstDay.DayOfWeek;
@@ -39,13 +40,12 @@ namespace Donor.Controls
                 TextBlock DayLabel1 = new TextBlock();
                 day.Height = 60;
                 day.Width = 60;
-                //day.Tap += this.ClickDay;
                 DayLabel1.Text = i.ToString();
                 day.Child = DayLabel1;
                 this.CalendarDays.Children.Add(day);
             };
 
-            for (var i = 1; i<= DateTime.DaysInMonth(Date.Year, Date.Month); i++)
+            for (var i = 1; i <= DateTime.DaysInMonth(Date.Year, Date.Month); i++)
             {
                 Border day = new Border();
                 day.BorderBrush = new SolidColorBrush(Colors.LightGray);
@@ -57,19 +57,12 @@ namespace Donor.Controls
                 DayLabel1.Text = i.ToString();
                 day.Child = DayLabel1;
                 this.CalendarDays.Children.Add(day);
-            };            
+            };    
         }
 
         private void ClickDay(object sender, System.Windows.Input.GestureEventArgs e)
         {
             (Application.Current.RootVisual as PhoneApplicationFrame).Navigate(new Uri("/EventEditPage.xaml", UriKind.Relative));
-            //throw new NotImplementedException();
         }
-
-        /*private EventHandler<Microsoft.Phone.Controls.GestureEventArgs> ClickDay(Border day)
-        {
-            //throw new NotImplementedException();
-            (Application.Current.RootVisual as PhoneApplicationFrame).Navigate(new Uri("/EventEditPage.xaml", UriKind.Relative));
-        }*/
     }
 }
