@@ -8,7 +8,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
-using Parse;
+//using Parse;
 
 namespace Donor.ViewModels
 {
@@ -18,7 +18,7 @@ namespace Donor.ViewModels
     }
 
     //could also implement IParseObject (in addition to IParseUser)
-    public class DonorUser: IUser
+    public class DonorUser//: IUser
     {
         public string Id { get; set; }
         public string UserName { get; set; }

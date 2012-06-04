@@ -54,13 +54,6 @@
       <HintPath>..\packages\SilverlightToolkitWP.4.2011.12.14\lib\sl4-windowsphone71\Microsoft.Phone.Controls.Toolkit.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Phone.Interop" />
-    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Newtonsoft.Json.4.5.6\lib\sl4-windowsphone71\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="Parse, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\parse.0.4.1\lib\Parse.dll</HintPath>
-    </Reference>
     <Reference Include="System.Windows" />
     <Reference Include="system" />
     <Reference Include="System.Core" />
@@ -77,6 +70,9 @@
     </Compile>
     <Compile Include="CalendarYearPage.xaml.cs">
       <DependentUpon>CalendarYearPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\MonthCalendar.xaml.cs">
+      <DependentUpon>MonthCalendar.xaml</DependentUpon>
     </Compile>
     <Compile Include="EventPage.xaml.cs">
       <DependentUpon>EventPage.xaml</DependentUpon>
@@ -128,6 +124,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CalendarYearPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\MonthCalendar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

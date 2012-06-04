@@ -12,8 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Collections.ObjectModel;
-using Parse;
-using Parse.Queries;
+//using Parse;
+//using Parse.Queries;
 using Donor.ViewModels;
 
 namespace Donor
@@ -29,7 +29,7 @@ namespace Donor
         {            
             this.Items = new ObservableCollection<ItemViewModel>();
 
-            ParseConfiguration.Configure(APPLICATION_ID, REST_API_KEY);
+            //ParseConfiguration.Configure(APPLICATION_ID, REST_API_KEY);
             //this.Parse = new Driver();
             //var parse = new Driver();
 
