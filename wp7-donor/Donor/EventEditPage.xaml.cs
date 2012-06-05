@@ -18,7 +18,7 @@ namespace Donor
     {
         public EventEditPage()
         {
-            InitializeComponent();
+            InitializeComponent();           
         }
 
         public int DayNumber;
@@ -28,26 +28,54 @@ namespace Donor
         public EventViewModel CurrentEvent;
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
-        {            
-            try
-            {
-                 MonthNumber = int.Parse(this.NavigationContext.QueryString["month"]);
-                 DayNumber = int.Parse(this.NavigationContext.QueryString["day"]);
-                 YearNumber = int.Parse(this.NavigationContext.QueryString["year"]);
-
-                 this.Date.Value = new DateTime(YearNumber, MonthNumber, DayNumber);
-
-            }
-            catch
-            {
-                //NavigationService.GoBack();
-            };
-
+        {
+            
             List<string> eventTypes = new List<string>() { "Анализ", "Кроводача" };
+            CurrentEvent = null;
             List<string> giveTypes = new List<string>() { "Тромбоциты", "Плазма", "Чистая кровь" };
             this.EventType.ItemsSource = eventTypes;
             this.GiveType.ItemsSource = giveTypes;
 
+            try
+            {
+                string id = this.NavigationContext.QueryString["id"];
+                CurrentEvent = App.ViewModel.Events.Items.FirstOrDefault(c => c.Id == id);
+
+                if (this.Date.Value == new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day))
+                {
+                    this.Date.Value = CurrentEvent.Date;
+                };
+                //this.Time.Value = CurrentEvent.Date;
+                //this.Time.Ch
+                this.EventType.SelectedItem = CurrentEvent.Type.ToString();
+                this.GiveType.SelectedItem = CurrentEvent.GiveType.ToString();
+            }
+            catch
+            {
+            };
+
+            if (CurrentEvent == null)
+            {
+                try
+                {
+                    MonthNumber = int.Parse(this.NavigationContext.QueryString["month"]);
+                    DayNumber = int.Parse(this.NavigationContext.QueryString["day"]);
+                    YearNumber = int.Parse(this.NavigationContext.QueryString["year"]);
+
+                    if (this.Date.Value == new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day))
+                    {
+                        this.Date.Value = new DateTime(YearNumber, MonthNumber, DayNumber);
+                    };
+                    if (this.Date.Value == new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day))
+                    {
+                        this.Date.Value = new DateTime(YearNumber, MonthNumber, DayNumber);
+                    };
+
+                }
+                catch
+                {
+                };
+            };
             this.DataContext = CurrentEvent;
         }
 
@@ -68,16 +96,18 @@ namespace Donor
                 else
                 {
                     CurrentEvent = new EventViewModel();
-
-                    CurrentEvent.Id = DateTime.Now.Ticks.ToString();
-                    CurrentEvent.Title = this.EventType.SelectedItem.ToString();
-                    CurrentEvent.Type = this.EventType.SelectedItem.ToString();
-                    CurrentEvent.Description = this.Description.Text.ToString();
-                    CurrentEvent.Date = this.Date.Value.Value;
-                    CurrentEvent.Image = "/images/drop.png";
-
-                    //App.ViewModel.Events.Items.Remove(CurrentEvent);
                 };
+
+                CurrentEvent.Id = DateTime.Now.Ticks.ToString();
+                CurrentEvent.Title = this.EventType.SelectedItem.ToString();
+                CurrentEvent.Type = this.EventType.SelectedItem.ToString();
+                CurrentEvent.GiveType = this.GiveType.SelectedItem.ToString();
+                CurrentEvent.Description = this.Description.Text.ToString();
+                CurrentEvent.Date = this.Date.Value.Value;
+                CurrentEvent.Time = this.Time.Value.Value;
+                CurrentEvent.Place = this.Place.Text;
+                CurrentEvent.Image = "/images/drop.png";
+
                 App.ViewModel.Events.Items.Add(CurrentEvent);
                 NavigationService.GoBack();
             }

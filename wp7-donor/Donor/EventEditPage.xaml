@@ -41,14 +41,14 @@
                     <toolkit:TimePicker x:Name="Time"  Width="150"/>
             </StackPanel>
             <TextBlock Text="Место"/>
-            <TextBox />
+            <TextBox Name="Place" Text="{Binding Place, Mode=TwoWay}"/>
             <TextBlock Text="Комментарии"/>
             <TextBox Text="{Binding Description, Mode=TwoWay}" Name="Description" />
         </StackPanel>
         </Grid>
 
-        <WPExtensions:AdvancedApplicationBar Name="AppBar" IsVisible="True" IsMenuEnabled="True">            
-            <WPExtensions:AdvancedApplicationBarIconButton IconUri="/icons/appbar.link.png" Name="SaveButton" Text="Сохранить" Visibility="Visible" Click="SaveButton_Click" />
+        <WPExtensions:AdvancedApplicationBar Name="AppBar" IsVisible="True" IsMenuEnabled="True">
+            <WPExtensions:AdvancedApplicationBarIconButton IconUri="/icons/appbar.save.rest.png" Name="SaveButton" Text="Сохранить" Visibility="Visible" Click="SaveButton_Click" />
             <WPExtensions:AdvancedApplicationBarIconButton IconUri="/icons/appbar.link.png" Name="CancelButton" Text="Отменить" Visibility="Visible" Click="CancelButton_Click" />
         </WPExtensions:AdvancedApplicationBar>
 

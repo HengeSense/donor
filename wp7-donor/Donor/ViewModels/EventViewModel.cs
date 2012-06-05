@@ -27,6 +27,9 @@ namespace Donor.ViewModels
         public string Image { get; set; }
         public string Type { get; set; }
         public string GiveType { get; set; }
+        public string Place { get; set; }
+
+        public DateTime Time { get; set; }
     }
 
     public class EventsListViewModel

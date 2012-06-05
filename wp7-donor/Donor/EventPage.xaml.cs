@@ -33,6 +33,12 @@ namespace Donor
                     _eventid_current = _eventid;
                     _currentEvent = App.ViewModel.Events.Items.FirstOrDefault(c => c.Id == _eventid.ToString());
                     DataContext = _currentEvent;
+
+                    if (_currentEvent.Type == "Праздник")
+                    {
+                        this.AppBar.Visibility = Visibility.Collapsed;
+                        this.AppBar.IsVisible = false;
+                    };
                 }
                 catch
                 {
@@ -55,6 +61,28 @@ namespace Donor
             WebBrowserTask webTask = new WebBrowserTask();
             //webTask.Uri = new Uri(_currentNews.Link);
             webTask.Show();
+        }
+
+        private void DeleteButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                App.ViewModel.Events.Items.Remove(_currentEvent);
+                NavigationService.GoBack();
+            }
+            catch
+            {
+                NavigationService.GoBack();
+            };
+        }
+
+        private void EditButton_Click(object sender, EventArgs e)
+        {
+            try {
+                NavigationService.Navigate(new Uri("/EventEditPage.xaml?id=" + _currentEvent.Id, UriKind.Relative));
+            }
+            catch {
+            };
         }
     }
 }
