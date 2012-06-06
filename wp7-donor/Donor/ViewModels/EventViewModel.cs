@@ -47,6 +47,9 @@ namespace Donor.ViewModels
         public string GiveType { get; set; }
         public string Place { get; set; }
 
+        public string Reminder { get; set; }
+        public bool ReminderMessage { get; set; }
+
         private DateTime _time;
         public DateTime Time {
             get

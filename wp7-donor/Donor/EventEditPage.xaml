@@ -30,21 +30,28 @@
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+            <ScrollViewer>
         <StackPanel>
-            <toolkit:ListPicker  x:Name="EventType" Header="Тип события" FullModeHeader="Тип события"/>
+            <toolkit:ListPicker  x:Name="EventType" Header="Тип события" FullModeHeader="Тип события" SelectionChanged="EventType_SelectionChanged" Loaded="EventType_Loaded" />
 
             <toolkit:ListPicker  x:Name="GiveType" Header="Вид сдачи" FullModeHeader="Вид сдачи"/>
             
             <TextBlock Text="Дата и время"/>
             <StackPanel Orientation="Horizontal">
                     <toolkit:DatePicker Width="250" Name="Date"/>
-                    <toolkit:TimePicker x:Name="Time"  Width="150" Value="{Binding Time, Mode=TwoWay}"/>
+                    <toolkit:TimePicker x:Name="Time"  Width="200" Value="{Binding Time, Mode=TwoWay}"/>
             </StackPanel>
             <TextBlock Text="Место"/>
             <TextBox Name="Place" Text="{Binding Place, Mode=TwoWay}"/>
-            <TextBlock Text="Комментарии"/>
+                <StackPanel Name="Reminder" Visibility="Collapsed">
+                    <TextBlock Text="Напоминание"/>
+                    <toolkit:ListPicker  x:Name="ReminderPeriod" Header="Напоминание" FullModeHeader="Напоминание"/>
+                    <CheckBox Name="KnowAboutResults" Content="Узнать результат" IsChecked="{Binding ReminderMessage, Mode=TwoWay}"/>
+                </StackPanel>
+                    <TextBlock Text="Комментарии"/>
             <TextBox Text="{Binding Description, Mode=TwoWay}" Name="Description" />
         </StackPanel>
+            </ScrollViewer>
         </Grid>
 
         <WPExtensions:AdvancedApplicationBar Name="AppBar" IsVisible="True" IsMenuEnabled="True">

@@ -24,17 +24,23 @@
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
             <TextBlock x:Name="ApplicationTitle" Text="Донор - события" Style="{StaticResource PhoneTextNormalStyle}"/>
+            <TextBlock Text="Подробности" Style="{StaticResource PhoneTextExtraLargeStyle}" TextWrapping="Wrap"/>
         </StackPanel>
 
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
             <ScrollViewer>
             <StackPanel>
                     <TextBlock Text="{Binding Path=Title}" Name="TitleNews" Style="{StaticResource PhoneTextExtraLargeStyle}" TextWrapping="Wrap"/>
+                    <StackPanel Orientation="Horizontal">
                     <TextBlock Text="{Binding Path=ShortDate}" Name="Date" Style="{StaticResource PhoneTextExtraLargeStyle}" TextWrapping="Wrap"/>
                     <TextBlock Text="{Binding Path=ShortTime}" Name="Time" Style="{StaticResource PhoneTextExtraLargeStyle}" TextWrapping="Wrap"/>
+                    </StackPanel>
+                    
                     <TextBlock Text="{Binding Path=GiveType}" Name="GiveType" TextWrapping="Wrap"/>
-                    <TextBlock Text="{Binding Path=Description}" Name="Description" TextWrapping="Wrap"/>
                     <TextBlock Text="{Binding Path=Place}" Name="Place" TextWrapping="Wrap"/>
+                    <TextBlock Text="{Binding Path=Reminder}" Name="Reminder" TextWrapping="Wrap"/>
+                    <TextBlock Text="Комментарии:" TextWrapping="Wrap"/>
+                    <TextBlock Text="{Binding Path=Description}" Name="Description" TextWrapping="Wrap"/>                    
                 </StackPanel>
             </ScrollViewer>
         </Grid>

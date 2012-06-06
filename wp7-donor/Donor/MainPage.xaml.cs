@@ -78,5 +78,11 @@ namespace Donor
         {
             NavigationService.Navigate(new Uri("/CalendarMonthPage.xaml", UriKind.Relative));
         }
+
+        private void EventsList_Loaded(object sender, RoutedEventArgs e)
+        {
+            this.EventsList.ItemsSource = App.ViewModel.Events.Items;
+            this.NewsList.ItemsSource = App.ViewModel.News.Items;
+        }
     }
 }

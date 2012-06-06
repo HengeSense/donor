@@ -23,7 +23,7 @@ namespace Donor.Controls
             InitializeComponent();
             this.DataContext = this;
 
-            var gl = GestureService.GetGestureListener(this.MainPanel);
+            var gl = GestureService.GetGestureListener(this.MainBorder);
             gl.Tap += new EventHandler<Microsoft.Phone.Controls.GestureEventArgs>(GestureListener_Tap);
 
             if (EventDay == null)

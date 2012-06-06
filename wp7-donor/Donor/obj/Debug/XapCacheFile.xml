@@ -1,8 +1,8 @@
-﻿<xapCache source="E:\Visual Studio 2010\Projects\Donor\wp7-donor\Donor\Bin\Debug\Donor.xap" wasSigned="False" certificateThumbprint="" TimeStampUrl="" lastWriteTime="06.06.2012 17:38:03">
+﻿<xapCache source="E:\Visual Studio 2010\Projects\Donor\wp7-donor\Donor\Bin\Debug\Donor.xap" wasSigned="False" certificateThumbprint="" TimeStampUrl="" lastWriteTime="07.06.2012 0:13:13">
   <file source="E:\Visual Studio 2010\Projects\Donor\wp7-donor\Donor\Bin\Debug\WMAppManifest.xml" archivePath="WMAppManifest.xml" lastWriteTime="12.04.2012 21:46:55" />
   <file source="E:\Visual Studio 2010\Projects\Donor\wp7-donor\Donor\Background.png" archivePath="Background.png" lastWriteTime="12.04.2012 21:46:46" />
   <file source="E:\Visual Studio 2010\Projects\Donor\wp7-donor\Donor\ApplicationIcon.png" archivePath="ApplicationIcon.png" lastWriteTime="12.04.2012 21:46:46" />
-  <file source="E:\Visual Studio 2010\Projects\Donor\wp7-donor\Donor\obj\Debug\Donor.dll" archivePath="Donor.dll" lastWriteTime="06.06.2012 17:38:02" />
+  <file source="E:\Visual Studio 2010\Projects\Donor\wp7-donor\Donor\obj\Debug\Donor.dll" archivePath="Donor.dll" lastWriteTime="07.06.2012 0:13:12" />
   <file source="C:\Program Files\Microsoft SDKs\Windows Phone\v7.1\Libraries\Silverlight\Microsoft.Phone.Controls.dll" archivePath="Microsoft.Phone.Controls.dll" lastWriteTime="19.03.2012 16:29:06" />
   <file source="E:\Visual Studio 2010\Projects\Donor\wp7-donor\packages\SilverlightToolkitWP.4.2011.12.14\lib\sl4-windowsphone71\Microsoft.Phone.Controls.Toolkit.dll" archivePath="Microsoft.Phone.Controls.Toolkit.dll" lastWriteTime="31.05.2012 10:25:40" />
   <file source="E:\Visual Studio 2010\Projects\Donor\wp7-donor\packages\MSPToolkit.1.5.18\lib\sl4-wp71\MSPToolkit.dll" archivePath="MSPToolkit.dll" lastWriteTime="06.06.2012 9:54:55" />

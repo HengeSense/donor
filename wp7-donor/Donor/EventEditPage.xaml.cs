@@ -33,8 +33,12 @@ namespace Donor
             List<string> eventTypes = new List<string>() { "Анализ", "Кроводача" };
             CurrentEvent = null;
             List<string> giveTypes = new List<string>() { "Тромбоциты", "Плазма", "Чистая кровь" };
+
+            List<string> reminderTypes = new List<string>() { "15 минут", "1 час", "1 день", "1 неделя" };
+
             this.EventType.ItemsSource = eventTypes;
             this.GiveType.ItemsSource = giveTypes;
+            this.ReminderPeriod.ItemsSource = reminderTypes;
 
             try
             {
@@ -45,12 +49,12 @@ namespace Donor
                 {
                     this.Date.Value = CurrentEvent.Date;
                 };
-                /*if (this.Time.Value.Value == new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Hour, DateTime.Now.Minute, this.Time.Value.Value.Second))
-                {
-                    this.Time.Value = CurrentEvent.Time;
-                };*/
                 this.EventType.SelectedItem = CurrentEvent.Type.ToString();
                 this.GiveType.SelectedItem = CurrentEvent.GiveType.ToString();
+                if ((CurrentEvent.Reminder.ToString() != "") && (CurrentEvent.Reminder.ToString() != null))
+                {
+                this.GiveType.SelectedItem = CurrentEvent.Reminder.ToString();
+                };
             }
             catch
             {
@@ -108,6 +112,13 @@ namespace Donor
                 CurrentEvent.Date = this.Date.Value.Value;
                 CurrentEvent.Time = this.Time.Value.Value;
                 CurrentEvent.Place = this.Place.Text;
+
+                if (this.EventType.SelectedItem.ToString() == "Анализ")
+                {
+                    CurrentEvent.Reminder = this.ReminderPeriod.SelectedItem.ToString();
+                    CurrentEvent.ReminderMessage = this.KnowAboutResults.IsChecked.Value;
+                };
+
                 CurrentEvent.Image = "/images/drop.png";
 
                 App.ViewModel.Events.Items.Add(CurrentEvent);
@@ -117,6 +128,40 @@ namespace Donor
             {
                 NavigationService.GoBack();
             };
+        }
+
+        private void EventType_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+                if (this.EventType.SelectedItem.ToString() == "Анализ")
+                {
+                    this.Reminder.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    this.Reminder.Visibility = Visibility.Collapsed;
+                };
+            }
+            catch
+            {
+            };
+        }
+
+        private void EventType_Loaded(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (this.EventType.SelectedItem.ToString() == "Анализ")
+                {
+                    this.Reminder.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    this.Reminder.Visibility = Visibility.Collapsed;
+                };
+            }
+            catch { };
         }
     }
 }
