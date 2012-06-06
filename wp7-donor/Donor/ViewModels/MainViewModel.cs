@@ -15,6 +15,7 @@ using System.Collections.ObjectModel;
 using Parse;
 using Parse.Queries;
 using Donor.ViewModels;
+using MSPToolkit.Utilities;
 
 namespace Donor
 {   
@@ -35,6 +36,8 @@ namespace Donor
 
             News = new NewsListViewModel();
             Events = new EventsListViewModel();
+
+            this.LoadFromIsolatedStorage();
         }
 
         /// <summary>
@@ -66,17 +69,86 @@ namespace Donor
             {
             };
 
-            this.Events.Items.Add(new EventViewModel() { Title = "Анализ", Type = "Анализ", GiveType = "Плазма", Description = "123 234 3к 23в2в23в 23в", Id = "1", Date = new DateTime(2012, 06, 10), Image = "/images/drop.png", Place = "Ярославль" });
-            this.Events.Items.Add(new EventViewModel() { Title = "Кроводача", Type = "Кроводача", GiveType = "Плазма", Description = "Dictumst eleifend facilisi faucibus", Id = "2", Date = new DateTime(2012, 06, 13), Image = "/images/drop.png", Place = "Рыбинск" });
-            this.Events.Items.Add(new EventViewModel() { Title = "Кроводача", Type = "Кроводача", GiveType = "Плазма", Description = "Habitant inceptos interdum lobortis", Id = "3", Date = new DateTime(2012, 06, 6), Image = "/images/drop.png", Place = "Москва" });
+            if (this.Events.Items.Count == 0)
+            {
+                this.Events.Items.Add(new EventViewModel() { Title = "Анализ", Type = "Анализ", GiveType = "Плазма", Description = "123 234 3к 23в2в23в 23в", Id = "1", Date = new DateTime(2012, 06, 10), Image = "/images/drop.png", Place = "Ярославль" });
+                this.Events.Items.Add(new EventViewModel() { Title = "Кроводача", Type = "Кроводача", GiveType = "Плазма", Description = "Dictumst eleifend facilisi faucibus", Id = "2", Date = new DateTime(2012, 06, 13), Image = "/images/drop.png", Place = "Рыбинск" });
+                this.Events.Items.Add(new EventViewModel() { Title = "Кроводача", Type = "Кроводача", GiveType = "Плазма", Description = "Habitant inceptos interdum lobortis", Id = "3", Date = new DateTime(2012, 06, 6), Image = "/images/drop.png", Place = "Москва" });
 
-            this.Events.Items.Add(new EventViewModel() { Title = "День России", Description = "День России, или же День принятия Декларации о государственном суверенитете России, как именовался этот праздник до 2002 года, — это один из самых «молодых» государственных праздников в стране.", Id = "4", Date = new DateTime(2012, 06, 12), Image = "/images/h.png", Type="Праздник" });
+                this.Events.Items.Add(new EventViewModel() { Title = "День России", Description = "День России, или же День принятия Декларации о государственном суверенитете России, как именовался этот праздник до 2002 года, — это один из самых «молодых» государственных праздников в стране.", Id = "4", Date = new DateTime(2012, 06, 12), Image = "/images/h.png", Type = "Праздник" });
+            };
 
-            this.News.Items.Add(new NewsViewModel() { Title = "runtime one", Description = "Maecenas praesent accumsan bibendum", Id = "1" });
-            this.News.Items.Add(new NewsViewModel() { Title = "runtime two", Description = "Dictumst eleifend facilisi faucibus", Id = "2" });
-            this.News.Items.Add(new NewsViewModel() { Title = "runtime three", Description = "Habitant inceptos interdum lobortis", Id = "3" });
+            if (this.News.Items.Count == 0)
+            {
+                this.News.Items.Add(new NewsViewModel() { Title = "runtime one", Description = "Maecenas praesent accumsan bibendum", Id = "1" });
+                this.News.Items.Add(new NewsViewModel() { Title = "runtime two", Description = "Dictumst eleifend facilisi faucibus", Id = "2" });
+                this.News.Items.Add(new NewsViewModel() { Title = "runtime three", Description = "Habitant inceptos interdum lobortis", Id = "3" });
+            };
 
             this.IsDataLoaded = true;
+        }
+
+        /// <summary>
+        /// Save data to isolated storage to use when there is no network and faster show data in app
+        /// </summary>
+        public void SaveToIsolatedStorage()
+        {
+            //var bw = new BackgroundWorker();
+            //bw.DoWork += delegate
+            //{
+            try
+            {
+                if (this.Events.Items.Count > 0)
+                {
+                    IsolatedStorageHelper.SaveSerializableObject<ObservableCollection<EventViewModel>>(this.Events.Items, "events.xml");
+                };
+            }
+            catch
+            {
+            };
+            try
+            {
+                if (this.News.Items.Count > 0)
+                {
+                    IsolatedStorageHelper.SaveSerializableObject<ObservableCollection<NewsViewModel>>(this.News.Items, "news.xml");
+                };
+            }
+            catch
+            {
+            };
+            //};
+            //bw.RunWorkerAsync();  
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        public void LoadFromIsolatedStorage()
+        {
+            var bw = new BackgroundWorker();
+            bw.DoWork += delegate
+            {
+
+                try
+                {
+                    this.Events.Items = new ObservableCollection<EventViewModel>();
+                    this.Events.Items = IsolatedStorageHelper.LoadSerializableObject<ObservableCollection<EventViewModel>>("events.xml");
+                    //NotifyPropertyChanged("Events");
+                }
+                catch //(System.IO.FileNotFoundException)
+                {
+                    this.Events.Items = new ObservableCollection<EventViewModel>();
+                }
+                try
+                {
+                    this.News.Items = new ObservableCollection<NewsViewModel>();
+                    this.News.Items = IsolatedStorageHelper.LoadSerializableObject<ObservableCollection<NewsViewModel>>("news.xml");
+                }
+                catch //(System.IO.FileNotFoundException)
+                {
+                    this.News.Items = new ObservableCollection<NewsViewModel>();
+                };
+            };
+            bw.RunWorkerAsync();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

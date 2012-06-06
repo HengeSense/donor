@@ -45,8 +45,10 @@ namespace Donor
                 {
                     this.Date.Value = CurrentEvent.Date;
                 };
-                //this.Time.Value = CurrentEvent.Date;
-                //this.Time.Ch
+                /*if (this.Time.Value.Value == new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Hour, DateTime.Now.Minute, this.Time.Value.Value.Second))
+                {
+                    this.Time.Value = CurrentEvent.Time;
+                };*/
                 this.EventType.SelectedItem = CurrentEvent.Type.ToString();
                 this.GiveType.SelectedItem = CurrentEvent.GiveType.ToString();
             }

@@ -38,7 +38,7 @@
             <TextBlock Text="Дата и время"/>
             <StackPanel Orientation="Horizontal">
                     <toolkit:DatePicker Width="250" Name="Date"/>
-                    <toolkit:TimePicker x:Name="Time"  Width="150"/>
+                    <toolkit:TimePicker x:Name="Time"  Width="150" Value="{Binding Time, Mode=TwoWay}"/>
             </StackPanel>
             <TextBlock Text="Место"/>
             <TextBox Name="Place" Text="{Binding Place, Mode=TwoWay}"/>

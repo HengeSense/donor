@@ -30,9 +30,12 @@
             <ScrollViewer>
             <StackPanel>
                     <TextBlock Text="{Binding Path=Title}" Name="TitleNews" Style="{StaticResource PhoneTextExtraLargeStyle}" TextWrapping="Wrap"/>
-                    <TextBlock Text="{Binding Path=Date}" Name="ntsDate" Style="{StaticResource PhoneTextExtraLargeStyle}" TextWrapping="Wrap"/>
+                    <TextBlock Text="{Binding Path=ShortDate}" Name="Date" Style="{StaticResource PhoneTextExtraLargeStyle}" TextWrapping="Wrap"/>
+                    <TextBlock Text="{Binding Path=ShortTime}" Name="Time" Style="{StaticResource PhoneTextExtraLargeStyle}" TextWrapping="Wrap"/>
+                    <TextBlock Text="{Binding Path=GiveType}" Name="GiveType" TextWrapping="Wrap"/>
                     <TextBlock Text="{Binding Path=Description}" Name="Description" TextWrapping="Wrap"/>
-            </StackPanel>
+                    <TextBlock Text="{Binding Path=Place}" Name="Place" TextWrapping="Wrap"/>
+                </StackPanel>
             </ScrollViewer>
         </Grid>
         <WPExtensions:AdvancedApplicationBar Name="AppBar" IsVisible="True" IsMenuEnabled="True">

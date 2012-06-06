@@ -56,6 +56,9 @@
       <HintPath>..\packages\SilverlightToolkitWP.4.2011.12.14\lib\sl4-windowsphone71\Microsoft.Phone.Controls.Toolkit.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Phone.Interop" />
+    <Reference Include="MSPToolkit">
+      <HintPath>..\packages\MSPToolkit.1.5.18\lib\sl4-wp71\MSPToolkit.dll</HintPath>
+    </Reference>
     <Reference Include="Parse">
       <HintPath>libs\Parse.dll</HintPath>
     </Reference>
