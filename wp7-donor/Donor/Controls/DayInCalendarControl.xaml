@@ -3,6 +3,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     mc:Ignorable="d"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -11,10 +12,17 @@
     
     <Grid x:Name="LayoutRoot" Margin="2">
         <Border BorderThickness="2" BorderBrush="Gray" Name="MainBorder" Background="{Binding BgColor}">
-            <StackPanel>
+            <StackPanel Name="MainPanel" Height="50" Width="50">
                 <Image Height="27" Width="27" Name="DayImage" Source="{Binding ImagePath}"/>
                 <TextBlock Margin="2" Foreground="{Binding TextColor}" Text="{Binding DayNumber}"/>
             </StackPanel>
+            <toolkit:ContextMenuService.ContextMenu>
+                <toolkit:ContextMenu Name="ContextMenu">
+                    <toolkit:MenuItem Header="Добавить" Name="AddContextMenu" Click="AddContextMenu_Click" />
+                    <toolkit:MenuItem Header="Редактировать" Name="EditContextMenu" Click="EditContextMenu_Click" />
+                    <toolkit:MenuItem Header="Удалить" Name="DeleteContextMenu" Click="DeleteContextMenu_Click" />
+                </toolkit:ContextMenu>
+            </toolkit:ContextMenuService.ContextMenu>
         </Border>
     </Grid>
 </UserControl>

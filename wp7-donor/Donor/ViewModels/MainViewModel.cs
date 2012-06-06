@@ -68,7 +68,7 @@ namespace Donor
             catch
             {
             };
-
+           
             if (this.Events.Items.Count == 0)
             {
                 this.Events.Items.Add(new EventViewModel() { Title = "Анализ", Type = "Анализ", GiveType = "Плазма", Description = "123 234 3к 23в2в23в 23в", Id = "1", Date = new DateTime(2012, 06, 10), Image = "/images/drop.png", Place = "Ярославль" });
@@ -132,6 +132,7 @@ namespace Donor
                 {
                     this.Events.Items = new ObservableCollection<EventViewModel>();
                     this.Events.Items = IsolatedStorageHelper.LoadSerializableObject<ObservableCollection<EventViewModel>>("events.xml");
+                    
                     //NotifyPropertyChanged("Events");
                 }
                 catch //(System.IO.FileNotFoundException)

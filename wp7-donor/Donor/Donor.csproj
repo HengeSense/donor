@@ -215,6 +215,7 @@
     <Content Include="images\drop.png" />
     <Content Include="images\h.png" />
     <Content Include="images\x.png" />
+    <None Include="json-data\holidays.json" />
     <Content Include="Toolkit.Content\ApplicationBar.Cancel.png" />
     <Content Include="Toolkit.Content\ApplicationBar.Check.png" />
     <Content Include="Toolkit.Content\ApplicationBar.Delete.png" />

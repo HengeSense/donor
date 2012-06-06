@@ -23,19 +23,41 @@ namespace Donor.Controls
             InitializeComponent();
             this.DataContext = this;
 
-            var gl = GestureService.GetGestureListener(this.MainBorder);
+            var gl = GestureService.GetGestureListener(this.MainPanel);
             gl.Tap += new EventHandler<Microsoft.Phone.Controls.GestureEventArgs>(GestureListener_Tap);
-        }
 
-        private void GestureListener_Tap(object sender, Microsoft.Phone.Controls.GestureEventArgs e)
-        {
-            if (this.EventDay != null)
+            if (EventDay == null)
             {
-                (Application.Current.RootVisual as PhoneApplicationFrame).Navigate(new Uri("/EventPage.xaml?id=" + this.EventDay.Id, UriKind.Relative));
+                this.EditContextMenu.Visibility = Visibility.Collapsed;
+                this.DeleteContextMenu.Visibility = Visibility.Collapsed;
+                this.AddContextMenu.Visibility = Visibility.Visible;
             }
             else
             {
-                (Application.Current.RootVisual as PhoneApplicationFrame).Navigate(new Uri("/EventEditPage.xaml?month=" + this.MonthNumber + "&day=" + this.DayNumber + "&year=" + this.YearNumber, UriKind.Relative));
+                this.EditContextMenu.Visibility = Visibility.Visible;
+                this.DeleteContextMenu.Visibility = Visibility.Visible;
+                this.AddContextMenu.Visibility = Visibility.Collapsed;
+            };
+
+            //this.deleted = false;
+        }
+        public bool deleted;
+        private void GestureListener_Tap(object sender, Microsoft.Phone.Controls.GestureEventArgs e)
+        {
+            if (deleted == false)
+            {
+                if (this.EventDay != null)
+                {
+                    (Application.Current.RootVisual as PhoneApplicationFrame).Navigate(new Uri("/EventPage.xaml?id=" + this.EventDay.Id, UriKind.Relative));
+                }
+                else
+                {
+                    (Application.Current.RootVisual as PhoneApplicationFrame).Navigate(new Uri("/EventEditPage.xaml?month=" + this.MonthNumber + "&day=" + this.DayNumber + "&year=" + this.YearNumber, UriKind.Relative));
+                };
+            }
+            else
+            {
+                deleted = false;
             };
         }
 
@@ -118,8 +140,29 @@ namespace Donor.Controls
                 if (value != null)
                 {
                     _eventDay = value;
+
+                    if (_eventDay.Type != "Праздник")
+                    {
+                        this.EditContextMenu.Visibility = Visibility.Visible;
+                        this.DeleteContextMenu.Visibility = Visibility.Visible;
+                        this.AddContextMenu.Visibility = Visibility.Collapsed;
+                    }
+                    else
+                    {
+                        this.EditContextMenu.Visibility = Visibility.Collapsed;
+                        this.DeleteContextMenu.Visibility = Visibility.Collapsed;
+                        this.AddContextMenu.Visibility = Visibility.Collapsed;
+                        this.ContextMenu.Visibility = Visibility.Collapsed;
+                    };
+
                     this.ImagePath = _eventDay.Image;
                     NotifyPropertyChanged("EventDay");
+                }
+                else
+                {
+                    this.EditContextMenu.Visibility = Visibility.Collapsed;
+                    this.DeleteContextMenu.Visibility = Visibility.Collapsed;
+                    this.AddContextMenu.Visibility = Visibility.Visible;
                 };
             }
         }
@@ -148,6 +191,49 @@ namespace Donor.Controls
             {
                 PropertyChanged(this, new PropertyChangedEventArgs(info));
             }
+        }
+
+        private void AddContextMenu_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (EventDay == null)
+                {
+                    (Application.Current.RootVisual as PhoneApplicationFrame).Navigate(new Uri("/EventEditPage.xaml?month=" + this.MonthNumber + "&day=" + this.DayNumber + "&year=" + this.YearNumber, UriKind.Relative));
+                };
+            }
+            catch { };
+        }
+
+        private void EditContextMenu_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (EventDay != null)
+                {
+                    (Application.Current.RootVisual as PhoneApplicationFrame).Navigate(new Uri("/EventPage.xaml?id=" + this.EventDay.Id, UriKind.Relative));
+                };
+            }
+            catch
+            {
+            };
+        }
+        
+        private void DeleteContextMenu_Click(object sender, RoutedEventArgs e)
+        {
+            //delete event
+            try
+            {
+                if (EventDay != null)
+                {
+                    App.ViewModel.Events.Items.Remove(EventDay);
+                    EventDay = null;
+                    this.ImagePath = "";
+                    deleted = true;
+                }
+            }
+            catch { 
+            };
         }
 
     }
