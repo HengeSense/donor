@@ -84,5 +84,26 @@ namespace Donor
             this.EventsList.ItemsSource = App.ViewModel.Events.Items;
             this.NewsList.ItemsSource = App.ViewModel.News.Items;
         }
+
+        private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (App.ViewModel.User.IsLoggedIn == true)
+                {
+                    this.Name.Text = App.ViewModel.User.Name.ToString();
+                    this.Sex.Text = App.ViewModel.User.Sex.ToString();
+                    this.BloodGroup.Text = App.ViewModel.User.BloodGroup.ToString();
+                    this.UserProfile.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    //this.UserProfile.Visibility = Visibility.Collapsed;
+                };
+            }
+            catch { 
+            };
+        }
+
     }
 }

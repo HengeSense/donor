@@ -34,12 +34,10 @@ namespace Donor
         {            
             this.Items = new ObservableCollection<ItemViewModel>();
 
-            ParseConfiguration.Configure(APPLICATION_ID, REST_API_KEY);
-            //this.Parse = new Driver();
-            //var parse = new Driver();
-
             News = new NewsListViewModel();
             Events = new EventsListViewModel();
+
+            User = new DonorUser();
 
             this.LoadFromIsolatedStorage();
         }
@@ -51,6 +49,7 @@ namespace Donor
 
         public NewsListViewModel News { get; set; }
         public EventsListViewModel Events { get; set; }
+        public DonorUser User { get; set; }
 
         public bool IsDataLoaded
         {

@@ -24,9 +24,9 @@
                 <Grid>
                     <StackPanel>
                         <TextBlock Text="Введите e-mail" />
-                        <TextBox x:Name="email" Text="test1@tes.ru" />
+                        <TextBox x:Name="email" Text="m0rg0t.Anton@gmail.com" />
                         <TextBlock Text="Введите пароль" />
-                        <PasswordBox x:Name="password" Password="test" />
+                        <PasswordBox x:Name="password" Password="slucladr" />
                         <Button Name="Login" Content="Вход" Click="Login_Click" />
                         <TextBlock Text="Если у вас нет аккаунта, введите пароль и e-mail для начала регистрации." TextWrapping="Wrap" />
 
