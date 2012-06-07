@@ -16,6 +16,10 @@ using Parse;
 using Parse.Queries;
 using Donor.ViewModels;
 using MSPToolkit.Utilities;
+using Newtonsoft.Json;
+using System.Reflection;
+using System.IO;
+using System.Windows.Resources;
 
 namespace Donor
 {   
@@ -71,11 +75,11 @@ namespace Donor
            
             if (this.Events.Items.Count == 0)
             {
-                this.Events.Items.Add(new EventViewModel() { Title = "Анализ", Type = "Анализ", GiveType = "Плазма", Description = "123 234 3к 23в2в23в 23в", Id = "1", Date = new DateTime(2012, 06, 10), Image = "/images/drop.png", Place = "Ярославль" });
-                this.Events.Items.Add(new EventViewModel() { Title = "Кроводача", Type = "Кроводача", GiveType = "Плазма", Description = "Dictumst eleifend facilisi faucibus", Id = "2", Date = new DateTime(2012, 06, 13), Image = "/images/drop.png", Place = "Рыбинск" });
-                this.Events.Items.Add(new EventViewModel() { Title = "Кроводача", Type = "Кроводача", GiveType = "Плазма", Description = "Habitant inceptos interdum lobortis", Id = "3", Date = new DateTime(2012, 06, 6), Image = "/images/drop.png", Place = "Москва" });
-
-                this.Events.Items.Add(new EventViewModel() { Title = "День России", Description = "День России, или же День принятия Декларации о государственном суверенитете России, как именовался этот праздник до 2002 года, — это один из самых «молодых» государственных праздников в стране.", Id = "4", Date = new DateTime(2012, 06, 12), Image = "/images/h.png", Type = "Праздник" });
+                StreamResourceInfo info = Application.GetResourceStream(new Uri("/Donor;component/holidays.json", UriKind.Relative));
+                StreamReader reader = new StreamReader(info.Stream, System.Text.Encoding.Unicode);
+                string json ="";
+                json = reader.ReadToEnd();
+                this.Events.Items = JsonConvert.DeserializeObject<ObservableCollection<EventViewModel>>(json);
             };
 
             if (this.News.Items.Count == 0)

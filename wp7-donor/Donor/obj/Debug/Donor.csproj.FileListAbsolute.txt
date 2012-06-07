@@ -61,3 +61,5 @@ E:\Visual Studio 2010\Projects\Donor\wp7-donor\Donor\Bin\Debug\icons\appbar.dele
 E:\Visual Studio 2010\Projects\Donor\wp7-donor\Donor\Bin\Debug\icons\appbar.edit.rest.png
 E:\Visual Studio 2010\Projects\Donor\wp7-donor\Donor\Bin\Debug\icons\appbar.save.rest.png
 E:\Visual Studio 2010\Projects\Donor\wp7-donor\Donor\Bin\Debug\MSPToolkit.dll
+E:\Visual Studio 2010\Projects\Donor\wp7-donor\Donor\Bin\Debug\RestSharp.WindowsPhone.dll
+E:\Visual Studio 2010\Projects\Donor\wp7-donor\Donor\Bin\Debug\RestSharp.WindowsPhone.xml

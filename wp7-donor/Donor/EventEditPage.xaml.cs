@@ -110,7 +110,14 @@ namespace Donor
                 CurrentEvent.GiveType = this.GiveType.SelectedItem.ToString();
                 CurrentEvent.Description = this.Description.Text.ToString();
                 CurrentEvent.Date = this.Date.Value.Value;
-                CurrentEvent.Time = this.Time.Value.Value;
+                if (this.Time.Value == null)
+                {
+                    CurrentEvent.Time = DateTime.Now;
+                }
+                else
+                {
+                    CurrentEvent.Time = this.Time.Value.Value;
+                };
                 CurrentEvent.Place = this.Place.Text;
 
                 if (this.EventType.SelectedItem.ToString() == "Анализ")

@@ -59,8 +59,12 @@
     <Reference Include="MSPToolkit">
       <HintPath>..\packages\MSPToolkit.1.5.18\lib\sl4-wp71\MSPToolkit.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="Parse">
       <HintPath>libs\Parse.dll</HintPath>
+    </Reference>
+    <Reference Include="RestSharp.WindowsPhone">
+      <HintPath>..\packages\RestSharp.103.1\lib\sl4-wp71\RestSharp.WindowsPhone.dll</HintPath>
     </Reference>
     <Reference Include="System.Windows" />
     <Reference Include="system" />
@@ -215,7 +219,7 @@
     <Content Include="images\drop.png" />
     <Content Include="images\h.png" />
     <Content Include="images\x.png" />
-    <None Include="json-data\holidays.json" />
+    <Resource Include="holidays.json" />
     <Content Include="Toolkit.Content\ApplicationBar.Cancel.png" />
     <Content Include="Toolkit.Content\ApplicationBar.Check.png" />
     <Content Include="Toolkit.Content\ApplicationBar.Delete.png" />
@@ -230,6 +234,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="json-data\" />
     <Folder Include="libs\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />

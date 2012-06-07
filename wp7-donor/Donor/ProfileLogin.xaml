@@ -24,10 +24,10 @@
                 <Grid>
                     <StackPanel>
                         <TextBlock Text="Введите e-mail" />
-                        <TextBox x:Name="email" />
+                        <TextBox x:Name="email" Text="test1@tes.ru" />
                         <TextBlock Text="Введите пароль" />
-                        <PasswordBox x:Name="password" />
-                        <Button Name="Login" Content="Вход" />
+                        <PasswordBox x:Name="password" Password="test" />
+                        <Button Name="Login" Content="Вход" Click="Login_Click" />
                         <TextBlock Text="Если у вас нет аккаунта, введите пароль и e-mail для начала регистрации." TextWrapping="Wrap" />
 
                         <Button Name="RestorePassword" Content="Восстановить пароль" />
