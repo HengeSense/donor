@@ -77,6 +77,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdsList.xaml.cs">
+      <DependentUpon>AdsList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AdsPage.xaml.cs">
+      <DependentUpon>AdsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
@@ -125,6 +131,7 @@
     <Compile Include="StationsSearch.xaml.cs">
       <DependentUpon>StationsSearch.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\AdsViewModel.cs" />
     <Compile Include="ViewModels\EventViewModel.cs" />
     <Compile Include="ViewModels\ItemViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
@@ -137,6 +144,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
+    <Page Include="AdsList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AdsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="CalendarMonthPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

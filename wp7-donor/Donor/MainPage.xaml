@@ -32,7 +32,7 @@
                     <TextBlock Margin="0,4" Text="Объявления" TextWrapping="Wrap" Name="NewMenuText" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
                     <TextBlock Margin="0,4" Text="Новости" TextWrapping="Wrap" Name="NewMenuItem" Style="{StaticResource PhoneTextExtraLargeStyle}" Tap="NewMenuItem_Tap" />
                     <TextBlock Margin="0,4" Text="Справка" TextWrapping="Wrap" Name="HelpMenuText" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
-                    <TextBlock Margin="0,4" Text="Профиль" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
+                    <TextBlock Margin="0,4" Text="Профиль" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}" Tap="TextBlock_Tap_1" />
                 </StackPanel>
             </controls:PanoramaItem>
  
@@ -70,26 +70,36 @@
             
 
             <controls:PanoramaItem Header="Профиль">
-                <StackPanel Margin="0,10" Name="UserProfile">
+                <StackPanel>
+                <StackPanel Name="LoginForm">
+                    <TextBlock Text="Введите e-mail" />
+                    <TextBox x:Name="email" Text="m0rg0t.Anton@gmail.com" />
+                    <TextBlock Text="Введите пароль" />
+                    <PasswordBox x:Name="password" Password="slucladr" />
+                    <Button Name="Login" Content="Вход" Click="Login_Click" />
+                    <TextBlock Text="Если у вас нет аккаунта, введите пароль и e-mail для начала регистрации." TextWrapping="Wrap" />
+                    </StackPanel>
+                <StackPanel Margin="0,10" Name="UserProfile" Visibility="Collapsed">
                     <StackPanel >
                         <TextBlock Text="Имя" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
-                        <TextBlock Text="{Binding User.Name}" Name="Name" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                        <TextBlock Text="{Binding User.Name}" Name="ProfileName" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
                     </StackPanel>
                     <StackPanel Margin="0,10">
                         <TextBlock Text="Пол" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
-                        <TextBlock Name="Sex" Text="{Binding User.Sex}"  TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                        <TextBlock Name="ProfileSex" Text="{Binding User.Sex}"  TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
                     </StackPanel>
                     <StackPanel Margin="0,10">
                         <TextBlock Text="Группа крови" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
-                        <TextBlock Text="{Binding User.BloodGroup}" Name="BloodGroup" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                        <TextBlock Text="{Binding User.BloodGroup}" Name="ProfileBloodGroup" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
                     </StackPanel>
                     <StackPanel Margin="0,10">
                         <TextBlock Text="Записано кроводач" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
                         <TextBlock Text="18" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
                     </StackPanel>
-                    <TextBlock Margin="0,20" Text="Изменить" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}" Tap="TextBlock_Tap" />
+                    <TextBlock Margin="0,20" Text="Изменить" TextWrapping="Wrap" Name="EditProfile" Style="{StaticResource PhoneTextExtraLargeStyle}" Tap="TextBlock_Tap" />
                 </StackPanel>
-                
+                </StackPanel>
+
             </controls:PanoramaItem>
 
         </controls:Panorama>

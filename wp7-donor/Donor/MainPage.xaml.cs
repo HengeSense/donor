@@ -11,6 +11,9 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using Donor.ViewModels;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
+using RestSharp;
 
 namespace Donor
 {
@@ -33,16 +36,28 @@ namespace Donor
             {
                 App.ViewModel.LoadData();
             }
+
+            if (App.ViewModel.User.IsLoggedIn == true)
+            {
+                this.LoginForm.Visibility = Visibility.Collapsed;
+                this.UserProfile.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                this.LoginForm.Visibility = Visibility.Visible;
+                this.UserProfile.Visibility = Visibility.Collapsed;
+            };
         }
 
         private void TextBlock_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
-            NavigationService.Navigate(new Uri("/ProfileLogin.xaml", UriKind.Relative));
+            //NavigationService.Navigate(new Uri("/ProfileLogin.xaml", UriKind.Relative));
+            NavigationService.Navigate(new Uri("/ProfileLogin.xaml?task=edit", UriKind.Relative));
         }
 
         private void Stations_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
-
+            NavigationService.Navigate(new Uri("/StationsSearch.xaml?task=edit", UriKind.Relative));
         }
 
         private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -91,18 +106,62 @@ namespace Donor
             {
                 if (App.ViewModel.User.IsLoggedIn == true)
                 {
-                    this.Name.Text = App.ViewModel.User.Name.ToString();
-                    this.Sex.Text = App.ViewModel.User.Sex.ToString();
-                    this.BloodGroup.Text = App.ViewModel.User.BloodGroup.ToString();
+                    this.ProfileName.Text = App.ViewModel.User.Name.ToString();
+                    this.ProfileSex.Text = App.ViewModel.User.Sex.ToString();
+                    this.ProfileBloodGroup.Text = App.ViewModel.User.BloodGroup.ToString();
                     this.UserProfile.Visibility = Visibility.Visible;
                 }
                 else
                 {
-                    //this.UserProfile.Visibility = Visibility.Collapsed;
                 };
             }
             catch { 
             };
+        }
+
+        private void TextBlock_Tap_1(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/ProfileLogin.xaml", UriKind.Relative));
+        }
+
+        private void Login_Click(object sender, RoutedEventArgs e)
+        {
+            var client = new RestClient("https://api.parse.com");
+            var request = new RestRequest("1/login", Method.GET);
+            request.Parameters.Clear();
+            string strJSONContent = "{\"username\":\"" + this.email.Text + "\",\"password\":\"" + this.password.Password + "\"}";
+            request.AddHeader("X-Parse-Application-Id", "EIpakVdZblHedhqgxMgiEVnIGCRGvWdy9v8gkKZu");
+            request.AddHeader("X-Parse-REST-API-Key", "wPvwRKxX2b2vyrRprFwIbaE5t3kyDQq11APZ0qXf");
+
+            request.AddParameter("username", this.email.Text);
+            request.AddParameter("password", this.password.Password);
+
+            client.ExecuteAsync(request, response =>
+            {
+                JObject o = JObject.Parse(response.Content.ToString());
+                if (o["error"] == null)
+                {
+                    App.ViewModel.User = JsonConvert.DeserializeObject<DonorUser>(response.Content.ToString());
+                    App.ViewModel.User.IsLoggedIn = true;
+
+                    this.LoginForm.Visibility = Visibility.Collapsed;
+                    this.UserProfile.Visibility = Visibility.Visible;
+
+                    this.ProfileName.Text = App.ViewModel.User.Name.ToString();
+                    this.ProfileSex.Text = App.ViewModel.User.Sex.ToString();
+                    this.ProfileBloodGroup.Text = App.ViewModel.User.BloodGroup.ToString();
+                }
+                else
+                {
+                    MessageBox.Show("Ошибка входа: " + o["error"].ToString());
+                    App.ViewModel.User.IsLoggedIn = false;
+
+                    this.LoginForm.Visibility = Visibility.Visible;
+                    this.UserProfile.Visibility = Visibility.Collapsed;
+
+                    NavigationService.Navigate(new Uri("/ProfileLogin.xaml?task=register", UriKind.Relative));
+                };
+            });
         }
 
     }

@@ -63,3 +63,5 @@ E:\Visual Studio 2010\Projects\Donor\wp7-donor\Donor\Bin\Debug\icons\appbar.save
 E:\Visual Studio 2010\Projects\Donor\wp7-donor\Donor\Bin\Debug\MSPToolkit.dll
 E:\Visual Studio 2010\Projects\Donor\wp7-donor\Donor\Bin\Debug\RestSharp.WindowsPhone.dll
 E:\Visual Studio 2010\Projects\Donor\wp7-donor\Donor\Bin\Debug\RestSharp.WindowsPhone.xml
+E:\Visual Studio 2010\Projects\Donor\wp7-donor\Donor\obj\Debug\AdsList.g.i.cs
+E:\Visual Studio 2010\Projects\Donor\wp7-donor\Donor\obj\Debug\AdsPage.g.i.cs

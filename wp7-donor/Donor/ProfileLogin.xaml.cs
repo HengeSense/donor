@@ -24,6 +24,20 @@ namespace Donor
         public ProfileLogin()
         {
             InitializeComponent();
+
+            DataContext = App.ViewModel;
+            if (App.ViewModel.User.IsLoggedIn == true)
+            {
+                this.RegisterForm.Visibility = Visibility.Collapsed;
+                this.LoginForm.Visibility = Visibility.Collapsed;
+                this.UserProfile.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                this.RegisterForm.Visibility = Visibility.Collapsed;
+                this.LoginForm.Visibility = Visibility.Visible;
+                this.UserProfile.Visibility = Visibility.Collapsed;
+            };
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -35,7 +49,6 @@ namespace Donor
         {
             var client = new RestClient("https://api.parse.com");
             var request = new RestRequest("1/login", Method.GET);
-            //request.AddHeader("Accept", "application/json");
             request.Parameters.Clear();
             string strJSONContent = "{\"username\":\"" + this.email.Text + "\",\"password\":\"" + this.password.Password + "\"}";
             request.AddHeader("X-Parse-Application-Id", "EIpakVdZblHedhqgxMgiEVnIGCRGvWdy9v8gkKZu");
@@ -46,34 +59,30 @@ namespace Donor
 
             client.ExecuteAsync(request, response =>
             {
-                //MessageBox.Show(response.Content.ToString());
                 JObject o = JObject.Parse(response.Content.ToString());
                 if (o["error"] == null)
                 {
                     App.ViewModel.User = JsonConvert.DeserializeObject<DonorUser>(response.Content.ToString());
                     App.ViewModel.User.IsLoggedIn = true;
+
+                    this.RegisterForm.Visibility = Visibility.Collapsed;
+                    this.LoginForm.Visibility = Visibility.Collapsed;
+                    this.UserProfile.Visibility = Visibility.Visible;
+
+                    this.ProfileName.Text = App.ViewModel.User.Name.ToString();
+                    this.ProfileSex.Text = App.ViewModel.User.Sex.ToString();
+                    this.ProfileBloodGroup.Text = App.ViewModel.User.BloodGroup.ToString();
                 }
                 else
                 {
                     MessageBox.Show("Ошибка входа: " + o["error"].ToString());
                     App.ViewModel.User.IsLoggedIn = false;
+
+                    this.RegisterForm.Visibility = Visibility.Visible;
+                    this.LoginForm.Visibility = Visibility.Collapsed;
+                    this.UserProfile.Visibility = Visibility.Collapsed;
                 };
             });
-
-            /*var client = new RestClient("https://api.parse.com");
-            var request = new RestRequest("1/users", Method.POST);
-            request.AddHeader("Accept", "application/json");
-            request.Parameters.Clear();
-            string strJSONContent = "{\"username\":\""+this.email.Text+"\",\"password\":\"" + this.password.Password + "\"}";
-            request.AddHeader("X-Parse-Application-Id", "EIpakVdZblHedhqgxMgiEVnIGCRGvWdy9v8gkKZu");
-            request.AddHeader("X-Parse-REST-API-Key", "wPvwRKxX2b2vyrRprFwIbaE5t3kyDQq11APZ0qXf");
-            request.AddHeader("Content-Type", "application/json");
-
-            request.AddParameter("application/json", strJSONContent, ParameterType.RequestBody);
-
-            client.ExecuteAsync(request, response => {
-                MessageBox.Show(response.Content.ToString());
-            });*/
         }
 
         void webClient_UploadStringCompleted(object sender, UploadStringCompletedEventArgs e)
@@ -84,6 +93,57 @@ namespace Donor
                 MessageBox.Show(e.Result.ToString());
             }
             catch
+            {
+            };
+        }
+
+        private void RegisterButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.password1.Password == this.password2.Password)
+            {
+                var client = new RestClient("https://api.parse.com");
+                var request = new RestRequest("1/users", Method.POST);
+                request.AddHeader("Accept", "application/json");
+                request.Parameters.Clear();
+                string strJSONContent = "{\"username\":\"" + this.email1.Text.ToString() + "\",\"password\":\"" + this.password1.Password.ToString() + "\",\"Name\":\"" + this.name1.Text.ToString() + "\"}";
+                request.AddHeader("X-Parse-Application-Id", "EIpakVdZblHedhqgxMgiEVnIGCRGvWdy9v8gkKZu");
+                request.AddHeader("X-Parse-REST-API-Key", "wPvwRKxX2b2vyrRprFwIbaE5t3kyDQq11APZ0qXf");
+                request.AddHeader("Content-Type", "application/json");
+
+                request.AddParameter("application/json", strJSONContent, ParameterType.RequestBody);
+
+                client.ExecuteAsync(request, response =>
+                {
+                    JObject o = JObject.Parse(response.Content.ToString());
+                    MessageBox.Show(response.Content.ToString());
+                    if (o["error"] == null)
+                    {
+                        App.ViewModel.User = JsonConvert.DeserializeObject<DonorUser>(response.Content.ToString());
+                        App.ViewModel.User.IsLoggedIn = true;
+
+                        App.ViewModel.User.Name = this.name1.Text.ToString();
+                        App.ViewModel.User.UserName = this.email1.Text.ToString();
+
+                        this.RegisterForm.Visibility = Visibility.Collapsed;
+                        this.UserProfile.Visibility = Visibility.Visible;
+                        this.LoginForm.Visibility = Visibility.Collapsed;
+
+                        this.ProfileName.Text = App.ViewModel.User.Name.ToString();
+                        this.ProfileSex.Text = App.ViewModel.User.Sex.ToString();
+                        this.ProfileBloodGroup.Text = App.ViewModel.User.BloodGroup.ToString();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Ошибка входа: " + o["error"].ToString());
+                        App.ViewModel.User.IsLoggedIn = false;
+
+                        this.RegisterForm.Visibility = Visibility.Visible;
+                        this.LoginForm.Visibility = Visibility.Collapsed;
+                        this.UserProfile.Visibility = Visibility.Collapsed;
+                    };
+                });
+            }
+            else
             {
             };
         }
