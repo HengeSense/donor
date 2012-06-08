@@ -65,3 +65,6 @@ E:\Visual Studio 2010\Projects\Donor\wp7-donor\Donor\Bin\Debug\RestSharp.Windows
 E:\Visual Studio 2010\Projects\Donor\wp7-donor\Donor\Bin\Debug\RestSharp.WindowsPhone.xml
 E:\Visual Studio 2010\Projects\Donor\wp7-donor\Donor\obj\Debug\AdsList.g.i.cs
 E:\Visual Studio 2010\Projects\Donor\wp7-donor\Donor\obj\Debug\AdsPage.g.i.cs
+E:\Visual Studio 2010\Projects\Donor\wp7-donor\Donor\obj\Debug\HelpPage.g.i.cs
+E:\Visual Studio 2010\Projects\Donor\wp7-donor\Donor\Bin\Debug\Coding4Fun.Phone.Controls.dll
+E:\Visual Studio 2010\Projects\Donor\wp7-donor\Donor\Bin\Debug\Coding4Fun.Phone.Controls.Toolkit.dll

@@ -29,9 +29,9 @@
                 <StackPanel>
                     <TextBlock Margin="0,4" Text="Календарь" TextWrapping="Wrap" Name="CalendarMenuText"  Style="{StaticResource PhoneTextExtraLargeStyle}" Tap="CalendarMenuText_Tap" />
                     <TextBlock Margin="0,4" Text="Станции" TextWrapping="Wrap" Name="StationsMenu" Style="{StaticResource PhoneTextExtraLargeStyle}" Tap="Stations_Tap" />
-                    <TextBlock Margin="0,4" Text="Объявления" TextWrapping="Wrap" Name="NewMenuText" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
+                    <TextBlock Margin="0,4" Text="Объявления" TextWrapping="Wrap" Name="adsMenuText" Style="{StaticResource PhoneTextExtraLargeStyle}" Tap="adsMenuText_Tap" />
                     <TextBlock Margin="0,4" Text="Новости" TextWrapping="Wrap" Name="NewMenuItem" Style="{StaticResource PhoneTextExtraLargeStyle}" Tap="NewMenuItem_Tap" />
-                    <TextBlock Margin="0,4" Text="Справка" TextWrapping="Wrap" Name="HelpMenuText" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
+                    <TextBlock Margin="0,4" Text="Справка" TextWrapping="Wrap" Name="HelpMenuText" Style="{StaticResource PhoneTextExtraLargeStyle}" Tap="HelpMenuText_Tap" />
                     <TextBlock Margin="0,4" Text="Профиль" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}" Tap="TextBlock_Tap_1" />
                 </StackPanel>
             </controls:PanoramaItem>

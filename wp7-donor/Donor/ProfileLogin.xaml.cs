@@ -16,6 +16,7 @@ using System.Diagnostics;
 using RestSharp;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Coding4Fun.Phone.Controls;
 
 namespace Donor
 {
@@ -42,7 +43,7 @@ namespace Donor
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            var user = new DonorUser { UserName = "test", Password = "test" };
+            //var user = new DonorUser { UserName = "test", Password = "test" };
         }
 
         private void Login_Click(object sender, RoutedEventArgs e)
@@ -50,11 +51,11 @@ namespace Donor
             var client = new RestClient("https://api.parse.com");
             var request = new RestRequest("1/login", Method.GET);
             request.Parameters.Clear();
-            string strJSONContent = "{\"username\":\"" + this.email.Text + "\",\"password\":\"" + this.password.Password + "\"}";
+            string strJSONContent = "{\"username\":\"" + this.email.Text.ToString().ToLower() + "\",\"password\":\"" + this.password.Password + "\"}";
             request.AddHeader("X-Parse-Application-Id", "EIpakVdZblHedhqgxMgiEVnIGCRGvWdy9v8gkKZu");
             request.AddHeader("X-Parse-REST-API-Key", "wPvwRKxX2b2vyrRprFwIbaE5t3kyDQq11APZ0qXf");
 
-            request.AddParameter("username", this.email.Text);
+            request.AddParameter("email", this.email.Text.ToLower());
             request.AddParameter("password", this.password.Password);
 
             client.ExecuteAsync(request, response =>
@@ -105,7 +106,7 @@ namespace Donor
                 var request = new RestRequest("1/users", Method.POST);
                 request.AddHeader("Accept", "application/json");
                 request.Parameters.Clear();
-                string strJSONContent = "{\"username\":\"" + this.email1.Text.ToString() + "\",\"password\":\"" + this.password1.Password.ToString() + "\",\"Name\":\"" + this.name1.Text.ToString() + "\"}";
+                string strJSONContent = "{\"username\":\"" + this.email1.Text.ToString().ToLower() + "\",\"password\":\"" + this.password1.Password.ToString() + "\",\"Name\":\"" + this.name1.Text.ToString().ToLower() + "\", \"email\":\"" + this.email1.Text.ToString().ToLower() + "\",}";
                 request.AddHeader("X-Parse-Application-Id", "EIpakVdZblHedhqgxMgiEVnIGCRGvWdy9v8gkKZu");
                 request.AddHeader("X-Parse-REST-API-Key", "wPvwRKxX2b2vyrRprFwIbaE5t3kyDQq11APZ0qXf");
                 request.AddHeader("Content-Type", "application/json");
@@ -147,5 +148,53 @@ namespace Donor
             {
             };
         }
+
+        private MessagePrompt messagePrompt;
+        private void RestorePassword_Click(object sender, RoutedEventArgs e)
+        {
+            StackPanel restore = new StackPanel();
+            restore.Children.Add(new TextBlock { Text = "Введите ваш e-mail", TextWrapping = TextWrapping.Wrap });
+            restore.Children.Add(new TextBox { Text = "m0rg0t.Anton@gmail.com", Name = "RestoreEmail" });
+            messagePrompt = new MessagePrompt
+            {
+                Title = "Востановление пароля",
+                Body = restore,
+                IsAppBarVisible = true,
+                IsCancelVisible = true
+            };
+            messagePrompt.Completed += new EventHandler<PopUpEventArgs<string, PopUpResult>>(messagePrompt_Completed);
+            messagePrompt.Show();
+        }
+
+        void messagePrompt_Completed(object sender, PopUpEventArgs<string, PopUpResult> e)
+        {
+            string _email = ((messagePrompt.Body as StackPanel).Children.FirstOrDefault(c => (c as FrameworkElement).Name == "RestoreEmail") as TextBox).Text.ToString();
+
+            var client = new RestClient("https://api.parse.com");
+            var request = new RestRequest("1/requestPasswordReset", Method.POST);
+            request.AddHeader("Accept", "application/json");
+            request.Parameters.Clear();
+            string strJSONContent = "{\"email\":\"" + _email.ToLower() + "\"}";
+            request.AddHeader("X-Parse-Application-Id", "EIpakVdZblHedhqgxMgiEVnIGCRGvWdy9v8gkKZu");
+            request.AddHeader("X-Parse-REST-API-Key", "wPvwRKxX2b2vyrRprFwIbaE5t3kyDQq11APZ0qXf");
+            request.AddHeader("Content-Type", "application/json");
+
+            request.AddParameter("application/json", strJSONContent, ParameterType.RequestBody);
+
+            client.ExecuteAsync(request, response =>
+                {
+                    JObject o = JObject.Parse(response.Content.ToString());
+                    MessageBox.Show(response.Content.ToString());
+                    if (o["error"] == null)
+                    {
+
+                    }
+                    else
+                    {
+
+                    };
+                });
+        }
+
     }
 }

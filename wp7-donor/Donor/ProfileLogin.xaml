@@ -61,7 +61,7 @@
                         <Button Name="Login" Content="Вход" Click="Login_Click" />
                         <TextBlock Text="Если у вас нет аккаунта, введите пароль и e-mail для начала регистрации." TextWrapping="Wrap" />
 
-                        <Button Name="RestorePassword" Content="Восстановить пароль" />
+                        <Button Name="RestorePassword" Content="Восстановить пароль" Click="RestorePassword_Click" />
                     </StackPanel>
                 </Grid>
             </controls:PivotItem>

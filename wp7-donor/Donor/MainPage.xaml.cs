@@ -164,5 +164,15 @@ namespace Donor
             });
         }
 
+        private void adsMenuText_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/AdsList.xaml", UriKind.Relative));
+        }
+
+        private void HelpMenuText_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/HelpPage.xaml", UriKind.Relative));
+        }
+
     }
 }
