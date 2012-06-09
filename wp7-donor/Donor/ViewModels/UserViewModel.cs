@@ -37,7 +37,15 @@ namespace Donor.ViewModels
         public DateTime? UpdatedAt { get; set; }
         public DateTime? CreatedAt { get; set; }
 
-        public bool IsLoggedIn { get; set; }
+        private bool _isLoggedIn = false;
+        public bool IsLoggedIn { 
+            get { 
+                return _isLoggedIn; 
+            } 
+            set { 
+                _isLoggedIn = value; NotifyPropertyChanged("IsLoggedIn"); 
+            } 
+        }
 
         public string objectId {get;set;}
         public string sessionToken {get;set;}

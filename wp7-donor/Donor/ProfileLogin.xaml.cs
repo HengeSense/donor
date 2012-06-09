@@ -27,6 +27,8 @@ namespace Donor
             InitializeComponent();
 
             DataContext = App.ViewModel;
+            this.UpdateUserInfoView();
+
             if (App.ViewModel.User.IsLoggedIn == true)
             {
                 this.RegisterForm.Visibility = Visibility.Collapsed;
@@ -55,11 +57,13 @@ namespace Donor
             request.AddHeader("X-Parse-Application-Id", "EIpakVdZblHedhqgxMgiEVnIGCRGvWdy9v8gkKZu");
             request.AddHeader("X-Parse-REST-API-Key", "wPvwRKxX2b2vyrRprFwIbaE5t3kyDQq11APZ0qXf");
 
-            request.AddParameter("email", this.email.Text.ToLower());
+            request.AddParameter("username", this.email.Text.ToLower());
             request.AddParameter("password", this.password.Password);
+            this.LoadingBar.IsIndeterminate = true;
 
             client.ExecuteAsync(request, response =>
             {
+                this.LoadingBar.IsIndeterminate = false;
                 JObject o = JObject.Parse(response.Content.ToString());
                 if (o["error"] == null)
                 {
@@ -70,13 +74,26 @@ namespace Donor
                     this.LoginForm.Visibility = Visibility.Collapsed;
                     this.UserProfile.Visibility = Visibility.Visible;
 
-                    this.ProfileName.Text = App.ViewModel.User.Name.ToString();
-                    this.ProfileSex.Text = App.ViewModel.User.Sex.ToString();
-                    this.ProfileBloodGroup.Text = App.ViewModel.User.BloodGroup.ToString();
+                    if (App.ViewModel.User.IsLoggedIn == true)
+                    {
+                        this.AppBar.IsVisible = true;
+                    }
+                    else
+                    {
+                        this.AppBar.IsVisible = false;
+                    };
+
+                    try
+                    {
+                        this.UpdateUserInfoView();
+                    }
+                    catch
+                    {
+                    };
                 }
                 else
                 {
-                    MessageBox.Show("Ошибка входа: " + o["error"].ToString());
+                    //MessageBox.Show("Ошибка входа: " + o["error"].ToString());
                     App.ViewModel.User.IsLoggedIn = false;
 
                     this.RegisterForm.Visibility = Visibility.Visible;
@@ -88,10 +105,10 @@ namespace Donor
 
         void webClient_UploadStringCompleted(object sender, UploadStringCompletedEventArgs e)
         {
-            Debug.WriteLine("completed");
+            //Debug.WriteLine("completed");
             try
             {
-                MessageBox.Show(e.Result.ToString());
+                //MessageBox.Show(e.Result.ToString());
             }
             catch
             {
@@ -106,17 +123,18 @@ namespace Donor
                 var request = new RestRequest("1/users", Method.POST);
                 request.AddHeader("Accept", "application/json");
                 request.Parameters.Clear();
-                string strJSONContent = "{\"username\":\"" + this.email1.Text.ToString().ToLower() + "\",\"password\":\"" + this.password1.Password.ToString() + "\",\"Name\":\"" + this.name1.Text.ToString().ToLower() + "\", \"email\":\"" + this.email1.Text.ToString().ToLower() + "\",}";
+                string strJSONContent = "{\"username\":\"" + this.email1.Text.ToString().ToLower() + "\",\"password\":\"" + this.password1.Password.ToString() + "\",\"Name\":\"" + this.name1.Text.ToString().ToLower() + "\", \"email\":\"" + this.email1.Text.ToString().ToLower() + "\"}";
                 request.AddHeader("X-Parse-Application-Id", "EIpakVdZblHedhqgxMgiEVnIGCRGvWdy9v8gkKZu");
                 request.AddHeader("X-Parse-REST-API-Key", "wPvwRKxX2b2vyrRprFwIbaE5t3kyDQq11APZ0qXf");
                 request.AddHeader("Content-Type", "application/json");
-
                 request.AddParameter("application/json", strJSONContent, ParameterType.RequestBody);
+
+                this.LoadingBar.IsIndeterminate = true;
 
                 client.ExecuteAsync(request, response =>
                 {
+                    this.LoadingBar.IsIndeterminate = false;
                     JObject o = JObject.Parse(response.Content.ToString());
-                    MessageBox.Show(response.Content.ToString());
                     if (o["error"] == null)
                     {
                         App.ViewModel.User = JsonConvert.DeserializeObject<DonorUser>(response.Content.ToString());
@@ -129,15 +147,26 @@ namespace Donor
                         this.UserProfile.Visibility = Visibility.Visible;
                         this.LoginForm.Visibility = Visibility.Collapsed;
 
-                        this.ProfileName.Text = App.ViewModel.User.Name.ToString();
-                        this.ProfileSex.Text = App.ViewModel.User.Sex.ToString();
-                        this.ProfileBloodGroup.Text = App.ViewModel.User.BloodGroup.ToString();
+                        if (App.ViewModel.User.IsLoggedIn == true)
+                        {
+                            this.AppBar.IsVisible = true;
+                        }
+                        else
+                        {
+                            this.AppBar.IsVisible = false;
+                        };
+
+                        try
+                        {
+                            this.UpdateUserInfoView();
+                        }
+                        catch
+                        {
+                        };
                     }
                     else
                     {
-                        MessageBox.Show("Ошибка входа: " + o["error"].ToString());
                         App.ViewModel.User.IsLoggedIn = false;
-
                         this.RegisterForm.Visibility = Visibility.Visible;
                         this.LoginForm.Visibility = Visibility.Collapsed;
                         this.UserProfile.Visibility = Visibility.Collapsed;
@@ -147,6 +176,16 @@ namespace Donor
             else
             {
             };
+        }
+
+        private void UpdateUserInfoView() {
+            try
+            {
+                this.ProfileName.Text = App.ViewModel.User.Name.ToString();
+                this.ProfileSex.Text = App.ViewModel.User.Sex.ToString();
+                this.ProfileBloodGroup.Text = App.ViewModel.User.BloodGroup.ToString();
+            }
+            catch { };
         }
 
         private MessagePrompt messagePrompt;
@@ -180,11 +219,12 @@ namespace Donor
             request.AddHeader("Content-Type", "application/json");
 
             request.AddParameter("application/json", strJSONContent, ParameterType.RequestBody);
-
+            this.LoadingBar.IsIndeterminate = true;
             client.ExecuteAsync(request, response =>
                 {
+                    this.LoadingBar.IsIndeterminate = false;
                     JObject o = JObject.Parse(response.Content.ToString());
-                    MessageBox.Show(response.Content.ToString());
+                    //MessageBox.Show(response.Content.ToString());
                     if (o["error"] == null)
                     {
 
@@ -194,6 +234,170 @@ namespace Donor
 
                     };
                 });
+        }
+
+        private void Pivot_Loaded(object sender, RoutedEventArgs e)
+        {
+            this.AppBar.DataContext = App.ViewModel;
+            if (this.NavigationContext.QueryString.ContainsKey("task"))
+            {
+                try
+                {
+                    string _taskid = this.NavigationContext.QueryString["task"];
+                    switch (_taskid)
+                    {
+                        case "register": 
+                            this.RegisterForm.Visibility = Visibility.Visible;
+                            this.LoginForm.Visibility = Visibility.Collapsed;
+                            this.UserProfile.Visibility = Visibility.Collapsed;
+                            break;
+                        case "login":
+                            this.RegisterForm.Visibility = Visibility.Collapsed;
+                            this.LoginForm.Visibility = Visibility.Visible;
+                            this.UserProfile.Visibility = Visibility.Collapsed;
+                            break;
+                        default:
+                            break;
+                    };
+                }
+                catch
+                {
+                };
+            };
+
+            if (App.ViewModel.User.IsLoggedIn == true)
+            {
+                this.AppBar.IsVisible = true;
+            }
+            else
+            {
+                this.AppBar.IsVisible = false;
+            };
+        }
+
+        private void AdvancedApplicationBarIconButton_Click(object sender, EventArgs e)
+        {
+            this.EditProfile.Visibility = Visibility.Visible;
+            
+            this.CancelEditProfileButton.Visibility = Visibility.Visible;
+            this.SaveEditProfileButton.Visibility = Visibility.Visible;
+
+            this.RegisterForm.Visibility = Visibility.Collapsed;
+            this.LoginForm.Visibility = Visibility.Collapsed;
+            this.UserProfile.Visibility = Visibility.Collapsed;
+        }
+
+        private void CancelEditProfileButton_Click(object sender, EventArgs e)
+        {
+            this.EditProfile.Visibility = Visibility.Collapsed;
+
+            this.CancelEditProfileButton.Visibility = Visibility.Collapsed;
+            this.SaveEditProfileButton.Visibility = Visibility.Collapsed;
+
+
+            this.RegisterForm.Visibility = Visibility.Collapsed;
+            this.LoginForm.Visibility = Visibility.Collapsed;
+            this.UserProfile.Visibility = Visibility.Visible;
+        }
+
+        private void SaveEditProfileButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                for (int i = 0; i < this.BloudTypeGroupEdit.Children.Count; i++)
+                {
+                    if (this.BloudTypeGroupEdit.Children[i].GetType().Name == "RadioButton")
+                    {
+                        RadioButton radio = (RadioButton)this.BloudTypeGroupEdit.Children[i];
+                        if ((bool)radio.IsChecked)
+                        {
+                            App.ViewModel.User.BloodGroup = i.ToString();
+                        }
+                    }
+                };
+            }
+            catch { };
+
+            try
+            {
+                for (int i = 0; i < this.SexEditGroup.Children.Count; i++)
+                {
+                    if (this.SexEditGroup.Children[i].GetType().Name == "RadioButton")
+                    {
+                        RadioButton radio = (RadioButton)this.SexEditGroup.Children[i];
+                        if ((bool)radio.IsChecked)
+                        {
+                            App.ViewModel.User.Sex = i.ToString();
+                        }
+                    }
+                };
+            }
+            catch { };
+
+            try
+            {
+                for (int i = 0; i < this.SexEditGroup.Children.Count; i++)
+                {
+                    if (this.RHedit.Children[i].GetType().Name == "RadioButton")
+                    {
+                        RadioButton radio = (RadioButton)this.RHedit.Children[i];
+                        if ((bool)radio.IsChecked)
+                        {
+                            App.ViewModel.User.BloodRh = i.ToString();
+                        }
+                    }
+                };
+            }
+            catch { };
+
+            try
+            {
+                App.ViewModel.User.Name = this.EditName.Text;
+            }
+            catch { };
+
+                var client = new RestClient("https://api.parse.com");
+                var request = new RestRequest("1/users/" + App.ViewModel.User.objectId.ToString(), Method.PUT);
+                request.AddHeader("Accept", "application/json");
+                request.Parameters.Clear();
+                string strJSONContent = "{\"Sex\":" + App.ViewModel.User.Sex.ToLower() + ", \"Name\":\"" + App.ViewModel.User.Name + "\", \"BloodGroup\":" + App.ViewModel.User.BloodGroup + ", \"BloodRh\":" + App.ViewModel.User.BloodRh + "}";
+                request.AddHeader("X-Parse-Application-Id", "EIpakVdZblHedhqgxMgiEVnIGCRGvWdy9v8gkKZu");
+                request.AddHeader("X-Parse-REST-API-Key", "wPvwRKxX2b2vyrRprFwIbaE5t3kyDQq11APZ0qXf");
+                request.AddHeader("X-Parse-Session-Token", App.ViewModel.User.sessionToken);
+                request.AddHeader("Content-Type", "application/json");
+                request.AddParameter("application/json", strJSONContent, ParameterType.RequestBody);
+
+                this.LoadingBar.IsIndeterminate = true;
+
+                client.ExecuteAsync(request, response =>
+                {
+                    this.LoadingBar.IsIndeterminate = false;
+                    try
+                    {
+                        JObject o = JObject.Parse(response.Content.ToString());
+                        if (o["error"] == null)
+                        {
+                            MessageBox.Show("Данные профиля обновлены.");
+                        }
+                        else
+                        {
+                            MessageBox.Show(response.Content.ToString());
+                        };
+                    }
+                    catch
+                    {
+                    };
+                });
+
+            this.UpdateUserInfoView();
+            this.EditProfile.Visibility = Visibility.Collapsed;
+
+            this.CancelEditProfileButton.Visibility = Visibility.Collapsed;
+            this.SaveEditProfileButton.Visibility = Visibility.Collapsed;
+
+            this.RegisterForm.Visibility = Visibility.Collapsed;
+            this.LoginForm.Visibility = Visibility.Collapsed;
+            this.UserProfile.Visibility = Visibility.Visible;
         }
 
     }

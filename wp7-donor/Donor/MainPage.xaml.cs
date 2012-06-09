@@ -133,11 +133,13 @@ namespace Donor
             request.AddHeader("X-Parse-Application-Id", "EIpakVdZblHedhqgxMgiEVnIGCRGvWdy9v8gkKZu");
             request.AddHeader("X-Parse-REST-API-Key", "wPvwRKxX2b2vyrRprFwIbaE5t3kyDQq11APZ0qXf");
 
-            request.AddParameter("username", this.email.Text);
+            request.AddParameter("username", this.email.Text.ToLower());
             request.AddParameter("password", this.password.Password);
+            this.LoginLoadingBar.IsIndeterminate = true;
 
             client.ExecuteAsync(request, response =>
             {
+                this.LoginLoadingBar.IsIndeterminate = false;
                 JObject o = JObject.Parse(response.Content.ToString());
                 if (o["error"] == null)
                 {
@@ -147,13 +149,17 @@ namespace Donor
                     this.LoginForm.Visibility = Visibility.Collapsed;
                     this.UserProfile.Visibility = Visibility.Visible;
 
-                    this.ProfileName.Text = App.ViewModel.User.Name.ToString();
-                    this.ProfileSex.Text = App.ViewModel.User.Sex.ToString();
-                    this.ProfileBloodGroup.Text = App.ViewModel.User.BloodGroup.ToString();
+                    try
+                    {
+                        this.ProfileName.Text = App.ViewModel.User.Name.ToString();
+                        this.ProfileSex.Text = App.ViewModel.User.Sex.ToString();
+                        this.ProfileBloodGroup.Text = App.ViewModel.User.BloodGroup.ToString();
+                    }
+                    catch { };
                 }
                 else
                 {
-                    MessageBox.Show("Ошибка входа: " + o["error"].ToString());
+                    //MessageBox.Show("Ошибка входа: " + o["error"].ToString());
                     App.ViewModel.User.IsLoggedIn = false;
 
                     this.LoginForm.Visibility = Visibility.Visible;
