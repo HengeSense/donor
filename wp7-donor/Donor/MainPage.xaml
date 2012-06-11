@@ -14,7 +14,7 @@
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait"  Orientation="Portrait"
-    shell:SystemTray.IsVisible="False" Loaded="PhoneApplicationPage_Loaded">
+    shell:SystemTray.IsVisible="False" Loaded="PhoneApplicationPage_Loaded" DataContext="{Binding Path=App.ViewModel,Source=App.ViewModel}">
 
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
@@ -24,6 +24,10 @@
             <controls:Panorama.Title>
                 <Image Source="/Donor;component/images/logo.png" Margin="-10,75,0,0"/>
             </controls:Panorama.Title>
+
+            <controls:Panorama.Background>
+                <ImageBrush ImageSource="bg.png"/>
+            </controls:Panorama.Background>
 
             <!--Panorama item one-->
             <controls:PanoramaItem Header="Меню">
@@ -41,7 +45,7 @@
             <!--Use 'Orientation="Horizontal"' to enable a panel that lays out horizontally-->
             <controls:PanoramaItem Header="Планы">
                 <!--Double line list with image placeholder and text wrapping-->
-                <ListBox Margin="0,0,-12,0" ItemsSource="{Binding Events.Items}" Name="EventsList" SelectionChanged="EventsList_SelectionChanged" Loaded="EventsList_Loaded">
+                <ListBox Margin="0,0,-12,0" ItemsSource="{Binding Events.WeekItems}" Name="EventsList" SelectionChanged="EventsList_SelectionChanged" Loaded="EventsList_Loaded">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal" Margin="0,0,0,17">          
@@ -57,7 +61,7 @@
 
             <controls:PanoramaItem Header="Новости">
                 <!--Double line list with text wrapping-->
-                <ListBox Margin="0,0,-12,0" ItemsSource="{Binding News.Items}" Name="NewsList" SelectionChanged="ListBox_SelectionChanged">
+                <ListBox Margin="0,0,-12,0" ItemsSource="{Binding Path=News.NewItems}" Name="NewsList" SelectionChanged="ListBox_SelectionChanged">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Margin="0,0,0,17" Width="432" Height="78">
@@ -88,7 +92,7 @@
                     </StackPanel>
                     <StackPanel Margin="0,10">
                         <TextBlock Text="Пол" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
-                        <TextBlock Name="ProfileSex" Text="{Binding User.Sex}"  TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                            <TextBlock Name="ProfileSex" Text="{Binding User.OutSex}"  TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
                     </StackPanel>
                     <StackPanel Margin="0,10">
                         <TextBlock Text="Группа крови" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}"/>

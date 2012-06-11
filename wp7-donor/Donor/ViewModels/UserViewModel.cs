@@ -50,9 +50,57 @@ namespace Donor.ViewModels
         public string objectId {get;set;}
         public string sessionToken {get;set;}
 
-        public string BloodGroup { get; set; }
-        public string BloodRh { get; set; }
-        public string Sex { get; set; }
+        public int BloodGroup { get; set; }
+        public int BloodRh { get; set; }
+        public int Sex { get; set; }
+
+        public string OutSex { private set { }
+            get {
+                string outstr = "не выбран";
+                switch (this.Sex)
+                {
+                    case 0:
+                        outstr = "Мужской";
+                        break;
+                    case 1:
+                        outstr = "Женский";
+                        break;
+                    default:
+                        outstr = "не выбран";
+                        break;
+                }
+                return outstr;
+            }
+        }
+
+        public string OutBloodGroup
+        {
+            private set { }
+            get
+            {
+                string outstr = "не выбрано";
+                switch (this.BloodGroup)
+                {
+                    // (0 – I, 1 – II, 2 – III, 3 – IV)                    
+                    case 0:
+                        outstr = "O(I)";
+                        break;
+                    case 1:
+                        outstr = "A(II)";
+                        break;
+                    case 2:
+                        outstr = "B(III)";
+                        break;
+                    case 3:
+                        outstr = "AB(IV)";
+                        break;
+                    default:
+                        outstr = "не выбрано";
+                        break;
+                }
+                return outstr;
+            }
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
         private void NotifyPropertyChanged(String propertyName)

@@ -182,8 +182,8 @@ namespace Donor
             try
             {
                 this.ProfileName.Text = App.ViewModel.User.Name.ToString();
-                this.ProfileSex.Text = App.ViewModel.User.Sex.ToString();
-                this.ProfileBloodGroup.Text = App.ViewModel.User.BloodGroup.ToString();
+                this.ProfileSex.Text = App.ViewModel.User.OutSex.ToString();
+                this.ProfileBloodGroup.Text = App.ViewModel.User.OutBloodGroup.ToString();
             }
             catch { };
         }
@@ -311,7 +311,7 @@ namespace Donor
                         RadioButton radio = (RadioButton)this.BloudTypeGroupEdit.Children[i];
                         if ((bool)radio.IsChecked)
                         {
-                            App.ViewModel.User.BloodGroup = i.ToString();
+                            App.ViewModel.User.BloodGroup = i;
                         }
                     }
                 };
@@ -327,7 +327,7 @@ namespace Donor
                         RadioButton radio = (RadioButton)this.SexEditGroup.Children[i];
                         if ((bool)radio.IsChecked)
                         {
-                            App.ViewModel.User.Sex = i.ToString();
+                            App.ViewModel.User.Sex = i;
                         }
                     }
                 };
@@ -343,7 +343,7 @@ namespace Donor
                         RadioButton radio = (RadioButton)this.RHedit.Children[i];
                         if ((bool)radio.IsChecked)
                         {
-                            App.ViewModel.User.BloodRh = i.ToString();
+                            App.ViewModel.User.BloodRh = i;
                         }
                     }
                 };
@@ -360,7 +360,7 @@ namespace Donor
                 var request = new RestRequest("1/users/" + App.ViewModel.User.objectId.ToString(), Method.PUT);
                 request.AddHeader("Accept", "application/json");
                 request.Parameters.Clear();
-                string strJSONContent = "{\"Sex\":" + App.ViewModel.User.Sex.ToLower() + ", \"Name\":\"" + App.ViewModel.User.Name + "\", \"BloodGroup\":" + App.ViewModel.User.BloodGroup + ", \"BloodRh\":" + App.ViewModel.User.BloodRh + "}";
+                string strJSONContent = "{\"Sex\":" + App.ViewModel.User.Sex + ", \"Name\":\"" + App.ViewModel.User.Name + "\", \"BloodGroup\":" + App.ViewModel.User.BloodGroup + ", \"BloodRh\":" + App.ViewModel.User.BloodRh + "}";
                 request.AddHeader("X-Parse-Application-Id", "EIpakVdZblHedhqgxMgiEVnIGCRGvWdy9v8gkKZu");
                 request.AddHeader("X-Parse-REST-API-Key", "wPvwRKxX2b2vyrRprFwIbaE5t3kyDQq11APZ0qXf");
                 request.AddHeader("X-Parse-Session-Token", App.ViewModel.User.sessionToken);
@@ -398,6 +398,52 @@ namespace Donor
             this.RegisterForm.Visibility = Visibility.Collapsed;
             this.LoginForm.Visibility = Visibility.Collapsed;
             this.UserProfile.Visibility = Visibility.Visible;
+        }
+
+        private void DeleteUserButton_Click(object sender, EventArgs e)
+        {
+            var client = new RestClient("https://api.parse.com");
+            var request = new RestRequest("1/users/" + App.ViewModel.User.objectId.ToString(), Method.DELETE);
+            request.AddHeader("Accept", "application/json");
+            request.Parameters.Clear();            
+            request.AddHeader("X-Parse-Application-Id", "EIpakVdZblHedhqgxMgiEVnIGCRGvWdy9v8gkKZu");
+            request.AddHeader("X-Parse-REST-API-Key", "wPvwRKxX2b2vyrRprFwIbaE5t3kyDQq11APZ0qXf");
+            request.AddHeader("X-Parse-Session-Token", App.ViewModel.User.sessionToken);
+            request.AddHeader("Content-Type", "application/json");
+
+            this.LoadingBar.IsIndeterminate = true;
+
+            client.ExecuteAsync(request, response =>
+            {
+                this.LoadingBar.IsIndeterminate = false;
+                try
+                {
+                    JObject o = JObject.Parse(response.Content.ToString());
+                    if (o["error"] == null)
+                    {
+                        MessageBox.Show("Пользователь удален.");
+                        App.ViewModel.User = new DonorUser();
+
+                        this.EditProfile.Visibility = Visibility.Collapsed;
+
+                        this.AppBar.IsVisible = false;
+
+                        this.CancelEditProfileButton.Visibility = Visibility.Collapsed;
+                        this.SaveEditProfileButton.Visibility = Visibility.Collapsed;
+
+                        this.RegisterForm.Visibility = Visibility.Collapsed;
+                        this.LoginForm.Visibility = Visibility.Visible;
+                        this.UserProfile.Visibility = Visibility.Collapsed;
+                    }
+                    else
+                    {
+                        MessageBox.Show(response.Content.ToString());
+                    };
+                }
+                catch
+                {
+                };
+            });
         }
 
     }

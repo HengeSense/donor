@@ -91,13 +91,16 @@ namespace Donor
 
         private void CalendarMenuText_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
-            NavigationService.Navigate(new Uri("/CalendarMonthPage.xaml", UriKind.Relative));
+            //NavigationService.Navigate(new Uri("/CalendarMonthPage.xaml", UriKind.Relative));
+            NavigationService.Navigate(new Uri("/CalendarYearPage.xaml", UriKind.Relative));
         }
 
         private void EventsList_Loaded(object sender, RoutedEventArgs e)
         {
-            this.EventsList.ItemsSource = App.ViewModel.Events.Items;
-            this.NewsList.ItemsSource = App.ViewModel.News.Items;
+            //this.NewsList.DataContext = App.ViewModel.News;
+            //this.EventsList.DataContext = App.ViewModel;
+            //this.NewsList.ItemsSource = App.ViewModel.News.NewItems;
+            //this.EventsList.ItemsSource = App.ViewModel.Events.Items;
         }
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
@@ -107,8 +110,8 @@ namespace Donor
                 if (App.ViewModel.User.IsLoggedIn == true)
                 {
                     this.ProfileName.Text = App.ViewModel.User.Name.ToString();
-                    this.ProfileSex.Text = App.ViewModel.User.Sex.ToString();
-                    this.ProfileBloodGroup.Text = App.ViewModel.User.BloodGroup.ToString();
+                    this.ProfileSex.Text = App.ViewModel.User.OutSex.ToString();
+                    this.ProfileBloodGroup.Text = App.ViewModel.User.OutBloodGroup.ToString();
                     this.UserProfile.Visibility = Visibility.Visible;
                 }
                 else

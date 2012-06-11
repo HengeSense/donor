@@ -20,6 +20,7 @@ using Newtonsoft.Json;
 using System.Reflection;
 using System.IO;
 using System.Windows.Resources;
+using System.Windows.Threading;
 
 namespace Donor
 {   
@@ -62,33 +63,43 @@ namespace Donor
         /// </summary>
         public void LoadData()
         {
-
-            try
+            var bw = new BackgroundWorker();
+            
+            bw.DoWork += delegate
             {
-                var user = new DonorUser { UserName = "Test1", Password = "pass" };
-                //this.Parse.Objects.Save(user);
-            }
-            catch
-            {
-            };
-           
+            System.Threading.Thread.Sleep(500);
             if (this.Events.Items.Count == 0)
             {
                 StreamResourceInfo info = Application.GetResourceStream(new Uri("/Donor;component/holidays.json", UriKind.Relative));
                 StreamReader reader = new StreamReader(info.Stream, System.Text.Encoding.Unicode);
                 string json ="";
                 json = reader.ReadToEnd();
-                this.Events.Items = JsonConvert.DeserializeObject<ObservableCollection<EventViewModel>>(json);
+                ObservableCollection<EventViewModel> eventslist1 = new ObservableCollection<EventViewModel>();
+                eventslist1 = JsonConvert.DeserializeObject<ObservableCollection<EventViewModel>>(json);
+                Deployment.Current.Dispatcher.BeginInvoke(() =>
+                {
+                    this.Events.Items = eventslist1;
+                    this.NotifyPropertyChanged("Events");
+                });
             };
 
             if (this.News.Items.Count == 0)
             {
-                this.News.Items.Add(new NewsViewModel() { Title = "runtime one", Description = "Maecenas praesent accumsan bibendum", Id = "1" });
-                this.News.Items.Add(new NewsViewModel() { Title = "runtime two", Description = "Dictumst eleifend facilisi faucibus", Id = "2" });
-                this.News.Items.Add(new NewsViewModel() { Title = "runtime three", Description = "Habitant inceptos interdum lobortis", Id = "3" });
+                ObservableCollection<NewsViewModel> newslist1 = new ObservableCollection<NewsViewModel>();
+                newslist1.Add(new NewsViewModel() { Title = "runtime one", Description = "Maecenas praesent accumsan bibendum", Id = "1", Date = DateTime.Parse("6/10/2012 12:00:00 AM") });
+                newslist1.Add(new NewsViewModel() { Title = "runtime two", Description = "Dictumst eleifend facilisi faucibus", Id = "2", Date = DateTime.Parse("5/12/2012 12:00:00 AM") });
+                newslist1.Add(new NewsViewModel() { Title = "runtime three", Description = "Habitant inceptos interdum lobortis", Id = "3", Date = DateTime.Parse("6/12/2012 12:00:00 AM") });
+
+                Deployment.Current.Dispatcher.BeginInvoke(() =>
+                {
+                    this.News.Items = newslist1;
+                    this.NotifyPropertyChanged("News");
+                });
             };
 
             this.IsDataLoaded = true;
+            };
+            bw.RunWorkerAsync();  
         }
 
         /// <summary>
@@ -96,9 +107,9 @@ namespace Donor
         /// </summary>
         public void SaveToIsolatedStorage()
         {
-            //var bw = new BackgroundWorker();
-            //bw.DoWork += delegate
-            //{
+            var bw = new BackgroundWorker();
+            bw.DoWork += delegate
+            {
             try
             {
                 if (this.Events.Items.Count > 0)
@@ -119,8 +130,8 @@ namespace Donor
             catch
             {
             };
-            //};
-            //bw.RunWorkerAsync();  
+            };
+            bw.RunWorkerAsync();  
         }
         /// <summary>
         /// 
@@ -133,26 +144,44 @@ namespace Donor
 
                 try
                 {
-                    this.Events.Items = new ObservableCollection<EventViewModel>();
-                    this.Events.Items = IsolatedStorageHelper.LoadSerializableObject<ObservableCollection<EventViewModel>>("events.xml");
-                    
-                    //NotifyPropertyChanged("Events");
+                    ObservableCollection<EventViewModel> eventslist1 = new ObservableCollection<EventViewModel>();
+                    eventslist1 = IsolatedStorageHelper.LoadSerializableObject<ObservableCollection<EventViewModel>>("events.xml");
+                    Deployment.Current.Dispatcher.BeginInvoke(() =>
+                    {
+                        this.Events.Items = eventslist1;
+                        this.NotifyPropertyChanged("Events");
+                    });
                 }
                 catch //(System.IO.FileNotFoundException)
                 {
-                    this.Events.Items = new ObservableCollection<EventViewModel>();
+                    //this.Events.Items = new ObservableCollection<EventViewModel>();
+                    Deployment.Current.Dispatcher.BeginInvoke(() =>
+                    {
+                        this.Events.Items = new ObservableCollection<EventViewModel>();
+                        this.NotifyPropertyChanged("Events");
+                    });
                 }
                 try
                 {
-                    this.News.Items = new ObservableCollection<NewsViewModel>();
-                    this.News.Items = IsolatedStorageHelper.LoadSerializableObject<ObservableCollection<NewsViewModel>>("news.xml");
+                    ObservableCollection<NewsViewModel> newslist1 = new ObservableCollection<NewsViewModel>();
+                    newslist1 = IsolatedStorageHelper.LoadSerializableObject<ObservableCollection<NewsViewModel>>("news.xml");
+                    Deployment.Current.Dispatcher.BeginInvoke(() =>
+                    {
+                        this.News.Items = newslist1;
+                        this.NotifyPropertyChanged("News");
+                    });
                 }
                 catch //(System.IO.FileNotFoundException)
-                {
-                    this.News.Items = new ObservableCollection<NewsViewModel>();
+                {                    
+                    Deployment.Current.Dispatcher.BeginInvoke(() =>
+                    {
+                        this.News.Items = new ObservableCollection<NewsViewModel>();
+                        this.NotifyPropertyChanged("News");
+                    });
                 };
             };
             bw.RunWorkerAsync();
+            
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
