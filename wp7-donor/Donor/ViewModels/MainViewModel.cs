@@ -68,29 +68,17 @@ namespace Donor
             bw.DoWork += delegate
             {
             System.Threading.Thread.Sleep(500);
-            if (this.Events.Items.Count == 0)
-            {
-                StreamResourceInfo info = Application.GetResourceStream(new Uri("/Donor;component/holidays.json", UriKind.Relative));
-                StreamReader reader = new StreamReader(info.Stream, System.Text.Encoding.Unicode);
-                string json = "";
-                json = reader.ReadToEnd();
-                ObservableCollection<EventViewModel> eventslist1 = new ObservableCollection<EventViewModel>();
-                eventslist1 = JsonConvert.DeserializeObject<ObservableCollection<EventViewModel>>(json);
-                Deployment.Current.Dispatcher.BeginInvoke(() =>
-                    {
-                        this.Events.Items = eventslist1;
-                        App.ViewModel.Events.LoadDonorsSaturdays();
-                        this.NotifyPropertyChanged("Events");
-                    });
-            }
-            else
-            {
+            //if (this.Events.Items.Count == 0)
+            //{
+            //}
+            //else
+            //{
                 Deployment.Current.Dispatcher.BeginInvoke(() =>
                 {
                     App.ViewModel.Events.LoadDonorsSaturdays();
                     this.NotifyPropertyChanged("Events");
                 });
-            };
+            //};
 
 
             if (this.News.Items.Count == 0)
@@ -162,12 +150,22 @@ namespace Donor
                         this.NotifyPropertyChanged("Events");
                     });
                 }
-                catch //(System.IO.FileNotFoundException)
+                catch
                 {
-                    //this.Events.Items = new ObservableCollection<EventViewModel>();
                     Deployment.Current.Dispatcher.BeginInvoke(() =>
                     {
                         this.Events.Items = new ObservableCollection<EventViewModel>();
+
+                        StreamResourceInfo info = Application.GetResourceStream(new Uri("/Donor;component/holidays.json", UriKind.Relative));
+                        StreamReader reader = new StreamReader(info.Stream, System.Text.Encoding.Unicode);
+                        string json = "";
+                        json = reader.ReadToEnd();
+                        ObservableCollection<EventViewModel> eventslist1 = new ObservableCollection<EventViewModel>();
+                        eventslist1 = JsonConvert.DeserializeObject<ObservableCollection<EventViewModel>>(json);
+
+                            this.Events.Items = eventslist1;
+                            //App.ViewModel.Events.LoadDonorsSaturdays();
+                        
                         this.NotifyPropertyChanged("Events");
                     });
                 }

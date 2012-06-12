@@ -19,6 +19,7 @@
             <toolkit:ContextMenuService.ContextMenu>
                 <toolkit:ContextMenu Name="ContextMenu">
                     <toolkit:MenuItem Header="Добавить" Name="AddContextMenu" Click="AddContextMenu_Click" />
+                    <toolkit:MenuItem Header="Было выполнено" Name="FinishedContextMenu" Visibility="Collapsed" Click="FinishedContextMenu_Click" />
                     <toolkit:MenuItem Header="Редактировать" Name="EditContextMenu" Click="EditContextMenu_Click" />
                     <toolkit:MenuItem Header="Удалить" Name="DeleteContextMenu" Click="DeleteContextMenu_Click" />
                 </toolkit:ContextMenu>

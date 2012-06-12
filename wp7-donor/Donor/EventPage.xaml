@@ -39,6 +39,7 @@
                     <TextBlock Text="{Binding Path=GiveType}" Name="GiveType" TextWrapping="Wrap"/>
                     <TextBlock Text="{Binding Path=Place}" Name="Place" TextWrapping="Wrap"/>
                     <TextBlock Text="{Binding Path=Reminder}" Name="Reminder" TextWrapping="Wrap"/>
+                    <TextBlock Text="{Binding Path=FinishedString}" Name="Finished" TextWrapping="Wrap"/>
                     <TextBlock Text="Комментарии:" TextWrapping="Wrap"/>
                     <TextBlock Text="{Binding Path=Description}" Name="Description" TextWrapping="Wrap"/>                    
                 </StackPanel>

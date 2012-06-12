@@ -135,6 +135,7 @@ namespace Donor
             {
                 NavigationService.GoBack();
             };
+            App.ViewModel.SaveToIsolatedStorage();
         }
 
         private void EventType_SelectionChanged(object sender, SelectionChangedEventArgs e)

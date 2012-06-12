@@ -57,6 +57,34 @@ namespace Donor.ViewModels
         public string Reminder { get; set; }
         public bool ReminderMessage { get; set; }
 
+        private bool _finished = false;
+        public bool Finished
+        {
+            get
+            {
+                return _finished;
+            }
+            set
+            {
+                _finished = value;
+            }
+        }
+        public string FinishedString
+        {
+            get
+            {
+                if (_finished)
+                {
+                    return "Выполнено";
+                }
+                else
+                {
+                    return "Еще не отмечено как выполненое";
+                };
+            }
+            private set {            }
+        }
+
         private DateTime _time;
         public DateTime Time {
             get
@@ -107,12 +135,12 @@ namespace Donor.ViewModels
                     jsonitem.Id = item["objectId"].ToString();
                     jsonitem.Type = item["type"].ToString();
                     jsonitem.Date = DateTime.Parse(item["date"]["iso"].ToString());
+                    this.Items.Remove(this.Items.FirstOrDefault(c => c.Id == jsonitem.Id));
                     this.Items.Add(jsonitem);
                 };
+                this.NotifyPropertyChanged("Items");
                 this.NotifyPropertyChanged("WeekItems");
-            });
-            
-            //this.NotifyPropertyChanged("WeekItems");
+            });            
         }
 
         private ObservableCollection<EventViewModel> _items;

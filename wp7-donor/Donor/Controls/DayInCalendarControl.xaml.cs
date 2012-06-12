@@ -42,9 +42,10 @@ namespace Donor.Controls
             //this.deleted = false;
         }
         public bool deleted;
+        public bool checkedEvent = false;
         private void GestureListener_Tap(object sender, Microsoft.Phone.Controls.GestureEventArgs e)
         {
-            if (deleted == false)
+            if ((deleted == false) || (checkedEvent == false))
             {
                 if (this.EventDay != null)
                 {
@@ -54,10 +55,12 @@ namespace Donor.Controls
                 {
                     (Application.Current.RootVisual as PhoneApplicationFrame).Navigate(new Uri("/EventEditPage.xaml?month=" + this.MonthNumber + "&day=" + this.DayNumber + "&year=" + this.YearNumber, UriKind.Relative));
                 };
+                checkedEvent = false;
             }
             else
             {
                 deleted = false;
+                checkedEvent = false;
             };
         }
 
@@ -141,11 +144,15 @@ namespace Donor.Controls
                 {
                     _eventDay = value;
 
-                    if (_eventDay.Type != "Праздник")
+                    if ((_eventDay.Type != "Праздник") && (_eventDay.Type != "2"))
                     {
                         this.EditContextMenu.Visibility = Visibility.Visible;
                         this.DeleteContextMenu.Visibility = Visibility.Visible;
                         this.AddContextMenu.Visibility = Visibility.Collapsed;
+                        if (_eventDay.Finished == false)
+                        {
+                            this.FinishedContextMenu.Visibility = Visibility.Visible;
+                        };
                     }
                     else
                     {
@@ -153,6 +160,7 @@ namespace Donor.Controls
                         this.DeleteContextMenu.Visibility = Visibility.Collapsed;
                         this.AddContextMenu.Visibility = Visibility.Collapsed;
                         this.ContextMenu.Visibility = Visibility.Collapsed;
+                        this.FinishedContextMenu.Visibility = Visibility.Collapsed;
                     };
 
                     this.ImagePath = _eventDay.Image;
@@ -162,6 +170,7 @@ namespace Donor.Controls
                 {
                     this.EditContextMenu.Visibility = Visibility.Collapsed;
                     this.DeleteContextMenu.Visibility = Visibility.Collapsed;
+                    this.FinishedContextMenu.Visibility = Visibility.Collapsed;
                     this.AddContextMenu.Visibility = Visibility.Visible;
                 };
             }
@@ -233,6 +242,23 @@ namespace Donor.Controls
                 }
             }
             catch { 
+            };
+        }
+
+        private void FinishedContextMenu_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (EventDay != null)
+                {
+                    App.ViewModel.Events.Items.Remove(EventDay);
+                    EventDay.Finished = true;
+                    App.ViewModel.Events.Items.Add(EventDay);
+                    checkedEvent = true;
+                }
+            }
+            catch
+            {
             };
         }
 
