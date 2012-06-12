@@ -72,16 +72,26 @@ namespace Donor
             {
                 StreamResourceInfo info = Application.GetResourceStream(new Uri("/Donor;component/holidays.json", UriKind.Relative));
                 StreamReader reader = new StreamReader(info.Stream, System.Text.Encoding.Unicode);
-                string json ="";
+                string json = "";
                 json = reader.ReadToEnd();
                 ObservableCollection<EventViewModel> eventslist1 = new ObservableCollection<EventViewModel>();
                 eventslist1 = JsonConvert.DeserializeObject<ObservableCollection<EventViewModel>>(json);
                 Deployment.Current.Dispatcher.BeginInvoke(() =>
+                    {
+                        this.Events.Items = eventslist1;
+                        App.ViewModel.Events.LoadDonorsSaturdays();
+                        this.NotifyPropertyChanged("Events");
+                    });
+            }
+            else
+            {
+                Deployment.Current.Dispatcher.BeginInvoke(() =>
                 {
-                    this.Events.Items = eventslist1;
+                    App.ViewModel.Events.LoadDonorsSaturdays();
                     this.NotifyPropertyChanged("Events");
                 });
             };
+
 
             if (this.News.Items.Count == 0)
             {

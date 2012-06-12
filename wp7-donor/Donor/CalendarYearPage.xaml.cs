@@ -28,6 +28,14 @@ namespace Donor
             App.ViewModel.Events.CurrentMonth = DateTime.Now;
             this.Monthes.SelectedIndex = 1;
 
+            this.EventsListPrev.ItemsSource = App.ViewModel.Events.PrevMonthItems;
+            this.EventsList.ItemsSource = App.ViewModel.Events.ThisMonthItems;
+            this.EventsListNext.ItemsSource = App.ViewModel.Events.NextMonthItems;
+
+            this.NextMonth.Header = App.ViewModel.Events.NextMonthString;
+            this.ThisMonth.Header = App.ViewModel.Events.CurrentMonthString;
+            this.PrevMonth.Header = App.ViewModel.Events.PrevMonthString;
+
             var gl = GestureService.GetGestureListener(this.Monthes);
             gl.Flick += new EventHandler<Microsoft.Phone.Controls.FlickGestureEventArgs>(GestureListener_Flick);
         }
@@ -36,7 +44,8 @@ namespace Donor
         {
             //this.rect.Fill = new SolidColorBrush(Colors.White);
             //MessageBox.Show(e.Angle.ToString());
-            if ((e.Angle < 90) && (e.Angle > -90)) {
+            if (((e.Angle < 90) && (e.Angle >= 0)) || ((e.Angle > 270) && (e.Angle < 360)))
+            {
                 App.ViewModel.Events.CurrentMonth = App.ViewModel.Events.CurrentMonth.AddMonths(-1);
                 int itemindex = 1;
                 /*switch ((sender as Pivot).SelectedIndex)
@@ -86,8 +95,9 @@ namespace Donor
                     default:
                         break;
                 };
-            }
-            else {
+            };
+            if (((e.Angle > 90) && (e.Angle < 270)))
+            {
                 App.ViewModel.Events.CurrentMonth = App.ViewModel.Events.CurrentMonth.AddMonths(1);
                 int itemindex = 1;
                 /*switch ((sender as Pivot).SelectedIndex)

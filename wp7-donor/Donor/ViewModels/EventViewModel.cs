@@ -13,6 +13,9 @@ using System.ComponentModel;
 using System.Linq;
 using System.Collections.Generic;
 using System.Globalization;
+using RestSharp;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Donor.ViewModels
 {
@@ -81,6 +84,37 @@ namespace Donor.ViewModels
         {
             Items = new ObservableCollection<EventViewModel>();
         }
+
+        public void LoadDonorsSaturdays()
+        {
+            var client = new RestClient("https://api.parse.com");
+            var request = new RestRequest("1/classes/Events", Method.GET);
+            request.Parameters.Clear();
+            string strJSONContent = "{\"type\":2}";
+            request.AddHeader("X-Parse-Application-Id", "EIpakVdZblHedhqgxMgiEVnIGCRGvWdy9v8gkKZu");
+            request.AddHeader("X-Parse-REST-API-Key", "wPvwRKxX2b2vyrRprFwIbaE5t3kyDQq11APZ0qXf");
+            request.AddParameter("where", strJSONContent);
+            client.ExecuteAsync(request, response =>
+            {
+                ObservableCollection<EventViewModel> eventslist1 = new ObservableCollection<EventViewModel>();
+                JObject o = JObject.Parse(response.Content.ToString());
+                //eventslist1 = JsonConvert.DeserializeObject<ObservableCollection<EventViewModel>>(o["results"].ToString());
+                foreach (var item in o["results"])
+                {
+                    EventViewModel jsonitem = new EventViewModel();
+                    jsonitem.Title = item["title"].ToString();
+                    jsonitem.Description = item["comment"].ToString();
+                    jsonitem.Id = item["objectId"].ToString();
+                    jsonitem.Type = item["type"].ToString();
+                    jsonitem.Date = DateTime.Parse(item["date"]["iso"].ToString());
+                    this.Items.Add(jsonitem);
+                };
+                this.NotifyPropertyChanged("WeekItems");
+            });
+            
+            //this.NotifyPropertyChanged("WeekItems");
+        }
+
         private ObservableCollection<EventViewModel> _items;
         public ObservableCollection<EventViewModel> Items
         {
