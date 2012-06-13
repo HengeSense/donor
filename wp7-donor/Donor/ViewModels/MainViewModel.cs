@@ -37,6 +37,7 @@ namespace Donor
 
             News = new NewsListViewModel();
             Events = new EventsListViewModel();
+            Stations = new StationsLitViewModel();
 
             User = new DonorUser();
 
@@ -50,6 +51,7 @@ namespace Donor
 
         public NewsListViewModel News { get; set; }
         public EventsListViewModel Events { get; set; }
+        public StationsLitViewModel Stations { get; set; }
         public DonorUser User { get; set; }
 
         public bool IsDataLoaded
@@ -76,6 +78,7 @@ namespace Donor
                 Deployment.Current.Dispatcher.BeginInvoke(() =>
                 {
                     App.ViewModel.Events.LoadDonorsSaturdays();
+                    App.ViewModel.Stations.LoadStations();
                     this.NotifyPropertyChanged("Events");
                 });
             //};
@@ -118,6 +121,18 @@ namespace Donor
             catch
             {
             };
+
+            try
+            {
+                if (this.Stations.Items.Count > 0)
+                {
+                    IsolatedStorageHelper.SaveSerializableObject<ObservableCollection<StationViewModel>>(this.Stations.Items, "stations.xml");
+                };
+            }
+            catch
+            {
+            };
+
             try
             {
                 if (this.News.Items.Count > 0)
@@ -187,6 +202,26 @@ namespace Donor
                         this.NotifyPropertyChanged("News");
                     });
                 };
+
+                try
+                {
+                    ObservableCollection<StationViewModel> stationslist1 = new ObservableCollection<StationViewModel>();
+                    stationslist1 = IsolatedStorageHelper.LoadSerializableObject<ObservableCollection<StationViewModel>>("stations.xml");
+                    Deployment.Current.Dispatcher.BeginInvoke(() =>
+                    {
+                        this.Stations.Items = stationslist1;
+                        this.NotifyPropertyChanged("Stations");
+                    });
+                }
+                catch //(System.IO.FileNotFoundException)
+                {
+                    Deployment.Current.Dispatcher.BeginInvoke(() =>
+                    {
+                        this.Stations.Items = new ObservableCollection<StationViewModel>();
+                        this.NotifyPropertyChanged("Stations");
+                    });
+                };
+
             };
             bw.RunWorkerAsync();
             

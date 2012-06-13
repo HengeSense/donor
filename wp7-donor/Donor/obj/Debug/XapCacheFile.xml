@@ -1,8 +1,8 @@
-﻿<xapCache source="E:\Visual Studio 2010\Projects\Donor\wp7-donor\Donor\Bin\Debug\Donor.xap" wasSigned="False" certificateThumbprint="" TimeStampUrl="" lastWriteTime="12.06.2012 22:04:54">
+﻿<xapCache source="E:\Visual Studio 2010\Projects\Donor\wp7-donor\Donor\Bin\Debug\Donor.xap" wasSigned="False" certificateThumbprint="" TimeStampUrl="" lastWriteTime="13.06.2012 14:44:22">
   <file source="E:\Visual Studio 2010\Projects\Donor\wp7-donor\Donor\Bin\Debug\WMAppManifest.xml" archivePath="WMAppManifest.xml" lastWriteTime="12.04.2012 21:46:55" />
   <file source="E:\Visual Studio 2010\Projects\Donor\wp7-donor\Donor\Background.png" archivePath="Background.png" lastWriteTime="12.04.2012 21:46:46" />
   <file source="E:\Visual Studio 2010\Projects\Donor\wp7-donor\Donor\ApplicationIcon.png" archivePath="ApplicationIcon.png" lastWriteTime="12.04.2012 21:46:46" />
-  <file source="E:\Visual Studio 2010\Projects\Donor\wp7-donor\Donor\obj\Debug\Donor.dll" archivePath="Donor.dll" lastWriteTime="12.06.2012 22:04:52" />
+  <file source="E:\Visual Studio 2010\Projects\Donor\wp7-donor\Donor\obj\Debug\Donor.dll" archivePath="Donor.dll" lastWriteTime="13.06.2012 14:44:20" />
   <file source="E:\Visual Studio 2010\Projects\Donor\wp7-donor\packages\Coding4Fun.Phone.Controls.Complete.1.5.6\lib\sl4-windowsphone71\Coding4Fun.Phone.Controls.dll" archivePath="Coding4Fun.Phone.Controls.dll" lastWriteTime="08.06.2012 14:12:14" />
   <file source="E:\Visual Studio 2010\Projects\Donor\wp7-donor\packages\Coding4Fun.Phone.Controls.Complete.1.5.6\lib\sl4-windowsphone71\Coding4Fun.Phone.Controls.Toolkit.dll" archivePath="Coding4Fun.Phone.Controls.Toolkit.dll" lastWriteTime="08.06.2012 14:12:14" />
   <file source="C:\Program Files\Microsoft SDKs\Windows Phone\v7.1\Libraries\Silverlight\Microsoft.Phone.Controls.dll" archivePath="Microsoft.Phone.Controls.dll" lastWriteTime="19.03.2012 16:29:06" />

@@ -10,6 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
+using Donor.ViewModels;
 
 namespace Donor
 {
@@ -19,5 +20,24 @@ namespace Donor
         {
             InitializeComponent();
         }
+
+        private void StationsList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+                string id = ((sender as ListBox).SelectedItem as StationViewModel).objectId;
+                NavigationService.Navigate(new Uri("/StationPage.xaml?id="+id, UriKind.Relative));
+            }
+            catch
+            {
+            }
+        }
+
+        private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
+        {
+            this.StationsList.DataContext = App.ViewModel;
+            this.StationsList.ItemsSource = App.ViewModel.Stations.Items;
+        }
+
     }
 }

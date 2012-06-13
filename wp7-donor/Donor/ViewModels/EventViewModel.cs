@@ -124,19 +124,25 @@ namespace Donor.ViewModels
             request.AddParameter("where", strJSONContent);
             client.ExecuteAsync(request, response =>
             {
-                ObservableCollection<EventViewModel> eventslist1 = new ObservableCollection<EventViewModel>();
-                JObject o = JObject.Parse(response.Content.ToString());
-                //eventslist1 = JsonConvert.DeserializeObject<ObservableCollection<EventViewModel>>(o["results"].ToString());
-                foreach (var item in o["results"])
+                try
                 {
-                    EventViewModel jsonitem = new EventViewModel();
-                    jsonitem.Title = item["title"].ToString();
-                    jsonitem.Description = item["comment"].ToString();
-                    jsonitem.Id = item["objectId"].ToString();
-                    jsonitem.Type = item["type"].ToString();
-                    jsonitem.Date = DateTime.Parse(item["date"]["iso"].ToString());
-                    this.Items.Remove(this.Items.FirstOrDefault(c => c.Id == jsonitem.Id));
-                    this.Items.Add(jsonitem);
+                    ObservableCollection<EventViewModel> eventslist1 = new ObservableCollection<EventViewModel>();
+                    JObject o = JObject.Parse(response.Content.ToString());
+                    
+                    foreach (var item in o["results"])
+                    {
+                        EventViewModel jsonitem = new EventViewModel();
+                        jsonitem.Title = item["title"].ToString();
+                        jsonitem.Description = item["comment"].ToString();
+                        jsonitem.Id = item["objectId"].ToString();
+                        jsonitem.Type = item["type"].ToString();
+                        jsonitem.Date = DateTime.Parse(item["date"]["iso"].ToString());
+                        this.Items.Remove(this.Items.FirstOrDefault(c => c.Id == jsonitem.Id));
+                        this.Items.Add(jsonitem);
+                    };
+                }
+                catch
+                {
                 };
                 this.NotifyPropertyChanged("Items");
                 this.NotifyPropertyChanged("WeekItems");
