@@ -97,7 +97,7 @@
                         <Button Name="RestorePassword" Content="Восстановить пароль" Click="RestorePassword_Click" />
                     </StackPanel>
                     <WPExtensions:AdvancedApplicationBar Name="AppBar" IsVisible="False" IsMenuEnabled="False">
-                        <WPExtensions:AdvancedApplicationBarIconButton IconUri="/icons/appbar.edit.rest.png" Text="Редактировать" Visibility="Visible" Click="AdvancedApplicationBarIconButton_Click" />
+                        <WPExtensions:AdvancedApplicationBarIconButton IconUri="/icons/appbar.edit.rest.png" Name="EditButton" Text="Редактировать" Visibility="Visible" Click="AdvancedApplicationBarIconButton_Click" />
                         <WPExtensions:AdvancedApplicationBarIconButton IconUri="/icons/appbar.delete.rest.png" Text="Удалить" Visibility="Visible" Name="DeleteUserButton" Click="DeleteUserButton_Click" />
                         
 <WPExtensions:AdvancedApplicationBarIconButton IconUri="/icons/appbar.save.rest.png" Text="Сохранить" Visibility="Collapsed" Name="SaveEditProfileButton" Click="SaveEditProfileButton_Click" />

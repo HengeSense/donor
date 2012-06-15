@@ -109,9 +109,13 @@ namespace Donor
             {
                 if (App.ViewModel.User.IsLoggedIn == true)
                 {
-                    this.ProfileName.Text = App.ViewModel.User.Name.ToString();
-                    this.ProfileSex.Text = App.ViewModel.User.OutSex.ToString();
-                    this.ProfileBloodGroup.Text = App.ViewModel.User.OutBloodGroup.ToString();
+                    try
+                    {
+                        this.ProfileName.Text = App.ViewModel.User.Name.ToString();
+                        this.ProfileSex.Text = App.ViewModel.User.OutSex.ToString();
+                        this.ProfileBloodGroup.Text = App.ViewModel.User.OutBloodGroup.ToString();
+                    }
+                    catch { };
                     this.UserProfile.Visibility = Visibility.Visible;
                 }
                 else
@@ -155,8 +159,8 @@ namespace Donor
                     try
                     {
                         this.ProfileName.Text = App.ViewModel.User.Name.ToString();
-                        this.ProfileSex.Text = App.ViewModel.User.Sex.ToString();
-                        this.ProfileBloodGroup.Text = App.ViewModel.User.BloodGroup.ToString();
+                        this.ProfileSex.Text = App.ViewModel.User.OutSex.ToString();
+                        this.ProfileBloodGroup.Text = App.ViewModel.User.OutBloodGroup.ToString();                       
                     }
                     catch { };
                 }

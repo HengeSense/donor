@@ -27,7 +27,14 @@
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
             <TextBlock x:Name="ApplicationTitle" Text="Поиск станции" Style="{StaticResource PhoneTextNormalStyle}"/>
 
-            <toolkit:AutoCompleteBox Name="StationsSearchText">
+            <toolkit:AutoCompleteBox Name="StationsSearchText" FilterMode="Contains" ValueMemberPath="Title" Populating="StationsSearchText_Populating">
+                <toolkit:AutoCompleteBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding Title}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </toolkit:AutoCompleteBox.ItemTemplate>
             </toolkit:AutoCompleteBox>
 
         </StackPanel>

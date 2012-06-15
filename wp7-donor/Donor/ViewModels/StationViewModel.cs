@@ -216,5 +216,20 @@ namespace Donor.ViewModels
             get { return _regionalRegistration; }
             set { _regionalRegistration = value; }
         }
+
+        public string RegionalRegistrationString
+        {
+            get {
+                if (true)
+                {
+                    return "Требуется регистрация в Москве или Московской области.";
+                }
+                else
+                {
+                    return "Не требуется регистрация в Москве или Московской области.";
+                };
+            }
+            private set {}
+        }
     }
 }

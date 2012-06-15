@@ -282,9 +282,87 @@ namespace Donor
             this.CancelEditProfileButton.Visibility = Visibility.Visible;
             this.SaveEditProfileButton.Visibility = Visibility.Visible;
 
+            this.EditButton.Visibility = Visibility.Collapsed;
+            this.DeleteUserButton.Visibility = Visibility.Collapsed;
+
             this.RegisterForm.Visibility = Visibility.Collapsed;
             this.LoginForm.Visibility = Visibility.Collapsed;
             this.UserProfile.Visibility = Visibility.Collapsed;
+
+
+            this.EditName.Text = App.ViewModel.User.Name;
+            try
+            {
+                if (App.ViewModel.User.Sex == 1)
+                {
+                    this.EditFemale.IsChecked = true;
+                    this.EditMale.IsChecked = false;
+                }
+                else
+                {
+                    this.EditFemale.IsChecked = false;
+                    this.EditMale.IsChecked = true;
+                };
+            }
+            catch { };
+
+            try
+            {
+                switch (App.ViewModel.User.BloodGroup) {
+                    case 0:
+                        this.o.IsChecked = true;
+                        this.a.IsChecked = false;
+                        this.b.IsChecked = false;
+                        this.ab.IsChecked = false;
+                        break;
+                    case 1:
+                        this.o.IsChecked = false;
+                        this.a.IsChecked = true;
+                        this.b.IsChecked = false;
+                        this.ab.IsChecked = false;
+                        break;
+                    case 2:
+                        this.o.IsChecked = false;
+                        this.a.IsChecked = false;
+                        this.b.IsChecked = true;
+                        this.ab.IsChecked = false;
+                        break;
+                    case 3:
+                        this.o.IsChecked = false;
+                        this.a.IsChecked = false;
+                        this.b.IsChecked = false;
+                        this.ab.IsChecked = true;
+                        break;
+                    default:
+                        this.o.IsChecked = false;
+                        this.a.IsChecked = false;
+                        this.b.IsChecked = false;
+                        this.ab.IsChecked = false;
+                        break;
+                };
+            }
+            catch { };
+
+            try
+            {
+                switch (App.ViewModel.User.BloodGroup)
+                {
+                    case 0:
+                        this.EditRHpl.IsChecked = true;
+                        this.EditRHd.IsChecked = false;
+
+                        break;
+                    case 1:
+                        this.EditRHpl.IsChecked = false;
+                        this.EditRHd.IsChecked = true;
+                        break;
+                    default:
+                        this.EditRHpl.IsChecked = false;
+                        this.EditRHd.IsChecked = false;
+                        break;
+                };
+            }
+            catch { };
         }
 
         private void CancelEditProfileButton_Click(object sender, EventArgs e)
@@ -294,6 +372,8 @@ namespace Donor
             this.CancelEditProfileButton.Visibility = Visibility.Collapsed;
             this.SaveEditProfileButton.Visibility = Visibility.Collapsed;
 
+            this.EditButton.Visibility = Visibility.Visible;
+            this.DeleteUserButton.Visibility = Visibility.Visible;
 
             this.RegisterForm.Visibility = Visibility.Collapsed;
             this.LoginForm.Visibility = Visibility.Collapsed;
@@ -390,10 +470,14 @@ namespace Donor
                 });
 
             this.UpdateUserInfoView();
+
             this.EditProfile.Visibility = Visibility.Collapsed;
 
             this.CancelEditProfileButton.Visibility = Visibility.Collapsed;
             this.SaveEditProfileButton.Visibility = Visibility.Collapsed;
+
+            this.EditButton.Visibility = Visibility.Visible;
+            this.DeleteUserButton.Visibility = Visibility.Visible;
 
             this.RegisterForm.Visibility = Visibility.Collapsed;
             this.LoginForm.Visibility = Visibility.Collapsed;
@@ -430,6 +514,9 @@ namespace Donor
 
                         this.CancelEditProfileButton.Visibility = Visibility.Collapsed;
                         this.SaveEditProfileButton.Visibility = Visibility.Collapsed;
+
+                        this.EditButton.Visibility = Visibility.Visible;
+                        this.DeleteUserButton.Visibility = Visibility.Visible;
 
                         this.RegisterForm.Visibility = Visibility.Collapsed;
                         this.LoginForm.Visibility = Visibility.Visible;
