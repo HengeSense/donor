@@ -14,7 +14,8 @@
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait"  Orientation="Portrait"
-    shell:SystemTray.IsVisible="False" Loaded="PhoneApplicationPage_Loaded" DataContext="{Binding Path=App.ViewModel,Source=App.ViewModel}">
+    shell:SystemTray.IsVisible="False" Loaded="PhoneApplicationPage_Loaded" 
+	DataContext="{Binding Path=App.ViewModel,Source=App.ViewModel}">
 
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
@@ -110,7 +111,7 @@
                         <TextBlock Text="Группа крови" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
                             <TextBlock Text="{Binding User.OutBloodGroup}" Name="ProfileBloodGroup" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
                     </StackPanel>
-                    <StackPanel Margin="0,10">
+                    <StackPanel Margin="0,10" Visibility="Collapsed">
                         <TextBlock Text="Записано кроводач" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
                         <TextBlock Text="" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
                     </StackPanel>

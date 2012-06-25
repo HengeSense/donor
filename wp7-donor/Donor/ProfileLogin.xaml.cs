@@ -486,6 +486,11 @@ namespace Donor
 
         private void DeleteUserButton_Click(object sender, EventArgs e)
         {
+			
+			///
+			/// User delete from service
+			/// 
+			/*
             var client = new RestClient("https://api.parse.com");
             var request = new RestRequest("1/users/" + App.ViewModel.User.objectId.ToString(), Method.DELETE);
             request.AddHeader("Accept", "application/json");
@@ -530,7 +535,7 @@ namespace Donor
                 catch
                 {
                 };
-            });
+            });*/
         }
 
     }

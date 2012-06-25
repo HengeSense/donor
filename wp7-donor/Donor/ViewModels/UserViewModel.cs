@@ -9,6 +9,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using System.ComponentModel;
+using MSPToolkit.Utilities;
 //using Parse;
 
 namespace Donor.ViewModels
@@ -37,13 +38,16 @@ namespace Donor.ViewModels
         public DateTime? UpdatedAt { get; set; }
         public DateTime? CreatedAt { get; set; }
 
+
+
         private bool _isLoggedIn = false;
         public bool IsLoggedIn { 
             get { 
                 return _isLoggedIn; 
             } 
-            set { 
-                _isLoggedIn = value; NotifyPropertyChanged("IsLoggedIn"); 
+            set {
+                _isLoggedIn = value;
+                NotifyPropertyChanged("IsLoggedIn"); 
             } 
         }
 

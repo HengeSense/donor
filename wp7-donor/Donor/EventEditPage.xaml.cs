@@ -32,7 +32,7 @@ namespace Donor
             
             List<string> eventTypes = new List<string>() { "Анализ", "Кроводача" };
             CurrentEvent = null;
-            List<string> giveTypes = new List<string>() { "Тромбоциты", "Плазма", "Чистая кровь" };
+            List<string> giveTypes = new List<string>() { "Тромбоциты", "Плазма", "Цельная кровь" };
 
             List<string> reminderTypes = new List<string>() { "15 минут", "1 час", "1 день", "1 неделя" };
 
@@ -145,10 +145,12 @@ namespace Donor
                 if (this.EventType.SelectedItem.ToString() == "Анализ")
                 {
                     this.Reminder.Visibility = Visibility.Visible;
+                    this.GiveType.Visibility = Visibility.Collapsed;
                 }
                 else
                 {
                     this.Reminder.Visibility = Visibility.Collapsed;
+                    this.GiveType.Visibility = Visibility.Visible;
                 };
             }
             catch
@@ -171,5 +173,18 @@ namespace Donor
             }
             catch { };
         }
+
+        /*private void EventType_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+        	// TODO: Add event handler implementation here.
+            if (this.GiveType.SelectedItem.ToString() == "Анализ")
+            {
+                this.GiveType.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                this.GiveType.Visibility = Visibility.Visible;
+            };
+        }*/
     }
 }

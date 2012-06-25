@@ -21,6 +21,8 @@ using System.Reflection;
 using System.IO;
 using System.Windows.Resources;
 using System.Windows.Threading;
+using Newtonsoft.Json.Linq;
+using RestSharp;
 
 namespace Donor
 {   
@@ -40,7 +42,7 @@ namespace Donor
             Stations = new StationsLitViewModel();
 
             User = new DonorUser();
-
+            
             this.LoadFromIsolatedStorage();
         }
 
@@ -70,19 +72,15 @@ namespace Donor
             bw.DoWork += delegate
             {
             System.Threading.Thread.Sleep(500);
-            //if (this.Events.Items.Count == 0)
-            //{
-            //}
-            //else
-            //{
+
                 Deployment.Current.Dispatcher.BeginInvoke(() =>
                 {
+                    this.LoadUserFromStorage();
+
                     App.ViewModel.Events.LoadDonorsSaturdays();
                     App.ViewModel.Stations.LoadStations();
                     this.NotifyPropertyChanged("Events");
                 });
-            //};
-
 
             if (this.News.Items.Count == 0)
             {
@@ -146,11 +144,64 @@ namespace Donor
             };
             bw.RunWorkerAsync();  
         }
+
+        public void SaveUserToStorage()
+        {
+            IsolatedStorageHelper.SaveSerializableObject<DonorUser>(App.ViewModel.User, "user.xml");
+            //IsolatedStorageHelper.LoadSerializableObject<ObservableCollection<EventViewModel>>("events.xml");
+        }
+
+        public void LoadUserFromStorage()
+        {
+            try
+            {
+                App.ViewModel.User = IsolatedStorageHelper.LoadSerializableObject<DonorUser>("user.xml");
+
+                var client = new RestClient("https://api.parse.com");
+                var request = new RestRequest("1/login", Method.GET);
+                request.Parameters.Clear();
+                string strJSONContent = "{\"username\":\"" + App.ViewModel.User.UserName + "\",\"password\":\"" + App.ViewModel.User.Password + "\"}";
+                request.AddHeader("X-Parse-Application-Id", "EIpakVdZblHedhqgxMgiEVnIGCRGvWdy9v8gkKZu");
+                request.AddHeader("X-Parse-REST-API-Key", "wPvwRKxX2b2vyrRprFwIbaE5t3kyDQq11APZ0qXf");
+
+                request.AddParameter("username", App.ViewModel.User.UserName.ToLower());
+                request.AddParameter("password", App.ViewModel.User.Password);
+
+                client.ExecuteAsync(request, response =>
+                {
+                    JObject o = JObject.Parse(response.Content.ToString());
+                    if (o["error"] == null)
+                    {
+                        App.ViewModel.User = JsonConvert.DeserializeObject<DonorUser>(response.Content.ToString());
+                        App.ViewModel.User.IsLoggedIn = true;
+                        App.ViewModel.OnUserEnter(EventArgs.Empty);
+                    }
+                    else
+                    {
+                        //MessageBox.Show("Ошибка входа: " + o["error"].ToString());
+                        App.ViewModel.User.IsLoggedIn = false;
+                    };
+                });
+            }
+            catch
+            {
+            };
+        }
+
+        public delegate void UserEnterEventHandler(object sender, EventArgs e);
+        public event UserEnterEventHandler UserEnter;
+        protected virtual void OnUserEnter(EventArgs e)
+        {
+            if (UserEnter != null)
+                UserEnter(this, e);
+        }
+
         /// <summary>
         /// 
         /// </summary>
         public void LoadFromIsolatedStorage()
         {
+
             var bw = new BackgroundWorker();
             bw.DoWork += delegate
             {

@@ -103,8 +103,35 @@ namespace Donor
             //this.EventsList.ItemsSource = App.ViewModel.Events.Items;
         }
 
+        private void UserLoaded(object sender, EventArgs e)
+        {
+            try
+            {
+                if (App.ViewModel.User.IsLoggedIn == true)
+                {
+                    try
+                    {
+                        this.ProfileName.Text = App.ViewModel.User.Name.ToString();
+                        this.ProfileSex.Text = App.ViewModel.User.OutSex.ToString();
+                        this.ProfileBloodGroup.Text = App.ViewModel.User.OutBloodGroup.ToString();
+                    }
+                    catch { };
+                    this.UserProfile.Visibility = Visibility.Visible;
+                    this.LoginForm.Visibility = Visibility.Collapsed;
+                }
+                else
+                {
+                };
+            }
+            catch
+            {
+            };
+        }
+
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
+            App.ViewModel.UserEnter += new MainViewModel.UserEnterEventHandler(this.UserLoaded);
+
             try
             {
                 if (App.ViewModel.User.IsLoggedIn == true)
@@ -152,6 +179,9 @@ namespace Donor
                 {
                     App.ViewModel.User = JsonConvert.DeserializeObject<DonorUser>(response.Content.ToString());
                     App.ViewModel.User.IsLoggedIn = true;
+
+                    App.ViewModel.User.Password = this.password.Password;
+                    App.ViewModel.SaveUserToStorage();
 
                     this.LoginForm.Visibility = Visibility.Collapsed;
                     this.UserProfile.Visibility = Visibility.Visible;
