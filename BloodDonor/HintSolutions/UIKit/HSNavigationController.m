@@ -8,7 +8,7 @@
 
 + (id) navigaionWithRootViewController:(UIViewController*)view;
 {
-    return [[[self alloc] initWithRootViewController:view] autorelease];
+    return [[self alloc] initWithRootViewController:view];
 }
 
 @end

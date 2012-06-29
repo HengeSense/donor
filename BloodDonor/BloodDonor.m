@@ -10,12 +10,10 @@ static BloodDonor *BloodDonorShared = nil;
 
 @implementation BloodDonor
 
-#pragma mark Property synthesize
-
-@synthesize preference = mPreference;
+#pragma mark Property
 
 #pragma mark -
-#pragma mark Property setter/getter
+#pragma mark Property override
 
 - (void) setProfileUsername:(NSString*)value
 {
@@ -60,7 +58,7 @@ static BloodDonor *BloodDonorShared = nil;
     PFUser *user = [PFUser currentUser];
     if([user isAuthenticated] == YES)
     {
-        [user setObject:value forKey:@"Name"];
+        [user setObject:value forKey:@"name"];
     }
 }
 
@@ -69,7 +67,7 @@ static BloodDonor *BloodDonorShared = nil;
     PFUser *user = [PFUser currentUser];
     if([user isAuthenticated] == YES)
     {
-        return [user objectForKey:@"Name"];
+        return [user objectForKey:@"name"];
     }
     return @"";
 }
@@ -79,7 +77,7 @@ static BloodDonor *BloodDonorShared = nil;
     PFUser *user = [PFUser currentUser];
     if([user isAuthenticated] == YES)
     {
-        [user setObject:[NSNumber numberWithUnsignedInteger:value] forKey:@"Sex"];
+        [user setObject:[NSNumber numberWithUnsignedInteger:value] forKey:@"sex"];
     }
 }
 
@@ -88,9 +86,9 @@ static BloodDonor *BloodDonorShared = nil;
     PFUser *user = [PFUser currentUser];
     if([user isAuthenticated] == YES)
     {
-        return [[user objectForKey:@"Sex"] unsignedIntegerValue];
+        return [[user objectForKey:@"sex"] unsignedIntegerValue];
     }
-    return BloodDonorSexUnknown;
+    return BloodDonorSexMan;
 }
 
 - (void) setProfileBloodGroup:(BloodDonorGroup)value
@@ -98,7 +96,7 @@ static BloodDonor *BloodDonorShared = nil;
     PFUser *user = [PFUser currentUser];
     if([user isAuthenticated] == YES)
     {
-        [user setObject:[NSNumber numberWithUnsignedInteger:value] forKey:@"BloodGroup"];
+        [user setObject:[NSNumber numberWithUnsignedInteger:value] forKey:@"bloodGroup"];
     }
 }
 
@@ -107,9 +105,9 @@ static BloodDonor *BloodDonorShared = nil;
     PFUser *user = [PFUser currentUser];
     if([user isAuthenticated] == YES)
     {
-        return [[user objectForKey:@"BloodGroup"] unsignedIntegerValue];
+        return [[user objectForKey:@"bloodGroup"] unsignedIntegerValue];
     }
-    return BloodDonorGroupUnknown;
+    return BloodDonorGroupI;
 }
 
 - (void) setProfileBloodRh:(BloodDonorRh)value
@@ -117,7 +115,7 @@ static BloodDonor *BloodDonorShared = nil;
     PFUser *user = [PFUser currentUser];
     if([user isAuthenticated] == YES)
     {
-        [user setObject:[NSNumber numberWithUnsignedInteger:value] forKey:@"BloodRh"];
+        [user setObject:[NSNumber numberWithUnsignedInteger:value] forKey:@"bloodRh"];
     }
 }
 
@@ -126,9 +124,9 @@ static BloodDonor *BloodDonorShared = nil;
     PFUser *user = [PFUser currentUser];
     if([user isAuthenticated] == YES)
     {
-        return [[user objectForKey:@"BloodRh"] unsignedIntegerValue];
+        return [[user objectForKey:@"bloodRh"] unsignedIntegerValue];
     }
-    return BloodDonorRhUnknown;
+    return BloodDonorRhPos;
 }
 
 - (void) setProfileEvents:(NSArray*)value
@@ -136,7 +134,7 @@ static BloodDonor *BloodDonorShared = nil;
     PFUser *user = [PFUser currentUser];
     if([user isAuthenticated] == YES)
     {
-        [user setObject:value forKey:@"Events"];
+        [user setObject:value forKey:@"events"];
     }
 }
 
@@ -145,89 +143,97 @@ static BloodDonor *BloodDonorShared = nil;
     PFUser *user = [PFUser currentUser];
     if([user isAuthenticated] == YES)
     {
-        return [user objectForKey:@"Events"];
+        return [user objectForKey:@"events"];
     }
     return [NSArray array];
 }
 
 - (void) setPreferenceVerifyPassword:(BOOL)value
 {
-    [mPreference setObject:[NSNumber numberWithBool:value] forKey:@"VerifyPassword"];
+    [mPreference setObject:[NSNumber numberWithBool:value] forKey:@"verifyPassword"];
+    [mPreference synchronize];
 }
 
 - (BOOL) preferenceVerifyPassword
 {
-    return [[mPreference objectForKey:@"VerifyPassword"] boolValue];
+    return [[mPreference objectForKey:@"verifyPassword"] boolValue];
 }
 
 - (void) setPreferenceShowPushNotice:(BOOL)value
 {
-    [mPreference setObject:[NSNumber numberWithBool:value] forKey:@"ShowPushNotice"];
+    [mPreference setObject:[NSNumber numberWithBool:value] forKey:@"showPushNotice"];
+    [mPreference synchronize];
 }
 
 - (BOOL) preferenceShowPushNotice
 {
-    return [[mPreference objectForKey:@"ShowPushNotice"] boolValue];
+    return [[mPreference objectForKey:@"showPushNotice"] boolValue];
 }
 
 - (void) setPreferenceSearchBloodGroup:(BOOL)value
 {
-    [mPreference setObject:[NSNumber numberWithBool:value] forKey:@"SearchBloodGroup"];
+    [mPreference setObject:[NSNumber numberWithBool:value] forKey:@"searchBloodGroup"];
+    [mPreference synchronize];
 }
 
 - (BOOL) preferenceSearchBloodGroup
 {
-    return [[mPreference objectForKey:@"SearchBloodGroup"] boolValue];
+    return [[mPreference objectForKey:@"searchBloodGroup"] boolValue];
 }
 
 - (void) setPreferenceCalendarReminders:(BOOL)value
 {
-    [mPreference setObject:[NSNumber numberWithBool:value] forKey:@"CalendarReminders"];
+    [mPreference setObject:[NSNumber numberWithBool:value] forKey:@"calendarReminders"];
+    [mPreference synchronize];
 }
 
 - (BOOL) preferenceCalendarReminders
 {
-    return [[mPreference objectForKey:@"CalendarReminders"] boolValue];
+    return [[mPreference objectForKey:@"calendarReminders"] boolValue];
 }
 
 - (void) setPreferenceCalendarCloseEvent:(BOOL)value
 {
-    [mPreference setObject:[NSNumber numberWithBool:value] forKey:@"CalendarCloseEvent"];
+    [mPreference setObject:[NSNumber numberWithBool:value] forKey:@"calendarCloseEvent"];
+    [mPreference synchronize];
 }
 
 - (BOOL) preferenceCalendarCloseEvent
 {
-    return [[mPreference objectForKey:@"CalendarCloseEvent"] boolValue];
+    return [[mPreference objectForKey:@"calendarCloseEvent"] boolValue];
 }
 
 - (void) setPreferenceBloodUsePlatelets:(BOOL)value
 {
-    [mPreference setObject:[NSNumber numberWithBool:value] forKey:@"BloodUsePlatelets"];
+    [mPreference setObject:[NSNumber numberWithBool:value] forKey:@"bloodUsePlatelets"];
+    [mPreference synchronize];
 }
 
 - (BOOL) preferenceBloodUsePlatelets
 {
-    return [[mPreference objectForKey:@"BloodUsePlatelets"] boolValue];
+    return [[mPreference objectForKey:@"bloodUsePlatelets"] boolValue];
 }
 
 - (void) setPreferenceBloodUseWhole:(BOOL)value
 {
-    [mPreference setObject:[NSNumber numberWithBool:value] forKey:@"BloodUseWhole"];
+    [mPreference setObject:[NSNumber numberWithBool:value] forKey:@"bloodUseWhole"];
+    [mPreference synchronize];
 }
 
 - (BOOL) preferenceBloodUseWhole
 {
-    return [[mPreference objectForKey:@"BloodUseWhole"] boolValue];
+    return [[mPreference objectForKey:@"bloodUseWhole"] boolValue];
 }
 
 - (void) setPreferenceBloodUsePlasma:(BOOL)value
 {
-    [mPreference setObject:[NSNumber numberWithBool:value] forKey:@"BloodUsePlasma"];
+    [mPreference setObject:[NSNumber numberWithBool:value] forKey:@"bloodUsePlasma"];
+    [mPreference synchronize];
 }
 
 - (BOOL) preferenceBloodUsePlasma
 {
-    return [[mPreference objectForKey:@"BloodUsePlasma"] boolValue];
+    return [[mPreference objectForKey:@"bloodUsePlasma"] boolValue];
 }
 
 #pragma mark -
@@ -239,7 +245,7 @@ static BloodDonor *BloodDonorShared = nil;
     {
         if(BloodDonorShared == nil)
         {
-            BloodDonorShared = [NSAllocateObject([self class], 0, NULL) init];
+            BloodDonorShared = [[self alloc] init];
         }
     }
     return BloodDonorShared;
@@ -247,11 +253,6 @@ static BloodDonor *BloodDonorShared = nil;
 
 #pragma mark -
 #pragma mark Parse application
-
-- (BOOL) isAuthenticated
-{
-    return [[PFUser currentUser] isAuthenticated];
-}
 
 - (void) setApplicationId:(NSString*)applicationId 
                 clientKey:(NSString*)clientKey
@@ -263,40 +264,38 @@ static BloodDonor *BloodDonorShared = nil;
 #pragma mark -
 #pragma mark Parse authentication
 
+- (BOOL) isAuthenticated
+{
+    return [[PFUser currentUser] isAuthenticated];
+}
+
 - (void) signUpWithUsername:(NSString*)username
                    password:(NSString*)password
                        name:(NSString*)name
                         sex:(BloodDonorSex)sex
                  bloodGroup:(BloodDonorGroup)bloodGroup
                     bloodRh:(BloodDonorRh)bloodRh
-                     target:(id)target
-                    success:(SEL)success
-                    failure:(SEL)failure
+                    success:(BloodDonorSuccessBlock)success
+                    failure:(BloodDonorFailureBlock)failure
 {
     PFUser *user = [PFUser user];
     if(user != nil)
     {
         [user setUsername:username];
         [user setPassword:password];
-        [user setObject:name forKey:@"Name"];
-        [user setObject:[NSNumber numberWithUnsignedInteger:sex] forKey:@"Sex"];
-        [user setObject:[NSNumber numberWithUnsignedInteger:bloodGroup] forKey:@"BloodGroup"];
-        [user setObject:[NSNumber numberWithUnsignedInteger:bloodRh] forKey:@"BloodRh"];
+        [user setObject:name forKey:@"name"];
+        [user setObject:[NSNumber numberWithUnsignedInteger:sex] forKey:@"sex"];
+        [user setObject:[NSNumber numberWithUnsignedInteger:bloodGroup] forKey:@"bloodGroup"];
+        [user setObject:[NSNumber numberWithUnsignedInteger:bloodRh] forKey:@"bloodRh"];
         
         [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-            if(error != nil)
+            if(succeeded == YES)
             {
-                if([target respondsToSelector:success] == YES)
-                {
-                    [target performSelector:success withObject:self];
-                }
+                success();
             }
             else
             {
-                if([target respondsToSelector:failure] == YES)
-                {
-                    [target performSelector:failure withObject:error];
-                }
+                failure(error);
             }
         }];
     }
@@ -304,26 +303,19 @@ static BloodDonor *BloodDonorShared = nil;
 
 - (void) logInWithUsername:(NSString*)username
                   password:(NSString*)password
-                    target:(id)target
-                   success:(SEL)success
-                   failure:(SEL)failure
+                   success:(BloodDonorSuccessBlock)success
+                   failure:(BloodDonorFailureBlock)failure
 {
     [PFUser logInWithUsernameInBackground:username
                                  password:password
                                     block:^(PFUser *user, NSError *error) {
                                         if(user != nil)
                                         {
-                                            if([target respondsToSelector:success] == YES)
-                                            {
-                                                [target performSelector:success withObject:self];
-                                            }
+                                            success();
                                         }
                                         else
                                         {
-                                            if([target respondsToSelector:failure] == YES)
-                                            {
-                                                [target performSelector:failure withObject:error];
-                                            }
+                                            failure(error);
                                         }
                                     }];
 }
@@ -335,44 +327,13 @@ static BloodDonor *BloodDonorShared = nil;
 
 #pragma mark -
 
-+ (id) allocWithZone:(NSZone*)zone
-{
-    return [[self shared] retain];
-}
-
 - (id) init
 {
     self = [super init];
     if(self != nil)
     {
-        mPreference = [[PFObject objectWithClassName:@"Preference"] retain];
+        mPreference = [NSUserDefaults standardUserDefaults];
     }
-    return self;
-}
-
-- (void) dealloc
-{
-    [mPreference release];
-    [super dealloc];
-}
-
-- (id) copyWithZone:(NSZone*)zone
-{
-    return self;
-}
-
-- (id) retain
-{
-    return self;
-}
-
-- (NSUInteger) retainCount
-{
-    return NSUIntegerMax;
-}
-
-- (id) autorelease
-{
     return self;
 }
 
@@ -382,66 +343,66 @@ static BloodDonor *BloodDonorShared = nil;
 
 @implementation BloodDonorEvent
 
-#pragma mark Property setter/getter
+#pragma mark Property override
 
 - (void) setDate:(NSDate*)value
 {
-    [self setObject:value forKey:@"Date"];
+    [self setObject:value forKey:@"date"];
 }
 
 - (NSDate*) date
 {
-    return [self objectForKey:@"Date"];
+    return [self objectForKey:@"date"];
 }
 
 - (void) setType:(BloodDonorEventType)value
 {
-    [self setObject:[NSNumber numberWithUnsignedInteger:value] forKey:@"Type"];
+    [self setObject:[NSNumber numberWithUnsignedInteger:value] forKey:@"type"];
 }
 
 - (BloodDonorEventType) type
 {
-    return [[self objectForKey:@"Type"] unsignedIntegerValue];
+    return [[self objectForKey:@"type"] unsignedIntegerValue];
 }
 
 - (void) setDelivery:(BloodDonorEventDelivery)value
 {
-    [self setObject:[NSNumber numberWithUnsignedInteger:value] forKey:@"Delivery"];
+    [self setObject:[NSNumber numberWithUnsignedInteger:value] forKey:@"delivery"];
 }
 
 - (BloodDonorEventDelivery) delivery
 {
-    return [[self objectForKey:@"Delivery"] unsignedIntegerValue];
+    return [[self objectForKey:@"delivery"] unsignedIntegerValue];
 }
 
 - (void) setNotice:(BloodDonorEventNotice)value
 {
-    [self setObject:[NSNumber numberWithUnsignedInteger:value] forKey:@"Notice"];
+    [self setObject:[NSNumber numberWithUnsignedInteger:value] forKey:@"notice"];
 }
 
 - (BloodDonorEventNotice) notice
 {
-    return [[self objectForKey:@"Notice"] unsignedIntegerValue];
+    return [[self objectForKey:@"notice"] unsignedIntegerValue];
 }
 
 - (void) setAnalysisResult:(BOOL)value
 {
-    [self setObject:[NSNumber numberWithBool:value] forKey:@"AnalysisResult"];
+    [self setObject:[NSNumber numberWithBool:value] forKey:@"analysisResult"];
 }
 
 - (BOOL) analysisResult
 {
-    return [[self objectForKey:@"AnalysisResult"] boolValue];
+    return [[self objectForKey:@"analysisResult"] boolValue];
 }
 
 - (void) setComment:(NSString*)value
 {
-    [self setObject:value forKey:@"Comment"];
+    [self setObject:value forKey:@"comment"];
 }
 
 - (NSString*) comment
 {
-    return [self objectForKey:@"Comment"];
+    return [self objectForKey:@"comment"];
 }
 
 #pragma mark -

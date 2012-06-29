@@ -8,16 +8,25 @@
 
 /*--------------------------------------------------*/
 
-@interface BDProfileView : UIViewController
+@interface BDProfileView : UIViewController< UITextFieldDelegate >
 {
+    UITextField *mLastEditing;
+    
     IBOutlet UIView *guestView;
-    IBOutlet UITableView *guestDialog;
+    IBOutlet UITextField *guestName;
+    IBOutlet UITextField *guestPassword;
     IBOutlet UIButton *guestLogIn;
     IBOutlet UIButton *guestSignUp;
     IBOutlet UIView *userView;
-    IBOutlet UITableView *userDialog;
+    IBOutlet UILabel *userName;
+    IBOutlet UILabel *userSex;
+    IBOutlet UILabel *userBloodGroup;
+    IBOutlet UILabel *userBloodCount;
+    IBOutlet UILabel *userBloodNext;
     IBOutlet UIButton *userLogout;
 }
+
+- (void) refresh;
 
 @end
 

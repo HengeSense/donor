@@ -1,13 +1,23 @@
-//
-//  BDProfileRegView.h
-//  BloodDonor
-//
-//  Created by Alexander Trifonov on 14.06.12.
-//  Copyright (c) 2012 fgengine@gmail.com. All rights reserved.
-//
+/*--------------------------------------------------*/
 
-#import <UIKit/UIKit.h>
+#import "HSViewController.h"
 
-@interface BDProfileRegView : UIViewController
+/*--------------------------------------------------*/
+
+#import "BloodDonor.h"
+
+/*--------------------------------------------------*/
+
+@interface BDProfileRegView : UIViewController< UIKeyInput >
+{
+    IBOutlet UITextField *userName;
+    IBOutlet UITextField *password;
+    IBOutlet UITextField *passwordConfirm;
+    IBOutlet UILabel *name;
+    IBOutlet UILabel *sex;
+    IBOutlet UILabel *bloodGroup;
+}
 
 @end
+
+/*--------------------------------------------------*/

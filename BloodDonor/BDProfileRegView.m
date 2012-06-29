@@ -1,51 +1,57 @@
-//
-//  BDProfileRegView.m
-//  BloodDonor
-//
-//  Created by Alexander Trifonov on 14.06.12.
-//  Copyright (c) 2012 fgengine@gmail.com. All rights reserved.
-//
+/*--------------------------------------------------*/
 
 #import "BDProfileRegView.h"
 
+/*--------------------------------------------------*/
+
+#import "HSBarButtonItem.h"
+
+/*--------------------------------------------------*/
+
 @implementation BDProfileRegView
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
+#pragma mark UIView
 
-- (void)didReceiveMemoryWarning
-{
-    // Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
-    
-    // Release any cached data, images, etc that aren't in use.
-}
-
-#pragma mark - View lifecycle
-
-- (void)viewDidLoad
+- (void) viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    
+    UIBarButtonItem *item = [UIBarButtonItem barButtomItemWithBarButtonSystemItem:UIBarButtonSystemItemDone
+                                                                           target:self
+                                                                           action:@selector(signUp:)]
 }
 
-- (void)viewDidUnload
+- (void) viewDidUnload
 {
+    userName = nil;
+    password = nil;
+    passwordConfirm = nil;
+    name = nil;
+    sex = nil;
+    bloodGroup = nil;
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+- (IBAction) signUp:(id)sender
 {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+    BloodDonorSex signUpSex = BloodDonorSexMan;
+    BloodDonorGroup signUpBloodGroup = BloodDonorGroupI;
+    BloodDonorRh signUpBloodRh = BloodDonorRhPos;
+    
+    [[BloodDonor shared] signUpWithUsername:[userName text]
+                                   password:[password text]
+                                       name:[name text]
+                                        sex:signUpSex
+                                 bloodGroup:signUpBloodGroup
+                                    bloodRh:signUpBloodRh
+                                    success:^{
+                                    }
+                                    failure:^(NSError *error) {
+                                    }];
 }
+
+#pragma mark -
 
 @end
+
+/*--------------------------------------------------*/

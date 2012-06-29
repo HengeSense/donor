@@ -8,7 +8,7 @@
 
 + (id) tabBar
 {
-    return [[[self alloc] init] autorelease];
+    return [[self alloc] init];
 }
 
 @end

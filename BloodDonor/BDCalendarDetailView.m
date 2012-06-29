@@ -6,14 +6,7 @@
 
 @implementation BDCalendarDetailView
 
-- (id) initWithNibName:(NSString*)name bundle:(NSBundle*)bundle
-{
-    self = [super initWithNibName:name bundle:bundle];
-    if(self != nil)
-    {
-    }
-    return self;
-}
+#pragma mark UIView
 
 - (void) viewDidLoad
 {
@@ -24,6 +17,8 @@
 {
     [super viewDidUnload];
 }
+
+#pragma mark -
 
 @end
 

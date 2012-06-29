@@ -1,45 +1,34 @@
 /*--------------------------------------------------*/
 
-#import "HSView.h"
+#import "HSCalendarView.h"
 
 /*--------------------------------------------------*/
 
-@protocol HSCalendarWeekdaysViewDelegate;
+@protocol HSCalendarWeekViewDelegate;
 
 /*--------------------------------------------------*/
 
-enum
+@interface HSCalendarWeekView : HSCalendarView
 {
-    HSCalendarWeekdaysDirectionTop,
-    HSCalendarWeekdaysDirectionRight,
-    HSCalendarWeekdaysDirectionBottom,
-    HSCalendarWeekdaysDirectionLeft
-};
-
-typedef NSUInteger HSCalendarWeekdaysDirection;
-
-/*--------------------------------------------------*/
-
-@interface HSCalendarWeekdaysView : UIView
-{
-    id< HSCalendarWeekdaysViewDelegate > mDelegate;
-    NSCalendar *mCalendar;
+    id< HSCalendarWeekViewDelegate > mDelegate;
     NSDate *mDate;
 }
 
-@property (nonatomic, readwrite, strong) IBOutlet id< HSCalendarWeekdaysViewDelegate > delegate;
-@property (nonatomic, readwrite, strong) NSCalendar* calendar;
+@property (nonatomic, readwrite, strong) IBOutlet id< HSCalendarWeekViewDelegate > delegate;
 @property (nonatomic, readwrite, strong) NSDate* date;
+
+- (BOOL) delegateWillChangeDate:(NSDate*)date;
+- (void) delegateDidChangeDate:(NSDate*)date;
 
 @end
 
 /*--------------------------------------------------*/
 
-@protocol HSCalendarWeekdaysViewDelegate <  NSObject >
+@protocol HSCalendarWeekViewDelegate <  NSObject >
 
 @optional
-- (BOOL) calendarWeekdaysView:(HSCalendarWeekdaysView*)calendarWeekdaysView willChangeDate:(NSDate*)date;
-- (void) calendarWeekdaysView:(HSCalendarWeekdaysView*)calendarWeekdaysView didChangeDate:(NSDate*)date;
+- (BOOL) calendarWeekView:(HSCalendarWeekView*)calendarWeekView willChangeDate:(NSDate*)date;
+- (void) calendarWeekView:(HSCalendarWeekView*)calendarWeekView didChangeDate:(NSDate*)date;
 
 @end
 

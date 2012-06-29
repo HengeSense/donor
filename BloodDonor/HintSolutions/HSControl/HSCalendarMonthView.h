@@ -1,25 +1,38 @@
 /*--------------------------------------------------*/
 
-#import "HSView.h"
+#import "HSCalendarView.h"
 
 /*--------------------------------------------------*/
 
-@protocol HSCalendarTitleViewDelegate;
+@protocol HSCalendarMonthViewDelegate;
 
 /*--------------------------------------------------*/
 
-@interface HSCalendarTitleView : HSView
+@interface HSCalendarMonthView : HSCalendarView
 {
-    id< HSCalendarTitleViewDelegate > mDelegate;
+    id< HSCalendarMonthViewDelegate > mDelegate;
+    NSDate *mDate;
 }
 
-@property (nonatomic, readwrite, assign) IBOutlet id< HSCalendarTitleViewDelegate > delegate;
+@property (nonatomic, readwrite, strong) IBOutlet id< HSCalendarMonthViewDelegate > delegate;
+@property (nonatomic, readwrite, strong) NSDate* date;
+
+- (void) addYearToDate:(NSUInteger)year;
+- (void) addMonthToDate:(NSUInteger)month;
+- (void) addDayToDate:(NSUInteger)day;
+
+- (BOOL) delegateWillChangeDate:(NSDate*)date;
+- (void) delegateDidChangeDate:(NSDate*)date;
 
 @end
 
 /*--------------------------------------------------*/
 
-@protocol HSCalendarTitleViewDelegate <  NSObject >
+@protocol HSCalendarMonthViewDelegate <  NSObject >
+
+@optional
+- (BOOL) calendarMonthView:(HSCalendarMonthView*)calendarMonthView willChangeDate:(NSDate*)date;
+- (void) calendarMonthView:(HSCalendarMonthView*)calendarMonthView didChangeDate:(NSDate*)date;
 
 @end
 
