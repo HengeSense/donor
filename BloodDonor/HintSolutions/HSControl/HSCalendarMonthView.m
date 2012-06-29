@@ -1,14 +1,16 @@
 /*--------------------------------------------------*/
 
-#import "HSViewController.h"
+#import "HSCalendarTitleView.h"
 
 /*--------------------------------------------------*/
 
-#import "BloodDonor.h"
+@implementation HSCalendarTitleView
 
-/*--------------------------------------------------*/
+#pragma mark Property synthesize
 
-@interface BDProfileDetailView : UIViewController
+@synthesize delegate = mDelegate;
+
+#pragma mark -
 
 @end
 
