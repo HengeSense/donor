@@ -140,6 +140,7 @@
     <Compile Include="StationsSearch.xaml.cs">
       <DependentUpon>StationsSearch.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\AdsLitViewModel.cs" />
     <Compile Include="ViewModels\AdsViewModel.cs" />
     <Compile Include="ViewModels\EventViewModel.cs" />
     <Compile Include="ViewModels\ItemViewModel.cs" />

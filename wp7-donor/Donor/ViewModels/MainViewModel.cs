@@ -40,7 +40,7 @@ namespace Donor
             News = new NewsListViewModel();
             Events = new EventsListViewModel();
             Stations = new StationsLitViewModel();
-
+            Ads = new AdsListViewModel();
             User = new DonorUser();
             
             this.LoadFromIsolatedStorage();
@@ -52,6 +52,7 @@ namespace Donor
         public ObservableCollection<ItemViewModel> Items { get; private set; }
 
         public NewsListViewModel News { get; set; }
+        public AdsListViewModel Ads { get; set; }
         public EventsListViewModel Events { get; set; }
         public StationsLitViewModel Stations { get; set; }
         public DonorUser User { get; set; }
@@ -82,20 +83,20 @@ namespace Donor
                     this.NotifyPropertyChanged("Events");
                 });
 
-            if (this.News.Items.Count == 0)
-            {
-                /*ObservableCollection<NewsViewModel> newslist1 = new ObservableCollection<NewsViewModel>();
-                newslist1.Add(new NewsViewModel() { Title = "runtime one", Description = "Maecenas praesent accumsan bibendum", Id = "1", Date = DateTime.Parse("6/10/2012 12:00:00 AM") });
-                newslist1.Add(new NewsViewModel() { Title = "runtime two", Description = "Dictumst eleifend facilisi faucibus", Id = "2", Date = DateTime.Parse("5/12/2012 12:00:00 AM") });
-                newslist1.Add(new NewsViewModel() { Title = "runtime three", Description = "Habitant inceptos interdum lobortis", Id = "3", Date = DateTime.Parse("6/12/2012 12:00:00 AM") });*/
-
+                /*if (this.News.Items.Count == 0)
+                {
+                    ObservableCollection<NewsViewModel> newslist1 = new ObservableCollection<NewsViewModel>();
+                    newslist1.Add(new NewsViewModel() { Title = "runtime one", Description = "Maecenas praesent accumsan bibendum", Id = "1", Date = DateTime.Parse("6/10/2012 12:00:00 AM") });
+                    newslist1.Add(new NewsViewModel() { Title = "runtime two", Description = "Dictumst eleifend facilisi faucibus", Id = "2", Date = DateTime.Parse("5/12/2012 12:00:00 AM") });
+                    newslist1.Add(new NewsViewModel() { Title = "runtime three", Description = "Habitant inceptos interdum lobortis", Id = "3", Date = DateTime.Parse("6/12/2012 12:00:00 AM") });
+                };*/
                 Deployment.Current.Dispatcher.BeginInvoke(() =>
                 {
-                    //this.News.Items = newslist1;
                     App.ViewModel.News.LoadNews();
+                    App.ViewModel.Ads.LoadAds();
                     this.NotifyPropertyChanged("News");
                 });
-            };
+
 
             this.IsDataLoaded = true;
             };
@@ -252,6 +253,25 @@ namespace Donor
                     {
                         this.News.Items = new ObservableCollection<NewsViewModel>();
                         this.NotifyPropertyChanged("News");
+                    });
+                };
+
+                try
+                {
+                    ObservableCollection<AdsViewModel> adslist1 = new ObservableCollection<AdsViewModel>();
+                    adslist1 = IsolatedStorageHelper.LoadSerializableObject<ObservableCollection<AdsViewModel>>("ads.xml");
+                    Deployment.Current.Dispatcher.BeginInvoke(() =>
+                    {
+                        this.Ads.Items = adslist1;
+                        this.NotifyPropertyChanged("Ads");
+                    });
+                }
+                catch //(System.IO.FileNotFoundException)
+                {
+                    Deployment.Current.Dispatcher.BeginInvoke(() =>
+                    {
+                        this.Ads.Items = new ObservableCollection<AdsViewModel>();
+                        this.NotifyPropertyChanged("Ads");
                     });
                 };
 

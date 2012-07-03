@@ -10,6 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
+using Donor.ViewModels;
 
 namespace Donor
 {
@@ -18,6 +19,19 @@ namespace Donor
         public AdsList()
         {
             InitializeComponent();
+            DataContext = App.ViewModel;
+        }
+
+        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+                string id = ((sender as ListBox).SelectedItem as AdsViewModel).ObjectId;
+                NavigationService.Navigate(new Uri("/AdsPage.xaml?id=" + id, UriKind.Relative));
+            }
+            catch
+            {
+            }
         }
     }
 }
