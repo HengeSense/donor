@@ -29,7 +29,7 @@
             <ScrollViewer>
             <StackPanel>
                     <TextBlock Text="{Binding Path=Title}" Name="TitleNews" Style="{StaticResource PhoneTextExtraLargeStyle}" TextWrapping="Wrap"/>
-                    <TextBlock Text="{Binding Path=Description}" Name="Description" TextWrapping="Wrap"/>
+                    <TextBlock Text="{Binding Path=Body}" Name="Description" TextWrapping="Wrap"/>
             </StackPanel>
             </ScrollViewer>
         </Grid>

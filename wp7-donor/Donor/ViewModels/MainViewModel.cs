@@ -84,14 +84,15 @@ namespace Donor
 
             if (this.News.Items.Count == 0)
             {
-                ObservableCollection<NewsViewModel> newslist1 = new ObservableCollection<NewsViewModel>();
+                /*ObservableCollection<NewsViewModel> newslist1 = new ObservableCollection<NewsViewModel>();
                 newslist1.Add(new NewsViewModel() { Title = "runtime one", Description = "Maecenas praesent accumsan bibendum", Id = "1", Date = DateTime.Parse("6/10/2012 12:00:00 AM") });
                 newslist1.Add(new NewsViewModel() { Title = "runtime two", Description = "Dictumst eleifend facilisi faucibus", Id = "2", Date = DateTime.Parse("5/12/2012 12:00:00 AM") });
-                newslist1.Add(new NewsViewModel() { Title = "runtime three", Description = "Habitant inceptos interdum lobortis", Id = "3", Date = DateTime.Parse("6/12/2012 12:00:00 AM") });
+                newslist1.Add(new NewsViewModel() { Title = "runtime three", Description = "Habitant inceptos interdum lobortis", Id = "3", Date = DateTime.Parse("6/12/2012 12:00:00 AM") });*/
 
                 Deployment.Current.Dispatcher.BeginInvoke(() =>
                 {
-                    this.News.Items = newslist1;
+                    //this.News.Items = newslist1;
+                    App.ViewModel.News.LoadNews();
                     this.NotifyPropertyChanged("News");
                 });
             };

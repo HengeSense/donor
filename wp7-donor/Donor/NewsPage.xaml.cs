@@ -31,7 +31,7 @@ namespace Donor
                 {
                     string _newsid = this.NavigationContext.QueryString["id"];
                     _newsid_current = _newsid;
-                    _currentNews = App.ViewModel.News.Items.FirstOrDefault(c => c.Id == _newsid.ToString());
+                    _currentNews = App.ViewModel.News.Items.FirstOrDefault(c => c.ObjectId == _newsid.ToString());
                     DataContext = _currentNews;
                 }
                 catch

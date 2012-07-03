@@ -64,7 +64,7 @@ namespace Donor
         {
             try
             {
-                string id = ((sender as ListBox).SelectedItem as NewsViewModel).Id;
+                string id = ((sender as ListBox).SelectedItem as NewsViewModel).ObjectId;
                 NavigationService.Navigate(new Uri("/NewsPage.xaml?id=" + id, UriKind.Relative));
             }
             catch

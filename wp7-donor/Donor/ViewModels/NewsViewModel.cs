@@ -12,6 +12,10 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.ComponentModel;
 using System.Collections.Generic;
+using Newtonsoft.Json.Linq;
+using RestSharp;
+using Newtonsoft.Json;
+using MSPToolkit.Utilities;
 
 namespace Donor.ViewModels
 {
@@ -20,6 +24,31 @@ namespace Donor.ViewModels
         public NewsListViewModel()
         {
             this.Items = new ObservableCollection<NewsViewModel>();
+        }
+
+        public void LoadNews()
+        {
+            var client = new RestClient("https://api.parse.com");
+            var request = new RestRequest("1/classes/News", Method.GET);
+            request.Parameters.Clear();
+            request.AddHeader("X-Parse-Application-Id", "EIpakVdZblHedhqgxMgiEVnIGCRGvWdy9v8gkKZu");
+            request.AddHeader("X-Parse-REST-API-Key", "wPvwRKxX2b2vyrRprFwIbaE5t3kyDQq11APZ0qXf");
+            client.ExecuteAsync(request, response =>
+            {
+                try
+                {
+                    ObservableCollection<NewsViewModel> newslist1 = new ObservableCollection<NewsViewModel>();
+                    JObject o = JObject.Parse(response.Content.ToString());
+                    newslist1 = JsonConvert.DeserializeObject<ObservableCollection<NewsViewModel>>(o["results"].ToString());
+                    this.Items = newslist1;
+                    //save to isolated storage
+                    IsolatedStorageHelper.SaveSerializableObject<ObservableCollection<NewsViewModel>>(App.ViewModel.News.Items, "news.xml");
+                }
+                catch
+                {
+                };
+                this.NotifyPropertyChanged("Items");
+            });
         }
 
         private ObservableCollection<NewsViewModel> _items;
@@ -85,8 +114,12 @@ namespace Donor.ViewModels
             }
         }
 
-        public string Id { get; set; }
-        public string Description { get; set; }
+        public string ObjectId { get; set; }
+        public string Body { get; set; }
+        public string Url { get; set; }
+
+        public string UpdatedAt { get; set; }
+        public string CreatedAt { get; set; }
 
         public DateTime Date { get; set; }
     }

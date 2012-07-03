@@ -127,8 +127,7 @@ namespace Donor.ViewModels
                 try
                 {
                     ObservableCollection<EventViewModel> eventslist1 = new ObservableCollection<EventViewModel>();
-                    JObject o = JObject.Parse(response.Content.ToString());
-                    
+                    JObject o = JObject.Parse(response.Content.ToString());                    
                     foreach (var item in o["results"])
                     {
                         EventViewModel jsonitem = new EventViewModel();
