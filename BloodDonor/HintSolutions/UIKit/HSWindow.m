@@ -8,7 +8,7 @@
 
 + (id) windowWithFrame:(CGRect)frame
 {
-    return [[[self alloc] initWithFrame:frame] autorelease];
+    return [[self alloc] initWithFrame:frame];
 }
 
 @end

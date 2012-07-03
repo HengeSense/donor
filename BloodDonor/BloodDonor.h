@@ -15,9 +15,9 @@
 
 enum
 {
-    BloodDonorSexUnknown,
-    BloodDonorSexMan,
-    BloodDonorSexWoman
+    BloodDonorSexUnknown = -1,
+    BloodDonorSexMan = 0,
+    BloodDonorSexWoman = 1
 };
 
 typedef NSInteger BloodDonorSex;
@@ -26,11 +26,11 @@ typedef NSInteger BloodDonorSex;
 
 enum
 {
-    BloodDonorGroupUnknown,
-    BloodDonorGroupI,
-    BloodDonorGroupII,
-    BloodDonorGroupIII,
-    BloodDonorGroupIV
+    BloodDonorGroupUnknown = -1,
+    BloodDonorGroupI = 0,
+    BloodDonorGroupII = 1,
+    BloodDonorGroupIII = 2,
+    BloodDonorGroupIV = 3
 };
 
 typedef NSInteger BloodDonorGroup;
@@ -39,21 +39,24 @@ typedef NSInteger BloodDonorGroup;
 
 enum
 {
-    BloodDonorRhUnknown,
-    BloodDonorRhPos,
-    BloodDonorRhNeg
+    BloodDonorRhUnknown = -1,
+    BloodDonorRhPos = 0,
+    BloodDonorRhNeg = 1
 };
 
 typedef NSInteger BloodDonorRh;
 
 /*--------------------------------------------------*/
 
+typedef void (^BloodDonorSuccessBlock)();
+typedef void (^BloodDonorFailureBlock)(NSError *error);
+
+/*--------------------------------------------------*/
+
 @interface BloodDonor : NSObject
 {
-    PFObject *mPreference;
+    NSUserDefaults *mPreference;
 }
-
-@property (nonatomic, readonly, assign) PFObject *preference;
 
 @property (nonatomic, readwrite, assign) NSString *profileUsername;
 @property (nonatomic, readwrite, assign) NSString *profilePassword;
@@ -74,10 +77,10 @@ typedef NSInteger BloodDonorRh;
 
 + (BloodDonor*) shared;
 
-- (BOOL) isAuthenticated;
-
 - (void) setApplicationId:(NSString*)applicationId 
                 clientKey:(NSString*)clientKey;
+
+- (BOOL) isAuthenticated;
 
 - (void) signUpWithUsername:(NSString*)username
                    password:(NSString*)password
@@ -85,15 +88,13 @@ typedef NSInteger BloodDonorRh;
                         sex:(BloodDonorSex)sex
                  bloodGroup:(BloodDonorGroup)bloodGroup
                     bloodRh:(BloodDonorRh)bloodRh
-                     target:(id)target
-                    success:(SEL)success
-                    failure:(SEL)failure;
+                    success:(BloodDonorSuccessBlock)success
+                    failure:(BloodDonorFailureBlock)failure;
 
 - (void) logInWithUsername:(NSString*)username
                   password:(NSString*)password
-                    target:(id)target
-                   success:(SEL)success
-                   failure:(SEL)failure;
+                   success:(BloodDonorSuccessBlock)success
+                   failure:(BloodDonorFailureBlock)failure;
 
 - (void) logOut;
 
@@ -113,6 +114,17 @@ typedef NSInteger BloodDonorEventType;
 
 enum
 {
+    BloodDonorEventDeliveryPlatelets,
+    BloodDonorEventDeliveryPlasma,
+    BloodDonorEventDeliveryWhole
+};
+
+typedef NSInteger BloodDonorEventDelivery;
+
+/*--------------------------------------------------*/
+
+enum
+{
     BloodDonorEventNoticeMin3,
     BloodDonorEventNoticeMin5,
     BloodDonorEventNoticeMin10,
@@ -120,17 +132,6 @@ enum
 };
 
 typedef NSInteger BloodDonorEventNotice;
-
-/*--------------------------------------------------*/
-
-enum
-{
-    BloodDonorEventDeliveryPlatelets,
-    BloodDonorEventDeliveryPlasma,
-    BloodDonorEventDeliveryWhole
-};
-
-typedef NSInteger BloodDonorEventDelivery;
 
 /*--------------------------------------------------*/
 
