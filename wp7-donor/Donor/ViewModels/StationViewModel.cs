@@ -24,6 +24,17 @@ namespace Donor.ViewModels
         {
         }
 
+        //выбранный город
+        public string SelectedCity { get; set; }
+        //требуется прописка
+        public bool IsRegional { get; set; }
+        //работает по субботам
+        public bool IsSaturdayWork { get; set; }
+        //участвует в доноры-детям
+        public bool IsChildrenDonor { get; set; }
+
+        public bool IsFilter { get; set; }
+
         public void LoadStations()
         {
             var client = new RestClient("https://api.parse.com");
@@ -35,19 +46,39 @@ namespace Donor.ViewModels
             //request.AddParameter("where", strJSONContent);
             client.ExecuteAsync(request, response =>
             {
-                try
-                {
+                //try
+                //{
                     ObservableCollection<StationViewModel> eventslist1 = new ObservableCollection<StationViewModel>();
                     JObject o = JObject.Parse(response.Content.ToString());
-                    eventslist1 = JsonConvert.DeserializeObject<ObservableCollection<StationViewModel>>(o["results"].ToString());
+                    foreach (var item in o["results"])
+                    {
+                        StationViewModel station = new StationViewModel();
+                        station.Adress = item["adress"].ToString();
+                        //station.BloodFor = item["bloodfor"].ToString();
+                        station.City = item["city"].ToString();
+                        station.Description = item["description"].ToString();
+                        station.DonorsForChildrens = bool.Parse(item["donorsForChildrens"].ToString());
+                        station.Lat = item["latlon"]["latitude"].ToString();
+                        station.Lon = item["latlon"]["longitude"].ToString();
+                        station.objectId = item["objectId"].ToString();
+                        station.Phone = item["phone"].ToString();
+                        station.ReceiptTime = item["receiptTime"].ToString();
+                        station.RegionalRegistration = bool.Parse(item["regionalRegistration"].ToString());
+                        station.SaturdayWork = bool.Parse(item["saturdayWork"].ToString());
+                        station.Title = item["title"].ToString();
+                        station.Transportaion = item["transportation"].ToString();
+                        station.Url = item["url"].ToString();
+                        eventslist1.Add(station);
+                    };
+                    //eventslist1 = JsonConvert.DeserializeObject<ObservableCollection<StationViewModel>>(o["results"].ToString());
                     this.Items = eventslist1;
 
                     //save to isolated storage
                     IsolatedStorageHelper.SaveSerializableObject<ObservableCollection<StationViewModel>>(App.ViewModel.Stations.Items, "stations.xml");
-                }
-                catch
-                {
-                };
+                //}
+                //catch
+                //{
+                //};
                 this.NotifyPropertyChanged("Items");
             });
         }
@@ -65,6 +96,16 @@ namespace Donor.ViewModels
         public ObservableCollection<StationViewModel> Items { get; set; }
     }
 
+    public class LatLonItem
+    {
+        public LatLonItem()
+        {
+        }
+
+        public string __type { get; set; }
+        public string latitude { get; set; }
+        public string longitude { get; set; }
+    }
 
     public class StationViewModel
     {
@@ -125,7 +166,13 @@ namespace Donor.ViewModels
                 _lon = value;
             }
         }
-        
+
+        public string LatLon
+        {
+            get;
+            set;
+        }
+
         /// <summary>
         /// Station site url
         /// </summary>

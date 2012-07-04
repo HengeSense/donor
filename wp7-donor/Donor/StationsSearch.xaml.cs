@@ -55,7 +55,22 @@ namespace Donor
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
             this.StationsList.DataContext = App.ViewModel;
-            this.StationsList.ItemsSource = App.ViewModel.Stations.Items;
+            if (App.ViewModel.Stations.IsFilter == false)
+            {
+                this.StationsList.ItemsSource = App.ViewModel.Stations.Items;
+            }
+            else
+            {
+                this.StationsList.ItemsSource = from stations in App.ViewModel.Stations.Items
+                                                where (stations.City == App.ViewModel.Stations.SelectedCity)
+                                                &&
+                                                ((stations.DonorsForChildrens == App.ViewModel.Stations.IsChildrenDonor)
+                                                ||
+                                                (stations.RegionalRegistration == App.ViewModel.Stations.IsRegional)
+                                                ||
+                                                (stations.SaturdayWork == App.ViewModel.Stations.IsSaturdayWork))
+                                                select stations;
+            };
         }
 
         private void StationsSearchText_Populating(object sender, PopulatingEventArgs e)
@@ -64,13 +79,34 @@ namespace Donor
             if (searchtext != "")
             {
                 this.StationsList.ItemsSource = from stations in App.ViewModel.Stations.Items
-                                                where (stations.Title.ToLower().Contains(searchtext.ToLower()))
+                                                where (stations.Title.ToLower().Contains(searchtext.ToLower())) && ((stations.City == App.ViewModel.Stations.SelectedCity)
+                                                    && (
+                                                    (stations.DonorsForChildrens == App.ViewModel.Stations.IsChildrenDonor)
+                                                    ||
+                                                    (stations.RegionalRegistration == App.ViewModel.Stations.IsRegional)
+                                                    ||
+                                                    (stations.SaturdayWork == App.ViewModel.Stations.IsSaturdayWork)))
                                                 select stations;
             }
             else
             {
                 this.StationsList.DataContext = App.ViewModel;
-                this.StationsList.ItemsSource = App.ViewModel.Stations.Items;
+                if (App.ViewModel.Stations.IsFilter == false)
+                {
+                    this.StationsList.ItemsSource = App.ViewModel.Stations.Items;
+                }
+                else
+                {
+                    this.StationsList.ItemsSource = from stations in App.ViewModel.Stations.Items
+                                                    where ((stations.City == App.ViewModel.Stations.SelectedCity)
+                                                    &&
+                                                    ((stations.DonorsForChildrens == App.ViewModel.Stations.IsChildrenDonor)
+                                                    ||
+                                                    (stations.RegionalRegistration == App.ViewModel.Stations.IsRegional)
+                                                    ||
+                                                    (stations.SaturdayWork == App.ViewModel.Stations.IsSaturdayWork)))
+                                                    select stations;
+                };
             };
         }
 
