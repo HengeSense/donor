@@ -50,6 +50,16 @@ namespace Donor.ViewModels
             });
         }
 
+        public List<AdsViewModel> LoadStationAds(string objectid)
+        {
+            var aditems = (from ads in Items
+                           where ads.Station_id == objectid
+                            orderby ads.CreatedAt descending
+                            select ads).Take(10);
+            List<AdsViewModel> outads = aditems.ToList();
+            return outads;
+        }
+
         private ObservableCollection<AdsViewModel> _items;
         public ObservableCollection<AdsViewModel> Items
         {
@@ -107,7 +117,7 @@ namespace Donor.ViewModels
         public string ObjectId { get; set; }
         public string Title { get; set; }
         public string Body { get; set; }
-        public string Station { get; set; }
+        public string Station_id { get; set; }
         public string Url { get; set; }
         public string CreatedAt { get; set; }
         public string UpdatedAt { get; set; }

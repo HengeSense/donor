@@ -50,7 +50,19 @@
             </controls:PanoramaItem>
 
             <controls:PanoramaItem Header="Объявления">
-                <Grid/>
+                <Grid>
+                    <ListBox Margin="0,0,0,0" ItemsSource="{Binding Ads.Items}" Name="StationAds" SelectionChanged="ListBox_SelectionChanged">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Margin="0,0,0,17" Width="432" Height="78">
+                                    <TextBlock Text="{Binding Title}" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                    <!--<StackPanel>                  
+                    </StackPanel>-->
+                </Grid>
             </controls:PanoramaItem>
 
             <controls:PanoramaItem Header="Отзывы">

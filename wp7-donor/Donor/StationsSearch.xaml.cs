@@ -74,5 +74,22 @@ namespace Donor
             };
         }
 
+        private void MapButton_Click(object sender, EventArgs e)
+        {
+            //show map code
+        }
+
+        private void ApplicationBarIconButton_Click(object sender, EventArgs e)
+        {
+            //show filter page
+            try
+            {
+                NavigationService.Navigate(new Uri("/StationsSearchFilter.xaml", UriKind.Relative));
+            }
+            catch
+            {
+            }
+        }
+
     }
 }

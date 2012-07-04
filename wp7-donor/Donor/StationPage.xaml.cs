@@ -32,6 +32,8 @@ namespace Donor
                     _stationid_current = _id;
                     _currentStation = App.ViewModel.Stations.Items.FirstOrDefault(c => c.objectId == _id.ToString());
                     DataContext = _currentStation;
+
+                    this.StationAds.ItemsSource = App.ViewModel.Ads.LoadStationAds(_currentStation.objectId);
                 }
                 catch
                 {
@@ -42,6 +44,18 @@ namespace Donor
             {
                 NavigationService.GoBack();
             };
+        }
+
+        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+                string id = ((sender as ListBox).SelectedItem as AdsViewModel).ObjectId;
+                NavigationService.Navigate(new Uri("/AdsPage.xaml?id=" + id, UriKind.Relative));
+            }
+            catch
+            {
+            }
         }
     }
 }
