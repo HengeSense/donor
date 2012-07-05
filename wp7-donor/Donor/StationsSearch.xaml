@@ -53,6 +53,11 @@
                         <StackPanel Margin="0,0,0,15">
                             <TextBlock Text="{Binding Adress}" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
                             <TextBlock Text="{Binding Title}" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Расстояние "/>
+                                <TextBlock Text="{Binding Distance}" TextWrapping="Wrap"/>
+                                <TextBlock Text=" м"/>
+                            </StackPanel>
                         </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>

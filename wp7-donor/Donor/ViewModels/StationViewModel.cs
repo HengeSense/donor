@@ -15,6 +15,7 @@ using Newtonsoft.Json.Linq;
 using System.Linq;
 using Newtonsoft.Json;
 using MSPToolkit.Utilities;
+using System.Device.Location;
 
 namespace Donor.ViewModels
 {
@@ -23,6 +24,22 @@ namespace Donor.ViewModels
         public StationsLitViewModel()
         {
         }
+
+        public GeoCoordinateWatcher myCoordinateWatcher;
+        private bool _getCoordinates = false;
+        void myCoordinateWatcher_PositionChanged(object sender, GeoPositionChangedEventArgs<GeoCoordinate> e)
+        {
+
+            if ((!e.Position.Location.IsUnknown) && (_getCoordinates == false))
+            {                
+                Latitued = e.Position.Location.Latitude;
+                Longitude = e.Position.Location.Longitude;
+
+                _getCoordinates = true;
+            }
+        }
+
+        public double Latitued, Longitude; 
 
         //выбранный город
         public string SelectedCity { get; set; }
@@ -37,6 +54,10 @@ namespace Donor.ViewModels
 
         public void LoadStations()
         {
+            myCoordinateWatcher = new GeoCoordinateWatcher(GeoPositionAccuracy.Default);
+            myCoordinateWatcher.PositionChanged += new EventHandler<GeoPositionChangedEventArgs<GeoCoordinate>>(myCoordinateWatcher_PositionChanged);
+            myCoordinateWatcher.Start();
+
             var client = new RestClient("https://api.parse.com");
             var request = new RestRequest("1/classes/Stations", Method.GET);
             request.Parameters.Clear();
@@ -165,6 +186,25 @@ namespace Donor.ViewModels
             {
                 _lon = value;
             }
+        }
+
+        public string Distance
+        {
+            get
+            {
+                //App.ViewModel.Stations.Latitued;
+                //App.ViewModel.Stations.Longitude;
+
+                double distanceInMeter;
+
+                GeoCoordinate currentLocation = new GeoCoordinate(Convert.ToDouble(App.ViewModel.Stations.Latitued.ToString()), Convert.ToDouble(App.ViewModel.Stations.Longitude.ToString()));
+                GeoCoordinate clientLocation = new GeoCoordinate(Convert.ToDouble(this.Lat.ToString()), Convert.ToDouble(this.Lon.ToString()));
+                distanceInMeter = currentLocation.GetDistanceTo(clientLocation);
+
+                return Math.Round(distanceInMeter).ToString();
+            }
+
+            private set { }
         }
 
         public string LatLon
