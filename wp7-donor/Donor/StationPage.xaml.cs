@@ -62,7 +62,7 @@ namespace Donor
 
         private void CreateReviewButton_Click(object sender, EventArgs e)
         {
-            NavigationService.Navigate(new Uri("/CreateReviewPage.xaml", UriKind.Relative));
+            NavigationService.Navigate(new Uri("/CreateReviewPage.xaml?id=" + _stationid_current, UriKind.Relative));
         }
     }
 }
