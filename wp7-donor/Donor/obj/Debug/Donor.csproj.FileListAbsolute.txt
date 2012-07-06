@@ -71,7 +71,6 @@ E:\Visual Studio 2010\Projects\Donor\wp7-donor\Donor\obj\Debug\ProfilePage.g.i.c
 E:\Visual Studio 2010\Projects\Donor\wp7-donor\Donor\obj\Debug\StationPage.g.i.cs
 E:\Visual Studio 2010\Projects\Donor\wp7-donor\Donor\obj\Debug\StationsSearch.g.i.cs
 E:\Visual Studio 2010\Projects\Donor\wp7-donor\Donor\obj\Debug\StationsSearchFilter.g.i.cs
-C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\obj\Debug\Donor.csprojResolveAssemblyReference.cache
 C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\obj\Debug\App.g.i.cs
 C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\obj\Debug\AdsList.g.i.cs
 C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\obj\Debug\AdsPage.g.i.cs
@@ -91,3 +90,33 @@ C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\obj\Debug\StationPage.g.i.c
 C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\obj\Debug\StationsSearch.g.i.cs
 C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\obj\Debug\Donor.dll
 C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\obj\Debug\Donor.pdb
+C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\obj\Debug\StationsSearchFilter.g.i.cs
+C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\obj\Debug\Donor.g.resources
+C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\obj\Debug\Donor.Resources.AppResources.resources
+C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\obj\Debug\GenerateResource.read.1.tlog
+C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\obj\Debug\GenerateResource.write.1.tlog
+C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\Bin\Debug\ApplicationIcon.png
+C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\Bin\Debug\Background.png
+C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\Bin\Debug\icons\appbar.delete.rest.png
+C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\Bin\Debug\icons\appbar.edit.rest.png
+C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\Bin\Debug\icons\appbar.feature.search.rest.png
+C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\Bin\Debug\icons\appbar.feature.settings.rest.png
+C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\Bin\Debug\icons\appbar.save.rest.png
+C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\Bin\Debug\Coding4Fun.Phone.Controls.dll
+C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\Bin\Debug\Coding4Fun.Phone.Controls.Toolkit.dll
+C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\Bin\Debug\Microsoft.Phone.Controls.dll
+C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\Bin\Debug\Microsoft.Phone.Controls.Toolkit.dll
+C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\Bin\Debug\MSPToolkit.dll
+C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\Bin\Debug\Parse.dll
+C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\Bin\Debug\RestSharp.WindowsPhone.dll
+C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\Bin\Debug\WPExtensions.dll
+C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\Bin\Debug\Microsoft.Phone.Controls.xml
+C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\Bin\Debug\RestSharp.WindowsPhone.xml
+C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\Bin\Debug\WPExtensions.pdb
+C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\Bin\Debug\Donor.dll
+C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\Bin\Debug\Donor.pdb
+C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\Bin\Debug\AppManifest.xaml
+C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\Bin\Debug\Donor.xap
+C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\obj\Debug\XapCacheFile.xml
+C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\obj\Debug\CreateReviewPage.g.i.cs

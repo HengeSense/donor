@@ -12,6 +12,7 @@
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait"  Orientation="Portrait"
+    xmlns:WPExtensions="clr-namespace:WPExtensions;assembly=WPExtensions"
     shell:SystemTray.IsVisible="False" Loaded="PhoneApplicationPage_Loaded">
 
     <!--LayoutRoot contains the root grid where all other page content is placed-->
@@ -68,7 +69,7 @@
             <controls:PanoramaItem Header="Отзывы">
                 <Grid>
                     <ScrollViewer>
-                        <ListBox Name="StationReviews">
+                        <ListBox Name="StationReviews" ItemsSource="{Binding Reviews.Items}">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
                                     <StackPanel>
@@ -80,6 +81,10 @@
                             </ListBox.ItemTemplate>
                         </ListBox>
                     </ScrollViewer>
+                    <WPExtensions:AdvancedApplicationBar Name="AppBar" IsVisible="True" IsMenuEnabled="False">
+                        <WPExtensions:AdvancedApplicationBarIconButton IconUri="/icons/appbar.edit.rest.png" Text="Написать"  Name="CreateReviewButton" Click="CreateReviewButton_Click" />
+                        
+</WPExtensions:AdvancedApplicationBar>
                 </Grid>
             </controls:PanoramaItem>
         </controls:Panorama>

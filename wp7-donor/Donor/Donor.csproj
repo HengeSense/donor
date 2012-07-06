@@ -106,6 +106,9 @@
     <Compile Include="Controls\MonthCalendar.xaml.cs">
       <DependentUpon>MonthCalendar.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CreateReviewPage.xaml.cs">
+      <DependentUpon>CreateReviewPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="EventPage.xaml.cs">
       <DependentUpon>EventPage.xaml</DependentUpon>
     </Compile>
@@ -181,6 +184,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\MonthCalendar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CreateReviewPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

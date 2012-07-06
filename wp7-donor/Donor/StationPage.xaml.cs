@@ -34,6 +34,8 @@ namespace Donor
                     DataContext = _currentStation;
 
                     this.StationAds.ItemsSource = App.ViewModel.Ads.LoadStationAds(_currentStation.objectId);
+                    _currentStation.Reviews = new ReviewsListViewModel();
+                    _currentStation.Reviews.LoadReviewsForStation(_currentStation.objectId);
                 }
                 catch
                 {
@@ -56,6 +58,11 @@ namespace Donor
             catch
             {
             }
+        }
+
+        private void CreateReviewButton_Click(object sender, EventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/CreateReviewPage.xaml", UriKind.Relative));
         }
     }
 }

@@ -1,35 +1,35 @@
-﻿<xapCache source="E:\Visual Studio 2010\Projects\Donor\wp7-donor\Donor\Bin\Debug\Donor.xap" wasSigned="False" certificateThumbprint="" TimeStampUrl="" lastWriteTime="06.07.2012 1:31:54">
-  <file source="E:\Visual Studio 2010\Projects\Donor\wp7-donor\Donor\Bin\Debug\WMAppManifest.xml" archivePath="WMAppManifest.xml" lastWriteTime="12.04.2012 21:46:55" />
-  <file source="E:\Visual Studio 2010\Projects\Donor\wp7-donor\Donor\Background.png" archivePath="Background.png" lastWriteTime="12.04.2012 21:46:46" />
-  <file source="E:\Visual Studio 2010\Projects\Donor\wp7-donor\Donor\ApplicationIcon.png" archivePath="ApplicationIcon.png" lastWriteTime="12.04.2012 21:46:46" />
-  <file source="E:\Visual Studio 2010\Projects\Donor\wp7-donor\Donor\obj\Debug\Donor.dll" archivePath="Donor.dll" lastWriteTime="06.07.2012 1:31:53" />
-  <file source="E:\Visual Studio 2010\Projects\Donor\wp7-donor\packages\Coding4Fun.Phone.Controls.Complete.1.5.6\lib\sl4-windowsphone71\Coding4Fun.Phone.Controls.dll" archivePath="Coding4Fun.Phone.Controls.dll" lastWriteTime="08.06.2012 14:12:14" />
-  <file source="E:\Visual Studio 2010\Projects\Donor\wp7-donor\packages\Coding4Fun.Phone.Controls.Complete.1.5.6\lib\sl4-windowsphone71\Coding4Fun.Phone.Controls.Toolkit.dll" archivePath="Coding4Fun.Phone.Controls.Toolkit.dll" lastWriteTime="08.06.2012 14:12:14" />
+﻿<xapCache source="C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\Bin\Debug\Donor.xap" wasSigned="False" certificateThumbprint="" TimeStampUrl="" lastWriteTime="06.07.2012 11:05:46">
+  <file source="C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\Bin\Debug\WMAppManifest.xml" archivePath="WMAppManifest.xml" lastWriteTime="06.07.2012 10:22:57" />
+  <file source="C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\Background.png" archivePath="Background.png" lastWriteTime="06.07.2012 10:22:55" />
+  <file source="C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\ApplicationIcon.png" archivePath="ApplicationIcon.png" lastWriteTime="06.07.2012 10:22:55" />
+  <file source="C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\obj\Debug\Donor.dll" archivePath="Donor.dll" lastWriteTime="06.07.2012 11:05:45" />
+  <file source="C:\Users\root\Documents\GitHub\donor\wp7-donor\packages\Coding4Fun.Phone.Controls.Complete.1.5.6\lib\sl4-windowsphone71\Coding4Fun.Phone.Controls.dll" archivePath="Coding4Fun.Phone.Controls.dll" lastWriteTime="06.07.2012 10:22:59" />
+  <file source="C:\Users\root\Documents\GitHub\donor\wp7-donor\packages\Coding4Fun.Phone.Controls.Complete.1.5.6\lib\sl4-windowsphone71\Coding4Fun.Phone.Controls.Toolkit.dll" archivePath="Coding4Fun.Phone.Controls.Toolkit.dll" lastWriteTime="06.07.2012 10:22:59" />
   <file source="C:\Program Files\Microsoft SDKs\Windows Phone\v7.1\Libraries\Silverlight\Microsoft.Phone.Controls.dll" archivePath="Microsoft.Phone.Controls.dll" lastWriteTime="19.03.2012 16:29:06" />
-  <file source="E:\Visual Studio 2010\Projects\Donor\wp7-donor\packages\SilverlightToolkitWP.4.2011.12.14\lib\sl4-windowsphone71\Microsoft.Phone.Controls.Toolkit.dll" archivePath="Microsoft.Phone.Controls.Toolkit.dll" lastWriteTime="31.05.2012 10:25:40" />
-  <file source="E:\Visual Studio 2010\Projects\Donor\wp7-donor\packages\MSPToolkit.1.5.18\lib\sl4-wp71\MSPToolkit.dll" archivePath="MSPToolkit.dll" lastWriteTime="06.06.2012 9:54:55" />
-  <file source="E:\Visual Studio 2010\Projects\Donor\wp7-donor\Donor\Bin\Debug\Newtonsoft.Json.dll" archivePath="Newtonsoft.Json.dll" lastWriteTime="02.06.2012 23:49:33" />
-  <file source="E:\Visual Studio 2010\Projects\Donor\wp7-donor\Donor\libs\Parse.dll" archivePath="Parse.dll" lastWriteTime="04.06.2012 20:43:09" />
-  <file source="E:\Visual Studio 2010\Projects\Donor\wp7-donor\packages\RestSharp.103.1\lib\sl4-wp71\RestSharp.WindowsPhone.dll" archivePath="RestSharp.WindowsPhone.dll" lastWriteTime="07.06.2012 12:46:38" />
-  <file source="E:\Visual Studio 2010\Projects\Donor\wp7-donor\packages\WPExtensions.1.3.7\lib\sl4-wp71\WPExtensions.dll" archivePath="WPExtensions.dll" lastWriteTime="05.06.2012 10:58:55" />
-  <file source="E:\Visual Studio 2010\Projects\Donor\wp7-donor\Donor\icons\appbar.delete.rest.png" archivePath="icons\appbar.delete.rest.png" lastWriteTime="15.09.2011 16:33:14" />
-  <file source="E:\Visual Studio 2010\Projects\Donor\wp7-donor\Donor\icons\appbar.edit.rest.png" archivePath="icons\appbar.edit.rest.png" lastWriteTime="15.09.2011 16:33:14" />
-  <file source="E:\Visual Studio 2010\Projects\Donor\wp7-donor\Donor\icons\appbar.feature.search.rest.png" archivePath="icons\appbar.feature.search.rest.png" lastWriteTime="15.09.2011 16:33:14" />
-  <file source="E:\Visual Studio 2010\Projects\Donor\wp7-donor\Donor\icons\appbar.feature.settings.rest.png" archivePath="icons\appbar.feature.settings.rest.png" lastWriteTime="15.09.2011 16:33:14" />
-  <file source="E:\Visual Studio 2010\Projects\Donor\wp7-donor\Donor\icons\appbar.save.rest.png" archivePath="icons\appbar.save.rest.png" lastWriteTime="15.09.2011 16:33:14" />
-  <file source="E:\Visual Studio 2010\Projects\Donor\wp7-donor\Donor\icons\appbar.cancel.png" archivePath="icons\appbar.cancel.png" lastWriteTime="09.06.2012 14:41:34" />
-  <file source="E:\Visual Studio 2010\Projects\Donor\wp7-donor\Donor\images\drop.png" archivePath="images\drop.png" lastWriteTime="04.06.2012 19:37:46" />
-  <file source="E:\Visual Studio 2010\Projects\Donor\wp7-donor\Donor\images\h.png" archivePath="images\h.png" lastWriteTime="05.06.2012 11:24:07" />
-  <file source="E:\Visual Studio 2010\Projects\Donor\wp7-donor\Donor\images\x.png" archivePath="images\x.png" lastWriteTime="04.06.2012 19:37:46" />
-  <file source="E:\Visual Studio 2010\Projects\Donor\wp7-donor\Donor\Toolkit.Content\ApplicationBar.Cancel.png" archivePath="Toolkit.Content\ApplicationBar.Cancel.png" lastWriteTime="31.05.2012 10:25:41" />
-  <file source="E:\Visual Studio 2010\Projects\Donor\wp7-donor\Donor\Toolkit.Content\ApplicationBar.Check.png" archivePath="Toolkit.Content\ApplicationBar.Check.png" lastWriteTime="31.05.2012 10:25:41" />
-  <file source="E:\Visual Studio 2010\Projects\Donor\wp7-donor\Donor\Toolkit.Content\ApplicationBar.Delete.png" archivePath="Toolkit.Content\ApplicationBar.Delete.png" lastWriteTime="31.05.2012 10:25:41" />
-  <file source="E:\Visual Studio 2010\Projects\Donor\wp7-donor\Donor\Toolkit.Content\ApplicationBar.Select.png" archivePath="Toolkit.Content\ApplicationBar.Select.png" lastWriteTime="31.05.2012 10:25:41" />
-  <file source="E:\Visual Studio 2010\Projects\Donor\wp7-donor\Donor\SplashScreenImage.jpg" archivePath="SplashScreenImage.jpg" lastWriteTime="12.04.2012 21:46:46" />
-  <file source="E:\Visual Studio 2010\Projects\Donor\wp7-donor\Donor\Bin\Debug\AppManifest.xaml" archivePath="AppManifest.xaml" lastWriteTime="08.06.2012 14:17:43" />
-  <file source="E:\Visual Studio 2010\Projects\Donor\wp7-donor\Donor\Bin\Debug\icons\appbar.delete.rest.png" archivePath="icons\appbar.delete.rest.png" lastWriteTime="15.09.2011 16:33:14" />
-  <file source="E:\Visual Studio 2010\Projects\Donor\wp7-donor\Donor\Bin\Debug\icons\appbar.edit.rest.png" archivePath="icons\appbar.edit.rest.png" lastWriteTime="15.09.2011 16:33:14" />
-  <file source="E:\Visual Studio 2010\Projects\Donor\wp7-donor\Donor\Bin\Debug\icons\appbar.feature.search.rest.png" archivePath="icons\appbar.feature.search.rest.png" lastWriteTime="15.09.2011 16:33:14" />
-  <file source="E:\Visual Studio 2010\Projects\Donor\wp7-donor\Donor\Bin\Debug\icons\appbar.feature.settings.rest.png" archivePath="icons\appbar.feature.settings.rest.png" lastWriteTime="15.09.2011 16:33:14" />
-  <file source="E:\Visual Studio 2010\Projects\Donor\wp7-donor\Donor\Bin\Debug\icons\appbar.save.rest.png" archivePath="icons\appbar.save.rest.png" lastWriteTime="15.09.2011 16:33:14" />
+  <file source="C:\Users\root\Documents\GitHub\donor\wp7-donor\packages\SilverlightToolkitWP.4.2011.12.14\lib\sl4-windowsphone71\Microsoft.Phone.Controls.Toolkit.dll" archivePath="Microsoft.Phone.Controls.Toolkit.dll" lastWriteTime="06.07.2012 10:23:03" />
+  <file source="C:\Users\root\Documents\GitHub\donor\wp7-donor\packages\MSPToolkit.1.5.18\lib\sl4-wp71\MSPToolkit.dll" archivePath="MSPToolkit.dll" lastWriteTime="06.07.2012 10:23:00" />
+  <file source="C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\Bin\Debug\Newtonsoft.Json.dll" archivePath="Newtonsoft.Json.dll" lastWriteTime="06.07.2012 10:22:56" />
+  <file source="C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\libs\Parse.dll" archivePath="Parse.dll" lastWriteTime="06.07.2012 10:22:57" />
+  <file source="C:\Users\root\Documents\GitHub\donor\wp7-donor\packages\RestSharp.103.1\lib\sl4-wp71\RestSharp.WindowsPhone.dll" archivePath="RestSharp.WindowsPhone.dll" lastWriteTime="06.07.2012 10:23:02" />
+  <file source="C:\Users\root\Documents\GitHub\donor\wp7-donor\packages\WPExtensions.1.3.7\lib\sl4-wp71\WPExtensions.dll" archivePath="WPExtensions.dll" lastWriteTime="06.07.2012 10:23:03" />
+  <file source="C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\icons\appbar.delete.rest.png" archivePath="icons\appbar.delete.rest.png" lastWriteTime="06.07.2012 10:37:44" />
+  <file source="C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\icons\appbar.edit.rest.png" archivePath="icons\appbar.edit.rest.png" lastWriteTime="06.07.2012 10:37:45" />
+  <file source="C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\icons\appbar.feature.search.rest.png" archivePath="icons\appbar.feature.search.rest.png" lastWriteTime="06.07.2012 10:37:45" />
+  <file source="C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\icons\appbar.feature.settings.rest.png" archivePath="icons\appbar.feature.settings.rest.png" lastWriteTime="06.07.2012 10:37:45" />
+  <file source="C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\icons\appbar.save.rest.png" archivePath="icons\appbar.save.rest.png" lastWriteTime="06.07.2012 10:37:45" />
+  <file source="C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\icons\appbar.cancel.png" archivePath="icons\appbar.cancel.png" lastWriteTime="06.07.2012 10:37:44" />
+  <file source="C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\images\drop.png" archivePath="images\drop.png" lastWriteTime="06.07.2012 10:22:57" />
+  <file source="C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\images\h.png" archivePath="images\h.png" lastWriteTime="06.07.2012 10:22:57" />
+  <file source="C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\images\x.png" archivePath="images\x.png" lastWriteTime="06.07.2012 10:22:57" />
+  <file source="C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\Toolkit.Content\ApplicationBar.Cancel.png" archivePath="Toolkit.Content\ApplicationBar.Cancel.png" lastWriteTime="06.07.2012 10:22:57" />
+  <file source="C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\Toolkit.Content\ApplicationBar.Check.png" archivePath="Toolkit.Content\ApplicationBar.Check.png" lastWriteTime="06.07.2012 10:22:57" />
+  <file source="C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\Toolkit.Content\ApplicationBar.Delete.png" archivePath="Toolkit.Content\ApplicationBar.Delete.png" lastWriteTime="06.07.2012 10:22:57" />
+  <file source="C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\Toolkit.Content\ApplicationBar.Select.png" archivePath="Toolkit.Content\ApplicationBar.Select.png" lastWriteTime="06.07.2012 10:22:57" />
+  <file source="C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\SplashScreenImage.jpg" archivePath="SplashScreenImage.jpg" lastWriteTime="06.07.2012 10:22:57" />
+  <file source="C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\Bin\Debug\AppManifest.xaml" archivePath="AppManifest.xaml" lastWriteTime="06.07.2012 10:37:51" />
+  <file source="C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\Bin\Debug\icons\appbar.delete.rest.png" archivePath="icons\appbar.delete.rest.png" lastWriteTime="06.07.2012 10:37:44" />
+  <file source="C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\Bin\Debug\icons\appbar.edit.rest.png" archivePath="icons\appbar.edit.rest.png" lastWriteTime="06.07.2012 10:37:45" />
+  <file source="C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\Bin\Debug\icons\appbar.feature.search.rest.png" archivePath="icons\appbar.feature.search.rest.png" lastWriteTime="06.07.2012 10:37:45" />
+  <file source="C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\Bin\Debug\icons\appbar.feature.settings.rest.png" archivePath="icons\appbar.feature.settings.rest.png" lastWriteTime="06.07.2012 10:37:45" />
+  <file source="C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\Bin\Debug\icons\appbar.save.rest.png" archivePath="icons\appbar.save.rest.png" lastWriteTime="06.07.2012 10:37:45" />
 </xapCache>
