@@ -71,3 +71,23 @@ E:\Visual Studio 2010\Projects\Donor\wp7-donor\Donor\obj\Debug\ProfilePage.g.i.c
 E:\Visual Studio 2010\Projects\Donor\wp7-donor\Donor\obj\Debug\StationPage.g.i.cs
 E:\Visual Studio 2010\Projects\Donor\wp7-donor\Donor\obj\Debug\StationsSearch.g.i.cs
 E:\Visual Studio 2010\Projects\Donor\wp7-donor\Donor\obj\Debug\StationsSearchFilter.g.i.cs
+C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\obj\Debug\Donor.csprojResolveAssemblyReference.cache
+C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\obj\Debug\App.g.i.cs
+C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\obj\Debug\AdsList.g.i.cs
+C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\obj\Debug\AdsPage.g.i.cs
+C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\obj\Debug\CalendarMonthPage.g.i.cs
+C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\obj\Debug\CalendarYearPage.g.i.cs
+C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\obj\Debug\Controls\DayInCalendarControl.g.i.cs
+C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\obj\Debug\Controls\MonthCalendar.g.i.cs
+C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\obj\Debug\EventPage.g.i.cs
+C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\obj\Debug\HelpPage.g.i.cs
+C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\obj\Debug\NewsList.g.i.cs
+C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\obj\Debug\EventEditPage.g.i.cs
+C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\obj\Debug\MainPage.g.i.cs
+C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\obj\Debug\NewsPage.g.i.cs
+C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\obj\Debug\ProfileLogin.g.i.cs
+C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\obj\Debug\ProfilePage.g.i.cs
+C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\obj\Debug\StationPage.g.i.cs
+C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\obj\Debug\StationsSearch.g.i.cs
+C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\obj\Debug\Donor.dll
+C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\obj\Debug\Donor.pdb
