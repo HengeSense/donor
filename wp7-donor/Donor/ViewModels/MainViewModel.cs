@@ -42,6 +42,7 @@ namespace Donor
             Stations = new StationsLitViewModel();
             Ads = new AdsListViewModel();
             User = new DonorUser();
+            Reviews = new ReviewsListViewModel();
             
             this.LoadFromIsolatedStorage();
         }
@@ -51,6 +52,7 @@ namespace Donor
         /// </summary>
         public ObservableCollection<ItemViewModel> Items { get; private set; }
 
+        public ReviewsListViewModel Reviews { get; set; }
         public NewsListViewModel News { get; set; }
         public AdsListViewModel Ads { get; set; }
         public EventsListViewModel Events { get; set; }

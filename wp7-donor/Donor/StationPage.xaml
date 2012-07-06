@@ -13,6 +13,7 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait"  Orientation="Portrait"
     xmlns:WPExtensions="clr-namespace:WPExtensions;assembly=WPExtensions"
+    
     shell:SystemTray.IsVisible="False" Loaded="PhoneApplicationPage_Loaded">
 
     <!--LayoutRoot contains the root grid where all other page content is placed-->
@@ -69,13 +70,21 @@
             <controls:PanoramaItem Header="Отзывы">
                 <Grid>
                     <ScrollViewer>
-                        <ListBox Name="StationReviews" ItemsSource="{Binding Reviews.Items}">
+                        <ListBox 
+                            Name="StationReviews" 
+                            ItemsSource="{Binding Reviews.Items}">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
-                                    <StackPanel>
-                                        <TextBlock Text="{Binding Username}"/>
-                                        <TextBlock Text="{Binding Vote}"/>
-                                        <TextBlock Text="{Binding Body}"/>
+                                    <StackPanel Margin="">
+
+<TextBlock Text="{Binding Username}" Style="{StaticResource PhoneTextTitle3Style}" />
+                                        
+<StackPanel Orientation="Horizontal">
+<TextBlock Text="Оценка: "/>
+<!--<TextBlock Text="{Binding Vote}"/>-->
+</StackPanel>
+                                        
+                                        <TextBlock Text="{Binding Body}" Margin="0,6" />
                                     </StackPanel>
                                 </DataTemplate>
                             </ListBox.ItemTemplate>

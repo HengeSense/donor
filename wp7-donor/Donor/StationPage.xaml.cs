@@ -11,6 +11,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using Donor.ViewModels;
+using System.Collections.ObjectModel;
 
 namespace Donor
 {
@@ -34,8 +35,9 @@ namespace Donor
                     DataContext = _currentStation;
 
                     this.StationAds.ItemsSource = App.ViewModel.Ads.LoadStationAds(_currentStation.objectId);
-                    _currentStation.Reviews = new ReviewsListViewModel();
-                    _currentStation.Reviews.LoadReviewsForStation(_currentStation.objectId);
+                    App.ViewModel.Reviews.LoadReviewsForStation(_currentStation.objectId);
+
+                    App.ViewModel.Reviews.ReviewsLoaded += new ReviewsListViewModel.ReviewsLoadedEventHandler(this.ReviewsLoaded);
                 }
                 catch
                 {
@@ -45,6 +47,24 @@ namespace Donor
             else
             {
                 NavigationService.GoBack();
+            };
+        }
+
+        private void ReviewsLoaded(object sender, EventArgs e)
+        {
+            try
+            {
+                //this.StationReviews.ItemsSource = App.ViewModel.Reviews.Items;
+                ObservableCollection<ReviewsViewModel> reviewslist1 = new ObservableCollection<ReviewsViewModel>();
+                reviewslist1 = App.ViewModel.Reviews.Items;
+
+                /*Deployment.Current.Dispatcher.BeginInvoke(() =>
+                    {
+                        this.StationReviews.ItemsSource = reviewslist1;
+                    });*/
+            }
+            catch
+            {
             };
         }
 

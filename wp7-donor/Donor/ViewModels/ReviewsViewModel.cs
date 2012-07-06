@@ -23,6 +23,14 @@ namespace Donor.ViewModels
             this.Items = new ObservableCollection<ReviewsViewModel>();
         }
 
+        public delegate void ReviewsLoadedEventHandler(object sender, EventArgs e);
+        public event ReviewsLoadedEventHandler ReviewsLoaded;
+        protected virtual void OnReviewsLoaded(EventArgs e)
+        {
+            if (ReviewsLoaded != null)
+                ReviewsLoaded(this, e);
+        }
+
         /// <summary>
         /// Загружаем список отзывов о станции, с идентификатором,
         /// соответствующим первому параметру
@@ -44,13 +52,23 @@ namespace Donor.ViewModels
                     ObservableCollection<ReviewsViewModel> reviewslist1 = new ObservableCollection<ReviewsViewModel>();
                     JObject o = JObject.Parse(response.Content.ToString());
                     reviewslist1 = JsonConvert.DeserializeObject<ObservableCollection<ReviewsViewModel>>(o["results"].ToString());
-                    this.Items = reviewslist1;                    
+                    
+                    Deployment.Current.Dispatcher.BeginInvoke(() =>
+                    {
+                        this.Items = reviewslist1;
+                        this.NotifyPropertyChanged("Items");
+                        
+                        this.OnReviewsLoaded(EventArgs.Empty);
+                    });
                 }
                 catch
                 {
                 };
-                this.NotifyPropertyChanged("Items");
+                
             });
+            this.NotifyPropertyChanged("Items");
+            //this.OnReviewsLoaded(EventArgs.Empty);
+            
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

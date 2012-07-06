@@ -143,7 +143,7 @@ namespace Donor.ViewModels
             set { _title = value; }
         }
 
-        public ReviewsListViewModel Reviews { get; set; }
+        //public ReviewsListViewModel Reviews { get; set; }
 
         /// <summary>
         /// City name for station
