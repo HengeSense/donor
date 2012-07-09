@@ -113,6 +113,33 @@ namespace Donor.ViewModels
             Items = new ObservableCollection<EventViewModel>();
         }
 
+        public int FutureEventsCount()
+        {
+            int count = 0;
+            count =      (from item in this.Items
+                          where (item.Date >= DateTime.Now) && (item.Type == "1") && (item.Type == "0")
+                         orderby item.Date ascending select item).Count();
+            return count;
+        }
+
+        public EventViewModel NearestEvents()
+        {
+            var item_near2 = (from item in this.Items
+                     where (item.Date >= DateTime.Now) && (item.Type == "1") && (item.Type == "0")
+                     orderby item.Date ascending
+                     select item).Take(1);
+            return item_near2.FirstOrDefault();
+        }
+
+        public EventViewModel NearestEventsAll()
+        {
+            var item_near2 = (from item in this.Items
+                              where (item.Date >= DateTime.Now)
+                              orderby item.Date ascending
+                              select item).Take(1);
+            return item_near2.FirstOrDefault();
+        }
+
         public void LoadDonorsSaturdays()
         {
             var client = new RestClient("https://api.parse.com");

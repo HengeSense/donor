@@ -23,6 +23,9 @@ using System.Windows.Resources;
 using System.Windows.Threading;
 using Newtonsoft.Json.Linq;
 using RestSharp;
+using Microsoft.Phone.Shell;
+using System.Linq;
+using System.Globalization;
 
 namespace Donor
 {   
@@ -65,6 +68,52 @@ namespace Donor
             private set;
         }
 
+        public void CreateApplicationTile(EventViewModel eventData)
+        {
+            var appTile = ShellTile.ActiveTiles.FirstOrDefault();
+
+            if (appTile != null)
+            {
+                StandardTileData standardTile;
+                if (eventData != null)
+                {
+                    standardTile = new StandardTileData
+                    {
+                        Title = "Доноры",
+                        Count = App.ViewModel.Events.Items.Count(),
+                        BackTitle = eventData.Date.ToShortDateString(),
+                        //BackBackgroundImage = new Uri("Images/ApplicationTileIcon.jpg", UriKind.Relative),
+                        BackContent = eventData.Title
+                        //new CultureInfo("ru-RU")
+                    };
+                }
+                else
+                {
+                    if (App.ViewModel.Events.NearestEventsAll() != null)
+                    {
+                        standardTile = new StandardTileData
+                        {
+                            Title = "Доноры",
+                            Count = App.ViewModel.Events.Items.Count(),
+                            BackTitle = App.ViewModel.Events.NearestEventsAll().Date.ToShortDateString(),
+                            BackContent = App.ViewModel.Events.NearestEventsAll().Title.ToString()
+                        };
+                    }
+                    else
+                    {
+                        standardTile = new StandardTileData
+                        {
+                            Title = "Доноры",
+                            Count = App.ViewModel.Events.Items.Count(),
+                            BackContent = "Нет событий",
+                        };
+                    };
+                };
+
+                appTile.Update(standardTile);
+            }
+        }
+
         /// <summary>
         /// Creates and adds a few ItemViewModel objects into the Items collection.
         /// </summary>
@@ -74,7 +123,7 @@ namespace Donor
             
             bw.DoWork += delegate
             {
-            System.Threading.Thread.Sleep(500);
+            System.Threading.Thread.Sleep(700);
 
                 Deployment.Current.Dispatcher.BeginInvoke(() =>
                 {
@@ -97,6 +146,8 @@ namespace Donor
                     App.ViewModel.News.LoadNews();
                     App.ViewModel.Ads.LoadAds();
                     this.NotifyPropertyChanged("News");
+
+                    CreateApplicationTile(App.ViewModel.Events.NearestEvents());
                 });
 
 
