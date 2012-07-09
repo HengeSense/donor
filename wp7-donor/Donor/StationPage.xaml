@@ -75,13 +75,13 @@
                             ItemsSource="{Binding Reviews.Items}">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
-                                    <StackPanel Margin="">
+                                    <StackPanel Margin="0,10,0,0">
 
-<TextBlock Text="{Binding Username}" Style="{StaticResource PhoneTextTitle3Style}" />
+<TextBlock Text="{Binding Username}" Style="{StaticResource PhoneTextTitle2Style}" />
                                         
 <StackPanel Orientation="Horizontal">
 <TextBlock Text="Оценка: "/>
-<!--<TextBlock Text="{Binding Vote}"/>-->
+<TextBlock Text="{Binding Vote}"/>
 </StackPanel>
                                         
                                         <TextBlock Text="{Binding Body}" Margin="0,6" />

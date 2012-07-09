@@ -54,14 +54,10 @@ namespace Donor
         {
             try
             {
-                //this.StationReviews.ItemsSource = App.ViewModel.Reviews.Items;
                 ObservableCollection<ReviewsViewModel> reviewslist1 = new ObservableCollection<ReviewsViewModel>();
                 reviewslist1 = App.ViewModel.Reviews.Items;
 
-                /*Deployment.Current.Dispatcher.BeginInvoke(() =>
-                    {
-                        this.StationReviews.ItemsSource = reviewslist1;
-                    });*/
+                this.StationReviews.ItemsSource = App.ViewModel.Reviews.Items;
             }
             catch
             {

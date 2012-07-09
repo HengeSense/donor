@@ -90,12 +90,9 @@ C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\obj\Debug\StationPage.g.i.c
 C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\obj\Debug\StationsSearch.g.i.cs
 C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\obj\Debug\Donor.dll
 C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\obj\Debug\Donor.pdb
-C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\obj\Debug\ResolveAssemblyReference.cache
 C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\obj\Debug\StationsSearchFilter.g.i.cs
 C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\obj\Debug\Donor.g.resources
 C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\obj\Debug\Donor.Resources.AppResources.resources
-C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\obj\Debug\GenerateResource.read.1.tlog
-C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\obj\Debug\GenerateResource.write.1.tlog
 C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\Bin\Debug\ApplicationIcon.png
 C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\Bin\Debug\Background.png
 C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\Bin\Debug\icons\appbar.delete.rest.png
@@ -120,3 +117,5 @@ C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\Bin\Debug\AppManifest.xaml
 C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\Bin\Debug\Donor.xap
 C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\obj\Debug\XapCacheFile.xml
 C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\obj\Debug\CreateReviewPage.g.i.cs
+C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\obj\Debug\Donor.csprojResolveAssemblyReference.cache
+C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\obj\Debug\Donor.csproj.GenerateResource.Cache
