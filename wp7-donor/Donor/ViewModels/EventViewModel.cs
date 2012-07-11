@@ -16,6 +16,7 @@ using System.Globalization;
 using RestSharp;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Microsoft.Phone.Scheduler;
 
 namespace Donor.ViewModels
 {
@@ -54,7 +55,7 @@ namespace Donor.ViewModels
         public string GiveType { get; set; }
         public string Place { get; set; }
 
-        public string Reminder { get; set; }
+        public string ReminderDate { get; set; }
         public bool ReminderMessage { get; set; }
 
         private bool _finished = false;
@@ -103,6 +104,23 @@ namespace Donor.ViewModels
                 return _time.ToShortTimeString();
             }
             private set { }
+        }
+
+        public void AddReminder() {
+            Reminder objReminder = ScheduledActionService.Find(this.Id) as Reminder;
+            if (objReminder != null)
+                ScheduledActionService.Remove(this.Id);
+            objReminder = new Reminder(this.Id);
+            DateTime RememberDate = this.Date;
+            RememberDate = RememberDate.AddSeconds((this.Time.Hour * 60 * 60) + (this.Time.Minute * 60) + (this.Time.Second));
+
+            objReminder.BeginTime = RememberDate;
+            
+            //DateTime.Now.AddSeconds(10);
+            objReminder.Title = this.GiveType;
+            //objReminder.Content = "Its time for WindowsPhoneRocks.com Article";
+            objReminder.NavigationUri = new Uri("/EventPage.xaml?id="+this.Id, UriKind.Relative);
+            ScheduledActionService.Add(objReminder);
         }
     }
 

@@ -26,6 +26,8 @@ using RestSharp;
 using Microsoft.Phone.Shell;
 using System.Linq;
 using System.Globalization;
+using Microsoft.Phone.Scheduler;
+
 
 namespace Donor
 {   
@@ -50,10 +52,14 @@ namespace Donor
             this.LoadFromIsolatedStorage();
         }
 
+
         /// <summary>
         /// A collection for ItemViewModel objects.
         /// </summary>
         public ObservableCollection<ItemViewModel> Items { get; private set; }
+
+        //PeriodicTask periodicTask;
+        //string periodicTaskName = "PeriodicAgent";
 
         public ReviewsListViewModel Reviews { get; set; }
         public NewsListViewModel News { get; set; }
@@ -82,9 +88,7 @@ namespace Donor
                         Title = "Доноры",
                         Count = App.ViewModel.Events.Items.Count(),
                         BackTitle = eventData.Date.ToShortDateString(),
-                        //BackBackgroundImage = new Uri("Images/ApplicationTileIcon.jpg", UriKind.Relative),
                         BackContent = eventData.Title
-                        //new CultureInfo("ru-RU")
                     };
                 }
                 else
@@ -134,13 +138,6 @@ namespace Donor
                     this.NotifyPropertyChanged("Events");
                 });
 
-                /*if (this.News.Items.Count == 0)
-                {
-                    ObservableCollection<NewsViewModel> newslist1 = new ObservableCollection<NewsViewModel>();
-                    newslist1.Add(new NewsViewModel() { Title = "runtime one", Description = "Maecenas praesent accumsan bibendum", Id = "1", Date = DateTime.Parse("6/10/2012 12:00:00 AM") });
-                    newslist1.Add(new NewsViewModel() { Title = "runtime two", Description = "Dictumst eleifend facilisi faucibus", Id = "2", Date = DateTime.Parse("5/12/2012 12:00:00 AM") });
-                    newslist1.Add(new NewsViewModel() { Title = "runtime three", Description = "Habitant inceptos interdum lobortis", Id = "3", Date = DateTime.Parse("6/12/2012 12:00:00 AM") });
-                };*/
                 Deployment.Current.Dispatcher.BeginInvoke(() =>
                 {
                     App.ViewModel.News.LoadNews();
@@ -348,9 +345,21 @@ namespace Donor
                 };
 
             };
-            bw.RunWorkerAsync();
-            
+            bw.RunWorkerAsync();            
         }
+
+        private void RemoveAgent(string name)
+        {
+            try
+            {
+                ScheduledActionService.Remove(name);
+
+            }
+            catch (Exception)
+            {
+            }
+        }
+
 
         public event PropertyChangedEventHandler PropertyChanged;
         private void NotifyPropertyChanged(String propertyName)

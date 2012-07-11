@@ -51,9 +51,9 @@ namespace Donor
                 };
                 this.EventType.SelectedItem = CurrentEvent.Type.ToString();
                 this.GiveType.SelectedItem = CurrentEvent.GiveType.ToString();
-                if ((CurrentEvent.Reminder.ToString() != "") && (CurrentEvent.Reminder.ToString() != null))
+                if ((CurrentEvent.ReminderDate.ToString() != "") && (CurrentEvent.ReminderDate.ToString() != null))
                 {
-                this.GiveType.SelectedItem = CurrentEvent.Reminder.ToString();
+                    this.GiveType.SelectedItem = CurrentEvent.ReminderDate.ToString();
                 };
             }
             catch
@@ -122,11 +122,13 @@ namespace Donor
 
                 if (this.EventType.SelectedItem.ToString() == "Анализ")
                 {
-                    CurrentEvent.Reminder = this.ReminderPeriod.SelectedItem.ToString();
+                    CurrentEvent.ReminderDate = this.ReminderPeriod.SelectedItem.ToString();
                     CurrentEvent.ReminderMessage = this.KnowAboutResults.IsChecked.Value;
                 };
 
                 CurrentEvent.Image = "/images/drop.png";
+
+                CurrentEvent.AddReminder();
 
                 App.ViewModel.Events.Items.Add(CurrentEvent);
                 NavigationService.GoBack();
