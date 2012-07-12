@@ -7,6 +7,9 @@
     xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit" 
+    DataContext="{Binding Path=App.ViewModel,Source=App.ViewModel}"
+    xmlns:msp="clr-namespace:MSPToolkit.Controls;assembly=MSPToolkit" 
     mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="800"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -16,17 +19,135 @@
 
     <!--LayoutRoot contains the root grid where all other page content is placed-->
     <Grid x:Name="LayoutRoot">
-        <controls:Panorama Title="Помощь">
+        <controls:Panorama>
+            <controls:Panorama.Title>
+                <TextBlock Margin="0,80,0,0" Text="Справка" FontSize="24" />
+                
+            </controls:Panorama.Title>
 
             <!--Panorama item one-->
-            <controls:PanoramaItem Header="item1">
-                <Grid/>
+            <controls:PanoramaItem Header="Задать вопросов">
+                <Grid>
+                    <StackPanel>
+                        <StackPanel>
+                        <TextBlock Style="{StaticResource PhoneTextTitle2Style}" Text="Телефон"/>
+                            <TextBlock Name="PhoneNumber" Text="+7 (495) 471-71-36" Tap="PhoneNumber_Tap" Style="{StaticResource PhoneTextTitle2Style}" />
+                        </StackPanel>
+
+                    <StackPanel>
+                            <TextBlock Style="{StaticResource PhoneTextTitle2Style}" Text="E-mail"  />
+                            <TextBlock Name="Email" Text="info@donors.ru" Style="{StaticResource PhoneTextTitle2Style}" Tap="TextBlock_Tap"/>
+                    </StackPanel>
+
+                        <StackPanel>
+                            <TextBlock Style="{StaticResource PhoneTextTitle2Style}" Text="Сайт"  />
+                            <TextBlock Name="Site" Text="http://podari-zhizn.ru" Style="{StaticResource PhoneTextTitle2Style}" Tap="Site_Tap" />
+                        </StackPanel>
+
+                    </StackPanel>
+                </Grid>
             </controls:PanoramaItem>
 
             <!--Panorama item two-->
-            <controls:PanoramaItem Header="item2">
-                <Grid/>
+            <controls:PanoramaItem Header="Рекомендации">
+                <Grid>
+                    <StackPanel>
+                        <ScrollViewer Height="600">
+                            <StackPanel>
+
+                                <TextBlock Text="Перед сдачей крови" Style="{StaticResource PhoneTextTitle2Style}"/>
+                                <msp:HTMLViewer ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                                    &lt;ul&gt;
+                                    &lt;li&gt;Не приходите сдавать кровь, если вы чувствуете недомогание (озноб, головокружение, головную боль, слабость).&lt;/li&gt;
+                                    &lt;li&gt;Не курите за час до донации.&lt;/li&gt;
+                                    &lt;li&gt;Не принимайте алкоголь за 48 часов до донации.&lt;/li&gt;
+                                    &lt;li&gt;Обязательно выспитесь и съешьте легкий завтрак (сладкий чай, сухое печенье, каша на воде).&lt;/li&gt;
+                                    &lt;li&gt;Старайтесь ограничить прием жирной и жареной пищи накануне сдачи крови.&lt;/li&gt;
+                                    &lt;li&gt;За три дня до донации откажитесь от приема анальгетиков и аспирина, а также содержащих их лекарств (эти вещества ухудшают свертываемость крови).&lt;/li&gt;
+                                    &lt;li&gt;Во время осмотра врачом перед донацией откровенно отвечайте на его вопросы и не скрывайте информацию о принятых лекарствах и перенесенных заболеваниях.&lt;/li&gt;
+                                &lt;/ul&gt;
+                                </msp:HTMLViewer>
+
+                                <TextBlock Text="После сдачи крови" Style="{StaticResource PhoneTextTitle2Style}"/>
+                                
+<msp:HTMLViewer ScrollViewer.VerticalScrollBarVisibility="Disabled">
+&lt;ul&gt;
+&lt;li&gt;10–15 минут посидите спокойно и, если вы хорошо себя чувствуете (не испытываете слабости или головокружения), пройдите в буфет и выпейте сладкий чай.&lt;/li&gt;
+&lt;li&gt;Если вы почувствовали головокружение, обратитесь к медперсоналу. Самый простой способ помочь себе – лечь и поднять ноги выше головы или сесть и опустить голову между колен. Ни в коем случае не пытайтесь идти или вести машину, если у вас кружится голова!&lt;/li&gt;
+&lt;li&gt;В течение 3–4 часов не снимайте повязку и старайтесь ее не мочить. Это убережет вас от возникновения синяка (если синяк появился, на ночь сделайте повязку с гепариновой мазью и/или троксевазином).&lt;/li&gt;                          &lt;li&gt;Избегайте в этот день тяжелых физических и спортивных нагрузок, подъема тяжестей, в том числе и сумок с покупками.&lt;/li&gt;
+&lt;li&gt;Полноценно и регулярно питайтесь в течение 2 суток после донации и выпивайте не менее 2 литров жидкости в день: соки, воду, некрепкий чай (алкоголь не рекомендуется).&lt;/li&gt;
+&lt;/ul&gt;
+                                </msp:HTMLViewer>
+                            </StackPanel>
+                        </ScrollViewer>
+                    </StackPanel>
+                </Grid>
             </controls:PanoramaItem>
+
+            <controls:PanoramaItem Header="Противопоказания">
+                <Grid>                    
+                    <StackPanel>
+                        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="0">
+                            <toolkit:AutoCompleteBox Name="ContraSearchText" FilterMode="Contains" ValueMemberPath="Title" Populating="StationsSearchText_Populating">
+                                <toolkit:AutoCompleteBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="{Binding Title}"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </toolkit:AutoCompleteBox.ItemTemplate>
+                            </toolkit:AutoCompleteBox>
+
+                        </StackPanel>
+                        <ScrollViewer Height="550">
+                            <StackPanel>
+
+<ListBox Name="SearchContra" ScrollViewer.VerticalScrollBarVisibility="Disabled" >                                    <ListBox.ItemTemplate>                              <DataTemplate>                            <StackPanel Margin="0,0,0,15">                      <TextBlock Text="{Binding Title}" TextWrapping="Wrap"/>
+</StackPanel>
+</DataTemplate>
+</ListBox.ItemTemplate>
+</ListBox>
+
+                                <TextBlock Text="Абсолютные противопоказания" Style="{StaticResource PhoneTextTitle2Style}" TextWrapping="Wrap" Tap="TextBlock_Tap_1" />
+
+<ListBox Name="AbsContra" ItemsSource="{Binding Contras.Items}" Visibility="Collapsed" ScrollViewer.VerticalScrollBarVisibility="Disabled" >                                    <ListBox.ItemTemplate>                              <DataTemplate>                            <StackPanel Margin="0,0,0,15">      
+<TextBlock Text="{Binding Title}" TextWrapping="Wrap"/>                    
+</StackPanel>
+</DataTemplate>
+</ListBox.ItemTemplate>
+</ListBox>
+                                <TextBlock Text="Временные противопоказания" Style="{StaticResource PhoneTextTitle2Style}" TextWrapping="Wrap" Name="RelText" Tap="RelText_Tap" />
+
+<ListBox Name="RelativeContra" ItemsSource="{Binding Contras.Items}" Visibility="Collapsed" ScrollViewer.VerticalScrollBarVisibility="Disabled" >                                    <ListBox.ItemTemplate>
+<DataTemplate>                                      <StackPanel Margin="0,0,0,15">                <TextBlock Text="{Binding Title}" TextWrapping="Wrap"/>
+</StackPanel>
+</DataTemplate>
+</ListBox.ItemTemplate>
+</ListBox>
+
+                            </StackPanel>
+                        </ScrollViewer>
+                    </StackPanel>
+                </Grid>
+            </controls:PanoramaItem>
+
+            <controls:PanoramaItem Header="Памятка">
+                <Grid>  
+                    <ScrollViewer Height="600">                 
+                    <StackPanel>
+                            <msp:HTMLViewer ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                                &lt;ul&gt;
+&lt;li&gt;10–15 минут посидите спокойно и, если вы хорошо себя чувствуете (не испытываете слабости или головокружения), пройдите в буфет и выпейте сладкий чай.&lt;/li&gt;
+&lt;li&gt;Если вы почувствовали головокружение, обратитесь к медперсоналу. Самый простой способ помочь себе – лечь и поднять ноги выше головы или сесть и опустить голову между колен. Ни в коем случае не пытайтесь идти или вести машину, если у вас кружится голова!&lt;/li&gt;
+&lt;li&gt;В течение 3–4 часов не снимайте повязку и старайтесь ее не мочить. Это убережет вас от возникновения синяка (если синяк появился, на ночь сделайте повязку с гепариновой мазью и/или троксевазином).&lt;/li&gt;                          &lt;li&gt;Избегайте в этот день тяжелых физических и спортивных нагрузок, подъема тяжестей, в том числе и сумок с покупками.&lt;/li&gt;
+&lt;li&gt;Полноценно и регулярно питайтесь в течение 2 суток после донации и выпивайте не менее 2 литров жидкости в день: соки, воду, некрепкий чай (алкоголь не рекомендуется).&lt;/li&gt;
+&lt;/ul&gt;
+                            </msp:HTMLViewer>
+                        </StackPanel>
+                    </ScrollViewer>
+                </Grid>
+            </controls:PanoramaItem>
+
         </controls:Panorama>
     </Grid>
 

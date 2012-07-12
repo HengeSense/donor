@@ -149,6 +149,7 @@
       <DependentUpon>StationsSearchFilter.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\AdsViewModel.cs" />
+    <Compile Include="ViewModels\ContraViewModel.cs" />
     <Compile Include="ViewModels\ReviewsViewModel.cs" />
     <Compile Include="ViewModels\EventViewModel.cs" />
     <Compile Include="ViewModels\ItemViewModel.cs" />

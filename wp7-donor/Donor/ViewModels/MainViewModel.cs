@@ -48,6 +48,7 @@ namespace Donor
             Ads = new AdsListViewModel();
             User = new DonorUser();
             Reviews = new ReviewsListViewModel();
+            Contras = new ContraListViewModel();
             
             this.LoadFromIsolatedStorage();
         }
@@ -67,6 +68,7 @@ namespace Donor
         public EventsListViewModel Events { get; set; }
         public StationsLitViewModel Stations { get; set; }
         public DonorUser User { get; set; }
+        public ContraListViewModel Contras { get; set; }
 
         public bool IsDataLoaded
         {
@@ -142,6 +144,7 @@ namespace Donor
                 {
                     App.ViewModel.News.LoadNews();
                     App.ViewModel.Ads.LoadAds();
+                    App.ViewModel.Contras.LoadContras();
                     this.NotifyPropertyChanged("News");
 
                     CreateApplicationTile(App.ViewModel.Events.NearestEvents());
