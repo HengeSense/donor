@@ -254,8 +254,17 @@
     <Content Include="Background.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Resource Include="images\ic_menu_ads_normal.png" />
+    <Resource Include="images\ic_menu_calendar_normal.png" />
+    <Resource Include="images\ic_menu_information_normal.png" />
+    <Resource Include="images\ic_menu_news_normal.png" />
+    <Resource Include="images\ic_menu_profile_normal.png" />
+    <Resource Include="images\ic_menu_stantion_normal.png" />
     <Resource Include="images\logo.png" />
     <Resource Include="bg.png" />
+    <Resource Include="bg_04.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Content Include="icons\appbar.delete.rest.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

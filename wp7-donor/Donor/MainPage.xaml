@@ -36,15 +36,73 @@
             <!--Panorama item one-->
             <controls:PanoramaItem>
                 <controls:PanoramaItem.Header>
-                    <TextBlock Margin="0,-20,0,0" Text="Меню"/>
+                    <TextBlock 
+					Margin="0,0,0,0" Text="Меню" 
+					Style="{StaticResource Text48pxDFB08B}"/>
                 </controls:PanoramaItem.Header>
                 <StackPanel>
-                    <TextBlock Margin="0,4" Text="Календарь" TextWrapping="Wrap" Name="CalendarMenuText"  Style="{StaticResource PhoneTextExtraLargeStyle}" Tap="CalendarMenuText_Tap" />
-                    <TextBlock Margin="0,4" Text="Станции" TextWrapping="Wrap" Name="StationsMenu" Style="{StaticResource PhoneTextExtraLargeStyle}" Tap="Stations_Tap" />
-                    <TextBlock Margin="0,4" Text="Объявления" TextWrapping="Wrap" Name="adsMenuText" Style="{StaticResource PhoneTextExtraLargeStyle}" Tap="adsMenuText_Tap" />
-                    <TextBlock Margin="0,4" Text="Новости" TextWrapping="Wrap" Name="NewMenuItem" Style="{StaticResource PhoneTextExtraLargeStyle}" Tap="NewMenuItem_Tap" />
-                    <TextBlock Margin="0,4" Text="Справка" TextWrapping="Wrap" Name="HelpMenuText" Style="{StaticResource PhoneTextExtraLargeStyle}" Tap="HelpMenuText_Tap" />
-                    <TextBlock Margin="0,4" Text="Профиль" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}" Tap="TextBlock_Tap_1" />
+                	<StackPanel Orientation="Horizontal">
+                		<Image Height="64" Width="64" 
+						Source="images/ic_menu_calendar_normal.png"/>  
+                		<TextBlock Margin="0,15,0,0" Text="Календарь" 
+						TextWrapping="Wrap" Name="CalendarMenuText"  
+						Style="{StaticResource Text30pxCBB2A3}" 
+						Tap="CalendarMenuText_Tap" />                		        	
+					</StackPanel>
+                    
+					<StackPanel Orientation="Horizontal">
+						<Image Height="64" Width="64" 
+						Source="images/ic_menu_stantion_normal.png"/> 
+                    	<TextBlock Margin="0,15,0,0" Text="Станции" 
+						TextWrapping="Wrap" Name="StationsMenu" 
+						Style="{StaticResource Text30pxCBB2A3}" 
+						Tap="Stations_Tap" />
+					</StackPanel>
+					
+					<StackPanel Orientation="Horizontal">
+						<Image Height="64" Width="64" 
+						Source="images/ic_menu_ads_normal.png"/>                     	
+						<TextBlock Margin="0,15,0,0" Text="Объявления" 
+						TextWrapping="Wrap" Name="adsMenuText" 
+						Style="{StaticResource Text30pxCBB2A3}" 
+						Tap="adsMenuText_Tap" />
+					</StackPanel>
+					
+					<StackPanel Orientation="Horizontal">
+						<Image Height="64" Width="64" 
+						Source="images/ic_menu_news_normal.png"/>                     	
+
+						<TextBlock Margin="0,15,0,0" 
+						Text="Новости" TextWrapping="Wrap" 
+						Name="NewMenuItem" 
+						Style="{StaticResource Text30pxCBB2A3}" 
+						Tap="NewMenuItem_Tap" />
+					</StackPanel>
+                    
+                	<StackPanel Orientation="Horizontal">
+                		<Image Height="64" Width="64" 
+						Source="images/ic_menu_information_normal.png"/>  
+                		  
+						<TextBlock Margin="0,15,0,0" 
+						Text="Справка" 
+						TextWrapping="Wrap" 
+						Name="HelpMenuText" 
+						Style="{StaticResource Text30pxCBB2A3}" 
+						Tap="HelpMenuText_Tap" />            		        	
+					</StackPanel>
+					
+					
+                	<StackPanel Orientation="Horizontal">
+                		 <Image Height="64" Width="64" 
+						 Source="images/ic_menu_profile_normal.png"/>  
+						
+						 <TextBlock Margin="0,15,0,0" 
+						 Text="Профиль"
+						 TextWrapping="Wrap" 
+						 Style="{StaticResource Text30pxCBB2A3}" 
+						 Tap="TextBlock_Tap_1" />          		        	
+					</StackPanel>
+                    
                 </StackPanel>
             </controls:PanoramaItem>
  
@@ -52,7 +110,8 @@
             <!--Use 'Orientation="Horizontal"' to enable a panel that lays out horizontally-->
             <controls:PanoramaItem>
                 <controls:PanoramaItem.Header>
-                    <TextBlock Margin="0,-20,0,0" Text="Планы"/>
+                    <TextBlock Margin="0,0,0,0" Text="Планы"
+					Style="{StaticResource Text48pxDFB08B}"/>
                 </controls:PanoramaItem.Header>
                 <!--Double line list with image placeholder and text wrapping-->
                 <ListBox Margin="0,0,-12,0" ItemsSource="{Binding Events.WeekItems}" Name="EventsList" SelectionChanged="EventsList_SelectionChanged" Loaded="EventsList_Loaded">
@@ -71,7 +130,9 @@
 
             <controls:PanoramaItem>
                 <controls:PanoramaItem.Header>
-                    <TextBlock Margin="0,-20,0,0" Text="Новости"/>
+                    <TextBlock Margin="0,0,0,0" 
+					Text="Новости"
+					Style="{StaticResource Text48pxDFB08B}"/>
                 </controls:PanoramaItem.Header>
                 <!--Double line list with text wrapping-->
                 <ListBox Margin="0,0,-12,0" ItemsSource="{Binding Path=News.NewItems}" Name="NewsList" SelectionChanged="ListBox_SelectionChanged">
@@ -89,7 +150,9 @@
 
             <controls:PanoramaItem>
                 <controls:PanoramaItem.Header>
-                    <TextBlock Margin="0,-20,0,0" Text="Профиль"/>
+                    <TextBlock Margin="0,0,0,0"
+					Style="{StaticResource Text48pxDFB08B}"
+					Text="Профиль"/>
                 </controls:PanoramaItem.Header>
                 <StackPanel>
                 <StackPanel Name="LoginForm">

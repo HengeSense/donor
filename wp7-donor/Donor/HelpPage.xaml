@@ -20,28 +20,49 @@
     <!--LayoutRoot contains the root grid where all other page content is placed-->
     <Grid x:Name="LayoutRoot">
         <controls:Panorama>
-            <controls:Panorama.Title>
-                <TextBlock Margin="0,80,0,0" Text="Справка" FontSize="24" />
-                
-            </controls:Panorama.Title>
+<controls:Panorama.Title>
+<TextBlock Margin="0,95,0,0" Text="Справка" 
+FontSize="24" FontFamily="Segoe WP Semibold" />
+</controls:Panorama.Title>
+            
+<controls:Panorama.Background>
+<ImageBrush ImageSource="bg_04.png"/>
+</controls:Panorama.Background>
 
             <!--Panorama item one-->
-            <controls:PanoramaItem Header="Задать вопросов">
-                <Grid>
+            <controls:PanoramaItem>
+            	<controls:PanoramaItem.Header>
+            		<TextBlock Text="Задать вопрос" 
+					FontSize="49" 
+					Margin="-20,30,0,0"
+					FontFamily="Segoe WP" />	        	
+				</controls:PanoramaItem.Header>
+                <Grid Margin="0,30,0,0">
                     <StackPanel>
                         <StackPanel>
-                        <TextBlock Style="{StaticResource PhoneTextTitle2Style}" Text="Телефон"/>
-                            <TextBlock Name="PhoneNumber" Text="+7 (495) 471-71-36" Tap="PhoneNumber_Tap" Style="{StaticResource PhoneTextTitle2Style}" />
+                        <TextBlock Style="{StaticResource Text36pxC0A89A}" 
+						Text="Телефон"/>
+                            <TextBlock Name="PhoneNumber" 
+							Style="{StaticResource Text24pxDF8D4B}" 							
+							Text="+7 (495) 471-71-36" Tap="PhoneNumber_Tap"/>
                         </StackPanel>
 
                     <StackPanel>
-                            <TextBlock Style="{StaticResource PhoneTextTitle2Style}" Text="E-mail"  />
-                            <TextBlock Name="Email" Text="info@donors.ru" Style="{StaticResource PhoneTextTitle2Style}" Tap="TextBlock_Tap"/>
+                            <TextBlock Style="{StaticResource Text36pxC0A89A}" 
+							Text="E-mail"  />
+                            <TextBlock Name="Email" 
+							Text="info@donors.ru" 
+							Style="{StaticResource Text24pxDF8D4B}" 
+							Tap="TextBlock_Tap"/>
                     </StackPanel>
 
                         <StackPanel>
-                            <TextBlock Style="{StaticResource PhoneTextTitle2Style}" Text="Сайт"  />
-                            <TextBlock Name="Site" Text="http://podari-zhizn.ru" Style="{StaticResource PhoneTextTitle2Style}" Tap="Site_Tap" />
+                            <TextBlock Style="{StaticResource Text36pxC0A89A}" 
+							Text="Сайт"  />
+                            <TextBlock Name="Site" 
+							Text="http://podari-zhizn.ru"
+							Style="{StaticResource Text24pxDF8D4B}" 
+							Tap="Site_Tap" />
                         </StackPanel>
 
                     </StackPanel>
@@ -49,14 +70,25 @@
             </controls:PanoramaItem>
 
             <!--Panorama item two-->
-            <controls:PanoramaItem Header="Рекомендации">
-                <Grid>
+            <controls:PanoramaItem>
+            	<controls:PanoramaItem.Header>
+            		<TextBlock Text="Рекомендации" 
+					FontSize="49" 
+					Margin="-20,30,0,0"
+					FontFamily="Segoe WP" />	        	
+				</controls:PanoramaItem.Header>
+                <Grid Margin="0,40,0,0">
                     <StackPanel>
                         <ScrollViewer Height="600">
                             <StackPanel>
 
-                                <TextBlock Text="Перед сдачей крови" Style="{StaticResource PhoneTextTitle2Style}"/>
-                                <msp:HTMLViewer ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                                <TextBlock 
+								Text="Перед сдачей крови" 
+								Style="{StaticResource Text36pxC0A89A}"/>
+                                <msp:HTMLViewer 
+								Foreground="#FF847168"
+								FontSize="24"
+								ScrollViewer.VerticalScrollBarVisibility="Disabled">
                                     &lt;ul&gt;
                                     &lt;li&gt;Не приходите сдавать кровь, если вы чувствуете недомогание (озноб, головокружение, головную боль, слабость).&lt;/li&gt;
                                     &lt;li&gt;Не курите за час до донации.&lt;/li&gt;
@@ -68,9 +100,13 @@
                                 &lt;/ul&gt;
                                 </msp:HTMLViewer>
 
-                                <TextBlock Text="После сдачи крови" Style="{StaticResource PhoneTextTitle2Style}"/>
+                                <TextBlock Text="После сдачи крови" 
+								Style="{StaticResource Text36pxC0A89A}"/>
                                 
-<msp:HTMLViewer ScrollViewer.VerticalScrollBarVisibility="Disabled">
+<msp:HTMLViewer
+Foreground="#FF847168"
+FontSize="24"
+ScrollViewer.VerticalScrollBarVisibility="Disabled">
 &lt;ul&gt;
 &lt;li&gt;10–15 минут посидите спокойно и, если вы хорошо себя чувствуете (не испытываете слабости или головокружения), пройдите в буфет и выпейте сладкий чай.&lt;/li&gt;
 &lt;li&gt;Если вы почувствовали головокружение, обратитесь к медперсоналу. Самый простой способ помочь себе – лечь и поднять ноги выше головы или сесть и опустить голову между колен. Ни в коем случае не пытайтесь идти или вести машину, если у вас кружится голова!&lt;/li&gt;
@@ -84,8 +120,14 @@
                 </Grid>
             </controls:PanoramaItem>
 
-            <controls:PanoramaItem Header="Противопоказания">
-                <Grid>                    
+            <controls:PanoramaItem>
+            	<controls:PanoramaItem.Header>
+            		<TextBlock Text="Противопоказания" 
+					FontSize="49" 
+					Margin="-20,30,0,0"
+					FontFamily="Segoe WP" />	        	
+				</controls:PanoramaItem.Header>
+                <Grid Margin="0,30,0,0">                    
                     <StackPanel>
                         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="0">
                             <toolkit:AutoCompleteBox Name="ContraSearchText" FilterMode="Contains" ValueMemberPath="Title" Populating="StationsSearchText_Populating">
@@ -108,7 +150,10 @@
 </ListBox.ItemTemplate>
 </ListBox>
 
-                                <TextBlock Text="Абсолютные противопоказания" Style="{StaticResource PhoneTextTitle2Style}" TextWrapping="Wrap" Tap="TextBlock_Tap_1" />
+                                <TextBlock 
+								Text="Абсолютные противопоказания" 
+								Style="{StaticResource Text36pxC0A89A}" 
+								TextWrapping="Wrap" Tap="TextBlock_Tap_1" />
 
 <ListBox Name="AbsContra" ItemsSource="{Binding Contras.Items}" Visibility="Collapsed" ScrollViewer.VerticalScrollBarVisibility="Disabled" >                                    <ListBox.ItemTemplate>                              <DataTemplate>                            <StackPanel Margin="0,0,0,15">      
 <TextBlock Text="{Binding Title}" TextWrapping="Wrap"/>                    
@@ -116,7 +161,10 @@
 </DataTemplate>
 </ListBox.ItemTemplate>
 </ListBox>
-                                <TextBlock Text="Временные противопоказания" Style="{StaticResource PhoneTextTitle2Style}" TextWrapping="Wrap" Name="RelText" Tap="RelText_Tap" />
+                                <TextBlock 
+								Text="Временные противопоказания" 
+								Style="{StaticResource Text36pxC0A89A}" 
+								TextWrapping="Wrap" Name="RelText" Tap="RelText_Tap" />
 
 <ListBox Name="RelativeContra" ItemsSource="{Binding Contras.Items}" Visibility="Collapsed" ScrollViewer.VerticalScrollBarVisibility="Disabled" >                                    <ListBox.ItemTemplate>
 <DataTemplate>                                      <StackPanel Margin="0,0,0,15">                <TextBlock Text="{Binding Title}" TextWrapping="Wrap"/>
@@ -131,11 +179,20 @@
                 </Grid>
             </controls:PanoramaItem>
 
-            <controls:PanoramaItem Header="Памятка">
-                <Grid>  
+            <controls:PanoramaItem>
+            	<controls:PanoramaItem.Header>
+            		<TextBlock Text="Памятка" 
+					FontSize="49" 
+					Margin="0,30,0,0"
+					FontFamily="Segoe WP" />	        	
+				</controls:PanoramaItem.Header>
+                <Grid Margin="0,30,0,0">  
                     <ScrollViewer Height="600">                 
                     <StackPanel>
-                            <msp:HTMLViewer ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                            <msp:HTMLViewer 
+							Foreground="#FF847168"
+							FontSize="24"
+							ScrollViewer.VerticalScrollBarVisibility="Disabled">
                                 &lt;ul&gt;
 &lt;li&gt;10–15 минут посидите спокойно и, если вы хорошо себя чувствуете (не испытываете слабости или головокружения), пройдите в буфет и выпейте сладкий чай.&lt;/li&gt;
 &lt;li&gt;Если вы почувствовали головокружение, обратитесь к медперсоналу. Самый простой способ помочь себе – лечь и поднять ноги выше головы или сесть и опустить голову между колен. Ни в коем случае не пытайтесь идти или вести машину, если у вас кружится голова!&lt;/li&gt;
