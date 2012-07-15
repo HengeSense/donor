@@ -118,6 +118,25 @@ namespace Donor.ViewModels
         public string Body { get; set; }
         public string Url { get; set; }
 
+        public string ShortBody {
+            private set { }
+            get
+            {
+                string sbody = this.Body;
+                return sbody;
+            }
+        }
+
+        public string CreatedAtText
+        {
+            private set { }
+            get
+            {
+                DateTime created = DateTime.Parse(this.CreatedAt);
+                return created.ToShortDateString();
+            }
+        }
+
         public string UpdatedAt { get; set; }
         public string CreatedAt { get; set; }
 

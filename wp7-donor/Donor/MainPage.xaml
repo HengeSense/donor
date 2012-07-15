@@ -30,7 +30,7 @@
             </controls:Panorama.Title>
 
             <controls:Panorama.Background>
-                <ImageBrush ImageSource="bg.png"/>
+                <ImageBrush ImageSource="images/back_01.png"/>
             </controls:Panorama.Background>
 
             <!--Panorama item one-->
@@ -135,12 +135,15 @@
 					Style="{StaticResource Text48pxDFB08B}"/>
                 </controls:PanoramaItem.Header>
                 <!--Double line list with text wrapping-->
-                <ListBox Margin="0,0,-12,0" ItemsSource="{Binding Path=News.NewItems}" Name="NewsList" SelectionChanged="ListBox_SelectionChanged">
+                <ListBox Margin="0,30,0,0" ItemsSource="{Binding Path=News.NewItems}" Name="NewsList" SelectionChanged="ListBox_SelectionChanged">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Margin="0,0,0,17" Width="432">
-                                <TextBlock Text="{Binding Title}" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
-                                <!--<TextBlock Text="{Binding Body}" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}"/>-->
+                                <StackPanel Orientation="Horizontal" Width="430">
+                                    <TextBlock Text="{Binding CreatedAtText}" TextWrapping="NoWrap" Style="{StaticResource Text36pxCBB2A3}"/>
+                                    <TextBlock Text="{Binding Title}" TextWrapping="Wrap" Margin="9,3,0,0" Style="{StaticResource Text24pxDF8D4B}"/>
+                                </StackPanel>
+                                <TextBlock Text="{Binding ShortBody}" TextWrapping="NoWrap" Style="{StaticResource Text24pxCBB2A3}"/>      
                             </StackPanel>
                         </DataTemplate>
                     </ListBox.ItemTemplate>

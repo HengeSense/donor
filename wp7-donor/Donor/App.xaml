@@ -9,36 +9,65 @@
     <!--Application Resources-->
     <Application.Resources>
 	
-<Style x:Key="Text36pxC0A89A" TargetType="TextBlock">
-                <Setter Property="FontFamily" Value="Segoe WP"/>
-                <Setter Property="FontSize" Value="36"/>
-                <Setter Property="Foreground" Value="#C0A89A"/>
-</Style>
+        <Style x:Key="Text36pxC0A89A" TargetType="TextBlock">
+                        <Setter Property="FontFamily" Value="Segoe WP"/>
+                        <Setter Property="FontSize" Value="36"/>
+                        <Setter Property="Foreground" Value="#C0A89A"/>
+        </Style>
 
-<Style x:Key="Text24pxDF8D4B" TargetType="TextBlock">
-                <Setter Property="FontFamily" Value="Segoe WP"/>
-                <Setter Property="FontSize" Value="24"/>
-                <Setter Property="Foreground" Value="#DF8D4B"/>
-</Style>
+        <Style x:Key="Text24pxDF8D4B" TargetType="TextBlock">
+                        <Setter Property="FontFamily" Value="Segoe WP"/>
+                        <Setter Property="FontSize" Value="24"/>
+                        <Setter Property="Foreground" Value="#DF8D4B"/>
+        </Style>
 
-<Style x:Key="Text24px847168" TargetType="TextBlock">
-                <Setter Property="FontFamily" Value="Segoe WP"/>
-                <Setter Property="FontSize" Value="24"/>
-                <Setter Property="Foreground" Value="#847168"/>
-</Style>
+        <Style x:Key="Text24px847168" TargetType="TextBlock">
+                        <Setter Property="FontFamily" Value="Segoe WP"/>
+                        <Setter Property="FontSize" Value="24"/>
+                        <Setter Property="Foreground" Value="#847168"/>
+        </Style>
 
-<Style x:Key="Text48pxDFB08B" TargetType="TextBlock">
-                <Setter Property="FontFamily" Value="Segoe WP Semibold"/>
-                <Setter Property="FontSize" Value="48"/>
-                <Setter Property="Foreground" Value="#DFB08B"/>
-</Style>
+        <Style x:Key="Text48pxDFB08B" TargetType="TextBlock">
+                        <Setter Property="FontFamily" Value="Segoe WP Semibold"/>
+                        <Setter Property="FontSize" Value="48"/>
+                        <Setter Property="Foreground" Value="#DFB08B"/>
+        </Style>
 
-<Style x:Key="Text30pxCBB2A3" TargetType="TextBlock">
-                <Setter Property="FontFamily" Value="Segoe WP Regular"/>
-                <Setter Property="FontSize" Value="30"/>
-                <Setter Property="Foreground" Value="#CBB2A3"/>
-</Style>
-	
+        <Style x:Key="Text30pxCBB2A3" TargetType="TextBlock">
+                        <Setter Property="FontFamily" Value="Segoe WP Regular"/>
+                        <Setter Property="FontSize" Value="30"/>
+                        <Setter Property="Foreground" Value="#CBB2A3"/>
+        </Style>
+
+        <Style x:Key="Text36pxCBB2A3" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Segoe WP Regular"/>
+            <Setter Property="FontSize" Value="36"/>
+            <Setter Property="Foreground" Value="#CBB2A3"/>
+        </Style>
+
+        <Style x:Key="Text24pxCBB2A3" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Segoe WP Regular"/>
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="Foreground" Value="#CBB2A3"/>
+        </Style>
+        
+
+        <Style x:Key="Text30pxWhite" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Segoe WP Regular"/>
+            <Setter Property="FontSize" Value="30"/>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+
+
+        <Style x:Key="Text36pxB9A194" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Segoe WP Regular"/>
+            <Setter Property="FontSize" Value="36"/>
+            <Setter Property="Foreground" Value="#B9A194"/>
+        </Style>
+
+        
+
+
     </Application.Resources>
 
     <Application.ApplicationLifetimeObjects>
