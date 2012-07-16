@@ -4,11 +4,94 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+	xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:toolkitPrimitives="clr-namespace:Microsoft.Phone.Controls.Primitives;assembly=Microsoft.Phone.Controls.Toolkit"
     xmlns:sys="clr-namespace:System;assembly=mscorlib">
-
+    
     <!--Application Resources-->
     <Application.Resources>
-	
+
+        <Style x:Key="ToggleSwitchStyle"
+       TargetType="toolkit:ToggleSwitch">
+            <Setter Property="Background" Value="{StaticResource PhoneBackgroundBrush}" />
+            <Setter Property="FontFamily" Value="{StaticResource PhoneFontFamilyLight}" />
+            <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeLarge}" />
+            <Setter Property="Foreground" Value="{StaticResource PhoneForegroundBrush}" />
+            <Setter Property="IsTabStop" Value="False" />
+            <Setter Property="HorizontalContentAlignment" Value="Left" />
+            <Setter Property="SwitchForeground" Value="#F09609" />
+            <!-- CUSTOM VALUE -->
+            <Setter Property="VerticalContentAlignment" Value="Top" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="toolkit:ToggleSwitch">
+                        <Border BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        CacheMode="BitmapCache"
+                        Padding="{TemplateBinding Padding}">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal" />
+                                    <VisualState x:Name="Disabled">
+                                        <Storyboard>
+                                            <DoubleAnimation Duration="0"
+                                                     Storyboard.TargetName="Header"
+                                                     Storyboard.TargetProperty="Opacity"
+                                                     To="0.3" />
+                                            <DoubleAnimation Duration="0"
+                                                     Storyboard.TargetName="Content"
+                                                     Storyboard.TargetProperty="Opacity"
+                                                     To="0.3" />
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Grid Margin="12,5,36,42">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <ContentControl x:Name="Header"
+                                        Margin="-1,0,0,0"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Bottom"
+                                        Content="{TemplateBinding Header}"
+                                        ContentTemplate="{TemplateBinding HeaderTemplate}"
+                                        FontFamily="{StaticResource PhoneFontFamilyNormal}"
+                                        FontSize="{StaticResource PhoneFontSizeNormal}"
+                                        Foreground="{StaticResource PhoneBorderBrush}"
+                                        IsTabStop="False"
+                                        Opacity="{TemplateBinding Opacity}" />
+                                <ContentControl x:Name="Content"
+                                        Grid.Row="1"
+                                        Margin="-1,1,0,-7"
+                                        HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                        Content="{TemplateBinding Content}"
+                                        ContentTemplate="{TemplateBinding ContentTemplate}"
+                                        IsTabStop="False"
+                                        Opacity="{TemplateBinding Opacity}" />
+                                <toolkitPrimitives:ToggleSwitchButton x:Name="Switch"
+                                                              Grid.RowSpan="2"
+                                                              Grid.Column="1"
+                                                              Margin="-22,-29,-24,-28"
+                                                              VerticalAlignment="Bottom"
+                                                              Background="#FF727D83"
+                                                              Opacity="{TemplateBinding Opacity}"
+                                                              Style="{StaticResource ToggleSwitchButtonStyle}"
+                                                              SwitchForeground="{TemplateBinding SwitchForeground}" />
+                            </Grid>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+
         <Style x:Key="Text36pxC0A89A" TargetType="TextBlock">
                         <Setter Property="FontFamily" Value="Segoe WP"/>
                         <Setter Property="FontSize" Value="36"/>
@@ -55,6 +138,18 @@
         <Style x:Key="Text30pxWhite" TargetType="TextBlock">
             <Setter Property="FontFamily" Value="Segoe WP Regular"/>
             <Setter Property="FontSize" Value="30"/>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+
+        <Style x:Key="Text24pxWhite" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Segoe WP Semibold"/>
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+
+        <Style x:Key="Text70pxWhite" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Segoe WP Regular"/>
+            <Setter Property="FontSize" Value="70"/>
             <Setter Property="Foreground" Value="White"/>
         </Style>
 

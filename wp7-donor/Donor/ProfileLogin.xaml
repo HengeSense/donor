@@ -17,17 +17,25 @@
     shell:SystemTray.IsVisible="True">
 
     <!--LayoutRoot is the root grid where all page content is placed-->
-    <Grid x:Name="LayoutRoot" Background="Transparent">
+    
+    <Grid x:Name="LayoutRoot">
+        <Grid.Background>
+            <ImageBrush ImageSource="images/bg_04.png"/>
+        </Grid.Background>
         <!--Pivot Control-->
         <controls:Pivot Loaded="Pivot_Loaded">
+
             <controls:Pivot.Title>
                 <StackPanel>
                 <toolkit:PerformanceProgressBar HorizontalAlignment="Left" Height="8" Margin="0" VerticalAlignment="Top" IsIndeterminate="False" Width="460" Name="LoadingBar" />
-                <TextBlock Text="профиль"/>   
+                    <TextBlock Style="{StaticResource Text24pxWhite}" Text="профиль"/>   
                 </StackPanel>
             </controls:Pivot.Title>
             <!--Pivot item one-->
-            <controls:PivotItem Header="аккаунт">
+            <controls:PivotItem>
+                <controls:PivotItem.Header>
+                    <TextBlock Style="{StaticResource Text70pxWhite}" Text="аккаунт" Margin="0,30,0,0"/>
+                </controls:PivotItem.Header>
                 <Grid>
                     <StackPanel Name="EditProfile" Visibility="Collapsed">
                     <TextBlock Text="Имя" />
@@ -113,18 +121,90 @@
             </controls:PivotItem>
 
             <!--Pivot item two-->
-            <controls:PivotItem Header="настройки">
+            <controls:PivotItem>
+                <controls:PivotItem.Header>
+                    <TextBlock Style="{StaticResource Text70pxWhite}" Text="настройки" Margin="0,30,0,0"/>
+                </controls:PivotItem.Header>
                 <Grid>
                     <ScrollViewer>
                     <StackPanel>
-                	<toolkit:ToggleSwitch Margin="0" d:LayoutOverrides="Width, Height" Header="Пароль" />
-                    <toolkit:ToggleSwitch Margin="0" d:LayoutOverrides="Width, Height" Header="Push-уведомления" />
-                    <toolkit:ToggleSwitch Margin="0" d:LayoutOverrides="Width, Height" Header="Срочный поиск" />
-                        <TextBlock Text="Поиск объявлений по вашей группе крови" />
-                        <TextBlock Text="Календарь" Style="{StaticResource PhoneTextTitle2Style}" />
-                        <toolkit:ToggleSwitch Margin="0" d:LayoutOverrides="Width, Height" Header="Напоминания" />
-                        <toolkit:ToggleSwitch Margin="0" d:LayoutOverrides="Width, Height" Header="Закрытие события" />
-                        <TextBlock Text="Календарь" Style="{StaticResource PhoneTextTitle2Style}" />
+
+<toolkit:ToggleSwitch 
+			IsChecked="false" Name="PasswordCheck" 
+			Content="Выключено" Margin="0,0,0,-20" 
+			Background="White" BorderBrush="Black" 
+			Foreground="#FFDF8D4B" 
+            FontSize="36"
+			 
+			SwitchForeground="#FFDF8D4B"        Checked="Check_Checked" Unchecked="Check_Unchecked">
+                                <toolkit:ToggleSwitch.Header>
+<TextBlock Foreground="#FFC0A89A" FontSize="24"  Text="Пароль"/>
+</toolkit:ToggleSwitch.Header>
+</toolkit:ToggleSwitch>
+
+
+<toolkit:ToggleSwitch 
+			IsChecked="false" Name="PushCheck" 
+			Content="Выключено" Margin="0,0,0,-20" 
+			Background="White" BorderBrush="Black" 
+			Foreground="#FFDF8D4B" 
+            FontSize="36"
+			 
+			SwitchForeground="#FFDF8D4B"        Checked="Check_Checked" Unchecked="Check_Unchecked">                                <toolkit:ToggleSwitch.Header>
+<TextBlock Foreground="#FFC0A89A" FontSize="24"  Text="Push-уведомления"/>                             
+</toolkit:ToggleSwitch.Header>
+</toolkit:ToggleSwitch>
+
+
+
+<toolkit:ToggleSwitch 
+			IsChecked="false" Name="SearchCheck" 
+			Content="Выключено" Margin="0,0,0,-20" 
+			Background="White" BorderBrush="Black" 
+			Foreground="#FFDF8D4B" 
+            FontSize="36"
+			 
+			SwitchForeground="#FFDF8D4B"        Checked="Check_Checked" Unchecked="Check_Unchecked">
+                          <toolkit:ToggleSwitch.Header>
+<TextBlock Foreground="#FFC0A89A" FontSize="24"  Text="Срочный поиск"/>
+</toolkit:ToggleSwitch.Header>
+</toolkit:ToggleSwitch>
+
+
+
+<TextBlock Text="Календарь" Style="{StaticResource Text36pxCBB2A3}" />
+
+
+<toolkit:ToggleSwitch 
+			IsChecked="false" Name="BeforeCheck" 
+			Content="Выключено" Margin="0,0,0,-20" 
+			Background="White" BorderBrush="Black" 
+			Foreground="#FFDF8D4B" 
+            FontSize="36"
+			 
+			SwitchForeground="#FFDF8D4B"        Checked="Check_Checked" Unchecked="Check_Unchecked">
+                                <toolkit:ToggleSwitch.Header>
+                                    <TextBlock Foreground="#FFC0A89A" FontSize="24"  Text="Напоминания"/>
+                                </toolkit:ToggleSwitch.Header>
+</toolkit:ToggleSwitch>
+
+
+<toolkit:ToggleSwitch 
+			IsChecked="false" Name="AfterCheck" 
+			Content="Выключено" Margin="0,0,0,-20" 
+			Background="White" BorderBrush="Black" 
+			Foreground="#FFDF8D4B" 
+            FontSize="36"
+			 
+			SwitchForeground="#FFDF8D4B"        Checked="Check_Checked" Unchecked="Check_Unchecked">
+<toolkit:ToggleSwitch.Header>
+<TextBlock Foreground="#FFC0A89A" FontSize="24"  Text="Закрытие события"/>
+</toolkit:ToggleSwitch.Header>
+</toolkit:ToggleSwitch>
+
+
+<TextBlock Text="Возможные кроводачи" Style="{StaticResource Text36pxCBB2A3}" />
+                        
                         <CheckBox Content="Тромбоциты" />
                         <CheckBox Content="Цельная" />
                         <CheckBox Content="Плазма" />

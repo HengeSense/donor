@@ -36,7 +36,6 @@ namespace Donor
         public const string APPLICATION_ID = "EIpakVdZblHedhqgxMgiEVnIGCRGvWdy9v8gkKZu";
         public const string REST_API_KEY = "uNarhakSf1on8lJjrAVs1VWmPlG1D6ZJf9dO5QZY";
 
-        //public Driver Parse;
 
         public MainViewModel()
         {            
@@ -49,6 +48,8 @@ namespace Donor
             User = new DonorUser();
             Reviews = new ReviewsListViewModel();
             Contras = new ContraListViewModel();
+
+            Settings = new SettingsViewModel();            
             
             this.LoadFromIsolatedStorage();
         }
@@ -69,6 +70,7 @@ namespace Donor
         public StationsLitViewModel Stations { get; set; }
         public DonorUser User { get; set; }
         public ContraListViewModel Contras { get; set; }
+        public SettingsViewModel Settings { get; set; }
 
         public bool IsDataLoaded
         {
@@ -203,7 +205,22 @@ namespace Donor
         public void SaveUserToStorage()
         {
             IsolatedStorageHelper.SaveSerializableObject<DonorUser>(App.ViewModel.User, "user.xml");
-            //IsolatedStorageHelper.LoadSerializableObject<ObservableCollection<EventViewModel>>("events.xml");
+        }
+
+        public void SaveSettingsToStorage()
+        {
+            IsolatedStorageHelper.SaveSerializableObject<SettingsViewModel>(App.ViewModel.Settings, "settings.xml");
+        }
+        public void LoadSettingsFromStorage()
+        {
+            try
+            {
+                this.Settings = IsolatedStorageHelper.LoadSerializableObject<SettingsViewModel>("settings.xml");
+            }
+            catch
+            {
+                this.Settings = new SettingsViewModel();
+            };
         }
 
         public void LoadUserFromStorage()
@@ -256,6 +273,8 @@ namespace Donor
         /// </summary>
         public void LoadFromIsolatedStorage()
         {
+
+            this.LoadSettingsFromStorage();
 
             var bw = new BackgroundWorker();
             bw.DoWork += delegate

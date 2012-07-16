@@ -538,5 +538,15 @@ namespace Donor
             });*/
         }
 
+        private void Check_Checked(object sender, RoutedEventArgs e)
+        {
+            (sender as ToggleSwitch).Content = "Включено";
+        }
+
+        private void Check_Unchecked(object sender, RoutedEventArgs e)
+        {
+            (sender as ToggleSwitch).Content = "Выключено";
+        }
+
     }
 }
