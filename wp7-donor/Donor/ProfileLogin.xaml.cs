@@ -41,6 +41,53 @@ namespace Donor
                 this.LoginForm.Visibility = Visibility.Visible;
                 this.UserProfile.Visibility = Visibility.Collapsed;
             };
+
+
+            if (App.ViewModel.Settings.Password)
+            {
+                this.PasswordCheck.IsChecked = true;
+            }
+            else
+            {
+                this.PasswordCheck.IsChecked = false;
+            };
+
+            if (App.ViewModel.Settings.Push)
+            {
+                this.PushCheck.IsChecked = true;
+            }
+            else
+            {
+                this.PushCheck.IsChecked = false;
+            };
+
+            if (App.ViewModel.Settings.FastSearch)
+            {
+                this.SearchCheck.IsChecked = true;
+            }
+            else
+            {
+                this.SearchCheck.IsChecked = false;
+            };
+
+            if (App.ViewModel.Settings.EventBefore)
+            {
+                this.BeforeCheck.IsChecked = true;
+            }
+            else
+            {
+                this.BeforeCheck.IsChecked = false;
+            };
+
+            if (App.ViewModel.Settings.EventAfter)
+            {
+                this.AfterCheck.IsChecked = true;
+            }
+            else
+            {
+                this.AfterCheck.IsChecked = false;
+            };
+
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -484,6 +531,12 @@ namespace Donor
             this.UserProfile.Visibility = Visibility.Visible;
         }
 
+
+        /// <summary>
+        /// User delete - removed temporary
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void DeleteUserButton_Click(object sender, EventArgs e)
         {
 			
@@ -541,11 +594,53 @@ namespace Donor
         private void Check_Checked(object sender, RoutedEventArgs e)
         {
             (sender as ToggleSwitch).Content = "Включено";
+            switch ((sender as ToggleSwitch).Name.ToString())
+            {
+                case "PasswordCheck":
+                    App.ViewModel.Settings.Password = true;
+                    break;
+                case "PushCheck":
+                    App.ViewModel.Settings.Push = true;
+                    break;
+                case "SearchCheck":
+                    App.ViewModel.Settings.FastSearch = true;
+                    break;
+                case "BeforeCheck":
+                    App.ViewModel.Settings.EventBefore = true;
+                    break;
+                case "AfterCheck":
+                    App.ViewModel.Settings.EventAfter = true;
+                    break;
+                default:
+                break;
+            };
+            App.ViewModel.SaveSettingsToStorage();
         }
 
         private void Check_Unchecked(object sender, RoutedEventArgs e)
         {
             (sender as ToggleSwitch).Content = "Выключено";
+            switch ((sender as ToggleSwitch).Name.ToString())
+            {
+                case "PasswordCheck":
+                    App.ViewModel.Settings.Password = false;
+                    break;
+                case "PushCheck":
+                    App.ViewModel.Settings.Push = false;
+                    break;
+                case "SearchCheck":
+                    App.ViewModel.Settings.FastSearch = false;
+                    break;
+                case "BeforeCheck":
+                    App.ViewModel.Settings.EventBefore = false;
+                    break;
+                case "AfterCheck":
+                    App.ViewModel.Settings.EventAfter = false;
+                    break;
+                default:
+                    break;
+            };
+            App.ViewModel.SaveSettingsToStorage();
         }
 
     }

@@ -210,6 +210,17 @@
                         <CheckBox Content="Плазма" />
                     </StackPanel>
                     </ScrollViewer>
+                    <!--<WPExtensions:AdvancedApplicationBar Name="AppBarSettings" IsVisible="True" IsMenuEnabled="False">
+                        <WPExtensions:AdvancedApplicationBarIconButton IconUri="/icons/appbar.edit.rest.png" Name="EditButton" Text="Редактировать" Visibility="Visible" Click="AdvancedApplicationBarIconButton_Click" />
+                        <WPExtensions:AdvancedApplicationBarIconButton 
+						IconUri="/icons/appbar.delete.rest.png" 
+						Text="Выход" Visibility="Visible" 
+						Name="DeleteUserButton" Click="DeleteUserButton_Click" />
+
+                        <WPExtensions:AdvancedApplicationBarIconButton IconUri="/icons/appbar.save.rest.png" Text="Сохранить" Visibility="Collapsed" Name="SaveEditProfileButton" Click="SaveEditProfileButton_Click" />
+                        <WPExtensions:AdvancedApplicationBarIconButton IconUri="/icons/appbar.cancel.png" Text="Отмена" Visibility="Collapsed" Name="CancelEditProfileButton" Click="CancelEditProfileButton_Click" />
+
+                    </WPExtensions:AdvancedApplicationBar>-->
                 </Grid>
             </controls:PivotItem>
         </controls:Pivot>        

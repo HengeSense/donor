@@ -225,38 +225,41 @@ namespace Donor
 
         public void LoadUserFromStorage()
         {
-            try
+            if (this.Settings.Password == false)
             {
-                App.ViewModel.User = IsolatedStorageHelper.LoadSerializableObject<DonorUser>("user.xml");
-
-                var client = new RestClient("https://api.parse.com");
-                var request = new RestRequest("1/login", Method.GET);
-                request.Parameters.Clear();
-                string strJSONContent = "{\"username\":\"" + App.ViewModel.User.UserName + "\",\"password\":\"" + App.ViewModel.User.Password + "\"}";
-                request.AddHeader("X-Parse-Application-Id", "EIpakVdZblHedhqgxMgiEVnIGCRGvWdy9v8gkKZu");
-                request.AddHeader("X-Parse-REST-API-Key", "wPvwRKxX2b2vyrRprFwIbaE5t3kyDQq11APZ0qXf");
-
-                request.AddParameter("username", App.ViewModel.User.UserName.ToLower());
-                request.AddParameter("password", App.ViewModel.User.Password);
-
-                client.ExecuteAsync(request, response =>
+                try
                 {
-                    JObject o = JObject.Parse(response.Content.ToString());
-                    if (o["error"] == null)
+                    App.ViewModel.User = IsolatedStorageHelper.LoadSerializableObject<DonorUser>("user.xml");
+
+                    var client = new RestClient("https://api.parse.com");
+                    var request = new RestRequest("1/login", Method.GET);
+                    request.Parameters.Clear();
+                    string strJSONContent = "{\"username\":\"" + App.ViewModel.User.UserName + "\",\"password\":\"" + App.ViewModel.User.Password + "\"}";
+                    request.AddHeader("X-Parse-Application-Id", APPLICATION_ID);
+                    request.AddHeader("X-Parse-REST-API-Key", REST_API_KEY);
+
+                    request.AddParameter("username", App.ViewModel.User.UserName.ToLower());
+                    request.AddParameter("password", App.ViewModel.User.Password);
+
+                    client.ExecuteAsync(request, response =>
                     {
-                        App.ViewModel.User = JsonConvert.DeserializeObject<DonorUser>(response.Content.ToString());
-                        App.ViewModel.User.IsLoggedIn = true;
-                        App.ViewModel.OnUserEnter(EventArgs.Empty);
-                    }
-                    else
-                    {
-                        //MessageBox.Show("Ошибка входа: " + o["error"].ToString());
-                        App.ViewModel.User.IsLoggedIn = false;
-                    };
-                });
-            }
-            catch
-            {
+                        JObject o = JObject.Parse(response.Content.ToString());
+                        if (o["error"] == null)
+                        {
+                            App.ViewModel.User = JsonConvert.DeserializeObject<DonorUser>(response.Content.ToString());
+                            App.ViewModel.User.IsLoggedIn = true;
+                            App.ViewModel.OnUserEnter(EventArgs.Empty);
+                        }
+                        else
+                        {
+                            //MessageBox.Show("Ошибка входа: " + o["error"].ToString());
+                            App.ViewModel.User.IsLoggedIn = false;
+                        };
+                    });
+                }
+                catch
+                {
+                };
             };
         }
 

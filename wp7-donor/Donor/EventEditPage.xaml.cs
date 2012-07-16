@@ -128,7 +128,15 @@ namespace Donor
 
                 CurrentEvent.Image = "/images/drop.png";
 
-                CurrentEvent.AddReminder();
+                if ((App.ViewModel.Settings.EventBefore == true) && (App.ViewModel.Settings.Push == true))
+                {
+                    CurrentEvent.AddReminder();
+                };
+
+                if ((App.ViewModel.Settings.EventAfter == true) && (App.ViewModel.Settings.Push == true))
+                {
+                    CurrentEvent.AddReminder();
+                };
 
                 App.ViewModel.Events.Items.Add(CurrentEvent);
                 NavigationService.GoBack();
@@ -175,18 +183,5 @@ namespace Donor
             }
             catch { };
         }
-
-        /*private void EventType_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
-        {
-        	// TODO: Add event handler implementation here.
-            if (this.GiveType.SelectedItem.ToString() == "Анализ")
-            {
-                this.GiveType.Visibility = Visibility.Collapsed;
-            }
-            else
-            {
-                this.GiveType.Visibility = Visibility.Visible;
-            };
-        }*/
     }
 }
