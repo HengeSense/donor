@@ -32,7 +32,8 @@ namespace Donor
             
             List<string> eventTypes = new List<string>() { "Анализ", "Кроводача" };
             CurrentEvent = null;
-            List<string> giveTypes = new List<string>() { "Тромбоциты", "Плазма", "Цельная кровь" };
+            List<string> giveTypes = new List<string>() { "Тромбоциты", "Плазма", "Цельная кровь", "Гранулоциты" };
+            //, "Гранулоциты"
 
             List<string> reminderTypes = new List<string>() { "15 минут", "1 час", "1 день", "1 неделя" };
 

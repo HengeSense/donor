@@ -140,6 +140,127 @@ namespace Donor.ViewModels
             return count;
         }
 
+        public int DaysBefore()
+        {
+            List<string> TypesGive = new List<string>() { "Тромбоциты", "Плазма", "Цельная кровь", "Гранулоциты" };
+            
+
+            int days_count = 0;
+            var nearestEvents = (from item in this.Items
+                              where (item.Date <= DateTime.Now)
+                              orderby item.Date descending
+                              select item).Take(1);
+
+            if (nearestEvents.Count() == 0)
+            {
+                return 0;
+            }
+            else
+            {
+                int min = 10000000;
+                string min_item1;
+                string min_item2;
+                foreach (var item in TypesGive)
+                {
+                    foreach (var item2 in TypesGive)
+                    {
+                        if (min > DaysFromEvent(item, item2))
+                        {
+                            min_item1 = item;
+                            min_item2 = item;
+                            min = DaysFromEvent(item, item2);
+                        };
+                    };
+                };
+                days_count = min;
+                return days_count;
+            };            
+        }
+
+        public int DaysFromEvent(string event_give_type, string want_event_give_type)
+        {
+            int days_count = 0;
+
+            switch (event_give_type)
+            {
+                case "Тромбоциты":
+                    switch (want_event_give_type)
+                    {
+                        case "Тромбоциты":
+                            days_count = 14;
+                            break;
+                        case "Плазма":
+                            days_count = 14;
+                            break;
+                        case "Цельная кровь":
+                            days_count = 30;
+                            break;
+                        case "Гранулоциты":
+                            days_count = 30;
+                            break;
+                        default: break;
+                    };
+                    break;
+                case "Плазма":
+                    switch (want_event_give_type)
+                    {
+                        case "Тромбоциты":
+                            days_count = 14;
+                            break;
+                        case "Плазма":
+                            days_count = 14;
+                            break;
+                        case "Цельная кровь":
+                            days_count = 14;
+                            break;
+                        case "Гранулоциты":
+                            days_count = 14;
+                            break;
+                        default: break;
+                    };
+                    break;
+                case "Цельная кровь":
+                    switch (want_event_give_type)
+                    {
+                        case "Тромбоциты":
+                            days_count = 30;
+                            break;
+                        case "Плазма":
+                            days_count = 30;
+                            break;
+                        case "Цельная кровь":
+                            days_count = 60;
+                            break;
+                        case "Гранулоциты":
+                            days_count = 30;
+                            break;
+                        default: break;
+                    };
+                    break;
+                case "Гранулоциты":
+                    switch (want_event_give_type)
+                    {
+                        case "Тромбоциты":
+                            days_count = 30;
+                            break;
+                        case "Плазма":
+                            days_count = 14;
+                            break;
+                        case "Цельная кровь":
+                            days_count = 30;
+                            break;
+                        case "Гранулоциты":
+                            days_count = 365;
+                            break;
+                        default: break;
+                    };
+                    break;
+                default: break;
+            }
+
+            return days_count;
+        }
+
         public EventViewModel NearestEvents()
         {
             var item_near2 = (from item in this.Items
