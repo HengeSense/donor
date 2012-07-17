@@ -36,23 +36,20 @@ namespace Donor.Controls
 
             /// Показываем минимальный период невозможности сдачи крови тем или иным образом
             int days = App.ViewModel.Events.DaysBefore();
-            DateTime FromDays;
-            DateTime EndDays;
-            //if (days != 0)
-            //{
-            //try
-            //{
+            DateTime FromDays = new DateTime(1900,1,1);
+            DateTime EndDays = new DateTime(1900,1,1);
+
             var nearestEvents = (from item in App.ViewModel.Events.Items
-                                 where (item.Date <= DateTime.Now)
+                                 where (item.Type =="1")
                                  orderby item.Date descending
                                  select item).Take(1);
-            FromDays = nearestEvents.FirstOrDefault().Date;
-            EndDays = FromDays.AddDays(days);
-            //}
-            //catch
-            //{
-            //};
-            //};
+            //(item.Date <= DateTime.Now) && 
+            if (nearestEvents.FirstOrDefault() != null)
+            {
+                FromDays = nearestEvents.FirstOrDefault().Date;
+                EndDays = FromDays.AddDays(days);
+            };
+
 
             for (var i = (DateTime.DaysInMonth(FirstDayPrev.Year, FirstDayPrev.Month) - daysbefore); i < (DateTime.DaysInMonth(FirstDayPrev.Year, FirstDayPrev.Month) - 1); i++)
             {

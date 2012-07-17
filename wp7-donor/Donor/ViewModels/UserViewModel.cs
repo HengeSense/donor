@@ -26,7 +26,7 @@ namespace Donor.ViewModels
         {
             this.IsLoggedIn = false;
         }
-        private string _objectid;
+        //private string _objectid;
         //public string ObjectId { get { return _objectid; } set { _objectid = value; NotifyPropertyChanged("ObjectId"); } }
         private string _username;
         public string UserName { get { return _username; } set { _username = value; NotifyPropertyChanged("UserName"); } }

@@ -18,18 +18,7 @@ namespace Donor
     {
         public EventEditPage()
         {
-            InitializeComponent();           
-        }
-
-        public int DayNumber;
-        public int YearNumber;
-        public int MonthNumber;
-
-        public EventViewModel CurrentEvent;
-
-        private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
-        {
-            
+            InitializeComponent();
             List<string> eventTypes = new List<string>() { "Анализ", "Кроводача" };
             CurrentEvent = null;
             List<string> giveTypes = new List<string>() { "Тромбоциты", "Плазма", "Цельная кровь", "Гранулоциты" };
@@ -86,6 +75,16 @@ namespace Donor
             this.DataContext = CurrentEvent;
         }
 
+        public int DayNumber;
+        public int YearNumber;
+        public int MonthNumber;
+
+        public EventViewModel CurrentEvent;
+
+        private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
+        {           
+        }
+
         private void CancelButton_Click(object sender, EventArgs e)
         {
             NavigationService.GoBack();
@@ -93,58 +92,122 @@ namespace Donor
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
-            try
+            string give = this.GiveType.SelectedItem.ToString();
+            bool possible = true;
+            if (this.EventType.SelectedItem.ToString() != "Анализ")
             {
-                if (CurrentEvent != null)
+                try
                 {
-                    EventViewModel event1 = App.ViewModel.Events.Items.FirstOrDefault(s => s.Id == CurrentEvent.Id);
-                    App.ViewModel.Events.Items.Remove(event1);
+                    DateTime curdate = this.Date.Value.Value;
+                    var checkitems = (from item in App.ViewModel.Events.Items
+                                      where (item.Type == "1")
+                                      orderby item.Date descending
+                                      select item);
+                    foreach (var item in checkitems)
+                    {
+                        int days = App.ViewModel.Events.DaysFromEvent(item.GiveType, give);
+                        if ((curdate <= item.Date.AddDays(days)) && (curdate >= item.Date))
+                        {
+                            possible = false;
+                            break;
+                        };
+                    };
                 }
-                else
+                catch
                 {
-                    CurrentEvent = new EventViewModel();
+                    possible = true;
                 };
+            };
 
-                CurrentEvent.Id = DateTime.Now.Ticks.ToString();
-                CurrentEvent.Title = this.EventType.SelectedItem.ToString();
-                CurrentEvent.Type = this.EventType.SelectedItem.ToString();
-                CurrentEvent.GiveType = this.GiveType.SelectedItem.ToString();
-                CurrentEvent.Description = this.Description.Text.ToString();
-                CurrentEvent.Date = this.Date.Value.Value;
-                if (this.Time.Value == null)
+            if (possible == true)
+            {
+                try
                 {
-                    CurrentEvent.Time = DateTime.Now;
+                    if (CurrentEvent != null)
+                    {
+                        EventViewModel event1 = App.ViewModel.Events.Items.FirstOrDefault(s => s.Id == CurrentEvent.Id);
+                        App.ViewModel.Events.Items.Remove(event1);
+                    }
+                    else
+                    {
+                        CurrentEvent = new EventViewModel();
+                    };
+
+                    CurrentEvent.Id = DateTime.Now.Ticks.ToString();
+                    CurrentEvent.Title = this.EventType.SelectedItem.ToString();
+                    switch (this.EventType.SelectedItem.ToString())
+                    {
+                        case "Анализ":
+                            CurrentEvent.Type = "0";
+                            break;
+                        case "Кроводача":
+                            CurrentEvent.Type = "1";
+                            break;
+                        default: 
+                            break;
+                    };
+                    //CurrentEvent.Type = this.EventType.SelectedItem.ToString();
+                    CurrentEvent.GiveType = this.GiveType.SelectedItem.ToString();
+                    CurrentEvent.Description = this.Description.Text.ToString();
+                    CurrentEvent.Date = this.Date.Value.Value;
+                    if (this.Time.Value == null)
+                    {
+                        CurrentEvent.Time = DateTime.Now;
+                    }
+                    else
+                    {
+                        CurrentEvent.Time = this.Time.Value.Value;
+                    };
+                    CurrentEvent.Place = this.Place.Text;
+
+                    if (this.EventType.SelectedItem.ToString() == "Анализ")
+                    {
+                        CurrentEvent.ReminderDate = this.ReminderPeriod.SelectedItem.ToString();
+                        CurrentEvent.ReminderMessage = this.KnowAboutResults.IsChecked.Value;
+                    };
+
+                    CurrentEvent.Image = "/images/drop.png";
+
+                    if ((App.ViewModel.Settings.EventBefore == true) && (App.ViewModel.Settings.Push == true))
+                    {
+                        //{ "15 минут", "1 час", "1 день", "1 неделя" };
+                        switch (this.ReminderPeriod.SelectedItem.ToString())
+                        {
+                            case "15 минут":
+                                CurrentEvent.AddReminder(15 * 60);
+                                break;
+                            case "1 час":
+                                CurrentEvent.AddReminder(60 * 60);
+                                break;
+                            case "1 день":
+                                CurrentEvent.AddReminder(24 * 60 * 60);
+                                break;
+                            case "1 неделя":
+                                CurrentEvent.AddReminder(7 * 24 * 60 * 60);
+                                break;
+                            default:
+                                //CurrentEvent.AddReminder();
+                                break;
+                        }
+
+                    };
+
+                    if ((App.ViewModel.Settings.EventAfter == true) && (App.ViewModel.Settings.Push == true))
+                    {
+                        CurrentEvent.AddReminder();
+                    };
+
+                    App.ViewModel.Events.Items.Add(CurrentEvent);
+                    NavigationService.GoBack();
                 }
-                else
+                catch
                 {
-                    CurrentEvent.Time = this.Time.Value.Value;
+                    NavigationService.GoBack();
                 };
-                CurrentEvent.Place = this.Place.Text;
-
-                if (this.EventType.SelectedItem.ToString() == "Анализ")
-                {
-                    CurrentEvent.ReminderDate = this.ReminderPeriod.SelectedItem.ToString();
-                    CurrentEvent.ReminderMessage = this.KnowAboutResults.IsChecked.Value;
-                };
-
-                CurrentEvent.Image = "/images/drop.png";
-
-                if ((App.ViewModel.Settings.EventBefore == true) && (App.ViewModel.Settings.Push == true))
-                {
-                    CurrentEvent.AddReminder();
-                };
-
-                if ((App.ViewModel.Settings.EventAfter == true) && (App.ViewModel.Settings.Push == true))
-                {
-                    CurrentEvent.AddReminder();
-                };
-
-                App.ViewModel.Events.Items.Add(CurrentEvent);
-                NavigationService.GoBack();
             }
-            catch
+            else
             {
-                NavigationService.GoBack();
+                MessageBox.Show("В данный день вы еще не можете производить сдачу крови.");
             };
             App.ViewModel.SaveToIsolatedStorage();
         }

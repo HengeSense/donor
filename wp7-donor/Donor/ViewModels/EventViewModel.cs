@@ -106,21 +106,25 @@ namespace Donor.ViewModels
             private set { }
         }
 
-        public void AddReminder() {
-            Reminder objReminder = ScheduledActionService.Find(this.Id) as Reminder;
-            if (objReminder != null)
-                ScheduledActionService.Remove(this.Id);
-            objReminder = new Reminder(this.Id);
-            DateTime RememberDate = this.Date;
-            RememberDate = RememberDate.AddSeconds((this.Time.Hour * 60 * 60) + (this.Time.Minute * 60) + (this.Time.Second));
+        public void AddReminder(long addSeconds = 0) {
+            try
+            {
+                Reminder objReminder = ScheduledActionService.Find(this.Id) as Reminder;
+                if (objReminder != null)
+                    ScheduledActionService.Remove(this.Id);
+                objReminder = new Reminder(this.Id);
+                DateTime RememberDate = this.Date;
+                RememberDate = RememberDate.AddSeconds((this.Time.Hour * 60 * 60) + (this.Time.Minute * 60) + (this.Time.Second));
+                RememberDate = RememberDate.AddSeconds(-addSeconds);
+                objReminder.BeginTime = RememberDate;
 
-            objReminder.BeginTime = RememberDate;
-            
-            //DateTime.Now.AddSeconds(10);
-            objReminder.Title = this.GiveType;
-            //objReminder.Content = "Its time for WindowsPhoneRocks.com Article";
-            objReminder.NavigationUri = new Uri("/EventPage.xaml?id="+this.Id, UriKind.Relative);
-            ScheduledActionService.Add(objReminder);
+                //DateTime.Now.AddSeconds(10);
+                objReminder.Title = this.GiveType;
+                //objReminder.Content = "Its time for WindowsPhoneRocks.com Article";
+                objReminder.NavigationUri = new Uri("/EventPage.xaml?id=" + this.Id, UriKind.Relative);
+                ScheduledActionService.Add(objReminder);
+            }
+            catch { };
         }
     }
 
