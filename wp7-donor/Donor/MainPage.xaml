@@ -37,10 +37,10 @@
             <controls:PanoramaItem>
                 <controls:PanoramaItem.Header>
                     <TextBlock 
-					Margin="0,0,0,0" Text="Меню" 
+					Margin="0,15,0,0" Text="Меню" 
 					Style="{StaticResource Text48pxDFB08B}"/>
                 </controls:PanoramaItem.Header>
-                <StackPanel>
+                <StackPanel Margin="0,15,0,0">
                 	<StackPanel Orientation="Horizontal">
                 		<Image Height="64" Width="64" 
 						Source="images/ic_menu_calendar_normal.png"/>  
@@ -110,11 +110,11 @@
             <!--Use 'Orientation="Horizontal"' to enable a panel that lays out horizontally-->
             <controls:PanoramaItem>
                 <controls:PanoramaItem.Header>
-                    <TextBlock Margin="0,0,0,0" Text="Планы"
+                    <TextBlock Margin="0,15,0,0" Text="Планы"
 					Style="{StaticResource Text48pxDFB08B}"/>
                 </controls:PanoramaItem.Header>
                 <!--Double line list with image placeholder and text wrapping-->
-                <ListBox Margin="0,0,-12,0" ItemsSource="{Binding Events.WeekItems}" Name="EventsList" SelectionChanged="EventsList_SelectionChanged" Loaded="EventsList_Loaded">
+                <ListBox Margin="0,15,-12,0" ItemsSource="{Binding Events.WeekItems}" Name="EventsList" SelectionChanged="EventsList_SelectionChanged" Loaded="EventsList_Loaded" BorderThickness="0">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal" Margin="0,0,0,17">          
@@ -130,12 +130,12 @@
 
             <controls:PanoramaItem>
                 <controls:PanoramaItem.Header>
-                    <TextBlock Margin="0,0,0,0" 
+                    <TextBlock Margin="0,15,0,0" 
 					Text="Новости"
 					Style="{StaticResource Text48pxDFB08B}"/>
                 </controls:PanoramaItem.Header>
                 <!--Double line list with text wrapping-->
-                <ListBox Margin="0,30,0,0" ItemsSource="{Binding Path=News.NewItems}" Name="NewsList" SelectionChanged="ListBox_SelectionChanged">
+                <ListBox Margin="0,15,0,0" ItemsSource="{Binding Path=News.NewItems}" Name="NewsList" SelectionChanged="ListBox_SelectionChanged">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Margin="0,0,0,17" Width="432">
@@ -153,11 +153,11 @@
 
             <controls:PanoramaItem>
                 <controls:PanoramaItem.Header>
-                    <TextBlock Margin="0,0,0,0"
+                    <TextBlock Margin="0,15,0,0"
 					Style="{StaticResource Text48pxDFB08B}"
 					Text="Профиль"/>
                 </controls:PanoramaItem.Header>
-                <StackPanel>
+                <StackPanel Margin="0,15,0,0">
                 <StackPanel Name="LoginForm">
                                   <toolkit:PerformanceProgressBar HorizontalAlignment="Left" Height="8" Margin="0" VerticalAlignment="Top" IsIndeterminate="False" Width="460" Name="LoginLoadingBar" />
                         <TextBlock Text="Введите e-mail" />

@@ -16,39 +16,54 @@
     shell:SystemTray.IsVisible="True" Loaded="PhoneApplicationPage_Loaded">
 
     <!--LayoutRoot is the root grid where all page content is placed-->
-    <Grid x:Name="LayoutRoot" Background="Transparent">
+    <Grid x:Name="LayoutRoot">
+    	<Grid.Background>
+            <ImageBrush ImageSource="images/back_02.png"/>
+        </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <!--TitlePanel contains the name of the application and page title-->
-        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock x:Name="ApplicationTitle" Text="Изменить событие" Style="{StaticResource PhoneTextNormalStyle}"/>
-            
+        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="20,60,0,20">
+            <TextBlock x:Name="ApplicationTitle" Text="Изменить событие" Style="{StaticResource Text30pxWhite}"/>
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
             <ScrollViewer>
         <StackPanel>
-            <toolkit:ListPicker  x:Name="EventType" Header="Тип события" FullModeHeader="Тип события" SelectionChanged="EventType_SelectionChanged" Loaded="EventType_Loaded" />
+            <toolkit:ListPicker  
+			x:Name="EventType" 
+			Header="Тип события"
+			FullModeHeader="Тип события" 
+			FontSize="24" Foreground="#FF847168"
+			SelectionChanged="EventType_SelectionChanged" 
+			Loaded="EventType_Loaded" />
 
-            <toolkit:ListPicker  x:Name="GiveType" Header="Вид сдачи" FullModeHeader="Вид сдачи"/>
+            <toolkit:ListPicker x:Name="GiveType" 
+			
+			Header="Вид сдачи" FullModeHeader="Вид сдачи" 
+			FontSize="24" Foreground="#FF847168"/>
             
-            <TextBlock Text="Дата и время"/>
+            <TextBlock Text="Дата и время"
+			Style="{StaticResource Text24px847168}" Margin="12,0,0,0"/>
             <StackPanel Orientation="Horizontal">
                     <toolkit:DatePicker Width="250" Name="Date"/>
                     <toolkit:TimePicker x:Name="Time"  Width="200" Value="{Binding Time, Mode=TwoWay}"/>
             </StackPanel>
-            <TextBlock Text="Место"/>
+            <TextBlock Text="Место"
+			 Style="{StaticResource Text24px847168}" Margin="12,0,0,0"/>
             <TextBox Name="Place" Text="{Binding Place, Mode=TwoWay}"/>
                 <StackPanel Name="Reminder" Visibility="Collapsed">
                     <TextBlock Text="Напоминание"/>
                     <toolkit:ListPicker  x:Name="ReminderPeriod" Header="Напоминание" FullModeHeader="Напоминание"/>
                     <CheckBox Name="KnowAboutResults" Content="Узнать результат" IsChecked="{Binding ReminderMessage, Mode=TwoWay}"/>
                 </StackPanel>
-                    <TextBlock Text="Комментарии"/>
+                    <TextBlock Text="Комментарии"
+					Style="{StaticResource Text24px847168}"
+					Margin="12,0,0,0"/>
             <TextBox Text="{Binding Description, Mode=TwoWay}" Name="Description" />
         </StackPanel>
             </ScrollViewer>

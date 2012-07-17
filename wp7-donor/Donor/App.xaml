@@ -159,8 +159,12 @@
             <Setter Property="FontSize" Value="36"/>
             <Setter Property="Foreground" Value="#B9A194"/>
         </Style>
-
-        
+		
+        <Style x:Key="Text40pxB9A194" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Segoe WP Regular"/>
+            <Setter Property="FontSize" Value="40"/>
+            <Setter Property="Foreground" Value="#B9A194"/>
+        </Style>        
 
 
     </Application.Resources>

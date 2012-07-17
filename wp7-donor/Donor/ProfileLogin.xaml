@@ -27,14 +27,19 @@
 
             <controls:Pivot.Title>
                 <StackPanel>
-                <toolkit:PerformanceProgressBar HorizontalAlignment="Left" Height="8" Margin="0" VerticalAlignment="Top" IsIndeterminate="False" Width="460" Name="LoadingBar" />
-                    <TextBlock Style="{StaticResource Text24pxWhite}" Text="профиль"/>   
+                <toolkit:PerformanceProgressBar HorizontalAlignment="Left" 
+				Height="8" Margin="0" VerticalAlignment="Top"
+				 IsIndeterminate="False" Width="460" Name="LoadingBar" />
+                    <TextBlock 
+					Style="{StaticResource Text24pxWhite}" 
+					Text="профиль"/>   
                 </StackPanel>
             </controls:Pivot.Title>
             <!--Pivot item one-->
             <controls:PivotItem>
                 <controls:PivotItem.Header>
-                    <TextBlock Style="{StaticResource Text70pxWhite}" Text="аккаунт" Margin="0,30,0,0"/>
+                    <TextBlock Style="{StaticResource Text70pxWhite}" 
+					Text="аккаунт" Margin="0,30,0,0"/>
                 </controls:PivotItem.Header>
                 <Grid>
                     <StackPanel Name="EditProfile" Visibility="Collapsed">
