@@ -15,33 +15,58 @@
     mc:Ignorable="d" d:DesignHeight="768" d:DesignWidth="480"
     shell:SystemTray.IsVisible="True" Loaded="PhoneApplicationPage_Loaded">
     <!--LayoutRoot is the root grid where all page content is placed-->
-    <Grid x:Name="LayoutRoot" Background="Transparent">
+    <Grid x:Name="LayoutRoot">
+    	<Grid.Background>
+            <ImageBrush ImageSource="images/bg_04.png"/>
+        </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <!--TitlePanel contains the name of the application and page title-->
-        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock x:Name="ApplicationTitle" Text="Донор - события" Style="{StaticResource PhoneTextNormalStyle}"/>
-            <TextBlock Text="Подробности" Style="{StaticResource PhoneTextExtraLargeStyle}" TextWrapping="Wrap"/>
+        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,70">
+            <TextBlock x:Name="ApplicationTitle" 
+			Text="кроводача" 
+			Style="{StaticResource Text24pxWhite}"/>
+            <TextBlock Text="Подробности" 
+			Style="{StaticResource Text70pxWhite}" 
+			TextWrapping="Wrap"/>
         </StackPanel>
 
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
             <ScrollViewer>
             <StackPanel>
-                    <TextBlock Text="{Binding Path=Title}" Name="TitleNews" Style="{StaticResource PhoneTextExtraLargeStyle}" TextWrapping="Wrap"/>
+                    <TextBlock Text="{Binding Path=Title}" 
+					Name="TitleNews" Style="{StaticResource PhoneTextExtraLargeStyle}" TextWrapping="Wrap"/>
                     <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="{Binding Path=ShortDate}" Name="Date" Style="{StaticResource PhoneTextExtraLargeStyle}" TextWrapping="Wrap"/>
-                    <TextBlock Text="{Binding Path=ShortTime}" Name="Time" Style="{StaticResource PhoneTextExtraLargeStyle}" TextWrapping="Wrap"/>
+                    <TextBlock Text="{Binding Path=ShortDate}" 
+					Name="Date" 
+					Style="{StaticResource Text36pxB9A194}" TextWrapping="Wrap"/>
+                    <TextBlock Text="{Binding Path=ShortTime}" 
+					Style="{StaticResource Text36pxB9A194}"
+					Name="Time" TextWrapping="Wrap"/>
                     </StackPanel>
                     
-                    <TextBlock Text="{Binding Path=GiveType}" Name="GiveType" TextWrapping="Wrap"/>
-                    <TextBlock Text="{Binding Path=Place}" Name="Place" TextWrapping="Wrap"/>
-                    <TextBlock Text="{Binding Path=Reminder}" Name="Reminder" TextWrapping="Wrap"/>
-                    <TextBlock Text="{Binding Path=FinishedString}" Name="Finished" TextWrapping="Wrap"/>
-                    <TextBlock Text="Комментарии:" TextWrapping="Wrap"/>
-                    <TextBlock Text="{Binding Path=Description}" Name="Description" TextWrapping="Wrap"/>                    
+                    <TextBlock Text="{Binding Path=GiveType}" 
+					Style="{StaticResource Text36pxB9A194}"
+					Name="GiveType" TextWrapping="Wrap"/>
+                    <TextBlock Text="{Binding Path=Place}" 
+					Style="{StaticResource Text36pxB9A194}"
+					Name="Place" TextWrapping="Wrap"/>
+                    <TextBlock 
+					Style="{StaticResource Text36pxB9A194}"
+					Text="{Binding Path=Reminder}" 
+					Name="Reminder" TextWrapping="Wrap"/>
+                    <TextBlock Text="{Binding Path=FinishedString}"
+					Style="{StaticResource Text36pxB9A194}"
+					Name="Finished" TextWrapping="Wrap"/>
+                    <TextBlock Text="Комментарии:" 
+					Style="{StaticResource Text36pxB9A194}"
+					TextWrapping="Wrap"/>
+                    <TextBlock Text="{Binding Path=Description}" 
+					Style="{StaticResource Text36pxB9A194}"
+					Name="Description" TextWrapping="Wrap"/>                    
                 </StackPanel>
             </ScrollViewer>
         </Grid>
