@@ -22,7 +22,8 @@ namespace Donor
             DataContext = App.ViewModel;
             this.Calendar1.Items = App.ViewModel.Events.Items;
 
-
+            this.PageTitle.Text = CultureInfo.CurrentCulture.DateTimeFormat.MonthNames[DateTime.Now.Month - 1];
+            this.ApplicationTitle.Text = DateTime.Now.Year.ToString();
         }
 
         private void LayoutRoot_Loaded(object sender, RoutedEventArgs e)
@@ -32,8 +33,6 @@ namespace Donor
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
-            this.PageTitle.Text = CultureInfo.CurrentCulture.DateTimeFormat.MonthNames[DateTime.Now.Month - 1];
-            this.ApplicationTitle.Text = DateTime.Now.Year.ToString();
         }
     }
 }

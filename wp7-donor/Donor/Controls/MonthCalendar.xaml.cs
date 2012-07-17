@@ -23,24 +23,57 @@ namespace Donor.Controls
         public MonthCalendar()
         {
             InitializeComponent();
+
+            UpdateCalendar();
         }
 
-        public DateTime Date { get; set; }
-        public ObservableCollection<EventViewModel> Items { get; set; }
-
-        private void UserControl_Loaded(object sender, RoutedEventArgs e)
-        {
+        public void UpdateCalendar() {
             this.CalendarDays.Children.Clear();
             Date = DateTime.Now;
             DateTime FirstDayPrev = new DateTime(DateTime.Now.AddMonths(-1).Year, DateTime.Now.AddMonths(-1).Month, 1);
             DateTime FirstDay = new DateTime(Date.Year, Date.Month, 1);
             int daysbefore = (int)FirstDay.DayOfWeek;
 
+            /// Показываем минимальный период невозможности сдачи крови тем или иным образом
+            int days = App.ViewModel.Events.DaysBefore();
+            DateTime FromDays;
+            DateTime EndDays;
+            //if (days != 0)
+            //{
+            //try
+            //{
+            var nearestEvents = (from item in App.ViewModel.Events.Items
+                                 where (item.Date <= DateTime.Now)
+                                 orderby item.Date descending
+                                 select item).Take(1);
+            FromDays = nearestEvents.FirstOrDefault().Date;
+            EndDays = FromDays.AddDays(days);
+            //}
+            //catch
+            //{
+            //};
+            //};
+
             for (var i = (DateTime.DaysInMonth(FirstDayPrev.Year, FirstDayPrev.Month) - daysbefore); i < (DateTime.DaysInMonth(FirstDayPrev.Year, FirstDayPrev.Month) - 1); i++)
             {
                 DayInCalendarControl day = new DayInCalendarControl();
                 day.ImagePath = "/images/x.png";
+
                 day.DayNumber = i.ToString();
+                day.MonthNumber = FirstDayPrev.Month;
+                day.YearNumber = FirstDayPrev.Year;
+                day.Inactive = false;
+
+                DateTime curDate = new DateTime(FirstDayPrev.Year, FirstDayPrev.Month, i);
+                if (days != 0)
+                {
+                    if ((curDate <= EndDays) && (FromDays <= curDate))
+                    {
+                        day.BgColor = new SolidColorBrush(Colors.Gray);
+                        day.Inactive = true;
+                    };
+                };
+
                 day.TextColor = new SolidColorBrush(Colors.Gray);
                 this.CalendarDays.Children.Add(day);
             };
@@ -51,7 +84,7 @@ namespace Donor.Controls
                 day2.ImagePath = null;
                 day2.Tap += ClickDay;
                 day2.EventDay = App.ViewModel.Events.Items.FirstOrDefault(a => a.Date == new DateTime(Date.Year, Date.Month, i));
-                if ((day2.EventDay != null) && (day2.EventDay.Type=="Праздник"))
+                if ((day2.EventDay != null) && (day2.EventDay.Type == "Праздник"))
                 {
                     day2.BgColor = new SolidColorBrush(Colors.DarkGray);
                 };
@@ -59,8 +92,28 @@ namespace Donor.Controls
                 day2.YearNumber = Date.Year;
                 day2.DayNumber = i.ToString();
                 day2.TextColor = new SolidColorBrush(Colors.White);
+                day2.Inactive = false;
+
+                DateTime curDate = new DateTime(Date.Year, Date.Month, i);
+                if (days != 0)
+                {
+                    if ((curDate <= EndDays) && (FromDays <= curDate))
+                    {
+                        day2.BgColor = new SolidColorBrush(Colors.Gray);
+                        day2.Inactive = true;
+                    };
+                };
+
                 this.CalendarDays.Children.Add(day2);
-            };    
+            };
+        }
+
+        public DateTime Date { get; set; }
+        public ObservableCollection<EventViewModel> Items { get; set; }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            UpdateCalendar();
         }
 
         private void ClickDay(object sender, Microsoft.Phone.Controls.GestureEventArgs e)

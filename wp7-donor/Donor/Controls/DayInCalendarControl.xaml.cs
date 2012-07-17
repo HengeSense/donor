@@ -189,6 +189,8 @@ namespace Donor.Controls
             }
         }
 
+        public bool Inactive { get; set; }
+
         public event EventHandler<Microsoft.Phone.Controls.GestureEventArgs> Tap;
 
         public event PropertyChangedEventHandler PropertyChanged;
