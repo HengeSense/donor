@@ -125,6 +125,35 @@ namespace Donor.ViewModels
         /// Оценка станции, от 1 до 5
         /// </summary>
         public int Vote { get; set; }
+
+        /// <summary>
+        /// - оценка регистратуры станции, от 1 до 5
+        /// </summary>
+        public int Vote_registry { get; set; }
+        /// <summary>
+        /// - оценка врача-терапевта станции, от 1 до 5
+        /// </summary>
+        public int Vote_physician { get; set; }
+        /// <summary>
+        /// - оценка лаборатории станции, от 1 до 5
+        /// </summary>
+        public int Vote_laboratory { get; set; }
+        /// <summary>
+        /// - оценка буфета станции, от 1 до 5
+        /// </summary>
+        public int Vote_buffet { get; set; }
+        /// <summary>
+        /// - оценка расписания работы станции, от 1 до 5
+        /// </summary>
+        public int Vote_schedule { get; set; }
+        /// <summary>
+        /// - оценка организации сдачи крови, (кроводачи), от 1 до 5
+        /// </summary>
+        public int Vote_organization_donation { get; set; }
+        /// <summary>
+        /// - оценка помещения станции переливания, от 1 до 5
+        /// </summary>
+        public int Vote_room { get; set; }
     }
 
 }

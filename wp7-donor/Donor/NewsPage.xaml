@@ -38,7 +38,7 @@
                     <TextBlock Text="{Binding Path=Body}" 
 					Name="Description" 
 					Style="{StaticResource Text24px847168}"  
-					TextWrapping="Wrap"/>
+					/>
             </StackPanel>
             </ScrollViewer>
         </Grid>

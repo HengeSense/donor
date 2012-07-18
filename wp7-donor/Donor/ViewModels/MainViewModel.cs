@@ -34,7 +34,7 @@ namespace Donor
     public class MainViewModel : INotifyPropertyChanged
     {
         public const string APPLICATION_ID = "EIpakVdZblHedhqgxMgiEVnIGCRGvWdy9v8gkKZu";
-        public const string REST_API_KEY = "uNarhakSf1on8lJjrAVs1VWmPlG1D6ZJf9dO5QZY";
+        public const string REST_API_KEY = "wPvwRKxX2b2vyrRprFwIbaE5t3kyDQq11APZ0qXf";
 
 
         public MainViewModel()
@@ -234,7 +234,7 @@ namespace Donor
                     var client = new RestClient("https://api.parse.com");
                     var request = new RestRequest("1/login", Method.GET);
                     request.Parameters.Clear();
-                    string strJSONContent = "{\"username\":\"" + App.ViewModel.User.UserName + "\",\"password\":\"" + App.ViewModel.User.Password + "\"}";
+                    string strJSONContent = "{\"username\":\"" + App.ViewModel.User.UserName.ToLower() + "\",\"password\":\"" + App.ViewModel.User.Password + "\"}";
                     request.AddHeader("X-Parse-Application-Id", APPLICATION_ID);
                     request.AddHeader("X-Parse-REST-API-Key", REST_API_KEY);
 

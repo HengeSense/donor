@@ -15,15 +15,18 @@
     shell:SystemTray.IsVisible="True">
 
     <!--LayoutRoot is the root grid where all page content is placed-->
-    <Grid x:Name="LayoutRoot" Background="Transparent">
+    <Grid x:Name="LayoutRoot">
+        <Grid.Background>
+            <ImageBrush ImageSource="images/back_02.png"/>
+        </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <!--TitlePanel contains the name of the application and page title-->
-        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock x:Name="ApplicationTitle" Text="Объявления" Style="{StaticResource PhoneTextNormalStyle}"/>
+        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="20,60,0,20">
+            <TextBlock x:Name="ApplicationTitle" Text="Объявления" Style="{StaticResource Text30pxWhite}"/>
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
@@ -31,8 +34,10 @@
             <ListBox Margin="0,0,-12,0" ItemsSource="{Binding Ads.Items}" SelectionChanged="ListBox_SelectionChanged">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel Margin="0,0,0,17" Width="432" Height="78">
-                            <TextBlock Text="{Binding Title}" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
+                        <StackPanel Margin="0,0,0,5" Width="432">
+                            <TextBlock Text="{Binding CreatedAtText}" TextWrapping="Wrap" Style="{StaticResource Text40pxB9A194}"/>
+                            <TextBlock Text="{Binding Title}" TextWrapping="Wrap" Style="{StaticResource Text28pxB9A194}"/>
+                            <!--<TextBlock Text="{Binding Title}" TextWrapping="Wrap" Style="{StaticResource Text28pxB9A194}"/>-->
                         </StackPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>

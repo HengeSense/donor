@@ -14,21 +14,31 @@
     shell:SystemTray.IsVisible="True" Loaded="PhoneApplicationPage_Loaded">
 
     <!--LayoutRoot is the root grid where all page content is placed-->
-    <Grid x:Name="LayoutRoot" Background="Transparent">
+    <Grid x:Name="LayoutRoot">
+        <Grid.Background>
+            <ImageBrush ImageSource="images/back_02.png"/>
+        </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <!--TitlePanel contains the name of the application and page title-->
-        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock x:Name="ApplicationTitle" Text="Объявления" Style="{StaticResource PhoneTextNormalStyle}"/>
-            <TextBlock x:Name="tirle" Text="{Binding Title}" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}" TextWrapping="Wrap" />
+        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="20,60,0,20">
+            <TextBlock x:Name="ApplicationTitle" 
+                       Text="Объявления"
+                       Style="{StaticResource Text30pxWhite}"/>
         </StackPanel>
-
+       
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-            <TextBlock Text="{Binding Body}" TextWrapping="Wrap"/>
+            <ScrollViewer>
+                <StackPanel>              
+                    <TextBlock x:Name="title" Text="{Binding Title}" Margin="0" 
+                           Style="{StaticResource Text36pxB9A194}" TextWrapping="Wrap" />
+                    <TextBlock Text="{Binding Body}" TextWrapping="Wrap"
+                           Style="{StaticResource Text24px847168}"/>
+                </StackPanel>
+            </ScrollViewer>
         </Grid>
     </Grid>
  

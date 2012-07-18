@@ -36,7 +36,7 @@
             <controls:PivotItem Name="PrevMonth" 
 			Header="{Binding Path=Events.PrevMonthString}" 
 			IsEnabled="True">
-                <Grid>
+                <Grid Background="White">
                     <ListBox Margin="0,0,-12,0" ItemsSource="{Binding Path=Events.PrevMonthItems}" Name="EventsListPrev" Loaded="EventsList_Loaded" SelectionChanged="EventsList_SelectionChanged">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
@@ -62,7 +62,7 @@
 
             <!--Pivot item one-->
             <controls:PivotItem  Name="ThisMonth"  Header="{Binding Path=Events.CurrentMonthString}" IsEnabled="True">
-                <Grid>                    
+                <Grid Background="White">                    
                     <ListBox Margin="0,0,-12,0" ItemsSource="{Binding Path=Events.ThisMonthItems}" Name="EventsList" Loaded="EventsList_Loaded" SelectionChanged="EventsList_SelectionChanged">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
@@ -87,7 +87,7 @@
             </controls:PivotItem>
 
             <controls:PivotItem Header="{Binding Path=Events.NextMonthString}" Name="NextMonth" IsEnabled="True">
-                <Grid>
+                <Grid Background="White">
                     <ListBox Margin="0,0,-12,0" ItemsSource="{Binding Path=Events.NextMonthItems}" Name="EventsListNext" Loaded="EventsList_Loaded" SelectionChanged="EventsList_SelectionChanged">
                         <ListBox.ItemTemplate>
                             <DataTemplate>

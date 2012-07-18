@@ -41,7 +41,8 @@
             <!--Panorama item one-->
             <controls:PanoramaItem>
             	<controls:PanoramaItem.Header>
-                    <TextBlock Style="{StaticResource Text70pxWhite}" 
+                    <TextBlock 
+                        Style="{StaticResource Text70pxWhite}" 
 					Text="Основное" Margin="0,30,0,0"/>
                 </controls:PanoramaItem.Header>
                 <Grid Margin="0,10,0,0">

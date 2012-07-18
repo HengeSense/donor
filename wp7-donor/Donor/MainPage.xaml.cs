@@ -170,7 +170,7 @@ namespace Donor
             var client = new RestClient("https://api.parse.com");
             var request = new RestRequest("1/login", Method.GET);
             request.Parameters.Clear();
-            string strJSONContent = "{\"username\":\"" + this.email.Text + "\",\"password\":\"" + this.password.Password + "\"}";
+            string strJSONContent = "{\"username\":\"" + this.email.Text.ToLower() + "\",\"password\":\"" + this.password.Password + "\"}";
             request.AddHeader("X-Parse-Application-Id", "EIpakVdZblHedhqgxMgiEVnIGCRGvWdy9v8gkKZu");
             request.AddHeader("X-Parse-REST-API-Key", "wPvwRKxX2b2vyrRprFwIbaE5t3kyDQq11APZ0qXf");
 

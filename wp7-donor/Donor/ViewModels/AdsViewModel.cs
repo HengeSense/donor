@@ -121,5 +121,15 @@ namespace Donor.ViewModels
         public string Url { get; set; }
         public string CreatedAt { get; set; }
         public string UpdatedAt { get; set; }
+
+        public string CreatedAtText
+        {
+            private set { }
+            get
+            {
+                DateTime created = DateTime.Parse(this.CreatedAt);
+                return created.ToShortDateString();
+            }
+        }
     }
 }

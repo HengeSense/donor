@@ -15,25 +15,45 @@
     shell:SystemTray.IsVisible="True" Loaded="PhoneApplicationPage_Loaded">
 
     <!--LayoutRoot is the root grid where all page content is placed-->
-    <Grid x:Name="LayoutRoot" Background="Transparent">
+    <Grid x:Name="LayoutRoot">
+        <Grid.Background>
+            <ImageBrush ImageSource="images/bg_04.png"/>
+        </Grid.Background>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="203"/>
+            <RowDefinition Height="565*"/>
         </Grid.RowDefinitions>
 
         <!--TitlePanel contains the name of the application and page title-->
-        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock x:Name="ApplicationTitle" Text="Добавить отзыв" Style="{StaticResource PhoneTextNormalStyle}"/>
+        <StackPanel x:Name="TitlePanel" 
+                    Grid.Row="0" 
+                    Margin="20,10,0,20">
+            
+            <TextBlock 
+                x:Name="ApplicationTitle" 
+                Text="Добавить отзыв" 
+                Style="{StaticResource 
+                Text24pxWhite}"/>
+            <TextBlock 
+                x:Name="PageTitle" Text="Голосовать" 
+                Margin="10,30,0,0" 
+                
+                
+      Style="{StaticResource Text70pxWhite}"/>
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+            <ScrollViewer>              
             <StackPanel>
-                <TextBlock Text="Ваш отзыв:" />
+                <TextBlock Text="Ваш отзыв:" 
+                Style="{StaticResource Text30pxCBB2A3}"
+                Margin="12,0,0,0"/>
                 <TextBox Height="200" Name="Body" />
-                <TextBlock Height="30" Name="VoteText" Text="Ваш рейтинг:" />
-                <TextBox Name="Vote" InputScope="Digits"/>
+                <TextBlock Visibility="Collapsed" Height="30" Name="VoteText" Text="Ваш рейтинг:" />
+                <TextBox Visibility="Collapsed" Name="Vote" InputScope="Digits"/>
             </StackPanel>
+            </ScrollViewer>
         </Grid>
 
         <WPExtensions:AdvancedApplicationBar Name="AppBar" IsVisible="True" IsMenuEnabled="False">
