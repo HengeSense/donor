@@ -92,6 +92,11 @@ namespace Donor
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
+            if (App.ViewModel.User.IsLoggedIn == false)
+            {
+                MessageBox.Show("You can't add events until you enter your email and password.");
+                return;
+            };
             string give = this.GiveType.SelectedItem.ToString();
             bool possible = true;
             if (this.EventType.SelectedItem.ToString() != "Анализ")

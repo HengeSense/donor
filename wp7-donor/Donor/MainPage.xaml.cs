@@ -92,7 +92,14 @@ namespace Donor
         private void CalendarMenuText_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
             //NavigationService.Navigate(new Uri("/CalendarMonthPage.xaml", UriKind.Relative));
-            NavigationService.Navigate(new Uri("/CalendarYearPage.xaml", UriKind.Relative));
+            if (App.ViewModel.User.IsLoggedIn)
+            {
+                NavigationService.Navigate(new Uri("/CalendarYearPage.xaml", UriKind.Relative));
+            }
+            else
+            {
+                MessageBox.Show("Please enter if you wish to add events to yofur calendar.");
+            };
         }
 
         private void EventsList_Loaded(object sender, RoutedEventArgs e)

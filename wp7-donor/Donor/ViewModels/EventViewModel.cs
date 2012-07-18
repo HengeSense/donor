@@ -25,6 +25,8 @@ namespace Donor.ViewModels
         public EventViewModel()
         {
             this.Date = DateTime.Now;
+
+            this.UserId = App.ViewModel.User.objectId;
         }
 
         public string Id { get; set; }
@@ -126,6 +128,8 @@ namespace Donor.ViewModels
             }
             catch { };
         }
+
+        public string UserId { get; set; }
     }
 
     public class EventsListViewModel: INotifyPropertyChanged
@@ -274,6 +278,24 @@ namespace Donor.ViewModels
             return item_near2.FirstOrDefault();
         }
 
+        public ObservableCollection<EventViewModel> UserItems()
+        {
+            ObservableCollection<EventViewModel> _user_items = new ObservableCollection<EventViewModel>();
+            if (App.ViewModel.User.IsLoggedIn)
+            {
+                var _selected_user_items = (from item in this.Items
+                                            where (item.UserId == App.ViewModel.User.objectId)
+                                            orderby item.Date descending
+                                            select item);
+            }
+            else
+            {
+                return _user_items;
+            };
+
+            return _user_items;
+        }
+
         public EventViewModel NearestEventsAll()
         {
             var item_near2 = (from item in this.Items
@@ -337,7 +359,7 @@ namespace Donor.ViewModels
             get 
             {
                 var newitems = (from eventCal in this.Items
-                                where (eventCal.Date.Month == DateTime.Now.Month) && (eventCal.Date.Year == DateTime.Now.Year)
+                                where (eventCal.Date.Month == DateTime.Now.Month) && (eventCal.Date.Year == DateTime.Now.Year) && (App.ViewModel.User.objectId == eventCal.UserId)
                                orderby eventCal.Date descending
                                 select eventCal).Take(10);
                 List<EventViewModel> outnews = newitems.ToList();
@@ -351,7 +373,7 @@ namespace Donor.ViewModels
             get
             {
                 var newitems = (from eventCal in this.Items
-                                where (eventCal.Date.Month == CurrentMonth.Month) && (eventCal.Date.Year == CurrentMonth.Year)
+                                where (eventCal.Date.Month == CurrentMonth.Month) && (eventCal.Date.Year == CurrentMonth.Year) && (eventCal.UserId == App.ViewModel.User.objectId)
                                 orderby eventCal.Date descending
                                 select eventCal);
                 List<EventViewModel> outnews = newitems.ToList();
