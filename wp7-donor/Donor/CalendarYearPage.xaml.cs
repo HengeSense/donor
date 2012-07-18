@@ -42,26 +42,10 @@ namespace Donor
 
         private void GestureListener_Flick(object sender, Microsoft.Phone.Controls.FlickGestureEventArgs e)
         {
-            //this.rect.Fill = new SolidColorBrush(Colors.White);
-            //MessageBox.Show(e.Angle.ToString());
             if (((e.Angle < 90) && (e.Angle >= 0)) || ((e.Angle > 270) && (e.Angle < 360)))
             {
                 App.ViewModel.Events.CurrentMonth = App.ViewModel.Events.CurrentMonth.AddMonths(-1);
                 int itemindex = 1;
-                /*switch ((sender as Pivot).SelectedIndex)
-                {
-                    case 0:
-                        itemindex = 2;
-                        break;
-                    case 1:
-                        itemindex = 0;
-                        break;
-                    case 2:
-                        itemindex = 1;
-                        break;
-                    default:
-                        break;
-                };*/
                 itemindex = (sender as Pivot).SelectedIndex;
                 switch (itemindex)
                 {

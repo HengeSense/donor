@@ -284,6 +284,7 @@
     <Content Include="icons\appbar.cancel.png" />
     <Resource Include="images\back_01.png" />
     <Resource Include="images\back_02.png" />
+    <Resource Include="images\bg_04_white.png" />
     <Content Include="images\drop.png" />
     <Content Include="images\h.png" />
     <Resource Include="images\logo.png" />

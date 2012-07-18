@@ -120,9 +120,7 @@ namespace Donor.ViewModels
                 RememberDate = RememberDate.AddSeconds(-addSeconds);
                 objReminder.BeginTime = RememberDate;
 
-                //DateTime.Now.AddSeconds(10);
                 objReminder.Title = this.GiveType;
-                //objReminder.Content = "Its time for WindowsPhoneRocks.com Article";
                 objReminder.NavigationUri = new Uri("/EventPage.xaml?id=" + this.Id, UriKind.Relative);
                 ScheduledActionService.Add(objReminder);
             }
@@ -142,7 +140,7 @@ namespace Donor.ViewModels
         public int FutureEventsCount()
         {
             int count = 0;
-            count =      (from item in this.Items
+            count = (from item in this.UserItems
                           where (item.Date >= DateTime.Now) && (item.Type == "1") && (item.Type == "0")
                          orderby item.Date ascending select item).Count();
             return count;
@@ -154,7 +152,7 @@ namespace Donor.ViewModels
             
 
             int days_count = 0;
-            var nearestEvents = (from item in this.Items
+            var nearestEvents = (from item in this.UserItems
                               where (item.Date <= DateTime.Now)
                               orderby item.Date descending
                               select item).Take(1);
@@ -271,34 +269,44 @@ namespace Donor.ViewModels
 
         public EventViewModel NearestEvents()
         {
-            var item_near2 = (from item in this.Items
+            var item_near2 = (from item in this.UserItems
                      where (item.Date >= DateTime.Now) && (item.Type == "1") && (item.Type == "0")
                      orderby item.Date ascending
                      select item).Take(1);
             return item_near2.FirstOrDefault();
         }
 
-        public ObservableCollection<EventViewModel> UserItems()
+        public ObservableCollection<EventViewModel> UserItems
         {
-            ObservableCollection<EventViewModel> _user_items = new ObservableCollection<EventViewModel>();
-            if (App.ViewModel.User.IsLoggedIn)
+            get
             {
-                var _selected_user_items = (from item in this.Items
-                                            where (item.UserId == App.ViewModel.User.objectId)
-                                            orderby item.Date descending
-                                            select item);
-            }
-            else
-            {
-                return _user_items;
-            };
+                ObservableCollection<EventViewModel> _user_items = new ObservableCollection<EventViewModel>();
+                if (App.ViewModel.User.IsLoggedIn)
+                {
+                    var _selected_user_items = (from item in this.Items
+                                                where (item.UserId == App.ViewModel.User.objectId) || ((item.Type != "0") && (item.Type != "1"))
+                                                orderby item.Date descending
+                                                select item);
+                    foreach (var item in _selected_user_items) {
+                        _user_items.Add(item);
+                    };
+                    return _user_items;
+                }
+                else
+                {
+                    return _user_items;
+                };
 
-            return _user_items;
+                return _user_items;
+            }
+            private set
+            {
+            }
         }
 
         public EventViewModel NearestEventsAll()
         {
-            var item_near2 = (from item in this.Items
+            var item_near2 = (from item in this.UserItems
                               where (item.Date >= DateTime.Now)
                               orderby item.Date ascending
                               select item).Take(1);
@@ -358,7 +366,7 @@ namespace Donor.ViewModels
         public List<EventViewModel> WeekItems { 
             get 
             {
-                var newitems = (from eventCal in this.Items
+                var newitems = (from eventCal in this.UserItems
                                 where (eventCal.Date.Month == DateTime.Now.Month) && (eventCal.Date.Year == DateTime.Now.Year) && (App.ViewModel.User.objectId == eventCal.UserId)
                                orderby eventCal.Date descending
                                 select eventCal).Take(10);
@@ -372,8 +380,8 @@ namespace Donor.ViewModels
         {
             get
             {
-                var newitems = (from eventCal in this.Items
-                                where (eventCal.Date.Month == CurrentMonth.Month) && (eventCal.Date.Year == CurrentMonth.Year) && (eventCal.UserId == App.ViewModel.User.objectId)
+                var newitems = (from eventCal in this.UserItems
+                                where (eventCal.Date.Month == CurrentMonth.Month) && (eventCal.Date.Year == CurrentMonth.Year)
                                 orderby eventCal.Date descending
                                 select eventCal);
                 List<EventViewModel> outnews = newitems.ToList();
@@ -431,7 +439,7 @@ CurrentMonth.Month-1];
         {
             get
             {
-                var newitems = (from eventCal in this.Items
+                var newitems = (from eventCal in this.UserItems
                                 where (eventCal.Date.Month == CurrentMonth.AddMonths(1).Month) && (eventCal.Date.Year == CurrentMonth.AddMonths(1).Year)
                                 orderby eventCal.Date descending
                                 select eventCal);
@@ -445,7 +453,7 @@ CurrentMonth.Month-1];
         {
             get
             {
-                var newitems = (from eventCal in this.Items
+                var newitems = (from eventCal in this.UserItems
                                 where (eventCal.Date.Month == CurrentMonth.AddMonths(-1).Month) && (eventCal.Date.Year == CurrentMonth.AddMonths(-1).Year)
                                 orderby eventCal.Date descending
                                 select eventCal);

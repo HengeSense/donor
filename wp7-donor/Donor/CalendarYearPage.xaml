@@ -19,10 +19,18 @@
     d:DataContext="{d:DesignData SampleData/MainViewModelSampleData.xaml}"
     DataContext="{Binding Path=App.ViewModel,Source=App.ViewModel}">
 
+    <phone:PhoneApplicationPage.Resources>
+    <DataTemplate x:Key="PivotHeaderTemplate">
+        <StackPanel>
+            <TextBlock Text="{Binding}" Foreground="White" FontSize="74"/>
+        </StackPanel>
+    </DataTemplate>
+    </phone:PhoneApplicationPage.Resources>
+
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot">
     	<Grid.Background>
-            <ImageBrush ImageSource="images/bg_04.png"/>
+            <ImageBrush ImageSource="images/bg_04_white.png"/>
         </Grid.Background>
         <!--Pivot Control-->
         <controls:Pivot Name="Monthes" 
@@ -30,14 +38,16 @@
 		Loaded="Pivot_Loaded" 
 		SelectionChanged="Pivot_SelectionChanged">
         	<controls:Pivot.Background>
-            	<ImageBrush ImageSource="images/bg_04.png"/>
+            	<ImageBrush ImageSource="images/bg_04_white.png"/>
         	</controls:Pivot.Background>
 
-            <controls:PivotItem Name="PrevMonth" 
-			Header="{Binding Path=Events.PrevMonthString}" 
+            <controls:PivotItem Name="PrevMonth"			
 			IsEnabled="True">
-                <Grid Background="White">
-                    <ListBox Margin="0,0,-12,0" ItemsSource="{Binding Path=Events.PrevMonthItems}" Name="EventsListPrev" Loaded="EventsList_Loaded" SelectionChanged="EventsList_SelectionChanged">
+                <controls:PivotItem.Header>
+                    <TextBlock Text="{Binding Path=Events.PrevMonthString}" Foreground="White" FontSize="74"/>
+                </controls:PivotItem.Header>
+                <Grid>
+                    <ListBox Margin="0,30,0,0" ItemsSource="{Binding Path=Events.PrevMonthItems}" Name="EventsListPrev" Loaded="EventsList_Loaded" SelectionChanged="EventsList_SelectionChanged">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <Grid Width="470">
@@ -50,9 +60,24 @@
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
 
-                                    <Image Height="27" Width="27" Grid.Column="0" Grid.Row="0" Name="DayImage" Source="{Binding Image}"/>
-                                    <TextBlock Text="{Binding ShortDate}" Grid.Row="0" Grid.Column="1" TextWrapping="Wrap" Style="{StaticResource PhoneTextSubtleStyle}"/>
-                                    <TextBlock Text="{Binding Title}" Grid.Row="0" Grid.Column="2" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource PhoneTextLargeStyle}"/>
+                                    <Border Grid.Column="0" Grid.Row="0" BorderThickness="1" BorderBrush="#FFA09A95">
+                                        <Image Width="27" Margin="4"
+                                           Name="DayImage" Source="{Binding Image}"/>
+                                    </Border>
+
+                                    <Border Grid.Row="0" Grid.Column="1" BorderThickness="1" BorderBrush="#FFA09A95">
+                                        <TextBlock Text="{Binding ShortDate}"                                                
+                                               TextWrapping="Wrap" 
+                                               Margin="4"
+                                               Style="{StaticResource Text20px9F9F9F}"/>
+                                    </Border>
+
+                                    <Border Grid.Row="0" 
+                                        Grid.Column="2" BorderThickness="1" BorderBrush="#FFA09A95">
+                                        <TextBlock 
+                                        Text="{Binding Title}"  TextWrapping="Wrap" 
+                                        Margin="4" Style="{StaticResource Text20pxBlack}" FontWeight="Bold" />
+                                    </Border>
                                 </Grid>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
@@ -61,9 +86,14 @@
             </controls:PivotItem>
 
             <!--Pivot item one-->
-            <controls:PivotItem  Name="ThisMonth"  Header="{Binding Path=Events.CurrentMonthString}" IsEnabled="True">
-                <Grid Background="White">                    
-                    <ListBox Margin="0,0,-12,0" ItemsSource="{Binding Path=Events.ThisMonthItems}" Name="EventsList" Loaded="EventsList_Loaded" SelectionChanged="EventsList_SelectionChanged">
+            <controls:PivotItem  
+                Name="ThisMonth"  
+                IsEnabled="True">
+                <controls:PivotItem.Header>
+                    <TextBlock Text="{Binding Path=Events.CurrentMonthString}" Foreground="White" FontSize="74"/>
+                </controls:PivotItem.Header>
+                <Grid>                    
+                    <ListBox Margin="0,30,0,0" ItemsSource="{Binding Path=Events.ThisMonthItems}" Name="EventsList" Loaded="EventsList_Loaded" SelectionChanged="EventsList_SelectionChanged">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <Grid Width="470">
@@ -75,10 +105,25 @@
                                         <ColumnDefinition Width="130"/>
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
-                                    
-                                    <Image Height="27" Width="27" Grid.Column="0" Grid.Row="0" Name="DayImage" Source="{Binding Image}"/>
-                                    <TextBlock Text="{Binding ShortDate}" Grid.Row="0" Grid.Column="1" TextWrapping="Wrap" Style="{StaticResource PhoneTextSubtleStyle}"/>
-                                    <TextBlock Text="{Binding Title}" Grid.Row="0" Grid.Column="2" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource PhoneTextLargeStyle}"/>
+
+                                    <Border Grid.Column="0" Grid.Row="0" BorderThickness="1" BorderBrush="#FFA09A95">
+                                        <Image Width="27" Margin="4"
+                                           Name="DayImage" Source="{Binding Image}"/>
+                                    </Border>
+
+                                    <Border Grid.Row="0" Grid.Column="1" BorderThickness="1" BorderBrush="#FFA09A95">
+                                        <TextBlock Text="{Binding ShortDate}"                                                
+                                               TextWrapping="Wrap" 
+                                               Margin="4"
+                                               Style="{StaticResource Text20px9F9F9F}"/>
+                                    </Border>
+
+                                    <Border Grid.Row="0" 
+                                        Grid.Column="2" BorderThickness="1" BorderBrush="#FFA09A95">
+                                        <TextBlock 
+                                        Text="{Binding Title}"  TextWrapping="Wrap" 
+                                        Margin="4" Style="{StaticResource Text20pxBlack}" FontWeight="Bold" />
+                                    </Border>
                                 </Grid>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
@@ -86,9 +131,14 @@
                 </Grid>
             </controls:PivotItem>
 
-            <controls:PivotItem Header="{Binding Path=Events.NextMonthString}" Name="NextMonth" IsEnabled="True">
-                <Grid Background="White">
-                    <ListBox Margin="0,0,-12,0" ItemsSource="{Binding Path=Events.NextMonthItems}" Name="EventsListNext" Loaded="EventsList_Loaded" SelectionChanged="EventsList_SelectionChanged">
+            <controls:PivotItem 
+                Name="NextMonth" IsEnabled="True">
+                <controls:PivotItem.Header>
+                    <TextBlock Text="{Binding Path=Events.NextMonthString}" Foreground="White" FontSize="74"/>
+                </controls:PivotItem.Header>
+                <Grid>
+                    <ListBox Margin="0,30,0,0" ItemsSource="{Binding Path=Events.NextMonthItems}" 
+                             Name="EventsListNext" Loaded="EventsList_Loaded" SelectionChanged="EventsList_SelectionChanged">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <Grid Width="470">
@@ -97,13 +147,28 @@
                                     </Grid.RowDefinitions>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="30"/>
-                                        <ColumnDefinition Width="130"/>
+                                        <ColumnDefinition Width="110"/>
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
 
-                                    <Image Height="27" Width="27" Grid.Column="0" Grid.Row="0" Name="DayImage" Source="{Binding Image}"/>
-                                    <TextBlock Text="{Binding ShortDate}" Grid.Row="0" Grid.Column="1" TextWrapping="Wrap" Style="{StaticResource PhoneTextSubtleStyle}"/>
-                                    <TextBlock Text="{Binding Title}" Grid.Row="0" Grid.Column="2" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource PhoneTextLargeStyle}"/>
+                                    <Border Grid.Column="0" Grid.Row="0" BorderThickness="1" BorderBrush="#FFA09A95">
+                                        <Image Width="27" Margin="4"
+                                           Name="DayImage" Source="{Binding Image}"/>
+                                    </Border>
+
+                                    <Border Grid.Row="0" Grid.Column="1" BorderThickness="1" BorderBrush="#FFA09A95">
+                                        <TextBlock Text="{Binding ShortDate}"                                                
+                                               TextWrapping="Wrap" 
+                                               Margin="4"
+                                               Style="{StaticResource Text20px9F9F9F}"/>
+                                    </Border>
+
+                                    <Border Grid.Row="0" 
+                                        Grid.Column="2" BorderThickness="1" BorderBrush="#FFA09A95">
+                                        <TextBlock 
+                                        Text="{Binding Title}"  TextWrapping="Wrap" 
+                                        Margin="4" Style="{StaticResource Text20pxBlack}" FontWeight="Bold" />
+                                    </Border>
                                 </Grid>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
