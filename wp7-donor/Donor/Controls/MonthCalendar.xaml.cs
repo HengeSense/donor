@@ -80,15 +80,16 @@ namespace Donor.Controls
                 DayInCalendarControl day2 = new DayInCalendarControl();
                 day2.ImagePath = null;
                 day2.Tap += ClickDay;
+                day2.BgColor = new SolidColorBrush(new Color() { A = 1, B = 238, G = 238, R = 238 });
                 day2.EventDay = App.ViewModel.Events.Items.FirstOrDefault(a => a.Date == new DateTime(Date.Year, Date.Month, i));
                 if ((day2.EventDay != null) && (day2.EventDay.Type == "Праздник"))
                 {
-                    day2.BgColor = new SolidColorBrush(Colors.DarkGray);
+                    day2.BgColor = new SolidColorBrush(Colors.Red);
                 };
                 day2.MonthNumber = Date.Month;
                 day2.YearNumber = Date.Year;
                 day2.DayNumber = i.ToString();
-                day2.TextColor = new SolidColorBrush(Colors.White);
+                day2.TextColor = new SolidColorBrush(Colors.Black);
                 day2.Inactive = false;
 
                 DateTime curDate = new DateTime(Date.Year, Date.Month, i);
@@ -96,7 +97,7 @@ namespace Donor.Controls
                 {
                     if ((curDate <= EndDays) && (FromDays <= curDate))
                     {
-                        day2.BgColor = new SolidColorBrush(Colors.Gray);
+                        day2.BgColor = new SolidColorBrush(Colors.DarkGray);
                         day2.Inactive = true;
                     };
                 };
