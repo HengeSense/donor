@@ -224,5 +224,10 @@ namespace Donor
             NavigationService.Navigate(new Uri("/HelpPage.xaml", UriKind.Relative));
         }
 
+        private void EditProfile_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+        	NavigationService.Navigate(new Uri("/ProfileLogin.xaml?task=edit", UriKind.Relative));
+        }
+
     }
 }

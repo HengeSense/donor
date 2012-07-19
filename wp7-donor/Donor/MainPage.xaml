@@ -113,8 +113,13 @@
                     <TextBlock Margin="0,15,0,0" Text="Планы"
 					Style="{StaticResource Text48pxDFB08B}"/>
                 </controls:PanoramaItem.Header>
-                <!--Double line list with image placeholder and text wrapping-->
-                <ListBox Margin="0,15,-12,0" ItemsSource="{Binding Events.WeekItems}" Name="EventsList" SelectionChanged="EventsList_SelectionChanged" Loaded="EventsList_Loaded" BorderThickness="0">
+                
+				<ScrollViewer>
+                <StackPanel>
+                <ListBox Margin="0,15,-12,0" 
+				ItemsSource="{Binding Events.WeekItems}" 
+				ScrollViewer.VerticalScrollBarVisibility="Disabled"
+				Name="EventsList" SelectionChanged="EventsList_SelectionChanged" Loaded="EventsList_Loaded" BorderThickness="0">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal" Margin="0,0,0,17">          
@@ -126,6 +131,13 @@
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
+				<Button Name="AddEvent" Content="Запланировать" 					
+					FontSize="24"
+					Background="#FF4186A3" 
+					BorderBrush="#FF4186A3" 
+					FontFamily="Segoe WP Regular" BorderThickness="3" />
+				</StackPanel>
+				</ScrollViewer>
             </controls:PanoramaItem>
 
             <controls:PanoramaItem>
@@ -134,20 +146,23 @@
 					Text="Новости"
 					Style="{StaticResource Text48pxDFB08B}"/>
                 </controls:PanoramaItem.Header>
-                <!--Double line list with text wrapping-->
+				
                 <ListBox Margin="0,15,0,0" ItemsSource="{Binding Path=News.NewItems}" Name="NewsList" SelectionChanged="ListBox_SelectionChanged">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Margin="0,0,0,17" Width="432">
                                 <StackPanel Orientation="Horizontal" Width="430">
-                                    <TextBlock Text="{Binding CreatedAtText}" TextWrapping="NoWrap" Style="{StaticResource Text36pxCBB2A3}"/>
-                                    <TextBlock Text="{Binding Title}" TextWrapping="Wrap" Margin="9,3,0,0" Style="{StaticResource Text24pxDF8D4B}"/>
+                                    <TextBlock Text="{Binding CreatedAtText}" 
+									TextWrapping="NoWrap" Style="{StaticResource Text36pxCBB2A3}"/>
+                                    <TextBlock Text="{Binding Title}" TextWrapping="Wrap" 
+									Margin="9,3,0,0" Style="{StaticResource Text24pxDF8D4B}"/>
                                 </StackPanel>
                                 <TextBlock Text="{Binding ShortBody}" TextWrapping="NoWrap" Style="{StaticResource Text24pxCBB2A3}"/>      
                             </StackPanel>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
+
             </controls:PanoramaItem>
 
 
@@ -160,31 +175,65 @@
                 <StackPanel Margin="0,15,0,0">
                 <StackPanel Name="LoginForm">
                                   <toolkit:PerformanceProgressBar HorizontalAlignment="Left" Height="8" Margin="0" VerticalAlignment="Top" IsIndeterminate="False" Width="460" Name="LoginLoadingBar" />
-                        <TextBlock Text="Введите e-mail" />
-                    <TextBox x:Name="email" Text="m0rg0t.Anton@gmail.com" />
-                    <TextBlock Text="Введите пароль" />
-                    <PasswordBox x:Name="password" Password="slucladr" />
-                    <Button Name="Login" Content="Вход" Click="Login_Click" />
-                    <TextBlock Text="Если у вас нет аккаунта, введите пароль и e-mail для начала регистрации." TextWrapping="Wrap" />
+                        <TextBlock 
+						Style="{StaticResource Text24pxCBB2A3}"
+						Text="Введите e-mail" />
+                    <TextBox x:Name="email" Text="m0rg0t.Anton@gmail.com" Background="#FF4F3B34" BorderBrush="#FF4F3B34" Foreground="#FFCBB2A3" />
+                    <TextBlock 
+					Style="{StaticResource Text24pxCBB2A3}"
+					Text="Введите пароль" />
+                    <PasswordBox 
+					x:Name="password" Password="slucladr" 
+					Background="#FF4F3B34" 
+					BorderBrush="#FF4F3B34" 
+					Foreground="#FFCBB2A3" />
+                    <Button 
+					FontSize="24"
+					Background="#FF4186A3" 
+					BorderBrush="#FF4186A3" 
+					FontFamily="Segoe WP Regular"
+					Name="Login" Content="Вход" Click="Login_Click" />
+                    <TextBlock 
+					Foreground="#FF847168"
+					Style="{StaticResource Text24pxCBB2A3}"
+					Text="Если у вас нет аккаунта, введите пароль и e-mail для начала регистрации." TextWrapping="Wrap" />
                     </StackPanel>
                 <StackPanel Margin="0,10" Name="UserProfile" Visibility="Collapsed">
                     <StackPanel >
-                        <TextBlock Text="Имя" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
-                        <TextBlock Text="{Binding User.Name}" Name="ProfileName" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                        <TextBlock Text="Имя" TextWrapping="Wrap" 
+						Style="{StaticResource Text36pxCBB2A3}"/>
+                        <TextBlock Text="{Binding User.Name}" 
+						Name="ProfileName" TextWrapping="Wrap" Margin="12,-6,12,0" 
+						Style="{StaticResource Text24pxDF8D4B}"/>
                     </StackPanel>
                     <StackPanel Margin="0,10">
-                        <TextBlock Text="Пол" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
-                            <TextBlock Name="ProfileSex" Text="{Binding User.OutSex}"  TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                        <TextBlock Text="Пол" TextWrapping="Wrap" 
+						Style="{StaticResource Text36pxCBB2A3}"/>
+                            <TextBlock Name="ProfileSex" Text="{Binding User.OutSex}"  
+							TextWrapping="Wrap" Margin="12,-6,12,0" 
+							Style="{StaticResource Text24pxDF8D4B}"/>
                     </StackPanel>
                     <StackPanel Margin="0,10">
-                        <TextBlock Text="Группа крови" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
+                        <TextBlock Text="Группа крови" TextWrapping="Wrap" 
+						Style="{StaticResource Text36pxCBB2A3}"/>
                             <TextBlock Text="{Binding User.OutBloodGroup}" Name="ProfileBloodGroup" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
                     </StackPanel>
                     <StackPanel Margin="0,10" Visibility="Collapsed">
-                        <TextBlock Text="Записано кроводач" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
-                        <TextBlock Text="" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                        <TextBlock Text="Записано кроводач" TextWrapping="Wrap" 
+						Style="{StaticResource Text36pxCBB2A3}"/>
+                        <TextBlock Text="" TextWrapping="Wrap" Margin="12,-6,12,0"
+						Style="{StaticResource Text24pxDF8D4B}"/>
                     </StackPanel>
-                    <TextBlock Margin="0,20" Text="Изменить" TextWrapping="Wrap" Name="EditProfile" Style="{StaticResource PhoneTextExtraLargeStyle}" Tap="TextBlock_Tap" />
+					<Button 
+					FontSize="24"
+					Background="#FF4186A3" 
+					BorderBrush="#FF4186A3" 
+					FontFamily="Segoe WP Regular"
+					Name="EditProfile" Content="Изменить" Click="EditProfile_Click" />
+                    <!--<TextBlock Margin="0,20" Text="Изменить" 
+					TextWrapping="Wrap" Name="EditProfile" 
+					Style="{StaticResource PhoneTextExtraLargeStyle}" 
+					Tap="TextBlock_Tap" />-->
                 </StackPanel>
                 </StackPanel>
 

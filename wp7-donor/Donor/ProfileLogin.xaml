@@ -36,78 +36,176 @@
                 </StackPanel>
             </controls:Pivot.Title>
             <!--Pivot item one-->
-            <controls:PivotItem>
+            <controls:PivotItem Margin="12,35,12,0">
                 <controls:PivotItem.Header>
                     <TextBlock Style="{StaticResource Text70pxWhite}" 
 					Text="аккаунт" Margin="0,30,0,0"/>
                 </controls:PivotItem.Header>
                 <Grid>
                     <StackPanel Name="EditProfile" Visibility="Collapsed">
-                    <TextBlock Text="Имя" />
-                    <TextBox Name="EditName" Text="{Binding Path=App.ViewModel.User.Name, Mode=TwoWay}" />
-                        <TextBlock Text="Пол" />
-                        <StackPanel Orientation="Horizontal" Name="SexEditGroup">
-                            <RadioButton Content="Мужской" Name="EditMale" />
-                            <RadioButton Content="Женский" Name="EditFemale" DataContext="{Binding}" />
+                    <TextBlock Text="Имя"
+					Style="{StaticResource Text24pxCBB2A3}"/>
+                    <TextBox Name="EditName" 
+					Style="{StaticResource TextBox1}"	
+					Text="{Binding Path=App.ViewModel.User.Name, 
+					Mode=TwoWay}" />
+                        <TextBlock Text="Пол" 
+						Style="{StaticResource Text24pxCBB2A3}"/>
+                        <StackPanel Orientation="Horizontal" 
+						Name="SexEditGroup">
+                            <RadioButton 
+							Content="Мужской" Name="EditMale" 
+							Foreground="#FFCBB2A3" />
+                            <RadioButton Content="Женский"
+							
+							Name="EditFemale" DataContext="{Binding}" 
+							Foreground="#FFCBB2A3" />
                         </StackPanel>
 
-                        <TextBlock Text="Группа крови" />
+                        <TextBlock Text="Группа крови"
+						Style="{StaticResource Text24pxCBB2A3}" />
                         <StackPanel>
                         <toolkit:WrapPanel ItemHeight="90" ItemWidth="210" Name="BloudTypeGroupEdit">
-                            <RadioButton Content="O(I)" Name="o" />
-                            <RadioButton Content="A(II)" Name="a" />            
+                            <RadioButton Content="O(I)" 
+							Foreground="#FFCBB2A3"
+							Name="o" />
+                            <RadioButton 
+							Foreground="#FFCBB2A3"
+							Content="A(II)" Name="a" />            
                         
-                            <RadioButton Content="B(III)" Name="b" />
-                            <RadioButton Content="AB(IV)" Name="ab" />
+                            <RadioButton 
+							Content="B(III)" 
+							Foreground="#FFCBB2A3"
+							Name="b" />
+                            <RadioButton 
+							Foreground="#FFCBB2A3"
+							Content="AB(IV)" Name="ab" />
                         </toolkit:WrapPanel>
                         </StackPanel>
 
-                        <TextBlock Text="Резус-фактор" />
+                        <TextBlock Text="Резус-фактор" 
+						Style="{StaticResource Text24pxCBB2A3}"/>
                         <StackPanel Orientation="Horizontal" Name="RHedit">
-                            <RadioButton Content="RH+" Name="EditRHpl" />
-                            <RadioButton Content="RH-" Name="EditRHd" DataContext="{Binding}" />
+                            <RadioButton Content="RH+" 
+							Foreground="#FFCBB2A3"
+							Name="EditRHpl" />
+                            <RadioButton Content="RH-" 
+							Foreground="#FFCBB2A3"
+							Name="EditRHd" DataContext="{Binding}" />
                         </StackPanel>
                     </StackPanel>
                     <StackPanel Margin="0,10" Name="UserProfile" Visibility="Collapsed">
                         <StackPanel>
-                            <TextBlock Text="Имя" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
-                            <TextBlock Text="{Binding User.Name}" Name="ProfileName" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                            <TextBlock
+							Style="{StaticResource Text36pxCBB2A3}"
+							Text="Имя" TextWrapping="Wrap"/>
+                            <TextBlock Text="{Binding User.Name}" 
+							Name="ProfileName" TextWrapping="Wrap" 
+							Margin="12,-6,12,0" 
+							Style="{StaticResource Text24pxDF8D4B}"
+							/>
                         </StackPanel>
                         <StackPanel Margin="0,10">
-                            <TextBlock Text="Пол" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
-                            <TextBlock Name="ProfileSex" Text="{Binding User.Sex}"  TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                            <TextBlock Text="Пол" TextWrapping="Wrap" 
+							Style="{StaticResource Text36pxCBB2A3}"/>
+                            <TextBlock Name="ProfileSex" 
+							Text="{Binding User.Sex}"  
+							TextWrapping="Wrap" Margin="12,-6,12,0" 
+							Style="{StaticResource Text24pxDF8D4B}"/>
                         </StackPanel>
                         <StackPanel Margin="0,10">
-                            <TextBlock Text="Группа крови" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
-                            <TextBlock Text="{Binding User.BloodGroup}" Name="ProfileBloodGroup" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                            <TextBlock Text="Группа крови" 
+							TextWrapping="Wrap" 
+							Style="{StaticResource Text36pxCBB2A3}"/>
+                            <TextBlock Text="{Binding User.BloodGroup}" 
+							Name="ProfileBloodGroup" TextWrapping="Wrap" 
+							Margin="12,-6,12,0" 
+							Style="{StaticResource Text24pxDF8D4B}"/>
                         </StackPanel>
                         <StackPanel Margin="0,10">
-                            <TextBlock Text="Записано кроводач" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
-                            <TextBlock Text="" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                            <TextBlock Text="Записано кроводач" 
+							TextWrapping="Wrap" Style="{StaticResource Text36pxCBB2A3}"/>
+                            <TextBlock Text="" TextWrapping="Wrap" 
+							Margin="12,-6,12,0" 
+							Style="{StaticResource Text24pxDF8D4B}"/>
                         </StackPanel>                 
                     </StackPanel>
                     <StackPanel Name="RegisterForm" Visibility="Collapsed">
-                        <TextBlock Text="Логин" />
-                        <TextBox x:Name="login1" Text="" />
-                        <TextBlock Text="E-mail" />
-                        <TextBox x:Name="email1" Text="" />
-                        <TextBlock Text="Пароль" />
-                        <PasswordBox x:Name="password1" Password="" />
-                        <TextBlock Text="Подтвердите пароль" />
-                        <PasswordBox x:Name="password2" Password="" />
-                        <TextBlock Text="Имя" />
-                        <TextBox x:Name="name1" Text="" />
-                        <Button Name="RegisterButton" Content="Регистрация" Click="RegisterButton_Click" />
+                    	<ScrollViewer>
+                    		<StackPanel>
+                        <TextBlock Text="Логин"
+						Style="{StaticResource Text24pxCBB2A3}"/>
+                        <TextBox x:Name="login1"
+						Style="{StaticResource TextBox1}"						
+						Text="" />
+                        <TextBlock 
+						Style="{StaticResource Text24pxCBB2A3}"
+						Text="E-mail" />
+                        <TextBox x:Name="email1" 
+						Style="{StaticResource TextBox1}"		
+						Text="" />
+                        <TextBlock
+						Style="{StaticResource Text24pxCBB2A3}"
+						Text="Пароль" />
+                        <PasswordBox 
+						Style="{StaticResource TextBox1_password}"							
+						x:Name="password1" Password="" />
+                        <TextBlock 
+						Style="{StaticResource Text24pxCBB2A3}"
+						Text="Подтвердите пароль" />
+                        <PasswordBox
+						Style="{StaticResource TextBox1_password}"	
+						x:Name="password2" Password="" />
+                        <TextBlock 
+						Style="{StaticResource Text24pxCBB2A3}"
+						Text="Имя" />
+                        <TextBox x:Name="name1" Text="" 
+						Style="{StaticResource TextBox1}"/>
+                        <Button Name="RegisterButton" 
+						FontSize="24"
+						Background="#FF4186A3" 
+						BorderBrush="#FF4186A3" 
+						FontFamily="Segoe WP Regular"
+						Content="Регистрация" Click="RegisterButton_Click" />
+						</StackPanel>
+						</ScrollViewer>
                     </StackPanel>
                     <StackPanel Name="LoginForm">
-                        <TextBlock Text="Введите e-mail" />
-                        <TextBox x:Name="email" Text="m0rg0t.Anton@gmail.com" />
-                        <TextBlock Text="Введите пароль" />
-                        <PasswordBox x:Name="password" Password="slucladr" />
-                        <Button Name="Login" Content="Вход" Click="Login_Click" />
-                        <TextBlock Text="Если у вас нет аккаунта, введите пароль и e-mail для начала регистрации." TextWrapping="Wrap" />
+                        <TextBlock Text="Введите e-mail" 
+						Style="{StaticResource Text24pxCBB2A3}"/>
+                        <TextBox 
+						Background="#FF4F3B34" 
+						BorderBrush="#FF4F3B34" 
+						Foreground="#FFCBB2A3"
+						x:Name="email" 
+						Text="m0rg0t.Anton@gmail.com" />
+                        <TextBlock Text="Введите пароль"
+						Style="{StaticResource Text24pxCBB2A3}" />
+                        <PasswordBox 
+						Background="#FF4F3B34" 
+						BorderBrush="#FF4F3B34" 
+						Foreground="#FFCBB2A3"
+						x:Name="password" 
+						Password="slucladr" />
+                        <Button Name="Login" 
+						Content="Вход" 
+						Click="Login_Click"
+						FontSize="24"
+						Background="#FF4186A3" 
+						BorderBrush="#FF4186A3" 
+						FontFamily="Segoe WP Regular" />
+                        <TextBlock 
+						Foreground="#FF847168"
+						Style="{StaticResource Text24pxCBB2A3}"
+						Text="Если у вас нет аккаунта, введите пароль и e-mail для начала регистрации." TextWrapping="Wrap" />
 
-                        <Button Name="RestorePassword" Content="Восстановить пароль" Click="RestorePassword_Click" />
+                        <Button Name="RestorePassword" 
+						Content="Восстановить пароль" 
+						Click="RestorePassword_Click" 
+						FontSize="24"
+						Background="#FF4186A3" 
+						BorderBrush="#FF4186A3" 
+						FontFamily="Segoe WP Regular"/>
                     </StackPanel>
                     <WPExtensions:AdvancedApplicationBar Name="AppBar" IsVisible="False" IsMenuEnabled="False">
                         <WPExtensions:AdvancedApplicationBarIconButton IconUri="/icons/appbar.edit.rest.png" Name="EditButton" Text="Редактировать" Visibility="Visible" Click="AdvancedApplicationBarIconButton_Click" />
@@ -126,7 +224,7 @@
             </controls:PivotItem>
 
             <!--Pivot item two-->
-            <controls:PivotItem>
+            <controls:PivotItem Margin="12,35,12,0">
                 <controls:PivotItem.Header>
                     <TextBlock Style="{StaticResource Text70pxWhite}" Text="настройки" Margin="0,30,0,0"/>
                 </controls:PivotItem.Header>
