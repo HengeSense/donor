@@ -21,7 +21,10 @@
 	</phone:PhoneApplicationPage.ApplicationBar>
 
     <!--LayoutRoot is the root grid where all page content is placed-->
-    <Grid x:Name="LayoutRoot" Background="Transparent">
+    <Grid x:Name="LayoutRoot">
+    	<Grid.Background>
+            <ImageBrush ImageSource="images/bg_04.png"/>
+        </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
@@ -34,16 +37,34 @@
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
-        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-            <StackPanel>                
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="0,0,0,0">
+            <StackPanel>  
+            	<Border Background="#FF632C00">              
             	<toolkit:ListPicker x:Name="CitySelect" 
-				Header="Город" Margin="0" SelectionChanged="CitySelect_SelectionChanged">
+				Header="Город"
+				FontSize="24" Margin="10,6,10,20"
+				SelectionChanged="CitySelect_SelectionChanged">
             		<ListBoxItem Content="Москва"/>
             		<ListBoxItem Content="Санкт-Петербург"/>
             	</toolkit:ListPicker>
-            	<CheckBox Content="Прием региональной прописки" Name="regional" Unchecked="regional_Unchecked" Checked="regional_Checked" />                
-				<CheckBox Name="saturdays" Content="Работаем по субботам" Checked="saturdays_Checked" Unchecked="saturdays_Unchecked" />  
-				<CheckBox Name="childrens" Content="Доноры детям" Unchecked="childrens_Unchecked" Checked="childrens_Checked" />  
+				</Border>
+				<StackPanel Margin="12,0,12,0">
+            	<CheckBox Content="Прием региональной прописки" 
+				FontSize="24"
+				Foreground="#FFCBB2A3"
+				Name="regional" Unchecked="regional_Unchecked" 
+				Checked="regional_Checked"/>                
+				<CheckBox Name="saturdays" 
+				FontSize="24"
+				Foreground="#FFCBB2A3"
+				Content="Работаем по субботам" Checked="saturdays_Checked" 
+				Unchecked="saturdays_Unchecked" />  
+				<CheckBox Name="childrens" 
+				FontSize="24"
+				Foreground="#FFCBB2A3"
+				Content="Доноры детям" Unchecked="childrens_Unchecked" 
+				Checked="childrens_Checked" />  
+				</StackPanel>
             </StackPanel>
         </Grid>
     </Grid>

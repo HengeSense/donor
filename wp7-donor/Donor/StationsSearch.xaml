@@ -23,31 +23,51 @@
 	</phone:PhoneApplicationPage.ApplicationBar>
 
     <!--LayoutRoot is the root grid where all page content is placed-->
-    <Grid x:Name="LayoutRoot" Background="Transparent">
+    <Grid x:Name="LayoutRoot">
+    	<Grid.Background>
+            <ImageBrush ImageSource="images/bg_04.png"/>
+        </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <!--TitlePanel contains the name of the application and page title-->
-        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock x:Name="ApplicationTitle" Text="Поиск станции" Style="{StaticResource PhoneTextNormalStyle}"/>
-
-            <toolkit:AutoCompleteBox Name="StationsSearchText" FilterMode="Contains" ValueMemberPath="Title" Populating="StationsSearchText_Populating">
+        <StackPanel x:Name="TitlePanel" Grid.Row="0">
+            <TextBlock x:Name="ApplicationTitle" 
+			Text="Поиск станции" 
+			 Margin="12,17,0,28"
+			Style="{StaticResource Text30pxWhite}"/>
+			
+			<StackPanel Background="#FF632C00"
+			Height="116">
+			<TextBlock Text="Москва"
+			FontSize="34" Margin="10,0,0,0"/>
+            <toolkit:AutoCompleteBox Name="StationsSearchText" 
+			FontSize="24"
+			FilterMode="Contains" ValueMemberPath="Title" Populating="StationsSearchText_Populating">
                 <toolkit:AutoCompleteBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{Binding Title}"/>
+                            <TextBlock 
+							FontSize="24"
+							Text="{Binding Title}"/>
                         </StackPanel>
                     </DataTemplate>
                 </toolkit:AutoCompleteBox.ItemTemplate>
             </toolkit:AutoCompleteBox>
+			</StackPanel>
 
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
-        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-        <ListBox Name="StationsList" ItemsSource="{Binding Stations.Items}" SelectionChanged="StationsList_SelectionChanged">
+        <Grid x:Name="ContentPanel" 
+		Background="#FFEEEEEE"
+		Grid.Row="1" Margin="0,0,0,0">
+        <ListBox 
+		Margin="12,0,12,0"
+		Name="StationsList" ItemsSource="{Binding Stations.Items}" 
+		SelectionChanged="StationsList_SelectionChanged">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                         <StackPanel Margin="0,0,0,15">
