@@ -197,6 +197,9 @@
             <Setter Property="Background" Value="#FF4F3B34"/>
             <Setter Property="BorderBrush" Value="#FF4F3B34"/>
             <Setter Property="Foreground" Value="#FFCBB2A3"/>
+            <Setter Property="SelectionForeground" Value="#FFFFFFFF"/>
+            <Setter Property="SelectionBackground" Value="#FF1BA1E2"/>
+            <Setter Property="CaretBrush" Value="#FFCBB2A3"/>
         </Style>
 		
         <Style x:Key="TextBox1_password" TargetType="PasswordBox">

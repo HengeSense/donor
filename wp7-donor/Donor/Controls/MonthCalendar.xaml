@@ -14,13 +14,15 @@
         <StackPanel Margin="0,15,0,0">
             <toolkit:WrapPanel  Background="#FF005258" ItemHeight="35" ItemWidth="65">
                 <TextBlock Width="65" TextAlignment="Center"
-                Style="{StaticResource Text16pxDEAD86}" Text="Пн"/>
-                <TextBlock Width="65" Height="35" VerticalAlignment="Center" TextAlignment="Center" Style="{StaticResource Text16pxDEAD86}" Text="Вт"/>
-                <TextBlock Width="65" Height="35" VerticalAlignment="Center" TextAlignment="Center" Style="{StaticResource Text16pxDEAD86}" Text="Ср"/>
-                <TextBlock Width="65" Height="35" VerticalAlignment="Center" TextAlignment="Center" Style="{StaticResource Text16pxDEAD86}" Text="Чт"/>
-                <TextBlock Width="65" Height="35" VerticalAlignment="Center" TextAlignment="Center" Style="{StaticResource Text16pxDEAD86}" Text="Пт"/>
-                <TextBlock Width="65" Height="35" VerticalAlignment="Center" TextAlignment="Center" Style="{StaticResource Text16pxDEAD86}" Text="Сб"/>
-                <TextBlock Width="65" Height="35" VerticalAlignment="Center" TextAlignment="Center" Style="{StaticResource Text16pxDEAD86}" Text="Вс"/>
+                Style="{StaticResource Text16pxDEAD86}" Text="Пн" 
+				VerticalAlignment="Center"/>
+                <TextBlock Width="65" 
+				VerticalAlignment="Center" TextAlignment="Center" Style="{StaticResource Text16pxDEAD86}" Text="Вт" HorizontalAlignment="Center"/>
+                <TextBlock Width="65" VerticalAlignment="Center" TextAlignment="Center" Style="{StaticResource Text16pxDEAD86}" Text="Ср" HorizontalAlignment="Center"/>
+                <TextBlock Width="65" VerticalAlignment="Center" TextAlignment="Center" Style="{StaticResource Text16pxDEAD86}" Text="Чт"/>
+                <TextBlock Width="65" VerticalAlignment="Center" TextAlignment="Center" Style="{StaticResource Text16pxDEAD86}" Text="Пт"/>
+                <TextBlock Width="65" VerticalAlignment="Center" TextAlignment="Center" Style="{StaticResource Text16pxDEAD86}" Text="Сб"/>
+                <TextBlock Width="65" VerticalAlignment="Center" TextAlignment="Center" Style="{StaticResource Text16pxDEAD86}" Text="Вс"/>
             </toolkit:WrapPanel>
         <toolkit:WrapPanel Background="White" ItemHeight="65" ItemWidth="65" Name="CalendarDays">
         </toolkit:WrapPanel>

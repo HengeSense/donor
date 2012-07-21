@@ -22,6 +22,7 @@
         <controls:Panorama>
 <controls:Panorama.Title>
 <TextBlock Margin="0,95,0,0" Text="Справка" 
+Foreground="White"
 FontSize="24" FontFamily="Segoe WP Semibold" />
 </controls:Panorama.Title>
             
@@ -34,6 +35,7 @@ FontSize="24" FontFamily="Segoe WP Semibold" />
             	<controls:PanoramaItem.Header>
             		<TextBlock Text="Задать вопрос" 
 					FontSize="49" 
+					Foreground="White"
 					Margin="-20,30,0,0"
 					FontFamily="Segoe WP" />	        	
 				</controls:PanoramaItem.Header>
@@ -74,6 +76,7 @@ FontSize="24" FontFamily="Segoe WP Semibold" />
             	<controls:PanoramaItem.Header>
             		<TextBlock Text="Рекомендации" 
 					FontSize="49" 
+					Foreground="White"
 					Margin="-20,30,0,0"
 					FontFamily="Segoe WP" />	        	
 				</controls:PanoramaItem.Header>
@@ -124,17 +127,28 @@ ScrollViewer.VerticalScrollBarVisibility="Disabled">
             	<controls:PanoramaItem.Header>
             		<TextBlock Text="Противопоказания" 
 					FontSize="49" 
+					Foreground="White"
 					Margin="-20,30,0,0"
 					FontFamily="Segoe WP" />	        	
 				</controls:PanoramaItem.Header>
                 <Grid Margin="0,30,0,0">                    
                     <StackPanel>
                         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="0">
-                            <toolkit:AutoCompleteBox Name="ContraSearchText" FilterMode="Contains" ValueMemberPath="Title" Populating="StationsSearchText_Populating">
+                            <!--SelectionForeground="#FFFFFFFF"
+            				SelectionBackground="#FF1BA1E2"
+            				CaretBrush="#FFCBB2A3"-->
+							<toolkit:AutoCompleteBox 
+							Name="ContraSearchText" FilterMode="Contains" 
+							ValueMemberPath="Title" 
+							
+							Foreground="#FFE0B390" Background="#FF3C1B00" 
+							BorderBrush="#FF3C1B00"
+							Populating="StationsSearchText_Populating">
                                 <toolkit:AutoCompleteBox.ItemTemplate>
                                     <DataTemplate>
-                                        <StackPanel Orientation="Horizontal">
-                                            <TextBlock Text="{Binding Title}"/>
+                                        <StackPanel Orientation="Horizontal" Background="#FF3C1B00"
+										Margin="0">
+                                            <TextBlock Foreground="#FFE0B390" Text="{Binding Title}"/>
                                         </StackPanel>
                                     </DataTemplate>
                                 </toolkit:AutoCompleteBox.ItemTemplate>
@@ -144,7 +158,8 @@ ScrollViewer.VerticalScrollBarVisibility="Disabled">
                         <ScrollViewer Height="550">
                             <StackPanel>
 
-<ListBox Name="SearchContra" ScrollViewer.VerticalScrollBarVisibility="Disabled" >                                    <ListBox.ItemTemplate>                              <DataTemplate>                            <StackPanel Margin="0,0,0,15">                      <TextBlock Text="{Binding Title}" TextWrapping="Wrap"/>
+<ListBox Name="SearchContra" 
+ScrollViewer.VerticalScrollBarVisibility="Disabled">                                    <ListBox.ItemTemplate>                              <DataTemplate>                            <StackPanel Margin="0,0,0,15">                      <TextBlock Text="{Binding Title}" TextWrapping="Wrap"/>
 </StackPanel>
 </DataTemplate>
 </ListBox.ItemTemplate>
@@ -155,8 +170,9 @@ ScrollViewer.VerticalScrollBarVisibility="Disabled">
 								Style="{StaticResource Text36pxC0A89A}" 
 								TextWrapping="Wrap" Tap="TextBlock_Tap_1" />
 
-<ListBox Name="AbsContra" ItemsSource="{Binding Contras.Items}" Visibility="Collapsed" ScrollViewer.VerticalScrollBarVisibility="Disabled" >                                    <ListBox.ItemTemplate>                              <DataTemplate>                            <StackPanel Margin="0,0,0,15">      
-<TextBlock Text="{Binding Title}" TextWrapping="Wrap"/>                    
+<ListBox Name="AbsContra" ItemsSource="{Binding Contras.Items}" 
+Visibility="Collapsed" ScrollViewer.VerticalScrollBarVisibility="Disabled">                                    <ListBox.ItemTemplate>                              <DataTemplate>                            <StackPanel Margin="0,0,0,15">      
+<TextBlock Text="{Binding Title}" Style="{StaticResource Text24px847168}" TextWrapping="Wrap"/>                    
 </StackPanel>
 </DataTemplate>
 </ListBox.ItemTemplate>
@@ -167,7 +183,10 @@ ScrollViewer.VerticalScrollBarVisibility="Disabled">
 								TextWrapping="Wrap" Name="RelText" Tap="RelText_Tap" />
 
 <ListBox Name="RelativeContra" ItemsSource="{Binding Contras.Items}" Visibility="Collapsed" ScrollViewer.VerticalScrollBarVisibility="Disabled" >                                    <ListBox.ItemTemplate>
-<DataTemplate>                                      <StackPanel Margin="0,0,0,15">                <TextBlock Text="{Binding Title}" TextWrapping="Wrap"/>
+<DataTemplate>                                      
+	<StackPanel Margin="0,0,0,15">                
+		<TextBlock Style="{StaticResource Text24px847168}" 
+		Text="{Binding Title}" TextWrapping="Wrap"/>
 </StackPanel>
 </DataTemplate>
 </ListBox.ItemTemplate>
@@ -183,6 +202,7 @@ ScrollViewer.VerticalScrollBarVisibility="Disabled">
             	<controls:PanoramaItem.Header>
             		<TextBlock Text="Памятка" 
 					FontSize="49" 
+					Foreground="White"
 					Margin="0,30,0,0"
 					FontFamily="Segoe WP" />	        	
 				</controls:PanoramaItem.Header>

@@ -16,7 +16,7 @@
     mc:Ignorable="d" d:DesignHeight="696" d:DesignWidth="480"
     shell:SystemTray.IsVisible="True" Loaded="PhoneApplicationPage_Loaded">
 	<phone:PhoneApplicationPage.ApplicationBar>
-		<shell:ApplicationBar>
+		<shell:ApplicationBar BackgroundColor="#FF211E1D" ForegroundColor="White"	>
 			<shell:ApplicationBarIconButton x:Name="MapButton" IconUri="/icons/appbar.feature.search.rest.png" Text="Карта" Click="MapButton_Click" />
 			<shell:ApplicationBarIconButton IconUri="/icons/appbar.feature.settings.rest.png" Text="Фильтр" Click="ApplicationBarIconButton_Click" />
 		</shell:ApplicationBar>
@@ -46,10 +46,11 @@
 			FontSize="34" Margin="10,0,0,0"/>
             <toolkit:AutoCompleteBox 
 			Name="StationsSearchText" 
-			FontSize="24"
-			
+			FontSize="24"			
 			FilterMode="Contains" ValueMemberPath="Title" 
-			Populating="StationsSearchText_Populating" Foreground="#FFE0B390" Background="#FF3C1B00" BorderBrush="#FF3C1B00">
+			Populating="StationsSearchText_Populating" 
+			Foreground="#FFE0B390" Background="#FF3C1B00" 
+			BorderBrush="#FF3C1B00">
                 <toolkit:AutoCompleteBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">

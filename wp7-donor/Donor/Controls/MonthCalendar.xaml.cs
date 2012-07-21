@@ -80,7 +80,16 @@ namespace Donor.Controls
                 DayInCalendarControl day2 = new DayInCalendarControl();
                 day2.ImagePath = null;
                 day2.Tap += ClickDay;
-                day2.BgColor = new SolidColorBrush(new Color() { A = 1, B = 238, G = 238, R = 238 });
+				
+				/// Set background color for day controller
+				day2.BgColor = new SolidColorBrush(new Color() { A = 1, B = 2, G = 238, R = 238 });
+                day2.CurrentColor = new SolidColorBrush(new Color() { A = 1, B = 2, G = 238, R = 238 });
+
+				/// show border for current day
+				if (Date.Day == i) {
+					day2.CurrentColor = new SolidColorBrush(new Color() { A = 1, B = 238, G = 31, R = 173 });
+				};
+				
                 day2.EventDay = App.ViewModel.Events.Items.FirstOrDefault(a => a.Date == new DateTime(Date.Year, Date.Month, i));
                 if ((day2.EventDay != null) && (day2.EventDay.Type == "Праздник"))
                 {

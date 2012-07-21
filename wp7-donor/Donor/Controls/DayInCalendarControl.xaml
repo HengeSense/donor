@@ -17,8 +17,8 @@
             <!-- 
                 Background="{Binding BgColor}"
             -->
-            <Border Name="MainBorder" BorderBrush="#FFAD1F02" BorderThickness="3" Margin="3">
-                <StackPanel Name="MainPanel" Background="{Binding BgColor}" Height="48" Width="48" Margin="0,0,0,0">
+            <Border Name="MainBorder" Background="{Binding CurrentColor}" BorderThickness="0" Margin="3">
+                <StackPanel Name="MainPanel" Background="{Binding BgColor}" Height="48" Width="48" Margin="3,3,3,3">
                 <TextBlock VerticalAlignment="Center" Height="48" Width="48" 
                            TextAlignment="Center" 
                            Margin="2" 

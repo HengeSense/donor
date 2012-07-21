@@ -45,5 +45,10 @@ namespace Donor
                 NavigationService.GoBack();
             };
         }
+
+        private void ShareButton_Click(object sender, System.EventArgs e)
+        {
+        	// TODO: Add event handler implementation here.
+        }
     }
 }

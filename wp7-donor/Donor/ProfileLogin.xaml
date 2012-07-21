@@ -207,7 +207,10 @@
 						BorderBrush="#FF4186A3" 
 						FontFamily="Segoe WP Regular"/>
                     </StackPanel>
-                    <WPExtensions:AdvancedApplicationBar Name="AppBar" IsVisible="False" IsMenuEnabled="False">
+                    <WPExtensions:AdvancedApplicationBar 
+					Background="#FF211E1D"	
+					BackgroundColor="#FF211E1D" Foreground="White"				
+					Name="AppBar" IsVisible="False" IsMenuEnabled="False">
                         <WPExtensions:AdvancedApplicationBarIconButton IconUri="/icons/appbar.edit.rest.png" Name="EditButton" Text="Редактировать" Visibility="Visible" Click="AdvancedApplicationBarIconButton_Click" />
                         <WPExtensions:AdvancedApplicationBarIconButton 
 						IconUri="/icons/appbar.delete.rest.png" 

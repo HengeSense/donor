@@ -100,6 +100,7 @@ C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\Bin\Debug\Donor.xap
 C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\obj\Debug\XapCacheFile.xml
 C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\obj\Debug\Donor.csprojResolveAssemblyReference.cache
 C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\obj\Debug\Donor.csproj.GenerateResource.Cache
+C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\Bin\Debug\icons\appbar.share.rest.png
 C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\obj\Debug\App.g.cs
 C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\obj\Debug\AdsList.g.cs
 C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\obj\Debug\AdsPage.g.cs
@@ -116,7 +117,6 @@ C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\obj\Debug\EventEditPage.g.c
 C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\obj\Debug\MainPage.g.cs
 C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\obj\Debug\NewsPage.g.cs
 C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\obj\Debug\ProfileLogin.g.cs
-C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\obj\Debug\ProfilePage.g.cs
 C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\obj\Debug\StationPage.g.cs
 C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\obj\Debug\StationsSearch.g.cs
 C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\obj\Debug\StationsSearchFilter.g.cs

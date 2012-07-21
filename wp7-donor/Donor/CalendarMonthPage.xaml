@@ -42,7 +42,7 @@
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-            <my:MonthCalendar x:Name="Calendar1" />
+            <my:MonthCalendar x:Name="Calendar1" Margin="0,10,0,0" />
         </Grid>
     </Grid>
 

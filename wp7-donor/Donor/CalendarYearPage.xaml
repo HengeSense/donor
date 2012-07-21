@@ -26,6 +26,9 @@
         </StackPanel>
     </DataTemplate>
     </phone:PhoneApplicationPage.Resources>
+	<phone:PhoneApplicationPage.Background>
+		<ImageBrush Stretch="Fill" ImageSource="images/bg_04_white.png"/>
+	</phone:PhoneApplicationPage.Background>
 
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot">
@@ -44,7 +47,8 @@
             <controls:PivotItem Name="PrevMonth"			
 			IsEnabled="True">
                 <controls:PivotItem.Header>
-                    <TextBlock Text="{Binding Path=Events.PrevMonthString}" Foreground="White" FontSize="74"/>
+                    <TextBlock Text="{Binding Path=Events.PrevMonthString}" 
+					Foreground="White" FontSize="74"/>
                 </controls:PivotItem.Header>
                 <Grid>
                     <ListBox Margin="0,30,0,0" ItemsSource="{Binding Path=Events.PrevMonthItems}" Name="EventsListPrev" Loaded="EventsList_Loaded" SelectionChanged="EventsList_SelectionChanged">
@@ -90,7 +94,9 @@
                 Name="ThisMonth"  
                 IsEnabled="True">
                 <controls:PivotItem.Header>
-                    <TextBlock Text="{Binding Path=Events.CurrentMonthString}" Foreground="White" FontSize="74"/>
+                    <TextBlock 
+					Text="{Binding Path=Events.CurrentMonthString}" 
+					Foreground="White" FontSize="74"/>
                 </controls:PivotItem.Header>
                 <Grid>                    
                     <ListBox Margin="0,30,0,0" ItemsSource="{Binding Path=Events.ThisMonthItems}" Name="EventsList" Loaded="EventsList_Loaded" SelectionChanged="EventsList_SelectionChanged">

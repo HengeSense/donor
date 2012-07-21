@@ -188,6 +188,22 @@ namespace Donor.Controls
                 NotifyPropertyChanged("BgColor");
             }
         }
+		
+        private Brush _currentColor;
+        public Brush CurrentColor
+        {
+            get
+            {
+                return _currentColor;
+            }
+            set
+            {
+                if (value != null) {
+                _currentColor = value;
+                NotifyPropertyChanged("CurrentColor");
+                };
+            }
+        }
 
         public bool Inactive { get; set; }
 
