@@ -1,5 +1,6 @@
 ﻿<phone:PhoneApplicationPage 
     x:Class="Donor.StationPage"
+	xmlns:my="clr-namespace:Donor.Controls"  
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
@@ -47,24 +48,29 @@
                 </controls:PanoramaItem.Header>
                 <Grid Margin="0,10,0,0">
                     <StackPanel>
+                    	<my:VotesControl x:Name="vote_registry" Grid.Column="1" HorizontalAlignment="Left"/>
                         <TextBlock TextWrapping="Wrap" 
 						Text="Адрес" 
-						Style="{StaticResource PhoneTextTitle2Style}" />
+						Style="{StaticResource Text36pxB9A194}" />
                         <TextBlock TextWrapping="Wrap" 
-						Text="{Binding Adress}"/>
+						Text="{Binding Adress}"
+						Style="{StaticResource Text24pxDF8D4B}"/>
                         <TextBlock TextWrapping="Wrap" 						
 						Text="Телефон" 
 						Style="{StaticResource Text36pxB9A194}"/>
                         <TextBlock TextWrapping="Wrap" 
-						Text="{Binding Phone}"/>
+						Text="{Binding Phone}"
+						Style="{StaticResource Text24pxDF8D4B}"/>
                         <TextBlock 
 						Style="{StaticResource Text36pxB9A194}" 
 						Text="{Binding RegionalRegistrationString}" 
 						TextWrapping="Wrap"/>
-                        <TextBlock Text="Сайт" Style="{StaticResource Text36pxB9A194}" 
+                        <TextBlock Text="Сайт" 
+						Style="{StaticResource Text36pxB9A194}" 
 						TextWrapping="Wrap"/>
                         <TextBlock TextWrapping="Wrap" 
-						Text="{Binding Url}"/>
+						Text="{Binding Url}"
+						Style="{StaticResource Text24pxDF8D4B}"/>
                     </StackPanel>
                 </Grid>
             </controls:PanoramaItem>
@@ -81,14 +87,16 @@
 						Text="Время приема" 
 						Style="{StaticResource Text36pxB9A194}" />
                         <TextBlock TextWrapping="Wrap" 
-						Text="{Binding Text36pxB9A194}"/>
+						Text="{Binding ReceiptTime}"/>
                         <TextBlock TextWrapping="Wrap" 
 						Text="Проезд" Style="{StaticResource Text36pxB9A194}"/>
                         <TextBlock TextWrapping="Wrap" 
-						Text="{Binding Transportaion}"/>
+						Text="{Binding Transportaion}"
+						Style="{StaticResource Text24pxDF8D4B}"/>
                         <TextBlock TextWrapping="Wrap" 
 						Text="Кровь для" Style="{StaticResource Text36pxB9A194}"/>
-                        <TextBlock Text="{Binding BloodFor}"/>
+                        <TextBlock Text="{Binding BloodFor}"
+						Style="{StaticResource Text24pxDF8D4B}"/>
                     </StackPanel>
                 </Grid>
             </controls:PanoramaItem>
@@ -129,14 +137,19 @@
                                 <DataTemplate>
                                     <StackPanel Margin="0,10,0,0">
 
-<TextBlock Text="{Binding Username}" Style="{StaticResource Text36pxB9A194}" />
+<TextBlock Text="{Binding Username}" 
+Style="{StaticResource Text36pxB9A194}" />
                                         
 <StackPanel Orientation="Horizontal">
-<TextBlock Text="Оценка: "/>
-<TextBlock Text="{Binding Vote}"/>
+<TextBlock Text="Оценка: "
+Style="{StaticResource Text24pxDF8D4B}"/>
+<TextBlock Text="{Binding Vote}"
+Style="{StaticResource Text24pxDF8D4B}"/>
 </StackPanel>
                                         
-                                        <TextBlock Text="{Binding Body}" Margin="0,6" />
+                                        <TextBlock Text="{Binding Body}" 
+										Style="{StaticResource Text24pxCBB2A3}"
+										Margin="0,6" />
                                     </StackPanel>
                                 </DataTemplate>
                             </ListBox.ItemTemplate>

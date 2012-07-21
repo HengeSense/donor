@@ -203,7 +203,7 @@ namespace Donor.ViewModels
                 GeoCoordinate clientLocation = new GeoCoordinate(Convert.ToDouble(this.Lat.ToString()), Convert.ToDouble(this.Lon.ToString()));
                 distanceInMeter = currentLocation.GetDistanceTo(clientLocation);
 
-                return Math.Round(distanceInMeter).ToString();
+                return (Math.Round(distanceInMeter / 1000)).ToString();
             }
 
             private set { }

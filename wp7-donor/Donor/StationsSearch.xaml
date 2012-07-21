@@ -42,10 +42,14 @@
 			<StackPanel Background="#FF632C00"
 			Height="116">
 			<TextBlock Text="Москва"
+			Foreground="#FFCBB2A3"
 			FontSize="34" Margin="10,0,0,0"/>
-            <toolkit:AutoCompleteBox Name="StationsSearchText" 
+            <toolkit:AutoCompleteBox 
+			Name="StationsSearchText" 
 			FontSize="24"
-			FilterMode="Contains" ValueMemberPath="Title" Populating="StationsSearchText_Populating">
+			
+			FilterMode="Contains" ValueMemberPath="Title" 
+			Populating="StationsSearchText_Populating" Foreground="#FFE0B390" Background="#FF3C1B00" BorderBrush="#FF3C1B00">
                 <toolkit:AutoCompleteBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
@@ -65,20 +69,48 @@
 		Background="#FFEEEEEE"
 		Grid.Row="1" Margin="0,0,0,0">
         <ListBox 
-		Margin="12,0,12,0"
+		VerticalAlignment="Top"
+		Margin="0,0,0,0"
 		Name="StationsList" ItemsSource="{Binding Stations.Items}" 
 		SelectionChanged="StationsList_SelectionChanged">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                        <StackPanel Margin="0,0,0,15">
-                            <TextBlock Text="{Binding Adress}" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
-                            <TextBlock Text="{Binding Title}" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="Расстояние "/>
-                                <TextBlock Text="{Binding Distance}" TextWrapping="Wrap"/>
-                                <TextBlock Text=" м"/>
+                		<Border BorderThickness="0,0,0,1" 
+						BorderBrush="#FF0A6066">
+                        <StackPanel Margin="10,10,10,10">
+                        	<Grid>
+                        		<Grid.ColumnDefinitions>
+                        			<ColumnDefinition Width="*"/>
+									<ColumnDefinition Width="130"/>
+								</Grid.ColumnDefinitions>
+                        	<StackPanel Grid.Column="0">
+                            <TextBlock Text="{Binding Adress}" 
+							TextWrapping="Wrap" 
+							FontSize="30"
+							Foreground="#FF645B54"/>
+                            <TextBlock Text="{Binding Title}" 
+							TextWrapping="Wrap" Margin="0,0,0,0" 
+							FontSize="18"
+							Foreground="#FF847168"
+							Style="{StaticResource PhoneTextSubtleStyle}"/>
+							</StackPanel>
+                            <StackPanel
+							HorizontalAlignment="Right"
+							 Orientation="Horizontal" Grid.Column="1">                                
+                                <TextBlock 
+								Text="{Binding Distance}" 
+								TextWrapping="NoWrap" 
+								Foreground="#FF0A6066"
+								HorizontalAlignment="Right"
+								FontSize="30"/>
+                                <TextBlock Text=" км"
+								HorizontalAlignment="Right"
+								Foreground="#FF0A6066"
+								FontSize="30"/>
                             </StackPanel>
+							</Grid>
                         </StackPanel>
+						</Border>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>

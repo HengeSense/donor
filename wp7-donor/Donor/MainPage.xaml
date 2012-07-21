@@ -157,7 +157,8 @@
                                     <TextBlock Text="{Binding Title}" TextWrapping="Wrap" 
 									Margin="9,3,0,0" Style="{StaticResource Text24pxDF8D4B}"/>
                                 </StackPanel>
-                                <TextBlock Text="{Binding ShortBody}" TextWrapping="NoWrap" Style="{StaticResource Text24pxCBB2A3}"/>      
+                                <TextBlock Text="{Binding ShortBody}" TextWrapping="NoWrap" 
+								Style="{StaticResource Text24pxCBB2A3}"/>      
                             </StackPanel>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
