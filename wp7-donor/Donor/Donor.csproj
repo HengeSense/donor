@@ -106,6 +106,9 @@
     <Compile Include="Controls\MonthCalendar.xaml.cs">
       <DependentUpon>MonthCalendar.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\VotesControl.xaml.cs">
+      <DependentUpon>VotesControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CreateReviewPage.xaml.cs">
       <DependentUpon>CreateReviewPage.xaml</DependentUpon>
     </Compile>
@@ -187,6 +190,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\MonthCalendar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\VotesControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -288,6 +295,8 @@
     <Content Include="images\drop.png" />
     <Content Include="images\h.png" />
     <Resource Include="images\logo.png" />
+    <Resource Include="images\ic_star_act.png" />
+    <Resource Include="images\ic_star_pas.png" />
     <Content Include="images\x.png" />
     <Resource Include="holidays.json" />
     <Content Include="Toolkit.Content\ApplicationBar.Cancel.png" />

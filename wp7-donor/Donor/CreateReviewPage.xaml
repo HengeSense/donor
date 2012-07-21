@@ -1,4 +1,5 @@
 ﻿<phone:PhoneApplicationPage 
+    xmlns:my="clr-namespace:Donor.Controls"  
     x:Class="Donor.CreateReviewPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -21,7 +22,7 @@
         </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="203"/>
-            <RowDefinition Height="565*"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <!--TitlePanel contains the name of the application and page title-->
@@ -44,12 +45,83 @@
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-            <ScrollViewer>              
-            <StackPanel>
-                <TextBlock Text="Ваш отзыв:" 
-                Style="{StaticResource Text30pxCBB2A3}"
-                Margin="12,0,0,0"/>
-                <TextBox Height="200" Name="Body" />
+            <ScrollViewer>
+                <StackPanel Margin="12,0,0,0">
+
+                <TextBlock Text="Ваше имя" 
+                Style="{StaticResource Text24pxCBB2A3}"/>
+                    <TextBox Name="UserName" Style="{StaticResource TextBox1}" />
+
+<Grid Height="50">
+<Grid.ColumnDefinitions>
+    <ColumnDefinition Width="*"/>
+    <ColumnDefinition Width="245"/>
+</Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Style="{StaticResource Text24pxCBB2A3}" Text="Регистратура:" VerticalAlignment="Center" />
+    <my:VotesControl x:Name="vote_registry" Grid.Column="1" HorizontalAlignment="Right"/>
+</Grid>
+
+                    <Grid Height="50">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="245"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="Врач-терапевт:" Style="{StaticResource Text24pxCBB2A3}" VerticalAlignment="Center" />
+                        <my:VotesControl x:Name="vote_physician" Grid.Column="1" HorizontalAlignment="Right"/>
+                    </Grid>
+
+
+                    <Grid Height="50">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="245"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="Лаборатория:" VerticalAlignment="Center" Style="{StaticResource Text24pxCBB2A3}"/>
+                        <my:VotesControl x:Name="vote_laboratory" Grid.Column="1" HorizontalAlignment="Right"/>
+                    </Grid>
+
+
+                    <Grid Height="50">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="245"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="Буфет:" VerticalAlignment="Center" Style="{StaticResource Text24pxCBB2A3}"/>
+                        <my:VotesControl x:Name="vote_buffet" Grid.Column="1" HorizontalAlignment="Right"/>
+                    </Grid>
+
+
+                    <Grid Height="50">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="245"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="График работы:" VerticalAlignment="Center" Style="{StaticResource Text24pxCBB2A3}"/>
+                        <my:VotesControl x:Name="vote_schedule" Grid.Column="1" HorizontalAlignment="Right"/>
+                    </Grid>
+
+
+                    <Grid Height="50">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="200"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="Организация кроводачи:" Style="{StaticResource Text24pxCBB2A3}" VerticalAlignment="Center"/>
+                        <my:VotesControl x:Name="vote_organization_donation" Grid.Column="1" HorizontalAlignment="Right"/>
+                    </Grid>
+
+
+                    <Grid Height="50">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="245"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="Помещение:" VerticalAlignment="Center" Style="{StaticResource Text24pxCBB2A3}"/>
+                        <my:VotesControl x:Name="vote_room" Grid.Column="1" HorizontalAlignment="Right"/>
+                    </Grid>
+
+                    <TextBlock Margin="0,15,0,-5"  Text="Коментарии:" Style="{StaticResource Text24pxCBB2A3}"/>
+                    <TextBox Height="200" Style="{StaticResource TextBox1}" Name="Body" />
                 <TextBlock Visibility="Collapsed" Height="30" Name="VoteText" Text="Ваш рейтинг:" />
                 <TextBox Visibility="Collapsed" Name="Vote" InputScope="Digits"/>
             </StackPanel>
@@ -63,17 +135,5 @@
         </WPExtensions:AdvancedApplicationBar>
 
     </Grid>
- 
-    <!--Sample code showing usage of ApplicationBar-->
-    <!--<phone:PhoneApplicationPage.ApplicationBar>
-        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
-            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button1.png" Text="Button 1"/>
-            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button2.png" Text="Button 2"/>
-            <shell:ApplicationBar.MenuItems>
-                <shell:ApplicationBarMenuItem Text="MenuItem 1"/>
-                <shell:ApplicationBarMenuItem Text="MenuItem 2"/>
-            </shell:ApplicationBar.MenuItems>
-        </shell:ApplicationBar>
-    </phone:PhoneApplicationPage.ApplicationBar>-->
 
 </phone:PhoneApplicationPage>
