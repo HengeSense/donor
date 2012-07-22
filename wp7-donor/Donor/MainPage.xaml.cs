@@ -229,5 +229,10 @@ namespace Donor
         	NavigationService.Navigate(new Uri("/ProfileLogin.xaml?task=edit", UriKind.Relative));
         }
 
+        private void AddEvent_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/EventEditPage.xaml", UriKind.Relative));
+        }
+
     }
 }

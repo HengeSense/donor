@@ -14,7 +14,7 @@
     mc:Ignorable="d" d:DesignHeight="696" d:DesignWidth="480"
     shell:SystemTray.IsVisible="True">
 	<phone:PhoneApplicationPage.ApplicationBar>
-		<shell:ApplicationBar x:Name="SaveButton">
+		<shell:ApplicationBar x:Name="SaveButton" BackgroundColor="#FF211E1D" ForegroundColor="White">
 			<shell:ApplicationBarIconButton x:Name="SaveButton1" IconUri="/icons/appbar.save.rest.png" Text="Применить" Click="SaveButton1_Click"/>
 			<shell:ApplicationBarIconButton x:Name="cancelButton" IconUri="/Toolkit.Content/ApplicationBar.Cancel.png" Text="Отменить" Click="cancelButton_Click" />
 		</shell:ApplicationBar>
@@ -47,8 +47,8 @@
             	<toolkit:ListPicker x:Name="CitySelect" 
 				Header="Город"
 				FontSize="24" Margin="10,6,10,20"
-				SelectionChanged="CitySelect_SelectionChanged">
-            		<ListBoxItem Content="Москва"/>
+				SelectionChanged="CitySelect_SelectionChanged" Foreground="#DEFFFFFF">
+            		<ListBoxItem Content="Москва" Foreground="#DEFFFFFF"/>
             		<ListBoxItem Content="Санкт-Петербург"/>
             	</toolkit:ListPicker>
 				</Border>

@@ -21,7 +21,10 @@
 	</phone:PhoneApplicationPage.ApplicationBar>
 
     <!--LayoutRoot is the root grid where all page content is placed-->
-    <Grid x:Name="LayoutRoot" Background="Transparent">
+    <Grid x:Name="LayoutRoot">
+    	    <Grid.Background>
+                <ImageBrush ImageSource="images/back_01.png"/>
+            </Grid.Background>
  
         <!--Panorama control-->
         <controls:Panorama>
@@ -124,8 +127,18 @@
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal" Margin="0,0,0,17">          
                                 <StackPanel>
-                                    <TextBlock Text="{Binding ShortDate}" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
-                                    <TextBlock Text="{Binding Title}" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                                	<StackPanel Orientation="Horizontal">                              		
+                                    <TextBlock Text="{Binding ShortDate}" 
+									TextWrapping="Wrap" 
+									Style="{StaticResource 
+									Text36pxDF8D4B}"/>
+									<Image Margin="3,0,0,0" 
+									Source="{Binding BigImage}"/>
+									</StackPanel>
+                                    <TextBlock Text="{Binding Title}" 
+									TextWrapping="Wrap" Margin="0" 
+									Style="{StaticResource 
+									Text23pxC0A89A}"/>
                                 </StackPanel>
                             </StackPanel>
                         </DataTemplate>
@@ -135,7 +148,8 @@
 					FontSize="24"
 					Background="#FF4186A3" 
 					BorderBrush="#FF4186A3" 
-					FontFamily="Segoe WP Regular" BorderThickness="3" />
+					Foreground="#FFFFFFFF"
+					FontFamily="Segoe WP Regular" BorderThickness="3" Click="AddEvent_Click" />
 				</StackPanel>
 				</ScrollViewer>
             </controls:PanoramaItem>
@@ -193,7 +207,8 @@
 					Background="#FF4186A3" 
 					BorderBrush="#FF4186A3" 
 					FontFamily="Segoe WP Regular"
-					Name="Login" Content="Вход" Click="Login_Click" />
+					Name="Login" Content="Вход" Click="Login_Click" 
+					Foreground="#FFFFFFFF" />
                     <TextBlock 
 					Foreground="#FF847168"
 					Style="{StaticResource Text24pxCBB2A3}"
@@ -230,11 +245,8 @@
 					Background="#FF4186A3" 
 					BorderBrush="#FF4186A3" 
 					FontFamily="Segoe WP Regular"
-					Name="EditProfile" Content="Изменить" Click="EditProfile_Click" />
-                    <!--<TextBlock Margin="0,20" Text="Изменить" 
-					TextWrapping="Wrap" Name="EditProfile" 
-					Style="{StaticResource PhoneTextExtraLargeStyle}" 
-					Tap="TextBlock_Tap" />-->
+					Name="EditProfile" Content="Изменить" 
+					Click="EditProfile_Click" Foreground="White" />
                 </StackPanel>
                 </StackPanel>
 

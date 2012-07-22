@@ -203,6 +203,7 @@ namespace Donor
                     };
 
                     App.ViewModel.Events.Items.Add(CurrentEvent);
+                    App.ViewModel.Events.UpdateItems();
                     NavigationService.GoBack();
                 }
                 catch

@@ -36,15 +36,24 @@
         <StackPanel>
             <toolkit:ListPicker  
 			x:Name="EventType" 
-			Header="Тип события"
 			FullModeHeader="Тип события" 
 			FontSize="24" Foreground="#FF847168"
 			SelectionChanged="EventType_SelectionChanged" 
-			Loaded="EventType_Loaded" BorderBrush="#FF4F3B34" Background="#FF4F3B34" />
+			Loaded="EventType_Loaded" BorderBrush="#FF4F3B34" Background="#FF4F3B34">
+            <toolkit:ListPicker.Header>
+            		<TextBlock Text="Тип события" FontSize="24" 
+					Foreground="#FF847168"/>        	
+			</toolkit:ListPicker.Header>
+            </toolkit:ListPicker>
 
-            <toolkit:ListPicker x:Name="GiveType" 			
-			Header="Вид сдачи" FullModeHeader="Вид сдачи" 
-			FontSize="24" Foreground="#FF847168" Background="#FF4F3B34" BorderBrush="#FF4F3B34"/>
+            <toolkit:ListPicker x:Name="GiveType" 						
+			FullModeHeader="Вид сдачи" 
+			FontSize="24" Foreground="#FF847168" Background="#FF4F3B34" BorderBrush="#FF4F3B34">
+            	<toolkit:ListPicker.Header>
+            		<TextBlock Text="Вид сдачи" FontSize="24" 
+					Foreground="#FF847168"/>        	
+				</toolkit:ListPicker.Header>
+            </toolkit:ListPicker>
             
             <TextBlock Text="Дата и время"
 			Style="{StaticResource Text24px847168}" Margin="12,0,0,0"/>
@@ -59,7 +68,15 @@
 			Style="{StaticResource TextBox1}"/>
                 <StackPanel Name="Reminder" Visibility="Collapsed">
                     <TextBlock Text="Напоминание" Style="{StaticResource Text24px847168}"/>
-                    <toolkit:ListPicker  x:Name="ReminderPeriod" Header="Напоминание" FullModeHeader="Напоминание" Foreground="#FFDF8D4B" BorderBrush="#FF4F3B34" Background="#FF4F3B34"/>
+                    <toolkit:ListPicker  x:Name="ReminderPeriod" 
+					FullModeHeader="Напоминание" 
+					Foreground="#FFDF8D4B" BorderBrush="#FF4F3B34" 
+					Background="#FF4F3B34">
+                    <toolkit:ListPicker.Header>
+            			<TextBlock Text="Напоминание" FontSize="24" 
+						Foreground="#FF847168"/>        	
+					</toolkit:ListPicker.Header>
+            		</toolkit:ListPicker>
                     <CheckBox Name="KnowAboutResults" 
 					FontSize="24"
 					Content="Узнать результат" IsChecked="{Binding ReminderMessage, Mode=TwoWay}" Foreground="#FF847168"/>

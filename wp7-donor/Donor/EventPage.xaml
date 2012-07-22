@@ -38,7 +38,9 @@
             <ScrollViewer>
             <StackPanel>
                     <TextBlock Text="{Binding Path=Title}" 
-					Name="TitleNews" Style="{StaticResource PhoneTextExtraLargeStyle}" TextWrapping="Wrap"/>
+					Name="TitleNews" 
+					Style="{StaticResource Text36pxB9A194}"
+					TextWrapping="Wrap"/>
                     <StackPanel Orientation="Horizontal">
                     <TextBlock Text="{Binding Path=ShortDate}" 
 					Name="Date" 

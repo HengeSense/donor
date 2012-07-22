@@ -97,10 +97,22 @@
                         <Setter Property="FontSize" Value="36"/>
                         <Setter Property="Foreground" Value="#C0A89A"/>
         </Style>
+		
+        <Style x:Key="Text23pxC0A89A" TargetType="TextBlock">
+                        <Setter Property="FontFamily" Value="Segoe WP"/>
+                        <Setter Property="FontSize" Value="23"/>
+                        <Setter Property="Foreground" Value="#C0A89A"/>
+        </Style>
 
         <Style x:Key="Text24pxDF8D4B" TargetType="TextBlock">
                         <Setter Property="FontFamily" Value="Segoe WP"/>
                         <Setter Property="FontSize" Value="24"/>
+                        <Setter Property="Foreground" Value="#DF8D4B"/>
+        </Style>
+		
+		<Style x:Key="Text36pxDF8D4B" TargetType="TextBlock">
+                        <Setter Property="FontFamily" Value="Segoe WP"/>
+                        <Setter Property="FontSize" Value="36"/>
                         <Setter Property="Foreground" Value="#DF8D4B"/>
         </Style>
 

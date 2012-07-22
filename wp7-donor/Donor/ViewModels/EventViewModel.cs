@@ -87,6 +87,21 @@ namespace Donor.ViewModels
             }
             private set {            }
         }
+        
+        public string BigImage
+        {
+            private set
+            {
+            }
+            get
+            {
+                if (this.Type == "0") 
+                    return "/images/ic_planned_analysis.png";
+                if (this.Type == "1")
+                    return "/images/ic_planned_giving_blood.png";
+                return "/images/ic_planned_analysis.png";
+            }
+        }
 
         private DateTime _time;
         public DateTime Time {
@@ -311,6 +326,14 @@ namespace Donor.ViewModels
                               orderby item.Date ascending
                               select item).Take(1);
             return item_near2.FirstOrDefault();
+        }
+
+        public void UpdateItems() {
+            NotifyPropertyChanged("Items");
+            NotifyPropertyChanged("UserItems");
+
+            App.ViewModel.CreateApplicationTile(App.ViewModel.Events.NearestEvents());
+            App.ViewModel.SaveToIsolatedStorage();
         }
 
         public void LoadDonorsSaturdays()

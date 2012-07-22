@@ -15,8 +15,7 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait"  Orientation="Portrait"
     shell:SystemTray.IsVisible="True">
-
-    <!--LayoutRoot is the root grid where all page content is placed-->
+	
     
     <Grid x:Name="LayoutRoot">
         <Grid.Background>
@@ -166,7 +165,7 @@
 						Background="#FF4186A3" 
 						BorderBrush="#FF4186A3" 
 						FontFamily="Segoe WP Regular"
-						Content="Регистрация" Click="RegisterButton_Click" />
+						Content="Регистрация" Click="RegisterButton_Click" Foreground="White" />
 						</StackPanel>
 						</ScrollViewer>
                     </StackPanel>
@@ -193,7 +192,7 @@
 						FontSize="24"
 						Background="#FF4186A3" 
 						BorderBrush="#FF4186A3" 
-						FontFamily="Segoe WP Regular" />
+						FontFamily="Segoe WP Regular" Foreground="White" />
                         <TextBlock 
 						Foreground="#FF847168"
 						Style="{StaticResource Text24pxCBB2A3}"
@@ -205,22 +204,32 @@
 						FontSize="24"
 						Background="#FF4186A3" 
 						BorderBrush="#FF4186A3" 
-						FontFamily="Segoe WP Regular"/>
+						FontFamily="Segoe WP Regular" Foreground="#FFFFFFFF"/>
                     </StackPanel>
-                    <WPExtensions:AdvancedApplicationBar 
+                    
+					<WPExtensions:AdvancedApplicationBar 
 					Background="#FF211E1D"	
 					BackgroundColor="#FF211E1D" Foreground="White"				
-					Name="AppBar" IsVisible="False" IsMenuEnabled="False">
-                        <WPExtensions:AdvancedApplicationBarIconButton IconUri="/icons/appbar.edit.rest.png" Name="EditButton" Text="Редактировать" Visibility="Visible" Click="AdvancedApplicationBarIconButton_Click" />
+					Name="AppBar" IsVisible="False" IsMenuEnabled="False" BorderBrush="#FF211E1D">
                         <WPExtensions:AdvancedApplicationBarIconButton 
-						IconUri="/icons/appbar.delete.rest.png" 
+						IconUri="/icons/appbar.edit.rest.png" 
+						Name="EditButton" Text="Редактировать" 
+						
+						Visibility="Visible" 
+						Click="AdvancedApplicationBarIconButton_Click" />
+                        <WPExtensions:AdvancedApplicationBarIconButton 
+						IconUri="/icons/ic_ApplicationBar_exit.png" 
 						Text="Выход" Visibility="Visible" 
 						Name="DeleteUserButton" Click="DeleteUserButton_Click" />
                         
-<WPExtensions:AdvancedApplicationBarIconButton IconUri="/icons/appbar.save.rest.png" Text="Сохранить" Visibility="Collapsed" Name="SaveEditProfileButton" Click="SaveEditProfileButton_Click" />
-                        <WPExtensions:AdvancedApplicationBarIconButton IconUri="/icons/appbar.cancel.png" Text="Отмена" Visibility="Collapsed" Name="CancelEditProfileButton" Click="CancelEditProfileButton_Click" />
-                        
-                    </WPExtensions:AdvancedApplicationBar>                
+<WPExtensions:AdvancedApplicationBarIconButton 
+IconUri="/icons/ic_ApplicationBar_done.png" Text="Сохранить" 
+Visibility="Collapsed" Name="SaveEditProfileButton" Click="SaveEditProfileButton_Click" />
+                        <WPExtensions:AdvancedApplicationBarIconButton 
+						IconUri="/icons/ic_ApplicationBar_close.png" Text="Отмена" 
+						Visibility="Collapsed" Name="CancelEditProfileButton" 
+						Click="CancelEditProfileButton_Click" />                        
+                    </WPExtensions:AdvancedApplicationBar>          
                     
                     
                 </Grid>
