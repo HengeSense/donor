@@ -28,7 +28,46 @@ namespace Donor
             var request = new RestRequest("1/classes/StationReviews", Method.POST);
             request.AddHeader("Accept", "application/json");
             request.Parameters.Clear();
-            string strJSONContent = "{\"username\":\"" + App.ViewModel.User.Name.ToString() + "\",\"user_id\":\"" + App.ViewModel.User.objectId.ToString() + "\",\"station_id\":\"" + _stationid_current.ToString() + "\",\"body\":\"" + this.Body.Text.ToString() + "\", \"vote\":" + this.Vote.Text.ToString() + "}";
+
+            int vote = 0;
+            int vote_count = 0;
+            if (this.vote_registry.Vote != 0)
+            {
+                vote = this.vote_registry.Vote;
+                vote_count++;
+            };
+            if (this.vote_physician.Vote != 0)
+            {
+                vote = this.vote_physician.Vote;
+                vote_count++;
+            };
+            if (this.vote_laboratory.Vote != 0)
+            {
+                vote = this.vote_laboratory.Vote;
+                vote_count++;
+            };
+            if (this.vote_buffet.Vote != 0)
+            {
+                vote = this.vote_buffet.Vote;
+                vote_count++;
+            };
+            if (this.vote_schedule.Vote != 0)
+            {
+                vote = this.vote_schedule.Vote;
+                vote_count++;
+            };
+            if (this.vote_organization_donation.Vote != 0)
+            {
+                vote = this.vote_organization_donation.Vote;
+                vote_count++;
+            };
+            if (this.vote_room.Vote != 0)
+            {
+                vote = this.vote_room.Vote;
+                vote_count++;
+            };
+
+            string strJSONContent = "{\"username\":\"" + App.ViewModel.User.Name.ToString() + "\",\"user_id\":\"" + App.ViewModel.User.objectId.ToString() + "\",\"station_id\":\"" + _stationid_current.ToString() + "\",\"body\":\"" + this.Body.Text.ToString() + "\", \"vote\":" + vote.ToString() + ", \"vote_registry\":" + this.vote_registry.Vote.ToString() + ", \"vote_physician\":" + this.vote_physician.Vote.ToString() + ", \"vote_laboratory\":" + this.vote_laboratory.Vote.ToString() + ", \"vote_buffet\":" + this.vote_buffet.Vote.ToString() + ", \"vote_schedule\":" + this.vote_schedule.Vote.ToString() + ", \"vote_organization_donation\":" + this.vote_organization_donation.Vote.ToString() + ", \"vote_room\":" + this.vote_room.Vote.ToString() + "}";
             request.AddHeader("X-Parse-Application-Id", "EIpakVdZblHedhqgxMgiEVnIGCRGvWdy9v8gkKZu");
             request.AddHeader("X-Parse-REST-API-Key", "wPvwRKxX2b2vyrRprFwIbaE5t3kyDQq11APZ0qXf");
             request.AddHeader("Content-Type", "application/json");

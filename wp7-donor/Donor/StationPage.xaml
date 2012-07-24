@@ -48,7 +48,8 @@
                 </controls:PanoramaItem.Header>
                 <Grid Margin="0,10,0,0">
                     <StackPanel>
-                    	<my:VotesControl x:Name="vote_registry" Grid.Column="1" HorizontalAlignment="Left"/>
+                    	<my:VotesControl x:Name="rate" 
+						HorizontalAlignment="Left"/>
                         <TextBlock TextWrapping="Wrap" 
 						Text="Адрес" 
 						Style="{StaticResource Text36pxB9A194}" />
@@ -137,19 +138,16 @@
                                 <DataTemplate>
                                     <StackPanel Margin="0,10,0,0">
 
-<TextBlock Text="{Binding Username}" 
+<TextBlock Text="{Binding ShortDateText}" 
 Style="{StaticResource Text36pxB9A194}" />
-                                        
+                                      
+<my:VotesControl HorizontalAlignment="Left"/>
+									    
 <StackPanel Orientation="Horizontal">
-<TextBlock Text="Оценка: "
-Style="{StaticResource Text24pxDF8D4B}"/>
-<TextBlock Text="{Binding Vote}"
+<TextBlock Text="{Binding Username}" TextWrapping="Wrap"
 Style="{StaticResource Text24pxDF8D4B}"/>
 </StackPanel>
-                                        
-                                        <TextBlock Text="{Binding Body}" 
-										Style="{StaticResource Text24pxCBB2A3}"
-										Margin="0,6" />
+<TextBlock Text="{Binding Body}"  Style="{StaticResource Text24pxCBB2A3}" Margin="0,6" TextWrapping="Wrap" />
                                     </StackPanel>
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
@@ -160,7 +158,7 @@ Style="{StaticResource Text24pxDF8D4B}"/>
 					BackgroundColor="#FF211E1D" Foreground="White"	
 					IsVisible="True" IsMenuEnabled="False">
                         <WPExtensions:AdvancedApplicationBarIconButton IconUri="/icons/appbar.edit.rest.png" Text="Написать"  Name="CreateReviewButton" Click="CreateReviewButton_Click" />
-                        <Image Height="800" Source="/SplashScreenImage.jpg" Stretch="Fill"/>
+                        
                         
 </WPExtensions:AdvancedApplicationBar>
                 </Grid>

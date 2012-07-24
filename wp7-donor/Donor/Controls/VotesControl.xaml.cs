@@ -15,7 +15,77 @@ namespace Donor.Controls
 {
     public partial class VotesControl : UserControl
     {
-        public int Vote { get; set; }
+
+        public int Vote2 { get; set; }
+
+        private int _vote;
+        public int Vote {
+            get {
+                return _vote;
+            }
+            set 
+            {
+                try
+                {
+                    _vote = value;
+                    switch (_vote)
+                    {
+                        case 1:
+                            this.Star1.Source = opacity_on;
+                            this.Star2.Source = opacity_off;
+                            this.Star3.Source = opacity_off;
+                            this.Star4.Source = opacity_off;
+                            this.Star5.Source = opacity_off;
+                            break;
+                        case 2:
+                            this.Star1.Source = opacity_on;
+                            this.Star2.Source = opacity_on;
+                            this.Star3.Source = opacity_off;
+                            this.Star4.Source = opacity_off;
+                            this.Star5.Source = opacity_off;
+                            break;
+                        case 3:
+                            this.Star1.Source = opacity_on;
+                            this.Star2.Source = opacity_on;
+                            this.Star3.Source = opacity_on;
+                            this.Star4.Source = opacity_off;
+                            this.Star5.Source = opacity_off;
+                            break;
+                        case 4:
+                            this.Star1.Source = opacity_on;
+                            this.Star2.Source = opacity_on;
+                            this.Star3.Source = opacity_on;
+                            this.Star4.Source = opacity_on;
+                            this.Star5.Source = opacity_off;
+                            break;
+                        case 5:
+                            this.Star1.Source = opacity_on;
+                            this.Star2.Source = opacity_on;
+                            this.Star3.Source = opacity_on;
+                            this.Star4.Source = opacity_on;
+                            this.Star5.Source = opacity_on;
+                            break;
+                        default:
+                            _vote = 0;
+                            this.Star1.Source = opacity_off;
+                            this.Star2.Source = opacity_off;
+                            this.Star3.Source = opacity_off;
+                            this.Star4.Source = opacity_off;
+                            this.Star5.Source = opacity_off;
+                            break;
+                    }
+                }
+                catch
+                {
+                    _vote = 0;
+                    this.Star1.Source = opacity_off;
+                    this.Star2.Source = opacity_off;
+                    this.Star3.Source = opacity_off;
+                    this.Star4.Source = opacity_off;
+                    this.Star5.Source = opacity_off;
+                };
+            }
+        }
 
         public VotesControl()
         {
@@ -29,57 +99,26 @@ namespace Donor.Controls
 
         private void Star1_Tap(object sender, GestureEventArgs e)
         {
-
-            this.Star1.Source = opacity_on;
-            this.Star2.Source = opacity_off;
-            this.Star3.Source = opacity_off;
-            this.Star4.Source = opacity_off;
-            this.Star5.Source = opacity_off;
-
             this.Vote = 1;
         }
 
         private void Star2_Tap(object sender, GestureEventArgs e)
         {
-            this.Star1.Source = opacity_on;
-            this.Star2.Source = opacity_on;
-            this.Star3.Source = opacity_off;
-            this.Star4.Source = opacity_off;
-            this.Star5.Source = opacity_off;
-
             this.Vote = 2;
         }
 
         private void Star3_Tap(object sender, GestureEventArgs e)
         {
-            this.Star1.Source = opacity_on;
-            this.Star2.Source = opacity_on;
-            this.Star3.Source = opacity_on;
-            this.Star4.Source = opacity_off;
-            this.Star5.Source = opacity_off;
-
             this.Vote = 3;
         }
 
         private void Star4_Tap(object sender, GestureEventArgs e)
         {
-            this.Star1.Source = opacity_on;
-            this.Star2.Source = opacity_on;
-            this.Star3.Source = opacity_on;
-            this.Star4.Source = opacity_on;
-            this.Star5.Source = opacity_off;
-
             this.Vote = 4;
         }
 
         private void Star5_Tap(object sender, GestureEventArgs e)
         {
-            this.Star1.Source = opacity_on;
-            this.Star2.Source = opacity_on;
-            this.Star3.Source = opacity_on;
-            this.Star4.Source = opacity_on;
-            this.Star5.Source = opacity_on;
-
             this.Vote = 5;
         }
     }

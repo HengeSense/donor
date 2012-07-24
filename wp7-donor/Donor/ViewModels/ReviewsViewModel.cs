@@ -126,6 +126,16 @@ namespace Donor.ViewModels
         /// </summary>
         public int Vote { get; set; }
 
+        public string ShortDateText
+        {
+            private set { }
+            get
+            {
+                DateTime created = DateTime.Parse(this.CreatedAt);
+                return created.ToShortDateString();
+            }
+        }
+
         /// <summary>
         /// - оценка регистратуры станции, от 1 до 5
         /// </summary>
@@ -154,6 +164,11 @@ namespace Donor.ViewModels
         /// - оценка помещения станции переливания, от 1 до 5
         /// </summary>
         public int Vote_room { get; set; }
+
+        public string UpdatedAt { get; set; }
+        public string CreatedAt { get; set; }
+
+        public DateTime Date { get; set; }
     }
 
 }

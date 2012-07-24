@@ -260,12 +260,16 @@
     <Content Include="icons\ic_ApplicationBar_close.png" />
     <Content Include="icons\ic_ApplicationBar_done.png" />
     <Content Include="icons\ic_ApplicationBar_exit.png" />
+    <Resource Include="images\ic_be_tested.png" />
+    <Resource Include="images\ic_comment.png" />
+    <Resource Include="images\ic_map.png" />
     <Resource Include="images\ic_menu_ads_normal.png" />
     <Resource Include="images\ic_menu_calendar_normal.png" />
     <Resource Include="images\ic_menu_information_normal.png" />
     <Resource Include="images\ic_menu_news_normal.png" />
     <Resource Include="images\ic_menu_profile_normal.png" />
     <Resource Include="images\ic_menu_stantion_normal.png" />
+    <Resource Include="images\ic_reminder.png" />
     <Resource Include="images\logo_old_one.png" />
     <Resource Include="bg.png" />
     <Resource Include="images\bg_04.png">

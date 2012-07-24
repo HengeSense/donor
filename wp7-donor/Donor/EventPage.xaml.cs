@@ -34,10 +34,25 @@ namespace Donor
                     _currentEvent = App.ViewModel.Events.Items.FirstOrDefault(c => c.Id == _eventid.ToString());
                     DataContext = _currentEvent;
 
-                    if (_currentEvent.Type == "Праздник")
+                    if (_currentEvent.Type == "2")
                     {
                         this.AppBar.Visibility = Visibility.Collapsed;
                         this.AppBar.IsVisible = false;
+						ReminderStackPanel.Visibility = Visibility.Collapsed;
+                    };
+					
+					if (_currentEvent.Type == "0")
+                    {                        
+						this.ic_be_tested.Visibility = Visibility.Visible;
+						ReminderStackPanel.Visibility = Visibility.Visible;
+                        this.TitleNews.Text = "Сдать анализ";
+                        this.Reminder.Text = _currentEvent.ReminderDate.ToString();
+                        
+                    };
+					if (_currentEvent.Type == "1")
+                    {
+                        this.TitleNews.Text = _currentEvent.GiveType;
+						ReminderStackPanel.Visibility = Visibility.Collapsed;
                     };
                 }
                 catch
@@ -83,6 +98,11 @@ namespace Donor
             }
             catch {
             };
+        }
+
+        private void StackPanel_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+        	// TODO: Add event handler implementation here.
         }
     }
 }
