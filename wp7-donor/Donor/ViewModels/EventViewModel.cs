@@ -355,7 +355,11 @@ namespace Donor.ViewModels
                     {
                         EventViewModel jsonitem = new EventViewModel();
                         jsonitem.Title = item["title"].ToString();
-                        jsonitem.Description = item["comment"].ToString();
+                        try
+                        {
+                            jsonitem.Description = item["comment"].ToString();
+                        }
+                        catch { };
                         jsonitem.Id = item["objectId"].ToString();
                         jsonitem.Type = item["type"].ToString();
                         jsonitem.Date = DateTime.Parse(item["date"]["iso"].ToString());
