@@ -312,7 +312,7 @@ namespace Donor.ViewModels
                     return _user_items;
                 };
 
-                return _user_items;
+                //return _user_items;
             }
             private set
             {

@@ -22,8 +22,9 @@ namespace Donor
             DataContext = App.ViewModel;
             this.Calendar1.Items = App.ViewModel.Events.Items;
 
-            this.PageTitle.Text = CultureInfo.CurrentCulture.DateTimeFormat.MonthNames[DateTime.Now.Month - 1];
-            this.ApplicationTitle.Text = DateTime.Now.Year.ToString();
+            //show calendar control for current month, selected\changed for example in CalendarYearPage
+            this.PageTitle.Text = CultureInfo.CurrentCulture.DateTimeFormat.MonthNames[App.ViewModel.Events.CurrentMonth.Month - 1];
+            this.ApplicationTitle.Text = App.ViewModel.Events.CurrentMonth.Year.ToString();
         }
 
         private void LayoutRoot_Loaded(object sender, RoutedEventArgs e)
