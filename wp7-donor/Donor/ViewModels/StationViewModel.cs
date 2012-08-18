@@ -78,17 +78,52 @@ namespace Donor.ViewModels
                         //station.BloodFor = item["bloodfor"].ToString();
                         station.City = item["city"].ToString();
                         station.Description = item["description"].ToString();
-                        station.DonorsForChildrens = bool.Parse(item["donorsForChildrens"].ToString());
+                        try
+                        {
+                            station.DonorsForChildrens = bool.Parse(item["donorsForChildrens"].ToString());
+                        }
+                        catch
+                        {
+                            station.DonorsForChildrens = false;
+                        };
                         station.Lat = item["latlon"]["latitude"].ToString();
                         station.Lon = item["latlon"]["longitude"].ToString();
                         station.objectId = item["objectId"].ToString();
                         station.Phone = item["phone"].ToString();
-                        station.ReceiptTime = item["receiptTime"].ToString();
-                        station.RegionalRegistration = bool.Parse(item["regionalRegistration"].ToString());
-                        station.SaturdayWork = bool.Parse(item["saturdayWork"].ToString());
+                        try
+                        {
+                            station.ReceiptTime = item["receiptTime"].ToString();
+                        }
+                        catch
+                        {
+                            station.ReceiptTime = "";
+                        };
+                        try
+                        {
+                            station.RegionalRegistration = bool.Parse(item["regionalRegistration"].ToString());
+                        }
+                        catch
+                        {
+                            station.RegionalRegistration = false;
+                        };
+                        try
+                        {
+                            station.SaturdayWork = bool.Parse(item["saturdayWork"].ToString());
+                        }
+                        catch
+                        {
+                            station.SaturdayWork = false;
+                        };
                         station.Title = item["title"].ToString();
                         station.Transportaion = item["transportation"].ToString();
-                        station.Url = item["url"].ToString();
+                        try
+                        {
+                            station.Url = item["url"].ToString();
+                        }
+                        catch
+                        {
+                            station.Url = "http://www.podari-zhizn.ru/main";
+                        };
                         eventslist1.Add(station);
                     };
                     //eventslist1 = JsonConvert.DeserializeObject<ObservableCollection<StationViewModel>>(o["results"].ToString());
