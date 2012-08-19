@@ -22,8 +22,12 @@ con = Mysql2::Client.new(:host=>HOST, :username=>USERNAME,
       news = Parse::Object.new "News"
       news["title"]         = row["title"].to_s
       news["body"]          = row["body"].to_s
-      
-      news["created"]     = Time.at(row["timestamp"]).iso8601
+     
+      news["createdTimestamp"] = row["created"]
+ 
+      news["created"] = DateTime.strptime(row["created"].to_s,'%s').to_s
+      #puts DateTime.strptime(row["created"].to_s,'%s').to_s
+      #puts row["created"].to_s
       news["nid"]           = row["nid"]
       puts row["nid"].to_s+" "
       news.save

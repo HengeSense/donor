@@ -37,6 +37,8 @@ con = Mysql2::Client.new(:host=>HOST, :username=>USERNAME,
       review["vote"] = (row["field_vote_overall_value"].to_i / 20).round.to_i   
           
       review["nid"] = row["nid"]
+      review["createdTimestamp"] = row["created"] 
+      review["created"] = DateTime.strptime(row["created"].to_s,'%s').to_s
 
       puts row["nid"].to_s+" "
       review.save
