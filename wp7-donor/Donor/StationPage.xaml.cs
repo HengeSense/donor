@@ -34,8 +34,8 @@ namespace Donor
                     _currentStation = App.ViewModel.Stations.Items.FirstOrDefault(c => c.objectId == _id.ToString());
                     DataContext = _currentStation;
 
-                    this.StationAds.ItemsSource = App.ViewModel.Ads.LoadStationAds(_currentStation.objectId);
-                    App.ViewModel.Reviews.LoadReviewsForStation(_currentStation.objectId);
+                    this.StationAds.ItemsSource = App.ViewModel.Ads.LoadStationAds(_currentStation.Nid.ToString());
+                    App.ViewModel.Reviews.LoadReviewsForStation(_currentStation.Nid.ToString());
 
                     App.ViewModel.Reviews.ReviewsLoaded += new ReviewsListViewModel.ReviewsLoadedEventHandler(this.ReviewsLoaded);
                 }

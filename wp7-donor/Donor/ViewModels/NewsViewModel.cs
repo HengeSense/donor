@@ -43,7 +43,10 @@ namespace Donor.ViewModels
                     ObservableCollection<NewsViewModel> newslist1 = new ObservableCollection<NewsViewModel>();
                     JObject o = JObject.Parse(response.Content.ToString());
                     newslist1 = JsonConvert.DeserializeObject<ObservableCollection<NewsViewModel>>(o["results"].ToString());
-                    this.Items = newslist1;
+                    var newslist2 = (from news in newslist1
+                               orderby news.CreatedTimestamp descending
+                               select news);
+                    this.Items = new ObservableCollection<NewsViewModel>(newslist2);
                     //save to isolated storage
                     IsolatedStorageHelper.SaveSerializableObject<ObservableCollection<NewsViewModel>>(App.ViewModel.News.Items, "news.xml");
                 }
@@ -68,7 +71,7 @@ namespace Donor.ViewModels
             get 
             {
                 var newitems = (from news in this.Items
-                               orderby news.Date descending
+                               orderby news.CreatedTimestamp descending
                                select news).Take(10);
                 List<NewsViewModel> outnews = newitems.ToList();
                 return outnews;
@@ -139,6 +142,8 @@ namespace Donor.ViewModels
                 return created1.ToShortDateString();
             }
         }
+
+        public Int64 CreatedTimestamp { get; set; }
 
         public string UpdatedAt { get; set; }
         public string Created

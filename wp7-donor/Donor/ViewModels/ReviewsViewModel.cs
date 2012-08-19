@@ -45,6 +45,9 @@ namespace Donor.ViewModels
             request.Parameters.Clear();
             request.AddHeader("X-Parse-Application-Id", "EIpakVdZblHedhqgxMgiEVnIGCRGvWdy9v8gkKZu");
             request.AddHeader("X-Parse-REST-API-Key", "wPvwRKxX2b2vyrRprFwIbaE5t3kyDQq11APZ0qXf");
+
+            request.AddBody("where={\"station_nid\":" + StationId.ToString() + "}\norder=-createdTimestamp");
+
             client.ExecuteAsync(request, response =>
             {
                 try
@@ -131,7 +134,7 @@ namespace Donor.ViewModels
             private set { }
             get
             {
-                DateTime created = DateTime.Parse(this.CreatedAt);
+                DateTime created = DateTime.Parse(this.Created);
                 return created.ToShortDateString();
             }
         }
@@ -168,7 +171,13 @@ namespace Donor.ViewModels
         public string UpdatedAt { get; set; }
         public string CreatedAt { get; set; }
 
+        public Int64 Nid { get; set; }
+        public Int64 Station_nid { get; set; }
+
         public DateTime Date { get; set; }
+
+        public string Created { get; set; }
+        public Int64 CreatedTimestamp { get; set; }
     }
 
 }

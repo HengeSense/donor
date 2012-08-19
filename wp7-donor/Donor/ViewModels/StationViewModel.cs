@@ -86,6 +86,9 @@ namespace Donor.ViewModels
                         {
                             station.DonorsForChildrens = false;
                         };
+
+                        station.Nid = Int64.Parse(item["nid"].ToString());
+
                         station.Lat = item["latlon"]["latitude"].ToString();
                         station.Lon = item["latlon"]["longitude"].ToString();
                         station.objectId = item["objectId"].ToString();
@@ -355,5 +358,8 @@ namespace Donor.ViewModels
             }
             private set {}
         }
+
+        public Int64 Nid { get; set; }
+        
     }
 }
