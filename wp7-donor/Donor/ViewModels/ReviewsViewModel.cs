@@ -13,6 +13,7 @@ using System.Collections.ObjectModel;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
 using System.ComponentModel;
+using System.Linq;
 
 namespace Donor.ViewModels
 {
@@ -55,10 +56,12 @@ namespace Donor.ViewModels
                     ObservableCollection<ReviewsViewModel> reviewslist1 = new ObservableCollection<ReviewsViewModel>();
                     JObject o = JObject.Parse(response.Content.ToString());
                     reviewslist1 = JsonConvert.DeserializeObject<ObservableCollection<ReviewsViewModel>>(o["results"].ToString());
-                    
+                    var reviewslist2 = (from reviews in reviewslist1
+                                        orderby reviews.CreatedTimestamp descending
+                                        select reviews);
                     Deployment.Current.Dispatcher.BeginInvoke(() =>
                     {
-                        this.Items = reviewslist1;
+                        this.Items = new ObservableCollection<ReviewsViewModel>(reviewslist2);
                         this.NotifyPropertyChanged("Items");
                         
                         this.OnReviewsLoaded(EventArgs.Empty);

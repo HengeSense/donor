@@ -141,7 +141,7 @@
 <TextBlock Text="{Binding ShortDateText}" 
 Style="{StaticResource Text36pxB9A194}" />
                                       
-<my:VotesControl HorizontalAlignment="Left"/>
+<my:VotesControl HorizontalAlignment="Left" Tag="{Binding Vote}" VoteChanged="VotesControl_VoteChanged" />
 									    
 <StackPanel Orientation="Horizontal">
 <TextBlock Text="{Binding Username}" TextWrapping="Wrap"

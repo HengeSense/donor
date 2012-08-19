@@ -80,5 +80,10 @@ namespace Donor
         {
             NavigationService.Navigate(new Uri("/CreateReviewPage.xaml?id=" + _stationid_current, UriKind.Relative));
         }
+
+        private void VotesControl_VoteChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+
+        }
     }
 }

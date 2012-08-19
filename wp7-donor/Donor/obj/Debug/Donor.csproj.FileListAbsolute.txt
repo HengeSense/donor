@@ -120,3 +120,4 @@ C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\obj\Debug\ProfileLogin.g.i.
 C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\obj\Debug\StationPage.g.i.cs
 C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\obj\Debug\StationsSearch.g.i.cs
 C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\obj\Debug\StationsSearchFilter.g.i.cs
+C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\Bin\Debug\HtmlAgilityPack.dll

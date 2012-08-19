@@ -129,6 +129,12 @@ namespace Donor.ViewModels
             get
             {
                 string sbody = this.Body;
+                HtmlAgilityPack.HtmlDocument htmlDoc = new HtmlAgilityPack.HtmlDocument();
+                htmlDoc.OptionFixNestedTags = true;
+                htmlDoc.LoadHtml(sbody);
+                var text = htmlDoc.DocumentNode.InnerText;
+                sbody = text.Trim();
+                sbody = sbody.Substring(0, 150);
                 return sbody;
             }
         }

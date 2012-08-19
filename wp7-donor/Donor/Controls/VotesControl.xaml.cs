@@ -11,6 +11,8 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using System.Windows.Media.Imaging;
 
+using System.ComponentModel;
+
 namespace Donor.Controls
 {
     public partial class VotesControl : UserControl
@@ -19,6 +21,7 @@ namespace Donor.Controls
         public int Vote2 { get; set; }
 
         private int _vote;
+        
         public int Vote {
             get {
                 return _vote;
@@ -85,6 +88,16 @@ namespace Donor.Controls
                     this.Star5.Source = opacity_off;
                 };
             }
+        }
+
+
+        public event System.ComponentModel.PropertyChangedEventHandler VoteChanged;
+
+        public void OnemployeeNameChanged(System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            //Raise the employeeIDChanged event.
+            if (VoteChanged != null)
+                VoteChanged(this, e);
         }
 
         public VotesControl()
