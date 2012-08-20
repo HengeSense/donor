@@ -16,6 +16,7 @@ using Newtonsoft.Json.Linq;
 using RestSharp;
 using Newtonsoft.Json;
 using MSPToolkit.Utilities;
+using System.Text.RegularExpressions;
 
 namespace Donor.ViewModels
 {
@@ -121,7 +122,34 @@ namespace Donor.ViewModels
         }
 
         public string ObjectId { get; set; }
-        public string Body { get; set; }
+
+        private string _body;
+        public string Body {
+            set
+            {
+                _body = value;
+            }
+            get
+            {
+                string _outbody = _body;
+                string pattern = "\\s\\*\\*";
+                string replacement = "<b>";
+                Regex rgx = new Regex(pattern);
+                _outbody = rgx.Replace(_body, replacement);
+
+                pattern = "\\S\\*\\*";
+                replacement = "<b>";
+                rgx = new Regex(pattern);
+                _outbody = rgx.Replace(_outbody, replacement);
+
+                pattern = "\\[.*\\]";
+                replacement = "";
+                rgx = new Regex(pattern);
+                _outbody = rgx.Replace(_outbody, replacement);
+
+                return _outbody;
+            }
+        }
         public string Url { get; set; }
 
         public string ShortBody {

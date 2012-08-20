@@ -91,9 +91,7 @@
             </ScrollViewer>
         </Grid>
 
-        <WPExtensions:AdvancedApplicationBar Name="AppBar" 
-		Background="#FF211E1D"	
-		BackgroundColor="#FF211E1D" Foreground="White"	
+        <WPExtensions:AdvancedApplicationBar Name="AppBar" Background="#FF211E1D" BackgroundColor="#FF211E1D" Foreground="White" BorderBrush="#FF211E1D" ForegroundColor="White" OpacityMask="White"
 		IsVisible="True" IsMenuEnabled="True">
             <WPExtensions:AdvancedApplicationBarIconButton IconUri="/icons/appbar.save.rest.png" Name="SaveButton" Text="Сохранить" Visibility="Visible" Click="SaveButton_Click" />
             <WPExtensions:AdvancedApplicationBarIconButton IconUri="/icons/appbar.link.png" Name="CancelButton" Text="Отменить" Visibility="Visible" Click="CancelButton_Click" />

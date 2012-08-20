@@ -183,14 +183,10 @@
             </controls:PivotItem>
 
         </controls:Pivot>
-        <WPExtensions:AdvancedApplicationBar Name="AppBar" IsVisible="True" IsMenuEnabled="False">
-            <!--
-			<WPExtensions:AdvancedApplicationBarIconButton 
-			IconUri="/icons/appbar.edit.rest.png" 
-			Text="Редактировать" Visibility="Visible" />-->
+        <WPExtensions:AdvancedApplicationBar Name="AppBar" IsVisible="True" IsMenuEnabled="False" Background="#FF211E1D" BackgroundColor="#FF211E1D" Foreground="White" BorderBrush="#FF211E1D" ForegroundColor="White" OpacityMask="White">
             <WPExtensions:AdvancedApplicationBarIconButton 
 			IconUri="/icons/ic_ApplicationBar_add.png" Text="Добавить событие" 
-			Visibility="Visible" Name="AddEventButton" 
+			Visibility="Visible" Name="AddEventButton"                 
 			Click="AddEventButton_Click" />
             <WPExtensions:AdvancedApplicationBarIconButton 
 			IconUri="/icons/ic_ApplicationBar_calendar.png" Text="Календарь" 
