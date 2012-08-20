@@ -75,7 +75,14 @@ namespace Donor.ViewModels
                     {
                         StationViewModel station = new StationViewModel();
                         station.Adress = item["adress"].ToString();
-                        //station.BloodFor = item["bloodfor"].ToString();
+                        try
+                        {
+                            station.BloodFor = item["bloodfor"].ToString();
+                        }
+                        catch
+                        {
+                            station.BloodFor = "";
+                        };
                         station.City = item["city"].ToString();
                         station.Description = item["description"].ToString();
                         try
@@ -289,7 +296,17 @@ namespace Donor.ViewModels
         private string _bloodFor;
         public string BloodFor
         {
-            get { return _bloodFor; }
+            get {
+                if (_bloodFor == "")
+                {
+                    return "Не указано"; 
+                }
+                else
+                {
+                    return _bloodFor; 
+                };
+                
+            }
             set { _bloodFor = value; }
         }        
 
@@ -299,7 +316,16 @@ namespace Donor.ViewModels
         private string _receiptTime;
         public string ReceiptTime
         {
-            get { return _receiptTime; }
+            get {
+                if (_receiptTime == "")
+                {
+                    return "Не указано";
+                }
+                else
+                {
+                    return _receiptTime;
+                };
+            }
             set { _receiptTime = value; }
         }
 
@@ -309,7 +335,16 @@ namespace Donor.ViewModels
         private string _transportation;
         public string Transportaion
         {
-            get { return _transportation; }
+            get {
+                    if (_transportation == "")
+                    {
+                        return "Не указано";
+                    }
+                    else
+                    {
+                        return _transportation;
+                    };
+                }
             set { _transportation = value; }
         }
 

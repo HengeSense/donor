@@ -87,17 +87,17 @@
                         <TextBlock TextWrapping="Wrap" 
 						Text="Время приема" 
 						Style="{StaticResource Text36pxB9A194}" />
-                        <TextBlock TextWrapping="Wrap" 
-						Text="{Binding ReceiptTime}"/>
+                        <TextBlock TextWrapping="Wrap" Style="{StaticResource Text24pxDF8D4B}" Text="{Binding ReceiptTime}"/>
                         <TextBlock TextWrapping="Wrap" 
 						Text="Проезд" Style="{StaticResource Text36pxB9A194}"/>
                         <TextBlock TextWrapping="Wrap" 
 						Text="{Binding Transportaion}"
 						Style="{StaticResource Text24pxDF8D4B}"/>
+                        <StackPanel Name="BloodFor">
                         <TextBlock TextWrapping="Wrap" 
 						Text="Кровь для" Style="{StaticResource Text36pxB9A194}"/>
-                        <TextBlock Text="{Binding BloodFor}"
-						Style="{StaticResource Text24pxDF8D4B}"/>
+                        <TextBlock Text="{Binding BloodFor}" Style="{StaticResource Text24pxDF8D4B}"/>
+                        </StackPanel>
                     </StackPanel>
                 </Grid>
             </controls:PanoramaItem>

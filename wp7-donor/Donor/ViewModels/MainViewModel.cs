@@ -307,7 +307,6 @@ namespace Donor
                         eventslist1 = JsonConvert.DeserializeObject<ObservableCollection<EventViewModel>>(json);
 
                             this.Events.Items = eventslist1;
-                            //App.ViewModel.Events.LoadDonorsSaturdays();
                         
                         this.NotifyPropertyChanged("Events");
                     });
