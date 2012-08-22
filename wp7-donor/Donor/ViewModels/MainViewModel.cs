@@ -89,7 +89,7 @@ namespace Donor
                 {
                     standardTile = new StandardTileData
                     {
-                        Title = "Доноры",
+                        Title = "",
                         Count = App.ViewModel.Events.Items.Count(),
                         BackTitle = eventData.Date.ToShortDateString(),
                         BackContent = eventData.Title
@@ -101,7 +101,7 @@ namespace Donor
                     {
                         standardTile = new StandardTileData
                         {
-                            Title = "Доноры",
+                            Title = "",
                             Count = App.ViewModel.Events.Items.Count(),
                             BackTitle = App.ViewModel.Events.NearestEventsAll().Date.ToShortDateString(),
                             BackContent = App.ViewModel.Events.NearestEventsAll().Title.ToString()
@@ -111,7 +111,7 @@ namespace Donor
                     {
                         standardTile = new StandardTileData
                         {
-                            Title = "Доноры",
+                            Title = "",
                             Count = App.ViewModel.Events.Items.Count(),
                             BackContent = "Нет событий",
                         };

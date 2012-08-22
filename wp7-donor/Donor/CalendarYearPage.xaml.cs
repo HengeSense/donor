@@ -25,7 +25,14 @@ namespace Donor
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
-            App.ViewModel.Events.CurrentMonth = DateTime.Now;
+            /*if (App.ViewModel.Events.CurrentMonth != null)
+            {
+                //App.ViewModel.Events.CurrentMonth = DateTime.Now;
+            }
+            else
+            {
+                App.ViewModel.Events.CurrentMonth = DateTime.Now;
+            };*/
             this.Monthes.SelectedIndex = 1;
 
             this.EventsListPrev.ItemsSource = App.ViewModel.Events.PrevMonthItems;

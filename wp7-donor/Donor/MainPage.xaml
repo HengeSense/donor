@@ -105,7 +105,9 @@
 						 Style="{StaticResource Text30pxCBB2A3}" 
 						 Tap="TextBlock_Tap_1" />          		        	
 					</StackPanel>
-                    
+                    <StackPanel>
+                        <TextBlock Text="Version - 22082012_1"/>
+                    </StackPanel>
                 </StackPanel>
             </controls:PanoramaItem>
  
