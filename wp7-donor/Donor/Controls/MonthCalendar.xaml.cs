@@ -29,8 +29,9 @@ namespace Donor.Controls
 
         public void UpdateCalendar() {
             this.CalendarDays.Children.Clear();
-            Date = DateTime.Now;
-            DateTime FirstDayPrev = new DateTime(DateTime.Now.AddMonths(-1).Year, DateTime.Now.AddMonths(-1).Month, 1);
+            Date = App.ViewModel.Events.CurrentMonth;
+            DateTime Date2 = Date;
+            DateTime FirstDayPrev = new DateTime(Date2.AddMonths(-1).Year, Date2.AddMonths(-1).Month, 1);
             DateTime FirstDay = new DateTime(Date.Year, Date.Month, 1);
             int daysbefore = (int)FirstDay.DayOfWeek;
 
@@ -125,7 +126,6 @@ namespace Donor.Controls
 
         private void ClickDay(object sender, Microsoft.Phone.Controls.GestureEventArgs e)
         {
-            //(Application.Current.RootVisual as PhoneApplicationFrame).Navigate(new Uri("/EventEditPage.xaml", UriKind.Relative));
         }
     }
 }
