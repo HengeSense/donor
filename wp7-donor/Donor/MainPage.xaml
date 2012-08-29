@@ -106,7 +106,7 @@
 						 Tap="TextBlock_Tap_1" />          		        	
 					</StackPanel>
                     <StackPanel>
-                        <TextBlock Text="Version - 26082012_1"/>
+                        <TextBlock Text="Version - 29082012_1"/>
                     </StackPanel>
                 </StackPanel>
             </controls:PanoramaItem>
