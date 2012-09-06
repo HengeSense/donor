@@ -80,7 +80,7 @@
             <controls:PanoramaItem>
             	<controls:PanoramaItem.Header>
                     <TextBlock Style="{StaticResource Text70pxWhite}" 
-					Text="Для доноров" Margin="0,30,0,0"/>
+					Text="Для доноров" Margin="-10,30,0,0"/>
                 </controls:PanoramaItem.Header>
                 <Grid>
                     <StackPanel>

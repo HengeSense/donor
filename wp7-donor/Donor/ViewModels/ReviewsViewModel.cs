@@ -137,8 +137,14 @@ namespace Donor.ViewModels
             private set { }
             get
             {
-                DateTime created = DateTime.Parse(this.Created);
-                return created.ToShortDateString();
+                try
+                {
+                    DateTime created = DateTime.Parse(this.Created);
+                    return created.ToShortDateString();
+                }
+                catch {
+                    return DateTime.Now.ToShortDateString();
+                };
             }
         }
 
