@@ -33,5 +33,17 @@ namespace Donor
             {
             }
         }
+
+        private void ListBox_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            try
+            {
+                string id = ((sender as ListBox).SelectedItem as AdsViewModel).ObjectId;
+                NavigationService.Navigate(new Uri("/AdsPage.xaml?id=" + id, UriKind.Relative));
+            }
+            catch
+            {
+            }
+        }
     }
 }

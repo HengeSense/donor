@@ -127,5 +127,17 @@ namespace Donor
             }
         }
 
+        private void StationsList_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            try
+            {
+                string id = ((sender as ListBox).SelectedItem as StationViewModel).objectId;
+                NavigationService.Navigate(new Uri("/StationPage.xaml?id=" + id, UriKind.Relative));
+            }
+            catch
+            {
+            }
+        }
+
     }
 }

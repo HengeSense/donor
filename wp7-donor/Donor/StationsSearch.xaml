@@ -5,7 +5,6 @@
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    d:DataContext="{d:DesignData SampleData/MainViewModelSampleData.xaml}"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit" 
      DataContext="{Binding Path=App.ViewModel,Source=App.ViewModel}"
     x:Class="Donor.StationsSearch"
@@ -73,7 +72,7 @@
 		VerticalAlignment="Top"
 		Margin="0,0,0,0"
 		Name="StationsList" ItemsSource="{Binding Stations.Items}" 
-		SelectionChanged="StationsList_SelectionChanged">
+		SelectionChanged="StationsList_SelectionChanged" Tap="StationsList_Tap">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                 		<Border BorderThickness="0,0,0,1" 
