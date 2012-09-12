@@ -237,29 +237,29 @@ namespace Donor
                     App.ViewModel.User = IsolatedStorageHelper.LoadSerializableObject<DonorUser>("user.xml");
 
                     var client = new RestClient("https://api.parse.com");
-                    var request = new RestRequest("1/login", Method.GET);
+                    var request = new RestRequest("1/login?username=" + Uri.EscapeUriString(App.ViewModel.User.UserName.ToLower()) + "&password=" + Uri.EscapeUriString(App.ViewModel.User.Password), Method.GET);
                     request.Parameters.Clear();
-                    string strJSONContent = "{\"username\":\"" + App.ViewModel.User.UserName.ToLower() + "\",\"password\":\"" + App.ViewModel.User.Password + "\"}";
                     request.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
                     request.AddHeader("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
 
-                    request.AddParameter("username", App.ViewModel.User.UserName.ToLower());
-                    request.AddParameter("password", App.ViewModel.User.Password);
-
                     client.ExecuteAsync(request, response =>
                     {
-                        JObject o = JObject.Parse(response.Content.ToString());
-                        if (o["error"] == null)
+                        try
                         {
-                            App.ViewModel.User = JsonConvert.DeserializeObject<DonorUser>(response.Content.ToString());
-                            App.ViewModel.User.IsLoggedIn = true;
-                            App.ViewModel.OnUserEnter(EventArgs.Empty);
+                            JObject o = JObject.Parse(response.Content.ToString());
+                            if (o["error"] == null)
+                            {
+                                App.ViewModel.User = JsonConvert.DeserializeObject<DonorUser>(response.Content.ToString());
+                                App.ViewModel.User.IsLoggedIn = true;
+                                App.ViewModel.OnUserEnter(EventArgs.Empty);
+                            }
+                            else
+                            {
+                                //MessageBox.Show("Ошибка входа: " + o["error"].ToString());
+                                App.ViewModel.User.IsLoggedIn = false;
+                            };
                         }
-                        else
-                        {
-                            //MessageBox.Show("Ошибка входа: " + o["error"].ToString());
-                            App.ViewModel.User.IsLoggedIn = false;
-                        };
+                        catch { };
                     });
                 }
                 catch

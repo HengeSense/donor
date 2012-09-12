@@ -36,10 +36,10 @@
             <ImageBrush ImageSource="images/bg_04_white.png"/>
         </Grid.Background>
         <!--Pivot Control-->
-        <controls:Pivot Name="Monthes" 
+        <toolkit:LockablePivot Name="Monthes" 
 		Title="{Binding Path=Events.CurrentDate}" 
-		Loaded="Pivot_Loaded" 
-		SelectionChanged="Pivot_SelectionChanged">
+		Loaded="Pivot_Loaded" SelectionChanged="Monthes_SelectionChanged">
+            <!-- SelectionChanged="Pivot_SelectionChanged" -->
         	<controls:Pivot.Background>
             	<ImageBrush ImageSource="images/bg_04_white.png"/>
         	</controls:Pivot.Background>
@@ -182,7 +182,7 @@
                 </Grid>
             </controls:PivotItem>
 
-        </controls:Pivot>
+        </toolkit:LockablePivot>
         <WPExtensions:AdvancedApplicationBar Name="AppBar" IsVisible="True" IsMenuEnabled="False" Background="#FF211E1D" BackgroundColor="#FF211E1D" Foreground="White" BorderBrush="#FF211E1D" ForegroundColor="White" OpacityMask="White">
             <WPExtensions:AdvancedApplicationBarIconButton 
 			IconUri="/icons/ic_ApplicationBar_add.png" Text="Добавить событие" 

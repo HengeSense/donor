@@ -21,11 +21,17 @@ namespace Donor
         {
             InitializeComponent();
             DataContext = App.ViewModel;
-        }
 
-        private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
-        {
-            this.Monthes.SelectedIndex = 1;
+            try
+            {
+                this.Monthes.SelectedIndex = 1;
+            }
+            catch { };
+            try
+            {
+                //this.Monthes.IsLocked = true;
+            }
+            catch { };
 
             this.EventsListPrev.ItemsSource = App.ViewModel.Events.PrevMonthItems;
             this.EventsList.ItemsSource = App.ViewModel.Events.ThisMonthItems;
@@ -35,22 +41,92 @@ namespace Donor
             this.ThisMonth.Header = App.ViewModel.Events.CurrentMonthString;
             this.PrevMonth.Header = App.ViewModel.Events.PrevMonthString;
 
+            try
+            {
+                this.Monthes.IsLocked = true;
+            }
+            catch { };
+        }
+
+        private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
+        {
+            //this.Monthes.IsLocked = true;
+
             var gl = GestureService.GetGestureListener(this.Monthes);
             gl.Flick += new EventHandler<Microsoft.Phone.Controls.FlickGestureEventArgs>(GestureListener_Flick);
+
+            right = false;
+            left = false;
+
+            try
+            {
+                this.Monthes.IsLocked = true;
+            }
+            catch { };
         }
+
+        bool right = false;
+        bool left = false;
 
         private void GestureListener_Flick(object sender, Microsoft.Phone.Controls.FlickGestureEventArgs e)
         {
+            //this.Monthes.IsLocked = true;
+            this.Monthes.IsLocked = true;
+
             if (e.Direction == System.Windows.Controls.Orientation.Horizontal)
             {
                 if (e.HorizontalVelocity < 0)
                 {
                     try
                     {
-                            App.ViewModel.Events.CurrentMonth = App.ViewModel.Events.CurrentMonth.AddMonths(-1);
+                        right = true;
+                        left = false;
+                    }
+                    catch {
+                        right = false;
+                        left = false;
+                    };
+                }
+                else
+                {
+                    try
+                    {
+                        right = false;
+                        left = true;
+                    }
+                    catch {
+                        right = false;
+                        left = false;
+                    };
+                };
+            }
+            else
+            {
+                if (e.VerticalVelocity < 0)
+                {
+                }
+                else
+                {
+                }
+            };
+
+            this.Monthes.IsLocked = false;
+        }
+
+        private void GestureListener_Flick1(object sender, Microsoft.Phone.Controls.FlickGestureEventArgs e)
+        {
+            this.Monthes.IsLocked = true;
+
+            if (e.Direction == System.Windows.Controls.Orientation.Horizontal)
+            {
+                if (e.HorizontalVelocity < 0)
+                {
+                    try
+                    {
+                            App.ViewModel.Events.CurrentMonth = App.ViewModel.Events.CurrentMonth.AddMonths(1);
                             int itemindex = 1;
-                            itemindex = (sender as Pivot).SelectedIndex;
-                            switch (itemindex)
+                            itemindex = (sender as LockablePivot).SelectedIndex;
+                            /*switch (itemindex)
                             {
                                 case 0:
                                     this.EventsListPrev.ItemsSource = App.ViewModel.Events.ThisMonthItems;
@@ -60,8 +136,8 @@ namespace Donor
                                     this.NextMonth.Header = App.ViewModel.Events.PrevMonthString;
                                     this.ThisMonth.Header = App.ViewModel.Events.NextMonthString;
                                     this.PrevMonth.Header = App.ViewModel.Events.CurrentMonthString;
-                                    break;
-                                case 1:
+                                    break;*/
+                                //case 1:
                                     this.EventsListPrev.ItemsSource = App.ViewModel.Events.PrevMonthItems;
                                     this.EventsList.ItemsSource = App.ViewModel.Events.ThisMonthItems;
                                     this.EventsListNext.ItemsSource = App.ViewModel.Events.NextMonthItems;
@@ -69,8 +145,8 @@ namespace Donor
                                     this.NextMonth.Header = App.ViewModel.Events.NextMonthString;
                                     this.ThisMonth.Header = App.ViewModel.Events.CurrentMonthString;
                                     this.PrevMonth.Header = App.ViewModel.Events.PrevMonthString;
-                                    break;
-                                case 2:
+                                    //break;
+                                /*case 2:
                                     this.EventsListPrev.ItemsSource = App.ViewModel.Events.NextMonthItems;
                                     this.EventsList.ItemsSource = App.ViewModel.Events.PrevMonthItems;
                                     this.EventsListNext.ItemsSource = App.ViewModel.Events.ThisMonthItems;
@@ -81,7 +157,7 @@ namespace Donor
                                     break;
                                 default:
                                     break;
-                            };
+                            };*/
                         }
                         catch { };
                 }
@@ -91,8 +167,8 @@ namespace Donor
                     {
                             App.ViewModel.Events.CurrentMonth = App.ViewModel.Events.CurrentMonth.AddMonths(-1);
                             int itemindex = 1;
-                            itemindex = (sender as Pivot).SelectedIndex;
-                            switch (itemindex)
+                            itemindex = (sender as LockablePivot).SelectedIndex;
+                            /*switch (itemindex)
                             {
                                 case 0:
                                     this.EventsListPrev.ItemsSource = App.ViewModel.Events.ThisMonthItems;
@@ -103,7 +179,7 @@ namespace Donor
                                     this.ThisMonth.Header = App.ViewModel.Events.NextMonthString;
                                     this.PrevMonth.Header = App.ViewModel.Events.CurrentMonthString;
                                     break;
-                                case 1:
+                                case 1:*/
                                     this.EventsListPrev.ItemsSource = App.ViewModel.Events.PrevMonthItems;
                                     this.EventsList.ItemsSource = App.ViewModel.Events.ThisMonthItems;
                                     this.EventsListNext.ItemsSource = App.ViewModel.Events.NextMonthItems;
@@ -111,8 +187,8 @@ namespace Donor
                                     this.NextMonth.Header = App.ViewModel.Events.NextMonthString;
                                     this.ThisMonth.Header = App.ViewModel.Events.CurrentMonthString;
                                     this.PrevMonth.Header = App.ViewModel.Events.PrevMonthString;
-                                    break;
-                                case 2:
+                                    //break;
+                                /*case 2:
                                     this.EventsListPrev.ItemsSource = App.ViewModel.Events.NextMonthItems;
                                     this.EventsList.ItemsSource = App.ViewModel.Events.PrevMonthItems;
                                     this.EventsListNext.ItemsSource = App.ViewModel.Events.ThisMonthItems;
@@ -123,7 +199,7 @@ namespace Donor
                                     break;
                                 default:
                                     break;
-                            };
+                            };*/
                     }
                     catch { };
                 };
@@ -260,14 +336,57 @@ namespace Donor
 
         private void Pivot_Loaded(object sender, RoutedEventArgs e)
         {
-            //App.ViewModel.Events.CurrentMonth = DateTime.Now;
             if (App.ViewModel.Events.CurrentMonth == null) {
                 App.ViewModel.Events.CurrentMonth = DateTime.Now;
             };
+
+            try
+            {
+                this.Monthes.IsLocked = true;
+            }
+            catch { };
         }
 
-        private void Pivot_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void Monthes_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (right == true)
+            {
+                App.ViewModel.Events.CurrentMonth = App.ViewModel.Events.CurrentMonth.AddMonths(1);
+                //int itemindex = 1;
+                //itemindex = (sender as LockablePivot).SelectedIndex;
+
+                this.EventsListPrev.ItemsSource = App.ViewModel.Events.PrevMonthItems;
+                this.EventsList.ItemsSource = App.ViewModel.Events.ThisMonthItems;
+                this.EventsListNext.ItemsSource = App.ViewModel.Events.NextMonthItems;
+
+                this.NextMonth.Header = App.ViewModel.Events.NextMonthString;
+                this.ThisMonth.Header = App.ViewModel.Events.CurrentMonthString;
+                this.PrevMonth.Header = App.ViewModel.Events.PrevMonthString;
+            };
+            if (left == true)
+            {
+                App.ViewModel.Events.CurrentMonth = App.ViewModel.Events.CurrentMonth.AddMonths(-1);
+                //int itemindex = 1;
+                //itemindex = (sender as LockablePivot).SelectedIndex;
+
+                this.EventsListPrev.ItemsSource = App.ViewModel.Events.PrevMonthItems;
+                this.EventsList.ItemsSource = App.ViewModel.Events.ThisMonthItems;
+                this.EventsListNext.ItemsSource = App.ViewModel.Events.NextMonthItems;
+
+                this.NextMonth.Header = App.ViewModel.Events.NextMonthString;
+                this.ThisMonth.Header = App.ViewModel.Events.CurrentMonthString;
+                this.PrevMonth.Header = App.ViewModel.Events.PrevMonthString;
+            };
+            right = false;
+            left = false;
+
+            try
+            {
+                this.Monthes.IsLocked = true;
+            }
+            catch { };
         }
+
+
     }
 }
