@@ -27,14 +27,16 @@ using Microsoft.Phone.Shell;
 using System.Linq;
 using System.Globalization;
 using Microsoft.Phone.Scheduler;
+using System.Windows.Navigation;
+using Microsoft.Phone.Controls;
 
 
 namespace Donor
 {   
     public class MainViewModel : INotifyPropertyChanged
     {
-        public const string APPLICATION_ID = "EIpakVdZblHedhqgxMgiEVnIGCRGvWdy9v8gkKZu";
-        public const string REST_API_KEY = "wPvwRKxX2b2vyrRprFwIbaE5t3kyDQq11APZ0qXf";
+        public const string XParseApplicationId = "EIpakVdZblHedhqgxMgiEVnIGCRGvWdy9v8gkKZu";
+        public const string XParseRESTAPIKey = "wPvwRKxX2b2vyrRprFwIbaE5t3kyDQq11APZ0qXf";
 
 
         public MainViewModel()
@@ -71,6 +73,7 @@ namespace Donor
         public DonorUser User { get; set; }
         public ContraListViewModel Contras { get; set; }
         public SettingsViewModel Settings { get; set; }
+        public bool IsSettings = false;
 
         public bool IsDataLoaded
         {
@@ -216,10 +219,12 @@ namespace Donor
             try
             {
                 this.Settings = IsolatedStorageHelper.LoadSerializableObject<SettingsViewModel>("settings.xml");
+                IsSettings = true;
             }
             catch
             {
                 this.Settings = new SettingsViewModel();
+                IsSettings = false;                
             };
         }
 
@@ -235,8 +240,8 @@ namespace Donor
                     var request = new RestRequest("1/login", Method.GET);
                     request.Parameters.Clear();
                     string strJSONContent = "{\"username\":\"" + App.ViewModel.User.UserName.ToLower() + "\",\"password\":\"" + App.ViewModel.User.Password + "\"}";
-                    request.AddHeader("X-Parse-Application-Id", APPLICATION_ID);
-                    request.AddHeader("X-Parse-REST-API-Key", REST_API_KEY);
+                    request.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
+                    request.AddHeader("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
 
                     request.AddParameter("username", App.ViewModel.User.UserName.ToLower());
                     request.AddParameter("password", App.ViewModel.User.Password);
@@ -365,6 +370,11 @@ namespace Donor
                     {
                         this.Stations.Items = new ObservableCollection<StationViewModel>();
                         this.NotifyPropertyChanged("Stations");
+
+                        if (this.IsSettings == false)
+                        {
+                            (Application.Current.RootVisual as PhoneApplicationFrame).Navigate(new Uri("/ProfileLogin.xaml", UriKind.Relative));
+                        };
                     });
                 };
 

@@ -62,8 +62,8 @@ namespace Donor.ViewModels
             var request = new RestRequest("1/classes/Stations", Method.GET);
             request.Parameters.Clear();
             //string strJSONContent = "{\"type\":2}";
-            request.AddHeader("X-Parse-Application-Id", "EIpakVdZblHedhqgxMgiEVnIGCRGvWdy9v8gkKZu");
-            request.AddHeader("X-Parse-REST-API-Key", "wPvwRKxX2b2vyrRprFwIbaE5t3kyDQq11APZ0qXf");
+            request.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
+            request.AddHeader("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
             //request.AddParameter("where", strJSONContent);
             client.ExecuteAsync(request, response =>
             {

@@ -51,7 +51,6 @@ namespace Donor
 
         private void TextBlock_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
-            //NavigationService.Navigate(new Uri("/ProfileLogin.xaml", UriKind.Relative));
             NavigationService.Navigate(new Uri("/ProfileLogin.xaml?task=edit", UriKind.Relative));
         }
 
@@ -91,7 +90,6 @@ namespace Donor
 
         private void CalendarMenuText_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
-            //NavigationService.Navigate(new Uri("/CalendarMonthPage.xaml", UriKind.Relative));
             if (App.ViewModel.User.IsLoggedIn)
             {
                 NavigationService.Navigate(new Uri("/CalendarYearPage.xaml", UriKind.Relative));
@@ -104,10 +102,6 @@ namespace Donor
 
         private void EventsList_Loaded(object sender, RoutedEventArgs e)
         {
-            //this.NewsList.DataContext = App.ViewModel.News;
-            //this.EventsList.DataContext = App.ViewModel;
-            //this.NewsList.ItemsSource = App.ViewModel.News.NewItems;
-            //this.EventsList.ItemsSource = App.ViewModel.Events.Items;
         }
 
         private void UserLoaded(object sender, EventArgs e)
@@ -168,19 +162,27 @@ namespace Donor
         private void Login_Click(object sender, RoutedEventArgs e)
         {
             var client = new RestClient("https://api.parse.com");
+            var request = new RestRequest("1/login?username=" + Uri.EscapeUriString(this.email.Text.ToString().ToLower()) + "&password=" + Uri.EscapeUriString(this.password.Password), Method.GET);
+            request.Parameters.Clear();
+            request.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
+            request.AddHeader("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
+
+            /*var client = new RestClient("https://api.parse.com");
             var request = new RestRequest("1/login", Method.GET);
             request.Parameters.Clear();
             string strJSONContent = "{\"username\":\"" + this.email.Text.ToLower() + "\",\"password\":\"" + this.password.Password + "\"}";
-            request.AddHeader("X-Parse-Application-Id", "EIpakVdZblHedhqgxMgiEVnIGCRGvWdy9v8gkKZu");
-            request.AddHeader("X-Parse-REST-API-Key", "wPvwRKxX2b2vyrRprFwIbaE5t3kyDQq11APZ0qXf");
+            request.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
+            request.AddHeader("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
 
             request.AddParameter("username", this.email.Text.ToLower());
-            request.AddParameter("password", this.password.Password);
+            request.AddParameter("password", this.password.Password);*/
+
             this.LoginLoadingBar.IsIndeterminate = true;
 
             client.ExecuteAsync(request, response =>
             {
                 this.LoginLoadingBar.IsIndeterminate = false;
+                try {
                 JObject o = JObject.Parse(response.Content.ToString());
                 if (o["error"] == null)
                 {
@@ -211,6 +213,7 @@ namespace Donor
 
                     NavigationService.Navigate(new Uri("/ProfileLogin.xaml?task=register", UriKind.Relative));
                 };
+            } catch {};
             });
         }
 

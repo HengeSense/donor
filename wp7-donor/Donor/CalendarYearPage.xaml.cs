@@ -43,6 +43,105 @@ namespace Donor
         {
             if (e.Direction == System.Windows.Controls.Orientation.Horizontal)
             {
+                if (e.HorizontalVelocity < 0)
+                {
+                    try
+                    {
+                            App.ViewModel.Events.CurrentMonth = App.ViewModel.Events.CurrentMonth.AddMonths(-1);
+                            int itemindex = 1;
+                            itemindex = (sender as Pivot).SelectedIndex;
+                            switch (itemindex)
+                            {
+                                case 0:
+                                    this.EventsListPrev.ItemsSource = App.ViewModel.Events.ThisMonthItems;
+                                    this.EventsList.ItemsSource = App.ViewModel.Events.NextMonthItems;
+                                    this.EventsListNext.ItemsSource = App.ViewModel.Events.PrevMonthItems;
+
+                                    this.NextMonth.Header = App.ViewModel.Events.PrevMonthString;
+                                    this.ThisMonth.Header = App.ViewModel.Events.NextMonthString;
+                                    this.PrevMonth.Header = App.ViewModel.Events.CurrentMonthString;
+                                    break;
+                                case 1:
+                                    this.EventsListPrev.ItemsSource = App.ViewModel.Events.PrevMonthItems;
+                                    this.EventsList.ItemsSource = App.ViewModel.Events.ThisMonthItems;
+                                    this.EventsListNext.ItemsSource = App.ViewModel.Events.NextMonthItems;
+
+                                    this.NextMonth.Header = App.ViewModel.Events.NextMonthString;
+                                    this.ThisMonth.Header = App.ViewModel.Events.CurrentMonthString;
+                                    this.PrevMonth.Header = App.ViewModel.Events.PrevMonthString;
+                                    break;
+                                case 2:
+                                    this.EventsListPrev.ItemsSource = App.ViewModel.Events.NextMonthItems;
+                                    this.EventsList.ItemsSource = App.ViewModel.Events.PrevMonthItems;
+                                    this.EventsListNext.ItemsSource = App.ViewModel.Events.ThisMonthItems;
+
+                                    this.NextMonth.Header = App.ViewModel.Events.CurrentMonthString;
+                                    this.ThisMonth.Header = App.ViewModel.Events.PrevMonthString;
+                                    this.PrevMonth.Header = App.ViewModel.Events.NextMonthString;
+                                    break;
+                                default:
+                                    break;
+                            };
+                        }
+                        catch { };
+                }
+                else
+                {
+                    try
+                    {
+                            App.ViewModel.Events.CurrentMonth = App.ViewModel.Events.CurrentMonth.AddMonths(-1);
+                            int itemindex = 1;
+                            itemindex = (sender as Pivot).SelectedIndex;
+                            switch (itemindex)
+                            {
+                                case 0:
+                                    this.EventsListPrev.ItemsSource = App.ViewModel.Events.ThisMonthItems;
+                                    this.EventsList.ItemsSource = App.ViewModel.Events.NextMonthItems;
+                                    this.EventsListNext.ItemsSource = App.ViewModel.Events.PrevMonthItems;
+
+                                    this.NextMonth.Header = App.ViewModel.Events.PrevMonthString;
+                                    this.ThisMonth.Header = App.ViewModel.Events.NextMonthString;
+                                    this.PrevMonth.Header = App.ViewModel.Events.CurrentMonthString;
+                                    break;
+                                case 1:
+                                    this.EventsListPrev.ItemsSource = App.ViewModel.Events.PrevMonthItems;
+                                    this.EventsList.ItemsSource = App.ViewModel.Events.ThisMonthItems;
+                                    this.EventsListNext.ItemsSource = App.ViewModel.Events.NextMonthItems;
+
+                                    this.NextMonth.Header = App.ViewModel.Events.NextMonthString;
+                                    this.ThisMonth.Header = App.ViewModel.Events.CurrentMonthString;
+                                    this.PrevMonth.Header = App.ViewModel.Events.PrevMonthString;
+                                    break;
+                                case 2:
+                                    this.EventsListPrev.ItemsSource = App.ViewModel.Events.NextMonthItems;
+                                    this.EventsList.ItemsSource = App.ViewModel.Events.PrevMonthItems;
+                                    this.EventsListNext.ItemsSource = App.ViewModel.Events.ThisMonthItems;
+
+                                    this.NextMonth.Header = App.ViewModel.Events.CurrentMonthString;
+                                    this.ThisMonth.Header = App.ViewModel.Events.PrevMonthString;
+                                    this.PrevMonth.Header = App.ViewModel.Events.NextMonthString;
+                                    break;
+                                default:
+                                    break;
+                            };
+                    }
+                    catch { };
+                };
+            }
+            else
+            {
+                if (e.VerticalVelocity < 0)
+                {
+                    // flick up
+                }
+                else
+                {
+                    // flick down
+                }
+            };
+
+            /*if (e.Direction == System.Windows.Controls.Orientation.Horizontal)
+            {
                 try
                 {
                     if (((e.Angle < 90) && (e.Angle >= 0)) || ((e.Angle > 270) && (e.Angle < 360)))
@@ -129,7 +228,7 @@ namespace Donor
                     };
                 }
                 catch { };
-            };
+            };*/
         }
 
         private void EventsList_Loaded(object sender, RoutedEventArgs e)

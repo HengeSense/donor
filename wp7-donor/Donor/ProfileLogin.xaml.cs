@@ -98,19 +98,18 @@ namespace Donor
         private void Login_Click(object sender, RoutedEventArgs e)
         {
             var client = new RestClient("https://api.parse.com");
-            var request = new RestRequest("1/login", Method.GET);
+            var request = new RestRequest("1/login?username=" + Uri.EscapeUriString(this.email.Text.ToString().ToLower()) + "&password=" + Uri.EscapeUriString(this.password.Password), Method.GET);
             request.Parameters.Clear();
-            string strJSONContent = "{\"username\":\"" + this.email.Text.ToString().ToLower() + "\",\"password\":\"" + this.password.Password + "\"}";
-            request.AddHeader("X-Parse-Application-Id", "EIpakVdZblHedhqgxMgiEVnIGCRGvWdy9v8gkKZu");
-            request.AddHeader("X-Parse-REST-API-Key", "wPvwRKxX2b2vyrRprFwIbaE5t3kyDQq11APZ0qXf");
+            //string strJSONContent = "{\"username\":\"" + this.email.Text.ToString().ToLower() + "\",\"password\":\"" + this.password.Password + "\"}";
+            request.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
+            request.AddHeader("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
 
-            request.AddParameter("username", this.email.Text.ToLower());
-            request.AddParameter("password", this.password.Password);
             this.LoadingBar.IsIndeterminate = true;
 
             client.ExecuteAsync(request, response =>
             {
                 this.LoadingBar.IsIndeterminate = false;
+                try {
                 JObject o = JObject.Parse(response.Content.ToString());
                 if (o["error"] == null)
                 {
@@ -140,22 +139,20 @@ namespace Donor
                 }
                 else
                 {
-                    //MessageBox.Show("Ошибка входа: " + o["error"].ToString());
                     App.ViewModel.User.IsLoggedIn = false;
 
                     this.RegisterForm.Visibility = Visibility.Visible;
                     this.LoginForm.Visibility = Visibility.Collapsed;
                     this.UserProfile.Visibility = Visibility.Collapsed;
                 };
+                } catch {};
             });
         }
 
         void webClient_UploadStringCompleted(object sender, UploadStringCompletedEventArgs e)
         {
-            //Debug.WriteLine("completed");
             try
             {
-                //MessageBox.Show(e.Result.ToString());
             }
             catch
             {
@@ -171,8 +168,8 @@ namespace Donor
                 request.AddHeader("Accept", "application/json");
                 request.Parameters.Clear();
                 string strJSONContent = "{\"username\":\"" + this.email1.Text.ToString().ToLower() + "\",\"password\":\"" + this.password1.Password.ToString() + "\",\"Name\":\"" + this.name1.Text.ToString().ToLower() + "\", \"email\":\"" + this.email1.Text.ToString().ToLower() + "\"}";
-                request.AddHeader("X-Parse-Application-Id", "EIpakVdZblHedhqgxMgiEVnIGCRGvWdy9v8gkKZu");
-                request.AddHeader("X-Parse-REST-API-Key", "wPvwRKxX2b2vyrRprFwIbaE5t3kyDQq11APZ0qXf");
+                request.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
+                request.AddHeader("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
                 request.AddHeader("Content-Type", "application/json");
                 request.AddParameter("application/json", strJSONContent, ParameterType.RequestBody);
 
@@ -261,8 +258,8 @@ namespace Donor
             request.AddHeader("Accept", "application/json");
             request.Parameters.Clear();
             string strJSONContent = "{\"email\":\"" + _email.ToLower() + "\"}";
-            request.AddHeader("X-Parse-Application-Id", "EIpakVdZblHedhqgxMgiEVnIGCRGvWdy9v8gkKZu");
-            request.AddHeader("X-Parse-REST-API-Key", "wPvwRKxX2b2vyrRprFwIbaE5t3kyDQq11APZ0qXf");
+            request.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
+            request.AddHeader("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
             request.AddHeader("Content-Type", "application/json");
 
             request.AddParameter("application/json", strJSONContent, ParameterType.RequestBody);
@@ -488,8 +485,8 @@ namespace Donor
                 request.AddHeader("Accept", "application/json");
                 request.Parameters.Clear();
                 string strJSONContent = "{\"Sex\":" + App.ViewModel.User.Sex + ", \"Name\":\"" + App.ViewModel.User.Name + "\", \"BloodGroup\":" + App.ViewModel.User.BloodGroup + ", \"BloodRh\":" + App.ViewModel.User.BloodRh + "}";
-                request.AddHeader("X-Parse-Application-Id", "EIpakVdZblHedhqgxMgiEVnIGCRGvWdy9v8gkKZu");
-                request.AddHeader("X-Parse-REST-API-Key", "wPvwRKxX2b2vyrRprFwIbaE5t3kyDQq11APZ0qXf");
+                request.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
+                request.AddHeader("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
                 request.AddHeader("X-Parse-Session-Token", App.ViewModel.User.sessionToken);
                 request.AddHeader("Content-Type", "application/json");
                 request.AddParameter("application/json", strJSONContent, ParameterType.RequestBody);

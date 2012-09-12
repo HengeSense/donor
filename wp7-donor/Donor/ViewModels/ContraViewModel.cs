@@ -56,8 +56,8 @@ namespace Donor.ViewModels
             var client = new RestClient("https://api.parse.com");
             var request = new RestRequest("1/classes/Contras", Method.GET);
             request.Parameters.Clear();
-            request.AddHeader("X-Parse-Application-Id", "EIpakVdZblHedhqgxMgiEVnIGCRGvWdy9v8gkKZu");
-            request.AddHeader("X-Parse-REST-API-Key", "wPvwRKxX2b2vyrRprFwIbaE5t3kyDQq11APZ0qXf");
+            request.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
+            request.AddHeader("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
             client.ExecuteAsync(request, response =>
             {
                 try

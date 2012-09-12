@@ -30,8 +30,8 @@ namespace Donor.ViewModels
             var client = new RestClient("https://api.parse.com");
             var request = new RestRequest("1/classes/Ads", Method.GET);
             request.Parameters.Clear();
-            request.AddHeader("X-Parse-Application-Id", "EIpakVdZblHedhqgxMgiEVnIGCRGvWdy9v8gkKZu");
-            request.AddHeader("X-Parse-REST-API-Key", "wPvwRKxX2b2vyrRprFwIbaE5t3kyDQq11APZ0qXf");
+            request.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
+            request.AddHeader("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
             client.ExecuteAsync(request, response =>
             {
                 try
@@ -39,12 +39,6 @@ namespace Donor.ViewModels
                     ObservableCollection<AdsViewModel> adslist1 = new ObservableCollection<AdsViewModel>();
                     JObject o = JObject.Parse(response.Content.ToString());
                     adslist1 = JsonConvert.DeserializeObject<ObservableCollection<AdsViewModel>>(o["results"].ToString());
-
-                    /*var adslist2 = (from ads in adslist1
-                                     orderby ads.CreatedTimestamp descending
-                                     select ads);
-                    this.Items = new ObservableCollection<NewsViewModel>(newslist1);*/
-
                     this.Items = adslist1;
                     //save to isolated storage
                     IsolatedStorageHelper.SaveSerializableObject<ObservableCollection<AdsViewModel>>(App.ViewModel.Ads.Items, "ads.xml");
