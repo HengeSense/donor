@@ -12,6 +12,7 @@ using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Tasks;
 using Donor.ViewModels;
+using System.Collections.ObjectModel;
 
 namespace Donor
 {
@@ -27,9 +28,9 @@ namespace Donor
             this.RelativeContra.DataContext = App.ViewModel;
             this.RelativeContra.ItemsSource = App.ViewModel.Contras.Items;
 
-            this.ContraSearchText.ItemsSource = App.ViewModel.Contras.Items;
-            this.ContraSearchText.FilterMode = AutoCompleteFilterMode.Contains;
-            this.ContraSearchText.ItemFilter += SearchBank;
+            //this.ContraSearchText.ItemsSource = App.ViewModel.Contras.Items;
+            //this.ContraSearchText.FilterMode = AutoCompleteFilterMode.Contains;
+            //this.ContraSearchText.ItemFilter += SearchBank;
         }
 
         bool CustomFilter(string search, string value)
@@ -133,13 +134,39 @@ namespace Donor
                 }
                 else
                 {
-                    this.SearchContra.ItemsSource = null;
+                    this.SearchContra.ItemsSource = new ObservableCollection<ContraViewModel>();
                 };
             }
             catch
             {
             };
             //this.SearchContra.ItemsSource = relitems;
+        }
+
+        private void ContraSearchText_Populated(object sender, PopulatedEventArgs e)
+        {
+            try
+            {
+                string searchtext = this.ContraSearchText.Text;
+                if (searchtext == "")
+                {
+                    this.SearchContra.ItemsSource = new ObservableCollection<ContraViewModel>();
+                };
+            }
+            catch { };
+        }
+
+        private void ContraSearchText_LostFocus(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                string searchtext = this.ContraSearchText.Text;
+                if (searchtext == "")
+                {
+                    this.SearchContra.ItemsSource = new ObservableCollection<ContraViewModel>();
+                };
+            }
+            catch { };
         }
 
     }

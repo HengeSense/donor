@@ -137,21 +137,15 @@ ScrollViewer.VerticalScrollBarVisibility="Disabled">
                             <!--SelectionForeground="#FFFFFFFF"
             				SelectionBackground="#FF1BA1E2"
             				CaretBrush="#FFCBB2A3"-->
-							<toolkit:AutoCompleteBox 
-							Name="ContraSearchText" FilterMode="Contains" 
-							ValueMemberPath="Title" 
-							
-							Foreground="#FFE0B390" Background="#FF3C1B00" 
-							BorderBrush="#FF3C1B00"
-							Populating="StationsSearchText_Populating">
-                                <toolkit:AutoCompleteBox.ItemTemplate>
+							<toolkit:AutoCompleteBox Name="ContraSearchText" FilterMode="Contains" IsDropDownOpen="False" ValueMemberPath="Title" Foreground="#FFE0B390" Background="#FF3C1B00" BorderBrush="#FF3C1B00" Populating="StationsSearchText_Populating" Populated="ContraSearchText_Populated" LostFocus="ContraSearchText_LostFocus" IsTextCompletionEnabled="True">
+                                <!--<toolkit:AutoCompleteBox.ItemTemplate>
                                     <DataTemplate>
                                         <StackPanel Orientation="Horizontal" Background="#FF3C1B00"
 										Margin="0">
                                             <TextBlock Foreground="#FFE0B390" Text="{Binding Title}"/>
                                         </StackPanel>
                                     </DataTemplate>
-                                </toolkit:AutoCompleteBox.ItemTemplate>
+                                </toolkit:AutoCompleteBox.ItemTemplate>-->
                             </toolkit:AutoCompleteBox>
 
                         </StackPanel>
