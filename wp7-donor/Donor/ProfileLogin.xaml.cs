@@ -536,7 +536,8 @@ namespace Donor
         /// <param name="e"></param>
         private void DeleteUserButton_Click(object sender, EventArgs e)
         {
-			
+            App.ViewModel.User.IsLoggedIn = false;
+            NavigationService.GoBack();
 			///
 			/// User delete from service
 			/// 
