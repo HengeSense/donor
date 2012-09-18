@@ -78,15 +78,24 @@ namespace Donor
             string searchtext = this.StationsSearchText.Text;
             if (searchtext != "")
             {
-                this.StationsList.ItemsSource = from stations in App.ViewModel.Stations.Items
-                                                where (stations.Title.ToLower().Contains(searchtext.ToLower())) && ((stations.City == App.ViewModel.Stations.SelectedCity)
-                                                    && (
-                                                    (stations.DonorsForChildrens == App.ViewModel.Stations.IsChildrenDonor)
-                                                    ||
-                                                    (stations.RegionalRegistration == App.ViewModel.Stations.IsRegional)
-                                                    ||
-                                                    (stations.SaturdayWork == App.ViewModel.Stations.IsSaturdayWork)))
-                                                select stations;
+                if (App.ViewModel.Stations.IsFilter == false)
+                {
+                    this.StationsList.ItemsSource = from stations in App.ViewModel.Stations.Items
+                                                    where (stations.Title.ToLower().Contains(searchtext.ToLower()))
+                                                    select stations;
+                }
+                else
+                {
+                    this.StationsList.ItemsSource = from stations in App.ViewModel.Stations.Items
+                                                    where (stations.Title.ToLower().Contains(searchtext.ToLower())) && ((stations.City == App.ViewModel.Stations.SelectedCity)
+                                                        && (
+                                                        (stations.DonorsForChildrens == App.ViewModel.Stations.IsChildrenDonor)
+                                                        ||
+                                                        (stations.RegionalRegistration == App.ViewModel.Stations.IsRegional)
+                                                        ||
+                                                        (stations.SaturdayWork == App.ViewModel.Stations.IsSaturdayWork)))
+                                                    select stations;
+                };
             }
             else
             {
@@ -137,6 +146,23 @@ namespace Donor
             catch
             {
             }
+        }
+
+        private void StationsSearchText_Populated(object sender, PopulatedEventArgs e)
+        {
+            string searchtext = this.StationsSearchText.Text;
+            if (searchtext != "")
+            {
+            }
+            else
+            {
+                if (App.ViewModel.Stations.IsFilter == false)
+                {
+                }
+                else
+                {
+                };
+            };
         }
 
     }

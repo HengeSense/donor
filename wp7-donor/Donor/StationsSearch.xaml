@@ -12,7 +12,7 @@
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
-    mc:Ignorable="d" d:DesignHeight="696" d:DesignWidth="480"
+    mc:Ignorable="d" d:DesignHeight="728" d:DesignWidth="480"
     shell:SystemTray.IsVisible="False" Loaded="PhoneApplicationPage_Loaded">
 	<phone:PhoneApplicationPage.ApplicationBar>
 		<shell:ApplicationBar BackgroundColor="#FF211E1D" ForegroundColor="White"	>
@@ -49,7 +49,7 @@
 			FilterMode="Contains" ValueMemberPath="Title" 
 			Populating="StationsSearchText_Populating" 
 			Foreground="#FFE0B390" Background="#FF3C1B00" 
-			BorderBrush="#FF3C1B00">
+			BorderBrush="#FF3C1B00" Populated="StationsSearchText_Populated">
                 <toolkit:AutoCompleteBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
