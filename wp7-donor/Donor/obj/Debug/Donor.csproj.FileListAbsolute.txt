@@ -137,3 +137,7 @@ C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\Bin\Debug\ja\System.Windows
 C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\Bin\Debug\ko\System.Windows.Interactivity.resources.dll
 C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\Bin\Debug\zh-Hans\System.Windows.Interactivity.resources.dll
 C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\Bin\Debug\zh-Hant\System.Windows.Interactivity.resources.dll
+C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\obj\Debug\MapPage.g.i.cs
+C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\Bin\Debug\GART.dll
+C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\Bin\Debug\Microsoft.Phone.Controls.Maps.dll
+C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\Bin\Debug\Microsoft.Phone.Controls.Maps.xml

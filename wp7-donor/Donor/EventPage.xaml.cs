@@ -104,5 +104,16 @@ namespace Donor
         {
         	// TODO: Add event handler implementation here.
         }
+
+        private void Image_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            try
+            {
+                NavigationService.Navigate(new Uri("/MapPage.xaml?id=" + _currentEvent.Id, UriKind.Relative));
+            }
+            catch
+            {
+            };
+        }
     }
 }

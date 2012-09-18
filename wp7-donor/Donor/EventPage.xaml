@@ -73,7 +73,7 @@
 					Style="{StaticResource Text24pxDF8D4B}"
 					Name="Place" TextWrapping="Wrap"/>
                     <Image Height="50" Source="images/ic_map.png" 
-					Stretch="Fill" Width="50"/>					
+					Stretch="Fill" Width="50" Tap="Image_Tap" />					
 					</StackPanel>
 
                     <StackPanel Name="ReminderStackPanel">

@@ -16,6 +16,7 @@ using System.Linq;
 using Newtonsoft.Json;
 using MSPToolkit.Utilities;
 using System.Device.Location;
+using GART.Data;
 
 namespace Donor.ViewModels
 {
@@ -61,10 +62,10 @@ namespace Donor.ViewModels
             var client = new RestClient("https://api.parse.com");
             var request = new RestRequest("1/classes/Stations", Method.GET);
             request.Parameters.Clear();
-            //string strJSONContent = "{\"type\":2}";
+
             request.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
             request.AddHeader("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
-            //request.AddParameter("where", strJSONContent);
+
             client.ExecuteAsync(request, response =>
             {
                 //try
@@ -218,6 +219,11 @@ namespace Donor.ViewModels
             }
             set
             {
+                try
+                {
+                    
+                }
+                catch { };
                 _lat = value;
             }
         }
@@ -231,6 +237,11 @@ namespace Donor.ViewModels
             }
             set
             {
+                try
+                {
+                    
+                }
+                catch { };
                 _lon = value;
             }
         }
@@ -396,5 +407,16 @@ namespace Donor.ViewModels
 
         public Int64 Nid { get; set; }
         
+    }
+
+    public class ARStation : ARItem
+    {
+        public ARStation()
+        {
+
+        }
+
+        public string Title { get; set; }
+        public string Adress { get; set; }        
     }
 }
