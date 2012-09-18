@@ -20,9 +20,12 @@ namespace Donor
         public StationPage()
         {
             InitializeComponent();
+            this.MainPanorama.DefaultItem = this.MainPanorama.Items[0];
         }
+
         private string _stationid_current;
         private StationViewModel _currentStation;
+
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
             if (this.NavigationContext.QueryString.ContainsKey("id"))
@@ -38,6 +41,9 @@ namespace Donor
                     App.ViewModel.Reviews.LoadReviewsForStation(_currentStation.Nid.ToString());
 
                     App.ViewModel.Reviews.ReviewsLoaded += new ReviewsListViewModel.ReviewsLoadedEventHandler(this.ReviewsLoaded);
+
+                    this.progressOverlay.Visibility = Visibility.Collapsed;
+                    this.progressOverlay.IsEnabled = false;
                 }
                 catch
                 {

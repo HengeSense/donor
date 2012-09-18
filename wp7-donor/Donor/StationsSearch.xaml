@@ -13,7 +13,7 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d" d:DesignHeight="696" d:DesignWidth="480"
-    shell:SystemTray.IsVisible="True" Loaded="PhoneApplicationPage_Loaded">
+    shell:SystemTray.IsVisible="False" Loaded="PhoneApplicationPage_Loaded">
 	<phone:PhoneApplicationPage.ApplicationBar>
 		<shell:ApplicationBar BackgroundColor="#FF211E1D" ForegroundColor="White"	>
 			<shell:ApplicationBarIconButton x:Name="MapButton" IconUri="/icons/appbar.feature.search.rest.png" Text="Карта" Click="MapButton_Click" />

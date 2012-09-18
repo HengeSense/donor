@@ -9,6 +9,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
 	xmlns:toolkitPrimitives="clr-namespace:Microsoft.Phone.Controls.Primitives;assembly=Microsoft.Phone.Controls.Toolkit" xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit" 
+    xmlns:Controls="clr-namespace:Coding4Fun.Phone.Controls;assembly=Coding4Fun.Phone.Controls"
     mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="800"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -23,7 +24,21 @@
     	<Grid.Background>
             <ImageBrush ImageSource="images/bg_04.png"/>
         </Grid.Background>
-        <controls:Panorama>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Controls:ProgressOverlay Grid.Row="0" Name="progressOverlay" Height="800" Width="480">
+            <Controls:ProgressOverlay.Content>
+                <StackPanel>
+                    <TextBlock Foreground="#FFFFFFFF" VerticalAlignment="Center" HorizontalAlignment="Center">Загрузка...</TextBlock>
+                    <toolkit:PerformanceProgressBar Name="Loading" IsIndeterminate="True" Height="10" Background="#FFA3CE57" Visibility="Collapsed" />
+                </StackPanel>
+            </Controls:ProgressOverlay.Content>
+        </Controls:ProgressOverlay>
+
+        <controls:Panorama Grid.Row="1" Name="MainPanorama">
         	<controls:Panorama.Background>
             <ImageBrush ImageSource="images/bg_04.png"/>
         	</controls:Panorama.Background>
