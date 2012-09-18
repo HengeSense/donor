@@ -12,7 +12,7 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d" d:DesignHeight="696" d:DesignWidth="480"
-    shell:SystemTray.IsVisible="True">
+    shell:SystemTray.IsVisible="False">
 	<phone:PhoneApplicationPage.ApplicationBar>
 		<shell:ApplicationBar x:Name="SaveButton" BackgroundColor="#FF211E1D" ForegroundColor="White">
 			<shell:ApplicationBarIconButton x:Name="SaveButton1" IconUri="/icons/appbar.save.rest.png" Text="Применить" Click="SaveButton1_Click"/>
@@ -44,13 +44,17 @@
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="0,0,0,0">
             <StackPanel>  
             	<Border Background="#FF632C00">              
-            	<toolkit:ListPicker x:Name="CitySelect" 
-				Header="Город"
-				FontSize="24" Margin="10,6,10,20"
-				SelectionChanged="CitySelect_SelectionChanged" Foreground="#DEFFFFFF">
-            		<ListBoxItem Content="Москва" Foreground="#DEFFFFFF"/>
-            		<ListBoxItem Content="Санкт-Петербург"/>
-            	</toolkit:ListPicker>
+            	<toolkit:ListPicker x:Name="CitySelect" Header="Город" FontSize="24" Margin="10,6,10,20" SelectionChanged="CitySelect_SelectionChanged" Foreground="#FF271B16">
+                        <ListBoxItem Content="Москва" Foreground="#DE271B16"/>
+                        <ListBoxItem Content="Санкт-Петербург" Foreground="#DE271B16"/>
+                        <toolkit:ListPicker.ItemTemplate>
+<DataTemplate>
+<StackPanel Orientation="Horizontal" Background="#FFD7CABF" Margin="0">
+<TextBlock Foreground="#FF271B16" Text="{Binding}" />
+</StackPanel>
+</DataTemplate>
+                        </toolkit:ListPicker.ItemTemplate>
+                    </toolkit:ListPicker>
 				</Border>
 				<StackPanel Margin="12,0,12,0">
             	<CheckBox Content="Прием региональной прописки" 
