@@ -354,9 +354,7 @@ namespace Donor
                     switch (itemindex)
                     {
                         case 0:
-                            this.EventsListPrev.ItemsSource = App.ViewModel.Events.ThisMonthItems;
-                            this.EventsList.ItemsSource = App.ViewModel.Events.NextMonthItems;
-                            this.EventsListNext.ItemsSource = App.ViewModel.Events.PrevMonthItems;
+                            this.EventsList2Prev.ItemsSource = App.ViewModel.Events.ThisMonthItems;
 
                             this.NextMonth2.Header = App.ViewModel.Events.PrevMonthString;
                             this.NextMonth.Header = App.ViewModel.Events.PrevMonth2String;
@@ -365,9 +363,7 @@ namespace Donor
                             this.PrevMonth2.Header = App.ViewModel.Events.CurrentMonthString;
                             break;
                         case 1:
-                            this.EventsListPrev.ItemsSource = App.ViewModel.Events.PrevMonthItems;
-                            this.EventsList.ItemsSource = App.ViewModel.Events.ThisMonthItems;
-                            this.EventsListNext.ItemsSource = App.ViewModel.Events.NextMonthItems;
+                            this.EventsListPrev.ItemsSource = App.ViewModel.Events.ThisMonthItems;
 
                             this.NextMonth2.Header = App.ViewModel.Events.PrevMonth2String;
                             this.NextMonth.Header = App.ViewModel.Events.NextMonth2String;
@@ -376,9 +372,7 @@ namespace Donor
                             this.PrevMonth2.Header = App.ViewModel.Events.PrevMonthString;
                             break;
                         case 2:
-                            this.EventsListPrev.ItemsSource = App.ViewModel.Events.NextMonthItems;
-                            this.EventsList.ItemsSource = App.ViewModel.Events.PrevMonthItems;
-                            this.EventsListNext.ItemsSource = App.ViewModel.Events.ThisMonthItems;
+                            this.EventsList.ItemsSource = App.ViewModel.Events.ThisMonthItems;
 
                             this.NextMonth2.Header = App.ViewModel.Events.NextMonth2String;
                             this.NextMonth.Header = App.ViewModel.Events.NextMonthString;
@@ -388,8 +382,6 @@ namespace Donor
 
                             break;
                         case 3:
-                            this.EventsListPrev.ItemsSource = App.ViewModel.Events.NextMonthItems;
-                            this.EventsList.ItemsSource = App.ViewModel.Events.PrevMonthItems;
                             this.EventsListNext.ItemsSource = App.ViewModel.Events.ThisMonthItems;
 
                             this.NextMonth2.Header = App.ViewModel.Events.NextMonthString;
@@ -399,10 +391,7 @@ namespace Donor
                             this.PrevMonth2.Header = App.ViewModel.Events.NextMonth2String;
                             break;
                         case 4:
-                            this.EventsListPrev.ItemsSource = App.ViewModel.Events.NextMonthItems;
-                            this.EventsList.ItemsSource = App.ViewModel.Events.PrevMonthItems;
                             this.EventsListNext.ItemsSource = App.ViewModel.Events.ThisMonthItems;
-
 
                             this.NextMonth2.Header = App.ViewModel.Events.CurrentMonthString;
                             this.NextMonth.Header = App.ViewModel.Events.PrevMonthString;
@@ -421,9 +410,7 @@ namespace Donor
                     switch (itemindex)
                     {
                         case 0:
-                            this.EventsListPrev.ItemsSource = App.ViewModel.Events.ThisMonthItems;
-                            this.EventsList.ItemsSource = App.ViewModel.Events.NextMonthItems;
-                            this.EventsListNext.ItemsSource = App.ViewModel.Events.PrevMonthItems;
+                            this.EventsList2Prev.ItemsSource = App.ViewModel.Events.ThisMonthItems;
 
                             this.NextMonth2.Header = App.ViewModel.Events.PrevMonthString;
                             this.NextMonth.Header = App.ViewModel.Events.PrevMonth2String;
@@ -432,9 +419,7 @@ namespace Donor
                             this.PrevMonth2.Header = App.ViewModel.Events.CurrentMonthString;
                             break;
                         case 1:
-                            this.EventsListPrev.ItemsSource = App.ViewModel.Events.PrevMonthItems;
-                            this.EventsList.ItemsSource = App.ViewModel.Events.ThisMonthItems;
-                            this.EventsListNext.ItemsSource = App.ViewModel.Events.NextMonthItems;
+                            this.EventsListPrev.ItemsSource = App.ViewModel.Events.ThisMonthItems;
 
                             this.NextMonth2.Header = App.ViewModel.Events.PrevMonth2String;
                             this.NextMonth.Header = App.ViewModel.Events.NextMonth2String;
@@ -443,9 +428,7 @@ namespace Donor
                             this.PrevMonth2.Header = App.ViewModel.Events.PrevMonthString;
                             break;
                         case 2:
-                            this.EventsListPrev.ItemsSource = App.ViewModel.Events.NextMonthItems;
-                            this.EventsList.ItemsSource = App.ViewModel.Events.PrevMonthItems;
-                            this.EventsListNext.ItemsSource = App.ViewModel.Events.ThisMonthItems;
+                            this.EventsList.ItemsSource = App.ViewModel.Events.ThisMonthItems;
 
                             this.NextMonth2.Header = App.ViewModel.Events.NextMonth2String;
                             this.NextMonth.Header = App.ViewModel.Events.NextMonthString;
@@ -455,8 +438,6 @@ namespace Donor
 
                             break;
                         case 3:
-                            this.EventsListPrev.ItemsSource = App.ViewModel.Events.NextMonthItems;
-                            this.EventsList.ItemsSource = App.ViewModel.Events.PrevMonthItems;
                             this.EventsListNext.ItemsSource = App.ViewModel.Events.ThisMonthItems;
 
                             this.NextMonth2.Header = App.ViewModel.Events.NextMonthString;
@@ -466,10 +447,7 @@ namespace Donor
                             this.PrevMonth2.Header = App.ViewModel.Events.NextMonth2String;
                             break;
                         case 4:
-                            this.EventsListPrev.ItemsSource = App.ViewModel.Events.NextMonthItems;
-                            this.EventsList.ItemsSource = App.ViewModel.Events.PrevMonthItems;
                             this.EventsListNext.ItemsSource = App.ViewModel.Events.ThisMonthItems;
-
 
                             this.NextMonth2.Header = App.ViewModel.Events.CurrentMonthString;
                             this.NextMonth.Header = App.ViewModel.Events.PrevMonthString;
