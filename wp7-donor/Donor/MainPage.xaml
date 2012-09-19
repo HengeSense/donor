@@ -17,6 +17,10 @@
     SupportedOrientations="Portrait"  Orientation="Portrait"
     shell:SystemTray.IsVisible="False" Loaded="PhoneApplicationPage_Loaded" 
 	DataContext="{Binding Path=App.ViewModel,Source=App.ViewModel}">
+	<phone:PhoneApplicationPage.Resources>
+
+
+	</phone:PhoneApplicationPage.Resources>
 	<phone:PhoneApplicationPage.ApplicationBar>
 		<shell:ApplicationBar IsVisible="False"/>
 	</phone:PhoneApplicationPage.ApplicationBar>
@@ -204,7 +208,8 @@
                         <TextBlock 
 						Style="{StaticResource Text24pxCBB2A3}"
 						Text="Введите e-mail" />
-                    <TextBox x:Name="email" Text="" Background="#FF4F3B34" BorderBrush="#FF4F3B34" Foreground="#FFCBB2A3" />
+                    <TextBox x:Name="email" Text="" Background="#FF4F3B34" BorderBrush="#FF4F3B34" Foreground="#FFCBB2A3" 
+					CaretBrush="#FFCBB2A3" Style="{StaticResource TextBoxStyle1}" />
                     <TextBlock 
 					Style="{StaticResource Text24pxCBB2A3}"
 					Text="Введите пароль" />
@@ -212,7 +217,7 @@
 					x:Name="password" Password="" 
 					Background="#FF4F3B34" 
 					BorderBrush="#FF4F3B34" 
-					Foreground="#FFCBB2A3" />
+					Foreground="#FFCBB2A3" Style="{StaticResource PasswordBoxStyle1}"/>
                     <Button 
 					FontSize="24"
 					Background="#FF4186A3" 

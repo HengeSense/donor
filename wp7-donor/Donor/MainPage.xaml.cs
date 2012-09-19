@@ -96,7 +96,7 @@ namespace Donor
             }
             else
             {
-                MessageBox.Show("Please enter if you wish to add events to yofur calendar.");
+                MessageBox.Show("Пожалуйста войдите, чтобы иметь возможность работать с календарем событий.");
             };
         }
 

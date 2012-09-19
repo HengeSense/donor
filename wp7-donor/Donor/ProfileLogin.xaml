@@ -45,7 +45,7 @@
                     <TextBlock Text="Имя"
 					Style="{StaticResource Text24pxCBB2A3}"/>
                     <TextBox Name="EditName" 
-					Style="{StaticResource TextBox1}"	
+					Style="{StaticResource TextBoxStyle1}"	
 					Text="{Binding Path=App.ViewModel.User.Name, 
 					Mode=TwoWay}" />
                         <TextBlock Text="Пол" 
@@ -135,31 +135,27 @@
                         <TextBlock Text="Логин"
 						Style="{StaticResource Text24pxCBB2A3}"/>
                         <TextBox x:Name="login1"
-						Style="{StaticResource TextBox1}"						
+						Style="{StaticResource TextBoxStyle1}"					
 						Text="" />
                         <TextBlock 
 						Style="{StaticResource Text24pxCBB2A3}"
 						Text="E-mail" />
-                        <TextBox x:Name="email1" 
-						Style="{StaticResource TextBox1}"		
-						Text="" />
+                        <TextBox x:Name="email1" Style="{StaticResource TextBoxStyle1}" Text="" />
                         <TextBlock
 						Style="{StaticResource Text24pxCBB2A3}"
 						Text="Пароль" />
                         <PasswordBox 
-						Style="{StaticResource TextBox1_password}"							
-						x:Name="password1" Password="" />
+						x:Name="password1" Password="" Style="{StaticResource PasswordBoxStyle1}"/>
                         <TextBlock 
 						Style="{StaticResource Text24pxCBB2A3}"
 						Text="Подтвердите пароль" />
-                        <PasswordBox
-						Style="{StaticResource TextBox1_password}"	
+                        <PasswordBox  Style="{StaticResource PasswordBoxStyle1}"	
 						x:Name="password2" Password="" />
                         <TextBlock 
 						Style="{StaticResource Text24pxCBB2A3}"
 						Text="Имя" />
                         <TextBox x:Name="name1" Text="" 
-						Style="{StaticResource TextBox1}"/>
+						Style="{StaticResource TextBoxStyle1}"/>
                         <Button Name="RegisterButton" 
 						FontSize="24"
 						Background="#FF4186A3" 
@@ -172,20 +168,13 @@
                     <StackPanel Name="LoginForm">
                         <TextBlock Text="Введите e-mail" 
 						Style="{StaticResource Text24pxCBB2A3}"/>
-                        <TextBox 
-						Background="#FF4F3B34" 
-						BorderBrush="#FF4F3B34" 
-						Foreground="#FFCBB2A3"
-						x:Name="email" 
+                        <TextBox Background="#FF4F3B34" Style="{StaticResource TextBoxStyle1}"
+BorderBrush="#FF4F3B34" Foreground="#FFCBB2A3" x:Name="email" 
 						Text="" />
                         <TextBlock Text="Введите пароль"
 						Style="{StaticResource Text24pxCBB2A3}" />
-                        <PasswordBox 
-						Background="#FF4F3B34" 
-						BorderBrush="#FF4F3B34" 
-						Foreground="#FFCBB2A3"
-						x:Name="password" 
-						Password="" />
+                        <PasswordBox Background="#FF4F3B34" 
+Style="{StaticResource PasswordBoxStyle1}" BorderBrush="#FF4F3B34" 	Foreground="#FFCBB2A3" x:Name="password" Password="" />
                         <Button Name="Login" 
 						Content="Вход" 
 						Click="Login_Click"
