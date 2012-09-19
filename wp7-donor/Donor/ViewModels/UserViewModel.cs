@@ -44,7 +44,7 @@ namespace Donor.ViewModels
                 return _isLoggedIn; 
             } 
             set {
-                _isLoggedIn = value;
+                _isLoggedIn = value;                
                 NotifyPropertyChanged("IsLoggedIn"); 
             } 
         }

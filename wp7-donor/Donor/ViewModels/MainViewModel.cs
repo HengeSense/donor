@@ -134,7 +134,7 @@ namespace Donor
             
             bw.DoWork += delegate
             {
-            System.Threading.Thread.Sleep(700);
+            System.Threading.Thread.Sleep(400);
 
                 Deployment.Current.Dispatcher.BeginInvoke(() =>
                 {
@@ -224,6 +224,8 @@ namespace Donor
             catch
             {
                 this.Settings = new SettingsViewModel();
+                IsolatedStorageHelper.SaveSerializableObject<SettingsViewModel>(this.Settings, "settings.xml");
+                //App.ViewModel.SaveSettingsToStorage();
                 IsSettings = false;                
             };
         }
@@ -251,6 +253,7 @@ namespace Donor
                             {
                                 App.ViewModel.User = JsonConvert.DeserializeObject<DonorUser>(response.Content.ToString());
                                 App.ViewModel.User.IsLoggedIn = true;
+                                App.ViewModel.Events.WeekItemsUpdated();
                                 App.ViewModel.OnUserEnter(EventArgs.Empty);
                             }
                             else
@@ -374,9 +377,18 @@ namespace Donor
                         if (this.IsSettings == false)
                         {
                             (Application.Current.RootVisual as PhoneApplicationFrame).Navigate(new Uri("/ProfileLogin.xaml", UriKind.Relative));
+                            
                         };
                     });
                 };
+
+                Deployment.Current.Dispatcher.BeginInvoke(() =>
+                {
+                    if (this.IsSettings == false)
+                    {
+                        (Application.Current.RootVisual as PhoneApplicationFrame).Navigate(new Uri("/ProfileLogin.xaml", UriKind.Relative));
+                    };
+                });
 
             };
             bw.RunWorkerAsync();            

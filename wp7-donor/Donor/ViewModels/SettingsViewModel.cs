@@ -19,12 +19,12 @@ namespace Donor.ViewModels
             PossibleTypes = new List<string>();
         }
 
-        public bool Password { get; set; }
-        public bool Push { get; set; }
+        public bool Password = false;
+        public bool Push = false;
 
-        public bool FastSearch { get; set; }
-        public bool EventBefore { get; set; }
-        public bool EventAfter { get; set; }
+        public bool FastSearch = false;
+        public bool EventBefore = false;
+        public bool EventAfter = false;
 
         List<string> PossibleTypes { get; set; } 
     }

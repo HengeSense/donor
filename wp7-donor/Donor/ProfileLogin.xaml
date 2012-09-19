@@ -177,7 +177,7 @@
 						BorderBrush="#FF4F3B34" 
 						Foreground="#FFCBB2A3"
 						x:Name="email" 
-						Text="m0rg0t.Anton@gmail.com" />
+						Text="" />
                         <TextBlock Text="Введите пароль"
 						Style="{StaticResource Text24pxCBB2A3}" />
                         <PasswordBox 
@@ -185,7 +185,7 @@
 						BorderBrush="#FF4F3B34" 
 						Foreground="#FFCBB2A3"
 						x:Name="password" 
-						Password="slucladr" />
+						Password="" />
                         <Button Name="Login" 
 						Content="Вход" 
 						Click="Login_Click"

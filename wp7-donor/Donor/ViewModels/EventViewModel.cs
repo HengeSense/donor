@@ -331,6 +331,8 @@ namespace Donor.ViewModels
         public void UpdateItems() {
             NotifyPropertyChanged("Items");
             NotifyPropertyChanged("UserItems");
+            NotifyPropertyChanged("WeekItems");
+            NotifyPropertyChanged("ThisMonthItems");
 
             App.ViewModel.CreateApplicationTile(App.ViewModel.Events.NearestEvents());
             App.ViewModel.SaveToIsolatedStorage();
@@ -388,6 +390,10 @@ namespace Donor.ViewModels
                     this.NotifyPropertyChanged("WeekItems");
                 };
             }
+        }
+
+        public void WeekItemsUpdated() {
+            this.NotifyPropertyChanged("WeekItems");
         }
 
         public List<EventViewModel> WeekItems { 

@@ -115,6 +115,7 @@ namespace Donor
                 {
                     App.ViewModel.User = JsonConvert.DeserializeObject<DonorUser>(response.Content.ToString());
                     App.ViewModel.User.IsLoggedIn = true;
+                    App.ViewModel.Events.WeekItemsUpdated();
 
                     this.RegisterForm.Visibility = Visibility.Collapsed;
                     this.LoginForm.Visibility = Visibility.Collapsed;
@@ -183,6 +184,7 @@ namespace Donor
                     {
                         App.ViewModel.User = JsonConvert.DeserializeObject<DonorUser>(response.Content.ToString());
                         App.ViewModel.User.IsLoggedIn = true;
+                        App.ViewModel.Events.WeekItemsUpdated();
 
                         App.ViewModel.User.Name = this.name1.Text.ToString();
                         App.ViewModel.User.UserName = this.email1.Text.ToString();
