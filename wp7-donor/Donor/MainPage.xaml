@@ -8,6 +8,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:toolkitPrimitives="clr-namespace:Microsoft.Phone.Controls.Primitives;assembly=Microsoft.Phone.Controls.Toolkit" xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit" 
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:tilteffect="clr-namespace:ControlTiltEffect"
     mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="800" 
     d:DataContext="{d:DesignData SampleData/MainViewModelSampleData.xaml}"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
@@ -43,72 +44,80 @@
 					Margin="0,15,0,0" Text="Меню" 
 					Style="{StaticResource Text48pxDFB08B}"/>
                 </controls:PanoramaItem.Header>
-                <StackPanel Margin="0,15,0,0">
-                	<StackPanel Orientation="Horizontal">
-                		<Image Height="64" Width="64" 
-						Source="images/ic_menu_calendar_normal.png"/>  
-                		<TextBlock Margin="0,15,0,0" Text="Календарь" 
+                <StackPanel>
+                <ListBox ScrollViewer.VerticalScrollBarVisibility="Disabled" x:Name="mainmenu" tilteffect:TiltEffect.IsTiltEnabled="True">
+                    <ListBoxItem Tap="CalendarMenuText_Tap">
+                        <StackPanel Orientation="Horizontal">
+                        <Image Height="64" Width="64" 
+						Source="images/ic_menu_calendar_normal.png"/>
+                            <TextBlock Margin="0,15,0,0" Text="Календарь" 
 						TextWrapping="Wrap" Name="CalendarMenuText"  
-						Style="{StaticResource Text30pxCBB2A3}" 
-						Tap="CalendarMenuText_Tap" />                		        	
-					</StackPanel>
-                    
-					<StackPanel Orientation="Horizontal">
-						<Image Height="64" Width="64" 
-						Source="images/ic_menu_stantion_normal.png"/> 
-                    	<TextBlock Margin="0,15,0,0" Text="Станции" 
-						TextWrapping="Wrap" Name="StationsMenu" 
-						Style="{StaticResource Text30pxCBB2A3}" 
-						Tap="Stations_Tap" />
-					</StackPanel>
-					
-					<StackPanel Orientation="Horizontal">
-						<Image Height="64" Width="64" 
-						Source="images/ic_menu_ads_normal.png"/>                     	
-						<TextBlock Margin="0,15,0,0" Text="Объявления" 
-						TextWrapping="Wrap" Name="adsMenuText" 
-						Style="{StaticResource Text30pxCBB2A3}" 
-						Tap="adsMenuText_Tap" />
-					</StackPanel>
-					
-					<StackPanel Orientation="Horizontal">
-						<Image Height="64" Width="64" 
-						Source="images/ic_menu_news_normal.png"/>                     	
+						Style="{StaticResource Text30pxCBB2A3}"/>
+                        </StackPanel>
+                    </ListBoxItem>
 
-						<TextBlock Margin="0,15,0,0" 
+                    <ListBoxItem Tap="Stations_Tap">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Height="64" Width="64" 
+						Source="images/ic_menu_stantion_normal.png"/>
+                            <TextBlock Margin="0,15,0,0" Text="Станции" 
+						TextWrapping="Wrap" Name="StationsMenu" 
+						Style="{StaticResource Text30pxCBB2A3}"/>
+                        </StackPanel>
+                    </ListBoxItem>
+
+                    <ListBoxItem Tap="adsMenuText_Tap">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Height="64" Width="64" 
+						Source="images/ic_menu_ads_normal.png"/>
+                            <TextBlock Margin="0,15,0,0" Text="Объявления" 
+						TextWrapping="Wrap" Name="adsMenuText" 
+						Style="{StaticResource Text30pxCBB2A3}"/>
+                        </StackPanel>
+                    </ListBoxItem>
+
+                    <ListBoxItem Tap="NewMenuItem_Tap">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Height="64" Width="64" 
+						Source="images/ic_menu_news_normal.png"/>
+
+                            <TextBlock Margin="0,15,0,0" 
 						Text="Новости" TextWrapping="Wrap" 
 						Name="NewMenuItem" 
-						Style="{StaticResource Text30pxCBB2A3}" 
-						Tap="NewMenuItem_Tap" />
-					</StackPanel>
-                    
-                	<StackPanel Orientation="Horizontal">
-                		<Image Height="64" Width="64" 
-						Source="images/ic_menu_information_normal.png"/>  
-                		  
-						<TextBlock Margin="0,15,0,0" 
+						Style="{StaticResource Text30pxCBB2A3}"/>
+                        </StackPanel>
+                    </ListBoxItem>
+
+                    <ListBoxItem Tap="HelpMenuText_Tap">
+                        <StackPanel Orientation="Horizontal">
+                        <Image Height="64" Width="64" 
+						Source="images/ic_menu_information_normal.png"/>
+
+                        <TextBlock Margin="0,15,0,0" 
 						Text="Справка" 
 						TextWrapping="Wrap" 
 						Name="HelpMenuText" 
-						Style="{StaticResource Text30pxCBB2A3}" 
-						Tap="HelpMenuText_Tap" />            		        	
-					</StackPanel>
-					
-					
-                	<StackPanel Orientation="Horizontal">
-                		 <Image Height="64" Width="64" 
-						 Source="images/ic_menu_profile_normal.png"/>  
-						
-						 <TextBlock Margin="0,15,0,0" 
+						Style="{StaticResource Text30pxCBB2A3}"/>
+                        </StackPanel>
+                    </ListBoxItem>
+
+                    <ListBoxItem Tap="TextBlock_Tap_1">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Height="64" Width="64" 
+						 Source="images/ic_menu_profile_normal.png"/>
+
+                            <TextBlock Margin="0,15,0,0" 
 						 Text="Профиль"
 						 TextWrapping="Wrap" 
 						 Style="{StaticResource Text30pxCBB2A3}" 
-						 Tap="TextBlock_Tap_1" />          		        	
-					</StackPanel>
-                    <StackPanel>
-                        <TextBlock Text="Version - 06092012_1"/>
+						 Tap="TextBlock_Tap_1"/>
+                        </StackPanel>
+                    </ListBoxItem>
+                    </ListBox>
+                    
+                        <TextBlock Text="Version - 19092012_1"/>
                     </StackPanel>
-                </StackPanel>
+                
             </controls:PanoramaItem>
  
             <!--Panorama item two-->
