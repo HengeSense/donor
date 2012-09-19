@@ -56,6 +56,9 @@ namespace Donor
             var gl = GestureService.GetGestureListener(this.Monthes);
             //l.Flick += new EventHandler<Microsoft.Phone.Controls.FlickGestureEventArgs>(GestureListener_Flick);
 
+            previndex = 2;
+            this.Monthes.SelectedIndex = 2;
+
             this.EventsListPrev.ItemsSource = App.ViewModel.Events.PrevMonthItems;
             this.EventsList.ItemsSource = App.ViewModel.Events.ThisMonthItems;
             this.EventsListNext.ItemsSource = App.ViewModel.Events.NextMonthItems;
