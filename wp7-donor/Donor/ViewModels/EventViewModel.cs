@@ -456,9 +456,19 @@ CurrentMonth.Month-1];
             get { return CultureInfo.CurrentCulture.DateTimeFormat.MonthNames[CurrentMonth.AddMonths(1).Month - 1]; }
             private set { }
         }
+        public string NextMonth2String
+        {
+            get { return CultureInfo.CurrentCulture.DateTimeFormat.MonthNames[CurrentMonth.AddMonths(2).Month - 1]; }
+            private set { }
+        }
         public string PrevMonthString
         {
             get { return CultureInfo.CurrentCulture.DateTimeFormat.MonthNames[CurrentMonth.AddMonths(-1).Month - 1]; }
+            private set { }
+        }
+        public string PrevMonth2String
+        {
+            get { return CultureInfo.CurrentCulture.DateTimeFormat.MonthNames[CurrentMonth.AddMonths(-2).Month - 1]; }
             private set { }
         }
 
