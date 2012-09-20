@@ -34,7 +34,7 @@
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel x:Name="TitlePanel" Grid.Row="0">
             <TextBlock x:Name="ApplicationTitle" 
-			Text="Поиск станции" 
+			Text="Станции переливания крови" 
 			 Margin="12,17,0,28"
 			Style="{StaticResource Text30pxWhite}"/>
 			
