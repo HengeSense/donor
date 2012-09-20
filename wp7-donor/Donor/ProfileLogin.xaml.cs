@@ -100,7 +100,7 @@ namespace Donor
             var client = new RestClient("https://api.parse.com");
             var request = new RestRequest("1/login?username=" + Uri.EscapeUriString(this.email.Text.ToString().ToLower()) + "&password=" + Uri.EscapeUriString(this.password.Password), Method.GET);
             request.Parameters.Clear();
-            //string strJSONContent = "{\"username\":\"" + this.email.Text.ToString().ToLower() + "\",\"password\":\"" + this.password.Password + "\"}";
+            
             request.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
             request.AddHeader("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
 
@@ -141,6 +141,9 @@ namespace Donor
                 else
                 {
                     App.ViewModel.User.IsLoggedIn = false;
+
+                    this.email1.Text = this.email.Text.ToString();
+                    this.password1.Password = this.password.Password;
 
                     this.RegisterForm.Visibility = Visibility.Visible;
                     this.LoginForm.Visibility = Visibility.Collapsed;

@@ -132,11 +132,11 @@
                     <StackPanel Name="RegisterForm" Visibility="Collapsed">
                     	<ScrollViewer>
                     		<StackPanel>
-                        <TextBlock Text="Логин"
+                        <!--<TextBlock Text="Логин"
 						Style="{StaticResource Text24pxCBB2A3}"/>
                         <TextBox x:Name="login1"
 						Style="{StaticResource TextBoxStyle1}"					
-						Text="" />
+						Text="" />-->
                         <TextBlock 
 						Style="{StaticResource Text24pxCBB2A3}"
 						Text="E-mail" />
