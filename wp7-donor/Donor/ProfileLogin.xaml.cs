@@ -165,16 +165,23 @@ namespace Donor
 
         private void RegisterButton_Click(object sender, RoutedEventArgs e)
         {
-            if (this.password1.Password == this.password2.Password)
+            if ((this.password1.Password == this.password2.Password) && ((this.CreateMale.IsChecked == true) || (this.CreateFemale.IsChecked == true)) && (this.name1.Text.ToString() != "") && (this.email1.Text.ToString() != ""))
             {
                 var client = new RestClient("https://api.parse.com");
                 var request = new RestRequest("1/users", Method.POST);
                 request.AddHeader("Accept", "application/json");
                 request.Parameters.Clear();
-                string strJSONContent = "{\"username\":\"" + this.email1.Text.ToString().ToLower() + "\",\"password\":\"" + this.password1.Password.ToString() + "\",\"Name\":\"" + this.name1.Text.ToString().ToLower() + "\", \"email\":\"" + this.email1.Text.ToString().ToLower() + "\"}";
+                int reg_sex = 0;
+
+                if (this.CreateMale.IsChecked == true)
+                {
+                    reg_sex = 1;
+                };
+                string strJSONContent = "{\"username\":\"" + this.email1.Text.ToString().ToLower() + "\",\"password\":\"" + this.password1.Password.ToString() + "\", \"Name\":\"" + this.name1.Text.ToString().ToLower() + "\", \"email\":\"" + this.email1.Text.ToString().ToLower() + "\", \"Sex\":" + reg_sex + "}";
                 request.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
                 request.AddHeader("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
                 request.AddHeader("Content-Type", "application/json");
+
                 request.AddParameter("application/json", strJSONContent, ParameterType.RequestBody);
 
                 this.LoadingBar.IsIndeterminate = true;
@@ -182,39 +189,49 @@ namespace Donor
                 client.ExecuteAsync(request, response =>
                 {
                     this.LoadingBar.IsIndeterminate = false;
-                    JObject o = JObject.Parse(response.Content.ToString());
-                    if (o["error"] == null)
+                    try
                     {
-                        App.ViewModel.User = JsonConvert.DeserializeObject<DonorUser>(response.Content.ToString());
-                        App.ViewModel.User.IsLoggedIn = true;
-                        App.ViewModel.Events.WeekItemsUpdated();
-
-                        App.ViewModel.User.Name = this.name1.Text.ToString();
-                        App.ViewModel.User.UserName = this.email1.Text.ToString();
-
-                        this.RegisterForm.Visibility = Visibility.Collapsed;
-                        this.UserProfile.Visibility = Visibility.Visible;
-                        this.LoginForm.Visibility = Visibility.Collapsed;
-
-                        if (App.ViewModel.User.IsLoggedIn == true)
+                        JObject o = JObject.Parse(response.Content.ToString());
+                        if (o["error"] == null)
                         {
-                            this.AppBar.IsVisible = true;
+                            App.ViewModel.User = JsonConvert.DeserializeObject<DonorUser>(response.Content.ToString());
+                            App.ViewModel.User.IsLoggedIn = true;
+                            App.ViewModel.Events.WeekItemsUpdated();
+
+                            App.ViewModel.User.Name = this.name1.Text.ToString();
+                            App.ViewModel.User.UserName = this.email1.Text.ToString();
+
+                            this.RegisterForm.Visibility = Visibility.Collapsed;
+                            this.UserProfile.Visibility = Visibility.Visible;
+                            this.LoginForm.Visibility = Visibility.Collapsed;
+
+                            if (App.ViewModel.User.IsLoggedIn == true)
+                            {
+                                this.AppBar.IsVisible = true;
+                            }
+                            else
+                            {
+                                this.AppBar.IsVisible = false;
+                            };
+
+                            try
+                            {
+                                this.UpdateUserInfoView();
+                            }
+                            catch
+                            {
+                            };
                         }
                         else
                         {
-                            this.AppBar.IsVisible = false;
-                        };
-
-                        try
-                        {
-                            this.UpdateUserInfoView();
-                        }
-                        catch
-                        {
+                            MessageBox.Show("Не удалось произвести регистрацию.");
+                            App.ViewModel.User.IsLoggedIn = false;
+                            this.RegisterForm.Visibility = Visibility.Visible;
+                            this.LoginForm.Visibility = Visibility.Collapsed;
+                            this.UserProfile.Visibility = Visibility.Collapsed;
                         };
                     }
-                    else
-                    {
+                    catch {
                         App.ViewModel.User.IsLoggedIn = false;
                         this.RegisterForm.Visibility = Visibility.Visible;
                         this.LoginForm.Visibility = Visibility.Collapsed;
@@ -224,6 +241,7 @@ namespace Donor
             }
             else
             {
+                MessageBox.Show("Проверьте корректность указанных регистрационных данных.");
             };
         }
 

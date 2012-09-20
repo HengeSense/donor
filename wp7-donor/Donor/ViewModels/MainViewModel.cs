@@ -376,19 +376,19 @@ namespace Donor
 
                         if (this.IsSettings == false)
                         {
-                            (Application.Current.RootVisual as PhoneApplicationFrame).Navigate(new Uri("/ProfileLogin.xaml", UriKind.Relative));
+                            //(Application.Current.RootVisual as PhoneApplicationFrame).Navigate(new Uri("/ProfileLogin.xaml", UriKind.Relative));
                             
                         };
                     });
                 };
 
-                Deployment.Current.Dispatcher.BeginInvoke(() =>
+                /*Deployment.Current.Dispatcher.BeginInvoke(() =>
                 {
                     if (this.IsSettings == false)
                     {
-                        (Application.Current.RootVisual as PhoneApplicationFrame).Navigate(new Uri("/ProfileLogin.xaml", UriKind.Relative));
+                        //(Application.Current.RootVisual as PhoneApplicationFrame).Navigate(new Uri("/ProfileLogin.xaml", UriKind.Relative));
                     };
-                });
+                });*/
 
             };
             bw.RunWorkerAsync();            

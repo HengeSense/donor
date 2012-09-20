@@ -156,7 +156,19 @@
 						Text="Имя" />
                         <TextBox x:Name="name1" Text="" 
 						Style="{StaticResource TextBoxStyle1}"/>
-                        <Button Name="RegisterButton" 
+
+                                <StackPanel Orientation="Horizontal" 
+						Name="SexEditGroupCreate">
+                                    <RadioButton 
+							Content="Мужской" Name="CreateMale" 
+							Foreground="#FFCBB2A3" />
+                                    <RadioButton Content="Женский"
+							
+							Name="CreateFemale" DataContext="{Binding}" 
+							Foreground="#FFCBB2A3" />
+</StackPanel>
+
+                                <Button Name="RegisterButton" 
 						FontSize="24"
 						Background="#FF4186A3" 
 						BorderBrush="#FF4186A3" 

@@ -10,12 +10,12 @@
     xmlns:toolkitPrimitives="clr-namespace:Microsoft.Phone.Controls.Primitives;assembly=Microsoft.Phone.Controls.Toolkit" xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit" 
     xmlns:WPExtensions="clr-namespace:WPExtensions;assembly=WPExtensions"
     
-    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="768"
+    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="800"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait"  Orientation="Portrait"
-    shell:SystemTray.IsVisible="True" Loaded="PhoneApplicationPage_Loaded" 
+    shell:SystemTray.IsVisible="False" Loaded="PhoneApplicationPage_Loaded" 
     d:DataContext="{d:DesignData SampleData/MainViewModelSampleData.xaml}"
     DataContext="{Binding Path=App.ViewModel,Source=App.ViewModel}">
 

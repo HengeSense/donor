@@ -224,7 +224,14 @@ namespace Donor
 
         private void AddEvent_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Uri("/EventEditPage.xaml", UriKind.Relative));
+            if (App.ViewModel.User.IsLoggedIn)
+            {
+                NavigationService.Navigate(new Uri("/EventEditPage.xaml", UriKind.Relative));
+            }
+            else
+            {
+                MessageBox.Show("Пожалуйста войдите, чтобы иметь возможность работать с календарем событий.");
+            };            
         }
 
     }
