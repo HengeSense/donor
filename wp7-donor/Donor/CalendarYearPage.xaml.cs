@@ -30,11 +30,6 @@ namespace Donor
                 this.Monthes.SelectedIndex = 2;
             }
             catch { };
-            try
-            {
-                //this.Monthes.IsLocked = true;
-            }
-            catch { };
 
             this.EventsListPrev.ItemsSource = App.ViewModel.Events.PrevMonthItems;
             this.EventsList.ItemsSource = App.ViewModel.Events.ThisMonthItems;
@@ -53,10 +48,7 @@ namespace Donor
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
-            this.Monthes.Title = DateTime.Now.Year.ToString();
-
-            var gl = GestureService.GetGestureListener(this.Monthes);
-            //l.Flick += new EventHandler<Microsoft.Phone.Controls.FlickGestureEventArgs>(GestureListener_Flick);
+            this.Monthes.Title = App.ViewModel.Events.CurrentMonth.Year.ToString();
 
             previndex = 2;
             this.Monthes.SelectedIndex = 2;
@@ -122,6 +114,9 @@ namespace Donor
                if (((itemindex > previndex) || ((itemindex == 0) && (previndex == 4))) && notback)
                 {
                     App.ViewModel.Events.CurrentMonth = App.ViewModel.Events.CurrentMonth.AddMonths(1);
+
+                    this.Monthes.Title = App.ViewModel.Events.CurrentMonth.Year.ToString();
+
                     previndex = itemindex;
                     switch (itemindex)
                     {
@@ -178,6 +173,9 @@ namespace Donor
                 else
                 {
                     App.ViewModel.Events.CurrentMonth = App.ViewModel.Events.CurrentMonth.AddMonths(-1);
+
+                    this.Monthes.Title = App.ViewModel.Events.CurrentMonth.Year.ToString();
+
                     previndex = itemindex;
                     switch (itemindex)
                     {
@@ -233,6 +231,27 @@ namespace Donor
                 };
             }
             catch { };
+        }
+
+        private void TodayButton_Click(object sender, EventArgs e)
+        {
+            previndex = 2;
+
+            App.ViewModel.Events.CurrentMonth = DateTime.Now;
+
+            try
+            {
+                this.Monthes.SelectedIndex = 2;
+            }
+            catch { };
+
+            this.EventsListPrev.ItemsSource = App.ViewModel.Events.PrevMonthItems;
+            this.EventsList.ItemsSource = App.ViewModel.Events.ThisMonthItems;
+            this.EventsListNext.ItemsSource = App.ViewModel.Events.NextMonthItems;
+
+            this.NextMonth.Header = App.ViewModel.Events.NextMonthString;
+            this.ThisMonth.Header = App.ViewModel.Events.CurrentMonthString;
+            this.PrevMonth.Header = App.ViewModel.Events.PrevMonthString;
         }
 
 
