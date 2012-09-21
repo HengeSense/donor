@@ -133,5 +133,6 @@ namespace Donor.ViewModels
         }
 
         public string Station_nid { get; set; }
+        public string Nid { get; set; }
     }
 }

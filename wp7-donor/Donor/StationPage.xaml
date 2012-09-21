@@ -117,7 +117,7 @@
                 </Grid>
             </controls:PanoramaItem>
 
-            <controls:PanoramaItem>
+            <controls:PanoramaItem Name="PanaramaAdsItem">
             	<controls:PanoramaItem.Header>
                     <TextBlock Style="{StaticResource Text70pxWhite}" 
 					Text="Объявления" Margin="0,30,0,0"/>

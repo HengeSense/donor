@@ -20,7 +20,7 @@ namespace Donor
         {
             InitializeComponent();
 
-            this.StationsSearchText.ItemsSource = App.ViewModel.Stations.Items;
+            this.StationsSearchText.ItemsSource = App.ViewModel.Stations.DistanceItems;
             this.StationsSearchText.FilterMode = AutoCompleteFilterMode.Contains;
             this.StationsSearchText.ItemFilter += SearchBank;
         }
@@ -57,7 +57,7 @@ namespace Donor
             this.StationsList.DataContext = App.ViewModel;
             if (App.ViewModel.Stations.IsFilter == false)
             {
-                this.StationsList.ItemsSource = App.ViewModel.Stations.Items;
+                this.StationsList.ItemsSource = App.ViewModel.Stations.DistanceItems;
             }
             else
             {
@@ -69,6 +69,7 @@ namespace Donor
                                                 (stations.RegionalRegistration == App.ViewModel.Stations.IsRegional)
                                                 ||
                                                 (stations.SaturdayWork == App.ViewModel.Stations.IsSaturdayWork))
+                                                orderby stations.Distance ascending
                                                 select stations;
             };
         }
@@ -82,6 +83,7 @@ namespace Donor
                 {
                     this.StationsList.ItemsSource = from stations in App.ViewModel.Stations.Items
                                                     where (stations.Title.ToLower().Contains(searchtext.ToLower()))
+                                                    orderby stations.Distance ascending
                                                     select stations;
                 }
                 else
@@ -94,6 +96,7 @@ namespace Donor
                                                         (stations.RegionalRegistration == App.ViewModel.Stations.IsRegional)
                                                         ||
                                                         (stations.SaturdayWork == App.ViewModel.Stations.IsSaturdayWork)))
+                                                    orderby stations.Distance ascending
                                                     select stations;
                 };
             }
@@ -102,7 +105,7 @@ namespace Donor
                 this.StationsList.DataContext = App.ViewModel;
                 if (App.ViewModel.Stations.IsFilter == false)
                 {
-                    this.StationsList.ItemsSource = App.ViewModel.Stations.Items;
+                    this.StationsList.ItemsSource = App.ViewModel.Stations.DistanceItems;
                 }
                 else
                 {
@@ -114,6 +117,7 @@ namespace Donor
                                                     (stations.RegionalRegistration == App.ViewModel.Stations.IsRegional)
                                                     ||
                                                     (stations.SaturdayWork == App.ViewModel.Stations.IsSaturdayWork)))
+                                                    orderby stations.Distance ascending
                                                     select stations;
                 };
             };

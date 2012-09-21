@@ -37,7 +37,16 @@ namespace Donor
                     _currentStation = App.ViewModel.Stations.Items.FirstOrDefault(c => c.objectId == _id.ToString());
                     DataContext = _currentStation;
 
-                    this.StationAds.ItemsSource = App.ViewModel.Ads.LoadStationAds(_currentStation.Nid.ToString());
+                    List<AdsViewModel> adsItems = App.ViewModel.Ads.LoadStationAds(_currentStation.Nid.ToString());
+                    if (adsItems.Count() > 0)
+                    {
+                        this.StationAds.ItemsSource = adsItems;
+                    }
+                    else
+                    {
+                        this.PanaramaAdsItem.Visibility = Visibility.Collapsed;
+                    };
+
                     App.ViewModel.Reviews.LoadReviewsForStation(_currentStation.Nid.ToString());
 
                     App.ViewModel.Reviews.ReviewsLoaded += new ReviewsListViewModel.ReviewsLoadedEventHandler(this.ReviewsLoaded);

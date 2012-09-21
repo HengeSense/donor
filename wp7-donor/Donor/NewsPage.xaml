@@ -12,7 +12,7 @@
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     SupportedOrientations="Portrait" Orientation="Portrait"
-    mc:Ignorable="d" d:DesignHeight="768" d:DesignWidth="480"
+    mc:Ignorable="d" d:DesignHeight="696" d:DesignWidth="480"
     shell:SystemTray.IsVisible="True" Loaded="PhoneApplicationPage_Loaded" Background="#FF211E1D">
 
 	<phone:PhoneApplicationPage.ApplicationBar>

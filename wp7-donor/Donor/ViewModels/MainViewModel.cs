@@ -29,6 +29,7 @@ using System.Globalization;
 using Microsoft.Phone.Scheduler;
 using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
+using Microsoft.Phone.Tasks;
 
 
 namespace Donor
@@ -392,6 +393,55 @@ namespace Donor
 
             };
             bw.RunWorkerAsync();            
+        }
+
+        public void SendToShare(string title, string link, string description, int length)
+        {
+            try
+            {
+                int length2 = length;
+                if (length2 > title.Length)
+                {
+                    length2 = title.Length - 1;
+                }
+                string _short_title = title.Substring(0, length2) + "...";
+
+                int length3 = length;
+                if (length3 > description.Length)
+                {
+                    length3 = description.Length - 1;
+                }
+                string _short = description.Substring(0, length3) + "...";
+
+                if ((length2 + length3) < length)
+                {
+                    this.ShareLink(_short_title, link, _short);
+                }
+                else
+                {
+                    this.ShareLink(_short_title, link, "");
+                };
+            }
+            catch
+            {
+            };
+        }
+
+        /// <summary>
+        /// Share link method
+        /// </summary>
+        /// <param name="title"></param>
+        /// <param name="link"></param>
+        /// <param name="message"></param>
+        public void ShareLink(string title, string link, string message)
+        {
+            if ((title != null) & (link != null))
+            {
+                ShareLinkTask shareLinkTask = new ShareLinkTask();
+                shareLinkTask.Title = title;
+                shareLinkTask.LinkUri = new Uri(link, UriKind.Absolute);
+                shareLinkTask.Show();
+            };
         }
 
         private void RemoveAgent(string name)

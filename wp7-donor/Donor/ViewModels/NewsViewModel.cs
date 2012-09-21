@@ -150,7 +150,16 @@ namespace Donor.ViewModels
                 return _outbody;
             }
         }
-        public string Url { get; set; }
+        public string Url
+        {
+            get
+            {
+                return "http://www.podari-zhizn.ru/main/node/" + this.Nid.ToString();
+            }
+            private set { }
+        }
+        public int Nid { get; set; }
+
 
         public string ShortBody {
             private set { }

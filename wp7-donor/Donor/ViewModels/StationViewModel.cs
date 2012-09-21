@@ -17,6 +17,7 @@ using Newtonsoft.Json;
 using MSPToolkit.Utilities;
 using System.Device.Location;
 using GART.Data;
+using System.Collections.Generic;
 
 namespace Donor.ViewModels
 {
@@ -160,7 +161,32 @@ namespace Donor.ViewModels
             }
         }
 
-        public ObservableCollection<StationViewModel> Items { get; set; }
+        private ObservableCollection<StationViewModel> _items;
+        public ObservableCollection<StationViewModel> Items
+        {
+            get
+            {
+                return _items;
+            }
+            set
+            {
+                _items = value;
+                NotifyPropertyChanged("DistanceItems");
+                NotifyPropertyChanged("Items");
+            }
+        }
+
+        public List<StationViewModel> DistanceItems
+        {
+            get
+            {
+                List<StationViewModel> distance = (from station in this.Items
+                        orderby station.Distance ascending
+                        select station).ToList();
+                return distance;
+            }
+            private set { }
+        }
     }
 
     public class LatLonItem

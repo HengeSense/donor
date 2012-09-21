@@ -47,7 +47,7 @@ namespace Donor
 
         private void ShareButton_Click(object sender, EventArgs e)
         {
-            //App.ViewModel.SendToShare(_currentNews.Title, _currentNews.Link, _currentNews.Description, 130);
+            App.ViewModel.SendToShare(_currentNews.Title, _currentNews.Url, _currentNews.ShortBody, 130);
         }
 
         private void AdvancedApplicationBarIconButton_Click(object sender, EventArgs e)
