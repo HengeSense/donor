@@ -53,8 +53,6 @@ namespace Donor
 
                         this.PageTitle.Text = CultureInfo.CurrentCulture.DateTimeFormat.MonthNames[App.ViewModel.Events.CurrentMonth.Month - 1];
                         this.ApplicationTitle.Text = App.ViewModel.Events.CurrentMonth.Year.ToString();
-                        //right = true;
-                        //left = false;
                     }
                     catch
                     {
@@ -72,8 +70,6 @@ namespace Donor
 
                         this.PageTitle.Text = CultureInfo.CurrentCulture.DateTimeFormat.MonthNames[App.ViewModel.Events.CurrentMonth.Month - 1];
                         this.ApplicationTitle.Text = App.ViewModel.Events.CurrentMonth.Year.ToString();
-                        //right = false;
-                        //left = true;
                     }
                     catch
                     {

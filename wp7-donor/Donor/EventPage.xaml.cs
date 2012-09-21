@@ -109,7 +109,7 @@ namespace Donor
         {
             try
             {
-                NavigationService.Navigate(new Uri("/MapPage.xaml?id=" + _currentEvent.Id, UriKind.Relative));
+                NavigationService.Navigate(new Uri("/MapPage.xaml"));
             }
             catch
             {

@@ -65,16 +65,17 @@
                     <StackPanel>
                     	<my:VotesControl x:Name="rate" 
 						HorizontalAlignment="Left"/>
-                        <TextBlock TextWrapping="Wrap" 
-						Text="Адрес" 
-						Style="{StaticResource Text36pxB9A194}" />
-                        <TextBlock TextWrapping="Wrap" 
-						Text="{Binding Adress}"
-						Style="{StaticResource Text24pxDF8D4B}"/>
-                        <TextBlock TextWrapping="Wrap" 						
-						Text="Телефон" 
-						Style="{StaticResource Text36pxB9A194}"/>
-                        <TextBlock TextWrapping="Wrap" 
+<StackPanel Orientation="Horizontal">
+<TextBlock TextWrapping="Wrap" Text="Адрес" 			Style="{StaticResource Text36pxB9A194}" Tap="TextBlock_Tap_1" /> 
+<Image Height="50" Source="images/ic_map.png" Stretch="Fill" Width="50" Tap="Image_Tap" />
+</StackPanel>              
+                        
+<TextBlock TextWrapping="Wrap" 
+Text="{Binding Adress}"	Style="{StaticResource Text24pxDF8D4B}"/>
+<TextBlock TextWrapping="Wrap" 	Text="Телефон" 
+Style="{StaticResource Text36pxB9A194}"/>
+                        
+<TextBlock TextWrapping="Wrap" 
 						Text="{Binding Phone}"
 						Style="{StaticResource Text24pxDF8D4B}"/>
                         <TextBlock 

@@ -114,5 +114,27 @@ namespace Donor
             {
             };
         }
+
+        private void Image_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            try
+            {
+                NavigationService.Navigate(new Uri("/MapPage.xaml?id=" + _currentStation.Nid, UriKind.Relative));
+            }
+            catch
+            {
+            };
+        }
+
+        private void TextBlock_Tap_1(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            try
+            {
+                NavigationService.Navigate(new Uri("/MapPage.xaml?id=" + _currentStation.Nid, UriKind.Relative));
+            }
+            catch
+            {
+            };
+        }
     }
 }

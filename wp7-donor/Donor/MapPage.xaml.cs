@@ -27,8 +27,8 @@ namespace Donor
             InitializeComponent();
         }
 
-        private string _eventid_current;
-        private EventViewModel _currentEvent;
+        private string _stationid_current;
+        private StationViewModel _currentStation = null;
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
@@ -37,9 +37,9 @@ namespace Donor
                 try
                 {
                     string _eventid = this.NavigationContext.QueryString["id"];
-                    _eventid_current = _eventid;
-                    _currentEvent = App.ViewModel.Events.Items.FirstOrDefault(c => c.Id == _eventid.ToString());
-                    DataContext = _currentEvent;
+                    _stationid_current = _eventid;
+                    _currentStation = App.ViewModel.Stations.Items.FirstOrDefault(c => c.Nid.ToString() == _stationid_current.ToString());
+                    DataContext = _currentStation;
                 }
                 catch { };
             };
@@ -47,26 +47,50 @@ namespace Donor
 
             ARStation mapitem = new ARStation();
             GeoCoordinate currentLocation = new GeoCoordinate(Convert.ToDouble(App.ViewModel.Stations.Latitued.ToString()), Convert.ToDouble(App.ViewModel.Stations.Longitude.ToString()));
-            //mapitem.Content = new Pushpin() { Location = currentLocation, Content = "Тут" };
-            map1.Children.Add(new Pushpin() { Location = currentLocation, Content = "Тут" });
+            
+            map1.Children.Add(new Pushpin() { Location = currentLocation, Content = "Я" });
+            map1.ZoomLevel = 14;
+            if (_currentStation == null)
+            {
+                map1.Center = currentLocation;
+            }
+            else
+            {
+                map1.Center = new GeoCoordinate(Convert.ToDouble(_currentStation.Lat.ToString()), Convert.ToDouble(_currentStation.Lon.ToString()));
+            };
 
             mapitem.GeoLocation = currentLocation;
 
-            mapitem.Title = "Тут";
-            mapitem.Adress = "Адрес";
+            mapitem.Title = "Я";
+            mapitem.Adress = "Текущее положение";
             items.Add(mapitem);
 
-            foreach (var item in App.ViewModel.Stations.Items)
+            if (_currentStation == null)
+            {
+                foreach (var item in App.ViewModel.Stations.Items)
+                {
+                    mapitem = new ARStation();
+                    mapitem.GeoLocation = new GeoCoordinate(Convert.ToDouble(item.Lat.ToString()), Convert.ToDouble(item.Lon.ToString()));
+                    mapitem.Content = item.Title;
+                    map1.Children.Add(new Pushpin() { Location = mapitem.GeoLocation, Content = item.Title });
+
+                    mapitem.Title = item.Title;
+                    mapitem.Adress = item.Adress;
+                    items.Add(mapitem);
+                };
+            }
+            else
             {
                 mapitem = new ARStation();
-                mapitem.GeoLocation = new GeoCoordinate(Convert.ToDouble(item.Lat.ToString()), Convert.ToDouble(item.Lon.ToString()));
-                mapitem.Content = item.Title;
-                map1.Children.Add(new Pushpin() { Location = mapitem.GeoLocation, Content = item.Title });
+                mapitem.GeoLocation = new GeoCoordinate(Convert.ToDouble(_currentStation.Lat.ToString()), Convert.ToDouble(_currentStation.Lon.ToString()));
+                mapitem.Content = _currentStation.Title;
+                map1.Children.Add(new Pushpin() { Location = mapitem.GeoLocation, Content = _currentStation.Title });
 
-                mapitem.Title = item.Title;
-                mapitem.Adress = item.Adress;
+                mapitem.Title = _currentStation.Title;
+                mapitem.Adress = _currentStation.Adress;
                 items.Add(mapitem);
             };
+
             ARDisplay.ARItems = items;
             
         }
