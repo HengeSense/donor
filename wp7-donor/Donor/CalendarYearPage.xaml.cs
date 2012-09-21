@@ -53,6 +53,8 @@ namespace Donor
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
+            this.Monthes.Title = DateTime.Now.Year.ToString();
+
             var gl = GestureService.GetGestureListener(this.Monthes);
             //l.Flick += new EventHandler<Microsoft.Phone.Controls.FlickGestureEventArgs>(GestureListener_Flick);
 

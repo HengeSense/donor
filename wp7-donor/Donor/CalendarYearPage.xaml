@@ -37,7 +37,7 @@
         </Grid.Background>
         <!--Pivot Control-->
         <toolkit:LockablePivot Name="Monthes" 
-		Title="{Binding Path=Events.CurrentDate}" 
+		Title="{Binding Path=Events.CurrentDateYear}" 
 		Loaded="Pivot_Loaded" SelectionChanged="Monthes_SelectionChanged">
             <!-- SelectionChanged="Pivot_SelectionChanged" -->
         	<controls:Pivot.Background>

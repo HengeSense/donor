@@ -39,7 +39,16 @@ namespace Donor.ViewModels
                     ObservableCollection<AdsViewModel> adslist1 = new ObservableCollection<AdsViewModel>();
                     JObject o = JObject.Parse(response.Content.ToString());
                     adslist1 = JsonConvert.DeserializeObject<ObservableCollection<AdsViewModel>>(o["results"].ToString());
-                    this.Items = adslist1;
+
+                    var sortedAds = (from ads in adslist1
+                                     orderby ads.CreatedTimestamp descending
+                                     select ads);
+                    App.ViewModel.Ads.Items = new ObservableCollection<AdsViewModel>();
+                    foreach (var item in sortedAds)
+                    {
+                        App.ViewModel.Ads.Items.Add(item);
+                    }
+
                     //save to isolated storage
                     IsolatedStorageHelper.SaveSerializableObject<ObservableCollection<AdsViewModel>>(App.ViewModel.Ads.Items, "ads.xml");
                 }
@@ -63,7 +72,9 @@ namespace Donor.ViewModels
         private ObservableCollection<AdsViewModel> _items;
         public ObservableCollection<AdsViewModel> Items
         {
-            get { return _items; }
+            get {
+                return _items; 
+            }
             set
             {
                 if (_items != value)
@@ -131,6 +142,20 @@ namespace Donor.ViewModels
                 return created.ToShortDateString();
             }
         }
+
+        public Int64 CreatedTimestamp { get; set; }
+        public string Created
+        {
+            get
+            {
+                return _created;
+            }
+            set
+            {
+                _created = value;
+            }
+        }
+        private string _created = DateTime.Now.ToString();
 
         public string Station_nid { get; set; }
         public string Nid { get; set; }

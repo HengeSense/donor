@@ -451,6 +451,18 @@ namespace Donor.ViewModels
             }
         }
 
+        public string CurrentDateYear
+        {
+            get
+            {
+                return DateTime.Now.Year.ToString();
+                //CultureInfo.CurrentCulture.DateTimeFormat.LongDatePattern.;
+            }
+            private set
+            {
+            }
+        }
+
         public string CurrentMonthString {
             get {
                 return CultureInfo.CurrentCulture.DateTimeFormat.MonthNames[
