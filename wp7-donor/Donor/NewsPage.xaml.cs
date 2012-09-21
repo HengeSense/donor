@@ -53,7 +53,7 @@ namespace Donor
         private void AdvancedApplicationBarIconButton_Click(object sender, EventArgs e)
         {
             WebBrowserTask webTask = new WebBrowserTask();
-            //webTask.Uri = new Uri(_currentNews.Link);
+            webTask.Uri = new Uri(_currentNews.Url);
             webTask.Show();
         }
     }
