@@ -22,7 +22,6 @@ namespace Donor
             DataContext = App.ViewModel;
             this.Calendar1.Items = App.ViewModel.Events.Items;
 
-            //show calendar control for current month, selected\changed for example in CalendarYearPage
             this.PageTitle.Text = CultureInfo.CurrentCulture.DateTimeFormat.MonthNames[App.ViewModel.Events.CurrentMonth.Month - 1];
             this.ApplicationTitle.Text = App.ViewModel.Events.CurrentMonth.Year.ToString();
         }
@@ -34,6 +33,64 @@ namespace Donor
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
+            var gl = GestureService.GetGestureListener(this.Calendar1);
+            gl.Flick += new EventHandler<Microsoft.Phone.Controls.FlickGestureEventArgs>(GestureListener_Flick);
         }
+
+        private void GestureListener_Flick(object sender, Microsoft.Phone.Controls.FlickGestureEventArgs e)
+        {
+            if (e.Direction == System.Windows.Controls.Orientation.Horizontal)
+            {
+                if (e.HorizontalVelocity < 0)
+                {
+                    try
+                    {
+                        App.ViewModel.Events.CurrentMonth = App.ViewModel.Events.CurrentMonth.AddMonths(1);
+
+                        this.Calendar1.Items = App.ViewModel.Events.Items;
+
+                        this.Calendar1.UpdateCalendar();
+
+                        this.PageTitle.Text = CultureInfo.CurrentCulture.DateTimeFormat.MonthNames[App.ViewModel.Events.CurrentMonth.Month - 1];
+                        this.ApplicationTitle.Text = App.ViewModel.Events.CurrentMonth.Year.ToString();
+                        //right = true;
+                        //left = false;
+                    }
+                    catch
+                    {
+                    };
+                }
+                else
+                {
+                    try
+                    {
+                        App.ViewModel.Events.CurrentMonth = App.ViewModel.Events.CurrentMonth.AddMonths(-1);
+
+                        this.Calendar1.Items = App.ViewModel.Events.Items;
+
+                        this.Calendar1.UpdateCalendar();
+
+                        this.PageTitle.Text = CultureInfo.CurrentCulture.DateTimeFormat.MonthNames[App.ViewModel.Events.CurrentMonth.Month - 1];
+                        this.ApplicationTitle.Text = App.ViewModel.Events.CurrentMonth.Year.ToString();
+                        //right = false;
+                        //left = true;
+                    }
+                    catch
+                    {
+                    };
+                };
+            }
+            else
+            {
+                if (e.VerticalVelocity < 0)
+                {
+                }
+                else
+                {
+                }
+            };
+        }
+
+
     }
 }
