@@ -85,8 +85,8 @@
 						Style="{StaticResource Text36pxB9A194}" 
 						TextWrapping="Wrap"/>
                         <TextBlock TextWrapping="Wrap" 
-						Text="{Binding Url}"
-						Style="{StaticResource Text24pxDF8D4B}"/>
+						Text="{Binding NidUrl}"
+						Style="{StaticResource Text24pxDF8D4B}" Tap="TextBlock_Tap" />
                     </StackPanel>
                 </Grid>
             </controls:PanoramaItem>

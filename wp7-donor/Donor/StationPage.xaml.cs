@@ -12,6 +12,7 @@ using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using Donor.ViewModels;
 using System.Collections.ObjectModel;
+using Microsoft.Phone.Tasks;
 
 namespace Donor
 {
@@ -99,6 +100,19 @@ namespace Donor
         private void VotesControl_VoteChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
 
+        }
+
+        private void TextBlock_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            try
+            {
+                WebBrowserTask webbrowser = new WebBrowserTask();
+                webbrowser.Uri = new Uri(_currentStation.NidUrl);
+                webbrowser.Show();
+            }
+            catch
+            {
+            };
         }
     }
 }

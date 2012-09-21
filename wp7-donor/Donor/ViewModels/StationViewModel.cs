@@ -307,6 +307,12 @@ namespace Donor.ViewModels
             set { _url = value; }
         }
 
+        public string NidUrl
+        {
+            get { return "http://www.podari-zhizn.ru/main/node/"+this.Nid.ToString(); }
+            private set {}
+        }
+
         /// <summary>
         /// Station description
         /// </summary>
