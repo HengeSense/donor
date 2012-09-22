@@ -208,13 +208,24 @@ namespace Donor
 
         public void SaveUserToStorage()
         {
-            IsolatedStorageHelper.SaveSerializableObject<DonorUser>(App.ViewModel.User, "user.xml");
+            try
+            {
+                IsolatedStorageHelper.SaveSerializableObject<DonorUser>(App.ViewModel.User, "user.xml");
+            }
+            catch
+            {
+            }
         }
 
         public void SaveSettingsToStorage()
         {
-            IsolatedStorageHelper.SaveSerializableObject<SettingsViewModel>(App.ViewModel.Settings, "settings.xml");
+            try
+            {
+                IsolatedStorageHelper.SaveSerializableObject<SettingsViewModel>(App.ViewModel.Settings, "settings.xml");
+            }
+            catch { };
         }
+
         public void LoadSettingsFromStorage()
         {
             try
@@ -225,7 +236,11 @@ namespace Donor
             catch
             {
                 this.Settings = new SettingsViewModel();
-                IsolatedStorageHelper.SaveSerializableObject<SettingsViewModel>(this.Settings, "settings.xml");
+                try
+                {
+                    IsolatedStorageHelper.SaveSerializableObject<SettingsViewModel>(this.Settings, "settings.xml");
+                }
+                catch { };
                 //App.ViewModel.SaveSettingsToStorage();
                 IsSettings = false;                
             };

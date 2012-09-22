@@ -65,7 +65,7 @@
             <TextBlock Text="Место"
 			 Style="{StaticResource Text24px847168}" Margin="12,0,0,0"/>
             <TextBox Name="Place" Text="{Binding Place, Mode=TwoWay}"
-			Style="{StaticResource TextBox1}"/>
+			Style="{StaticResource TextBoxStyle1}"/>
                 <StackPanel Name="Reminder" Visibility="Collapsed">
                     <TextBlock Text="Напоминание" Style="{StaticResource Text24px847168}"/>
                     <toolkit:ListPicker  x:Name="ReminderPeriod" 
@@ -85,7 +85,7 @@
 					Style="{StaticResource Text24px847168}"
 					Margin="12,0,0,0"/>
             <TextBox Text="{Binding Description, Mode=TwoWay}" 
-			Style="{StaticResource TextBox1}"
+			Style="{StaticResource TextBoxStyle1}"
 			Name="Description" />
         </StackPanel>
             </ScrollViewer>

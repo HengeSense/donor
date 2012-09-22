@@ -12,19 +12,19 @@
     
     <Grid x:Name="LayoutRoot">
         <StackPanel Margin="0,15,0,0">
-            <toolkit:WrapPanel  Background="#FF005258" ItemHeight="35" ItemWidth="65">
-                <TextBlock Width="65" TextAlignment="Center"
+            <toolkit:WrapPanel  Background="#FF005258" ItemHeight="35" ItemWidth="68">
+                <TextBlock Width="68" TextAlignment="Center"
                 Style="{StaticResource Text16pxDEAD86}" Text="Пн" 
 				VerticalAlignment="Center"/>
-                <TextBlock Width="65" 
+                <TextBlock Width="68" 
 				VerticalAlignment="Center" TextAlignment="Center" Style="{StaticResource Text16pxDEAD86}" Text="Вт" HorizontalAlignment="Center"/>
-                <TextBlock Width="65" VerticalAlignment="Center" TextAlignment="Center" Style="{StaticResource Text16pxDEAD86}" Text="Ср" HorizontalAlignment="Center"/>
-                <TextBlock Width="65" VerticalAlignment="Center" TextAlignment="Center" Style="{StaticResource Text16pxDEAD86}" Text="Чт"/>
-                <TextBlock Width="65" VerticalAlignment="Center" TextAlignment="Center" Style="{StaticResource Text16pxDEAD86}" Text="Пт"/>
-                <TextBlock Width="65" VerticalAlignment="Center" TextAlignment="Center" Style="{StaticResource Text16pxDEAD86}" Text="Сб"/>
-                <TextBlock Width="65" VerticalAlignment="Center" TextAlignment="Center" Style="{StaticResource Text16pxDEAD86}" Text="Вс"/>
+                <TextBlock Width="68" VerticalAlignment="Center" TextAlignment="Center" Style="{StaticResource Text16pxDEAD86}" Text="Ср" HorizontalAlignment="Center"/>
+                <TextBlock Width="68" VerticalAlignment="Center" TextAlignment="Center" Style="{StaticResource Text16pxDEAD86}" Text="Чт"/>
+                <TextBlock Width="68" VerticalAlignment="Center" TextAlignment="Center" Style="{StaticResource Text16pxDEAD86}" Text="Пт"/>
+                <TextBlock Width="68" VerticalAlignment="Center" TextAlignment="Center" Style="{StaticResource Text16pxDEAD86}" Text="Сб"/>
+                <TextBlock Width="68" VerticalAlignment="Center" TextAlignment="Center" Style="{StaticResource Text16pxDEAD86}" Text="Вс"/>
             </toolkit:WrapPanel>
-        <toolkit:WrapPanel Background="White" ItemHeight="65" ItemWidth="65" Name="CalendarDays">
+        <toolkit:WrapPanel Background="White" ItemHeight="68" ItemWidth="68" Name="CalendarDays">
         </toolkit:WrapPanel>
         </StackPanel>
     </Grid>

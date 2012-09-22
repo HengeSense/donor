@@ -13,6 +13,25 @@
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d" d:DesignHeight="768" d:DesignWidth="480"
     shell:SystemTray.IsVisible="True" Loaded="PhoneApplicationPage_Loaded" BorderBrush="#FF271B16">
+	<phone:PhoneApplicationPage.Resources>
+        <Storyboard x:Name="ToLeft">
+        	<DoubleAnimation
+            Storyboard.TargetName="Calendar1"
+            Storyboard.TargetProperty="Left"
+            To="100" Duration="0:0:10" AutoReverse="True" />
+        </Storyboard>
+
+        <Storyboard x:Name="fadeIn">
+            <DoubleAnimation Storyboard.TargetName="Calendar1"
+                         Storyboard.TargetProperty="Opacity" From="0.0"
+                         To="1.0" Duration="0:0:1" />
+        </Storyboard>
+        <Storyboard x:Name="fadeOut">
+            <DoubleAnimation Storyboard.TargetName="Calendar1"
+                         Storyboard.TargetProperty="Opacity" From="1.0"
+                         To="0.0" Duration="0:0:1" />
+        </Storyboard>
+    </phone:PhoneApplicationPage.Resources>
 
 	<phone:PhoneApplicationPage.Background>
             <ImageBrush ImageSource="images/bg_04.png"/>
@@ -45,9 +64,11 @@
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
-        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-            <my:MonthCalendar x:Name="Calendar1" Margin="0,10,0,0" />
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="0,0,0,0">
+            <my:MonthCalendar x:Name="Calendar1" Margin="0,0,0,0"/>
         </Grid>
     </Grid>
+
+
 
 </phone:PhoneApplicationPage>

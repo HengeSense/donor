@@ -392,6 +392,24 @@ namespace Donor.ViewModels
             }
         }
 
+        public int BloodGiveCount {
+        get {
+            if (App.ViewModel.User.IsLoggedIn)
+            {
+                var _selected_user_items = (from item in this.Items
+                                            where (item.UserId == App.ViewModel.User.objectId) || ((item.Type != "1"))
+                                            orderby item.Date descending
+                                            select item);
+                return _selected_user_items.Count();
+            }
+            else
+            {
+                return 0;
+            };
+        }
+        private set {}
+        }
+
         public void WeekItemsUpdated() {
             this.NotifyPropertyChanged("WeekItems");
         }

@@ -69,8 +69,8 @@ namespace Donor.ViewModels
 
             client.ExecuteAsync(request, response =>
             {
-                //try
-                //{
+                try
+                {
                     ObservableCollection<StationViewModel> eventslist1 = new ObservableCollection<StationViewModel>();
                     JObject o = JObject.Parse(response.Content.ToString());
                     foreach (var item in o["results"])
@@ -143,10 +143,10 @@ namespace Donor.ViewModels
 
                     //save to isolated storage
                     IsolatedStorageHelper.SaveSerializableObject<ObservableCollection<StationViewModel>>(App.ViewModel.Stations.Items, "stations.xml");
-                //}
-                //catch
-                //{
-                //};
+                }
+                catch
+                {
+                };
                 this.NotifyPropertyChanged("Items");
             });
         }

@@ -41,8 +41,10 @@ namespace Donor
         {
             if (e.Direction == System.Windows.Controls.Orientation.Horizontal)
             {
+                //this.fadeOut.Begin();
                 if (e.HorizontalVelocity < 0)
                 {
+                   
                     try
                     {
                         App.ViewModel.Events.CurrentMonth = App.ViewModel.Events.CurrentMonth.AddMonths(1);
@@ -75,6 +77,7 @@ namespace Donor
                     {
                     };
                 };
+                //this.fadeIn.Begin();
             }
             else
             {

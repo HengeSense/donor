@@ -121,6 +121,17 @@ C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\Bin\Debug\zh-Hant\System.Wi
 C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\Bin\Debug\GART.dll
 C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\Bin\Debug\Microsoft.Phone.Controls.Maps.dll
 C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\Bin\Debug\Microsoft.Phone.Controls.Maps.xml
+C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\Bin\Debug\Microsoft.Expression.Interactions.dll
+C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\Bin\Debug\Microsoft.Expression.Interactions.xml
+C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\Bin\Debug\de\Microsoft.Expression.Interactions.resources.dll
+C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\Bin\Debug\en\Microsoft.Expression.Interactions.resources.dll
+C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\Bin\Debug\es\Microsoft.Expression.Interactions.resources.dll
+C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\Bin\Debug\fr\Microsoft.Expression.Interactions.resources.dll
+C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\Bin\Debug\it\Microsoft.Expression.Interactions.resources.dll
+C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\Bin\Debug\ja\Microsoft.Expression.Interactions.resources.dll
+C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\Bin\Debug\ko\Microsoft.Expression.Interactions.resources.dll
+C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\Bin\Debug\zh-Hans\Microsoft.Expression.Interactions.resources.dll
+C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\Bin\Debug\zh-Hant\Microsoft.Expression.Interactions.resources.dll
 C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\obj\Debug\App.g.i.cs
 C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\obj\Debug\AdsList.g.i.cs
 C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\obj\Debug\AdsPage.g.i.cs
