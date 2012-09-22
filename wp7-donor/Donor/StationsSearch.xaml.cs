@@ -33,10 +33,8 @@ namespace Donor
         {
             if (value != null)
             {
-                if ((value as StationViewModel).Title.ToString().ToLower().Contains(search))
-                    return true;
+                //if ((value as StationViewModel).Title.ToString().ToLower().Contains(search)) return true;
             }
-            // If no match, return false.
             return false;
         }
 
