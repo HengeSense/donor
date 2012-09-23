@@ -134,15 +134,12 @@
                 
 				<ScrollViewer>
                 <StackPanel>
-                <ListBox Margin="0,15,-12,0" 
-				ItemsSource="{Binding Events.WeekItems}" 
-				ScrollViewer.VerticalScrollBarVisibility="Disabled"
-				Name="EventsList" SelectionChanged="EventsList_SelectionChanged" Loaded="EventsList_Loaded" BorderThickness="0">
+                <ListBox Margin="0,15,-12,0" ItemsSource="{Binding Events.WeekItems}" ScrollViewer.VerticalScrollBarVisibility="Disabled" Name="EventsList" SelectionChanged="EventsList_SelectionChanged" Loaded="EventsList_Loaded" BorderThickness="0">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal" Margin="0,0,0,17">          
                                 <StackPanel>
-                                	<StackPanel Orientation="Horizontal">                              		
+                                	<StackPanel Orientation="Horizontal">        
                                     <TextBlock Text="{Binding ShortDate}" 
 									TextWrapping="Wrap" 
 									Style="{StaticResource 
@@ -250,10 +247,10 @@
 						Style="{StaticResource Text36pxCBB2A3}"/>
                             <TextBlock Text="{Binding User.OutBloodGroup}" Name="ProfileBloodGroup" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
                     </StackPanel>
-                    <StackPanel Margin="0,10" Visibility="Collapsed">
+                    <StackPanel Margin="0,10">
                         <TextBlock Text="Записано кроводач" TextWrapping="Wrap" 
 						Style="{StaticResource Text36pxCBB2A3}"/>
-                            <TextBlock Text="{Binding Events.GivedBlood}" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource Text24pxDF8D4B}"/>
+                            <TextBlock Text="{Binding Events.GivedBlood}" TextWrapping="Wrap" Margin="12,-6,12,0" Name="GivedBlood" Style="{StaticResource Text24pxDF8D4B}"/>
                     </StackPanel>
 					<Button 
 					FontSize="24"

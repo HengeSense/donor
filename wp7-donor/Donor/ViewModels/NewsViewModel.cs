@@ -34,7 +34,7 @@ namespace Donor.ViewModels
             request.Parameters.Clear();
             request.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
             request.AddHeader("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
-            string strJSONContent = "limit=100\norder=-createdTimestamp";
+            //string strJSONContent = "limit=100\norder=-createdTimestamp";
             //request.AddBody(strJSONContent);
 
             client.ExecuteAsync(request, response =>

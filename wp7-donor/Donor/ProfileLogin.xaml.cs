@@ -291,7 +291,6 @@ namespace Donor
                 {
                     this.LoadingBar.IsIndeterminate = false;
                     JObject o = JObject.Parse(response.Content.ToString());
-                    //MessageBox.Show(response.Content.ToString());
                     if (o["error"] == null)
                     {
 
@@ -560,56 +559,8 @@ namespace Donor
         private void DeleteUserButton_Click(object sender, EventArgs e)
         {
             App.ViewModel.User.IsLoggedIn = false;
+            App.ViewModel.Events.UpdateItems();
             NavigationService.GoBack();
-			///
-			/// User delete from service
-			/// 
-			/*
-            var client = new RestClient("https://api.parse.com");
-            var request = new RestRequest("1/users/" + App.ViewModel.User.objectId.ToString(), Method.DELETE);
-            request.AddHeader("Accept", "application/json");
-            request.Parameters.Clear();            
-            request.AddHeader("X-Parse-Application-Id", "EIpakVdZblHedhqgxMgiEVnIGCRGvWdy9v8gkKZu");
-            request.AddHeader("X-Parse-REST-API-Key", "wPvwRKxX2b2vyrRprFwIbaE5t3kyDQq11APZ0qXf");
-            request.AddHeader("X-Parse-Session-Token", App.ViewModel.User.sessionToken);
-            request.AddHeader("Content-Type", "application/json");
-
-            this.LoadingBar.IsIndeterminate = true;
-
-            client.ExecuteAsync(request, response =>
-            {
-                this.LoadingBar.IsIndeterminate = false;
-                try
-                {
-                    JObject o = JObject.Parse(response.Content.ToString());
-                    if (o["error"] == null)
-                    {
-                        MessageBox.Show("Пользователь удален.");
-                        App.ViewModel.User = new DonorUser();
-
-                        this.EditProfile.Visibility = Visibility.Collapsed;
-
-                        this.AppBar.IsVisible = false;
-
-                        this.CancelEditProfileButton.Visibility = Visibility.Collapsed;
-                        this.SaveEditProfileButton.Visibility = Visibility.Collapsed;
-
-                        this.EditButton.Visibility = Visibility.Visible;
-                        this.DeleteUserButton.Visibility = Visibility.Visible;
-
-                        this.RegisterForm.Visibility = Visibility.Collapsed;
-                        this.LoginForm.Visibility = Visibility.Visible;
-                        this.UserProfile.Visibility = Visibility.Collapsed;
-                    }
-                    else
-                    {
-                        MessageBox.Show(response.Content.ToString());
-                    };
-                }
-                catch
-                {
-                };
-            });*/
         }
 
         private void Check_Checked(object sender, RoutedEventArgs e)

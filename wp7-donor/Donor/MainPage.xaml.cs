@@ -41,6 +41,7 @@ namespace Donor
             {
                 this.LoginForm.Visibility = Visibility.Collapsed;
                 this.UserProfile.Visibility = Visibility.Visible;
+                this.GivedBlood.Text = App.ViewModel.User.GivedBlood.ToString();
             }
             else
             {
@@ -115,6 +116,7 @@ namespace Donor
                         this.ProfileName.Text = App.ViewModel.User.Name.ToString();
                         this.ProfileSex.Text = App.ViewModel.User.OutSex.ToString();
                         this.ProfileBloodGroup.Text = App.ViewModel.User.OutBloodGroup.ToString();
+                        this.GivedBlood.Text = App.ViewModel.User.GivedBlood.ToString();
                     }
                     catch { };
                     this.UserProfile.Visibility = Visibility.Visible;
@@ -189,13 +191,13 @@ namespace Donor
                     {
                         this.ProfileName.Text = App.ViewModel.User.Name.ToString();
                         this.ProfileSex.Text = App.ViewModel.User.OutSex.ToString();
-                        this.ProfileBloodGroup.Text = App.ViewModel.User.OutBloodGroup.ToString();                       
+                        this.ProfileBloodGroup.Text = App.ViewModel.User.OutBloodGroup.ToString();
+                        this.GivedBlood.Text = App.ViewModel.User.GivedBlood.ToString();
                     }
                     catch { };
                 }
                 else
                 {
-                    //MessageBox.Show("Ошибка входа: " + o["error"].ToString());
                     App.ViewModel.User.IsLoggedIn = false;
 
                     this.LoginForm.Visibility = Visibility.Visible;
