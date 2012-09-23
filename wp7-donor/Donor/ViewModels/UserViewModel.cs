@@ -99,6 +99,16 @@ namespace Donor.ViewModels
             }
         }
 
+        public string NearestBloodGive {
+            private set
+            {
+            }
+            get
+            {
+                return App.ViewModel.Events.UserItems.OrderBy(c => c.Date).FirstOrDefault().ShortDate.ToString();
+            }
+        }
+
         public string OutBloodRh
         {
             private set { }
@@ -106,8 +116,7 @@ namespace Donor.ViewModels
             {
                 string outstr = "";
                 switch (this.BloodGroup)
-                {
-                    // (0 – I, 1 – II, 2 – III, 3 – IV)                    
+                {                
                     case 0:
                         outstr = "RH+";
                         break;
