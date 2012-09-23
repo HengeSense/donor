@@ -138,10 +138,7 @@ namespace Donor.ViewModels
                         };
                         eventslist1.Add(station);
                     };
-                    //eventslist1 = JsonConvert.DeserializeObject<ObservableCollection<StationViewModel>>(o["results"].ToString());
                     this.Items = eventslist1;
-
-                    //save to isolated storage
                     IsolatedStorageHelper.SaveSerializableObject<ObservableCollection<StationViewModel>>(App.ViewModel.Stations.Items, "stations.xml");
                 }
                 catch
@@ -276,9 +273,6 @@ namespace Donor.ViewModels
         {
             get
             {
-                //App.ViewModel.Stations.Latitued;
-                //App.ViewModel.Stations.Longitude;
-
                 double distanceInMeter;
 
                 GeoCoordinate currentLocation = new GeoCoordinate(Convert.ToDouble(App.ViewModel.Stations.Latitued.ToString()), Convert.ToDouble(App.ViewModel.Stations.Longitude.ToString()));

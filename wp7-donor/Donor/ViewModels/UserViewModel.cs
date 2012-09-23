@@ -10,16 +10,15 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using System.ComponentModel;
 using MSPToolkit.Utilities;
+using System.Linq;
 //using Parse;
 
 namespace Donor.ViewModels
 {
     public class UserViewModel
     {
-
     }
 
-    //could also implement IParseObject (in addition to IParseUser)
     public class DonorUser: INotifyPropertyChanged
     {
         public DonorUser()
@@ -32,6 +31,7 @@ namespace Donor.ViewModels
         public string Name { get { return _name; } set { _name = value; NotifyPropertyChanged("Name"); } }
         private string _password;
         public string Password { get { return _password; } set { _password = value; NotifyPropertyChanged("Password"); } }
+
 
         public DateTime? UpdatedAt { get; set; }
         public DateTime? CreatedAt { get; set; }
@@ -55,6 +55,19 @@ namespace Donor.ViewModels
         public int BloodGroup { get; set; }
         public int BloodRh { get; set; }
         public int Sex { get; set; }
+
+        public int GivedBlood
+        {
+            private set { }
+            get
+            {
+                int gived = 0;
+                gived = (from item in App.ViewModel.Events.UserItems
+                         where item.Type == "1"
+                        select item).Count();
+                return gived;
+            }
+        }
 
         public string OutSex { private set { }
             get {

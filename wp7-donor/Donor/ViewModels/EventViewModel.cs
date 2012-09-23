@@ -53,6 +53,11 @@ namespace Donor.ViewModels
         }
 
         public string Image { get; set; }
+
+        /// <summary>
+        /// Type variants
+        /// Тип события (0 – Анализ, 1 – Сдача крови)
+        /// </summary>
         public string Type { get; set; }
         public string GiveType { get; set; }
         public string Place { get; set; }
