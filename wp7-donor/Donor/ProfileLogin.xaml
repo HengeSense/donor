@@ -116,7 +116,7 @@
                             <TextBlock Text="Группа крови" 
 							TextWrapping="Wrap" 
 							Style="{StaticResource Text36pxCBB2A3}"/>
-                            <TextBlock Text="{Binding User.BloodGroup}" 
+                            <TextBlock Text="{Binding User.OutBloodDataString}" 
 							Name="ProfileBloodGroup" TextWrapping="Wrap" 
 							Margin="12,-6,12,0" 
 							Style="{StaticResource Text24pxDF8D4B}"/>

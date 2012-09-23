@@ -88,6 +88,40 @@ namespace Donor.ViewModels
             }
         }
 
+        public string OutBloodDataString
+        {
+            private set
+            {
+            }
+            get
+            {
+                return this.OutBloodGroup + " " + this.OutBloodRh;
+            }
+        }
+
+        public string OutBloodRh
+        {
+            private set { }
+            get
+            {
+                string outstr = "";
+                switch (this.BloodGroup)
+                {
+                    // (0 – I, 1 – II, 2 – III, 3 – IV)                    
+                    case 0:
+                        outstr = "RH+";
+                        break;
+                    case 1:
+                        outstr = "RH-";
+                        break;
+                    default:
+                        outstr = "";
+                        break;
+                }
+                return outstr;
+            }
+        }
+
         public string OutBloodGroup
         {
             private set { }
