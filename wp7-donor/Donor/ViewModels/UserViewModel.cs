@@ -105,7 +105,14 @@ namespace Donor.ViewModels
             }
             get
             {
-                return App.ViewModel.Events.UserItems.OrderBy(c => c.Date).FirstOrDefault().ShortDate.ToString();
+                try
+                {
+                    return App.ViewModel.Events.UserItems.OrderBy(c => c.Date).FirstOrDefault().ShortDate.ToString();
+                }
+                catch
+                {
+                    return "";
+                }
             }
         }
 

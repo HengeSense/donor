@@ -41,7 +41,7 @@
 					Text="аккаунт" Margin="0,30,0,0"/>
                 </controls:PivotItem.Header>
                 <Grid>
-                    <StackPanel Name="EditProfile">
+                    <StackPanel Name="EditProfile" Visibility="Collapsed">
                     <TextBlock Text="Имя"
 					Style="{StaticResource Text24pxCBB2A3}"/>
                     <TextBox Name="EditName" 
@@ -176,7 +176,7 @@
 						</StackPanel>
 						</ScrollViewer>
                     </StackPanel>
-                    <StackPanel Name="LoginForm" Visibility="Collapsed">
+                    <StackPanel Name="LoginForm">
                         <TextBlock Text="Введите e-mail" 
 						Style="{StaticResource Text24pxCBB2A3}"/>
                         <TextBox Background="#FF4F3B34" Style="{StaticResource TextBoxStyle1}"

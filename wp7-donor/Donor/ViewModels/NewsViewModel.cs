@@ -142,6 +142,8 @@ namespace Donor.ViewModels
                     _outbody = _outbody.Replace(item.ToString(), item1);
                 };
 
+
+
                 pattern = @"\[([^]]*)\]\s*\(([^)]*)\)";
                 rgx = new Regex(pattern);
                 var items2 = rgx.Matches(_outbody);
@@ -150,6 +152,10 @@ namespace Donor.ViewModels
                     string item1 = item.ToString();
                     _outbody = _outbody.Replace(item.ToString(), item.Groups[1].Value.ToString());
                 };
+
+                pattern = @"\[inline([^]]*)\]";
+                rgx = new Regex(pattern);
+                _outbody = rgx.Replace(_outbody, "");
 
                 _outbody = _outbody.Replace("<!--break-->", "");
 
