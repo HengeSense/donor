@@ -172,6 +172,10 @@ namespace Donor.ViewModels
                     _outbody = _outbody.Replace(item.ToString(), item.Groups[1].Value.ToString());
                 };
 
+                pattern = @"\[inline([^]]*)\]";
+                rgx = new Regex(pattern);
+                _outbody = rgx.Replace(_outbody, "");
+
                 _outbody = _outbody.Replace("<!--break-->", "");
 
                 return _outbody;
