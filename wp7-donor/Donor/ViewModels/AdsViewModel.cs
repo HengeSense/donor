@@ -82,9 +82,24 @@ namespace Donor.ViewModels
                     _items = value;
                     NotifyPropertyChanged("Items");
                     NotifyPropertyChanged("NewItems");
+                    NotifyPropertyChanged("SortedItems");
                 };
             }
         }
+
+        public List<AdsViewModel> SortedItems
+        {
+            private set
+            {
+            }
+            get
+            {
+                return (from ads in Items
+                       orderby ads.CreatedTimestamp descending
+                       select ads).ToList();
+            }
+        }
+
         public List<AdsViewModel> NewItems
         {
             get
@@ -138,7 +153,7 @@ namespace Donor.ViewModels
             private set { }
             get
             {
-                DateTime created = DateTime.Parse(this.CreatedAt);
+                DateTime created = DateTime.Parse(this.Created);
                 return created.ToShortDateString();
             }
         }

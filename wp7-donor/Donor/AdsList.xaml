@@ -31,7 +31,7 @@
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-            <ListBox Margin="0,0,-12,0" ItemsSource="{Binding Ads.Items}" SelectionChanged="ListBox_SelectionChanged" Tap="ListBox_Tap">
+            <ListBox Margin="0,0,-12,0" ItemsSource="{Binding Ads.SortedItems}" SelectionChanged="ListBox_SelectionChanged" Tap="ListBox_Tap">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Margin="0,0,0,5" Width="432">
