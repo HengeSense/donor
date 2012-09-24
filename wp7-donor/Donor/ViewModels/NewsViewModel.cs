@@ -132,20 +132,26 @@ namespace Donor.ViewModels
             get
             {
                 string _outbody = _body;
-                string pattern = "\\s\\*\\*";
-                string replacement = "<b>";
+
+                string pattern = @"\*\*.*\*\*";
                 Regex rgx = new Regex(pattern);
-                _outbody = rgx.Replace(_body, replacement);
+                var items = rgx.Matches(_outbody);
+                foreach (var item in items)
+                {
+                    string item1 = "<br/><b>" + item.ToString().Trim('*') + "</b><br/>";
+                    _outbody = _outbody.Replace(item.ToString(), item1);
+                };
 
-                pattern = "\\S\\*\\*";
-                replacement = "<b>";
+                pattern = @"\[([^]]*)\]\s*\(([^)]*)\)";
                 rgx = new Regex(pattern);
-                _outbody = rgx.Replace(_outbody, replacement);
+                var items2 = rgx.Matches(_outbody);
+                foreach (Match item in items2)
+                {
+                    string item1 = item.ToString();
+                    _outbody = _outbody.Replace(item.ToString(), item.Groups[1].Value.ToString());
+                };
 
-                pattern = "\\[.*\\]";
-                replacement = "";
-                rgx = new Regex(pattern);
-                _outbody = rgx.Replace(_outbody, replacement);
+                _outbody = _outbody.Replace("<!--break-->", "");
 
                 return _outbody;
             }

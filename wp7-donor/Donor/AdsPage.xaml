@@ -11,6 +11,7 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d" d:DesignHeight="768" d:DesignWidth="480"
+    xmlns:msp="clr-namespace:MSPToolkit.Controls;assembly=MSPToolkit"
     shell:SystemTray.IsVisible="True" Loaded="PhoneApplicationPage_Loaded">
 	
 	<phone:PhoneApplicationPage.ApplicationBar>
@@ -44,23 +45,12 @@
                 <StackPanel>              
                     <TextBlock x:Name="title" Text="{Binding Title}" Margin="0" 
                            Style="{StaticResource Text36pxB9A194}" TextWrapping="Wrap" />
-                    <TextBlock Text="{Binding Body}" TextWrapping="Wrap"
-                           Style="{StaticResource Text24px847168}"/>
+                    <!--<TextBlock Text="{Binding Body}" TextWrapping="Wrap"
+                           Style="{StaticResource Text24px847168}"/>-->
+                    <msp:HTMLViewer NavigaionPolitic="Automatic" x:Name="Description" FontSize="24" ScrollViewer.VerticalScrollBarVisibility="Disabled" Foreground="#FF847168" Html="{Binding Path=Body}" />
                 </StackPanel>
             </ScrollViewer>
         </Grid>
     </Grid>
- 
-    <!--Sample code showing usage of ApplicationBar-->
-    <!--<phone:PhoneApplicationPage.ApplicationBar>
-        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
-            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button1.png" Text="Button 1"/>
-            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button2.png" Text="Button 2"/>
-            <shell:ApplicationBar.MenuItems>
-                <shell:ApplicationBarMenuItem Text="MenuItem 1"/>
-                <shell:ApplicationBarMenuItem Text="MenuItem 2"/>
-            </shell:ApplicationBar.MenuItems>
-        </shell:ApplicationBar>
-    </phone:PhoneApplicationPage.ApplicationBar>-->
 
 </phone:PhoneApplicationPage>

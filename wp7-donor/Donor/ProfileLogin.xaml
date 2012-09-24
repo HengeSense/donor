@@ -41,7 +41,7 @@
 					Text="аккаунт" Margin="0,30,0,0"/>
                 </controls:PivotItem.Header>
                 <Grid>
-                    <StackPanel Name="EditProfile" Visibility="Collapsed">
+                    <StackPanel Name="EditProfile">
                     <TextBlock Text="Имя"
 					Style="{StaticResource Text24pxCBB2A3}"/>
                     <TextBox Name="EditName" 
@@ -63,22 +63,22 @@
 
                         <TextBlock Text="Группа крови"
 						Style="{StaticResource Text24pxCBB2A3}" />
-                        <StackPanel>
-                        <toolkit:WrapPanel ItemHeight="90" ItemWidth="210" Name="BloudTypeGroupEdit">
+                        <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left">
+                        <toolkit:WrapPanel ItemHeight="90" ItemWidth="210" Name="BloudTypeGroupEdit" VerticalAlignment="Top" HorizontalAlignment="Left" Height="160">
                             <RadioButton Content="O(I)" 
 							Foreground="#FFCBB2A3"
-							Name="o" />
+							Name="o" Height="75" VerticalAlignment="Top" />
                             <RadioButton 
 							Foreground="#FFCBB2A3"
-							Content="A(II)" Name="a" />            
+							Content="A(II)" Name="a" Height="75" VerticalAlignment="Top" />            
                         
                             <RadioButton 
 							Content="B(III)" 
 							Foreground="#FFCBB2A3"
-							Name="b" />
+							Name="b" Height="75" VerticalAlignment="Top" />
                             <RadioButton 
 							Foreground="#FFCBB2A3"
-							Content="AB(IV)" Name="ab" />
+							Content="AB(IV)" Name="ab" Height="75" VerticalAlignment="Top" />
                         </toolkit:WrapPanel>
                         </StackPanel>
 
@@ -176,7 +176,7 @@
 						</StackPanel>
 						</ScrollViewer>
                     </StackPanel>
-                    <StackPanel Name="LoginForm">
+                    <StackPanel Name="LoginForm" Visibility="Collapsed">
                         <TextBlock Text="Введите e-mail" 
 						Style="{StaticResource Text24pxCBB2A3}"/>
                         <TextBox Background="#FF4F3B34" Style="{StaticResource TextBoxStyle1}"

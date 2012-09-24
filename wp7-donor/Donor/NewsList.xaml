@@ -9,6 +9,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="800" 
     d:DataContext="{d:DesignData SampleData/MainViewModelSampleData.xaml}"
+    xmlns:tilteffect="clr-namespace:ControlTiltEffect"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
@@ -31,8 +32,8 @@
         </StackPanel>
 
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
- 
-                <ListBox Margin="0,15,-12,0" ItemsSource="{Binding News.Items}" SelectionChanged="ListBox_SelectionChanged" Tap="ListBox_Tap">
+
+            <ListBox Margin="0,15,-12,0" ItemsSource="{Binding News.Items}" SelectionChanged="ListBox_SelectionChanged" Tap="ListBox_Tap" tilteffect:TiltEffect.IsTiltEnabled="True">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Margin="0,0,0,17" 

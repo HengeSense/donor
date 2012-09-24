@@ -16,6 +16,7 @@ using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
 using MSPToolkit.Utilities;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace Donor.ViewModels
 {
@@ -142,7 +143,40 @@ namespace Donor.ViewModels
 
         public string ObjectId { get; set; }
         public string Title { get; set; }
-        public string Body { get; set; }
+        private string _body;
+        public string Body
+        {
+            set
+            {
+                _body = value;
+            }
+            get
+            {
+                string _outbody = _body;
+
+                string pattern = @"\*\*.*\*\*";
+                Regex rgx = new Regex(pattern);
+                var items = rgx.Matches(_outbody);
+                foreach (var item in items)
+                {
+                    string item1 = "<br/><b>" + item.ToString().Trim('*') + "</b><br/>";
+                    _outbody = _outbody.Replace(item.ToString(), item1);
+                };
+
+                pattern = @"\[([^]]*)\]\s*\(([^)]*)\)";
+                rgx = new Regex(pattern);
+                var items2 = rgx.Matches(_outbody);
+                foreach (Match item in items2)
+                {
+                    string item1 = item.ToString();
+                    _outbody = _outbody.Replace(item.ToString(), item.Groups[1].Value.ToString());
+                };
+
+                _outbody = _outbody.Replace("<!--break-->", "");
+
+                return _outbody;
+            }
+        }
         public string Station_id { get; set; }
         public string Url { get; set; }
         public string CreatedAt { get; set; }

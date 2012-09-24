@@ -6,6 +6,7 @@
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:tilteffect="clr-namespace:ControlTiltEffect"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
@@ -31,29 +32,17 @@
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-            <ListBox Margin="0,0,-12,0" ItemsSource="{Binding Ads.SortedItems}" SelectionChanged="ListBox_SelectionChanged" Tap="ListBox_Tap">
+            <ListBox Margin="0,0,-12,0" ItemsSource="{Binding Ads.SortedItems}" SelectionChanged="ListBox_SelectionChanged" Tap="ListBox_Tap" tilteffect:TiltEffect.IsTiltEnabled="True">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Margin="0,0,0,5" Width="432">
                             <TextBlock Text="{Binding CreatedAtText}" TextWrapping="Wrap" Style="{StaticResource Text40pxB9A194}"/>
                             <TextBlock Text="{Binding Title}" TextWrapping="Wrap" Style="{StaticResource Text28pxB9A194}"/>
-                            <!--<TextBlock Text="{Binding Title}" TextWrapping="Wrap" Style="{StaticResource Text28pxB9A194}"/>-->
                         </StackPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
         </Grid>
     </Grid>
- 
-    <!--<phone:PhoneApplicationPage.ApplicationBar>
-        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
-            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button1.png" Text="Button 1"/>
-            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button2.png" Text="Button 2"/>
-            <shell:ApplicationBar.MenuItems>
-                <shell:ApplicationBarMenuItem Text="MenuItem 1"/>
-                <shell:ApplicationBarMenuItem Text="MenuItem 2"/>
-            </shell:ApplicationBar.MenuItems>
-        </shell:ApplicationBar>
-    </phone:PhoneApplicationPage.ApplicationBar>-->
 
 </phone:PhoneApplicationPage>
