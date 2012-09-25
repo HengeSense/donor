@@ -250,7 +250,7 @@ namespace Donor
             {
                 this.ProfileName.Text = App.ViewModel.User.Name.ToString();
                 this.ProfileSex.Text = App.ViewModel.User.OutSex.ToString();
-                this.ProfileBloodGroup.Text = App.ViewModel.User.OutBloodGroup.ToString();
+                this.ProfileBloodGroup.Text = App.ViewModel.User.OutBloodDataString.ToString();
             }
             catch { };
         }
