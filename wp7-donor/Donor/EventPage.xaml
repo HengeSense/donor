@@ -73,7 +73,7 @@
 					Style="{StaticResource Text24pxDF8D4B}"
 					Name="Place" TextWrapping="Wrap"/>
                     <Image Height="50" Source="images/ic_map.png" 
-					Stretch="Fill" Width="50" Tap="Image_Tap" />					
+					Stretch="Fill" Width="50" Tap="Image_Tap" Visibility="Collapsed" />					
 					</StackPanel>
 
                     <StackPanel Name="ReminderStackPanel">
@@ -88,10 +88,13 @@
 					</StackPanel>
 
                         <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="200"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
+                            <Grid.ColumnDefinitions>     <ColumnDefinition Width="200"/>     <ColumnDefinition Width="*"/>
+</Grid.ColumnDefinitions>
+
+                            <Grid.RowDefinitions>
+<RowDefinition Height="*"/>
+<RowDefinition Height="*"/>
+</Grid.RowDefinitions>
 
                             <TextBlock Style="{StaticResource Text24pxDF8D4B}" Text="Сдача" Grid.Column="0" Grid.Row="0" />                      
                             <TextBlock 
@@ -131,8 +134,8 @@
 		Background="#FF211E1D"	
 		BackgroundColor="#FF211E1D" Foreground="White"	
 		IsVisible="True" IsMenuEnabled="True">
-            <WPExtensions:AdvancedApplicationBarIconButton IconUri="/icons/appbar.edit.rest.png" Name="EditButton" Text="Сохранить" Visibility="Visible" Click="EditButton_Click" />
-            <WPExtensions:AdvancedApplicationBarIconButton IconUri="/icons/appbar.delete.rest.png" Name="DeleteButton" Text="Отменить" Visibility="Visible" Click="DeleteButton_Click" />
+            <WPExtensions:AdvancedApplicationBarIconButton IconUri="/icons/appbar.edit.rest.png" Name="EditButton" Text="Изменить" Visibility="Visible" Click="EditButton_Click" />
+            <WPExtensions:AdvancedApplicationBarIconButton IconUri="/icons/appbar.delete.rest.png" Name="DeleteButton" Text="Удалить" Visibility="Visible" Click="DeleteButton_Click" />
         </WPExtensions:AdvancedApplicationBar>
     </Grid>
 

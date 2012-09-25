@@ -19,7 +19,7 @@ namespace Donor
         public EventEditPage()
         {
             InitializeComponent();
-            List<string> eventTypes = new List<string>() { "Анализ", "Кроводача" };
+            List<string> eventTypes = new List<string>() { "Кроводача", "Анализ" };
             CurrentEvent = null;
             List<string> giveTypes = new List<string>() { "Тромбоциты", "Плазма", "Цельная кровь", "Гранулоциты" };
             //, "Гранулоциты"
@@ -50,6 +50,18 @@ namespace Donor
             {
             };
 
+
+            this.DataContext = CurrentEvent;
+        }
+
+        public int DayNumber;
+        public int YearNumber;
+        public int MonthNumber;
+
+        public EventViewModel CurrentEvent;
+
+        private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
+        {
             if (CurrentEvent == null)
             {
                 try
@@ -67,22 +79,13 @@ namespace Donor
                         this.Date.Value = new DateTime(YearNumber, MonthNumber, DayNumber);
                     };
 
+                    this.Time.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 8, 0, 0);
                 }
                 catch
                 {
+                    this.Time.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 8, 0, 0);
                 };
             };
-            this.DataContext = CurrentEvent;
-        }
-
-        public int DayNumber;
-        public int YearNumber;
-        public int MonthNumber;
-
-        public EventViewModel CurrentEvent;
-
-        private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
-        {           
         }
 
         private void CancelButton_Click(object sender, EventArgs e)

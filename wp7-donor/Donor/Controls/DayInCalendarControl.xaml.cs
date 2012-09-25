@@ -52,7 +52,7 @@ namespace Donor.Controls
                 }
                 else
                 {
-                    (Application.Current.RootVisual as PhoneApplicationFrame).Navigate(new Uri("/EventEditPage.xaml?month=" + this.MonthNumber + "&day=" + this.DayNumber + "&year=" + this.YearNumber, UriKind.Relative));
+                    (Application.Current.RootVisual as PhoneApplicationFrame).Navigate(new Uri("/EventEditPage.xaml?month=" + this.MonthNumber.ToString() + "&day=" + this.DayNumber.ToString() + "&year=" + this.YearNumber.ToString(), UriKind.Relative));
                 };
                 checkedEvent = false;
             }

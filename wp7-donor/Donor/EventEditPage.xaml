@@ -27,7 +27,7 @@
 
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="20,60,0,20">
-            <TextBlock x:Name="ApplicationTitle" Text="Изменить событие" Style="{StaticResource Text30pxWhite}"/>
+            <TextBlock x:Name="ApplicationTitle" Text="Cобытие" Style="{StaticResource Text30pxWhite}"/>
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
@@ -46,11 +46,9 @@
 			</toolkit:ListPicker.Header>
             </toolkit:ListPicker>
 
-            <toolkit:ListPicker x:Name="GiveType" 						
-			FullModeHeader="Вид сдачи" 
-			FontSize="24" Foreground="#FF847168" Background="#FF4F3B34" BorderBrush="#FF4F3B34">
+            <toolkit:ListPicker x:Name="GiveType" FullModeHeader="Вид кроводачи" FontSize="24" Foreground="#FF847168" Background="#FF4F3B34" BorderBrush="#FF4F3B34">
             	<toolkit:ListPicker.Header>
-            		<TextBlock Text="Вид сдачи" FontSize="24" 
+            		<TextBlock Text="Вид кроводачи" FontSize="24" 
 					Foreground="#FF847168"/>        	
 				</toolkit:ListPicker.Header>
             </toolkit:ListPicker>
@@ -93,8 +91,8 @@
 
         <WPExtensions:AdvancedApplicationBar Name="AppBar" Background="#FF211E1D" BackgroundColor="#FF211E1D" Foreground="White" BorderBrush="#FF211E1D" ForegroundColor="White" OpacityMask="White"
 		IsVisible="True" IsMenuEnabled="True">
-            <WPExtensions:AdvancedApplicationBarIconButton IconUri="/icons/appbar.save.rest.png" Name="SaveButton" Text="Редактировать" Visibility="Visible" Click="SaveButton_Click" />
-            <WPExtensions:AdvancedApplicationBarIconButton IconUri="/icons/appbar.link.png" Name="CancelButton" Text="Отменить" Visibility="Visible" Click="CancelButton_Click" />
+            <WPExtensions:AdvancedApplicationBarIconButton IconUri="/icons/appbar.save.rest.png" Name="SaveButton" Text="Сохранить" Visibility="Visible" Click="SaveButton_Click" />
+            <WPExtensions:AdvancedApplicationBarIconButton IconUri="/icons/appbar.cancel.png" Name="CancelButton" Text="Отменить" Visibility="Visible" Click="CancelButton_Click" />
         </WPExtensions:AdvancedApplicationBar>
 
     </Grid>
