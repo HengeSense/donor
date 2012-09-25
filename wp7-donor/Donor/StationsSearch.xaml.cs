@@ -52,6 +52,15 @@ namespace Donor
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
+            if (App.ViewModel.Stations.IsFilter == true)
+            {
+                this.CityFilterText.Text = App.ViewModel.Stations.SelectedCity;
+            }
+            else
+            {
+                this.CityFilterText.Text = " ";
+            };
+
             this.StationsList.DataContext = App.ViewModel;
             if (App.ViewModel.Stations.IsFilter == false)
             {

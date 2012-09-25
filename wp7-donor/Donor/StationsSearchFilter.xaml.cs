@@ -22,7 +22,10 @@ namespace Donor
 
         private void CitySelect_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            App.ViewModel.Stations.SelectedCity = ((sender as ListPicker).SelectedItem as ListBoxItem).Content.ToString();
+            if (LoadedCity)
+            {
+                App.ViewModel.Stations.SelectedCity = ((sender as ListPicker).SelectedItem as ListBoxItem).Content.ToString();
+            };
         }
 
         private void regional_Unchecked(object sender, RoutedEventArgs e)
@@ -67,6 +70,35 @@ namespace Donor
         	// TODO: Add event handler implementation here.
             App.ViewModel.Stations.IsFilter = false;
             NavigationService.GoBack();
+        }
+
+        private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
+        {
+        }
+
+        private bool LoadedCity = false;
+
+        private void CitySelect_Loaded(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+            if (App.ViewModel.Stations.IsFilter == true)
+            {
+                switch (App.ViewModel.Stations.SelectedCity)
+                {
+                    case "Москва": this.CitySelect.SelectedIndex = 0; break;
+                    case "Санкт-Петербург": this.CitySelect.SelectedIndex = 1; break;
+                };
+            }
+            else
+            {
+            };
+            }
+            catch
+            {
+            };
+
+            LoadedCity = true;
         }
 
     }
