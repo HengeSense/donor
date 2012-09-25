@@ -120,7 +120,7 @@
                     </ListBoxItem>
                     </ListBox>
                     
-                        <TextBlock Text="Version - 24092012_1"/>
+                        <TextBlock Text="Version - 25092012_1"/>
                     </StackPanel>
                 
             </controls:PanoramaItem>

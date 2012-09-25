@@ -6,6 +6,7 @@
     <AssemblyPart x:Name="Coding4Fun.Phone.Controls.Toolkit" Source="Coding4Fun.Phone.Controls.Toolkit.dll" />
     <AssemblyPart x:Name="Coding4Fun.Phone.Net" Source="Coding4Fun.Phone.Net.dll" />
     <AssemblyPart x:Name="Coding4Fun.Phone.Storage" Source="Coding4Fun.Phone.Storage.dll" />
+    <AssemblyPart x:Name="Facebook" Source="Facebook.dll" />
     <AssemblyPart x:Name="GART" Source="GART.dll" />
     <AssemblyPart x:Name="HtmlAgilityPack" Source="HtmlAgilityPack.dll" />
     <AssemblyPart x:Name="Microsoft.Expression.Interactions" Source="Microsoft.Expression.Interactions.dll" />
@@ -16,6 +17,7 @@
     <AssemblyPart x:Name="Newtonsoft.Json" Source="Newtonsoft.Json.dll" />
     <AssemblyPart x:Name="Parse" Source="Parse.dll" />
     <AssemblyPart x:Name="RestSharp.WindowsPhone" Source="RestSharp.WindowsPhone.dll" />
+    <AssemblyPart x:Name="Silverlight_ZXing_Core" Source="Silverlight_ZXing_Core.dll" />
     <AssemblyPart x:Name="System.Windows.Interactivity" Source="System.Windows.Interactivity.dll" />
     <AssemblyPart x:Name="WPExtensions" Source="WPExtensions.dll" />
   </Deployment.Parts>

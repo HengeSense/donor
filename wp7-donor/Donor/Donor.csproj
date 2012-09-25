@@ -67,6 +67,9 @@
     <Reference Include="Coding4Fun.Phone.Storage">
       <HintPath>..\packages\Coding4Fun.Phone.Storage.1.6.1\lib\sl4-windowsphone71\Coding4Fun.Phone.Storage.dll</HintPath>
     </Reference>
+    <Reference Include="Facebook">
+      <HintPath>..\packages\Facebook.6.0.24\lib\sl4-windowsphone71\Facebook.dll</HintPath>
+    </Reference>
     <Reference Include="GART, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="HtmlAgilityPack, Version=1.4.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Devices.Sensors" />
@@ -93,6 +96,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\RestSharp.104.1\lib\sl4-wp71\RestSharp.WindowsPhone.dll</HintPath>
     </Reference>
+    <Reference Include="Silverlight_ZXing_Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="System.Device" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Windows" />
@@ -160,6 +164,9 @@
       <DependentUpon>ProfileLogin.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QRread.xaml.cs">
+      <DependentUpon>QRread.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Resources\AppResources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -260,6 +267,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="QRread.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="StationPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -292,6 +303,8 @@
     <Content Include="icons\ic_ApplicationBar_done.png" />
     <Content Include="icons\ic_ApplicationBar_exit.png" />
     <Content Include="libs\GART.dll" />
+    <Content Include="libs\Silverlight_ZXing_Core.dll" />
+    <Content Include="libs\Silverlight_ZXing_Core.pdb" />
     <Content Include="MS-LPL License.txt" />
     <Content Include="Toolkit.Content\ApplicationBar.Cancel.png" />
     <Content Include="Toolkit.Content\ApplicationBar.Check.png" />
