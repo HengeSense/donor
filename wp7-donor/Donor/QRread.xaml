@@ -22,6 +22,7 @@
 
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
             <TextBlock x:Name="ApplicationTitle" Text="Чтение QR" Style="{StaticResource PhoneTextNormalStyle}"/>
+            <Button Content="Вход в Facebook" Height="73" Name="btnFacebookLogin" VerticalAlignment="Top" Width="276" Click="btnFacebookLogin_Click" Visibility="Collapsed" />
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
@@ -41,6 +42,7 @@
                     </VideoBrush>
                 </Rectangle.Fill>
             </Rectangle>
+            
             <ListBox Margin="10" x:Name="_matchesList" FontSize="30" FontWeight="ExtraBold" />
         </Grid>
     </Grid>

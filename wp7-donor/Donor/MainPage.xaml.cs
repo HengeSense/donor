@@ -161,6 +161,16 @@ namespace Donor
             NavigationService.Navigate(new Uri("/ProfileLogin.xaml", UriKind.Relative));
         }
 
+        private void Qrread_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/QRread.xaml", UriKind.Relative));
+        }
+
+        private void Facebook_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/FacebookPages/FacebookLoginPage.xaml", UriKind.Relative));
+        }
+
         private void Login_Click(object sender, RoutedEventArgs e)
         {
             var client = new RestClient("https://api.parse.com");

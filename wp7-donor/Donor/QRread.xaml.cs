@@ -70,6 +70,11 @@ namespace Donor
             _timer.Tick += (o, arg) => ScanPreviewBuffer();
         }
 
+        private void btnFacebookLogin_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/FacebookPages/FacebookLoginPage.xaml", UriKind.Relative));
+        }
+
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             _photoCamera = new PhotoCamera();
