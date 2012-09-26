@@ -312,7 +312,17 @@ namespace Donor
                     string _taskid = this.NavigationContext.QueryString["task"];
                     switch (_taskid)
                     {
-                        case "register": 
+                        case "register":
+                            if (this.NavigationContext.QueryString.ContainsKey("email"))
+                            {
+                                string _email = this.NavigationContext.QueryString["email"];
+                                this.email1.Text = _email;
+                            };
+                            if (this.NavigationContext.QueryString.ContainsKey("password"))
+                            {
+                                string _password = this.NavigationContext.QueryString["password"];
+                                this.password1.Password = _password;
+                            };
                             this.RegisterForm.Visibility = Visibility.Visible;
                             this.LoginForm.Visibility = Visibility.Collapsed;
                             this.UserProfile.Visibility = Visibility.Collapsed;
