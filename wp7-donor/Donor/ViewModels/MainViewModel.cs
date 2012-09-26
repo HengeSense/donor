@@ -214,7 +214,8 @@ namespace Donor
             }
             catch
             {
-            }
+            };
+            App.ViewModel.SaveSettingsToStorage();
         }
 
         public void SaveSettingsToStorage()
