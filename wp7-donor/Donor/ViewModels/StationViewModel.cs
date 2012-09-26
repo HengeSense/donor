@@ -184,6 +184,8 @@ namespace Donor.ViewModels
             }
             private set { }
         }
+
+        public string FilteredText { get; set; }
     }
 
     public class LatLonItem

@@ -172,19 +172,26 @@ namespace Donor.ViewModels
         }
         public int Nid { get; set; }
 
-
+        private string _sbody = "";
         public string ShortBody {
             private set { }
             get
             {
-                string sbody = this.Body;
-                HtmlAgilityPack.HtmlDocument htmlDoc = new HtmlAgilityPack.HtmlDocument();
-                htmlDoc.OptionFixNestedTags = true;
-                htmlDoc.LoadHtml(sbody);
-                var text = htmlDoc.DocumentNode.InnerText;
-                sbody = text.Trim();
-                sbody = sbody.Substring(0, 150);
-                return sbody;
+                if (_sbody == "")
+                {
+                    string sbody = this.Body;
+                    HtmlAgilityPack.HtmlDocument htmlDoc = new HtmlAgilityPack.HtmlDocument();
+                    htmlDoc.OptionFixNestedTags = true;
+                    htmlDoc.LoadHtml(sbody);
+                    var text = htmlDoc.DocumentNode.InnerText;
+                    sbody = text.Trim();
+                    try
+                    {
+                        _sbody = sbody.Substring(0, 60) + "...";
+                    }
+                    catch { _sbody = sbody+ "..."; };
+                };
+                return _sbody;
             }
         }
 

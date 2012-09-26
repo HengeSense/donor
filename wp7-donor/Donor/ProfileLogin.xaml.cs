@@ -340,6 +340,14 @@ namespace Donor
                             this.UserProfile.Visibility = Visibility.Collapsed;
                             this.EditProfile.Visibility = Visibility.Visible;
 
+                            this.EditProfile.Visibility = Visibility.Visible;
+            
+                            this.CancelEditProfileButton.Visibility = Visibility.Visible;
+                            this.SaveEditProfileButton.Visibility = Visibility.Visible;
+
+                            this.EditButton.Visibility = Visibility.Collapsed;
+                            this.DeleteUserButton.Visibility = Visibility.Collapsed;
+
                             SetEditFields();
 
                             break;

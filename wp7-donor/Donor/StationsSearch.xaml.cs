@@ -84,6 +84,9 @@ namespace Donor
         private void StationsSearchText_Populating(object sender, PopulatingEventArgs e)
         {
             string searchtext = this.StationsSearchText.Text;
+
+            App.ViewModel.Stations.FilteredText = searchtext;
+
             if (searchtext != "")
             {
                 if (App.ViewModel.Stations.IsFilter == false)
