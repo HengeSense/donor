@@ -41,8 +41,8 @@ namespace Donor.Controls
             DateTime EndDays = new DateTime(1900,1,1);
 
             var nearestEvents = (from item in App.ViewModel.Events.Items
-                                 where (item.Type =="1")
-                                 orderby item.Date descending
+                                 where ((item.Type =="1") && (item.Date > DateTime.Now))
+                                 orderby item.Date ascending
                                  select item).Take(1);
             //(item.Date <= DateTime.Now) && 
             if (nearestEvents.FirstOrDefault() != null)
