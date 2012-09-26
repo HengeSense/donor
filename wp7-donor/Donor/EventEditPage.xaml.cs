@@ -114,7 +114,13 @@ namespace Donor
                     foreach (var item in checkitems)
                     {
                         int days = App.ViewModel.Events.DaysFromEvent(item.GiveType, give);
+                        int days2 = App.ViewModel.Events.DaysFromEvent(give, item.GiveType);
                         if ((curdate <= item.Date.AddDays(days)) && (curdate >= item.Date))
+                        {
+                            possible = false;
+                            break;
+                        };
+                        if ((item.Date <= curdate.AddDays(days2)) && (curdate < item.Date))
                         {
                             possible = false;
                             break;
