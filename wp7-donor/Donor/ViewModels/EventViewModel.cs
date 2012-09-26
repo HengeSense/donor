@@ -104,7 +104,9 @@ namespace Donor.ViewModels
                     return "/images/ic_planned_analysis.png";
                 if (this.Type == "1")
                     return "/images/ic_planned_giving_blood.png";
-                return "/images/ic_planned_analysis.png";
+                if (this.Type == "2")
+                    return "/images/ic_donors_act.png";
+                return "";
             }
         }
 

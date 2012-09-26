@@ -1,8 +1,8 @@
-﻿<xapCache source="C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\Bin\Debug\Donor.xap" wasSigned="False" certificateThumbprint="" TimeStampUrl="" lastWriteTime="26.09.2012 16:47:39">
+﻿<xapCache source="C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\Bin\Debug\Donor.xap" wasSigned="False" certificateThumbprint="" TimeStampUrl="" lastWriteTime="26.09.2012 16:51:20">
   <file source="C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\Bin\Debug\WMAppManifest.xml" archivePath="WMAppManifest.xml" lastWriteTime="22.08.2012 19:29:21" />
   <file source="C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\Background.png" archivePath="Background.png" lastWriteTime="29.08.2012 22:56:01" />
   <file source="C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\ApplicationIcon.png" archivePath="ApplicationIcon.png" lastWriteTime="29.08.2012 22:55:56" />
-  <file source="C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\obj\Debug\Donor.dll" archivePath="Donor.dll" lastWriteTime="26.09.2012 16:47:38" />
+  <file source="C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\obj\Debug\Donor.dll" archivePath="Donor.dll" lastWriteTime="26.09.2012 16:51:19" />
   <file source="C:\Users\root\Documents\GitHub\donor\wp7-donor\packages\Coding4Fun.Phone.Audio.1.6.1\lib\sl4-windowsphone71\Coding4Fun.Phone.Audio.dll" archivePath="Coding4Fun.Phone.Audio.dll" lastWriteTime="06.09.2012 10:40:34" />
   <file source="C:\Users\root\Documents\GitHub\donor\wp7-donor\packages\Coding4Fun.Phone.Controls.1.6.1\lib\sl4-windowsphone71\Coding4Fun.Phone.Controls.dll" archivePath="Coding4Fun.Phone.Controls.dll" lastWriteTime="06.09.2012 10:40:35" />
   <file source="C:\Users\root\Documents\GitHub\donor\wp7-donor\packages\Coding4Fun.Phone.Controls.TimeSpan.1.6.1\lib\sl4-windowsphone71\Coding4Fun.Phone.Controls.Toolkit.dll" archivePath="Coding4Fun.Phone.Controls.Toolkit.dll" lastWriteTime="06.09.2012 10:40:39" />
@@ -25,6 +25,7 @@
   <file source="C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\icons\ic_ApplicationBar_close.png" archivePath="icons\ic_ApplicationBar_close.png" lastWriteTime="15.08.2012 9:22:16" />
   <file source="C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\icons\ic_ApplicationBar_done.png" archivePath="icons\ic_ApplicationBar_done.png" lastWriteTime="15.08.2012 9:22:16" />
   <file source="C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\icons\ic_ApplicationBar_exit.png" archivePath="icons\ic_ApplicationBar_exit.png" lastWriteTime="15.08.2012 9:22:16" />
+  <file source="C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\images\ic_donors_act.png" archivePath="images\ic_donors_act.png" lastWriteTime="26.09.2012 16:50:56" />
   <file source="C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\libs\GART.dll" archivePath="libs\GART.dll" lastWriteTime="18.09.2012 13:01:03" />
   <file source="C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\MS-LPL License.txt" archivePath="MS-LPL License.txt" lastWriteTime="18.09.2012 13:38:17" />
   <file source="C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\Toolkit.Content\ApplicationBar.Cancel.png" archivePath="Toolkit.Content\ApplicationBar.Cancel.png" lastWriteTime="06.09.2012 10:40:37" />
