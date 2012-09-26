@@ -87,7 +87,7 @@ namespace Donor.ViewModels
                 }
                 else
                 {
-                    return "Еще не отмечено как выполненое";
+                    return "Еще не отмечено как выполненное";
                 };
             }
             private set {            }
