@@ -135,7 +135,7 @@ namespace Donor
 
         private void MapButton_Click(object sender, EventArgs e)
         {
-            //show map code
+            NavigationService.Navigate(new Uri("/MapPage.xaml", UriKind.Relative));
         }
 
         private void ApplicationBarIconButton_Click(object sender, EventArgs e)
