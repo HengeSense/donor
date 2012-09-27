@@ -122,7 +122,7 @@ namespace Donor.ViewModels
             get
             {
                 string outstr = "";
-                switch (this.BloodGroup)
+                switch (this.BloodRh)
                 {                
                     case 0:
                         outstr = "RH+";
