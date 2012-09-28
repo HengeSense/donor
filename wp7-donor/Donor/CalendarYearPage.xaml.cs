@@ -255,6 +255,19 @@ namespace Donor
             this.PrevMonth.Header = App.ViewModel.Events.PrevMonthString;
         }
 
+        private void EventsListNext2_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            try
+            {
+                string id = ((sender as ListBox).SelectedItem as EventViewModel).Id;
+
+                NavigationService.Navigate(new Uri("/EventPage.xaml?id=" + id, UriKind.Relative));
+            }
+            catch
+            {
+            }
+        }
+
 
     }
 }
