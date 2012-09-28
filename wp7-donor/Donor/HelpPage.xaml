@@ -214,7 +214,7 @@ Visibility="Collapsed" ScrollViewer.VerticalScrollBarVisibility="Disabled">     
 							FontSize="24"
 							ScrollViewer.VerticalScrollBarVisibility="Disabled">
 &lt;p&gt;Вы&amp;nbsp;можете сдать кровь, если вы:&lt;/p&gt;
-&lt;br/&gt;
+
 &lt;p&gt;
 &lt;ul&gt;
 &lt;li&gt;не&amp;nbsp;употребляли алкоголь за&amp;nbsp;последние 48 часов;&lt;/li&gt;
