@@ -246,6 +246,18 @@ namespace Donor.ViewModels
                     {
                         return true;
                     };
+                case "Цельная кровь":
+                    var yearitems4 = from item in App.ViewModel.Events.UserItems
+                                     where (item.Date >= start && item.Date <= start.AddYears(1) && item.GiveType == "Цельная кровь")
+                                     select item;
+                    if (((yearitems4.Count() > 4) && (App.ViewModel.User.Sex==0)) || ((yearitems4.Count() > 3) && (App.ViewModel.User.Sex==1)))
+                    {
+                        return false;
+                    }
+                    else
+                    {
+                        return true;
+                    };
                 default:
                     return true;
                     
