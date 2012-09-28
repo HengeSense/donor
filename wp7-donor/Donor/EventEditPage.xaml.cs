@@ -113,17 +113,20 @@ namespace Donor
                                       select item);
                     foreach (var item in checkitems)
                     {
-                        int days = App.ViewModel.Events.DaysFromEvent(item.GiveType, give);
-                        int days2 = App.ViewModel.Events.DaysFromEvent(give, item.GiveType);
-                        if ((curdate <= item.Date.AddDays(days)) && (curdate >= item.Date))
+                        if (CurrentEvent != item)
                         {
-                            possible = false;
-                            break;
-                        };
-                        if ((item.Date <= curdate.AddDays(days2)) && (curdate < item.Date))
-                        {
-                            possible = false;
-                            break;
+                            int days = App.ViewModel.Events.DaysFromEvent(item.GiveType, give);
+                            int days2 = App.ViewModel.Events.DaysFromEvent(give, item.GiveType);
+                            if ((curdate <= item.Date.AddDays(days)) && (curdate >= item.Date))
+                            {
+                                possible = false;
+                                break;
+                            };
+                            if ((item.Date <= curdate.AddDays(days2)) && (curdate < item.Date))
+                            {
+                                possible = false;
+                                break;
+                            };
                         };
                     };
                 }
@@ -206,14 +209,21 @@ namespace Donor
 
                     };
 
-                    if ((App.ViewModel.Settings.EventAfter == true) && (App.ViewModel.Settings.Push == true))
+                    if (App.ViewModel.Events.EventsInYear(CurrentEvent.GiveType, CurrentEvent.Date) && App.ViewModel.Events.EventsInYear(CurrentEvent.GiveType, CurrentEvent.Date.AddYears(-1)))
                     {
-                        CurrentEvent.AddReminder();
-                    };
+                        if ((App.ViewModel.Settings.EventAfter == true) && (App.ViewModel.Settings.Push == true))
+                        {
+                            CurrentEvent.AddReminder();
+                        };
 
-                    App.ViewModel.Events.Items.Add(CurrentEvent);
-                    App.ViewModel.Events.UpdateItems();
-                    NavigationService.GoBack();
+                        App.ViewModel.Events.Items.Add(CurrentEvent);
+                        App.ViewModel.Events.UpdateItems();
+                        NavigationService.GoBack();
+                    }
+                    else
+                    {
+                        MessageBox.Show("В данный день вы еще не можете производить сдачу крови.");
+                    };
                 }
                 catch
                 {
