@@ -55,7 +55,7 @@ namespace Donor.Controls
             for (var i = (DateTime.DaysInMonth(FirstDayPrev.Year, FirstDayPrev.Month) - daysbefore); i < (DateTime.DaysInMonth(FirstDayPrev.Year, FirstDayPrev.Month) - 1); i++)
             {
                 DayInCalendarControl day = new DayInCalendarControl();
-                day.ImagePath = "";
+                day.ImagePath = "/images/x.png";
 
                 day.DayNumber = i.ToString();
                 day.MonthNumber = FirstDayPrev.Month;
@@ -96,6 +96,10 @@ namespace Donor.Controls
                 {
                     day2.BgColor = new SolidColorBrush(Colors.Red);
                 };
+                if (day2.EventDay != null) {
+                    day2.ImagePath = day2.EventDay.BigImage.ToString();
+                };
+
                 day2.MonthNumber = Date.Month;
                 day2.YearNumber = Date.Year;
                 day2.DayNumber = i.ToString();
