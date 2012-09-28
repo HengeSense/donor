@@ -240,6 +240,8 @@ namespace Donor
 
             App.ViewModel.Events.CurrentMonth = DateTime.Now;
 
+            this.Monthes.Title = App.ViewModel.Events.CurrentMonth.Year.ToString();
+
             try
             {
                 this.Monthes.SelectedIndex = 2;
