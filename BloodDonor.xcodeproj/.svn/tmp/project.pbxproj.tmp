@@ -1,0 +1,883 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		370FA64C15B42A4500FC1C86 /* tabBarBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 370FA63715B42A4500FC1C86 /* tabBarBackground.png */; };
+		370FA64D15B42A4500FC1C86 /* tabBarBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 370FA63815B42A4500FC1C86 /* tabBarBackground@2x.png */; };
+		370FA64E15B42A4500FC1C86 /* tabBarCalendarNormal.png in Resources */ = {isa = PBXBuildFile; fileRef = 370FA63915B42A4500FC1C86 /* tabBarCalendarNormal.png */; };
+		370FA64F15B42A4500FC1C86 /* tabBarCalendarNormal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 370FA63A15B42A4500FC1C86 /* tabBarCalendarNormal@2x.png */; };
+		370FA65015B42A4500FC1C86 /* tabBarCalendarSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 370FA63B15B42A4500FC1C86 /* tabBarCalendarSelected.png */; };
+		370FA65115B42A4500FC1C86 /* tabBarCalendarSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 370FA63C15B42A4500FC1C86 /* tabBarCalendarSelected@2x.png */; };
+		370FA65215B42A4500FC1C86 /* tabBarInfoNormal.png in Resources */ = {isa = PBXBuildFile; fileRef = 370FA63D15B42A4500FC1C86 /* tabBarInfoNormal.png */; };
+		370FA65315B42A4500FC1C86 /* tabBarInfoNormal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 370FA63E15B42A4500FC1C86 /* tabBarInfoNormal@2x.png */; };
+		370FA65415B42A4500FC1C86 /* tabBarInfoSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 370FA63F15B42A4500FC1C86 /* tabBarInfoSelected.png */; };
+		370FA65515B42A4500FC1C86 /* tabBarInfoSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 370FA64015B42A4500FC1C86 /* tabBarInfoSelected@2x.png */; };
+		370FA65615B42A4500FC1C86 /* tabBarProfileNormal.png in Resources */ = {isa = PBXBuildFile; fileRef = 370FA64115B42A4500FC1C86 /* tabBarProfileNormal.png */; };
+		370FA65715B42A4500FC1C86 /* tabBarProfileNormal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 370FA64215B42A4500FC1C86 /* tabBarProfileNormal@2x.png */; };
+		370FA65815B42A4500FC1C86 /* tabBarProfileSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 370FA64315B42A4500FC1C86 /* tabBarProfileSelected.png */; };
+		370FA65915B42A4500FC1C86 /* tabBarProfileSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 370FA64415B42A4500FC1C86 /* tabBarProfileSelected@2x.png */; };
+		370FA65A15B42A4500FC1C86 /* tabBarStationsNormal.png in Resources */ = {isa = PBXBuildFile; fileRef = 370FA64515B42A4500FC1C86 /* tabBarStationsNormal.png */; };
+		370FA65B15B42A4500FC1C86 /* tabBarStationsNormal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 370FA64615B42A4500FC1C86 /* tabBarStationsNormal@2x.png */; };
+		370FA65C15B42A4500FC1C86 /* tabBarStationsSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 370FA64715B42A4500FC1C86 /* tabBarStationsSelected.png */; };
+		370FA65D15B42A4500FC1C86 /* tabBarStationsSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 370FA64815B42A4500FC1C86 /* tabBarStationsSelected@2x.png */; };
+		370FA69515B433E100FC1C86 /* authorizationButtonNormal.png in Resources */ = {isa = PBXBuildFile; fileRef = 370FA65F15B433E100FC1C86 /* authorizationButtonNormal.png */; };
+		370FA69615B433E100FC1C86 /* authorizationButtonNormal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 370FA66015B433E100FC1C86 /* authorizationButtonNormal@2x.png */; };
+		370FA69715B433E100FC1C86 /* authorizationButtonPressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 370FA66115B433E100FC1C86 /* authorizationButtonPressed.png */; };
+		370FA69815B433E100FC1C86 /* authorizationButtonPressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 370FA66215B433E100FC1C86 /* authorizationButtonPressed@2x.png */; };
+		370FA69915B433E100FC1C86 /* backButtonNormal.png in Resources */ = {isa = PBXBuildFile; fileRef = 370FA66315B433E100FC1C86 /* backButtonNormal.png */; };
+		370FA69A15B433E100FC1C86 /* backButtonNormal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 370FA66415B433E100FC1C86 /* backButtonNormal@2x.png */; };
+		370FA69B15B433E100FC1C86 /* backButtonPressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 370FA66515B433E100FC1C86 /* backButtonPressed.png */; };
+		370FA69C15B433E100FC1C86 /* backButtonPressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 370FA66615B433E100FC1C86 /* backButtonPressed@2x.png */; };
+		370FA69D15B433E100FC1C86 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 370FA66715B433E100FC1C86 /* background.png */; };
+		370FA69E15B433E100FC1C86 /* background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 370FA66815B433E100FC1C86 /* background@2x.png */; };
+		370FA69F15B433E100FC1C86 /* barButtonNormal.png in Resources */ = {isa = PBXBuildFile; fileRef = 370FA66915B433E100FC1C86 /* barButtonNormal.png */; };
+		370FA6A015B433E100FC1C86 /* barButtonNormal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 370FA66A15B433E100FC1C86 /* barButtonNormal@2x.png */; };
+		370FA6A115B433E100FC1C86 /* barButtonPressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 370FA66B15B433E100FC1C86 /* barButtonPressed.png */; };
+		370FA6A215B433E100FC1C86 /* barButtonPressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 370FA66C15B433E100FC1C86 /* barButtonPressed@2x.png */; };
+		370FA6A315B433E100FC1C86 /* calendarIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 370FA66D15B433E100FC1C86 /* calendarIcon.png */; };
+		370FA6A415B433E100FC1C86 /* calendarIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 370FA66E15B433E100FC1C86 /* calendarIcon@2x.png */; };
+		370FA6A515B433E100FC1C86 /* cell.png in Resources */ = {isa = PBXBuildFile; fileRef = 370FA66F15B433E100FC1C86 /* cell.png */; };
+		370FA6A615B433E100FC1C86 /* cell@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 370FA67015B433E100FC1C86 /* cell@2x.png */; };
+		370FA6A715B433E100FC1C86 /* doneButtonNormal.png in Resources */ = {isa = PBXBuildFile; fileRef = 370FA67115B433E100FC1C86 /* doneButtonNormal.png */; };
+		370FA6A815B433E100FC1C86 /* doneButtonNormal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 370FA67215B433E100FC1C86 /* doneButtonNormal@2x.png */; };
+		370FA6A915B433E100FC1C86 /* doneButtonPressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 370FA67315B433E100FC1C86 /* doneButtonPressed.png */; };
+		370FA6AA15B433E100FC1C86 /* doneButtonPressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 370FA67415B433E100FC1C86 /* doneButtonPressed@2x.png */; };
+		370FA6AB15B433E100FC1C86 /* donorIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 370FA67515B433E100FC1C86 /* donorIcon.png */; };
+		370FA6AC15B433E100FC1C86 /* donorIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 370FA67615B433E100FC1C86 /* donorIcon@2x.png */; };
+		370FA6AD15B433E100FC1C86 /* dottedLine.png in Resources */ = {isa = PBXBuildFile; fileRef = 370FA67715B433E100FC1C86 /* dottedLine.png */; };
+		370FA6AE15B433E100FC1C86 /* dottedLine@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 370FA67815B433E100FC1C86 /* dottedLine@2x.png */; };
+		370FA6AF15B433E100FC1C86 /* exitButtonNormal.png in Resources */ = {isa = PBXBuildFile; fileRef = 370FA67915B433E100FC1C86 /* exitButtonNormal.png */; };
+		370FA6B015B433E100FC1C86 /* exitButtonNormal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 370FA67A15B433E100FC1C86 /* exitButtonNormal@2x.png */; };
+		370FA6B115B433E100FC1C86 /* exitButtonPressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 370FA67B15B433E100FC1C86 /* exitButtonPressed.png */; };
+		370FA6B215B433E100FC1C86 /* exitButtonPressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 370FA67C15B433E100FC1C86 /* exitButtonPressed@2x.png */; };
+		370FA6B315B433E100FC1C86 /* navigationBar.png in Resources */ = {isa = PBXBuildFile; fileRef = 370FA67D15B433E100FC1C86 /* navigationBar.png */; };
+		370FA6B415B433E100FC1C86 /* navigationBar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 370FA67E15B433E100FC1C86 /* navigationBar@2x.png */; };
+		370FA6B515B433E100FC1C86 /* radioButtonNotSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 370FA67F15B433E100FC1C86 /* radioButtonNotSelected.png */; };
+		370FA6B615B433E100FC1C86 /* radioButtonNotSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 370FA68015B433E100FC1C86 /* radioButtonNotSelected@2x.png */; };
+		370FA6B715B433E100FC1C86 /* radioButtonSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 370FA68115B433E100FC1C86 /* radioButtonSelected.png */; };
+		370FA6B815B433E100FC1C86 /* radioButtonSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 370FA68215B433E100FC1C86 /* radioButtonSelected@2x.png */; };
+		370FA6B915B433E100FC1C86 /* registrationButtonNormal.png in Resources */ = {isa = PBXBuildFile; fileRef = 370FA68315B433E100FC1C86 /* registrationButtonNormal.png */; };
+		370FA6BA15B433E100FC1C86 /* registrationButtonNormal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 370FA68415B433E100FC1C86 /* registrationButtonNormal@2x.png */; };
+		370FA6BB15B433E100FC1C86 /* registrationButtonPressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 370FA68515B433E100FC1C86 /* registrationButtonPressed.png */; };
+		370FA6BC15B433E100FC1C86 /* registrationButtonPressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 370FA68615B433E100FC1C86 /* registrationButtonPressed@2x.png */; };
+		370FA6BD15B433E100FC1C86 /* selectBloodGroupView.png in Resources */ = {isa = PBXBuildFile; fileRef = 370FA68715B433E100FC1C86 /* selectBloodGroupView.png */; };
+		370FA6BE15B433E100FC1C86 /* selectBloodGroupView@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 370FA68815B433E100FC1C86 /* selectBloodGroupView@2x.png */; };
+		370FA6BF15B433E100FC1C86 /* settingsButtonNormal.png in Resources */ = {isa = PBXBuildFile; fileRef = 370FA68915B433E100FC1C86 /* settingsButtonNormal.png */; };
+		370FA6C015B433E100FC1C86 /* settingsButtonNormal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 370FA68A15B433E100FC1C86 /* settingsButtonNormal@2x.png */; };
+		370FA6C115B433E100FC1C86 /* settingsButtonPressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 370FA68B15B433E100FC1C86 /* settingsButtonPressed.png */; };
+		370FA6C215B433E100FC1C86 /* settingsButtonPressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 370FA68C15B433E100FC1C86 /* settingsButtonPressed@2x.png */; };
+		370FA6C315B433E100FC1C86 /* yellowCancelButtonNormal.png in Resources */ = {isa = PBXBuildFile; fileRef = 370FA68D15B433E100FC1C86 /* yellowCancelButtonNormal.png */; };
+		370FA6C415B433E100FC1C86 /* yellowCancelButtonNormal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 370FA68E15B433E100FC1C86 /* yellowCancelButtonNormal@2x.png */; };
+		370FA6C515B433E100FC1C86 /* yellowCancelButtonPressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 370FA68F15B433E100FC1C86 /* yellowCancelButtonPressed.png */; };
+		370FA6C615B433E100FC1C86 /* yellowCancelButtonPressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 370FA69015B433E100FC1C86 /* yellowCancelButtonPressed@2x.png */; };
+		370FA6C715B433E100FC1C86 /* yellowDoneButtonNormal.png in Resources */ = {isa = PBXBuildFile; fileRef = 370FA69115B433E100FC1C86 /* yellowDoneButtonNormal.png */; };
+		370FA6C815B433E100FC1C86 /* yellowDoneButtonNormal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 370FA69215B433E100FC1C86 /* yellowDoneButtonNormal@2x.png */; };
+		370FA6C915B433E100FC1C86 /* yellowDoneButtonPressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 370FA69315B433E100FC1C86 /* yellowDoneButtonPressed.png */; };
+		370FA6CA15B433E100FC1C86 /* yellowDoneButtonPressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 370FA69415B433E100FC1C86 /* yellowDoneButtonPressed@2x.png */; };
+		370FA6CF15B434F700FC1C86 /* segmentButtonOff.png in Resources */ = {isa = PBXBuildFile; fileRef = 370FA6CB15B434F700FC1C86 /* segmentButtonOff.png */; };
+		370FA6D015B434F700FC1C86 /* segmentButtonOff@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 370FA6CC15B434F700FC1C86 /* segmentButtonOff@2x.png */; };
+		370FA6D115B434F700FC1C86 /* segmentButtonOn.png in Resources */ = {isa = PBXBuildFile; fileRef = 370FA6CD15B434F700FC1C86 /* segmentButtonOn.png */; };
+		370FA6D215B434F700FC1C86 /* segmentButtonOn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 370FA6CE15B434F700FC1C86 /* segmentButtonOn@2x.png */; };
+		37153EA015AEBA3400C985C1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37153E9F15AEBA3400C985C1 /* UIKit.framework */; };
+		37153EA215AEBA3400C985C1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37153EA115AEBA3400C985C1 /* Foundation.framework */; };
+		37153EA415AEBA3400C985C1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37153EA315AEBA3400C985C1 /* CoreGraphics.framework */; };
+		37153EAA15AEBA3400C985C1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 37153EA815AEBA3400C985C1 /* InfoPlist.strings */; };
+		37153EAC15AEBA3400C985C1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 37153EAB15AEBA3400C985C1 /* main.m */; };
+		37153EB015AEBA3400C985C1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 37153EAF15AEBA3400C985C1 /* AppDelegate.m */; };
+		371CBA5315AFD452008CA154 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 371CBA5215AFD452008CA154 /* Parse.framework */; };
+		371CBA5715AFD4A8008CA154 /* STabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 371CBA5615AFD4A8008CA154 /* STabBarController.m */; };
+		371CBA8315AFF3E1008CA154 /* StationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 371CBA8115AFF3E1008CA154 /* StationsViewController.m */; };
+		371CBA8415AFF3E1008CA154 /* StationsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 371CBA8215AFF3E1008CA154 /* StationsViewController.xib */; };
+		371CBA8815AFF3F2008CA154 /* CalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 371CBA8615AFF3F2008CA154 /* CalendarViewController.m */; };
+		371CBA8915AFF3F2008CA154 /* CalendarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 371CBA8715AFF3F2008CA154 /* CalendarViewController.xib */; };
+		3747E79A15B68167004CF538 /* calendarAvailablePlasmaIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3747E78A15B68167004CF538 /* calendarAvailablePlasmaIcon.png */; };
+		3747E79B15B68167004CF538 /* calendarAvailablePlasmaIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3747E78B15B68167004CF538 /* calendarAvailablePlasmaIcon@2x.png */; };
+		3747E79C15B68167004CF538 /* calendarAvailablePlateletsIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3747E78C15B68167004CF538 /* calendarAvailablePlateletsIcon.png */; };
+		3747E79D15B68167004CF538 /* calendarAvailablePlateletsIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3747E78D15B68167004CF538 /* calendarAvailablePlateletsIcon@2x.png */; };
+		3747E79E15B68167004CF538 /* calendarAvailableSectionIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3747E78E15B68167004CF538 /* calendarAvailableSectionIcon.png */; };
+		3747E79F15B68167004CF538 /* calendarAvailableSectionIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3747E78F15B68167004CF538 /* calendarAvailableSectionIcon@2x.png */; };
+		3747E7A015B68167004CF538 /* calendarAvailableWholeBloodIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3747E79015B68167004CF538 /* calendarAvailableWholeBloodIcon.png */; };
+		3747E7A115B68167004CF538 /* calendarAvailableWholeBloodIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3747E79115B68167004CF538 /* calendarAvailableWholeBloodIcon@2x.png */; };
+		3747E7A215B68167004CF538 /* calendarCompletedWholeBloodIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3747E79215B68167004CF538 /* calendarCompletedWholeBloodIcon.png */; };
+		3747E7A315B68167004CF538 /* calendarCompletedWholeBloodIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3747E79315B68167004CF538 /* calendarCompletedWholeBloodIcon@2x.png */; };
+		3747E7A415B68167004CF538 /* calendarScheduledPlateletsIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3747E79415B68167004CF538 /* calendarScheduledPlateletsIcon.png */; };
+		3747E7A515B68167004CF538 /* calendarScheduledPlateletsIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3747E79515B68167004CF538 /* calendarScheduledPlateletsIcon@2x.png */; };
+		3747E7A615B68167004CF538 /* calendarScheduledSectionIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3747E79615B68167004CF538 /* calendarScheduledSectionIcon.png */; };
+		3747E7A715B68167004CF538 /* calendarScheduledSectionIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3747E79715B68167004CF538 /* calendarScheduledSectionIcon@2x.png */; };
+		3747E7A815B68167004CF538 /* calendarScheduledTestIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3747E79815B68167004CF538 /* calendarScheduledTestIcon.png */; };
+		3747E7A915B68167004CF538 /* calendarScheduledTestIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3747E79915B68167004CF538 /* calendarScheduledTestIcon@2x.png */; };
+		3758506415AEC507006DF7E1 /* 57x57.png in Resources */ = {isa = PBXBuildFile; fileRef = 3758506315AEC507006DF7E1 /* 57x57.png */; };
+		3758506615AEC50B006DF7E1 /* 114x114.png in Resources */ = {isa = PBXBuildFile; fileRef = 3758506515AEC50B006DF7E1 /* 114x114.png */; };
+		3758506E15AED1FE006DF7E1 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3758506C15AED1FE006DF7E1 /* ProfileViewController.m */; };
+		3758506F15AED1FE006DF7E1 /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3758506D15AED1FE006DF7E1 /* ProfileViewController.xib */; };
+		3758507315AED544006DF7E1 /* ProfileDescriptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3758507115AED544006DF7E1 /* ProfileDescriptionViewController.m */; };
+		3758507415AED544006DF7E1 /* ProfileDescriptionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3758507215AED544006DF7E1 /* ProfileDescriptionViewController.xib */; };
+		3758507C15AEDCF5006DF7E1 /* ProfileRegistrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3758507A15AEDCF5006DF7E1 /* ProfileRegistrationViewController.m */; };
+		3758507D15AEDCF5006DF7E1 /* ProfileRegistrationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3758507B15AEDCF5006DF7E1 /* ProfileRegistrationViewController.xib */; };
+		3758508615AEDE69006DF7E1 /* ProfileSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3758508415AEDE69006DF7E1 /* ProfileSettingsViewController.m */; };
+		3758508715AEDE69006DF7E1 /* ProfileSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3758508515AEDE69006DF7E1 /* ProfileSettingsViewController.xib */; };
+		3758508C15AEE41A006DF7E1 /* InfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3758508A15AEE41A006DF7E1 /* InfoViewController.m */; };
+		3758508D15AEE41A006DF7E1 /* InfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3758508B15AEE41A006DF7E1 /* InfoViewController.xib */; };
+		37B1364E15B538610022B8D8 /* calendarBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 37B1364615B538610022B8D8 /* calendarBackground.png */; };
+		37B1364F15B538610022B8D8 /* calendarBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37B1364715B538610022B8D8 /* calendarBackground@2x.png */; };
+		37B1365015B538610022B8D8 /* calendarItemBorder.png in Resources */ = {isa = PBXBuildFile; fileRef = 37B1364815B538610022B8D8 /* calendarItemBorder.png */; };
+		37B1365115B538610022B8D8 /* calendarItemBorder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37B1364915B538610022B8D8 /* calendarItemBorder@2x.png */; };
+		37B1365215B538610022B8D8 /* calendarItemRectangle.png in Resources */ = {isa = PBXBuildFile; fileRef = 37B1364A15B538610022B8D8 /* calendarItemRectangle.png */; };
+		37B1365315B538610022B8D8 /* calendarItemRectangle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37B1364B15B538610022B8D8 /* calendarItemRectangle@2x.png */; };
+		37B1365415B538610022B8D8 /* calendarMonthBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 37B1364C15B538610022B8D8 /* calendarMonthBackground.png */; };
+		37B1365515B538610022B8D8 /* calendarMonthBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37B1364D15B538610022B8D8 /* calendarMonthBackground@2x.png */; };
+		37B1365B15B53AF50022B8D8 /* calendarMonthLeftButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 37B1365715B53AF50022B8D8 /* calendarMonthLeftButton.png */; };
+		37B1365C15B53AF50022B8D8 /* calendarMonthLeftButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37B1365815B53AF50022B8D8 /* calendarMonthLeftButton@2x.png */; };
+		37B1365D15B53AF50022B8D8 /* calendarMonthRightButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 37B1365915B53AF50022B8D8 /* calendarMonthRightButton.png */; };
+		37B1365E15B53AF50022B8D8 /* calendarMonthRightButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37B1365A15B53AF50022B8D8 /* calendarMonthRightButton@2x.png */; };
+		37B1366115B56EA10022B8D8 /* calendarSliderTopBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 37B1365F15B56EA10022B8D8 /* calendarSliderTopBackground.png */; };
+		37B1366215B56EA10022B8D8 /* calendarSliderTopBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37B1366015B56EA10022B8D8 /* calendarSliderTopBackground@2x.png */; };
+		37B1367315B593620022B8D8 /* calendarSliderBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 37B1367115B593620022B8D8 /* calendarSliderBackground.png */; };
+		37B1367415B593620022B8D8 /* calendarSliderBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37B1367215B593620022B8D8 /* calendarSliderBackground@2x.png */; };
+		37B1367915B598820022B8D8 /* calendarSliderSectionBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 37B1367515B598820022B8D8 /* calendarSliderSectionBackground.png */; };
+		37B1367A15B598820022B8D8 /* calendarSliderSectionBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37B1367615B598820022B8D8 /* calendarSliderSectionBackground@2x.png */; };
+		37B1367B15B598820022B8D8 /* calendarSliderSectionShadowBottom.png in Resources */ = {isa = PBXBuildFile; fileRef = 37B1367715B598820022B8D8 /* calendarSliderSectionShadowBottom.png */; };
+		37B1367C15B598820022B8D8 /* calendarSliderSectionShadowBottom@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37B1367815B598820022B8D8 /* calendarSliderSectionShadowBottom@2x.png */; };
+		858B436B15B6B03200A7A67D /* ProfileSexSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 858B436915B6B03200A7A67D /* ProfileSexSelectViewController.m */; };
+		858B436C15B6B03200A7A67D /* ProfileSexSelectViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 858B436A15B6B03200A7A67D /* ProfileSexSelectViewController.xib */; };
+		85AA3B3115B3D3690077D336 /* SelectBloodGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85AA3B2F15B3D3690077D336 /* SelectBloodGroupViewController.m */; };
+		85AA3B3215B3D3690077D336 /* SelectBloodGroupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85AA3B3015B3D3690077D336 /* SelectBloodGroupViewController.xib */; };
+		85AA3B3615B3D9250077D336 /* Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 85AA3B3515B3D9250077D336 /* Common.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		370FA63715B42A4500FC1C86 /* tabBarBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tabBarBackground.png; sourceTree = "<group>"; };
+		370FA63815B42A4500FC1C86 /* tabBarBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabBarBackground@2x.png"; sourceTree = "<group>"; };
+		370FA63915B42A4500FC1C86 /* tabBarCalendarNormal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tabBarCalendarNormal.png; sourceTree = "<group>"; };
+		370FA63A15B42A4500FC1C86 /* tabBarCalendarNormal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabBarCalendarNormal@2x.png"; sourceTree = "<group>"; };
+		370FA63B15B42A4500FC1C86 /* tabBarCalendarSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tabBarCalendarSelected.png; sourceTree = "<group>"; };
+		370FA63C15B42A4500FC1C86 /* tabBarCalendarSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabBarCalendarSelected@2x.png"; sourceTree = "<group>"; };
+		370FA63D15B42A4500FC1C86 /* tabBarInfoNormal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tabBarInfoNormal.png; sourceTree = "<group>"; };
+		370FA63E15B42A4500FC1C86 /* tabBarInfoNormal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabBarInfoNormal@2x.png"; sourceTree = "<group>"; };
+		370FA63F15B42A4500FC1C86 /* tabBarInfoSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tabBarInfoSelected.png; sourceTree = "<group>"; };
+		370FA64015B42A4500FC1C86 /* tabBarInfoSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabBarInfoSelected@2x.png"; sourceTree = "<group>"; };
+		370FA64115B42A4500FC1C86 /* tabBarProfileNormal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tabBarProfileNormal.png; sourceTree = "<group>"; };
+		370FA64215B42A4500FC1C86 /* tabBarProfileNormal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabBarProfileNormal@2x.png"; sourceTree = "<group>"; };
+		370FA64315B42A4500FC1C86 /* tabBarProfileSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tabBarProfileSelected.png; sourceTree = "<group>"; };
+		370FA64415B42A4500FC1C86 /* tabBarProfileSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabBarProfileSelected@2x.png"; sourceTree = "<group>"; };
+		370FA64515B42A4500FC1C86 /* tabBarStationsNormal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tabBarStationsNormal.png; sourceTree = "<group>"; };
+		370FA64615B42A4500FC1C86 /* tabBarStationsNormal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabBarStationsNormal@2x.png"; sourceTree = "<group>"; };
+		370FA64715B42A4500FC1C86 /* tabBarStationsSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tabBarStationsSelected.png; sourceTree = "<group>"; };
+		370FA64815B42A4500FC1C86 /* tabBarStationsSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabBarStationsSelected@2x.png"; sourceTree = "<group>"; };
+		370FA65F15B433E100FC1C86 /* authorizationButtonNormal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = authorizationButtonNormal.png; sourceTree = "<group>"; };
+		370FA66015B433E100FC1C86 /* authorizationButtonNormal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "authorizationButtonNormal@2x.png"; sourceTree = "<group>"; };
+		370FA66115B433E100FC1C86 /* authorizationButtonPressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = authorizationButtonPressed.png; sourceTree = "<group>"; };
+		370FA66215B433E100FC1C86 /* authorizationButtonPressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "authorizationButtonPressed@2x.png"; sourceTree = "<group>"; };
+		370FA66315B433E100FC1C86 /* backButtonNormal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backButtonNormal.png; sourceTree = "<group>"; };
+		370FA66415B433E100FC1C86 /* backButtonNormal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backButtonNormal@2x.png"; sourceTree = "<group>"; };
+		370FA66515B433E100FC1C86 /* backButtonPressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backButtonPressed.png; sourceTree = "<group>"; };
+		370FA66615B433E100FC1C86 /* backButtonPressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backButtonPressed@2x.png"; sourceTree = "<group>"; };
+		370FA66715B433E100FC1C86 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
+		370FA66815B433E100FC1C86 /* background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background@2x.png"; sourceTree = "<group>"; };
+		370FA66915B433E100FC1C86 /* barButtonNormal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = barButtonNormal.png; sourceTree = "<group>"; };
+		370FA66A15B433E100FC1C86 /* barButtonNormal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "barButtonNormal@2x.png"; sourceTree = "<group>"; };
+		370FA66B15B433E100FC1C86 /* barButtonPressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = barButtonPressed.png; sourceTree = "<group>"; };
+		370FA66C15B433E100FC1C86 /* barButtonPressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "barButtonPressed@2x.png"; sourceTree = "<group>"; };
+		370FA66D15B433E100FC1C86 /* calendarIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calendarIcon.png; sourceTree = "<group>"; };
+		370FA66E15B433E100FC1C86 /* calendarIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "calendarIcon@2x.png"; sourceTree = "<group>"; };
+		370FA66F15B433E100FC1C86 /* cell.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cell.png; sourceTree = "<group>"; };
+		370FA67015B433E100FC1C86 /* cell@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cell@2x.png"; sourceTree = "<group>"; };
+		370FA67115B433E100FC1C86 /* doneButtonNormal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = doneButtonNormal.png; sourceTree = "<group>"; };
+		370FA67215B433E100FC1C86 /* doneButtonNormal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "doneButtonNormal@2x.png"; sourceTree = "<group>"; };
+		370FA67315B433E100FC1C86 /* doneButtonPressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = doneButtonPressed.png; sourceTree = "<group>"; };
+		370FA67415B433E100FC1C86 /* doneButtonPressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "doneButtonPressed@2x.png"; sourceTree = "<group>"; };
+		370FA67515B433E100FC1C86 /* donorIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = donorIcon.png; sourceTree = "<group>"; };
+		370FA67615B433E100FC1C86 /* donorIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "donorIcon@2x.png"; sourceTree = "<group>"; };
+		370FA67715B433E100FC1C86 /* dottedLine.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dottedLine.png; sourceTree = "<group>"; };
+		370FA67815B433E100FC1C86 /* dottedLine@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dottedLine@2x.png"; sourceTree = "<group>"; };
+		370FA67915B433E100FC1C86 /* exitButtonNormal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = exitButtonNormal.png; sourceTree = "<group>"; };
+		370FA67A15B433E100FC1C86 /* exitButtonNormal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "exitButtonNormal@2x.png"; sourceTree = "<group>"; };
+		370FA67B15B433E100FC1C86 /* exitButtonPressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = exitButtonPressed.png; sourceTree = "<group>"; };
+		370FA67C15B433E100FC1C86 /* exitButtonPressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "exitButtonPressed@2x.png"; sourceTree = "<group>"; };
+		370FA67D15B433E100FC1C86 /* navigationBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navigationBar.png; sourceTree = "<group>"; };
+		370FA67E15B433E100FC1C86 /* navigationBar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navigationBar@2x.png"; sourceTree = "<group>"; };
+		370FA67F15B433E100FC1C86 /* radioButtonNotSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = radioButtonNotSelected.png; sourceTree = "<group>"; };
+		370FA68015B433E100FC1C86 /* radioButtonNotSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "radioButtonNotSelected@2x.png"; sourceTree = "<group>"; };
+		370FA68115B433E100FC1C86 /* radioButtonSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = radioButtonSelected.png; sourceTree = "<group>"; };
+		370FA68215B433E100FC1C86 /* radioButtonSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "radioButtonSelected@2x.png"; sourceTree = "<group>"; };
+		370FA68315B433E100FC1C86 /* registrationButtonNormal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = registrationButtonNormal.png; sourceTree = "<group>"; };
+		370FA68415B433E100FC1C86 /* registrationButtonNormal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "registrationButtonNormal@2x.png"; sourceTree = "<group>"; };
+		370FA68515B433E100FC1C86 /* registrationButtonPressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = registrationButtonPressed.png; sourceTree = "<group>"; };
+		370FA68615B433E100FC1C86 /* registrationButtonPressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "registrationButtonPressed@2x.png"; sourceTree = "<group>"; };
+		370FA68715B433E100FC1C86 /* selectBloodGroupView.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = selectBloodGroupView.png; sourceTree = "<group>"; };
+		370FA68815B433E100FC1C86 /* selectBloodGroupView@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "selectBloodGroupView@2x.png"; sourceTree = "<group>"; };
+		370FA68915B433E100FC1C86 /* settingsButtonNormal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settingsButtonNormal.png; sourceTree = "<group>"; };
+		370FA68A15B433E100FC1C86 /* settingsButtonNormal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settingsButtonNormal@2x.png"; sourceTree = "<group>"; };
+		370FA68B15B433E100FC1C86 /* settingsButtonPressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settingsButtonPressed.png; sourceTree = "<group>"; };
+		370FA68C15B433E100FC1C86 /* settingsButtonPressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settingsButtonPressed@2x.png"; sourceTree = "<group>"; };
+		370FA68D15B433E100FC1C86 /* yellowCancelButtonNormal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yellowCancelButtonNormal.png; sourceTree = "<group>"; };
+		370FA68E15B433E100FC1C86 /* yellowCancelButtonNormal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "yellowCancelButtonNormal@2x.png"; sourceTree = "<group>"; };
+		370FA68F15B433E100FC1C86 /* yellowCancelButtonPressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yellowCancelButtonPressed.png; sourceTree = "<group>"; };
+		370FA69015B433E100FC1C86 /* yellowCancelButtonPressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "yellowCancelButtonPressed@2x.png"; sourceTree = "<group>"; };
+		370FA69115B433E100FC1C86 /* yellowDoneButtonNormal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yellowDoneButtonNormal.png; sourceTree = "<group>"; };
+		370FA69215B433E100FC1C86 /* yellowDoneButtonNormal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "yellowDoneButtonNormal@2x.png"; sourceTree = "<group>"; };
+		370FA69315B433E100FC1C86 /* yellowDoneButtonPressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yellowDoneButtonPressed.png; sourceTree = "<group>"; };
+		370FA69415B433E100FC1C86 /* yellowDoneButtonPressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "yellowDoneButtonPressed@2x.png"; sourceTree = "<group>"; };
+		370FA6CB15B434F700FC1C86 /* segmentButtonOff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = segmentButtonOff.png; sourceTree = "<group>"; };
+		370FA6CC15B434F700FC1C86 /* segmentButtonOff@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "segmentButtonOff@2x.png"; sourceTree = "<group>"; };
+		370FA6CD15B434F700FC1C86 /* segmentButtonOn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = segmentButtonOn.png; sourceTree = "<group>"; };
+		370FA6CE15B434F700FC1C86 /* segmentButtonOn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "segmentButtonOn@2x.png"; sourceTree = "<group>"; };
+		37153E9B15AEBA3400C985C1 /* BloodDonor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BloodDonor.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		37153E9F15AEBA3400C985C1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		37153EA115AEBA3400C985C1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		37153EA315AEBA3400C985C1 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		37153EA715AEBA3400C985C1 /* BloodDonor-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BloodDonor-Info.plist"; sourceTree = "<group>"; };
+		37153EA915AEBA3400C985C1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		37153EAB15AEBA3400C985C1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		37153EAD15AEBA3400C985C1 /* BloodDonor-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BloodDonor-Prefix.pch"; sourceTree = "<group>"; };
+		37153EAE15AEBA3400C985C1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		37153EAF15AEBA3400C985C1 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		371CBA5215AFD452008CA154 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
+		371CBA5515AFD4A8008CA154 /* STabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STabBarController.h; sourceTree = "<group>"; };
+		371CBA5615AFD4A8008CA154 /* STabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STabBarController.m; sourceTree = "<group>"; };
+		371CBA8015AFF3E1008CA154 /* StationsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StationsViewController.h; sourceTree = "<group>"; };
+		371CBA8115AFF3E1008CA154 /* StationsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StationsViewController.m; sourceTree = "<group>"; };
+		371CBA8215AFF3E1008CA154 /* StationsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StationsViewController.xib; sourceTree = "<group>"; };
+		371CBA8515AFF3F2008CA154 /* CalendarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarViewController.h; sourceTree = "<group>"; };
+		371CBA8615AFF3F2008CA154 /* CalendarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarViewController.m; sourceTree = "<group>"; };
+		371CBA8715AFF3F2008CA154 /* CalendarViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CalendarViewController.xib; sourceTree = "<group>"; };
+		3747E78A15B68167004CF538 /* calendarAvailablePlasmaIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calendarAvailablePlasmaIcon.png; sourceTree = "<group>"; };
+		3747E78B15B68167004CF538 /* calendarAvailablePlasmaIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "calendarAvailablePlasmaIcon@2x.png"; sourceTree = "<group>"; };
+		3747E78C15B68167004CF538 /* calendarAvailablePlateletsIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calendarAvailablePlateletsIcon.png; sourceTree = "<group>"; };
+		3747E78D15B68167004CF538 /* calendarAvailablePlateletsIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "calendarAvailablePlateletsIcon@2x.png"; sourceTree = "<group>"; };
+		3747E78E15B68167004CF538 /* calendarAvailableSectionIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calendarAvailableSectionIcon.png; sourceTree = "<group>"; };
+		3747E78F15B68167004CF538 /* calendarAvailableSectionIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "calendarAvailableSectionIcon@2x.png"; sourceTree = "<group>"; };
+		3747E79015B68167004CF538 /* calendarAvailableWholeBloodIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calendarAvailableWholeBloodIcon.png; sourceTree = "<group>"; };
+		3747E79115B68167004CF538 /* calendarAvailableWholeBloodIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "calendarAvailableWholeBloodIcon@2x.png"; sourceTree = "<group>"; };
+		3747E79215B68167004CF538 /* calendarCompletedWholeBloodIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calendarCompletedWholeBloodIcon.png; sourceTree = "<group>"; };
+		3747E79315B68167004CF538 /* calendarCompletedWholeBloodIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "calendarCompletedWholeBloodIcon@2x.png"; sourceTree = "<group>"; };
+		3747E79415B68167004CF538 /* calendarScheduledPlateletsIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calendarScheduledPlateletsIcon.png; sourceTree = "<group>"; };
+		3747E79515B68167004CF538 /* calendarScheduledPlateletsIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "calendarScheduledPlateletsIcon@2x.png"; sourceTree = "<group>"; };
+		3747E79615B68167004CF538 /* calendarScheduledSectionIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calendarScheduledSectionIcon.png; sourceTree = "<group>"; };
+		3747E79715B68167004CF538 /* calendarScheduledSectionIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "calendarScheduledSectionIcon@2x.png"; sourceTree = "<group>"; };
+		3747E79815B68167004CF538 /* calendarScheduledTestIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calendarScheduledTestIcon.png; sourceTree = "<group>"; };
+		3747E79915B68167004CF538 /* calendarScheduledTestIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "calendarScheduledTestIcon@2x.png"; sourceTree = "<group>"; };
+		3758506315AEC507006DF7E1 /* 57x57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 57x57.png; sourceTree = "<group>"; };
+		3758506515AEC50B006DF7E1 /* 114x114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 114x114.png; sourceTree = "<group>"; };
+		3758506B15AED1FE006DF7E1 /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
+		3758506C15AED1FE006DF7E1 /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
+		3758506D15AED1FE006DF7E1 /* ProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileViewController.xib; sourceTree = "<group>"; };
+		3758507015AED544006DF7E1 /* ProfileDescriptionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileDescriptionViewController.h; sourceTree = "<group>"; };
+		3758507115AED544006DF7E1 /* ProfileDescriptionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileDescriptionViewController.m; sourceTree = "<group>"; };
+		3758507215AED544006DF7E1 /* ProfileDescriptionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileDescriptionViewController.xib; sourceTree = "<group>"; };
+		3758507915AEDCF5006DF7E1 /* ProfileRegistrationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileRegistrationViewController.h; sourceTree = "<group>"; };
+		3758507A15AEDCF5006DF7E1 /* ProfileRegistrationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileRegistrationViewController.m; sourceTree = "<group>"; };
+		3758507B15AEDCF5006DF7E1 /* ProfileRegistrationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileRegistrationViewController.xib; sourceTree = "<group>"; };
+		3758508315AEDE69006DF7E1 /* ProfileSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileSettingsViewController.h; sourceTree = "<group>"; };
+		3758508415AEDE69006DF7E1 /* ProfileSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileSettingsViewController.m; sourceTree = "<group>"; };
+		3758508515AEDE69006DF7E1 /* ProfileSettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileSettingsViewController.xib; sourceTree = "<group>"; };
+		3758508915AEE41A006DF7E1 /* InfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoViewController.h; sourceTree = "<group>"; };
+		3758508A15AEE41A006DF7E1 /* InfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoViewController.m; sourceTree = "<group>"; };
+		3758508B15AEE41A006DF7E1 /* InfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InfoViewController.xib; sourceTree = "<group>"; };
+		37B1364615B538610022B8D8 /* calendarBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calendarBackground.png; sourceTree = "<group>"; };
+		37B1364715B538610022B8D8 /* calendarBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "calendarBackground@2x.png"; sourceTree = "<group>"; };
+		37B1364815B538610022B8D8 /* calendarItemBorder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calendarItemBorder.png; sourceTree = "<group>"; };
+		37B1364915B538610022B8D8 /* calendarItemBorder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "calendarItemBorder@2x.png"; sourceTree = "<group>"; };
+		37B1364A15B538610022B8D8 /* calendarItemRectangle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calendarItemRectangle.png; sourceTree = "<group>"; };
+		37B1364B15B538610022B8D8 /* calendarItemRectangle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "calendarItemRectangle@2x.png"; sourceTree = "<group>"; };
+		37B1364C15B538610022B8D8 /* calendarMonthBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calendarMonthBackground.png; sourceTree = "<group>"; };
+		37B1364D15B538610022B8D8 /* calendarMonthBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "calendarMonthBackground@2x.png"; sourceTree = "<group>"; };
+		37B1365715B53AF50022B8D8 /* calendarMonthLeftButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calendarMonthLeftButton.png; sourceTree = "<group>"; };
+		37B1365815B53AF50022B8D8 /* calendarMonthLeftButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "calendarMonthLeftButton@2x.png"; sourceTree = "<group>"; };
+		37B1365915B53AF50022B8D8 /* calendarMonthRightButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calendarMonthRightButton.png; sourceTree = "<group>"; };
+		37B1365A15B53AF50022B8D8 /* calendarMonthRightButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "calendarMonthRightButton@2x.png"; sourceTree = "<group>"; };
+		37B1365F15B56EA10022B8D8 /* calendarSliderTopBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calendarSliderTopBackground.png; sourceTree = "<group>"; };
+		37B1366015B56EA10022B8D8 /* calendarSliderTopBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "calendarSliderTopBackground@2x.png"; sourceTree = "<group>"; };
+		37B1367115B593620022B8D8 /* calendarSliderBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calendarSliderBackground.png; sourceTree = "<group>"; };
+		37B1367215B593620022B8D8 /* calendarSliderBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "calendarSliderBackground@2x.png"; sourceTree = "<group>"; };
+		37B1367515B598820022B8D8 /* calendarSliderSectionBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calendarSliderSectionBackground.png; sourceTree = "<group>"; };
+		37B1367615B598820022B8D8 /* calendarSliderSectionBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "calendarSliderSectionBackground@2x.png"; sourceTree = "<group>"; };
+		37B1367715B598820022B8D8 /* calendarSliderSectionShadowBottom.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calendarSliderSectionShadowBottom.png; sourceTree = "<group>"; };
+		37B1367815B598820022B8D8 /* calendarSliderSectionShadowBottom@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "calendarSliderSectionShadowBottom@2x.png"; sourceTree = "<group>"; };
+		858B436815B6B03200A7A67D /* ProfileSexSelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileSexSelectViewController.h; sourceTree = "<group>"; };
+		858B436915B6B03200A7A67D /* ProfileSexSelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileSexSelectViewController.m; sourceTree = "<group>"; };
+		858B436A15B6B03200A7A67D /* ProfileSexSelectViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileSexSelectViewController.xib; sourceTree = "<group>"; };
+		85AA3B2E15B3D3690077D336 /* SelectBloodGroupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectBloodGroupViewController.h; sourceTree = "<group>"; };
+		85AA3B2F15B3D3690077D336 /* SelectBloodGroupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectBloodGroupViewController.m; sourceTree = "<group>"; };
+		85AA3B3015B3D3690077D336 /* SelectBloodGroupViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectBloodGroupViewController.xib; sourceTree = "<group>"; };
+		85AA3B3415B3D9250077D336 /* Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
+		85AA3B3515B3D9250077D336 /* Common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Common.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		37153E9815AEBA3400C985C1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				37153EA015AEBA3400C985C1 /* UIKit.framework in Frameworks */,
+				37153EA215AEBA3400C985C1 /* Foundation.framework in Frameworks */,
+				37153EA415AEBA3400C985C1 /* CoreGraphics.framework in Frameworks */,
+				371CBA5315AFD452008CA154 /* Parse.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		37153E9015AEBA3400C985C1 = {
+			isa = PBXGroup;
+			children = (
+				3758506515AEC50B006DF7E1 /* 114x114.png */,
+				3758506315AEC507006DF7E1 /* 57x57.png */,
+				3758525915AEE959006DF7E1 /* Images */,
+				37153EA515AEBA3400C985C1 /* BloodDonor */,
+				37153E9E15AEBA3400C985C1 /* Frameworks */,
+				37153E9C15AEBA3400C985C1 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		37153E9C15AEBA3400C985C1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				37153E9B15AEBA3400C985C1 /* BloodDonor.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		37153E9E15AEBA3400C985C1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				371CBA5215AFD452008CA154 /* Parse.framework */,
+				37153E9F15AEBA3400C985C1 /* UIKit.framework */,
+				37153EA115AEBA3400C985C1 /* Foundation.framework */,
+				37153EA315AEBA3400C985C1 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		37153EA515AEBA3400C985C1 /* BloodDonor */ = {
+			isa = PBXGroup;
+			children = (
+				3758506715AEC5EC006DF7E1 /* Calendar */,
+				3758506815AEC5FA006DF7E1 /* Stations */,
+				3758506915AEC60E006DF7E1 /* Info */,
+				3758506A15AEC61E006DF7E1 /* Profile */,
+				37153EAE15AEBA3400C985C1 /* AppDelegate.h */,
+				37153EAF15AEBA3400C985C1 /* AppDelegate.m */,
+				85AA3B3415B3D9250077D336 /* Common.h */,
+				85AA3B3515B3D9250077D336 /* Common.m */,
+				371CBA5515AFD4A8008CA154 /* STabBarController.h */,
+				371CBA5615AFD4A8008CA154 /* STabBarController.m */,
+				37153EA615AEBA3400C985C1 /* Supporting Files */,
+			);
+			path = BloodDonor;
+			sourceTree = "<group>";
+		};
+		37153EA615AEBA3400C985C1 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				37153EA715AEBA3400C985C1 /* BloodDonor-Info.plist */,
+				37153EA815AEBA3400C985C1 /* InfoPlist.strings */,
+				37153EAB15AEBA3400C985C1 /* main.m */,
+				37153EAD15AEBA3400C985C1 /* BloodDonor-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		3758506715AEC5EC006DF7E1 /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				371CBA8515AFF3F2008CA154 /* CalendarViewController.h */,
+				371CBA8615AFF3F2008CA154 /* CalendarViewController.m */,
+				371CBA8715AFF3F2008CA154 /* CalendarViewController.xib */,
+			);
+			name = Calendar;
+			sourceTree = "<group>";
+		};
+		3758506815AEC5FA006DF7E1 /* Stations */ = {
+			isa = PBXGroup;
+			children = (
+				371CBA8015AFF3E1008CA154 /* StationsViewController.h */,
+				371CBA8115AFF3E1008CA154 /* StationsViewController.m */,
+				371CBA8215AFF3E1008CA154 /* StationsViewController.xib */,
+			);
+			name = Stations;
+			sourceTree = "<group>";
+		};
+		3758506915AEC60E006DF7E1 /* Info */ = {
+			isa = PBXGroup;
+			children = (
+				3758508915AEE41A006DF7E1 /* InfoViewController.h */,
+				3758508A15AEE41A006DF7E1 /* InfoViewController.m */,
+				3758508B15AEE41A006DF7E1 /* InfoViewController.xib */,
+			);
+			name = Info;
+			sourceTree = "<group>";
+		};
+		3758506A15AEC61E006DF7E1 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				85AA3B2E15B3D3690077D336 /* SelectBloodGroupViewController.h */,
+				85AA3B2F15B3D3690077D336 /* SelectBloodGroupViewController.m */,
+				85AA3B3015B3D3690077D336 /* SelectBloodGroupViewController.xib */,
+				3758506B15AED1FE006DF7E1 /* ProfileViewController.h */,
+				3758506C15AED1FE006DF7E1 /* ProfileViewController.m */,
+				3758506D15AED1FE006DF7E1 /* ProfileViewController.xib */,
+				3758507015AED544006DF7E1 /* ProfileDescriptionViewController.h */,
+				3758507115AED544006DF7E1 /* ProfileDescriptionViewController.m */,
+				3758507215AED544006DF7E1 /* ProfileDescriptionViewController.xib */,
+				3758507915AEDCF5006DF7E1 /* ProfileRegistrationViewController.h */,
+				3758507A15AEDCF5006DF7E1 /* ProfileRegistrationViewController.m */,
+				3758507B15AEDCF5006DF7E1 /* ProfileRegistrationViewController.xib */,
+				3758508315AEDE69006DF7E1 /* ProfileSettingsViewController.h */,
+				3758508415AEDE69006DF7E1 /* ProfileSettingsViewController.m */,
+				3758508515AEDE69006DF7E1 /* ProfileSettingsViewController.xib */,
+				858B436815B6B03200A7A67D /* ProfileSexSelectViewController.h */,
+				858B436915B6B03200A7A67D /* ProfileSexSelectViewController.m */,
+				858B436A15B6B03200A7A67D /* ProfileSexSelectViewController.xib */,
+			);
+			name = Profile;
+			sourceTree = "<group>";
+		};
+		3758525915AEE959006DF7E1 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				3747E78A15B68167004CF538 /* calendarAvailablePlasmaIcon.png */,
+				3747E78B15B68167004CF538 /* calendarAvailablePlasmaIcon@2x.png */,
+				3747E78C15B68167004CF538 /* calendarAvailablePlateletsIcon.png */,
+				3747E78D15B68167004CF538 /* calendarAvailablePlateletsIcon@2x.png */,
+				3747E78E15B68167004CF538 /* calendarAvailableSectionIcon.png */,
+				3747E78F15B68167004CF538 /* calendarAvailableSectionIcon@2x.png */,
+				3747E79015B68167004CF538 /* calendarAvailableWholeBloodIcon.png */,
+				3747E79115B68167004CF538 /* calendarAvailableWholeBloodIcon@2x.png */,
+				3747E79215B68167004CF538 /* calendarCompletedWholeBloodIcon.png */,
+				3747E79315B68167004CF538 /* calendarCompletedWholeBloodIcon@2x.png */,
+				3747E79415B68167004CF538 /* calendarScheduledPlateletsIcon.png */,
+				3747E79515B68167004CF538 /* calendarScheduledPlateletsIcon@2x.png */,
+				3747E79615B68167004CF538 /* calendarScheduledSectionIcon.png */,
+				3747E79715B68167004CF538 /* calendarScheduledSectionIcon@2x.png */,
+				3747E79815B68167004CF538 /* calendarScheduledTestIcon.png */,
+				3747E79915B68167004CF538 /* calendarScheduledTestIcon@2x.png */,
+				37B1367515B598820022B8D8 /* calendarSliderSectionBackground.png */,
+				37B1367615B598820022B8D8 /* calendarSliderSectionBackground@2x.png */,
+				37B1367715B598820022B8D8 /* calendarSliderSectionShadowBottom.png */,
+				37B1367815B598820022B8D8 /* calendarSliderSectionShadowBottom@2x.png */,
+				37B1367115B593620022B8D8 /* calendarSliderBackground.png */,
+				37B1367215B593620022B8D8 /* calendarSliderBackground@2x.png */,
+				37B1365F15B56EA10022B8D8 /* calendarSliderTopBackground.png */,
+				37B1366015B56EA10022B8D8 /* calendarSliderTopBackground@2x.png */,
+				37B1365715B53AF50022B8D8 /* calendarMonthLeftButton.png */,
+				37B1365815B53AF50022B8D8 /* calendarMonthLeftButton@2x.png */,
+				37B1365915B53AF50022B8D8 /* calendarMonthRightButton.png */,
+				37B1365A15B53AF50022B8D8 /* calendarMonthRightButton@2x.png */,
+				37B1364615B538610022B8D8 /* calendarBackground.png */,
+				37B1364715B538610022B8D8 /* calendarBackground@2x.png */,
+				37B1364815B538610022B8D8 /* calendarItemBorder.png */,
+				37B1364915B538610022B8D8 /* calendarItemBorder@2x.png */,
+				37B1364A15B538610022B8D8 /* calendarItemRectangle.png */,
+				37B1364B15B538610022B8D8 /* calendarItemRectangle@2x.png */,
+				37B1364C15B538610022B8D8 /* calendarMonthBackground.png */,
+				37B1364D15B538610022B8D8 /* calendarMonthBackground@2x.png */,
+				370FA6CB15B434F700FC1C86 /* segmentButtonOff.png */,
+				370FA6CC15B434F700FC1C86 /* segmentButtonOff@2x.png */,
+				370FA6CD15B434F700FC1C86 /* segmentButtonOn.png */,
+				370FA6CE15B434F700FC1C86 /* segmentButtonOn@2x.png */,
+				370FA65F15B433E100FC1C86 /* authorizationButtonNormal.png */,
+				370FA66015B433E100FC1C86 /* authorizationButtonNormal@2x.png */,
+				370FA66115B433E100FC1C86 /* authorizationButtonPressed.png */,
+				370FA66215B433E100FC1C86 /* authorizationButtonPressed@2x.png */,
+				370FA66315B433E100FC1C86 /* backButtonNormal.png */,
+				370FA66415B433E100FC1C86 /* backButtonNormal@2x.png */,
+				370FA66515B433E100FC1C86 /* backButtonPressed.png */,
+				370FA66615B433E100FC1C86 /* backButtonPressed@2x.png */,
+				370FA66715B433E100FC1C86 /* background.png */,
+				370FA66815B433E100FC1C86 /* background@2x.png */,
+				370FA66915B433E100FC1C86 /* barButtonNormal.png */,
+				370FA66A15B433E100FC1C86 /* barButtonNormal@2x.png */,
+				370FA66B15B433E100FC1C86 /* barButtonPressed.png */,
+				370FA66C15B433E100FC1C86 /* barButtonPressed@2x.png */,
+				370FA66D15B433E100FC1C86 /* calendarIcon.png */,
+				370FA66E15B433E100FC1C86 /* calendarIcon@2x.png */,
+				370FA66F15B433E100FC1C86 /* cell.png */,
+				370FA67015B433E100FC1C86 /* cell@2x.png */,
+				370FA67115B433E100FC1C86 /* doneButtonNormal.png */,
+				370FA67215B433E100FC1C86 /* doneButtonNormal@2x.png */,
+				370FA67315B433E100FC1C86 /* doneButtonPressed.png */,
+				370FA67415B433E100FC1C86 /* doneButtonPressed@2x.png */,
+				370FA67515B433E100FC1C86 /* donorIcon.png */,
+				370FA67615B433E100FC1C86 /* donorIcon@2x.png */,
+				370FA67715B433E100FC1C86 /* dottedLine.png */,
+				370FA67815B433E100FC1C86 /* dottedLine@2x.png */,
+				370FA67915B433E100FC1C86 /* exitButtonNormal.png */,
+				370FA67A15B433E100FC1C86 /* exitButtonNormal@2x.png */,
+				370FA67B15B433E100FC1C86 /* exitButtonPressed.png */,
+				370FA67C15B433E100FC1C86 /* exitButtonPressed@2x.png */,
+				370FA67D15B433E100FC1C86 /* navigationBar.png */,
+				370FA67E15B433E100FC1C86 /* navigationBar@2x.png */,
+				370FA67F15B433E100FC1C86 /* radioButtonNotSelected.png */,
+				370FA68015B433E100FC1C86 /* radioButtonNotSelected@2x.png */,
+				370FA68115B433E100FC1C86 /* radioButtonSelected.png */,
+				370FA68215B433E100FC1C86 /* radioButtonSelected@2x.png */,
+				370FA68315B433E100FC1C86 /* registrationButtonNormal.png */,
+				370FA68415B433E100FC1C86 /* registrationButtonNormal@2x.png */,
+				370FA68515B433E100FC1C86 /* registrationButtonPressed.png */,
+				370FA68615B433E100FC1C86 /* registrationButtonPressed@2x.png */,
+				370FA68715B433E100FC1C86 /* selectBloodGroupView.png */,
+				370FA68815B433E100FC1C86 /* selectBloodGroupView@2x.png */,
+				370FA68915B433E100FC1C86 /* settingsButtonNormal.png */,
+				370FA68A15B433E100FC1C86 /* settingsButtonNormal@2x.png */,
+				370FA68B15B433E100FC1C86 /* settingsButtonPressed.png */,
+				370FA68C15B433E100FC1C86 /* settingsButtonPressed@2x.png */,
+				370FA68D15B433E100FC1C86 /* yellowCancelButtonNormal.png */,
+				370FA68E15B433E100FC1C86 /* yellowCancelButtonNormal@2x.png */,
+				370FA68F15B433E100FC1C86 /* yellowCancelButtonPressed.png */,
+				370FA69015B433E100FC1C86 /* yellowCancelButtonPressed@2x.png */,
+				370FA69115B433E100FC1C86 /* yellowDoneButtonNormal.png */,
+				370FA69215B433E100FC1C86 /* yellowDoneButtonNormal@2x.png */,
+				370FA69315B433E100FC1C86 /* yellowDoneButtonPressed.png */,
+				370FA69415B433E100FC1C86 /* yellowDoneButtonPressed@2x.png */,
+				370FA63715B42A4500FC1C86 /* tabBarBackground.png */,
+				370FA63815B42A4500FC1C86 /* tabBarBackground@2x.png */,
+				370FA63915B42A4500FC1C86 /* tabBarCalendarNormal.png */,
+				370FA63A15B42A4500FC1C86 /* tabBarCalendarNormal@2x.png */,
+				370FA63B15B42A4500FC1C86 /* tabBarCalendarSelected.png */,
+				370FA63C15B42A4500FC1C86 /* tabBarCalendarSelected@2x.png */,
+				370FA63D15B42A4500FC1C86 /* tabBarInfoNormal.png */,
+				370FA63E15B42A4500FC1C86 /* tabBarInfoNormal@2x.png */,
+				370FA63F15B42A4500FC1C86 /* tabBarInfoSelected.png */,
+				370FA64015B42A4500FC1C86 /* tabBarInfoSelected@2x.png */,
+				370FA64115B42A4500FC1C86 /* tabBarProfileNormal.png */,
+				370FA64215B42A4500FC1C86 /* tabBarProfileNormal@2x.png */,
+				370FA64315B42A4500FC1C86 /* tabBarProfileSelected.png */,
+				370FA64415B42A4500FC1C86 /* tabBarProfileSelected@2x.png */,
+				370FA64515B42A4500FC1C86 /* tabBarStationsNormal.png */,
+				370FA64615B42A4500FC1C86 /* tabBarStationsNormal@2x.png */,
+				370FA64715B42A4500FC1C86 /* tabBarStationsSelected.png */,
+				370FA64815B42A4500FC1C86 /* tabBarStationsSelected@2x.png */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		37153E9A15AEBA3400C985C1 /* BloodDonor */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 37153EC715AEBA3400C985C1 /* Build configuration list for PBXNativeTarget "BloodDonor" */;
+			buildPhases = (
+				37153E9715AEBA3400C985C1 /* Sources */,
+				37153E9815AEBA3400C985C1 /* Frameworks */,
+				37153E9915AEBA3400C985C1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BloodDonor;
+			productName = BloodDonor;
+			productReference = 37153E9B15AEBA3400C985C1 /* BloodDonor.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		37153E9215AEBA3400C985C1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0430;
+			};
+			buildConfigurationList = 37153E9515AEBA3400C985C1 /* Build configuration list for PBXProject "BloodDonor" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 37153E9015AEBA3400C985C1;
+			productRefGroup = 37153E9C15AEBA3400C985C1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				37153E9A15AEBA3400C985C1 /* BloodDonor */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		37153E9915AEBA3400C985C1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				37153EAA15AEBA3400C985C1 /* InfoPlist.strings in Resources */,
+				3758506415AEC507006DF7E1 /* 57x57.png in Resources */,
+				3758506615AEC50B006DF7E1 /* 114x114.png in Resources */,
+				3758506F15AED1FE006DF7E1 /* ProfileViewController.xib in Resources */,
+				3758507415AED544006DF7E1 /* ProfileDescriptionViewController.xib in Resources */,
+				3758507D15AEDCF5006DF7E1 /* ProfileRegistrationViewController.xib in Resources */,
+				3758508715AEDE69006DF7E1 /* ProfileSettingsViewController.xib in Resources */,
+				3758508D15AEE41A006DF7E1 /* InfoViewController.xib in Resources */,
+				371CBA8415AFF3E1008CA154 /* StationsViewController.xib in Resources */,
+				371CBA8915AFF3F2008CA154 /* CalendarViewController.xib in Resources */,
+				85AA3B3215B3D3690077D336 /* SelectBloodGroupViewController.xib in Resources */,
+				370FA64C15B42A4500FC1C86 /* tabBarBackground.png in Resources */,
+				370FA64D15B42A4500FC1C86 /* tabBarBackground@2x.png in Resources */,
+				370FA64E15B42A4500FC1C86 /* tabBarCalendarNormal.png in Resources */,
+				370FA64F15B42A4500FC1C86 /* tabBarCalendarNormal@2x.png in Resources */,
+				370FA65015B42A4500FC1C86 /* tabBarCalendarSelected.png in Resources */,
+				370FA65115B42A4500FC1C86 /* tabBarCalendarSelected@2x.png in Resources */,
+				370FA65215B42A4500FC1C86 /* tabBarInfoNormal.png in Resources */,
+				370FA65315B42A4500FC1C86 /* tabBarInfoNormal@2x.png in Resources */,
+				370FA65415B42A4500FC1C86 /* tabBarInfoSelected.png in Resources */,
+				370FA65515B42A4500FC1C86 /* tabBarInfoSelected@2x.png in Resources */,
+				370FA65615B42A4500FC1C86 /* tabBarProfileNormal.png in Resources */,
+				370FA65715B42A4500FC1C86 /* tabBarProfileNormal@2x.png in Resources */,
+				370FA65815B42A4500FC1C86 /* tabBarProfileSelected.png in Resources */,
+				370FA65915B42A4500FC1C86 /* tabBarProfileSelected@2x.png in Resources */,
+				370FA65A15B42A4500FC1C86 /* tabBarStationsNormal.png in Resources */,
+				370FA65B15B42A4500FC1C86 /* tabBarStationsNormal@2x.png in Resources */,
+				370FA65C15B42A4500FC1C86 /* tabBarStationsSelected.png in Resources */,
+				370FA65D15B42A4500FC1C86 /* tabBarStationsSelected@2x.png in Resources */,
+				370FA69515B433E100FC1C86 /* authorizationButtonNormal.png in Resources */,
+				370FA69615B433E100FC1C86 /* authorizationButtonNormal@2x.png in Resources */,
+				370FA69715B433E100FC1C86 /* authorizationButtonPressed.png in Resources */,
+				370FA69815B433E100FC1C86 /* authorizationButtonPressed@2x.png in Resources */,
+				370FA69915B433E100FC1C86 /* backButtonNormal.png in Resources */,
+				370FA69A15B433E100FC1C86 /* backButtonNormal@2x.png in Resources */,
+				370FA69B15B433E100FC1C86 /* backButtonPressed.png in Resources */,
+				370FA69C15B433E100FC1C86 /* backButtonPressed@2x.png in Resources */,
+				370FA69D15B433E100FC1C86 /* background.png in Resources */,
+				370FA69E15B433E100FC1C86 /* background@2x.png in Resources */,
+				370FA69F15B433E100FC1C86 /* barButtonNormal.png in Resources */,
+				370FA6A015B433E100FC1C86 /* barButtonNormal@2x.png in Resources */,
+				370FA6A115B433E100FC1C86 /* barButtonPressed.png in Resources */,
+				370FA6A215B433E100FC1C86 /* barButtonPressed@2x.png in Resources */,
+				370FA6A315B433E100FC1C86 /* calendarIcon.png in Resources */,
+				370FA6A415B433E100FC1C86 /* calendarIcon@2x.png in Resources */,
+				370FA6A515B433E100FC1C86 /* cell.png in Resources */,
+				370FA6A615B433E100FC1C86 /* cell@2x.png in Resources */,
+				370FA6A715B433E100FC1C86 /* doneButtonNormal.png in Resources */,
+				370FA6A815B433E100FC1C86 /* doneButtonNormal@2x.png in Resources */,
+				370FA6A915B433E100FC1C86 /* doneButtonPressed.png in Resources */,
+				370FA6AA15B433E100FC1C86 /* doneButtonPressed@2x.png in Resources */,
+				370FA6AB15B433E100FC1C86 /* donorIcon.png in Resources */,
+				370FA6AC15B433E100FC1C86 /* donorIcon@2x.png in Resources */,
+				370FA6AD15B433E100FC1C86 /* dottedLine.png in Resources */,
+				370FA6AE15B433E100FC1C86 /* dottedLine@2x.png in Resources */,
+				370FA6AF15B433E100FC1C86 /* exitButtonNormal.png in Resources */,
+				370FA6B015B433E100FC1C86 /* exitButtonNormal@2x.png in Resources */,
+				370FA6B115B433E100FC1C86 /* exitButtonPressed.png in Resources */,
+				370FA6B215B433E100FC1C86 /* exitButtonPressed@2x.png in Resources */,
+				370FA6B315B433E100FC1C86 /* navigationBar.png in Resources */,
+				370FA6B415B433E100FC1C86 /* navigationBar@2x.png in Resources */,
+				370FA6B515B433E100FC1C86 /* radioButtonNotSelected.png in Resources */,
+				370FA6B615B433E100FC1C86 /* radioButtonNotSelected@2x.png in Resources */,
+				370FA6B715B433E100FC1C86 /* radioButtonSelected.png in Resources */,
+				370FA6B815B433E100FC1C86 /* radioButtonSelected@2x.png in Resources */,
+				370FA6B915B433E100FC1C86 /* registrationButtonNormal.png in Resources */,
+				370FA6BA15B433E100FC1C86 /* registrationButtonNormal@2x.png in Resources */,
+				370FA6BB15B433E100FC1C86 /* registrationButtonPressed.png in Resources */,
+				370FA6BC15B433E100FC1C86 /* registrationButtonPressed@2x.png in Resources */,
+				370FA6BD15B433E100FC1C86 /* selectBloodGroupView.png in Resources */,
+				370FA6BE15B433E100FC1C86 /* selectBloodGroupView@2x.png in Resources */,
+				370FA6BF15B433E100FC1C86 /* settingsButtonNormal.png in Resources */,
+				370FA6C015B433E100FC1C86 /* settingsButtonNormal@2x.png in Resources */,
+				370FA6C115B433E100FC1C86 /* settingsButtonPressed.png in Resources */,
+				370FA6C215B433E100FC1C86 /* settingsButtonPressed@2x.png in Resources */,
+				370FA6C315B433E100FC1C86 /* yellowCancelButtonNormal.png in Resources */,
+				370FA6C415B433E100FC1C86 /* yellowCancelButtonNormal@2x.png in Resources */,
+				370FA6C515B433E100FC1C86 /* yellowCancelButtonPressed.png in Resources */,
+				370FA6C615B433E100FC1C86 /* yellowCancelButtonPressed@2x.png in Resources */,
+				370FA6C715B433E100FC1C86 /* yellowDoneButtonNormal.png in Resources */,
+				370FA6C815B433E100FC1C86 /* yellowDoneButtonNormal@2x.png in Resources */,
+				370FA6C915B433E100FC1C86 /* yellowDoneButtonPressed.png in Resources */,
+				370FA6CA15B433E100FC1C86 /* yellowDoneButtonPressed@2x.png in Resources */,
+				370FA6CF15B434F700FC1C86 /* segmentButtonOff.png in Resources */,
+				370FA6D015B434F700FC1C86 /* segmentButtonOff@2x.png in Resources */,
+				370FA6D115B434F700FC1C86 /* segmentButtonOn.png in Resources */,
+				370FA6D215B434F700FC1C86 /* segmentButtonOn@2x.png in Resources */,
+				37B1364E15B538610022B8D8 /* calendarBackground.png in Resources */,
+				37B1364F15B538610022B8D8 /* calendarBackground@2x.png in Resources */,
+				37B1365015B538610022B8D8 /* calendarItemBorder.png in Resources */,
+				37B1365115B538610022B8D8 /* calendarItemBorder@2x.png in Resources */,
+				37B1365215B538610022B8D8 /* calendarItemRectangle.png in Resources */,
+				37B1365315B538610022B8D8 /* calendarItemRectangle@2x.png in Resources */,
+				37B1365415B538610022B8D8 /* calendarMonthBackground.png in Resources */,
+				37B1365515B538610022B8D8 /* calendarMonthBackground@2x.png in Resources */,
+				37B1365B15B53AF50022B8D8 /* calendarMonthLeftButton.png in Resources */,
+				37B1365C15B53AF50022B8D8 /* calendarMonthLeftButton@2x.png in Resources */,
+				37B1365D15B53AF50022B8D8 /* calendarMonthRightButton.png in Resources */,
+				37B1365E15B53AF50022B8D8 /* calendarMonthRightButton@2x.png in Resources */,
+				37B1366115B56EA10022B8D8 /* calendarSliderTopBackground.png in Resources */,
+				37B1366215B56EA10022B8D8 /* calendarSliderTopBackground@2x.png in Resources */,
+				37B1367315B593620022B8D8 /* calendarSliderBackground.png in Resources */,
+				37B1367415B593620022B8D8 /* calendarSliderBackground@2x.png in Resources */,
+				37B1367915B598820022B8D8 /* calendarSliderSectionBackground.png in Resources */,
+				37B1367A15B598820022B8D8 /* calendarSliderSectionBackground@2x.png in Resources */,
+				37B1367B15B598820022B8D8 /* calendarSliderSectionShadowBottom.png in Resources */,
+				37B1367C15B598820022B8D8 /* calendarSliderSectionShadowBottom@2x.png in Resources */,
+<<<<<<< .mine
+				858B436C15B6B03200A7A67D /* ProfileSexSelectViewController.xib in Resources */,
+=======
+				3747E79A15B68167004CF538 /* calendarAvailablePlasmaIcon.png in Resources */,
+				3747E79B15B68167004CF538 /* calendarAvailablePlasmaIcon@2x.png in Resources */,
+				3747E79C15B68167004CF538 /* calendarAvailablePlateletsIcon.png in Resources */,
+				3747E79D15B68167004CF538 /* calendarAvailablePlateletsIcon@2x.png in Resources */,
+				3747E79E15B68167004CF538 /* calendarAvailableSectionIcon.png in Resources */,
+				3747E79F15B68167004CF538 /* calendarAvailableSectionIcon@2x.png in Resources */,
+				3747E7A015B68167004CF538 /* calendarAvailableWholeBloodIcon.png in Resources */,
+				3747E7A115B68167004CF538 /* calendarAvailableWholeBloodIcon@2x.png in Resources */,
+				3747E7A215B68167004CF538 /* calendarCompletedWholeBloodIcon.png in Resources */,
+				3747E7A315B68167004CF538 /* calendarCompletedWholeBloodIcon@2x.png in Resources */,
+				3747E7A415B68167004CF538 /* calendarScheduledPlateletsIcon.png in Resources */,
+				3747E7A515B68167004CF538 /* calendarScheduledPlateletsIcon@2x.png in Resources */,
+				3747E7A615B68167004CF538 /* calendarScheduledSectionIcon.png in Resources */,
+				3747E7A715B68167004CF538 /* calendarScheduledSectionIcon@2x.png in Resources */,
+				3747E7A815B68167004CF538 /* calendarScheduledTestIcon.png in Resources */,
+				3747E7A915B68167004CF538 /* calendarScheduledTestIcon@2x.png in Resources */,
+>>>>>>> .r35
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		37153E9715AEBA3400C985C1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				37153EAC15AEBA3400C985C1 /* main.m in Sources */,
+				37153EB015AEBA3400C985C1 /* AppDelegate.m in Sources */,
+				3758506E15AED1FE006DF7E1 /* ProfileViewController.m in Sources */,
+				3758507315AED544006DF7E1 /* ProfileDescriptionViewController.m in Sources */,
+				3758507C15AEDCF5006DF7E1 /* ProfileRegistrationViewController.m in Sources */,
+				3758508615AEDE69006DF7E1 /* ProfileSettingsViewController.m in Sources */,
+				3758508C15AEE41A006DF7E1 /* InfoViewController.m in Sources */,
+				371CBA5715AFD4A8008CA154 /* STabBarController.m in Sources */,
+				371CBA8315AFF3E1008CA154 /* StationsViewController.m in Sources */,
+				371CBA8815AFF3F2008CA154 /* CalendarViewController.m in Sources */,
+				85AA3B3115B3D3690077D336 /* SelectBloodGroupViewController.m in Sources */,
+				85AA3B3615B3D9250077D336 /* Common.m in Sources */,
+				858B436B15B6B03200A7A67D /* ProfileSexSelectViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		37153EA815AEBA3400C985C1 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				37153EA915AEBA3400C985C1 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		37153EC515AEBA3400C985C1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		37153EC615AEBA3400C985C1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		37153EC815AEBA3400C985C1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: Andrey Rebrik (J26A7W96P6)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "BloodDonor/BloodDonor-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				INFOPLIST_FILE = "BloodDonor/BloodDonor-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "1EF691A1-B4FE-4566-8280-9F630FBF9944";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		37153EC915AEBA3400C985C1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: Andrey Rebrik (J26A7W96P6)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "BloodDonor/BloodDonor-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				INFOPLIST_FILE = "BloodDonor/BloodDonor-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "1EF691A1-B4FE-4566-8280-9F630FBF9944";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		37153E9515AEBA3400C985C1 /* Build configuration list for PBXProject "BloodDonor" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				37153EC515AEBA3400C985C1 /* Debug */,
+				37153EC615AEBA3400C985C1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		37153EC715AEBA3400C985C1 /* Build configuration list for PBXNativeTarget "BloodDonor" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				37153EC815AEBA3400C985C1 /* Debug */,
+				37153EC915AEBA3400C985C1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 37153E9215AEBA3400C985C1 /* Project object */;
+}

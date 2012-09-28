@@ -1,0 +1,56 @@
+//
+//  Common.m
+//  BloodDonor
+//
+//  Created by Владимир Носков on 16.07.12.
+//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//
+
+#import "Common.h"
+
+@implementation Common
+
+@synthesize email, name, password, userObjectId, sex, bloodGroup, bloodRH, events;
+
+static Common *instance;
+
+static void singleton_remover()
+{
+    [instance release];
+}
+
++ (Common *) getInstance
+{
+    @synchronized(self)
+    {
+        if (instance == nil)
+            [[self alloc] init];
+    }
+    return instance;
+}
+
+- (id)init
+{
+    self = [super init];
+    instance = self;
+    
+    sex = [NSNumber new];
+    bloodRH = [NSNumber new];
+    bloodGroup = [NSNumber new];
+    events = [NSMutableArray new];
+    
+    atexit(singleton_remover);
+    
+    return self;
+}
+
+- (void)dealloc
+{    
+    [bloodGroup release];
+    [bloodRH release];
+    [sex release];
+    [events release];
+    [super dealloc];
+}
+
+@end

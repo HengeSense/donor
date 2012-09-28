@@ -1,0 +1,128 @@
+//
+//  ProfileSettingsViewController.m
+//  BloodDonor
+//
+//  Created by Andrey Rebrik on 12.07.12.
+//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//
+
+#import "ProfileSettingsViewController.h"
+
+@implementation ProfileSettingsViewController
+
+#pragma mark Actions
+
+- (IBAction)backButtonClick:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:NO];
+}
+
+- (IBAction)passwordButtonClick:(id)sender
+{
+    [self switchStateOfSegmentButton:(UIButton *)sender needSwitch:YES];
+}
+
+- (IBAction)pushAnnotationsButtonClick:(id)sender
+{
+    [self switchStateOfSegmentButton:(UIButton *)sender needSwitch:YES];
+}
+
+- (IBAction)expressSearchButtonClick:(id)sender
+{
+    [self switchStateOfSegmentButton:(UIButton *)sender needSwitch:YES];
+}
+
+- (IBAction)remindersButtonClick:(id)sender
+{
+    [self switchStateOfSegmentButton:(UIButton *)sender needSwitch:YES];
+}
+
+- (IBAction)closingEventButtonClick:(id)sender
+{
+    [self switchStateOfSegmentButton:(UIButton *)sender needSwitch:YES];
+}
+
+- (IBAction)plateletsButtonClick:(id)sender
+{
+    [self switchStateOfSegmentButton:(UIButton *)sender needSwitch:YES];
+}
+
+- (IBAction)wholeButtonClick:(id)sender
+{
+    [self switchStateOfSegmentButton:(UIButton *)sender needSwitch:YES];
+}
+
+- (IBAction)plasmaButtonClick:(id)sender
+{
+    [self switchStateOfSegmentButton:(UIButton *)sender needSwitch:YES];
+}
+
+- (void) switchStateOfSegmentButton:(UIButton *)button needSwitch:(BOOL)isNeedSwitch
+{
+    if (isNeedSwitch)
+        button.selected = !button.selected;
+    
+    if (button.selected)
+        [button setImage:[UIImage imageNamed:@"segmentButtonOff.png"] forState:UIControlStateHighlighted];
+    else if (!button.selected)
+        [button setImage:[UIImage imageNamed:@"segmentButtonOn.png"] forState:UIControlStateHighlighted];
+    
+    //return button.selected;
+}
+
+#pragma mark Lifecycle
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    
+    if (self)
+    {
+        sTabBarController = [[STabBarController alloc] init];
+        sTabBarController.viewController = self;
+    }
+    
+    return self;
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    [sTabBarController addSubview];
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [sTabBarController removeSubviews];
+    
+    [super viewDidDisappear:animated];
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    scrollView.contentSize = backgroundImage.frame.size;
+   
+    [self switchStateOfSegmentButton:passwordButton needSwitch:NO];
+    [self switchStateOfSegmentButton:pushAnnotationsButton needSwitch:NO];
+    [self switchStateOfSegmentButton:expressSearchButton needSwitch:NO];
+    [self switchStateOfSegmentButton:remindersButton needSwitch:NO];
+    [self switchStateOfSegmentButton:closingEventButton needSwitch:NO];
+    [self switchStateOfSegmentButton:plateletsButton needSwitch:NO];
+    [self switchStateOfSegmentButton:wholeButton needSwitch:NO];
+    [self switchStateOfSegmentButton:plasmaButton needSwitch:NO];
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+- (void)dealloc
+{
+    [sTabBarController release];
+    [super dealloc];
+}
+
+@end

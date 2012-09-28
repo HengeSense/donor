@@ -1,0 +1,250 @@
+//
+//  ProfileRegistrationViewController.m
+//  BloodDonor
+//
+//  Created by Andrey Rebrik on 12.07.12.
+//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//
+
+#import "ProfileRegistrationViewController.h"
+#import "SelectBloodGroupViewController.h"
+#import "AppDelegate.h"
+#import "Common.h"
+#import <Parse/Parse.h>
+
+@implementation ProfileRegistrationViewController
+
+#pragma mark Actions
+
+- (IBAction)backButtonClick:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:NO];
+}
+
+- (IBAction)doneButtonClick:(id)sender
+{
+    if (![passwordTextField.text isEqual: passwordConfirmTextField.text])
+    {
+        UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:nil message:@"Пароли не совпадают" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil] autorelease];
+        
+        [alert show];
+    }
+    else if ([emailTextField.text isEqualToString:@""] || [passwordTextField.text isEqualToString:@""] || [nameTextField.text isEqualToString:@""])
+    {
+        UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:nil message:@"Не все поля заполнены!" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil] autorelease];
+        
+        [alert show];
+    }
+    else
+    {
+        PFUser *user = [PFUser user];
+        user.username = [Common getInstance].email;
+        user.password = [Common getInstance].password;
+        user.email = [Common getInstance].email;
+        
+        [user setObject:[Common getInstance].sex forKey:@"Sex"];
+        [user setObject:[Common getInstance].bloodGroup forKey:@"BloodGroup"];
+        [user setObject:[Common getInstance].bloodRH forKey:@"BloodRh"];
+        [user setObject:[Common getInstance].name forKey:@"Name"];
+ 
+        [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            if (!error)
+            {
+                [self.navigationController popViewControllerAnimated:NO];
+                // Hooray! Let them use the app now.
+            } else
+            {
+                NSString *errorString;
+                NSInteger errorCode = [[[error userInfo] objectForKey:@"code"] intValue];
+                
+                if (errorCode == 100)
+                    errorString = @"Отсутсвует соединение с интернетом";
+                else if (errorCode == 125)
+                    errorString = @"Неправильный Email";
+                else if (errorCode == 202)
+                    errorString = @"Такой Email уже зарегистрирован";
+                else
+                    errorString = @"Ошибка соединения с сервером";
+                
+                UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:nil message:errorString delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil] autorelease];
+                [alert show];
+                
+            }
+        }];
+    }    
+}
+
+- (IBAction)sexButtonClick:(id)sender
+{
+    [nameTextField resignFirstResponder];
+    [self showModal:sexSelectViewController.view];
+}
+
+- (IBAction)bloodGroupButtonClick:(id)sender
+{
+    [nameTextField resignFirstResponder];
+    [self showModal:selectBoodGroupViewController.view];
+}
+
+- (void) showModal:(UIView*) modalView 
+{
+    UIWindow* mainWindow = (((AppDelegate*) [UIApplication sharedApplication].delegate).window);
+    CGPoint middleCenter = modalView.center;
+    CGSize offSize = [UIScreen mainScreen].bounds.size;
+    CGPoint offScreenCenter = CGPointMake(offSize.width / 2.0, offSize.height * 1.5);
+    modalView.center = offScreenCenter;
+    [mainWindow addSubview:modalView];
+   
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:0.5];
+    modalView.center = middleCenter;
+    [UIView commitAnimations];
+   
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:0.6];
+    dataView.center = CGPointMake(dataView.center.x, dataView.center.y - 138);
+    [UIView commitAnimations];
+}
+
+#pragma mark SelectBloodGroupDelegate
+
+- (void) bloodGroupChanged:(NSString *)bloodGroup
+{
+    if (bloodGroup) 
+    {
+        [bloodGroupButton setTitle:bloodGroup forState:UIControlStateNormal];
+        [bloodGroupButton setTitle:bloodGroup forState:UIControlStateHighlighted];
+    }
+    
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:0.5];
+    dataView.center = CGPointMake(dataView.center.x, dataView.center.y + 138);
+    [UIView commitAnimations];   
+}
+
+#pragma mark ProfileSexSelectDelegate
+
+- (void) sexChanged:(NSString *)selectedSex
+{
+    if (selectedSex) 
+    {
+        if ([selectedSex isEqualToString:@"Мужской"])
+        {
+            [sexButton setTitle:@"муж" forState:UIControlStateNormal];
+            [sexButton setTitle:@"муж" forState:UIControlStateHighlighted];
+        }
+        else
+        {
+            [sexButton setTitle:@"жен" forState:UIControlStateNormal];
+            [sexButton setTitle:@"жен" forState:UIControlStateHighlighted];
+        }
+    }
+    
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:0.5];
+    dataView.center = CGPointMake(dataView.center.x, dataView.center.y + 138);
+    [UIView commitAnimations];   
+}
+
+#pragma mark TextEditDelegate
+
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    if (textField.tag == 1)
+        [Common getInstance].email = textField.text;
+    else if (textField.tag == 2)
+        [Common getInstance].password = textField.text;
+    else if (textField.tag == 4)
+    {
+        if (textField.text)
+            [Common getInstance].name = textField.text;
+        
+        [UIView beginAnimations:nil context:nil];
+        [UIView setAnimationDuration:0.25];
+        
+        dataView.center = CGPointMake(dataView.center.x, dataView.center.y + 100);
+        [UIView commitAnimations];
+    }
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    if (textField.tag == 4)
+    {   
+        [UIView beginAnimations:nil context:nil];
+        [UIView setAnimationDuration:0.25];
+
+        dataView.center = CGPointMake(dataView.center.x, dataView.center.y - 100);
+        [UIView commitAnimations];
+    }
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{ 
+    NSLog(@"%@",textField.text);
+    [textField resignFirstResponder];
+    return YES;
+}
+
+#pragma mark Lifecycle
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self)
+    {
+        sTabBarController = [[STabBarController alloc] init];
+        sTabBarController.viewController = self;
+    }
+    return self;
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    selectBoodGroupViewController = [[SelectBloodGroupViewController alloc] init];
+    selectBoodGroupViewController.delegate = self;
+    sexSelectViewController = [[ProfileSexSelectViewController alloc] init];
+    sexSelectViewController.delegate = self;
+    [bloodGroupButton setTitle:@"O(I)RH+" forState:UIControlStateNormal];
+    [bloodGroupButton setTitle:@"O(I)RH+" forState:UIControlStateHighlighted];
+    [sexButton setTitle:@"муж" forState:UIControlStateNormal];
+    [sexButton setTitle:@"муж" forState:UIControlStateHighlighted];
+  
+    //Приватное свойство!
+    [nameTextField setValue:[UIColor colorWithRed:223.0f/255.0f green:141.0f/255.0f blue:75.0f/255.0f alpha:1] forKeyPath:@"_placeholderLabel.textColor"];
+    [emailTextField setValue:[UIColor colorWithRed:203.0f/255.0f green:178.0f/255.0f blue:163.0f/255.0f alpha:1] forKeyPath:@"_placeholderLabel.textColor"];
+    [passwordTextField setValue:[UIColor colorWithRed:203.0f/255.0f green:178.0f/255.0f blue:163.0f/255.0f alpha:1] forKeyPath:@"_placeholderLabel.textColor"];
+    [passwordConfirmTextField setValue:[UIColor colorWithRed:203.0f/255.0f green:178.0f/255.0f blue:163.0f/255.0f alpha:1] forKeyPath:@"_placeholderLabel.textColor"];
+   
+    [Common getInstance].bloodGroup = [NSNumber numberWithInt:0];
+    [Common getInstance].bloodRH = [NSNumber numberWithInt:0];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    [sTabBarController addSubview];
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [sTabBarController removeSubviews];
+    
+    [super viewDidDisappear:animated];
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+- (void)dealloc
+{
+    [sTabBarController release];
+    [selectBoodGroupViewController release];
+    [super dealloc];
+}
+
+@end

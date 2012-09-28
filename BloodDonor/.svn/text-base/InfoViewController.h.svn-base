@@ -1,0 +1,38 @@
+//
+//  InfoViewController.h
+//  BloodDonor
+//
+//  Created by Andrey Rebrik on 12.07.12.
+//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+#import "STabBarController.h"
+
+@interface InfoViewController : UIViewController <UINavigationControllerDelegate>//<UITableViewDataSource, UITableViewDelegate>
+{
+    STabBarController *sTabBarController;
+    
+    IBOutlet UIButton *adsButton;
+    IBOutlet UIButton *newsButton;
+    IBOutlet UIButton *infoButton;
+    
+    UIViewController *infoSubViewController;
+    UIView *infoSubView;
+    
+    //IBOutlet UITableView *newsTable;
+    //IBOutlet UITableView *adsTable;
+    
+    //IBOutlet UITableViewCell *newsCell;
+    //IBOutlet UITableViewCell *adsCell;
+}
+
+@property (nonatomic, retain, readwrite) IBOutlet UIView *infoSubView;
+@property (nonatomic, retain, readwrite) UIViewController *infoSubViewController;
+@property (nonatomic, retain, readwrite) NSArray *segmentedViewControllers;
+
+- (void)didChangeSegmentControl:(UIButton *)button;
+- (IBAction)tabSelected:(id)sender;
+- (NSArray *)segmentedViewControllerContent;
+
+@end

@@ -1,0 +1,17 @@
+//
+//  StationsViewController.h
+//  BloodDonor
+//
+//  Created by Andrey Rebrik on 13.07.12.
+//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+#import "STabBarController.h"
+
+@interface StationsViewController : UIViewController
+{
+    STabBarController *sTabBarController;
+}
+
+@end

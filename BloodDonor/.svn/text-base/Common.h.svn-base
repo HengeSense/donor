@@ -1,0 +1,31 @@
+//
+//  Common.h
+//  BloodDonor
+//
+//  Created by Владимир Носков on 16.07.12.
+//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+
+@interface Common : NSObject
+{
+    NSNumber *sex;
+    NSNumber *bloodGroup;
+    NSNumber *bloodRH;
+    NSMutableArray *events;
+}
+
++ (Common *) getInstance;
+
+@property (nonatomic, retain) NSString *email;
+@property (nonatomic, retain) NSString *password;
+@property (nonatomic, retain) NSString *userObjectId;
+@property (nonatomic, retain) NSString *name;
+@property (nonatomic, retain) NSNumber *sex;
+@property (nonatomic, retain) NSNumber *bloodGroup;
+@property (nonatomic, retain) NSNumber *bloodRH;
+@property (nonatomic, retain) NSMutableArray *events;
+
+@end

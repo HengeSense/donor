@@ -1,0 +1,151 @@
+//
+//  InfoViewController.m
+//  BloodDonor
+//
+//  Created by Andrey Rebrik on 12.07.12.
+//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//
+
+#import "InfoViewController.h"
+#import "AdsSubViewController.h"
+#import "NewsSubViewController.h"
+#import <Parse/Parse.h>
+
+@implementation InfoViewController
+
+@synthesize infoSubViewController, segmentedViewControllers, infoSubView;
+
+- (NSArray *)segmentedViewControllerContent
+{
+    UIViewController * controller1 = [[AdsSubViewController alloc] initWithNibName:@"AdsSubViewController" bundle:nil]; //initWithParentViewController:self];
+    UIViewController * controller2 = [[NewsSubViewController alloc] initWithNibName:@"NewsSubViewController" bundle:nil]; //initWithParentViewController:self];
+    
+    NSArray * controllers = [NSArray arrayWithObjects:controller1, controller2, controller2, nil];
+    
+    [controller1 release];
+    [controller2 release];
+    
+    return controllers;
+}
+
+- (void)didChangeSegmentControl:(UIButton *)button
+{
+    if (self.infoSubViewController) 
+    {
+        [self.infoSubViewController viewWillDisappear:NO];
+        [self.infoSubViewController.view removeFromSuperview];
+        [self.infoSubViewController viewDidDisappear:NO];
+    }
+    
+    self.infoSubViewController = [self.segmentedViewControllers objectAtIndex:button.tag];
+    
+    [self.infoSubViewController viewWillAppear:NO];
+    [self.infoSubView addSubview:self.infoSubViewController.view];
+    [self.infoSubViewController viewDidAppear:NO];
+}
+
+#pragma mark Actions
+
+- (IBAction)tabSelected:(id)sender
+{
+    UIButton *button = (UIButton*)sender;
+    
+    if (!button.selected)
+    {
+        button.selected = YES;
+        
+        if (button.tag == 0)
+        {
+            newsButton.selected = NO;
+            infoButton.selected = NO;
+        }
+        else if (button.tag == 1)
+        {
+            adsButton.selected = NO;
+            infoButton.selected = NO;
+        }
+        else
+        {
+            newsButton.selected = NO;
+            adsButton.selected = NO;
+        }
+        
+        [self didChangeSegmentControl:button];
+    }
+}
+
+#pragma mark Lifecycle
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self)
+    {
+        sTabBarController = [[STabBarController alloc] init];
+        sTabBarController.viewController = self;
+    }
+    return self;
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    self.segmentedViewControllers = [self segmentedViewControllerContent];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    
+    for (UIViewController * viewController in self.segmentedViewControllers) {
+        [viewController didReceiveMemoryWarning];
+    }
+}
+
+- (void)viewDidUnload 
+{
+    
+    self.segmentedViewControllers = nil;
+    self.infoSubViewController = nil;
+    
+    [super viewDidUnload];
+}
+
+- (void)viewWillAppear:(BOOL)animated 
+{
+    [super viewWillAppear:animated];
+    [self.infoSubViewController viewWillAppear:animated];
+}
+
+- (void)viewDidAppear:(BOOL)animated 
+{
+    [super viewDidAppear:animated];
+    [sTabBarController addSubview];
+    [self.infoSubViewController viewDidAppear:animated];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [self.infoSubViewController viewWillDisappear:animated];
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    [sTabBarController removeSubviews];
+    [self.infoSubViewController viewDidDisappear:animated];
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+- (void)dealloc
+{
+    [sTabBarController release];
+    [super dealloc];
+}
+
+@end
