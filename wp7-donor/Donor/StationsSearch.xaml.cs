@@ -23,8 +23,6 @@ namespace Donor
             this.StationsSearchText.ItemsSource = App.ViewModel.Stations.DistanceItems;
             this.StationsSearchText.FilterMode = AutoCompleteFilterMode.Contains;
             this.StationsSearchText.ItemFilter += SearchBank;
-
-            //App.ViewModel.Stations.FilteredText = "";
         }
         //custom filter
         bool CustomFilter(string search, string value)
@@ -54,6 +52,7 @@ namespace Donor
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
+            //this.AppBar1.IsVisible = true;
             this.StationsSearchText.Text = App.ViewModel.Stations.FilteredText;
 
             if (App.ViewModel.Stations.IsFilter == true)
@@ -104,7 +103,7 @@ namespace Donor
         private void StationsSearchText_Populating(object sender, PopulatingEventArgs e)
         {
             string searchtext = this.StationsSearchText.Text;
-            App.ViewModel.Stations.FilteredText = searchtext;
+            //App.ViewModel.Stations.FilteredText = searchtext;
 
             App.ViewModel.Stations.FilteredText = searchtext;
 

@@ -51,9 +51,6 @@ namespace Donor
                     App.ViewModel.Reviews.LoadReviewsForStation(_currentStation.Nid.ToString());
 
                     App.ViewModel.Reviews.ReviewsLoaded += new ReviewsListViewModel.ReviewsLoadedEventHandler(this.ReviewsLoaded);
-
-                    //this.progressOverlay.Visibility = Visibility.Collapsed;
-                    //this.progressOverlay.IsEnabled = false;
                 }
                 catch
                 {

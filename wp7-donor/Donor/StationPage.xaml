@@ -176,9 +176,9 @@ Style="{StaticResource Text24pxDF8D4B}"/>
                             </ListBox.ItemTemplate>
                         </ListBox>
                     </ScrollViewer>
-                        <WPExtensions:AdvancedApplicationBar Name="AppBar" Background="#FF211E1D" BackgroundColor="#FF211E1D" Foreground="White" IsVisible="False" IsMenuEnabled="False">
+                        <!--<WPExtensions:AdvancedApplicationBar Name="AppBar" Background="#FF211E1D" BackgroundColor="#FF211E1D" Foreground="White" IsVisible="False" IsMenuEnabled="False">
                         <WPExtensions:AdvancedApplicationBarIconButton IconUri="/icons/appbar.edit.rest.png" Text="Написать" Name="CreateReviewButton" Click="CreateReviewButton_Click" />
-                    </WPExtensions:AdvancedApplicationBar>
+                    </WPExtensions:AdvancedApplicationBar>-->
                 </Grid>
             </controls:PanoramaItem>
         </controls:Panorama>
