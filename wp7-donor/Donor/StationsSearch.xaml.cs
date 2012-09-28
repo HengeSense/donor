@@ -100,11 +100,16 @@ namespace Donor
             };
         }
 
+        protected override void OnNavigatedFrom(System.Windows.Navigation.NavigationEventArgs e)
+        {
+            string searchtext = this.StationsSearchText.Text;
+            App.ViewModel.Stations.FilteredText = searchtext;
+            base.OnNavigatedFrom(e);
+        }
+
         private void StationsSearchText_Populating(object sender, PopulatingEventArgs e)
         {
             string searchtext = this.StationsSearchText.Text;
-            //App.ViewModel.Stations.FilteredText = searchtext;
-
             App.ViewModel.Stations.FilteredText = searchtext;
 
             if (searchtext != "")
@@ -185,6 +190,7 @@ namespace Donor
         private void StationsSearchText_Populated(object sender, PopulatedEventArgs e)
         {
             string searchtext = this.StationsSearchText.Text;
+            //App.ViewModel.Stations.FilteredText = searchtext;
             if (searchtext != "")
             {
             }
