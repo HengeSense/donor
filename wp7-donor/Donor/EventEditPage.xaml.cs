@@ -30,6 +30,17 @@ namespace Donor
             this.GiveType.ItemsSource = giveTypes;
             this.ReminderPeriod.ItemsSource = reminderTypes;
 
+            this.DataContext = CurrentEvent;
+        }
+
+        public int DayNumber;
+        public int YearNumber;
+        public int MonthNumber;
+
+        public EventViewModel CurrentEvent;
+
+        private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
+        {
             try
             {
                 string id = this.NavigationContext.QueryString["id"];
@@ -49,19 +60,8 @@ namespace Donor
             catch
             {
             };
-
-
             this.DataContext = CurrentEvent;
-        }
 
-        public int DayNumber;
-        public int YearNumber;
-        public int MonthNumber;
-
-        public EventViewModel CurrentEvent;
-
-        private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
-        {
             if (CurrentEvent == null)
             {
                 try
