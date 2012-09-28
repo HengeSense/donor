@@ -34,7 +34,7 @@ namespace Donor
                     _currentEvent = App.ViewModel.Events.Items.FirstOrDefault(c => c.Id == _eventid.ToString());
                     DataContext = _currentEvent;
 
-                    if (_currentEvent.Type == "2")
+                    if (_currentEvent.Type != "0" && _currentEvent.Type != "1")
                     {
                         this.AppBar.Visibility = Visibility.Collapsed;
                         this.AppBar.IsVisible = false;

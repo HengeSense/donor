@@ -73,6 +73,7 @@ namespace Donor
             try
             {
                 string id = ((sender as ListBox).SelectedItem as EventViewModel).Id;
+                
                 NavigationService.Navigate(new Uri("/EventPage.xaml?id=" + id, UriKind.Relative));
             }
             catch

@@ -76,7 +76,7 @@
                     <TextBlock Text="{Binding Path=Events.PrevMonth2String}" Foreground="White" FontSize="74"/>
                 </controls:PivotItem.Header>
                 <Grid Margin="0,20,0,0">
-                    <ListBox Margin="0,30,0,0" ItemsSource="{Binding Path=Events.PrevMonth2Items}" Name="EventsList2Prev" ItemTemplate="{StaticResource CalendarItemTemplate}">
+                    <ListBox Margin="0,30,0,0" ItemsSource="{Binding Path=Events.PrevMonth2Items}" Name="EventsList2Prev" ItemTemplate="{StaticResource CalendarItemTemplate}" SelectionChanged="EventsList_SelectionChanged">
                     </ListBox>
                 </Grid>
             </controls:PivotItem>
@@ -121,7 +121,7 @@
                     <TextBlock Text="{Binding Path=Events.NextMonth2String}" Foreground="White" FontSize="74"/>
                 </controls:PivotItem.Header>
                 <Grid Margin="0,20,0,0">
-                    <ListBox Margin="0,30,0,0" ItemsSource="{Binding Path=Events.NextMonth2Items}" Name="EventsListNext2" ItemTemplate="{StaticResource CalendarItemTemplate}">
+                    <ListBox Margin="0,30,0,0" ItemsSource="{Binding Path=Events.NextMonth2Items}" Name="EventsListNext2" ItemTemplate="{StaticResource CalendarItemTemplate}" SelectionChanged="EventsList_SelectionChanged">
                     </ListBox>
                 </Grid>
             </controls:PivotItem>

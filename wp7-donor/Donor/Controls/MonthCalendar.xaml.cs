@@ -55,7 +55,7 @@ namespace Donor.Controls
             for (var i = (DateTime.DaysInMonth(FirstDayPrev.Year, FirstDayPrev.Month) - daysbefore); i < (DateTime.DaysInMonth(FirstDayPrev.Year, FirstDayPrev.Month) - 1); i++)
             {
                 DayInCalendarControl day = new DayInCalendarControl();
-                day.ImagePath = "/images/x.png";
+                day.ImagePath = "";
 
                 day.DayNumber = i.ToString();
                 day.MonthNumber = FirstDayPrev.Month;
