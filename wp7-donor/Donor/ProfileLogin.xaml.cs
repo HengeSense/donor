@@ -427,7 +427,7 @@ namespace Donor
 
             try
             {
-                switch (App.ViewModel.User.BloodGroup)
+                switch (App.ViewModel.User.BloodRh)
                 {
                     case 0:
                         this.EditRHpl.IsChecked = true;
