@@ -24,6 +24,9 @@ namespace Donor
 
             this.PageTitle.Text = CultureInfo.CurrentCulture.DateTimeFormat.MonthNames[App.ViewModel.Events.CurrentMonth.Month - 1];
             this.ApplicationTitle.Text = App.ViewModel.Events.CurrentMonth.Year.ToString();
+
+            var gl = GestureService.GetGestureListener(this.Calendar1);
+            gl.Flick += new EventHandler<Microsoft.Phone.Controls.FlickGestureEventArgs>(GestureListener_Flick);
         }
 
         private void LayoutRoot_Loaded(object sender, RoutedEventArgs e)
@@ -33,8 +36,7 @@ namespace Donor
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
-            var gl = GestureService.GetGestureListener(this.Calendar1);
-            gl.Flick += new EventHandler<Microsoft.Phone.Controls.FlickGestureEventArgs>(GestureListener_Flick);
+            
         }
 
         private void GestureListener_Flick(object sender, Microsoft.Phone.Controls.FlickGestureEventArgs e)
