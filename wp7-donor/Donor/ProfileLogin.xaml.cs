@@ -312,15 +312,44 @@ namespace Donor
                     string _taskid = this.NavigationContext.QueryString["task"];
                     switch (_taskid)
                     {
-                        case "register": 
+                        case "register":
+                            if (this.NavigationContext.QueryString.ContainsKey("email"))
+                            {
+                                string _email = this.NavigationContext.QueryString["email"];
+                                this.email1.Text = _email;
+                            };
+                            if (this.NavigationContext.QueryString.ContainsKey("password"))
+                            {
+                                string _password = this.NavigationContext.QueryString["password"];
+                                this.password1.Password = _password;
+                            };
                             this.RegisterForm.Visibility = Visibility.Visible;
                             this.LoginForm.Visibility = Visibility.Collapsed;
                             this.UserProfile.Visibility = Visibility.Collapsed;
+                            this.EditProfile.Visibility = Visibility.Collapsed;
                             break;
                         case "login":
                             this.RegisterForm.Visibility = Visibility.Collapsed;
                             this.LoginForm.Visibility = Visibility.Visible;
                             this.UserProfile.Visibility = Visibility.Collapsed;
+                            this.EditProfile.Visibility = Visibility.Collapsed;
+                            break;
+                        case "edit":
+                            this.RegisterForm.Visibility = Visibility.Collapsed;
+                            this.LoginForm.Visibility = Visibility.Collapsed;
+                            this.UserProfile.Visibility = Visibility.Collapsed;
+                            this.EditProfile.Visibility = Visibility.Visible;
+
+                            this.EditProfile.Visibility = Visibility.Visible;
+            
+                            this.CancelEditProfileButton.Visibility = Visibility.Visible;
+                            this.SaveEditProfileButton.Visibility = Visibility.Visible;
+
+                            this.EditButton.Visibility = Visibility.Collapsed;
+                            this.DeleteUserButton.Visibility = Visibility.Collapsed;
+
+                            SetEditFields();
+
                             break;
                         default:
                             break;
@@ -341,21 +370,7 @@ namespace Donor
             };
         }
 
-        private void AdvancedApplicationBarIconButton_Click(object sender, EventArgs e)
-        {
-            this.EditProfile.Visibility = Visibility.Visible;
-            
-            this.CancelEditProfileButton.Visibility = Visibility.Visible;
-            this.SaveEditProfileButton.Visibility = Visibility.Visible;
-
-            this.EditButton.Visibility = Visibility.Collapsed;
-            this.DeleteUserButton.Visibility = Visibility.Collapsed;
-
-            this.RegisterForm.Visibility = Visibility.Collapsed;
-            this.LoginForm.Visibility = Visibility.Collapsed;
-            this.UserProfile.Visibility = Visibility.Collapsed;
-
-
+        private void SetEditFields() {
             this.EditName.Text = App.ViewModel.User.Name;
             try
             {
@@ -374,7 +389,8 @@ namespace Donor
 
             try
             {
-                switch (App.ViewModel.User.BloodGroup) {
+                switch (App.ViewModel.User.BloodGroup)
+                {
                     case 0:
                         this.o.IsChecked = true;
                         this.a.IsChecked = false;
@@ -411,7 +427,7 @@ namespace Donor
 
             try
             {
-                switch (App.ViewModel.User.BloodGroup)
+                switch (App.ViewModel.User.BloodRh)
                 {
                     case 0:
                         this.EditRHpl.IsChecked = true;
@@ -429,6 +445,24 @@ namespace Donor
                 };
             }
             catch { };
+        }
+
+        private void AdvancedApplicationBarIconButton_Click(object sender, EventArgs e)
+        {
+            this.EditProfile.Visibility = Visibility.Visible;
+            
+            this.CancelEditProfileButton.Visibility = Visibility.Visible;
+            this.SaveEditProfileButton.Visibility = Visibility.Visible;
+
+            this.EditButton.Visibility = Visibility.Collapsed;
+            this.DeleteUserButton.Visibility = Visibility.Collapsed;
+
+            this.RegisterForm.Visibility = Visibility.Collapsed;
+            this.LoginForm.Visibility = Visibility.Collapsed;
+            this.UserProfile.Visibility = Visibility.Collapsed;
+
+
+            SetEditFields();
         }
 
         private void CancelEditProfileButton_Click(object sender, EventArgs e)

@@ -73,6 +73,7 @@ namespace Donor
             try
             {
                 string id = ((sender as ListBox).SelectedItem as EventViewModel).Id;
+                
                 NavigationService.Navigate(new Uri("/EventPage.xaml?id=" + id, UriKind.Relative));
             }
             catch
@@ -158,7 +159,7 @@ namespace Donor
                             this.PrevMonth2.Header = App.ViewModel.Events.NextMonth2String;
                             break;
                         case 4:
-                            this.EventsListNext.ItemsSource = App.ViewModel.Events.ThisMonthItems;
+                            this.EventsListNext2.ItemsSource = App.ViewModel.Events.ThisMonthItems;
 
                             this.NextMonth2.Header = App.ViewModel.Events.CurrentMonthString;
                             this.NextMonth.Header = App.ViewModel.Events.PrevMonthString;
@@ -239,6 +240,8 @@ namespace Donor
 
             App.ViewModel.Events.CurrentMonth = DateTime.Now;
 
+            this.Monthes.Title = App.ViewModel.Events.CurrentMonth.Year.ToString();
+
             try
             {
                 this.Monthes.SelectedIndex = 2;
@@ -252,6 +255,19 @@ namespace Donor
             this.NextMonth.Header = App.ViewModel.Events.NextMonthString;
             this.ThisMonth.Header = App.ViewModel.Events.CurrentMonthString;
             this.PrevMonth.Header = App.ViewModel.Events.PrevMonthString;
+        }
+
+        private void EventsListNext2_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            try
+            {
+                string id = ((sender as ListBox).SelectedItem as EventViewModel).Id;
+
+                NavigationService.Navigate(new Uri("/EventPage.xaml?id=" + id, UriKind.Relative));
+            }
+            catch
+            {
+            }
         }
 
 

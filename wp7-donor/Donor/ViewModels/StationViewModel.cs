@@ -25,6 +25,7 @@ namespace Donor.ViewModels
     {
         public StationsLitViewModel()
         {
+            this.FilteredText = "";
         }
 
         public GeoCoordinateWatcher myCoordinateWatcher;
@@ -184,6 +185,8 @@ namespace Donor.ViewModels
             }
             private set { }
         }
+
+        public string FilteredText { get; set; }
     }
 
     public class LatLonItem

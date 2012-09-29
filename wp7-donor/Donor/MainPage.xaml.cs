@@ -213,7 +213,7 @@ namespace Donor
                     this.LoginForm.Visibility = Visibility.Visible;
                     this.UserProfile.Visibility = Visibility.Collapsed;
 
-                    NavigationService.Navigate(new Uri("/ProfileLogin.xaml?task=register", UriKind.Relative));
+                    NavigationService.Navigate(new Uri("/ProfileLogin.xaml?task=register&email=" + this.email.Text.ToString() + "&password=" + this.password.Password.ToString(), UriKind.Relative));
                 };
             } catch {};
             });

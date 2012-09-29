@@ -41,6 +41,11 @@ namespace Donor.ViewModels
         /// </param>
         public void LoadReviewsForStation(string StationId)
         {
+            var bw = new BackgroundWorker();
+            
+            bw.DoWork += delegate
+            {
+            //System.Threading.Thread.Sleep(400);
             var client = new RestClient("https://api.parse.com");
             var request = new RestRequest("1/classes/StationReviews", Method.GET);
             request.Parameters.Clear();
@@ -57,8 +62,10 @@ namespace Donor.ViewModels
                     JObject o = JObject.Parse(response.Content.ToString());
                     reviewslist1 = JsonConvert.DeserializeObject<ObservableCollection<ReviewsViewModel>>(o["results"].ToString());
                     var reviewslist2 = (from reviews in reviewslist1
+                                        where (reviews.Station_nid.ToString() == StationId.ToString())
                                         orderby reviews.CreatedTimestamp descending
                                         select reviews);
+                    reviewslist1 = new ObservableCollection<ReviewsViewModel>();
                     Deployment.Current.Dispatcher.BeginInvoke(() =>
                     {
                         this.Items = new ObservableCollection<ReviewsViewModel>(reviewslist2);
@@ -72,7 +79,12 @@ namespace Donor.ViewModels
                 };
                 
             });
-            this.NotifyPropertyChanged("Items");
+            Deployment.Current.Dispatcher.BeginInvoke(() =>
+            {
+                this.NotifyPropertyChanged("Items");
+            });
+            };
+            bw.RunWorkerAsync();  
             //this.OnReviewsLoaded(EventArgs.Empty);
             
         }

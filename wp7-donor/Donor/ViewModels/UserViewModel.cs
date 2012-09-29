@@ -107,11 +107,11 @@ namespace Donor.ViewModels
             {
                 try
                 {
-                    return App.ViewModel.Events.UserItems.OrderBy(c => c.Date).FirstOrDefault().ShortDate.ToString();
+                    return App.ViewModel.Events.UserItems.OrderBy(c => c.Date).FirstOrDefault(c=>(c.Type=="1") && (c.Date > DateTime.Now)).ShortDate.ToString();
                 }
                 catch
                 {
-                    return "";
+                    return "отсутствует";
                 }
             }
         }
@@ -122,7 +122,7 @@ namespace Donor.ViewModels
             get
             {
                 string outstr = "";
-                switch (this.BloodGroup)
+                switch (this.BloodRh)
                 {                
                     case 0:
                         outstr = "RH+";

@@ -37,8 +37,7 @@ namespace Donor.Controls
                 this.EditContextMenu.Visibility = Visibility.Visible;
                 this.DeleteContextMenu.Visibility = Visibility.Visible;
                 this.AddContextMenu.Visibility = Visibility.Collapsed;
-            };
-
+            };            
         }
         public bool deleted;
         public bool checkedEvent = false;

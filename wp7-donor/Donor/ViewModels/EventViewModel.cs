@@ -87,7 +87,7 @@ namespace Donor.ViewModels
                 }
                 else
                 {
-                    return "Еще не отмечено как выполненое";
+                    return "Еще не отмечено как выполненное";
                 };
             }
             private set {            }
@@ -104,7 +104,9 @@ namespace Donor.ViewModels
                     return "/images/ic_planned_analysis.png";
                 if (this.Type == "1")
                     return "/images/ic_planned_giving_blood.png";
-                return "/images/ic_planned_analysis.png";
+                if (this.Type == "2")
+                    return "/images/ic_donors_act.png";
+                return "";
             }
         }
 
@@ -201,6 +203,65 @@ namespace Donor.ViewModels
                 days_count = min;
                 return days_count;
             };            
+        }
+
+        public bool EventsInYear(string event_give_type, DateTime start)
+        {
+            /*var yearitems = from item in App.ViewModel.Events.UserItems
+                            where item.Date >= start && item.Date <= start.AddYears(1)
+                            select item;*/
+            switch (event_give_type)
+            {
+                case "Тромбоциты":
+                    var yearitems = from item in App.ViewModel.Events.UserItems
+                                    where (item.Date >= start && item.Date <= start.AddYears(1) && item.GiveType == "Тромбоциты")
+                                    select item;
+                    if (yearitems.Count() > 9)
+                    {
+                        return false;
+                    } else {
+                        return true;
+                    };
+                case "Гранулоциты":
+                    var yearitems2 = from item in App.ViewModel.Events.UserItems
+                                     where (item.GiveType == "Гранулоциты")
+                                    select item;
+                    if (yearitems2.Count() > 2)
+                    {
+                        return false;
+                    }
+                    else
+                    {
+                        return true;
+                    };
+                case "Плазма":
+                    var yearitems3 = from item in App.ViewModel.Events.UserItems
+                                     where (item.Date >= start && item.Date <= start.AddYears(1) && item.GiveType == "Плазма")
+                                    select item;
+                    if (yearitems3.Count() > 11)
+                    {
+                        return false;
+                    }
+                    else
+                    {
+                        return true;
+                    };
+                case "Цельная кровь":
+                    var yearitems4 = from item in App.ViewModel.Events.UserItems
+                                     where (item.Date >= start && item.Date <= start.AddYears(1) && item.GiveType == "Цельная кровь")
+                                     select item;
+                    if (((yearitems4.Count() > 4) && (App.ViewModel.User.Sex==0)) || ((yearitems4.Count() > 3) && (App.ViewModel.User.Sex==1)))
+                    {
+                        return false;
+                    }
+                    else
+                    {
+                        return true;
+                    };
+                default:
+                    return true;
+                    
+            }
         }
 
         public int DaysFromEvent(string event_give_type, string want_event_give_type)

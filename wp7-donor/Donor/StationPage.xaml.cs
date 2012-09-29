@@ -51,9 +51,6 @@ namespace Donor
                     App.ViewModel.Reviews.LoadReviewsForStation(_currentStation.Nid.ToString());
 
                     App.ViewModel.Reviews.ReviewsLoaded += new ReviewsListViewModel.ReviewsLoadedEventHandler(this.ReviewsLoaded);
-
-                    this.progressOverlay.Visibility = Visibility.Collapsed;
-                    this.progressOverlay.IsEnabled = false;
                 }
                 catch
                 {
@@ -70,13 +67,20 @@ namespace Donor
         {
             try
             {
-                ObservableCollection<ReviewsViewModel> reviewslist1 = new ObservableCollection<ReviewsViewModel>();
-                reviewslist1 = App.ViewModel.Reviews.Items;
-
                 this.StationReviews.ItemsSource = App.ViewModel.Reviews.Items;
+                int votes = 0;
+                foreach (var item in App.ViewModel.Reviews.Items) {
+                    votes = votes + item.Vote;
+                };
+                this.rate.Vote = (int)Math.Round((double)votes / (double)App.ViewModel.Reviews.Items.Count());
+
+                this.progressOverlay.Visibility = Visibility.Collapsed;
+                this.progressOverlay.IsEnabled = false;
             }
             catch
             {
+                this.progressOverlay.Visibility = Visibility.Collapsed;
+                this.progressOverlay.IsEnabled = false;
             };
         }
 

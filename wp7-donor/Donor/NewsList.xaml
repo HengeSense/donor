@@ -34,25 +34,21 @@
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
 
             <ListBox Margin="0,15,-12,0" ItemsSource="{Binding News.Items}" SelectionChanged="ListBox_SelectionChanged" Tap="ListBox_Tap" tilteffect:TiltEffect.IsTiltEnabled="True">
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel Margin="0,0,0,17" 
-							Width="432" Height="78">
-                            	<TextBlock 
-								Text="{Binding CreatedAtText}" 
-								TextWrapping="Wrap" 
-								Style="{StaticResource 
-								Text40pxB9A194}"/>
-								
-                                <TextBlock 
-								Text="{Binding Title}" 
-								TextWrapping="Wrap" 
-								Style="{StaticResource 
-								Text24px847168}"/>
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Margin="0,10,0,17" Width="432">
+                            <StackPanel Orientation="Horizontal" Width="430">
+                                <TextBlock Text="{Binding CreatedAtText}" 
+									TextWrapping="NoWrap" Style="{StaticResource Text36pxCBB2A3}"/>
+                                <TextBlock Text="{Binding Title}" TextWrapping="Wrap" 
+									Margin="9,3,0,0" Style="{StaticResource Text24pxDF8D4B}"/>
                             </StackPanel>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
+                            <TextBlock Text="{Binding ShortBody}" TextWrapping="Wrap" 
+								Style="{StaticResource Text24pxB9A194}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
 
         </Grid>
     </Grid>

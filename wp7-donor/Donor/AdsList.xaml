@@ -37,7 +37,7 @@
                     <DataTemplate>
                         <StackPanel Margin="0,0,0,5" Width="432">
                             <TextBlock Text="{Binding CreatedAtText}" TextWrapping="Wrap" Style="{StaticResource Text40pxB9A194}"/>
-                            <TextBlock Text="{Binding Title}" TextWrapping="Wrap" Style="{StaticResource Text28pxB9A194}"/>
+                            <TextBlock Text="{Binding Title}" TextWrapping="Wrap" Style="{StaticResource Text24pxB9A194}"/>
                         </StackPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>

@@ -1,8 +1,16 @@
+<<<<<<< HEAD
 ﻿<xapCache source="C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\Bin\Debug\Donor.xap" wasSigned="False" certificateThumbprint="" TimeStampUrl="" lastWriteTime="25.09.2012 22:09:49">
   <file source="C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\Bin\Debug\WMAppManifest.xml" archivePath="WMAppManifest.xml" lastWriteTime="22.08.2012 19:29:21" />
   <file source="C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\Background.png" archivePath="Background.png" lastWriteTime="29.08.2012 22:56:01" />
   <file source="C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\ApplicationIcon.png" archivePath="ApplicationIcon.png" lastWriteTime="29.08.2012 22:55:56" />
   <file source="C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\obj\Debug\Donor.dll" archivePath="Donor.dll" lastWriteTime="25.09.2012 22:09:47" />
+=======
+﻿<xapCache source="C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\Bin\Debug\Donor.xap" wasSigned="False" certificateThumbprint="" TimeStampUrl="" lastWriteTime="28.09.2012 20:42:05">
+  <file source="C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\Bin\Debug\WMAppManifest.xml" archivePath="WMAppManifest.xml" lastWriteTime="22.08.2012 19:29:21" />
+  <file source="C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\Background.png" archivePath="Background.png" lastWriteTime="29.08.2012 22:56:01" />
+  <file source="C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\ApplicationIcon.png" archivePath="ApplicationIcon.png" lastWriteTime="29.08.2012 22:55:56" />
+  <file source="C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\obj\Debug\Donor.dll" archivePath="Donor.dll" lastWriteTime="28.09.2012 20:42:02" />
+>>>>>>> origin/wp7
   <file source="C:\Users\root\Documents\GitHub\donor\wp7-donor\packages\Coding4Fun.Phone.Audio.1.6.1\lib\sl4-windowsphone71\Coding4Fun.Phone.Audio.dll" archivePath="Coding4Fun.Phone.Audio.dll" lastWriteTime="06.09.2012 10:40:34" />
   <file source="C:\Users\root\Documents\GitHub\donor\wp7-donor\packages\Coding4Fun.Phone.Controls.1.6.1\lib\sl4-windowsphone71\Coding4Fun.Phone.Controls.dll" archivePath="Coding4Fun.Phone.Controls.dll" lastWriteTime="06.09.2012 10:40:35" />
   <file source="C:\Users\root\Documents\GitHub\donor\wp7-donor\packages\Coding4Fun.Phone.Controls.TimeSpan.1.6.1\lib\sl4-windowsphone71\Coding4Fun.Phone.Controls.Toolkit.dll" archivePath="Coding4Fun.Phone.Controls.Toolkit.dll" lastWriteTime="06.09.2012 10:40:39" />
@@ -27,6 +35,7 @@
   <file source="C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\icons\ic_ApplicationBar_close.png" archivePath="icons\ic_ApplicationBar_close.png" lastWriteTime="15.08.2012 9:22:16" />
   <file source="C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\icons\ic_ApplicationBar_done.png" archivePath="icons\ic_ApplicationBar_done.png" lastWriteTime="15.08.2012 9:22:16" />
   <file source="C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\icons\ic_ApplicationBar_exit.png" archivePath="icons\ic_ApplicationBar_exit.png" lastWriteTime="15.08.2012 9:22:16" />
+  <file source="C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\images\ic_donors_act.png" archivePath="images\ic_donors_act.png" lastWriteTime="26.09.2012 16:50:56" />
   <file source="C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\libs\GART.dll" archivePath="libs\GART.dll" lastWriteTime="18.09.2012 13:01:03" />
   <file source="C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\libs\Silverlight_ZXing_Core.dll" archivePath="libs\Silverlight_ZXing_Core.dll" lastWriteTime="25.09.2012 19:44:43" />
   <file source="C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\MS-LPL License.txt" archivePath="MS-LPL License.txt" lastWriteTime="18.09.2012 13:38:17" />
@@ -41,15 +50,17 @@
   <file source="C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\icons\appbar.save.rest.png" archivePath="icons\appbar.save.rest.png" lastWriteTime="15.08.2012 9:22:16" />
   <file source="C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\icons\appbar.cancel.png" archivePath="icons\appbar.cancel.png" lastWriteTime="15.08.2012 9:22:16" />
   <file source="C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\icons\appbar.share.rest.png" archivePath="icons\appbar.share.rest.png" lastWriteTime="15.08.2012 9:22:16" />
-  <file source="C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\images\drop.png" archivePath="images\drop.png" lastWriteTime="15.08.2012 9:22:16" />
-  <file source="C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\images\h.png" archivePath="images\h.png" lastWriteTime="15.08.2012 9:22:16" />
   <file source="C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\images\ic_donated_blood.png" archivePath="images\ic_donated_blood.png" lastWriteTime="15.08.2012 9:22:16" />
   <file source="C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\images\ic_planned_analysis.png" archivePath="images\ic_planned_analysis.png" lastWriteTime="15.08.2012 9:22:16" />
   <file source="C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\images\ic_planned_giving_blood.png" archivePath="images\ic_planned_giving_blood.png" lastWriteTime="15.08.2012 9:22:16" />
   <file source="C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\images\x.png" archivePath="images\x.png" lastWriteTime="15.08.2012 9:22:16" />
   <file source="C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\libs\HtmlAgilityPack.dll" archivePath="libs\HtmlAgilityPack.dll" lastWriteTime="19.08.2012 23:12:48" />
   <file source="C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\SplashScreenImage.jpg" archivePath="SplashScreenImage.jpg" lastWriteTime="29.08.2012 22:55:27" />
+<<<<<<< HEAD
   <file source="C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\Bin\Debug\AppManifest.xaml" archivePath="AppManifest.xaml" lastWriteTime="25.09.2012 19:53:20" />
+=======
+  <file source="C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\Bin\Debug\AppManifest.xaml" archivePath="AppManifest.xaml" lastWriteTime="28.09.2012 15:20:03" />
+>>>>>>> origin/wp7
   <file source="C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\Bin\Debug\ApplicationIcon.png" archivePath="ApplicationIcon.png" lastWriteTime="29.08.2012 22:55:56" />
   <file source="C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\Bin\Debug\Background.png" archivePath="Background.png" lastWriteTime="29.08.2012 22:56:01" />
   <file source="C:\Users\root\Documents\GitHub\donor\wp7-donor\Donor\Bin\Debug\icons\appbar.delete.rest.png" archivePath="icons\appbar.delete.rest.png" lastWriteTime="15.08.2012 9:22:16" />

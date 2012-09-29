@@ -14,12 +14,6 @@
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d" d:DesignHeight="728" d:DesignWidth="480"
     shell:SystemTray.IsVisible="False" Loaded="PhoneApplicationPage_Loaded">
-	<phone:PhoneApplicationPage.ApplicationBar>
-		<shell:ApplicationBar BackgroundColor="#FF211E1D" ForegroundColor="White"	>
-			<shell:ApplicationBarIconButton x:Name="MapButton" IconUri="/icons/appbar.feature.search.rest.png" Text="Карта" Click="MapButton_Click" />
-			<shell:ApplicationBarIconButton IconUri="/icons/appbar.feature.settings.rest.png" Text="Фильтр" Click="ApplicationBarIconButton_Click" />
-		</shell:ApplicationBar>
-	</phone:PhoneApplicationPage.ApplicationBar>
 
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot">
@@ -116,5 +110,12 @@
         </ListBox>
         </Grid>
     </Grid>
+    
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar BackgroundColor="#FF211E1D" ForegroundColor="White"	 IsVisible="True" x:Name="AppBar1">
+            <shell:ApplicationBarIconButton x:Name="MapButton" IconUri="/icons/appbar.feature.search.rest.png" Text="Карта" Click="MapButton_Click" />
+            <shell:ApplicationBarIconButton IconUri="/icons/appbar.feature.settings.rest.png" Text="Фильтр" Click="ApplicationBarIconButton_Click" />
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>
 
 </phone:PhoneApplicationPage>

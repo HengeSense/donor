@@ -41,8 +41,8 @@ namespace Donor.Controls
             DateTime EndDays = new DateTime(1900,1,1);
 
             var nearestEvents = (from item in App.ViewModel.Events.Items
-                                 where (item.Type =="1")
-                                 orderby item.Date descending
+                                 where ((item.Type =="1") && (item.Date > DateTime.Now))
+                                 orderby item.Date ascending
                                  select item).Take(1);
             //(item.Date <= DateTime.Now) && 
             if (nearestEvents.FirstOrDefault() != null)
@@ -83,8 +83,8 @@ namespace Donor.Controls
                 day2.Tap += ClickDay;
 				
 				/// Set background color for day controller
-				day2.BgColor = new SolidColorBrush(new Color() { A = 1, B = 2, G = 238, R = 238 });
-                day2.CurrentColor = new SolidColorBrush(new Color() { A = 1, B = 2, G = 238, R = 238 });
+				//day2.BgColor = new SolidColorBrush(new Color() { A = 1, B = 2, G = 238, R = 238 });
+                //day2.CurrentColor = new SolidColorBrush(new Color() { A = 1, B = 2, G = 238, R = 238 });
 
 				/// show border for current day
 				if (Date.Day == i) {
@@ -96,6 +96,10 @@ namespace Donor.Controls
                 {
                     day2.BgColor = new SolidColorBrush(Colors.Red);
                 };
+                if (day2.EventDay != null) {
+                    day2.ImagePath = day2.EventDay.BigImage.ToString();
+                };
+
                 day2.MonthNumber = Date.Month;
                 day2.YearNumber = Date.Year;
                 day2.DayNumber = i.ToString();
