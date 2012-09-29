@@ -191,19 +191,18 @@ namespace Donor
                         switch (this.ReminderPeriod.SelectedItem.ToString())
                         {
                             case "15 минут":
-                                CurrentEvent.AddReminder(15 * 60);
+                                CurrentEvent.AddReminder(-15 * 60);
                                 break;
                             case "1 час":
-                                CurrentEvent.AddReminder(60 * 60);
+                                CurrentEvent.AddReminder(-60 * 60);
                                 break;
                             case "1 день":
-                                CurrentEvent.AddReminder(24 * 60 * 60);
+                                CurrentEvent.AddReminder(-24 * 60 * 60);
                                 break;
                             case "1 неделя":
-                                CurrentEvent.AddReminder(7 * 24 * 60 * 60);
+                                CurrentEvent.AddReminder(-7 * 24 * 60 * 60);
                                 break;
                             default:
-                                //CurrentEvent.AddReminder();
                                 break;
                         }
 
@@ -211,12 +210,14 @@ namespace Donor
 
                     if (App.ViewModel.Events.EventsInYear(CurrentEvent.GiveType, CurrentEvent.Date) && App.ViewModel.Events.EventsInYear(CurrentEvent.GiveType, CurrentEvent.Date.AddYears(-1)))
                     {
-                        if ((App.ViewModel.Settings.EventAfter == true) && (App.ViewModel.Settings.Push == true))
+                        if (((App.ViewModel.Settings.EventAfter == true) && (App.ViewModel.Settings.Push == true)) && (CurrentEvent.ReminderMessage == true))
                         {
-                            CurrentEvent.AddReminder();
+                            //в день в 17:00
+                            CurrentEvent.AddReminder(-60*60*17);
                         };
 
                         App.ViewModel.Events.Items.Add(CurrentEvent);
+
                         App.ViewModel.Events.UpdateItems();
                         NavigationService.GoBack();
                     }

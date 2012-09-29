@@ -65,7 +65,7 @@
             <TextBox Name="Place" Text="{Binding Place, Mode=TwoWay}"
 			Style="{StaticResource TextBoxStyle1}"/>
                 <StackPanel Name="Reminder" Visibility="Collapsed">
-                    <TextBlock Text="Напоминание" Style="{StaticResource Text24px847168}"/>
+                    <TextBlock Text="Напоминание" Style="{StaticResource Text24px847168}" Visibility="Collapsed"/>
                     <toolkit:ListPicker  x:Name="ReminderPeriod" 
 					FullModeHeader="Напоминание" 
 					Foreground="#FFDF8D4B" BorderBrush="#FF4F3B34" 
@@ -75,7 +75,7 @@
 						Foreground="#FF847168"/>        	
 					</toolkit:ListPicker.Header>
             		</toolkit:ListPicker>
-                    <CheckBox Name="KnowAboutResults" 
+                    <CheckBox Name="KnowAboutResults" Visibility="Collapsed" 
 					FontSize="24"
 					Content="Узнать результат" IsChecked="{Binding ReminderMessage, Mode=TwoWay}" Foreground="#FF847168"/>
                 </StackPanel>

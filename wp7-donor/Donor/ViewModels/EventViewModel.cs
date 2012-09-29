@@ -130,7 +130,7 @@ namespace Donor.ViewModels
             private set { }
         }
 
-        public void AddReminder(long addSeconds = 0) {
+        public void AddReminder(long addSeconds = 0, string rtitle="") {
             try
             {
                 Reminder objReminder = ScheduledActionService.Find(this.Id) as Reminder;
@@ -138,11 +138,22 @@ namespace Donor.ViewModels
                     ScheduledActionService.Remove(this.Id);
                 objReminder = new Reminder(this.Id);
                 DateTime RememberDate = this.Date;
-                RememberDate = RememberDate.AddSeconds((this.Time.Hour * 60 * 60) + (this.Time.Minute * 60) + (this.Time.Second));
+                if (addSeconds >= 0)
+                {
+                    RememberDate = RememberDate.AddSeconds((this.Time.Hour * 60 * 60) + (this.Time.Minute * 60) + (this.Time.Second));
+                };
                 RememberDate = RememberDate.AddSeconds(-addSeconds);
                 objReminder.BeginTime = RememberDate;
 
-                objReminder.Title = this.GiveType;
+                if (rtitle == "")
+                {
+                    objReminder.Title = this.GiveType;
+                }
+                else
+                {
+                    objReminder.Title = rtitle;
+                };
+
                 objReminder.NavigationUri = new Uri("/EventPage.xaml?id=" + this.Id, UriKind.Relative);
                 ScheduledActionService.Add(objReminder);
             }

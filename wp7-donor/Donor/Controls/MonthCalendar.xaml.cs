@@ -52,7 +52,7 @@ namespace Donor.Controls
             };
 
 
-            for (var i = (DateTime.DaysInMonth(FirstDayPrev.Year, FirstDayPrev.Month) - daysbefore); i < (DateTime.DaysInMonth(FirstDayPrev.Year, FirstDayPrev.Month) - 1); i++)
+            for (var i = (DateTime.DaysInMonth(FirstDayPrev.Year, FirstDayPrev.Month) - daysbefore + 2); i < (DateTime.DaysInMonth(FirstDayPrev.Year, FirstDayPrev.Month) +1); i++)
             {
                 DayInCalendarControl day = new DayInCalendarControl();
                 day.ImagePath = "/images/x.png";
