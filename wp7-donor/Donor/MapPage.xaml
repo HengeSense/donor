@@ -16,7 +16,6 @@
     shell:SystemTray.IsVisible="False" Loaded="PhoneApplicationPage_Loaded">
 
     <phone:PhoneApplicationPage.Resources>
-        <!-- Used for authentication against Bing maps -->
         <maps:ApplicationIdCredentialsProvider x:Key="BingCredentials" ApplicationId="AsoYwOquow1D9inkw-YSN1iYJ7xPqmsKHvKPUZP_7B_swwwPTbdEDyoF_gibHtpT" />
 
             <DataTemplate x:Key="RestaurantItem">
@@ -62,21 +61,18 @@
             <maps:Map Name="map1" Height="500" CredentialsProvider="{StaticResource BingCredentials}" Width="450"/>
             <ARControls:ARDisplay Height="500" x:Name="ARDisplay" d:LayoutOverrides="Width" ShowGridLines="True" Video="Transparent">
                 <ARControls:VideoPreview x:Name="VideoPreview" />
-                <!--<ARControls:OverheadMap x:Name="OverheadMap" CredentialsProvider="{StaticResource BingCredentials}" />-->
                 <ARControls:WorldView x:Name="WorldView" ItemTemplate="{StaticResource RestaurantItem}"/>                
             </ARControls:ARDisplay>
         </Grid>
     </Grid>
 
-    <phone:PhoneApplicationPage.ApplicationBar>
+    <!--<phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar Mode="Minimized">            
-            <!--<shell:ApplicationBarIconButton x:Name="MapButton" IconUri="/icons/appbar.map.png" IsEnabled="True" Text="map" Click="MapButton_Click"/>
-            <shell:ApplicationBarIconButton x:Name="ThreeDButton" IconUri="/icons/appbar.3D.png" IsEnabled="True" Text="3D" Click="ThreeDButton_Click"/>-->
             <shell:ApplicationBar.MenuItems>
                 <shell:ApplicationBarMenuItem x:Name="AddLocationsMenu" Text="Включить AR просмотр" Click="ThreeDButton_Click"/>
                 <shell:ApplicationBarMenuItem x:Name="RemoveAR" Text="Выключить AR просмотр" Click="RemoveAR_Click" />
             </shell:ApplicationBar.MenuItems>
         </shell:ApplicationBar>
-    </phone:PhoneApplicationPage.ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>-->
 
 </phone:PhoneApplicationPage>

@@ -317,6 +317,7 @@
     <Content Include="icons\ic_ApplicationBar_close.png" />
     <Content Include="icons\ic_ApplicationBar_done.png" />
     <Content Include="icons\ic_ApplicationBar_exit.png" />
+    <Content Include="icons\ic_ApplicationBar_map.png" />
     <Content Include="images\ic_donors_act.png" />
     <Content Include="libs\GART.dll" />
     <Content Include="libs\Silverlight_ZXing_Core.dll" />

@@ -113,7 +113,7 @@
     
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar BackgroundColor="#FF211E1D" ForegroundColor="White"	 IsVisible="True" x:Name="AppBar1">
-            <shell:ApplicationBarIconButton x:Name="MapButton" IconUri="/icons/appbar.feature.search.rest.png" Text="Карта" Click="MapButton_Click" />
+            <shell:ApplicationBarIconButton x:Name="MapButton" IconUri="/icons/ic_ApplicationBar_map.png" Text="На карте" Click="MapButton_Click" />
             <shell:ApplicationBarIconButton IconUri="/icons/appbar.feature.settings.rest.png" Text="Фильтр" Click="ApplicationBarIconButton_Click" />
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>
