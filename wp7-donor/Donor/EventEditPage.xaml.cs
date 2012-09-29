@@ -216,6 +216,14 @@ namespace Donor
                             CurrentEvent.AddReminder(-60*60*17);
                         };
 
+                        ///
+                        /// Помечаем событие как выполненное, если его дата меньше текущей
+                        ///
+                        if (CurrentEvent.Date < DateTime.Now)
+                        {
+                            CurrentEvent.Finished = true;
+                            MessageBox.Show("Вы сдали кровь. Спасибо! Рассчитан интервал до следующей возможной кроводачи");
+                        };
                         App.ViewModel.Events.Items.Add(CurrentEvent);
 
                         App.ViewModel.Events.UpdateItems();
