@@ -42,11 +42,11 @@
                 </Border>
 
                 <Border Grid.Row="0" Grid.Column="1" BorderThickness="1" BorderBrush="#FFA09A95">
-                    <TextBlock Text="{Binding ShortDate}"  TextWrapping="Wrap" Margin="4" Style="{StaticResource Text20px9F9F9F}" VerticalAlignment="Center" />
+                    <TextBlock Text="{Binding ShortDate}"  TextWrapping="Wrap" Margin="6" Style="{StaticResource Text22px9F9F9F}" VerticalAlignment="Center" />
                 </Border>
 
                 <Border Grid.Row="0" Grid.Column="2" BorderThickness="1" BorderBrush="#FFA09A95">
-                    <TextBlock Text="{Binding Title}" TextWrapping="Wrap" Margin="4" Style="{StaticResource Text20pxBlack}" FontWeight="Bold" VerticalAlignment="Center" />
+                    <TextBlock Text="{Binding Title}" TextWrapping="Wrap" Margin="6" Style="{StaticResource Text24pxBlack}" FontWeight="Bold" VerticalAlignment="Center" />
                 </Border>
             </Grid>
         </DataTemplate>

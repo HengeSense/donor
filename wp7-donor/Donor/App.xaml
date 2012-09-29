@@ -357,10 +357,24 @@
             <Setter Property="Foreground" Value="Black"/>
         </Style>
 
+        <Style x:Key="Text24pxBlack" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Segoe WP Bold"/>
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Foreground" Value="Black"/>
+        </Style>
+        
         <Style x:Key="Text20px9F9F9F" TargetType="TextBlock">
             <Setter Property="FontFamily" Value="Segoe WP Semibold"/>
             <Setter Property="FontWeight" Value="Semibold"/>
             <Setter Property="FontSize" Value="20"/>
+            <Setter Property="Foreground" Value="#9F9F9F"/>
+        </Style>
+
+        <Style x:Key="Text22px9F9F9F" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Segoe WP Semibold"/>
+            <Setter Property="FontWeight" Value="Semibold"/>
+            <Setter Property="FontSize" Value="22"/>
             <Setter Property="Foreground" Value="#9F9F9F"/>
         </Style>
 
