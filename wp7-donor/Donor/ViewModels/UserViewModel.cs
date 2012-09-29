@@ -36,7 +36,30 @@ namespace Donor.ViewModels
         public DateTime? UpdatedAt { get; set; }
         public DateTime? CreatedAt { get; set; }
 
+        private string _facebookId = "";
+        public string FacebookId { 
+            get { return _facebookId; } 
+            set { 
+                _facebookId = value; 
+                NotifyPropertyChanged("FacebookId");
+                NotifyPropertyChanged("IsFacebookLoggedIn"); 
+            } 
+        }
 
+        public bool IsFacebookLoggedIn {
+        get {
+            if ((_facebookId != "") || (_facebookId != null))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        private set{
+        }
+        }
 
         private bool _isLoggedIn = false;
         public bool IsLoggedIn { 

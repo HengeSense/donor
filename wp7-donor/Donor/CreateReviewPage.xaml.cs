@@ -68,8 +68,8 @@ namespace Donor
             };
 
             string strJSONContent = "{\"username\":\"" + App.ViewModel.User.Name.ToString() + "\",\"user_id\":\"" + App.ViewModel.User.objectId.ToString() + "\",\"station_id\":\"" + _stationid_current.ToString() + "\",\"body\":\"" + this.Body.Text.ToString() + "\", \"vote\":" + vote.ToString() + ", \"vote_registry\":" + this.vote_registry.Vote.ToString() + ", \"vote_physician\":" + this.vote_physician.Vote.ToString() + ", \"vote_laboratory\":" + this.vote_laboratory.Vote.ToString() + ", \"vote_buffet\":" + this.vote_buffet.Vote.ToString() + ", \"vote_schedule\":" + this.vote_schedule.Vote.ToString() + ", \"vote_organization_donation\":" + this.vote_organization_donation.Vote.ToString() + ", \"vote_room\":" + this.vote_room.Vote.ToString() + "}";
-            request.AddHeader("X-Parse-Application-Id", "EIpakVdZblHedhqgxMgiEVnIGCRGvWdy9v8gkKZu");
-            request.AddHeader("X-Parse-REST-API-Key", "wPvwRKxX2b2vyrRprFwIbaE5t3kyDQq11APZ0qXf");
+            request.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
+            request.AddHeader("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
             request.AddHeader("Content-Type", "application/json");
             request.AddParameter("application/json", strJSONContent, ParameterType.RequestBody);
 

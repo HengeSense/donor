@@ -39,10 +39,10 @@ namespace Donor
 
         private void GestureListener_Flick(object sender, Microsoft.Phone.Controls.FlickGestureEventArgs e)
         {
-            if (e.Direction == System.Windows.Controls.Orientation.Horizontal)
+            if (e.Direction == System.Windows.Controls.Orientation.Vertical)
             {
                 //this.fadeOut.Begin();
-                if (e.HorizontalVelocity < 0)
+                if (e.VerticalVelocity < 0)
                 {
                    
                     try

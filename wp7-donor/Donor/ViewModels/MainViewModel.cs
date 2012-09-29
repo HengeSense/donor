@@ -52,7 +52,9 @@ namespace Donor
             Reviews = new ReviewsListViewModel();
             Contras = new ContraListViewModel();
 
-            Settings = new SettingsViewModel();            
+            Settings = new SettingsViewModel();
+
+            Qr = new QRViewModel();
             
             this.LoadFromIsolatedStorage();
         }
@@ -74,6 +76,7 @@ namespace Donor
         public DonorUser User { get; set; }
         public ContraListViewModel Contras { get; set; }
         public SettingsViewModel Settings { get; set; }
+        public QRViewModel Qr { get; set; }
         public bool IsSettings = false;
 
         public bool IsDataLoaded

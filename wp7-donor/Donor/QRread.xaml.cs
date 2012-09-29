@@ -17,37 +17,11 @@ using System.Windows.Threading;
 using System.Windows.Navigation;
 using com.google.zxing;
 using com.google.zxing.common;
+using Donor.ViewModels;
 
 namespace Donor
 {
-    public class PhotoCameraLuminanceSource : LuminanceSource
-    {
-        public byte[] PreviewBufferY { get; private set; }
 
-        public PhotoCameraLuminanceSource(int width, int height)
-            : base(width, height)
-        {
-            PreviewBufferY = new byte[width * height];
-        }
-
-        public override sbyte[] Matrix
-        {
-            get { return (sbyte[])(Array)PreviewBufferY; }
-        }
-
-        public override sbyte[] getRow(int y, sbyte[] row)
-        {
-            if (row == null || row.Length < Width)
-            {
-                row = new sbyte[Width];
-            }
-
-            for (int i = 0; i < Height; i++)
-                row[i] = (sbyte)PreviewBufferY[i * Width + y];
-
-            return row;
-        }
-    }
 
     public partial class QRread : PhoneApplicationPage
     {
@@ -68,11 +42,6 @@ namespace Donor
             _timer = new DispatcherTimer();
             _timer.Interval = TimeSpan.FromMilliseconds(250);
             _timer.Tick += (o, arg) => ScanPreviewBuffer();
-        }
-
-        private void btnFacebookLogin_Click(object sender, RoutedEventArgs e)
-        {
-            NavigationService.Navigate(new Uri("/FacebookPages/FacebookLoginPage.xaml", UriKind.Relative));
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -118,10 +87,10 @@ namespace Donor
 
         private void DisplayResult(string text)
         {
-            if (!_matches.Contains(text))
-                _matches.Add(text);
+            MessageBox.Show("Добавлен QR код: "+text);
+            App.ViewModel.Qr.QRcode = text;
+            this.NavigationService.GoBack();
         }
-        
 
 
     }

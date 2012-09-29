@@ -163,12 +163,26 @@ namespace Donor
 
         private void Qrread_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
-            NavigationService.Navigate(new Uri("/QRread.xaml", UriKind.Relative));
+            if (App.ViewModel.User.IsLoggedIn)
+            {
+                NavigationService.Navigate(new Uri("/QRread.xaml", UriKind.Relative));
+            }
+            else
+            {
+                MessageBox.Show("Пожалуйста войдите для использования распознавания QR кодов.");
+            };
         }
 
         private void Facebook_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
-            NavigationService.Navigate(new Uri("/FacebookPages/FacebookLoginPage.xaml", UriKind.Relative));
+            if (App.ViewModel.User.IsLoggedIn)
+            {
+                NavigationService.Navigate(new Uri("/FacebookPages/FacebookLoginPage.xaml", UriKind.Relative));
+            }
+            else
+            {
+                MessageBox.Show("Пожалуйста войдите, прежде чем связать учетную запись с аккаунтом Facebook");
+            };
         }
 
         private void Login_Click(object sender, RoutedEventArgs e)

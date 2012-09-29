@@ -14,23 +14,24 @@
     shell:SystemTray.IsVisible="True">
 
     <!--LayoutRoot is the root grid where all page content is placed-->
-    <Grid x:Name="LayoutRoot" Background="Transparent">
+    <Grid x:Name="LayoutRoot">
+        <Grid.Background>
+            <ImageBrush ImageSource="images/back_02.png"/>
+        </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
+        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="20,60,0,20">
             <TextBlock x:Name="ApplicationTitle" Text="Чтение QR" Style="{StaticResource PhoneTextNormalStyle}"/>
-            <Button Content="Вход в Facebook" Height="73" Name="btnFacebookLogin" VerticalAlignment="Top" Width="276" Click="btnFacebookLogin_Click" Visibility="Collapsed" />
         </StackPanel>
 
-        <!--ContentPanel - place additional content here-->
-        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="0,0,0,0">
             <Rectangle x:Name="_previewRect" 
                Margin="0" 
-               Height="800" 
-               Width="600" 
+               Height="700" 
+               Width="500" 
                HorizontalAlignment="Center" 
                VerticalAlignment="Center">
                 <Rectangle.Fill>
