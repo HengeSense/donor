@@ -233,7 +233,7 @@ Visibility="Collapsed" Name="SaveEditProfileButton" Click="SaveEditProfileButton
             </controls:PivotItem>
 
             <!--Pivot item two-->
-            <controls:PivotItem Margin="12,35,12,0">
+            <!--<controls:PivotItem Margin="12,35,12,0" Visibility="Collapsed">
                 <controls:PivotItem.Header>
                     <TextBlock Style="{StaticResource Text70pxWhite}" Text="настройки" Margin="0,30,0,0"/>
                 </controls:PivotItem.Header>
@@ -247,8 +247,7 @@ Visibility="Collapsed" Name="SaveEditProfileButton" Click="SaveEditProfileButton
 			Background="White" BorderBrush="Black" 
 			Foreground="#FFDF8D4B" 
             FontSize="36"
-			 
-			SwitchForeground="#FFDF8D4B"        Checked="Check_Checked" Unchecked="Check_Unchecked">
+			SwitchForeground="#FFDF8D4B" Checked="Check_Checked" Unchecked="Check_Unchecked">
                                 <toolkit:ToggleSwitch.Header>
 <TextBlock Foreground="#FFC0A89A" FontSize="24"  Text="Пароль"/>
 </toolkit:ToggleSwitch.Header>
@@ -261,9 +260,9 @@ Visibility="Collapsed" Name="SaveEditProfileButton" Click="SaveEditProfileButton
 			Background="White" BorderBrush="Black" 
 			Foreground="#FFDF8D4B" 
             FontSize="36"
-			 
-			SwitchForeground="#FFDF8D4B"        Checked="Check_Checked" Unchecked="Check_Unchecked">                                <toolkit:ToggleSwitch.Header>
-<TextBlock Foreground="#FFC0A89A" FontSize="24"  Text="Push-уведомления"/>                             
+			SwitchForeground="#FFDF8D4B" Checked="Check_Checked" Unchecked="Check_Unchecked">                                
+<toolkit:ToggleSwitch.Header>
+<TextBlock Foreground="#FFC0A89A" FontSize="24"  Text="Push-уведомления"/>
 </toolkit:ToggleSwitch.Header>
 </toolkit:ToggleSwitch>
 
@@ -292,12 +291,10 @@ Visibility="Collapsed" Name="SaveEditProfileButton" Click="SaveEditProfileButton
 			Content="Выключено" Margin="0,0,0,-20" 
 			Background="White" BorderBrush="Black" 
 			Foreground="#FFDF8D4B" 
-            FontSize="36"
-			 
-			SwitchForeground="#FFDF8D4B"        Checked="Check_Checked" Unchecked="Check_Unchecked">
-                                <toolkit:ToggleSwitch.Header>
-                                    <TextBlock Foreground="#FFC0A89A" FontSize="24"  Text="Напоминания"/>
-                                </toolkit:ToggleSwitch.Header>
+            FontSize="36" SwitchForeground="#FFDF8D4B" Checked="Check_Checked" Unchecked="Check_Unchecked">
+            <toolkit:ToggleSwitch.Header>
+            <TextBlock Foreground="#FFC0A89A" FontSize="24"  Text="Напоминания"/>
+            </toolkit:ToggleSwitch.Header>
 </toolkit:ToggleSwitch>
 
 
@@ -324,7 +321,7 @@ Visibility="Collapsed" Name="SaveEditProfileButton" Click="SaveEditProfileButton
                     </ScrollViewer>
 
                 </Grid>
-            </controls:PivotItem>
+            </controls:PivotItem>-->
         </controls:Pivot>        
     </Grid>
     

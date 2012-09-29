@@ -14,6 +14,71 @@
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d" d:DesignHeight="768" d:DesignWidth="480"
     shell:SystemTray.IsVisible="True" Loaded="PhoneApplicationPage_Loaded">
+	<phone:PhoneApplicationPage.Resources>
+		<Style x:Key="ListPickerStyle1" TargetType="toolkit:ListPicker">
+			<Setter Property="Background" Value="{StaticResource PhoneTextBoxBrush}"/>
+			<Setter Property="Foreground" Value="{StaticResource PhoneTextBoxForegroundBrush}"/>
+			<Setter Property="BorderBrush" Value="{StaticResource PhoneTextBoxBrush}"/>
+			<Setter Property="BorderThickness" Value="{StaticResource PhoneBorderThickness}"/>
+			<Setter Property="FontSize" Value="{StaticResource PhoneFontSizeMediumLarge}"/>
+			<Setter Property="HorizontalContentAlignment" Value="Left"/>
+			<Setter Property="Margin" Value="{StaticResource PhoneTouchTargetOverhang}"/>
+			<Setter Property="PickerPageUri" Value="/Microsoft.Phone.Controls.Toolkit;component/ListPicker/ListPickerPage.xaml"/>
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="toolkit:ListPicker">
+						<StackPanel>
+							<VisualStateManager.VisualStateGroups>
+								<VisualStateGroup x:Name="PickerStates">
+									<VisualState x:Name="Normal"/>
+									<VisualState x:Name="Highlighted">
+										<Storyboard>
+											<ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetProperty="Background" Storyboard.TargetName="Border">
+												<DiscreteObjectKeyFrame KeyTime="0" Value="#FF4F3B34"/>
+											</ObjectAnimationUsingKeyFrames>
+											<ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="Border">
+												<DiscreteObjectKeyFrame KeyTime="0" Value="#FF4F3B34"/>
+											</ObjectAnimationUsingKeyFrames>
+										</Storyboard>
+									</VisualState>
+									<VisualState x:Name="Disabled">
+										<Storyboard>
+											<ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetProperty="Background" Storyboard.TargetName="Border">
+												<DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource TransparentBrush}"/>
+											</ObjectAnimationUsingKeyFrames>
+											<ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="Border">
+												<DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource PhoneDisabledBrush}"/>
+											</ObjectAnimationUsingKeyFrames>
+											<ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetProperty="Foreground" Storyboard.TargetName="UserControl">
+												<DiscreteObjectKeyFrame KeyTime="0" Value="#FFDF8D4B"/>
+											</ObjectAnimationUsingKeyFrames>
+										</Storyboard>
+									</VisualState>
+								</VisualStateGroup>
+							</VisualStateManager.VisualStateGroups>
+							<ContentControl ContentTemplate="{TemplateBinding HeaderTemplate}" Content="{TemplateBinding Header}" Foreground="#FFDF8D4B" FontSize="{StaticResource PhoneFontSizeNormal}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="0 0 0 8"/>
+							<Grid>
+								<Border x:Name="Border" BorderBrush="#FF4F3B34" BorderThickness="{TemplateBinding BorderThickness}" Background="#FF4F3B34">
+									<UserControl x:Name="UserControl" Foreground="#FFDF8D4B">
+										<StackPanel Background="#FF4F3B34">
+											<TextBlock x:Name="MultipleSelectionModeSummary" Margin="8 8 0 8"/>
+											<Canvas x:Name="ItemsPresenterHost" MinHeight="46">
+												<ItemsPresenter x:Name="ItemsPresenter">
+													<ItemsPresenter.RenderTransform>
+														<TranslateTransform x:Name="ItemsPresenterTranslateTransform"/>
+													</ItemsPresenter.RenderTransform>
+												</ItemsPresenter>
+											</Canvas>
+										</StackPanel>
+									</UserControl>
+								</Border>
+							</Grid>
+						</StackPanel>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+	</phone:PhoneApplicationPage.Resources>
 
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot">
@@ -36,6 +101,7 @@
         <StackPanel>
             <toolkit:ListPicker  
 			x:Name="EventType" 
+			 Style="{StaticResource ListPickerStyle1}"
 			FullModeHeader="Тип события" 
 			FontSize="24" Foreground="#FF847168"
 			SelectionChanged="EventType_SelectionChanged" 
@@ -44,14 +110,29 @@
             		<TextBlock Text="Тип события" FontSize="24" 
 					Foreground="#FF847168"/>        	
 			</toolkit:ListPicker.Header>
-            </toolkit:ListPicker>
+                        <toolkit:ListPicker.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal" Background="#FF4F3B34" Margin="0">
+                                    <TextBlock Foreground="#FFDF8D4B" Text="{Binding}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </toolkit:ListPicker.ItemTemplate>
+                    </toolkit:ListPicker>
 
-            <toolkit:ListPicker x:Name="GiveType" FullModeHeader="Вид кроводачи" FontSize="24" Foreground="#FF847168" Background="#FF4F3B34" BorderBrush="#FF4F3B34">
+            <toolkit:ListPicker x:Name="GiveType" 
+			FullModeHeader="Вид кроводачи" FontSize="24" Foreground="#FFDF8D4B" Background="#FF4F3B34" BorderBrush="#FF4F3B34" Style="{StaticResource ListPickerStyle1}">
             	<toolkit:ListPicker.Header>
             		<TextBlock Text="Вид кроводачи" FontSize="24" 
 					Foreground="#FF847168"/>        	
 				</toolkit:ListPicker.Header>
-            </toolkit:ListPicker>
+                        <toolkit:ListPicker.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal" Background="#FF4F3B34" Margin="0">
+                                    <TextBlock Foreground="#FFDF8D4B" Text="{Binding}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </toolkit:ListPicker.ItemTemplate>
+                    </toolkit:ListPicker>
             
             <TextBlock Text="Дата и время"
 			Style="{StaticResource Text24px847168}" Margin="12,0,0,0"/>
@@ -67,6 +148,7 @@
                 <StackPanel Name="Reminder" Visibility="Collapsed">
                     <TextBlock Text="Напоминание" Style="{StaticResource Text24px847168}" Visibility="Collapsed"/>
                     <toolkit:ListPicker  x:Name="ReminderPeriod" 
+					Style="{StaticResource ListPickerStyle1}"
 					FullModeHeader="Напоминание" 
 					Foreground="#FFDF8D4B" BorderBrush="#FF4F3B34" 
 					Background="#FF4F3B34">
@@ -74,7 +156,14 @@
             			<TextBlock Text="Напомнить за" FontSize="24" 
 						Foreground="#FF847168"/>        	
 					</toolkit:ListPicker.Header>
-            		</toolkit:ListPicker>
+                        <toolkit:ListPicker.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal" Background="#FF4F3B34" Margin="0">
+                                    <TextBlock Foreground="#FFDF8D4B" Text="{Binding}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </toolkit:ListPicker.ItemTemplate>
+                        </toolkit:ListPicker>
                     <CheckBox Name="KnowAboutResults" Visibility="Collapsed" 
 					FontSize="24"
 					Content="Узнать результат" IsChecked="{Binding ReminderMessage, Mode=TwoWay}" Foreground="#FF847168"/>

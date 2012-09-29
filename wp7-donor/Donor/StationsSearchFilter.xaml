@@ -47,7 +47,7 @@
             	<toolkit:ListPicker x:Name="CitySelect" Header="Город" FontSize="24" Margin="10,6,10,20" SelectionChanged="CitySelect_SelectionChanged" Foreground="#FF271B16" Loaded="CitySelect_Loaded" Tap="CitySelect_Tap">
 <ListBoxItem Content="Москва" Foreground="#DE271B16"/>
 <ListBoxItem Content="Санкт-Петербург" Foreground="#DE271B16"/>
-                        <toolkit:ListPicker.ItemTemplate>
+<toolkit:ListPicker.ItemTemplate>
 <DataTemplate>
 <StackPanel Orientation="Horizontal" Background="#FFD7CABF" Margin="0">
 <TextBlock Foreground="#FF271B16" Text="{Binding}" />

@@ -43,7 +43,7 @@ namespace Donor
             };
 
 
-            if (App.ViewModel.Settings.Password)
+            /*if (App.ViewModel.Settings.Password)
             {
                 this.PasswordCheck.IsChecked = true;
             }
@@ -86,7 +86,7 @@ namespace Donor
             else
             {
                 this.AfterCheck.IsChecked = false;
-            };
+            };*/
 
         }
 
