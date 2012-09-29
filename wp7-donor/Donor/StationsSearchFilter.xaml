@@ -44,7 +44,7 @@
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="0,0,0,0">
             <StackPanel>  
             	<Border Background="#FF632C00">              
-            	<toolkit:ListPicker x:Name="CitySelect" Header="Город" FontSize="24" Margin="10,6,10,20" SelectionChanged="CitySelect_SelectionChanged" Foreground="#FF271B16" Loaded="CitySelect_Loaded">
+            	<toolkit:ListPicker x:Name="CitySelect" Header="Город" FontSize="24" Margin="10,6,10,20" SelectionChanged="CitySelect_SelectionChanged" Foreground="#FF271B16" Loaded="CitySelect_Loaded" Tap="CitySelect_Tap">
 <ListBoxItem Content="Москва" Foreground="#DE271B16"/>
 <ListBoxItem Content="Санкт-Петербург" Foreground="#DE271B16"/>
                         <toolkit:ListPicker.ItemTemplate>

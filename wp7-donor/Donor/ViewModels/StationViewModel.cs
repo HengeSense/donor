@@ -26,6 +26,10 @@ namespace Donor.ViewModels
         public StationsLitViewModel()
         {
             this.FilteredText = "";
+            this.IsChildrenDonor = false;
+            this.IsFilter = false;
+            this.IsSaturdayWork = false;
+            this.IsRegional = false;
         }
 
         public GeoCoordinateWatcher myCoordinateWatcher;
