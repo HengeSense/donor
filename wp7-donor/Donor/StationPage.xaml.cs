@@ -68,6 +68,11 @@ namespace Donor
             try
             {
                 this.StationReviews.ItemsSource = App.ViewModel.Reviews.Items;
+                int votes = 0;
+                foreach (var item in App.ViewModel.Reviews.Items) {
+                    votes = votes + item.Vote;
+                };
+                this.rate.Vote = (int)Math.Round((double)votes / (double)App.ViewModel.Reviews.Items.Count());
 
                 this.progressOverlay.Visibility = Visibility.Collapsed;
                 this.progressOverlay.IsEnabled = false;
