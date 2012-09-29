@@ -71,7 +71,7 @@
 					Foreground="#FFDF8D4B" BorderBrush="#FF4F3B34" 
 					Background="#FF4F3B34">
                     <toolkit:ListPicker.Header>
-            			<TextBlock Text="Напоминание" FontSize="24" 
+            			<TextBlock Text="Напомнить за" FontSize="24" 
 						Foreground="#FF847168"/>        	
 					</toolkit:ListPicker.Header>
             		</toolkit:ListPicker>
