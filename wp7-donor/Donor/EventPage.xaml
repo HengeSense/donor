@@ -136,6 +136,9 @@
 		IsVisible="True" IsMenuEnabled="True">
             <WPExtensions:AdvancedApplicationBarIconButton IconUri="/icons/appbar.edit.rest.png" Name="EditButton" Text="Изменить" Visibility="Visible" Click="EditButton_Click" />
             <WPExtensions:AdvancedApplicationBarIconButton IconUri="/icons/appbar.delete.rest.png" Name="DeleteButton" Text="Удалить" Visibility="Visible" Click="DeleteButton_Click" />
+
+            <WPExtensions:AdvancedApplicationBarMenuItem Text="Было выполнено" Click="AdvancedApplicationBarMenuItem_Click_1" />
+
         </WPExtensions:AdvancedApplicationBar>
     </Grid>
 

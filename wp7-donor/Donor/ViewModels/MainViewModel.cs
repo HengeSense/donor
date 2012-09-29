@@ -280,6 +280,7 @@ namespace Donor
                             {
                                 //MessageBox.Show("Ошибка входа: " + o["error"].ToString());
                                 App.ViewModel.User.IsLoggedIn = false;
+                                App.ViewModel.OnUserEnter(EventArgs.Empty);
                             };
                         }
                         catch { };
@@ -287,7 +288,14 @@ namespace Donor
                 }
                 catch
                 {
+                    App.ViewModel.User.IsLoggedIn = false;
+                    App.ViewModel.OnUserEnter(EventArgs.Empty);
                 };
+            }
+            else
+            {
+                App.ViewModel.User.IsLoggedIn = false;
+                App.ViewModel.OnUserEnter(EventArgs.Empty);
             };
         }
 

@@ -219,7 +219,7 @@ namespace Donor
                         ///
                         /// Помечаем событие как выполненное, если его дата меньше текущей
                         ///
-                        if (CurrentEvent.Date < DateTime.Now)
+                        if (CurrentEvent.Date < DateTime.Today)
                         {
                             CurrentEvent.Finished = true;
                             MessageBox.Show("Вы сдали кровь. Спасибо! Рассчитан интервал до следующей возможной кроводачи");

@@ -83,6 +83,8 @@ namespace Donor
             try
             {
                 App.ViewModel.Events.Items.Remove(_currentEvent);
+                App.ViewModel.Events.UpdateItems(); 
+
                 NavigationService.GoBack();
             }
             catch
@@ -110,6 +112,34 @@ namespace Donor
             try
             {
                 NavigationService.Navigate(new Uri("/MapPage.xaml"));
+            }
+            catch
+            {
+            };
+        }
+
+        private void AdvancedApplicationBarMenuItem_Click(object sender, System.EventArgs e)
+        {
+
+        }
+
+        private void AdvancedApplicationBarMenuItem_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+                if (_currentEvent.Finished == false)
+                {
+                    App.ViewModel.Events.Items.Remove(_currentEvent);
+                    _currentEvent.Finished = true;
+                    App.ViewModel.Events.Items.Add(_currentEvent);
+
+                    App.ViewModel.Events.UpdateItems(); 
+
+                    MessageBox.Show("Вы сдали кровь. Спасибо! Рассчитан интервал до следующей возможной кроводачи");
+                }
+                else
+                {
+                };
             }
             catch
             {
