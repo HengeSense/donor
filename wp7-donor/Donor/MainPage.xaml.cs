@@ -27,6 +27,9 @@ namespace Donor
             // Set the data context of the listbox control to the sample data
             DataContext = App.ViewModel;
             this.Loaded += new RoutedEventHandler(MainPage_Loaded);
+
+            this.progressOverlay.Visibility = Visibility.Visible;
+            this.progressOverlay.IsEnabled = true;
         }
 
         // Load data for the ViewModel Items
@@ -129,6 +132,9 @@ namespace Donor
             catch
             {
             };
+
+            this.progressOverlay.Visibility = Visibility.Collapsed;
+            this.progressOverlay.IsEnabled = false;
         }
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)

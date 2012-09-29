@@ -7,7 +7,8 @@
     xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:toolkitPrimitives="clr-namespace:Microsoft.Phone.Controls.Primitives;assembly=Microsoft.Phone.Controls.Toolkit" 
-    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit" 
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:Controls="clr-namespace:Coding4Fun.Phone.Controls;assembly=Coding4Fun.Phone.Controls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     xmlns:tilteffect="clr-namespace:ControlTiltEffect"
     mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="800" 
@@ -31,9 +32,25 @@
     	    <Grid.Background>
                 <ImageBrush ImageSource="images/back_01.png"/>
             </Grid.Background>
- 
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Controls:ProgressOverlay Grid.Row="0" Grid.Column="0" Name="progressOverlay" Height="800" Width="480" Visibility="Collapsed" IsEnabled="False">
+            <Controls:ProgressOverlay.Content>
+                <StackPanel Height="800">
+                	<StackPanel.Background>
+                		<ImageBrush Stretch="Fill" ImageSource="/SplashScreenImage.jpg"/>
+                	</StackPanel.Background>
+                    
+                    <toolkit:PerformanceProgressBar Name="Loading" IsIndeterminate="True" Height="10" Background="#FFD40505" Foreground="#FFD40505" Visibility="Visible" VerticalAlignment="Center" Margin="0,540,0,0" />
+                </StackPanel>
+            </Controls:ProgressOverlay.Content>
+        </Controls:ProgressOverlay>
+
         <!--Panorama control-->
-        <controls:Panorama>
+        <controls:Panorama Grid.Row="1">
             <controls:Panorama.Title>
                 <Image Source="/Donor;component/images/logo.png" Margin="-10,75,0,0"/>
             </controls:Panorama.Title>
@@ -120,7 +137,7 @@
                         </StackPanel>
                     </ListBoxItem>
 
-                        <ListBoxItem Tap="Qrread_Tap">
+                    <!--<ListBoxItem Tap="Qrread_Tap">
                             <StackPanel Orientation="Horizontal">
                                 <Image Height="64" Width="64" Source="images/ic_menu_profile_normal.png"/>
                                 <TextBlock Margin="0,15,0,0" Text="Читать QR" TextWrapping="Wrap" Style="{StaticResource Text30pxCBB2A3}"/>
@@ -132,10 +149,10 @@
                                     <Image Height="64" Width="64" Source="images/ic_menu_profile_normal.png"/>
                                     <TextBlock Margin="0,15,0,0" Text="Вход на Facebook" TextWrapping="Wrap" Style="{StaticResource Text30pxCBB2A3}"/>
                                 </StackPanel>
-                            </ListBoxItem>
+                            </ListBoxItem>-->
                     
                         </ListBox>
-                        <TextBlock Text="Version - 29092012_1"/>
+                        <TextBlock Text="Version - 29092012_4"/>
                     </StackPanel>
                 </ScrollViewer>
             </controls:PanoramaItem>
