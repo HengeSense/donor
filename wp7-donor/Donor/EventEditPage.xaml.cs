@@ -30,7 +30,10 @@ namespace Donor
             this.GiveType.ItemsSource = giveTypes;
             this.ReminderPeriod.ItemsSource = reminderTypes;
 
+            this.Time.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 8, 0, 0);
+
             this.DataContext = CurrentEvent;
+
         }
 
         public int DayNumber;
@@ -79,11 +82,11 @@ namespace Donor
                         this.Date.Value = new DateTime(YearNumber, MonthNumber, DayNumber);
                     };
 
-                    this.Time.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 8, 0, 0);
+                    
                 }
                 catch
                 {
-                    this.Time.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 8, 0, 0);
+                    //this.Time.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 8, 0, 0);
                 };
             };
         }
@@ -219,7 +222,7 @@ namespace Donor
                         ///
                         /// Помечаем событие как выполненное, если его дата меньше текущей
                         ///
-                        if (CurrentEvent.Date < DateTime.Today)
+                        if ((CurrentEvent.Date <= DateTime.Today) && (CurrentEvent.Time < DateTime.Now))
                         {
                             CurrentEvent.Finished = true;
                             MessageBox.Show("Вы сдали кровь. Спасибо! Рассчитан интервал до следующей возможной кроводачи");
