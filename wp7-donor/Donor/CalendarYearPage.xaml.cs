@@ -12,6 +12,10 @@ using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using Donor.ViewModels;
 using MSPToolkit;
+using System.Windows.Media.Imaging;
+using System.IO.IsolatedStorage;
+using System.IO;
+using System.Globalization;
 
 namespace Donor
 {
@@ -60,6 +64,44 @@ namespace Donor
             this.NextMonth.Header = App.ViewModel.Events.NextMonthString;
             this.ThisMonth.Header = App.ViewModel.Events.CurrentMonthString;
             this.PrevMonth.Header = App.ViewModel.Events.PrevMonthString;
+
+
+
+            //var bmp = new WriteableBitmap(173, 173);
+            var logo = new BitmapImage(new Uri("icons/empty.png", UriKind.Relative));
+            //var img = new Image { Source = logo };
+
+            logo.CreateOptions = BitmapCreateOptions.None;
+            logo.ImageOpened += (sender1, e1) =>
+            {
+                var bmp = new WriteableBitmap(48, 48);
+                var img = new Image { Source = logo };
+
+                var bl = new TextBlock();
+                bl.Foreground = new SolidColorBrush(Colors.White);
+                bl.FontSize = 10.0;
+                bl.Text = CultureInfo.CurrentCulture.DateTimeFormat.MonthNames[
+DateTime.Now.Month - 1];
+
+                bmp.Render(bl, null);
+
+                var tt = new TranslateTransform();
+                tt.X = 173 - logo.PixelWidth;
+                tt.Y = 173 - logo.PixelHeight;
+
+                bmp.Render(img, tt);
+
+                bmp.Invalidate();
+
+                using (var store = IsolatedStorageFile.GetUserStoreForApplication())
+                {
+                    var filename = "/icons/testtile.jpg";
+                    using (var st = new IsolatedStorageFileStream(filename, FileMode.Create, FileAccess.Write, store))
+                    {
+                        bmp.SaveJpeg(st, 48, 48, 0, 100);
+                    }
+                }
+            };
         }
 
 
