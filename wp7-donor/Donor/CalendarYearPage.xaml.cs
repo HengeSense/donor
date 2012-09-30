@@ -260,7 +260,7 @@ DateTime.Now.Month - 1];
                             this.PrevMonth2.Header = App.ViewModel.Events.NextMonth2String;
                             break;
                         case 4:
-                            this.EventsListNext.ItemsSource = App.ViewModel.Events.ThisMonthItems;
+                            this.EventsListNext2.ItemsSource = App.ViewModel.Events.ThisMonthItems;
 
                             this.NextMonth2.Header = App.ViewModel.Events.CurrentMonthString;
                             this.NextMonth.Header = App.ViewModel.Events.PrevMonthString;

@@ -47,13 +47,25 @@ namespace Donor
 						ReminderStackPanel.Visibility = Visibility.Visible;
                         this.TitleNews.Text = "Сдать анализ";
                         this.Reminder.Text = _currentEvent.ReminderDate.ToString();
+
+                        this.ApplicationTitle.Text = "анализ";
                         
                     };
 					if (_currentEvent.Type == "1")
                     {
                         this.TitleNews.Text = _currentEvent.GiveType;
 						ReminderStackPanel.Visibility = Visibility.Collapsed;
+
+                        this.ApplicationTitle.Text = "кроводача";
                     };
+
+                    if (_currentEvent.Type == "Праздник")
+                    {
+                        this.ApplicationTitle.Text = "праздник";
+                        this.Finished.Visibility = Visibility.Collapsed;
+                        this.Time.Visibility = Visibility.Collapsed;
+                    };
+                   
                 }
                 catch
                 {
