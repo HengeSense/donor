@@ -17,6 +17,29 @@ using System.Collections.Generic;
 
 namespace Donor.ViewModels
 {
+    /// <summary>
+    /// Class - json content from QR code
+    /// </summary>
+    public class QrContent
+    {
+        public QrContent()
+        {
+            id = App.ViewModel.User.FacebookId;
+            vol = 0;
+            blood = "";
+        }
+
+        public string id { get; set; }
+
+        /// <summary>
+        /// Blood give type
+        /// </summary>
+        public string blood { get; set; }
+
+        public int vol { get; set; } 
+    }
+
+
     public class QRViewModel
     {
         /// <summary>
@@ -38,12 +61,22 @@ namespace Donor.ViewModels
         public string FacebookId {get; set; }
 
         private string _qrcode;
-        private string _lastMessageId;
+
+        public QrContent QrData { get; set; }
+
         public string QRcode
         {
             get { return _qrcode; }
             set { 
                 _qrcode = value;
+
+                QrData = new QrContent();
+                try {
+                JObject o = JObject.Parse(_qrcode);
+                QrData.vol = Int32.Parse(o["vol"].ToString());
+                QrData.blood = o["blood"].ToString(); 
+                } catch {
+                };
                 SaveQrLevel();
             }
         }
@@ -85,26 +118,25 @@ namespace Donor.ViewModels
                 JObject o = JObject.Parse(response.Content.ToString());
                 if (o["error"] == null)
                 {
-
-                    AddScore(1);
+                    AddScore(QrData.vol);
 
                     var fb = new FacebookClient(App.ViewModel.User.FacebookToken);
 
                     ///
                     /// Post message to timeline
                     ///
-                    /*fb.PostCompleted += (o1, args) =>
+                    fb.PostCompleted += (o1, args) =>
                     {
                         if (args.Error != null)
                         {
                             return;
                         }
                         var result = (IDictionary<string, object>)args.GetResultData();
-                        _lastMessageId = (string)result["id"];
+                        //_lastMessageId = (string)result["id"];
                     };
                     var parameters = new Dictionary<string, object>();
-                    parameters["message"] = QRcode;
-                    fb.PostAsync("me/feed", parameters);*/
+                    parameters["message"] = "Gived "+QrData.blood+ " - "+QrData.vol.ToString()+"ml.";
+                    fb.PostAsync("me/feed", parameters);
 
                     /*fb.PostCompleted += (o1, args) =>
                     {
