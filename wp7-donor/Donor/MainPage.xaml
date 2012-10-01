@@ -63,7 +63,7 @@
             <controls:PanoramaItem>
                 <controls:PanoramaItem.Header>
                     <TextBlock 
-					Margin="0,15,0,0" Text="Меню" 
+					Margin="0,15,0,0" Text="Menu" 
 					Style="{StaticResource Text48pxDFB08B}"/>
                 </controls:PanoramaItem.Header>
                 <ScrollViewer>
@@ -73,7 +73,8 @@
                         <StackPanel Orientation="Horizontal">
                         <Image Height="64" Width="64" 
 						Source="images/ic_menu_calendar_normal.png"/>
-                            <TextBlock Margin="0,15,0,0" Text="Календарь" 
+                            <TextBlock Margin="0,15,0,0" 
+                                       Text="Calendar" 
 						TextWrapping="Wrap" Name="CalendarMenuText"  
 						Style="{StaticResource Text30pxCBB2A3}"/>
                         </StackPanel>
@@ -83,7 +84,8 @@
                         <StackPanel Orientation="Horizontal">
                             <Image Height="64" Width="64" 
 						Source="images/ic_menu_stantion_normal.png"/>
-                            <TextBlock Margin="0,15,0,0" Text="Станции" 
+                            <TextBlock Margin="0,15,0,0" 
+                                       Text="Stations" 
 						TextWrapping="Wrap" Name="StationsMenu" 
 						Style="{StaticResource Text30pxCBB2A3}"/>
                         </StackPanel>
@@ -93,7 +95,8 @@
                         <StackPanel Orientation="Horizontal">
                             <Image Height="64" Width="64" 
 						Source="images/ic_menu_ads_normal.png"/>
-                            <TextBlock Margin="0,15,0,0" Text="Объявления" 
+                            <TextBlock Margin="0,15,0,0" 
+                                       Text="Ads" 
 						TextWrapping="Wrap" Name="adsMenuText" 
 						Style="{StaticResource Text30pxCBB2A3}"/>
                         </StackPanel>
@@ -105,7 +108,7 @@
 						Source="images/ic_menu_news_normal.png"/>
 
                             <TextBlock Margin="0,15,0,0" 
-						Text="Новости" TextWrapping="Wrap" 
+						Text="News" TextWrapping="Wrap" 
 						Name="NewMenuItem" 
 						Style="{StaticResource Text30pxCBB2A3}"/>
                         </StackPanel>
@@ -117,7 +120,7 @@
 						Source="images/ic_menu_information_normal.png"/>
 
                         <TextBlock Margin="0,15,0,0" 
-						Text="Справка" 
+						Text="Help" 
 						TextWrapping="Wrap" 
 						Name="HelpMenuText" 
 						Style="{StaticResource Text30pxCBB2A3}"/>
@@ -130,26 +133,30 @@
 						 Source="images/ic_menu_profile_normal.png"/>
 
                             <TextBlock Margin="0,15,0,0" 
-						 Text="Профиль"
+						 Text="Profile"
 						 TextWrapping="Wrap" 
 						 Style="{StaticResource Text30pxCBB2A3}" 
 						 Tap="TextBlock_Tap_1"/>
                         </StackPanel>
                     </ListBoxItem>
 
-                    <!--<ListBoxItem Tap="Qrread_Tap">
+                    <ListBoxItem Tap="Qrread_Tap">
                             <StackPanel Orientation="Horizontal">
-                                <Image Height="64" Width="64" Source="images/ic_menu_profile_normal.png"/>
-                                <TextBlock Margin="0,15,0,0" Text="Читать QR" TextWrapping="Wrap" Style="{StaticResource Text30pxCBB2A3}"/>
+                                <Image Height="64" Width="64" 
+                                Source="images/ic_menu_profile_normal.png"/>
+                                <TextBlock Margin="0,15,0,0" 
+                                           Text="Read QR" TextWrapping="Wrap" Style="{StaticResource Text30pxCBB2A3}"/>
                             </StackPanel>
                         </ListBoxItem>
 
                             <ListBoxItem Tap="Facebook_Tap">
                                 <StackPanel Orientation="Horizontal">
                                     <Image Height="64" Width="64" Source="images/ic_menu_profile_normal.png"/>
-                                    <TextBlock Margin="0,15,0,0" Text="Вход на Facebook" TextWrapping="Wrap" Style="{StaticResource Text30pxCBB2A3}"/>
+                                    <TextBlock 
+                                        Margin="0,15,0,0" 
+                                        Text="Facebook login" TextWrapping="Wrap" Style="{StaticResource Text30pxCBB2A3}"/>
                                 </StackPanel>
-                            </ListBoxItem>-->
+                            </ListBoxItem>
                     
                         </ListBox>
                         <TextBlock Text="Version - 29092012_5"/>

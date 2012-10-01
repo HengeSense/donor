@@ -11,6 +11,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using Facebook;
+using Donor;
 
 namespace facebook_windows_phone_sample.Pages
 {
@@ -94,8 +95,14 @@ namespace facebook_windows_phone_sample.Pages
                 var id = (string)result["id"];
 
                 var url = string.Format("/FacebookPages/FacebookInfoPage.xaml?access_token={0}&id={1}", accessToken, id);
+                
 
-                Dispatcher.BeginInvoke(() => NavigationService.Navigate(new Uri(url, UriKind.Relative)));
+                Dispatcher.BeginInvoke(() => {
+                    App.ViewModel.User.FacebookId = id;
+                    App.ViewModel.User.FacebookToken = accessToken;
+                    NavigationService.GoBack(); //NavigationService.Navigate(new Uri(url, UriKind.Relative)));
+                    MessageBox.Show("Выполнен вход c использованием Facebook.");
+                });
             };
 
             fb.GetAsync("me?fields=id");

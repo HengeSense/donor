@@ -199,5 +199,7 @@ namespace Donor.ViewModels
                 handler(this, new PropertyChangedEventArgs(propertyName));
             }
         }
+
+        public string FacebookToken { get; set; }
     };
 }

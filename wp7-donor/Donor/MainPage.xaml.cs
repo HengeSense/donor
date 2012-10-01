@@ -169,7 +169,7 @@ namespace Donor
 
         private void Qrread_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
-            if (App.ViewModel.User.IsLoggedIn)
+            if ((App.ViewModel.User.IsLoggedIn) && (App.ViewModel.User.IsFacebookLoggedIn)) 
             {
                 NavigationService.Navigate(new Uri("/QRread.xaml", UriKind.Relative));
             }
