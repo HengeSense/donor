@@ -158,17 +158,17 @@
                                 </StackPanel>
                             </ListBoxItem>
 
-                            <ListBoxItem Tap="FacebookLogout_Tap">
+                            <!--<ListBoxItem Tap="FacebookLogout_Tap">
                                 <StackPanel Orientation="Horizontal">
                                     <Image Height="64" Width="64" Source="images/ic_menu_profile_normal.png"/>
                                     <TextBlock 
                                         Margin="0,15,0,0" 
                                         Text="Facebook logout" TextWrapping="Wrap" Style="{StaticResource Text30pxCBB2A3}"/>
                                 </StackPanel>
-                            </ListBoxItem>
+                            </ListBoxItem>-->
 
                         </ListBox>
-                        <TextBlock Text="Version - 29092012_5"/>
+                        <!--<TextBlock Text="Version - 29092012_5"/>-->
                     </StackPanel>
                 </ScrollViewer>
             </controls:PanoramaItem>

@@ -48,6 +48,7 @@ namespace Donor.ViewModels
         public QRViewModel()
         {
             _qrcode = "";
+            CameraFocusSet = false;
         }
 
         /// <summary>

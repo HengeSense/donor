@@ -46,13 +46,24 @@ namespace Donor
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            _photoCamera = new PhotoCamera();
-            _photoCamera.Initialized += OnPhotoCameraInitialized;
-            _previewVideo.SetSource(_photoCamera);
+            try
+            {
+                //if (App.ViewModel.Qr.CameraFocusSet == false)
+                //{
+                    _photoCamera = new PhotoCamera();
+                    _photoCamera.Initialized += OnPhotoCameraInitialized;
+                    _previewVideo.SetSource(_photoCamera);
+                //}
+            }
+            catch { };
 
             try
             {
-                CameraButtons.ShutterKeyHalfPressed += (o, arg) => _photoCamera.Focus();
+                if (App.ViewModel.Qr.CameraFocusSet == false)
+                {
+                    CameraButtons.ShutterKeyHalfPressed += (o, arg) => { try { _photoCamera.Focus(); } catch { }; };
+                    App.ViewModel.Qr.CameraFocusSet = true;
+                };
             }
             catch
             {
@@ -94,6 +105,7 @@ namespace Donor
         private void DisplayResult(string text)
         {
             _timer.Stop();
+            //_photoCamera.Dispose();
             try
             {
                 MessageBox.Show("Добавлен QR код: " + text);
