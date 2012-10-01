@@ -191,6 +191,11 @@ namespace Donor
             };
         }
 
+        private void FacebookLogout_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/FacebookPages/FacebookLogoutPage.xaml", UriKind.Relative));
+        }
+
         private void Login_Click(object sender, RoutedEventArgs e)
         {
             var client = new RestClient("https://api.parse.com");

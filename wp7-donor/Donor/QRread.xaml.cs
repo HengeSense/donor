@@ -87,9 +87,18 @@ namespace Donor
 
         private void DisplayResult(string text)
         {
-            MessageBox.Show("Добавлен QR код: "+text);
-            App.ViewModel.Qr.QRcode = text;
-            this.NavigationService.GoBack();
+            _timer.Stop();
+            try
+            {
+                MessageBox.Show("Добавлен QR код: " + text);
+                App.ViewModel.Qr.QRcode = text;
+                try
+                {
+                    this.NavigationService.GoBack();
+                }
+                catch { };
+            }
+            catch { };
         }
 
 

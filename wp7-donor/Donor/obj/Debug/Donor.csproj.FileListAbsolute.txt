@@ -247,3 +247,4 @@ C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\Bin\Debug\zh-Hans\Syst
 C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\Bin\Debug\zh-Hant\System.Windows.Interactivity.resources.dll
 C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\obj\Debug\Donor.pdb
 C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\obj\Debug\XapCacheFile.xml
+C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\obj\Debug\FacebookPages\FacebookLogoutPage.g.i.cs
