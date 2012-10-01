@@ -71,7 +71,15 @@
     [review saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
     {
         [indicatorView removeFromSuperview];
-        [self.navigationController popViewControllerAnimated:YES];
+        
+        MessageBoxViewController *messageBox = [[MessageBoxViewController alloc] initWithNibName:@"MessageBoxViewController"
+                                                                                          bundle:nil
+                                                                                           title:nil
+                                                                                         message:@"Спасибо за отзыв!"
+                                                                                    cancelButton:@"Ок"
+                                                                                        okButton:nil];
+        messageBox.delegate = self;
+        [self.navigationController.tabBarController.view addSubview:messageBox.view];
     }];
 }
 
@@ -83,30 +91,37 @@
     switch (button.tag)
     {
         case 1:
+            if (button.selected)
+                workOfRegistryVote = 0;
+            workOfRegistryRateButton1.selected = !workOfRegistryRateButton1.selected;
             workOfRegistryRateButton2.selected = NO;
             workOfRegistryRateButton3.selected = NO;
             workOfRegistryRateButton4.selected = NO;
             workOfRegistryRateButton5.selected = NO;
             break;
         case 2:
+            workOfRegistryRateButton1.selected = YES;
             workOfRegistryRateButton2.selected = YES;
             workOfRegistryRateButton3.selected = NO;
             workOfRegistryRateButton4.selected = NO;
             workOfRegistryRateButton5.selected = NO;
             break;
         case 3:
+            workOfRegistryRateButton1.selected = YES;
             workOfRegistryRateButton2.selected = YES;
             workOfRegistryRateButton3.selected = YES;
             workOfRegistryRateButton4.selected = NO;
             workOfRegistryRateButton5.selected = NO;
             break;
         case 4:
+            workOfRegistryRateButton1.selected = YES;
             workOfRegistryRateButton2.selected = YES;
             workOfRegistryRateButton3.selected = YES;
             workOfRegistryRateButton4.selected = YES;
             workOfRegistryRateButton5.selected = NO;
             break;
         case 5:
+            workOfRegistryRateButton1.selected = YES;
             workOfRegistryRateButton2.selected = YES;
             workOfRegistryRateButton3.selected = YES;
             workOfRegistryRateButton4.selected = YES;
@@ -125,30 +140,37 @@
     switch (button.tag)
     {
         case 1:
+            if (button.selected)
+                workOfTherapistVote = 0;
+            workOfTherapistRateButton1.selected = !workOfTherapistRateButton1.selected;
             workOfTherapistRateButton2.selected = NO;
             workOfTherapistRateButton3.selected = NO;
             workOfTherapistRateButton4.selected = NO;
             workOfTherapistRateButton5.selected = NO;
             break;
         case 2:
+            workOfTherapistRateButton1.selected = YES;
             workOfTherapistRateButton2.selected = YES;
             workOfTherapistRateButton3.selected = NO;
             workOfTherapistRateButton4.selected = NO;
             workOfTherapistRateButton5.selected = NO;
             break;
         case 3:
+            workOfTherapistRateButton1.selected = YES;
             workOfTherapistRateButton2.selected = YES;
             workOfTherapistRateButton3.selected = YES;
             workOfTherapistRateButton4.selected = NO;
             workOfTherapistRateButton5.selected = NO;
             break;
         case 4:
+            workOfTherapistRateButton1.selected = YES;
             workOfTherapistRateButton2.selected = YES;
             workOfTherapistRateButton3.selected = YES;
             workOfTherapistRateButton4.selected = YES;
             workOfTherapistRateButton5.selected = NO;
             break;
         case 5:
+            workOfTherapistRateButton1.selected = YES;
             workOfTherapistRateButton2.selected = YES;
             workOfTherapistRateButton3.selected = YES;
             workOfTherapistRateButton4.selected = YES;
@@ -167,30 +189,37 @@
     switch (button.tag)
     {
         case 1:
+            if (button.selected)
+                workOfLabVote = 0;
+            workOfLabRateButton1.selected = !workOfLabRateButton1.selected;
             workOfLabRateButton2.selected = NO;
             workOfLabRateButton3.selected = NO;
             workOfLabRateButton4.selected = NO;
             workOfLabRateButton5.selected = NO;
             break;
         case 2:
+            workOfLabRateButton1.selected = YES;
             workOfLabRateButton2.selected = YES;
             workOfLabRateButton3.selected = NO;
             workOfLabRateButton4.selected = NO;
             workOfLabRateButton5.selected = NO;
             break;
         case 3:
+            workOfLabRateButton1.selected = YES;
             workOfLabRateButton2.selected = YES;
             workOfLabRateButton3.selected = YES;
             workOfLabRateButton4.selected = NO;
             workOfLabRateButton5.selected = NO;
             break;
         case 4:
+            workOfLabRateButton1.selected = YES;
             workOfLabRateButton2.selected = YES;
             workOfLabRateButton3.selected = YES;
             workOfLabRateButton4.selected = YES;
             workOfLabRateButton5.selected = NO;
             break;
         case 5:
+            workOfLabRateButton1.selected = YES;
             workOfLabRateButton2.selected = YES;
             workOfLabRateButton3.selected = YES;
             workOfLabRateButton4.selected = YES;
@@ -209,30 +238,37 @@
     switch (button.tag)
     {
         case 1:
+            if (button.selected)
+                workOfBuffetVote = 0;
+            workOfBuffetRateButton1.selected = !workOfBuffetRateButton1.selected;
             workOfBuffetRateButton2.selected = NO;
             workOfBuffetRateButton3.selected = NO;
             workOfBuffetRateButton4.selected = NO;
             workOfBuffetRateButton5.selected = NO;
             break;
         case 2:
+            workOfBuffetRateButton1.selected = YES;
             workOfBuffetRateButton2.selected = YES;
             workOfBuffetRateButton3.selected = NO;
             workOfBuffetRateButton4.selected = NO;
             workOfBuffetRateButton5.selected = NO;
             break;
         case 3:
+            workOfBuffetRateButton1.selected = YES;
             workOfBuffetRateButton2.selected = YES;
             workOfBuffetRateButton3.selected = YES;
             workOfBuffetRateButton4.selected = NO;
             workOfBuffetRateButton5.selected = NO;
             break;
         case 4:
+            workOfBuffetRateButton1.selected = YES;
             workOfBuffetRateButton2.selected = YES;
             workOfBuffetRateButton3.selected = YES;
             workOfBuffetRateButton4.selected = YES;
             workOfBuffetRateButton5.selected = NO;
             break;
         case 5:
+            workOfBuffetRateButton1.selected = YES;
             workOfBuffetRateButton2.selected = YES;
             workOfBuffetRateButton3.selected = YES;
             workOfBuffetRateButton4.selected = YES;
@@ -251,30 +287,37 @@
     switch (button.tag)
     {
         case 1:
+            if (button.selected)
+                scheduleVote = 0;
+            scheduleRateButton1.selected = !scheduleRateButton1.selected;
             scheduleRateButton2.selected = NO;
             scheduleRateButton3.selected = NO;
             scheduleRateButton4.selected = NO;
             scheduleRateButton5.selected = NO;
             break;
         case 2:
+            scheduleRateButton1.selected = YES;
             scheduleRateButton2.selected = YES;
             scheduleRateButton3.selected = NO;
             scheduleRateButton4.selected = NO;
             scheduleRateButton5.selected = NO;
             break;
         case 3:
+            scheduleRateButton1.selected = YES;
             scheduleRateButton2.selected = YES;
             scheduleRateButton3.selected = YES;
             scheduleRateButton4.selected = NO;
             scheduleRateButton5.selected = NO;
             break;
         case 4:
+            scheduleRateButton1.selected = YES;
             scheduleRateButton2.selected = YES;
             scheduleRateButton3.selected = YES;
             scheduleRateButton4.selected = YES;
             scheduleRateButton5.selected = NO;
             break;
         case 5:
+            scheduleRateButton1.selected = YES;
             scheduleRateButton2.selected = YES;
             scheduleRateButton3.selected = YES;
             scheduleRateButton4.selected = YES;
@@ -293,30 +336,37 @@
     switch (button.tag)
     {
         case 1:
+            if (button.selected)
+                workOfBuffetVote = 0;
+            bloodDonateOrganizationRateButton1.selected = !bloodDonateOrganizationRateButton1.selected;
             bloodDonateOrganizationRateButton2.selected = NO;
             bloodDonateOrganizationRateButton3.selected = NO;
             bloodDonateOrganizationRateButton4.selected = NO;
             bloodDonateOrganizationRateButton5.selected = NO;
             break;
         case 2:
+            bloodDonateOrganizationRateButton1.selected = YES;
             bloodDonateOrganizationRateButton2.selected = YES;
             bloodDonateOrganizationRateButton3.selected = NO;
             bloodDonateOrganizationRateButton4.selected = NO;
             bloodDonateOrganizationRateButton5.selected = NO;
             break;
         case 3:
+            bloodDonateOrganizationRateButton1.selected = YES;
             bloodDonateOrganizationRateButton2.selected = YES;
             bloodDonateOrganizationRateButton3.selected = YES;
             bloodDonateOrganizationRateButton4.selected = NO;
             bloodDonateOrganizationRateButton5.selected = NO;
             break;
         case 4:
+            bloodDonateOrganizationRateButton1.selected = YES;
             bloodDonateOrganizationRateButton2.selected = YES;
             bloodDonateOrganizationRateButton3.selected = YES;
             bloodDonateOrganizationRateButton4.selected = YES;
             bloodDonateOrganizationRateButton5.selected = NO;
             break;
         case 5:
+            bloodDonateOrganizationRateButton1.selected = YES;
             bloodDonateOrganizationRateButton2.selected = YES;
             bloodDonateOrganizationRateButton3.selected = YES;
             bloodDonateOrganizationRateButton4.selected = YES;
@@ -335,30 +385,37 @@
     switch (button.tag)
     {
         case 1:
+            if (button.selected)
+                pointOfDonationSpaceVote = 0;
+            pointOfDonationSpaceRateButton1.selected = !pointOfDonationSpaceRateButton1.selected;
             pointOfDonationSpaceRateButton2.selected = NO;
             pointOfDonationSpaceRateButton3.selected = NO;
             pointOfDonationSpaceRateButton4.selected = NO;
             pointOfDonationSpaceRateButton5.selected = NO;
             break;
         case 2:
+            pointOfDonationSpaceRateButton1.selected = YES;
             pointOfDonationSpaceRateButton2.selected = YES;
             pointOfDonationSpaceRateButton3.selected = NO;
             pointOfDonationSpaceRateButton4.selected = NO;
             pointOfDonationSpaceRateButton5.selected = NO;
             break;
         case 3:
+            pointOfDonationSpaceRateButton1.selected = YES;
             pointOfDonationSpaceRateButton2.selected = YES;
             pointOfDonationSpaceRateButton3.selected = YES;
             pointOfDonationSpaceRateButton4.selected = NO;
             pointOfDonationSpaceRateButton5.selected = NO;
             break;
         case 4:
+            pointOfDonationSpaceRateButton1.selected = YES;
             pointOfDonationSpaceRateButton2.selected = YES;
             pointOfDonationSpaceRateButton3.selected = YES;
             pointOfDonationSpaceRateButton4.selected = YES;
             pointOfDonationSpaceRateButton5.selected = NO;
             break;
         case 5:
+            pointOfDonationSpaceRateButton1.selected = YES;
             pointOfDonationSpaceRateButton2.selected = YES;
             pointOfDonationSpaceRateButton3.selected = YES;
             pointOfDonationSpaceRateButton4.selected = YES;
@@ -367,6 +424,14 @@
         default:
             break;
     }
+}
+
+#pragma  mark MessageBoxDelegate
+
+- (void)messageBoxResult:(BOOL)result controller:(MessageBoxViewController *)controller message:(NSString *)message
+{
+    [controller release];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark UITextViewDelegate
@@ -467,12 +532,26 @@
     UIImage *barImageNormal = [UIImage imageNamed:@"barButtonNormal"];
     UIImage *barImagePressed = [UIImage imageNamed:@"barButtonPressed"];
     
+    UIButton *cancelButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    CGRect cancelButtonFrame = CGRectMake(0, 0, barImageNormal.size.width, barImageNormal.size.height);
+    [cancelButton setBackgroundImage:barImageNormal forState:UIControlStateNormal];
+    [cancelButton setBackgroundImage:barImagePressed forState:UIControlStateHighlighted];
+    [cancelButton setTitle:@"Отмена" forState:UIControlStateNormal];
+    [cancelButton setTitle:@"Отмена" forState:UIControlStateHighlighted];
+    cancelButton.titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:12];
+    cancelButton.frame = cancelButtonFrame;
+    [cancelButton addTarget:self action:@selector(backButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIBarButtonItem *cancelBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:cancelButton] autorelease];
+    [cancelBarButtonItem setTitlePositionAdjustment:UIOffsetMake(0, -1) forBarMetrics:UIBarMetricsDefault];
+    self.navigationItem.leftBarButtonItem = cancelBarButtonItem;
+    
     UIButton *doneButton = [UIButton buttonWithType:UIButtonTypeCustom];
     CGRect doneButtonFrame = CGRectMake(0, 0, barImageNormal.size.width, barImageNormal.size.height);
     [doneButton setBackgroundImage:barImageNormal forState:UIControlStateNormal];
     [doneButton setBackgroundImage:barImagePressed forState:UIControlStateHighlighted];
-    [doneButton setTitle:@"Готово" forState:UIControlStateNormal];
-    [doneButton setTitle:@"Готово" forState:UIControlStateHighlighted];
+    [doneButton setTitle:@"Отправить" forState:UIControlStateNormal];
+    [doneButton setTitle:@"Отправить" forState:UIControlStateHighlighted];
     doneButton.titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:12];
     doneButton.frame = doneButtonFrame;
     [doneButton addTarget:self action:@selector(doneButtonPressed:) forControlEvents:UIControlEventTouchUpInside];

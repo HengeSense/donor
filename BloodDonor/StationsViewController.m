@@ -49,6 +49,17 @@
     [self textFieldDidChange];
     [searchField resignFirstResponder];
     [self reloadMapAnnotations];
+    
+    if ([self.view.subviews containsObject:fadeView])
+        [fadeView removeFromSuperview];
+    clearButton.hidden = YES;
+    emptySearchLabel.hidden = YES;
+}
+
+- (IBAction)clearButtonPressed:(id)sender
+{
+    searchField.text = @"";
+    clearButton.hidden = YES;
 }
 
 - (IBAction)switchView:(id)sender
@@ -79,7 +90,6 @@
         [contentView addSubview:stationsMapView];
       
         [self reloadMapAnnotations];
-        
     }
     else if (button.tag == 3)
     {
@@ -89,10 +99,21 @@
 }
 
 #pragma mark TextEditDelegate
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+{
+    if ([textField.text isEqualToString:@""] && ![self.view.subviews containsObject:fadeView])
+    {
+        [self.view addSubview:fadeView];
+    }
+    
+    return YES;
+}
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [textField resignFirstResponder];
+    if ([self.view.subviews containsObject:fadeView])
+        [fadeView removeFromSuperview];
     return YES;
 }
 
@@ -100,6 +121,9 @@
 {
     if (![searchField.text isEqualToString:@""])
     {
+        if ([self.view.subviews containsObject:fadeView])
+            [fadeView removeFromSuperview];
+        clearButton.hidden = NO;
        // NSLog(@"search : %@", searchTableDictionary);
         NSMutableArray *insertIndexPathsArray = [NSMutableArray array];
         NSMutableArray *deleteIndexPathsArray = [NSMutableArray array];
@@ -255,6 +279,153 @@
             sectionNumber ++;
         }
         
+        if ([searchTableDictionary objectForKey:@"five"] != [NSNull null])
+        {
+            NSMutableArray *currentArray;
+            if ([tableDictionary objectForKey:@"five"] != [NSNull null])
+                currentArray = [NSMutableArray arrayWithArray:[tableDictionary objectForKey:@"five"]];
+            else
+                currentArray = [NSMutableArray array];
+            
+            NSMutableArray *fullArray = [NSMutableArray arrayWithArray:[searchTableDictionary objectForKey:@"five"]];
+            
+            for (PFObject *object in fullArray)
+            {
+                NSString *address = [object valueForKey:@"small_adress"];
+                NSRange addressResultsRange = [address rangeOfString:searchField.text options:NSCaseInsensitiveSearch];
+                
+                if (addressResultsRange.length <= 0)
+                {
+                    if ([currentArray containsObject:object])
+                    {
+                        //delete
+                        [deleteIndexPathsArray addObject:[NSIndexPath indexPathForRow:[currentArray indexOfObject:object] inSection:sectionNumber]];
+                        [currentArray removeObject:object];
+                    }
+                }
+                else
+                {
+                    if (![currentArray containsObject:object])
+                    {
+                        //insert
+                        [currentArray addObject:object];
+                        [insertIndexPathsArray addObject:[NSIndexPath indexPathForRow:[currentArray indexOfObject:object] inSection:sectionNumber]];
+                    }
+                }
+            }
+            
+            if (currentArray.count == 0)
+            {
+                [deleteIndexSet addIndex:sectionNumber];
+                [tableDictionary setObject:[NSNull null] forKey:@"five"];
+            }
+            else
+            {
+                if ([tableDictionary objectForKey:@"five"] != [NSNull null])
+                    [insertIndexSet addIndex:sectionNumber];
+                [tableDictionary setObject:currentArray forKey:@"five"];
+            }
+            sectionNumber ++;
+        }
+        
+        if ([searchTableDictionary objectForKey:@"ten"] != [NSNull null])
+        {
+            NSMutableArray *currentArray;
+            if ([tableDictionary objectForKey:@"ten"] != [NSNull null])
+                currentArray = [NSMutableArray arrayWithArray:[tableDictionary objectForKey:@"ten"]];
+            else
+                currentArray = [NSMutableArray array];
+            
+            NSMutableArray *fullArray = [NSMutableArray arrayWithArray:[searchTableDictionary objectForKey:@"ten"]];
+            
+            for (PFObject *object in fullArray)
+            {
+                NSString *address = [object valueForKey:@"small_adress"];
+                NSRange addressResultsRange = [address rangeOfString:searchField.text options:NSCaseInsensitiveSearch];
+                
+                if (addressResultsRange.length <= 0)
+                {
+                    if ([currentArray containsObject:object])
+                    {
+                        //delete
+                        [deleteIndexPathsArray addObject:[NSIndexPath indexPathForRow:[currentArray indexOfObject:object] inSection:sectionNumber]];
+                        [currentArray removeObject:object];
+                    }
+                }
+                else
+                {
+                    if (![currentArray containsObject:object])
+                    {
+                        //insert
+                        [currentArray addObject:object];
+                        [insertIndexPathsArray addObject:[NSIndexPath indexPathForRow:[currentArray indexOfObject:object] inSection:sectionNumber]];
+                    }
+                }
+            }
+            
+            if (currentArray.count == 0)
+            {
+                [deleteIndexSet addIndex:sectionNumber];
+                [tableDictionary setObject:[NSNull null] forKey:@"ten"];
+            }
+            else
+            {
+                if ([tableDictionary objectForKey:@"ten"] != [NSNull null])
+                    [insertIndexSet addIndex:sectionNumber];
+                [tableDictionary setObject:currentArray forKey:@"ten"];
+            }
+            sectionNumber ++;
+        }
+        
+        if ([searchTableDictionary objectForKey:@"fifteen"] != [NSNull null])
+        {
+            NSMutableArray *currentArray;
+            if ([tableDictionary objectForKey:@"fifteen"] != [NSNull null])
+                currentArray = [NSMutableArray arrayWithArray:[tableDictionary objectForKey:@"fifteen"]];
+            else
+                currentArray = [NSMutableArray array];
+            
+            NSMutableArray *fullArray = [NSMutableArray arrayWithArray:[searchTableDictionary objectForKey:@"fifteen"]];
+            
+            for (PFObject *object in fullArray)
+            {
+                NSString *address = [object valueForKey:@"small_adress"];
+                NSRange addressResultsRange = [address rangeOfString:searchField.text options:NSCaseInsensitiveSearch];
+                
+                if (addressResultsRange.length <= 0)
+                {
+                    if ([currentArray containsObject:object])
+                    {
+                        //delete
+                        [deleteIndexPathsArray addObject:[NSIndexPath indexPathForRow:[currentArray indexOfObject:object] inSection:sectionNumber]];
+                        [currentArray removeObject:object];
+                    }
+                }
+                else
+                {
+                    if (![currentArray containsObject:object])
+                    {
+                        //insert
+                        [currentArray addObject:object];
+                        [insertIndexPathsArray addObject:[NSIndexPath indexPathForRow:[currentArray indexOfObject:object] inSection:sectionNumber]];
+                    }
+                }
+            }
+            
+            if (currentArray.count == 0)
+            {
+                [deleteIndexSet addIndex:sectionNumber];
+                [tableDictionary setObject:[NSNull null] forKey:@"fifteen"];
+            }
+            else
+            {
+                if ([tableDictionary objectForKey:@"fifteen"] != [NSNull null])
+                    [insertIndexSet addIndex:sectionNumber];
+                [tableDictionary setObject:currentArray forKey:@"fifteen"];
+            }
+            sectionNumber ++;
+        }
+        
         if ([searchTableDictionary objectForKey:@"other"] != [NSNull null])
         {
             NSMutableArray *currentArray;
@@ -308,10 +479,19 @@
         //[stationsTable insertSections:insertIndexSet withRowAnimation:UITableViewRowAnimationNone];
         //[stationsTable insertRowsAtIndexPaths:insertIndexPathsArray withRowAnimation:UITableViewRowAnimationNone];
         //[stationsTable endUpdates];
+        if ([tableDictionary objectForKey:@"last"] != [NSNull null] || [tableDictionary objectForKey:@"one"] != [NSNull null] || [tableDictionary objectForKey:@"three"] != [NSNull null] || [tableDictionary objectForKey:@"five"] != [NSNull null] || [tableDictionary objectForKey:@"ten"] != [NSNull null] || [tableDictionary objectForKey:@"fifteen"] != [NSNull null] || [tableDictionary objectForKey:@"other"] != [NSNull null])
+            emptySearchLabel.hidden = YES;
+        else
+            emptySearchLabel.hidden = NO;
+        
         [stationsTable reloadData];
     }
     else
     {
+        if (![self.view.subviews containsObject:fadeView])
+            [self.view addSubview:fadeView];
+        clearButton.hidden = YES;
+        
         if (![searchTableDictionary isEqualToDictionary:tableDictionary])
         {
             [tableDictionary removeAllObjects];
@@ -342,6 +522,21 @@
         //[tableArray addObjectsFromArray:threeKmStationsArray];
         i++;
     }
+    if ([tableDictionary objectForKey:@"five"] != [NSNull null])
+    {
+        //[tableArray addObjectsFromArray:threeKmStationsArray];
+        i++;
+    }
+    if ([tableDictionary objectForKey:@"ten"] != [NSNull null])
+    {
+        //[tableArray addObjectsFromArray:threeKmStationsArray];
+        i++;
+    }
+    if ([tableDictionary objectForKey:@"fifteen"] != [NSNull null])
+    {
+        //[tableArray addObjectsFromArray:threeKmStationsArray];
+        i++;
+    }
     if ([tableDictionary objectForKey:@"other"] != [NSNull null])
     {
         //[tableArray addObjectsFromArray:otherStationsArray];
@@ -362,6 +557,12 @@
                 return ((NSArray *)[tableDictionary objectForKey:@"one"]).count;
             else if ([tableDictionary objectForKey:@"three"] != [NSNull null])
                 return ((NSArray *)[tableDictionary objectForKey:@"three"]).count;
+            else if ([tableDictionary objectForKey:@"five"] != [NSNull null])
+                return ((NSArray *)[tableDictionary objectForKey:@"five"]).count;
+            else if ([tableDictionary objectForKey:@"ten"] != [NSNull null])
+                return ((NSArray *)[tableDictionary objectForKey:@"ten"]).count;
+            else if ([tableDictionary objectForKey:@"fifteen"] != [NSNull null])
+                return ((NSArray *)[tableDictionary objectForKey:@"fifteen"]).count;
             else
                 return ((NSArray *)[tableDictionary objectForKey:@"other"]).count;
             
@@ -370,16 +571,52 @@
                 return ((NSArray *)[tableDictionary objectForKey:@"one"]).count;
             else if ([tableDictionary objectForKey:@"three"] != [NSNull null])
                 return ((NSArray *)[tableDictionary objectForKey:@"three"]).count;
+            else if ([tableDictionary objectForKey:@"five"] != [NSNull null])
+                return ((NSArray *)[tableDictionary objectForKey:@"five"]).count;
+            else if ([tableDictionary objectForKey:@"ten"] != [NSNull null])
+                return ((NSArray *)[tableDictionary objectForKey:@"ten"]).count;
+            else if ([tableDictionary objectForKey:@"fifteen"] != [NSNull null])
+                return ((NSArray *)[tableDictionary objectForKey:@"fifteen"]).count;
             else
                 return ((NSArray *)[tableDictionary objectForKey:@"other"]).count;
             
         case 2:
             if ([tableDictionary objectForKey:@"three"] != [NSNull null])
                 return ((NSArray *)[tableDictionary objectForKey:@"three"]).count;
+            else if ([tableDictionary objectForKey:@"five"] != [NSNull null])
+                return ((NSArray *)[tableDictionary objectForKey:@"five"]).count;
+            else if ([tableDictionary objectForKey:@"ten"] != [NSNull null])
+                return ((NSArray *)[tableDictionary objectForKey:@"ten"]).count;
+            else if ([tableDictionary objectForKey:@"fifteen"] != [NSNull null])
+                return ((NSArray *)[tableDictionary objectForKey:@"fifteen"]).count;
             else
                 return ((NSArray *)[tableDictionary objectForKey:@"other"]).count;
             
         case 3:
+            if ([tableDictionary objectForKey:@"five"] != [NSNull null])
+                return ((NSArray *)[tableDictionary objectForKey:@"five"]).count;
+            else if ([tableDictionary objectForKey:@"ten"] != [NSNull null])
+                return ((NSArray *)[tableDictionary objectForKey:@"ten"]).count;
+            else if ([tableDictionary objectForKey:@"fifteen"] != [NSNull null])
+                return ((NSArray *)[tableDictionary objectForKey:@"fifteen"]).count;
+            else
+                return ((NSArray *)[tableDictionary objectForKey:@"other"]).count;
+            
+        case 4:
+            if ([tableDictionary objectForKey:@"ten"] != [NSNull null])
+                return ((NSArray *)[tableDictionary objectForKey:@"ten"]).count;
+            else if ([tableDictionary objectForKey:@"fifteen"] != [NSNull null])
+                return ((NSArray *)[tableDictionary objectForKey:@"fifteen"]).count;
+            else
+                return ((NSArray *)[tableDictionary objectForKey:@"other"]).count;
+            
+        case 5:
+            if ([tableDictionary objectForKey:@"fifteen"] != [NSNull null])
+                return ((NSArray *)[tableDictionary objectForKey:@"fifteen"]).count;
+            else
+                return ((NSArray *)[tableDictionary objectForKey:@"other"]).count;
+            
+        case 6:
             return ((NSArray *)[tableDictionary objectForKey:@"other"]).count;
             
         default:
@@ -399,6 +636,12 @@
             object = (PFObject *)[(NSArray *)[tableDictionary objectForKey:@"one"] objectAtIndex:indexPath.row];
         else if ([tableDictionary objectForKey:@"three"] != [NSNull null])
             object = (PFObject *)[(NSArray *)[tableDictionary objectForKey:@"three"] objectAtIndex:indexPath.row];
+        else if ([tableDictionary objectForKey:@"five"] != [NSNull null])
+            object = (PFObject *)[(NSArray *)[tableDictionary objectForKey:@"five"] objectAtIndex:indexPath.row];
+        else if ([tableDictionary objectForKey:@"ten"] != [NSNull null])
+            object = (PFObject *)[(NSArray *)[tableDictionary objectForKey:@"ten"] objectAtIndex:indexPath.row];
+        else if ([tableDictionary objectForKey:@"fifteen"] != [NSNull null])
+            object = (PFObject *)[(NSArray *)[tableDictionary objectForKey:@"fifteen"] objectAtIndex:indexPath.row];
         else
             object = (PFObject *)[(NSArray *)[tableDictionary objectForKey:@"other"] objectAtIndex:indexPath.row];
     }
@@ -408,6 +651,12 @@
             object = (PFObject *)[(NSArray *)[tableDictionary objectForKey:@"one"] objectAtIndex:indexPath.row];
         else if ([tableDictionary objectForKey:@"three"] != [NSNull null])
             object = (PFObject *)[(NSArray *)[tableDictionary objectForKey:@"three"] objectAtIndex:indexPath.row];
+        else if ([tableDictionary objectForKey:@"five"] != [NSNull null])
+            object = (PFObject *)[(NSArray *)[tableDictionary objectForKey:@"five"] objectAtIndex:indexPath.row];
+        else if ([tableDictionary objectForKey:@"ten"] != [NSNull null])
+            object = (PFObject *)[(NSArray *)[tableDictionary objectForKey:@"ten"] objectAtIndex:indexPath.row];
+        else if ([tableDictionary objectForKey:@"fifteen"] != [NSNull null])
+            object = (PFObject *)[(NSArray *)[tableDictionary objectForKey:@"fifteen"] objectAtIndex:indexPath.row];
         else
             object = (PFObject *)[(NSArray *)[tableDictionary objectForKey:@"other"] objectAtIndex:indexPath.row];
     }
@@ -415,6 +664,39 @@
     {
         if ([tableDictionary objectForKey:@"three"] != [NSNull null])
             object = (PFObject *)[(NSArray *)[tableDictionary objectForKey:@"three"] objectAtIndex:indexPath.row];
+        else if ([tableDictionary objectForKey:@"five"] != [NSNull null])
+            object = (PFObject *)[(NSArray *)[tableDictionary objectForKey:@"five"] objectAtIndex:indexPath.row];
+        else if ([tableDictionary objectForKey:@"ten"] != [NSNull null])
+            object = (PFObject *)[(NSArray *)[tableDictionary objectForKey:@"ten"] objectAtIndex:indexPath.row];
+        else if ([tableDictionary objectForKey:@"fifteen"] != [NSNull null])
+            object = (PFObject *)[(NSArray *)[tableDictionary objectForKey:@"fifteen"] objectAtIndex:indexPath.row];
+        else
+            object = (PFObject *)[(NSArray *)[tableDictionary objectForKey:@"other"] objectAtIndex:indexPath.row];
+    }
+    else if (indexPath.section == 3)
+    {
+        if ([tableDictionary objectForKey:@"five"] != [NSNull null])
+            object = (PFObject *)[(NSArray *)[tableDictionary objectForKey:@"five"] objectAtIndex:indexPath.row];
+        else if ([tableDictionary objectForKey:@"ten"] != [NSNull null])
+            object = (PFObject *)[(NSArray *)[tableDictionary objectForKey:@"ten"] objectAtIndex:indexPath.row];
+        else if ([tableDictionary objectForKey:@"fifteen"] != [NSNull null])
+            object = (PFObject *)[(NSArray *)[tableDictionary objectForKey:@"fifteen"] objectAtIndex:indexPath.row];
+        else
+            object = (PFObject *)[(NSArray *)[tableDictionary objectForKey:@"other"] objectAtIndex:indexPath.row];
+    }
+    else if (indexPath.section == 4)
+    {
+        if ([tableDictionary objectForKey:@"ten"] != [NSNull null])
+            object = (PFObject *)[(NSArray *)[tableDictionary objectForKey:@"ten"] objectAtIndex:indexPath.row];
+        else if ([tableDictionary objectForKey:@"fifteen"] != [NSNull null])
+            object = (PFObject *)[(NSArray *)[tableDictionary objectForKey:@"fifteen"] objectAtIndex:indexPath.row];
+        else
+            object = (PFObject *)[(NSArray *)[tableDictionary objectForKey:@"other"] objectAtIndex:indexPath.row];
+    }
+    else if (indexPath.section == 5)
+    {
+        if ([tableDictionary objectForKey:@"fifteen"] != [NSNull null])
+            object = (PFObject *)[(NSArray *)[tableDictionary objectForKey:@"fifteen"] objectAtIndex:indexPath.row];
         else
             object = (PFObject *)[(NSArray *)[tableDictionary objectForKey:@"other"] objectAtIndex:indexPath.row];
     }
@@ -467,6 +749,12 @@
             object = (PFObject *)[(NSArray *)[tableDictionary objectForKey:@"one"] objectAtIndex:indexPath.row];
         else if ([tableDictionary objectForKey:@"three"] != [NSNull null])
             object = (PFObject *)[(NSArray *)[tableDictionary objectForKey:@"three"] objectAtIndex:indexPath.row];
+        else if ([tableDictionary objectForKey:@"five"] != [NSNull null])
+            object = (PFObject *)[(NSArray *)[tableDictionary objectForKey:@"five"] objectAtIndex:indexPath.row];
+        else if ([tableDictionary objectForKey:@"ten"] != [NSNull null])
+            object = (PFObject *)[(NSArray *)[tableDictionary objectForKey:@"ten"] objectAtIndex:indexPath.row];
+        else if ([tableDictionary objectForKey:@"fifteen"] != [NSNull null])
+            object = (PFObject *)[(NSArray *)[tableDictionary objectForKey:@"fifteen"] objectAtIndex:indexPath.row];
         else
             object = (PFObject *)[(NSArray *)[tableDictionary objectForKey:@"other"] objectAtIndex:indexPath.row];
     }
@@ -476,6 +764,12 @@
             object = (PFObject *)[(NSArray *)[tableDictionary objectForKey:@"one"] objectAtIndex:indexPath.row];
         else if ([tableDictionary objectForKey:@"three"] != [NSNull null])
             object = (PFObject *)[(NSArray *)[tableDictionary objectForKey:@"three"] objectAtIndex:indexPath.row];
+        else if ([tableDictionary objectForKey:@"five"] != [NSNull null])
+            object = (PFObject *)[(NSArray *)[tableDictionary objectForKey:@"five"] objectAtIndex:indexPath.row];
+        else if ([tableDictionary objectForKey:@"ten"] != [NSNull null])
+            object = (PFObject *)[(NSArray *)[tableDictionary objectForKey:@"ten"] objectAtIndex:indexPath.row];
+        else if ([tableDictionary objectForKey:@"fifteen"] != [NSNull null])
+            object = (PFObject *)[(NSArray *)[tableDictionary objectForKey:@"fifteen"] objectAtIndex:indexPath.row];
         else
             object = (PFObject *)[(NSArray *)[tableDictionary objectForKey:@"other"] objectAtIndex:indexPath.row];
     }
@@ -483,6 +777,39 @@
     {
         if ([tableDictionary objectForKey:@"three"] != [NSNull null])
             object = (PFObject *)[(NSArray *)[tableDictionary objectForKey:@"three"] objectAtIndex:indexPath.row];
+        else if ([tableDictionary objectForKey:@"five"] != [NSNull null])
+            object = (PFObject *)[(NSArray *)[tableDictionary objectForKey:@"five"] objectAtIndex:indexPath.row];
+        else if ([tableDictionary objectForKey:@"ten"] != [NSNull null])
+            object = (PFObject *)[(NSArray *)[tableDictionary objectForKey:@"ten"] objectAtIndex:indexPath.row];
+        else if ([tableDictionary objectForKey:@"fifteen"] != [NSNull null])
+            object = (PFObject *)[(NSArray *)[tableDictionary objectForKey:@"fifteen"] objectAtIndex:indexPath.row];
+        else
+            object = (PFObject *)[(NSArray *)[tableDictionary objectForKey:@"other"] objectAtIndex:indexPath.row];
+    }
+    else if (indexPath.section == 3)
+    {
+        if ([tableDictionary objectForKey:@"five"] != [NSNull null])
+            object = (PFObject *)[(NSArray *)[tableDictionary objectForKey:@"five"] objectAtIndex:indexPath.row];
+        else if ([tableDictionary objectForKey:@"ten"] != [NSNull null])
+            object = (PFObject *)[(NSArray *)[tableDictionary objectForKey:@"ten"] objectAtIndex:indexPath.row];
+        else if ([tableDictionary objectForKey:@"fifteen"] != [NSNull null])
+            object = (PFObject *)[(NSArray *)[tableDictionary objectForKey:@"fifteen"] objectAtIndex:indexPath.row];
+        else
+            object = (PFObject *)[(NSArray *)[tableDictionary objectForKey:@"other"] objectAtIndex:indexPath.row];
+    }
+    else if (indexPath.section == 4)
+    {
+        if ([tableDictionary objectForKey:@"ten"] != [NSNull null])
+            object = (PFObject *)[(NSArray *)[tableDictionary objectForKey:@"ten"] objectAtIndex:indexPath.row];
+        else if ([tableDictionary objectForKey:@"fifteen"] != [NSNull null])
+            object = (PFObject *)[(NSArray *)[tableDictionary objectForKey:@"fifteen"] objectAtIndex:indexPath.row];
+        else
+            object = (PFObject *)[(NSArray *)[tableDictionary objectForKey:@"other"] objectAtIndex:indexPath.row];
+    }
+    else if (indexPath.section == 5)
+    {
+        if ([tableDictionary objectForKey:@"fifteen"] != [NSNull null])
+            object = (PFObject *)[(NSArray *)[tableDictionary objectForKey:@"fifteen"] objectAtIndex:indexPath.row];
         else
             object = (PFObject *)[(NSArray *)[tableDictionary objectForKey:@"other"] objectAtIndex:indexPath.row];
     }
@@ -539,8 +866,14 @@
             sectionText.text = @"До 1 км";
         else if ([tableDictionary objectForKey:@"three"] != [NSNull null])
             sectionText.text = @"До 3 км";
+        else if ([tableDictionary objectForKey:@"five"] != [NSNull null])
+            sectionText.text = @"До 5 км";
+        else if ([tableDictionary objectForKey:@"ten"] != [NSNull null])
+            sectionText.text = @"До 10 км";
+        else if ([tableDictionary objectForKey:@"fifteen"] != [NSNull null])
+            sectionText.text = @"До 15 км";
         else
-            sectionText.text = @"Более 3 км";
+            sectionText.text = @"Более 15 км";
     }
     else if (section == 1)
     {
@@ -548,18 +881,57 @@
             sectionText.text = @"До 1 км";
         else if ([tableDictionary objectForKey:@"three"] != [NSNull null])
             sectionText.text = @"До 3 км";
+        else if ([tableDictionary objectForKey:@"five"] != [NSNull null])
+            sectionText.text = @"До 5 км";
+        else if ([tableDictionary objectForKey:@"ten"] != [NSNull null])
+            sectionText.text = @"До 10 км";
+        else if ([tableDictionary objectForKey:@"fifteen"] != [NSNull null])
+            sectionText.text = @"До 15 км";
         else
-            sectionText.text = @"Более 3 км";
+            sectionText.text = @"Более 15 км";
     }
     else if (section == 2)
     {
         if ([tableDictionary objectForKey:@"three"] != [NSNull null])
             sectionText.text = @"До 3 км";
+        else if ([tableDictionary objectForKey:@"five"] != [NSNull null])
+            sectionText.text = @"До 5 км";
+        else if ([tableDictionary objectForKey:@"ten"] != [NSNull null])
+            sectionText.text = @"До 10 км";
+        else if ([tableDictionary objectForKey:@"fifteen"] != [NSNull null])
+            sectionText.text = @"До 15 км";
         else
-            sectionText.text = @"Более 3 км";
+            sectionText.text = @"Более 15 км";
+    }
+    else if (section == 3)
+    {
+        if ([tableDictionary objectForKey:@"five"] != [NSNull null])
+            sectionText.text = @"До 5 км";
+        else if ([tableDictionary objectForKey:@"ten"] != [NSNull null])
+            sectionText.text = @"До 10 км";
+        else if ([tableDictionary objectForKey:@"fifteen"] != [NSNull null])
+            sectionText.text = @"До 15 км";
+        else
+            sectionText.text = @"Более 15 км";
+    }
+    else if (section == 4)
+    {
+        if ([tableDictionary objectForKey:@"ten"] != [NSNull null])
+            sectionText.text = @"До 10 км";
+        else if ([tableDictionary objectForKey:@"fifteen"] != [NSNull null])
+            sectionText.text = @"До 15 км";
+        else
+            sectionText.text = @"Более 15 км";
+    }
+    else if (section == 5)
+    {
+        if ([tableDictionary objectForKey:@"fifteen"] != [NSNull null])
+            sectionText.text = @"До 15 км";
+        else
+            sectionText.text = @"Более 15 км";
     }
     else
-        sectionText.text = @"Более 3 км";
+        sectionText.text = @"Более 15 км";
             
     sectionText.backgroundColor = [UIColor clearColor];
     sectionText.textColor = [UIColor colorWithRed:223.0f/255.0f green:141.0f/255.0f blue:75.0f/255.0f alpha:1.0f];
@@ -601,6 +973,12 @@
             [mapArray addObjectsFromArray:[tableDictionary objectForKey:@"one"]];
         if ([tableDictionary objectForKey:@"three"] != [NSNull null])
             [mapArray addObjectsFromArray:[tableDictionary objectForKey:@"three"]];
+        if ([tableDictionary objectForKey:@"five"] != [NSNull null])
+            [mapArray addObjectsFromArray:[tableDictionary objectForKey:@"five"]];
+        if ([tableDictionary objectForKey:@"ten"] != [NSNull null])
+            [mapArray addObjectsFromArray:[tableDictionary objectForKey:@"ten"]];
+        if ([tableDictionary objectForKey:@"fifteen"] != [NSNull null])
+            [mapArray addObjectsFromArray:[tableDictionary objectForKey:@"fifteen"]];
         if ([tableDictionary objectForKey:@"other"] != [NSNull null])
             [mapArray addObjectsFromArray:[tableDictionary objectForKey:@"other"]];
         
@@ -644,6 +1022,12 @@
             [mapArray addObjectsFromArray:[tableDictionary objectForKey:@"one"]];
         if ([tableDictionary objectForKey:@"three"] != [NSNull null])
             [mapArray addObjectsFromArray:[tableDictionary objectForKey:@"three"]];
+        if ([tableDictionary objectForKey:@"five"] != [NSNull null])
+            [mapArray addObjectsFromArray:[tableDictionary objectForKey:@"five"]];
+        if ([tableDictionary objectForKey:@"ten"] != [NSNull null])
+            [mapArray addObjectsFromArray:[tableDictionary objectForKey:@"ten"]];
+        if ([tableDictionary objectForKey:@"fifteen"] != [NSNull null])
+            [mapArray addObjectsFromArray:[tableDictionary objectForKey:@"fifteen"]];
         if ([tableDictionary objectForKey:@"other"] != [NSNull null])
             [mapArray addObjectsFromArray:[tableDictionary objectForKey:@"other"]];
         
@@ -707,13 +1091,20 @@
     if (self)
     {
         tableDictionary = [[NSMutableDictionary alloc] initWithObjectsAndKeys: [NSNull null], @"last",
-                                                                                [NSNull null], @"one",
-                                                                                [NSNull null], @"three",
-                                                                                [NSNull null], @"other",
-                                                                                        nil];
+                           [NSNull null], @"one",
+                           [NSNull null], @"three",
+                           [NSNull null], @"five",
+                           [NSNull null], @"ten",
+                           [NSNull null], @"fifteen",
+                           [NSNull null], @"other",
+                           nil];
+        
         searchTableDictionary = [[NSMutableDictionary alloc] initWithObjectsAndKeys: [NSNull null], @"last",
                                  [NSNull null], @"one",
                                  [NSNull null], @"three",
+                                 [NSNull null], @"five",
+                                 [NSNull null], @"ten",
+                                 [NSNull null], @"fifteen",
                                  [NSNull null], @"other",
                                  nil];
         
@@ -736,15 +1127,23 @@
         selectedStationToShowOnMap = station;
         
         tableDictionary = [[NSMutableDictionary alloc] initWithObjectsAndKeys: [NSNull null], @"last",
-                                                                                [NSNull null], @"one",
-                                                                                [NSNull null], @"three",
-                                                                                [NSNull null], @"other",
-                                                                                        nil];
+                           [NSNull null], @"one",
+                           [NSNull null], @"three",
+                           [NSNull null], @"five",
+                           [NSNull null], @"ten",
+                           [NSNull null], @"fifteen",
+                           [NSNull null], @"other",
+                           nil];
+        
         searchTableDictionary = [[NSMutableDictionary alloc] initWithObjectsAndKeys: [NSNull null], @"last",
                                  [NSNull null], @"one",
                                  [NSNull null], @"three",
+                                 [NSNull null], @"five",
+                                 [NSNull null], @"ten",
+                                 [NSNull null], @"fifteen",
                                  [NSNull null], @"other",
                                  nil];
+        
         stationsArrayList = [NSMutableArray new];
         
         currentLocation = [[CLLocation alloc] init];
@@ -757,6 +1156,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    fadeView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, searchView.frame.origin.y + searchView.frame.size.height, 320.0f, 480)];
+    fadeView.backgroundColor = [UIColor blackColor];
+    fadeView.alpha = 0.7f;
     
     self.title = @"Станции";
     
@@ -832,10 +1235,13 @@
 {
     if (result)
     {
-        NSMutableArray *oneKmStationsArray = [NSMutableArray new];
-        NSMutableArray *threeKmStationsArray = [NSMutableArray new];
-        NSMutableArray *lastStations = [NSMutableArray new];
-        NSMutableArray *otherStationsArray = [NSMutableArray new];
+        NSMutableArray *oneKmStationsArray = [NSMutableArray array];
+        NSMutableArray *threeKmStationsArray = [NSMutableArray array];
+        NSMutableArray *fiveKmStationsArray = [NSMutableArray array];
+        NSMutableArray *tenKmStationsArray = [NSMutableArray array];
+        NSMutableArray *fifteenKmStationsArray = [NSMutableArray array];
+        NSMutableArray *lastStations = [NSMutableArray array];
+        NSMutableArray *otherStationsArray = [NSMutableArray array];
         
         [stationsArrayList removeAllObjects];
         [stationsArrayList addObjectsFromArray:result];
@@ -896,10 +1302,16 @@
                 
             double distance = [currentLocation distanceFromLocation:location]/1000.0f; 
                
-            if (distance < 1.0f)
+            if (distance <= 1.0f)
                 [oneKmStationsArray addObject:[stationsArrayList objectAtIndex:i]];
-            else if (distance > 1.0f && distance < 3.0f)
+            else if (distance > 1.0f && distance <= 3.0f)
                 [threeKmStationsArray addObject:[stationsArrayList objectAtIndex:i]];
+            else if (distance > 3.0f && distance <= 5.0f)
+                [fiveKmStationsArray addObject:[stationsArrayList objectAtIndex:i]];
+            else if (distance > 5.0f && distance <= 10.0f)
+                [tenKmStationsArray addObject:[stationsArrayList objectAtIndex:i]];
+            else if (distance > 10.0f && distance <= 15.0f)
+                [fifteenKmStationsArray addObject:[stationsArrayList objectAtIndex:i]];
             else
                 [otherStationsArray addObject:[stationsArrayList objectAtIndex:i]];
         }
@@ -916,6 +1328,18 @@
             [tableDictionary setObject:threeKmStationsArray forKey:@"three"];
         else
             [tableDictionary setObject:[NSNull null] forKey:@"three"];
+        if (fiveKmStationsArray.count > 0)
+            [tableDictionary setObject:fiveKmStationsArray forKey:@"five"];
+        else
+            [tableDictionary setObject:[NSNull null] forKey:@"five"];
+        if (tenKmStationsArray.count > 0)
+            [tableDictionary setObject:tenKmStationsArray forKey:@"ten"];
+        else
+            [tableDictionary setObject:[NSNull null] forKey:@"ten"];
+        if (fifteenKmStationsArray.count > 0)
+            [tableDictionary setObject:fifteenKmStationsArray forKey:@"fifteen"];
+        else
+            [tableDictionary setObject:[NSNull null] forKey:@"fifteen"];
         if (otherStationsArray.count > 0)
             [tableDictionary setObject:otherStationsArray forKey:@"other"];
         else
@@ -947,6 +1371,7 @@
     [tableDictionary release];
     [searchTableDictionary release];
     [indicatorView release];
+    [fadeView release];
     [super dealloc];
 }
 

@@ -25,16 +25,19 @@
     IBOutlet UIView *searchContainerView;
     IBOutlet UIView *barView;
     IBOutlet UIView *searchView;
+    IBOutlet UIButton *clearButton;
    
     IBOutlet UITextField *searchField;
     
     IBOutlet UIView *stationsTableView;
+    IBOutlet UILabel *emptySearchLabel;
     IBOutlet UIView *stationsMapView;
     
     IBOutlet MKMapView *stationsMap;
     IBOutlet UITableView *stationsTable;
     
     UIView *indicatorView;
+    UIView *fadeView;
     
     NSMutableDictionary *tableDictionary;
     NSMutableDictionary *searchTableDictionary;
@@ -54,6 +57,7 @@
 - (IBAction)switchView:(id)sender;
 - (IBAction)searchPressed:(id)sender;
 - (IBAction)searchCancelPressed:(id)sender;
+- (IBAction)clearButtonPressed:(id)sender;
 
 - (IBAction)backButtonPressed:(id)sender;
 

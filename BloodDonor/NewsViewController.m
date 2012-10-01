@@ -227,8 +227,8 @@ static NSString * PODARI_ZHIZN_NEWS_URL = @"http://www.podari-zhizn.ru/main/node
         
         if ([inputString length] > 0)
         {
-            NSArray *entities = [[NSArray alloc] initWithObjects:@" **", @"** ", nil];
-            NSArray *plainText = [[NSArray alloc] initWithObjects:@" <i>",@"</i> ", nil];
+            NSArray *entities = [[NSArray alloc] initWithObjects:@" **", @"** ", @"_**", @"**_", nil];
+            NSArray *plainText = [[NSArray alloc] initWithObjects:@" <i>",@"</i> ", @" <i>",@"</i> ", nil];
             
             int i = 0;
             for (NSString *entity in entities)
@@ -239,7 +239,7 @@ static NSString * PODARI_ZHIZN_NEWS_URL = @"http://www.podari-zhizn.ru/main/node
            
             NSError *error = NULL;
             
-            NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"\\<!--break--\\>\\[inline\\|iid=(.+?)\\]" options:NSRegularExpressionCaseInsensitive error:&error];
+            NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"\\[inline\\|iid=(.+?)\\]" options:NSRegularExpressionCaseInsensitive error:&error];
             outString = [regex stringByReplacingMatchesInString:outString options:0 range:NSMakeRange(0, [outString length]) withTemplate:@" "];
             
             regex = [NSRegularExpression regularExpressionWithPattern:@"\\[(.+?)\\]\\((.+?)\\)" options:NSRegularExpressionCaseInsensitive error:&error];

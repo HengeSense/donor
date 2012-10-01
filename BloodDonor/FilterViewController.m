@@ -87,6 +87,20 @@
     UIImage *barImageNormal = [UIImage imageNamed:@"barButtonNormal"];
     UIImage *barImagePressed = [UIImage imageNamed:@"barButtonPressed"];
     
+    UIButton *cancelButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    CGRect cancelButtonFrame = CGRectMake(0, 0, barImageNormal.size.width, barImageNormal.size.height);
+    [cancelButton setBackgroundImage:barImageNormal forState:UIControlStateNormal];
+    [cancelButton setBackgroundImage:barImagePressed forState:UIControlStateHighlighted];
+    [cancelButton setTitle:@"Отмена" forState:UIControlStateNormal];
+    [cancelButton setTitle:@"Отмена" forState:UIControlStateHighlighted];
+    cancelButton.titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:12];
+    cancelButton.frame = cancelButtonFrame;
+    [cancelButton addTarget:self action:@selector(backButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIBarButtonItem *cancelBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:cancelButton] autorelease];
+    [cancelBarButtonItem setTitlePositionAdjustment:UIOffsetMake(0, -1) forBarMetrics:UIBarMetricsDefault];
+    self.navigationItem.leftBarButtonItem = cancelBarButtonItem;
+    
     UIButton *doneButton = [UIButton buttonWithType:UIButtonTypeCustom];
     CGRect doneButtonFrame = CGRectMake(0, 0, barImageNormal.size.width, barImageNormal.size.height);
     [doneButton setBackgroundImage:barImageNormal forState:UIControlStateNormal];

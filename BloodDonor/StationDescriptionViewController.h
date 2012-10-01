@@ -22,14 +22,15 @@
     IBOutlet UIView *infoView;
     IBOutlet UIView *buttonsView;
     
+    IBOutlet UIView *forDodonorsView;
     IBOutlet UIButton *reviewsButton;
+    IBOutlet UILabel *reviewsLabel;
     IBOutlet UILabel *adsLabel;
+    IBOutlet UIView *adsView;
     
     IBOutlet UILabel *stationTitleLable;
     IBOutlet UILabel *addressLable;
     IBOutlet UIWebView *phoneWebView;
-   // IBOutlet UILabel *phoneNumberLabel;
-    //IBOutlet UILabel *descriptionLabel;
     IBOutlet UIWebView *descriptionWebView;
     IBOutlet UIWebView *siteLinkWebView;
     
@@ -41,6 +42,7 @@
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil station:(PFObject *)object;
 - (void)callbackWithResult:(NSArray *)result error:(NSError *)error;
+- (NSString *)stringByStrippingHTML:(NSString *)inputString;
 
 - (IBAction)ratePressed:(id)sender;
 - (IBAction)backButtonPressed:(id)sender;

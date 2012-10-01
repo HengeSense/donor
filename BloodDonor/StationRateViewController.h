@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
+#import "MessageBoxViewController.h"
 
-@interface StationRateViewController : UIViewController <UITextFieldDelegate, UITextViewDelegate>
+@interface StationRateViewController : UIViewController <UITextFieldDelegate, UITextViewDelegate, MessageBoxDelegate>
 {
     UIView *indicatorView;
     

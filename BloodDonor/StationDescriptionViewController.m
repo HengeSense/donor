@@ -11,6 +11,8 @@
 #import "StationRateViewController.h"
 #import "StationReviewsViewController.h"
 #import "InfoViewController.h"
+#import "STabBarController.h"
+#import "AppDelegate.h"
 
 @interface StationDescriptionViewController ()
 
@@ -43,6 +45,9 @@
     InfoViewController *infoViewController = [infoNavigationController.viewControllers objectAtIndex:0];
     [infoViewController selectTab:0];
     [self.tabBarController setSelectedIndex:2];
+    
+    AppDelegate *appDelegate= (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    [appDelegate.sTabBarController selectTab];
 }
 
 - (IBAction)reviewsPressed:(id)sender
@@ -87,6 +92,11 @@
     [super viewDidLoad];
     
     self.title = @"Станции";
+    self.navigationItem.backBarButtonItem =
+    [[[UIBarButtonItem alloc] initWithTitle:@"Назад"
+                                      style:UIBarButtonItemStyleBordered
+                                     target:nil
+                                     action:nil] autorelease];
     
     fullRate = 0.0f;
    
@@ -108,8 +118,9 @@
     [phoneWebView loadHTMLString:phoneString baseURL:nil];
     
     maximumLabelSize = CGSizeMake(320.0f, 9999.0f);
-    labelSize = [[station objectForKey:@"description"] sizeWithFont:[UIFont fontWithName:@"Helvetica-Bold" size:12] constrainedToSize:maximumLabelSize lineBreakMode:UILineBreakModeWordWrap]; 
-    NSString *descriptionString = [NSString stringWithFormat:@"<html><head><style type='text/css'>* { margin:1; padding:1; } p { color:#847168; font-family:Helvetica; font-size:12px; font-weight:bold; text-align:left; } a { color:#0B8B99; text-align:left; font-family:Helvetica; font-size:12px; font-weight:bold; text-align:left; text-decoration:underline; }</style></head><body><p>%@</p></body></html>", [station objectForKey:@"description"]];
+    labelSize = [[station objectForKey:@"description"] sizeWithFont:[UIFont fontWithName:@"Helvetica-Bold" size:12] constrainedToSize:maximumLabelSize lineBreakMode:UILineBreakModeWordWrap];
+    NSString *description = [self stringByStrippingHTML:[station objectForKey:@"description"]];
+    NSString *descriptionString = [NSString stringWithFormat:@"<html><head><style type='text/css'>* { margin:1; padding:1; } p { color:#847168; font-family:Helvetica; font-size:12px; font-weight:bold; text-align:left; } a { color:#0B8B99; text-align:left; font-family:Helvetica; font-size:12px; font-weight:bold; text-align:left; text-decoration:underline; }</style></head><body><p>%@</p></body></html>", description];
     descriptionWebView.frame = CGRectMake(9.0f, phoneWebView.frame.origin.y + phoneWebView.frame.size.height + 5.0f, descriptionWebView.frame.size.width - 9.0f, labelSize.height);
     [descriptionWebView loadHTMLString:descriptionString baseURL:nil];
     descriptionWebView.scrollView.scrollEnabled = NO;
@@ -127,9 +138,27 @@
     
     buttonsView.frame = CGRectMake(0.0f, infoView.frame.origin.y + infoView.frame.size.height + 5.0f, 320.0f, buttonsView.frame.size.height);
     
-    contentScrollView.contentSize = CGSizeMake(320.0f, infoView.frame.origin.y + infoView.frame.size.height + 2.0f*5.0f + buttonsView.frame.size.height);
+    contentScrollView.contentSize = CGSizeMake(320.0f, infoView.frame.origin.y + infoView.frame.size.height + 2.0f*5.0f + buttonsView.frame.size.height/2.0f);
     
     [siteLinkWebView loadHTMLString:htmlString baseURL:nil];
+    
+    NSLog(@"1)%@ 2)%@ 3)%@ 4)%@ 5)%@", [station objectForKey:@"receiptTime"], [station objectForKey:@"transportation"], [station objectForKey:@"bloodFor"], [station objectForKey:@"giveType"], [station objectForKey:@"receiptTime"]);
+    
+    
+    /*if (![station objectForKey:@"receiptTime"] && ![station objectForKey:@"transportation"] && ![station objectForKey:@"bloodFor"] && ![station objectForKey:@"giveType"] && ![station objectForKey:@"receiptTime"])
+    {
+        forDodonorsView.hidden = YES;
+    }*/
+    
+    if (([[station objectForKey:@"receiptTime"] isEqualToString:@""] || [station objectForKey:@"receiptTime"] == NULL)&&
+        ([[station objectForKey:@"transportation"] isEqualToString:@""] || [station objectForKey:@"transportation"] == NULL) &&
+        ([[station objectForKey:@"bloodFor"] isEqualToString:@""] || [station objectForKey:@"bloodFor"] == NULL) &&
+        ([[station objectForKey:@"giveType"] isEqualToString:@""] || [station objectForKey:@"giveType"] == NULL) &&
+        ([[station objectForKey:@"receiptTime"] isEqualToString:@""] || [station objectForKey:@"receiptTime"] == NULL))
+    {
+        forDodonorsView.hidden = YES;
+    }
+    
     
     indicatorView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
     indicatorView.backgroundColor = [UIColor blackColor];
@@ -208,10 +237,57 @@
             [ratedStar5 setImage:[UIImage imageNamed:@"ratedStarFill"]];
         }
 
-        [reviewsButton setTitle:[NSString stringWithFormat:@"(%d)", reviewsArrayList.count] forState:UIControlStateNormal];
-        [reviewsButton setTitle:[NSString stringWithFormat:@"(%d)", reviewsArrayList.count] forState:UIControlStateHighlighted];
+        if (reviewsArrayList.count > 0)
+        {
+            reviewsLabel.hidden = NO;
+            reviewsButton.hidden = NO;
+            [reviewsButton setTitle:[NSString stringWithFormat:@"(%d)", reviewsArrayList.count] forState:UIControlStateNormal];
+            [reviewsButton setTitle:[NSString stringWithFormat:@"(%d)", reviewsArrayList.count] forState:UIControlStateHighlighted];
+        }
+        else
+        {
+            reviewsLabel.hidden = YES;
+            reviewsButton.hidden = YES;
+        }
     }
     [indicatorView removeFromSuperview];
+}
+
+- (NSString *)stringByStrippingHTML:(NSString *)inputString
+{
+    NSString *outString;
+    
+    if (inputString)
+    {
+        outString = [[NSString alloc] initWithString:inputString];
+        
+        if ([inputString length] > 0)
+        {
+            NSArray *entities = [[NSArray alloc] initWithObjects:@" **", @"** ", @"_**", @"**_", nil];
+            NSArray *plainText = [[NSArray alloc] initWithObjects:@" <i>",@"</i> ",@" <i>",@"</i> ", nil];
+            
+            int i = 0;
+            for (NSString *entity in entities)
+            {
+                outString = [outString stringByReplacingOccurrencesOfString:[entities objectAtIndex:i] withString:[plainText objectAtIndex:i]];
+                i++;
+            }
+            
+            NSError *error = NULL;
+            
+            NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"\\[inline\\|iid=(.+?)\\]" options:NSRegularExpressionCaseInsensitive error:&error];
+            outString = [regex stringByReplacingMatchesInString:outString options:0 range:NSMakeRange(0, [outString length]) withTemplate:@" "];
+            
+            regex = [NSRegularExpression regularExpressionWithPattern:@"\\[(.+?)\\]\\((.+?)\\)" options:NSRegularExpressionCaseInsensitive error:&error];
+            outString = [regex stringByReplacingMatchesInString:outString options:0 range:NSMakeRange(0, [outString length]) withTemplate:@"<a href=\"$2\">$1</a>"];
+            
+            regex = [NSRegularExpression regularExpressionWithPattern:@"\\<a href=\"/main/(.+?)\"\\>" options:NSRegularExpressionCaseInsensitive error:&error];
+            outString = [regex stringByReplacingMatchesInString:outString options:0 range:NSMakeRange(0, [outString length]) withTemplate:@"<a href=\"http://www.podari-zhizn.ru/main/$1\">"];
+            
+        }
+    }
+    
+    return outString;
 }
 
 - (void)viewDidAppear:(BOOL)animated
