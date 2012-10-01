@@ -60,6 +60,12 @@ namespace Donor.ViewModels
         /// </summary>
         public string FacebookId {get; set; }
 
+        public bool CameraFocusSet
+        {
+            get;
+            set;
+        }
+
         private string _qrcode;
 
         public QrContent QrData { get; set; }
@@ -120,6 +126,17 @@ namespace Donor.ViewModels
                 {
                     AddScore(QrData.vol);
 
+                    /*var client2 = new RestClient("https://graph.facebook.com/");
+                    var request2 = new RestRequest("me/feed?name=Donor&caption=Reference%20Documentation&description=Using%20Dialogs%20to%20interact%20with%20users.&access_token="+App.ViewModel.User.FacebookToken, Method.POST);
+                    request.AddHeader("Accept", "application/json");
+                    request.Parameters.Clear();
+
+                    client2.ExecuteAsync(request2, response2 =>
+                    {
+                        string outstr = response2.Content.ToString();
+                        outstr = outstr;
+                    });*/
+
                     var fb = new FacebookClient(App.ViewModel.User.FacebookToken);
 
                     ///
@@ -136,6 +153,10 @@ namespace Donor.ViewModels
                     };
                     var parameters = new Dictionary<string, object>();
                     parameters["message"] = "Blood Donor: Gived "+QrData.blood+ " - "+QrData.vol.ToString()+"ml.";
+                    parameters["link"] = "http://m0rg0t.com/donor/donor.html";
+                    parameters["name"] = "First donation";
+                    parameters["description"] = "You become blood donor.";
+                    parameters["caption"] = "http://www.donors.ru";
                     fb.PostAsync("me/feed", parameters);
 
                     fb = new FacebookClient(App.ViewModel.User.FacebookToken);

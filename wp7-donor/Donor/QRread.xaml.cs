@@ -50,7 +50,13 @@ namespace Donor
             _photoCamera.Initialized += OnPhotoCameraInitialized;
             _previewVideo.SetSource(_photoCamera);
 
-            CameraButtons.ShutterKeyHalfPressed += (o, arg) => _photoCamera.Focus();
+            try
+            {
+                CameraButtons.ShutterKeyHalfPressed += (o, arg) => _photoCamera.Focus();
+            }
+            catch
+            {
+            };
 
             base.OnNavigatedTo(e);
         }

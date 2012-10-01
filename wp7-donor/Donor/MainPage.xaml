@@ -252,13 +252,13 @@
                         <TextBlock 
 						Style="{StaticResource Text24pxCBB2A3}"
 						Text="Введите e-mail" />
-                    <TextBox x:Name="email" Text="" Background="#FF4F3B34" BorderBrush="#FF4F3B34" Foreground="#FFCBB2A3" 
+                    <TextBox x:Name="email" Text="m0rg0t.Anton@gmail.com" Background="#FF4F3B34" BorderBrush="#FF4F3B34" Foreground="#FFCBB2A3" 
 					CaretBrush="#FFCBB2A3" Style="{StaticResource TextBoxStyle1}" />
                     <TextBlock 
 					Style="{StaticResource Text24pxCBB2A3}"
 					Text="Введите пароль" />
                     <PasswordBox 
-					x:Name="password" Password="" 
+					x:Name="password" Password="slucladr" 
 					Background="#FF4F3B34" 
 					BorderBrush="#FF4F3B34" 
 					Foreground="#FFCBB2A3" Style="{StaticResource PasswordBoxStyle1}"/>
