@@ -135,10 +135,11 @@ namespace Donor.ViewModels
                         //_lastMessageId = (string)result["id"];
                     };
                     var parameters = new Dictionary<string, object>();
-                    parameters["message"] = "Gived "+QrData.blood+ " - "+QrData.vol.ToString()+"ml.";
+                    parameters["message"] = "Blood Donor: Gived "+QrData.blood+ " - "+QrData.vol.ToString()+"ml.";
                     fb.PostAsync("me/feed", parameters);
 
-                    /*fb.PostCompleted += (o1, args) =>
+                    fb = new FacebookClient(App.ViewModel.User.FacebookToken);
+                    fb.PostCompleted += (o2, args) =>
                     {
                         if (args.Error != null)
                         {
@@ -146,9 +147,9 @@ namespace Donor.ViewModels
                         }
                         var result = (IDictionary<string, object>)args.GetResultData();                        
                     };
-                    var parameters = new Dictionary<string, object>();
-                    parameters["achievement"] = "acheeve_path";
-                    fb.PostAsync("/me/achievements", parameters);*/
+                    var parameters2 = new Dictionary<string, object>();
+                    parameters2["achievement"] = "http://m0rg0t.com/donor/donor.html";
+                    fb.PostAsync("/me/achievements", parameters2);
 
                     MessageBox.Show("QR добавлен.");
                 }
