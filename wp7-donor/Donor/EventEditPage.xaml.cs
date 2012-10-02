@@ -96,6 +96,7 @@ namespace Donor
             NavigationService.GoBack();
         }
 
+        private EventViewModel itemother;
         private void SaveButton_Click(object sender, EventArgs e)
         {
             if (App.ViewModel.User.IsLoggedIn == false)
@@ -123,11 +124,13 @@ namespace Donor
                             if ((curdate <= item.Date.AddDays(days)) && (curdate >= item.Date))
                             {
                                 possible = false;
+                                itemother = item;
                                 break;
                             };
                             if ((item.Date <= curdate.AddDays(days2)) && (curdate < item.Date))
                             {
                                 possible = false;
+                                itemother = item;
                                 break;
                             };
                         };
@@ -243,8 +246,22 @@ namespace Donor
                 };
             }
             else
-            {
-                MessageBox.Show("В данный день вы еще не можете производить сдачу крови.");
+            {                
+                DateTime curdate = this.Date.Value.Value;
+                int days = App.ViewModel.Events.DaysFromEvent(itemother.GiveType, give);
+                int days2 = App.ViewModel.Events.DaysFromEvent(give, itemother.GiveType);
+                var dif = Math.Abs(days - days2);
+
+                DateTime when = curdate;
+                if ((curdate <= itemother.Date.AddDays(days)) && (curdate >= itemother.Date))
+                {
+                    when = itemother.Date.AddDays(days);
+                };
+                if ((itemother.Date <= curdate.AddDays(days2)) && (curdate < itemother.Date))
+                {
+                    when = curdate.AddDays(days2);
+                };
+                MessageBox.Show("Прошло мало времени с последней кроводачи. " + this.GiveType.SelectedItem.ToString() + " можно сдавать с " + when.ToShortDateString());
             };
             App.ViewModel.SaveToIsolatedStorage();
         }

@@ -111,7 +111,7 @@ namespace Donor.Controls
                 {
                     if ((curDate <= EndDays) && (FromDays <= curDate))
                     {
-                        day2.BgColor = new SolidColorBrush(Colors.DarkGray);
+                        //day2.BgColor = new SolidColorBrush(Colors.DarkGray);
                         day2.Inactive = true;
                     };
                 };
