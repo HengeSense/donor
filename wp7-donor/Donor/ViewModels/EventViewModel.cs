@@ -84,7 +84,14 @@ namespace Donor.ViewModels
             }
             set
             {
-                _finished = value;
+                if ((this.Date <= DateTime.Today) && (this.Time.Hour <= DateTime.Now.Hour) && (this.Time.Minute <= DateTime.Now.Minute))
+                {
+                    _finished = value;
+                }
+                else
+                {
+                    _finished = false;
+                };
                 NotifyPropertyChanged("Finished");
                 NotifyPropertyChanged("FinishedString");
             }
@@ -102,7 +109,8 @@ namespace Donor.ViewModels
                     return "Еще не отмечено как выполненное";
                 };
             }
-            private set {            }
+            private set {
+            }
         }
         
         public string BigImage
