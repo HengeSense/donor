@@ -157,7 +157,20 @@ namespace Donor
                     };
 
                     CurrentEvent.Id = DateTime.Now.Ticks.ToString();
+
                     CurrentEvent.Title = this.EventType.SelectedItem.ToString();
+                    switch (this.EventType.SelectedItem.ToString())
+                    {
+                        case "0":
+                            CurrentEvent.Title = "Анализ";
+                            break;
+                        case "1":
+                            CurrentEvent.Type = "Кроводача";
+                            break;
+                        default:
+                            break;
+                    };
+                    
                     switch (this.EventType.SelectedItem.ToString())
                     {
                         case "Анализ":
@@ -166,7 +179,8 @@ namespace Donor
                         case "Кроводача":
                             CurrentEvent.Type = "1";
                             break;
-                        default: 
+                        default:
+                            CurrentEvent.Type = this.EventType.SelectedItem.ToString();
                             break;
                     };
                     //CurrentEvent.Type = this.EventType.SelectedItem.ToString();
