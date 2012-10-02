@@ -141,76 +141,11 @@ namespace Donor.ViewModels
         {
         }
 
-        public string ObjectId { get; set; }
-        /*public string Title { get; set; }
-        private string _body;
-        public string Body
-        {
-            set
-            {
-                _body = value;
-            }
-            get
-            {
-                string _outbody = _body;
-
-                string pattern = @"\*\*.*\*\*";
-                Regex rgx = new Regex(pattern);
-                var items = rgx.Matches(_outbody);
-                foreach (var item in items)
-                {
-                    string item1 = "<br/><b>" + item.ToString().Trim('*') + "</b><br/>";
-                    _outbody = _outbody.Replace(item.ToString(), item1);
-                };
-
-                pattern = @"\[([^]]*)\]\s*\(([^)]*)\)";
-                rgx = new Regex(pattern);
-                var items2 = rgx.Matches(_outbody);
-                foreach (Match item in items2)
-                {
-                    string item1 = item.ToString();
-                    _outbody = _outbody.Replace(item.ToString(), item.Groups[1].Value.ToString());
-                };
-
-                pattern = @"\[inline([^]]*)\]";
-                rgx = new Regex(pattern);
-                _outbody = rgx.Replace(_outbody, "");
-
-                _outbody = _outbody.Replace("<!--break-->", "");
-
-                return _outbody;
-            }
-        }*/
         public string Station_id { get; set; }
-        public string Url { get; set; }
         public string CreatedAt { get; set; }
-        public string UpdatedAt { get; set; }
 
-        public string CreatedAtText
-        {
-            private set { }
-            get
-            {
-                DateTime created = DateTime.Parse(this.Created);
-                return created.ToShortDateString();
-            }
-        }
-
-        public Int64 CreatedTimestamp { get; set; }
-        public string Created
-        {
-            get
-            {
-                return _created;
-            }
-            set
-            {
-                _created = value;
-            }
-        }
         private string _created = DateTime.Now.ToString();
 
         public string Station_nid { get; set; }
-        public string Nid { get; set; }
     }
 }

@@ -14,6 +14,7 @@ using Donor.ViewModels;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
 using RestSharp;
+using Microsoft.Phone.Net.NetworkInformation;
 
 namespace Donor
 {
@@ -28,8 +29,12 @@ namespace Donor
             DataContext = App.ViewModel;
             this.Loaded += new RoutedEventHandler(MainPage_Loaded);
 
+            bool hasNetworkConnection =
+              NetworkInterface.NetworkInterfaceType != NetworkInterfaceType.None;
+            if (hasNetworkConnection) {
             this.progressOverlay.Visibility = Visibility.Visible;
             this.progressOverlay.IsEnabled = true;
+            } else {};
         }
 
         // Load data for the ViewModel Items

@@ -13,6 +13,7 @@ using Microsoft.Phone.Controls;
 using Donor.ViewModels;
 using System.Collections.ObjectModel;
 using Microsoft.Phone.Tasks;
+using Microsoft.Phone.Net.NetworkInformation;
 
 namespace Donor
 {
@@ -38,6 +39,7 @@ namespace Donor
                     _currentStation = App.ViewModel.Stations.Items.FirstOrDefault(c => c.objectId == _id.ToString());
                     DataContext = _currentStation;
 
+
                     List<AdsViewModel> adsItems = App.ViewModel.Ads.LoadStationAds(_currentStation.Nid.ToString());
                     if (adsItems.Count() > 0)
                     {
@@ -48,7 +50,17 @@ namespace Donor
                         this.PanaramaAdsItem.Visibility = Visibility.Collapsed;
                     };
 
-                    App.ViewModel.Reviews.LoadReviewsForStation(_currentStation.Nid.ToString());
+                    bool hasNetworkConnection =
+                    NetworkInterface.NetworkInterfaceType != NetworkInterfaceType.None;
+                    if (hasNetworkConnection)
+                    {
+                        App.ViewModel.Reviews.LoadReviewsForStation(_currentStation.Nid.ToString());
+                    }
+                    else
+                    {
+                        this.progressOverlay.Visibility = Visibility.Collapsed;
+                        this.progressOverlay.IsEnabled = false;
+                    };
 
                     App.ViewModel.Reviews.ReviewsLoaded += new ReviewsListViewModel.ReviewsLoadedEventHandler(this.ReviewsLoaded);
                 }
