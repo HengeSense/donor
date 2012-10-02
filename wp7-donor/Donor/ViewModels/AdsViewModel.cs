@@ -135,14 +135,14 @@ namespace Donor.ViewModels
 
     }
 
-    public class AdsViewModel
+    public class AdsViewModel : NewsViewModel
     {
         public AdsViewModel()
         {
         }
 
         public string ObjectId { get; set; }
-        public string Title { get; set; }
+        /*public string Title { get; set; }
         private string _body;
         public string Body
         {
@@ -180,7 +180,7 @@ namespace Donor.ViewModels
 
                 return _outbody;
             }
-        }
+        }*/
         public string Station_id { get; set; }
         public string Url { get; set; }
         public string CreatedAt { get; set; }

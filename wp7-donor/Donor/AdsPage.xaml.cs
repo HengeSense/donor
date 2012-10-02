@@ -48,7 +48,8 @@ namespace Donor
 
         private void ShareButton_Click(object sender, System.EventArgs e)
         {
-        	// TODO: Add event handler implementation here.
+            App.ViewModel.SendToShare(_currentAds.Title, _currentAds.Url, _currentAds.ShortBody, 130);
+
         }
     }
 }
