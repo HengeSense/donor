@@ -20,13 +20,23 @@ using Microsoft.Phone.Scheduler;
 
 namespace Donor.ViewModels
 {
-    public class EventViewModel
+    public class EventViewModel : INotifyPropertyChanged
     {
         public EventViewModel()
         {
             this.Date = DateTime.Now;
 
             this.UserId = App.ViewModel.User.objectId;
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void NotifyPropertyChanged(String propertyName)
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (null != handler)
+            {
+                handler(this, new PropertyChangedEventArgs(propertyName));
+            }
         }
 
         public string Id { get; set; }
@@ -75,6 +85,8 @@ namespace Donor.ViewModels
             set
             {
                 _finished = value;
+                NotifyPropertyChanged("Finished");
+                NotifyPropertyChanged("FinishedString");
             }
         }
         public string FinishedString
