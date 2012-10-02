@@ -30,7 +30,7 @@ namespace Donor
             this.GiveType.ItemsSource = giveTypes;
             this.ReminderPeriod.ItemsSource = reminderTypes;
 
-            this.Time.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 8, 0, 0);
+            this.Time.Value = new DateTime(DateTime.Now.AddDays(1).Year, DateTime.Now.AddDays(1).Month, DateTime.Now.AddDays(1).Day, 8, 0, 0);
 
             this.DataContext = CurrentEvent;
 
@@ -49,7 +49,7 @@ namespace Donor
                 string id = this.NavigationContext.QueryString["id"];
                 CurrentEvent = App.ViewModel.Events.Items.FirstOrDefault(c => c.Id == id);
 
-                if (this.Date.Value == new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day))
+                if (this.Date.Value == new DateTime(DateTime.Now.AddDays(1).Year, DateTime.Now.AddDays(1).Month, DateTime.Now.AddDays(1).Day))
                 {
                     this.Date.Value = CurrentEvent.Date;
                 };
@@ -73,11 +73,11 @@ namespace Donor
                     DayNumber = int.Parse(this.NavigationContext.QueryString["day"]);
                     YearNumber = int.Parse(this.NavigationContext.QueryString["year"]);
 
-                    if (this.Date.Value == new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day))
+                    if (this.Date.Value == new DateTime(DateTime.Now.AddDays(1).Year, DateTime.Now.AddDays(1).Month, DateTime.Now.AddDays(1).Day))
                     {
                         this.Date.Value = new DateTime(YearNumber, MonthNumber, DayNumber);
                     };
-                    if (this.Date.Value == new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day))
+                    if (this.Date.Value == new DateTime(DateTime.Now.AddDays(1).Year, DateTime.Now.AddDays(1).Month, DateTime.Now.AddDays(1).Day))
                     {
                         this.Date.Value = new DateTime(YearNumber, MonthNumber, DayNumber);
                     };
@@ -86,6 +86,7 @@ namespace Donor
                 }
                 catch
                 {
+                    this.Date.Value = new DateTime(DateTime.Now.AddDays(1).Year, DateTime.Now.AddDays(1).Month, DateTime.Now.AddDays(1).Day);
                     //this.Time.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 8, 0, 0);
                 };
             };
