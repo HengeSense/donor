@@ -32,6 +32,11 @@ namespace Donor
                     string _newsid = this.NavigationContext.QueryString["id"];
                     _newsid_current = _newsid;
                     _currentNews = App.ViewModel.News.Items.FirstOrDefault(c => c.ObjectId == _newsid.ToString());
+
+                    _currentNews.Body = _currentNews.Body.Replace("<br />"," ");
+                    _currentNews.Body = _currentNews.Body.Replace("color=\"FF0000\"","color=\"#FF0000\"");
+                    
+
                     DataContext = _currentNews;
                 }
                 catch

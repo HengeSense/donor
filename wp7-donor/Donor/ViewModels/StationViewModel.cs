@@ -84,7 +84,7 @@ namespace Donor.ViewModels
                         station.Adress = item["adress"].ToString();
                         try
                         {
-                            station.BloodFor = item["bloodfor"].ToString();
+                            station.BloodFor = item["bloodFor"].ToString();
                         }
                         catch
                         {
