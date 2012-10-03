@@ -50,6 +50,9 @@ namespace Donor
                 string id = this.NavigationContext.QueryString["id"];
                 CurrentEvent = App.ViewModel.Events.Items.FirstOrDefault(c => c.Id == id);
 
+                this.Description.Text = CurrentEvent.Description;
+                this.Place.Text = CurrentEvent.Place;
+
                 List<string> eventTypes = new List<string>() { "Кроводача", "Анализ" };
                 List<string> giveTypes = new List<string>() { "Тромбоциты", "Плазма", "Цельная кровь", "Гранулоциты" };
                 this.EventType.ItemsSource = eventTypes;
@@ -141,7 +144,20 @@ namespace Donor
             };
             string give = this.GiveType.SelectedItem.ToString();
             bool possible = true;
-            if (this.EventType.SelectedItem.ToString() != "Анализ")
+            bool checkit = true;
+            try
+            {
+                if (CurrentEvent.Date != this.Date.Value.Value)
+                {
+                    checkit = true;
+                }
+                else
+                {
+                    checkit = false;
+                }
+            }
+            catch { };
+            if ((this.EventType.SelectedItem.ToString() != "Анализ") && checkit)
             {
                 try
                 {

@@ -56,6 +56,9 @@ namespace Donor
                 this.LoginForm.Visibility = Visibility.Visible;
                 this.UserProfile.Visibility = Visibility.Collapsed;
             };
+
+            this.email.Text = "";
+            this.password.Password = "";
         }
 
         private void TextBlock_Tap(object sender, System.Windows.Input.GestureEventArgs e)
