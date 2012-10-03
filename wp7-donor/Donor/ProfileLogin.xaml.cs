@@ -593,6 +593,10 @@ namespace Donor
         private void DeleteUserButton_Click(object sender, EventArgs e)
         {
             App.ViewModel.User.IsLoggedIn = false;
+
+            App.ViewModel.User = new DonorUser();
+            App.ViewModel.SaveUserToStorage();
+
             App.ViewModel.Events.UpdateItems();
             NavigationService.GoBack();
         }
