@@ -187,14 +187,18 @@ static NSString * PODARI_ZHIZN_NEWS_URL = @"http://www.podari-zhizn.ru/main/node
     int padding_top;
     NSDateFormatter *dateFormat = [[[NSDateFormatter alloc] init] autorelease];
     [dateFormat setDateFormat:@"dd.MM.yyyy"];
+    NSDateFormatter *parsecomDateFormat = [[[NSDateFormatter alloc] init] autorelease];
+    [parsecomDateFormat setDateFormat:@"yyyy'-'MM'-'dd'T'HH':'mm':'sszzz"];
     
     //Ads
     if ([content valueForKey:@"station_nid"])
-    {   
-        htmlString1 = [NSString stringWithFormat:@"<html><head><style type='text/css'>* { margin:0; padding:0; } p { color:#847168; font-family:Helvetica; font-size:12px; font-weight:bold;  }</style></head><body><p>%@ <font color=\"#CBB2A3\">%@</font></p></body></html>", [dateFormat stringFromDate:[content valueForKey:@"updatedAt"]], [content valueForKey:@"title"]];
+    {
+        NSString *createString = [dateFormat stringFromDate:[parsecomDateFormat dateFromString:[content objectForKey:@"created"]]];
+        
+        htmlString1 = [NSString stringWithFormat:@"<html><head><style type='text/css'>* { margin:0; padding:0; } p { color:#847168; font-family:Helvetica; font-size:12px; font-weight:bold;  }</style></head><body><p>%@ <font color=\"#CBB2A3\">%@</font></p></body></html>", createString, [content valueForKey:@"title"]];
         padding_top = 7;
         
-        CGSize htmlString1Size = [[NSString stringWithFormat:@"%@ %@", [dateFormat stringFromDate:[content valueForKey:@"updatedAt"]], [content valueForKey:@"title"]] sizeWithFont:[UIFont fontWithName:@"Helvetica" size:12] constrainedToSize:maximumLabelSize lineBreakMode:UILineBreakModeWordWrap];
+        CGSize htmlString1Size = [[NSString stringWithFormat:@"%@ %@", createString, [content valueForKey:@"title"]] sizeWithFont:[UIFont fontWithName:@"Helvetica" size:12] constrainedToSize:maximumLabelSize lineBreakMode:UILineBreakModeWordWrap];
         contentSize = htmlString1Size;
     }
     //News

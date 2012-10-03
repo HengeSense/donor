@@ -25,6 +25,8 @@
     PFObject *object = [contentArray objectAtIndex:indexPath.row];
     NSDateFormatter *dateFormat = [[[NSDateFormatter alloc] init] autorelease];
     [dateFormat setDateFormat:@"dd.MM.yyyy"];
+    NSDateFormatter *parsecomDateFormat = [[[NSDateFormatter alloc] init] autorelease];
+    [parsecomDateFormat setDateFormat:@"yyyy'-'MM'-'dd'T'HH':'mm':'sszzz"];
     
     static NSString *CellIdentifier = @"Cell";
     
@@ -37,7 +39,7 @@
     }
     
     cell.newsTitleLabel.text = [object valueForKey:@"title"];
-    cell.dateLabel.text = [dateFormat stringFromDate:[object valueForKey:@"updatedAt"]];
+    cell.dateLabel.text = [dateFormat stringFromDate:[parsecomDateFormat dateFromString:[object objectForKey:@"created"]]];
     return cell;
 }
 
@@ -82,7 +84,7 @@
     ((UITableView *)self.view).userInteractionEnabled = NO;
     
     PFQuery *query = [PFQuery queryWithClassName:@"News"];
-    [query orderByDescending:@"updatedAt"];
+    [query orderByDescending:@"createdTimestamp"];
     
     [self.view addSubview:indicatorView];
     

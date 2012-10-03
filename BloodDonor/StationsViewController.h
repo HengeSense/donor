@@ -11,8 +11,9 @@
 #import <CoreLocation/CoreLocation.h>
 #import "CoreLocationController.h"
 #import <Parse/Parse.h>
+#import "FTCoreTextView.h"
 
-@interface StationsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, MKMapViewDelegate, MKAnnotation>
+@interface StationsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, MKMapViewDelegate, MKAnnotation, FTCoreTextViewDelegate>
 {
     IBOutlet UIView *contentView;
     
@@ -48,6 +49,9 @@
     BOOL isShowOneStation;
     
     PFObject *selectedStationToShowOnMap;
+    PFObject *objectForEvent;
+    
+    NSArray *coreTextStyle;
 }
 
 @property (nonatomic, retain) CoreLocationController *coreLocationController;

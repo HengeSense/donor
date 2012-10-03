@@ -692,8 +692,8 @@
 					</object>
 					<object class="IBUIButton" id="719032897">
 						<reference key="NSNextResponder" ref="210642524"/>
-						<int key="NSvFlags">-2147483356</int>
-						<string key="NSFrame">{{210, 14}, {20, 20}}</string>
+						<int key="NSvFlags">292</int>
+						<string key="NSFrame">{{212, 14}, {20, 20}}</string>
 						<reference key="NSSuperview" ref="210642524"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="403431656"/>
@@ -702,13 +702,16 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
-						<int key="IBUIButtonType">1</int>
 						<reference key="IBUIHighlightedTitleColor" ref="311397257"/>
 						<object class="NSColor" key="IBUINormalTitleColor">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MC4xOTYwNzg0MzE0IDAuMzA5ODAzOTIxNiAwLjUyMTU2ODYyNzUAA</bytes>
 						</object>
 						<reference key="IBUINormalTitleShadowColor" ref="843813976"/>
+						<object class="NSCustomResource" key="IBUINormalImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">clearButton.png</string>
+						</object>
 						<object class="IBUIFontDescription" key="IBUIFontDescription">
 							<int key="type">2</int>
 							<int key="size">2</int>
@@ -1405,6 +1408,7 @@
 			<string key="bgSearchLeft.png">{19, 28}</string>
 			<string key="bgSearchRight.png">{19, 28}</string>
 			<string key="calendarMonthBackground.png">{320, 62}</string>
+			<string key="clearButton.png">{19, 19}</string>
 			<string key="iconSearch.png">{13, 16}</string>
 			<string key="stationsFilterButtonNotSelected.png">{34, 34}</string>
 			<string key="stationsFilterSegmentButtonSelected.png">{34, 34}</string>

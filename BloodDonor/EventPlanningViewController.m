@@ -29,7 +29,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self)
     {
-        isTest = YES;
+        isTest = NO;
         eventId = [event retain];
         
         typeDonateArray = [[NSArray arrayWithObjects:@"Тромбоциты",
@@ -150,7 +150,7 @@
     BOOL isFinished = NO;
     if (selectedDate.timeIntervalSince1970 <= [[NSDate date] timeIntervalSince1970])
     {
-        if (!event)
+        /*if (!event)
         {
             NSArray *viewControllers = [self.navigationController viewControllers];
             CalendarViewController *calendarViewController = [viewControllers objectAtIndex:viewControllers.count - 2];
@@ -169,9 +169,9 @@
             return;
         }
         else
-        {
+        {*/
             isFinished = YES;
-        }
+        //}
     }
     if (!isTest && !event)
     {
@@ -756,14 +756,20 @@
         bloodDonationViewRect.size.height -= 50;
         bloodDonationView.frame = bloodDonationViewRect;
         
-        scrollView.contentSize = testView.frame.size;
-        [scrollView addSubview:testView];
+        scrollView.contentSize = bloodDonationView.frame.size;
+        [scrollView addSubview:bloodDonationView];
     }
     
     [typeDonateButton setTitle:[typeDonateArray objectAtIndex:typeDonate] forState:UIControlStateNormal];
     [typeDonateButton setTitle:[typeDonateArray objectAtIndex:typeDonate] forState:UIControlStateHighlighted];
     
-    [bloodDonationDateButton setTitle:[NSString stringWithFormat:@"%@ %@:%@",
+    [bloodDonationDateButton setTitle:[NSString stringWithFormat:@"%@", [daysArray objectAtIndex:bloodDonateDay]] forState:UIControlStateNormal];
+    [bloodDonationDateButton setTitle:[NSString stringWithFormat:@"%@", [daysArray objectAtIndex:bloodDonateDay]] forState:UIControlStateHighlighted];
+    
+    [testDateButton setTitle:[NSString stringWithFormat:@"%@", [daysArray objectAtIndex:testDay]] forState:UIControlStateNormal];
+    [testDateButton setTitle:[NSString stringWithFormat:@"%@", [daysArray objectAtIndex:testDay]] forState:UIControlStateHighlighted];
+    
+    /*[bloodDonationDateButton setTitle:[NSString stringWithFormat:@"%@ %@:%@",
                                        [daysArray objectAtIndex:bloodDonateDay],
                                        [hoursArray objectAtIndex:bloodDonateHour],
                                        [minutesArray objectAtIndex:bloodDonateMinute]]
@@ -783,7 +789,7 @@
                                        [daysArray objectAtIndex:testDay],
                                        [hoursArray objectAtIndex:testHour],
                                        [minutesArray objectAtIndex:testMinute]]
-                             forState:UIControlStateHighlighted];
+                             forState:UIControlStateHighlighted];*/
 }
 
 - (void)viewDidAppear:(BOOL)animated

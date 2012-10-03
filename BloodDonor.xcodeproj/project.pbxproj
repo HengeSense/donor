@@ -208,6 +208,15 @@
 		856B398A15CEDF2A00F0DEA7 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 856B398915CEDF2A00F0DEA7 /* CoreFoundation.framework */; };
 		8580F64515ECB26600376079 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8580F64415ECB26600376079 /* Default@2x.png */; };
 		8580F64815ECB29200376079 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 8580F64715ECB29200376079 /* Default.png */; };
+		8585E172161A991E00275AE7 /* userLocation@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8585E170161A991E00275AE7 /* userLocation@2x.png */; };
+		8585E173161A991E00275AE7 /* userLocationMarker@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8585E171161A991E00275AE7 /* userLocationMarker@2x.png */; };
+		8585E17D161AB04C00275AE7 /* check.png in Resources */ = {isa = PBXBuildFile; fileRef = 8585E179161AB04C00275AE7 /* check.png */; };
+		8585E17E161AB04C00275AE7 /* check@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8585E17A161AB04C00275AE7 /* check@2x.png */; };
+		8585E17F161AB04C00275AE7 /* clearButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 8585E17B161AB04C00275AE7 /* clearButton.png */; };
+		8585E180161AB04C00275AE7 /* clearButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8585E17C161AB04C00275AE7 /* clearButton@2x.png */; };
+		8585E189161AF9C700275AE7 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8585E188161AF9C700275AE7 /* CoreText.framework */; };
+		8585E1A9161B0A5D00275AE7 /* FTCoreTextStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 8585E1A6161B0A5D00275AE7 /* FTCoreTextStyle.m */; };
+		8585E1AA161B0A5D00275AE7 /* FTCoreTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8585E1A8161B0A5D00275AE7 /* FTCoreTextView.m */; };
 		858B436B15B6B03200A7A67D /* ProfileSexSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 858B436915B6B03200A7A67D /* ProfileSexSelectViewController.m */; };
 		858B436C15B6B03200A7A67D /* ProfileSexSelectViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 858B436A15B6B03200A7A67D /* ProfileSexSelectViewController.xib */; };
 		8593A8BA15D0DB1100EA51F2 /* StationDescriptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8593A8B815D0DB1100EA51F2 /* StationDescriptionViewController.m */; };
@@ -649,6 +658,17 @@
 		856B398915CEDF2A00F0DEA7 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		8580F64415ECB26600376079 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		8580F64715ECB29200376079 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		8585E170161A991E00275AE7 /* userLocation@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "userLocation@2x.png"; sourceTree = "<group>"; };
+		8585E171161A991E00275AE7 /* userLocationMarker@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "userLocationMarker@2x.png"; sourceTree = "<group>"; };
+		8585E179161AB04C00275AE7 /* check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = check.png; sourceTree = "<group>"; };
+		8585E17A161AB04C00275AE7 /* check@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "check@2x.png"; sourceTree = "<group>"; };
+		8585E17B161AB04C00275AE7 /* clearButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clearButton.png; sourceTree = "<group>"; };
+		8585E17C161AB04C00275AE7 /* clearButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "clearButton@2x.png"; sourceTree = "<group>"; };
+		8585E188161AF9C700275AE7 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		8585E1A5161B0A5D00275AE7 /* FTCoreTextStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTCoreTextStyle.h; sourceTree = "<group>"; };
+		8585E1A6161B0A5D00275AE7 /* FTCoreTextStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTCoreTextStyle.m; sourceTree = "<group>"; };
+		8585E1A7161B0A5D00275AE7 /* FTCoreTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTCoreTextView.h; sourceTree = "<group>"; };
+		8585E1A8161B0A5D00275AE7 /* FTCoreTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTCoreTextView.m; sourceTree = "<group>"; };
 		858B436815B6B03200A7A67D /* ProfileSexSelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileSexSelectViewController.h; sourceTree = "<group>"; };
 		858B436915B6B03200A7A67D /* ProfileSexSelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileSexSelectViewController.m; sourceTree = "<group>"; };
 		858B436A15B6B03200A7A67D /* ProfileSexSelectViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileSexSelectViewController.xib; sourceTree = "<group>"; };
@@ -895,6 +915,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8585E189161AF9C700275AE7 /* CoreText.framework in Frameworks */,
 				859F211315D2A20800A4021A /* CoreLocation.framework in Frameworks */,
 				859F210515D265E600A4021A /* MapKit.framework in Frameworks */,
 				856B398A15CEDF2A00F0DEA7 /* CoreFoundation.framework in Frameworks */,
@@ -941,6 +962,7 @@
 		37153E9E15AEBA3400C985C1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8585E188161AF9C700275AE7 /* CoreText.framework */,
 				859F210415D265E600A4021A /* MapKit.framework */,
 				856B398915CEDF2A00F0DEA7 /* CoreFoundation.framework */,
 				856B398515CEDEF600F0DEA7 /* CoreLocation.framework */,
@@ -963,6 +985,10 @@
 		37153EA515AEBA3400C985C1 /* BloodDonor */ = {
 			isa = PBXGroup;
 			children = (
+				8585E1A5161B0A5D00275AE7 /* FTCoreTextStyle.h */,
+				8585E1A6161B0A5D00275AE7 /* FTCoreTextStyle.m */,
+				8585E1A7161B0A5D00275AE7 /* FTCoreTextView.h */,
+				8585E1A8161B0A5D00275AE7 /* FTCoreTextView.m */,
 				851245A11603457200752AE1 /* PageControl.h */,
 				851245A21603457200752AE1 /* PageControl.m */,
 				851245771603442400752AE1 /* TutorialViewController.h */,
@@ -1108,6 +1134,12 @@
 		3758525915AEE959006DF7E1 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				8585E179161AB04C00275AE7 /* check.png */,
+				8585E17A161AB04C00275AE7 /* check@2x.png */,
+				8585E17B161AB04C00275AE7 /* clearButton.png */,
+				8585E17C161AB04C00275AE7 /* clearButton@2x.png */,
+				8585E170161A991E00275AE7 /* userLocation@2x.png */,
+				8585E171161A991E00275AE7 /* userLocationMarker@2x.png */,
 				8512457D1603443B00752AE1 /* tutorialDotActive.png */,
 				8512457E1603443B00752AE1 /* tutorialDotActive@2x.png */,
 				8512457F1603443B00752AE1 /* tutorialDotNormal.png */,
@@ -1883,6 +1915,12 @@
 				8512459E1603443B00752AE1 /* tutorialImage6@2x.png in Resources */,
 				8512459F1603443B00752AE1 /* tutorialImage7.png in Resources */,
 				851245A01603443B00752AE1 /* tutorialImage7@2x.png in Resources */,
+				8585E172161A991E00275AE7 /* userLocation@2x.png in Resources */,
+				8585E173161A991E00275AE7 /* userLocationMarker@2x.png in Resources */,
+				8585E17D161AB04C00275AE7 /* check.png in Resources */,
+				8585E17E161AB04C00275AE7 /* check@2x.png in Resources */,
+				8585E17F161AB04C00275AE7 /* clearButton.png in Resources */,
+				8585E180161AB04C00275AE7 /* clearButton@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1933,6 +1971,8 @@
 				8594B19D15DBC57200896105 /* CalendarInfoViewController.m in Sources */,
 				8512457A1603442400752AE1 /* TutorialViewController.m in Sources */,
 				851245A31603457200752AE1 /* PageControl.m in Sources */,
+				8585E1A9161B0A5D00275AE7 /* FTCoreTextStyle.m in Sources */,
+				8585E1AA161B0A5D00275AE7 /* FTCoreTextView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

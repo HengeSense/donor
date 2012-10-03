@@ -142,9 +142,6 @@
     
     [siteLinkWebView loadHTMLString:htmlString baseURL:nil];
     
-    NSLog(@"1)%@ 2)%@ 3)%@ 4)%@ 5)%@", [station objectForKey:@"receiptTime"], [station objectForKey:@"transportation"], [station objectForKey:@"bloodFor"], [station objectForKey:@"giveType"], [station objectForKey:@"receiptTime"]);
-    
-    
     /*if (![station objectForKey:@"receiptTime"] && ![station objectForKey:@"transportation"] && ![station objectForKey:@"bloodFor"] && ![station objectForKey:@"giveType"] && ![station objectForKey:@"receiptTime"])
     {
         forDodonorsView.hidden = YES;

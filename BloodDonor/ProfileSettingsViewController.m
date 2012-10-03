@@ -81,18 +81,6 @@
 
 #pragma mark Lifecycle
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    
-    if (self)
-    {
-        
-    }
-    
-    return self;
-}
-
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
@@ -110,6 +98,7 @@
     self.title = @"Настройки";
     
     scrollView.contentSize = backgroundImage.frame.size;
+    scrollView.contentInset = UIEdgeInsetsMake(-40.0f, 0.0f, 0.0f, 0.0f);
    
     [self switchStateOfSegmentButton:passwordButton needSwitch:![Common getInstance].isNeedPassword];
     [self switchStateOfSegmentButton:pushAnnotationsButton needSwitch:![Common getInstance].isNeedPushAnnotations];

@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FTCoreTextView.h"
 
-@interface ContraindicationsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
+@interface ContraindicationsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, FTCoreTextViewDelegate>
 {
     IBOutlet UIButton *absoluteButton;
     IBOutlet UIButton *timeButton;
@@ -21,6 +22,11 @@
     IBOutlet UITextField *absoluteSearchTextField;
     IBOutlet UITextField *timeSearchTextField;
     IBOutlet UIView *hideBarView;
+    
+    IBOutlet UIButton *tempClearButton;
+    IBOutlet UIButton *absoluteClearButton;
+    IBOutlet UILabel *emptySearchLabel;
+    
     NSMutableArray *absoluteLevel0Array;
     NSMutableArray *absoluteLevel1Array;
     NSMutableArray *absoluteLevel2Array;
@@ -33,12 +39,14 @@
     NSMutableArray *searchArray;
     
     UIView *indicatorView;
+    NSArray *absCoreTextStyle;
+    NSArray *tempCoreTextStyle;
 }
 
 - (IBAction)backButtonPressed:(id)sender;
 - (IBAction)tabSelected:(id)sender;
 - (IBAction)searchCancelPressed:(id)sender;
-
+- (IBAction)clearButtonPressed:(id)sender;
 - (void)callbackWithResult:(NSArray *)result error:(NSError *)error;
 
 @end

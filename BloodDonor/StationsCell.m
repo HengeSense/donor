@@ -6,18 +6,21 @@
 //
 //
 
+#import <QuartzCore/QuartzCore.h>
 #import "StationsCell.h"
 
 @implementation StationsCell
-@synthesize addressLabel, workAtSaturdayImageView, donorsForChildrenImageView, regionalRegistrationImageView, shadowSelectionView;
+@synthesize workAtSaturdayImageView, donorsForChildrenImageView, regionalRegistrationImageView, shadowSelectionView, indicatorView;
+@synthesize addressLabel = _addressLabel;
 
 - (void)dealloc
 {
-    [addressLabel release];
+    [_addressLabel release];
     [regionalRegistrationImageView release];
     [workAtSaturdayImageView release];
     [donorsForChildrenImageView release];
     [shadowSelectionView release];
+    [indicatorView release];
     [super dealloc];
 }
 

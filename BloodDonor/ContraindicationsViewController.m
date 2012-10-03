@@ -10,6 +10,7 @@
 #import "TempContraindicationsCell.h"
 #import "AbsoluteContraindicationsCell.h"
 #import <Parse/Parse.h>
+#import <QuartzCore/QuartzCore.h>
 
 @interface ContraindicationsViewController ()
 
@@ -24,6 +25,26 @@
 - (IBAction)backButtonPressed:(id)sender
 {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (IBAction)clearButtonPressed:(id)sender
+{
+    emptySearchLabel.hidden = YES;
+    
+    if (sender == tempClearButton)
+    {
+        if (!timeSearchTextField.isFirstResponder)
+            [timeSearchTextField becomeFirstResponder];
+        timeSearchTextField.text = @"";
+        tempClearButton.hidden = YES;
+    }
+    else
+    {
+        if (!absoluteSearchTextField.isFirstResponder)
+            [absoluteSearchTextField becomeFirstResponder];
+        absoluteSearchTextField.text = @"";
+        absoluteClearButton.hidden = YES;
+    }
 }
 
 - (IBAction)tabSelected:(id)sender
@@ -52,11 +73,14 @@
 
 - (IBAction)searchCancelPressed:(id)sender
 {
-    contraindicationsTableView.frame = CGRectMake(0.0f, 101.0f, 320.0f, 327.0f);
+    contraindicationsTableView.frame = CGRectMake(0.0f, 57.0f, 320.0f, 327.0f);
     hideBarView.hidden = NO;
     isSearch = NO;
     [self.view endEditing:YES];
+    tempClearButton.hidden = YES;
+    absoluteClearButton.hidden = YES;
     [contraindicationsTableView reloadData];
+    emptySearchLabel.hidden = YES;
 }
 
 #pragma mark TextEditDelegate
@@ -83,13 +107,22 @@
 - (void)textFieldDidChange:(UITextField *)textField
 {
     [searchArray removeAllObjects];
+    emptySearchLabel.hidden = YES;
         
     if ([textField.text isEqualToString:@""])
+    {
         isSearch = NO;
+        if ([textField isEqual: absoluteSearchTextField])
+            absoluteClearButton.hidden = YES;
+        else
+            tempClearButton.hidden = YES;
+    }
     else
     {
         if ([textField isEqual: absoluteSearchTextField])
         {
+            absoluteClearButton.hidden = NO;
+            
             for (PFObject *object in absoluteLevel1Array)
             {
                 isSearch = YES;
@@ -102,6 +135,7 @@
         }
         else
         {
+            tempClearButton.hidden = NO;
             for (NSArray *tempArray in timeContentArray)
             {
                 for (NSMutableDictionary *tempDictionary in tempArray)
@@ -117,6 +151,8 @@
             }
         }
     }
+    if (searchArray.count == 0 && ![textField.text isEqualToString:@""])
+        emptySearchLabel.hidden = NO;
     
     [contraindicationsTableView reloadData];
 
@@ -279,10 +315,29 @@
             cell = [nib objectAtIndex:0];
         }
         UIImage *image =[UIImage imageNamed:@"dot"];
-                
-        cell.illnessLabel.text = [object valueForKey:@"title"];
-        cell.timeAllotmentLabel.text = [object valueForKey:@"body"];
         
+        if (![timeSearchTextField.text isEqualToString:@""])
+        {
+            cell.illnessLabel.hidden = YES;
+            NSString *illness = [object valueForKey:@"title"];
+            NSRange illnessRange = [illness rangeOfString:timeSearchTextField.text options:NSCaseInsensitiveSearch];
+            
+            NSString *outString = [illness stringByReplacingOccurrencesOfString:[illness substringWithRange:illnessRange] withString:[NSString stringWithFormat:@"<tempsearch>%@</tempsearch>", [illness substringWithRange:illnessRange]]];
+            
+            FTCoreTextView *coreTextView = [[FTCoreTextView alloc] initWithFrame:CGRectMake(cell.illnessLabel.frame.origin.x, cell.illnessLabel.frame.origin.y, cell.illnessLabel.frame.size.width - 10, cell.illnessLabel.frame.size.height)]; 
+            coreTextView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+            [cell addSubview:coreTextView];
+            [coreTextView addStyles:tempCoreTextStyle];
+            [coreTextView setText:outString];
+            [coreTextView fitToSuggestedHeight];
+        }
+        else
+        {
+            cell.illnessLabel.text = [object valueForKey:@"title"];
+        }
+        
+        cell.timeAllotmentLabel.text = [object valueForKey:@"body"];
+                
         if (isSearch)
         {
             for (CGFloat summ = 0.0f; summ < [[(NSDictionary *)[searchArray objectAtIndex:indexPath.row] objectForKey:@"height"] floatValue]; summ += image.size.height)
@@ -333,7 +388,25 @@
             cell = [nib objectAtIndex:0];
         }
         
-        cell.illnessLabel.text = [object valueForKey:@"title"];
+        
+        if (![absoluteSearchTextField.text isEqualToString:@""])
+        {
+            cell.illnessLabel.hidden = YES;
+            NSString *illness = [object valueForKey:@"title"];
+            NSRange illnessRange = [illness rangeOfString:absoluteSearchTextField.text options:NSCaseInsensitiveSearch];
+            
+            NSString *outString = [illness stringByReplacingOccurrencesOfString:[illness substringWithRange:illnessRange] withString:[NSString stringWithFormat:@"<abssearch>%@</abssearch>", [illness substringWithRange:illnessRange]]];
+            
+            FTCoreTextView *coreTextView = [[FTCoreTextView alloc] initWithFrame:cell.illnessLabel.frame];
+            coreTextView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+            [cell addSubview:coreTextView];
+            [coreTextView addStyles:absCoreTextStyle];
+            [coreTextView setText:outString];
+            [coreTextView fitToSuggestedHeight];
+        }
+        else
+            cell.illnessLabel.text = [object valueForKey:@"title"];
+        
     
         return cell;
     }
@@ -354,6 +427,32 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    FTCoreTextStyle *absDefaultStyle = [FTCoreTextStyle new];
+    absDefaultStyle.name = FTCoreTextTagDefault;	//thought the default name is already set to FTCoreTextTagDefault
+    absDefaultStyle.font = [UIFont fontWithName:@"Helvetica-Bold" size:15.f];
+    absDefaultStyle.color = [UIColor colorWithRed:132.0f/255.0f green:113.0f/255.0f blue:104.0f/255.0f alpha:1.0f];
+    absDefaultStyle.textAlignment = FTCoreTextAlignementLeft;
+    
+    FTCoreTextStyle *absSearchStyle = [FTCoreTextStyle styleWithName:@"abssearch"]; // using fast method
+    absSearchStyle.font = [UIFont fontWithName:@"Helvetica-Bold" size:15.f];
+    absSearchStyle.color = [UIColor colorWithRed:203.0f/255.0f green:178.0f/255.0f blue:163.0f/255.0f alpha:1.0f];
+    absSearchStyle.textAlignment = FTCoreTextAlignementLeft;
+    
+    absCoreTextStyle = [[NSArray alloc] initWithObjects:absDefaultStyle, absSearchStyle, nil];
+    
+    FTCoreTextStyle *tempDefaultStyle = [FTCoreTextStyle new];
+    tempDefaultStyle.name = FTCoreTextTagDefault;	//thought the default name is already set to FTCoreTextTagDefault
+    tempDefaultStyle.font = [UIFont fontWithName:@"Helvetica-Bold" size:12.f];
+    tempDefaultStyle.color = [UIColor colorWithRed:132.0f/255.0f green:113.0f/255.0f blue:104.0f/255.0f alpha:1.0f];
+    tempDefaultStyle.textAlignment = FTCoreTextAlignementLeft;
+    
+    FTCoreTextStyle *tempSearchStyle = [FTCoreTextStyle styleWithName:@"tempsearch"]; // using fast method
+    tempSearchStyle.font = [UIFont fontWithName:@"Helvetica-Bold" size:12.f];
+    tempSearchStyle.color = [UIColor colorWithRed:203.0f/255.0f green:178.0f/255.0f blue:163.0f/255.0f alpha:1.0f];
+    tempSearchStyle.textAlignment = FTCoreTextAlignementLeft;
+    
+    tempCoreTextStyle = [[NSArray alloc] initWithObjects:tempDefaultStyle, tempSearchStyle, nil];
     
     self.title = @"Противопоказания";
     
@@ -477,6 +576,8 @@
 
 - (void)dealloc
 {
+    [absCoreTextStyle release];
+    [tempCoreTextStyle release];
     [indicatorView release];
     [searchArray release];
     [absoluteLevel0Array release];

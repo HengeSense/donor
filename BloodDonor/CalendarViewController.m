@@ -966,15 +966,15 @@
         }
     }
     
-    NSDate *availablePlateletsDate1 = [NSDate date];
-    NSDate *availablePlateletsDate2 = [NSDate date];
-    NSDate *availablePlateletsDate3 = [NSDate date];
-    NSDate *availablePlasmaDate1 = [NSDate date];
-    NSDate *availablePlasmaDate2 = [NSDate date];
-    NSDate *availablePlasmaDate3 = [NSDate date];
-    NSDate *availableWholeBloodDate1 = [NSDate date];
-    NSDate *availableWholeBloodDate2 = [NSDate date];
-    NSDate *availableWholeBloodDate3 = [NSDate date];
+    NSDate *availablePlateletsDate1 = [NSDate dateWithTimeIntervalSince1970:0];
+    NSDate *availablePlateletsDate2 = [NSDate dateWithTimeIntervalSince1970:0];
+    NSDate *availablePlateletsDate3 = [NSDate dateWithTimeIntervalSince1970:0];
+    NSDate *availablePlasmaDate1 = [NSDate dateWithTimeIntervalSince1970:0];
+    NSDate *availablePlasmaDate2 = [NSDate dateWithTimeIntervalSince1970:0];
+    NSDate *availablePlasmaDate3 = [NSDate dateWithTimeIntervalSince1970:0];
+    NSDate *availableWholeBloodDate1 = [NSDate dateWithTimeIntervalSince1970:0];
+    NSDate *availableWholeBloodDate2 = [NSDate dateWithTimeIntervalSince1970:0];
+    NSDate *availableWholeBloodDate3 = [NSDate dateWithTimeIntervalSince1970:0];
     
     //для статистики
     

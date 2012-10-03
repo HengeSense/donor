@@ -42,8 +42,8 @@
 {
     [Parse setApplicationId:@"EIpakVdZblHedhqgxMgiEVnIGCRGvWdy9v8gkKZu" clientKey:@"uNarhakSf1on8lJjrAVs1VWmPlG1D6ZJf9dO5QZY"];
     
-    if ([Common getInstance].isNeedPassword && [PFUser currentUser])
-        [PFUser logOut];
+    //if ([Common getInstance].isNeedPassword && [PFUser currentUser])
+        //[PFUser logOut];
     
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     

@@ -14,6 +14,7 @@
     UIImageView *regionalRegistrationImageView;
     UIImageView *workAtSaturdayImageView;
     UIImageView *donorsForChildrenImageView;
+    UIImageView *undicatorView;
     UIView *shadowSelectionView;
 }
 
@@ -22,5 +23,6 @@
 @property (nonatomic, retain) IBOutlet UIImageView *workAtSaturdayImageView;
 @property (nonatomic, retain) IBOutlet UIImageView *donorsForChildrenImageView;
 @property (nonatomic, retain) IBOutlet UIView *shadowSelectionView;
+@property (nonatomic, retain) IBOutlet UIImageView *indicatorView;
 
 @end
