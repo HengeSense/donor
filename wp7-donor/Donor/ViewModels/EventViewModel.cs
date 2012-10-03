@@ -84,7 +84,7 @@ namespace Donor.ViewModels
             }
             set
             {
-                if ((this.Date <= DateTime.Today) && (this.Time.Hour <= DateTime.Now.Hour) && (this.Time.Minute <= DateTime.Now.Minute))
+                if ((this.Date <= DateTime.Today) && (this.Time.Hour <= DateTime.Now.Hour) && (this  .Time.Minute <= DateTime.Now.Minute))
                 {
                     _finished = value;
                 }

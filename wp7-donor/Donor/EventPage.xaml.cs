@@ -141,13 +141,19 @@ namespace Donor
             {
                 if (_currentEvent.Finished == false)
                 {
-                    App.ViewModel.Events.Items.Remove(_currentEvent);
-                    _currentEvent.Finished = true;
-                    App.ViewModel.Events.Items.Add(_currentEvent);
+                    if ((_currentEvent.Date <= DateTime.Today) && (_currentEvent.Time.Hour <= DateTime.Now.Hour) && (_currentEvent.Time.Minute <= DateTime.Now.Minute))
+                    {
+                        App.ViewModel.Events.Items.Remove(_currentEvent);
+                        _currentEvent.Finished = true;
+                        App.ViewModel.Events.Items.Add(_currentEvent);
 
-                    App.ViewModel.Events.UpdateItems(); 
+                        App.ViewModel.Events.UpdateItems();
 
-                    MessageBox.Show("Вы сдали кровь. Спасибо! Рассчитан интервал до следующей возможной кроводачи");
+                        MessageBox.Show("Вы сдали кровь. Спасибо! Рассчитан интервал до следующей возможной кроводачи");
+                    }
+                    else {
+                        MessageBox.Show("Кроводача еще не может быть выполнена.");
+                    };
                 }
                 else
                 {
