@@ -271,11 +271,11 @@ namespace Donor
                 DateTime when = curdate;
                 if ((curdate <= itemother.Date.AddDays(days)) && (curdate >= itemother.Date))
                 {
-                    when = itemother.Date.AddDays(days);
+                    when = itemother.Date.AddDays(days+1);
                 };
                 if ((itemother.Date <= curdate.AddDays(days2)) && (curdate < itemother.Date))
                 {
-                    when = curdate.AddDays(days2);
+                    when = itemother.Date.AddDays(days2 + 1);
                 };
                 MessageBox.Show("Прошло мало времени с последней кроводачи. " + this.GiveType.SelectedItem.ToString() + " можно сдавать с " + when.ToShortDateString());
             };
