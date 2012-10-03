@@ -50,15 +50,48 @@ namespace Donor
                 string id = this.NavigationContext.QueryString["id"];
                 CurrentEvent = App.ViewModel.Events.Items.FirstOrDefault(c => c.Id == id);
 
+                List<string> eventTypes = new List<string>() { "Кроводача", "Анализ" };
+                List<string> giveTypes = new List<string>() { "Тромбоциты", "Плазма", "Цельная кровь", "Гранулоциты" };
+                this.EventType.ItemsSource = eventTypes;
+                this.GiveType.ItemsSource = giveTypes;
+
                 if (this.Date.Value == new DateTime(DateTime.Now.AddDays(1).Year, DateTime.Now.AddDays(1).Month, DateTime.Now.AddDays(1).Day))
                 {
                     this.Date.Value = CurrentEvent.Date;
                 };
-                this.EventType.SelectedItem = CurrentEvent.Type.ToString();
-                this.GiveType.SelectedItem = CurrentEvent.GiveType.ToString();
+                try
+                {
+                    this.EventType.SelectedItem = CurrentEvent.Type.ToString();
+                }
+                catch { };
+                switch (CurrentEvent.Type.ToString())
+                {
+                    case "Кроводача": this.EventType.SelectedIndex = 0; break;
+                    case "Анализ": this.EventType.SelectedIndex = 1; break;
+                    default: break;
+                };
+                try
+                {
+                    this.GiveType.SelectedItem = CurrentEvent.GiveType.ToString();
+                }
+                catch { };
+                switch (CurrentEvent.GiveType.ToString())
+                {
+                        case "Тромбоциты": this.GiveType.SelectedIndex = 0; break;
+                        case "Плазма": this.GiveType.SelectedIndex = 1; break;
+                        case "Цельная кровь": this.GiveType.SelectedIndex = 2; break;
+                        case "Гранулоциты": this.GiveType.SelectedIndex = 3; break;
+                    default: break;
+                };
+                // "Тромбоциты", "Плазма", "Цельная кровь", "Гранулоциты" };
+
+
                 if ((CurrentEvent.ReminderDate.ToString() != "") && (CurrentEvent.ReminderDate.ToString() != null))
                 {
-                    this.GiveType.SelectedItem = CurrentEvent.ReminderDate.ToString();
+                    try
+                    {
+                        this.GiveType.SelectedItem = CurrentEvent.ReminderDate.ToString();
+                    } catch {};
                 };
             }
             catch

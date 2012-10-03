@@ -10,7 +10,7 @@
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
-    mc:Ignorable="d" d:DesignHeight="768" d:DesignWidth="480"
+    mc:Ignorable="d" d:DesignHeight="696" d:DesignWidth="480"
     xmlns:msp="clr-namespace:MSPToolkit.Controls;assembly=MSPToolkit"
     shell:SystemTray.IsVisible="True" Loaded="PhoneApplicationPage_Loaded">
 	
