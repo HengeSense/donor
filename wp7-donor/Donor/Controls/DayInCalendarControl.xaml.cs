@@ -51,7 +51,7 @@ namespace Donor.Controls
                 }
                 else
                 {
-                    //(Application.Current.RootVisual as PhoneApplicationFrame).Navigate(new Uri("/EventEditPage.xaml?month=" + this.MonthNumber.ToString() + "&day=" + this.DayNumber.ToString() + "&year=" + this.YearNumber.ToString(), UriKind.Relative));
+                    (Application.Current.RootVisual as PhoneApplicationFrame).Navigate(new Uri("/EventEditPage.xaml?month=" + this.MonthNumber.ToString() + "&day=" + this.DayNumber.ToString() + "&year=" + this.YearNumber.ToString(), UriKind.Relative));
                 };
                 checkedEvent = false;
             }
@@ -276,6 +276,16 @@ namespace Donor.Controls
             catch
             {
             };
+        }
+
+        private void LayoutRoot_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (EventDay != null) {
+                if (EventDay.Finished == true)
+            {
+                this.DayImage.Margin = new Thickness(30, -30, 0, 0);
+            };
+            }
         }
 
     }

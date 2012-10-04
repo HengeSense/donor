@@ -69,8 +69,8 @@ namespace Donor
                 catch { };
                 switch (CurrentEvent.Type.ToString())
                 {
-                    case "Кроводача": this.EventType.SelectedIndex = 0; break;
-                    case "Анализ": this.EventType.SelectedIndex = 1; break;
+                    case "1": this.EventType.SelectedIndex = 0; break;
+                    case "0": this.EventType.SelectedIndex = 1; break;
                     default: break;
                 };
                 try
@@ -93,7 +93,7 @@ namespace Donor
                 {
                     try
                     {
-                        this.GiveType.SelectedItem = CurrentEvent.ReminderDate.ToString();
+                        this.ReminderPeriod.SelectedItem = CurrentEvent.ReminderDate.ToString();
                     } catch {};
                 };
             }
@@ -279,22 +279,8 @@ namespace Donor
 
                     };
 
-                    if (App.ViewModel.Events.EventsInYear(CurrentEvent.GiveType, CurrentEvent.Date) && App.ViewModel.Events.EventsInYear(CurrentEvent.GiveType, CurrentEvent.Date.AddYears(-1)))
+                    if (CurrentEvent.Type == "0")
                     {
-                        if (((App.ViewModel.Settings.EventAfter == true) && (App.ViewModel.Settings.Push == true)) && (CurrentEvent.ReminderMessage == true))
-                        {
-                            //в день в 17:00
-                            CurrentEvent.AddReminder(-60*60*17);
-                        };
-
-                        ///
-                        /// Помечаем событие как выполненное, если его дата меньше текущей
-                        ///.Hour
-                        if ((CurrentEvent.Date <= DateTime.Today) && (CurrentEvent.Time.Hour <= DateTime.Now.Hour) && (CurrentEvent.Time.Minute <= DateTime.Now.Minute))
-                        {
-                            CurrentEvent.Finished = true;
-                            MessageBox.Show("Вы сдали кровь. Спасибо! Рассчитан интервал до следующей возможной кроводачи");
-                        };
                         App.ViewModel.Events.Items.Add(CurrentEvent);
 
                         App.ViewModel.Events.UpdateItems();
@@ -302,7 +288,32 @@ namespace Donor
                     }
                     else
                     {
-                        MessageBox.Show("В данный день вы еще не можете производить сдачу крови.");
+                        CurrentEvent.GiveType = this.GiveType.SelectedItem.ToString();
+                        if (App.ViewModel.Events.EventsInYear(CurrentEvent.GiveType, CurrentEvent.Date) && App.ViewModel.Events.EventsInYear(CurrentEvent.GiveType, CurrentEvent.Date.AddYears(-1)))
+                        {
+                            if (((App.ViewModel.Settings.EventAfter == true) && (App.ViewModel.Settings.Push == true)) && (CurrentEvent.ReminderMessage == true))
+                            {
+                                //в день в 17:00
+                                CurrentEvent.AddReminder(-60 * 60 * 17);
+                            };
+
+                            ///
+                            /// Помечаем событие как выполненное, если его дата меньше текущей
+                            ///.Hour
+                            if ((CurrentEvent.Date <= DateTime.Today) && (CurrentEvent.Time.Hour <= DateTime.Now.Hour) && (CurrentEvent.Time.Minute <= DateTime.Now.Minute))
+                            {
+                                CurrentEvent.Finished = true;
+                                MessageBox.Show("Вы сдали кровь. Спасибо! Рассчитан интервал до следующей возможной кроводачи");
+                            };
+                            App.ViewModel.Events.Items.Add(CurrentEvent);
+
+                            App.ViewModel.Events.UpdateItems();
+                            NavigationService.GoBack();
+                        }
+                        else
+                        {
+                            MessageBox.Show("В данный день вы еще не можете производить сдачу крови.");
+                        };
                     };
                 }
                 catch

@@ -34,6 +34,22 @@ namespace Donor
                     _currentEvent = App.ViewModel.Events.Items.FirstOrDefault(c => c.Id == _eventid.ToString());
                     DataContext = _currentEvent;
 
+                    if (_currentEvent.Type != "1")
+                    {
+                        this.FinishedMenu.Visibility = Visibility.Collapsed;
+                    } else {
+                        if (_currentEvent.Finished == false)
+                        {
+                            this.FinishedMenu.Visibility = Visibility.Visible;
+                            this.EditButton.Visibility = Visibility.Visible;
+                        }
+                        else
+                        {
+                            this.EditButton.Visibility = Visibility.Collapsed;
+                            this.FinishedMenu.Visibility = Visibility.Collapsed;
+                        };
+                    };
+
                     if (_currentEvent.Type != "0" && _currentEvent.Type != "1")
                     {
                         this.AppBar.Visibility = Visibility.Collapsed;
@@ -47,6 +63,7 @@ namespace Donor
 						ReminderStackPanel.Visibility = Visibility.Visible;
                         this.TitleNews.Text = "Сдать анализ";
                         this.Reminder.Text = _currentEvent.ReminderDate.ToString();
+                        this.Finished.Visibility = Visibility.Collapsed;
 
                         this.ApplicationTitle.Text = "анализ";
                         

@@ -133,7 +133,7 @@ namespace Donor.ViewModels
                             case "Плазма": return "/icons/ic_plasma.png";
                             default: return "/icons/ic_planned_giving_blood.png";
                         };
-                        return "/icons/ic_planned_giving_blood.png";
+                        //return "/icons/ic_planned_giving_blood.png";
                     }
                     else
                     {
@@ -168,11 +168,11 @@ namespace Donor.ViewModels
                             case "Плазма": return "/icons/ic_calendar_plasma.png";
                             default: return "/icons/ic_calendar_planned_giving_blood.png";
                         };
-                        return "/icons/ic_calendar_planned_giving_blood.png";
+                        //return "/icons/ic_calendar_planned_giving_blood.png";
                     }
                     else
                     {
-                        return "/icons/ic_donated_blood.png";
+                        return "/icons/ic_calendar_donated_blood.png";
                     };
 
                 }

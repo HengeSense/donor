@@ -221,7 +221,7 @@
                                   <toolkit:PerformanceProgressBar HorizontalAlignment="Left" Height="8" Margin="0" VerticalAlignment="Top" IsIndeterminate="False" Width="460" Name="LoginLoadingBar" />
                         <TextBlock 
 						Style="{StaticResource Text24pxCBB2A3}"
-						Text="Введите логин" />
+						Text="Введите e-mail" />
                     <TextBox x:Name="email" Text="" Background="#FF4F3B34" BorderBrush="#FF4F3B34" Foreground="#FFCBB2A3" 
 					CaretBrush="#FFCBB2A3" Style="{StaticResource TextBoxStyle1}" />
                     <TextBlock 

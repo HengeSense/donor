@@ -177,7 +177,7 @@
 						</ScrollViewer>
                     </StackPanel>
                     <StackPanel Name="LoginForm">
-                        <TextBlock Text="Введите логин" 
+                        <TextBlock Text="Введите e-mail" 
 						Style="{StaticResource Text24pxCBB2A3}"/>
                         <TextBox Background="#FF4F3B34" Style="{StaticResource TextBoxStyle1}"
 BorderBrush="#FF4F3B34" Foreground="#FFCBB2A3" x:Name="email" 

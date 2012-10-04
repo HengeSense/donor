@@ -139,7 +139,7 @@
 
         </toolkit:LockablePivot>
         <WPExtensions:AdvancedApplicationBar Name="AppBar" IsVisible="True" IsMenuEnabled="False" Background="#FF211E1D" BackgroundColor="#FF211E1D" Foreground="White" BorderBrush="#FF211E1D" ForegroundColor="White" OpacityMask="White">
-        <WPExtensions:AdvancedApplicationBarIconButton IconUri="/icons/ic_ApplicationBar_calendar.png" Text="Сегодня" Name="TodayButton" Click="TodayButton_Click">
+        <WPExtensions:AdvancedApplicationBarIconButton IconUri="/icons/ic_ApplicationBar_undo.png" Text="Сегодня" Name="TodayButton" Click="TodayButton_Click">
         </WPExtensions:AdvancedApplicationBarIconButton>
         <WPExtensions:AdvancedApplicationBarIconButton IconUri="/icons/ic_ApplicationBar_add.png" Text="Добавить событие" Visibility="Visible" Name="AddEventButton" Click="AddEventButton_Click" />
         <WPExtensions:AdvancedApplicationBarIconButton IconUri="/icons/ic_ApplicationBar_calendar.png" Text="Календарь" Name="MonthCalendarButton" Click="MonthCalendarButton_Click" />

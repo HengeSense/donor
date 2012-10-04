@@ -298,13 +298,16 @@
     <Content Include="icons\ic_ApplicationBar_exit.png" />
     <Content Include="icons\ic_ApplicationBar_item.png" />
     <Content Include="icons\ic_ApplicationBar_map.png" />
+    <Content Include="icons\ic_ApplicationBar_undo.png" />
     <Content Include="icons\ic_calendar_donated_blood.png" />
     <Content Include="icons\ic_calendar_planned_analysis.png" />
     <Content Include="icons\ic_calendar_planned_giving_blood.png" />
     <Content Include="icons\ic_calendar_plasma.png" />
     <Content Include="icons\ic_calendar_platelets.png" />
     <Content Include="icons\ic_calendar_whole_blood.png" />
+    <Content Include="icons\ic_donated_blood.png" />
     <Content Include="icons\ic_planned_analysis.png" />
+    <Content Include="icons\ic_planned_giving_blood.png" />
     <Content Include="icons\ic_plasma.png" />
     <Content Include="icons\ic_platelets.png" />
     <Content Include="icons\ic_whole_blood.png" />

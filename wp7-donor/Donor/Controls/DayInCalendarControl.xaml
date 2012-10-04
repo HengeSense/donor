@@ -13,13 +13,13 @@
     <Border BorderThickness="1" Width="65" Height="65"
                 BorderBrush="Gray" 
                 Name="MainBorder2" Margin="0,0,0,0">
-    <Grid x:Name="LayoutRoot" Background="#FFEEEEEE" Margin="2">
+    <Grid x:Name="LayoutRoot" Background="#FFEEEEEE" Margin="1" Loaded="LayoutRoot_Loaded">
             <!-- 
                 Background="{Binding BgColor}"
             -->
             <Border Name="MainBorder" Background="{Binding CurrentColor}" BorderThickness="0" Margin="3">
-                <StackPanel Name="MainPanel" Background="{Binding BgColor}" Height="48" Width="48" Margin="3,3,3,3">
-                <TextBlock VerticalAlignment="Center" Height="48" Width="48" 
+                <StackPanel Name="MainPanel" Background="{Binding BgColor}" Height="52" Width="52" Margin="1,1,1,1">
+                <TextBlock VerticalAlignment="Center" Height="52" Width="52" 
                            TextAlignment="Center" 
                            Margin="2" 
                            FontSize="28"
@@ -27,7 +27,7 @@
 
                     <Image Height="25"
                        Width="25" 
-                           Margin="30,-90,0,0"
+                           Margin="30,-94,0,0"
                        Name="DayImage" 
                        Source="{Binding ImagePath}"/>
                 </StackPanel>
