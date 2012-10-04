@@ -34,7 +34,10 @@ namespace Donor
             if (hasNetworkConnection) {
             this.progressOverlay.Visibility = Visibility.Visible;
             this.progressOverlay.IsEnabled = true;
-            } else {};
+            } else {
+                /// DWP-95
+                MessageBox.Show("Не удается выполнить вход. Убедитесь, что режим \"в самолете\" выключен и имеется сетевое соединение.");
+            };
         }
 
         // Load data for the ViewModel Items
