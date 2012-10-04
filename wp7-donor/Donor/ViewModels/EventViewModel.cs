@@ -566,10 +566,13 @@ namespace Donor.ViewModels
         public List<EventViewModel> WeekItems { 
             get 
             {
+                //(eventCal.Date.Month == DateTime.Now.Month) && (eventCal.Date.Year == DateTime.Now.Year) 
                 var newitems = (from eventCal in this.UserItems
-                                where (eventCal.Date.Month == DateTime.Now.Month) && (eventCal.Date.Year == DateTime.Now.Year) && (App.ViewModel.User.objectId == eventCal.UserId)
+                                where
+                                (eventCal.Date >= DateTime.Now)
+                                && (App.ViewModel.User.objectId == eventCal.UserId)
                                orderby eventCal.Date descending
-                                select eventCal).Take(10);
+                                select eventCal).Take(50);
                 List<EventViewModel> outnews = newitems.ToList();
                 return outnews;
             }
