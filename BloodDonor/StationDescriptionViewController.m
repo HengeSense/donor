@@ -118,44 +118,13 @@
     [phoneWebView loadHTMLString:phoneString baseURL:nil];
     
     maximumLabelSize = CGSizeMake(320.0f, 9999.0f);
-    labelSize = [[station objectForKey:@"description"] sizeWithFont:[UIFont fontWithName:@"Helvetica-Bold" size:12] constrainedToSize:maximumLabelSize lineBreakMode:UILineBreakModeWordWrap];
+    //labelSize = [[station objectForKey:@"description"] sizeWithFont:[UIFont fontWithName:@"Helvetica-Bold" size:12] constrainedToSize:maximumLabelSize lineBreakMode:UILineBreakModeWordWrap];
     NSString *description = [self stringByStrippingHTML:[station objectForKey:@"description"]];
     NSString *descriptionString = [NSString stringWithFormat:@"<html><head><style type='text/css'>* { margin:1; padding:1; } p { color:#847168; font-family:Helvetica; font-size:12px; font-weight:bold; text-align:left; } a { color:#0B8B99; text-align:left; font-family:Helvetica; font-size:12px; font-weight:bold; text-align:left; text-decoration:underline; }</style></head><body><p>%@</p></body></html>", description];
-    descriptionWebView.frame = CGRectMake(9.0f, phoneWebView.frame.origin.y + phoneWebView.frame.size.height + 5.0f, descriptionWebView.frame.size.width - 9.0f, labelSize.height);
+    //descriptionWebView.frame = CGRectMake(7.0f, phoneWebView.frame.origin.y + phoneWebView.frame.size.height + 5.0f, descriptionWebView.frame.size.width - 14.0f, labelSize.height);
+    [descriptionWebView setDelegate:self];
     [descriptionWebView loadHTMLString:descriptionString baseURL:nil];
     descriptionWebView.scrollView.scrollEnabled = NO;
-    
-    siteLinkWebView.frame = CGRectMake(siteLinkWebView.frame.origin.x, descriptionWebView.frame.origin.y + descriptionWebView.frame.size.height, siteLinkWebView.frame.size.width, siteLinkWebView.frame.size.height);
-    
-    NSString *htmlString = [NSString stringWithFormat:@"<html><head><style type='text/css'>* { margin:1; padding:1; } p {color:#0B8B99; font-family:Helvetica; font-size:12px; font-weight:bold; text-align:left; text-decoration:underline; } a { color:#0B8B99; text-align:left; font-family:Helvetica; font-size:12px; font-weight:bold; text-align:left; text-decoration:underline; }</style></head><body><a>%@</a></body></html>", [station objectForKey:@"url"]];
-    
-    if (![station objectForKey:@"url"])
-        siteLinkWebView.hidden = YES;
-    
-    siteLinkWebView.scrollView.scrollEnabled = NO;
-    
-    infoView.frame  = CGRectMake(0.0f, infoView.frame.origin.y, 320.0f, addressLable.frame.size.height + phoneWebView.frame.size.height + descriptionWebView.frame.size.height + siteLinkWebView.frame.size.height);
-    
-    buttonsView.frame = CGRectMake(0.0f, infoView.frame.origin.y + infoView.frame.size.height + 5.0f, 320.0f, buttonsView.frame.size.height);
-    
-    contentScrollView.contentSize = CGSizeMake(320.0f, infoView.frame.origin.y + infoView.frame.size.height + 2.0f*5.0f + buttonsView.frame.size.height/2.0f);
-    
-    [siteLinkWebView loadHTMLString:htmlString baseURL:nil];
-    
-    /*if (![station objectForKey:@"receiptTime"] && ![station objectForKey:@"transportation"] && ![station objectForKey:@"bloodFor"] && ![station objectForKey:@"giveType"] && ![station objectForKey:@"receiptTime"])
-    {
-        forDodonorsView.hidden = YES;
-    }*/
-    
-    if (([[station objectForKey:@"receiptTime"] isEqualToString:@""] || [station objectForKey:@"receiptTime"] == NULL)&&
-        ([[station objectForKey:@"transportation"] isEqualToString:@""] || [station objectForKey:@"transportation"] == NULL) &&
-        ([[station objectForKey:@"bloodFor"] isEqualToString:@""] || [station objectForKey:@"bloodFor"] == NULL) &&
-        ([[station objectForKey:@"giveType"] isEqualToString:@""] || [station objectForKey:@"giveType"] == NULL) &&
-        ([[station objectForKey:@"receiptTime"] isEqualToString:@""] || [station objectForKey:@"receiptTime"] == NULL))
-    {
-        forDodonorsView.hidden = YES;
-    }
-    
     
     indicatorView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
     indicatorView.backgroundColor = [UIColor blackColor];
@@ -169,6 +138,46 @@
     [indicatorView addSubview:indicator];
     [indicator startAnimating];
     
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView
+{
+    if (webView == descriptionWebView)
+    {
+        descriptionWebView.frame = CGRectMake(7.0f, phoneWebView.frame.origin.y + phoneWebView.frame.size.height + 5.0f, descriptionWebView.frame.size.width, descriptionWebView.scrollView.contentSize.height + 10.0f);
+        
+        siteLinkWebView.frame = CGRectMake(siteLinkWebView.frame.origin.x, descriptionWebView.frame.origin.y + descriptionWebView.frame.size.height, siteLinkWebView.frame.size.width, siteLinkWebView.frame.size.height);
+        
+        NSString *htmlString = [NSString stringWithFormat:@"<html><head><style type='text/css'>* { margin:1; padding:1; } p {color:#0B8B99; font-family:Helvetica; font-size:12px; font-weight:bold; text-align:left; text-decoration:underline; } a { color:#0B8B99; text-align:left; font-family:Helvetica; font-size:12px; font-weight:bold; text-align:left; text-decoration:underline; }</style></head><body><a>%@</a></body></html>", [station objectForKey:@"url"]];
+        
+        if (![station objectForKey:@"url"])
+            siteLinkWebView.hidden = YES;
+        else
+            [siteLinkWebView loadHTMLString:htmlString baseURL:nil];
+        
+        siteLinkWebView.scrollView.scrollEnabled = NO;
+        
+        infoView.frame  = CGRectMake(0.0f, infoView.frame.origin.y, 320.0f, siteLinkWebView.frame.origin.y + siteLinkWebView.frame.size.height + 5.0f);
+        
+        buttonsView.frame = CGRectMake(0.0f, infoView.frame.origin.y + infoView.frame.size.height + 5.0f, 320.0f, buttonsView.frame.size.height);
+        
+        contentScrollView.contentSize = CGSizeMake(320.0f, infoView.frame.origin.y + infoView.frame.size.height + 2.0f*5.0f + buttonsView.frame.size.height/2.0f);
+        
+        /*if (![station objectForKey:@"receiptTime"] && ![station objectForKey:@"transportation"] && ![station objectForKey:@"bloodFor"] && ![station objectForKey:@"giveType"] && ![station objectForKey:@"receiptTime"])
+         {
+         forDodonorsView.hidden = YES;
+         }*/
+        
+        if (([[station objectForKey:@"receiptTime"] isEqualToString:@""] || [station objectForKey:@"receiptTime"] == NULL)&&
+            ([[station objectForKey:@"transportation"] isEqualToString:@""] || [station objectForKey:@"transportation"] == NULL) &&
+            ([[station objectForKey:@"bloodFor"] isEqualToString:@""] || [station objectForKey:@"bloodFor"] == NULL) &&
+            ([[station objectForKey:@"giveType"] isEqualToString:@""] || [station objectForKey:@"giveType"] == NULL) &&
+            ([[station objectForKey:@"receiptTime"] isEqualToString:@""] || [station objectForKey:@"receiptTime"] == NULL))
+        {
+            forDodonorsView.hidden = YES;
+        }
+        
+    }
 }
 
 - (void)callbackWithResult:(NSArray *)result error:(NSError *)error
@@ -257,11 +266,11 @@
     if (inputString)
     {
         outString = [[NSString alloc] initWithString:inputString];
-        
+        NSLog(@"%@", outString);
         if ([inputString length] > 0)
         {
-            NSArray *entities = [[NSArray alloc] initWithObjects:@" **", @"** ", @"_**", @"**_", nil];
-            NSArray *plainText = [[NSArray alloc] initWithObjects:@" <i>",@"</i> ",@" <i>",@"</i> ", nil];
+            NSArray *entities = [[NSArray alloc] initWithObjects:@" **", @"** ", @"_**", @"**_", @"**", @".**",nil];
+            NSArray *plainText = [[NSArray alloc] initWithObjects:@" <i>",@"</i> ",@" <i>",@"</i> ", @"<i>",@".</i>", nil];
             
             int i = 0;
             for (NSString *entity in entities)

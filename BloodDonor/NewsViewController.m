@@ -231,8 +231,8 @@ static NSString * PODARI_ZHIZN_NEWS_URL = @"http://www.podari-zhizn.ru/main/node
         
         if ([inputString length] > 0)
         {
-            NSArray *entities = [[NSArray alloc] initWithObjects:@" **", @"** ", @"_**", @"**_", nil];
-            NSArray *plainText = [[NSArray alloc] initWithObjects:@" <i>",@"</i> ", @" <i>",@"</i> ", nil];
+            NSArray *entities = [[NSArray alloc] initWithObjects:@" **", @"** ", @"_**", @"**_", @"**", @".**", nil];
+            NSArray *plainText = [[NSArray alloc] initWithObjects:@" <i>",@"</i> ", @" <i>",@"</i> ", @"<i>",@".</i>", nil];
             
             int i = 0;
             for (NSString *entity in entities)

@@ -485,7 +485,11 @@
         testHour = [datePickerView selectedRowInComponent:1];
         testMinute = [datePickerView selectedRowInComponent:2];
         
-        [testDateButton setTitle:[NSString stringWithFormat:@"%@ %@:%@",
+        
+        [testDateButton setTitle:[NSString stringWithFormat:@"%@", [daysArray objectAtIndex:testDay]] forState:UIControlStateNormal];
+        [testDateButton setTitle:[NSString stringWithFormat:@"%@", [daysArray objectAtIndex:testDay]] forState:UIControlStateHighlighted];
+        
+        /*[testDateButton setTitle:[NSString stringWithFormat:@"%@ %@:%@",
                                   [daysArray objectAtIndex:testDay],
                                   [hoursArray objectAtIndex:testHour],
                                   [minutesArray objectAtIndex:testMinute]]
@@ -494,7 +498,7 @@
                                   [daysArray objectAtIndex:testDay],
                                   [hoursArray objectAtIndex:testHour],
                                   [minutesArray objectAtIndex:testMinute]]
-                        forState:UIControlStateHighlighted];
+                        forState:UIControlStateHighlighted];*/
     }
     else
     {
@@ -502,7 +506,10 @@
         bloodDonateHour = [datePickerView selectedRowInComponent:1];
         bloodDonateMinute = [datePickerView selectedRowInComponent:2];
         
-        [bloodDonationDateButton setTitle:[NSString stringWithFormat:@"%@ %@:%@",
+        [bloodDonationDateButton setTitle:[NSString stringWithFormat:@"%@", [daysArray objectAtIndex:bloodDonateDay]] forState:UIControlStateNormal];
+        [bloodDonationDateButton setTitle:[NSString stringWithFormat:@"%@", [daysArray objectAtIndex:bloodDonateDay]] forState:UIControlStateHighlighted];
+        
+        /*[bloodDonationDateButton setTitle:[NSString stringWithFormat:@"%@ %@:%@",
                                            [daysArray objectAtIndex:bloodDonateDay],
                                            [hoursArray objectAtIndex:bloodDonateHour],
                                            [minutesArray objectAtIndex:bloodDonateMinute]]
@@ -511,7 +518,7 @@
                                            [daysArray objectAtIndex:bloodDonateDay],
                                            [hoursArray objectAtIndex:bloodDonateHour],
                                            [minutesArray objectAtIndex:bloodDonateMinute]]
-                                 forState:UIControlStateHighlighted];
+                                 forState:UIControlStateHighlighted];*/
     }
     
     [UIView beginAnimations:nil context:nil];
@@ -830,16 +837,10 @@
             break;
     }
     
-    if (isTest)
-    {
-        [testLocationButton setTitle:[Common getInstance].eventStationAddress forState:UIControlStateNormal];
-        [testLocationButton setTitle:[Common getInstance].eventStationAddress forState:UIControlStateHighlighted];
-    }
-    else
-    {
-        [bloodDonateLocationButton setTitle:[Common getInstance].eventStationAddress forState:UIControlStateNormal];
-        [bloodDonateLocationButton setTitle:[Common getInstance].eventStationAddress forState:UIControlStateHighlighted];
-    }
+    [testLocationButton setTitle:[Common getInstance].eventStationAddress forState:UIControlStateNormal];
+    [testLocationButton setTitle:[Common getInstance].eventStationAddress forState:UIControlStateHighlighted];
+    [bloodDonateLocationButton setTitle:[Common getInstance].eventStationAddress forState:UIControlStateNormal];
+    [bloodDonateLocationButton setTitle:[Common getInstance].eventStationAddress forState:UIControlStateHighlighted];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -878,6 +879,9 @@
         [scrollView addSubview:bloodDonationView];
         
         typeDonate = [[event valueForKey:@"delivery"] intValue];
+        
+        [typeDonateButton setTitle:[typeDonateArray objectAtIndex:typeDonate] forState:UIControlStateNormal];
+        [typeDonateButton setTitle:[typeDonateArray objectAtIndex:typeDonate] forState:UIControlStateHighlighted];
         
         isTest = NO;
     }

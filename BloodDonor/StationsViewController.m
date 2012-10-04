@@ -82,6 +82,7 @@
         [searchField becomeFirstResponder];
     searchField.text = @"";
     clearButton.hidden = YES;
+    [self textFieldDidChange];
 }
 
 - (IBAction)switchView:(id)sender
@@ -141,11 +142,14 @@
 
 - (void)textFieldDidChange
 {
+    emptySearchLabel.hidden = YES;
+    
     if (![searchField.text isEqualToString:@""])
     {
         if ([self.view.subviews containsObject:fadeView])
             [fadeView removeFromSuperview];
         clearButton.hidden = NO;
+        
         NSMutableArray *insertIndexPathsArray = [NSMutableArray array];
         NSMutableArray *deleteIndexPathsArray = [NSMutableArray array];
         NSMutableIndexSet *deleteIndexSet = [NSMutableIndexSet indexSet];
@@ -505,24 +509,41 @@
         else
             emptySearchLabel.hidden = NO;
         
-        [stationsTable reloadData];
+        [self reloadData];
     }
     else
     {
         if (![self.view.subviews containsObject:fadeView])
             [self.view addSubview:fadeView];
         clearButton.hidden = YES;
-        
+       
         if (![searchTableDictionary isEqualToDictionary:tableDictionary])
         {
             [tableDictionary removeAllObjects];
             [tableDictionary setDictionary:searchTableDictionary];
-            [stationsTable reloadData];
+            [self reloadData];
         }
     }
 }
 
 #pragma mark TableView
+
+- (void)reloadData
+{
+    emptySearchLabel.hidden = YES;
+    [stationsTable reloadData];
+    NSMutableDictionary *tempDictionary = [[[NSMutableDictionary alloc] initWithObjectsAndKeys: [NSNull null], @"last",
+                                            [NSNull null], @"one",
+                                            [NSNull null], @"three",
+                                            [NSNull null], @"five",
+                                            [NSNull null], @"ten",
+                                            [NSNull null], @"fifteen",
+                                            [NSNull null], @"other",
+                                            nil] autorelease];
+    
+    if ([tableDictionary isEqual:tempDictionary])
+        emptySearchLabel.hidden = NO;
+}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -632,15 +653,12 @@
         NSRange addressRange = [address rangeOfString:searchField.text options:NSCaseInsensitiveSearch];
         
         NSString *outString = [address stringByReplacingOccurrencesOfString:[address substringWithRange:addressRange] withString:[NSString stringWithFormat:@"<search>%@</search>", [address substringWithRange:addressRange]]];
-        //address substringWithRange:
         FTCoreTextView *coreTextView = [[FTCoreTextView alloc] initWithFrame:cell.addressLabel.frame];
         coreTextView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         [cell addSubview:coreTextView];
         [coreTextView addStyles:coreTextStyle];
         [coreTextView setText:outString];
         [coreTextView fitToSuggestedHeight];
-        
-        NSLog(@"%@/n%@",[object valueForKey:@"small_adress"], outString);
     }
     else
     {
@@ -1072,9 +1090,6 @@
     if (viewControllers.count > 1)
     {
         backButton.hidden = NO;
-        filterButton.enabled = NO;
-        searchField.enabled = NO;
-         
         if (viewControllers.count > 2 && [[viewControllers objectAtIndex:viewControllers.count - 2] isKindOfClass:[EventPlanningViewController class]])
         {
             UIImage *barImageNormal = [UIImage imageNamed:@"barButtonNormal"];
@@ -1132,6 +1147,8 @@
             tableButton.enabled = NO;
             mapButton.selected = YES;
             [contentView addSubview:stationsMapView];
+            filterButton.enabled = NO;
+            searchField.enabled = NO;
         }
     }
     else
@@ -1274,7 +1291,7 @@
     }
     
     [indicatorView removeFromSuperview];
-    [stationsTable reloadData];
+    [self reloadData];
     [self reloadMapAnnotations];
 }
 

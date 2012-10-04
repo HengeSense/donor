@@ -22,19 +22,36 @@
     [self.navigationController pushViewController:controller animated:YES];
 }
 
+- (void)cancelEditPressed
+{
+    hiddenView.hidden = NO;
+    [editButton setTitle:@"Изменить" forState:UIControlStateNormal];
+    [editButton setTitle:@"Изменить" forState:UIControlStateHighlighted];
+    nameTextField.enabled = NO;
+    nameTextField.textColor = [UIColor colorWithRed:132.0f/255.0f green:113.0f/255.0f blue:104.0f/255.0f alpha:1];
+    //Приватное свойство!
+    [nameTextField setValue:[UIColor colorWithRed:132.0f/255.0f green:113.0f/255.0f blue:104.0f/255.0f alpha:1] forKeyPath:@"_placeholderLabel.textColor"];
+    sexButton.enabled = NO;
+    bloodGroupButton.enabled = NO;
+    
+    UIButton *settingsButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    UIImage *settingsImageNormal = [UIImage imageNamed:@"settingsButtonNormal"];
+    UIImage *settingsImagePressed = [UIImage imageNamed:@"settingsButtonPressed"];
+    CGRect settingsButtonFrame = CGRectMake(0, 0, settingsImageNormal.size.width, settingsImageNormal.size.height);
+    [settingsButton setImage:settingsImageNormal forState:UIControlStateNormal];
+    [settingsButton setImage:settingsImagePressed forState:UIControlStateHighlighted];
+    settingsButton.frame = settingsButtonFrame;
+    [settingsButton addTarget:self action:@selector(settingsButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIBarButtonItem *settingsBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:settingsButton] autorelease];
+    self.navigationItem.leftBarButtonItem = settingsBarButtonItem;
+}
+
 - (IBAction)editButtonClick:(id)sender
 {
     if (hiddenView.hidden)
     {
-        hiddenView.hidden = NO;
-        [editButton setTitle:@"Изменить" forState:UIControlStateNormal];
-        [editButton setTitle:@"Изменить" forState:UIControlStateHighlighted];
-        nameTextField.enabled = NO;
-        nameTextField.textColor = [UIColor colorWithRed:132.0f/255.0f green:113.0f/255.0f blue:104.0f/255.0f alpha:1];
-        //Приватное свойство!
-        [nameTextField setValue:[UIColor colorWithRed:132.0f/255.0f green:113.0f/255.0f blue:104.0f/255.0f alpha:1] forKeyPath:@"_placeholderLabel.textColor"];
-        sexButton.enabled = NO;
-        bloodGroupButton.enabled = NO;
+        [self cancelEditPressed];
         
         [Common getInstance].name = nameTextField.text;
         
@@ -60,6 +77,23 @@
         [Common getInstance].sex = [[PFUser currentUser] valueForKey:@"Sex"];
         [Common getInstance].bloodGroup = [[PFUser currentUser] valueForKey:@"BloodGroup"];
         [Common getInstance].bloodRH = [[PFUser currentUser] valueForKey:@"BloodRh"];
+        
+        UIImage *barImageNormal = [UIImage imageNamed:@"barButtonNormal"];
+        UIImage *barImagePressed = [UIImage imageNamed:@"barButtonPressed"];
+        
+        UIButton *cancelButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        CGRect cancelButtonFrame = CGRectMake(0, 0, barImageNormal.size.width, barImageNormal.size.height);
+        [cancelButton setBackgroundImage:barImageNormal forState:UIControlStateNormal];
+        [cancelButton setBackgroundImage:barImagePressed forState:UIControlStateHighlighted];
+        [cancelButton setTitle:@"Отмена" forState:UIControlStateNormal];
+        [cancelButton setTitle:@"Отмена" forState:UIControlStateHighlighted];
+        cancelButton.titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:12];
+        cancelButton.frame = cancelButtonFrame;
+        [cancelButton addTarget:self action:@selector(cancelEditPressed) forControlEvents:UIControlEventTouchUpInside];
+        
+        UIBarButtonItem *cancelBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:cancelButton] autorelease];
+        [cancelBarButtonItem setTitlePositionAdjustment:UIOffsetMake(0, -1) forBarMetrics:UIBarMetricsDefault];
+        self.navigationItem.leftBarButtonItem = cancelBarButtonItem;
     }
 }
 
@@ -256,21 +290,24 @@
     NSDate *date = [NSDate date];
        
     PFRelation *relation = [user relationforKey:@"events"];
-    [[relation query] whereKey:@"date" greaterThanOrEqualTo:date];
-    [[relation query] orderByAscending:@"date"];
-    [[relation query] getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error)
+    PFQuery *query = [relation query];
+    [query whereKey:@"date" notEqualTo:[NSNull null]];
+    [query orderByAscending:@"date"];
+    [query whereKey:@"date" greaterThanOrEqualTo:date];
+    [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error)
         {
             if (object)
             {
                 nextBloodDonateDateLabel.text = [dateFormat stringFromDate:[object valueForKey:@"date"]];
+                NSLog(@"%@", object);
             }
             else
             {
-                nextBloodDonateDateLabel.text = @"";
+                nextBloodDonateDateLabel.text = @"-";
             }
 
         }];
-}   
+}
 
 - (void)viewDidDisappear:(BOOL)animated
 {

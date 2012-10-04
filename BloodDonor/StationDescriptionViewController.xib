@@ -263,7 +263,7 @@
 									<object class="IBUIWebView" id="846175992">
 										<reference key="NSNextResponder" ref="736914862"/>
 										<int key="NSvFlags">292</int>
-										<string key="NSFrame">{{0, 75}, {320, 34}}</string>
+										<string key="NSFrame">{{7, 75}, {306, 34}}</string>
 										<reference key="NSSuperview" ref="736914862"/>
 										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="826655222"/>
@@ -1213,10 +1213,6 @@
 		</object>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaTouchFramework</string>
-		<object class="NSMutableDictionary" key="IBDocument.PluginDeclaredDependencyDefaults">
-			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaTouchPlugin.iPhoneOS</string>
-			<real value="1536" key="NS.object.0"/>
-		</object>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">

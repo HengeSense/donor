@@ -31,5 +31,5 @@
 - (IBAction)sexButtonClick:(id)sender;
 - (IBAction)bloodGroupButtonClick:(id)sender;
 - (IBAction)exitButtonClick:(id)sender;
-
+- (void)cancelEditPressed;
 @end
