@@ -52,6 +52,11 @@
         </DataTemplate>
 
     </phone:PhoneApplicationPage.Resources>
+	<!--<phone:PhoneApplicationPage.ApplicationBar>
+		<shell:ApplicationBar>
+			<shell:ApplicationBarIconButton x:Name="button1" IconUri="appbar_button.png" Text="button"/>
+		</shell:ApplicationBar>
+	</phone:PhoneApplicationPage.ApplicationBar>-->
 	<phone:PhoneApplicationPage.Background>
 		<ImageBrush Stretch="Fill" ImageSource="images/bg_04_white.png"/>
 	</phone:PhoneApplicationPage.Background>
@@ -61,8 +66,14 @@
     	<Grid.Background>
             <ImageBrush ImageSource="images/bg_04_white.png"/>
         </Grid.Background>
+        <!--<Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Image Name="Test" Width="43" Source="images/ic_comment.png" Margin="218,104,218,178" />-->
+        
         <!--Pivot Control-->
-        <toolkit:LockablePivot Name="Monthes" 
+        <toolkit:LockablePivot Name="Monthes" Grid.Row="1"
 		Title="{Binding Path=Events.CurrentDateYear}" 
 		Loaded="Pivot_Loaded" SelectionChanged="Monthes_SelectionChanged">
 
@@ -127,12 +138,13 @@
             </controls:PivotItem>
 
         </toolkit:LockablePivot>
-        <WPExtensions:AdvancedApplicationBar Name="AppBar" IsVisible="True" IsMenuEnabled="False" Background="#FF211E1D" BackgroundColor="#FF211E1D" Foreground="White" BorderBrush="#FF211E1D" ForegroundColor="White" OpacityMask="White">
-        <WPExtensions:AdvancedApplicationBarIconButton IconUri="/icons/ic_ApplicationBar_calendar.png" Text="Сегодня" Name="TodayButton" Click="TodayButton_Click" />
+        <!--<WPExtensions:AdvancedApplicationBar Name="AppBar" IsVisible="True" IsMenuEnabled="False" Background="#FF211E1D" BackgroundColor="#FF211E1D" Foreground="White" BorderBrush="#FF211E1D" ForegroundColor="White" OpacityMask="White">
+        <WPExtensions:AdvancedApplicationBarIconButton IconUri="/icons/ic_ApplicationBar_calendar.png" Text="Сегодня" Name="TodayButton" Click="TodayButton_Click">
+        </WPExtensions:AdvancedApplicationBarIconButton>
         <WPExtensions:AdvancedApplicationBarIconButton IconUri="/icons/ic_ApplicationBar_add.png" Text="Добавить событие" Visibility="Visible" Name="AddEventButton" Click="AddEventButton_Click" />
         <WPExtensions:AdvancedApplicationBarIconButton IconUri="/icons/ic_ApplicationBar_calendar.png" Text="Календарь" Name="MonthCalendarButton" Click="MonthCalendarButton_Click" />
 
-</WPExtensions:AdvancedApplicationBar>
+</WPExtensions:AdvancedApplicationBar>-->
 </Grid>
     
 </phone:PhoneApplicationPage>

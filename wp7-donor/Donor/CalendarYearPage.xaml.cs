@@ -61,7 +61,7 @@ namespace Donor
             this.EventsList.ItemsSource = App.ViewModel.Events.ThisMonthItems;
             this.EventsListNext.ItemsSource = App.ViewModel.Events.NextMonthItems;
 
-            this.NextMonth.Header = App.ViewModel.Events.NextMonthString;
+             this.NextMonth.Header = App.ViewModel.Events.NextMonthString;
             this.ThisMonth.Header = App.ViewModel.Events.CurrentMonthString;
             this.PrevMonth.Header = App.ViewModel.Events.PrevMonthString;
 
@@ -69,39 +69,72 @@ namespace Donor
 
             //var bmp = new WriteableBitmap(173, 173);
             var logo = new BitmapImage(new Uri("icons/empty.png", UriKind.Relative));
-            //var img = new Image { Source = logo };
+            var img2 = new Image { Source = logo };
 
             logo.CreateOptions = BitmapCreateOptions.None;
-            logo.ImageOpened += (sender1, e1) =>
-            {
+            //logo.ImageOpened += (sender1, e1) =>
+            //{
                 var bmp = new WriteableBitmap(48, 48);
                 var img = new Image { Source = logo };
 
+                var Stack = new StackPanel();
+                /*var bl2 = new TextBlock();
+                bl2.Foreground = new SolidColorBrush(Colors.White);
+                bl2.FontSize = 10.0;
+                bl2.Text = DateTime.Now.Day.ToString();
+                Stack.Children.Add(bl2);*/
                 var bl = new TextBlock();
                 bl.Foreground = new SolidColorBrush(Colors.White);
-                bl.FontSize = 10.0;
-                bl.Text = CultureInfo.CurrentCulture.DateTimeFormat.MonthNames[
+                bl.FontSize = 14.0;
+                bl.TextWrapping = TextWrapping.Wrap;
+                bl.HorizontalAlignment = System.Windows.HorizontalAlignment.Center;
+                bl.Text = DateTime.Now.Day.ToString()+"\n"+CultureInfo.CurrentCulture.DateTimeFormat.MonthNames[
 DateTime.Now.Month - 1];
 
-                bmp.Render(bl, null);
+                Stack.Children.Add(bl);
+
+                bmp.Render(Stack, null);
 
                 var tt = new TranslateTransform();
-                tt.X = 173 - logo.PixelWidth;
-                tt.Y = 173 - logo.PixelHeight;
+                tt.X = 48 - logo.PixelWidth;
+                tt.Y = 48 - logo.PixelHeight;
 
                 bmp.Render(img, tt);
-
                 bmp.Invalidate();
 
                 using (var store = IsolatedStorageFile.GetUserStoreForApplication())
                 {
-                    var filename = "/icons/testtile.jpg";
-                    using (var st = new IsolatedStorageFileStream(filename, FileMode.Create, FileAccess.Write, store))
+                    var filename = "/Shared/ShellContent/testtile.jpg";
+                    if (!store.DirectoryExists("/Shared/ShellContent"))
+                    {
+                        store.CreateDirectory("/Shared/ShellContent");
+                    }
+                    if (store.FileExists(filename))
+                    {
+                        //store.DeleteFile(filename);
+                    }
+                        //"/icons/testtile.jpg";
+                    using (var st = store.OpenFile(filename, System.IO.FileMode.OpenOrCreate))
                     {
                         bmp.SaveJpeg(st, 48, 48, 0, 100);
-                    }
+                        //st.Close();
+                    };
+
+                    BitmapImage bi = new BitmapImage();
+                    using (IsolatedStorageFileStream fileStream = store.OpenFile(filename, FileMode.Open, FileAccess.Read))
+                    {
+                        bi.SetSource(fileStream);
+                    };
+
+                    //this.TodayButton.IconUri = new Uri("isostore:" + filename, UriKind.Absolute);
+                    //this.TodayButton.
+                    //this.button1.IconUri = new Uri(filename, UriKind.RelativeOrAbsolute);
+                    //Uri uri = new Uri("isostore:" + filename, UriKind.Absolute);
+                    ImageSource imgSource = bi;
+
+                    this.Test.Source = imgSource;
                 }
-            };
+            //};
         }
 
 
