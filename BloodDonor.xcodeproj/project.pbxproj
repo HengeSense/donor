@@ -209,7 +209,6 @@
 		8580F64515ECB26600376079 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8580F64415ECB26600376079 /* Default@2x.png */; };
 		8580F64815ECB29200376079 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 8580F64715ECB29200376079 /* Default.png */; };
 		8585E172161A991E00275AE7 /* userLocation@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8585E170161A991E00275AE7 /* userLocation@2x.png */; };
-		8585E173161A991E00275AE7 /* userLocationMarker@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8585E171161A991E00275AE7 /* userLocationMarker@2x.png */; };
 		8585E17D161AB04C00275AE7 /* check.png in Resources */ = {isa = PBXBuildFile; fileRef = 8585E179161AB04C00275AE7 /* check.png */; };
 		8585E17E161AB04C00275AE7 /* check@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8585E17A161AB04C00275AE7 /* check@2x.png */; };
 		8585E17F161AB04C00275AE7 /* clearButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 8585E17B161AB04C00275AE7 /* clearButton.png */; };
@@ -219,6 +218,7 @@
 		8585E1AA161B0A5D00275AE7 /* FTCoreTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8585E1A8161B0A5D00275AE7 /* FTCoreTextView.m */; };
 		858B436B15B6B03200A7A67D /* ProfileSexSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 858B436915B6B03200A7A67D /* ProfileSexSelectViewController.m */; };
 		858B436C15B6B03200A7A67D /* ProfileSexSelectViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 858B436A15B6B03200A7A67D /* ProfileSexSelectViewController.xib */; };
+		858EE0AB161D38D000A09858 /* userLocation.png in Resources */ = {isa = PBXBuildFile; fileRef = 858EE0AA161D38D000A09858 /* userLocation.png */; };
 		8593A8BA15D0DB1100EA51F2 /* StationDescriptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8593A8B815D0DB1100EA51F2 /* StationDescriptionViewController.m */; };
 		8593A8BB15D0DB1100EA51F2 /* StationDescriptionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8593A8B915D0DB1100EA51F2 /* StationDescriptionViewController.xib */; };
 		8593A8BF15D0DF4300EA51F2 /* StationForDonorsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8593A8BD15D0DF4200EA51F2 /* StationForDonorsViewController.m */; };
@@ -659,7 +659,6 @@
 		8580F64415ECB26600376079 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		8580F64715ECB29200376079 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		8585E170161A991E00275AE7 /* userLocation@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "userLocation@2x.png"; sourceTree = "<group>"; };
-		8585E171161A991E00275AE7 /* userLocationMarker@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "userLocationMarker@2x.png"; sourceTree = "<group>"; };
 		8585E179161AB04C00275AE7 /* check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = check.png; sourceTree = "<group>"; };
 		8585E17A161AB04C00275AE7 /* check@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "check@2x.png"; sourceTree = "<group>"; };
 		8585E17B161AB04C00275AE7 /* clearButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clearButton.png; sourceTree = "<group>"; };
@@ -672,6 +671,7 @@
 		858B436815B6B03200A7A67D /* ProfileSexSelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileSexSelectViewController.h; sourceTree = "<group>"; };
 		858B436915B6B03200A7A67D /* ProfileSexSelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileSexSelectViewController.m; sourceTree = "<group>"; };
 		858B436A15B6B03200A7A67D /* ProfileSexSelectViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileSexSelectViewController.xib; sourceTree = "<group>"; };
+		858EE0AA161D38D000A09858 /* userLocation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = userLocation.png; sourceTree = "<group>"; };
 		8593A8B715D0DB1100EA51F2 /* StationDescriptionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StationDescriptionViewController.h; sourceTree = "<group>"; };
 		8593A8B815D0DB1100EA51F2 /* StationDescriptionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StationDescriptionViewController.m; sourceTree = "<group>"; };
 		8593A8B915D0DB1100EA51F2 /* StationDescriptionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StationDescriptionViewController.xib; sourceTree = "<group>"; };
@@ -1134,12 +1134,12 @@
 		3758525915AEE959006DF7E1 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				858EE0AA161D38D000A09858 /* userLocation.png */,
 				8585E179161AB04C00275AE7 /* check.png */,
 				8585E17A161AB04C00275AE7 /* check@2x.png */,
 				8585E17B161AB04C00275AE7 /* clearButton.png */,
 				8585E17C161AB04C00275AE7 /* clearButton@2x.png */,
 				8585E170161A991E00275AE7 /* userLocation@2x.png */,
-				8585E171161A991E00275AE7 /* userLocationMarker@2x.png */,
 				8512457D1603443B00752AE1 /* tutorialDotActive.png */,
 				8512457E1603443B00752AE1 /* tutorialDotActive@2x.png */,
 				8512457F1603443B00752AE1 /* tutorialDotNormal.png */,
@@ -1916,11 +1916,11 @@
 				8512459F1603443B00752AE1 /* tutorialImage7.png in Resources */,
 				851245A01603443B00752AE1 /* tutorialImage7@2x.png in Resources */,
 				8585E172161A991E00275AE7 /* userLocation@2x.png in Resources */,
-				8585E173161A991E00275AE7 /* userLocationMarker@2x.png in Resources */,
 				8585E17D161AB04C00275AE7 /* check.png in Resources */,
 				8585E17E161AB04C00275AE7 /* check@2x.png in Resources */,
 				8585E17F161AB04C00275AE7 /* clearButton.png in Resources */,
 				8585E180161AB04C00275AE7 /* clearButton@2x.png in Resources */,
+				858EE0AB161D38D000A09858 /* userLocation.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
