@@ -120,22 +120,64 @@ namespace Donor.ViewModels
             }
             get
             {
-                if (this.Type == "0") 
-                    return "/images/ic_planned_analysis.png";
+                if (this.Type == "0")
+                    return "/icons/ic_planned_analysis.png";
                 if (this.Type == "1")
                 {
                     if (this.Finished == false)
                     {
-                        return "/images/ic_planned_giving_blood.png";
+                        switch (this.GiveType) {
+                            //"Тромбоциты", "Плазма", "Цельная кровь"
+                            case "Цельная кровь": return "/icons/ic_whole_blood.png";
+                            case "Тромбоциты": return "/icons/ic_platelets.png";
+                            case "Плазма": return "/icons/ic_plasma.png";
+                            default: return "/icons/ic_planned_giving_blood.png";
+                        };
+                        return "/icons/ic_planned_giving_blood.png";
                     }
                     else
                     {
-                        return "/images/ic_donated_blood.png";
+                        return "/icons/ic_donated_blood.png";
                     };
                     
                 }
                 if (this.Type == "2")
-                    return "/images/ic_donors_act.png";
+                    return "/icons/ic_donors_act.png";
+                return "";
+            }
+        }
+
+        public string SmallImage
+        {
+            private set
+            {
+            }
+            get
+            {
+                if (this.Type == "0")
+                    return "/icons/ic_calendar_planned_analysis.png";
+                if (this.Type == "1")
+                {
+                    if (this.Finished == false)
+                    {
+                        switch (this.GiveType)
+                        {
+                            //"Тромбоциты", "Плазма", "Цельная кровь"
+                            case "Цельная кровь": return "/icons/ic_calendar_whole_blood.png";
+                            case "Тромбоциты": return "/icons/ic_calendar_platelets.png";
+                            case "Плазма": return "/icons/ic_calendar_plasma.png";
+                            default: return "/icons/ic_calendar_planned_giving_blood.png";
+                        };
+                        return "/icons/ic_calendar_planned_giving_blood.png";
+                    }
+                    else
+                    {
+                        return "/icons/ic_donated_blood.png";
+                    };
+
+                }
+                if (this.Type == "2")
+                    return "/icons/ic_donors_act.png";
                 return "";
             }
         }

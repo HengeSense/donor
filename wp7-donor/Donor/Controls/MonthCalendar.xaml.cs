@@ -97,7 +97,7 @@ namespace Donor.Controls
                     day2.BgColor = new SolidColorBrush(Colors.Red);
                 };
                 if (day2.EventDay != null) {
-                    day2.ImagePath = day2.EventDay.BigImage.ToString();
+                    day2.ImagePath = day2.EventDay.SmallImage.ToString();
                 };
 
                 day2.MonthNumber = Date.Month;

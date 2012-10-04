@@ -27,7 +27,7 @@
 
                     <Image Height="25"
                        Width="25" 
-                           Margin="0,-34,0,0"
+                           Margin="30,-90,0,0"
                        Name="DayImage" 
                        Source="{Binding ImagePath}"/>
                 </StackPanel>
