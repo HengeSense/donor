@@ -86,7 +86,7 @@ namespace Donor.ViewModels
             {
                 int gived = 0;
                 gived = (from item in App.ViewModel.Events.UserItems
-                         where item.Type == "1"
+                         where item.Type == "1" && item.Finished==true
                         select item).Count();
                 return gived;
             }

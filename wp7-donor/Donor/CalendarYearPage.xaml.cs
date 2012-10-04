@@ -132,7 +132,7 @@ DateTime.Now.Month - 1];
                     //Uri uri = new Uri("isostore:" + filename, UriKind.Absolute);
                     ImageSource imgSource = bi;
 
-                    this.Test.Source = imgSource;
+                    //this.Test.Source = imgSource;
                 }
             //};
         }
