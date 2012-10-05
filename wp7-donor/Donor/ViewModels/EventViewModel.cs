@@ -576,10 +576,11 @@ namespace Donor.ViewModels
                 //(eventCal.Date.Month == DateTime.Now.Month) && (eventCal.Date.Year == DateTime.Now.Year) 
                 var newitems = (from eventCal in this.UserItems
                                 where
+                                (eventCal.Type != "Праздник") &&
                                 (eventCal.Date >= DateTime.Now)
                                 && (App.ViewModel.User.objectId == eventCal.UserId)
                                orderby eventCal.Date descending
-                                select eventCal).Take(50);
+                                select eventCal).Take(10);
                 List<EventViewModel> outnews = newitems.ToList();
                 return outnews;
             }

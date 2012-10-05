@@ -69,9 +69,7 @@ namespace Donor
                         App.ViewModel.Events.CurrentMonth = App.ViewModel.Events.CurrentMonth.AddMonths(-1);
 
                         this.Calendar1.Items = App.ViewModel.Events.Items;
-
                         this.Calendar1.UpdateCalendar();
-
                         this.PageTitle.Text = CultureInfo.CurrentCulture.DateTimeFormat.MonthNames[App.ViewModel.Events.CurrentMonth.Month - 1];
                         this.ApplicationTitle.Text = App.ViewModel.Events.CurrentMonth.Year.ToString();
                     }
@@ -90,6 +88,25 @@ namespace Donor
                 {
                 }
             };
+        }
+
+        private void TodayButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                App.ViewModel.Events.CurrentMonth = DateTime.Now;
+
+                this.Calendar1.Items = App.ViewModel.Events.Items;
+                this.Calendar1.UpdateCalendar();
+                this.PageTitle.Text = CultureInfo.CurrentCulture.DateTimeFormat.MonthNames[App.ViewModel.Events.CurrentMonth.Month - 1];
+                this.ApplicationTitle.Text = App.ViewModel.Events.CurrentMonth.Year.ToString();
+            }
+            catch { };
+        }
+
+        private void AddEventButton_Click(object sender, EventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/EventEditPage.xaml", UriKind.Relative));
         }
 
 

@@ -8,6 +8,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
+                            xmlns:WPExtensions="clr-namespace:WPExtensions;assembly=WPExtensions"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
@@ -66,7 +67,15 @@
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="0,0,0,0">
             <my:MonthCalendar x:Name="Calendar1" Margin="0,0,0,0"/>
+
+            <WPExtensions:AdvancedApplicationBar Name="AppBar" IsVisible="True" IsMenuEnabled="False" Background="#FF211E1D" BackgroundColor="#FF211E1D" Foreground="White" BorderBrush="#FF211E1D" ForegroundColor="White" OpacityMask="White">
+                <WPExtensions:AdvancedApplicationBarIconButton IconUri="/icons/ic_ApplicationBar_undo.png" Text="Сегодня" Name="TodayButton" Click="TodayButton_Click"/>
+                <WPExtensions:AdvancedApplicationBarIconButton IconUri="/icons/ic_ApplicationBar_add.png" Text="Добавить событие" Visibility="Visible" Name="AddEventButton" Click="AddEventButton_Click" />
+
+            </WPExtensions:AdvancedApplicationBar>
         </Grid>
+        
+        
     </Grid>
 
 
