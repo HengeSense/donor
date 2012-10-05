@@ -61,13 +61,10 @@ namespace Donor
             this.EventsList.ItemsSource = App.ViewModel.Events.ThisMonthItems;
             this.EventsListNext.ItemsSource = App.ViewModel.Events.NextMonthItems;
 
-             this.NextMonth.Header = App.ViewModel.Events.NextMonthString;
+            this.NextMonth.Header = App.ViewModel.Events.NextMonthString;
             this.ThisMonth.Header = App.ViewModel.Events.CurrentMonthString;
             this.PrevMonth.Header = App.ViewModel.Events.PrevMonthString;
 
-
-
-            //var bmp = new WriteableBitmap(173, 173);
             var logo = new BitmapImage(new Uri("icons/empty.png", UriKind.Relative));
             var img2 = new Image { Source = logo };
 
@@ -78,11 +75,6 @@ namespace Donor
                 var img = new Image { Source = logo };
 
                 var Stack = new StackPanel();
-                /*var bl2 = new TextBlock();
-                bl2.Foreground = new SolidColorBrush(Colors.White);
-                bl2.FontSize = 10.0;
-                bl2.Text = DateTime.Now.Day.ToString();
-                Stack.Children.Add(bl2);*/
                 var bl = new TextBlock();
                 bl.Foreground = new SolidColorBrush(Colors.White);
                 bl.FontSize = 14.0;
@@ -109,15 +101,10 @@ DateTime.Now.Month - 1];
                     {
                         store.CreateDirectory("/Shared/ShellContent");
                     }
-                    if (store.FileExists(filename))
-                    {
-                        //store.DeleteFile(filename);
-                    }
-                        //"/icons/testtile.jpg";
+                    if (store.FileExists(filename)) {}
                     using (var st = store.OpenFile(filename, System.IO.FileMode.OpenOrCreate))
                     {
                         bmp.SaveJpeg(st, 48, 48, 0, 100);
-                        //st.Close();
                     };
 
                     BitmapImage bi = new BitmapImage();
@@ -125,16 +112,8 @@ DateTime.Now.Month - 1];
                     {
                         bi.SetSource(fileStream);
                     };
-
-                    //this.TodayButton.IconUri = new Uri("isostore:" + filename, UriKind.Absolute);
-                    //this.TodayButton.
-                    //this.button1.IconUri = new Uri(filename, UriKind.RelativeOrAbsolute);
-                    //Uri uri = new Uri("isostore:" + filename, UriKind.Absolute);
                     ImageSource imgSource = bi;
-
-                    //this.Test.Source = imgSource;
                 }
-            //};
         }
 
 
@@ -337,8 +316,10 @@ DateTime.Now.Month - 1];
             try
             {
                 string id = ((sender as ListBox).SelectedItem as EventViewModel).Id;
-
-                NavigationService.Navigate(new Uri("/EventPage.xaml?id=" + id, UriKind.Relative));
+                if (((sender as ListBox).SelectedItem as EventViewModel).Type != "empty")
+                {
+                    NavigationService.Navigate(new Uri("/EventPage.xaml?id=" + id, UriKind.Relative));
+                };
             }
             catch
             {

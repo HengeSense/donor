@@ -57,7 +57,14 @@ namespace Donor.ViewModels
         {
             get
             {
-                return _date.ToShortDateString();
+                if (this.Type == "empty")
+                { 
+                    return " ";
+                }
+                else
+                {
+                    return _date.ToShortDateString();
+                };
             }
             private set { }
         }
@@ -588,6 +595,19 @@ namespace Donor.ViewModels
                                 orderby eventCal.Date descending
                                 select eventCal);
                 List<EventViewModel> outnews = newitems.ToList();
+
+                var emptyItem = new EventViewModel();
+                emptyItem.Date = CurrentMonth;
+                emptyItem.Type = "empty";
+                emptyItem.Title = "";
+
+                int addi = 14 - outnews.Count();
+                if (addi > 0) {
+                    for(var ii=0;ii<addi;ii++) {
+                        outnews.Add(emptyItem);
+                    };
+                };
+
                 return outnews;
             }
             private set { }
