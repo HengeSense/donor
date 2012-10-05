@@ -65,9 +65,48 @@ namespace Donor
             mapitem.Adress = "Текущее положение";
             items.Add(mapitem);
 
+
+            ///
+            /// Set filtered collection
+            ///
+            List<StationViewModel> filteredItems = new List<StationViewModel>();
+            if (App.ViewModel.Stations.IsFilter == false)
+            {
+                if (App.ViewModel.Stations.FilteredText == "")
+                {
+                    filteredItems = App.ViewModel.Stations.DistanceItems;
+                }
+                else
+                {
+                    filteredItems = (from stations in App.ViewModel.Stations.Items
+                                                    where (stations.Title.ToLower().Contains(App.ViewModel.Stations.FilteredText.ToLower()))
+                                                    orderby stations.Distance ascending
+                                     select stations).ToList();
+                };
+            }
+            else
+            {
+                if (App.ViewModel.Stations.FilteredText == "")
+                {
+                    filteredItems = (from stations in App.ViewModel.Stations.Items
+                                                    where (stations.City == App.ViewModel.Stations.SelectedCity)
+                                                    && (((!App.ViewModel.Stations.IsChildrenDonor) || (stations.DonorsForChildrens == App.ViewModel.Stations.IsChildrenDonor)) && ((!App.ViewModel.Stations.IsRegional) || (stations.RegionalRegistration == App.ViewModel.Stations.IsRegional)) && ((!App.ViewModel.Stations.IsSaturdayWork) || (stations.SaturdayWork == App.ViewModel.Stations.IsSaturdayWork)))
+                                                    orderby stations.Distance ascending
+                                                    select stations).ToList();
+                }
+                else
+                {
+                    filteredItems = (from stations in App.ViewModel.Stations.Items
+                                                    where (stations.City == App.ViewModel.Stations.SelectedCity)
+                                                    && ((stations.DonorsForChildrens == App.ViewModel.Stations.IsChildrenDonor) && (stations.RegionalRegistration == App.ViewModel.Stations.IsRegional) && (stations.SaturdayWork == App.ViewModel.Stations.IsSaturdayWork)) && (stations.Title.ToLower().Contains(App.ViewModel.Stations.FilteredText.ToLower())) && (stations.Title.ToLower().Contains(App.ViewModel.Stations.FilteredText.ToLower()))
+                                                    orderby stations.Distance ascending
+                                                    select stations).ToList();
+                };
+            };
+
             if (_currentStation == null)
             {
-                foreach (var item in App.ViewModel.Stations.Items)
+                foreach (var item in filteredItems)
                 {
                     mapitem = new ARStation();
                     mapitem.GeoLocation = new GeoCoordinate(Convert.ToDouble(item.Lat.ToString()), Convert.ToDouble(item.Lon.ToString()));

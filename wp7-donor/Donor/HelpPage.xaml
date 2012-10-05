@@ -149,11 +149,15 @@ ScrollViewer.VerticalScrollBarVisibility="Disabled">
                             </toolkit:AutoCompleteBox>
 
                         </StackPanel>
-                        <ScrollViewer Height="550">
+                        <ScrollViewer Height="510">
                             <StackPanel>
 
 <ListBox Name="SearchContra" 
-ScrollViewer.VerticalScrollBarVisibility="Disabled">                                    <ListBox.ItemTemplate>                              <DataTemplate>                            <StackPanel Margin="0,0,0,15">                      <TextBlock Text="{Binding Title}" TextWrapping="Wrap"/>
+ScrollViewer.VerticalScrollBarVisibility="Disabled">                                    
+    <ListBox.ItemTemplate>                              
+        <DataTemplate>                            
+            <StackPanel Margin="0,0,0,15">                      
+                <TextBlock Text="{Binding Title}" TextWrapping="Wrap"/>
 </StackPanel>
 </DataTemplate>
 </ListBox.ItemTemplate>
@@ -171,7 +175,7 @@ Visibility="Collapsed" ScrollViewer.VerticalScrollBarVisibility="Disabled">     
 </DataTemplate>
 </ListBox.ItemTemplate>
 </ListBox>
-                                <TextBlock 
+                                <TextBlock Height="100"
 								Text="Временные противопоказания" 
 								Style="{StaticResource Text36pxC0A89A}" 
 								TextWrapping="Wrap" Name="RelText" Tap="RelText_Tap" />

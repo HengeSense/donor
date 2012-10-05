@@ -142,7 +142,14 @@ namespace Donor.ViewModels
                     _outbody = _outbody.Replace(item.ToString(), item1);
                 };
 
-
+                pattern = @"\*.*\*";
+                rgx = new Regex(pattern);
+                items = rgx.Matches(_outbody);
+                foreach (var item in items)
+                {
+                    string item1 = "<i>" + item.ToString().Trim('*') + "</i>";
+                    _outbody = _outbody.Replace(item.ToString(), item1);
+                };
 
                 pattern = @"\[([^]]*)\]\s*\(([^)]*)\)";
                 rgx = new Regex(pattern);
