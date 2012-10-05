@@ -42,8 +42,16 @@ namespace Donor
         {
             try
             {
-                string id = ((sender as ListBox).SelectedItem as StationViewModel).objectId;
-                NavigationService.Navigate(new Uri("/StationPage.xaml?id="+id, UriKind.Relative));
+                if (task != "select")
+                {
+                    string id = ((sender as ListBox).SelectedItem as StationViewModel).Nid.ToString();
+                    NavigationService.Navigate(new Uri("/StationPage.xaml?id=" + id, UriKind.Relative));
+                }
+                else
+                {
+                    App.ViewModel.Stations.SelectedStation = ((sender as ListBox).SelectedItem as StationViewModel).Nid.ToString();
+                    NavigationService.GoBack();
+                };
             }
             catch
             {
@@ -192,6 +200,17 @@ namespace Donor
                 {
                 };
             };
+        }
+
+        private string task; 
+
+        private void LayoutRoot_Loaded(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                this.task = this.NavigationContext.QueryString["task"];
+            }
+            catch { };
         }
 
     }

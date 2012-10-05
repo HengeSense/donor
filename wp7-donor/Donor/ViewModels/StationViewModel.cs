@@ -59,6 +59,9 @@ namespace Donor.ViewModels
 
         public bool IsFilter { get; set; }
 
+        //selected station for edit
+        public string SelectedStation { get; set; }
+
         public void LoadStations()
         {
             myCoordinateWatcher = new GeoCoordinateWatcher(GeoPositionAccuracy.Default);

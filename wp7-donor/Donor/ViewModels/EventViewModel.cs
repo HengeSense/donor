@@ -240,6 +240,8 @@ namespace Donor.ViewModels
         }
 
         public string UserId { get; set; }
+
+        public long Station_nid { get; set; }
     }
 
     public class EventsListViewModel: INotifyPropertyChanged
@@ -493,6 +495,8 @@ namespace Donor.ViewModels
             App.ViewModel.CreateApplicationTile(App.ViewModel.Events.NearestEvents());
             App.ViewModel.SaveToIsolatedStorage();
         }
+
+        public EventViewModel EditedEvent { get; set; }
 
         public void LoadDonorsSaturdays()
         {
