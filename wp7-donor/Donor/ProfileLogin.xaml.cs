@@ -142,12 +142,7 @@ namespace Donor
                 {
                     App.ViewModel.User.IsLoggedIn = false;
 
-                    this.email1.Text = this.email.Text.ToString();
-                    this.password1.Password = this.password.Password;
-
-                    this.RegisterForm.Visibility = Visibility.Visible;
-                    this.LoginForm.Visibility = Visibility.Collapsed;
-                    this.UserProfile.Visibility = Visibility.Collapsed;
+                    MessageBox.Show("Указаны некорректные данные.");
                 };
                 } catch {};
             });
@@ -582,11 +577,12 @@ namespace Donor
             this.RegisterForm.Visibility = Visibility.Collapsed;
             this.LoginForm.Visibility = Visibility.Collapsed;
             this.UserProfile.Visibility = Visibility.Visible;
+
         }
 
 
         /// <summary>
-        /// User delete - removed temporary
+        /// Logout user from account and clear saved data
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -651,6 +647,21 @@ namespace Donor
                     break;
             };
             App.ViewModel.SaveSettingsToStorage();
+        }
+
+        /// <summary>
+        /// Shwo register form
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void RegisterShowButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.email1.Text = this.email.Text.ToString();
+            this.password1.Password = this.password.Password;
+
+            this.RegisterForm.Visibility = Visibility.Visible;
+            this.LoginForm.Visibility = Visibility.Collapsed;
+            this.UserProfile.Visibility = Visibility.Collapsed;
         }
 
     }

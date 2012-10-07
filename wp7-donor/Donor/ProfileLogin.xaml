@@ -186,6 +186,7 @@ BorderBrush="#FF4F3B34" Foreground="#FFCBB2A3" x:Name="email"
 						Style="{StaticResource Text24pxCBB2A3}" />
                         <PasswordBox Background="#FF4F3B34" 
 Style="{StaticResource PasswordBoxStyle1}" BorderBrush="#FF4F3B34" 	Foreground="#FFCBB2A3" x:Name="password" Password="" />
+                        
                         <Button Name="Login" 
 						Content="Вход" 
 						Click="Login_Click"
@@ -193,10 +194,23 @@ Style="{StaticResource PasswordBoxStyle1}" BorderBrush="#FF4F3B34" 	Foreground="
 						Background="#FF4186A3" 
 						BorderBrush="#FF4186A3" 
 						FontFamily="Segoe WP Regular" Foreground="White" />
+                        
                         <TextBlock 
 						Foreground="#FF847168"
 						Style="{StaticResource Text24pxCBB2A3}"
-						Text="Если у вас нет аккаунта, введите пароль и e-mail для начала регистрации." TextWrapping="Wrap" />
+						Text="Если у вас нет аккаунта, введите пароль и e-mail для начала регистрации." TextWrapping="Wrap" Visibility="Collapsed" />
+
+                        <Button Name="RegisterShowButton" 
+						Content="Регистрация" 
+						FontSize="24"
+						Background="#FF4186A3" 
+						BorderBrush="#FF4186A3" 
+						FontFamily="Segoe WP Regular" Foreground="White" Click="RegisterShowButton_Click" />
+                        <TextBlock 
+						Foreground="#FF847168"
+						Style="{StaticResource Text24pxCBB2A3}"
+						Text="Если у вас нет аккаунта, введите пароль и e-mail для начала регистрации." TextWrapping="Wrap" Visibility="Collapsed" />
+
 
                         <Button Name="RestorePassword" 
 						Content="Восстановить пароль" 

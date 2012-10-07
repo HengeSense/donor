@@ -239,35 +239,12 @@ namespace Donor
                 }
                 else
                 {
-                    /*var client2 = new RestClient("https://api.parse.com");
-                    var request2 = new RestRequest("1/classes/User?where={\"email\":\""+Uri.EscapeUriString(this.email.Text.ToString().ToLower())+"\"}", Method.GET);
-                    request.Parameters.Clear();
-                    request.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
-                    request.AddHeader("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
-
-                    this.LoginLoadingBar.IsIndeterminate = true;
-
-                    client.ExecuteAsync(request2, response2 =>
-                    {
-                        try
-                        {
-                            JObject o2 = JObject.Parse(response.Content.ToString());
-                            if (o2["error"] == null)
-                            {
-                            }
-                            else
-                            {
-                            };
-                        }
-                        catch { };
-                    });*/
-
                     App.ViewModel.User.IsLoggedIn = false;
 
                     this.LoginForm.Visibility = Visibility.Visible;
                     this.UserProfile.Visibility = Visibility.Collapsed;
 
-                    NavigationService.Navigate(new Uri("/ProfileLogin.xaml?task=register&email=" + this.email.Text.ToString() + "&password=" + this.password.Password.ToString(), UriKind.Relative));
+                    MessageBox.Show("Указаны некорректные данные.");                    
                 };
             } catch {};
             });
@@ -298,6 +275,15 @@ namespace Donor
             {
                 MessageBox.Show("Пожалуйста войдите, чтобы иметь возможность работать с календарем событий.");
             };            
+        }
+
+        private void Register_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                NavigationService.Navigate(new Uri("/ProfileLogin.xaml?task=register&email=" + this.email.Text.ToString() + "&password=" + this.password.Password.ToString(), UriKind.Relative));
+            }
+            catch { };
         }
 
     }

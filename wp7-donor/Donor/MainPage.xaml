@@ -138,7 +138,7 @@
                     </ListBoxItem>
                     
                         </ListBox>
-                        <TextBlock Text="Version - 04092012_1"/>
+                        <TextBlock Text="Version - 07102012_1"/>
                     </StackPanel>
                 </ScrollViewer>
             </controls:PanoramaItem>
@@ -239,10 +239,19 @@
 					FontFamily="Segoe WP Regular"
 					Name="Login" Content="Вход" Click="Login_Click" 
 					Foreground="#FFFFFFFF" />
-                    <TextBlock 
+
+                    <Button 
+					FontSize="24"
+					Background="#FF4186A3" 
+					BorderBrush="#FF4186A3" 
+					FontFamily="Segoe WP Regular"
+					Name="Register" Content="Регистрация" 
+					Foreground="#FFFFFFFF" Click="Register_Click" />
+
+                        <TextBlock 
 					Foreground="#FF847168"
 					Style="{StaticResource Text24pxCBB2A3}"
-					Text="Если у вас нет аккаунта, введите пароль и e-mail для начала регистрации." TextWrapping="Wrap" />
+					Text="Если у вас нет аккаунта, введите пароль и e-mail для начала регистрации." TextWrapping="Wrap" Visibility="Collapsed" />
                     </StackPanel>
                 <StackPanel Margin="0,10" Name="UserProfile" Visibility="Collapsed">
                     <StackPanel >
