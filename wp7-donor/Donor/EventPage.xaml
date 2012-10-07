@@ -66,15 +66,20 @@
 					Style="{StaticResource Text36pxB9A194}"
 					Name="GiveType" TextWrapping="Wrap"/>
 					
-					<StackPanel Name="StackpanelPlace" 
-					Orientation="Horizontal" 
-					Margin="0,5">
-                    <TextBlock Text="{Binding Path=Place}" 
+                        <Grid Margin="0,5" HorizontalAlignment="Stretch">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="70"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Grid.Column="0" Text="{Binding Path=Place}" 
 					Style="{StaticResource Text24pxDF8D4B}"
 					Name="Place" TextWrapping="Wrap"/>
-                    <Image Height="50" Source="images/ic_map.png" 
-					Stretch="Fill" Width="50" Tap="Image_Tap" Visibility="Collapsed" />					
-					</StackPanel>
+
+                            <Image Grid.Column="1" Height="50" Source="images/ic_map.png" 
+					Stretch="Fill" Name="MapButton"  Width="50" Tap="Image_Tap" Visibility="Collapsed" />
+
+                        </Grid>                        
 
                     <StackPanel Name="ReminderStackPanel">
 					<StackPanel Orientation="Horizontal" Margin="0,10,0,0"

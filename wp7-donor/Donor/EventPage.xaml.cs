@@ -34,6 +34,11 @@ namespace Donor
                     _currentEvent = App.ViewModel.Events.Items.FirstOrDefault(c => c.Id == _eventid.ToString());
                     DataContext = _currentEvent;
 
+                    if ((_currentEvent.Station_nid != null) && (_currentEvent.Station_nid != 0))
+                    {
+                        this.MapButton.Visibility = Visibility.Visible;
+                    };
+
                     if (_currentEvent.Type != "1")
                     {
                         this.FinishedMenu.Visibility = Visibility.Collapsed;
@@ -140,7 +145,7 @@ namespace Donor
         {
             try
             {
-                NavigationService.Navigate(new Uri("/MapPage.xaml"));
+                NavigationService.Navigate(new Uri("/MapPage.xaml?id="+_currentEvent.Station_nid.ToString(), UriKind.Relative));
             }
             catch
             {
