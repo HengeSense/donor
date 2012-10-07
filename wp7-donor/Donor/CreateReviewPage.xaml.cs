@@ -22,6 +22,12 @@ namespace Donor
             InitializeComponent();
         }
 
+        private static double ConvertToTimestamp(DateTime value)
+        {
+            TimeSpan span = (value - new DateTime(1970, 1, 1, 0, 0, 0, 0).ToLocalTime());
+            return (double)Math.Round(span.TotalSeconds);
+        } 
+
         private void SaveButton_Click(object sender, EventArgs e)
         {
             var client = new RestClient("https://api.parse.com");
@@ -67,7 +73,7 @@ namespace Donor
                 vote_count++;
             };
 
-            string strJSONContent = "{\"username\":\"" + App.ViewModel.User.Name.ToString() + "\",\"user_id\":\"" + App.ViewModel.User.objectId.ToString() + "\",\"station_id\":\"" + _stationid_current.ToString() + "\",\"body\":\"" + this.Body.Text.ToString() + "\", \"vote\":" + vote.ToString() + ", \"vote_registry\":" + this.vote_registry.Vote.ToString() + ", \"vote_physician\":" + this.vote_physician.Vote.ToString() + ", \"vote_laboratory\":" + this.vote_laboratory.Vote.ToString() + ", \"vote_buffet\":" + this.vote_buffet.Vote.ToString() + ", \"vote_schedule\":" + this.vote_schedule.Vote.ToString() + ", \"vote_organization_donation\":" + this.vote_organization_donation.Vote.ToString() + ", \"vote_room\":" + this.vote_room.Vote.ToString() + "}";
+            string strJSONContent = "{\"username\":\"" + App.ViewModel.User.Name.ToString() + "\", \"user_id\":\"" + App.ViewModel.User.objectId.ToString() + "\", \"created\":\"" + DateTime.Now.ToString() + "\", \"createdTimestamp\":" + ConvertToTimestamp(DateTime.Now).ToString() + ", \"station_nid\":" + _stationid_current.ToString() + ", \"nid\":" + _stationid_current.ToString() + ", \"body\":\"" + this.Body.Text.ToString() + "\", \"vote\":" + vote.ToString() + ", \"vote_registry\":" + this.vote_registry.Vote.ToString() + ", \"vote_physician\":" + this.vote_physician.Vote.ToString() + ", \"vote_laboratory\":" + this.vote_laboratory.Vote.ToString() + ", \"vote_buffet\":" + this.vote_buffet.Vote.ToString() + ", \"vote_schedule\":" + this.vote_schedule.Vote.ToString() + ", \"vote_organization_donation\":" + this.vote_organization_donation.Vote.ToString() + ", \"vote_room\":" + this.vote_room.Vote.ToString() + "}";
             request.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
             request.AddHeader("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
             request.AddHeader("Content-Type", "application/json");
@@ -79,6 +85,7 @@ namespace Donor
                 if (o["error"] == null)
                 {
                     MessageBox.Show("Отзыв добавлен.");
+                    App.ViewModel.Ads.LoadStationAds(_stationid_current.ToString());
                 }
                 else
                 {
@@ -87,7 +94,6 @@ namespace Donor
 
                 NavigationService.GoBack();
             });
-            //NavigationService.GoBack();
         }
 
         private void CancelButton_Click(object sender, EventArgs e)
