@@ -110,12 +110,16 @@ namespace Donor
             if (this.RelativeContra.Visibility == Visibility.Visible)
             {
                 this.RelativeContra.Visibility = Visibility.Collapsed;
+                this.RelText.Height = 180;
             }
             else
             {
                 var relitems = (from item in App.ViewModel.Contras.Items
                                 where (item.Absolute == false) || (item.Absolute != true)
                                 select item);
+
+                this.RelText.Height = 110;
+
                 this.RelativeContra.ItemsSource = relitems;
                 this.RelativeContra.Visibility = Visibility.Visible;
             };

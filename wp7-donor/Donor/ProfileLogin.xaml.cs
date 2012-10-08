@@ -100,6 +100,8 @@ namespace Donor
             var client = new RestClient("https://api.parse.com");
             var request = new RestRequest("1/login?username=" + Uri.EscapeUriString(this.email.Text.ToString().ToLower()) + "&password=" + Uri.EscapeUriString(this.password.Password), Method.GET);
             request.Parameters.Clear();
+
+            App.ViewModel.User.IsLoggedIn = false;
             
             request.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
             request.AddHeader("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
@@ -172,6 +174,9 @@ namespace Donor
                 {
                     reg_sex = 1;
                 };
+
+
+
                 string strJSONContent = "{\"username\":\"" + this.email1.Text.ToString().ToLower() + "\",\"password\":\"" + this.password1.Password.ToString() + "\", \"Name\":\"" + this.name1.Text.ToString().ToLower() + "\", \"email\":\"" + this.email1.Text.ToString().ToLower() + "\", \"Sex\":" + reg_sex + "}";
                 request.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
                 request.AddHeader("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
@@ -192,6 +197,7 @@ namespace Donor
                             App.ViewModel.User = JsonConvert.DeserializeObject<DonorUser>(response.Content.ToString());
                             App.ViewModel.User.IsLoggedIn = true;
                             App.ViewModel.Events.WeekItemsUpdated();
+                            App.ViewModel.OnUserEnter(EventArgs.Empty);
 
                             App.ViewModel.User.Name = this.name1.Text.ToString();
                             App.ViewModel.User.UserName = this.email1.Text.ToString();

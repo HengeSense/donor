@@ -258,6 +258,8 @@ namespace Donor
                 {
                     App.ViewModel.User = IsolatedStorageHelper.LoadSerializableObject<DonorUser>("user.xml");
 
+                    App.ViewModel.User.IsLoggedIn = false;
+
                     var client = new RestClient("https://api.parse.com");
                     var request = new RestRequest("1/login?username=" + Uri.EscapeUriString(App.ViewModel.User.UserName.ToLower()) + "&password=" + Uri.EscapeUriString(App.ViewModel.User.Password), Method.GET);
                     request.Parameters.Clear();
@@ -301,7 +303,7 @@ namespace Donor
 
         public delegate void UserEnterEventHandler(object sender, EventArgs e);
         public event UserEnterEventHandler UserEnter;
-        protected virtual void OnUserEnter(EventArgs e)
+        public virtual void OnUserEnter(EventArgs e)
         {
             if (UserEnter != null)
                 UserEnter(this, e);

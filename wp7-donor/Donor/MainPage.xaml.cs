@@ -198,6 +198,8 @@ namespace Donor
             request.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
             request.AddHeader("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
 
+            App.ViewModel.User.IsLoggedIn = false;
+
             this.LoginLoadingBar.IsIndeterminate = true;
 
             client.ExecuteAsync(request, response =>
@@ -215,6 +217,9 @@ namespace Donor
 
                     this.LoginForm.Visibility = Visibility.Collapsed;
                     this.UserProfile.Visibility = Visibility.Visible;
+                    
+                    App.ViewModel.Events.WeekItemsUpdated();
+                    App.ViewModel.OnUserEnter(EventArgs.Empty);
 
                     try
                     {
