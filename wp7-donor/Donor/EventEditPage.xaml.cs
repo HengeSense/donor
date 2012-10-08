@@ -245,7 +245,7 @@ namespace Donor
 
                      if (this.EventType.SelectedItem.ToString() == "Кроводача")
                      {
-                         CurrentEvent.Title = this.EventType.SelectedItem.ToString() + " " + this.GiveType.SelectedItem.ToString();
+                         CurrentEvent.Title = this.GiveType.SelectedItem.ToString();
                      }
                      else
                      {

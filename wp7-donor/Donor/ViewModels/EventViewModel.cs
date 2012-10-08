@@ -596,7 +596,7 @@ namespace Donor.ViewModels
             get
             {
                 var newitems = (from eventCal in this.Items
-                                where (eventCal.UserId == App.ViewModel.User.objectId) &&
+                                where ((eventCal.UserId == App.ViewModel.User.objectId) || ((eventCal.Type != "0") || (eventCal.Type != "1"))) &&
                                 (eventCal.Date.Month == CurrentMonth.Month) && (eventCal.Date.Year == CurrentMonth.Year)
                                 orderby eventCal.Date descending
                                 select eventCal);

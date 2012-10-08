@@ -36,7 +36,7 @@ namespace Donor
             this.progressOverlay.IsEnabled = true;
             } else {
                 /// DWP-95
-                MessageBox.Show("Не удается выполнить вход. Убедитесь, что режим \"в самолете\" выключен и имеется сетевое соединение.");
+                //MessageBox.Show("Не удается выполнить выход. Проверьте подключение к интернет-сети");
             };
         }
 
@@ -62,6 +62,16 @@ namespace Donor
 
             this.email.Text = "";
             this.password.Password = "";
+
+            bool hasNetworkConnection =
+  NetworkInterface.NetworkInterfaceType != NetworkInterfaceType.None;
+            if (hasNetworkConnection)
+            {
+            }
+            else
+            {
+                MessageBox.Show("Не удается выполнить выход. Проверьте подключение к интернет-сети");
+            };
         }
 
         private void TextBlock_Tap(object sender, System.Windows.Input.GestureEventArgs e)
@@ -178,29 +188,7 @@ namespace Donor
             NavigationService.Navigate(new Uri("/ProfileLogin.xaml", UriKind.Relative));
         }
 
-        private void Qrread_Tap(object sender, System.Windows.Input.GestureEventArgs e)
-        {
-            if (App.ViewModel.User.IsLoggedIn)
-            {
-                NavigationService.Navigate(new Uri("/QRread.xaml", UriKind.Relative));
-            }
-            else
-            {
-                MessageBox.Show("Пожалуйста войдите для использования распознавания QR кодов.");
-            };
-        }
 
-        private void Facebook_Tap(object sender, System.Windows.Input.GestureEventArgs e)
-        {
-            if (App.ViewModel.User.IsLoggedIn)
-            {
-                NavigationService.Navigate(new Uri("/FacebookPages/FacebookLoginPage.xaml", UriKind.Relative));
-            }
-            else
-            {
-                MessageBox.Show("Пожалуйста войдите, прежде чем связать учетную запись с аккаунтом Facebook");
-            };
-        }
 
         private void Login_Click(object sender, RoutedEventArgs e)
         {

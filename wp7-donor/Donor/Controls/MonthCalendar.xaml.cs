@@ -61,18 +61,20 @@ namespace Donor.Controls
                 day.MonthNumber = FirstDayPrev.Month;
                 day.YearNumber = FirstDayPrev.Year;
                 day.Inactive = false;
+                day.TextColor = new SolidColorBrush(Colors.Gray);
 
                 DateTime curDate = new DateTime(FirstDayPrev.Year, FirstDayPrev.Month, i);
                 if (days != 0)
                 {
                     if ((curDate <= EndDays) && (FromDays <= curDate))
                     {
-                        day.BgColor = new SolidColorBrush(Colors.Gray);
+                        //day.BgColor = new SolidColorBrush(Colors.Gray);
+                        //day.TextColor = new SolidColorBrush(Colors.Black);
                         day.Inactive = true;
                     };
                 };
 
-                day.TextColor = new SolidColorBrush(Colors.Gray);
+                
                 this.CalendarDays.Children.Add(day);
             };
 

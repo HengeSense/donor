@@ -165,6 +165,7 @@ ScrollViewer.VerticalScrollBarVisibility="Disabled">
 
                                 <TextBlock 
 								Text="Абсолютные противопоказания" 
+                                Height="120"
 								Style="{StaticResource Text36pxC0A89A}" 
 								TextWrapping="Wrap" Tap="TextBlock_Tap_1" />
 
@@ -175,7 +176,7 @@ Visibility="Collapsed" ScrollViewer.VerticalScrollBarVisibility="Disabled">     
 </DataTemplate>
 </ListBox.ItemTemplate>
 </ListBox>
-                                <TextBlock Height="100"
+                                <TextBlock Height="120"
 								Text="Временные противопоказания" 
 								Style="{StaticResource Text36pxC0A89A}" 
 								TextWrapping="Wrap" Name="RelText" Tap="RelText_Tap" />
