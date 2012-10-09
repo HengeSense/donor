@@ -844,6 +844,10 @@
 
 - (void)eventsResult:(NSArray *)result error:(NSError *)error
 {
+    NSMutableArray *plateletsDateArray = [NSMutableArray array];
+    NSMutableArray *plasmaDateArray = [NSMutableArray array];
+    NSMutableArray *wholeBloodDateArray = [NSMutableArray array];
+    
     NSCalendar *currentCalendar = [NSCalendar currentCalendar];
     unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit;
     NSDateComponents *dateComponents = [currentCalendar components:unitFlags fromDate:selectedDate];
@@ -893,23 +897,26 @@
                     //////////////////
 
                     
-                    eventDateComponents.day += 365;
+                    eventDateComponents.year += 1;
                     NSDate *eventDatePlusYear = [currentCalendar dateFromComponents:eventDateComponents];
-                    eventDateComponents.day -= 365;
+                    eventDateComponents.year -= 1;
                     
                     if (eventDatePlusYear.timeIntervalSince1970 > [[NSDate date] timeIntervalSince1970] && eventType != 0)
                     {
                         switch (eventDelivery)
                         {
                             case 0:
+                                [plateletsDateArray addObject:[currentCalendar dateFromComponents:eventDateComponents]];
                                 plateletsCount++;
                                 break;
                                 
                             case 1:
+                                [plasmaDateArray addObject:[currentCalendar dateFromComponents:eventDateComponents]];
                                 plasmaCount++;
                                 break;
                                 
                             case 2:
+                                [wholeBloodDateArray addObject:[currentCalendar dateFromComponents:eventDateComponents]];
                                 wholeBloodCount++;
                                 break;
                                 
@@ -985,38 +992,38 @@
     if (lastPlateletsDateComponents)
     {
         //плазма
-        lastPlateletsDateComponents.day += 14;
+        lastPlateletsDateComponents.day += 15;
         availablePlateletsDate1 = [currentCalendar dateFromComponents:lastPlateletsDateComponents];
         availablePlasmaDate1 = [currentCalendar dateFromComponents:lastPlateletsDateComponents];
-        lastPlateletsDateComponents.day -= 14;
+        lastPlateletsDateComponents.day -= 15;
         
         //цельная кровь
-        lastPlateletsDateComponents.day += 30;
+        lastPlateletsDateComponents.day += 31;
         availableWholeBloodDate1 = [currentCalendar dateFromComponents:lastPlateletsDateComponents];
-        lastPlateletsDateComponents.day -= 30;
+        lastPlateletsDateComponents.day -= 31;
     }
     
     if (lastPlasmaDateComponents)
     {
-        lastPlasmaDateComponents.day += 14;
+        lastPlasmaDateComponents.day += 15;
         availablePlateletsDate2 = [currentCalendar dateFromComponents:lastPlasmaDateComponents];
         availablePlasmaDate2 = [currentCalendar dateFromComponents:lastPlasmaDateComponents];
         availableWholeBloodDate2 = [currentCalendar dateFromComponents:lastPlasmaDateComponents];
-        lastPlasmaDateComponents.day -= 14;
+        lastPlasmaDateComponents.day -= 15;
     }
     
     if (lastWholeBloodDateComponents)
     {
         //Тромбоциты и плазма
-        lastWholeBloodDateComponents.day += 30;
+        lastWholeBloodDateComponents.day += 31;
         availablePlateletsDate3 = [currentCalendar dateFromComponents:lastWholeBloodDateComponents];
         availablePlasmaDate3 = [currentCalendar dateFromComponents:lastWholeBloodDateComponents];
-        lastWholeBloodDateComponents.day -= 30;
+        lastWholeBloodDateComponents.day -= 31;
         
         //Цельная кровь
-        lastWholeBloodDateComponents.day += 60;
+        lastWholeBloodDateComponents.day += 61;
         availableWholeBloodDate3 = [currentCalendar dateFromComponents:lastWholeBloodDateComponents];
-        lastWholeBloodDateComponents.day -= 60;
+        lastWholeBloodDateComponents.day -= 61;
     }
     
     if (availablePlateletsDate1.timeIntervalSince1970 > availablePlateletsDate2.timeIntervalSince1970)
@@ -1066,28 +1073,37 @@
     
     if (plateletsCount >= 10)
     {
-        lastPlateletsDateComponents.year += 1;
-        NSDate *availablePlateletsDateYear = [currentCalendar dateFromComponents:lastPlateletsDateComponents];
+        NSDate *availablePlateletsDateYear = [plateletsDateArray objectAtIndex:plateletsDateArray.count - 10];
         if (availablePlateletsDateYear.timeIntervalSince1970 > [currentCalendar dateFromComponents:[Common getInstance].availablePlateletsDateComponents].timeIntervalSince1970)
             [Common getInstance].availablePlateletsDateComponents = [currentCalendar components:unitFlags fromDate:availablePlateletsDateYear];
     }
     
     if (plasmaCount >= 12)
     {
-        lastPlasmaDateComponents.year += 1;
-        NSDate *availablePlasmaDateYear = [currentCalendar dateFromComponents:lastPlasmaDateComponents];
+        NSDate *availablePlasmaDateYear = [plateletsDateArray objectAtIndex:plateletsDateArray.count - 12];
         if (availablePlasmaDateYear.timeIntervalSince1970 > [currentCalendar dateFromComponents:[Common getInstance].availablePlasmaDateComponents].timeIntervalSince1970)
             [Common getInstance].availablePlasmaDateComponents = [currentCalendar components:unitFlags fromDate:availablePlasmaDateYear];
     }
     
     int sex = [[[PFUser currentUser] objectForKey:@"sex"] intValue];
     
-    if ((wholeBloodCount >= 5 && sex == 0) || (wholeBloodCount >= 4 && sex == 1))
+    if (sex == 0)
     {
-        lastWholeBloodDateComponents.year += 1;
-        NSDate *availableWholeBloodDateYear = [currentCalendar dateFromComponents:lastWholeBloodDateComponents];
-        if (availableWholeBloodDateYear.timeIntervalSince1970 > [currentCalendar dateFromComponents:[Common getInstance].availableWholeBloodDateComponents].timeIntervalSince1970)
-            [Common getInstance].availableWholeBloodDateComponents = [currentCalendar components:unitFlags fromDate:availableWholeBloodDateYear];
+        if (wholeBloodCount >= 5)
+        {
+            NSDate *availableWholeBloodDateYear = [plateletsDateArray objectAtIndex:plateletsDateArray.count - 5];
+            if (availableWholeBloodDateYear.timeIntervalSince1970 > [currentCalendar dateFromComponents:[Common getInstance].availableWholeBloodDateComponents].timeIntervalSince1970)
+                [Common getInstance].availableWholeBloodDateComponents = [currentCalendar components:unitFlags fromDate:availableWholeBloodDateYear];
+        }
+    }
+    else
+    {
+        if (wholeBloodCount >= 4)
+        {
+            NSDate *availableWholeBloodDateYear = [plateletsDateArray objectAtIndex:plateletsDateArray.count - 4];
+            if (availableWholeBloodDateYear.timeIntervalSince1970 > [currentCalendar dateFromComponents:[Common getInstance].availableWholeBloodDateComponents].timeIntervalSince1970)
+                [Common getInstance].availableWholeBloodDateComponents = [currentCalendar components:unitFlags fromDate:availableWholeBloodDateYear];
+        }
     }
     
     if ([PFUser currentUser])

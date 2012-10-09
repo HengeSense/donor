@@ -170,7 +170,7 @@
         }
         else
         {*/
-            isFinished = YES;
+            if (!isTest) isFinished = YES;
         //}
     }
     if (!isTest && !event)
@@ -845,6 +845,8 @@
 
 - (void)viewDidDisappear:(BOOL)animated
 {
+    [Common getInstance].eventStationAddress = @"";
+    
     [super viewDidDisappear:animated];
 }
 

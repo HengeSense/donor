@@ -24,5 +24,9 @@
 @property (nonatomic, retain) IBOutlet UIImageView *donorsForChildrenImageView;
 @property (nonatomic, retain) IBOutlet UIView *shadowSelectionView;
 @property (nonatomic, retain) IBOutlet UIImageView *indicatorView;
+@property(nonatomic, getter=isHighlighted) BOOL highlighted;
+@property(nonatomic) BOOL isEvent;
 
+- (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated;
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated;
 @end

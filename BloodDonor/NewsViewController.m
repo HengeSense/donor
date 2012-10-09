@@ -188,12 +188,12 @@ static NSString * PODARI_ZHIZN_NEWS_URL = @"http://www.podari-zhizn.ru/main/node
     NSDateFormatter *dateFormat = [[[NSDateFormatter alloc] init] autorelease];
     [dateFormat setDateFormat:@"dd.MM.yyyy"];
     NSDateFormatter *parsecomDateFormat = [[[NSDateFormatter alloc] init] autorelease];
-    [parsecomDateFormat setDateFormat:@"yyyy'-'MM'-'dd'T'HH':'mm':'sszzz"];
-    
+    [parsecomDateFormat setDateFormat:@"yyyy-MM-dd'T'HH:mm:sszzz"];
+   
     //Ads
     if ([content valueForKey:@"station_nid"])
     {
-        NSString *createString = [dateFormat stringFromDate:[parsecomDateFormat dateFromString:[content objectForKey:@"created"]]];
+        NSString *createString = [dateFormat stringFromDate:[parsecomDateFormat dateFromString:[[NSString stringWithFormat:@"%@", [content objectForKey:@"created"]] stringByReplacingCharactersInRange:NSMakeRange(22, 1) withString:@""]]];
         
         htmlString1 = [NSString stringWithFormat:@"<html><head><style type='text/css'>* { margin:0; padding:0; } p { color:#847168; font-family:Helvetica; font-size:12px; font-weight:bold;  }</style></head><body><p>%@ <font color=\"#CBB2A3\">%@</font></p></body></html>", createString, [content valueForKey:@"title"]];
         padding_top = 7;

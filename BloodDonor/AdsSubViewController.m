@@ -27,11 +27,6 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     PFObject *object = [contentArray objectAtIndex:indexPath.row];
-    NSDateFormatter *dateFormat = [[[NSDateFormatter alloc] init] autorelease];
-    [dateFormat setDateFormat:@"dd.MM.yyyy"];
-    
-    NSDateFormatter *parsecomDateFormat = [[[NSDateFormatter alloc] init] autorelease];
-    [parsecomDateFormat setDateFormat:@"yyyy'-'MM'-'dd'T'HH':'mm':'sszzz"];
     
     static NSString *CellIdentifier = @"Cell";
     
@@ -45,7 +40,13 @@
     
     cell.stationLabel.text = [stationTitleArray objectAtIndex:indexPath.row];
     cell.adsTitleLabel.text = [object valueForKey:@"title"];
-    cell.dateLabel.text = [dateFormat stringFromDate:[parsecomDateFormat dateFromString:[object objectForKey:@"created"]]];
+    
+    NSDateFormatter *dateFormat = [[[NSDateFormatter alloc] init] autorelease];
+   [dateFormat setDateFormat:@"dd.MM.yyyy"];
+    NSDateFormatter *parsecomDateFormat = [[[NSDateFormatter alloc] init] autorelease];
+   [parsecomDateFormat setDateFormat:@"yyyy-MM-dd'T'HH:mm:sszzz"];
+    cell.dateLabel.text = [dateFormat stringFromDate:[parsecomDateFormat dateFromString:[[NSString stringWithFormat:@"%@", [object objectForKey:@"created"]] stringByReplacingCharactersInRange:NSMakeRange(22, 1) withString:@""]]];
+
     return cell;
 }
 
@@ -108,7 +109,6 @@
                     if (i != (stationTitleArray.count - 1))
                         [stationTitleArray addObject:@""];
                 }
-                NSLog(@"station %d ads %d", stationTitleArray.count, contentArray.count);
                 [(UITableView *)self.view reloadData];
             }
             [indicatorView removeFromSuperview];

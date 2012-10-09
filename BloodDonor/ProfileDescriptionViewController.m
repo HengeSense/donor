@@ -34,7 +34,7 @@
     sexButton.enabled = NO;
     bloodGroupButton.enabled = NO;
     
-    UIButton *settingsButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    /*UIButton *settingsButton = [UIButton buttonWithType:UIButtonTypeCustom];
     UIImage *settingsImageNormal = [UIImage imageNamed:@"settingsButtonNormal"];
     UIImage *settingsImagePressed = [UIImage imageNamed:@"settingsButtonPressed"];
     CGRect settingsButtonFrame = CGRectMake(0, 0, settingsImageNormal.size.width, settingsImageNormal.size.height);
@@ -44,7 +44,8 @@
     [settingsButton addTarget:self action:@selector(settingsButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     
     UIBarButtonItem *settingsBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:settingsButton] autorelease];
-    self.navigationItem.leftBarButtonItem = settingsBarButtonItem;
+    self.navigationItem.leftBarButtonItem = settingsBarButtonItem;*/
+    self.navigationItem.leftBarButtonItem = nil;
 }
 
 - (IBAction)editButtonClick:(id)sender
@@ -194,13 +195,9 @@
     
     self.title = @"Профиль";
     
-    self.navigationItem.backBarButtonItem =
-    [[[UIBarButtonItem alloc] initWithTitle:@"Назад"
-                                      style:UIBarButtonItemStyleBordered
-                                     target:nil
-                                     action:nil] autorelease];
+    [self.navigationItem setHidesBackButton:YES];
     
-    UIButton *settingsButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    /*UIButton *settingsButton = [UIButton buttonWithType:UIButtonTypeCustom];
     UIImage *settingsImageNormal = [UIImage imageNamed:@"settingsButtonNormal"];
     UIImage *settingsImagePressed = [UIImage imageNamed:@"settingsButtonPressed"];
     CGRect settingsButtonFrame = CGRectMake(0, 0, settingsImageNormal.size.width, settingsImageNormal.size.height);
@@ -210,7 +207,7 @@
     [settingsButton addTarget:self action:@selector(settingsButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     
     UIBarButtonItem *settingsBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:settingsButton] autorelease];
-    self.navigationItem.leftBarButtonItem = settingsBarButtonItem;
+    self.navigationItem.leftBarButtonItem = settingsBarButtonItem;*/
     
     UIImage *barImageNormal = [UIImage imageNamed:@"barButtonNormal"];
     UIImage *barImagePressed = [UIImage imageNamed:@"barButtonPressed"];

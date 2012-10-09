@@ -55,8 +55,7 @@
                                                 [[relation query] findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
                                                     if (error) 
                                                     {
-                                                        NSString *errorka = [[error userInfo] objectForKey:@"error"];
-                                                        //NSLog(@"ошибочка тут: %@", errorka);
+                                                        
                                                     }
                                                     else
                                                     {
@@ -146,7 +145,7 @@
                                      target:nil
                                      action:nil] autorelease];
     
-    UIButton *settingsButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    /*UIButton *settingsButton = [UIButton buttonWithType:UIButtonTypeCustom];
     UIImage *settingsImageNormal = [UIImage imageNamed:@"settingsButtonNormal"];
     UIImage *settingsImagePressed = [UIImage imageNamed:@"settingsButtonPressed"];
     CGRect settingsButtonFrame = CGRectMake(0, 0, settingsImageNormal.size.width, settingsImageNormal.size.height);
@@ -156,7 +155,7 @@
     [settingsButton addTarget:self action:@selector(settingsButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     
     UIBarButtonItem *settingsBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:settingsButton] autorelease];
-    self.navigationItem.leftBarButtonItem = settingsBarButtonItem;
+    self.navigationItem.leftBarButtonItem = settingsBarButtonItem;*/
     
     if ([PFUser currentUser])
     {

@@ -665,10 +665,15 @@
         cell.addressLabel.hidden = NO;
         cell.addressLabel.text = [object valueForKey:@"small_adress"];
     }
-        
+    
     NSArray *viewControllers = self.navigationController.viewControllers;
     if (viewControllers.count > 2 && [[viewControllers objectAtIndex:viewControllers.count - 2] isKindOfClass:[EventPlanningViewController class]])
+    {
         cell.indicatorView.hidden = YES;
+        cell.isEvent = YES;
+    }
+    else
+        cell.isEvent = NO;
     
     return cell;
 }
@@ -676,8 +681,8 @@
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     StationsCell *cell = (StationsCell *)[tableView cellForRowAtIndexPath:indexPath];
-    cell.shadowSelectionView.alpha = 0.05f;
-    cell.addressLabel.textColor = [UIColor colorWithRed:215.0f/255.0f green:54.0f/255.0f blue:30.0f/255.0f alpha:1];
+    //cell.shadowSelectionView.alpha = 0.05f;
+    //cell.addressLabel.textColor = [UIColor colorWithRed:215.0f/255.0f green:54.0f/255.0f blue:30.0f/255.0f alpha:1];
     
     PFObject *object;
     
@@ -729,8 +734,8 @@
 - (NSIndexPath *)tableView:(UITableView *)tableView willDeselectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     StationsCell *cell = (StationsCell *)[tableView cellForRowAtIndexPath:indexPath];
-    cell.shadowSelectionView.alpha = 0.0f;
-    cell.addressLabel.textColor = [UIColor colorWithRed:100.0f/255.0f green:91.0f/255.0f blue:84.0f/255.0f alpha:1];
+    //cell.shadowSelectionView.alpha = 0.0f;
+    //cell.addressLabel.textColor = [UIColor colorWithRed:100.0f/255.0f green:91.0f/255.0f blue:84.0f/255.0f alpha:1];
     NSArray *viewControllers = self.navigationController.viewControllers;
     if (viewControllers.count > 2 && [[viewControllers objectAtIndex:viewControllers.count - 2] isKindOfClass:[EventPlanningViewController class]])
         cell.indicatorView.hidden = YES;
@@ -1298,7 +1303,14 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [coreLocationController.locationManager startUpdatingLocation];
+    
+    
+    if(self.navigationController.isBeingPresented)
+    {
+        [coreLocationController.locationManager startUpdatingLocation];
+    }
+    
+        
 }
 
 - (void)viewDidDisappear:(BOOL)animated
