@@ -42,7 +42,7 @@
 @property (nonatomic, retain) NSMutableArray *events;
 
 //Последние использованные станции
-@property (nonatomic, retain, setter = lastStationsSetter:) NSMutableArray *lastStations;
+@property (nonatomic, retain, setter = lastStationsSetter:) NSArray *lastStations;
 
 //Настройки поиска по станциям
 

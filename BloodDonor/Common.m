@@ -113,7 +113,10 @@ static void singleton_remover()
 
 - (void)lastStationsSetter:(NSArray *)setterArray
 {
-    [self.lastStations addObjectsFromArray:setterArray];
+    if (lastStations == nil) {
+        lastStations = [[NSMutableArray alloc] init];
+    }
+    [lastStations addObjectsFromArray: setterArray];
     [defaults setObject:self.lastStations forKey:@"lastStations"];
     [defaults synchronize];
 }

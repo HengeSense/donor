@@ -11,7 +11,6 @@
 @interface TutorialViewController ()
 
 - (void)loadScrollViewWithPage:(int)page;
-//- (void)scrollViewDidScroll:(UIScrollView *)sender;
 
 @end
 

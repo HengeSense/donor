@@ -14,12 +14,10 @@
     IBOutlet UIButton *doneButton;
     IBOutlet UIScrollView *scrollView;
     PageControl *pageControl;
-    //IBOutlet UIPageControl *pageControl;
     NSMutableArray *imageArray;
     BOOL pageControlUsed;
 }
 
 - (IBAction)doneButtonClick:(id)sender;
-- (IBAction)changePage:(id)sender;
 
 @end

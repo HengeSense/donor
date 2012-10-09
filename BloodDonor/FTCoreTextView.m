@@ -691,7 +691,7 @@ UITextAlignment UITextAlignmentFromCoreTextAlignment(FTCoreTextAlignement alignm
 						
                     }
                     else {
-                        NSLog(@"FTCoreTextView :%@ - Couldn't find image '%@' in main bundle", self, elementContentRange);
+                        NSLog(@"FTCoreTextView :%@ - Couldn't find image '%@' in main bundle", self, img);
                         [processedString replaceCharactersInRange:tagRange withString:@""];
                     }
                 }
