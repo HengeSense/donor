@@ -125,6 +125,9 @@
 
 - (void)saveResult:(PFObject *)event error:(NSError *)error
 {
+    if ([[event valueForKey: @"delivery"] intValue] > 2) {
+        NSLog(@"Crash");
+    }
     NSCalendar *currentCalendar = [NSCalendar currentCalendar];
     unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit;
     NSDateComponents *dateComponents = [currentCalendar components:unitFlags fromDate:[NSDate date]];
@@ -882,8 +885,12 @@
         
         typeDonate = [[event valueForKey:@"delivery"] intValue];
         
-        [typeDonateButton setTitle:[typeDonateArray objectAtIndex:typeDonate] forState:UIControlStateNormal];
-        [typeDonateButton setTitle:[typeDonateArray objectAtIndex:typeDonate] forState:UIControlStateHighlighted];
+        if (typeDonate < typeDonateArray.count) {
+            [typeDonateButton setTitle:[typeDonateArray objectAtIndex:typeDonate] forState:UIControlStateNormal];
+            [typeDonateButton setTitle:[typeDonateArray objectAtIndex:typeDonate] forState:UIControlStateHighlighted];
+        } else {
+            NSLog(@"Unknown donate type is specified");
+        }
         
         isTest = NO;
     }
