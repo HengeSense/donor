@@ -28,6 +28,8 @@ namespace Donor.Controls
         }
 
         public void UpdateCalendar() {
+            int dayscount = 0;
+
             this.CalendarDays.Children.Clear();
             Date = App.ViewModel.Events.CurrentMonth;
             DateTime Date2 = Date;
@@ -74,7 +76,7 @@ namespace Donor.Controls
                     };
                 };
 
-                
+                dayscount++;
                 this.CalendarDays.Children.Add(day);
             };
 
@@ -83,10 +85,6 @@ namespace Donor.Controls
                 DayInCalendarControl day2 = new DayInCalendarControl();
                 day2.ImagePath = null;
                 day2.Tap += ClickDay;
-				
-				/// Set background color for day controller
-				//day2.BgColor = new SolidColorBrush(new Color() { A = 1, B = 2, G = 238, R = 238 });
-                //day2.CurrentColor = new SolidColorBrush(new Color() { A = 1, B = 2, G = 238, R = 238 });
 
 				/// show border for current day
 				if (Date.Day == i) {
@@ -118,7 +116,24 @@ namespace Donor.Controls
                     };
                 };
 
+                dayscount++;
                 this.CalendarDays.Children.Add(day2);
+            };
+            int dayscount2 = (int)(dayscount % 7);
+            if (dayscount2 != 0)
+            {
+                for (var i = 1; i <= (7-dayscount2); i++)
+                {
+                    DayInCalendarControl day3 = new DayInCalendarControl();
+                    day3.ImagePath = "";
+
+                    day3.DayNumber = i.ToString();
+                    day3.MonthNumber = FirstDayPrev.Month;
+                    day3.YearNumber = FirstDayPrev.Year;
+                    day3.Inactive = true;
+                    day3.TextColor = new SolidColorBrush(Colors.Gray);
+                    this.CalendarDays.Children.Add(day3);
+                };
             };
         }
 
