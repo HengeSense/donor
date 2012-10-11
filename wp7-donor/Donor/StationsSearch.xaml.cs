@@ -60,6 +60,18 @@ namespace Donor
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                if (task == "select")
+                {
+                    AppBar.IsVisible = false;
+                }
+                else
+                {
+                    AppBar.IsVisible = true;
+                };
+            }
+            catch { };
             //this.AppBar1.IsVisible = true;
             this.StationsSearchText.Text = App.ViewModel.Stations.FilteredText;
 
@@ -209,6 +221,7 @@ namespace Donor
             try
             {
                 this.task = this.NavigationContext.QueryString["task"];
+
             }
             catch { };
         }

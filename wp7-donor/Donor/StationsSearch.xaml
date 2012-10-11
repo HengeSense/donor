@@ -9,10 +9,11 @@
      DataContext="{Binding Path=App.ViewModel,Source=App.ViewModel}"
     x:Class="Donor.StationsSearch"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    xmlns:WPExtensions="clr-namespace:WPExtensions;assembly=WPExtensions"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
-    mc:Ignorable="d" d:DesignHeight="728" d:DesignWidth="480"
+    mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480"
     shell:SystemTray.IsVisible="False" Loaded="PhoneApplicationPage_Loaded">
 
     <!--LayoutRoot is the root grid where all page content is placed-->
@@ -109,13 +110,21 @@
             </ListBox.ItemTemplate>
         </ListBox>
         </Grid>
+
+        <WPExtensions:AdvancedApplicationBar Name="AppBar" Background="#FF211E1D" BackgroundColor="#FF211E1D" Foreground="White" BorderBrush="#FF211E1D" ForegroundColor="White" OpacityMask="White"
+		IsVisible="True" IsMenuEnabled="True">
+            <WPExtensions:AdvancedApplicationBarIconButton IconUri="/icons/ic_ApplicationBar_map.png" Name="MapButton" Text="На карте" Visibility="Visible" Click="MapButton_Click" />
+            <WPExtensions:AdvancedApplicationBarIconButton IconUri="/icons/ic_ApplicationBar_item.png" Name="FilterButton" Text="Фильтр" Visibility="Visible" Click="ApplicationBarIconButton_Click" />
+        </WPExtensions:AdvancedApplicationBar>
     </Grid>
     
-    <phone:PhoneApplicationPage.ApplicationBar>
-        <shell:ApplicationBar BackgroundColor="#FF211E1D" ForegroundColor="White"	 IsVisible="True" x:Name="AppBar1">
+    <!--<phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar BackgroundColor="#FF211E1D" ForegroundColor="White" IsVisible="True" x:Name="ApplicationBar">
             <shell:ApplicationBarIconButton x:Name="MapButton" IconUri="/icons/ic_ApplicationBar_map.png" Text="На карте" Click="MapButton_Click" />
             <shell:ApplicationBarIconButton IconUri="/icons/ic_ApplicationBar_item.png" Text="Фильтр" Click="ApplicationBarIconButton_Click" />
         </shell:ApplicationBar>
-    </phone:PhoneApplicationPage.ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>-->
+
+
 
 </phone:PhoneApplicationPage>
