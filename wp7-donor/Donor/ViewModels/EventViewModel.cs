@@ -209,13 +209,30 @@ namespace Donor.ViewModels
             private set { }
         }
 
+        public void RemoveReminders()
+        {
+            try
+            {
+                List<long> addSecondsList = new List<long>() { 15 * 60, 60 * 60, 24 * 60 * 60, 7 * 24 * 60 * 60, -60 * 60 * 13, -60 * 60 * 13, 60 * 60 * 11 };
+                foreach (var addSeconds in addSecondsList)
+                {
+                    try {
+                        Reminder objReminder = ScheduledActionService.Find(this.Id + addSeconds.ToString()) as Reminder;
+                        if (objReminder != null)
+                            ScheduledActionService.Remove(this.Id + addSeconds.ToString());
+                    } catch {};
+                };
+            }
+            catch { };
+        }
+
         public void AddReminder(long addSeconds = 0, string rtitle="") {
             try
             {
-                Reminder objReminder = ScheduledActionService.Find(this.Id) as Reminder;
+                Reminder objReminder = ScheduledActionService.Find(this.Id + addSeconds.ToString()) as Reminder;
                 if (objReminder != null)
-                    ScheduledActionService.Remove(this.Id);
-                objReminder = new Reminder(this.Id);
+                    ScheduledActionService.Remove(this.Id + addSeconds.ToString());
+                objReminder = new Reminder(this.Id + addSeconds.ToString());
                 DateTime RememberDate = this.Date;
                 if (addSeconds >= 0)
                 {
@@ -226,7 +243,7 @@ namespace Donor.ViewModels
 
                 if (rtitle == "")
                 {
-                    objReminder.Title = this.GiveType;
+                    objReminder.Title = this.Title;
                 }
                 else
                 {
@@ -249,6 +266,14 @@ namespace Donor.ViewModels
         public EventsListViewModel()
         {
             Items = new ObservableCollection<EventViewModel>();
+        }
+
+        public void SaveEventsParse()
+        {
+        }
+
+        public void LoadEventsParse()
+        {
         }
 
         public int FutureEventsCount()
@@ -486,11 +511,44 @@ namespace Donor.ViewModels
             return item_near2.FirstOrDefault();
         }
 
-        public void UpdateItems() {
+        public void AddEventParse(EventViewModel addedItems = null) {
+            if ((addedItems != null) && ((addedItems.Type == "0") || (addedItems.Type == "1")))
+            {
+                var client = new RestClient("https://api.parse.com");
+                var request = new RestRequest("1/classes/Events", Method.POST);
+                request.AddHeader("Accept", "application/json");
+                request.Parameters.Clear();
+                //string strJSONContent = "{\"station_nid\": " + addedItems.Station_nid + ", \"title\":\"" + addedItems.Title + "\", \"time\":\"" + addedItems.Time + "\", \"adress\":\"" + addedItems.Place + "\", \"comment\":\"" + addedItems.Description + "\", \"type\":" + addedItems.Type + ", \"finished\":" + addedItems.Finished.ToString() + ", \"giveType\":\"" + addedItems.GiveType + "\"}";
+                string strJSONContent = "{\"station_nid\": " + addedItems.Station_nid + ", \"title\":\"" + addedItems.Title + "\", \"adress\":\"" + addedItems.Place + "\", \"comment\":\"" + addedItems.Description.Replace("\r","\n") + "\", \"type\":" + addedItems.Type + ", \"giveType\":\"" + addedItems.GiveType + "\", \"type\":" + addedItems.Type + ", \"giveType\":\"" + addedItems.GiveType + "\"}";
+                //, \"type\":" + addedItems.Type + ", \"giveType\":\"" + addedItems.GiveType + "\"
+                request.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
+                request.AddHeader("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
+                request.AddHeader("Content-Type", "application/json");
+
+                request.AddParameter("application/json", strJSONContent, ParameterType.RequestBody);
+                client.ExecuteAsync(request, response =>
+                {
+                    JObject o = JObject.Parse(response.Content.ToString());
+                    if (o["error"] == null)
+                    {
+
+                    }
+                    else
+                    {
+
+                    };
+                });
+
+            };
+        }
+
+        public void UpdateItems(EventViewModel addedItems = null) {
             NotifyPropertyChanged("Items");
             NotifyPropertyChanged("UserItems");
             NotifyPropertyChanged("WeekItems");
             NotifyPropertyChanged("ThisMonthItems");
+
+            AddEventParse(addedItems);
 
             App.ViewModel.CreateApplicationTile(App.ViewModel.Events.NearestEvents());
             App.ViewModel.SaveToIsolatedStorage();

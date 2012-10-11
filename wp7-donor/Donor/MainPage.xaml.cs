@@ -43,35 +43,37 @@ namespace Donor
         // Load data for the ViewModel Items
         private void MainPage_Loaded(object sender, RoutedEventArgs e)
         {
-            if (!App.ViewModel.IsDataLoaded)
-            {
-                App.ViewModel.LoadData();
-            }
+            try {
+                if (!App.ViewModel.IsDataLoaded)
+                {
+                    App.ViewModel.LoadData();
+                }
 
-            if (App.ViewModel.User.IsLoggedIn == true)
-            {
-                this.LoginForm.Visibility = Visibility.Collapsed;
-                this.UserProfile.Visibility = Visibility.Visible;
-                this.GivedBlood.Text = App.ViewModel.User.GivedBlood.ToString();
-            }
-            else
-            {
-                this.LoginForm.Visibility = Visibility.Visible;
-                this.UserProfile.Visibility = Visibility.Collapsed;
-            };
+                if (App.ViewModel.User.IsLoggedIn == true)
+                {
+                    this.LoginForm.Visibility = Visibility.Collapsed;
+                    this.UserProfile.Visibility = Visibility.Visible;
+                    this.GivedBlood.Text = App.ViewModel.User.GivedBlood.ToString();
+                }
+                else
+                {
+                    this.LoginForm.Visibility = Visibility.Visible;
+                    this.UserProfile.Visibility = Visibility.Collapsed;
+                };
 
-            this.email.Text = "";
-            this.password.Password = "";
+                this.email.Text = "";
+                this.password.Password = "";
 
-            bool hasNetworkConnection =
-  NetworkInterface.NetworkInterfaceType != NetworkInterfaceType.None;
-            if (hasNetworkConnection)
-            {
-            }
-            else
-            {
-                MessageBox.Show("Не удается выполнить выход. Проверьте подключение к интернет-сети");
-            };
+                bool hasNetworkConnection =
+      NetworkInterface.NetworkInterfaceType != NetworkInterfaceType.None;
+                if (hasNetworkConnection)
+                {
+                }
+                else
+                {
+                    MessageBox.Show("Не удается выполнить вход. Убедитесь, что режим \"в самолете\" выключен и имеется сетевое соединение.");
+                };
+            } catch {};
         }
 
         private void TextBlock_Tap(object sender, System.Windows.Input.GestureEventArgs e)
@@ -122,6 +124,7 @@ namespace Donor
             else
             {
                 MessageBox.Show("Пожалуйста войдите, чтобы иметь возможность работать с календарем событий.");
+                
             };
         }
 
@@ -160,7 +163,11 @@ namespace Donor
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
-            App.ViewModel.UserEnter += new MainViewModel.UserEnterEventHandler(this.UserLoaded);
+            try
+            {
+                App.ViewModel.UserEnter += new MainViewModel.UserEnterEventHandler(this.UserLoaded);
+            }
+            catch { };
 
             try
             {
@@ -192,55 +199,61 @@ namespace Donor
 
         private void Login_Click(object sender, RoutedEventArgs e)
         {
-            var client = new RestClient("https://api.parse.com");
-            var request = new RestRequest("1/login?username=" + Uri.EscapeUriString(this.email.Text.ToString().ToLower()) + "&password=" + Uri.EscapeUriString(this.password.Password), Method.GET);
-            request.Parameters.Clear();
-            request.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
-            request.AddHeader("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
-
-            App.ViewModel.User.IsLoggedIn = false;
-
-            this.LoginLoadingBar.IsIndeterminate = true;
-
-            client.ExecuteAsync(request, response =>
+            try
             {
-                this.LoginLoadingBar.IsIndeterminate = false;
-                try {
-                JObject o = JObject.Parse(response.Content.ToString());
-                if (o["error"] == null)
+                var client = new RestClient("https://api.parse.com");
+                var request = new RestRequest("1/login?username=" + Uri.EscapeUriString(this.email.Text.ToString().ToLower()) + "&password=" + Uri.EscapeUriString(this.password.Password), Method.GET);
+                request.Parameters.Clear();
+                request.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
+                request.AddHeader("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
+
+                App.ViewModel.User.IsLoggedIn = false;
+
+                this.LoginLoadingBar.IsIndeterminate = true;
+
+                client.ExecuteAsync(request, response =>
                 {
-                    App.ViewModel.User = JsonConvert.DeserializeObject<DonorUser>(response.Content.ToString());
-                    App.ViewModel.User.IsLoggedIn = true;
-
-                    App.ViewModel.User.Password = this.password.Password;
-                    App.ViewModel.SaveUserToStorage();
-
-                    this.LoginForm.Visibility = Visibility.Collapsed;
-                    this.UserProfile.Visibility = Visibility.Visible;
-                    
-                    App.ViewModel.Events.WeekItemsUpdated();
-                    App.ViewModel.OnUserEnter(EventArgs.Empty);
-
+                    this.LoginLoadingBar.IsIndeterminate = false;
                     try
                     {
-                        this.ProfileName.Text = App.ViewModel.User.Name.ToString();
-                        this.ProfileSex.Text = App.ViewModel.User.OutSex.ToString();
-                        this.ProfileBloodGroup.Text = App.ViewModel.User.OutBloodDataString.ToString();
-                        this.GivedBlood.Text = App.ViewModel.User.GivedBlood.ToString();
+                        JObject o = JObject.Parse(response.Content.ToString());
+                        if (o["error"] == null)
+                        {
+                            App.ViewModel.User = JsonConvert.DeserializeObject<DonorUser>(response.Content.ToString());
+                            App.ViewModel.User.IsLoggedIn = true;
+
+                            App.ViewModel.User.Password = this.password.Password;
+                            App.ViewModel.SaveUserToStorage();
+
+                            this.LoginForm.Visibility = Visibility.Collapsed;
+                            this.UserProfile.Visibility = Visibility.Visible;
+
+                            App.ViewModel.Events.WeekItemsUpdated();
+                            App.ViewModel.OnUserEnter(EventArgs.Empty);
+
+                            try
+                            {
+                                this.ProfileName.Text = App.ViewModel.User.Name.ToString();
+                                this.ProfileSex.Text = App.ViewModel.User.OutSex.ToString();
+                                this.ProfileBloodGroup.Text = App.ViewModel.User.OutBloodDataString.ToString();
+                                this.GivedBlood.Text = App.ViewModel.User.GivedBlood.ToString();
+                            }
+                            catch { };
+                        }
+                        else
+                        {
+                            App.ViewModel.User.IsLoggedIn = false;
+
+                            this.LoginForm.Visibility = Visibility.Visible;
+                            this.UserProfile.Visibility = Visibility.Collapsed;
+
+                            MessageBox.Show("Указаны некорректные данные.");
+                        };
                     }
                     catch { };
-                }
-                else
-                {
-                    App.ViewModel.User.IsLoggedIn = false;
-
-                    this.LoginForm.Visibility = Visibility.Visible;
-                    this.UserProfile.Visibility = Visibility.Collapsed;
-
-                    MessageBox.Show("Указаны некорректные данные.");                    
-                };
-            } catch {};
-            });
+                });
+            }
+            catch { };
         }
 
         private void adsMenuText_Tap(object sender, System.Windows.Input.GestureEventArgs e)
@@ -260,14 +273,18 @@ namespace Donor
 
         private void AddEvent_Click(object sender, RoutedEventArgs e)
         {
-            if (App.ViewModel.User.IsLoggedIn)
+            try
             {
-                NavigationService.Navigate(new Uri("/EventEditPage.xaml", UriKind.Relative));
+                if (App.ViewModel.User.IsLoggedIn)
+                {
+                    NavigationService.Navigate(new Uri("/EventEditPage.xaml", UriKind.Relative));
+                }
+                else
+                {
+                    MessageBox.Show("Пожалуйста войдите, чтобы иметь возможность работать с календарем событий.");
+                };
             }
-            else
-            {
-                MessageBox.Show("Пожалуйста войдите, чтобы иметь возможность работать с календарем событий.");
-            };            
+            catch { };
         }
 
         private void Register_Click(object sender, RoutedEventArgs e)

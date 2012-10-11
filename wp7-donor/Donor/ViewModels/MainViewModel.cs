@@ -30,6 +30,7 @@ using Microsoft.Phone.Scheduler;
 using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Tasks;
+using Microsoft.Phone.Net.NetworkInformation;
 
 
 namespace Donor
@@ -258,6 +259,15 @@ namespace Donor
                 {
                     App.ViewModel.User = IsolatedStorageHelper.LoadSerializableObject<DonorUser>("user.xml");
 
+                    bool hasNetworkConnection =
+  NetworkInterface.NetworkInterfaceType != NetworkInterfaceType.None;
+
+                    if ((App.ViewModel.User.objectId != "") && (!hasNetworkConnection))
+                    {
+                        App.ViewModel.User.IsLoggedIn = true;
+                        App.ViewModel.OnUserEnter(EventArgs.Empty);
+                    }
+                    else {
                     App.ViewModel.User.IsLoggedIn = false;
 
                     var client = new RestClient("https://api.parse.com");
@@ -287,6 +297,7 @@ namespace Donor
                         }
                         catch { };
                     });
+                };
                 }
                 catch
                 {

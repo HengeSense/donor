@@ -44,6 +44,7 @@ namespace Donor
         public int MonthNumber;
 
         public EventViewModel CurrentEvent;
+        public EventViewModel InitialCurrentEvent;
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
@@ -51,6 +52,8 @@ namespace Donor
             {
                 string id = this.NavigationContext.QueryString["id"];
                 CurrentEvent = App.ViewModel.Events.Items.FirstOrDefault(c => c.Id == id);
+
+                InitialCurrentEvent = CurrentEvent;
             }
             catch
             {
@@ -300,19 +303,20 @@ namespace Donor
 
                      if ((App.ViewModel.Settings.EventBefore == true) && (App.ViewModel.Settings.Push == true))
                      {
+                         InitialCurrentEvent.RemoveReminders();
                          switch (this.ReminderPeriod.SelectedItem.ToString())
                          {
                              case "15 минут":
-                                 CurrentEvent.AddReminder(-15 * 60);
+                                 CurrentEvent.AddReminder(15 * 60);
                                  break;
                              case "1 час":
-                                 CurrentEvent.AddReminder(-60 * 60);
+                                 CurrentEvent.AddReminder(60 * 60);
                                  break;
                              case "1 день":
-                                 CurrentEvent.AddReminder(-24 * 60 * 60);
+                                 CurrentEvent.AddReminder(24 * 60 * 60);
                                  break;
                              case "1 неделя":
-                                 CurrentEvent.AddReminder(-7 * 24 * 60 * 60);
+                                 CurrentEvent.AddReminder(7 * 24 * 60 * 60);
                                  break;
                              default:
                                  break;
@@ -326,7 +330,7 @@ namespace Donor
                          {
                              // сохораняем анализ
                              App.ViewModel.Events.Items.Add(CurrentEvent);
-                             App.ViewModel.Events.UpdateItems();
+                             App.ViewModel.Events.UpdateItems(CurrentEvent);
                              App.ViewModel.SaveToIsolatedStorage();
                              NavigationService.GoBack();
                          };
@@ -338,8 +342,13 @@ namespace Donor
                          {
                              if (((App.ViewModel.Settings.EventAfter == true) && (App.ViewModel.Settings.Push == true)) && (CurrentEvent.ReminderMessage == true))
                              {
-                                 //в день в 17:00
-                                 CurrentEvent.AddReminder(-60 * 60 * 17);
+                                 InitialCurrentEvent.RemoveReminders();
+
+                                 //в день в 13:00
+                                 CurrentEvent.AddReminder(-60 * 60 * 13);
+                                 //за день в 13:00
+                                 CurrentEvent.AddReminder(60 * 60 * 11, "Завтра у вас запланирована кроводача.");
+                                 
                              };
 
                              ///
@@ -356,7 +365,7 @@ namespace Donor
                              {
                                  App.ViewModel.Events.Items.Add(CurrentEvent);
 
-                                 App.ViewModel.Events.UpdateItems();
+                                 App.ViewModel.Events.UpdateItems(CurrentEvent);
                                  App.ViewModel.SaveToIsolatedStorage();
                                  NavigationService.GoBack();
                              };
@@ -417,6 +426,34 @@ namespace Donor
             };
         }
 
+        double InputHeight = 0.0;
+
+        private void MessageText_GotFocus(object sender, System.Windows.RoutedEventArgs e)
+        {
+            (App.Current as App).RootFrame.RenderTransform = new CompositeTransform();
+        }
+
+        private void inputText_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+            Dispatcher.BeginInvoke(() =>
+            {
+                double CurrentInputHeight = Description.ActualHeight;
+
+                if (CurrentInputHeight > InputHeight)
+                {
+                    InputScrollViewer.ScrollToVerticalOffset(InputScrollViewer.VerticalOffset + CurrentInputHeight - InputHeight);
+                }
+
+                InputHeight = CurrentInputHeight;
+            });
+        }
+
+        public void MessageText_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            InputScrollViewer.ScrollToVerticalOffset(e.GetPosition(Description).Y - 80);
+        }
+
+
         private void EventType_Loaded(object sender, RoutedEventArgs e)
         {
             try
@@ -438,5 +475,17 @@ namespace Donor
             App.ViewModel.Events.EditedEvent = BuildEvent(false);
             NavigationService.Navigate(new Uri("/StationsSearch.xaml?task=select", UriKind.Relative));
         }
+
+        private void Description_TextChanged(object sender, TextChangedEventArgs e)
+        {
+        }
+
+        private void Description_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key.Equals(Key.Enter))
+                //this.Description.Text += System.Environment.NewLine;  
+                this.Description.Height = this.Description.Height + 50;
+        }
+
     }
 }
