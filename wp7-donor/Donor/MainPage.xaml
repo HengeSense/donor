@@ -161,8 +161,8 @@
 									TextWrapping="Wrap" 
 									Style="{StaticResource 
 									Text36pxDF8D4B}"/>
-									<Image Margin="3,0,0,0" 
-									Source="{Binding BigImage}"/>
+									<Image Margin="10,0,0,0" 
+									Source="{Binding BigImage}" Height="32"/>
 									</StackPanel>
                                     <TextBlock Text="{Binding Title}" 
 									TextWrapping="Wrap" Margin="0" 

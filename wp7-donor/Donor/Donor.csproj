@@ -291,6 +291,23 @@
     <Content Include="Background.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Resource Include="icons\Icon_analis_plan.png" />
+    <Content Include="icons\Icon_blood.png" />
+    <Content Include="icons\Icon_blood_check.png" />
+    <Content Include="icons\Icon_blood_plan.png" />
+    <Content Include="icons\Icon_blood_small.png" />
+    <Content Include="icons\Icon_gran.png" />
+    <Content Include="icons\Icon_gran_check.png" />
+    <Content Include="icons\Icon_gran_plan.png" />
+    <Content Include="icons\Icon_gran_small.png" />
+    <Content Include="icons\Icon_plazm.png" />
+    <Content Include="icons\Icon_plazm_check.png" />
+    <Content Include="icons\Icon_plazm_plan.png" />
+    <Content Include="icons\Icon_plazm_small.png" />
+    <Content Include="icons\Icon_tromb.png" />
+    <Content Include="icons\Icon_tromb_check.png" />
+    <Content Include="icons\Icon_tromb_plan.png" />
+    <Content Include="icons\Icon_tromb_small.png" />
     <Content Include="icons\ic_ApplicationBar_add.png" />
     <Content Include="icons\ic_ApplicationBar_calendar.png" />
     <Content Include="icons\ic_ApplicationBar_close.png" />
@@ -306,6 +323,7 @@
     <Content Include="icons\ic_calendar_platelets.png" />
     <Content Include="icons\ic_calendar_whole_blood.png" />
     <Content Include="icons\ic_donated_blood.png" />
+    <Content Include="icons\ic_donors_act.png" />
     <Content Include="icons\ic_planned_analysis.png" />
     <Content Include="icons\ic_planned_giving_blood.png" />
     <Content Include="icons\ic_plasma.png" />

@@ -38,7 +38,7 @@
                 </Grid.ColumnDefinitions>
 
                 <Border Grid.Column="0" Grid.Row="0" BorderThickness="1" BorderBrush="#FFA09A95">
-                    <Image Name="DayImage" Source="{Binding BigImage}"/>
+                    <Image Name="DayImage" Height="32" Source="{Binding BigImage}"/>
                 </Border>
 
                 <Border Grid.Row="0" Grid.Column="1" BorderThickness="1" BorderBrush="#FFA09A95">
