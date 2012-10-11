@@ -125,6 +125,9 @@
 
 - (void)saveResult:(PFObject *)event error:(NSError *)error
 {
+    if ([[event valueForKey: @"delivery"] intValue] > 2) {
+        NSLog(@"Crash");
+    }
     NSCalendar *currentCalendar = [NSCalendar currentCalendar];
     unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit;
     NSDateComponents *dateComponents = [currentCalendar components:unitFlags fromDate:[NSDate date]];
@@ -486,10 +489,10 @@
         testMinute = [datePickerView selectedRowInComponent:2];
         
         
-        [testDateButton setTitle:[NSString stringWithFormat:@"%@", [daysArray objectAtIndex:testDay]] forState:UIControlStateNormal];
-        [testDateButton setTitle:[NSString stringWithFormat:@"%@", [daysArray objectAtIndex:testDay]] forState:UIControlStateHighlighted];
+        //[testDateButton setTitle:[NSString stringWithFormat:@"%@", [daysArray objectAtIndex:testDay]] forState:UIControlStateNormal];
+        //[testDateButton setTitle:[NSString stringWithFormat:@"%@", [daysArray objectAtIndex:testDay]] forState:UIControlStateHighlighted];
         
-        /*[testDateButton setTitle:[NSString stringWithFormat:@"%@ %@:%@",
+        [testDateButton setTitle:[NSString stringWithFormat:@"%@ %@:%@",
                                   [daysArray objectAtIndex:testDay],
                                   [hoursArray objectAtIndex:testHour],
                                   [minutesArray objectAtIndex:testMinute]]
@@ -498,7 +501,7 @@
                                   [daysArray objectAtIndex:testDay],
                                   [hoursArray objectAtIndex:testHour],
                                   [minutesArray objectAtIndex:testMinute]]
-                        forState:UIControlStateHighlighted];*/
+                        forState:UIControlStateHighlighted];
     }
     else
     {
@@ -506,10 +509,10 @@
         bloodDonateHour = [datePickerView selectedRowInComponent:1];
         bloodDonateMinute = [datePickerView selectedRowInComponent:2];
         
-        [bloodDonationDateButton setTitle:[NSString stringWithFormat:@"%@", [daysArray objectAtIndex:bloodDonateDay]] forState:UIControlStateNormal];
-        [bloodDonationDateButton setTitle:[NSString stringWithFormat:@"%@", [daysArray objectAtIndex:bloodDonateDay]] forState:UIControlStateHighlighted];
+        //[bloodDonationDateButton setTitle:[NSString stringWithFormat:@"%@", [daysArray objectAtIndex:bloodDonateDay]] forState:UIControlStateNormal];
+        //[bloodDonationDateButton setTitle:[NSString stringWithFormat:@"%@", [daysArray objectAtIndex:bloodDonateDay]] forState:UIControlStateHighlighted];
         
-        /*[bloodDonationDateButton setTitle:[NSString stringWithFormat:@"%@ %@:%@",
+        [bloodDonationDateButton setTitle:[NSString stringWithFormat:@"%@ %@:%@",
                                            [daysArray objectAtIndex:bloodDonateDay],
                                            [hoursArray objectAtIndex:bloodDonateHour],
                                            [minutesArray objectAtIndex:bloodDonateMinute]]
@@ -518,7 +521,7 @@
                                            [daysArray objectAtIndex:bloodDonateDay],
                                            [hoursArray objectAtIndex:bloodDonateHour],
                                            [minutesArray objectAtIndex:bloodDonateMinute]]
-                                 forState:UIControlStateHighlighted];*/
+                                 forState:UIControlStateHighlighted];
     }
     
     [UIView beginAnimations:nil context:nil];
@@ -770,13 +773,13 @@
     [typeDonateButton setTitle:[typeDonateArray objectAtIndex:typeDonate] forState:UIControlStateNormal];
     [typeDonateButton setTitle:[typeDonateArray objectAtIndex:typeDonate] forState:UIControlStateHighlighted];
     
-    [bloodDonationDateButton setTitle:[NSString stringWithFormat:@"%@", [daysArray objectAtIndex:bloodDonateDay]] forState:UIControlStateNormal];
-    [bloodDonationDateButton setTitle:[NSString stringWithFormat:@"%@", [daysArray objectAtIndex:bloodDonateDay]] forState:UIControlStateHighlighted];
+    //[bloodDonationDateButton setTitle:[NSString stringWithFormat:@"%@", [daysArray objectAtIndex:bloodDonateDay]] forState:UIControlStateNormal];
+    //[bloodDonationDateButton setTitle:[NSString stringWithFormat:@"%@", [daysArray objectAtIndex:bloodDonateDay]] forState:UIControlStateHighlighted];
     
-    [testDateButton setTitle:[NSString stringWithFormat:@"%@", [daysArray objectAtIndex:testDay]] forState:UIControlStateNormal];
-    [testDateButton setTitle:[NSString stringWithFormat:@"%@", [daysArray objectAtIndex:testDay]] forState:UIControlStateHighlighted];
+    //[testDateButton setTitle:[NSString stringWithFormat:@"%@", [daysArray objectAtIndex:testDay]] forState:UIControlStateNormal];
+    //[testDateButton setTitle:[NSString stringWithFormat:@"%@", [daysArray objectAtIndex:testDay]] forState:UIControlStateHighlighted];
     
-    /*[bloodDonationDateButton setTitle:[NSString stringWithFormat:@"%@ %@:%@",
+    [bloodDonationDateButton setTitle:[NSString stringWithFormat:@"%@ %@:%@",
                                        [daysArray objectAtIndex:bloodDonateDay],
                                        [hoursArray objectAtIndex:bloodDonateHour],
                                        [minutesArray objectAtIndex:bloodDonateMinute]]
@@ -796,7 +799,7 @@
                                        [daysArray objectAtIndex:testDay],
                                        [hoursArray objectAtIndex:testHour],
                                        [minutesArray objectAtIndex:testMinute]]
-                             forState:UIControlStateHighlighted];*/
+                             forState:UIControlStateHighlighted];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -882,8 +885,12 @@
         
         typeDonate = [[event valueForKey:@"delivery"] intValue];
         
-        [typeDonateButton setTitle:[typeDonateArray objectAtIndex:typeDonate] forState:UIControlStateNormal];
-        [typeDonateButton setTitle:[typeDonateArray objectAtIndex:typeDonate] forState:UIControlStateHighlighted];
+        if (typeDonate < typeDonateArray.count) {
+            [typeDonateButton setTitle:[typeDonateArray objectAtIndex:typeDonate] forState:UIControlStateNormal];
+            [typeDonateButton setTitle:[typeDonateArray objectAtIndex:typeDonate] forState:UIControlStateHighlighted];
+        } else {
+            NSLog(@"Unknown donate type is specified");
+        }
         
         isTest = NO;
     }
