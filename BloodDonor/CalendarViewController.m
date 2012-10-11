@@ -142,9 +142,11 @@
         else
         {
             NSCalendar *currentCalendar = [NSCalendar currentCalendar];
-            unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit;
+            unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit;
             NSDateComponents *dateComponents = [currentCalendar components:unitFlags fromDate:selectedDate];
             dateComponents.day = [button.titleLabel.text intValue];
+            dateComponents.hour = 8;
+            dateComponents.minute = 0;
             
             EventPlanningViewController *eventPlanningViewController = [[[EventPlanningViewController alloc] initWithNibName:@"EventPlanningViewController" bundle:nil event:@"" date:[currentCalendar dateFromComponents:dateComponents]] autorelease];
             [self.navigationController pushViewController:eventPlanningViewController animated:YES];
@@ -1074,24 +1076,33 @@
     if (plateletsCount >= 10)
     {
         NSDate *availablePlateletsDateYear = [plateletsDateArray objectAtIndex:plateletsDateArray.count - 10];
+        NSDateComponents *availablePlateletsDateComponentsYear = [currentCalendar components:unitFlags fromDate:availablePlateletsDateYear];
+        availablePlateletsDateComponentsYear.year += 1;
+        availablePlateletsDateYear = [currentCalendar dateFromComponents:availablePlateletsDateComponentsYear];
         if (availablePlateletsDateYear.timeIntervalSince1970 > [currentCalendar dateFromComponents:[Common getInstance].availablePlateletsDateComponents].timeIntervalSince1970)
             [Common getInstance].availablePlateletsDateComponents = [currentCalendar components:unitFlags fromDate:availablePlateletsDateYear];
     }
     
     if (plasmaCount >= 12)
     {
-        NSDate *availablePlasmaDateYear = [plateletsDateArray objectAtIndex:plateletsDateArray.count - 12];
+        NSDate *availablePlasmaDateYear = [plasmaDateArray objectAtIndex:plasmaDateArray.count - 12];
+        NSDateComponents *availablePlasmaDateComponentsYear = [currentCalendar components:unitFlags fromDate:availablePlasmaDateYear];
+        availablePlasmaDateComponentsYear.year += 1;
+        availablePlasmaDateYear = [currentCalendar dateFromComponents:availablePlasmaDateComponentsYear];
         if (availablePlasmaDateYear.timeIntervalSince1970 > [currentCalendar dateFromComponents:[Common getInstance].availablePlasmaDateComponents].timeIntervalSince1970)
             [Common getInstance].availablePlasmaDateComponents = [currentCalendar components:unitFlags fromDate:availablePlasmaDateYear];
     }
     
-    int sex = [[[PFUser currentUser] objectForKey:@"sex"] intValue];
+    int sex = [[[PFUser currentUser] objectForKey:@"Sex"] intValue];
     
     if (sex == 0)
     {
         if (wholeBloodCount >= 5)
         {
-            NSDate *availableWholeBloodDateYear = [plateletsDateArray objectAtIndex:plateletsDateArray.count - 5];
+            NSDate *availableWholeBloodDateYear = [wholeBloodDateArray objectAtIndex:wholeBloodDateArray.count - 5];
+            NSDateComponents *availableWholeBloodDateComponentsYear = [currentCalendar components:unitFlags fromDate:availableWholeBloodDateYear];
+            availableWholeBloodDateComponentsYear.year += 1;
+            availableWholeBloodDateYear = [currentCalendar dateFromComponents:availableWholeBloodDateComponentsYear];
             if (availableWholeBloodDateYear.timeIntervalSince1970 > [currentCalendar dateFromComponents:[Common getInstance].availableWholeBloodDateComponents].timeIntervalSince1970)
                 [Common getInstance].availableWholeBloodDateComponents = [currentCalendar components:unitFlags fromDate:availableWholeBloodDateYear];
         }
@@ -1100,7 +1111,10 @@
     {
         if (wholeBloodCount >= 4)
         {
-            NSDate *availableWholeBloodDateYear = [plateletsDateArray objectAtIndex:plateletsDateArray.count - 4];
+            NSDate *availableWholeBloodDateYear = [wholeBloodDateArray objectAtIndex:wholeBloodDateArray.count - 4];
+            NSDateComponents *availableWholeBloodDateComponentsYear = [currentCalendar components:unitFlags fromDate:availableWholeBloodDateYear];
+            availableWholeBloodDateComponentsYear.year += 1;
+            availableWholeBloodDateYear = [currentCalendar dateFromComponents:availableWholeBloodDateComponentsYear];
             if (availableWholeBloodDateYear.timeIntervalSince1970 > [currentCalendar dateFromComponents:[Common getInstance].availableWholeBloodDateComponents].timeIntervalSince1970)
                 [Common getInstance].availableWholeBloodDateComponents = [currentCalendar components:unitFlags fromDate:availableWholeBloodDateYear];
         }

@@ -975,7 +975,8 @@
     }
     else
     {
-        [self reloadMapAnnotations];
+        if (self.navigationController.isBeingPresented)
+            [self reloadMapAnnotations];
     }
 }
 
@@ -1304,13 +1305,7 @@
 {
     [super viewDidAppear:animated];
     
-    
-    if(self.navigationController.isBeingPresented)
-    {
-        [coreLocationController.locationManager startUpdatingLocation];
-    }
-    
-        
+    [coreLocationController.locationManager startUpdatingLocation];
 }
 
 - (void)viewDidDisappear:(BOOL)animated

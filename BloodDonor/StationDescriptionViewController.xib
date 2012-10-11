@@ -3,12 +3,12 @@
 	<data>
 		<int key="IBDocument.SystemTarget">1536</int>
 		<string key="IBDocument.SystemVersion">11G56</string>
-		<string key="IBDocument.InterfaceBuilderVersion">2840</string>
+		<string key="IBDocument.InterfaceBuilderVersion">2843</string>
 		<string key="IBDocument.AppKitVersion">1138.51</string>
 		<string key="IBDocument.HIToolboxVersion">569.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-			<string key="NS.object.0">1926</string>
+			<string key="NS.object.0">1929</string>
 		</object>
 		<array key="IBDocument.IntegratedClassDependencies">
 			<string>IBProxyObject</string>
@@ -221,7 +221,7 @@
 									<object class="IBUIWebView" id="826655222">
 										<reference key="NSNextResponder" ref="736914862"/>
 										<int key="NSvFlags">292</int>
-										<string key="NSFrame">{{0, 117}, {307, 20}}</string>
+										<string key="NSFrame">{{7, 117}, {307, 20}}</string>
 										<reference key="NSSuperview" ref="736914862"/>
 										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="592502368"/>
@@ -312,7 +312,7 @@
 												<string key="NSFrame">{{9, 45}, {301, 3}}</string>
 												<reference key="NSSuperview" ref="1009901885"/>
 												<reference key="NSWindow"/>
-												<reference key="NSNextKeyView" ref="76324881"/>
+												<reference key="NSNextKeyView" ref="39873821"/>
 												<string key="NSReuseIdentifierKey">_NS:9</string>
 												<bool key="IBUIUserInteractionEnabled">NO</bool>
 												<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -373,6 +373,7 @@
 												<string key="NSFrame">{{9, 43}, {301, 3}}</string>
 												<reference key="NSSuperview" ref="39873821"/>
 												<reference key="NSWindow"/>
+												<reference key="NSNextKeyView"/>
 												<string key="NSReuseIdentifierKey">_NS:9</string>
 												<bool key="IBUIUserInteractionEnabled">NO</bool>
 												<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -409,7 +410,7 @@
 												<string key="NSFrame">{{13, 2}, {293, 37}}</string>
 												<reference key="NSSuperview" ref="39873821"/>
 												<reference key="NSWindow"/>
-												<reference key="NSNextKeyView" ref="39873821"/>
+												<reference key="NSNextKeyView" ref="545019494"/>
 												<string key="NSReuseIdentifierKey">_NS:9</string>
 												<bool key="IBUIOpaque">NO</bool>
 												<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -431,7 +432,7 @@
 										<string key="NSFrame">{{0, 54}, {320, 54}}</string>
 										<reference key="NSSuperview" ref="920387052"/>
 										<reference key="NSWindow"/>
-										<reference key="NSNextKeyView" ref="545019494"/>
+										<reference key="NSNextKeyView" ref="76324881"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
 										<reference key="IBUIBackgroundColor" ref="481361844"/>
 										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -1222,6 +1223,6 @@
 			<string key="ratedStarEmpty.png">{18, 17}</string>
 			<string key="showOnMapIcon.png">{26, 37}</string>
 		</dictionary>
-		<string key="IBCocoaTouchPluginVersion">1926</string>
+		<string key="IBCocoaTouchPluginVersion">1929</string>
 	</data>
 </archive>

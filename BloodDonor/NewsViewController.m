@@ -99,7 +99,6 @@ static NSString * PODARI_ZHIZN_NEWS_URL = @"http://www.podari-zhizn.ru/main/node
         [indicatorView removeFromSuperview];
         [indicatorView release];
     }];
-    
 }
 
 #pragma mark UIWebViewDelegate
@@ -116,7 +115,6 @@ static NSString * PODARI_ZHIZN_NEWS_URL = @"http://www.podari-zhizn.ru/main/node
             newContentSize.height += adsView.frame.size.height;
             newBodyWebView.scrollView.contentSize = newContentSize;
         }
-        
     }
     else
     {
@@ -180,8 +178,6 @@ static NSString * PODARI_ZHIZN_NEWS_URL = @"http://www.podari-zhizn.ru/main/node
     UIBarButtonItem *shareBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:shareButton] autorelease];
     self.navigationItem.rightBarButtonItem = shareBarButtonItem;
     
-    CGSize contentSize;
-    CGSize maximumLabelSize = CGSizeMake(320, 9999);
     NSString *htmlString1 = @"";
     
     int padding_top;
@@ -197,9 +193,6 @@ static NSString * PODARI_ZHIZN_NEWS_URL = @"http://www.podari-zhizn.ru/main/node
         
         htmlString1 = [NSString stringWithFormat:@"<html><head><style type='text/css'>* { margin:0; padding:0; } p { color:#847168; font-family:Helvetica; font-size:12px; font-weight:bold;  }</style></head><body><p>%@ <font color=\"#CBB2A3\">%@</font></p></body></html>", createString, [content valueForKey:@"title"]];
         padding_top = 7;
-        
-        CGSize htmlString1Size = [[NSString stringWithFormat:@"%@ %@", createString, [content valueForKey:@"title"]] sizeWithFont:[UIFont fontWithName:@"Helvetica" size:12] constrainedToSize:maximumLabelSize lineBreakMode:UILineBreakModeWordWrap];
-        contentSize = htmlString1Size;
     }
     //News
     else
@@ -212,13 +205,7 @@ static NSString * PODARI_ZHIZN_NEWS_URL = @"http://www.podari-zhizn.ru/main/node
      
     NSString *htmlString = [NSString stringWithFormat:@"<html><head><style type='text/css'>* { margin:0; padding-top:%d; padding-left:6; padding-right:6; } p { color:#847168; font-family:Helvetica; font-size:12px; font-weight:bold;  } a { color:#0B8B99; text-decoration:underline; } h1 { color:#CBB2A3; font-family:Helvetica; font-size:15px; font-weight:bold; }</style></head><body><p><br />%@</p></body></html>", padding_top, bodyString];
     
-    CGSize htmlStringSize = [[NSString stringWithFormat:@"%@", bodyString] sizeWithFont:[UIFont fontWithName:@"Helvetica" size:24] constrainedToSize:maximumLabelSize lineBreakMode:UILineBreakModeWordWrap];
-    
-    contentSize.height += htmlStringSize.height + 25.0f;
-    
     [newBodyWebView loadHTMLString:[NSString stringWithFormat:@"%@%@", htmlString1, htmlString] baseURL:nil];
-    
-    newBodyWebView.scrollView.contentSize = contentSize;
 }
 
 - (NSString *)stringByStrippingHTML:(NSString *)inputString
@@ -251,7 +238,6 @@ static NSString * PODARI_ZHIZN_NEWS_URL = @"http://www.podari-zhizn.ru/main/node
             
             regex = [NSRegularExpression regularExpressionWithPattern:@"\\<a href=\"/main/(.+?)\"\\>" options:NSRegularExpressionCaseInsensitive error:&error];
             outString = [regex stringByReplacingMatchesInString:outString options:0 range:NSMakeRange(0, [outString length]) withTemplate:@"<a href=\"http://www.podari-zhizn.ru/main/$1\">"];
-            
         }
     }
     
