@@ -174,6 +174,20 @@ namespace Donor.Controls
             }
         }
 
+        private Brush _borderColor;
+        public Brush BorderColor
+        {
+            get
+            {
+                return _borderColor;
+            }
+            set
+            {
+                _borderColor = value;
+                NotifyPropertyChanged("BorderColor");
+            }
+        }
+
         private Brush _bgColor;
         public Brush BgColor
         {

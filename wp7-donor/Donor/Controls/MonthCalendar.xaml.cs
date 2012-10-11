@@ -89,6 +89,7 @@ namespace Donor.Controls
 				/// show border for current day
 				if (Date.Day == i) {
 					day2.CurrentColor = new SolidColorBrush(new Color() { A = 1, B = 238, G = 31, R = 173 });
+                    day2.BorderColor = new SolidColorBrush(Colors.Red);
 				};
 				
                 day2.EventDay = App.ViewModel.Events.Items.FirstOrDefault(a => a.Date == new DateTime(Date.Year, Date.Month, i));
@@ -112,6 +113,7 @@ namespace Donor.Controls
                     if ((curDate <= EndDays) && (FromDays <= curDate))
                     {
                         //day2.BgColor = new SolidColorBrush(Colors.DarkGray);
+                        
                         day2.Inactive = true;
                     };
                 };
