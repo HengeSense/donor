@@ -225,7 +225,7 @@ namespace Donor.ViewModels
         {
             try
             {
-                List<long> addSecondsList = new List<long>() { 15 * 60, 60 * 60, 24 * 60 * 60, 7 * 24 * 60 * 60, -60 * 60 * 13, -60 * 60 * 13, 60 * 60 * 11 };
+                List<long> addSecondsList = new List<long>() { 15 * 60, 60 * 60, 24 * 60 * 60, 2* 24 * 60 * 60, 7 * 24 * 60 * 60, -60 * 60 * 13, -60 * 60 * 13, 60 * 60 * 11 };
                 foreach (var addSeconds in addSecondsList)
                 {
                     try {
@@ -287,6 +287,71 @@ namespace Donor.ViewModels
         public void LoadEventsParse()
         {
         }
+
+        public DateTime PossibleGiveBlood(string GiveType = "")
+        {
+            List<string> TypesGive = new List<string>() { "Тромбоциты", "Плазма", "Цельная кровь", "Гранулоциты" };
+
+            var _selected_user_items = (from item in this.Items
+                                                where ((item.UserId == App.ViewModel.User.objectId) && (item.Type == "1"))
+                                                orderby item.Date ascending
+                                                select item);
+
+            var previtem = _selected_user_items.FirstOrDefault();
+            DateTime Date = DateTime.Now;
+            DateTime OutDate = DateTime.Now;
+
+            if (App.ViewModel.Events.EventsInYear(GiveType, OutDate) && App.ViewModel.Events.EventsInYear(GiveType, OutDate.AddYears(-1))) {
+
+            };
+
+            /*if (App.ViewModel.Events.EventsInYear(GiveType, OutDate) && App.ViewModel.Events.EventsInYear(GiveType, OutDate.AddYears(-1)) 
+            OutDate = _selected_user_items.LastOrDefault().Date;*/
+
+            foreach (var item in _selected_user_items)
+            {
+                int days = App.ViewModel.Events.DaysFromEvent(_selected_user_items.FirstOrDefault().GiveType, GiveType);
+                previtem = item;
+                if (previtem.Date.AddDays(days) >= DateTime.Now)
+                {
+                    if (App.ViewModel.Events.EventsInYear(GiveType, OutDate) && App.ViewModel.Events.EventsInYear(GiveType, OutDate.AddYears(-1))) {
+                    OutDate = previtem.Date.AddDays(days);
+                    break;
+                    } else {
+                    };
+                };
+            };
+
+            var _future_items = (from item in this.Items
+                where (((item.UserId == App.ViewModel.User.objectId) && (item.Type == "1")) && (item.Date >= DateTime.Now))
+                orderby item.Date ascending
+                select item);
+
+            foreach (var item in _future_items) {
+                int daysc1 = App.ViewModel.Events.DaysFromEvent(item.GiveType, GiveType);
+                int daysc2 = App.ViewModel.Events.DaysFromEvent(GiveType, item.GiveType);
+                if ((OutDate <= item.Date.AddDays(daysc1)) && (OutDate >= item.Date))
+                {
+                    previtem = item;
+                    OutDate = previtem.Date.AddDays(daysc1);
+                    break;
+                };
+                if ((item.Date <= OutDate.AddDays(daysc2)) && (OutDate < item.Date))
+                {
+                    previtem = item;
+                    OutDate = previtem.Date.AddDays(daysc2);                    
+                    break;
+                };
+            };
+
+            
+            //int days2 = App.ViewModel.Events.DaysFromEvent(item.GiveType, GiveType);            
+            /*if (App.ViewModel.Events.EventsInYear(GiveType, Date) && App.ViewModel.Events.EventsInYear(GiveType, Date.AddYears(-1)))
+            {
+            };*/
+            return OutDate;
+        }
+
 
         public int FutureEventsCount()
         {
@@ -661,6 +726,41 @@ namespace Donor.ViewModels
             private set { } 
         }
 
+        public void GetThisMonthItems() {
+                var bw = new BackgroundWorker();
+            
+                bw.DoWork += delegate
+                {
+                    System.Threading.Thread.Sleep(300);
+
+                    var newitems = (from eventCal in this.Items
+                                    where ((eventCal.UserId == App.ViewModel.User.objectId) || ((eventCal.Type != "0") || (eventCal.Type != "1"))) &&
+                                    (eventCal.Date.Month == CurrentMonth.Month) && (eventCal.Date.Year == CurrentMonth.Year)
+                                    orderby eventCal.Date descending
+                                    select eventCal);
+                    List<EventViewModel> outnews = newitems.ToList();
+
+                    var emptyItem = new EventViewModel();
+                    emptyItem.Date = CurrentMonth;
+                    emptyItem.Type = "empty";
+                    emptyItem.Title = "";
+
+                    int addi = 14 - newitems.Count();
+                    if (addi > 0) {
+                        for(var ii=0;ii<addi;ii++) {
+                            outnews.Add(emptyItem);
+                        };
+                    }; 
+                Deployment.Current.Dispatcher.BeginInvoke(() =>
+                    {
+                        _thisMonthItems = outnews;
+                        NotifyPropertyChanged("ThisMonthItems");
+                    });
+                };
+                bw.RunWorkerAsync();  
+        }
+
+        private List<EventViewModel> _thisMonthItems;
         public List<EventViewModel> ThisMonthItems
         {
             get
@@ -670,23 +770,24 @@ namespace Donor.ViewModels
                                 (eventCal.Date.Month == CurrentMonth.Month) && (eventCal.Date.Year == CurrentMonth.Year)
                                 orderby eventCal.Date descending
                                 select eventCal);
-                List<EventViewModel> outnews = newitems.ToList();
+                List<EventViewModel> _thisMonthItems = newitems.ToList();
 
                 var emptyItem = new EventViewModel();
                 emptyItem.Date = CurrentMonth;
                 emptyItem.Type = "empty";
                 emptyItem.Title = "";
 
-                int addi = 14 - outnews.Count();
-                if (addi > 0) {
-                    for(var ii=0;ii<addi;ii++) {
-                        outnews.Add(emptyItem);
+                int addi = 14 - newitems.Count();
+                if (addi > 0)
+                {
+                    for (var ii = 0; ii < addi; ii++)
+                    {
+                        _thisMonthItems.Add(emptyItem);
                     };
                 };
-
-                return outnews;
+                return _thisMonthItems;
             }
-            private set { }
+            private set {}
         }
 
         private DateTime _currentMonth = DateTime.Now;
@@ -697,6 +798,7 @@ namespace Donor.ViewModels
             set 
             { 
                 _currentMonth = value;
+                GetThisMonthItems();
                 NotifyPropertyChanged("CurrentMonthString");
                 NotifyPropertyChanged("NextMonthString");
                 NotifyPropertyChanged("PrevMonthString");

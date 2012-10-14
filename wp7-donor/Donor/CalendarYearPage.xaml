@@ -75,7 +75,7 @@
         <!--Pivot Control-->
         <toolkit:LockablePivot Name="Monthes" Grid.Row="1"
 		Title="{Binding Path=Events.CurrentDateYear}" 
-		Loaded="Pivot_Loaded" SelectionChanged="Monthes_SelectionChanged">
+		Loaded="Pivot_Loaded" SelectionChanged="Monthes_SelectionChanged" LoadedPivotItem="Monthes_LoadedPivotItem">
 
         	<controls:Pivot.Background>
             	<ImageBrush ImageSource="images/bg_04_white.png"/>

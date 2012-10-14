@@ -26,7 +26,7 @@ namespace Donor
             List<string> giveTypes = new List<string>() { "Тромбоциты", "Плазма", "Цельная кровь", "Гранулоциты" };
             //, "Гранулоциты"
 
-            List<string> reminderTypes = new List<string>() { "15 минут", "1 час", "1 день", "1 неделя" };
+            List<string> reminderTypes = new List<string>() { "15 минут", "1 час", "1 день", "2 дня", "1 неделя" };
 
             this.EventType.ItemsSource = eventTypes;
             this.GiveType.ItemsSource = giveTypes;
@@ -314,6 +314,9 @@ namespace Donor
                                  break;
                              case "1 день":
                                  CurrentEvent.AddReminder(24 * 60 * 60);
+                                 break;
+                             case "2 дня":
+                                 CurrentEvent.AddReminder(2 * 24 * 60 * 60);
                                  break;
                              case "1 неделя":
                                  CurrentEvent.AddReminder(7 * 24 * 60 * 60);
