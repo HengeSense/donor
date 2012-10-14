@@ -69,6 +69,22 @@ namespace Donor.ViewModels
             private set { }
         }
 
+        public string Day
+        {
+            get
+            {
+                if (this.Type == "empty")
+                {
+                    return " ";
+                }
+                else
+                {
+                    return _date.Day.ToString();
+                };
+            }
+            private set { }
+        }
+
         public string Image { get; set; }
 
         /// <summary>
@@ -777,7 +793,7 @@ namespace Donor.ViewModels
                 emptyItem.Type = "empty";
                 emptyItem.Title = "";
 
-                int addi = 14 - newitems.Count();
+                int addi = 11 - newitems.Count();
                 if (addi > 0)
                 {
                     for (var ii = 0; ii < addi; ii++)

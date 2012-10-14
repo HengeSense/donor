@@ -33,7 +33,7 @@
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="40"/>
-                    <ColumnDefinition Width="130"/>
+                    <ColumnDefinition Width="70"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
@@ -42,7 +42,7 @@
                 </Border>
 
                 <Border Grid.Row="0" Grid.Column="1" BorderThickness="1" BorderBrush="#FFA09A95">
-                    <TextBlock Text="{Binding ShortDate}"  TextWrapping="Wrap" Margin="6" Style="{StaticResource Text22px9F9F9F}" VerticalAlignment="Center" />
+                    <TextBlock Text="{Binding Day}"  TextWrapping="Wrap" FontSize="30" Margin="16,6,6,6" Style="{StaticResource Text22px9F9F9F}" VerticalAlignment="Center" />
                 </Border>
 
                 <Border Grid.Row="0" Grid.Column="2" BorderThickness="1" BorderBrush="#FFA09A95">
