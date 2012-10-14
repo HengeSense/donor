@@ -91,6 +91,9 @@
 {
     [super viewDidLoad];
     
+    // Hides forDodonorsView (JIRA: DOI-65)
+    [forDodonorsView removeFromSuperview];
+    
     self.title = @"Станции";
     self.navigationItem.backBarButtonItem =
     [[[UIBarButtonItem alloc] initWithTitle:@"Назад"
