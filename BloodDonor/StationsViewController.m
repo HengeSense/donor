@@ -1174,6 +1174,7 @@
         [indicatorView addSubview:indicator];
         [indicator startAnimating];
     }
+    [self reloadMapAnnotations];
 }
 
 - (void)callbackWithResult:(NSArray *)result error:(NSError *)error
