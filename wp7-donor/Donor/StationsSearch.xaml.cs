@@ -94,7 +94,7 @@ namespace Donor
                 else
                 {
                     this.StationsList.ItemsSource = from stations in App.ViewModel.Stations.Items
-                                                where (stations.Title.ToLower().Contains(App.ViewModel.Stations.FilteredText.ToLower()))
+                                                    where (stations.Title.ToLower().Contains(App.ViewModel.Stations.FilteredText.ToLower()) || stations.Adress.ToLower().Contains(App.ViewModel.Stations.FilteredText.ToLower()))
                                                 orderby stations.Distance ascending
                                                 select stations;
                 };
@@ -113,7 +113,7 @@ namespace Donor
                 {
                     this.StationsList.ItemsSource = from stations in App.ViewModel.Stations.Items
                                                     where (stations.City == App.ViewModel.Stations.SelectedCity)
-                                                    && ((stations.DonorsForChildrens == App.ViewModel.Stations.IsChildrenDonor) && (stations.RegionalRegistration == App.ViewModel.Stations.IsRegional) && (stations.SaturdayWork == App.ViewModel.Stations.IsSaturdayWork)) && (stations.Title.ToLower().Contains(App.ViewModel.Stations.FilteredText.ToLower())) && (stations.Title.ToLower().Contains(App.ViewModel.Stations.FilteredText.ToLower()))
+                                                    && ((stations.DonorsForChildrens == App.ViewModel.Stations.IsChildrenDonor) && (stations.RegionalRegistration == App.ViewModel.Stations.IsRegional) && (stations.SaturdayWork == App.ViewModel.Stations.IsSaturdayWork)) && (stations.Title.ToLower().Contains(App.ViewModel.Stations.FilteredText.ToLower())) && ((stations.Adress.ToLower().Contains(App.ViewModel.Stations.FilteredText.ToLower()) || stations.Adress.ToLower().Contains(App.ViewModel.Stations.FilteredText.ToLower())))
                                                     orderby stations.Distance ascending
                                                     select stations;
                 };
@@ -137,7 +137,7 @@ namespace Donor
                 if (App.ViewModel.Stations.IsFilter == false)
                 {
                     this.StationsList.ItemsSource = from stations in App.ViewModel.Stations.Items
-                                                    where (stations.Title.ToLower().Contains(searchtext.ToLower()))
+                                                    where (stations.Title.ToLower().Contains(searchtext.ToLower()) || stations.Adress.ToLower().Contains(searchtext.ToLower()))
                                                     orderby stations.Distance ascending
                                                     select stations;
                 }
@@ -145,7 +145,7 @@ namespace Donor
                 {
                     this.StationsList.ItemsSource = from stations in App.ViewModel.Stations.Items
                                                     where (stations.Title.ToLower().Contains(searchtext.ToLower())) && ((stations.City == App.ViewModel.Stations.SelectedCity)
-                                                        && ((stations.DonorsForChildrens == App.ViewModel.Stations.IsChildrenDonor) && (stations.RegionalRegistration == App.ViewModel.Stations.IsRegional) && (stations.SaturdayWork == App.ViewModel.Stations.IsSaturdayWork)) && (stations.Title.ToLower().Contains(App.ViewModel.Stations.FilteredText.ToLower())))
+                                                        && ((stations.DonorsForChildrens == App.ViewModel.Stations.IsChildrenDonor) && (stations.RegionalRegistration == App.ViewModel.Stations.IsRegional) && (stations.SaturdayWork == App.ViewModel.Stations.IsSaturdayWork)) && ((stations.Title.ToLower().Contains(App.ViewModel.Stations.FilteredText.ToLower())) || stations.Adress.ToLower().Contains(searchtext.ToLower())))
                                                     orderby stations.Distance ascending
                                                     select stations;
                 };
@@ -161,7 +161,7 @@ namespace Donor
                 {
                     this.StationsList.ItemsSource = from stations in App.ViewModel.Stations.Items
                                                     where ((stations.City == App.ViewModel.Stations.SelectedCity)
-                                                    && ((stations.DonorsForChildrens == App.ViewModel.Stations.IsChildrenDonor) && (stations.RegionalRegistration == App.ViewModel.Stations.IsRegional) && (stations.SaturdayWork == App.ViewModel.Stations.IsSaturdayWork)) && (stations.Title.ToLower().Contains(App.ViewModel.Stations.FilteredText.ToLower())))
+                                                    && ((stations.DonorsForChildrens == App.ViewModel.Stations.IsChildrenDonor) && (stations.RegionalRegistration == App.ViewModel.Stations.IsRegional) && (stations.SaturdayWork == App.ViewModel.Stations.IsSaturdayWork)) && ((stations.Title.ToLower().Contains(App.ViewModel.Stations.FilteredText.ToLower())) || (stations.Adress.ToLower().Contains(App.ViewModel.Stations.FilteredText.ToLower()))))
                                                     orderby stations.Distance ascending
                                                     select stations;
                 };
