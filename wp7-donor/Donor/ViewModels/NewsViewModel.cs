@@ -30,7 +30,7 @@ namespace Donor.ViewModels
         public void LoadNews()
         {
             var client = new RestClient("https://api.parse.com");
-            var request = new RestRequest("1/classes/News", Method.GET);
+            var request = new RestRequest("1/classes/News?order=-createdTimestamp", Method.GET);
             request.Parameters.Clear();
             request.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
             request.AddHeader("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
