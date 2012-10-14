@@ -291,7 +291,7 @@
     <Content Include="Background.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Resource Include="icons\Icon_analis_plan.png" />
+    <Content Include="icons\Icon_analis_plan.png" />
     <Content Include="icons\Icon_blood.png" />
     <Content Include="icons\Icon_blood_check.png" />
     <Content Include="icons\Icon_blood_plan.png" />
