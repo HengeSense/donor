@@ -13,24 +13,62 @@
     <Border BorderThickness="1" Width="65" Height="65"
                 BorderBrush="Gray" 
                 Name="MainBorder2" Margin="0,0,0,0">
-    <Grid x:Name="LayoutRoot" Background="#FFEEEEEE" Margin="1" Loaded="LayoutRoot_Loaded">
+    <Grid x:Name="LayoutRoot" Background="#FFEEEEEE" Margin="0" Loaded="LayoutRoot_Loaded">
             <!-- 
                 Background="{Binding BgColor}"
             -->
             <Border Name="MainBorder" Background="{Binding CurrentColor}" BorderThickness="3" BorderBrush="{Binding BorderColor}" Margin="3">
-                <StackPanel Name="MainPanel" Background="{Binding BgColor}" Height="52" Width="52" Margin="1,1,1,1">
+                <Grid Width="52" Height="52" Background="{Binding BgColor}">
+                    
+                    <!--<StackPanel Name="MainPanel" Background="{Binding BgColor}" Height="52" Width="52" Margin="1,1,1,1">
                 <TextBlock VerticalAlignment="Center" Height="52" Width="52" 
                            TextAlignment="Center" 
-                           Margin="2" 
+                           Margin="-5,-5,0,0" 
                            FontSize="28"
                 Foreground="{Binding TextColor}" Text="{Binding DayNumber}"/>
 
                     <Image Height="25"
                        Width="25" 
-                           Margin="30,-94,0,0"
+                           Margin="20,-75,0,0"
                        Name="DayImage" 
                        Source="{Binding ImagePath}"/>
-                </StackPanel>
+                </StackPanel>-->
+
+                    <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Height="52" Width="52" 
+                           TextAlignment="Center" 
+                           Margin="0,10,0,0" 
+                           FontSize="28" Foreground="{Binding TextColor}" 
+                               Text="{Binding DayNumber}"/>
+
+                    <Grid Width="52" Background="Transparent" Height="52" Grid.Row="0" Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Image Height="20" Margin="0"
+                       Name="DayImageRT" 
+                           Grid.Row="0"
+                           Grid.Column="2"/>
+                        <Image Height="20" Margin="0"
+                       Name="DayImageRB" 
+                           Grid.Row="2"
+                           Grid.Column="2"/>
+                        <Image Height="20" Margin="0"
+                       Name="DayImageLB" 
+                           Grid.Row="2"
+                           Grid.Column="0"/>
+                        <!-- {Binding ImagePath} -->
+                </Grid>
+
+                    
+        </Grid>
             </Border>
             <toolkit:ContextMenuService.ContextMenu>
                 <toolkit:ContextMenu Name="ContextMenu">

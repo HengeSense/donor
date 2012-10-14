@@ -303,39 +303,50 @@ namespace Donor
 
                      if ((App.ViewModel.Settings.EventBefore == true) && (App.ViewModel.Settings.Push == true))
                      {
-                         InitialCurrentEvent.RemoveReminders();
-                         switch (this.ReminderPeriod.SelectedItem.ToString())
+                         //if save and thiere is no events at this day
+                         if ((save) && (App.ViewModel.Events.ThisDayEvents(CurrentEvent.Date) == false))
                          {
-                             case "15 минут":
-                                 CurrentEvent.AddReminder(15 * 60);
-                                 break;
-                             case "1 час":
-                                 CurrentEvent.AddReminder(60 * 60);
-                                 break;
-                             case "1 день":
-                                 CurrentEvent.AddReminder(24 * 60 * 60);
-                                 break;
-                             case "2 дня":
-                                 CurrentEvent.AddReminder(2 * 24 * 60 * 60);
-                                 break;
-                             case "1 неделя":
-                                 CurrentEvent.AddReminder(7 * 24 * 60 * 60);
-                                 break;
-                             default:
-                                 break;
-                         }
+                             InitialCurrentEvent.RemoveReminders();
+                             switch (this.ReminderPeriod.SelectedItem.ToString())
+                             {
+                                 case "15 минут":
+                                     CurrentEvent.AddReminder(15 * 60);
+                                     break;
+                                 case "1 час":
+                                     CurrentEvent.AddReminder(60 * 60);
+                                     break;
+                                 case "1 день":
+                                     CurrentEvent.AddReminder(24 * 60 * 60);
+                                     break;
+                                 case "2 дня":
+                                     CurrentEvent.AddReminder(2 * 24 * 60 * 60);
+                                     break;
+                                 case "1 неделя":
+                                     CurrentEvent.AddReminder(7 * 24 * 60 * 60);
+                                     break;
+                                 default:
+                                     break;
+                             };
+                         };
 
                      };
 
                      if (CurrentEvent.Type == "0")
                      {
-                         if (save)
+                         if ((save) && (App.ViewModel.Events.ThisDayEvents(CurrentEvent.Date) == false))
                          {
-                             // сохораняем анализ
+                             // сохраняем анализ
                              App.ViewModel.Events.Items.Add(CurrentEvent);
                              App.ViewModel.Events.UpdateItems(CurrentEvent);
                              App.ViewModel.SaveToIsolatedStorage();
                              NavigationService.GoBack();
+                         }
+                         else
+                         {
+                             if (App.ViewModel.Events.ThisDayEvents(CurrentEvent.Date))
+                             {
+                                 MessageBox.Show("На этот день у вас уже запланировано событие.");
+                             };
                          };
                      }
                      else
@@ -345,12 +356,15 @@ namespace Donor
                          {
                              if (((App.ViewModel.Settings.EventAfter == true) && (App.ViewModel.Settings.Push == true)) && (CurrentEvent.ReminderMessage == true))
                              {
-                                 InitialCurrentEvent.RemoveReminders();
+                                 if ((save) && (App.ViewModel.Events.ThisDayEvents(CurrentEvent.Date) == false))
+                                 {
+                                     InitialCurrentEvent.RemoveReminders();
 
-                                 //в день в 13:00
-                                 CurrentEvent.AddReminder(-60 * 60 * 13);
-                                 //за день в 13:00
-                                 CurrentEvent.AddReminder(60 * 60 * 11, "Завтра у вас запланирована кроводача.");
+                                     //в день в 17:00
+                                     CurrentEvent.AddReminder(-60 * 60 * 17, CurrentEvent.GiveType);
+                                     //за день в 12:00
+                                     CurrentEvent.AddReminder(60 * 60 * 12, "Завтра у вас запланирована кроводача.");
+                                 };
                                  
                              };
 
@@ -359,18 +373,25 @@ namespace Donor
                              if ((CurrentEvent.Date <= DateTime.Today) && (CurrentEvent.Time.Hour <= DateTime.Now.Hour) && (CurrentEvent.Time.Minute <= DateTime.Now.Minute))
                              {
                                  CurrentEvent.Finished = true;
-                                 if (save)
+                                 if ((save) && (App.ViewModel.Events.ThisDayEvents(CurrentEvent.Date) == false))
                                  {
                                      MessageBox.Show("Вы сдали кровь. Спасибо! Рассчитан интервал до следующей возможной кроводачи");
                                  };
                              };
-                             if (save)
+                             if ((save) && App.ViewModel.Events.ThisDayEvents(CurrentEvent.Date))
                              {
                                  App.ViewModel.Events.Items.Add(CurrentEvent);
 
                                  App.ViewModel.Events.UpdateItems(CurrentEvent);
                                  App.ViewModel.SaveToIsolatedStorage();
                                  NavigationService.GoBack();
+                             }
+                             else
+                             {
+                                 if (App.ViewModel.Events.ThisDayEvents(CurrentEvent.Date))
+                                 {
+                                     MessageBox.Show("На этот день у вас уже запланировано событие.");
+                                 };
                              };
                          }
                          else

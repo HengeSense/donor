@@ -294,12 +294,23 @@ namespace Donor.Controls
 
         private void LayoutRoot_Loaded(object sender, RoutedEventArgs e)
         {
-            if (EventDay != null) {
-                if (EventDay.Finished == true)
+            try
             {
-                this.DayImage.Margin = new Thickness(30, -30, 0, 0);
-            };
+                if (EventDay != null)
+                {
+                    Uri uri = new Uri(this.ImagePath, UriKind.Relative);
+                    ImageSource imgSource = new BitmapImage(uri);
+                    if (EventDay.Finished == true)
+                    {
+                        this.DayImageRB.Source = imgSource;
+                    }
+                    else
+                    {
+                        this.DayImageRT.Source = imgSource;
+                    };
+                };
             }
+            catch { };
         }
 
     }

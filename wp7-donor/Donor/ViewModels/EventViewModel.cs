@@ -241,7 +241,7 @@ namespace Donor.ViewModels
         {
             try
             {
-                List<long> addSecondsList = new List<long>() { 15 * 60, 60 * 60, 24 * 60 * 60, 2* 24 * 60 * 60, 7 * 24 * 60 * 60, -60 * 60 * 13, -60 * 60 * 13, 60 * 60 * 11 };
+                List<long> addSecondsList = new List<long>() { 15 * 60, 60 * 60, 24 * 60 * 60, 2* 24 * 60 * 60, 7 * 24 * 60 * 60, -60 * 60 * 13, -60 * 60 * 17, 60 * 60 * 12 };
                 foreach (var addSeconds in addSecondsList)
                 {
                     try {
@@ -302,6 +302,15 @@ namespace Donor.ViewModels
 
         public void LoadEventsParse()
         {
+        }
+
+        public bool ThisDayEvents(DateTime date)
+        {
+            bool existsEvent = false;
+            if (this.Items.FirstOrDefault() != null) {
+                existsEvent = true;
+            };
+            return existsEvent;
         }
 
         public DateTime PossibleGiveBlood(string GiveType = "")
