@@ -168,8 +168,18 @@ namespace Donor.ViewModels
                             default: return "/icons/Icon_blood_check.png";
                         };
                     };
-                    
-                }
+                };
+                if (this.Type == "PossibleBloodGive")
+                {
+                        switch (this.GiveType)
+                        {
+                            case "Цельная кровь": return "/icons/Icon_blood.png";
+                            case "Тромбоциты": return "/icons/Icon_tromb.png";
+                            case "Плазма": return "/icons/Icon_plazm.png";
+                            case "Гранулоциты": return "/icons/Icon_gran.png";
+                            default: return "/icons/Icon_blood.png";
+                        };
+                };
                 if (this.Type == "2")
                     return "/icons/ic_donors_act.png";
                 return "";
@@ -209,8 +219,18 @@ namespace Donor.ViewModels
                             default: return "/icons/Icon_blood_check.png";
                         };
                     };
-
-                }
+                };
+                if (this.Type == "PossibleBloodGive")
+                {
+                    switch (this.GiveType)
+                    {
+                        case "Цельная кровь": return "/icons/Icon_blood_small.png";
+                        case "Тромбоциты": return "/icons/Icon_tromb_small.png";
+                        case "Плазма": return "/icons/Icon_plazm_small.png";
+                        case "Гранулоциты": return "/icons/Icon_gran_small.png";
+                        default: return "/icons/Icon_blood.png";
+                    };
+                };
                 if (this.Type == "2")
                     return "/icons/ic_donors_act.png";
                 return "";
@@ -304,14 +324,61 @@ namespace Donor.ViewModels
         {
         }
 
+        /// <summary>
+        /// Есть ли в день, соответствующей переданной дате события (за исключением событий "можно сдать"
+        /// </summary>
+        /// <param name="date"></param>
+        /// <returns></returns>
         public bool ThisDayEvents(DateTime date)
         {
             bool existsEvent = false;
-            if (this.Items.FirstOrDefault() != null) {
+            if (this.Items.FirstOrDefault(c => ((c.Date == date) && (c.Type != "PossibleBloodGive"))) != null)
+            {
                 existsEvent = true;
             };
             return existsEvent;
         }
+
+        /// <summary>
+        /// Получаем дату ближайшей возможной кроводачи данного типа в будущем без учета запланированных в будущем событий 
+        /// (на пересечение с возможной кроводачей)
+        /// </summary>
+        /// <param name="GiveType"> тип кроводачи</param>
+        /// <returns></returns>
+        public DateTime NearestPossibleGiveBlood(string GiveType = "")
+        {
+            List<string> TypesGive = new List<string>() { "Тромбоциты", "Плазма", "Цельная кровь", "Гранулоциты" };
+
+            var _selected_user_items = (from item in this.Items
+                                        where ((item.UserId == App.ViewModel.User.objectId) && (item.Type == "1"))
+                                        orderby item.Date ascending
+                                        select item);
+
+            var previtem = _selected_user_items.FirstOrDefault();
+            DateTime Date = DateTime.Now;
+            DateTime OutDate = DateTime.Now;
+
+            foreach (var item in _selected_user_items)
+            {
+                int days = App.ViewModel.Events.DaysFromEvent(_selected_user_items.FirstOrDefault().GiveType, GiveType);
+                previtem = item;
+                if (previtem.Date.AddDays(days) >= DateTime.Now)
+                {
+                    if (App.ViewModel.Events.EventsInYear(GiveType, OutDate) && App.ViewModel.Events.EventsInYear(GiveType, OutDate.AddYears(-1)))
+                    {
+                        OutDate = previtem.Date.AddDays(days);
+                        break;
+                    }
+                    else
+                    {
+                    };
+                };
+
+            };
+
+            return OutDate;
+        }
+
 
         public DateTime PossibleGiveBlood(string GiveType = "")
         {
@@ -329,10 +396,6 @@ namespace Donor.ViewModels
             if (App.ViewModel.Events.EventsInYear(GiveType, OutDate) && App.ViewModel.Events.EventsInYear(GiveType, OutDate.AddYears(-1))) {
 
             };
-
-            /*if (App.ViewModel.Events.EventsInYear(GiveType, OutDate) && App.ViewModel.Events.EventsInYear(GiveType, OutDate.AddYears(-1)) 
-            OutDate = _selected_user_items.LastOrDefault().Date;*/
-
             foreach (var item in _selected_user_items)
             {
                 int days = App.ViewModel.Events.DaysFromEvent(_selected_user_items.FirstOrDefault().GiveType, GiveType);
@@ -368,16 +431,13 @@ namespace Donor.ViewModels
                     break;
                 };
             };
-
-            
-            //int days2 = App.ViewModel.Events.DaysFromEvent(item.GiveType, GiveType);            
-            /*if (App.ViewModel.Events.EventsInYear(GiveType, Date) && App.ViewModel.Events.EventsInYear(GiveType, Date.AddYears(-1)))
-            {
-            };*/
             return OutDate;
         }
 
-
+        /// <summary>
+        /// Подсчет будущих событий в календаре пользователя
+        /// </summary>
+        /// <returns></returns>
         public int FutureEventsCount()
         {
             int count = 0;
@@ -576,6 +636,9 @@ namespace Donor.ViewModels
             return item_near2.FirstOrDefault();
         }
 
+        /// <summary>
+        /// События принадлежащие вошедшему пользователю (из доступных приложению событий на устройстве соответственно)
+        /// </summary>
         public ObservableCollection<EventViewModel> UserItems
         {
             get
@@ -644,16 +707,50 @@ namespace Donor.ViewModels
             };
         }
 
+        /// <summary>
+        /// Сохраняем обновлениный список событий, посылаем данные о событии на parse.com
+        /// </summary>
+        /// <param name="addedItems"></param>
         public void UpdateItems(EventViewModel addedItems = null) {
             NotifyPropertyChanged("Items");
             NotifyPropertyChanged("UserItems");
             NotifyPropertyChanged("WeekItems");
             NotifyPropertyChanged("ThisMonthItems");
+            UpdateNearestEvents();
 
             AddEventParse(addedItems);
 
             App.ViewModel.CreateApplicationTile(App.ViewModel.Events.NearestEvents());
             App.ViewModel.SaveToIsolatedStorage();
+        }
+
+        /// <summary>
+        /// Добавляем события - возможные кроводачи
+        /// </summary>
+        public void UpdateNearestEvents() {
+            try
+            {
+                List<string> TypesGive = new List<string>() { "Тромбоциты", "Плазма", "Цельная кровь", "Гранулоциты" };
+                foreach (var item in TypesGive)
+                {
+                    try
+                    {
+                        this.Items.Remove(this.Items.FirstOrDefault(c => c.Type == "PossibleBloodGive"));
+                    } catch {};
+                };
+                foreach (var item in TypesGive)
+                {
+                    DateTime date = NearestPossibleGiveBlood(item);
+                    var possibleItem = new EventViewModel();
+                    possibleItem.Date = date;
+                    possibleItem.Type = "PossibleBloodGive";
+                    possibleItem.GiveType = item;
+                    possibleItem.Title = item + " - возможная сдача";
+
+                    this.Items.Add(possibleItem);
+                };
+            }
+            catch { };
         }
 
         public EventViewModel EditedEvent { get; set; }
@@ -737,7 +834,6 @@ namespace Donor.ViewModels
         public List<EventViewModel> WeekItems { 
             get 
             {
-                //(eventCal.Date.Month == DateTime.Now.Month) && (eventCal.Date.Year == DateTime.Now.Year) 
                 var newitems = (from eventCal in this.UserItems
                                 where
                                 (eventCal.Type != "Праздник") &&
@@ -863,6 +959,10 @@ CurrentMonth.Month-1];
             }
             private set { }
         }
+        
+        /// <summary>
+        /// Название следующего месяца для календаря
+        /// </summary>
         public string NextMonthString {
             get { return CultureInfo.CurrentCulture.DateTimeFormat.MonthNames[CurrentMonth.AddMonths(1).Month - 1]; }
             private set { }

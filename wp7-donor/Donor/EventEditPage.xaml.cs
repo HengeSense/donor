@@ -343,7 +343,7 @@ namespace Donor
                          }
                          else
                          {
-                             if (App.ViewModel.Events.ThisDayEvents(CurrentEvent.Date))
+                             if (App.ViewModel.Events.ThisDayEvents(CurrentEvent.Date) && save)
                              {
                                  MessageBox.Show("На этот день у вас уже запланировано событие.");
                              };
@@ -378,7 +378,7 @@ namespace Donor
                                      MessageBox.Show("Вы сдали кровь. Спасибо! Рассчитан интервал до следующей возможной кроводачи");
                                  };
                              };
-                             if ((save) && App.ViewModel.Events.ThisDayEvents(CurrentEvent.Date))
+                             if ((save) && (App.ViewModel.Events.ThisDayEvents(CurrentEvent.Date)==false))
                              {
                                  App.ViewModel.Events.Items.Add(CurrentEvent);
 
@@ -388,7 +388,7 @@ namespace Donor
                              }
                              else
                              {
-                                 if (App.ViewModel.Events.ThisDayEvents(CurrentEvent.Date))
+                                 if (App.ViewModel.Events.ThisDayEvents(CurrentEvent.Date) && save)
                                  {
                                      MessageBox.Show("На этот день у вас уже запланировано событие.");
                                  };
