@@ -805,6 +805,8 @@ namespace Donor.ViewModels
                     _items = value;
                     this.NotifyPropertyChanged("Items");
                     this.NotifyPropertyChanged("WeekItems");
+
+                    //UpdateNearestEvents();
                 };
             }
         }

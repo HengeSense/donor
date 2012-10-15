@@ -93,10 +93,7 @@ namespace Donor.Controls
 				};
 				
                 day2.EventDay = App.ViewModel.Events.Items.FirstOrDefault(a => a.Date == new DateTime(Date.Year, Date.Month, i));
-                if ((day2.EventDay != null) && (day2.EventDay.Type == "Праздник"))
-                {
-                    day2.BgColor = new SolidColorBrush(Colors.Red);
-                };
+
                 if (day2.EventDay != null) {
                     day2.ImagePath = day2.EventDay.SmallImage.ToString();
                 };
@@ -106,6 +103,12 @@ namespace Donor.Controls
                 day2.DayNumber = i.ToString();
                 day2.TextColor = new SolidColorBrush(Colors.Black);
                 day2.Inactive = false;
+
+                if ((day2.EventDay != null) && (day2.EventDay.Type == "Праздник"))
+                {
+                    //day2.BgColor = new SolidColorBrush(Colors.Red);
+                    day2.TextColor = new SolidColorBrush(Colors.Red);
+                };
 
                 DateTime curDate = new DateTime(Date.Year, Date.Month, i);
                 if (days != 0)

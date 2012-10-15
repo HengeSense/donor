@@ -340,6 +340,8 @@ namespace Donor
                     {
                         this.Events.Items = eventslist1;
                         this.NotifyPropertyChanged("Events");
+
+                        this.Events.UpdateItems();
                     });
                 }
                 catch
@@ -358,6 +360,8 @@ namespace Donor
                             this.Events.Items = eventslist1;
                         
                         this.NotifyPropertyChanged("Events");
+
+                        this.Events.UpdateItems();
                     });
                 }
                 try

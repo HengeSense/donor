@@ -52,18 +52,21 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
-                    <Image Height="20" Margin="0"
+                    <Image Margin="0"
                        Name="DayImageRT" 
                            Grid.Row="0"
-                           Grid.Column="2"/>
-                        <Image Height="20" Margin="0"
-                       Name="DayImageRB" 
+                           Grid.Column="2" VerticalAlignment="Top" 
+                           HorizontalAlignment="Right" />
+                        <Image Margin="0"
+                       Name="DayImageRB"
+                               VerticalAlignment="Bottom" 
+                               HorizontalAlignment="Right"
                            Grid.Row="2"
                            Grid.Column="2"/>
-                        <Image Height="20" Margin="0"
+                        <Image Margin="0"
                        Name="DayImageLB" 
                            Grid.Row="2"
-                           Grid.Column="0"/>
+                           Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Bottom" />
                         <!-- {Binding ImagePath} -->
                 </Grid>
 
