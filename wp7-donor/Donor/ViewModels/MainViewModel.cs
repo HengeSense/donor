@@ -146,7 +146,10 @@ namespace Donor
                     this.LoadUserFromStorage();
 
                     App.ViewModel.Events.LoadDonorsSaturdays();
+                    App.ViewModel.Events.LoadEventsParse();
+
                     App.ViewModel.Stations.LoadStations();
+
                     this.NotifyPropertyChanged("Events");
                 });
 

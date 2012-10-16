@@ -67,7 +67,11 @@ namespace Donor
 						this.ic_be_tested.Visibility = Visibility.Visible;
 						ReminderStackPanel.Visibility = Visibility.Visible;
                         this.TitleNews.Text = "Сдать анализ";
-                        this.Reminder.Text = _currentEvent.ReminderDate.ToString();
+                        try
+                        {
+                            this.Reminder.Text = _currentEvent.ReminderDate.ToString();
+                        }
+                        catch { };
                         this.Finished.Visibility = Visibility.Collapsed;
 
                         this.ApplicationTitle.Text = "анализ";

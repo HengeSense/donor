@@ -322,6 +322,88 @@ namespace Donor.ViewModels
 
         public void LoadEventsParse()
         {
+            var client = new RestClient("https://api.parse.com");
+            var request = new RestRequest("1/classes/Events", Method.GET);
+            request.Parameters.Clear();
+            string strJSONContent = "{\"type\":1, \"type\":0}";
+            request.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
+            request.AddHeader("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
+            request.AddParameter("where", strJSONContent);
+            client.ExecuteAsync(request, response =>
+            {
+                try
+                {
+                    ObservableCollection<EventViewModel> eventslist1 = new ObservableCollection<EventViewModel>();
+                    JObject o = JObject.Parse(response.Content.ToString());
+                    foreach (var item in o["results"])
+                    {
+                        EventViewModel jsonitem = new EventViewModel();
+                        try
+                        {
+                            jsonitem.Title = item["title"].ToString();
+                        }
+                        catch { jsonitem.Title = ""; };
+                        try
+                        {
+                            jsonitem.Description = item["comment"].ToString();
+                        }
+                        catch { };
+
+                        jsonitem.Id = item["objectId"].ToString();
+                        jsonitem.Type = item["type"].ToString();
+                        try {
+                        jsonitem.Date = DateTime.Parse(item["date"]["iso"].ToString()); } catch {};
+                        try {
+                        jsonitem.Time = DateTime.Parse(item["time"]["iso"].ToString());
+                        } catch {};
+                        try {
+                        jsonitem.Place = item["adress"].ToString();
+                        } catch {};
+                        try {
+                        jsonitem.Description = item["comment"].ToString(); } catch {};
+                        try {
+                        jsonitem.UserId = item["user_id"].ToString(); } catch {};
+                        try {
+                        jsonitem.GiveType = item["giveType"].ToString(); } catch {};
+
+                        if (jsonitem.Title == "")
+                        {
+                            switch (jsonitem.Type.ToString())
+                            {
+                                case "0":
+                                    jsonitem.Title = "Анализ";
+                                    break;
+                                case "1":
+                                    jsonitem.Title = jsonitem.GiveType.ToString(); //"Кроводача - " + 
+                                    break;
+                            };
+                        };
+
+                        try
+                        {
+                            jsonitem.Finished = Boolean.Parse(item["giveType"].ToString());
+                        }
+                        catch {
+                            jsonitem.Finished = false;
+                        };
+                        try
+                        {
+                            jsonitem.Station_nid = Int32.Parse(item["station_nid"].ToString());
+                        }
+                        catch { };
+
+                        this.Items.Remove(this.Items.FirstOrDefault(c => c.Id == jsonitem.Id));
+                        this.Items.Add(jsonitem);
+                    };
+
+                    App.ViewModel.Events.UpdateItems();
+                }
+                catch
+                {
+                };
+                this.NotifyPropertyChanged("Items");
+                this.NotifyPropertyChanged("WeekItems");
+            });    
         }
 
         /// <summary>
