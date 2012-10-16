@@ -9,9 +9,11 @@
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
 
-@interface StationForDonorsViewController : UIViewController
+@interface StationForDonorsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 {
     IBOutlet UIScrollView *contentScrollView;
+    
+    IBOutlet UITableView *contentTable;
     
     IBOutlet UIImageView *ratedStar1;
     IBOutlet UIImageView *ratedStar2;
@@ -19,16 +21,12 @@
     IBOutlet UIImageView *ratedStar4;
     IBOutlet UIImageView *ratedStar5;
     
-    IBOutlet UILabel *receiptTimeLabel;
-    IBOutlet UILabel *passageLabel;
-    IBOutlet UILabel *bloodDonateForLabel;
-    IBOutlet UILabel *bloodDonateTypeLabel;
-    IBOutlet UILabel *durationLabel;
-   
     IBOutlet UILabel *stationTitleLable;
     PFObject *station;
     
     float fullRate;
+    
+    NSMutableArray *descriptionLabelsHeights;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil station:(PFObject *)object rate:(float)rate;
