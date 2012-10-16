@@ -18,6 +18,17 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Microsoft.Phone.Scheduler;
 
+
+///
+/// PossibleBloodGive - событие можно сдать
+/// empty - пустое событие - для заполнение календаря-списка
+/// 0 - анализ
+/// 1 - кроводача
+/// 2 - донорская суббота
+/// Праздник - праздничный день
+///
+ 
+
 namespace Donor.ViewModels
 {
     public class EventViewModel : INotifyPropertyChanged
@@ -107,14 +118,15 @@ namespace Donor.ViewModels
             }
             set
             {
-                if ((this.Date <= DateTime.Today) && (this.Time.Hour <= DateTime.Now.Hour) && (this  .Time.Minute <= DateTime.Now.Minute))
+                /*if ((this.Date <= DateTime.Today) && (this.Time.Hour <= DateTime.Now.Hour) && (this  .Time.Minute <= DateTime.Now.Minute))
                 {
                     _finished = value;
                 }
                 else
                 {
                     _finished = false;
-                };
+                };*/
+                _finished = value;
                 NotifyPropertyChanged("Finished");
                 NotifyPropertyChanged("FinishedString");
             }
@@ -309,6 +321,8 @@ namespace Donor.ViewModels
         public long Station_nid { get; set; }
     }
 
+
+
     public class EventsListViewModel: INotifyPropertyChanged
     {
         public EventsListViewModel()
@@ -322,88 +336,110 @@ namespace Donor.ViewModels
 
         public void LoadEventsParse()
         {
-            var client = new RestClient("https://api.parse.com");
-            var request = new RestRequest("1/classes/Events", Method.GET);
-            request.Parameters.Clear();
-            string strJSONContent = "{\"type\":1, \"type\":0}";
-            request.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
-            request.AddHeader("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
-            request.AddParameter("where", strJSONContent);
-            client.ExecuteAsync(request, response =>
+            try {
+            if ((App.ViewModel.User != null) && (App.ViewModel.User.objectId != ""))
             {
-                try
+                var client = new RestClient("https://api.parse.com");
+                var request = new RestRequest("1/classes/Events", Method.GET);
+                request.Parameters.Clear();
+                string strJSONContent = "{\"type\":1, \"type\":0, \"user_id\":\"" + App.ViewModel.User.objectId.ToString() + "\"}";
+                request.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
+                request.AddHeader("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
+                request.AddParameter("where", strJSONContent);
+                client.ExecuteAsync(request, response =>
                 {
-                    ObservableCollection<EventViewModel> eventslist1 = new ObservableCollection<EventViewModel>();
-                    JObject o = JObject.Parse(response.Content.ToString());
-                    foreach (var item in o["results"])
+                    try
                     {
-                        EventViewModel jsonitem = new EventViewModel();
-                        try
+                        ObservableCollection<EventViewModel> eventslist1 = new ObservableCollection<EventViewModel>();
+                        JObject o = JObject.Parse(response.Content.ToString());
+                        foreach (var item in o["results"])
                         {
-                            jsonitem.Title = item["title"].ToString();
-                        }
-                        catch { jsonitem.Title = ""; };
-                        try
-                        {
-                            jsonitem.Description = item["comment"].ToString();
-                        }
-                        catch { };
-
-                        jsonitem.Id = item["objectId"].ToString();
-                        jsonitem.Type = item["type"].ToString();
-                        try {
-                        jsonitem.Date = DateTime.Parse(item["date"]["iso"].ToString()); } catch {};
-                        try {
-                        jsonitem.Time = DateTime.Parse(item["time"]["iso"].ToString());
-                        } catch {};
-                        try {
-                        jsonitem.Place = item["adress"].ToString();
-                        } catch {};
-                        try {
-                        jsonitem.Description = item["comment"].ToString(); } catch {};
-                        try {
-                        jsonitem.UserId = item["user_id"].ToString(); } catch {};
-                        try {
-                        jsonitem.GiveType = item["giveType"].ToString(); } catch {};
-
-                        if (jsonitem.Title == "")
-                        {
-                            switch (jsonitem.Type.ToString())
+                            EventViewModel jsonitem = new EventViewModel();
+                            try
                             {
-                                case "0":
-                                    jsonitem.Title = "Анализ";
-                                    break;
-                                case "1":
-                                    jsonitem.Title = jsonitem.GiveType.ToString(); //"Кроводача - " + 
-                                    break;
+                                jsonitem.Title = item["title"].ToString();
+                            }
+                            catch { jsonitem.Title = ""; };
+                            try
+                            {
+                                jsonitem.Description = item["comment"].ToString();
+                            }
+                            catch { };
+
+                            jsonitem.Id = item["objectId"].ToString();
+                            jsonitem.Type = item["type"].ToString();
+                            try
+                            {
+                                jsonitem.Date = DateTime.Parse(item["date"]["iso"].ToString());
+                            }
+                            catch { };
+                            try
+                            {
+                                jsonitem.Time = DateTime.Parse(item["time"]["iso"].ToString());
+                            }
+                            catch { };
+                            try
+                            {
+                                jsonitem.Place = item["adress"].ToString();
+                            }
+                            catch { };
+                            try
+                            {
+                                jsonitem.Description = item["comment"].ToString();
+                            }
+                            catch { };
+                            try
+                            {
+                                jsonitem.UserId = item["user_id"].ToString();
+                            }
+                            catch { };
+                            try
+                            {
+                                jsonitem.GiveType = item["giveType"].ToString();
+                            }
+                            catch { };
+
+                            if (jsonitem.Title == "")
+                            {
+                                switch (jsonitem.Type.ToString())
+                                {
+                                    case "0":
+                                        jsonitem.Title = "Анализ";
+                                        break;
+                                    case "1":
+                                        jsonitem.Title = jsonitem.GiveType.ToString(); //"Кроводача - " + 
+                                        break;
+                                };
                             };
+
+                            try
+                            {
+                                jsonitem.Finished = Boolean.Parse(item["giveType"].ToString());
+                            }
+                            catch
+                            {
+                                jsonitem.Finished = false;
+                            };
+                            try
+                            {
+                                jsonitem.Station_nid = Int32.Parse(item["station_nid"].ToString());
+                            }
+                            catch { };
+
+                            this.Items.Remove(this.Items.FirstOrDefault(c => c.Id == jsonitem.Id));
+                            this.Items.Add(jsonitem);
                         };
 
-                        try
-                        {
-                            jsonitem.Finished = Boolean.Parse(item["giveType"].ToString());
-                        }
-                        catch {
-                            jsonitem.Finished = false;
-                        };
-                        try
-                        {
-                            jsonitem.Station_nid = Int32.Parse(item["station_nid"].ToString());
-                        }
-                        catch { };
-
-                        this.Items.Remove(this.Items.FirstOrDefault(c => c.Id == jsonitem.Id));
-                        this.Items.Add(jsonitem);
+                        App.ViewModel.Events.UpdateItems();
+                    }
+                    catch
+                    {
                     };
-
-                    App.ViewModel.Events.UpdateItems();
-                }
-                catch
-                {
-                };
-                this.NotifyPropertyChanged("Items");
-                this.NotifyPropertyChanged("WeekItems");
-            });    
+                    this.NotifyPropertyChanged("Items");
+                    this.NotifyPropertyChanged("WeekItems");
+                });
+            };
+        } catch {};
         }
 
         /// <summary>
@@ -437,8 +473,8 @@ namespace Donor.ViewModels
                                         select item);
 
             var previtem = _selected_user_items.FirstOrDefault();
-            DateTime Date = DateTime.Now;
-            DateTime OutDate = DateTime.Now;
+            DateTime Date = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
+            DateTime OutDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
 
             foreach (var item in _selected_user_items)
             {
@@ -828,6 +864,11 @@ namespace Donor.ViewModels
                     possibleItem.Type = "PossibleBloodGive";
                     possibleItem.GiveType = item;
                     possibleItem.Title = item + " - возможная сдача";
+                    possibleItem.Description = "";
+                    possibleItem.Place = "";
+                    possibleItem.Id = item + DateTime.Now.Ticks.ToString();
+                    possibleItem.UserId = App.ViewModel.User.objectId;
+                    possibleItem.ReminderDate = "";
 
                     this.Items.Add(possibleItem);
                 };

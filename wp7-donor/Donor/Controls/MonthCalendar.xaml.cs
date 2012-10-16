@@ -42,7 +42,7 @@ namespace Donor.Controls
             DateTime FromDays = new DateTime(1900,1,1);
             DateTime EndDays = new DateTime(1900,1,1);
 
-            var nearestEvents = (from item in App.ViewModel.Events.Items
+            var nearestEvents = (from item in App.ViewModel.Events.UserItems
                                  where ((item.Type =="1") && (item.Date > DateTime.Now))
                                  orderby item.Date ascending
                                  select item).Take(1);
@@ -92,7 +92,7 @@ namespace Donor.Controls
                     day2.BorderColor = new SolidColorBrush(Colors.Red);
 				};
 				
-                day2.EventDay = App.ViewModel.Events.Items.FirstOrDefault(a => a.Date == new DateTime(Date.Year, Date.Month, i));
+                day2.EventDay = App.ViewModel.Events.UserItems.FirstOrDefault(a => a.Date == new DateTime(Date.Year, Date.Month, i));
 
                 if (day2.EventDay != null) {
                     day2.ImagePath = day2.EventDay.SmallImage.ToString();
@@ -106,8 +106,8 @@ namespace Donor.Controls
 
                 if ((day2.EventDay != null) && (day2.EventDay.Type == "Праздник"))
                 {
-                    //day2.BgColor = new SolidColorBrush(Colors.Red);
-                    day2.TextColor = new SolidColorBrush(Colors.Red);
+                    Color darkred = new Color() { A = 255, B = 111, G = 63, R = 209 };
+                    day2.TextColor = new SolidColorBrush(darkred);
                 };
 
                 DateTime curDate = new DateTime(Date.Year, Date.Month, i);
@@ -115,8 +115,6 @@ namespace Donor.Controls
                 {
                     if ((curDate <= EndDays) && (FromDays <= curDate))
                     {
-                        //day2.BgColor = new SolidColorBrush(Colors.DarkGray);
-                        
                         day2.Inactive = true;
                     };
                 };

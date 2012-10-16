@@ -131,7 +131,14 @@ DateTime.Now.Month - 1];
                 string id = ((sender as ListBox).SelectedItem as EventViewModel).Id;
                 if (((sender as ListBox).SelectedItem as EventViewModel).Type != "empty")
                 {
-                    NavigationService.Navigate(new Uri("/EventPage.xaml?id=" + id, UriKind.Relative));
+                    if (((sender as ListBox).SelectedItem as EventViewModel).Type == "PossibleBloodGive")
+                    {
+                        NavigationService.Navigate(new Uri("/EventEditPage.xaml?id=" + id, UriKind.Relative));
+                    }
+                    else
+                    {
+                        NavigationService.Navigate(new Uri("/EventPage.xaml?id=" + id, UriKind.Relative));
+                    };
                 };
             }
             catch

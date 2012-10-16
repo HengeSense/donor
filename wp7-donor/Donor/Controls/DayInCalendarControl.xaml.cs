@@ -300,13 +300,20 @@ namespace Donor.Controls
                 {
                     Uri uri = new Uri(this.ImagePath, UriKind.Relative);
                     ImageSource imgSource = new BitmapImage(uri);
-                    if (EventDay.Finished == true)
+                    if (EventDay.Type == "PossibleBloodGive")
                     {
-                        this.DayImageRB.Source = imgSource;
+                        this.DayImageRT.Source = imgSource;
                     }
                     else
                     {
-                        this.DayImageRT.Source = imgSource;
+                        if (EventDay.Finished == true)
+                        {
+                            this.DayImageRB.Source = imgSource;
+                        }
+                        else
+                        {
+                            this.DayImageRT.Source = imgSource;
+                        };
                     };
                 };
             }

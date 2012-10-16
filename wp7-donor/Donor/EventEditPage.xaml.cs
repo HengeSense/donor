@@ -101,6 +101,7 @@ namespace Donor
                 switch (CurrentEvent.Type.ToString())
                 {
                     case "1": this.EventType.SelectedIndex = 0; break;
+                    case "PossibleBloodGive": this.EventType.SelectedIndex = 0; break;
                     case "0": this.EventType.SelectedIndex = 1; break;
                     default: break;
                 };
@@ -370,7 +371,7 @@ namespace Donor
 
                              ///
                              /// Помечаем событие как выполненное, если его дата меньше текущей
-                             if ((CurrentEvent.Date <= DateTime.Today) && (CurrentEvent.Time.Hour <= DateTime.Now.Hour) && (CurrentEvent.Time.Minute <= DateTime.Now.Minute))
+                             if ((CurrentEvent.Date < DateTime.Today) || ((CurrentEvent.Date == DateTime.Today) && (CurrentEvent.Time.Hour <= DateTime.Now.Hour) && (CurrentEvent.Time.Minute <= DateTime.Now.Minute)))
                              {
                                  CurrentEvent.Finished = true;
                                  if ((save) && (App.ViewModel.Events.ThisDayEvents(CurrentEvent.Date) == false))
