@@ -1228,14 +1228,16 @@
         if ([Common getInstance].lastStations.count != 0)
         {
             NSMutableArray *tempArray = [[[NSMutableArray alloc] initWithArray:stationsArrayList] autorelease];
-            for (int i = 0; stationsArrayList.count > i; i++)
+            int deleteIndex = 0;
+            for (int i = 0; i < stationsArrayList.count; i++)
             {
                 for (int j = 0; [Common getInstance].lastStations.count > j; j++)
                 {
                     if ([[[stationsArrayList objectAtIndex:i] valueForKey:@"objectId"] isEqualToString:[[Common getInstance].lastStations objectAtIndex:j]])
                     {
                         [lastStations addObject:[stationsArrayList objectAtIndex:i]];
-                        [tempArray removeObjectAtIndex:i];
+                        [tempArray removeObjectAtIndex:(i - deleteIndex)];
+                        deleteIndex ++;
                     }
                 }
             }

@@ -221,6 +221,8 @@
 		858B436B15B6B03200A7A67D /* ProfileSexSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 858B436915B6B03200A7A67D /* ProfileSexSelectViewController.m */; };
 		858B436C15B6B03200A7A67D /* ProfileSexSelectViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 858B436A15B6B03200A7A67D /* ProfileSexSelectViewController.xib */; };
 		858EE0AB161D38D000A09858 /* userLocation.png in Resources */ = {isa = PBXBuildFile; fileRef = 858EE0AA161D38D000A09858 /* userLocation.png */; };
+		85939C65162D616D0081A46C /* ForDonorsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 85939C63162D616D0081A46C /* ForDonorsCell.m */; };
+		85939C66162D616D0081A46C /* ForDonorsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85939C64162D616D0081A46C /* ForDonorsCell.xib */; };
 		8593A8BA15D0DB1100EA51F2 /* StationDescriptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8593A8B815D0DB1100EA51F2 /* StationDescriptionViewController.m */; };
 		8593A8BB15D0DB1100EA51F2 /* StationDescriptionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8593A8B915D0DB1100EA51F2 /* StationDescriptionViewController.xib */; };
 		8593A8BF15D0DF4300EA51F2 /* StationForDonorsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8593A8BD15D0DF4200EA51F2 /* StationForDonorsViewController.m */; };
@@ -676,6 +678,9 @@
 		858B436915B6B03200A7A67D /* ProfileSexSelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileSexSelectViewController.m; sourceTree = "<group>"; };
 		858B436A15B6B03200A7A67D /* ProfileSexSelectViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileSexSelectViewController.xib; sourceTree = "<group>"; };
 		858EE0AA161D38D000A09858 /* userLocation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = userLocation.png; sourceTree = "<group>"; };
+		85939C62162D616D0081A46C /* ForDonorsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForDonorsCell.h; sourceTree = "<group>"; };
+		85939C63162D616D0081A46C /* ForDonorsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForDonorsCell.m; sourceTree = "<group>"; };
+		85939C64162D616D0081A46C /* ForDonorsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ForDonorsCell.xib; sourceTree = "<group>"; };
 		8593A8B715D0DB1100EA51F2 /* StationDescriptionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StationDescriptionViewController.h; sourceTree = "<group>"; };
 		8593A8B815D0DB1100EA51F2 /* StationDescriptionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StationDescriptionViewController.m; sourceTree = "<group>"; };
 		8593A8B915D0DB1100EA51F2 /* StationDescriptionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StationDescriptionViewController.xib; sourceTree = "<group>"; };
@@ -1479,6 +1484,9 @@
 		85B213DC15D797F000D2ADBE /* StationsCells */ = {
 			isa = PBXGroup;
 			children = (
+				85939C62162D616D0081A46C /* ForDonorsCell.h */,
+				85939C63162D616D0081A46C /* ForDonorsCell.m */,
+				85939C64162D616D0081A46C /* ForDonorsCell.xib */,
 				85A8F79F15CF88DF00535E7E /* StationsCell.h */,
 				85A8F7A015CF88DF00535E7E /* StationsCell.m */,
 				85A8F7A215CF88F500535E7E /* StationsCell.xib */,
@@ -1929,6 +1937,7 @@
 				687EFE281625F6B3005CE7D6 /* Icon-72@2x.png in Resources */,
 				687EFE291625F6B3005CE7D6 /* Icon.png in Resources */,
 				687EFE2A1625F6B3005CE7D6 /* Icon@2x.png in Resources */,
+				85939C66162D616D0081A46C /* ForDonorsCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1981,6 +1990,7 @@
 				851245A31603457200752AE1 /* PageControl.m in Sources */,
 				8585E1A9161B0A5D00275AE7 /* FTCoreTextStyle.m in Sources */,
 				8585E1AA161B0A5D00275AE7 /* FTCoreTextView.m in Sources */,
+				85939C65162D616D0081A46C /* ForDonorsCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
