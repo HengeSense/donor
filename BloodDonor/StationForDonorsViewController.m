@@ -8,6 +8,7 @@
 
 #import "StationForDonorsViewController.h"
 #import "StationRateViewController.h"
+#import "ForDonorsCell.h"
 
 @interface StationForDonorsViewController ()
 
@@ -28,6 +29,76 @@
     [self.navigationController pushViewController:controller animated:YES];
 }
 
+
+#pragma mark TableView
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 5;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *CellIdentifier = @"Cell";
+    
+    ForDonorsCell *cell = (ForDonorsCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+    if (cell == nil)
+    {
+        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ForDonorsCell" owner:self options:nil];
+        cell = [nib objectAtIndex:0];
+    }
+    
+    cell.descriptionLabel.frame = CGRectMake(cell.descriptionLabel.frame.origin.x, cell.descriptionLabel.frame.origin.y, cell.descriptionLabel.frame.size.width, [[descriptionLabelsHeights objectAtIndex:indexPath.row] floatValue]);
+    
+    switch (indexPath.row)
+    {
+        case 0:
+            cell.titleLabel.text = @"Время приема:";
+            cell.descriptionLabel.text = [station valueForKey:@"receiptTime"];
+            break;
+        case 1:
+            cell.titleLabel.text = @"Проезд:";
+            cell.descriptionLabel.text = [station valueForKey:@"transportation"];
+            break;
+        case 2:
+            cell.titleLabel.text = @"Кровь сдается для:";
+            cell.descriptionLabel.text = [station valueForKey:@"bloodFor"];
+            break;
+        case 3:
+            cell.titleLabel.text = @"Вид кроводачи:";
+            cell.descriptionLabel.text = [station valueForKey:@"giveType"];
+            break;
+        case 4:
+            cell.titleLabel.text = @"Продолжительность:";
+            cell.descriptionLabel.text = [station valueForKey:@"giveTime"];
+            break;
+        default:
+            break;
+    }
+    
+        
+    return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    CGFloat rowHeight = 25.0f + [[descriptionLabelsHeights objectAtIndex:indexPath.row] floatValue];
+    return rowHeight;
+}
+
+- (void)reloadTableData
+{
+    [contentTable reloadData];
+    contentTable.frame = CGRectMake(contentTable.frame.origin.x, contentTable.frame.origin.y, contentTable.frame.size.width, contentTable.contentSize.height);
+    contentScrollView.contentSize = CGSizeMake(320.0f, contentTable.frame.origin.y + contentTable.contentSize.height + 5.0f);
+}
+
 #pragma mark Lifecycle
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil station:(PFObject *)object rate:(float)rate
@@ -46,8 +117,6 @@
     [super viewDidLoad];
     
     self.title = @"Станции";
-    
-    contentScrollView.contentSize = CGSizeMake(320, contentScrollView.frame.size.height + 1.0f);
     
     if(fullRate <= 1.0f)
         [ratedStar1 setImage:[UIImage imageNamed:@"ratedStarFill"]];
@@ -78,13 +147,22 @@
         [ratedStar5 setImage:[UIImage imageNamed:@"ratedStarFill"]];
     }
     
-    receiptTimeLabel.text = [station valueForKey:@"receiptTime"];
-    passageLabel.text = [station valueForKey:@"transportation"];
-    bloodDonateForLabel = [station valueForKey:@"bloodFor"];
-    bloodDonateTypeLabel = [station valueForKey:@"giveType"];
-    durationLabel = [station valueForKey:@"receiptTime"];
-
     stationTitleLable.text = [station objectForKey:@"title"];
+    
+    descriptionLabelsHeights = [NSMutableArray new];
+    CGSize maximumLabelSize = CGSizeMake(300.0f, 9999.0f);
+    
+    CGSize labelSize = [[station valueForKey:@"receiptTime"] sizeWithFont:[UIFont fontWithName:@"Helvetica-Bold" size:12] constrainedToSize:maximumLabelSize lineBreakMode:UILineBreakModeWordWrap];
+    [descriptionLabelsHeights addObject:[NSNumber numberWithFloat:labelSize.height]];
+    labelSize = [[station valueForKey:@"transportation"] sizeWithFont:[UIFont fontWithName:@"Helvetica-Bold" size:12] constrainedToSize:maximumLabelSize lineBreakMode:UILineBreakModeWordWrap];
+    [descriptionLabelsHeights addObject:[NSNumber numberWithFloat:labelSize.height]];
+    labelSize = [[station valueForKey:@"bloodFor"] sizeWithFont:[UIFont fontWithName:@"Helvetica-Bold" size:12] constrainedToSize:maximumLabelSize lineBreakMode:UILineBreakModeWordWrap];
+    [descriptionLabelsHeights addObject:[NSNumber numberWithFloat:labelSize.height]];
+    labelSize = [[station valueForKey:@"giveType"] sizeWithFont:[UIFont fontWithName:@"Helvetica-Bold" size:12] constrainedToSize:maximumLabelSize lineBreakMode:UILineBreakModeWordWrap];
+    [descriptionLabelsHeights addObject:[NSNumber numberWithFloat:labelSize.height]];
+    labelSize = [[station valueForKey:@"giveTime"] sizeWithFont:[UIFont fontWithName:@"Helvetica-Bold" size:12] constrainedToSize:maximumLabelSize lineBreakMode:UILineBreakModeWordWrap];
+    [descriptionLabelsHeights addObject:[NSNumber numberWithFloat:labelSize.height]];
+    [self reloadTableData];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -99,6 +177,7 @@
 
 - (void)dealloc
 {
+    [descriptionLabelsHeights release];
     [super dealloc];
 }
 
