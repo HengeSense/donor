@@ -11,14 +11,18 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using Donor.ViewModels;
+using MyToolkit.Controls;
+
 
 namespace Donor
 {
-    public partial class AdsPage : PhoneApplicationPage
+    public partial class AdsPage : PhoneApplicationPage 
     {
         public AdsPage()
         {
             InitializeComponent();
+
+            //FixedHtmlTextBlock item;
         }
 
         private string _adsid_current;

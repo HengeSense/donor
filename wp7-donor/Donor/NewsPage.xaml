@@ -10,6 +10,7 @@
     xmlns:msp="clr-namespace:MSPToolkit.Controls;assembly=MSPToolkit"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit" 
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    xmlns:my="clr-namespace:MyToolkit.Controls;assembly=MyToolkit.Extended"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d" d:DesignHeight="696" d:DesignWidth="480"
@@ -51,6 +52,11 @@
                                     Foreground="#FF847168" 
                                     Html="{Binding Path=Body}" 
                                     HorizontalContentAlignment="Left" />
+                    <!--<my:FixedHtmlTextBlock 
+                        x:Name="Description" FontSize="24" 
+                        HorizontalContentAlignment="Left"
+                        Foreground="#FF847168" Html="{Binding Path=Body}" />-->
+
 
                     <!--<TextBlock Text="{Binding Path=Body}" 
 					Name="Description" 
