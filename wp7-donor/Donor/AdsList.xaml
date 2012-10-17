@@ -11,9 +11,9 @@
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
-    mc:Ignorable="d" d:DesignHeight="768" d:DesignWidth="480"
+    mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480"
     DataContext="{Binding Path=App.ViewModel,Source=App.ViewModel}"
-    shell:SystemTray.IsVisible="True">
+    shell:SystemTray.IsVisible="False">
 
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot">
@@ -32,10 +32,10 @@
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-            <ListBox Margin="0,0,-12,0" ItemsSource="{Binding Ads.SortedItems}" SelectionChanged="ListBox_SelectionChanged" Tap="ListBox_Tap" tilteffect:TiltEffect.IsTiltEnabled="True">
+            <ListBox Margin="0,15,-12,0" ItemsSource="{Binding Ads.SortedItems}" SelectionChanged="ListBox_SelectionChanged" Tap="ListBox_Tap" tilteffect:TiltEffect.IsTiltEnabled="True">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel Margin="0,0,0,5" Width="432">
+                        <StackPanel Margin="0,20,0,5" Width="432">
                             <TextBlock Text="{Binding CreatedAtText}" TextWrapping="Wrap" Style="{StaticResource Text40pxB9A194}"/>
                             <TextBlock Text="{Binding Title}" TextWrapping="Wrap" Style="{StaticResource Text24pxB9A194}"/>
                         </StackPanel>

@@ -41,13 +41,16 @@
             <ScrollViewer>
             <StackPanel>
                     <TextBlock Text="{Binding Path=Title}" 
-					Name="TitleNews" 
+					Name="TitleNews" Margin="10,0,0,0"
 					Style="{StaticResource Text36pxB9A194}" 
 					TextWrapping="Wrap"/>
 
                     <msp:HTMLViewer NavigaionPolitic="Automatic" x:Name="Description"  
-                                    FontSize="24" ScrollViewer.VerticalScrollBarVisibility="Disabled"                
-                                    Foreground="#FF847168" Html="{Binding Path=Body}" />
+                                    FontSize="24" 
+                                    ScrollViewer.VerticalScrollBarVisibility="Disabled"                
+                                    Foreground="#FF847168" 
+                                    Html="{Binding Path=Body}" 
+                                    HorizontalContentAlignment="Left" />
 
                     <!--<TextBlock Text="{Binding Path=Body}" 
 					Name="Description" 

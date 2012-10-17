@@ -43,11 +43,17 @@
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
             <ScrollViewer>
                 <StackPanel>              
-                    <TextBlock x:Name="title" Text="{Binding Title}" Margin="0" 
-                           Style="{StaticResource Text36pxB9A194}" TextWrapping="Wrap" />
+                    <TextBlock Margin="10,0,0,0" x:Name="title" Text="{Binding Title}" 
+                           Style="{StaticResource Text36pxB9A194}" 
+                               TextWrapping="Wrap" />
                     <!--<TextBlock Text="{Binding Body}" TextWrapping="Wrap"
                            Style="{StaticResource Text24px847168}"/>-->
-                    <msp:HTMLViewer NavigaionPolitic="Automatic" x:Name="Description" FontSize="24" ScrollViewer.VerticalScrollBarVisibility="Disabled" Foreground="#FF847168" Html="{Binding Path=Body}" />
+                    <msp:HTMLViewer 
+                        NavigaionPolitic="Automatic" 
+                        x:Name="Description" FontSize="24" 
+                        HorizontalContentAlignment="Left"
+                        ScrollViewer.VerticalScrollBarVisibility="Disabled" 
+                        Foreground="#FF847168" Html="{Binding Path=Body}" />
                 </StackPanel>
             </ScrollViewer>
         </Grid>
