@@ -121,6 +121,7 @@ namespace Donor
             try
             {
                 App.ViewModel.Events.Items.Remove(_currentEvent);
+                App.ViewModel.Events.RemoveItemFromParse(_currentEvent);
                 App.ViewModel.Events.UpdateItems(); 
 
                 NavigationService.GoBack();

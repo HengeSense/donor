@@ -27,7 +27,7 @@ using Microsoft.Phone.Scheduler;
 /// 2 - донорская суббота
 /// Праздник - праздничный день
 ///
- 
+
 
 namespace Donor.ViewModels
 {
@@ -52,9 +52,10 @@ namespace Donor.ViewModels
 
         public string Id { get; set; }
         public string Title { get; set; }
-        public string Description {get; set; }
+        public string Description { get; set; }
         private DateTime _date;
-        public DateTime Date { 
+        public DateTime Date
+        {
             get
             {
                 return _date;
@@ -69,7 +70,7 @@ namespace Donor.ViewModels
             get
             {
                 if (this.Type == "empty")
-                { 
+                {
                     return " ";
                 }
                 else
@@ -144,10 +145,11 @@ namespace Donor.ViewModels
                     return "Еще не отмечено как выполненное";
                 };
             }
-            private set {
+            private set
+            {
             }
         }
-        
+
         public string BigImage
         {
             private set
@@ -161,7 +163,8 @@ namespace Donor.ViewModels
                 {
                     if (this.Finished == false)
                     {
-                        switch (this.GiveType) {
+                        switch (this.GiveType)
+                        {
                             case "Цельная кровь": return "/icons/Icon_blood_plan.png";
                             case "Тромбоциты": return "/icons/Icon_tromb_plan.png";
                             case "Плазма": return "/icons/Icon_plazm_plan.png";
@@ -183,14 +186,14 @@ namespace Donor.ViewModels
                 };
                 if (this.Type == "PossibleBloodGive")
                 {
-                        switch (this.GiveType)
-                        {
-                            case "Цельная кровь": return "/icons/Icon_blood.png";
-                            case "Тромбоциты": return "/icons/Icon_tromb.png";
-                            case "Плазма": return "/icons/Icon_plazm.png";
-                            case "Гранулоциты": return "/icons/Icon_gran.png";
-                            default: return "/icons/Icon_blood.png";
-                        };
+                    switch (this.GiveType)
+                    {
+                        case "Цельная кровь": return "/icons/Icon_blood.png";
+                        case "Тромбоциты": return "/icons/Icon_tromb.png";
+                        case "Плазма": return "/icons/Icon_plazm.png";
+                        case "Гранулоциты": return "/icons/Icon_gran.png";
+                        default: return "/icons/Icon_blood.png";
+                    };
                 };
                 if (this.Type == "2")
                     return "/icons/ic_donors_act.png";
@@ -250,7 +253,8 @@ namespace Donor.ViewModels
         }
 
         private DateTime _time;
-        public DateTime Time {
+        public DateTime Time
+        {
             get
             {
                 return _time;
@@ -273,20 +277,23 @@ namespace Donor.ViewModels
         {
             try
             {
-                List<long> addSecondsList = new List<long>() { 15 * 60, 60 * 60, 24 * 60 * 60, 2* 24 * 60 * 60, 7 * 24 * 60 * 60, -60 * 60 * 13, -60 * 60 * 17, 60 * 60 * 12 };
+                List<long> addSecondsList = new List<long>() { 15 * 60, 60 * 60, 24 * 60 * 60, 2 * 24 * 60 * 60, 7 * 24 * 60 * 60, -60 * 60 * 13, -60 * 60 * 17, 60 * 60 * 12 };
                 foreach (var addSeconds in addSecondsList)
                 {
-                    try {
+                    try
+                    {
                         Reminder objReminder = ScheduledActionService.Find(this.Id + addSeconds.ToString()) as Reminder;
                         if (objReminder != null)
                             ScheduledActionService.Remove(this.Id + addSeconds.ToString());
-                    } catch {};
+                    }
+                    catch { };
                 };
             }
             catch { };
         }
 
-        public void AddReminder(long addSeconds = 0, string rtitle="") {
+        public void AddReminder(long addSeconds = 0, string rtitle = "")
+        {
             try
             {
                 Reminder objReminder = ScheduledActionService.Find(this.Id + addSeconds.ToString()) as Reminder;
@@ -323,7 +330,7 @@ namespace Donor.ViewModels
 
 
 
-    public class EventsListViewModel: INotifyPropertyChanged
+    public class EventsListViewModel : INotifyPropertyChanged
     {
         public EventsListViewModel()
         {
@@ -336,110 +343,112 @@ namespace Donor.ViewModels
 
         public void LoadEventsParse()
         {
-            try {
-            if ((App.ViewModel.User != null) && (App.ViewModel.User.objectId != ""))
+            try
             {
-                var client = new RestClient("https://api.parse.com");
-                var request = new RestRequest("1/classes/Events", Method.GET);
-                request.Parameters.Clear();
-                string strJSONContent = "{\"type\":1, \"type\":0, \"user_id\":\"" + App.ViewModel.User.objectId.ToString() + "\"}";
-                request.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
-                request.AddHeader("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
-                request.AddParameter("where", strJSONContent);
-                client.ExecuteAsync(request, response =>
+                if ((App.ViewModel.User != null) && (App.ViewModel.User.objectId != ""))
                 {
-                    try
+                    var client = new RestClient("https://api.parse.com");
+                    var request = new RestRequest("1/classes/Events", Method.GET);
+                    request.Parameters.Clear();
+                    string strJSONContent = "{\"type\":1, \"user_id\":\"" + App.ViewModel.User.objectId.ToString() + "\"}";
+                    request.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
+                    request.AddHeader("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
+                    request.AddParameter("where", strJSONContent);
+                    client.ExecuteAsync(request, response =>
                     {
-                        ObservableCollection<EventViewModel> eventslist1 = new ObservableCollection<EventViewModel>();
-                        JObject o = JObject.Parse(response.Content.ToString());
-                        foreach (var item in o["results"])
+                        try
                         {
-                            EventViewModel jsonitem = new EventViewModel();
-                            try
+                            ObservableCollection<EventViewModel> eventslist1 = new ObservableCollection<EventViewModel>();
+                            JObject o = JObject.Parse(response.Content.ToString());
+                            foreach (var item in o["results"])
                             {
-                                jsonitem.Title = item["title"].ToString();
-                            }
-                            catch { jsonitem.Title = ""; };
-                            try
-                            {
-                                jsonitem.Description = item["comment"].ToString();
-                            }
-                            catch { };
-
-                            jsonitem.Id = item["objectId"].ToString();
-                            jsonitem.Type = item["type"].ToString();
-                            try
-                            {
-                                jsonitem.Date = DateTime.Parse(item["date"]["iso"].ToString());
-                            }
-                            catch { };
-                            try
-                            {
-                                jsonitem.Time = DateTime.Parse(item["time"]["iso"].ToString());
-                            }
-                            catch { };
-                            try
-                            {
-                                jsonitem.Place = item["adress"].ToString();
-                            }
-                            catch { };
-                            try
-                            {
-                                jsonitem.Description = item["comment"].ToString();
-                            }
-                            catch { };
-                            try
-                            {
-                                jsonitem.UserId = item["user_id"].ToString();
-                            }
-                            catch { };
-                            try
-                            {
-                                jsonitem.GiveType = item["giveType"].ToString();
-                            }
-                            catch { };
-
-                            if (jsonitem.Title == "")
-                            {
-                                switch (jsonitem.Type.ToString())
+                                EventViewModel jsonitem = new EventViewModel();
+                                try
                                 {
-                                    case "0":
-                                        jsonitem.Title = "Анализ";
-                                        break;
-                                    case "1":
-                                        jsonitem.Title = jsonitem.GiveType.ToString(); //"Кроводача - " + 
-                                        break;
+                                    jsonitem.Title = item["title"].ToString();
+                                }
+                                catch { jsonitem.Title = ""; };
+                                try
+                                {
+                                    jsonitem.Description = item["comment"].ToString();
+                                }
+                                catch { };
+
+                                jsonitem.Id = item["objectId"].ToString();
+                                jsonitem.Type = item["type"].ToString();
+                                try
+                                {
+                                    jsonitem.Date = DateTime.Parse(item["date"]["iso"].ToString());
+                                }
+                                catch { };
+                                try
+                                {
+                                    jsonitem.Time = DateTime.Parse(item["time"]["iso"].ToString());
+                                }
+                                catch { };
+                                try
+                                {
+                                    jsonitem.Place = item["adress"].ToString();
+                                }
+                                catch { };
+                                try
+                                {
+                                    jsonitem.Description = item["comment"].ToString();
+                                }
+                                catch { };
+                                try
+                                {
+                                    jsonitem.UserId = item["user_id"].ToString();
+                                }
+                                catch { };
+                                try
+                                {
+                                    jsonitem.GiveType = item["giveType"].ToString();
+                                }
+                                catch { };
+
+                                if (jsonitem.Title == "")
+                                {
+                                    switch (jsonitem.Type.ToString())
+                                    {
+                                        case "0":
+                                            jsonitem.Title = "Анализ";
+                                            break;
+                                        case "1":
+                                            jsonitem.Title = jsonitem.GiveType.ToString(); //"Кроводача - " + 
+                                            break;
+                                    };
                                 };
+
+                                try
+                                {
+                                    jsonitem.Finished = Boolean.Parse(item["giveType"].ToString());
+                                }
+                                catch
+                                {
+                                    jsonitem.Finished = false;
+                                };
+                                try
+                                {
+                                    jsonitem.Station_nid = Int32.Parse(item["station_nid"].ToString());
+                                }
+                                catch { };
+
+                                this.Items.Remove(this.Items.FirstOrDefault(c => c.Id == jsonitem.Id));
+                                this.Items.Add(jsonitem);
                             };
 
-                            try
-                            {
-                                jsonitem.Finished = Boolean.Parse(item["giveType"].ToString());
-                            }
-                            catch
-                            {
-                                jsonitem.Finished = false;
-                            };
-                            try
-                            {
-                                jsonitem.Station_nid = Int32.Parse(item["station_nid"].ToString());
-                            }
-                            catch { };
-
-                            this.Items.Remove(this.Items.FirstOrDefault(c => c.Id == jsonitem.Id));
-                            this.Items.Add(jsonitem);
+                            App.ViewModel.Events.UpdateItems();
+                        }
+                        catch
+                        {
                         };
-
-                        App.ViewModel.Events.UpdateItems();
-                    }
-                    catch
-                    {
-                    };
-                    this.NotifyPropertyChanged("Items");
-                    this.NotifyPropertyChanged("WeekItems");
-                });
-            };
-        } catch {};
+                        this.NotifyPropertyChanged("Items");
+                        this.NotifyPropertyChanged("WeekItems");
+                    });
+                };
+            }
+            catch { };
         }
 
         /// <summary>
@@ -503,15 +512,16 @@ namespace Donor.ViewModels
             List<string> TypesGive = new List<string>() { "Тромбоциты", "Плазма", "Цельная кровь", "Гранулоциты" };
 
             var _selected_user_items = (from item in this.Items
-                                                where ((item.UserId == App.ViewModel.User.objectId) && (item.Type == "1"))
-                                                orderby item.Date ascending
-                                                select item);
+                                        where ((item.UserId == App.ViewModel.User.objectId) && (item.Type == "1"))
+                                        orderby item.Date ascending
+                                        select item);
 
             var previtem = _selected_user_items.FirstOrDefault();
             DateTime Date = DateTime.Now;
             DateTime OutDate = DateTime.Now;
 
-            if (App.ViewModel.Events.EventsInYear(GiveType, OutDate) && App.ViewModel.Events.EventsInYear(GiveType, OutDate.AddYears(-1))) {
+            if (App.ViewModel.Events.EventsInYear(GiveType, OutDate) && App.ViewModel.Events.EventsInYear(GiveType, OutDate.AddYears(-1)))
+            {
 
             };
             foreach (var item in _selected_user_items)
@@ -520,20 +530,24 @@ namespace Donor.ViewModels
                 previtem = item;
                 if (previtem.Date.AddDays(days) >= DateTime.Now)
                 {
-                    if (App.ViewModel.Events.EventsInYear(GiveType, OutDate) && App.ViewModel.Events.EventsInYear(GiveType, OutDate.AddYears(-1))) {
-                    OutDate = previtem.Date.AddDays(days);
-                    break;
-                    } else {
+                    if (App.ViewModel.Events.EventsInYear(GiveType, OutDate) && App.ViewModel.Events.EventsInYear(GiveType, OutDate.AddYears(-1)))
+                    {
+                        OutDate = previtem.Date.AddDays(days);
+                        break;
+                    }
+                    else
+                    {
                     };
                 };
             };
 
             var _future_items = (from item in this.Items
-                where (((item.UserId == App.ViewModel.User.objectId) && (item.Type == "1")) && (item.Date >= DateTime.Now))
-                orderby item.Date ascending
-                select item);
+                                 where (((item.UserId == App.ViewModel.User.objectId) && (item.Type == "1")) && (item.Date >= DateTime.Now))
+                                 orderby item.Date ascending
+                                 select item);
 
-            foreach (var item in _future_items) {
+            foreach (var item in _future_items)
+            {
                 int daysc1 = App.ViewModel.Events.DaysFromEvent(item.GiveType, GiveType);
                 int daysc2 = App.ViewModel.Events.DaysFromEvent(GiveType, item.GiveType);
                 if ((OutDate <= item.Date.AddDays(daysc1)) && (OutDate >= item.Date))
@@ -545,7 +559,7 @@ namespace Donor.ViewModels
                 if ((item.Date <= OutDate.AddDays(daysc2)) && (OutDate < item.Date))
                 {
                     previtem = item;
-                    OutDate = previtem.Date.AddDays(daysc2);                    
+                    OutDate = previtem.Date.AddDays(daysc2);
                     break;
                 };
             };
@@ -560,21 +574,22 @@ namespace Donor.ViewModels
         {
             int count = 0;
             count = (from item in this.UserItems
-                          where (item.Date >= DateTime.Now) && (item.Type == "1") && (item.Type == "0")
-                         orderby item.Date ascending select item).Count();
+                     where (item.Date >= DateTime.Now) && (item.Type == "1") && (item.Type == "0")
+                     orderby item.Date ascending
+                     select item).Count();
             return count;
         }
 
         public int DaysBefore()
         {
             List<string> TypesGive = new List<string>() { "Тромбоциты", "Плазма", "Цельная кровь", "Гранулоциты" };
-            
+
 
             int days_count = 0;
             var nearestEvents = (from item in this.UserItems
-                              where (item.Date <= DateTime.Now)
-                              orderby item.Date descending
-                              select item).Take(1);
+                                 where (item.Date <= DateTime.Now)
+                                 orderby item.Date descending
+                                 select item).Take(1);
 
             if (nearestEvents.Count() == 0)
             {
@@ -599,7 +614,7 @@ namespace Donor.ViewModels
                 };
                 days_count = min;
                 return days_count;
-            };            
+            };
         }
 
         public bool EventsInYear(string event_give_type, DateTime start)
@@ -616,13 +631,15 @@ namespace Donor.ViewModels
                     if (yearitems.Count() > 9)
                     {
                         return false;
-                    } else {
+                    }
+                    else
+                    {
                         return true;
                     };
                 case "Гранулоциты":
                     var yearitems2 = from item in App.ViewModel.Events.UserItems
                                      where (item.GiveType == "Гранулоциты")
-                                    select item;
+                                     select item;
                     if (yearitems2.Count() > 2)
                     {
                         return false;
@@ -634,7 +651,7 @@ namespace Donor.ViewModels
                 case "Плазма":
                     var yearitems3 = from item in App.ViewModel.Events.UserItems
                                      where (item.Date >= start && item.Date <= start.AddYears(1) && item.GiveType == "Плазма")
-                                    select item;
+                                     select item;
                     if (yearitems3.Count() > 11)
                     {
                         return false;
@@ -647,7 +664,7 @@ namespace Donor.ViewModels
                     var yearitems4 = from item in App.ViewModel.Events.UserItems
                                      where (item.Date >= start && item.Date <= start.AddYears(1) && item.GiveType == "Цельная кровь")
                                      select item;
-                    if (((yearitems4.Count() > 4) && (App.ViewModel.User.Sex==0)) || ((yearitems4.Count() > 3) && (App.ViewModel.User.Sex==1)))
+                    if (((yearitems4.Count() > 4) && (App.ViewModel.User.Sex == 0)) || ((yearitems4.Count() > 3) && (App.ViewModel.User.Sex == 1)))
                     {
                         return false;
                     }
@@ -657,7 +674,7 @@ namespace Donor.ViewModels
                     };
                 default:
                     return true;
-                    
+
             }
         }
 
@@ -748,9 +765,9 @@ namespace Donor.ViewModels
         public EventViewModel NearestEvents()
         {
             var item_near2 = (from item in this.UserItems
-                     where (item.Date >= DateTime.Now) && (item.Type == "1") && (item.Type == "0")
-                     orderby item.Date ascending
-                     select item).Take(1);
+                              where (item.Date >= DateTime.Now) && (item.Type == "1") && (item.Type == "0")
+                              orderby item.Date ascending
+                              select item).Take(1);
             return item_near2.FirstOrDefault();
         }
 
@@ -768,7 +785,8 @@ namespace Donor.ViewModels
                                                 where (item.UserId == App.ViewModel.User.objectId) || ((item.Type != "0") && (item.Type != "1"))
                                                 orderby item.Date descending
                                                 select item);
-                    foreach (var item in _selected_user_items) {
+                    foreach (var item in _selected_user_items)
+                    {
                         _user_items.Add(item);
                     };
                     return _user_items;
@@ -794,15 +812,15 @@ namespace Donor.ViewModels
             return item_near2.FirstOrDefault();
         }
 
-        public void AddEventParse(EventViewModel addedItems = null) {
+        public void AddEventParse(EventViewModel addedItems = null)
+        {
             if ((addedItems != null) && ((addedItems.Type == "0") || (addedItems.Type == "1")))
             {
                 var client = new RestClient("https://api.parse.com");
                 var request = new RestRequest("1/classes/Events", Method.POST);
                 request.AddHeader("Accept", "application/json");
                 request.Parameters.Clear();
-                //string strJSONContent = "{\"station_nid\": " + addedItems.Station_nid + ", \"title\":\"" + addedItems.Title + "\", \"time\":\"" + addedItems.Time + "\", \"adress\":\"" + addedItems.Place + "\", \"comment\":\"" + addedItems.Description + "\", \"type\":" + addedItems.Type + ", \"finished\":" + addedItems.Finished.ToString() + ", \"giveType\":\"" + addedItems.GiveType + "\"}";
-                string strJSONContent = "{\"station_nid\": " + addedItems.Station_nid + ", \"title\":\"" + addedItems.Title + "\", \"adress\":\"" + addedItems.Place + "\", \"comment\":\"" + addedItems.Description.Replace("\r","\n") + "\", \"type\":" + addedItems.Type + ", \"giveType\":\"" + addedItems.GiveType + "\", \"type\":" + addedItems.Type + ", \"giveType\":\"" + addedItems.GiveType + "\"}";
+                string strJSONContent = "{\"station_nid\": " + addedItems.Station_nid + ", \"time\": {\"__type\": \"Date\", \"iso\": \"" + addedItems.Time.ToString("s") + "\"}, \"date\": {\"__type\": \"Date\", \"iso\": \"" + addedItems.Date.ToString("s") + "\"}, \"finished\":" + addedItems.Finished.ToString().ToLower() + ", \"adress\":\"" + addedItems.Place + "\", \"comment\":\"" + addedItems.Description.Replace("\r", "\n") + "\", \"type\":" + addedItems.Type + ", \"giveType\":\"" + addedItems.GiveType + "\", \"type\":" + addedItems.Type + ", \"giveType\":\"" + addedItems.GiveType + "\", \"user_id\":\"" + App.ViewModel.User.objectId.ToString() + "\"}";
                 //, \"type\":" + addedItems.Type + ", \"giveType\":\"" + addedItems.GiveType + "\"
                 request.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
                 request.AddHeader("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
@@ -814,7 +832,9 @@ namespace Donor.ViewModels
                     JObject o = JObject.Parse(response.Content.ToString());
                     if (o["error"] == null)
                     {
-
+                        this.Items.Remove(addedItems);
+                        addedItems.Id = o["objectId"].ToString();
+                        this.Items.Add(addedItems);
                     }
                     else
                     {
@@ -829,7 +849,8 @@ namespace Donor.ViewModels
         /// Сохраняем обновлениный список событий, посылаем данные о событии на parse.com
         /// </summary>
         /// <param name="addedItems"></param>
-        public void UpdateItems(EventViewModel addedItems = null) {
+        public void UpdateItems(EventViewModel addedItems = null)
+        {
             NotifyPropertyChanged("Items");
             NotifyPropertyChanged("UserItems");
             NotifyPropertyChanged("WeekItems");
@@ -845,7 +866,8 @@ namespace Donor.ViewModels
         /// <summary>
         /// Добавляем события - возможные кроводачи
         /// </summary>
-        public void UpdateNearestEvents() {
+        public void UpdateNearestEvents()
+        {
             try
             {
                 List<string> TypesGive = new List<string>() { "Тромбоциты", "Плазма", "Цельная кровь", "Гранулоциты" };
@@ -854,13 +876,15 @@ namespace Donor.ViewModels
                     try
                     {
                         this.Items.Remove(this.Items.FirstOrDefault(c => c.Type == "PossibleBloodGive"));
-                    } catch {};
+                    }
+                    catch { };
                 };
                 foreach (var item in TypesGive)
                 {
                     DateTime date = NearestPossibleGiveBlood(item);
                     var possibleItem = new EventViewModel();
                     possibleItem.Date = date;
+                    possibleItem.Time = new DateTime(date.Year, date.Month, date.Day, 8, 0, 0);
                     possibleItem.Type = "PossibleBloodGive";
                     possibleItem.GiveType = item;
                     possibleItem.Title = item + " - возможная сдача";
@@ -892,7 +916,7 @@ namespace Donor.ViewModels
                 try
                 {
                     ObservableCollection<EventViewModel> eventslist1 = new ObservableCollection<EventViewModel>();
-                    JObject o = JObject.Parse(response.Content.ToString());                    
+                    JObject o = JObject.Parse(response.Content.ToString());
                     foreach (var item in o["results"])
                     {
                         EventViewModel jsonitem = new EventViewModel();
@@ -914,7 +938,7 @@ namespace Donor.ViewModels
                 };
                 this.NotifyPropertyChanged("Items");
                 this.NotifyPropertyChanged("WeekItems");
-            });            
+            });
         }
 
         private ObservableCollection<EventViewModel> _items;
@@ -934,76 +958,83 @@ namespace Donor.ViewModels
             }
         }
 
-        public int BloodGiveCount {
-        get {
-            if (App.ViewModel.User.IsLoggedIn)
+        public int BloodGiveCount
+        {
+            get
             {
-                var _selected_user_items = (from item in this.Items
-                                            where (item.UserId == App.ViewModel.User.objectId) || ((item.Type != "1"))
-                                            orderby item.Date descending
-                                            select item);
-                return _selected_user_items.Count();
+                if (App.ViewModel.User.IsLoggedIn)
+                {
+                    var _selected_user_items = (from item in this.Items
+                                                where (item.UserId == App.ViewModel.User.objectId) || ((item.Type != "1"))
+                                                orderby item.Date descending
+                                                select item);
+                    return _selected_user_items.Count();
+                }
+                else
+                {
+                    return 0;
+                };
             }
-            else
-            {
-                return 0;
-            };
-        }
-        private set {}
+            private set { }
         }
 
-        public void WeekItemsUpdated() {
+        public void WeekItemsUpdated()
+        {
             this.NotifyPropertyChanged("WeekItems");
         }
 
-        public List<EventViewModel> WeekItems { 
-            get 
+        public List<EventViewModel> WeekItems
+        {
+            get
             {
                 var newitems = (from eventCal in this.UserItems
                                 where
                                 (eventCal.Type != "Праздник") &&
                                 (eventCal.Date >= DateTime.Now)
                                 && (App.ViewModel.User.objectId == eventCal.UserId)
-                               orderby eventCal.Date descending
+                                orderby eventCal.Date descending
                                 select eventCal).Take(10);
                 List<EventViewModel> outnews = newitems.ToList();
                 return outnews;
             }
-            private set { } 
+            private set { }
         }
 
-        public void GetThisMonthItems() {
-                var bw = new BackgroundWorker();
-            
-                bw.DoWork += delegate
+        public void GetThisMonthItems()
+        {
+            var bw = new BackgroundWorker();
+
+            bw.DoWork += delegate
+            {
+                System.Threading.Thread.Sleep(300);
+
+                var newitems = (from eventCal in this.Items
+                                where ((eventCal.UserId == App.ViewModel.User.objectId) || ((eventCal.Type != "0") || (eventCal.Type != "1"))) &&
+                                (eventCal.Date.Month == CurrentMonth.Month) && (eventCal.Date.Year == CurrentMonth.Year)
+                                orderby eventCal.Date descending
+                                select eventCal);
+                List<EventViewModel> outnews = newitems.ToList();
+
+                var emptyItem = new EventViewModel();
+                emptyItem.Date = CurrentMonth;
+                emptyItem.Type = "empty";
+                emptyItem.Title = "";
+
+                int addi = 14 - newitems.Count();
+                if (addi > 0)
                 {
-                    System.Threading.Thread.Sleep(300);
-
-                    var newitems = (from eventCal in this.Items
-                                    where ((eventCal.UserId == App.ViewModel.User.objectId) || ((eventCal.Type != "0") || (eventCal.Type != "1"))) &&
-                                    (eventCal.Date.Month == CurrentMonth.Month) && (eventCal.Date.Year == CurrentMonth.Year)
-                                    orderby eventCal.Date descending
-                                    select eventCal);
-                    List<EventViewModel> outnews = newitems.ToList();
-
-                    var emptyItem = new EventViewModel();
-                    emptyItem.Date = CurrentMonth;
-                    emptyItem.Type = "empty";
-                    emptyItem.Title = "";
-
-                    int addi = 14 - newitems.Count();
-                    if (addi > 0) {
-                        for(var ii=0;ii<addi;ii++) {
-                            outnews.Add(emptyItem);
-                        };
-                    }; 
+                    for (var ii = 0; ii < addi; ii++)
+                    {
+                        outnews.Add(emptyItem);
+                    };
+                };
                 Deployment.Current.Dispatcher.BeginInvoke(() =>
                     {
                         _thisMonthItems = outnews;
                         NotifyPropertyChanged("ThisMonthItems");
                     });
-                };
-                bw.RunWorkerAsync();  
+            };
+            bw.RunWorkerAsync();
         }
 
         private List<EventViewModel> _thisMonthItems;
@@ -1033,16 +1064,18 @@ namespace Donor.ViewModels
                 };
                 return _thisMonthItems;
             }
-            private set {}
+            private set { }
         }
 
         private DateTime _currentMonth = DateTime.Now;
-        public DateTime CurrentMonth {
-            get {
+        public DateTime CurrentMonth
+        {
+            get
+            {
                 return _currentMonth;
             }
-            set 
-            { 
+            set
+            {
                 _currentMonth = value;
                 GetThisMonthItems();
                 NotifyPropertyChanged("CurrentMonthString");
@@ -1056,7 +1089,8 @@ namespace Donor.ViewModels
 
         public string CurrentDate
         {
-            get {
+            get
+            {
                 return DateTime.Now.ToString("D");
                 //CultureInfo.CurrentCulture.DateTimeFormat.LongDatePattern.;
             }
@@ -1077,18 +1111,21 @@ namespace Donor.ViewModels
             }
         }
 
-        public string CurrentMonthString {
-            get {
+        public string CurrentMonthString
+        {
+            get
+            {
                 return CultureInfo.CurrentCulture.DateTimeFormat.MonthNames[
-CurrentMonth.Month-1]; 
+CurrentMonth.Month - 1];
             }
             private set { }
         }
-        
+
         /// <summary>
         /// Название следующего месяца для календаря
         /// </summary>
-        public string NextMonthString {
+        public string NextMonthString
+        {
             get { return CultureInfo.CurrentCulture.DateTimeFormat.MonthNames[CurrentMonth.AddMonths(1).Month - 1]; }
             private set { }
         }
@@ -1144,6 +1181,33 @@ CurrentMonth.Month-1];
             {
                 handler(this, new PropertyChangedEventArgs(propertyName));
             }
+        }
+
+        public void RemoveItemFromParse(EventViewModel _currentEvent)
+        {
+            var client = new RestClient("https://api.parse.com");
+            var request = new RestRequest("1/classes/Events/" + _currentEvent.Id, Method.DELETE);
+            request.AddHeader("Accept", "application/json");
+            request.Parameters.Clear();
+            string strJSONContent = "";
+            request.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
+            request.AddHeader("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
+            request.AddHeader("Content-Type", "application/json");
+
+            request.AddParameter("application/json", strJSONContent, ParameterType.RequestBody);
+
+            client.ExecuteAsync(request, response =>
+            {
+                JObject o = JObject.Parse(response.Content.ToString());
+                if (o["error"] == null)
+                {
+
+                }
+                else
+                {
+
+                };
+            });
         }
     }
 }
