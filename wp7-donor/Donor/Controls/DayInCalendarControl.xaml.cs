@@ -129,6 +129,12 @@ namespace Donor.Controls
             }
         }
 
+        public List<EventViewModel> EventDayList
+        {
+            get;
+            set;
+        }
+
         private EventViewModel _eventDay;
         public EventViewModel EventDay
         {
@@ -296,13 +302,25 @@ namespace Donor.Controls
         {
             try
             {
-                if (EventDay != null)
+                int PossibleBloodGive = 0;
+                //if ((EventDay != null) && (EventDayList.Count() == 1))
+                if (EventDayList.Count()>0)
                 {
-                    Uri uri = new Uri(this.ImagePath, UriKind.Relative);
+                    foreach (var dayitem in EventDayList)
+                    {
+                        Uri uri = new Uri(dayitem.SmallImage, UriKind.Relative);
                     ImageSource imgSource = new BitmapImage(uri);
                     if (EventDay.Type == "PossibleBloodGive")
                     {
-                        this.DayImageRT.Source = imgSource;
+                        switch (PossibleBloodGive)
+                        {
+                            case 0: this.DayImageRT.Source = imgSource; break;
+                            case 1: this.DayImageRT1.Source = imgSource; break;
+                            case 2: this.DayImageRT2.Source = imgSource; break;
+                            case 3: this.DayImageRT3.Source = imgSource; break;
+                            default: this.DayImageRT.Source = imgSource; break;
+                        };                        
+                        PossibleBloodGive++;
                     }
                     else
                     {
@@ -312,8 +330,9 @@ namespace Donor.Controls
                         }
                         else
                         {
-                            this.DayImageRT.Source = imgSource;
+                            this.DayImageLB.Source = imgSource;
                         };
+                    };
                     };
                 };
             }

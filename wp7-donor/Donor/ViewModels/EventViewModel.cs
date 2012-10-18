@@ -301,20 +301,22 @@ namespace Donor.ViewModels
                     ScheduledActionService.Remove(this.Id + addSeconds.ToString());
                 objReminder = new Reminder(this.Id + addSeconds.ToString());
                 DateTime RememberDate = this.Date;
-                if (addSeconds >= 0)
+                /*if (addSeconds >= 0)
                 {
                     RememberDate = RememberDate.AddSeconds((this.Time.Hour * 60 * 60) + (this.Time.Minute * 60) + (this.Time.Second));
-                };
+                };*/
                 RememberDate = RememberDate.AddSeconds(-addSeconds);
                 objReminder.BeginTime = RememberDate;
 
                 if (rtitle == "")
                 {
-                    objReminder.Title = this.Title;
+                    objReminder.Title = "Доноры";
+                    objReminder.Content = this.Title;
                 }
                 else
                 {
-                    objReminder.Title = rtitle;
+                    objReminder.Title = "Доноры";
+                    objReminder.Content = rtitle;
                 };
 
                 objReminder.NavigationUri = new Uri("/EventPage.xaml?id=" + this.Id, UriKind.Relative);
@@ -759,7 +761,7 @@ namespace Donor.ViewModels
                 default: break;
             }
 
-            return days_count;
+            return (days_count + 1);
         }
 
         public EventViewModel NearestEvents()

@@ -302,9 +302,11 @@ namespace Donor
 
                      CurrentEvent.Image = "/images/drop.png";
 
-                     if ((App.ViewModel.Settings.EventBefore == true) && (App.ViewModel.Settings.Push == true))
-                     {
+                     //if ((App.ViewModel.Settings.EventBefore == true) && (App.ViewModel.Settings.Push == true))
+                     //{
                          //if save and thiere is no events at this day
+                     if (CurrentEvent.Type == "0")
+                     {
                          if ((save) && (App.ViewModel.Events.ThisDayEvents(CurrentEvent.Date) == false))
                          {
                              InitialCurrentEvent.RemoveReminders();
@@ -329,8 +331,8 @@ namespace Donor
                                      break;
                              };
                          };
-
                      };
+                     //};
 
                      if (CurrentEvent.Type == "0")
                      {
@@ -355,19 +357,25 @@ namespace Donor
                          CurrentEvent.GiveType = this.GiveType.SelectedItem.ToString();
                          if (App.ViewModel.Events.EventsInYear(CurrentEvent.GiveType, CurrentEvent.Date) && App.ViewModel.Events.EventsInYear(CurrentEvent.GiveType, CurrentEvent.Date.AddYears(-1)))
                          {
-                             if (((App.ViewModel.Settings.EventAfter == true) && (App.ViewModel.Settings.Push == true)) && (CurrentEvent.ReminderMessage == true))
-                             {
-                                 if ((save) && (App.ViewModel.Events.ThisDayEvents(CurrentEvent.Date) == false))
+                             //if (((App.ViewModel.Settings.EventAfter == true) && (App.ViewModel.Settings.Push == true)) && (CurrentEvent.ReminderMessage == true))
+                             //{
+                             if ((save) && (App.ViewModel.Events.ThisDayEvents(CurrentEvent.Date) == false) && (CurrentEvent.Type == "1"))
                                  {
-                                     InitialCurrentEvent.RemoveReminders();
+                                     try
+                                     {
+                                         InitialCurrentEvent.RemoveReminders();
+                                     }
+                                     catch
+                                     {
+                                     };
 
                                      //в день в 17:00
-                                     CurrentEvent.AddReminder(-60 * 60 * 17, CurrentEvent.GiveType);
+                                     CurrentEvent.AddReminder(-60 * 60 * 17, "Вы сегодня сдавали кровь/компоненты крови?");
                                      //за день в 12:00
                                      CurrentEvent.AddReminder(60 * 60 * 12, "Завтра у вас запланирована кроводача.");
                                  };
                                  
-                             };
+                             //};
 
                              ///
                              /// Помечаем событие как выполненное, если его дата меньше текущей

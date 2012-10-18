@@ -30,21 +30,21 @@
         <StackPanel x:Name="TitlePanel" Grid.Row="0">
             <TextBlock x:Name="ApplicationTitle" 
 			Text="Станции переливания крови" 
-			 Margin="12,17,0,28"
+			 Margin="12,24,0,22"
 			Style="{StaticResource Text30pxWhite}"/>
 			
 			<StackPanel Background="#FF632C00"
 			Height="116">
 			<TextBlock Text=" " Name="CityFilterText"
 			Foreground="#FFCBB2A3"
-			FontSize="34" Margin="10,0,0,0"/>
+			FontSize="34" Margin="10,8,0,0"/>
             <toolkit:AutoCompleteBox 
 			Name="StationsSearchText" 
 			FontSize="24"			
 			FilterMode="Contains" ValueMemberPath="Title" 
 			Populating="StationsSearchText_Populating" 
 			Foreground="#FFE0B390" Background="#FF3C1B00" 
-			BorderBrush="#FF3C1B00" Populated="StationsSearchText_Populated">
+			BorderBrush="#FF3C1B00" Populated="StationsSearchText_Populated" Margin="0,-8,0,0">
                 <toolkit:AutoCompleteBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">

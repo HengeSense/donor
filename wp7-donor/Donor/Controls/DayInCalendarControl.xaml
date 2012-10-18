@@ -42,9 +42,9 @@
 
                     <Grid Width="52" Background="Transparent" Height="52" Grid.Row="0" Grid.Column="0">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
@@ -52,11 +52,14 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
-                    <Image Margin="0"
-                       Name="DayImageRT" 
-                           Grid.Row="0"
+                        <StackPanel Grid.ColumnSpan="2"  Height="Auto" Grid.Row="0"
                            Grid.Column="2" VerticalAlignment="Top" 
-                           HorizontalAlignment="Right" />
+                           HorizontalAlignment="Right">
+                            <Image Margin="0" Name="DayImageRT" Stretch="None" />
+                            <Image Margin="0" Name="DayImageRT1" Stretch="None" />
+                            <Image Margin="0" Name="DayImageRT2" Stretch="None" />
+                            <Image Margin="0" Name="DayImageRT3" Stretch="None" />
+                        </StackPanel>
                         <Image Margin="0"
                        Name="DayImageRB"
                                VerticalAlignment="Bottom" 

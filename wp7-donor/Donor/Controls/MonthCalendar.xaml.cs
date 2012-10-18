@@ -94,6 +94,8 @@ namespace Donor.Controls
 				
                 day2.EventDay = App.ViewModel.Events.UserItems.FirstOrDefault(a => a.Date == new DateTime(Date.Year, Date.Month, i));
 
+                day2.EventDayList = App.ViewModel.Events.UserItems.Where(a => a.Date == new DateTime(Date.Year, Date.Month, i)).ToList();
+
                 if (day2.EventDay != null) {
                     day2.ImagePath = day2.EventDay.SmallImage.ToString();
                 };

@@ -111,7 +111,15 @@ namespace Donor
                     mapitem = new ARStation();
                     mapitem.GeoLocation = new GeoCoordinate(Convert.ToDouble(item.Lat.ToString()), Convert.ToDouble(item.Lon.ToString()));
                     mapitem.Content = item.Title;
-                    map1.Children.Add(new Pushpin() { Location = mapitem.GeoLocation, Content = item.Title });
+
+                    Pushpin pushpinItem = new Pushpin()
+                    {
+                        Location = mapitem.GeoLocation,
+                        Content = item.Title
+                    };
+                    pushpinItem.Tag = item.Nid;
+                    pushpinItem.Tap += this.Pushpin_Tap;
+                    map1.Children.Add(pushpinItem);
 
                     mapitem.Title = item.Title;
                     mapitem.Adress = item.Adress;
@@ -123,7 +131,16 @@ namespace Donor
                 mapitem = new ARStation();
                 mapitem.GeoLocation = new GeoCoordinate(Convert.ToDouble(_currentStation.Lat.ToString()), Convert.ToDouble(_currentStation.Lon.ToString()));
                 mapitem.Content = _currentStation.Title;
-                map1.Children.Add(new Pushpin() { Location = mapitem.GeoLocation, Content = _currentStation.Title });
+
+                Pushpin pushpinItem = new Pushpin()
+                {
+                    Location = mapitem.GeoLocation,
+                    Content = _currentStation.Title
+                };
+                //pushpinItem.Tag = _currentStation.Nid;
+                //pushpinItem.Tap += this.Pushpin_Tap;
+
+                map1.Children.Add(pushpinItem);
 
                 mapitem.Title = _currentStation.Title;
                 mapitem.Adress = _currentStation.Adress;
@@ -132,6 +149,18 @@ namespace Donor
 
             ARDisplay.ARItems = items;
             
+        }
+
+        private void Pushpin_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            try
+            {
+                string id = (sender as Pushpin).Tag.ToString();
+                NavigationService.Navigate(new Uri("/StationPage.xaml?id=" + id, UriKind.Relative));
+            }
+            catch
+            {
+            };
         }
 
         protected override void OnNavigatedFrom(System.Windows.Navigation.NavigationEventArgs e)
