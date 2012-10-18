@@ -302,9 +302,8 @@ namespace Donor
 
                      CurrentEvent.Image = "/images/drop.png";
 
-                     //if ((App.ViewModel.Settings.EventBefore == true) && (App.ViewModel.Settings.Push == true))
-                     //{
-                         //if save and thiere is no events at this day
+                     //if ((App.ViewModel.Settings.EventBefore == true) && (App.ViewModel.Settings.Push == true)) {
+                     //if save and thiere is no events at this day
                      if (CurrentEvent.Type == "0")
                      {
                          if ((save) && (App.ViewModel.Events.ThisDayEvents(CurrentEvent.Date) == false))
@@ -332,7 +331,6 @@ namespace Donor
                              };
                          };
                      };
-                     //};
 
                      if (CurrentEvent.Type == "0")
                      {

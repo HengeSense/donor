@@ -47,7 +47,22 @@ namespace Donor.Controls
             {
                 if (this.EventDay != null)
                 {
-                    (Application.Current.RootVisual as PhoneApplicationFrame).Navigate(new Uri("/EventPage.xaml?id=" + this.EventDay.Id, UriKind.Relative));
+                    if (PossibleBloodGive == 1)
+                    {
+                        (Application.Current.RootVisual as PhoneApplicationFrame).Navigate(new Uri("/EventEditPage.xaml?id=" + this.EventDay.Id, UriKind.Relative));
+                    }
+                    else
+                    {
+                        if (PossibleBloodGive > 1)
+                        {
+                            (Application.Current.RootVisual as PhoneApplicationFrame).Navigate(new Uri("/EventEditPage.xaml", UriKind.Relative));
+                        };
+                    };
+
+                    if (PossibleBloodGive == 0)
+                    {
+                        (Application.Current.RootVisual as PhoneApplicationFrame).Navigate(new Uri("/EventPage.xaml?id=" + this.EventDay.Id, UriKind.Relative));
+                    };
                 }
                 else
                 {
@@ -298,12 +313,13 @@ namespace Donor.Controls
             };
         }
 
+        public int PossibleBloodGive;
+
         private void LayoutRoot_Loaded(object sender, RoutedEventArgs e)
         {
             try
             {
-                int PossibleBloodGive = 0;
-                //if ((EventDay != null) && (EventDayList.Count() == 1))
+                PossibleBloodGive = 0;
                 if (EventDayList.Count()>0)
                 {
                     foreach (var dayitem in EventDayList)

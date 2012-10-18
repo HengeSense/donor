@@ -50,10 +50,25 @@ namespace Donor.ViewModels
             }
         }
 
+        /// <summary>
+        /// Идентификатор события, после загрузки на parse соответствует objectId
+        /// </summary>
         public string Id { get; set; }
+
+        /// <summary>
+        /// Заголовок события
+        /// </summary>
         public string Title { get; set; }
+
+        /// <summary>
+        /// Комментарий к событию
+        /// </summary>
         public string Description { get; set; }
+
         private DateTime _date;
+        /// <summary>
+        /// Дата провередия события
+        /// </summary>
         public DateTime Date
         {
             get
@@ -65,6 +80,10 @@ namespace Donor.ViewModels
                 _date = value;
             }
         }
+
+        /// <summary>
+        /// Строка с короткой записью даты проведения события
+        /// </summary>
         public string ShortDate
         {
             get
@@ -81,6 +100,9 @@ namespace Donor.ViewModels
             private set { }
         }
 
+        /// <summary>
+        /// День проведения события (номер дня в месяце)
+        /// </summary>
         public string Day
         {
             get
@@ -97,6 +119,9 @@ namespace Donor.ViewModels
             private set { }
         }
 
+        /// <summary>
+        /// Путь
+        /// </summary>
         public string Image { get; set; }
 
         /// <summary>
@@ -104,6 +129,10 @@ namespace Donor.ViewModels
         /// Тип события (0 – Анализ, 1 – Сдача крови)
         /// </summary>
         public string Type { get; set; }
+
+        /// <summary>
+        /// Тип кроводачи (тромбоциты, плазма, цельная кровь, гранулоциты
+        /// </summary>
         public string GiveType { get; set; }
         public string Place { get; set; }
 
@@ -111,6 +140,9 @@ namespace Donor.ViewModels
         public bool ReminderMessage { get; set; }
 
         private bool _finished = false;
+        /// <summary>
+        /// Является  ли событие выполеннным? true - выполнено, false - еще не выполнено (не отмечено как выполненное)
+        /// </summary>
         public bool Finished
         {
             get
@@ -119,19 +151,15 @@ namespace Donor.ViewModels
             }
             set
             {
-                /*if ((this.Date <= DateTime.Today) && (this.Time.Hour <= DateTime.Now.Hour) && (this  .Time.Minute <= DateTime.Now.Minute))
-                {
-                    _finished = value;
-                }
-                else
-                {
-                    _finished = false;
-                };*/
                 _finished = value;
                 NotifyPropertyChanged("Finished");
                 NotifyPropertyChanged("FinishedString");
             }
         }
+
+        /// <summary>
+        /// Строка, содержащая описание выполнения события
+        /// </summary>
         public string FinishedString
         {
             get
@@ -150,6 +178,9 @@ namespace Donor.ViewModels
             }
         }
 
+        /// <summary>
+        /// Путь к "большому" изображению события
+        /// </summary>
         public string BigImage
         {
             private set
@@ -201,6 +232,9 @@ namespace Donor.ViewModels
             }
         }
 
+        /// <summary>
+        /// Путь к "маленькому" изображению события
+        /// </summary>
         public string SmallImage
         {
             private set
@@ -253,6 +287,9 @@ namespace Donor.ViewModels
         }
 
         private DateTime _time;
+        /// <summary>
+        /// Время проведения события
+        /// </summary>
         public DateTime Time
         {
             get
@@ -264,6 +301,10 @@ namespace Donor.ViewModels
                 _time = value;
             }
         }
+
+        /// <summary>
+        /// Строка с верменем проведения события
+        /// </summary>
         public string ShortTime
         {
             get
@@ -273,6 +314,9 @@ namespace Donor.ViewModels
             private set { }
         }
 
+        /// <summary>
+        /// Удаляем все возможные установленные напоминания для события соответственно
+        /// </summary>
         public void RemoveReminders()
         {
             try
@@ -292,6 +336,22 @@ namespace Donor.ViewModels
             catch { };
         }
 
+        /// <summary>
+        /// Добавляем все напоминания, необходимые для события
+        /// </summary>
+        public void AddREventReminders() {
+        }
+
+        /// <summary>
+        /// Добавляем напоминание о событии
+        /// </summary>
+        /// <param name="addSeconds">
+        /// Количество секнд, которое будет вычтено из даты события. Т.е. дата установлена на 00:00, и указав кол-во секунд равное 10*60*60, мы получим напоминание, установленное за 10 часов до дня проведения события. 
+        /// Соответственно отрицательное значение необходимо для установки напоминания в "будущем"
+        /// </param>
+        /// <param name="rtitle">
+        /// Строка для установки в поле содержимое напоминание. В случае, если она не указана, то в поле содержимое подставляется тип кроводачи
+        /// </param>
         public void AddReminder(long addSeconds = 0, string rtitle = "")
         {
             try
@@ -325,8 +385,14 @@ namespace Donor.ViewModels
             catch { };
         }
 
+        /// <summary>
+        /// Идентификатор пользователя, который создал событие. Использеутся в связи с возможностью работы с событиями разными пользователями на одном устройстве
+        /// </summary>
         public string UserId { get; set; }
-
+        
+        /// <summary>
+        /// Идентификатор станции, к  которой привязано событие (в случае, если место проведения события было выбрано из списка стандции)
+        /// </summary>
         public long Station_nid { get; set; }
     }
 
@@ -877,16 +943,22 @@ namespace Donor.ViewModels
                 {
                     try
                     {
+                        // удаляем старые напоминания о событиях можно сдать
+                        this.Items.FirstOrDefault(c => c.Type == "PossibleBloodGive").RemoveReminders();
                         this.Items.Remove(this.Items.FirstOrDefault(c => c.Type == "PossibleBloodGive"));
                     }
                     catch { };
                 };
+
+                List<EventViewModel> possibleEvents = new List<EventViewModel>();
+
+                // создаем новые события для типов кроводачи можно сдать
                 foreach (var item in TypesGive)
                 {
                     DateTime date = NearestPossibleGiveBlood(item);
                     var possibleItem = new EventViewModel();
                     possibleItem.Date = date;
-                    possibleItem.Time = new DateTime(date.Year, date.Month, date.Day, 8, 0, 0);
+                    possibleItem.Time = new DateTime(date.Year, date.Month, date.Day, 8, 0, 0);                
                     possibleItem.Type = "PossibleBloodGive";
                     possibleItem.GiveType = item;
                     possibleItem.Title = item + " - возможная сдача";
@@ -896,8 +968,35 @@ namespace Donor.ViewModels
                     possibleItem.UserId = App.ViewModel.User.objectId;
                     possibleItem.ReminderDate = "";
 
+                    possibleEvents.Add(possibleItem);
                     this.Items.Add(possibleItem);
                 };
+
+                try
+                {
+                    // добавляем напоминания о "можно сдать" с учетом их возможного присутствия в один и тот же день
+                    foreach (var item in possibleEvents)
+                    {
+                        int thisDaysCount = possibleEvents.Count(c => c.Date == item.Date);
+                        List<EventViewModel> giveTypes = new List<EventViewModel>();
+                        giveTypes = possibleEvents.Where(c => c.Date == item.Date).ToList();
+
+                        // создаем соответствующее напоминение на 12 часов дня
+                        switch (thisDaysCount)
+                        {
+                            case 0: break;
+                            case 1: item.AddReminder(-60 * 60 * 12, "Вы можете запланировать кроводачу: " + item.GiveType); break;
+                            case 2: item.AddReminder(-60 * 60 * 12, "Вы можете запланировать кроводачу: " + giveTypes[0].GiveType + ", " + giveTypes[1].GiveType); break;
+                            case 3: item.AddReminder(-60 * 60 * 12, "Вы можете запланировать кроводачу: " + giveTypes[0].GiveType + ", " + giveTypes[1].GiveType + ", " + giveTypes[2].GiveType); break;
+                            case 4: item.AddReminder(-60 * 60 * 12, "Вы можете запланировать кроводачу"); break;
+                            default: break;
+                        };
+                    };
+                }
+                catch
+                {
+                };
+                
             }
             catch { };
         }
