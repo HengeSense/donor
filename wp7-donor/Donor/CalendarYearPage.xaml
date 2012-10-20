@@ -27,7 +27,7 @@
     </DataTemplate>
 
         <DataTemplate x:Key="CalendarItemTemplate">
-            <Grid Width="480" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Grid Width="480" VerticalAlignment="Center" Margin="0,-1,0,0" HorizontalAlignment="Center">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
@@ -41,11 +41,11 @@
                     <Image Name="DayImage" Height="32" Source="{Binding BigImage}"/>
                 </Border>
 
-                <Border Grid.Row="0" Grid.Column="1" BorderThickness="1" BorderBrush="#FFA09A95">
+                <Border Margin="-1,0,0,0" Grid.Row="0" Grid.Column="1" BorderThickness="1" BorderBrush="#FFA09A95">
                     <TextBlock Text="{Binding Day}"  TextWrapping="Wrap" FontSize="30" Margin="16,6,6,6" Style="{StaticResource Text22px9F9F9F}" VerticalAlignment="Center" />
                 </Border>
 
-                <Border Grid.Row="0" Grid.Column="2" BorderThickness="1" BorderBrush="#FFA09A95">
+                <Border Margin="-1,0,0,0" Grid.Row="0" Grid.Column="2" BorderThickness="1" BorderBrush="#FFA09A95">
                     <TextBlock Text="{Binding Title}" TextWrapping="Wrap" Margin="6" Style="{StaticResource Text24pxBlack}" FontWeight="Bold" VerticalAlignment="Center" />
                 </Border>
             </Grid>

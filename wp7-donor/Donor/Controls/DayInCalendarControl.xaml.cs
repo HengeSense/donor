@@ -325,30 +325,33 @@ namespace Donor.Controls
                     foreach (var dayitem in EventDayList)
                     {
                         Uri uri = new Uri(dayitem.SmallImage, UriKind.Relative);
-                    ImageSource imgSource = new BitmapImage(uri);
-                    if (EventDay.Type == "PossibleBloodGive")
-                    {
-                        switch (PossibleBloodGive)
+                        ImageSource imgSource = new BitmapImage(uri);
+                        if ((dayitem.Type == "PossibleBloodGive"))
                         {
-                            case 0: this.DayImageRT.Source = imgSource; break;
-                            case 1: this.DayImageRT1.Source = imgSource; break;
-                            case 2: this.DayImageRT2.Source = imgSource; break;
-                            case 3: this.DayImageRT3.Source = imgSource; break;
-                            default: this.DayImageRT.Source = imgSource; break;
-                        };                        
-                        PossibleBloodGive++;
-                    }
-                    else
-                    {
-                        if (EventDay.Finished == true)
-                        {
-                            this.DayImageRB.Source = imgSource;
+                            if (dayitem.GiveType != "Гранулоциты")
+                            {
+                                switch (PossibleBloodGive)
+                                {
+                                    case 0: this.DayImageRT.Source = imgSource; break;
+                                    case 1: this.DayImageRT1.Source = imgSource; break;
+                                    case 2: this.DayImageRT2.Source = imgSource; break;
+                                    case 3: this.DayImageRT3.Source = imgSource; break;
+                                    default: this.DayImageRT.Source = imgSource; break;
+                                };
+                            };
+                            PossibleBloodGive++;
                         }
                         else
                         {
-                            this.DayImageLB.Source = imgSource;
+                            if (dayitem.Finished == true)
+                            {
+                                this.DayImageRB.Source = imgSource;
+                            }
+                            else
+                            {
+                                this.DayImageLB.Source = imgSource;
+                            };
                         };
-                    };
                     };
                 };
             }

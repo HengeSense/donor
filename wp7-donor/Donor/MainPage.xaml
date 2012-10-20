@@ -52,7 +52,7 @@
         <!--Panorama control-->
         <controls:Panorama Grid.Row="1">
             <controls:Panorama.Title>
-                <Image Source="/Donor;component/images/logo.png" Margin="-10,75,0,0"/>
+                <Image Source="/Donor;component/images/logo.png" Margin="-39,65,0,0"/>
             </controls:Panorama.Title>
 
             <controls:Panorama.Background>

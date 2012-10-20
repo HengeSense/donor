@@ -28,6 +28,7 @@ using Microsoft.Phone.Scheduler;
 /// Праздник - праздничный день
 ///
 
+/// "Тромбоциты", "Плазма", "Цельная кровь", "Гранулоциты" 
 
 namespace Donor.ViewModels
 {
@@ -340,6 +341,47 @@ namespace Donor.ViewModels
         /// Добавляем все напоминания, необходимые для события
         /// </summary>
         public void AddREventReminders() {
+            if (this.Type == "0")
+            {
+                try
+                {
+                    this.RemoveReminders();
+                }
+                catch
+                {
+                };
+
+                switch (this.ReminderDate.ToString())
+                {
+                    case "15 минут":
+                        this.AddReminder(15 * 60);
+                        break;
+                    case "1 час":
+                        this.AddReminder(60 * 60);
+                        break;
+                    case "1 день":
+                        this.AddReminder(24 * 60 * 60);
+                        break;
+                    case "2 дня":
+                        this.AddReminder(2 * 24 * 60 * 60);
+                        break;
+                    case "1 неделя":
+                        this.AddReminder(7 * 24 * 60 * 60);
+                        break;
+                    default:
+                        break;
+                };
+            }
+            else
+            {
+                if (this.Type == "1")
+                {
+                    //в день в 17:00
+                    this.AddReminder(-60 * 60 * 17, "Вы сегодня сдавали кровь/компоненты крови?");
+                    //за день в 12:00
+                    this.AddReminder(60 * 60 * 12, "Завтра у вас запланирована кроводача.");
+                };
+            };
         }
 
         /// <summary>
@@ -361,10 +403,7 @@ namespace Donor.ViewModels
                     ScheduledActionService.Remove(this.Id + addSeconds.ToString());
                 objReminder = new Reminder(this.Id + addSeconds.ToString());
                 DateTime RememberDate = this.Date;
-                /*if (addSeconds >= 0)
-                {
-                    RememberDate = RememberDate.AddSeconds((this.Time.Hour * 60 * 60) + (this.Time.Minute * 60) + (this.Time.Second));
-                };*/
+
                 RememberDate = RememberDate.AddSeconds(-addSeconds);
                 objReminder.BeginTime = RememberDate;
 
@@ -409,12 +448,112 @@ namespace Donor.ViewModels
         {
         }
 
+        private void EventFromJSON(JObject item)
+        {
+            EventViewModel jsonitem = new EventViewModel();
+            try
+            {
+                jsonitem.Title = item["title"].ToString();
+            }
+            catch
+            {
+                jsonitem.Title = "";
+            };
+            try
+            {
+                jsonitem.Description = item["comment"].ToString();
+            }
+            catch
+            {
+            };
+
+            jsonitem.Id = item["objectId"].ToString();
+            jsonitem.Type = item["type"].ToString();
+            try
+            {
+                jsonitem.Date = DateTime.Parse(item["date"]["iso"].ToString());
+            }
+            catch
+            {
+            };
+            try
+            {
+                jsonitem.Time = DateTime.Parse(item["time"]["iso"].ToString());
+            }
+            catch
+            {
+            };
+            try
+            {
+                jsonitem.Place = item["adress"].ToString();
+            }
+            catch
+            {
+            };
+            try
+            {
+                jsonitem.Description = item["comment"].ToString();
+            }
+            catch
+            {
+            };
+            try
+            {
+                jsonitem.UserId = item["user_id"].ToString();
+            }
+            catch
+            {
+            };
+            try
+            {
+                jsonitem.GiveType = item["giveType"].ToString();
+            }
+            catch
+            {
+            };
+
+            if (jsonitem.Title == "")
+            {
+                switch (jsonitem.Type.ToString())
+                {
+                    case "0":
+                        jsonitem.Title = "Анализ";
+                        break;
+                    case "1":
+                        jsonitem.Title = jsonitem.GiveType.ToString(); //"Кроводача - " + 
+                        break;
+                };
+            };
+
+            try
+            {
+                jsonitem.Finished = Boolean.Parse(item["giveType"].ToString());
+            }
+            catch
+            {
+                jsonitem.Finished = false;
+            };
+            try
+            {
+                jsonitem.Station_nid = Int32.Parse(item["station_nid"].ToString());
+            }
+            catch
+            {
+            };
+
+            this.Items.Remove(this.Items.FirstOrDefault(c => c.Id == jsonitem.Id));
+            this.Items.Add(jsonitem);
+        }
+
         public void LoadEventsParse()
         {
             try
             {
                 if ((App.ViewModel.User != null) && (App.ViewModel.User.objectId != ""))
                 {
+                    //
+                    // Загружаем кроводачи
+                    //
                     var client = new RestClient("https://api.parse.com");
                     var request = new RestRequest("1/classes/Events", Method.GET);
                     request.Parameters.Clear();
@@ -428,84 +567,39 @@ namespace Donor.ViewModels
                         {
                             ObservableCollection<EventViewModel> eventslist1 = new ObservableCollection<EventViewModel>();
                             JObject o = JObject.Parse(response.Content.ToString());
-                            foreach (var item in o["results"])
+                            foreach (JObject item in o["results"])
                             {
-                                EventViewModel jsonitem = new EventViewModel();
-                                try
-                                {
-                                    jsonitem.Title = item["title"].ToString();
-                                }
-                                catch { jsonitem.Title = ""; };
-                                try
-                                {
-                                    jsonitem.Description = item["comment"].ToString();
-                                }
-                                catch { };
-
-                                jsonitem.Id = item["objectId"].ToString();
-                                jsonitem.Type = item["type"].ToString();
-                                try
-                                {
-                                    jsonitem.Date = DateTime.Parse(item["date"]["iso"].ToString());
-                                }
-                                catch { };
-                                try
-                                {
-                                    jsonitem.Time = DateTime.Parse(item["time"]["iso"].ToString());
-                                }
-                                catch { };
-                                try
-                                {
-                                    jsonitem.Place = item["adress"].ToString();
-                                }
-                                catch { };
-                                try
-                                {
-                                    jsonitem.Description = item["comment"].ToString();
-                                }
-                                catch { };
-                                try
-                                {
-                                    jsonitem.UserId = item["user_id"].ToString();
-                                }
-                                catch { };
-                                try
-                                {
-                                    jsonitem.GiveType = item["giveType"].ToString();
-                                }
-                                catch { };
-
-                                if (jsonitem.Title == "")
-                                {
-                                    switch (jsonitem.Type.ToString())
-                                    {
-                                        case "0":
-                                            jsonitem.Title = "Анализ";
-                                            break;
-                                        case "1":
-                                            jsonitem.Title = jsonitem.GiveType.ToString(); //"Кроводача - " + 
-                                            break;
-                                    };
-                                };
-
-                                try
-                                {
-                                    jsonitem.Finished = Boolean.Parse(item["giveType"].ToString());
-                                }
-                                catch
-                                {
-                                    jsonitem.Finished = false;
-                                };
-                                try
-                                {
-                                    jsonitem.Station_nid = Int32.Parse(item["station_nid"].ToString());
-                                }
-                                catch { };
-
-                                this.Items.Remove(this.Items.FirstOrDefault(c => c.Id == jsonitem.Id));
-                                this.Items.Add(jsonitem);
+                                EventFromJSON(item);
                             };
+                            App.ViewModel.Events.UpdateItems();
+                        }
+                        catch
+                        {
+                        };
+                        this.NotifyPropertyChanged("Items");
+                        this.NotifyPropertyChanged("WeekItems");
+                    });
 
+                    ///
+                    /// Загружаем события-анализы
+                    ///
+                    client = new RestClient("https://api.parse.com");
+                    request = new RestRequest("1/classes/Events", Method.GET);
+                    request.Parameters.Clear();
+                    strJSONContent = "{\"type\":0, \"user_id\":\"" + App.ViewModel.User.objectId.ToString() + "\"}";
+                    request.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
+                    request.AddHeader("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
+                    request.AddParameter("where", strJSONContent);
+                    client.ExecuteAsync(request, response =>
+                    {
+                        try
+                        {
+                            ObservableCollection<EventViewModel> eventslist1 = new ObservableCollection<EventViewModel>();
+                            JObject o = JObject.Parse(response.Content.ToString());
+                            foreach (JObject item in o["results"])
+                            {
+                                EventFromJSON(item);
+                            };
                             App.ViewModel.Events.UpdateItems();
                         }
                         catch
@@ -827,7 +921,7 @@ namespace Donor.ViewModels
                 default: break;
             }
 
-            return (days_count + 1);
+            return (days_count);
         }
 
         public EventViewModel NearestEvents()
@@ -903,6 +997,10 @@ namespace Donor.ViewModels
                         this.Items.Remove(addedItems);
                         addedItems.Id = o["objectId"].ToString();
                         this.Items.Add(addedItems);
+
+                        ///
+                        /// Устанавливаем напоминания после получения идентификатора parse.com
+                        addedItems.AddREventReminders();
                     }
                     else
                     {
@@ -956,6 +1054,7 @@ namespace Donor.ViewModels
                 foreach (var item in TypesGive)
                 {
                     DateTime date = NearestPossibleGiveBlood(item);
+                    date = date.AddDays(1);
                     var possibleItem = new EventViewModel();
                     possibleItem.Date = date;
                     possibleItem.Time = new DateTime(date.Year, date.Month, date.Day, 8, 0, 0);                

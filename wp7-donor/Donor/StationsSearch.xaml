@@ -72,11 +72,11 @@
                 <DataTemplate>
                 		<Border BorderThickness="0,0,0,1" 
 						BorderBrush="#FF0A6066">
-                        <StackPanel Margin="10,10,10,10">
+                        <StackPanel Margin="6,10,10,6">
                                 <Grid HorizontalAlignment="Stretch">
                         		<Grid.ColumnDefinitions>
                         			<ColumnDefinition Width="350"/>
-									<ColumnDefinition Width="130"/>
+									<ColumnDefinition Width="110"/>
 								</Grid.ColumnDefinitions>
                         	<StackPanel Grid.Column="0">
                             <TextBlock Text="{Binding Adress}" 
@@ -90,7 +90,7 @@
 							Style="{StaticResource PhoneTextSubtleStyle}"/>
 							</StackPanel>
                             <StackPanel
-							HorizontalAlignment="Stretch"
+							HorizontalAlignment="Right"
 							Orientation="Horizontal" Grid.Column="1">                                
                                 <TextBlock 
 								Text="{Binding Distance}" 

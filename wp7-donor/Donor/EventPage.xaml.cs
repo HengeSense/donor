@@ -27,8 +27,8 @@ namespace Donor
         {
             if (this.NavigationContext.QueryString.ContainsKey("id"))
             {
-                try
-                {
+                //try
+                //{
                     string _eventid = this.NavigationContext.QueryString["id"];
                     _eventid_current = _eventid;
                     _currentEvent = App.ViewModel.Events.Items.FirstOrDefault(c => c.Id == _eventid.ToString());
@@ -92,11 +92,11 @@ namespace Donor
                         this.Time.Visibility = Visibility.Collapsed;
                     };
                    
-                }
-                catch
-                {
-                    NavigationService.GoBack();
-                };
+                //}
+                //catch
+                //{
+                //   NavigationService.GoBack();
+                //};
             }
             else
             {

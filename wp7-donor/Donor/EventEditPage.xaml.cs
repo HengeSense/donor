@@ -301,34 +301,20 @@ namespace Donor
                      };
 
                      CurrentEvent.Image = "/images/drop.png";
-
-                     //if ((App.ViewModel.Settings.EventBefore == true) && (App.ViewModel.Settings.Push == true)) {
-                     //if save and thiere is no events at this day
+                     //if save and there is no events at this day
                      if (CurrentEvent.Type == "0")
                      {
                          if ((save) && (App.ViewModel.Events.ThisDayEvents(CurrentEvent.Date) == false))
                          {
-                             InitialCurrentEvent.RemoveReminders();
-                             switch (this.ReminderPeriod.SelectedItem.ToString())
+                             try
                              {
-                                 case "15 минут":
-                                     CurrentEvent.AddReminder(15 * 60);
-                                     break;
-                                 case "1 час":
-                                     CurrentEvent.AddReminder(60 * 60);
-                                     break;
-                                 case "1 день":
-                                     CurrentEvent.AddReminder(24 * 60 * 60);
-                                     break;
-                                 case "2 дня":
-                                     CurrentEvent.AddReminder(2 * 24 * 60 * 60);
-                                     break;
-                                 case "1 неделя":
-                                     CurrentEvent.AddReminder(7 * 24 * 60 * 60);
-                                     break;
-                                 default:
-                                     break;
+                                 InitialCurrentEvent.RemoveReminders();
+                             }
+                             catch
+                             {
                              };
+
+                             //CurrentEvent.AddREventReminders();
                          };
                      };
 
@@ -355,8 +341,7 @@ namespace Donor
                          CurrentEvent.GiveType = this.GiveType.SelectedItem.ToString();
                          if (App.ViewModel.Events.EventsInYear(CurrentEvent.GiveType, CurrentEvent.Date) && App.ViewModel.Events.EventsInYear(CurrentEvent.GiveType, CurrentEvent.Date.AddYears(-1)))
                          {
-                             //if (((App.ViewModel.Settings.EventAfter == true) && (App.ViewModel.Settings.Push == true)) && (CurrentEvent.ReminderMessage == true))
-                             //{
+
                              if ((save) && (App.ViewModel.Events.ThisDayEvents(CurrentEvent.Date) == false) && (CurrentEvent.Type == "1"))
                                  {
                                      try
@@ -366,16 +351,9 @@ namespace Donor
                                      catch
                                      {
                                      };
-
-                                     //в день в 17:00
-                                     CurrentEvent.AddReminder(-60 * 60 * 17, "Вы сегодня сдавали кровь/компоненты крови?");
-                                     //за день в 12:00
-                                     CurrentEvent.AddReminder(60 * 60 * 12, "Завтра у вас запланирована кроводача.");
+                                     //CurrentEvent.AddREventReminders();
                                  };
                                  
-                             //};
-
-                             ///
                              /// Помечаем событие как выполненное, если его дата меньше текущей
                              if ((CurrentEvent.Date < DateTime.Today) || ((CurrentEvent.Date == DateTime.Today) && (CurrentEvent.Time.Hour <= DateTime.Now.Hour) && (CurrentEvent.Time.Minute <= DateTime.Now.Minute)))
                              {

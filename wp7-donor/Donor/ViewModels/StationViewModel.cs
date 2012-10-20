@@ -218,7 +218,10 @@ namespace Donor.ViewModels
         private string _title;
         public string Title
         {
-            get { return _title; }
+            get {
+                return Char.ToLowerInvariant(_title[0]) + _title.Substring(1);
+                //return _title; 
+            }
             set { _title = value; }
         }
 

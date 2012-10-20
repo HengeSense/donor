@@ -42,13 +42,13 @@
                 </controls:PivotItem.Header>
                 <Grid>
                     <StackPanel Name="EditProfile" Visibility="Collapsed">
-                    <TextBlock Text="Имя"
+                        <TextBlock Text="Имя" Margin="10,5,10,0"
 					Style="{StaticResource Text24pxCBB2A3}"/>
                     <TextBox Name="EditName" 
 					Style="{StaticResource TextBoxStyle1}"	
 					Text="{Binding Path=App.ViewModel.User.Name, 
 					Mode=TwoWay}" />
-                        <TextBlock Text="Пол" 
+                        <TextBlock Text="Пол" Margin="10,0,10,0"
 						Style="{StaticResource Text24pxCBB2A3}"/>
                         <StackPanel Orientation="Horizontal" 
 						Name="SexEditGroup">
@@ -61,7 +61,7 @@
 							Foreground="#FFCBB2A3" />
                         </StackPanel>
 
-                        <TextBlock Text="Группа крови"
+                        <TextBlock Text="Группа крови" Margin="10,0,10,0"
 						Style="{StaticResource Text24pxCBB2A3}" />
                         <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left">
                         <toolkit:WrapPanel ItemHeight="90" ItemWidth="210" Name="BloudTypeGroupEdit" VerticalAlignment="Top" HorizontalAlignment="Left" Height="160">
@@ -82,7 +82,7 @@
                         </toolkit:WrapPanel>
                         </StackPanel>
 
-                        <TextBlock Text="Резус-фактор" 
+                        <TextBlock Text="Резус-фактор" Margin="10,0,10,0"
 						Style="{StaticResource Text24pxCBB2A3}"/>
                         <StackPanel Orientation="Horizontal" Name="RHedit">
                             <RadioButton Content="RH+" 
@@ -94,7 +94,7 @@
                         </StackPanel>
                     </StackPanel>
                     <StackPanel Margin="0,10" Name="UserProfile" Visibility="Collapsed">
-                        <StackPanel>
+                        <StackPanel Margin="10,0,10,0">
                             <TextBlock
 							Style="{StaticResource Text36pxCBB2A3}"
 							Text="Имя" TextWrapping="Wrap"/>
@@ -104,7 +104,7 @@
 							Style="{StaticResource Text24pxDF8D4B}"
 							/>
                         </StackPanel>
-                        <StackPanel Margin="0,10">
+                        <StackPanel Margin="10">
                             <TextBlock Text="Пол" TextWrapping="Wrap" 
 							Style="{StaticResource Text36pxCBB2A3}"/>
                             <TextBlock Name="ProfileSex" 
@@ -112,7 +112,7 @@
 							TextWrapping="Wrap" Margin="12,-6,12,0" 
 							Style="{StaticResource Text24pxDF8D4B}"/>
                         </StackPanel>
-                        <StackPanel Margin="0,10">
+                        <StackPanel Margin="10">
                             <TextBlock Text="Группа крови" 
 							TextWrapping="Wrap" 
 							Style="{StaticResource Text36pxCBB2A3}"/>
@@ -121,12 +121,12 @@
 							Margin="12,-6,12,0" 
 							Style="{StaticResource Text24pxDF8D4B}"/>
                         </StackPanel>
-                        <StackPanel Margin="0,10">
+                        <StackPanel Margin="10">
                             <TextBlock Text="Записано кроводач" TextWrapping="Wrap" Style="{StaticResource Text36pxCBB2A3}"/>
                             <TextBlock Text="{Binding User.GivedBlood}" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource Text24pxDF8D4B}"/>
                         </StackPanel>
 
-                        <StackPanel Margin="0,10">
+                        <StackPanel Margin="10">
                             <TextBlock Text="Следующая Кроводача" TextWrapping="Wrap" Style="{StaticResource Text36pxCBB2A3}"/>
                             <TextBlock Text="{Binding User.NearestBloodGive}" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource Text24pxDF8D4B}"/>
                         </StackPanel>
@@ -136,21 +136,21 @@
                     <StackPanel Name="RegisterForm" Visibility="Collapsed">
                     	<ScrollViewer>
                     		<StackPanel>
-                        <TextBlock 
+                        <TextBlock Margin="10,10,10,0"
 						Style="{StaticResource Text24pxCBB2A3}"
 						Text="E-mail" />
                         <TextBox x:Name="email1" Style="{StaticResource TextBoxStyle1}" Text="" />
-                        <TextBlock
+                        <TextBlock Margin="10,0,10,0"
 						Style="{StaticResource Text24pxCBB2A3}"
 						Text="Пароль" />
                         <PasswordBox 
 						x:Name="password1" Password="" Style="{StaticResource PasswordBoxStyle1}"/>
-                        <TextBlock 
+                        <TextBlock Margin="10,0,10,0"
 						Style="{StaticResource Text24pxCBB2A3}"
 						Text="Подтвердите пароль" />
                         <PasswordBox  Style="{StaticResource PasswordBoxStyle1}"	
 						x:Name="password2" Password="" />
-                        <TextBlock 
+                                <TextBlock Margin="10,0,10,0"
 						Style="{StaticResource Text24pxCBB2A3}"
 						Text="Имя" />
                         <TextBox x:Name="name1" Text="" 
@@ -176,13 +176,13 @@
 						</StackPanel>
 						</ScrollViewer>
                     </StackPanel>
-                    <StackPanel Name="LoginForm">
-                        <TextBlock Text="Введите e-mail" 
+                    <StackPanel Name="LoginForm" Visibility="Visible">
+                        <TextBlock Text="Введите e-mail" Margin="10,10,0,0"
 						Style="{StaticResource Text24pxCBB2A3}"/>
                         <TextBox Background="#FF4F3B34" Style="{StaticResource TextBoxStyle1}"
 BorderBrush="#FF4F3B34" Foreground="#FFCBB2A3" x:Name="email" 
 						Text="" />
-                        <TextBlock Text="Введите пароль"
+                        <TextBlock Text="Введите пароль"  Margin="10,5,0,0"
 						Style="{StaticResource Text24pxCBB2A3}" />
                         <PasswordBox Background="#FF4F3B34" 
 Style="{StaticResource PasswordBoxStyle1}" BorderBrush="#FF4F3B34" 	Foreground="#FFCBB2A3" x:Name="password" Password="" />

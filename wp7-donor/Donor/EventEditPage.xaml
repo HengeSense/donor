@@ -120,7 +120,11 @@
                     </toolkit:ListPicker>
 
                     <toolkit:ListPicker x:Name="GiveType" 
-			FullModeHeader="Вид кроводачи" FontSize="24" Foreground="#FFDF8D4B" Background="#FF4F3B34" BorderBrush="#FF4F3B34" Style="{StaticResource ListPickerStyle1}">
+                                        Margin="12,-2,12,10"
+			FullModeHeader="Вид кроводачи" FontSize="24" Foreground="#FFDF8D4B" 
+                                        Background="#FF4F3B34" 
+                                        BorderBrush="#FF4F3B34" 
+                                        Style="{StaticResource ListPickerStyle1}">
                         <toolkit:ListPicker.Header>
                             <TextBlock Text="Вид кроводачи" FontSize="24" 
 					Foreground="#FF847168"/>
