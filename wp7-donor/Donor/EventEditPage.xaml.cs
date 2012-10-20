@@ -46,7 +46,7 @@ namespace Donor
         public EventViewModel CurrentEvent;
         public EventViewModel InitialCurrentEvent;
 
-        private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
+        private void DataFLoaded(object sender, EventArgs e)
         {
             try
             {
@@ -97,7 +97,9 @@ namespace Donor
                 {
                     this.EventType.SelectedItem = CurrentEvent.Type.ToString();
                 }
-                catch { };
+                catch
+                {
+                };
                 switch (CurrentEvent.Type.ToString())
                 {
                     case "1": this.EventType.SelectedIndex = 0; break;
@@ -109,13 +111,15 @@ namespace Donor
                 {
                     this.GiveType.SelectedItem = CurrentEvent.GiveType.ToString();
                 }
-                catch { };
+                catch
+                {
+                };
                 switch (CurrentEvent.GiveType.ToString())
                 {
-                        case "Тромбоциты": this.GiveType.SelectedIndex = 0; break;
-                        case "Плазма": this.GiveType.SelectedIndex = 1; break;
-                        case "Цельная кровь": this.GiveType.SelectedIndex = 2; break;
-                        case "Гранулоциты": this.GiveType.SelectedIndex = 3; break;
+                    case "Тромбоциты": this.GiveType.SelectedIndex = 0; break;
+                    case "Плазма": this.GiveType.SelectedIndex = 1; break;
+                    case "Цельная кровь": this.GiveType.SelectedIndex = 2; break;
+                    case "Гранулоциты": this.GiveType.SelectedIndex = 3; break;
                     default: break;
                 };
                 // "Тромбоциты", "Плазма", "Цельная кровь", "Гранулоциты" };
@@ -126,7 +130,10 @@ namespace Donor
                     try
                     {
                         this.ReminderPeriod.SelectedItem = CurrentEvent.ReminderDate.ToString();
-                    } catch {};
+                    }
+                    catch
+                    {
+                    };
                 };
             }
             catch
@@ -151,14 +158,32 @@ namespace Donor
                         this.Date.Value = new DateTime(YearNumber, MonthNumber, DayNumber);
                     };
 
-                    
+
                 }
                 catch
-                {                    
+                {
                     //this.Time.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 8, 0, 0);
                 };
             };
+        }
 
+        private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                App.ViewModel.DataFLoaded += new MainViewModel.DataFLoadedEventHandler(this.DataFLoaded);
+            }
+            catch
+            {
+            };
+
+            try
+            {
+                DataFLoaded(this, EventArgs.Empty);
+            }
+            catch
+            {
+            };
         }
 
         private void CancelButton_Click(object sender, EventArgs e)
@@ -170,7 +195,6 @@ namespace Donor
         private void SaveButton_Click(object sender, EventArgs e)
         {
             BuildEvent(true);
-            //App.ViewModel.SaveToIsolatedStorage();
         }
 
          private EventViewModel BuildEvent(bool save = true) {
@@ -313,8 +337,6 @@ namespace Donor
                              catch
                              {
                              };
-
-                             //CurrentEvent.AddREventReminders();
                          };
                      };
 
@@ -325,7 +347,7 @@ namespace Donor
                              // сохраняем анализ
                              App.ViewModel.Events.Items.Add(CurrentEvent);
                              App.ViewModel.Events.UpdateItems(CurrentEvent);
-                             App.ViewModel.SaveToIsolatedStorage();
+                             //App.ViewModel.SaveToIsolatedStorage();
                              NavigationService.GoBack();
                          }
                          else
@@ -368,7 +390,7 @@ namespace Donor
                                  App.ViewModel.Events.Items.Add(CurrentEvent);
 
                                  App.ViewModel.Events.UpdateItems(CurrentEvent);
-                                 App.ViewModel.SaveToIsolatedStorage();
+                                 //App.ViewModel.SaveToIsolatedStorage();
                                  NavigationService.GoBack();
                              }
                              else

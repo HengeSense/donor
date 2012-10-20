@@ -23,86 +23,104 @@ namespace Donor
         }
         private string _eventid_current;
         private EventViewModel _currentEvent;
-        private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
+
+        private void DataFLoaded(object sender, EventArgs e)
         {
-            if (this.NavigationContext.QueryString.ContainsKey("id"))
+            if (App.ViewModel.IsDataLoaded == true)
             {
-                //try
-                //{
-                    string _eventid = this.NavigationContext.QueryString["id"];
-                    _eventid_current = _eventid;
-                    _currentEvent = App.ViewModel.Events.Items.FirstOrDefault(c => c.Id == _eventid.ToString());
-                    DataContext = _currentEvent;
 
-                    if ((_currentEvent.Station_nid != null) && (_currentEvent.Station_nid != 0))
+                if (this.NavigationContext.QueryString.ContainsKey("id"))
+                {
+                    try
                     {
-                        this.MapButton.Visibility = Visibility.Visible;
-                    };
+                        string _eventid = this.NavigationContext.QueryString["id"];
+                        _eventid_current = _eventid;
+                        _currentEvent = App.ViewModel.Events.Items.FirstOrDefault(c => c.Id == _eventid.ToString());
+                        DataContext = _currentEvent;
 
-                    if (_currentEvent.Type != "1")
-                    {
-                        this.FinishedMenu.Visibility = Visibility.Collapsed;
-                    } else {
-                        if (_currentEvent.Finished == false)
+                        if ((_currentEvent.Station_nid != null) && (_currentEvent.Station_nid != 0))
                         {
-                            this.FinishedMenu.Visibility = Visibility.Visible;
-                            this.EditButton.Visibility = Visibility.Visible;
+                            this.MapButton.Visibility = Visibility.Visible;
+                        };
+
+                        if (_currentEvent.Type != "1")
+                        {
+                            this.FinishedMenu.Visibility = Visibility.Collapsed;
                         }
                         else
                         {
-                            this.EditButton.Visibility = Visibility.Collapsed;
-                            this.FinishedMenu.Visibility = Visibility.Collapsed;
+                            if (_currentEvent.Finished == false)
+                            {
+                                this.FinishedMenu.Visibility = Visibility.Visible;
+                                this.EditButton.Visibility = Visibility.Visible;
+                            }
+                            else
+                            {
+                                this.EditButton.Visibility = Visibility.Collapsed;
+                                this.FinishedMenu.Visibility = Visibility.Collapsed;
+                            };
                         };
-                    };
 
-                    if (_currentEvent.Type != "0" && _currentEvent.Type != "1")
-                    {
-                        this.AppBar.Visibility = Visibility.Collapsed;
-                        this.AppBar.IsVisible = false;
-						ReminderStackPanel.Visibility = Visibility.Collapsed;
-                    };
-					
-					if (_currentEvent.Type == "0")
-                    {                        
-						this.ic_be_tested.Visibility = Visibility.Visible;
-						ReminderStackPanel.Visibility = Visibility.Visible;
-                        this.TitleNews.Text = "Сдать анализ";
-                        try
+                        if (_currentEvent.Type != "0" && _currentEvent.Type != "1")
                         {
-                            this.Reminder.Text = _currentEvent.ReminderDate.ToString();
-                        }
-                        catch { };
-                        this.Finished.Visibility = Visibility.Collapsed;
+                            this.AppBar.Visibility = Visibility.Collapsed;
+                            this.AppBar.IsVisible = false;
+                            ReminderStackPanel.Visibility = Visibility.Collapsed;
+                        };
 
-                        this.ApplicationTitle.Text = "анализ";
-                        
-                    };
-					if (_currentEvent.Type == "1")
+                        if (_currentEvent.Type == "0")
+                        {
+                            this.ic_be_tested.Visibility = Visibility.Visible;
+                            ReminderStackPanel.Visibility = Visibility.Visible;
+                            this.TitleNews.Text = "Сдать анализ";
+                            try
+                            {
+                                this.Reminder.Text = _currentEvent.ReminderDate.ToString();
+                            }
+                            catch
+                            {
+                            };
+                            this.Finished.Visibility = Visibility.Collapsed;
+
+                            this.ApplicationTitle.Text = "анализ";
+
+                        };
+                        if (_currentEvent.Type == "1")
+                        {
+                            this.TitleNews.Text = _currentEvent.GiveType;
+                            ReminderStackPanel.Visibility = Visibility.Collapsed;
+
+                            this.ApplicationTitle.Text = "кроводача";
+                        };
+
+                        if (_currentEvent.Type == "Праздник")
+                        {
+                            this.ApplicationTitle.Text = "праздник";
+                            this.Finished.Visibility = Visibility.Collapsed;
+                            this.Time.Visibility = Visibility.Collapsed;
+                        };
+
+                    }
+                    catch
                     {
-                        this.TitleNews.Text = _currentEvent.GiveType;
-						ReminderStackPanel.Visibility = Visibility.Collapsed;
-
-                        this.ApplicationTitle.Text = "кроводача";
+                        NavigationService.GoBack();
                     };
-
-                    if (_currentEvent.Type == "Праздник")
-                    {
-                        this.ApplicationTitle.Text = "праздник";
-                        this.Finished.Visibility = Visibility.Collapsed;
-                        this.Time.Visibility = Visibility.Collapsed;
-                    };
-                   
-                //}
-                //catch
-                //{
-                //   NavigationService.GoBack();
-                //};
-            }
-            else
-            {
-                NavigationService.GoBack();
+                }
+                else
+                {
+                    NavigationService.GoBack();
+                };
             };
         }
+
+        private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
+        {
+            try { App.ViewModel.DataFLoaded += new MainViewModel.DataFLoadedEventHandler(this.DataFLoaded); } catch {};
+
+            try { DataFLoaded(this, EventArgs.Empty); } catch { };
+        }
+
+
 
         private void ShareButton_Click(object sender, EventArgs e)
         {

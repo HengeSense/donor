@@ -418,7 +418,15 @@ namespace Donor.ViewModels
                     objReminder.Content = rtitle;
                 };
 
-                objReminder.NavigationUri = new Uri("/EventPage.xaml?id=" + this.Id, UriKind.Relative);
+                if (this.Type != "PossibleBloodGive")
+                {
+                    objReminder.NavigationUri = new Uri("/EventPage.xaml?id=" + this.Id, UriKind.Relative);
+                }
+                else
+                {
+                    objReminder.NavigationUri = new Uri("/EventEditPage.xaml?id=" + this.Id, UriKind.Relative);
+                };
+                
                 ScheduledActionService.Add(objReminder);
             }
             catch { };
@@ -998,9 +1006,14 @@ namespace Donor.ViewModels
                         addedItems.Id = o["objectId"].ToString();
                         this.Items.Add(addedItems);
 
-                        ///
                         /// Устанавливаем напоминания после получения идентификатора parse.com
                         addedItems.AddREventReminders();
+
+                        NotifyPropertyChanged("Items");
+                        NotifyPropertyChanged("UserItems");
+                        NotifyPropertyChanged("WeekItems");
+                        NotifyPropertyChanged("ThisMonthItems");
+                        UpdateNearestEvents();
                     }
                     else
                     {
@@ -1017,16 +1030,21 @@ namespace Donor.ViewModels
         /// <param name="addedItems"></param>
         public void UpdateItems(EventViewModel addedItems = null)
         {
-            NotifyPropertyChanged("Items");
-            NotifyPropertyChanged("UserItems");
-            NotifyPropertyChanged("WeekItems");
-            NotifyPropertyChanged("ThisMonthItems");
-            UpdateNearestEvents();
+            if (addedItems == null)
+            {
+                App.ViewModel.CreateApplicationTile(App.ViewModel.Events.NearestEvents());
+                App.ViewModel.SaveToIsolatedStorage();
 
-            AddEventParse(addedItems);
-
-            App.ViewModel.CreateApplicationTile(App.ViewModel.Events.NearestEvents());
-            App.ViewModel.SaveToIsolatedStorage();
+                NotifyPropertyChanged("Items");
+                NotifyPropertyChanged("UserItems");
+                NotifyPropertyChanged("WeekItems");
+                NotifyPropertyChanged("ThisMonthItems");
+                UpdateNearestEvents();
+            }
+            else
+            {
+                AddEventParse(addedItems);
+            };
         }
 
         /// <summary>
@@ -1050,9 +1068,11 @@ namespace Donor.ViewModels
 
                 List<EventViewModel> possibleEvents = new List<EventViewModel>();
 
+                var cnt = 0;
                 // создаем новые события для типов кроводачи можно сдать
                 foreach (var item in TypesGive)
                 {
+                    cnt++;
                     DateTime date = NearestPossibleGiveBlood(item);
                     date = date.AddDays(1);
                     var possibleItem = new EventViewModel();
@@ -1063,7 +1083,7 @@ namespace Donor.ViewModels
                     possibleItem.Title = item + " - возможная сдача";
                     possibleItem.Description = "";
                     possibleItem.Place = "";
-                    possibleItem.Id = item + DateTime.Now.Ticks.ToString();
+                    possibleItem.Id = cnt.ToString() + DateTime.Now.Ticks.ToString();
                     possibleItem.UserId = App.ViewModel.User.objectId;
                     possibleItem.ReminderDate = "";
 
@@ -1074,21 +1094,28 @@ namespace Donor.ViewModels
                 try
                 {
                     // добавляем напоминания о "можно сдать" с учетом их возможного присутствия в один и тот же день
+                    List<DateTime> dates = new List<DateTime>();
                     foreach (var item in possibleEvents)
                     {
-                        int thisDaysCount = possibleEvents.Count(c => c.Date == item.Date);
-                        List<EventViewModel> giveTypes = new List<EventViewModel>();
-                        giveTypes = possibleEvents.Where(c => c.Date == item.Date).ToList();
-
-                        // создаем соответствующее напоминение на 12 часов дня
-                        switch (thisDaysCount)
+                        if ((dates.FirstOrDefault(c => c.Date == item.Date) == null) || (dates.Count() == 0))
                         {
-                            case 0: break;
-                            case 1: item.AddReminder(-60 * 60 * 12, "Вы можете запланировать кроводачу: " + item.GiveType); break;
-                            case 2: item.AddReminder(-60 * 60 * 12, "Вы можете запланировать кроводачу: " + giveTypes[0].GiveType + ", " + giveTypes[1].GiveType); break;
-                            case 3: item.AddReminder(-60 * 60 * 12, "Вы можете запланировать кроводачу: " + giveTypes[0].GiveType + ", " + giveTypes[1].GiveType + ", " + giveTypes[2].GiveType); break;
-                            case 4: item.AddReminder(-60 * 60 * 12, "Вы можете запланировать кроводачу"); break;
-                            default: break;
+                            int thisDaysCount = possibleEvents.Count(c => c.Date == item.Date);
+                            List<EventViewModel> giveTypes = new List<EventViewModel>();
+                            giveTypes = possibleEvents.Where(c => c.Date == item.Date).ToList();
+
+                            // отмечаем, что данная дата уже добавлена в напоминания
+                            dates.Add(item.Date);
+
+                            // создаем соответствующее напоминение на 12 часов дня
+                                switch (thisDaysCount)
+                                {
+                                    case 0: break;
+                                    case 1: item.AddReminder(-60 * 60 * 12, "Вы можете запланировать кроводачу: " + item.GiveType); break;
+                                    case 2: item.AddReminder(-60 * 60 * 12, "Вы можете запланировать кроводачу: " + giveTypes[0].GiveType + ", " + giveTypes[1].GiveType); break;
+                                    case 3: item.AddReminder(-60 * 60 * 12, "Вы можете запланировать кроводачу: " + giveTypes[0].GiveType + ", " + giveTypes[1].GiveType + ", " + giveTypes[2].GiveType); break;
+                                    case 4: item.AddReminder(-60 * 60 * 12, "Вы можете запланировать кроводачу"); break;
+                                    default: break;
+                                };
                         };
                     };
                 }

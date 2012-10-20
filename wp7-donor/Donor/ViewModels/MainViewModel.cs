@@ -161,10 +161,10 @@ namespace Donor
                     this.NotifyPropertyChanged("News");
 
                     CreateApplicationTile(App.ViewModel.Events.NearestEvents());
-                });
 
-
-            this.IsDataLoaded = true;
+                    App.ViewModel.OnDataFLoaded(EventArgs.Empty);
+                    this.IsDataLoaded = true;
+                });            
             };
             bw.RunWorkerAsync();  
         }
@@ -315,12 +315,30 @@ namespace Donor
             };
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         public delegate void UserEnterEventHandler(object sender, EventArgs e);
         public event UserEnterEventHandler UserEnter;
         public virtual void OnUserEnter(EventArgs e)
         {
             if (UserEnter != null)
                 UserEnter(this, e);
+        }
+
+        /// <summary>
+        /// Event, when data from parse and so on is loaded
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public delegate void DataFLoadedEventHandler(object sender, EventArgs e);
+        public event DataFLoadedEventHandler DataFLoaded;
+        public virtual void OnDataFLoaded(EventArgs e)
+        {
+            if (DataFLoaded != null)
+                DataFLoaded(this, e);
         }
 
         /// <summary>
