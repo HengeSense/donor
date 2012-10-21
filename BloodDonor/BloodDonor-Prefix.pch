@@ -12,3 +12,10 @@
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
 #endif
+
+//#define NEW_CALENDAR_FUNCTIONALITY_DEVELOPEMENT
+
+#define THROW_IF_ARGUMENT_NIL(argument,message)\
+    if (argument == nil) {\
+        @throw [NSException exceptionWithName: NSInvalidArgumentException reason: message userInfo: nil];\
+    }

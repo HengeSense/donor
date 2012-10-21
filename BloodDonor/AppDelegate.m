@@ -7,7 +7,13 @@
 //
 
 #import "AppDelegate.h"
+
+#ifdef NEW_CALENDAR_FUNCTIONALITY_DEVELOPEMENT
+#import "HSCalendarViewController.h"
+#else
 #import "CalendarViewController.h"
+#endif
+
 #import "StationsViewController.h"
 #import "InfoViewController.h"
 #import "ProfileViewController.h"
@@ -62,8 +68,12 @@
     [[UIBarButtonItem appearance] setBackButtonBackgroundImage:backButtonImageNormal forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
     [[UIBarButtonItem appearance] setBackButtonBackgroundImage:backButtonImagePressed forState:UIControlStateHighlighted barMetrics:UIBarMetricsDefault];
     [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, -1) forBarMetrics:UIBarMetricsDefault];
-    
+
+#ifdef NEW_CALENDAR_FUNCTIONALITY_DEVELOPEMENT
+    HSCalendarViewController *calendarViewController = [[[HSCalendarViewController alloc] initWithNibName:@"HSCalendarViewController" bundle:nil] autorelease];
+#else
     CalendarViewController *calendarViewController = [[[CalendarViewController alloc] initWithNibName:@"CalendarViewController" bundle:nil] autorelease];
+#endif
     UINavigationController *calendarNavigationController = [[[UINavigationController alloc] initWithRootViewController:calendarViewController] autorelease];
     
     StationsViewController *stationsViewController = [[[StationsViewController alloc] initWithNibName:@"StationsViewController" bundle:nil] autorelease];
@@ -176,7 +186,11 @@
     [self.tabBarController setSelectedIndex:0];
     UINavigationController *navigationController = [self.tabBarController.viewControllers objectAtIndex:0];
     [navigationController popToRootViewControllerAnimated:NO];
+#ifdef NEW_CALENDAR_FUNCTIONALITY_DEVELOPEMENT
+    HSCalendarViewController *calendarViewController = [[navigationController viewControllers] objectAtIndex:0];
+#else
     CalendarViewController *calendarViewController = [[navigationController viewControllers] objectAtIndex:0];
+#endif
     
     MessageBoxViewController *messageBox = [[MessageBoxViewController alloc] initWithNibName:@"MessageBoxViewController"
                                                                                       bundle:nil
@@ -184,7 +198,12 @@
                                                                                      message:notification.alertBody
                                                                                 cancelButton:@"Позже"
                                                                                     okButton:@"Ок"];
+
+#ifdef NEW_CALENDAR_FUNCTIONALITY_DEVELOPEMENT
+#warning TODO Add this functionality to the HSCalendarViewController view controller.
+#else
     messageBox.delegate = calendarViewController;
+#endif
     [calendarViewController.navigationController.tabBarController.view addSubview:messageBox.view];
 }
 
