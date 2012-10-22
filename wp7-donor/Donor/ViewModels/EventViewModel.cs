@@ -652,8 +652,8 @@ namespace Donor.ViewModels
                                         select item);
 
             var previtem = _selected_user_items.FirstOrDefault();
-            DateTime Date = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
-            DateTime OutDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
+            DateTime Date = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day).AddDays(-1);
+            DateTime OutDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day).AddDays(-1);
 
             foreach (var item in _selected_user_items)
             {
@@ -1014,6 +1014,8 @@ namespace Donor.ViewModels
                         NotifyPropertyChanged("WeekItems");
                         NotifyPropertyChanged("ThisMonthItems");
                         UpdateNearestEvents();
+
+                        App.ViewModel.SaveToIsolatedStorage();
                     }
                     else
                     {
@@ -1428,7 +1430,7 @@ CurrentMonth.Month - 1];
                 JObject o = JObject.Parse(response.Content.ToString());
                 if (o["error"] == null)
                 {
-
+                    App.ViewModel.SaveToIsolatedStorage();
                 }
                 else
                 {

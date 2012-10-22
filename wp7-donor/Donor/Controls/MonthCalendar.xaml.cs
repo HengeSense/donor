@@ -133,9 +133,10 @@ namespace Donor.Controls
                     day3.ImagePath = "";
 
                     day3.DayNumber = i.ToString();
-                    day3.MonthNumber = FirstDayPrev.Month;
-                    day3.YearNumber = FirstDayPrev.Year;
+                    day3.MonthNumber = Date.AddMonths(1).Month;
+                    day3.YearNumber = FirstDayPrev.AddMonths(1).Year;
                     day3.Inactive = true;
+                    //day3.Inactive = true;
                     day3.TextColor = new SolidColorBrush(Colors.Gray);
                     this.CalendarDays.Children.Add(day3);
                 };
