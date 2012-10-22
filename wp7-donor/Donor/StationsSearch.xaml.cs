@@ -58,6 +58,18 @@ namespace Donor
             }
         }
 
+        private void ShowNoResults()
+        {
+            if (this.StationsList.Items.Count() > 0)
+            {
+                this.Noresults.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                this.Noresults.Visibility = Visibility.Visible;
+            };
+        }
+
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
             try
@@ -95,8 +107,8 @@ namespace Donor
                 {
                     this.StationsList.ItemsSource = from stations in App.ViewModel.Stations.Items
                                                     where (stations.Title.ToLower().Contains(App.ViewModel.Stations.FilteredText.ToLower()) || stations.Adress.ToLower().Contains(App.ViewModel.Stations.FilteredText.ToLower()))
-                                                orderby stations.Distance ascending
-                                                select stations;
+                                                    orderby stations.Distance ascending
+                                                    select stations;
                 };
             }
             else
@@ -118,6 +130,7 @@ namespace Donor
                                                     select stations;
                 };
             };
+            ShowNoResults();
         }
 
         protected override void OnNavigatedFrom(System.Windows.Navigation.NavigationEventArgs e)
@@ -166,6 +179,7 @@ namespace Donor
                                                     select stations;
                 };
             };
+            ShowNoResults();
         }
 
         private void MapButton_Click(object sender, EventArgs e)
