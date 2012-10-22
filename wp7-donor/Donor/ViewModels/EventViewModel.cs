@@ -456,6 +456,14 @@ namespace Donor.ViewModels
         {
         }
 
+        public delegate void EventsChangedEventHandler(object sender, EventArgs e);
+        public event EventsChangedEventHandler EventsChanged;
+        public virtual void OnEventsChanged(EventArgs e)
+        {
+            if (EventsChanged != null)
+                EventsChanged(this, e);
+        }
+
         private void EventFromJSON(JObject item)
         {
             EventViewModel jsonitem = new EventViewModel();
@@ -1015,6 +1023,8 @@ namespace Donor.ViewModels
                         NotifyPropertyChanged("ThisMonthItems");
                         UpdateNearestEvents();
 
+                        App.ViewModel.Events.OnEventsChanged(EventArgs.Empty);
+
                         App.ViewModel.SaveToIsolatedStorage();
                     }
                     else
@@ -1042,6 +1052,8 @@ namespace Donor.ViewModels
                 NotifyPropertyChanged("WeekItems");
                 NotifyPropertyChanged("ThisMonthItems");
                 UpdateNearestEvents();
+
+                App.ViewModel.Events.OnEventsChanged(EventArgs.Empty);
             }
             else
             {
@@ -1218,11 +1230,12 @@ namespace Donor.ViewModels
             {
                 var newitems = (from eventCal in this.UserItems
                                 where
-                                (eventCal.Type != "Праздник") &&
-                                (eventCal.Date >= DateTime.Now)
+                                (eventCal.Type != "Праздник")
+                                &&
+                                (new DateTime(eventCal.Date.Year, eventCal.Date.Month, eventCal.Date.Day) >= DateTime.Today)
                                 && (App.ViewModel.User.objectId == eventCal.UserId)
                                 orderby eventCal.Date descending
-                                select eventCal).Take(10);
+                                select eventCal).Take(20);
                 List<EventViewModel> outnews = newitems.ToList();
                 return outnews;
             }

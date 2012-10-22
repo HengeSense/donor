@@ -95,7 +95,14 @@ namespace Donor
                 };
                 try
                 {
-                    this.EventType.SelectedItem = CurrentEvent.Type.ToString();
+                    if (CurrentEvent.Type.ToString() != "PossibleBloodGive")
+                    {
+                        this.EventType.SelectedItem = CurrentEvent.Type.ToString();
+                    }
+                    else
+                    {
+                        this.EventType.SelectedIndex = 0; CurrentEvent.Type = "1"; 
+                    };
                 }
                 catch
                 {
@@ -103,7 +110,7 @@ namespace Donor
                 switch (CurrentEvent.Type.ToString())
                 {
                     case "1": this.EventType.SelectedIndex = 0; break;
-                    case "PossibleBloodGive": this.EventType.SelectedIndex = 0; break;
+                    case "PossibleBloodGive": this.EventType.SelectedIndex = 0; CurrentEvent.Type = "1";   break;
                     case "0": this.EventType.SelectedIndex = 1; break;
                     default: break;
                 };

@@ -54,6 +54,8 @@ namespace Donor
                     this.LoginForm.Visibility = Visibility.Collapsed;
                     this.UserProfile.Visibility = Visibility.Visible;
                     this.GivedBlood.Text = App.ViewModel.User.GivedBlood.ToString();
+
+                    this.EventsList.ItemsSource = App.ViewModel.Events.WeekItems;
                 }
                 else
                 {
@@ -132,6 +134,11 @@ namespace Donor
         {
         }
 
+        private void EventsChanged(object sender, EventArgs e)
+        {
+            this.EventsList.ItemsSource = App.ViewModel.Events.WeekItems;
+        }
+
         private void UserLoaded(object sender, EventArgs e)
         {
             try
@@ -159,6 +166,8 @@ namespace Donor
 
             this.progressOverlay.Visibility = Visibility.Collapsed;
             this.progressOverlay.IsEnabled = false;
+
+            App.ViewModel.Events.UpdateItems();
         }
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
@@ -166,6 +175,7 @@ namespace Donor
             try
             {
                 App.ViewModel.UserEnter += new MainViewModel.UserEnterEventHandler(this.UserLoaded);
+                App.ViewModel.Events.EventsChanged += new EventsListViewModel.EventsChangedEventHandler(this.EventsChanged);
             }
             catch { };
 
@@ -188,6 +198,8 @@ namespace Donor
             }
             catch { 
             };
+
+            App.ViewModel.Events.UpdateItems();
         }
 
         private void TextBlock_Tap_1(object sender, System.Windows.Input.GestureEventArgs e)

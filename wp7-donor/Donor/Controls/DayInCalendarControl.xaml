@@ -34,6 +34,27 @@
                        Source="{Binding ImagePath}"/>
                 </StackPanel>-->
 
+                    <Grid Width="52" Background="Transparent" Height="52" Grid.Row="0" Grid.Column="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="1"/>
+                            <RowDefinition Height="1"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.ColumnSpan="2" Grid.RowSpan="2" Height="Auto" Grid.Row="0"
+                           Grid.Column="2" VerticalAlignment="Top" 
+                           HorizontalAlignment="Right">
+                            <Image Margin="0" Name="DayImageRT" Stretch="None" />
+                            <Image Margin="0" Name="DayImageRT1" Stretch="None" />
+                            <Image Margin="0" Name="DayImageRT2" Stretch="None" />
+                            <Image Margin="0" Name="DayImageRT3" Stretch="None" />
+                        </StackPanel>
+                    </Grid>
+
                     <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Height="52" Width="52" 
                            TextAlignment="Center" 
                            Margin="0,10,0,0" 
@@ -52,23 +73,20 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
-                        <StackPanel Grid.ColumnSpan="2"  Height="Auto" Grid.Row="0"
-                           Grid.Column="2" VerticalAlignment="Top" 
-                           HorizontalAlignment="Right">
-                            <Image Margin="0" Name="DayImageRT" Stretch="None" />
-                            <Image Margin="0" Name="DayImageRT1" Stretch="None" />
-                            <Image Margin="0" Name="DayImageRT2" Stretch="None" />
-                            <Image Margin="0" Name="DayImageRT3" Stretch="None" />
-                        </StackPanel>
                         <Image Margin="0"
-                       Name="DayImageRB"
+                       Name="DayImageRB" Visibility="Collapsed"
                                VerticalAlignment="Bottom" Height="20"
                                HorizontalAlignment="Right"
                            Grid.Row="2"
                            Grid.Column="2"/>
                         <Image Margin="0"
-                       Name="DayImageLB" 
-                           Grid.Row="2" Height="20"
+                       Name="DayImageLB"
+                           Grid.Row="2" Height="18"
+                           Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Bottom" />
+
+                        <Image Margin="0"
+                       Name="DayImageLB2" Visibility="Collapsed"
+                           Grid.Row="0" Height="18"
                            Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Bottom" />
                         <!-- {Binding ImagePath} -->
                 </Grid>
