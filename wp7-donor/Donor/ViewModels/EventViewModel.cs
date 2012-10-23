@@ -441,6 +441,25 @@ namespace Donor.ViewModels
         /// Идентификатор станции, к  которой привязано событие (в случае, если место проведения события было выбрано из списка стандции)
         /// </summary>
         public long Station_nid { get; set; }
+
+        public string Delivery
+        {
+            get
+            {
+                /// "Тромбоциты", "Плазма", "Цельная кровь", "Гранулоциты" 
+                switch (GiveType)
+                {
+                    case "Тромбоциты":      return "0";
+                    case "Плазма":          return "0";
+                    case "Цельная кровь":   return "1";
+                    case "Гранулоциты":     return "2";
+                    default:                return "0";
+                };
+            }
+            private set
+            {
+            }
+        }
     }
 
 
@@ -1005,6 +1024,19 @@ namespace Donor.ViewModels
             return item_near2.FirstOrDefault();
         }
 
+        public void DeleteEvent(EventViewModel _currentEvent = null)
+        {
+            try
+            {
+                App.ViewModel.Events.Items.Remove(_currentEvent);
+                App.ViewModel.Events.RemoveItemFromParse(_currentEvent);
+                App.ViewModel.Events.UpdateItems();
+            }
+            catch
+            {
+            };
+        }
+
         public void AddEventParse(EventViewModel addedItems = null)
         {
             if ((addedItems != null) && ((addedItems.Type == "0") || (addedItems.Type == "1")))
@@ -1013,8 +1045,9 @@ namespace Donor.ViewModels
                 var request = new RestRequest("1/classes/Events", Method.POST);
                 request.AddHeader("Accept", "application/json");
                 request.Parameters.Clear();
-                string strJSONContent = "{\"station_nid\": " + addedItems.Station_nid + ", \"time\": {\"__type\": \"Date\", \"iso\": \"" + addedItems.Time.ToString("s") + "\"}, \"date\": {\"__type\": \"Date\", \"iso\": \"" + addedItems.Date.ToString("s") + "\"}, \"finished\":" + addedItems.Finished.ToString().ToLower() + ", \"adress\":\"" + addedItems.Place + "\", \"comment\":\"" + addedItems.Description.Replace("\r", "\n") + "\", \"type\":" + addedItems.Type + ", \"giveType\":\"" + addedItems.GiveType + "\", \"type\":" + addedItems.Type + ", \"giveType\":\"" + addedItems.GiveType + "\", \"user_id\":\"" + App.ViewModel.User.objectId.ToString() + "\"}";
-                //, \"type\":" + addedItems.Type + ", \"giveType\":\"" + addedItems.GiveType + "\"
+                string strJSONContent = "{\"station_nid\": " + addedItems.Station_nid + ", \"date\": {\"__type\": \"Date\", \"iso\": \"" + addedItems.Date.ToString("s") + "\"}, \"finished\":" + addedItems.Finished.ToString().ToLower() + ", \"adress\":\"" + addedItems.Place + "\", \"comment\":\"" + addedItems.Description.Replace("\r", "\n") + "\", \"type\":" + addedItems.Type + ", \"delivery\":" + addedItems.Delivery + ", \"type\":" + addedItems.Type + "}";
+
+
                 request.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
                 request.AddHeader("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
                 request.AddHeader("Content-Type", "application/json");
@@ -1028,6 +1061,23 @@ namespace Donor.ViewModels
                         this.Items.Remove(addedItems);
                         addedItems.Id = o["objectId"].ToString();
                         this.Items.Add(addedItems);
+
+                        var clientrel = new RestClient("https://api.parse.com");
+                        var requestrel = new RestRequest("1/users/" + App.ViewModel.User.objectId, Method.PUT);
+                        request.AddHeader("Accept", "application/json");
+                        request.Parameters.Clear();
+                        string strJSONContentrel = "{\"events\":{\"__op\":\"AddRelation\",\"objects\":[{\"__type\":\"Pointer\",\"className\":\"Events\",\"objectId\":\"" + addedItems.Id + "\"}]}}";
+
+                        requestrel.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
+                        requestrel.AddHeader("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
+                        requestrel.AddHeader("X-Parse-Session-Token", App.ViewModel.User.sessionToken);
+                        requestrel.AddHeader("Content-Type", "application/json");
+
+                        requestrel.AddParameter("application/json", strJSONContentrel, ParameterType.RequestBody);
+                        client.ExecuteAsync(requestrel, responserel =>
+                        {
+                            JObject orel = JObject.Parse(responserel.Content.ToString());
+                        });
 
                         /// Устанавливаем напоминания после получения идентификатора parse.com
                         addedItems.AddREventReminders();

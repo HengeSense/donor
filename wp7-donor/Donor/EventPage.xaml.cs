@@ -138,10 +138,7 @@ namespace Donor
         {
             try
             {
-                App.ViewModel.Events.Items.Remove(_currentEvent);
-                App.ViewModel.Events.RemoveItemFromParse(_currentEvent);
-                App.ViewModel.Events.UpdateItems(); 
-
+                App.ViewModel.Events.DeleteEvent(_currentEvent);
                 NavigationService.GoBack();
             }
             catch

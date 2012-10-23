@@ -286,7 +286,8 @@ namespace Donor.Controls
             {
                 if (EventDay != null)
                 {
-                    App.ViewModel.Events.Items.Remove(EventDay);
+                    App.ViewModel.Events.DeleteEvent(EventDay);
+                    //App.ViewModel.Events.Items.Remove(EventDay);
                     EventDay = null;
                     this.ImagePath = "";
                     deleted = true;
