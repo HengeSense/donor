@@ -467,14 +467,14 @@ namespace Donor.ViewModels
         private void EventFromJSON(JObject item)
         {
             EventViewModel jsonitem = new EventViewModel();
-            try
+            /*try
             {
                 jsonitem.Title = item["title"].ToString();
             }
             catch
-            {
+            {*/
                 jsonitem.Title = "";
-            };
+            //};
             try
             {
                 jsonitem.Description = item["comment"].ToString();
@@ -484,7 +484,13 @@ namespace Donor.ViewModels
             };
 
             jsonitem.Id = item["objectId"].ToString();
-            jsonitem.Type = item["type"].ToString();
+            try
+            {
+                jsonitem.Type = item["type"].ToString();
+            }
+            catch
+            {
+            };
             try
             {
                 jsonitem.Date = DateTime.Parse(item["date"]["iso"].ToString());
@@ -515,35 +521,48 @@ namespace Donor.ViewModels
             };
             try
             {
-                jsonitem.UserId = item["user_id"].ToString();
+                jsonitem.UserId = App.ViewModel.User.objectId;
             }
             catch
             {
             };
             try
             {
-                jsonitem.GiveType = item["giveType"].ToString();
-            }
-            catch
-            {
-            };
-
-            if (jsonitem.Title == "")
-            {
-                switch (jsonitem.Type.ToString())
+                switch (item["delivery"].ToString())
                 {
-                    case "0":
-                        jsonitem.Title = "Анализ";
-                        break;
-                    case "1":
-                        jsonitem.Title = jsonitem.GiveType.ToString(); //"Кроводача - " + 
-                        break;
+                    case "0": jsonitem.GiveType = "Тромбоциты"; break;
+                    case "1": jsonitem.GiveType = "Плазма"; break;
+                    case "2": jsonitem.GiveType = "Цельная кровь"; break;
+                    case "3": jsonitem.GiveType = "Гранулоциты"; break;
+                    default: jsonitem.GiveType = "Тромбоциты"; break;
                 };
+            }
+            catch
+            {
             };
 
             try
             {
-                jsonitem.Finished = Boolean.Parse(item["giveType"].ToString());
+                //if (jsonitem.Title == "")
+                //{
+                    switch (jsonitem.Type.ToString())
+                    {
+                        case "0":
+                            jsonitem.Title = "Анализ";
+                            break;
+                        case "1":
+                            jsonitem.Title = jsonitem.GiveType.ToString(); //"Кроводача - " + 
+                            break;
+                    };
+                //};
+            }
+            catch
+            {
+            };
+
+            try
+            {
+                jsonitem.Finished = Boolean.Parse(item["finished"].ToString());
             }
             catch
             {
@@ -567,10 +586,34 @@ namespace Donor.ViewModels
             {
                 if ((App.ViewModel.User != null) && (App.ViewModel.User.objectId != ""))
                 {
-                    //
-                    // Загружаем кроводачи
-                    //
-                    var client = new RestClient("https://api.parse.com");
+                    var clientuser = new RestClient("https://api.parse.com");
+                    var requestuser = new RestRequest("1/classes/Events", Method.GET);
+
+                    requestuser.Parameters.Clear();
+                    requestuser.AddParameter("where", "{\"$relatedTo\":{\"object\":{\"__type\":\"Pointer\",\"className\":\"_User\",\"objectId\":\"" + App.ViewModel.User.objectId + "\"},\"key\":\"events\"}}");
+                    requestuser.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
+                    requestuser.AddHeader("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
+
+                    clientuser.ExecuteAsync(requestuser, responseuser =>
+                    {
+                        try
+                        {
+                            ObservableCollection<EventViewModel> eventslist1 = new ObservableCollection<EventViewModel>();
+                            JObject o = JObject.Parse(responseuser.Content.ToString());
+                            foreach (JObject item in o["results"])
+                            {
+                                EventFromJSON(item);
+                            };
+                            App.ViewModel.Events.UpdateItems();
+                        }
+                        catch
+                        {
+                        };
+                        this.NotifyPropertyChanged("Items");
+                        this.NotifyPropertyChanged("WeekItems");
+                    });
+
+                    /*var client = new RestClient("https://api.parse.com");
                     var request = new RestRequest("1/classes/Events", Method.GET);
                     request.Parameters.Clear();
                     string strJSONContent = "{\"type\":1, \"user_id\":\"" + App.ViewModel.User.objectId.ToString() + "\"}";
@@ -594,36 +637,8 @@ namespace Donor.ViewModels
                         };
                         this.NotifyPropertyChanged("Items");
                         this.NotifyPropertyChanged("WeekItems");
-                    });
+                    });*/
 
-                    ///
-                    /// Загружаем события-анализы
-                    ///
-                    client = new RestClient("https://api.parse.com");
-                    request = new RestRequest("1/classes/Events", Method.GET);
-                    request.Parameters.Clear();
-                    strJSONContent = "{\"type\":0, \"user_id\":\"" + App.ViewModel.User.objectId.ToString() + "\"}";
-                    request.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
-                    request.AddHeader("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
-                    request.AddParameter("where", strJSONContent);
-                    client.ExecuteAsync(request, response =>
-                    {
-                        try
-                        {
-                            ObservableCollection<EventViewModel> eventslist1 = new ObservableCollection<EventViewModel>();
-                            JObject o = JObject.Parse(response.Content.ToString());
-                            foreach (JObject item in o["results"])
-                            {
-                                EventFromJSON(item);
-                            };
-                            App.ViewModel.Events.UpdateItems();
-                        }
-                        catch
-                        {
-                        };
-                        this.NotifyPropertyChanged("Items");
-                        this.NotifyPropertyChanged("WeekItems");
-                    });
                 };
             }
             catch { };
@@ -1068,7 +1083,7 @@ namespace Donor.ViewModels
         {
             try
             {
-                List<string> TypesGive = new List<string>() { "Тромбоциты", "Плазма", "Цельная кровь", "Гранулоциты" };
+                List<string> TypesGive = new List<string>() { "Тромбоциты", "Плазма", "Цельная кровь" }; //, "Гранулоциты" 
                 foreach (var item in TypesGive)
                 {
                     try

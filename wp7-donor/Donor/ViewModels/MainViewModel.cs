@@ -274,7 +274,7 @@ namespace Donor
                     App.ViewModel.User.IsLoggedIn = false;
 
                     var client = new RestClient("https://api.parse.com");
-                    var request = new RestRequest("1/login?username=" + Uri.EscapeUriString(App.ViewModel.User.UserName.ToLower()) + "&password=" + Uri.EscapeUriString(App.ViewModel.User.Password), Method.GET);
+                    var request = new RestRequest("1/login?include=events&username=" + Uri.EscapeUriString(App.ViewModel.User.UserName.ToLower()) + "&password=" + Uri.EscapeUriString(App.ViewModel.User.Password), Method.GET);
                     request.Parameters.Clear();
                     request.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
                     request.AddHeader("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
@@ -290,6 +290,28 @@ namespace Donor
                                 App.ViewModel.User.IsLoggedIn = true;
                                 App.ViewModel.Events.WeekItemsUpdated();
                                 App.ViewModel.OnUserEnter(EventArgs.Empty);
+
+                                /*var clientuser = new RestClient("https://api.parse.com");                                                                
+                                var requestuser = new RestRequest("1/classes/Events", Method.GET);
+
+                                requestuser.Parameters.Clear();
+                                requestuser.AddParameter("where", "{\"$relatedTo\":{\"object\":{\"__type\":\"Pointer\",\"className\":\"_User\",\"objectId\":\"" + App.ViewModel.User.objectId + "\"},\"key\":\"events\"}}");
+                                requestuser.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
+                                requestuser.AddHeader("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
+
+                                clientuser.ExecuteAsync(requestuser, responseuser =>
+                                {
+                                    try
+                                    {
+                                        JObject ouser = JObject.Parse(responseuser.Content.ToString());
+                                        if (ouser["error"] == null)
+                                        {
+                                        } else {
+                                        };
+                                    } 
+                                    catch {};
+                                });*/
+
                             }
                             else
                             {

@@ -55,7 +55,7 @@ namespace Donor
                     this.UserProfile.Visibility = Visibility.Visible;
                     this.GivedBlood.Text = App.ViewModel.User.GivedBlood.ToString();
 
-                    this.EventsList.ItemsSource = App.ViewModel.Events.WeekItems;
+                    this.EventsChanged(this, EventArgs.Empty);
                 }
                 else
                 {
@@ -136,7 +136,14 @@ namespace Donor
 
         private void EventsChanged(object sender, EventArgs e)
         {
-            this.EventsList.ItemsSource = App.ViewModel.Events.WeekItems;
+            if (App.ViewModel.User.IsLoggedIn)
+            {
+                this.EventsList.ItemsSource = App.ViewModel.Events.WeekItems;
+            }
+            else
+            {
+                this.EventsList.ItemsSource = null;
+            };
         }
 
         private void UserLoaded(object sender, EventArgs e)

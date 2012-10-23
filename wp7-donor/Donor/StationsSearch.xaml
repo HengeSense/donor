@@ -44,7 +44,7 @@
 			FilterMode="Contains" ValueMemberPath="Title" 
 			Populating="StationsSearchText_Populating" 
 			Foreground="#FFE0B390" Background="#FF3C1B00" 
-			BorderBrush="#FF3C1B00" Populated="StationsSearchText_Populated" Margin="0,-8,0,0">
+			BorderBrush="#FF3C1B00" Populated="StationsSearchText_Populated" Margin="0,-8,0,0" LostFocus="StationsSearchText_LostFocus" TextChanged="StationsSearchText_TextChanged">
                 <toolkit:AutoCompleteBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">

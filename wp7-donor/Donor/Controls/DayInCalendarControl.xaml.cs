@@ -50,12 +50,12 @@ namespace Donor.Controls
                     if (PossibleBloodGive == 1)
                     {
                         (Application.Current.RootVisual as PhoneApplicationFrame).Navigate(new Uri("/EventEditPage.xaml?id=" + this.EventDay.Id, UriKind.Relative));
-                    }
+                     }
                     else
                     {
                         if (PossibleBloodGive > 1)
                         {
-                            (Application.Current.RootVisual as PhoneApplicationFrame).Navigate(new Uri("/EventEditPage.xaml", UriKind.Relative));
+                            (Application.Current.RootVisual as PhoneApplicationFrame).Navigate(new Uri("/EventEditPage.xaml?month=" + this.MonthNumber.ToString() + "&day=" + this.DayNumber.ToString() + "&year=" + this.YearNumber.ToString(), UriKind.Relative));
                         };
                     };
 

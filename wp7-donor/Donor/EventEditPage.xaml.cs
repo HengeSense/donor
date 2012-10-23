@@ -101,7 +101,7 @@ namespace Donor
                     }
                     else
                     {
-                        this.EventType.SelectedIndex = 0; CurrentEvent.Type = "1"; 
+                        this.EventType.SelectedIndex = 0; //CurrentEvent.Type = "1"; 
                     };
                 }
                 catch
@@ -110,7 +110,7 @@ namespace Donor
                 switch (CurrentEvent.Type.ToString())
                 {
                     case "1": this.EventType.SelectedIndex = 0; break;
-                    case "PossibleBloodGive": this.EventType.SelectedIndex = 0; CurrentEvent.Type = "1";   break;
+                    case "PossibleBloodGive": this.EventType.SelectedIndex = 0; break;
                     case "0": this.EventType.SelectedIndex = 1; break;
                     default: break;
                 };
@@ -295,6 +295,9 @@ namespace Donor
                          case "1":
                              CurrentEvent.Title = this.GiveType.SelectedItem.ToString(); //"Кроводача - " + 
                              break;
+                         case "PossibleBloodGive":
+                             CurrentEvent.Title = this.GiveType.SelectedItem.ToString(); //"Кроводача - " + 
+                             break;                             
                          default:
                              break;
                      };
@@ -305,6 +308,9 @@ namespace Donor
                              CurrentEvent.Type = "0";
                              break;
                          case "Кроводача":
+                             CurrentEvent.Type = "1";
+                             break;
+                         case "PossibleBloodGive":
                              CurrentEvent.Type = "1";
                              break;
                          default:

@@ -140,7 +140,7 @@ namespace Donor
             base.OnNavigatedFrom(e);
         }
 
-        private void StationsSearchText_Populating(object sender, PopulatingEventArgs e)
+        private void FilterStationsList()
         {
             string searchtext = this.StationsSearchText.Text;
             App.ViewModel.Stations.FilteredText = searchtext;
@@ -180,6 +180,11 @@ namespace Donor
                 };
             };
             ShowNoResults();
+        }
+
+        private void StationsSearchText_Populating(object sender, PopulatingEventArgs e)
+        {
+            FilterStationsList();
         }
 
         private void MapButton_Click(object sender, EventArgs e)
@@ -235,9 +240,18 @@ namespace Donor
             try
             {
                 this.task = this.NavigationContext.QueryString["task"];
-
             }
             catch { };
+        }
+
+        private void StationsSearchText_LostFocus(object sender, RoutedEventArgs e)
+        {
+            FilterStationsList();
+        }
+
+        private void StationsSearchText_TextChanged(object sender, RoutedEventArgs e)
+        {
+            FilterStationsList();
         }
 
     }

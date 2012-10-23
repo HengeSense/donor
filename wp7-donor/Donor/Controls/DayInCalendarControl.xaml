@@ -20,19 +20,6 @@
             <Border Name="MainBorder" Background="{Binding CurrentColor}" BorderThickness="3" BorderBrush="{Binding BorderColor}" Margin="3">
                 <Grid Width="52" Height="52" Background="{Binding BgColor}">
                     
-                    <!--<StackPanel Name="MainPanel" Background="{Binding BgColor}" Height="52" Width="52" Margin="1,1,1,1">
-                <TextBlock VerticalAlignment="Center" Height="52" Width="52" 
-                           TextAlignment="Center" 
-                           Margin="-5,-5,0,0" 
-                           FontSize="28"
-                Foreground="{Binding TextColor}" Text="{Binding DayNumber}"/>
-
-                    <Image Height="25"
-                       Width="25" 
-                           Margin="20,-75,0,0"
-                       Name="DayImage" 
-                       Source="{Binding ImagePath}"/>
-                </StackPanel>-->
 
                     <Grid Width="52" Background="Transparent" Height="52" Grid.Row="0" Grid.Column="0">
                         <Grid.RowDefinitions>
@@ -73,16 +60,17 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
-                        <Image Margin="0"
+                        <Image Margin="0,0,0,4"
                        Name="DayImageRB" Visibility="Collapsed"
-                               VerticalAlignment="Bottom" Height="20"
+                               VerticalAlignment="Bottom" Height="18"
                                HorizontalAlignment="Right"
                            Grid.Row="2"
                            Grid.Column="2"/>
-                        <Image Margin="0"
-                       Name="DayImageLB"
+                        <Image 
+                       Name="DayImageLB" Margin="0,0,0,4"
                            Grid.Row="2" Height="18"
-                           Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Bottom" />
+                           Grid.Column="0" HorizontalAlignment="Left" 
+                               VerticalAlignment="Bottom" />
 
                         <Image Margin="0"
                        Name="DayImageLB2" Visibility="Collapsed"
