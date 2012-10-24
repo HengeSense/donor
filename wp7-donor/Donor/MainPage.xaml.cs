@@ -107,14 +107,7 @@ namespace Donor
 
         private void EventsList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            try
-            {
-                string id = ((sender as ListBox).SelectedItem as EventViewModel).Id;
-                NavigationService.Navigate(new Uri("/EventPage.xaml?id=" + id, UriKind.Relative));
-            }
-            catch
-            {
-            }
+            OpenEvent(sender);
         }
 
         private void CalendarMenuText_Tap(object sender, System.Windows.Input.GestureEventArgs e)
@@ -248,6 +241,9 @@ namespace Donor
                             this.UserProfile.Visibility = Visibility.Visible;
 
                             App.ViewModel.Events.WeekItemsUpdated();
+
+                            App.ViewModel.Events.LoadEventsParse();
+
                             App.ViewModel.OnUserEnter(EventArgs.Empty);
 
                             try
@@ -315,5 +311,27 @@ namespace Donor
             catch { };
         }
 
+        private void EventsList_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            OpenEvent(sender);
+        }
+
+        private void OpenEvent(object sender) {
+            try
+            {
+                string id = ((sender as ListBox).SelectedItem as EventViewModel).Id;
+                if (((sender as ListBox).SelectedItem as EventViewModel).Type == "PossibleBloodGive")
+                {
+                    NavigationService.Navigate(new Uri("/EventEditPage.xaml?id=" + id, UriKind.Relative));
+                }
+                else
+                {
+                    NavigationService.Navigate(new Uri("/EventPage.xaml?id=" + id, UriKind.Relative));
+                };
+            }
+            catch
+            {
+            };
+        }
     }
 }

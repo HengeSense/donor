@@ -56,10 +56,39 @@ namespace Donor.ViewModels
         /// </summary>
         public string Id { get; set; }
 
+        private string _title;
         /// <summary>
         /// Заголовок события
         /// </summary>
-        public string Title { get; set; }
+        public string Title { 
+            get {
+                string outTitle = "";
+                switch (this.Type.ToString()) {
+                    case "1":
+                        if (this.Finished == true)
+                        {
+                            outTitle = "Вы сдали: " + this.GiveType;
+                        }
+                        else
+                        {
+                            outTitle = "Запланирована кроводача: " + this.GiveType;
+                        };
+                        break;
+                    case "0":
+                        outTitle = "Анализ";
+                        break;
+                    case "PossibleBloodGive":
+                        outTitle = "Можно сдавать: " + this.GiveType;
+                        break;
+                    default: outTitle = _title; break;
+                };
+                return outTitle;
+            }
+            set
+            {
+                _title = value; 
+            }
+        }
 
         /// <summary>
         /// Комментарий к событию
@@ -671,7 +700,7 @@ namespace Donor.ViewModels
         public bool ThisDayEvents(DateTime date)
         {
             bool existsEvent = false;
-            if (this.Items.FirstOrDefault(c => ((c.Date == date) && (c.Type != "PossibleBloodGive"))) != null)
+            if (this.UserItems.FirstOrDefault(c => ((c.Date == date) && (c.Type != "PossibleBloodGive"))) != null)
             {
                 existsEvent = true;
             };
@@ -1350,7 +1379,7 @@ namespace Donor.ViewModels
             get
             {
                 var newitems = (from eventCal in this.Items
-                                where ((eventCal.UserId == App.ViewModel.User.objectId) || ((eventCal.Type != "0") || (eventCal.Type != "1"))) &&
+                                where ((eventCal.UserId == App.ViewModel.User.objectId) || ((eventCal.Type != "0") && (eventCal.Type != "1"))) &&
                                 (eventCal.Date.Month == CurrentMonth.Month) && (eventCal.Date.Year == CurrentMonth.Year)
                                 orderby eventCal.Date descending
                                 select eventCal);

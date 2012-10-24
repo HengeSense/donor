@@ -116,8 +116,7 @@ namespace Donor
                 if (o["error"] == null)
                 {
                     App.ViewModel.User = JsonConvert.DeserializeObject<DonorUser>(response.Content.ToString());
-                    App.ViewModel.User.IsLoggedIn = true;
-                    App.ViewModel.Events.WeekItemsUpdated();
+                    App.ViewModel.User.IsLoggedIn = true;                    
 
                     this.RegisterForm.Visibility = Visibility.Collapsed;
                     this.LoginForm.Visibility = Visibility.Collapsed;
@@ -139,6 +138,9 @@ namespace Donor
                     catch
                     {
                     };
+
+                    App.ViewModel.Events.LoadEventsParse();
+                    App.ViewModel.Events.WeekItemsUpdated();
                 }
                 else
                 {
@@ -600,6 +602,7 @@ namespace Donor
             App.ViewModel.SaveUserToStorage();
 
             App.ViewModel.Events.UpdateItems();
+
             NavigationService.GoBack();
         }
 

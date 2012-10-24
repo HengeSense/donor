@@ -180,7 +180,7 @@
 					FontSize="24"
 					Content="Узнать результат" IsChecked="{Binding ReminderMessage, Mode=TwoWay}" Foreground="#FF847168"/>
                 </StackPanel>
-                    <TextBlock Text="Комментарии"
+                    <TextBlock Text="Комментарий"
 					Style="{StaticResource Text24px847168}"
 					Margin="12,0,0,0"/>
                     <!--<TextBox AcceptsReturn="True" Height="260" 

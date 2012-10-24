@@ -231,7 +231,7 @@ namespace Donor
                  try
                  {
                      DateTime curdate = this.Date.Value.Value;
-                     var checkitems = (from item in App.ViewModel.Events.Items
+                     var checkitems = (from item in App.ViewModel.Events.UserItems
                                        where (item.Type == "1")
                                        orderby item.Date descending
                                        select item);
@@ -360,6 +360,7 @@ namespace Donor
                              // сохраняем анализ
                              App.ViewModel.Events.Items.Add(CurrentEvent);
                              App.ViewModel.Events.UpdateItems(CurrentEvent);
+                             App.ViewModel.Events.UpdateItems();
                              //App.ViewModel.SaveToIsolatedStorage();
                              NavigationService.GoBack();
                          }
@@ -403,6 +404,7 @@ namespace Donor
                                  App.ViewModel.Events.Items.Add(CurrentEvent);
 
                                  App.ViewModel.Events.UpdateItems(CurrentEvent);
+                                 App.ViewModel.Events.UpdateItems();
                                  //App.ViewModel.SaveToIsolatedStorage();
                                  NavigationService.GoBack();
                              }

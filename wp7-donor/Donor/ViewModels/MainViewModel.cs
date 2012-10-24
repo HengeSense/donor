@@ -146,7 +146,7 @@ namespace Donor
                     this.LoadUserFromStorage();
 
                     App.ViewModel.Events.LoadDonorsSaturdays();
-                    App.ViewModel.Events.LoadEventsParse();
+                    
 
                     App.ViewModel.Stations.LoadStations();
 
@@ -290,6 +290,8 @@ namespace Donor
                                 App.ViewModel.User.IsLoggedIn = true;
                                 App.ViewModel.Events.WeekItemsUpdated();
                                 App.ViewModel.OnUserEnter(EventArgs.Empty);
+
+                                App.ViewModel.Events.LoadEventsParse();
 
                                 /*var clientuser = new RestClient("https://api.parse.com");                                                                
                                 var requestuser = new RestRequest("1/classes/Events", Method.GET);
