@@ -38,14 +38,19 @@
 			<TextBlock Text=" " Name="CityFilterText"
 			Foreground="#FFCBB2A3"
 			FontSize="34" Margin="10,8,0,0"/>
-            <toolkit:AutoCompleteBox 
+
+                <Grid>
+
+                    <toolkit:AutoCompleteBox 
 			Name="StationsSearchText" 
+            Grid.Row="0" Grid.Column="0"
 			FontSize="24"			
 			FilterMode="Contains" ValueMemberPath="Title" 
 			Populating="StationsSearchText_Populating" 
 			Foreground="#FFE0B390" Background="#FF3C1B00" 
 			BorderBrush="#FF3C1B00" Populated="StationsSearchText_Populated" Margin="0,-8,0,0" LostFocus="StationsSearchText_LostFocus" TextChanged="StationsSearchText_TextChanged">
-                <toolkit:AutoCompleteBox.ItemTemplate>
+
+                    <toolkit:AutoCompleteBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
                             <TextBlock 
@@ -55,7 +60,16 @@
                     </DataTemplate>
                 </toolkit:AutoCompleteBox.ItemTemplate>
             </toolkit:AutoCompleteBox>
-			</StackPanel>
+
+                    <Image Height="48"
+                           Width="48" 
+                           Margin="0,0,20,10"
+                           Grid.Row="0" Grid.Column="0"
+                           Source="/Donor;component/images/ic_search.png" HorizontalAlignment="Right" />
+
+                </Grid>
+                
+            </StackPanel>
 
         </StackPanel>
 

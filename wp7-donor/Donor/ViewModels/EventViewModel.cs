@@ -95,6 +95,22 @@ namespace Donor.ViewModels
         /// </summary>
         public string Description { get; set; }
 
+        // Тип уведомнения (0 – 3 мин, 1 – 5 мин, 2 – 10 мин, 3 – 15 мин)
+        public string Notice
+        {
+            get;
+            set;
+        }
+
+        // AnalysisResult – Нужно ли узнать результат
+        public bool AnalysisResult
+        {
+            get;
+            set;
+        }
+        
+
+
         private DateTime _date;
         /// <summary>
         /// Дата провередия события
@@ -109,6 +125,15 @@ namespace Donor.ViewModels
             {
                 _date = value;
             }
+        }
+
+        public DateTime DateAndTime
+        {
+            get
+            {
+                return _date;
+            }
+            private set {}
         }
 
         /// <summary>
@@ -548,7 +573,7 @@ namespace Donor.ViewModels
             };
             try
             {
-                jsonitem.Time = DateTime.Parse(item["time"]["iso"].ToString());
+                jsonitem.Time = DateTime.Parse(item["date"]["iso"].ToString());
             }
             catch
             {
@@ -616,6 +641,25 @@ namespace Donor.ViewModels
             {
                 jsonitem.Finished = false;
             };
+
+            try
+            {
+                jsonitem.AnalysisResult = Boolean.Parse(item["analysisResult"].ToString());
+            }
+            catch
+            {
+                jsonitem.AnalysisResult = false;
+            };
+
+            try
+            {
+                jsonitem.Notice = item["notice"].ToString();
+            }
+            catch
+            {
+                jsonitem.Notice = "";
+            };
+
             try
             {
                 jsonitem.Station_nid = Int32.Parse(item["station_nid"].ToString());
