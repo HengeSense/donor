@@ -190,7 +190,10 @@
 					Style="{StaticResource Text48pxDFB08B}"/>
                 </controls:PanoramaItem.Header>
 				
-                <ListBox Margin="0,15,0,0" ItemsSource="{Binding Path=News.NewItems}" Name="NewsList" SelectionChanged="ListBox_SelectionChanged">
+                <ListBox Margin="0,15,0,0" 
+                         ItemsSource="{Binding Path=News.NewItems}" 
+                         Name="NewsList" 
+                         SelectionChanged="ListBox_SelectionChanged" Tap="NewsList_Tap">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Margin="0,0,0,17" Width="432">

@@ -131,9 +131,12 @@ namespace Donor.ViewModels
         {
             get
             {
-                return _date;
+                return new DateTime(_date.Year, _date.Month, _date.Day, _time.Hour, _time.Minute, 0);
             }
-            private set {}
+            set {
+                _date = new DateTime(value.Year, value.Month, value.Day);
+                _time = value;
+            }
         }
 
         /// <summary>
@@ -540,14 +543,9 @@ namespace Donor.ViewModels
         private void EventFromJSON(JObject item)
         {
             EventViewModel jsonitem = new EventViewModel();
-            /*try
-            {
-                jsonitem.Title = item["title"].ToString();
-            }
-            catch
-            {*/
-                jsonitem.Title = "";
-            //};
+
+            jsonitem.Title = "";
+
             try
             {
                 jsonitem.Description = item["comment"].ToString();
@@ -566,11 +564,12 @@ namespace Donor.ViewModels
             };
             try
             {
-                jsonitem.Date = DateTime.Parse(item["date"]["iso"].ToString());
+                jsonitem.DateAndTime = DateTime.Parse(item["date"]["iso"].ToString());
             }
             catch
             {
             };
+
             try
             {
                 jsonitem.Time = DateTime.Parse(item["date"]["iso"].ToString());
@@ -578,6 +577,7 @@ namespace Donor.ViewModels
             catch
             {
             };
+
             try
             {
                 jsonitem.Place = item["adress"].ToString();
@@ -616,8 +616,36 @@ namespace Donor.ViewModels
 
             try
             {
-                //if (jsonitem.Title == "")
-                //{
+                /*  Также:
+                    4 – 1 час
+                    5 – 1 день
+                    6 – 2 дня
+                    7 – 1 неделя */
+                switch (item["notice"].ToString())
+                {
+                    case "3": jsonitem.ReminderDate = "15 минут"; break;
+                    case "4": jsonitem.ReminderDate = "1 час"; break;
+                    case "5": jsonitem.ReminderDate = "1 день"; break;
+                    case "6": jsonitem.ReminderDate = "2 дня"; break;
+                    case "7": jsonitem.ReminderDate = "1 неделя"; break;
+                    default: break;
+                };
+            }
+            catch
+            {
+            };
+
+            try
+            {
+                jsonitem.ReminderMessage = Boolean.Parse(item["analysisResult"].ToString());
+            }
+            catch
+            {
+                jsonitem.ReminderMessage = false;
+            };
+
+            try
+            {
                     switch (jsonitem.Type.ToString())
                     {
                         case "0":
@@ -627,7 +655,6 @@ namespace Donor.ViewModels
                             jsonitem.Title = jsonitem.GiveType.ToString(); //"Кроводача - " + 
                             break;
                     };
-                //};
             }
             catch
             {
@@ -657,7 +684,7 @@ namespace Donor.ViewModels
             }
             catch
             {
-                jsonitem.Notice = "";
+                jsonitem.Notice = "0";
             };
 
             try
@@ -1118,7 +1145,7 @@ namespace Donor.ViewModels
                 var request = new RestRequest("1/classes/Events", Method.POST);
                 request.AddHeader("Accept", "application/json");
                 request.Parameters.Clear();
-                string strJSONContent = "{\"station_nid\": " + addedItems.Station_nid + ", \"date\": {\"__type\": \"Date\", \"iso\": \"" + addedItems.Date.ToString("s") + "\"}, \"finished\":" + addedItems.Finished.ToString().ToLower() + ", \"adress\":\"" + addedItems.Place + "\", \"comment\":\"" + addedItems.Description.Replace("\r", "\n") + "\", \"type\":" + addedItems.Type + ", \"delivery\":" + addedItems.Delivery + ", \"type\":" + addedItems.Type + "}";
+                string strJSONContent = "{\"analysisResult\":" + addedItems.ReminderMessage.ToString().ToLower() + ", \"notice\": " + addedItems.Notice.ToString() + ", \"station_nid\": " + addedItems.Station_nid + ", \"date\": {\"__type\": \"Date\", \"iso\": \"" + addedItems.DateAndTime.ToString("s") + "\"}, \"finished\":" + addedItems.Finished.ToString().ToLower() + ", \"adress\":\"" + addedItems.Place + "\", \"comment\":\"" + addedItems.Description.Replace("\r", "\n") + "\", \"type\":" + addedItems.Type + ", \"delivery\":" + addedItems.Delivery + ", \"type\":" + addedItems.Type + "}";
 
 
                 request.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
