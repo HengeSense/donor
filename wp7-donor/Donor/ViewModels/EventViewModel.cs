@@ -397,7 +397,7 @@ namespace Donor.ViewModels
         {
             try
             {
-                List<long> addSecondsList = new List<long>() { 15 * 60, 60 * 60, 24 * 60 * 60, 2 * 24 * 60 * 60, 7 * 24 * 60 * 60, -60 * 60 * 13, -60 * 60 * 17, 60 * 60 * 12 };
+                List<long> addSecondsList = new List<long>() { 15 * 60, 60 * 60, 24 * 60 * 60, 2 * 24 * 60 * 60, 7 * 24 * 60 * 60, -60 * 60 * 13, -60 * 60 * 17, 60 * 60 * 12, -60 * 60 * 12 };
                 foreach (var addSeconds in addSecondsList)
                 {
                     try

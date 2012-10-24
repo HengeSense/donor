@@ -158,6 +158,8 @@ namespace Donor
                 }
                 else
                 {
+                    this.progressOverlay.Visibility = Visibility.Collapsed;
+                    this.progressOverlay.IsEnabled = false;
                 };
             }
             catch
