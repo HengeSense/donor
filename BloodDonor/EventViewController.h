@@ -14,6 +14,7 @@
 {
     UIView *indicatorView;
     NSString *eventId;
+    NSDate *eventDate;
     
     IBOutlet UIScrollView *scrollView;
     

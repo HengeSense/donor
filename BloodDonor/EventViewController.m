@@ -46,7 +46,7 @@
 
 - (void)editButtonClick:(id)sender
 {
-    EventPlanningViewController *eventPlanningViewController = [[[EventPlanningViewController alloc] initWithNibName:@"EventPlanningViewController" bundle:nil event:eventId date:[NSDate date]] autorelease];
+    EventPlanningViewController *eventPlanningViewController = [[[EventPlanningViewController alloc] initWithNibName:@"EventPlanningViewController" bundle:nil event:eventId date:eventDate] autorelease];
     [self.navigationController pushViewController:eventPlanningViewController animated:YES];
 }
 
@@ -91,6 +91,7 @@
 - (void)dealloc
 {
     [eventId release];
+    [eventDate release];
     [super dealloc];
 }
 
@@ -102,7 +103,7 @@
 - (void)eventResult:(PFObject *)event error:(NSError *)error
 {
     NSCalendar *currentCalendar = [NSCalendar currentCalendar];
-    NSDate *eventDate = [event valueForKey:@"date"];
+    eventDate = [event valueForKey:@"date"];
     
     NSString *dayString;
     NSString *monthString;
