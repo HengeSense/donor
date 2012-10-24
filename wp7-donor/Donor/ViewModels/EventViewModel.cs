@@ -789,7 +789,7 @@ namespace Donor.ViewModels
             List<string> TypesGive = new List<string>() { "Тромбоциты", "Плазма", "Цельная кровь", "Гранулоциты" };
 
             var _selected_user_items = (from item in this.Items
-                                        where ((item.UserId == App.ViewModel.User.objectId) && (item.Type == "1"))
+                                        where ((item.UserId == App.ViewModel.User.objectId) && (item.Type == "1") && (item.Finished == true))
                                         orderby item.Date ascending
                                         select item);
 
