@@ -164,6 +164,39 @@ namespace Donor
             {
             };
 
+            App.ViewModel.Events.UpdateItems();
+        }
+
+        private void DataFLoaded(object sender, EventArgs e)
+        {
+            if (this.NavigationContext.QueryString.ContainsKey("eventid"))
+            {
+                try
+                {
+                    string _eventid = this.NavigationContext.QueryString["eventid"];
+                    // проверяем, есть ли это событие среди событие среди событий пользователя
+                    if (App.ViewModel.Events.UserItems.FirstOrDefault(c => c.Id == _eventid) !=null)
+                    {
+                    NavigationService.Navigate(new Uri("/EventPage.xaml?id=" + _eventid, UriKind.Relative));
+                    };
+                }
+                catch
+                {
+                };
+            };
+
+            if (this.NavigationContext.QueryString.ContainsKey("editeventid"))
+            {
+                try
+                {
+                    string _editeventid = this.NavigationContext.QueryString["editeventid"];
+                    NavigationService.Navigate(new Uri("/EditEventPage.xaml?id=" + _editeventid, UriKind.Relative));
+                }
+                catch
+                {
+                };
+            };
+
             this.progressOverlay.Visibility = Visibility.Collapsed;
             this.progressOverlay.IsEnabled = false;
 
@@ -176,6 +209,7 @@ namespace Donor
             {
                 App.ViewModel.UserEnter += new MainViewModel.UserEnterEventHandler(this.UserLoaded);
                 App.ViewModel.Events.EventsChanged += new EventsListViewModel.EventsChangedEventHandler(this.EventsChanged);
+                App.ViewModel.DataFLoaded += new MainViewModel.DataFLoadedEventHandler(this.DataFLoaded); 
             }
             catch { };
 

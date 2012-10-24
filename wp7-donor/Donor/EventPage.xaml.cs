@@ -27,6 +27,7 @@ namespace Donor
         private void DataFLoaded(object sender, EventArgs e)
         {
             if (App.ViewModel.IsDataLoaded == true)
+            
             {
 
                 if (this.NavigationContext.QueryString.ContainsKey("id"))
@@ -115,9 +116,13 @@ namespace Donor
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
-            try { App.ViewModel.DataFLoaded += new MainViewModel.DataFLoadedEventHandler(this.DataFLoaded); } catch {};
+            try { 
+                App.ViewModel.DataFLoaded += new MainViewModel.DataFLoadedEventHandler(this.DataFLoaded); 
+            } catch {};
 
-            try { DataFLoaded(this, EventArgs.Empty); } catch { };
+            try { 
+                DataFLoaded(this, EventArgs.Empty); 
+            } catch { };
         }
 
 

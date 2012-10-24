@@ -83,7 +83,7 @@ namespace Donor
         public bool IsDataLoaded
         {
             get;
-            private set;
+            set;
         }
 
         public void CreateApplicationTile(EventViewModel eventData)
@@ -126,7 +126,8 @@ namespace Donor
                     };
                 };
 
-                appTile.Update(standardTile);
+                // hidden in current version
+                //appTile.Update(standardTile);
             }
         }
 
@@ -162,8 +163,7 @@ namespace Donor
 
                     CreateApplicationTile(App.ViewModel.Events.NearestEvents());
 
-                    App.ViewModel.OnDataFLoaded(EventArgs.Empty);
-                    this.IsDataLoaded = true;
+
                 });            
             };
             bw.RunWorkerAsync();  

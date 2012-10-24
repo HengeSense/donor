@@ -95,11 +95,18 @@ namespace Donor.ViewModels
         /// </summary>
         public string Description { get; set; }
 
+        private string _notice = "0";
         // Тип уведомнения (0 – 3 мин, 1 – 5 мин, 2 – 10 мин, 3 – 15 мин)
         public string Notice
         {
-            get;
-            set;
+            get
+            {
+                return _notice;
+            }
+            set
+            {
+                _notice = value;
+            }
         }
 
         // AnalysisResult – Нужно ли узнать результат
@@ -195,7 +202,18 @@ namespace Donor.ViewModels
         public string Place { get; set; }
 
         public string ReminderDate { get; set; }
-        public bool ReminderMessage { get; set; }
+
+        private bool _reminderMessage = true;
+        public bool ReminderMessage
+        {
+            get
+            {
+                return _reminderMessage;
+            }
+            set {
+                _reminderMessage = value; 
+            }
+        }
 
         private bool _finished = false;
         /// <summary>
@@ -433,6 +451,14 @@ namespace Donor.ViewModels
             {
                 if (this.Type == "1")
                 {
+                    try
+                    {
+                        this.RemoveReminders();
+                    }
+                    catch
+                    {
+                    };
+
                     //в день в 17:00
                     this.AddReminder(-60 * 60 * 17, "Вы сегодня сдавали кровь/компоненты крови?");
                     //за день в 12:00
@@ -477,11 +503,14 @@ namespace Donor.ViewModels
 
                 if (this.Type != "PossibleBloodGive")
                 {
-                    objReminder.NavigationUri = new Uri("/EventPage.xaml?id=" + this.Id, UriKind.Relative);
+                    //objReminder.NavigationUri = new Uri("/EventPage.xaml?id=" + this.Id, UriKind.Relative);
+                    objReminder.NavigationUri = new Uri("/MainPage.xaml?eventid=" + this.Id, UriKind.Relative);
+                    //objReminder.
                 }
                 else
                 {
-                    objReminder.NavigationUri = new Uri("/EventEditPage.xaml?id=" + this.Id, UriKind.Relative);
+                    //objReminder.NavigationUri = new Uri("/EventEditPage.xaml?id=" + this.Id, UriKind.Relative);
+                    objReminder.NavigationUri = new Uri("/MainPage.xaml?editeventid=" + this.Id, UriKind.Relative);
                 };
                 
                 ScheduledActionService.Add(objReminder);
@@ -724,9 +753,14 @@ namespace Donor.ViewModels
                                 EventFromJSON(item);
                             };
                             App.ViewModel.Events.UpdateItems();
+
+                            App.ViewModel.OnDataFLoaded(EventArgs.Empty);
+                            App.ViewModel.IsDataLoaded = true;
                         }
                         catch
                         {
+                            App.ViewModel.OnDataFLoaded(EventArgs.Empty);
+                            App.ViewModel.IsDataLoaded = true;
                         };
                         this.NotifyPropertyChanged("Items");
                         this.NotifyPropertyChanged("WeekItems");
