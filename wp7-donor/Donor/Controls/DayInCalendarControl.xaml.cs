@@ -362,7 +362,7 @@ namespace Donor.Controls
                     };
                     if (PossibleBloodGive > 2)
                     {
-                        this.DayImageRB.Visibility = Visibility.Collapsed;
+                        //this.DayImageRB.Visibility = Visibility.Collapsed;
                         /*this.DayImageLB.Visibility = Visibility.Collapsed;
                         this.DayImageLB2.Source = this.DayImageLB.Source;
                         this.DayImageLB.Visibility = Visibility.Visible;*/
