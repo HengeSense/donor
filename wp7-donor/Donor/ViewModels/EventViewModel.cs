@@ -402,8 +402,9 @@ namespace Donor.ViewModels
                 return "";
             }
         }
+        public bool ParseExists = false;
 
-        private DateTime _time;
+        private DateTime _time;        
         /// <summary>
         /// Время проведения события
         /// </summary>
@@ -896,6 +897,7 @@ namespace Donor.ViewModels
 
         public DateTime PossibleGiveBlood(string GiveType = "")
         {
+
             List<string> TypesGive = new List<string>() { "Тромбоциты", "Плазма", "Цельная кровь", "Гранулоциты" };
 
             var _selected_user_items = (from item in this.Items
@@ -1212,6 +1214,50 @@ namespace Donor.ViewModels
             };
         }
 
+
+        public void UpdateEventParse(EventViewModel addedItems = null)
+        {
+            if ((addedItems != null) && ((addedItems.Type == "0") || (addedItems.Type == "1")))
+            {
+                var client = new RestClient("https://api.parse.com");
+                var request = new RestRequest("1/classes/Events/" + addedItems.Id.ToString(), Method.PUT);
+                request.AddHeader("Accept", "application/json");
+                request.Parameters.Clear();
+                string strJSONContent = "{\"analysisResult\":" + addedItems.ReminderMessage.ToString().ToLower() + ", \"notice\": " + addedItems.Notice.ToString() + ", \"station_nid\": " + addedItems.Station_nid + ", \"date\": {\"__type\": \"Date\", \"iso\": \"" + addedItems.DateAndTime.ToString("s") + "\"}, \"finished\":" + addedItems.Finished.ToString().ToLower() + ", \"adress\":\"" + addedItems.Place + "\", \"comment\":\"" + addedItems.Description.Replace("\r", "\n") + "\", \"type\":" + addedItems.Type + ", \"delivery\":" + addedItems.Delivery + ", \"type\":" + addedItems.Type + "}";
+
+
+                request.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
+                request.AddHeader("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
+                request.AddHeader("Content-Type", "application/json");
+
+                request.AddParameter("application/json", strJSONContent, ParameterType.RequestBody);
+                client.ExecuteAsync(request, response =>
+                {
+                    JObject o = JObject.Parse(response.Content.ToString());
+                    if (o["error"] == null)
+                    {
+                        /// Устанавливаем напоминания
+                        addedItems.AddREventReminders();
+
+                        NotifyPropertyChanged("Items");
+                        NotifyPropertyChanged("UserItems");
+                        NotifyPropertyChanged("WeekItems");
+                        NotifyPropertyChanged("ThisMonthItems");
+                        UpdateNearestEvents();
+
+                        App.ViewModel.Events.OnEventsChanged(EventArgs.Empty);
+
+                        App.ViewModel.SaveToIsolatedStorage();
+                    }
+                    else
+                    {
+
+                    };
+                });
+
+            };
+        }
+
         public void AddEventParse(EventViewModel addedItems = null)
         {
             if ((addedItems != null) && ((addedItems.Type == "0") || (addedItems.Type == "1")))
@@ -1297,7 +1343,14 @@ namespace Donor.ViewModels
             }
             else
             {
-                AddEventParse(addedItems);
+                if (addedItems.ParseExists == true)
+                {
+                    UpdateEventParse(addedItems);
+                }
+                else
+                {
+                    AddEventParse(addedItems);
+                };
             };
         }
 
@@ -1306,61 +1359,71 @@ namespace Donor.ViewModels
         /// </summary>
         public void UpdateNearestEvents()
         {
-            try
+            var _selected_user_items = (from item in this.Items
+                                        where ((item.UserId == App.ViewModel.User.objectId) && (item.Type == "1") && (item.Finished == true))
+                                        orderby item.Date ascending
+                                        select item);
+
+            // не создаем можно сдать если нет выполненных кроводач у данного пользователя
+            if (_selected_user_items.Count() > 0)
             {
-                List<string> TypesGive = new List<string>() { "Тромбоциты", "Плазма", "Цельная кровь" }; //, "Гранулоциты" 
-                foreach (var item in TypesGive)
-                {
-                    try
-                    {
-                        // удаляем старые напоминания о событиях можно сдать
-                        this.Items.FirstOrDefault(c => c.Type == "PossibleBloodGive").RemoveReminders();
-                        this.Items.Remove(this.Items.FirstOrDefault(c => c.Type == "PossibleBloodGive"));
-                    }
-                    catch { };
-                };
-
-                List<EventViewModel> possibleEvents = new List<EventViewModel>();
-
-                var cnt = 0;
-                // создаем новые события для типов кроводачи можно сдать
-                foreach (var item in TypesGive)
-                {
-                    cnt++;
-                    DateTime date = NearestPossibleGiveBlood(item);
-                    date = date.AddDays(1);
-                    var possibleItem = new EventViewModel();
-                    possibleItem.Date = date;
-                    possibleItem.Time = new DateTime(date.Year, date.Month, date.Day, 8, 0, 0);                
-                    possibleItem.Type = "PossibleBloodGive";
-                    possibleItem.GiveType = item;
-                    possibleItem.Title = item + " - возможная сдача";
-                    possibleItem.Description = "";
-                    possibleItem.Place = "";
-                    possibleItem.Id = cnt.ToString() + DateTime.Now.Ticks.ToString();
-                    possibleItem.UserId = App.ViewModel.User.objectId;
-                    possibleItem.ReminderDate = "";
-
-                    possibleEvents.Add(possibleItem);
-                    this.Items.Add(possibleItem);
-                };
-
                 try
                 {
-                    // добавляем напоминания о "можно сдать" с учетом их возможного присутствия в один и тот же день
-                    List<DateTime> dates = new List<DateTime>();
-                    foreach (var item in possibleEvents)
+                    List<string> TypesGive = new List<string>() { "Тромбоциты", "Плазма", "Цельная кровь" }; //, "Гранулоциты" 
+                    foreach (var item in TypesGive)
                     {
-                        if ((dates.FirstOrDefault(c => c.Date == item.Date) == null) || (dates.Count() == 0))
+                        try
                         {
-                            int thisDaysCount = possibleEvents.Count(c => c.Date == item.Date);
-                            List<EventViewModel> giveTypes = new List<EventViewModel>();
-                            giveTypes = possibleEvents.Where(c => c.Date == item.Date).ToList();
+                            // удаляем старые напоминания о событиях можно сдать
+                            this.Items.FirstOrDefault(c => c.Type == "PossibleBloodGive").RemoveReminders();
+                            this.Items.Remove(this.Items.FirstOrDefault(c => c.Type == "PossibleBloodGive"));
+                        }
+                        catch
+                        {
+                        };
+                    };
 
-                            // отмечаем, что данная дата уже добавлена в напоминания
-                            dates.Add(item.Date);
+                    List<EventViewModel> possibleEvents = new List<EventViewModel>();
 
-                            // создаем соответствующее напоминение на 12 часов дня
+                    var cnt = 0;
+                    // создаем новые события для типов кроводачи можно сдать
+                    foreach (var item in TypesGive)
+                    {
+                        cnt++;
+                        DateTime date = NearestPossibleGiveBlood(item);
+                        date = date.AddDays(1);
+                        var possibleItem = new EventViewModel();
+                        possibleItem.Date = date;
+                        possibleItem.Time = new DateTime(date.Year, date.Month, date.Day, 8, 0, 0);
+                        possibleItem.Type = "PossibleBloodGive";
+                        possibleItem.GiveType = item;
+                        possibleItem.Title = item + " - возможная сдача";
+                        possibleItem.Description = "";
+                        possibleItem.Place = "";
+                        possibleItem.Id = cnt.ToString() + DateTime.Now.Ticks.ToString();
+                        possibleItem.UserId = App.ViewModel.User.objectId;
+                        possibleItem.ReminderDate = "";
+
+                        possibleEvents.Add(possibleItem);
+                        this.Items.Add(possibleItem);
+                    };
+
+                    try
+                    {
+                        // добавляем напоминания о "можно сдать" с учетом их возможного присутствия в один и тот же день
+                        List<DateTime> dates = new List<DateTime>();
+                        foreach (var item in possibleEvents)
+                        {
+                            if ((dates.FirstOrDefault(c => c.Date == item.Date) == null) || (dates.Count() == 0))
+                            {
+                                int thisDaysCount = possibleEvents.Count(c => c.Date == item.Date);
+                                List<EventViewModel> giveTypes = new List<EventViewModel>();
+                                giveTypes = possibleEvents.Where(c => c.Date == item.Date).ToList();
+
+                                // отмечаем, что данная дата уже добавлена в напоминания
+                                dates.Add(item.Date);
+
+                                // создаем соответствующее напоминение на 12 часов дня
                                 switch (thisDaysCount)
                                 {
                                     case 0: break;
@@ -1370,15 +1433,18 @@ namespace Donor.ViewModels
                                     case 4: item.AddReminder(-60 * 60 * 12, "Вы можете запланировать кроводачу"); break;
                                     default: break;
                                 };
+                            };
                         };
+                    }
+                    catch
+                    {
                     };
+
                 }
                 catch
                 {
                 };
-                
-            }
-            catch { };
+            };
         }
 
         public EventViewModel EditedEvent { get; set; }

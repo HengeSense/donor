@@ -46,13 +46,15 @@ namespace Donor
         public EventViewModel CurrentEvent;
         public EventViewModel InitialCurrentEvent;
 
+        public string EventId = "";
+
         private void DataFLoaded(object sender, EventArgs e)
         {
             try
             {
-                string id = this.NavigationContext.QueryString["id"];
-                CurrentEvent = App.ViewModel.Events.Items.FirstOrDefault(c => c.Id == id);
-
+                EventId = this.NavigationContext.QueryString["id"];
+                CurrentEvent = App.ViewModel.Events.Items.FirstOrDefault(c => c.Id == EventId);
+                CurrentEvent.ParseExists = true;
                 InitialCurrentEvent = CurrentEvent;
             }
             catch
@@ -358,6 +360,19 @@ namespace Donor
                          if ((save) && (App.ViewModel.Events.ThisDayEvents(CurrentEvent.Date) == false))
                          {
                              // сохраняем анализ
+                             try
+                             {
+                                 CurrentEvent.ParseExists = InitialCurrentEvent.ParseExists;
+                                 if (InitialCurrentEvent.ParseExists == true)
+                                 {
+                                     CurrentEvent.Id = EventId;
+                                 };
+                                 
+                             }
+                             catch
+                             {
+                             };
+
                              App.ViewModel.Events.Items.Add(CurrentEvent);
                              App.ViewModel.Events.UpdateItems(CurrentEvent);
                              App.ViewModel.Events.UpdateItems();
@@ -401,6 +416,18 @@ namespace Donor
                              };
                              if ((save) && (App.ViewModel.Events.ThisDayEvents(CurrentEvent.Date)==false))
                              {
+                                 try
+                                 {
+                                     CurrentEvent.ParseExists = InitialCurrentEvent.ParseExists;
+                                     if (InitialCurrentEvent.ParseExists == true)
+                                     {
+                                         CurrentEvent.Id = EventId;
+                                     };
+                                 }
+                                 catch
+                                 {
+                                 };
+
                                  App.ViewModel.Events.Items.Add(CurrentEvent);
 
                                  App.ViewModel.Events.UpdateItems(CurrentEvent);

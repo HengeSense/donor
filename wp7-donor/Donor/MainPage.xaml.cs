@@ -171,31 +171,34 @@ namespace Donor
 
         private void DataFLoaded(object sender, EventArgs e)
         {
-            if (this.NavigationContext.QueryString.ContainsKey("eventid"))
+            if (App.ViewModel.User.IsLoggedIn == true)
             {
-                try
+                if (this.NavigationContext.QueryString.ContainsKey("eventid"))
                 {
-                    string _eventid = this.NavigationContext.QueryString["eventid"];
-                    // проверяем, есть ли это событие среди событие среди событий пользователя
-                    if (App.ViewModel.Events.UserItems.FirstOrDefault(c => c.Id == _eventid) !=null)
+                    try
                     {
-                    NavigationService.Navigate(new Uri("/EventPage.xaml?id=" + _eventid, UriKind.Relative));
+                        string _eventid = this.NavigationContext.QueryString["eventid"];
+                        // проверяем, есть ли это событие среди событие среди событий пользователя
+                        if (App.ViewModel.Events.UserItems.FirstOrDefault(c => c.Id == _eventid) != null)
+                        {
+                            NavigationService.Navigate(new Uri("/EventPage.xaml?id=" + _eventid, UriKind.Relative));
+                        };
+                    }
+                    catch
+                    {
                     };
-                }
-                catch
-                {
                 };
-            };
 
-            if (this.NavigationContext.QueryString.ContainsKey("editeventid"))
-            {
-                try
+                if (this.NavigationContext.QueryString.ContainsKey("editeventid"))
                 {
-                    string _editeventid = this.NavigationContext.QueryString["editeventid"];
-                    NavigationService.Navigate(new Uri("/EditEventPage.xaml?id=" + _editeventid, UriKind.Relative));
-                }
-                catch
-                {
+                    try
+                    {
+                        string _editeventid = this.NavigationContext.QueryString["editeventid"];
+                        NavigationService.Navigate(new Uri("/EditEventPage.xaml?id=" + _editeventid, UriKind.Relative));
+                    }
+                    catch
+                    {
+                    };
                 };
             };
 
