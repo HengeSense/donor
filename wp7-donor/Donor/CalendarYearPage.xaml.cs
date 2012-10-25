@@ -53,7 +53,7 @@ namespace Donor
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
-            DateTime date = App.ViewModel.Events.PossibleGiveBlood("Тромбоциты");
+            //DateTime date = App.ViewModel.Events.PossibleGiveBlood("Тромбоциты");
             this.Monthes.Title = App.ViewModel.Events.CurrentMonth.Year.ToString();
 
             previndex = 2;

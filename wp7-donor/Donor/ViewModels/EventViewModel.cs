@@ -32,6 +32,44 @@ using Microsoft.Phone.Scheduler;
 
 namespace Donor.ViewModels
 {
+
+    public struct DateTimeWithZone
+    {
+        private readonly DateTime utcDateTime;
+        private readonly TimeZoneInfo timeZone;
+
+        public DateTimeWithZone(DateTime dateTime, TimeZoneInfo timeZone)
+        {
+            utcDateTime = TimeZoneInfo.ConvertTime(dateTime, timeZone); //ConvertTimeToUtc(dateTime, timeZone);
+            this.timeZone = timeZone;
+        }
+
+        public DateTime UniversalTime
+        {
+            get
+            {
+                return utcDateTime;
+            }
+        }
+
+        public TimeZoneInfo TimeZone
+        {
+            get
+            {
+                return timeZone;
+            }
+        }
+
+        public DateTime LocalTime
+        {
+            get
+            {
+                return TimeZoneInfo.ConvertTime(utcDateTime, timeZone);
+            }
+        }
+    }
+
+
     public class EventViewModel : INotifyPropertyChanged
     {
         public EventViewModel()
@@ -138,11 +176,14 @@ namespace Donor.ViewModels
         {
             get
             {
-                return new DateTime(_date.Year, _date.Month, _date.Day, _time.Hour, _time.Minute, 0);
+                return TimeZoneInfo.ConvertTime(new DateTime(_date.Year, _date.Month, _date.Day, _time.Hour, _time.Minute, 0), TimeZoneInfo.Utc);
+                    //TimeZoneInfo.ConvertTime(new DateTime(_date.Year, _date.Month, _date.Day, _time.Hour, _time.Minute, 0), TimeZoneInfo.Local);
             }
             set {
-                _date = new DateTime(value.Year, value.Month, value.Day);
-                _time = value;
+                DateTime getdate = value.AddHours(TimeZoneInfo.Local.BaseUtcOffset.TotalHours);
+                //TimeZoneInfo.ConvertTime(new DateTime(value.Year, value.Month, value.Day, value.Hour, value.Minute, 0), TimeZoneInfo.Local);
+                _date = new DateTime(getdate.Year, getdate.Month, getdate.Day);
+                _time = getdate;
             }
         }
 
@@ -599,13 +640,13 @@ namespace Donor.ViewModels
             {
             };
 
-            try
+            /*try
             {
                 jsonitem.Time = DateTime.Parse(item["date"]["iso"].ToString());
             }
             catch
             {
-            };
+            };*/
 
             try
             {
@@ -835,7 +876,7 @@ namespace Donor.ViewModels
             {
                 int days = App.ViewModel.Events.DaysFromEvent(_selected_user_items.FirstOrDefault().GiveType, GiveType);
                 previtem = item;
-                if (previtem.Date.AddDays(days) >= DateTime.Now)
+                if (previtem.Date.AddDays(days) >= DateTime.Today)
                 {
                     if (App.ViewModel.Events.EventsInYear(GiveType, OutDate) && App.ViewModel.Events.EventsInYear(GiveType, OutDate.AddYears(-1)))
                     {
