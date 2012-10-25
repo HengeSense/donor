@@ -9,7 +9,7 @@
 #import "HSEvent.h"
 
 /**
- * This class provides information about events, about which user should be notified.
+ * This class provides information about events, which user should be notified.
  */
 @interface HSNotificationEvent : HSEvent
 

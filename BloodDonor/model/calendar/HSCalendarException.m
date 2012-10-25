@@ -8,6 +8,8 @@
 
 #import "HSCalendarException.h"
 
+NSString * const HSCalendarExceptionUserUnauthorized = @"HSCalendarExceptionUserUnauthorized";
+
 @implementation HSCalendarException
 
 @end

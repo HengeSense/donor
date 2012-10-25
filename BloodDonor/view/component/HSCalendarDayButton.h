@@ -1,5 +1,5 @@
 //
-//  HSCalebdarDayButton.h
+//  HSCalendarDayButton.h
 //  BloodDonor
 //
 //  Created by Sergey Seroshtan on 21.10.12.
@@ -14,7 +14,7 @@
  * This class represents day button in HSCalendar class object.
  *     And provides convinient properties and methods for it's configuration.
  */
-@interface HSCalebdarDayButton : UIButton
+@interface HSCalendarDayButton : UIButton
 
 /// @name Info properties
 @property (nonatomic, strong, readonly) NSDate *date;

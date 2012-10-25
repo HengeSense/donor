@@ -13,10 +13,10 @@
  * This enum type describes different possible types of blood donations.
  */
 typedef enum {
-    BloodDonationType_Blood = 0,
-    BloodDonationType_Platelets,
-    BloodDonationType_Plasma,
-    BloodDonationType_Granulocytes
+    HSBloodDonationType_Blood = 0,
+    HSBloodDonationType_Platelets,
+    HSBloodDonationType_Plasma,
+    HSBloodDonationType_Granulocytes
 } HSBloodDonationType;
 
 #endif

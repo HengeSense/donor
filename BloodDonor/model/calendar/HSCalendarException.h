@@ -8,8 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
+extern NSString * const HSCalendarExceptionUserUnauthorized;
+
 /**
  * Encapsulates error which can be occured during interaction with HSCalendar class.
+ * This exception is *checked* exception.
  */
 @interface HSCalendarException : NSException
 

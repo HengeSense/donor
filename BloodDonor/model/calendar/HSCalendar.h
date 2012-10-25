@@ -8,14 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+#import "HSModelCommon.h"
 #import "HSEvent.h"
-
-/// @name HSCalendar types declaration
-
-/**
- * Completion block of code. Invoked after asynch operation completion.
- */
-typedef void(^CompletionBlockType)(BOOL success, NSError *error);
 
 /// @name HSCalendar protocol declaration
 
@@ -24,17 +18,17 @@ typedef void(^CompletionBlockType)(BOOL success, NSError *error);
 /**
  * Emmits when new event was added to the calendar.
  */
-- (void) eventWasAdded: (HSEvent *) event;
+- (void)eventWasAdded: (HSEvent *)event;
 
 /**
  * Emmits when event was removed from the calendar.
  */
-- (void) eventWasRemoved: (HSEvent *) event;
+- (void)eventWasRemoved: (HSEvent *)event;
 
 /**
- * Emmits when events in the calendar was changed in some reason: updates from server was received, etc.
+ * Emmits when events in the calendar was changed in some reason: pulled from server etc.
  */
-- (void) calendarWasUpdatedWithEvents: (NSArray *) events;
+- (void)eventsWasUpdated: (NSArray *)events;
 
 @end
 
@@ -48,40 +42,43 @@ typedef void(^CompletionBlockType)(BOOL success, NSError *error);
 /**
  * Adds calendar event observer.
  */
-- (void) addEventObserver: (id<HSCalendarEventObserver>) eventObserver;
+- (void)addEventObserver: (id<HSCalendarEventObserver>)eventObserver;
 
 /**
  * Removes calendar event observer
  */
-- (void) removeEventObserver: (id<HSCalendarEventObserver>) eventObserver;
+- (void)removeEventObserver: (id<HSCalendarEventObserver>)eventObserver;
 
 /// @name Methods to interact with cloud data service - parse.com
 
 /**
- * Synchronize local events with remote server events.
- * Invokes [HSCalendarEventObserver calendarWasUpdatedWithEvents] observer method.
+ * Pushes new events to the server.
  */
-- (void) syncWithServer: (CompletionBlockType) completion;
+- (void)pushEventsToServer: (CompletionBlockType)completion;
+
+/**
+ * Pulls all remote events from the server.
+ * Notifies observers with [HSCalendarEventObserver calendarWasUpdatedWithEvents] method.
+ */
+- (void)pullEventsFromServer: (CompletionBlockType)completion;
 
 /// @name Event manipulation methods
 
 /**
  * Adds specified event to the calendar.
- * Invokes [HSCalendarEventObserver eventWasAdded:] observer methods.
- * @throw HSCalendarException if specified event could not be added.
+ * Notifies observers with [HSCalendarEventObserver eventWasAdded:] methods.
  */
-- (void) addEvent: (HSEvent *) event;
+- (void)addEvent: (HSEvent *)event;
 
 /**
  * Removes specified event from the calendar.
- * Invokes [HSCalendarEventObserver eventWasRemoved:] observer methods.
- * @throw HSCalendarException if specified event does not exist.
+ * Notifies observers with [HSCalendarEventObserver eventWasRemoved:] methods.
  */
-- (void) removeEvent: (HSEvent *) event;
+- (void)removeEvent: (HSEvent *)event;
 
 /**
  * Returns all events in the calendar.
  */
-- (NSSet *) allEvents;
+- (NSSet *)allEvents;
 
 @end

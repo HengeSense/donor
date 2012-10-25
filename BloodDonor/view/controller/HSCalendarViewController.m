@@ -8,10 +8,16 @@
 
 #import "HSCalendarViewController.h"
 
-#import "HSCalebdarDayButton.h"
+#import "HSCalendar.h"
+#import "HSCalendarDayButton.h"
 #import "NSCalendar+HSCalendar.h"
 
 @interface HSCalendarViewController ()
+
+/**
+ * Calendar model.
+ */
+@property (nonatomic, strong) HSCalendar *calendarModel;
 
 /**
  * Current date displayed by calendar.
@@ -19,9 +25,14 @@
 @property (nonatomic, strong) NSDate *currentDate;
 
 /**
+ * Current month events. This set defined in loadEventsForDate: private method.
+ */
+@property (nonatomic, strong) NSSet *currentDateEvents;
+
+/**
  * System calendar with ru_RU locale.
  */
-@property (nonatomic, strong) NSCalendar *calendar;
+@property (nonatomic, strong) NSCalendar *systemCalendar;
 
 /// @name Methods for updating UI components
 
@@ -29,6 +40,11 @@
  * Loads events for the month, specified in date parameter, and updates calendar view.
  */
 - (void)updateCalendarToDate: (NSDate *)date;
+
+/**
+ * Loads events from the calendar model to the view.
+ */
+- (void)loadEventsForDate: (NSDate *)date;
 
 /**
  * Updates calendar month label property correspond to the specified date.
@@ -48,7 +64,7 @@
 - (IBAction)dayButtonClicked: (id)sender;
 
 /// @name Utility methods for UI components creation
-- (HSCalebdarDayButton *)createDayButtonWhithDate: (NSDate *)date frame: (CGRect)frame enabled: (BOOL)enabled;
+- (HSCalendarDayButton *)createDayButtonWhithDate: (NSDate *)date frame: (CGRect)frame enabled: (BOOL)enabled;
 
 /// @name Representation conversion methods
 
@@ -64,8 +80,9 @@
 - (id)initWithNibName: (NSString *)nibNameOrNil bundle: (NSBundle *)nibBundleOrNil {
     self = [super initWithNibName: nibNameOrNil bundle: nibBundleOrNil];
     if (self) {
+        self.calendarModel = [[HSCalendar alloc] init];
         self.currentDate = [NSDate date];
-        self.calendar = [NSCalendar currentCalendar];
+        self.systemCalendar = [NSCalendar currentCalendar];
     }
     return self;
 }
@@ -87,17 +104,17 @@
 
 #pragma mark - Actions handlers
 - (IBAction)moveToNextMonth: (id)sender {
-    NSDateComponents *dateComponents = [self.calendar
+    NSDateComponents *dateComponents = [self.systemCalendar
             components: NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit fromDate: self.currentDate];
     ++dateComponents.month;
-    [self updateCalendarToDate: [self.calendar dateFromComponents: dateComponents]];
+    [self updateCalendarToDate: [self.systemCalendar dateFromComponents: dateComponents]];
 }
 
 - (IBAction)moveToPreviousMonth: (id)sender {
-    NSDateComponents *dateComponents = [self.calendar
+    NSDateComponents *dateComponents = [self.systemCalendar
             components: NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit fromDate: self.currentDate];
     --dateComponents.month;
-    [self updateCalendarToDate: [self.calendar dateFromComponents: dateComponents]];
+    [self updateCalendarToDate: [self.systemCalendar dateFromComponents: dateComponents]];
 }
 
 #pragma mark - Private interace implementation
@@ -106,6 +123,7 @@
     THROW_IF_ARGUMENT_NIL(date, @"date is not specified");
     [self updateMonthLabelToDate:date];
     [self updateDaysButtonsToDate: date];
+    [self loadEventsForDate: date];
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat: @"yy-MM-dd"];
@@ -114,9 +132,20 @@
     self.currentDate = date;
 }
 
+-(void)loadEventsForDate: (NSDate *)date {
+    THROW_IF_ARGUMENT_NIL(date, @"date is not specified");
+    [self.calendarModel pullEventsFromServer:^(BOOL success, NSError *error) {
+        self.currentDateEvents = [self.calendarModel allEvents];
+        for (HSEvent *event in self.currentDateEvents) {
+            NSLog(@"Event of class: %@, scheduled on date: %@", event.class,
+                    [event.dateFormatter stringFromDate: event.scheduledDate]);
+        }
+    }];
+}
+
 - (void)updateMonthLabelToDate: (NSDate *)date {
     NSDateComponents *dateComponents =
-            [self.calendar components: NSYearCalendarUnit | NSMonthCalendarUnit fromDate: date];
+            [self.systemCalendar components: NSYearCalendarUnit | NSMonthCalendarUnit fromDate: date];
     self.monthLabel.text = [NSString stringWithFormat: @"%@ (%d)",
             [self nameForMonth: dateComponents.month], dateComponents.year];
 }
@@ -129,10 +158,10 @@
     }
     
     // Create new buttons views
-    NSDateComponents *dateComponents = [self.calendar components: NSYearCalendarUnit | NSMonthCalendarUnit |
+    NSDateComponents *dateComponents = [self.systemCalendar components: NSYearCalendarUnit | NSMonthCalendarUnit |
             NSDayCalendarUnit | NSWeekdayCalendarUnit fromDate: date];
 
-    NSDateComponents *visibleDayDateComponents = [self.calendar firstWeekdayComponentsForDate: date];
+    NSDateComponents *visibleDayDateComponents = [self.systemCalendar firstWeekdayComponentsForDate: date];
     
     const NSUInteger DAYS_PER_WEEK = 7;
     const NSUInteger VISIBLE_DAYS_IN_CALENDAR_MONTH = 42;
@@ -150,14 +179,15 @@
             dayButtonFrame.origin.x = DAY_BUTTON_INITIAL_X;
         }
 
-        NSDate *dayDate = [self.calendar dateFromComponents: visibleDayDateComponents];
+        NSDate *dayDate = [self.systemCalendar dateFromComponents: visibleDayDateComponents];
         BOOL dayButtonEnabled = visibleDayDateComponents.month == dateComponents.month ? YES : NO;
         UIButton *dayButton = [self createDayButtonWhithDate: dayDate frame: dayButtonFrame
                                                      enabled: dayButtonEnabled];
         
         ++visibleDayDateComponents.day;
-        visibleDayDateComponents = [self.calendar components: NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit |
-                NSWeekdayCalendarUnit fromDate: [self.calendar dateFromComponents: visibleDayDateComponents]];
+        visibleDayDateComponents =
+                [self.systemCalendar components: NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit |
+                NSWeekdayCalendarUnit fromDate: [self.systemCalendar dateFromComponents: visibleDayDateComponents]];
         [self.calendarImageView addSubview: dayButton];
         dayButtonFrame.origin.x += 44;
     }
@@ -172,8 +202,8 @@
 }
 
 #pragma mark - Private utility methods for UI components creation
-- (HSCalebdarDayButton *)createDayButtonWhithDate: (NSDate *)date frame: (CGRect)frame enabled: (BOOL)enabled {
-    HSCalebdarDayButton *dayButton = [[HSCalebdarDayButton alloc] initWithFrame: frame date: date];
+- (HSCalendarDayButton *)createDayButtonWhithDate: (NSDate *)date frame: (CGRect)frame enabled: (BOOL)enabled {
+    HSCalendarDayButton *dayButton = [[HSCalendarDayButton alloc] initWithFrame: frame date: date];
     dayButton.enabled = enabled;
     [dayButton addTarget: self action: @selector(dayButtonClicked:) forControlEvents: UIControlEventTouchUpInside];
     return dayButton;

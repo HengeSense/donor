@@ -6,19 +6,14 @@
 //  Copyright (c) 2012 Hint Solutions. All rights reserved.
 //
 
-#import "HSNotificationEvent.h"
+#import "HSBloodRemoteEvent.h"
 
 #import "HSBloodDonationType.h"
 
 /**
  * This class provides information about donor's blood donation event.
  */
-@interface HSBloodDonationEvent : HSNotificationEvent
-
-/**
- * Shows the state of the blood donation event: done or not.
- */
-@property (nonatomic, assign) BOOL isDone;
+@interface HSBloodDonationEvent : HSBloodRemoteEvent
 
 /**
  * Type of blood donation.

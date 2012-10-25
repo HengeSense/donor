@@ -151,13 +151,20 @@
 		37B1367C15B598820022B8D8 /* calendarSliderSectionShadowBottom@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37B1367815B598820022B8D8 /* calendarSliderSectionShadowBottom@2x.png */; };
 		686BA61E1633307B004D7082 /* HSCalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 686BA61C1633307B004D7082 /* HSCalendarViewController.m */; };
 		686BA61F1633307B004D7082 /* HSCalendarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 686BA61D1633307B004D7082 /* HSCalendarViewController.xib */; };
-		686BA62216344DE2004D7082 /* HSCalebdarDayButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 686BA62116344DE2004D7082 /* HSCalebdarDayButton.m */; };
+		686BA62216344DE2004D7082 /* HSCalendarDayButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 686BA62116344DE2004D7082 /* HSCalendarDayButton.m */; };
 		686BA62716345D0E004D7082 /* NSCalendar+HSCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 686BA62616345D0E004D7082 /* NSCalendar+HSCalendar.m */; };
 		686BA62A163469C3004D7082 /* HSBloodDonorTests_Calendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 686BA629163469C3004D7082 /* HSBloodDonorTests_Calendar.m */; };
 		687EFE271625F6B3005CE7D6 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 687EFE231625F6B3005CE7D6 /* Icon-72.png */; };
 		687EFE281625F6B3005CE7D6 /* Icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 687EFE241625F6B3005CE7D6 /* Icon-72@2x.png */; };
 		687EFE291625F6B3005CE7D6 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 687EFE251625F6B3005CE7D6 /* Icon.png */; };
 		687EFE2A1625F6B3005CE7D6 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 687EFE261625F6B3005CE7D6 /* Icon@2x.png */; };
+		68B455B81635BC5100811A0F /* HSEventRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B455B71635BC5100811A0F /* HSEventRenderer.m */; };
+		68B455BC1635C0B500811A0F /* HSBloodDonationEventRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B455BB1635C0B500811A0F /* HSBloodDonationEventRenderer.m */; };
+		68B455BF1635C3D300811A0F /* HSFinishRestEventRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B455BE1635C3D300811A0F /* HSFinishRestEventRenderer.m */; };
+		68B455C21635C42400811A0F /* HSTimetableModifierEventRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B455C11635C42400811A0F /* HSTimetableModifierEventRenderer.m */; };
+		68B455C51635CDD500811A0F /* HSBloodTestsEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B455C41635CDD500811A0F /* HSBloodTestsEvent.m */; };
+		68B455C81635CE7A00811A0F /* HSBloodTestsEventRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B455C71635CE7A00811A0F /* HSBloodTestsEventRenderer.m */; };
+		68B455CE163739E900811A0F /* HSBloodRemoteEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B455CD163739E900811A0F /* HSBloodRemoteEvent.m */; };
 		68BB4053162F0B9400098861 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68BB4052162F0B9400098861 /* SenTestingKit.framework */; };
 		68BB4054162F0B9400098861 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37153E9F15AEBA3400C985C1 /* UIKit.framework */; };
 		68BB4055162F0B9400098861 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37153EA115AEBA3400C985C1 /* Foundation.framework */; };
@@ -169,6 +176,8 @@
 		68EB27681630A5780092FDBA /* HSBloodDonationEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 68EB27671630A5780092FDBA /* HSBloodDonationEvent.m */; };
 		68EB276C1630AA840092FDBA /* HSFinishRestEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 68EB276B1630AA840092FDBA /* HSFinishRestEvent.m */; };
 		68EB27711630AD930092FDBA /* HSTimetableModifierEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 68EB27701630AD930092FDBA /* HSTimetableModifierEvent.m */; };
+		68F7F3F11638878800740CCF /* HSModelCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 68F7F3F01638878800740CCF /* HSModelCommon.m */; };
+		68F7F3F216388D1600740CCF /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 371CBA5215AFD452008CA154 /* Parse.framework */; };
 		85040C0415CEAAC500CD3A16 /* ContraindicationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85040C0215CEAAC500CD3A16 /* ContraindicationsViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		85040C0515CEAAC500CD3A16 /* ContraindicationsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85040C0315CEAAC500CD3A16 /* ContraindicationsViewController.xib */; };
 		85040C0F15CEAE7F00CD3A16 /* absoluteSegmentButtonSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 85040C0715CEAE7F00CD3A16 /* absoluteSegmentButtonSelected.png */; };
@@ -627,8 +636,8 @@
 		686BA61B1633307B004D7082 /* HSCalendarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSCalendarViewController.h; sourceTree = "<group>"; };
 		686BA61C1633307B004D7082 /* HSCalendarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSCalendarViewController.m; sourceTree = "<group>"; };
 		686BA61D1633307B004D7082 /* HSCalendarViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HSCalendarViewController.xib; sourceTree = "<group>"; };
-		686BA62016344DE2004D7082 /* HSCalebdarDayButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSCalebdarDayButton.h; sourceTree = "<group>"; };
-		686BA62116344DE2004D7082 /* HSCalebdarDayButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSCalebdarDayButton.m; sourceTree = "<group>"; };
+		686BA62016344DE2004D7082 /* HSCalendarDayButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSCalendarDayButton.h; sourceTree = "<group>"; };
+		686BA62116344DE2004D7082 /* HSCalendarDayButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSCalendarDayButton.m; sourceTree = "<group>"; };
 		686BA62516345D0E004D7082 /* NSCalendar+HSCalendar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSCalendar+HSCalendar.h"; sourceTree = "<group>"; };
 		686BA62616345D0E004D7082 /* NSCalendar+HSCalendar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSCalendar+HSCalendar.m"; sourceTree = "<group>"; };
 		686BA628163469C3004D7082 /* HSBloodDonorTests_Calendar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSBloodDonorTests_Calendar.h; sourceTree = "<group>"; };
@@ -637,6 +646,20 @@
 		687EFE241625F6B3005CE7D6 /* Icon-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-72@2x.png"; path = "../Icon-72@2x.png"; sourceTree = "<group>"; };
 		687EFE251625F6B3005CE7D6 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = ../Icon.png; sourceTree = "<group>"; };
 		687EFE261625F6B3005CE7D6 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "../Icon@2x.png"; sourceTree = "<group>"; };
+		68B455B61635BC5100811A0F /* HSEventRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HSEventRenderer.h; path = event/HSEventRenderer.h; sourceTree = "<group>"; };
+		68B455B71635BC5100811A0F /* HSEventRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HSEventRenderer.m; path = event/HSEventRenderer.m; sourceTree = "<group>"; };
+		68B455BA1635C0B500811A0F /* HSBloodDonationEventRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HSBloodDonationEventRenderer.h; path = event/HSBloodDonationEventRenderer.h; sourceTree = "<group>"; };
+		68B455BB1635C0B500811A0F /* HSBloodDonationEventRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HSBloodDonationEventRenderer.m; path = event/HSBloodDonationEventRenderer.m; sourceTree = "<group>"; };
+		68B455BD1635C3D300811A0F /* HSFinishRestEventRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HSFinishRestEventRenderer.h; path = event/HSFinishRestEventRenderer.h; sourceTree = "<group>"; };
+		68B455BE1635C3D300811A0F /* HSFinishRestEventRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HSFinishRestEventRenderer.m; path = event/HSFinishRestEventRenderer.m; sourceTree = "<group>"; };
+		68B455C01635C42400811A0F /* HSTimetableModifierEventRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HSTimetableModifierEventRenderer.h; path = event/HSTimetableModifierEventRenderer.h; sourceTree = "<group>"; };
+		68B455C11635C42400811A0F /* HSTimetableModifierEventRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HSTimetableModifierEventRenderer.m; path = event/HSTimetableModifierEventRenderer.m; sourceTree = "<group>"; };
+		68B455C31635CDD500811A0F /* HSBloodTestsEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSBloodTestsEvent.h; sourceTree = "<group>"; };
+		68B455C41635CDD500811A0F /* HSBloodTestsEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSBloodTestsEvent.m; sourceTree = "<group>"; };
+		68B455C61635CE7A00811A0F /* HSBloodTestsEventRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HSBloodTestsEventRenderer.h; path = event/HSBloodTestsEventRenderer.h; sourceTree = "<group>"; };
+		68B455C71635CE7A00811A0F /* HSBloodTestsEventRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HSBloodTestsEventRenderer.m; path = event/HSBloodTestsEventRenderer.m; sourceTree = "<group>"; };
+		68B455CC163739E800811A0F /* HSBloodRemoteEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSBloodRemoteEvent.h; sourceTree = "<group>"; };
+		68B455CD163739E900811A0F /* HSBloodRemoteEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSBloodRemoteEvent.m; sourceTree = "<group>"; };
 		68BB4051162F0B9400098861 /* BloodDonorTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BloodDonorTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		68BB4052162F0B9400098861 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		68BB4058162F0B9500098861 /* BloodDonorTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BloodDonorTests-Info.plist"; sourceTree = "<group>"; };
@@ -658,6 +681,9 @@
 		68EB276F1630AD930092FDBA /* HSTimetableModifierEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSTimetableModifierEvent.h; sourceTree = "<group>"; };
 		68EB27701630AD930092FDBA /* HSTimetableModifierEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSTimetableModifierEvent.m; sourceTree = "<group>"; };
 		68EB27731630B02F0092FDBA /* HSCalendarTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSCalendarTypes.h; sourceTree = "<group>"; };
+		68F7F3ED16387A0300740CCF /* HSBloodRemoteEvent_Protected.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSBloodRemoteEvent_Protected.h; sourceTree = "<group>"; };
+		68F7F3EF1638878800740CCF /* HSModelCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSModelCommon.h; sourceTree = "<group>"; };
+		68F7F3F01638878800740CCF /* HSModelCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSModelCommon.m; sourceTree = "<group>"; };
 		85040C0115CEAAC500CD3A16 /* ContraindicationsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContraindicationsViewController.h; sourceTree = "<group>"; };
 		85040C0215CEAAC500CD3A16 /* ContraindicationsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContraindicationsViewController.m; sourceTree = "<group>"; };
 		85040C0315CEAAC500CD3A16 /* ContraindicationsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContraindicationsViewController.xib; sourceTree = "<group>"; };
@@ -1003,6 +1029,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				68F7F3F216388D1600740CCF /* Parse.framework in Frameworks */,
 				68BB4053162F0B9400098861 /* SenTestingKit.framework in Frameworks */,
 				68BB4054162F0B9400098861 /* UIKit.framework in Frameworks */,
 				68BB4055162F0B9400098861 /* Foundation.framework in Frameworks */,
@@ -1550,6 +1577,7 @@
 		686BA61816332CB3004D7082 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				68B455B41635BC0700811A0F /* renderer */,
 				686BA62316345C9E004D7082 /* extensions */,
 				686BA61916332CB3004D7082 /* component */,
 				686BA61A16332CB3004D7082 /* controller */,
@@ -1560,8 +1588,8 @@
 		686BA61916332CB3004D7082 /* component */ = {
 			isa = PBXGroup;
 			children = (
-				686BA62016344DE2004D7082 /* HSCalebdarDayButton.h */,
-				686BA62116344DE2004D7082 /* HSCalebdarDayButton.m */,
+				686BA62016344DE2004D7082 /* HSCalendarDayButton.h */,
+				686BA62116344DE2004D7082 /* HSCalendarDayButton.m */,
 			);
 			path = component;
 			sourceTree = "<group>";
@@ -1583,6 +1611,31 @@
 				686BA62616345D0E004D7082 /* NSCalendar+HSCalendar.m */,
 			);
 			path = extensions;
+			sourceTree = "<group>";
+		};
+		68B455B41635BC0700811A0F /* renderer */ = {
+			isa = PBXGroup;
+			children = (
+				68B455B91635BC5D00811A0F /* event */,
+			);
+			path = renderer;
+			sourceTree = "<group>";
+		};
+		68B455B91635BC5D00811A0F /* event */ = {
+			isa = PBXGroup;
+			children = (
+				68B455B61635BC5100811A0F /* HSEventRenderer.h */,
+				68B455B71635BC5100811A0F /* HSEventRenderer.m */,
+				68B455BA1635C0B500811A0F /* HSBloodDonationEventRenderer.h */,
+				68B455BB1635C0B500811A0F /* HSBloodDonationEventRenderer.m */,
+				68B455BD1635C3D300811A0F /* HSFinishRestEventRenderer.h */,
+				68B455BE1635C3D300811A0F /* HSFinishRestEventRenderer.m */,
+				68B455C01635C42400811A0F /* HSTimetableModifierEventRenderer.h */,
+				68B455C11635C42400811A0F /* HSTimetableModifierEventRenderer.m */,
+				68B455C61635CE7A00811A0F /* HSBloodTestsEventRenderer.h */,
+				68B455C71635CE7A00811A0F /* HSBloodTestsEventRenderer.m */,
+			);
+			name = event;
 			sourceTree = "<group>";
 		};
 		68BB4056162F0B9400098861 /* BloodDonorTests */ = {
@@ -1620,6 +1673,8 @@
 		68EB27531630906A0092FDBA /* model */ = {
 			isa = PBXGroup;
 			children = (
+				68F7F3EF1638878800740CCF /* HSModelCommon.h */,
+				68F7F3F01638878800740CCF /* HSModelCommon.m */,
 				68EB27541630906A0092FDBA /* calendar */,
 				68EB27551630906A0092FDBA /* event */,
 			);
@@ -1646,12 +1701,17 @@
 				68EB275B163091190092FDBA /* HSEvent.m */,
 				68EB27621630A3FA0092FDBA /* HSNotificationEvent.h */,
 				68EB27631630A3FA0092FDBA /* HSNotificationEvent.m */,
-				68EB27661630A5780092FDBA /* HSBloodDonationEvent.h */,
-				68EB27671630A5780092FDBA /* HSBloodDonationEvent.m */,
 				68EB276A1630AA840092FDBA /* HSFinishRestEvent.h */,
 				68EB276B1630AA840092FDBA /* HSFinishRestEvent.m */,
 				68EB276F1630AD930092FDBA /* HSTimetableModifierEvent.h */,
 				68EB27701630AD930092FDBA /* HSTimetableModifierEvent.m */,
+				68B455CC163739E800811A0F /* HSBloodRemoteEvent.h */,
+				68F7F3ED16387A0300740CCF /* HSBloodRemoteEvent_Protected.h */,
+				68B455CD163739E900811A0F /* HSBloodRemoteEvent.m */,
+				68B455C31635CDD500811A0F /* HSBloodTestsEvent.h */,
+				68B455C41635CDD500811A0F /* HSBloodTestsEvent.m */,
+				68EB27661630A5780092FDBA /* HSBloodDonationEvent.h */,
+				68EB27671630A5780092FDBA /* HSBloodDonationEvent.m */,
 			);
 			path = event;
 			sourceTree = "<group>";
@@ -2230,8 +2290,16 @@
 				68EB276C1630AA840092FDBA /* HSFinishRestEvent.m in Sources */,
 				68EB27711630AD930092FDBA /* HSTimetableModifierEvent.m in Sources */,
 				686BA61E1633307B004D7082 /* HSCalendarViewController.m in Sources */,
-				686BA62216344DE2004D7082 /* HSCalebdarDayButton.m in Sources */,
+				686BA62216344DE2004D7082 /* HSCalendarDayButton.m in Sources */,
 				686BA62716345D0E004D7082 /* NSCalendar+HSCalendar.m in Sources */,
+				68B455B81635BC5100811A0F /* HSEventRenderer.m in Sources */,
+				68B455BC1635C0B500811A0F /* HSBloodDonationEventRenderer.m in Sources */,
+				68B455BF1635C3D300811A0F /* HSFinishRestEventRenderer.m in Sources */,
+				68B455C21635C42400811A0F /* HSTimetableModifierEventRenderer.m in Sources */,
+				68B455C51635CDD500811A0F /* HSBloodTestsEvent.m in Sources */,
+				68B455C81635CE7A00811A0F /* HSBloodTestsEventRenderer.m in Sources */,
+				68B455CE163739E900811A0F /* HSBloodRemoteEvent.m in Sources */,
+				68F7F3F11638878800740CCF /* HSModelCommon.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2395,6 +2463,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
 					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+					"\"$(SRCROOT)\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BloodDonorTests/BloodDonorTests-Prefix.pch";
@@ -2419,6 +2488,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
 					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+					"\"$(SRCROOT)\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BloodDonorTests/BloodDonorTests-Prefix.pch";

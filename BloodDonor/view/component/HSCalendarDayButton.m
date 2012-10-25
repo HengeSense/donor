@@ -1,15 +1,17 @@
 //
-//  HSCalebdarDayButton.m
+//  HSCalendarDayButton.m
 //  BloodDonor
 //
 //  Created by Sergey Seroshtan on 21.10.12.
 //  Copyright (c) 2012 Hint Solutions. All rights reserved.
 //
 
-#import "HSCalebdarDayButton.h"
+#import "HSCalendarDayButton.h"
+
+#import "HSEventRenderer.h"
 
 #pragma mark - Private interface declaration
-@interface HSCalebdarDayButton ()
+@interface HSCalendarDayButton ()
 
 /**
  * Hadles all added events.
@@ -24,11 +26,11 @@
 /**
  * Updates all UI components. Is used after adding or removing events.
  */
-- (void) updateUI;
+- (void)updateUI;
 
 @end
 
-@implementation HSCalebdarDayButton
+@implementation HSCalendarDayButton
 
 #pragma mark - Initialization
 - (id)initWithFrame: (CGRect)frame date:(NSDate *)date {
@@ -54,7 +56,6 @@
 }
 
 #pragma mark -  HSEvent objects management methods
-
 - (void)addEvent: (HSEvent *)event {
     THROW_IF_ARGUMENT_NIL(event, @"event is not specified");
     if (![self.events containsObject: event]) {
@@ -77,7 +78,19 @@
 
 #pragma mark - Private interface implementation
 - (void)updateUI {
-#warning TODO: Add rendering events objects.
+    // remove old events representations
+    for (UIView *view in self.subviews) {
+        [view removeFromSuperview];
+    }
+    
+    // add new events representations
+    for (HSEvent *event in self.allEvents) {
+        HSEventRenderer *eventRenderer = [HSEventRenderer createEventRendererForEvent: event];
+        UIView *eventView = [eventRenderer renderViewInFrame: self.frame];
+        [self addSubview: eventView];
+    }
+    
     [self setNeedsLayout];
 }
+
 @end

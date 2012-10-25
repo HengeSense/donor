@@ -8,13 +8,27 @@
 
 #import "HSCalendar.h"
 
+#import <Parse/Parse.h>
+
+#import "HSModelCommon.h"
+#import "HSCalendarException.h"
+
+#import "HSEvent.h"
+#import "HSBloodRemoteEvent.h"
+
+#pragma mark - Remote Users object's field keys
+static NSString * const kUserEventsRelation = @"events";
+
+#pragma mark - Remote Events object's field keys
+static NSString * const kEventDate = @"date";
+
 #pragma mark - Private interface declaration
 @interface HSCalendar ()
 
 /**
  * Calendar events. Objects of HSEvent class and it's subclasses.
  */
-@property (nonatomic, strong) NSMutableSet *events;
+@property (nonatomic, strong) NSMutableArray *events;
 
 /**
  * Calendar events observers.
@@ -30,6 +44,11 @@
  * Notifies all calendar events observers with message eventWasAdded:.
  */
 - (void) fireNotificationEventWasRemoved: (HSEvent *) event;
+
+/**
+ * Makes period calculations ans adds depended events to the calendar;
+ */
+- (void)addCalculatedEvents;
 @end
 
 @implementation HSCalendar
@@ -38,7 +57,7 @@
 
 - (id) init {
     if (self = [super init]) {
-        self.events = [[NSMutableSet alloc] init];
+        self.events = [[NSMutableArray alloc] init];
         self.eventObservers = [[NSMutableSet alloc] init];
     }
     return self;
@@ -46,14 +65,14 @@
 
 #pragma mark - Calendar events observers methods
 
-- (void) addEventObserver: (id<HSCalendarEventObserver>)eventObserver {
+- (void)addEventObserver: (id<HSCalendarEventObserver>)eventObserver {
     THROW_IF_ARGUMENT_NIL(eventObserver, @"eventObserver is not specified");
     if (![self.eventObservers containsObject: eventObserver]) {
         [self.eventObservers addObject: eventObserver];
     }
 }
 
-- (void) removeEventObserver: (id<HSCalendarEventObserver>)eventObserver {
+- (void)removeEventObserver: (id<HSCalendarEventObserver>)eventObserver {
     THROW_IF_ARGUMENT_NIL(eventObserver, @"eventObserver is not specified");
     if ([self.eventObservers containsObject: eventObserver]) {
         [self.eventObservers removeObject: eventObserver];
@@ -62,7 +81,7 @@
 
 #pragma mark - Event manipulation methods
 
-- (void) addEvent: (HSEvent *)event {
+- (void)addEvent: (HSEvent *)event {
     THROW_IF_ARGUMENT_NIL(event, @"event is not specified");
     if (![self.events containsObject: event]) {
         [self.events addObject: event];
@@ -70,7 +89,7 @@
     }
 }
 
-- (void) removeEvent: (HSEvent *)event {
+- (void)removeEvent: (HSEvent *)event {
     THROW_IF_ARGUMENT_NIL(event, @"event is not specified");
     if ([self.events containsObject: event]) {
         [self.events removeObject: event];
@@ -78,17 +97,61 @@
     }
 }
 
-- (NSSet *) allEvents {
-    return [NSSet setWithSet: self.events];
+- (NSSet *)allEvents {
+    return [NSSet setWithArray: self.events];
 }
 
 #pragma mark - Methods to interact with cloud data service - parse.com
-- (void) syncWithServer: (CompletionBlockType)completion {
+- (void)pullEventsFromServer: (CompletionBlockType)completion {
+    THROW_IF_ARGUMENT_NIL(completion, @"completion block is not specified")
+    PFUser *currentUser = [PFUser currentUser];
+    if (currentUser != nil) {
+        PFRelation *eventsRelation = [currentUser relationforKey: kUserEventsRelation];
+        PFQuery *eventsQuery = [eventsRelation query];
+        //[eventsQuery orderByDescending: kEventDate];
+        
+        [eventsQuery findObjectsInBackgroundWithBlock: ^(NSArray *remoteEvents, NSError *error) {
+            [self.events removeAllObjects];
+            for (PFObject *remoteEvent in remoteEvents) {
+                [self.events addObject: [HSBloodRemoteEvent buildBloodEventWithRemoteEvent: remoteEvent]];
+            }
+            [self addCalculatedEvents];
+            [self fireNotificationEventsWasUpdated: self.events];
+            BOOL success = error == nil ? YES : NO;
+            completion(success, error);
+        }];
+    } else {
+        @throw [HSCalendarException exceptionWithName: HSCalendarExceptionUserUnauthorized
+                reason: @"User is not authorized yet. Calendar can't be used." userInfo: nil];
+    }
+}
+
+- (void)pushEventsToServer: (CompletionBlockType)completion {
+    NSArray *remoteBloodEvents = [self.events filteredArrayUsingPredicate:
+            [NSPredicate predicateWithFormat: @"class isKindOfClass: %@", [HSBloodRemoteEvent class]]];
     
+    __block size_t unsavedRemoteObjectsCount = remoteBloodEvents.count;
+    __block BOOL allEventsWasSavedOrError = NO;
+    CompletionBlockType partialCompletion = ^(BOOL succeed, NSError *error) {
+        if (!allEventsWasSavedOrError) {
+            if (succeed) {
+                --unsavedRemoteObjectsCount;
+                allEventsWasSavedOrError = unsavedRemoteObjectsCount > 0 ? NO : YES;
+            } else {
+                allEventsWasSavedOrError = YES;
+            }
+            if (allEventsWasSavedOrError) {
+                completion(succeed, error);
+            }
+        }
+    };
+    for (HSBloodRemoteEvent *remoteBloodEvent in remoteBloodEvents) {
+        [remoteBloodEvent saveWithCompletionBlock: partialCompletion];
+    }
 }
 
 #pragma mark - Private section implementation
-- (void) fireNotificationEventWasAdded: (HSEvent *) event {
+- (void)fireNotificationEventWasAdded: (HSEvent *) event {
     for (id<HSCalendarEventObserver> observer in self.eventObservers) {
         if ([observer respondsToSelector: @selector(eventWasAdded:)]) {
             [observer eventWasAdded: event];
@@ -96,11 +159,23 @@
     }
 }
 
-- (void) fireNotificationEventWasRemoved: (HSEvent *) event {
+- (void)fireNotificationEventWasRemoved: (HSEvent *) event {
     for (id<HSCalendarEventObserver> observer in self.eventObservers) {
         if ([observer respondsToSelector: @selector(eventWasAdded:)]) {
             [observer eventWasAdded: event];
         }
     }
+}
+
+- (void)fireNotificationEventsWasUpdated: (NSArray *) events {
+    for (id<HSCalendarEventObserver> observer in self.eventObservers) {
+        if ([observer respondsToSelector: @selector(eventsWasUpdated:)]) {
+            [observer eventsWasUpdated: events];
+        }
+    }
+}
+
+-(void)addCalculatedEvents {
+#warning Unimplemented
 }
 @end
