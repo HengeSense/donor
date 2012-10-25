@@ -21,7 +21,7 @@
     <Grid x:Name="LayoutRoot">
         <controls:Panorama>
 <controls:Panorama.Title>
-<TextBlock Margin="0,95,0,0" Text="Справка" 
+<TextBlock Margin="0,95,0,0" Text="{Binding Help, Source={StaticResource Loc}}" 
 Foreground="White"
 FontSize="24" FontFamily="Segoe WP Semibold" />
 </controls:Panorama.Title>
@@ -33,7 +33,7 @@ FontSize="24" FontFamily="Segoe WP Semibold" />
             <!--Panorama item one-->
             <controls:PanoramaItem>
             	<controls:PanoramaItem.Header>
-            		<TextBlock Text="задать вопрос" 
+                    <TextBlock Text="{Binding AskQuestion, Source={StaticResource Loc}}" 
 					FontSize="49" 
 					Foreground="White"
 					Margin="-20,30,0,0"
@@ -43,7 +43,7 @@ FontSize="24" FontFamily="Segoe WP Semibold" />
                     <StackPanel>
                         <StackPanel>
                         <TextBlock Style="{StaticResource Text36pxC0A89A}" 
-						Text="Телефон"/>
+						Text="{Binding Phone, Source={StaticResource Loc}}"/>
                             <TextBlock Name="PhoneNumber" 
 							Style="{StaticResource Text24pxDF8D4B}" 							
 							Text="+7 (495) 471-71-36" Tap="PhoneNumber_Tap"/>
@@ -51,18 +51,18 @@ FontSize="24" FontFamily="Segoe WP Semibold" />
 
                     <StackPanel>
                             <TextBlock Style="{StaticResource Text36pxC0A89A}" 
-							Text="E-mail"  />
+							Text="{Binding Emailhelp, Source={StaticResource Loc}}"  />
                             <TextBlock Name="Email" 
-							Text="info@donors.ru" 
+							Text="{Binding InfoDonorsEmail, Source={StaticResource Loc}}" 
 							Style="{StaticResource Text24pxDF8D4B}" 
 							Tap="TextBlock_Tap"/>
                     </StackPanel>
 
                         <StackPanel>
                             <TextBlock Style="{StaticResource Text36pxC0A89A}" 
-							Text="Сайт"  />
+							Text="{Binding Site, Source={StaticResource Loc}}"  />
                             <TextBlock Name="Site" 
-							Text="http://podari-zhizn.ru"
+							Text="{Binding PodariZhizn, Source={StaticResource Loc}}"
 							Style="{StaticResource Text24pxDF8D4B}" 
 							Tap="Site_Tap" />
                         </StackPanel>
@@ -74,7 +74,7 @@ FontSize="24" FontFamily="Segoe WP Semibold" />
             <!--Panorama item two-->
             <controls:PanoramaItem>
             	<controls:PanoramaItem.Header>
-            		<TextBlock Text="рекомендации" 
+                    <TextBlock Text="{Binding Recomendations, Source={StaticResource Loc}}" 
 					FontSize="49" 
 					Foreground="White"
 					Margin="-20,30,0,0"
@@ -84,9 +84,8 @@ FontSize="24" FontFamily="Segoe WP Semibold" />
                     <StackPanel>
                         <ScrollViewer Height="600">
                             <StackPanel>
-
                                 <TextBlock 
-								Text="Перед сдачей крови" 
+								Text="{Binding BeforeBloodGive, Source={StaticResource Loc}}" 
 								Style="{StaticResource Text36pxC0A89A}" Margin="0,0,0,10" />
                                 <msp:HTMLViewer 
 								Foreground="#FF847168"
@@ -122,7 +121,7 @@ ScrollViewer.VerticalScrollBarVisibility="Disabled">
 
             <controls:PanoramaItem>
             	<controls:PanoramaItem.Header>
-            		<TextBlock Text="противопоказания" 
+                    <TextBlock Text="{Binding BeforeBloodGive, Source={StaticResource Loc}}" 
 					FontSize="49" 
 					Foreground="White"
 					Margin="-20,30,0,0"
@@ -161,7 +160,7 @@ ScrollViewer.VerticalScrollBarVisibility="Disabled">
 </ListBox>
 
                                 <TextBlock 
-								Text="Абсолютные противопоказания" 
+								Text="{Binding AbsContras, Source={StaticResource Loc}}" 
                                 Height="120"
 								Style="{StaticResource Text36pxC0A89A}" 
 								TextWrapping="Wrap" Tap="TextBlock_Tap_1" />
@@ -174,7 +173,7 @@ Visibility="Collapsed" ScrollViewer.VerticalScrollBarVisibility="Disabled">     
 </ListBox.ItemTemplate>
 </ListBox>
                                 <TextBlock Height="180"
-								Text="Временные противопоказания" 
+								Text="{Binding TempContras, Source={StaticResource Loc}}" 
 								Style="{StaticResource Text36pxC0A89A}" 
 								TextWrapping="Wrap" Name="RelText" Tap="RelText_Tap" />
 
@@ -196,7 +195,7 @@ Visibility="Collapsed" ScrollViewer.VerticalScrollBarVisibility="Disabled">     
 
             <controls:PanoramaItem>
             	<controls:PanoramaItem.Header>
-            		<TextBlock Text="памятка" 
+                    <TextBlock Text="{Binding HelpRules, Source={StaticResource Loc}}" 
 					FontSize="49" 
 					Foreground="White"
 					Margin="0,30,0,0"
@@ -212,7 +211,7 @@ Visibility="Collapsed" ScrollViewer.VerticalScrollBarVisibility="Disabled">     
 &lt;li&gt;Полноценно и регулярно питайтесь в течение 2 суток после донации и выпивайте не менее 2 литров жидкости в день: соки, воду, некрепкий чай (алкоголь не рекомендуется).&lt;/li&gt;
 &lt;/ul&gt;-->
                             <TextBlock 
-								Text="Вы можете сдать кровь, если вы:" TextWrapping="Wrap"
+								Text="{Binding YouCanGiveBloodIf, Source={StaticResource Loc}}" TextWrapping="Wrap"
 								Style="{StaticResource Text36pxC0A89A}"/>
 
                             <msp:HTMLViewer 

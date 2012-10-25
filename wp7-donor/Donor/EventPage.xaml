@@ -27,9 +27,9 @@
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,70">
             <TextBlock x:Name="ApplicationTitle" 
-			Text="кроводача" 
+			Text="{Binding BloodGiveTitle, Source={StaticResource Loc}}" 
 			Style="{StaticResource Text24pxWhite}"/>
-            <TextBlock Text="Подробности" 
+            <TextBlock Text="{Binding BloodGiveMore, Source={StaticResource Loc}}" 
 			Style="{StaticResource Text70pxWhite}" 
 			TextWrapping="Wrap"/>
         </StackPanel>
@@ -84,7 +84,7 @@
                     <StackPanel Name="ReminderStackPanel">
 					<StackPanel Orientation="Horizontal" Margin="0,10,0,0"
 					>
-                    <TextBlock Text="Напоминание за:" 
+                            <TextBlock Text="{Binding RememberBefore, Source={StaticResource Loc}}" 
                     Foreground="#FFDF8D4B"
 					Style="{StaticResource Text36pxB9A194}"
 					TextWrapping="Wrap"/>
@@ -102,7 +102,7 @@
 <RowDefinition Height="*"/>
 </Grid.RowDefinitions>
 
-                            <TextBlock Style="{StaticResource Text24pxDF8D4B}" Text="Сдача" Grid.Column="0" Grid.Row="0" />                      
+                            <TextBlock Style="{StaticResource Text24pxDF8D4B}" Text="{Binding BeforeTime, Source={StaticResource Loc}}" Grid.Column="0" Grid.Row="0" />                      
                             <TextBlock 
 					Style="{StaticResource Text24pxC0A89A}" Grid.Column="1" Grid.Row="0"
 					Text="{Binding Path=Reminder}" 
@@ -122,7 +122,7 @@
 					Name="Finished" TextWrapping="Wrap"/>
 					
 					<StackPanel Orientation="Horizontal" Margin="0,20,0,15">
-                    <TextBlock Text="Комментарий:" 
+                        <TextBlock Text="{Binding CommentLabel, Source={StaticResource Loc}}" 
 					Style="{StaticResource Text36pxB9A194}"
 					TextWrapping="Wrap"/>
                     <Image Height="50" 
@@ -140,10 +140,10 @@
 		Background="#FF211E1D"	
 		BackgroundColor="#FF211E1D" Foreground="White"	
 		IsVisible="True" IsMenuEnabled="True">
-            <WPExtensions:AdvancedApplicationBarIconButton IconUri="/icons/appbar.edit.rest.png" Name="EditButton" Text="Изменить" Visibility="Visible" Click="EditButton_Click" />
-            <WPExtensions:AdvancedApplicationBarIconButton IconUri="/icons/appbar.delete.rest.png" Name="DeleteButton" Text="Удалить" Visibility="Visible" Click="DeleteButton_Click" />
+            <WPExtensions:AdvancedApplicationBarIconButton IconUri="/icons/appbar.edit.rest.png" Name="EditButton" Text="{Binding Change, Source={StaticResource Loc}}" Visibility="Visible" Click="EditButton_Click" />
+            <WPExtensions:AdvancedApplicationBarIconButton IconUri="/icons/appbar.delete.rest.png" Name="DeleteButton" Text="{Binding Delete, Source={StaticResource Loc}}" Visibility="Visible" Click="DeleteButton_Click" />
 
-            <WPExtensions:AdvancedApplicationBarMenuItem Text="Было выполнено" Visibility="Collapsed" Name="FinishedMenu" Click="AdvancedApplicationBarMenuItem_Click_1" />
+            <WPExtensions:AdvancedApplicationBarMenuItem Text="{Binding WasFinished, Source={StaticResource Loc}}" Visibility="Collapsed" Name="FinishedMenu" Click="AdvancedApplicationBarMenuItem_Click_1" />
 
         </WPExtensions:AdvancedApplicationBar>
     </Grid>

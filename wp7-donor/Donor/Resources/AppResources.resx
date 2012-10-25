@@ -117,11 +117,44 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AbsContras" xml:space="preserve">
+    <value>Абсолютные противопоказания</value>
+  </data>
+  <data name="Add" xml:space="preserve">
+    <value>Добавить</value>
+  </data>
   <data name="AddEvent" xml:space="preserve">
     <value>Запланировать</value>
   </data>
+  <data name="AddReview" xml:space="preserve">
+    <value>Добавить отзыв</value>
+  </data>
   <data name="Ads" xml:space="preserve">
     <value>Объявления</value>
+  </data>
+  <data name="AdsTitle" xml:space="preserve">
+    <value>Объявления</value>
+  </data>
+  <data name="AskQuestion" xml:space="preserve">
+    <value>задать вопрос</value>
+  </data>
+  <data name="BeforeBloodGive" xml:space="preserve">
+    <value>Перед сдачей крови</value>
+  </data>
+  <data name="BeforeTime" xml:space="preserve">
+    <value>Сдача</value>
+  </data>
+  <data name="BloodGivedFor" xml:space="preserve">
+    <value>Кровь сдается для</value>
+  </data>
+  <data name="BloodGiveMore" xml:space="preserve">
+    <value>Подробности</value>
+  </data>
+  <data name="BloodGiveTitle" xml:space="preserve">
+    <value>кроводача</value>
+  </data>
+  <data name="BloodGiveType" xml:space="preserve">
+    <value>Вид кроводачи</value>
   </data>
   <data name="BloodGroup" xml:space="preserve">
     <value>Группа крови</value>
@@ -132,6 +165,9 @@
   <data name="Calendar" xml:space="preserve">
     <value>Календарь</value>
   </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Отменить</value>
+  </data>
   <data name="CantEnterCheckNetwork" xml:space="preserve">
     <value>Не удается выполнить вход. Убедитесь, что режим \"в самолете\" выключен и имеется сетевое соединение.</value>
   </data>
@@ -141,8 +177,26 @@
   <data name="City" xml:space="preserve">
     <value>Город</value>
   </data>
+  <data name="CommentLabel" xml:space="preserve">
+    <value>Комментарий:</value>
+  </data>
+  <data name="CommentLabelEdit" xml:space="preserve">
+    <value>Комментарий</value>
+  </data>
+  <data name="ContrasHeader" xml:space="preserve">
+    <value>противопоказания</value>
+  </data>
+  <data name="DateAndTime" xml:space="preserve">
+    <value>Дата и время</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Удалить</value>
+  </data>
   <data name="DonorsForChildren" xml:space="preserve">
     <value>Доноры детям</value>
+  </data>
+  <data name="EmailHelp" xml:space="preserve">
+    <value>E-mail</value>
   </data>
   <data name="EnterEmail" xml:space="preserve">
     <value>Введите e-mail</value>
@@ -156,8 +210,17 @@
   <data name="EnterToWorkWithCalendar" xml:space="preserve">
     <value>Пожалуйста войдите, чтобы иметь возможность работать с календарем событий.</value>
   </data>
+  <data name="Event" xml:space="preserve">
+    <value>Cобытие</value>
+  </data>
+  <data name="EventType" xml:space="preserve">
+    <value>Тип события</value>
+  </data>
   <data name="Filter" xml:space="preserve">
     <value>Фильтр</value>
+  </data>
+  <data name="ForDonorsStation" xml:space="preserve">
+    <value>для доноров</value>
   </data>
   <data name="GivedBloodCount" xml:space="preserve">
     <value>Записано кроводач</value>
@@ -165,8 +228,29 @@
   <data name="Help" xml:space="preserve">
     <value>Справка</value>
   </data>
+  <data name="HelpRules" xml:space="preserve">
+    <value>памятка</value>
+  </data>
+  <data name="InfoDonorsEmail" xml:space="preserve">
+    <value>info@donors.ru</value>
+  </data>
+  <data name="KnowResult" xml:space="preserve">
+    <value>Узнать результат</value>
+  </data>
+  <data name="Loading" xml:space="preserve">
+    <value>Загрузка...</value>
+  </data>
   <data name="Login" xml:space="preserve">
     <value>Вход</value>
+  </data>
+  <data name="MainStationPivot" xml:space="preserve">
+    <value>основное</value>
+  </data>
+  <data name="Map" xml:space="preserve">
+    <value>карта</value>
+  </data>
+  <data name="MapStation" xml:space="preserve">
+    <value>Станция</value>
   </data>
   <data name="Menu" xml:space="preserve">
     <value>Меню</value>
@@ -189,11 +273,26 @@
   <data name="OnMap" xml:space="preserve">
     <value>На карте</value>
   </data>
+  <data name="Phone" xml:space="preserve">
+    <value>Телефон</value>
+  </data>
+  <data name="Place" xml:space="preserve">
+    <value>Место</value>
+  </data>
   <data name="Plans" xml:space="preserve">
     <value>Планы</value>
   </data>
+  <data name="PodariZhizn" xml:space="preserve">
+    <value>http://podari-zhizn.ru</value>
+  </data>
   <data name="Profile" xml:space="preserve">
     <value>Профиль</value>
+  </data>
+  <data name="RecepientTime" xml:space="preserve">
+    <value>Время приема</value>
+  </data>
+  <data name="Recomendations" xml:space="preserve">
+    <value>рекомендации</value>
   </data>
   <data name="RegionalCheck" xml:space="preserve">
     <value>Прием региональной прописки</value>
@@ -201,11 +300,32 @@
   <data name="Registration" xml:space="preserve">
     <value>Регистрация</value>
   </data>
+  <data name="RememberBefore" xml:space="preserve">
+    <value>Напоминание за:</value>
+  </data>
+  <data name="Reminder" xml:space="preserve">
+    <value>Напоминание</value>
+  </data>
+  <data name="ReminderBeforeEdit" xml:space="preserve">
+    <value>Напомнить за</value>
+  </data>
   <data name="SaturdayWork" xml:space="preserve">
     <value>Работаем по субботам</value>
   </data>
+  <data name="Save" xml:space="preserve">
+    <value>Сохранить</value>
+  </data>
   <data name="Sex" xml:space="preserve">
     <value>Пол</value>
+  </data>
+  <data name="Site" xml:space="preserve">
+    <value>Сайт</value>
+  </data>
+  <data name="StationAds" xml:space="preserve">
+    <value>объявления</value>
+  </data>
+  <data name="StationReviews" xml:space="preserve">
+    <value>отзывы</value>
   </data>
   <data name="Stations" xml:space="preserve">
     <value>Станции</value>
@@ -213,10 +333,61 @@
   <data name="StationSearch" xml:space="preserve">
     <value>Поиск станции</value>
   </data>
+  <data name="StationWriteReview" xml:space="preserve">
+    <value>Написать</value>
+  </data>
   <data name="StPetersburg" xml:space="preserve">
     <value>Санкт-Петербург</value>
   </data>
+  <data name="String1" xml:space="preserve">
+    <value>Добавить событие</value>
+  </data>
+  <data name="String2" xml:space="preserve">
+    <value>Было выполнено</value>
+  </data>
+  <data name="TempContras" xml:space="preserve">
+    <value>Временные противопоказания</value>
+  </data>
+  <data name="Today" xml:space="preserve">
+    <value>Сегодня</value>
+  </data>
+  <data name="TransportStation" xml:space="preserve">
+    <value>Проезд</value>
+  </data>
   <data name="UncorrectLoginData" xml:space="preserve">
     <value>Указаны некорректные данные.</value>
+  </data>
+  <data name="Vote" xml:space="preserve">
+    <value>Голосовать</value>
+  </data>
+  <data name="vote_buffet" xml:space="preserve">
+    <value>Буфет:</value>
+  </data>
+  <data name="vote_laboratory" xml:space="preserve">
+    <value>Лаборатория:</value>
+  </data>
+  <data name="vote_organization_donation" xml:space="preserve">
+    <value>Организация кроводачи:</value>
+  </data>
+  <data name="vote_physician" xml:space="preserve">
+    <value>Врач-терапевт:</value>
+  </data>
+  <data name="vote_registry" xml:space="preserve">
+    <value>Регистратура:</value>
+  </data>
+  <data name="vote_room" xml:space="preserve">
+    <value>Помещение:</value>
+  </data>
+  <data name="vote_schedule" xml:space="preserve">
+    <value>График работы:</value>
+  </data>
+  <data name="WasFinished" xml:space="preserve">
+    <value>Было выполнено</value>
+  </data>
+  <data name="YouCanGiveBloodIf" xml:space="preserve">
+    <value>Вы можете сдать кровь, если вы:</value>
+  </data>
+  <data name="YourName" xml:space="preserve">
+    <value>Ваше имя</value>
   </data>
 </root>

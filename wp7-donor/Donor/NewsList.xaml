@@ -28,7 +28,7 @@
 
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="20,60,0,20">
-            <TextBlock x:Name="ApplicationTitle" Text="Новости" Style="{StaticResource Text30pxWhite}"/>
+            <TextBlock x:Name="ApplicationTitle" Text="{Binding News, Source={StaticResource Loc}}" Style="{StaticResource Text30pxWhite}"/>
         </StackPanel>
 
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">

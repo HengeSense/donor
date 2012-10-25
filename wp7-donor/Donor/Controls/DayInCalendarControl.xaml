@@ -84,10 +84,10 @@
             </Border>
             <toolkit:ContextMenuService.ContextMenu>
                 <toolkit:ContextMenu Name="ContextMenu">
-                    <toolkit:MenuItem Header="Добавить" Name="AddContextMenu" Click="AddContextMenu_Click" />
-                    <toolkit:MenuItem Header="Было выполнено" Name="FinishedContextMenu" Visibility="Collapsed" Click="FinishedContextMenu_Click" />
-                    <toolkit:MenuItem Header="Редактировать" Name="EditContextMenu" Click="EditContextMenu_Click" />
-                    <toolkit:MenuItem Header="Удалить" Name="DeleteContextMenu" Click="DeleteContextMenu_Click" />
+                    <toolkit:MenuItem Header="{Binding Add, Source={StaticResource Loc}}" Name="AddContextMenu" Click="AddContextMenu_Click" />
+                    <toolkit:MenuItem Header="{Binding WasFinished, Source={StaticResource Loc}}" Name="FinishedContextMenu" Visibility="Collapsed" Click="FinishedContextMenu_Click" />
+                    <toolkit:MenuItem Header="{Binding Edit, Source={StaticResource Loc}}" Name="EditContextMenu" Click="EditContextMenu_Click" />
+                    <toolkit:MenuItem Header="{Binding Delete, Source={StaticResource Loc}}" Name="DeleteContextMenu" Click="DeleteContextMenu_Click" />
                 </toolkit:ContextMenu>
             </toolkit:ContextMenuService.ContextMenu>
         

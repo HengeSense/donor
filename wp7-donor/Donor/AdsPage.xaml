@@ -36,7 +36,7 @@
 
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="20,60,0,20">
             <TextBlock x:Name="ApplicationTitle" 
-                       Text="Объявления"
+                       Text="{Binding AdsTitle, Source={StaticResource Loc}}"
                        Style="{StaticResource Text30pxWhite}"/>
         </StackPanel>
        

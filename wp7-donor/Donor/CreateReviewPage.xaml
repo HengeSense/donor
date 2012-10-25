@@ -29,14 +29,13 @@
         <StackPanel x:Name="TitlePanel" 
                     Grid.Row="0" 
                     Margin="20,10,0,20">
-            
             <TextBlock 
                 x:Name="ApplicationTitle" 
-                Text="Добавить отзыв" 
+                Text="{Binding AddReview, Source={StaticResource Loc}}" 
                 Style="{StaticResource 
                 Text24pxWhite}"/>
             <TextBlock 
-                x:Name="PageTitle" Text="Голосовать" 
+                x:Name="PageTitle" Text="{Binding Vote, Source={StaticResource Loc}}" 
                 Margin="10,30,0,0" 
                 
                 
@@ -48,7 +47,7 @@
             <ScrollViewer>
                 <StackPanel Margin="12,0,0,0">
 
-                <TextBlock Text="Ваше имя" 
+                    <TextBlock Text="{Binding YourName, Source={StaticResource Loc}}" 
                 Style="{StaticResource Text24pxCBB2A3}"/>
                     <TextBox Name="UserName" Style="{StaticResource TextBox1}" />
 
@@ -57,7 +56,8 @@
     <ColumnDefinition Width="*"/>
     <ColumnDefinition Width="245"/>
 </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" Style="{StaticResource Text24pxCBB2A3}" Text="Регистратура:" VerticalAlignment="Center" />
+                        <TextBlock Grid.Column="0" Style="{StaticResource Text24pxCBB2A3}" 
+                        Text="{Binding vote_registry, Source={StaticResource Loc}}" VerticalAlignment="Center" />
     <my:VotesControl x:Name="vote_registry" Grid.Column="1" HorizontalAlignment="Right"/>
 </Grid>
 
@@ -66,7 +66,7 @@
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="245"/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" Text="Врач-терапевт:" Style="{StaticResource Text24pxCBB2A3}" VerticalAlignment="Center" />
+                        <TextBlock Grid.Column="0" Text="{Binding vote_physician, Source={StaticResource Loc}}" Style="{StaticResource Text24pxCBB2A3}" VerticalAlignment="Center" />
                         <my:VotesControl x:Name="vote_physician" Grid.Column="1" HorizontalAlignment="Right"/>
                     </Grid>
 
@@ -76,7 +76,7 @@
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="245"/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" Text="Лаборатория:" VerticalAlignment="Center" Style="{StaticResource Text24pxCBB2A3}"/>
+                        <TextBlock Grid.Column="0" Text="{Binding vote_laboratory, Source={StaticResource Loc}}" VerticalAlignment="Center" Style="{StaticResource Text24pxCBB2A3}"/>
                         <my:VotesControl x:Name="vote_laboratory" Grid.Column="1" HorizontalAlignment="Right"/>
                     </Grid>
 
@@ -86,7 +86,7 @@
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="245"/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" Text="Буфет:" VerticalAlignment="Center" Style="{StaticResource Text24pxCBB2A3}"/>
+                        <TextBlock Grid.Column="0" Text="{Binding vote_buffet, Source={StaticResource Loc}}" VerticalAlignment="Center" Style="{StaticResource Text24pxCBB2A3}"/>
                         <my:VotesControl x:Name="vote_buffet" Grid.Column="1" HorizontalAlignment="Right"/>
                     </Grid>
 
@@ -96,7 +96,7 @@
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="245"/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" Text="График работы:" VerticalAlignment="Center" Style="{StaticResource Text24pxCBB2A3}"/>
+                        <TextBlock Grid.Column="0" Text="{Binding vote_schedule, Source={StaticResource Loc}}" VerticalAlignment="Center" Style="{StaticResource Text24pxCBB2A3}"/>
                         <my:VotesControl x:Name="vote_schedule" Grid.Column="1" HorizontalAlignment="Right"/>
                     </Grid>
 
@@ -106,7 +106,7 @@
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="200"/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" Text="Организация кроводачи:" Style="{StaticResource Text24pxCBB2A3}" VerticalAlignment="Center"/>
+                        <TextBlock Grid.Column="0" Text="{Binding vote_organization_donation, Source={StaticResource Loc}}" Style="{StaticResource Text24pxCBB2A3}" VerticalAlignment="Center"/>
                         <my:VotesControl x:Name="vote_organization_donation" Grid.Column="1" HorizontalAlignment="Right"/>
                     </Grid>
 
@@ -116,11 +116,11 @@
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="245"/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" Text="Помещение:" VerticalAlignment="Center" Style="{StaticResource Text24pxCBB2A3}"/>
+                        <TextBlock Grid.Column="0" Text="{Binding vote_room, Source={StaticResource Loc}}" VerticalAlignment="Center" Style="{StaticResource Text24pxCBB2A3}"/>
                         <my:VotesControl x:Name="vote_room" Grid.Column="1" HorizontalAlignment="Right"/>
                     </Grid>
 
-                    <TextBlock Margin="0,15,0,-5"  Text="Коментарии:" Style="{StaticResource Text24pxCBB2A3}"/>
+                    <TextBlock Margin="0,15,0,-5"  Text="{Binding CommentLabel, Source={StaticResource Loc}}" Style="{StaticResource Text24pxCBB2A3}"/>
                     <TextBox Height="200" Style="{StaticResource TextBox1}" Name="Body" />
                 <TextBlock Visibility="Collapsed" Height="30" Name="VoteText" Text="Ваш рейтинг:" />
                 <TextBox Visibility="Collapsed" Name="Vote" InputScope="Digits"/>
@@ -129,8 +129,9 @@
         </Grid>
 
         <WPExtensions:AdvancedApplicationBar Name="AppBar" IsVisible="True" IsMenuEnabled="False">
-            
-     <WPExtensions:AdvancedApplicationBarIconButton IconUri="/icons/appbar.save.rest.png" Text="Сохранить" Name="SaveButton" Click="SaveButton_Click" />            <WPExtensions:AdvancedApplicationBarIconButton IconUri="/icons/appbar.cancel.png" Text="Отмена" Name="CancelButton" Click="CancelButton_Click" />
+
+            <WPExtensions:AdvancedApplicationBarIconButton IconUri="/icons/appbar.save.rest.png" Text="{Binding Save, Source={StaticResource Loc}}" Name="SaveButton" Click="SaveButton_Click" />
+            <WPExtensions:AdvancedApplicationBarIconButton IconUri="/icons/appbar.cancel.png" Text="{Binding Cancel, Source={StaticResource Loc}}" Name="CancelButton" Click="CancelButton_Click" />
 
         </WPExtensions:AdvancedApplicationBar>
 
