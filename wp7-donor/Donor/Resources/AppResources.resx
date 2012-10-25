@@ -117,7 +117,106 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AddEvent" xml:space="preserve">
+    <value>Запланировать</value>
+  </data>
+  <data name="Ads" xml:space="preserve">
+    <value>Объявления</value>
+  </data>
+  <data name="BloodGroup" xml:space="preserve">
+    <value>Группа крови</value>
+  </data>
+  <data name="BloodStations" xml:space="preserve">
+    <value>Станции переливания крови</value>
+  </data>
+  <data name="Calendar" xml:space="preserve">
+    <value>Календарь</value>
+  </data>
+  <data name="CantEnterCheckNetwork" xml:space="preserve">
+    <value>Не удается выполнить вход. Убедитесь, что режим \"в самолете\" выключен и имеется сетевое соединение.</value>
+  </data>
+  <data name="Change" xml:space="preserve">
+    <value>Изменить</value>
+  </data>
+  <data name="City" xml:space="preserve">
+    <value>Город</value>
+  </data>
+  <data name="DonorsForChildren" xml:space="preserve">
+    <value>Доноры детям</value>
+  </data>
+  <data name="EnterEmail" xml:space="preserve">
+    <value>Введите e-mail</value>
+  </data>
+  <data name="EnterLoginAndPasswordToRegister" xml:space="preserve">
+    <value>Если у вас нет аккаунта, введите пароль и e-mail для начала регистрации.</value>
+  </data>
+  <data name="EnterPassword" xml:space="preserve">
+    <value>Введите пароль</value>
+  </data>
   <data name="EnterToWorkWithCalendar" xml:space="preserve">
     <value>Пожалуйста войдите, чтобы иметь возможность работать с календарем событий.</value>
+  </data>
+  <data name="Filter" xml:space="preserve">
+    <value>Фильтр</value>
+  </data>
+  <data name="GivedBloodCount" xml:space="preserve">
+    <value>Записано кроводач</value>
+  </data>
+  <data name="Help" xml:space="preserve">
+    <value>Справка</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Вход</value>
+  </data>
+  <data name="Menu" xml:space="preserve">
+    <value>Меню</value>
+  </data>
+  <data name="Moscow" xml:space="preserve">
+    <value>Москва</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Имя</value>
+  </data>
+  <data name="News" xml:space="preserve">
+    <value>Новости</value>
+  </data>
+  <data name="NoEvents" xml:space="preserve">
+    <value>Нет событий</value>
+  </data>
+  <data name="NoStations" xml:space="preserve">
+    <value>Станций не найдено. Измените параметры фильтра.</value>
+  </data>
+  <data name="OnMap" xml:space="preserve">
+    <value>На карте</value>
+  </data>
+  <data name="Plans" xml:space="preserve">
+    <value>Планы</value>
+  </data>
+  <data name="Profile" xml:space="preserve">
+    <value>Профиль</value>
+  </data>
+  <data name="RegionalCheck" xml:space="preserve">
+    <value>Прием региональной прописки</value>
+  </data>
+  <data name="Registration" xml:space="preserve">
+    <value>Регистрация</value>
+  </data>
+  <data name="SaturdayWork" xml:space="preserve">
+    <value>Работаем по субботам</value>
+  </data>
+  <data name="Sex" xml:space="preserve">
+    <value>Пол</value>
+  </data>
+  <data name="Stations" xml:space="preserve">
+    <value>Станции</value>
+  </data>
+  <data name="StationSearch" xml:space="preserve">
+    <value>Поиск станции</value>
+  </data>
+  <data name="StPetersburg" xml:space="preserve">
+    <value>Санкт-Петербург</value>
+  </data>
+  <data name="UncorrectLoginData" xml:space="preserve">
+    <value>Указаны некорректные данные.</value>
   </data>
 </root>

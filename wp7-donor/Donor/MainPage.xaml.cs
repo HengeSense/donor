@@ -73,7 +73,7 @@ namespace Donor
                 }
                 else
                 {
-                    MessageBox.Show("Не удается выполнить вход. Убедитесь, что режим \"в самолете\" выключен и имеется сетевое соединение.");
+                    MessageBox.Show(Donor.AppResources.CantEnterCheckNetwork);
                 };
             } catch {};
         }
@@ -118,7 +118,7 @@ namespace Donor
             }
             else
             {
-                MessageBox.Show("Пожалуйста войдите, чтобы иметь возможность работать с календарем событий.");
+                MessageBox.Show(Donor.AppResources.EnterToWorkWithCalendar);
                 
             };
         }
@@ -301,7 +301,7 @@ namespace Donor
                             this.LoginForm.Visibility = Visibility.Visible;
                             this.UserProfile.Visibility = Visibility.Collapsed;
 
-                            MessageBox.Show("Указаны некорректные данные.");
+                            MessageBox.Show(Donor.AppResources.UncorrectLoginData);
                         };
                     }
                     catch { };
@@ -335,7 +335,7 @@ namespace Donor
                 }
                 else
                 {
-                    MessageBox.Show("Пожалуйста войдите, чтобы иметь возможность работать с календарем событий.");
+                    MessageBox.Show(Donor.AppResources.EnterToWorkWithCalendar);
                 };
             }
             catch { };

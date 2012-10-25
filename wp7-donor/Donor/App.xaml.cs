@@ -17,6 +17,25 @@ using System.Reflection;
 
 namespace Donor
 {
+
+    public class LocalizedStrings
+    {
+        public LocalizedStrings()
+        {
+        }
+
+        private static Donor.AppResources localizedresources = new Donor.AppResources();
+
+        public Donor.AppResources Localizedresources
+        {
+            get
+            {
+                return localizedresources;
+            }
+        }
+
+    }
+
     public partial class App : Application
     {
         private static MainViewModel viewModel = null;

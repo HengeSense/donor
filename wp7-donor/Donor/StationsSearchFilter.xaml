@@ -33,20 +33,20 @@
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
             <TextBlock x:Name="ApplicationTitle" 
-			Text="Поиск станции" 			
+			Text="{Binding StationSearch, Source={StaticResource Loc}}" 			
 			FontSize="24" Foreground="White"/>
             <TextBlock x:Name="PageTitle" 
-			Text="Фильтр" Margin="9,-7,0,0" 
+			Text="{Binding Filter, Source={StaticResource Loc}}"  Margin="9,-7,0,0" 
 			FontSize="70" Foreground="White"/>
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="0,0,0,0">
             <StackPanel>  
-            	<Border Background="#FF632C00">              
-            	<toolkit:ListPicker x:Name="CitySelect" Header="Город" FontSize="24" Margin="10,6,10,20" SelectionChanged="CitySelect_SelectionChanged" Foreground="#FF271B16" Loaded="CitySelect_Loaded" Tap="CitySelect_Tap">
-<ListBoxItem Content="Москва" Foreground="#DE271B16"/>
-<ListBoxItem Content="Санкт-Петербург" Foreground="#DE271B16"/>
+            	<Border Background="#FF632C00">
+                    <toolkit:ListPicker x:Name="CitySelect" Header="{Binding Moscow, Source={StaticResource Loc}}" FontSize="24" Margin="10,6,10,20" SelectionChanged="CitySelect_SelectionChanged" Foreground="#FF271B16" Loaded="CitySelect_Loaded" Tap="CitySelect_Tap">
+<ListBoxItem Content="{Binding Moscow, Source={StaticResource Loc}}" Foreground="#DE271B16"/>
+<ListBoxItem Content="{Binding StPetersburg, Source={StaticResource Loc}}" Foreground="#DE271B16"/>
 <toolkit:ListPicker.ItemTemplate>
 <DataTemplate>
 <StackPanel Orientation="Horizontal" Background="#FFD7CABF" Margin="0">
@@ -57,7 +57,7 @@
 </toolkit:ListPicker>
 				</Border>
 				<StackPanel Margin="12,0,12,0">
-            	<CheckBox Content="Прием региональной прописки" 
+                    <CheckBox Content="{Binding RegionalCheck, Source={StaticResource Loc}}" 
 				FontSize="24"
 				Foreground="#FFCBB2A3"
 				Name="regional" Unchecked="regional_Unchecked" 
@@ -65,28 +65,16 @@
 				<CheckBox Name="saturdays" 
 				FontSize="24"
 				Foreground="#FFCBB2A3"
-				Content="Работаем по субботам" Checked="saturdays_Checked" 
+				Content="{Binding SaturdayWork, Source={StaticResource Loc}}" Checked="saturdays_Checked" 
 				Unchecked="saturdays_Unchecked" />  
 				<CheckBox Name="childrens" 
 				FontSize="24"
 				Foreground="#FFCBB2A3"
-				Content="Доноры детям" Unchecked="childrens_Unchecked" 
+				Content="{Binding DonorsForChildren, Source={StaticResource Loc}}" Unchecked="childrens_Unchecked" 
 				Checked="childrens_Checked" />  
 				</StackPanel>
             </StackPanel>
         </Grid>
     </Grid>
- 
-    <!--Sample code showing usage of ApplicationBar-->
-    <!--<phone:PhoneApplicationPage.ApplicationBar>
-        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
-            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button1.png" Text="Button 1"/>
-            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button2.png" Text="Button 2"/>
-            <shell:ApplicationBar.MenuItems>
-                <shell:ApplicationBarMenuItem Text="MenuItem 1"/>
-                <shell:ApplicationBarMenuItem Text="MenuItem 2"/>
-            </shell:ApplicationBar.MenuItems>
-        </shell:ApplicationBar>
-    </phone:PhoneApplicationPage.ApplicationBar>-->
 
 </phone:PhoneApplicationPage>

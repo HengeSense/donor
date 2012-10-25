@@ -33,8 +33,11 @@ using Microsoft.Phone.Tasks;
 using Microsoft.Phone.Net.NetworkInformation;
 
 
+
 namespace Donor
-{   
+{
+
+
     public class MainViewModel : INotifyPropertyChanged
     {
         public const string XParseApplicationId = "EIpakVdZblHedhqgxMgiEVnIGCRGvWdy9v8gkKZu";
@@ -121,7 +124,7 @@ namespace Donor
                         {
                             Title = "",
                             Count = App.ViewModel.Events.Items.Count(),
-                            BackContent = "Нет событий",
+                            BackContent = Donor.AppResources.NoEvents,
                         };
                     };
                 };
@@ -293,31 +296,9 @@ namespace Donor
 
                                 App.ViewModel.Events.LoadEventsParse();
 
-                                /*var clientuser = new RestClient("https://api.parse.com");                                                                
-                                var requestuser = new RestRequest("1/classes/Events", Method.GET);
-
-                                requestuser.Parameters.Clear();
-                                requestuser.AddParameter("where", "{\"$relatedTo\":{\"object\":{\"__type\":\"Pointer\",\"className\":\"_User\",\"objectId\":\"" + App.ViewModel.User.objectId + "\"},\"key\":\"events\"}}");
-                                requestuser.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
-                                requestuser.AddHeader("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
-
-                                clientuser.ExecuteAsync(requestuser, responseuser =>
-                                {
-                                    try
-                                    {
-                                        JObject ouser = JObject.Parse(responseuser.Content.ToString());
-                                        if (ouser["error"] == null)
-                                        {
-                                        } else {
-                                        };
-                                    } 
-                                    catch {};
-                                });*/
-
                             }
                             else
                             {
-                                //MessageBox.Show("Ошибка входа: " + o["error"].ToString());
                                 App.ViewModel.User.IsLoggedIn = false;
                                 App.ViewModel.OnUserEnter(EventArgs.Empty);
                             };
@@ -471,15 +452,6 @@ namespace Donor
                         };
                     });
                 };
-
-                /*Deployment.Current.Dispatcher.BeginInvoke(() =>
-                {
-                    if (this.IsSettings == false)
-                    {
-                        //(Application.Current.RootVisual as PhoneApplicationFrame).Navigate(new Uri("/ProfileLogin.xaml", UriKind.Relative));
-                    };
-                });*/
-
             };
             bw.RunWorkerAsync();            
         }

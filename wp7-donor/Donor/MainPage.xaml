@@ -63,7 +63,7 @@
             <controls:PanoramaItem>
                 <controls:PanoramaItem.Header>
                     <TextBlock 
-					Margin="0,15,0,0" Text="Меню" 
+					Margin="0,15,0,0" Text="{Binding Menu, Source={StaticResource Loc}}"
 					Style="{StaticResource Text48pxDFB08B}"/>
                 </controls:PanoramaItem.Header>
                 <ScrollViewer>
@@ -73,9 +73,8 @@
                         <StackPanel Orientation="Horizontal">
                         <Image Height="64" Width="64" 
 						Source="images/ic_menu_calendar_normal.png"/>
-                            <TextBlock Margin="0,15,0,0" Text="Календарь" 
-						TextWrapping="Wrap" Name="CalendarMenuText"  
-						Style="{StaticResource Text30pxCBB2A3}"/>
+                        <TextBlock Margin="0,15,0,0" TextWrapping="Wrap" Name="CalendarMenuText"  
+						Style="{StaticResource Text30pxCBB2A3}" Text="{Binding Calendar, Source={StaticResource Loc}}" />
                         </StackPanel>
                     </ListBoxItem>
 
@@ -83,7 +82,7 @@
                         <StackPanel Orientation="Horizontal">
                             <Image Height="64" Width="64" 
 						Source="images/ic_menu_stantion_normal.png"/>
-                            <TextBlock Margin="0,15,0,0" Text="Станции" 
+                                    <TextBlock Margin="0,15,0,0" Text="{Binding Stations, Source={StaticResource Loc}}"
 						TextWrapping="Wrap" Name="StationsMenu" 
 						Style="{StaticResource Text30pxCBB2A3}"/>
                         </StackPanel>
@@ -93,7 +92,7 @@
                         <StackPanel Orientation="Horizontal">
                             <Image Height="64" Width="64" 
 						Source="images/ic_menu_ads_normal.png"/>
-                            <TextBlock Margin="0,15,0,0" Text="Объявления" 
+                                    <TextBlock Margin="0,15,0,0" Text="{Binding Ads, Source={StaticResource Loc}}"
 						TextWrapping="Wrap" Name="adsMenuText" 
 						Style="{StaticResource Text30pxCBB2A3}"/>
                         </StackPanel>
@@ -105,7 +104,7 @@
 						Source="images/ic_menu_news_normal.png"/>
 
                             <TextBlock Margin="0,15,0,0" 
-						Text="Новости" TextWrapping="Wrap" 
+						Text="{Binding News, Source={StaticResource Loc}}" TextWrapping="Wrap" 
 						Name="NewMenuItem" 
 						Style="{StaticResource Text30pxCBB2A3}"/>
                         </StackPanel>
@@ -117,7 +116,7 @@
 						Source="images/ic_menu_information_normal.png"/>
 
                         <TextBlock Margin="0,15,0,0" 
-						Text="Справка" 
+						Text="{Binding Help, Source={StaticResource Loc}}"
 						TextWrapping="Wrap" 
 						Name="HelpMenuText" 
 						Style="{StaticResource Text30pxCBB2A3}"/>
@@ -130,7 +129,7 @@
 						 Source="images/ic_menu_profile_normal.png"/>
 
                             <TextBlock Margin="0,15,0,0" 
-						 Text="Профиль"
+						 Text="{Binding Profile, Source={StaticResource Loc}}"
 						 TextWrapping="Wrap" 
 						 Style="{StaticResource Text30pxCBB2A3}" 
 						 Tap="TextBlock_Tap_1"/>
@@ -145,7 +144,7 @@
  
             <controls:PanoramaItem>
                 <controls:PanoramaItem.Header>
-                    <TextBlock Margin="0,15,0,0" Text="Планы"
+                    <TextBlock Margin="0,15,0,0" Text="{Binding Plans, Source={StaticResource Loc}}"
 					Style="{StaticResource Text48pxDFB08B}"/>
                 </controls:PanoramaItem.Header>
                 
@@ -173,7 +172,7 @@
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
-				<Button Name="AddEvent" Content="Запланировать" 					
+                        <Button Name="AddEvent" Content="{Binding AddEvent, Source={StaticResource Loc}}"					
 					FontSize="24"
 					Background="#FF4186A3" 
 					BorderBrush="#FF4186A3" 
@@ -186,7 +185,7 @@
             <controls:PanoramaItem>
                 <controls:PanoramaItem.Header>
                     <TextBlock Margin="0,15,0,0" 
-					Text="Новости"
+					Text="{Binding News, Source={StaticResource Loc}}"
 					Style="{StaticResource Text48pxDFB08B}"/>
                 </controls:PanoramaItem.Header>
 				
@@ -217,19 +216,19 @@
                 <controls:PanoramaItem.Header>
                     <TextBlock Margin="0,15,0,0"
 					Style="{StaticResource Text48pxDFB08B}"
-					Text="Профиль"/>
+					Text="{Binding Profile, Source={StaticResource Loc}}"/>
                 </controls:PanoramaItem.Header>
                 <StackPanel Margin="0,15,0,0">
                 <StackPanel Name="LoginForm">
                                   <toolkit:PerformanceProgressBar HorizontalAlignment="Left" Height="8" Margin="0" VerticalAlignment="Top" IsIndeterminate="False" Width="460" Name="LoginLoadingBar" />
                         <TextBlock 
 						Style="{StaticResource Text24pxCBB2A3}"
-						Text="Введите e-mail" />
+						Text="{Binding EnterEmail, Source={StaticResource Loc}}" />
                     <TextBox x:Name="email" Text="" Background="#FF4F3B34" BorderBrush="#FF4F3B34" Foreground="#FFCBB2A3" 
 					CaretBrush="#FFCBB2A3" Style="{StaticResource TextBoxStyle1}" />
                     <TextBlock 
 					Style="{StaticResource Text24pxCBB2A3}"
-					Text="Введите пароль" />
+					Text="{Binding EnterPassword, Source={StaticResource Loc}}" />
                     <PasswordBox 
 					x:Name="password" Password="" 
 					Background="#FF4F3B34" 
@@ -240,7 +239,7 @@
 					Background="#FF4186A3" 
 					BorderBrush="#FF4186A3" 
 					FontFamily="Segoe WP Regular"
-					Name="Login" Content="Вход" Click="Login_Click" 
+					Name="Login" Content="{Binding Login, Source={StaticResource Loc}}" Click="Login_Click" 
 					Foreground="#FFFFFFFF" />
 
                     <Button 
@@ -248,36 +247,36 @@
 					Background="#FF4186A3" 
 					BorderBrush="#FF4186A3" 
 					FontFamily="Segoe WP Regular"
-					Name="Register" Content="Регистрация" 
+					Name="Register" Content="{Binding Registration, Source={StaticResource Loc}}" 
 					Foreground="#FFFFFFFF" Click="Register_Click" />
 
                         <TextBlock 
 					Foreground="#FF847168"
 					Style="{StaticResource Text24pxCBB2A3}"
-					Text="Если у вас нет аккаунта, введите пароль и e-mail для начала регистрации." TextWrapping="Wrap" Visibility="Collapsed" />
+					Text="{Binding EnterLoginAndPasswordToRegister, Source={StaticResource Loc}}" TextWrapping="Wrap" Visibility="Collapsed" />
                     </StackPanel>
                 <StackPanel Margin="0,10" Name="UserProfile" Visibility="Collapsed">
                     <StackPanel >
-                        <TextBlock Text="Имя" TextWrapping="Wrap" 
+                        <TextBlock Text="{Binding Name, Source={StaticResource Loc}}"  TextWrapping="Wrap" 
 						Style="{StaticResource Text36pxCBB2A3}"/>
                         <TextBlock Text="{Binding User.Name}" 
 						Name="ProfileName" TextWrapping="Wrap" Margin="12,-6,12,0" 
 						Style="{StaticResource Text24pxDF8D4B}"/>
                     </StackPanel>
                     <StackPanel Margin="0,10">
-                        <TextBlock Text="Пол" TextWrapping="Wrap" 
+                            <TextBlock Text="{Binding Sex, Source={StaticResource Loc}}" TextWrapping="Wrap" 
 						Style="{StaticResource Text36pxCBB2A3}"/>
                             <TextBlock Name="ProfileSex" Text="{Binding User.OutSex}"  
 							TextWrapping="Wrap" Margin="12,-6,12,0" 
 							Style="{StaticResource Text24pxDF8D4B}"/>
                     </StackPanel>
                     <StackPanel Margin="0,10">
-                        <TextBlock Text="Группа крови" TextWrapping="Wrap" 
+                            <TextBlock Text="{Binding BloodGroup, Source={StaticResource Loc}}" TextWrapping="Wrap" 
 						Style="{StaticResource Text36pxCBB2A3}"/>
                             <TextBlock Text="{Binding User.OutBloodDataString}" Name="ProfileBloodGroup" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
                     </StackPanel>
                     <StackPanel Margin="0,10">
-                        <TextBlock Text="Записано кроводач" TextWrapping="Wrap" 
+                            <TextBlock Text="{Binding GivedBloodCount, Source={StaticResource Loc}}" TextWrapping="Wrap" 
 						Style="{StaticResource Text36pxCBB2A3}"/>
                             <TextBlock Text="{Binding Events.GivedBlood}" TextWrapping="Wrap" Margin="12,-6,12,0" Name="GivedBlood" Style="{StaticResource Text24pxDF8D4B}"/>
                     </StackPanel>
@@ -286,7 +285,7 @@
 					Background="#FF4186A3" 
 					BorderBrush="#FF4186A3" 
 					FontFamily="Segoe WP Regular"
-					Name="EditProfile" Content="Изменить" 
+					Name="EditProfile" Content="{Binding Change, Source={StaticResource Loc}}" 
 					Click="EditProfile_Click" Foreground="White" />
                 </StackPanel>
                 </StackPanel>
