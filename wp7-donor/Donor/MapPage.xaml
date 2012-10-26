@@ -16,7 +16,7 @@
     shell:SystemTray.IsVisible="False" Loaded="PhoneApplicationPage_Loaded">
 
     <phone:PhoneApplicationPage.Resources>
-        <maps:ApplicationIdCredentialsProvider x:Key="BingCredentials" ApplicationId="AsoYwOquow1D9inkw-YSN1iYJ7xPqmsKHvKPUZP_7B_swwwPTbdEDyoF_gibHtpT" />
+        <maps:ApplicationIdCredentialsProvider x:Key="BingCredentials" ApplicationId="AleF-exBAWd-gM9i3JJ0yWTEBsTGK2cHob09pmgpnHc5MCl3XjMhWToUK6MlmgFx" />
 
             <DataTemplate x:Key="RestaurantItem">
                 <Border BorderBrush="Black" BorderThickness="4" CornerRadius="8" Background="#FF003847" Width="320">

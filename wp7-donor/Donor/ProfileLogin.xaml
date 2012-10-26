@@ -127,7 +127,7 @@
                         </StackPanel>
 
                         <StackPanel Margin="10">
-                            <TextBlock Text="Следующая Кроводача" TextWrapping="Wrap" Style="{StaticResource Text36pxCBB2A3}"/>
+                            <TextBlock Text="Следующая кроводача" TextWrapping="Wrap" Style="{StaticResource Text36pxCBB2A3}"/>
                             <TextBlock Text="{Binding User.NearestBloodGive}" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource Text24pxDF8D4B}"/>
                         </StackPanel>
 

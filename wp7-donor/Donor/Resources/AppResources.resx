@@ -169,7 +169,7 @@
     <value>Отменить</value>
   </data>
   <data name="CantEnterCheckNetwork" xml:space="preserve">
-    <value>Не удается выполнить вход. Убедитесь, что режим \"в самолете\" выключен и имеется сетевое соединение.</value>
+    <value>Не удается выполнить вход. Убедитесь, что режим "в самолете" выключен и имеется сетевое соединение.</value>
   </data>
   <data name="Change" xml:space="preserve">
     <value>Изменить</value>
@@ -385,7 +385,7 @@
     <value>Было выполнено</value>
   </data>
   <data name="YouCanGiveBloodIf" xml:space="preserve">
-    <value>Вы можете сдать кровь, если вы:</value>
+    <value>Вы можете сдать кровь, если:</value>
   </data>
   <data name="YourName" xml:space="preserve">
     <value>Ваше имя</value>

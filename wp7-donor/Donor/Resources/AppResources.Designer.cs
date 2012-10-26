@@ -26,7 +26,7 @@ namespace Donor {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
-        private static global::System.Globalization.CultureInfo resourceCulture; 
+        private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
         public AppResources() {
@@ -223,7 +223,7 @@ namespace Donor {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Не удается выполнить вход. Убедитесь, что режим \&quot;в самолете\&quot; выключен и имеется сетевое соединение..
+        ///   Looks up a localized string similar to Не удается выполнить вход. Убедитесь, что режим &quot;в самолете&quot; выключен и имеется сетевое соединение..
         /// </summary>
         public static string CantEnterCheckNetwork {
             get {
@@ -736,7 +736,7 @@ namespace Donor {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Написать.
+        ///   Looks up a localized string similar to Оставить отзыв.
         /// </summary>
         public static string StationWriteReview {
             get {
@@ -898,7 +898,7 @@ namespace Donor {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Вы можете сдать кровь, если вы:.
+        ///   Looks up a localized string similar to Вы можете сдать кровь, если:.
         /// </summary>
         public static string YouCanGiveBloodIf {
             get {
