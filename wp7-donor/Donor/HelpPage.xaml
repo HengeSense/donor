@@ -51,7 +51,7 @@ FontSize="24" FontFamily="Segoe WP Semibold" />
 
                     <StackPanel>
                             <TextBlock Style="{StaticResource Text36pxC0A89A}" 
-							Text="{Binding Emailhelp, Source={StaticResource Loc}}"  />
+							Text="{Binding EmailHelp, Source={StaticResource Loc}}"  />
                             <TextBlock Name="Email" 
 							Text="{Binding InfoDonorsEmail, Source={StaticResource Loc}}" 
 							Style="{StaticResource Text24pxDF8D4B}" 
@@ -121,7 +121,7 @@ ScrollViewer.VerticalScrollBarVisibility="Disabled">
 
             <controls:PanoramaItem>
             	<controls:PanoramaItem.Header>
-                    <TextBlock Text="{Binding BeforeBloodGive, Source={StaticResource Loc}}" 
+                    <TextBlock Text="{Binding ContrasHeader, Source={StaticResource Loc}}" 
 					FontSize="49" 
 					Foreground="White"
 					Margin="-20,30,0,0"

@@ -14,6 +14,7 @@ using Donor.ViewModels;
 using System.Collections.ObjectModel;
 using Microsoft.Phone.Tasks;
 using Microsoft.Phone.Net.NetworkInformation;
+using Donor.Controls;
 
 namespace Donor
 {
@@ -147,6 +148,17 @@ namespace Donor
             try
             {
                 NavigationService.Navigate(new Uri("/MapPage.xaml?id=" + _currentStation.Nid, UriKind.Relative));
+            }
+            catch
+            {
+            };
+        }
+
+        private void VotesControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                (sender as VotesControl).Vote = Int32.Parse((sender as VotesControl).Tag.ToString());
             }
             catch
             {

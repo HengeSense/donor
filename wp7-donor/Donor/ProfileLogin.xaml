@@ -224,13 +224,13 @@ Style="{StaticResource PasswordBoxStyle1}" BorderBrush="#FF4F3B34" 	Foreground="
 					<WPExtensions:AdvancedApplicationBar Background="#FF211E1D" BackgroundColor="#FF211E1D" Foreground="White" BorderBrush="#FF211E1D" ForegroundColor="White" OpacityMask="White" Name="AppBar" IsVisible="False" IsMenuEnabled="False" >
                         <WPExtensions:AdvancedApplicationBarIconButton 
 						IconUri="/icons/appbar.edit.rest.png" 
-						Name="EditButton" Text="Редактировать" 
+						Name="EditButton" Text="{Binding Change, Source={StaticResource Loc}}" 
 						
 						Visibility="Visible" 
 						Click="AdvancedApplicationBarIconButton_Click" />
                         <WPExtensions:AdvancedApplicationBarIconButton 
 						IconUri="/icons/ic_ApplicationBar_exit.png" 
-						Text="Выход" Visibility="Visible" 
+						Text="{Binding Exit, Source={StaticResource Loc}}" Visibility="Visible" 
 						Name="DeleteUserButton" Click="DeleteUserButton_Click" />
                         
 <WPExtensions:AdvancedApplicationBarIconButton 

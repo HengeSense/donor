@@ -109,7 +109,7 @@ namespace Donor.ViewModels
                         }
                         else
                         {
-                            outTitle = "Запланирована кроводача: " + this.GiveType;
+                            outTitle = "Запланировано: " + this.GiveType;
                         };
                         break;
                     case "0":
@@ -139,11 +139,31 @@ namespace Donor.ViewModels
         {
             get
             {
+                //"15 минут", "1 час", "1 день", "2 дня", "1 неделя"
+                switch (this.ReminderDate)
+                {
+                    case "15 минут": _notice = "3"; break;
+                    case "1 час": _notice = "4"; break;
+                    case "1 день": _notice = "5"; break;
+                    case "2 дня": _notice = "6"; break;
+                    case "1 неделя": _notice = "7"; break;
+                    default: _notice = "0"; break;
+                };
                 return _notice;
             }
             set
             {
                 _notice = value;
+
+                switch (_notice)
+                {
+                    case "3": this.ReminderDate = "15 минут"; break;
+                    case "4": this.ReminderDate = "1 час"; break;
+                    case "5": this.ReminderDate = "1 день"; break;
+                    case "6": this.ReminderDate = "2 дня"; break;
+                    case "7": this.ReminderDate = "1 неделя"; break;
+                    default: break;
+                };
             }
         }
 
@@ -502,7 +522,7 @@ namespace Donor.ViewModels
                     };
 
                     //в день в 17:00
-                    this.AddReminder(-60 * 60 * 17, "Вы сегодня сдавали кровь/компоненты крови?");
+                    this.AddReminder(-60 * 60 * 17, "Вы сегодня сдавали кровь?");
                     //за день в 12:00
                     this.AddReminder(60 * 60 * 12, "Завтра у вас запланирована кроводача.");
                 };
@@ -866,7 +886,7 @@ namespace Donor.ViewModels
 
             var _selected_user_items = (from item in this.Items
                                         where ((item.UserId == App.ViewModel.User.objectId) && (item.Type == "1") && (item.Finished == true))
-                                        orderby item.Date ascending
+                                        orderby item.Date descending
                                         select item);
 
             var previtem = _selected_user_items.FirstOrDefault();
@@ -877,8 +897,8 @@ namespace Donor.ViewModels
             {
                 int days = App.ViewModel.Events.DaysFromEvent(_selected_user_items.FirstOrDefault().GiveType, GiveType);
                 previtem = item;
-                if (previtem.Date.AddDays(days) >= DateTime.Today)
-                {
+                //if (previtem.Date.AddDays(days) >= DateTime.Today)
+                //{
                     if (App.ViewModel.Events.EventsInYear(GiveType, OutDate) && App.ViewModel.Events.EventsInYear(GiveType, OutDate.AddYears(-1)))
                     {
                         OutDate = previtem.Date.AddDays(days);
@@ -887,7 +907,7 @@ namespace Donor.ViewModels
                     else
                     {
                     };
-                };
+                //};
 
             };
 
@@ -1364,25 +1384,26 @@ namespace Donor.ViewModels
                                         orderby item.Date ascending
                                         select item);
 
+            List<string> TypesGive = new List<string>() { "Тромбоциты", "Плазма", "Цельная кровь" }; //, "Гранулоциты" 
+
+            foreach (var item in TypesGive)
+            {
+                try
+                {
+                    // удаляем старые напоминания о событиях можно сдать
+                    this.Items.FirstOrDefault(c => c.Type == "PossibleBloodGive").RemoveReminders();
+                    this.Items.Remove(this.Items.FirstOrDefault(c => c.Type == "PossibleBloodGive"));
+                }
+                catch
+                {
+                };
+            };
+
             // не создаем можно сдать если нет выполненных кроводач у данного пользователя
             if (_selected_user_items.Count() > 0)
             {
                 try
                 {
-                    List<string> TypesGive = new List<string>() { "Тромбоциты", "Плазма", "Цельная кровь" }; //, "Гранулоциты" 
-                    foreach (var item in TypesGive)
-                    {
-                        try
-                        {
-                            // удаляем старые напоминания о событиях можно сдать
-                            this.Items.FirstOrDefault(c => c.Type == "PossibleBloodGive").RemoveReminders();
-                            this.Items.Remove(this.Items.FirstOrDefault(c => c.Type == "PossibleBloodGive"));
-                        }
-                        catch
-                        {
-                        };
-                    };
-
                     List<EventViewModel> possibleEvents = new List<EventViewModel>();
 
                     var cnt = 0;

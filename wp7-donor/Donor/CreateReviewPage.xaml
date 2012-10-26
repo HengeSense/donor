@@ -48,8 +48,9 @@
                 <StackPanel Margin="12,0,0,0">
 
                     <TextBlock Text="{Binding YourName, Source={StaticResource Loc}}" 
-                Style="{StaticResource Text24pxCBB2A3}"/>
-                    <TextBox Name="UserName" Style="{StaticResource TextBox1}" />
+                Style="{StaticResource Text24pxCBB2A3}" />
+                    <TextBox Name="UserName" Style="{StaticResource TextBox1}" Background="#FF4F3B34" BorderBrush="#FF4F3B34" Foreground="#FFCBB2A3" 
+					CaretBrush="#FFCBB2A3" />
 
 <Grid Height="50">
 <Grid.ColumnDefinitions>
@@ -130,7 +131,7 @@
 
         <WPExtensions:AdvancedApplicationBar Name="AppBar" IsVisible="True" IsMenuEnabled="False">
 
-            <WPExtensions:AdvancedApplicationBarIconButton IconUri="/icons/appbar.save.rest.png" Text="{Binding Save, Source={StaticResource Loc}}" Name="SaveButton" Click="SaveButton_Click" />
+            <WPExtensions:AdvancedApplicationBarIconButton IconUri="/icons/ic_ApplicationBar_done.png" Text="{Binding Save, Source={StaticResource Loc}}" Name="SaveButton" Click="SaveButton_Click" />
             <WPExtensions:AdvancedApplicationBarIconButton IconUri="/icons/appbar.cancel.png" Text="{Binding Cancel, Source={StaticResource Loc}}" Name="CancelButton" Click="CancelButton_Click" />
 
         </WPExtensions:AdvancedApplicationBar>

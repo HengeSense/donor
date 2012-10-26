@@ -139,7 +139,7 @@
     <value>задать вопрос</value>
   </data>
   <data name="BeforeBloodGive" xml:space="preserve">
-    <value>Перед сдачей крови</value>
+    <value>Перед кроводачей</value>
   </data>
   <data name="BeforeTime" xml:space="preserve">
     <value>Сдача</value>
@@ -334,7 +334,7 @@
     <value>Поиск станции</value>
   </data>
   <data name="StationWriteReview" xml:space="preserve">
-    <value>Написать</value>
+    <value>Оставить отзыв</value>
   </data>
   <data name="StPetersburg" xml:space="preserve">
     <value>Санкт-Петербург</value>
@@ -389,5 +389,17 @@
   </data>
   <data name="YourName" xml:space="preserve">
     <value>Ваше имя</value>
+  </data>
+  <data name="Apply" xml:space="preserve">
+    <value>Применить</value>
+  </data>
+  <data name="Exit" xml:space="preserve">
+    <value>Выход</value>
+  </data>
+  <data name="Share" xml:space="preserve">
+    <value>Поделиться</value>
+  </data>
+  <data name="String3" xml:space="preserve">
+    <value>противопоказания</value>
   </data>
 </root>

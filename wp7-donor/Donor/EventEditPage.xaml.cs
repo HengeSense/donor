@@ -228,13 +228,18 @@ namespace Donor
                  }
              }
              catch { };
-             if ((this.EventType.SelectedItem.ToString() != "Анализ") && checkit)
+             bool curan = false;
+             try {
+                 curan = CurrentEvent.Type != "0";
+             } catch {
+             };
+             if ((this.EventType.SelectedItem.ToString() != "Анализ" || curan || this.EventType.SelectedIndex != 1) && checkit)
              {
                  try
                  {
                      DateTime curdate = this.Date.Value.Value;
                      var checkitems = (from item in App.ViewModel.Events.UserItems
-                                       where (item.Type == "1")
+                                       where (item.Type == "1") && (item.Finished == true)
                                        orderby item.Date descending
                                        select item);
                      foreach (var item in checkitems)
@@ -374,9 +379,13 @@ namespace Donor
                              };
 
                              App.ViewModel.Events.Items.Add(CurrentEvent);
+
                              App.ViewModel.Events.UpdateItems(CurrentEvent);
                              App.ViewModel.Events.UpdateItems();
                              //App.ViewModel.SaveToIsolatedStorage();
+
+                             App.ViewModel.Events.CurrentMonth = CurrentEvent.Date;
+
                              NavigationService.GoBack();
                          }
                          else
@@ -432,6 +441,9 @@ namespace Donor
 
                                  App.ViewModel.Events.UpdateItems(CurrentEvent);
                                  App.ViewModel.Events.UpdateItems();
+
+                                 App.ViewModel.Events.CurrentMonth = CurrentEvent.Date;
+
                                  //App.ViewModel.SaveToIsolatedStorage();
                                  NavigationService.GoBack();
                              }

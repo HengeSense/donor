@@ -15,8 +15,8 @@
     shell:SystemTray.IsVisible="False" Loaded="PhoneApplicationPage_Loaded">
 	<phone:PhoneApplicationPage.ApplicationBar>
 		<shell:ApplicationBar x:Name="SaveButton" BackgroundColor="#FF211E1D" ForegroundColor="White">
-			<shell:ApplicationBarIconButton x:Name="SaveButton1" IconUri="/icons/appbar.save.rest.png" Text="Применить" Click="SaveButton1_Click"/>
-			<shell:ApplicationBarIconButton x:Name="cancelButton" IconUri="/Toolkit.Content/ApplicationBar.Cancel.png" Text="Отменить" Click="cancelButton_Click" />
+            <shell:ApplicationBarIconButton x:Name="SaveButton1" IconUri="/icons/ic_ApplicationBar_done.png" Text="{Binding Apply, Source={StaticResource Loc}}" Click="SaveButton1_Click"/>
+            <shell:ApplicationBarIconButton x:Name="cancelButton" IconUri="/Toolkit.Content/ApplicationBar.Cancel.png" Text="{Binding Cancel, Source={StaticResource Loc}}" Click="cancelButton_Click" />
 		</shell:ApplicationBar>
 	</phone:PhoneApplicationPage.ApplicationBar>
 

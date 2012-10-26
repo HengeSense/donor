@@ -136,8 +136,7 @@
                         </StackPanel>
                     </ListBoxItem>
                     
-                        </ListBox>
-                        <TextBlock Text="Version - 25102012_3"/>
+                        </ListBox>                        
                     </StackPanel>
                 </ScrollViewer>
             </controls:PanoramaItem>

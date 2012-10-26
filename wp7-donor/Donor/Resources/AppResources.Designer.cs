@@ -26,10 +26,10 @@ namespace Donor {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
-        private static global::System.Globalization.CultureInfo resourceCulture;
+        private static global::System.Globalization.CultureInfo resourceCulture; 
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal AppResources() {
+        public AppResources() {
         }
         
         /// <summary>
@@ -115,6 +115,15 @@ namespace Donor {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Применить.
+        /// </summary>
+        public static string Apply {
+            get {
+                return ResourceManager.GetString("Apply", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to задать вопрос.
         /// </summary>
         public static string AskQuestion {
@@ -124,7 +133,7 @@ namespace Donor {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Перед сдачей крови.
+        ///   Looks up a localized string similar to Перед кроводачей.
         /// </summary>
         public static string BeforeBloodGive {
             get {
@@ -354,6 +363,15 @@ namespace Donor {
         public static string EventType {
             get {
                 return ResourceManager.GetString("EventType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Выход.
+        /// </summary>
+        public static string Exit {
+            get {
+                return ResourceManager.GetString("Exit", resourceCulture);
             }
         }
         
@@ -664,6 +682,15 @@ namespace Donor {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Поделиться.
+        /// </summary>
+        public static string Share {
+            get {
+                return ResourceManager.GetString("Share", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Сайт.
         /// </summary>
         public static string Site {
@@ -741,6 +768,15 @@ namespace Donor {
         public static string String2 {
             get {
                 return ResourceManager.GetString("String2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to противопоказания.
+        /// </summary>
+        public static string String3 {
+            get {
+                return ResourceManager.GetString("String3", resourceCulture);
             }
         }
         

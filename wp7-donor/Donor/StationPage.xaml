@@ -164,7 +164,7 @@
 <TextBlock Text="{Binding ShortDateText}" 
 Style="{StaticResource Text36pxB9A194}" />
                                       
-<my:VotesControl HorizontalAlignment="Left" Tag="{Binding Vote}" VoteChanged="VotesControl_VoteChanged" />
+<my:VotesControl HorizontalAlignment="Left" Tag="{Binding Vote}" VoteChanged="VotesControl_VoteChanged" Loaded="VotesControl_Loaded" />
 									    
 <StackPanel Orientation="Horizontal">
 <TextBlock Text="{Binding Username}" TextWrapping="Wrap"
@@ -176,8 +176,9 @@ Style="{StaticResource Text24pxDF8D4B}"/>
                             </ListBox.ItemTemplate>
                         </ListBox>
                     </ScrollViewer>
-                        <WPExtensions:AdvancedApplicationBar Name="AppBar" Background="#FF211E1D" BackgroundColor="#FF211E1D" Foreground="White" IsVisible="True" IsMenuEnabled="False">
-                        <WPExtensions:AdvancedApplicationBarIconButton IconUri="/icons/appbar.edit.rest.png" Text="{Binding StationWriteReview, Source={StaticResource Loc}}" Name="CreateReviewButton" Click="CreateReviewButton_Click" />
+                        <WPExtensions:AdvancedApplicationBar Name="AppBar" Background="#FF211E1D" BackgroundColor="#FF211E1D" Foreground="White" IsVisible="True" IsMenuEnabled="True" Mode="Minimized">
+                        <WPExtensions:AdvancedApplicationBarMenuItem Text="{Binding StationWriteReview, Source={StaticResource Loc}}" Name="CreateReviewButton" Click="CreateReviewButton_Click" />
+                        <!--<WPExtensions:AdvancedApplicationBarIconButton IconUri="/icons/appbar.edit.rest.png" Text="{Binding StationWriteReview, Source={StaticResource Loc}}" Name="CreateReviewButton" Click="CreateReviewButton_Click" />-->
                     </WPExtensions:AdvancedApplicationBar>
                 </Grid>
             </controls:PanoramaItem>

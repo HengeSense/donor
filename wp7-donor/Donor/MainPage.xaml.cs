@@ -139,6 +139,8 @@ namespace Donor
             };
         }
 
+        private bool _userLoaded = false;
+
         private void UserLoaded(object sender, EventArgs e)
         {
             try
@@ -167,6 +169,8 @@ namespace Donor
             };
 
             App.ViewModel.Events.UpdateItems();
+
+            _userLoaded = true;
         }
 
         private void DataFLoaded(object sender, EventArgs e)
@@ -202,8 +206,11 @@ namespace Donor
                 };
             };
 
-            this.progressOverlay.Visibility = Visibility.Collapsed;
-            this.progressOverlay.IsEnabled = false;
+            if (_userLoaded == true)
+            {
+                this.progressOverlay.Visibility = Visibility.Collapsed;
+                this.progressOverlay.IsEnabled = false;
+            };
 
             App.ViewModel.Events.UpdateItems();
         }

@@ -26,10 +26,8 @@ namespace Donor
 
         private void DataFLoaded(object sender, EventArgs e)
         {
-            if (App.ViewModel.IsDataLoaded == true)
-            
+            if (App.ViewModel.IsDataLoaded == true)            
             {
-
                 if (this.NavigationContext.QueryString.ContainsKey("id"))
                 {
                     try
@@ -101,6 +99,8 @@ namespace Donor
                             this.Time.Visibility = Visibility.Collapsed;
                         };
 
+                        this.Description.Text = _currentEvent.Description;
+
                     }
                     catch
                     {
@@ -124,6 +124,28 @@ namespace Donor
                 DataFLoaded(this, EventArgs.Empty); 
             } catch { };
         }
+
+        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
+        {
+            try
+            {
+                App.ViewModel.DataFLoaded += new MainViewModel.DataFLoadedEventHandler(this.DataFLoaded);
+            }
+            catch
+            {
+            };
+
+            try
+            {
+                DataFLoaded(this, EventArgs.Empty);
+            }
+            catch
+            {
+            };
+
+            base.OnNavigatedTo(e);
+        }
+        //DataFLoaded(this, EventArgs.Empty); 
 
 
 
@@ -193,8 +215,9 @@ namespace Donor
                         App.ViewModel.Events.Items.Remove(_currentEvent);
                         _currentEvent.Finished = true;
                         App.ViewModel.Events.Items.Add(_currentEvent);
+                        _currentEvent.ParseExists = true;
 
-                        App.ViewModel.Events.UpdateItems();
+                        App.ViewModel.Events.UpdateItems(_currentEvent);
 
                         MessageBox.Show("Вы сдали кровь. Спасибо! Рассчитан интервал до следующей возможной кроводачи");
                     }
