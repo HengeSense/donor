@@ -26,6 +26,11 @@
 - (void)eventWasRemoved: (HSEvent *)event;
 
 /**
+ * Emmits when event was updated in the calendar.
+ */
+- (void)eventWasUpdated: (HSEvent *)event;
+
+/**
  * Emmits when events in the calendar was changed in some reason: pulled from server etc.
  */
 - (void)eventsWasUpdated: (NSArray *)events;
@@ -66,15 +71,24 @@
 
 /**
  * Adds specified event to the calendar.
+ * If specified event exist, this operation will no effect.
  * Notifies observers with [HSCalendarEventObserver eventWasAdded:] methods.
  */
 - (void)addEvent: (HSEvent *)event;
 
 /**
  * Removes specified event from the calendar.
+ * If specified event does not exist, this operation will no effect.
  * Notifies observers with [HSCalendarEventObserver eventWasRemoved:] methods.
  */
 - (void)removeEvent: (HSEvent *)event;
+
+/**
+ * Updates specified event in the calendar.
+ * If specified event does not exist, this operation will no effect.
+ * Notifies observers with [HSCalendarEventObserver eventWasUpdated:] methods.
+ */
+- (void)updateEvent: (HSEvent *)event;
 
 /**
  * Returns all events in the calendar.

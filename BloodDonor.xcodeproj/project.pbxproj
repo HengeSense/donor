@@ -158,6 +158,8 @@
 		687EFE281625F6B3005CE7D6 /* Icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 687EFE241625F6B3005CE7D6 /* Icon-72@2x.png */; };
 		687EFE291625F6B3005CE7D6 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 687EFE251625F6B3005CE7D6 /* Icon.png */; };
 		687EFE2A1625F6B3005CE7D6 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 687EFE261625F6B3005CE7D6 /* Icon@2x.png */; };
+		6891637D1639D92500E219B3 /* HSEventPlanningViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6891637B1639D92400E219B3 /* HSEventPlanningViewController.m */; };
+		6891637E1639D92500E219B3 /* HSEventPlanningViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6891637C1639D92500E219B3 /* HSEventPlanningViewController.xib */; };
 		68B455B81635BC5100811A0F /* HSEventRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B455B71635BC5100811A0F /* HSEventRenderer.m */; };
 		68B455BC1635C0B500811A0F /* HSBloodDonationEventRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B455BB1635C0B500811A0F /* HSBloodDonationEventRenderer.m */; };
 		68B455BF1635C3D300811A0F /* HSFinishRestEventRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B455BE1635C3D300811A0F /* HSFinishRestEventRenderer.m */; };
@@ -646,6 +648,9 @@
 		687EFE241625F6B3005CE7D6 /* Icon-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-72@2x.png"; path = "../Icon-72@2x.png"; sourceTree = "<group>"; };
 		687EFE251625F6B3005CE7D6 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = ../Icon.png; sourceTree = "<group>"; };
 		687EFE261625F6B3005CE7D6 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "../Icon@2x.png"; sourceTree = "<group>"; };
+		6891637A1639D92400E219B3 /* HSEventPlanningViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSEventPlanningViewController.h; sourceTree = "<group>"; };
+		6891637B1639D92400E219B3 /* HSEventPlanningViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSEventPlanningViewController.m; sourceTree = "<group>"; };
+		6891637C1639D92500E219B3 /* HSEventPlanningViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HSEventPlanningViewController.xib; sourceTree = "<group>"; };
 		68B455B61635BC5100811A0F /* HSEventRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HSEventRenderer.h; path = event/HSEventRenderer.h; sourceTree = "<group>"; };
 		68B455B71635BC5100811A0F /* HSEventRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HSEventRenderer.m; path = event/HSEventRenderer.m; sourceTree = "<group>"; };
 		68B455BA1635C0B500811A0F /* HSBloodDonationEventRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HSBloodDonationEventRenderer.h; path = event/HSBloodDonationEventRenderer.h; sourceTree = "<group>"; };
@@ -1600,6 +1605,9 @@
 				686BA61B1633307B004D7082 /* HSCalendarViewController.h */,
 				686BA61C1633307B004D7082 /* HSCalendarViewController.m */,
 				686BA61D1633307B004D7082 /* HSCalendarViewController.xib */,
+				6891637A1639D92400E219B3 /* HSEventPlanningViewController.h */,
+				6891637B1639D92400E219B3 /* HSEventPlanningViewController.m */,
+				6891637C1639D92500E219B3 /* HSEventPlanningViewController.xib */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -2205,6 +2213,7 @@
 				687EFE2A1625F6B3005CE7D6 /* Icon@2x.png in Resources */,
 				85939C66162D616D0081A46C /* ForDonorsCell.xib in Resources */,
 				686BA61F1633307B004D7082 /* HSCalendarViewController.xib in Resources */,
+				6891637E1639D92500E219B3 /* HSEventPlanningViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2300,6 +2309,7 @@
 				68B455C81635CE7A00811A0F /* HSBloodTestsEventRenderer.m in Sources */,
 				68B455CE163739E900811A0F /* HSBloodRemoteEvent.m in Sources */,
 				68F7F3F11638878800740CCF /* HSModelCommon.m in Sources */,
+				6891637D1639D92500E219B3 /* HSEventPlanningViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

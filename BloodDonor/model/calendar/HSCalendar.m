@@ -46,6 +46,11 @@ static NSString * const kEventDate = @"date";
 - (void) fireNotificationEventWasRemoved: (HSEvent *) event;
 
 /**
+ * Notifies all calendar events observers with message eventWasUpdated:.
+ */
+- (void) fireNotificationEventWasUpdated: (HSEvent *) event;
+
+/**
  * Makes period calculations ans adds depended events to the calendar;
  */
 - (void)addCalculatedEvents;
@@ -83,6 +88,7 @@ static NSString * const kEventDate = @"date";
 
 - (void)addEvent: (HSEvent *)event {
     THROW_IF_ARGUMENT_NIL(event, @"event is not specified");
+    
     if (![self.events containsObject: event]) {
         [self.events addObject: event];
         [self fireNotificationEventWasAdded: event];
@@ -97,6 +103,18 @@ static NSString * const kEventDate = @"date";
     }
 }
 
+- (void)updateEvent: (HSEvent *)event {
+    THROW_IF_ARGUMENT_NIL(event, @"event is not specified")
+    // remove event
+    if ([self.events containsObject: event]) {
+    
+    }
+    
+    [self.events addObject: event];
+    [self addCalculatedEvents];
+    
+}
+
 - (NSSet *)allEvents {
     return [NSSet setWithArray: self.events];
 }
@@ -108,7 +126,7 @@ static NSString * const kEventDate = @"date";
     if (currentUser != nil) {
         PFRelation *eventsRelation = [currentUser relationforKey: kUserEventsRelation];
         PFQuery *eventsQuery = [eventsRelation query];
-        //[eventsQuery orderByDescending: kEventDate];
+        [eventsQuery orderByDescending: kEventDate];
         
         [eventsQuery findObjectsInBackgroundWithBlock: ^(NSArray *remoteEvents, NSError *error) {
             [self.events removeAllObjects];
@@ -171,6 +189,14 @@ static NSString * const kEventDate = @"date";
     for (id<HSCalendarEventObserver> observer in self.eventObservers) {
         if ([observer respondsToSelector: @selector(eventsWasUpdated:)]) {
             [observer eventsWasUpdated: events];
+        }
+    }
+}
+
+- (void) fireNotificationEventWasUpdated: (HSEvent *)event {
+    for (id<HSCalendarEventObserver> observer in self.eventObservers) {
+        if ([observer respondsToSelector: @selector(eventWasUpdated:)]) {
+            [observer eventWasUpdated: event];
         }
     }
 }

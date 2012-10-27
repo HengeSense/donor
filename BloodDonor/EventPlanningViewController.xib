@@ -43,7 +43,7 @@
 					<object class="IBUIScrollView" id="402983894">
 						<reference key="NSNextResponder" ref="1046756263"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{0, 2}, {320, 378}}</string>
+						<string key="NSFrameSize">{320, 378}</string>
 						<reference key="NSSuperview" ref="1046756263"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<object class="NSColor" key="IBUIBackgroundColor" id="882854701">
@@ -800,7 +800,7 @@
 					<object class="IBUIButton" id="421687355">
 						<reference key="NSNextResponder" ref="263114902"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{123, 107}, {176, 39}}</string>
+						<string key="NSFrame">{{119, 107}, {176, 39}}</string>
 						<reference key="NSSuperview" ref="263114902"/>
 						<reference key="NSNextKeyView" ref="429592410"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
