@@ -402,4 +402,43 @@
   <data name="String3" xml:space="preserve">
     <value>противопоказания</value>
   </data>
+  <data name="AccountHeader" xml:space="preserve">
+    <value>аккаунт</value>
+  </data>
+  <data name="ConfirmPassword" xml:space="preserve">
+    <value>Подтвердите пароль</value>
+  </data>
+  <data name="Female" xml:space="preserve">
+    <value>Женский</value>
+  </data>
+  <data name="FirstBloodGroup" xml:space="preserve">
+    <value>O(I)</value>
+  </data>
+  <data name="ForthBloodGroup" xml:space="preserve">
+    <value>AB(IV)</value>
+  </data>
+  <data name="Male" xml:space="preserve">
+    <value>Мужской</value>
+  </data>
+  <data name="NextBloodGive" xml:space="preserve">
+    <value>Следующая кроводача</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Пароль</value>
+  </data>
+  <data name="ProfileHeader" xml:space="preserve">
+    <value>профиль</value>
+  </data>
+  <data name="RestorePassoword" xml:space="preserve">
+    <value>Восстановить пароль</value>
+  </data>
+  <data name="RhFactor" xml:space="preserve">
+    <value>Резус-фактор</value>
+  </data>
+  <data name="SecondBloodGroup" xml:space="preserve">
+    <value>A(II)</value>
+  </data>
+  <data name="ThirdBloodGroup" xml:space="preserve">
+    <value>B(III)</value>
+  </data>
 </root>
