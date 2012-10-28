@@ -391,5 +391,16 @@ namespace Donor
             {
             }
         }
+
+        private void QrButtonMenu_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            try
+            {
+                NavigationService.Navigate(new Uri("/QRRead.xaml", UriKind.Relative));
+            }
+            catch
+            {
+            }
+        }
     }
 }

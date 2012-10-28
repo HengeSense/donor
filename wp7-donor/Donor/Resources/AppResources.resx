@@ -441,4 +441,7 @@
   <data name="ThirdBloodGroup" xml:space="preserve">
     <value>B(III)</value>
   </data>
+  <data name="ReadQrCode" xml:space="preserve">
+    <value>Считать QR код</value>
+  </data>
 </root>

@@ -191,6 +191,7 @@ namespace Donor.ViewModels
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
+        public string FacebookToken;
         private void NotifyPropertyChanged(String propertyName)
         {
             PropertyChangedEventHandler handler = PropertyChanged;

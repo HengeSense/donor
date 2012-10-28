@@ -89,3 +89,7 @@ C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\Bin\Release\de\MyToolk
 C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\Bin\Release\fr\MyToolkit.resources.dll
 C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\Bin\Release\de\MyToolkit.Extended.resources.dll
 C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\Bin\Release\fr\MyToolkit.Extended.resources.dll
+C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\obj\Release\FacebookPages\FacebookInfoPage.g.i.cs
+C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\obj\Release\FacebookPages\FacebookLoginPage.g.i.cs
+C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\obj\Release\FacebookPages\FacebookLogoutPage.g.i.cs
+C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\obj\Release\QRread.g.i.cs

@@ -673,6 +673,15 @@ namespace Donor {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Считать QR код.
+        /// </summary>
+        public static string ReadQrCode {
+            get {
+                return ResourceManager.GetString("ReadQrCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Время приема.
         /// </summary>
         public static string RecepientTime {

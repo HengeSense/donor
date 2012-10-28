@@ -147,6 +147,15 @@
     <Compile Include="EventPage.xaml.cs">
       <DependentUpon>EventPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="FacebookPages\FacebookInfoPage.xaml.cs">
+      <DependentUpon>FacebookInfoPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FacebookPages\FacebookLoginPage.xaml.cs">
+      <DependentUpon>FacebookLoginPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FacebookPages\FacebookLogoutPage.xaml.cs">
+      <DependentUpon>FacebookLogoutPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="HelpPage.xaml.cs">
       <DependentUpon>HelpPage.xaml</DependentUpon>
     </Compile>
@@ -170,6 +179,9 @@
       <DependentUpon>ProfileLogin.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QRread.xaml.cs">
+      <DependentUpon>QRread.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Resources\AppResources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -239,6 +251,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="FacebookPages\FacebookInfoPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="FacebookPages\FacebookLoginPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="FacebookPages\FacebookLogoutPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="HelpPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -270,6 +294,10 @@
     <Page Include="ProfileLogin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="QRread.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="StationPage.xaml">
       <SubType>Designer</SubType>

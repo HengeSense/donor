@@ -135,7 +135,18 @@
 						 Tap="TextBlock_Tap_1"/>
                         </StackPanel>
                     </ListBoxItem>
-                    
+
+                            <ListBoxItem Name="QrButtonMenu" Tap="QrButtonMenu_Tap">
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Height="64" Width="64" 
+						 Source="images/ic_menu_profile_normal.png"/>
+                                    <TextBlock Margin="0,15,0,0" 
+						 Text="{Binding ReadQrCode, Source={StaticResource Loc}}"
+						 TextWrapping="Wrap" 
+						 Style="{StaticResource Text30pxCBB2A3}"/>
+                                </StackPanel>
+                            </ListBoxItem>
+
                         </ListBox>                        
                     </StackPanel>
                 </ScrollViewer>
