@@ -19,6 +19,7 @@
 #import "HSBloodTestsEvent.h"
 
 #import "HSEventPlanningViewController.h"
+#import "CalendarInfoViewController.h"
 
 @interface HSCalendarViewController ()
 
@@ -41,6 +42,9 @@
  * System calendar with ru_RU locale.
  */
 @property (nonatomic, strong) NSCalendar *systemCalendar;
+
+/// @name Methods for configuring UI.
+- (void)configureNavigationItem;
 
 /// @name Methods for updating UI components
 
@@ -71,6 +75,11 @@
  */
 - (IBAction)dayButtonClicked: (id)sender;
 
+/**
+ * Shows information about application.
+ */
+- (IBAction)showInfo: (id)sender;
+
 /// @name Utility methods for UI components creation
 - (HSCalendarDayButton *)createDayButtonWhithDate: (NSDate *)date frame: (CGRect)frame enabled: (BOOL)enabled;
 
@@ -97,6 +106,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self configureNavigationItem];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -130,6 +140,27 @@
 }
 
 #pragma mark - Private interace implementation
+#pragma mark - Configuring UI
+- (void)configureNavigationItem {
+    
+    self.title = @"Календарь";
+    self.navigationItem.backBarButtonItem =
+            [[UIBarButtonItem alloc] initWithTitle: @"Назад" style: UIBarButtonItemStyleBordered
+                                            target: nil action:nil];
+    
+    UIButton *infoButton = [UIButton buttonWithType: UIButtonTypeCustom];
+    UIImage *infoImageNormal = [UIImage imageNamed: @"calendarInfoButtonNormal.png"];
+    UIImage *infoImagePressed = [UIImage imageNamed: @"calendarInfoButtonPressed.png"];
+    CGRect infoButtonFrame = CGRectMake(0, 0, infoImageNormal.size.width, infoImageNormal.size.height);
+    [infoButton setImage: infoImageNormal forState: UIControlStateNormal];
+    [infoButton setImage: infoImagePressed forState: UIControlStateHighlighted];
+    infoButton.frame = infoButtonFrame;
+    [infoButton addTarget: self action: @selector(showInfo:) forControlEvents: UIControlEventTouchUpInside];
+    
+    UIBarButtonItem *infoBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:infoButton];
+    self.navigationItem.rightBarButtonItem = infoBarButtonItem;
+}
+
 #pragma mark - Private methods for updating UI components
 - (void)updateCalendarToDate: (NSDate *)date {
     THROW_IF_ARGUMENT_NIL(date, @"date is not specified");
@@ -213,6 +244,12 @@
 }
 
 #pragma mark - Private action methods
+- (void)showInfo: (id)sender {
+    CalendarInfoViewController *calendarInfoViewController = [[CalendarInfoViewController alloc]
+            initWithNibName: @"CalendarInfoViewController" bundle: nil];
+    [self.navigationController pushViewController:calendarInfoViewController animated:YES];
+}
+
 - (IBAction)dayButtonClicked: (id)sender {
     HSCalendarDayButton *dayButton = (HSCalendarDayButton *)sender;
     
