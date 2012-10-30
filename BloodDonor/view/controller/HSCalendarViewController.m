@@ -164,20 +164,16 @@
 #pragma mark - Private methods for updating UI components
 - (void)updateCalendarToDate: (NSDate *)date {
     THROW_IF_ARGUMENT_NIL(date, @"date is not specified");
+    
+    [self updateMonthLabelToDate: date];
+
     MBProgressHUD *progressHud = [MBProgressHUD showHUDAddedTo: self.navigationController.view animated: YES];
     [self.calendarModel pullEventsFromServer:^(BOOL success, NSError *error) {
         if (!success) {
             NSLog(@"Unable to load remote events due to error: %@", error);
         }
         [progressHud hide: YES];
-
-        [self updateMonthLabelToDate: date];
         [self updateDaysButtonsToDate: date];
-        
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setDateFormat: @"yy-MM-dd"];
-        
-        NSLog(@"Calendar date was updated to: %@", [dateFormatter stringFromDate: date]);
         self.currentDate = date;
     }];
 }
