@@ -22,12 +22,6 @@ static const size_t kRemoteEventFields_BloodDonationType_Granulocytes = 3;
 @implementation HSBloodDonationEvent
 
 #pragma mark - Initialization
-- (id)init {
-    if (self = [super initWithRemoteEvent: [[PFObject alloc] initWithClassName: kRemoteEvent_BaseClassName]]) {
-    
-    }
-    return self;
-}
 
 #pragma mark - Getters / Setters bridget to PFObject class object.
 - (HSBloodDonationType)bloodDonationType {

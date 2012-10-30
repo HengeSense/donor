@@ -100,6 +100,7 @@ static NSString * const kBloodDonationEventTypeLabel_Test = @"Анализ";
     self.commentsTextView.backgroundColor = [UIColor colorWithPatternImage:
             [UIImage imageNamed: @"eventCommentBackground.png"]];
     self.flexibleViewInitialFrame = self.dataAndPlaceView.frame;
+
     if (self.bloodDonationEvent != nil) {
         [self configureViewForEditingBloodDonationEvent];
         if (self.bloodTestsEvent == nil) {
@@ -107,6 +108,9 @@ static NSString * const kBloodDonationEventTypeLabel_Test = @"Анализ";
         }
     } else if (self.bloodTestsEvent != nil) {
         [self configureViewForEditingBloodTestEvent];
+        if (self.bloodDonationEvent == nil) {
+            self.bloodDonationEvent = [[HSBloodDonationEvent alloc] init];
+        }
     } else {
         self.bloodDonationEvent = [[HSBloodDonationEvent alloc] init];
         self.bloodTestsEvent = [[HSBloodTestsEvent alloc] init];

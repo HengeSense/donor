@@ -14,7 +14,7 @@
 
 - (id) init {
     if (self = [super init]) {
-        self.scheduledDate = [[NSDate alloc] init];
+        self.scheduledDate = [NSDate date];
         self.dateFormatter = [[NSDateFormatter alloc] init];
         [self.dateFormatter setDateFormat: @"yyyy-MM-dd HH:mm:ss"];
     }

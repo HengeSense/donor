@@ -64,7 +64,7 @@ static NSString * const kRemoteEventField_Type = @"type";
 }
 
 - (void)setIsDone:(BOOL)isDone {
-    [self.remoteEvent setObject: [NSNumber numberWithBool: isDone] forKey: kRemoteEventField_Date];
+    [self.remoteEvent setObject: [NSNumber numberWithBool: isDone] forKey: kRemoteEventField_Finished];
 }
 
 - (NSDate *)scheduledDate {
@@ -97,6 +97,15 @@ static NSString * const kRemoteEventField_Type = @"type";
 
 
 #pragma mark - Initialization
+- (id)init {
+    PFObject *newEvent = [[PFObject alloc] initWithClassName: kRemoteEvent_BaseClassName];
+    if ([self initWithRemoteEvent: newEvent]) {
+        self.scheduledDate = [NSDate date];
+        self.isDone = NO;
+    }
+    return self;
+}
+
 - (id)initWithRemoteEvent:(PFObject *)remoteEvent {
     THROW_IF_ARGUMENT_NIL(remoteEvent, @"remote event is not specified");
     if (self = [super init]) {
