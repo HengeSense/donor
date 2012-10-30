@@ -86,7 +86,7 @@
     // add new events representations
     for (HSEvent *event in self.allEvents) {
         HSEventRenderer *eventRenderer = [HSEventRenderer createEventRendererForEvent: event];
-        UIView *eventView = [eventRenderer renderViewInFrame: self.frame];
+        UIView *eventView = [eventRenderer renderViewInBounds: self.bounds];
         [self addSubview: eventView];
     }
     

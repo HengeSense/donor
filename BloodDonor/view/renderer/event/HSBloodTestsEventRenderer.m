@@ -10,4 +10,18 @@
 
 @implementation HSBloodTestsEventRenderer
 
+-(UIView *)renderViewInBounds: (CGRect)bounds {
+    UIImage *resultImage = [UIImage imageNamed: @"calendarScheduledTestIcon.png"];
+    if (resultImage == nil) {
+        @throw [NSException exceptionWithName: NSInternalInconsistencyException
+                                       reason: @"calendarScheduledTestIcon.png image not found" userInfo: nil];
+    }
+    UIImageView *resultImageView = [[UIImageView alloc] initWithImage: resultImage];
+    // Locate in left bottom corner
+    CGFloat x = 0;
+    CGFloat y = bounds.size.height - resultImageView.bounds.size.height;
+    resultImageView.frame = CGRectMake(x, y, resultImage.size.width, resultImage.size.height);
+    return resultImageView;
+}
+
 @end

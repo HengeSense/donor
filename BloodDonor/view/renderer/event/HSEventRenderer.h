@@ -26,9 +26,9 @@
 /// @name Methods for overriding in subclasses.
 
 /**
- * Create rendered view in the specified frame. Only part of the frame is used for rendering.
+ * Create rendered view in the specified bounds. Only part of the frame is used for rendering.
  *     This method should be overriden in subclasses, by default implementation empty view is returned.
  */
-- (UIView *) renderViewInFrame: (CGRect) frame;
+- (UIView *) renderViewInBounds: (CGRect) bounds;
 
 @end

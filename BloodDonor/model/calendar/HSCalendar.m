@@ -119,6 +119,32 @@ static NSString * const kEventDate = @"date";
     return [NSSet setWithArray: self.events];
 }
 
+- (NSSet *)eventsForDay: (NSDate *)dayDate {
+    THROW_IF_ARGUMENT_NIL(dayDate, @"dayDate is not specified");
+    NSCalendar *currentCalendar = [NSCalendar currentCalendar];
+    NSDateComponents *dayDateComponents =
+            [currentCalendar components: (NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit)
+                               fromDate: dayDate];
+    NSDate *roundedDayDate = [currentCalendar dateFromComponents: dayDateComponents];
+    
+    NSSet *allEvents = [self allEvents];
+    NSPredicate *eventsBetweenDates =
+    [NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
+        HSEvent *testedEvent = (HSEvent *)evaluatedObject;
+        NSDateComponents *testedEventDayDateComponents =
+                [currentCalendar components: (NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit)
+                                   fromDate: testedEvent.scheduledDate];
+        NSDate *roundedTestedEventDate = [currentCalendar dateFromComponents: testedEventDayDateComponents];
+        if (roundedDayDate.timeIntervalSince1970 == roundedTestedEventDate.timeIntervalSince1970) {
+            return YES;
+        } else {
+            return NO;
+        }
+    }];
+    NSSet *resultEvents = [allEvents filteredSetUsingPredicate: eventsBetweenDates];
+    return resultEvents;
+}
+
 #pragma mark - Methods to interact with cloud data service - parse.com
 - (void)pullEventsFromServer: (CompletionBlockType)completion {
     THROW_IF_ARGUMENT_NIL(completion, @"completion block is not specified")

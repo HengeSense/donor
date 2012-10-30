@@ -8,9 +8,17 @@
 
 #import "HSCalendarViewController.h"
 
+#import "MBProgressHUD.h"
+
 #import "HSCalendar.h"
 #import "HSCalendarDayButton.h"
 #import "NSCalendar+HSCalendar.h"
+
+#import "HSBloodRemoteEvent.h"
+#import "HSBloodDonationEvent.h"
+#import "HSBloodTestsEvent.h"
+
+#import "HSEventPlanningViewController.h"
 
 @interface HSCalendarViewController ()
 
@@ -42,7 +50,7 @@
 - (void)updateCalendarToDate: (NSDate *)date;
 
 /**
- * Loads events from the calendar model to the view.
+ * Loads events from the calendar model to the view. Actualy now all events are loaded.
  */
 - (void)loadEventsForDate: (NSDate *)date;
 
@@ -89,7 +97,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self updateCalendarToDate: [NSDate date]];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewDidAppear: animated];
+    [self updateCalendarToDate: self.currentDate];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -121,26 +133,26 @@
 #pragma mark - Private methods for updating UI components
 - (void)updateCalendarToDate: (NSDate *)date {
     THROW_IF_ARGUMENT_NIL(date, @"date is not specified");
-    [self updateMonthLabelToDate:date];
-    [self updateDaysButtonsToDate: date];
-    [self loadEventsForDate: date];
-    
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat: @"yy-MM-dd"];
-    
-    NSLog(@"Calendar date was updated to: %@", [dateFormatter stringFromDate: date]);
-    self.currentDate = date;
+    MBProgressHUD *progressHud = [MBProgressHUD showHUDAddedTo: self.navigationController.view animated: YES];
+    [self.calendarModel pullEventsFromServer:^(BOOL success, NSError *error) {
+        if (!success) {
+            NSLog(@"Unable to load remote events due to error: %@", error);
+        }
+        [progressHud hide: YES];
+
+        [self updateMonthLabelToDate: date];
+        [self updateDaysButtonsToDate: date];
+        
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat: @"yy-MM-dd"];
+        
+        NSLog(@"Calendar date was updated to: %@", [dateFormatter stringFromDate: date]);
+        self.currentDate = date;
+    }];
 }
 
 -(void)loadEventsForDate: (NSDate *)date {
     THROW_IF_ARGUMENT_NIL(date, @"date is not specified");
-    [self.calendarModel pullEventsFromServer:^(BOOL success, NSError *error) {
-        self.currentDateEvents = [self.calendarModel allEvents];
-        for (HSEvent *event in self.currentDateEvents) {
-            NSLog(@"Event of class: %@, scheduled on date: %@", event.class,
-                    [event.dateFormatter stringFromDate: event.scheduledDate]);
-        }
-    }];
 }
 
 - (void)updateMonthLabelToDate: (NSDate *)date {
@@ -181,8 +193,13 @@
 
         NSDate *dayDate = [self.systemCalendar dateFromComponents: visibleDayDateComponents];
         BOOL dayButtonEnabled = visibleDayDateComponents.month == dateComponents.month ? YES : NO;
-        UIButton *dayButton = [self createDayButtonWhithDate: dayDate frame: dayButtonFrame
-                                                     enabled: dayButtonEnabled];
+        HSCalendarDayButton *dayButton = [self createDayButtonWhithDate: dayDate frame: dayButtonFrame
+                                                                enabled: dayButtonEnabled];
+        
+        NSSet *dayEvents = [self.calendarModel eventsForDay: dayDate];
+        for (HSEvent *event in dayEvents) {
+            [dayButton addEvent: event];
+        }
         
         ++visibleDayDateComponents.day;
         visibleDayDateComponents =
@@ -197,7 +214,33 @@
 
 #pragma mark - Private action methods
 - (IBAction)dayButtonClicked: (id)sender {
-    UIButton *dayButton = (UIButton *)sender;
+    HSCalendarDayButton *dayButton = (HSCalendarDayButton *)sender;
+    
+    NSSet *remoteBloodEvents = [[dayButton allEvents]
+            filteredSetUsingPredicate: [NSPredicate predicateWithFormat: @"self isKindOfClass: %@",
+            [HSBloodRemoteEvent class]]];
+    
+    const size_t BLOOD_REMOTE_EVENTS_PER_DAY_MAX = 2;
+    if (remoteBloodEvents.count > BLOOD_REMOTE_EVENTS_PER_DAY_MAX) {
+        [NSException exceptionWithName: NSInternalInconsistencyException
+                reason: [NSString stringWithFormat: @"Supported count of remote events per day is %zu,"
+                        " but actual value is greater.", BLOOD_REMOTE_EVENTS_PER_DAY_MAX] userInfo: nil];
+    }
+    
+    HSBloodDonationEvent *bloodDonationEvent = nil;
+    HSBloodTestsEvent *bloodTestsEvent = nil;
+    for (HSBloodRemoteEvent *remoteBloodEvent in remoteBloodEvents) {
+        if ([remoteBloodEvent isKindOfClass: [HSBloodDonationEvent class]]) {
+            bloodDonationEvent = (HSBloodDonationEvent *)remoteBloodEvent;
+        } else if ([remoteBloodEvent isKindOfClass: [HSBloodTestsEvent class]]) {
+            bloodTestsEvent = (HSBloodTestsEvent *)remoteBloodEvent;
+        }
+    }
+    HSEventPlanningViewController *eventPlanningViewController = [[HSEventPlanningViewController alloc]
+            initWithNibName: @"HSEventPlanningViewController" bundle: nil bloodDonationEvent: bloodDonationEvent
+            bloodTestEvent: bloodTestsEvent];
+    
+    [self.navigationController pushViewController: eventPlanningViewController animated: YES];
     NSLog(@"Clicked day button with title: %@", dayButton.titleLabel.text);
 }
 

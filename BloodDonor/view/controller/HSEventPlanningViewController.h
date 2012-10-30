@@ -8,9 +8,49 @@
 
 #import <UIKit/UIKit.h>
 
+#import "HSBloodDonationEvent.h"
+#import "HSBloodTestsEvent.h"
+
 @interface HSEventPlanningViewController : UIViewController
 
+/// @name Initializtion methods
+
+/**
+ * Initialises HSEventPlanningViewController to create new blood donation event.
+ */
+- (id) initWithNibName: (NSString *)nibNameOrNil bundle: (NSBundle *)nibBundleOrNil;
+
+/**
+ * Initialises HSEventPlanningViewController to edit existing blood donation event.
+ */
+- (id) initWithNibName: (NSString *)nibNameOrNil bundle: (NSBundle *)nibBundleOrNil
+        bloodDonationEvent: (HSBloodDonationEvent *)bloodDonationEvent;
+
+/**
+ * Initialises HSEventPlanningViewController to edit existing blood test event.
+ */
+- (id) initWithNibName: (NSString *)nibNameOrNil bundle: (NSBundle *)nibBundleOrNil
+        bloodTestEvent: (HSBloodTestsEvent *)bloodTestEvent;
+
+/**
+ * Initialises HSEventPlanningViewController to edit existing blood donation event and blood test event.
+ */
+- (id) initWithNibName: (NSString *)nibNameOrNil bundle: (NSBundle *)nibBundleOrNil
+        bloodDonationEvent: (HSBloodDonationEvent *)bloodDonationEvent
+        bloodTestEvent: (HSBloodTestsEvent *)bloodTestEvent;
+
+
 /// @name Subviews properties
+
+/**
+ * Root scroll view container.
+ */
+@property (strong, nonatomic) IBOutlet UIScrollView *rootScrollView;
+
+/**
+ * Container for all UI elements on this screen.
+ */
+@property (strong, nonatomic) IBOutlet UIView *contentView;
 
 /**
  * This is container view for elemments specific for blood donation.
@@ -33,7 +73,7 @@
 /**
  * Contains text representation of blood donation event type.
  */
-@property (weak, nonatomic) IBOutlet UILabel *bloodEventTypeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *bloodDonationEventTypeLabel;
 
 /**
  * Contains text representation of blood donation type.
@@ -43,13 +83,12 @@
 /**
  * Contains text representation of blood donation event date.
  */
-@property (weak, nonatomic) IBOutlet UILabel *boodEventDateLabel;
+@property (weak, nonatomic) IBOutlet UILabel *bloodDonationEventDateLabel;
 
 /**
  * Contains text representation of blood donation center address.
  */
 @property (weak, nonatomic) IBOutlet UILabel *bloodDonationCenterAddressLabel;
-
 
 /// @name User's interaction hadlers
 

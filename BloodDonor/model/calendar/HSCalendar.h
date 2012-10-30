@@ -95,4 +95,9 @@
  */
 - (NSSet *)allEvents;
 
+/**
+ * Returns all events for the specified day.
+ */
+- (NSSet *)eventsForDay: (NSDate *)dayDate;
+
 @end

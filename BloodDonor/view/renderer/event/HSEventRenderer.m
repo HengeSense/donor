@@ -38,8 +38,8 @@
     return resultEventRenderer;
 }
 
-- (UIView *)renderViewInFrame: (CGRect)frame {
-    return [[UIView alloc] initWithFrame: frame];
+- (UIView *)renderViewInBounds: (CGRect)bounds {
+    return [[UIView alloc] initWithFrame: bounds];
 }
 
 @end
