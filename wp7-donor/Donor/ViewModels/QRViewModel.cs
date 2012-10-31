@@ -98,12 +98,15 @@ namespace Donor.ViewModels
         public void SendQRData(string QrHash)
         {
             var client = new RestClient("http://havevalue.herokuapp.com/");
-            var request = new RestRequest("donation/activate.json?json_hash=" + QrHash + "&fbuser=" + App.ViewModel.User.FacebookId, Method.GET);
+            //var request = new RestRequest("donation/activate.json?json_hash=" + QrHash + "&fbuser=" + App.ViewModel.User.FacebookId, Method.GET);
             //var request = new RestRequest("donation/activate.json", Method.GET);
+            var request = new RestRequest("donation/activate.json", Method.POST);
             request.AddHeader("Accept", "application/json");
+            request.AddParameter("json_hash", QrHash);
+            request.AddParameter("fbuser", App.ViewModel.User.FacebookId);
 
             string strJSONContent = "{ \"json_hash\": \"" + QrHash + "\", \"fbuser\": \"" + App.ViewModel.User.FacebookId + "\" }";
-            request.AddParameter("application/json", strJSONContent, ParameterType.RequestBody);
+            //request.AddParameter("application/json", strJSONContent, ParameterType.RequestBody);
 
             request.Parameters.Clear();
 
