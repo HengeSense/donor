@@ -150,6 +150,32 @@
 		37B1367B15B598820022B8D8 /* calendarSliderSectionShadowBottom.png in Resources */ = {isa = PBXBuildFile; fileRef = 37B1367715B598820022B8D8 /* calendarSliderSectionShadowBottom.png */; };
 		37B1367C15B598820022B8D8 /* calendarSliderSectionShadowBottom@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37B1367815B598820022B8D8 /* calendarSliderSectionShadowBottom@2x.png */; };
 		685CB2F8163F200A004FF9AC /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 685CB2F7163F2008004FF9AC /* MBProgressHUD.m */; };
+		685CB3131640E87F004FF9AC /* icon_blood.png in Resources */ = {isa = PBXBuildFile; fileRef = 685CB2FE1640E87E004FF9AC /* icon_blood.png */; };
+		685CB3141640E87F004FF9AC /* icon_blood@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 685CB2FF1640E87E004FF9AC /* icon_blood@2x.png */; };
+		685CB3151640E87F004FF9AC /* icon_blood_check.png in Resources */ = {isa = PBXBuildFile; fileRef = 685CB3001640E87E004FF9AC /* icon_blood_check.png */; };
+		685CB3161640E87F004FF9AC /* icon_blood_plan.png in Resources */ = {isa = PBXBuildFile; fileRef = 685CB3011640E87E004FF9AC /* icon_blood_plan.png */; };
+		685CB3171640E87F004FF9AC /* icon_granulocytes.png in Resources */ = {isa = PBXBuildFile; fileRef = 685CB3031640E87E004FF9AC /* icon_granulocytes.png */; };
+		685CB3181640E87F004FF9AC /* icon_granulocytes@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 685CB3041640E87E004FF9AC /* icon_granulocytes@2x.png */; };
+		685CB3191640E87F004FF9AC /* icon_granulocytes_check.png in Resources */ = {isa = PBXBuildFile; fileRef = 685CB3051640E87E004FF9AC /* icon_granulocytes_check.png */; };
+		685CB31A1640E87F004FF9AC /* icon_granulocytes_plan.png in Resources */ = {isa = PBXBuildFile; fileRef = 685CB3061640E87E004FF9AC /* icon_granulocytes_plan.png */; };
+		685CB31B1640E87F004FF9AC /* icon_plasma.png in Resources */ = {isa = PBXBuildFile; fileRef = 685CB3081640E87E004FF9AC /* icon_plasma.png */; };
+		685CB31C1640E87F004FF9AC /* icon_plasma@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 685CB3091640E87E004FF9AC /* icon_plasma@2x.png */; };
+		685CB31D1640E87F004FF9AC /* icon_plasma_check.png in Resources */ = {isa = PBXBuildFile; fileRef = 685CB30A1640E87E004FF9AC /* icon_plasma_check.png */; };
+		685CB31E1640E87F004FF9AC /* icon_plasma_plan.png in Resources */ = {isa = PBXBuildFile; fileRef = 685CB30B1640E87E004FF9AC /* icon_plasma_plan.png */; };
+		685CB31F1640E87F004FF9AC /* icon_plateletes.png in Resources */ = {isa = PBXBuildFile; fileRef = 685CB30D1640E87E004FF9AC /* icon_plateletes.png */; };
+		685CB3201640E87F004FF9AC /* icon_plateletes@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 685CB30E1640E87E004FF9AC /* icon_plateletes@2x.png */; };
+		685CB3211640E87F004FF9AC /* icon_plateletes_check.png in Resources */ = {isa = PBXBuildFile; fileRef = 685CB30F1640E87E004FF9AC /* icon_plateletes_check.png */; };
+		685CB3221640E87F004FF9AC /* icon_plateletes_plan.png in Resources */ = {isa = PBXBuildFile; fileRef = 685CB3101640E87E004FF9AC /* icon_plateletes_plan.png */; };
+		685CB3231640E87F004FF9AC /* icon_test_plan.png in Resources */ = {isa = PBXBuildFile; fileRef = 685CB3121640E87E004FF9AC /* icon_test_plan.png */; };
+		685CB3251640E947004FF9AC /* icon_test_plan@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 685CB3241640E947004FF9AC /* icon_test_plan@2x.png */; };
+		685CB3271640ED41004FF9AC /* icon_blood_check@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 685CB3261640ED41004FF9AC /* icon_blood_check@2x.png */; };
+		685CB3291640ED4B004FF9AC /* icon_granulocytes_check@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 685CB3281640ED4B004FF9AC /* icon_granulocytes_check@2x.png */; };
+		685CB32B1640ED55004FF9AC /* icon_plasma_check@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 685CB32A1640ED55004FF9AC /* icon_plasma_check@2x.png */; };
+		685CB32D1640ED62004FF9AC /* icon_plateletes_check@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 685CB32C1640ED62004FF9AC /* icon_plateletes_check@2x.png */; };
+		685CB32F1640EEBF004FF9AC /* icon_blood_plan@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 685CB32E1640EEBF004FF9AC /* icon_blood_plan@2x.png */; };
+		685CB3311640EED7004FF9AC /* icon_granulocytes_plan@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 685CB3301640EED7004FF9AC /* icon_granulocytes_plan@2x.png */; };
+		685CB3331640EEF4004FF9AC /* icon_plasma_plan@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 685CB3321640EEF4004FF9AC /* icon_plasma_plan@2x.png */; };
+		685CB3351640EF0F004FF9AC /* icon_plateletes_plan@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 685CB3341640EF0F004FF9AC /* icon_plateletes_plan@2x.png */; };
 		686BA61E1633307B004D7082 /* HSCalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 686BA61C1633307B004D7082 /* HSCalendarViewController.m */; };
 		686BA61F1633307B004D7082 /* HSCalendarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 686BA61D1633307B004D7082 /* HSCalendarViewController.xib */; };
 		686BA62216344DE2004D7082 /* HSCalendarDayButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 686BA62116344DE2004D7082 /* HSCalendarDayButton.m */; };
@@ -638,6 +664,32 @@
 		37B1367815B598820022B8D8 /* calendarSliderSectionShadowBottom@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "calendarSliderSectionShadowBottom@2x.png"; sourceTree = "<group>"; };
 		685CB2F6163F2005004FF9AC /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MBProgressHUD.h; path = Libs/MBProgressHUD/MBProgressHUD.h; sourceTree = "<group>"; };
 		685CB2F7163F2008004FF9AC /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MBProgressHUD.m; path = Libs/MBProgressHUD/MBProgressHUD.m; sourceTree = "<group>"; };
+		685CB2FE1640E87E004FF9AC /* icon_blood.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_blood.png; sourceTree = "<group>"; };
+		685CB2FF1640E87E004FF9AC /* icon_blood@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_blood@2x.png"; sourceTree = "<group>"; };
+		685CB3001640E87E004FF9AC /* icon_blood_check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_blood_check.png; sourceTree = "<group>"; };
+		685CB3011640E87E004FF9AC /* icon_blood_plan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_blood_plan.png; sourceTree = "<group>"; };
+		685CB3031640E87E004FF9AC /* icon_granulocytes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_granulocytes.png; sourceTree = "<group>"; };
+		685CB3041640E87E004FF9AC /* icon_granulocytes@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_granulocytes@2x.png"; sourceTree = "<group>"; };
+		685CB3051640E87E004FF9AC /* icon_granulocytes_check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_granulocytes_check.png; sourceTree = "<group>"; };
+		685CB3061640E87E004FF9AC /* icon_granulocytes_plan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_granulocytes_plan.png; sourceTree = "<group>"; };
+		685CB3081640E87E004FF9AC /* icon_plasma.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_plasma.png; sourceTree = "<group>"; };
+		685CB3091640E87E004FF9AC /* icon_plasma@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_plasma@2x.png"; sourceTree = "<group>"; };
+		685CB30A1640E87E004FF9AC /* icon_plasma_check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_plasma_check.png; sourceTree = "<group>"; };
+		685CB30B1640E87E004FF9AC /* icon_plasma_plan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_plasma_plan.png; sourceTree = "<group>"; };
+		685CB30D1640E87E004FF9AC /* icon_plateletes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_plateletes.png; sourceTree = "<group>"; };
+		685CB30E1640E87E004FF9AC /* icon_plateletes@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_plateletes@2x.png"; sourceTree = "<group>"; };
+		685CB30F1640E87E004FF9AC /* icon_plateletes_check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_plateletes_check.png; sourceTree = "<group>"; };
+		685CB3101640E87E004FF9AC /* icon_plateletes_plan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_plateletes_plan.png; sourceTree = "<group>"; };
+		685CB3121640E87E004FF9AC /* icon_test_plan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_test_plan.png; sourceTree = "<group>"; };
+		685CB3241640E947004FF9AC /* icon_test_plan@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_test_plan@2x.png"; sourceTree = "<group>"; };
+		685CB3261640ED41004FF9AC /* icon_blood_check@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_blood_check@2x.png"; sourceTree = "<group>"; };
+		685CB3281640ED4B004FF9AC /* icon_granulocytes_check@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_granulocytes_check@2x.png"; sourceTree = "<group>"; };
+		685CB32A1640ED55004FF9AC /* icon_plasma_check@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_plasma_check@2x.png"; sourceTree = "<group>"; };
+		685CB32C1640ED62004FF9AC /* icon_plateletes_check@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_plateletes_check@2x.png"; sourceTree = "<group>"; };
+		685CB32E1640EEBF004FF9AC /* icon_blood_plan@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_blood_plan@2x.png"; sourceTree = "<group>"; };
+		685CB3301640EED7004FF9AC /* icon_granulocytes_plan@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_granulocytes_plan@2x.png"; sourceTree = "<group>"; };
+		685CB3321640EEF4004FF9AC /* icon_plasma_plan@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_plasma_plan@2x.png"; sourceTree = "<group>"; };
+		685CB3341640EF0F004FF9AC /* icon_plateletes_plan@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_plateletes_plan@2x.png"; sourceTree = "<group>"; };
 		686BA61B1633307B004D7082 /* HSCalendarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSCalendarViewController.h; sourceTree = "<group>"; };
 		686BA61C1633307B004D7082 /* HSCalendarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSCalendarViewController.m; sourceTree = "<group>"; };
 		686BA61D1633307B004D7082 /* HSCalendarViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HSCalendarViewController.xib; sourceTree = "<group>"; };
@@ -1246,6 +1298,7 @@
 		3758525915AEE959006DF7E1 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				685CB2FB1640E87A004FF9AC /* Calendar */,
 				68EB2752163090060092FDBA /* device */,
 				858EE0AA161D38D000A09858 /* userLocation.png */,
 				8585E179161AB04C00275AE7 /* check.png */,
@@ -1598,6 +1651,87 @@
 				685CB2F7163F2008004FF9AC /* MBProgressHUD.m */,
 			);
 			name = MBProgressHUD;
+			sourceTree = "<group>";
+		};
+		685CB2FB1640E87A004FF9AC /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				685CB2FC1640E87E004FF9AC /* Events */,
+			);
+			path = Calendar;
+			sourceTree = "<group>";
+		};
+		685CB2FC1640E87E004FF9AC /* Events */ = {
+			isa = PBXGroup;
+			children = (
+				685CB2FD1640E87E004FF9AC /* blood */,
+				685CB3021640E87E004FF9AC /* granulocytes */,
+				685CB3071640E87E004FF9AC /* plasma */,
+				685CB30C1640E87E004FF9AC /* plateletes */,
+				685CB3111640E87E004FF9AC /* test */,
+			);
+			path = Events;
+			sourceTree = "<group>";
+		};
+		685CB2FD1640E87E004FF9AC /* blood */ = {
+			isa = PBXGroup;
+			children = (
+				685CB2FE1640E87E004FF9AC /* icon_blood.png */,
+				685CB2FF1640E87E004FF9AC /* icon_blood@2x.png */,
+				685CB3001640E87E004FF9AC /* icon_blood_check.png */,
+				685CB3261640ED41004FF9AC /* icon_blood_check@2x.png */,
+				685CB3011640E87E004FF9AC /* icon_blood_plan.png */,
+				685CB32E1640EEBF004FF9AC /* icon_blood_plan@2x.png */,
+			);
+			path = blood;
+			sourceTree = "<group>";
+		};
+		685CB3021640E87E004FF9AC /* granulocytes */ = {
+			isa = PBXGroup;
+			children = (
+				685CB3031640E87E004FF9AC /* icon_granulocytes.png */,
+				685CB3041640E87E004FF9AC /* icon_granulocytes@2x.png */,
+				685CB3051640E87E004FF9AC /* icon_granulocytes_check.png */,
+				685CB3281640ED4B004FF9AC /* icon_granulocytes_check@2x.png */,
+				685CB3061640E87E004FF9AC /* icon_granulocytes_plan.png */,
+				685CB3301640EED7004FF9AC /* icon_granulocytes_plan@2x.png */,
+			);
+			path = granulocytes;
+			sourceTree = "<group>";
+		};
+		685CB3071640E87E004FF9AC /* plasma */ = {
+			isa = PBXGroup;
+			children = (
+				685CB3081640E87E004FF9AC /* icon_plasma.png */,
+				685CB3091640E87E004FF9AC /* icon_plasma@2x.png */,
+				685CB30A1640E87E004FF9AC /* icon_plasma_check.png */,
+				685CB32A1640ED55004FF9AC /* icon_plasma_check@2x.png */,
+				685CB30B1640E87E004FF9AC /* icon_plasma_plan.png */,
+				685CB3321640EEF4004FF9AC /* icon_plasma_plan@2x.png */,
+			);
+			path = plasma;
+			sourceTree = "<group>";
+		};
+		685CB30C1640E87E004FF9AC /* plateletes */ = {
+			isa = PBXGroup;
+			children = (
+				685CB30D1640E87E004FF9AC /* icon_plateletes.png */,
+				685CB30E1640E87E004FF9AC /* icon_plateletes@2x.png */,
+				685CB30F1640E87E004FF9AC /* icon_plateletes_check.png */,
+				685CB32C1640ED62004FF9AC /* icon_plateletes_check@2x.png */,
+				685CB3101640E87E004FF9AC /* icon_plateletes_plan.png */,
+				685CB3341640EF0F004FF9AC /* icon_plateletes_plan@2x.png */,
+			);
+			path = plateletes;
+			sourceTree = "<group>";
+		};
+		685CB3111640E87E004FF9AC /* test */ = {
+			isa = PBXGroup;
+			children = (
+				685CB3121640E87E004FF9AC /* icon_test_plan.png */,
+				685CB3241640E947004FF9AC /* icon_test_plan@2x.png */,
+			);
+			path = test;
 			sourceTree = "<group>";
 		};
 		686BA61816332CB3004D7082 /* view */ = {
@@ -2235,6 +2369,32 @@
 				85939C66162D616D0081A46C /* ForDonorsCell.xib in Resources */,
 				686BA61F1633307B004D7082 /* HSCalendarViewController.xib in Resources */,
 				6891637E1639D92500E219B3 /* HSEventPlanningViewController.xib in Resources */,
+				685CB3131640E87F004FF9AC /* icon_blood.png in Resources */,
+				685CB3141640E87F004FF9AC /* icon_blood@2x.png in Resources */,
+				685CB3151640E87F004FF9AC /* icon_blood_check.png in Resources */,
+				685CB3161640E87F004FF9AC /* icon_blood_plan.png in Resources */,
+				685CB3171640E87F004FF9AC /* icon_granulocytes.png in Resources */,
+				685CB3181640E87F004FF9AC /* icon_granulocytes@2x.png in Resources */,
+				685CB3191640E87F004FF9AC /* icon_granulocytes_check.png in Resources */,
+				685CB31A1640E87F004FF9AC /* icon_granulocytes_plan.png in Resources */,
+				685CB31B1640E87F004FF9AC /* icon_plasma.png in Resources */,
+				685CB31C1640E87F004FF9AC /* icon_plasma@2x.png in Resources */,
+				685CB31D1640E87F004FF9AC /* icon_plasma_check.png in Resources */,
+				685CB31E1640E87F004FF9AC /* icon_plasma_plan.png in Resources */,
+				685CB31F1640E87F004FF9AC /* icon_plateletes.png in Resources */,
+				685CB3201640E87F004FF9AC /* icon_plateletes@2x.png in Resources */,
+				685CB3211640E87F004FF9AC /* icon_plateletes_check.png in Resources */,
+				685CB3221640E87F004FF9AC /* icon_plateletes_plan.png in Resources */,
+				685CB3231640E87F004FF9AC /* icon_test_plan.png in Resources */,
+				685CB3251640E947004FF9AC /* icon_test_plan@2x.png in Resources */,
+				685CB3271640ED41004FF9AC /* icon_blood_check@2x.png in Resources */,
+				685CB3291640ED4B004FF9AC /* icon_granulocytes_check@2x.png in Resources */,
+				685CB32B1640ED55004FF9AC /* icon_plasma_check@2x.png in Resources */,
+				685CB32D1640ED62004FF9AC /* icon_plateletes_check@2x.png in Resources */,
+				685CB32F1640EEBF004FF9AC /* icon_blood_plan@2x.png in Resources */,
+				685CB3311640EED7004FF9AC /* icon_granulocytes_plan@2x.png in Resources */,
+				685CB3331640EEF4004FF9AC /* icon_plasma_plan@2x.png in Resources */,
+				685CB3351640EF0F004FF9AC /* icon_plateletes_plan@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2410,8 +2570,8 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_OBJCPP_ARC_ABI = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = "";
@@ -2460,7 +2620,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",

@@ -11,7 +11,7 @@
 @implementation HSBloodTestsEventRenderer
 
 -(UIView *)renderViewInBounds: (CGRect)bounds {
-    UIImage *resultImage = [UIImage imageNamed: @"calendarScheduledTestIcon.png"];
+    UIImage *resultImage = [UIImage imageNamed: @"icon_test_plan.png"];
     if (resultImage == nil) {
         @throw [NSException exceptionWithName: NSInternalInconsistencyException
                                        reason: @"calendarScheduledTestIcon.png image not found" userInfo: nil];
