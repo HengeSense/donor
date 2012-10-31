@@ -77,17 +77,47 @@ namespace Donor.ViewModels
             set { 
                 _qrcode = value;
 
-                QrData = new QrContent();
+                this.SendQRData(_qrcode);
+
+                /*QrData = new QrContent();
                 try {
                 JObject o = JObject.Parse(_qrcode);
                 QrData.vol = Int32.Parse(o["vol"].ToString());
                 QrData.blood = o["blood"].ToString(); 
                 } catch {
-                };
+                };*/
                 //SaveQrLevel();
             }
         }
 
+
+        /// <summary>
+        /// Send data from qr to server
+        /// https://itsbeta.atlassian.net/browse/ACH-13
+        /// </summary>
+        public void SendQRData(string QrHash)
+        {
+            var client = new RestClient("http://havevalue.herokuapp.com/");
+            var request = new RestRequest("donation/activate.json?json_hash=" + QrHash + "&fbuser=" + App.ViewModel.User.FacebookId, Method.GET);
+            //var request = new RestRequest("donation/activate.json", Method.GET);
+            request.AddHeader("Accept", "application/json");
+
+            string strJSONContent = "{ \"json_hash\": \"" + QrHash + "\", \"fbuser\": \"" + App.ViewModel.User.FacebookId + "\" }";
+            request.AddParameter("application/json", strJSONContent, ParameterType.RequestBody);
+
+            request.Parameters.Clear();
+
+            client.ExecuteAsync(request, response =>
+            {
+                try
+                {
+                    JObject o = JObject.Parse(response.Content.ToString());
+                    MessageBox.Show("Данные отправлены.");
+                }
+                catch { 
+                };
+            });
+        }
 
         /// <summary>
         /// Add score points for user at facebook

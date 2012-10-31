@@ -31,7 +31,8 @@ namespace Donor
 
         private void LayoutRoot_Loaded(object sender, RoutedEventArgs e)
         {
-
+            this.PageTitle.Text = CultureInfo.CurrentCulture.DateTimeFormat.MonthNames[App.ViewModel.Events.CurrentMonth.Month - 1];
+            this.ApplicationTitle.Text = App.ViewModel.Events.CurrentMonth.Year.ToString();
         }
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
