@@ -234,14 +234,14 @@ namespace Donor.ViewModels
                 });
         }
 
-        public void FacebookUnlinking(string id, string accessToken)
+        public void FacebookUnlinking()
         {
             var client = new RestClient("https://api.parse.com");
             var request = new RestRequest("1/users/" + App.ViewModel.User.objectId, Method.PUT);
             request.AddHeader("Accept", "application/json");
             request.Parameters.Clear();
 
-            string strJSONContent = "{\"authData\": { \"facebook\": null  }  } }";
+            string strJSONContent = "{\"authData\": { \"facebook\": null } }";
             request.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
             request.AddHeader("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
             request.AddHeader("X-Parse-Session-Token", App.ViewModel.User.sessionToken);
@@ -256,6 +256,7 @@ namespace Donor.ViewModels
                     JObject o = JObject.Parse(response.Content.ToString());
                     if (o["error"] == null)
                     {
+                        MessageBox.Show(Donor.AppResources.FacebookUnlinkedMessage);
                     }
                     else
                     {

@@ -233,6 +233,10 @@ Style="{StaticResource PasswordBoxStyle1}" BorderBrush="#FF4F3B34" 	Foreground="
 						Click="FacebookButton_Click" />
 
                         <WPExtensions:AdvancedApplicationBarIconButton 
+						IconUri="/icons/appbar.feature.settings.rest.png" 
+						Name="FacebookUnlinkingButton" Text="Facebook отвязать" Click="FacebookUnlinkingButton_Click" />
+
+                        <WPExtensions:AdvancedApplicationBarIconButton 
 						IconUri="/icons/appbar.edit.rest.png" 
 						Name="EditButton" Text="{Binding Change, Source={StaticResource Loc}}" 
 						Visibility="Visible" 

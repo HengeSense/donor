@@ -444,4 +444,7 @@
   <data name="ReadQrCode" xml:space="preserve">
     <value>Считать QR код</value>
   </data>
+  <data name="FacebookUnlinkedMessage" xml:space="preserve">
+    <value>Связь с Facebook разорвана</value>
+  </data>
 </root>

@@ -688,5 +688,16 @@ namespace Donor
             }
         }
 
+        private void FacebookUnlinkingButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                App.ViewModel.User.FacebookUnlinking();
+            }
+            catch
+            {
+            };
+        }
+
     }
 }
