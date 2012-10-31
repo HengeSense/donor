@@ -15,6 +15,7 @@ using Microsoft.Phone.Controls;
 using System.Windows.Media.Imaging;
 using System.Collections.ObjectModel;
 using Donor.ViewModels;
+using System.ComponentModel;
 
 namespace Donor.Controls
 {
@@ -27,10 +28,19 @@ namespace Donor.Controls
             UpdateCalendar();
         }
 
+        List<DayInCalendarControl> DaysList = new List<DayInCalendarControl>();
+
         public void UpdateCalendar() {
             int dayscount = 0;
 
+            this.Items = App.ViewModel.Events.ThisMonthItems;
+            DaysList = new List<DayInCalendarControl>();
+
             this.CalendarDays.Children.Clear();
+
+            //var bw = new BackgroundWorker();            
+            //bw.DoWork += delegate
+            //{
             Date = App.ViewModel.Events.CurrentMonth;
             DateTime Date2 = Date;
             DateTime FirstDayPrev = new DateTime(Date2.AddMonths(-1).Year, Date2.AddMonths(-1).Month, 1);
@@ -42,11 +52,11 @@ namespace Donor.Controls
             DateTime FromDays = new DateTime(1900,1,1);
             DateTime EndDays = new DateTime(1900,1,1);
 
-            var nearestEvents = (from item in App.ViewModel.Events.UserItems
+            var nearestEvents = (from item in this.Items
                                  where ((item.Type =="1") && (item.Date > DateTime.Now))
                                  orderby item.Date ascending
                                  select item).Take(1);
-            //(item.Date <= DateTime.Now) && 
+
             if (nearestEvents.FirstOrDefault() != null)
             {
                 FromDays = nearestEvents.FirstOrDefault().Date;
@@ -57,7 +67,7 @@ namespace Donor.Controls
             for (var i = (DateTime.DaysInMonth(FirstDayPrev.Year, FirstDayPrev.Month) - daysbefore + 2); i < (DateTime.DaysInMonth(FirstDayPrev.Year, FirstDayPrev.Month) +1); i++)
             {
                 DayInCalendarControl day = new DayInCalendarControl();
-                day.ImagePath = ""; // "/images/x.png";
+                day.ImagePath = "";
 
                 day.DayNumber = i.ToString();
                 day.MonthNumber = FirstDayPrev.Month;
@@ -70,14 +80,12 @@ namespace Donor.Controls
                 {
                     if ((curDate <= EndDays) && (FromDays <= curDate))
                     {
-                        //day.BgColor = new SolidColorBrush(Colors.Gray);
-                        //day.TextColor = new SolidColorBrush(Colors.Black);
                         day.Inactive = true;
                     };
                 };
 
                 dayscount++;
-                this.CalendarDays.Children.Add(day);
+                DaysList.Add(day);
             };
 
             for (var i = 1; i <= DateTime.DaysInMonth(Date.Year, Date.Month); i++)
@@ -92,15 +100,13 @@ namespace Donor.Controls
 					day2.CurrentColor = new SolidColorBrush(new Color() { A = 1, B = 238, G = 31, R = 173 });
                     day2.BorderColor = new SolidColorBrush(Colors.Red);
 				};
-				
-                day2.EventDay = App.ViewModel.Events.UserItems.FirstOrDefault(a => a.Date == new DateTime(Date.Year, Date.Month, i));
 
-                day2.EventDayList = App.ViewModel.Events.UserItems.Where(a => a.Date == new DateTime(Date.Year, Date.Month, i)).ToList();
+                day2.EventDay = this.Items.FirstOrDefault(a => a.Date == new DateTime(Date.Year, Date.Month, i));
+                day2.EventDayList = this.Items.Where(a => a.Date == new DateTime(Date.Year, Date.Month, i)).ToList();
 
                 if (day2.EventDay != null) {
                     day2.ImagePath = day2.EventDay.SmallImage.ToString();
                 };
-
                 day2.MonthNumber = Date.Month;
                 day2.YearNumber = Date.Year;
                 day2.DayNumber = i.ToString();
@@ -114,17 +120,11 @@ namespace Donor.Controls
                 };
 
                 DateTime curDate = new DateTime(Date.Year, Date.Month, i);
-                if (days != 0)
-                {
-                    if ((curDate <= EndDays) && (FromDays <= curDate))
-                    {
-                        day2.Inactive = true;
-                    };
-                };
-
+                if (days != 0) { if ((curDate <= EndDays) && (FromDays <= curDate)) { day2.Inactive = true; }; };
                 dayscount++;
-                this.CalendarDays.Children.Add(day2);
+                DaysList.Add(day2);
             };
+
             int dayscount2 = (int)(dayscount % 7);
             if (dayscount2 != 0)
             {
@@ -137,15 +137,19 @@ namespace Donor.Controls
                     day3.MonthNumber = Date.AddMonths(1).Month;
                     day3.YearNumber = FirstDayPrev.AddMonths(1).Year;
                     day3.Inactive = true;
-                    //day3.Inactive = true;
                     day3.TextColor = new SolidColorBrush(Colors.Gray);
-                    this.CalendarDays.Children.Add(day3);
+                    DaysList.Add(day3);
                 };
             };
+                //Deployment.Current.Dispatcher.BeginInvoke(() => { 
+                    foreach (var item in DaysList) { this.CalendarDays.Children.Add(item); }; 
+            /*    });
+            };
+            bw.RunWorkerAsync();  */
         }
 
         public DateTime Date { get; set; }
-        public ObservableCollection<EventViewModel> Items { get; set; }
+        public List<EventViewModel> Items { get; set; }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {

@@ -20,7 +20,7 @@ namespace Donor
         {
             InitializeComponent();
             DataContext = App.ViewModel;
-            this.Calendar1.Items = App.ViewModel.Events.Items;
+            //this.Calendar1.Items = App.ViewModel.Events.Items;
 
             this.PageTitle.Text = CultureInfo.CurrentCulture.DateTimeFormat.MonthNames[App.ViewModel.Events.CurrentMonth.Month - 1];
             this.ApplicationTitle.Text = App.ViewModel.Events.CurrentMonth.Year.ToString();
@@ -44,15 +44,13 @@ namespace Donor
         {
             if (e.Direction == System.Windows.Controls.Orientation.Vertical)
             {
-                //this.fadeOut.Begin();
                 if (e.VerticalVelocity < 0)
                 {
                    
                     try
                     {
+                        //this.fadeOut.Begin();
                         App.ViewModel.Events.CurrentMonth = App.ViewModel.Events.CurrentMonth.AddMonths(1);
-
-                        this.Calendar1.Items = App.ViewModel.Events.Items;
 
                         this.Calendar1.UpdateCalendar();
 
@@ -67,9 +65,9 @@ namespace Donor
                 {
                     try
                     {
+                        //this.fadeOut.Begin();
                         App.ViewModel.Events.CurrentMonth = App.ViewModel.Events.CurrentMonth.AddMonths(-1);
 
-                        this.Calendar1.Items = App.ViewModel.Events.Items;
                         this.Calendar1.UpdateCalendar();
                         this.PageTitle.Text = CultureInfo.CurrentCulture.DateTimeFormat.MonthNames[App.ViewModel.Events.CurrentMonth.Month - 1];
                         this.ApplicationTitle.Text = App.ViewModel.Events.CurrentMonth.Year.ToString();
@@ -97,7 +95,6 @@ namespace Donor
             {
                 App.ViewModel.Events.CurrentMonth = DateTime.Now;
 
-                this.Calendar1.Items = App.ViewModel.Events.Items;
                 this.Calendar1.UpdateCalendar();
                 this.PageTitle.Text = CultureInfo.CurrentCulture.DateTimeFormat.MonthNames[App.ViewModel.Events.CurrentMonth.Month - 1];
                 this.ApplicationTitle.Text = App.ViewModel.Events.CurrentMonth.Year.ToString();
@@ -108,6 +105,16 @@ namespace Donor
         private void AddEventButton_Click(object sender, EventArgs e)
         {
             NavigationService.Navigate(new Uri("/EventEditPage.xaml", UriKind.Relative));
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.fadeOut.Begin();
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            this.fadeIn.Begin();
         }
 
 

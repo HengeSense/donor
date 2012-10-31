@@ -68,54 +68,6 @@ namespace Donor
             this.NextMonth.Header = App.ViewModel.Events.NextMonthString;
             this.ThisMonth.Header = App.ViewModel.Events.CurrentMonthString;
             this.PrevMonth.Header = App.ViewModel.Events.PrevMonthString;
-
-            /*var logo = new BitmapImage(new Uri("icons/empty.png", UriKind.Relative));
-            var img2 = new Image { Source = logo };
-
-            logo.CreateOptions = BitmapCreateOptions.None;
-                var bmp = new WriteableBitmap(48, 48);
-                var img = new Image { Source = logo };
-
-                var Stack = new StackPanel();
-                var bl = new TextBlock();
-                bl.Foreground = new SolidColorBrush(Colors.White);
-                bl.FontSize = 14.0;
-                bl.TextWrapping = TextWrapping.Wrap;
-                bl.HorizontalAlignment = System.Windows.HorizontalAlignment.Center;
-                bl.Text = DateTime.Now.Day.ToString()+"\n"+CultureInfo.CurrentCulture.DateTimeFormat.MonthNames[
-DateTime.Now.Month - 1];
-
-                Stack.Children.Add(bl);
-
-                bmp.Render(Stack, null);
-
-                var tt = new TranslateTransform();
-                tt.X = 48 - logo.PixelWidth;
-                tt.Y = 48 - logo.PixelHeight;
-
-                bmp.Render(img, tt);
-                bmp.Invalidate();
-
-                using (var store = IsolatedStorageFile.GetUserStoreForApplication())
-                {
-                    var filename = "/Shared/ShellContent/testtile.jpg";
-                    if (!store.DirectoryExists("/Shared/ShellContent"))
-                    {
-                        store.CreateDirectory("/Shared/ShellContent");
-                    }
-                    if (store.FileExists(filename)) {}
-                    using (var st = store.OpenFile(filename, System.IO.FileMode.OpenOrCreate))
-                    {
-                        bmp.SaveJpeg(st, 48, 48, 0, 100);
-                    };
-
-                    BitmapImage bi = new BitmapImage();
-                    using (IsolatedStorageFileStream fileStream = store.OpenFile(filename, FileMode.Open, FileAccess.Read))
-                    {
-                        bi.SetSource(fileStream);
-                    };
-                    ImageSource imgSource = bi;
-                }*/
         }
 
 

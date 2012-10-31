@@ -9,7 +9,7 @@
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     d:DesignHeight="480" d:DesignWidth="480" Loaded="UserControl_Loaded">
-    
+
     <Grid x:Name="LayoutRoot">
         <StackPanel Margin="0,15,0,0">
             <toolkit:WrapPanel  Background="#FF005258" ItemHeight="35" ItemWidth="68">

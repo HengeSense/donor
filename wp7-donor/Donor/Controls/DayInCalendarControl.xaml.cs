@@ -321,8 +321,6 @@ namespace Donor.Controls
             try
             {
                 this.DayImageRB.Visibility = Visibility.Visible;
-                /*this.DayImageLB.Visibility = Visibility.Visible;
-                this.DayImageLB.Visibility = Visibility.Collapsed;*/
 
                 PossibleBloodGive = 0;
                 if (EventDayList.Count()>0)
@@ -341,7 +339,6 @@ namespace Donor.Controls
                                     case 1: this.DayImageRT1.Source = imgSource; break;
                                     case 2: this.DayImageRT2.Source = imgSource; break;
                                     case 3: 
-                                        //this.DayImageRT3.Source = imgSource; 
                                         break;
                                     default: this.DayImageRT.Source = imgSource; break;
                                 };
@@ -362,10 +359,6 @@ namespace Donor.Controls
                     };
                     if (PossibleBloodGive > 2)
                     {
-                        //this.DayImageRB.Visibility = Visibility.Collapsed;
-                        /*this.DayImageLB.Visibility = Visibility.Collapsed;
-                        this.DayImageLB2.Source = this.DayImageLB.Source;
-                        this.DayImageLB.Visibility = Visibility.Visible;*/
                     };
                         
                 };
