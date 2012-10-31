@@ -104,7 +104,7 @@ namespace facebook_windows_phone_sample.Pages
                     App.ViewModel.User.FacebookLinking(id, accessToken);
 
                     NavigationService.GoBack(); //NavigationService.Navigate(new Uri(url, UriKind.Relative)));
-                    MessageBox.Show("Выполнен вход c использованием Facebook.");
+                    
                 });
             };
 

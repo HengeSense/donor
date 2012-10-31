@@ -87,7 +87,8 @@ namespace Donor.Controls
                 day2.Tap += ClickDay;
 
 				/// show border for current day
-				if ((Date.Day == i) && (Date.Month == DateTime.Now.Month)) {
+                if ((DateTime.Now.Day == i) && (Date.Month == DateTime.Now.Month))
+                {
 					day2.CurrentColor = new SolidColorBrush(new Color() { A = 1, B = 238, G = 31, R = 173 });
                     day2.BorderColor = new SolidColorBrush(Colors.Red);
 				};

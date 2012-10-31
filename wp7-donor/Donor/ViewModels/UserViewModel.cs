@@ -225,6 +225,7 @@ namespace Donor.ViewModels
                         JObject o = JObject.Parse(response.Content.ToString());
                         if (o["error"] == null)
                         {
+                            MessageBox.Show("Выполнен вход c использованием Facebook.");
                         }
                         else
                         {
