@@ -100,6 +100,9 @@ namespace facebook_windows_phone_sample.Pages
                 Dispatcher.BeginInvoke(() => {
                     App.ViewModel.User.FacebookId = id;
                     App.ViewModel.User.FacebookToken = accessToken;
+
+                    App.ViewModel.User.FacebookLinking(id, accessToken);
+
                     NavigationService.GoBack(); //NavigationService.Navigate(new Uri(url, UriKind.Relative)));
                     MessageBox.Show("Выполнен вход c использованием Facebook.");
                 });

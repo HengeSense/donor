@@ -126,12 +126,12 @@
                         </StackPanel>
                         <StackPanel Margin="10">
                             <TextBlock Text="{Binding NextBloodGive, Source={StaticResource Loc}}" TextWrapping="Wrap" Style="{StaticResource Text36pxCBB2A3}"/>
-                            <TextBlock Text="{Binding User.GivedBlood}" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource Text24pxDF8D4B}"/>
+                            <TextBlock Text="{Binding User.NearestBloodGive}" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource Text24pxDF8D4B}"/>
                         </StackPanel>
 
                         <StackPanel Margin="10">
                             <TextBlock Text="{Binding GivedBloodCount, Source={StaticResource Loc}}" TextWrapping="Wrap" Style="{StaticResource Text36pxCBB2A3}"/>
-                            <TextBlock Text="{Binding User.NearestBloodGive}" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource Text24pxDF8D4B}"/>
+                            <TextBlock Text="{Binding User.GivedBlood}" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource Text24pxDF8D4B}"/>
                         </StackPanel>
 
                         
@@ -224,13 +224,20 @@ Style="{StaticResource PasswordBoxStyle1}" BorderBrush="#FF4F3B34" 	Foreground="
 						FontFamily="Segoe WP Regular" Foreground="#FFFFFFFF"/>
                     </StackPanel>
                     
-					<WPExtensions:AdvancedApplicationBar Background="#FF211E1D" BackgroundColor="#FF211E1D" Foreground="White" BorderBrush="#FF211E1D" ForegroundColor="White" OpacityMask="White" Name="AppBar" IsVisible="False" IsMenuEnabled="False" >
+					<WPExtensions:AdvancedApplicationBar Background="#FF211E1D" BackgroundColor="#FF211E1D" 
+                        Foreground="White" BorderBrush="#FF211E1D" ForegroundColor="White" OpacityMask="White" Name="AppBar" IsVisible="False" IsMenuEnabled="False" >
+
+                        <WPExtensions:AdvancedApplicationBarIconButton 
+						IconUri="/icons/appbar.feature.settings.rest.png" 
+						Name="FacebookButton" Text="Facebook" 
+						Click="FacebookButton_Click" />
+
                         <WPExtensions:AdvancedApplicationBarIconButton 
 						IconUri="/icons/appbar.edit.rest.png" 
 						Name="EditButton" Text="{Binding Change, Source={StaticResource Loc}}" 
-						
 						Visibility="Visible" 
 						Click="AdvancedApplicationBarIconButton_Click" />
+
                         <WPExtensions:AdvancedApplicationBarIconButton 
 						IconUri="/icons/ic_ApplicationBar_exit.png" 
 						Text="{Binding Exit, Source={StaticResource Loc}}" Visibility="Visible" 

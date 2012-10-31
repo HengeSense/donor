@@ -350,6 +350,7 @@ namespace Donor
 
                             this.EditButton.Visibility = Visibility.Collapsed;
                             this.DeleteUserButton.Visibility = Visibility.Collapsed;
+                            this.FacebookButton.Visibility = Visibility.Collapsed;
 
                             SetEditFields();
 
@@ -459,6 +460,7 @@ namespace Donor
 
             this.EditButton.Visibility = Visibility.Collapsed;
             this.DeleteUserButton.Visibility = Visibility.Collapsed;
+            this.FacebookButton.Visibility = Visibility.Collapsed;
 
             this.RegisterForm.Visibility = Visibility.Collapsed;
             this.LoginForm.Visibility = Visibility.Collapsed;
@@ -477,6 +479,7 @@ namespace Donor
 
             this.EditButton.Visibility = Visibility.Visible;
             this.DeleteUserButton.Visibility = Visibility.Visible;
+            this.FacebookButton.Visibility = Visibility.Visible;
 
             this.RegisterForm.Visibility = Visibility.Collapsed;
             this.LoginForm.Visibility = Visibility.Collapsed;
@@ -581,6 +584,7 @@ namespace Donor
 
             this.EditButton.Visibility = Visibility.Visible;
             this.DeleteUserButton.Visibility = Visibility.Visible;
+            this.FacebookButton.Visibility = Visibility.Visible;
 
             this.RegisterForm.Visibility = Visibility.Collapsed;
             this.LoginForm.Visibility = Visibility.Collapsed;
@@ -671,6 +675,17 @@ namespace Donor
             this.RegisterForm.Visibility = Visibility.Visible;
             this.LoginForm.Visibility = Visibility.Collapsed;
             this.UserProfile.Visibility = Visibility.Collapsed;
+        }
+
+        private void FacebookButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                NavigationService.Navigate(new Uri("/FacebookPages/FacebookLoginPage.xaml", UriKind.Relative));
+            }
+            catch
+            {
+            }
         }
 
     }

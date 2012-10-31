@@ -11,6 +11,8 @@ using System.Windows.Shapes;
 using System.ComponentModel;
 using MSPToolkit.Utilities;
 using System.Linq;
+using RestSharp;
+using Newtonsoft.Json.Linq;
 //using Parse;
 
 namespace Donor.ViewModels
@@ -200,5 +202,68 @@ namespace Donor.ViewModels
                 handler(this, new PropertyChangedEventArgs(propertyName));
             }
         }
+
+        public void FacebookLinking(string id, string accessToken)
+        {
+                var client = new RestClient("https://api.parse.com");
+                var request = new RestRequest("1/users/"+App.ViewModel.User.objectId, Method.PUT);
+                request.AddHeader("Accept", "application/json");
+                request.Parameters.Clear();
+
+                string strJSONContent = "{\"authData\": { \"facebook\":{ \"id\": \"" + id + "\", \"access_token\": \"" + accessToken + "\", \"expiration_date\": \"" + DateTime.Now.AddMonths(1).ToString("s") + "\"  }  } }";
+                request.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
+                request.AddHeader("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
+                request.AddHeader("X-Parse-Session-Token", App.ViewModel.User.sessionToken);
+                request.AddHeader("Content-Type", "application/json");
+
+                request.AddParameter("application/json", strJSONContent, ParameterType.RequestBody);
+
+                client.ExecuteAsync(request, response =>
+                {
+                    try
+                    {
+                        JObject o = JObject.Parse(response.Content.ToString());
+                        if (o["error"] == null)
+                        {
+                        }
+                        else
+                        {
+                        };
+                    }
+                    catch { };
+                });
+        }
+
+        public void FacebookUnlinking(string id, string accessToken)
+        {
+            var client = new RestClient("https://api.parse.com");
+            var request = new RestRequest("1/users/" + App.ViewModel.User.objectId, Method.PUT);
+            request.AddHeader("Accept", "application/json");
+            request.Parameters.Clear();
+
+            string strJSONContent = "{\"authData\": { \"facebook\": null  }  } }";
+            request.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
+            request.AddHeader("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
+            request.AddHeader("X-Parse-Session-Token", App.ViewModel.User.sessionToken);
+            request.AddHeader("Content-Type", "application/json");
+
+            request.AddParameter("application/json", strJSONContent, ParameterType.RequestBody);
+
+            client.ExecuteAsync(request, response =>
+            {
+                try
+                {
+                    JObject o = JObject.Parse(response.Content.ToString());
+                    if (o["error"] == null)
+                    {
+                    }
+                    else
+                    {
+                    };
+                }
+                catch { };
+            });
+        }
+
     };
 }

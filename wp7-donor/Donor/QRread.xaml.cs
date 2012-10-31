@@ -74,17 +74,23 @@ namespace Donor
 
         private void OnPhotoCameraInitialized(object sender, CameraOperationCompletedEventArgs e)
         {
-            int width = Convert.ToInt32(_photoCamera.PreviewResolution.Width);
-            int height = Convert.ToInt32(_photoCamera.PreviewResolution.Height);
-
-            _luminance = new PhotoCameraLuminanceSource(width, height);
-            _reader = new QRCodeReader();
-
-            Dispatcher.BeginInvoke(() =>
+            try
             {
-                _previewTransform.Rotation = _photoCamera.Orientation;
-                _timer.Start();
-            });
+                int width = Convert.ToInt32(_photoCamera.PreviewResolution.Width);
+                int height = Convert.ToInt32(_photoCamera.PreviewResolution.Height);
+
+                _luminance = new PhotoCameraLuminanceSource(width, height);
+                _reader = new QRCodeReader();
+
+                Dispatcher.BeginInvoke(() =>
+                {
+                    _previewTransform.Rotation = _photoCamera.Orientation;
+                    _timer.Start();
+                });
+            }
+            catch
+            {
+            };
         }
 
         private void ScanPreviewBuffer()
@@ -108,7 +114,7 @@ namespace Donor
             //_photoCamera.Dispose();
             try
             {
-                MessageBox.Show("Добавлен QR код: " + text);
+                MessageBox.Show("Добавлен QR код c текстом: \n" + text);
                 App.ViewModel.Qr.QRcode = text;
                 try
                 {
