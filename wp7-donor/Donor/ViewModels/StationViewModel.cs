@@ -349,7 +349,7 @@ namespace Donor.ViewModels
             get {
                 if (_bloodFor == "")
                 {
-                    return "Не указано"; 
+                    return Donor.AppResources.DontFilledData; 
                 }
                 else
                 {
@@ -369,7 +369,7 @@ namespace Donor.ViewModels
             get {
                 if (_receiptTime == "")
                 {
-                    return "Не указано";
+                    return Donor.AppResources.DontFilledData;
                 }
                 else
                 {
@@ -388,7 +388,7 @@ namespace Donor.ViewModels
             get {
                     if (_transportation == "")
                     {
-                        return "Не указано";
+                        return Donor.AppResources.DontFilledData;
                     }
                     else
                     {
@@ -434,7 +434,7 @@ namespace Donor.ViewModels
             get {
                 if (true)
                 {
-                    return "Требуется регистрация в Москве или Московской области.";
+                    return Donor.AppResources.NeedRegistrationInMoscow;
                 }
                 else
                 {

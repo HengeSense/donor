@@ -683,11 +683,11 @@ namespace Donor.ViewModels
             {
                 switch (item["delivery"].ToString())
                 {
-                    case "0": jsonitem.GiveType = "Тромбоциты"; break;
-                    case "1": jsonitem.GiveType = "Плазма"; break;
-                    case "2": jsonitem.GiveType = "Цельная кровь"; break;
-                    case "3": jsonitem.GiveType = "Гранулоциты"; break;
-                    default: jsonitem.GiveType = "Тромбоциты"; break;
+                    case "0": jsonitem.GiveType = Donor.AppResources.Platelets; break;
+                    case "1": jsonitem.GiveType = Donor.AppResources.Plasma; break;
+                    case "2": jsonitem.GiveType = Donor.AppResources.WholeBlood; break;
+                    case "3": jsonitem.GiveType = Donor.AppResources.Granulocytes; break;
+                    default: jsonitem.GiveType = Donor.AppResources.Platelets; break;
                 };
             }
             catch
@@ -844,7 +844,8 @@ namespace Donor.ViewModels
         /// <returns></returns>
         public DateTime NearestPossibleGiveBlood(string GiveType = "")
         {
-            List<string> TypesGive = new List<string>() { "Тромбоциты", "Плазма", "Цельная кровь", "Гранулоциты" };
+            List<string> TypesGive = new List<string>() { Donor.AppResources.Platelets, 
+                Donor.AppResources.Plasma, Donor.AppResources.WholeBlood, Donor.AppResources.Granulocytes };
 
             var _selected_user_items = (from item in this.Items
                                         where ((item.UserId == App.ViewModel.User.objectId) && (item.Type == "1") && (item.Finished == true))
@@ -880,7 +881,8 @@ namespace Donor.ViewModels
         public DateTime PossibleGiveBlood(string GiveType = "")
         {
 
-            List<string> TypesGive = new List<string>() { "Тромбоциты", "Плазма", "Цельная кровь", "Гранулоциты" };
+            List<string> TypesGive = new List<string>() { Donor.AppResources.Platelets, 
+                Donor.AppResources.Plasma, Donor.AppResources.WholeBlood, Donor.AppResources.Granulocytes };
 
             var _selected_user_items = (from item in this.Items
                                         where ((item.UserId == App.ViewModel.User.objectId) && (item.Type == "1"))
@@ -953,7 +955,8 @@ namespace Donor.ViewModels
 
         public int DaysBefore()
         {
-            List<string> TypesGive = new List<string>() { "Тромбоциты", "Плазма", "Цельная кровь", "Гранулоциты" };
+            List<string> TypesGive = new List<string>() { Donor.AppResources.Platelets, 
+                Donor.AppResources.Plasma, Donor.AppResources.WholeBlood, Donor.AppResources.Granulocytes };
 
 
             int days_count = 0;
@@ -1346,7 +1349,7 @@ namespace Donor.ViewModels
                                         orderby item.Date ascending
                                         select item);
 
-            List<string> TypesGive = new List<string>() { "Тромбоциты", "Плазма", "Цельная кровь" }; //, "Гранулоциты" 
+            List<string> TypesGive = new List<string>() { Donor.AppResources.Platelets, Donor.AppResources.Plasma, Donor.AppResources.WholeBlood }; //, "Гранулоциты" 
 
             foreach (var item in TypesGive)
             {
@@ -1380,7 +1383,7 @@ namespace Donor.ViewModels
                         possibleItem.Time = new DateTime(date.Year, date.Month, date.Day, 8, 0, 0);
                         possibleItem.Type = "PossibleBloodGive";
                         possibleItem.GiveType = item;
-                        possibleItem.Title = item + " - возможная сдача";
+                        possibleItem.Title = item + Donor.AppResources.PossibleBloodGiveTitle;
                         possibleItem.Description = "";
                         possibleItem.Place = "";
                         possibleItem.Id = cnt.ToString() + DateTime.Now.Ticks.ToString();
@@ -1410,10 +1413,10 @@ namespace Donor.ViewModels
                                 switch (thisDaysCount)
                                 {
                                     case 0: break;
-                                    case 1: item.AddReminder(-60 * 60 * 12, "Вы можете запланировать кроводачу: " + item.GiveType); break;
-                                    case 2: item.AddReminder(-60 * 60 * 12, "Вы можете запланировать кроводачу: " + giveTypes[0].GiveType + ", " + giveTypes[1].GiveType); break;
-                                    case 3: item.AddReminder(-60 * 60 * 12, "Вы можете запланировать кроводачу: " + giveTypes[0].GiveType + ", " + giveTypes[1].GiveType + ", " + giveTypes[2].GiveType); break;
-                                    case 4: item.AddReminder(-60 * 60 * 12, "Вы можете запланировать кроводачу"); break;
+                                    case 1: item.AddReminder(-60 * 60 * 12, Donor.AppResources.YouCanPlanBlood + item.GiveType); break;
+                                    case 2: item.AddReminder(-60 * 60 * 12, Donor.AppResources.YouCanPlanBlood + giveTypes[0].GiveType + ", " + giveTypes[1].GiveType); break;
+                                    case 3: item.AddReminder(-60 * 60 * 12, Donor.AppResources.YouCanPlanBlood + giveTypes[0].GiveType + ", " + giveTypes[1].GiveType + ", " + giveTypes[2].GiveType); break;
+                                    case 4: item.AddReminder(-60 * 60 * 12, Donor.AppResources.YouCanPlanBlood2); break;
                                     default: break;
                                 };
                             };
@@ -1519,7 +1522,7 @@ namespace Donor.ViewModels
             {
                 var newitems = (from eventCal in this.UserItems
                                 where
-                                (eventCal.Type != "Праздник")
+                                (eventCal.Type != Donor.AppResources.HolidayType)
                                 &&
                                 (new DateTime(eventCal.Date.Year, eventCal.Date.Month, eventCal.Date.Day) >= DateTime.Today)
                                 && (App.ViewModel.User.objectId == eventCal.UserId)
@@ -1548,7 +1551,7 @@ namespace Donor.ViewModels
 
                 var emptyItem = new EventViewModel();
                 emptyItem.Date = CurrentMonth;
-                emptyItem.Type = "empty";
+                emptyItem.Type = Donor.AppResources.EmptyType;
                 emptyItem.Title = "";
 
                 int addi = 14 - newitems.Count();
@@ -1582,7 +1585,7 @@ namespace Donor.ViewModels
 
                 var emptyItem = new EventViewModel();
                 emptyItem.Date = CurrentMonth;
-                emptyItem.Type = "empty";
+                emptyItem.Type = Donor.AppResources.EmptyType;
                 emptyItem.Title = "";
 
                 int addi = 11 - newitems.Count();

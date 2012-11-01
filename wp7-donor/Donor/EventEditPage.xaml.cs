@@ -21,12 +21,15 @@ namespace Donor
             InitializeComponent();
 
             App.ViewModel.Events.EditedEvent = null;
-            List<string> eventTypes = new List<string>() { "Кроводача", "Анализ" };
+            List<string> eventTypes = new List<string>() { Donor.AppResources.BloodGiveTitle2, Donor.AppResources.Analisis };
             CurrentEvent = null;
-            List<string> giveTypes = new List<string>() { "Тромбоциты", "Плазма", "Цельная кровь", "Гранулоциты" };
+            List<string> giveTypes = new List<string>() { Donor.AppResources.Platelets, 
+                Donor.AppResources.Plasma, Donor.AppResources.WholeBlood, Donor.AppResources.Granulocytes };
             //, "Гранулоциты"
 
-            List<string> reminderTypes = new List<string>() { "15 минут", "1 час", "1 день", "2 дня", "1 неделя" };
+            List<string> reminderTypes = new List<string>() { Donor.AppResources.Reminder15Minutes, 
+                Donor.AppResources.Reminder1Hour, Donor.AppResources.Reminder1Day, 
+                Donor.AppResources.Reminder2Days, Donor.AppResources.Reminder1Week };
 
             this.EventType.ItemsSource = eventTypes;
             this.GiveType.ItemsSource = giveTypes;
@@ -86,8 +89,9 @@ namespace Donor
                 this.Description.Text = CurrentEvent.Description;
                 this.Place.Text = CurrentEvent.Place;
 
-                List<string> eventTypes = new List<string>() { "Кроводача", "Анализ" };
-                List<string> giveTypes = new List<string>() { "Тромбоциты", "Плазма", "Цельная кровь", "Гранулоциты" };
+                List<string> eventTypes = new List<string>() { Donor.AppResources.BloodGiveTitle2, Donor.AppResources.Analisis };
+                List<string> giveTypes = new List<string>() { Donor.AppResources.Platelets, 
+                        Donor.AppResources.Plasma, Donor.AppResources.WholeBlood, Donor.AppResources.Granulocytes };
                 this.EventType.ItemsSource = eventTypes;
                 this.GiveType.ItemsSource = giveTypes;
 
@@ -169,10 +173,7 @@ namespace Donor
 
 
                 }
-                catch
-                {
-                    //this.Time.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 8, 0, 0);
-                };
+                catch { };
             };
         }
 
@@ -209,7 +210,7 @@ namespace Donor
          private EventViewModel BuildEvent(bool save = true) {
              if (App.ViewModel.User.IsLoggedIn == false)
              {
-                 MessageBox.Show("You can't add events until you enter your email and password.");
+                 //MessageBox.Show("You can't add events until you enter your email and password.");
                  return null;
              };
 
@@ -233,7 +234,7 @@ namespace Donor
                  curan = CurrentEvent.Type != "0";
              } catch {
              };
-             if ((this.EventType.SelectedItem.ToString() != "Анализ" || curan || this.EventType.SelectedIndex != 1) && checkit)
+             if ((this.EventType.SelectedItem.ToString() != Donor.AppResources.Analisis || curan || this.EventType.SelectedIndex != 1) && checkit)
              {
                  try
                  {
@@ -285,7 +286,7 @@ namespace Donor
 
                      CurrentEvent.Id = DateTime.Now.Ticks.ToString();
 
-                     if (this.EventType.SelectedItem.ToString() == "Кроводача")
+                     if (this.EventType.SelectedItem.ToString() == Donor.AppResources.BloodGiveTitle2)
                      {
                          CurrentEvent.Title = this.GiveType.SelectedItem.ToString();
                      }
@@ -297,7 +298,7 @@ namespace Donor
                      switch (this.EventType.SelectedItem.ToString())
                      {
                          case "0":
-                             CurrentEvent.Title = "Анализ";
+                             CurrentEvent.Title = Donor.AppResources.Analisis;
                              break;
                          case "1":
                              CurrentEvent.Title = this.GiveType.SelectedItem.ToString(); //"Кроводача - " + 
@@ -338,7 +339,7 @@ namespace Donor
                      };
                      CurrentEvent.Place = this.Place.Text;
 
-                     if (this.EventType.SelectedItem.ToString() == "Анализ")
+                     if (this.EventType.SelectedItem.ToString() == Donor.AppResources.Analisis)
                      {
                          CurrentEvent.ReminderDate = this.ReminderPeriod.SelectedItem.ToString();
                          CurrentEvent.ReminderMessage = this.KnowAboutResults.IsChecked.Value;
@@ -392,7 +393,7 @@ namespace Donor
                          {
                              if (App.ViewModel.Events.ThisDayEvents(CurrentEvent.Date) && save)
                              {
-                                 MessageBox.Show("На этот день у вас уже запланировано событие.");
+                                 MessageBox.Show(Donor.AppResources.YouHaveEventAtThisDay);
                              };
                          };
                      }
@@ -408,10 +409,7 @@ namespace Donor
                                      {
                                          InitialCurrentEvent.RemoveReminders();
                                      }
-                                     catch
-                                     {
-                                     };
-                                     //CurrentEvent.AddREventReminders();
+                                     catch { };
                                  };
                                  
                              /// Помечаем событие как выполненное, если его дата меньше текущей
@@ -420,7 +418,7 @@ namespace Donor
                                  CurrentEvent.Finished = true;
                                  if ((save) && (App.ViewModel.Events.ThisDayEvents(CurrentEvent.Date) == false))
                                  {
-                                     MessageBox.Show("Вы сдали кровь. Спасибо! Рассчитан интервал до следующей возможной кроводачи");
+                                     MessageBox.Show(Donor.AppResources.YouGiveBloodThanks);
                                  };
                              };
                              if ((save) && (App.ViewModel.Events.ThisDayEvents(CurrentEvent.Date)==false))
@@ -451,7 +449,7 @@ namespace Donor
                              {
                                  if (App.ViewModel.Events.ThisDayEvents(CurrentEvent.Date) && save)
                                  {
-                                     MessageBox.Show("На этот день у вас уже запланировано событие.");
+                                     MessageBox.Show(Donor.AppResources.YouHaveEventAtThisDay);
                                  };
                              };
                          }
@@ -459,7 +457,7 @@ namespace Donor
                          {
                              if (save)
                              {
-                                 MessageBox.Show("В данный день вы еще не можете производить сдачу крови.");
+                                 MessageBox.Show(Donor.AppResources.YouCantPlanBloodGiveThisDay);
                              };
                          };
                      };
@@ -485,7 +483,7 @@ namespace Donor
                  {
                      when = itemother.Date.AddDays(days2 + 1);
                  };
-                 MessageBox.Show("Прошло мало времени с последней кроводачи. " + this.GiveType.SelectedItem.ToString() + " можно сдавать с " + when.ToShortDateString());
+                 MessageBox.Show(Donor.AppResources.NotTooMuchDaysFromLastBloodGive + this.GiveType.SelectedItem.ToString() + Donor.AppResources.PossibleGiveBloodStartingFrom + when.ToShortDateString());
              };
 
              return CurrentEvent;
@@ -495,7 +493,7 @@ namespace Donor
         {
             try
             {
-                if (this.EventType.SelectedItem.ToString() == "Анализ")
+                if (this.EventType.SelectedItem.ToString() == Donor.AppResources.Analisis)
                 {
                     this.Reminder.Visibility = Visibility.Visible;
                     this.GiveType.Visibility = Visibility.Collapsed;
@@ -543,7 +541,7 @@ namespace Donor
         {
             try
             {
-                if (this.EventType.SelectedItem.ToString() == "Анализ")
+                if (this.EventType.SelectedItem.ToString() == Donor.AppResources.Analisis)
                 {
                     this.Reminder.Visibility = Visibility.Visible;
                 }
@@ -555,6 +553,11 @@ namespace Donor
             catch { };
         }
 
+        /// <summary>
+        /// Переходим на страницу списка станции для выбора станции сдачи крови
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Image_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
             App.ViewModel.Events.EditedEvent = BuildEvent(false);
@@ -568,7 +571,6 @@ namespace Donor
         private void Description_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key.Equals(Key.Enter))
-                //this.Description.Text += System.Environment.NewLine;  
                 this.Description.Height = this.Description.Height + 50;
         }
 

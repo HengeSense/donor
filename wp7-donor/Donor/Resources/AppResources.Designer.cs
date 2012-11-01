@@ -196,6 +196,15 @@ namespace Donor {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Кроводача.
+        /// </summary>
+        public static string BloodGiveTitle2 {
+            get {
+                return ResourceManager.GetString("BloodGiveTitle2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Вид кроводачи.
         /// </summary>
         public static string BloodGiveType {
@@ -349,11 +358,47 @@ namespace Donor {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to отсутствует.
+        /// </summary>
+        public static string DontExists {
+            get {
+                return ResourceManager.GetString("DontExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Не указано.
+        /// </summary>
+        public static string DontFilledData {
+            get {
+                return ResourceManager.GetString("DontFilledData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Еще не отмечено как выполненное.
         /// </summary>
         public static string DontFinished {
             get {
                 return ResourceManager.GetString("DontFinished", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to не выбран.
+        /// </summary>
+        public static string DontSelected {
+            get {
+                return ResourceManager.GetString("DontSelected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to не выбрано.
+        /// </summary>
+        public static string DontSelected2 {
+            get {
+                return ResourceManager.GetString("DontSelected2", resourceCulture);
             }
         }
         
@@ -486,6 +531,15 @@ namespace Donor {
         /// <summary>
         ///   Looks up a localized string similar to O(I).
         /// </summary>
+        public static string FirrstBloodGroup {
+            get {
+                return ResourceManager.GetString("FirrstBloodGroup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to O(I).
+        /// </summary>
         public static string FirstBloodGroup {
             get {
                 return ResourceManager.GetString("FirstBloodGroup", resourceCulture);
@@ -511,11 +565,29 @@ namespace Donor {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Пт.
+        /// </summary>
+        public static string FridayShort {
+            get {
+                return ResourceManager.GetString("FridayShort", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Записано кроводач.
         /// </summary>
         public static string GivedBloodCount {
             get {
                 return ResourceManager.GetString("GivedBloodCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Гранулоциты.
+        /// </summary>
+        public static string Granulocytes {
+            get {
+                return ResourceManager.GetString("Granulocytes", resourceCulture);
             }
         }
         
@@ -534,6 +606,15 @@ namespace Donor {
         public static string HelpRules {
             get {
                 return ResourceManager.GetString("HelpRules", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Праздник.
+        /// </summary>
+        public static string HolidayType {
+            get {
+                return ResourceManager.GetString("HolidayType", resourceCulture);
             }
         }
         
@@ -619,6 +700,15 @@ namespace Donor {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Пн.
+        /// </summary>
+        public static string MondayShort {
+            get {
+                return ResourceManager.GetString("MondayShort", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Москва.
         /// </summary>
         public static string Moscow {
@@ -633,6 +723,15 @@ namespace Donor {
         public static string Name {
             get {
                 return ResourceManager.GetString("Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Требуется регистрация в Москве или Московской области.
+        /// </summary>
+        public static string NeedRegistrationInMoscow {
+            get {
+                return ResourceManager.GetString("NeedRegistrationInMoscow", resourceCulture);
             }
         }
         
@@ -669,6 +768,15 @@ namespace Donor {
         public static string NoStations {
             get {
                 return ResourceManager.GetString("NoStations", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Прошло мало времени с последней кроводачи. .
+        /// </summary>
+        public static string NotTooMuchDaysFromLastBloodGive {
+            get {
+                return ResourceManager.GetString("NotTooMuchDaysFromLastBloodGive", resourceCulture);
             }
         }
         
@@ -727,6 +835,24 @@ namespace Donor {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Плазма.
+        /// </summary>
+        public static string Plasma {
+            get {
+                return ResourceManager.GetString("Plasma", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Тромбоциты.
+        /// </summary>
+        public static string Platelets {
+            get {
+                return ResourceManager.GetString("Platelets", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to http://podari-zhizn.ru.
         /// </summary>
         public static string PodariZhizn {
@@ -741,6 +867,24 @@ namespace Donor {
         public static string PossibleBloodGive {
             get {
                 return ResourceManager.GetString("PossibleBloodGive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to - возможная сдача.
+        /// </summary>
+        public static string PossibleBloodGiveTitle {
+            get {
+                return ResourceManager.GetString("PossibleBloodGiveTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  можно сдавать с .
+        /// </summary>
+        public static string PossibleGiveBloodStartingFrom {
+            get {
+                return ResourceManager.GetString("PossibleGiveBloodStartingFrom", resourceCulture);
             }
         }
         
@@ -898,6 +1042,15 @@ namespace Donor {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Сб.
+        /// </summary>
+        public static string SaturdayShort {
+            get {
+                return ResourceManager.GetString("SaturdayShort", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Работаем по субботам.
         /// </summary>
         public static string SaturdayWork {
@@ -1033,6 +1186,15 @@ namespace Donor {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Вс.
+        /// </summary>
+        public static string SundayShort {
+            get {
+                return ResourceManager.GetString("SundayShort", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Временные противопоказания.
         /// </summary>
         public static string TempContras {
@@ -1051,6 +1213,15 @@ namespace Donor {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Чт.
+        /// </summary>
+        public static string ThursdayShort {
+            get {
+                return ResourceManager.GetString("ThursdayShort", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Сегодня.
         /// </summary>
         public static string Today {
@@ -1065,6 +1236,15 @@ namespace Donor {
         public static string TransportStation {
             get {
                 return ResourceManager.GetString("TransportStation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Вт.
+        /// </summary>
+        public static string TuesdayShort {
+            get {
+                return ResourceManager.GetString("TuesdayShort", resourceCulture);
             }
         }
         
@@ -1159,11 +1339,56 @@ namespace Donor {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ср.
+        /// </summary>
+        public static string WednesdayShort {
+            get {
+                return ResourceManager.GetString("WednesdayShort", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Цельная кровь.
+        /// </summary>
+        public static string WholeBlood {
+            get {
+                return ResourceManager.GetString("WholeBlood", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Вы можете сдать кровь, если:.
         /// </summary>
         public static string YouCanGiveBloodIf {
             get {
                 return ResourceManager.GetString("YouCanGiveBloodIf", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Вы можете запланировать кроводачу: .
+        /// </summary>
+        public static string YouCanPlanBlood {
+            get {
+                return ResourceManager.GetString("YouCanPlanBlood", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Вы можете запланировать кроводачу.
+        /// </summary>
+        public static string YouCanPlanBlood2 {
+            get {
+                return ResourceManager.GetString("YouCanPlanBlood2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to В данный день вы еще не можете производить сдачу крови..
+        /// </summary>
+        public static string YouCantPlanBloodGiveThisDay {
+            get {
+                return ResourceManager.GetString("YouCantPlanBloodGiveThisDay", resourceCulture);
             }
         }
         
@@ -1177,11 +1402,29 @@ namespace Donor {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Вы сдали кровь. Спасибо! Рассчитан интервал до следующей возможной кроводачи.
+        /// </summary>
+        public static string YouGiveBloodThanks {
+            get {
+                return ResourceManager.GetString("YouGiveBloodThanks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Завтра у вас запланирована кроводача..
         /// </summary>
         public static string YouHaveBloodGiveTomorrow {
             get {
                 return ResourceManager.GetString("YouHaveBloodGiveTomorrow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to На этот день у вас уже запланировано событие.
+        /// </summary>
+        public static string YouHaveEventAtThisDay {
+            get {
+                return ResourceManager.GetString("YouHaveEventAtThisDay", resourceCulture);
             }
         }
         

@@ -14,15 +14,15 @@
         <StackPanel Margin="0,15,0,0">
             <toolkit:WrapPanel  Background="#FF005258" ItemHeight="35" ItemWidth="68">
                 <TextBlock Width="68" TextAlignment="Center"
-                Style="{StaticResource Text16pxDEAD86}" Text="Пн" 
+                Style="{StaticResource Text16pxDEAD86}" Text="{Binding MondayShort, Source={StaticResource Loc}}" 
 				VerticalAlignment="Center"/>
                 <TextBlock Width="68" 
-				VerticalAlignment="Center" TextAlignment="Center" Style="{StaticResource Text16pxDEAD86}" Text="Вт" HorizontalAlignment="Center"/>
-                <TextBlock Width="68" VerticalAlignment="Center" TextAlignment="Center" Style="{StaticResource Text16pxDEAD86}" Text="Ср" HorizontalAlignment="Center"/>
-                <TextBlock Width="68" VerticalAlignment="Center" TextAlignment="Center" Style="{StaticResource Text16pxDEAD86}" Text="Чт"/>
-                <TextBlock Width="68" VerticalAlignment="Center" TextAlignment="Center" Style="{StaticResource Text16pxDEAD86}" Text="Пт"/>
-                <TextBlock Width="68" VerticalAlignment="Center" TextAlignment="Center" Style="{StaticResource Text16pxDEAD86}" Text="Сб"/>
-                <TextBlock Width="68" VerticalAlignment="Center" TextAlignment="Center" Style="{StaticResource Text16pxDEAD86}" Text="Вс"/>
+				VerticalAlignment="Center" TextAlignment="Center" Style="{StaticResource Text16pxDEAD86}" Text="{Binding TuesdayShort, Source={StaticResource Loc}}" HorizontalAlignment="Center"/>
+                <TextBlock Width="68" VerticalAlignment="Center" TextAlignment="Center" Style="{StaticResource Text16pxDEAD86}" Text="{Binding WednesdayShort, Source={StaticResource Loc}}" HorizontalAlignment="Center"/>
+                <TextBlock Width="68" VerticalAlignment="Center" TextAlignment="Center" Style="{StaticResource Text16pxDEAD86}" Text="{Binding ThursdayShort, Source={StaticResource Loc}}"/>
+                <TextBlock Width="68" VerticalAlignment="Center" TextAlignment="Center" Style="{StaticResource Text16pxDEAD86}" Text="{Binding FridayShort, Source={StaticResource Loc}}"/>
+                <TextBlock Width="68" VerticalAlignment="Center" TextAlignment="Center" Style="{StaticResource Text16pxDEAD86}" Text="{Binding SaturdayShort, Source={StaticResource Loc}}"/>
+                <TextBlock Width="68" VerticalAlignment="Center" TextAlignment="Center" Style="{StaticResource Text16pxDEAD86}" Text="{Binding SundayShort, Source={StaticResource Loc}}"/>
             </toolkit:WrapPanel>
         <toolkit:WrapPanel Background="White" ItemHeight="68" ItemWidth="68" Name="CalendarDays">
         </toolkit:WrapPanel>

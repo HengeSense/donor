@@ -495,4 +495,85 @@
   <data name="YouHaveBloodGiveTomorrow" xml:space="preserve">
     <value>Завтра у вас запланирована кроводача.</value>
   </data>
+  <data name="BloodGiveTitle2" xml:space="preserve">
+    <value>Кроводача</value>
+  </data>
+  <data name="DontExists" xml:space="preserve">
+    <value>отсутствует</value>
+  </data>
+  <data name="DontFilledData" xml:space="preserve">
+    <value>Не указано</value>
+  </data>
+  <data name="DontSelected" xml:space="preserve">
+    <value>не выбран</value>
+  </data>
+  <data name="DontSelected2" xml:space="preserve">
+    <value>не выбрано</value>
+  </data>
+  <data name="FirrstBloodGroup" xml:space="preserve">
+    <value>O(I)</value>
+  </data>
+  <data name="FridayShort" xml:space="preserve">
+    <value>Пт</value>
+  </data>
+  <data name="Granulocytes" xml:space="preserve">
+    <value>Гранулоциты</value>
+  </data>
+  <data name="HolidayType" xml:space="preserve">
+    <value>Праздник</value>
+  </data>
+  <data name="MondayShort" xml:space="preserve">
+    <value>Пн</value>
+  </data>
+  <data name="NeedRegistrationInMoscow" xml:space="preserve">
+    <value>Требуется регистрация в Москве или Московской области</value>
+  </data>
+  <data name="NotTooMuchDaysFromLastBloodGive" xml:space="preserve">
+    <value>Прошло мало времени с последней кроводачи. </value>
+  </data>
+  <data name="Plasma" xml:space="preserve">
+    <value>Плазма</value>
+  </data>
+  <data name="Platelets" xml:space="preserve">
+    <value>Тромбоциты</value>
+  </data>
+  <data name="PossibleBloodGiveTitle" xml:space="preserve">
+    <value>- возможная сдача</value>
+  </data>
+  <data name="PossibleGiveBloodStartingFrom" xml:space="preserve">
+    <value> можно сдавать с </value>
+  </data>
+  <data name="SaturdayShort" xml:space="preserve">
+    <value>Сб</value>
+  </data>
+  <data name="SundayShort" xml:space="preserve">
+    <value>Вс</value>
+  </data>
+  <data name="ThursdayShort" xml:space="preserve">
+    <value>Чт</value>
+  </data>
+  <data name="TuesdayShort" xml:space="preserve">
+    <value>Вт</value>
+  </data>
+  <data name="WednesdayShort" xml:space="preserve">
+    <value>Ср</value>
+  </data>
+  <data name="WholeBlood" xml:space="preserve">
+    <value>Цельная кровь</value>
+  </data>
+  <data name="YouCanPlanBlood" xml:space="preserve">
+    <value>Вы можете запланировать кроводачу: </value>
+  </data>
+  <data name="YouCanPlanBlood2" xml:space="preserve">
+    <value>Вы можете запланировать кроводачу</value>
+  </data>
+  <data name="YouCantPlanBloodGiveThisDay" xml:space="preserve">
+    <value>В данный день вы еще не можете производить сдачу крови.</value>
+  </data>
+  <data name="YouGiveBloodThanks" xml:space="preserve">
+    <value>Вы сдали кровь. Спасибо! Рассчитан интервал до следующей возможной кроводачи</value>
+  </data>
+  <data name="YouHaveEventAtThisDay" xml:space="preserve">
+    <value>На этот день у вас уже запланировано событие</value>
+  </data>
 </root>

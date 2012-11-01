@@ -96,17 +96,17 @@ namespace Donor.ViewModels
 
         public string OutSex { private set { }
             get {
-                string outstr = "не выбран";
+                string outstr = Donor.AppResources.DontSelected;
                 switch (this.Sex)
                 {
                     case 0:
-                        outstr = "Мужской";
+                        outstr = Donor.AppResources.Male;
                         break;
                     case 1:
-                        outstr = "Женский";
+                        outstr = Donor.AppResources.Female;
                         break;
                     default:
-                        outstr = "не выбран";
+                        outstr = Donor.AppResources.DontSelected;
                         break;
                 }
                 return outstr;
@@ -136,7 +136,7 @@ namespace Donor.ViewModels
                 }
                 catch
                 {
-                    return "отсутствует";
+                    return Donor.AppResources.DontExists;
                 }
             }
         }
@@ -168,24 +168,24 @@ namespace Donor.ViewModels
             private set { }
             get
             {
-                string outstr = "не выбрано";
+                string outstr = Donor.AppResources.DontSelected2;
                 switch (this.BloodGroup)
                 {
                     // (0 – I, 1 – II, 2 – III, 3 – IV)                    
                     case 0:
-                        outstr = "O(I)";
+                        outstr = Donor.AppResources.FirrstBloodGroup;
                         break;
                     case 1:
-                        outstr = "A(II)";
+                        outstr = Donor.AppResources.SecondBloodGroup;
                         break;
                     case 2:
-                        outstr = "B(III)";
+                        outstr = Donor.AppResources.ThirdBloodGroup;
                         break;
                     case 3:
-                        outstr = "AB(IV)";
+                        outstr = Donor.AppResources.ForthBloodGroup;
                         break;
                     default:
-                        outstr = "не выбрано";
+                        outstr = Donor.AppResources.DontSelected2;
                         break;
                 }
                 return outstr;
