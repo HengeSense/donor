@@ -51,14 +51,13 @@ namespace Donor
             moveAnim.Duration = TimeSpan.FromMilliseconds(600);
             moveAnim.BeginTime = TimeSpan.FromMilliseconds(0);
             moveAnim.From = 0;
-            moveAnim.To = -800;
+            moveAnim.To = 800;
             Storyboard.SetTarget(moveAnim, Calendar1);
             storyboard.Completed += new System.EventHandler(storyboard_Completed);
             Storyboard.SetTargetProperty(moveAnim, new PropertyPath("(UIElement.RenderTransform).(TranslateTransform.Y)"));
             storyboard.Children.Add(moveAnim);
             storyboard.Begin();
         }
-
         private void StartAnimationBottom()
         {
             this.Calendar1.Visibility = Visibility.Visible;
@@ -79,22 +78,57 @@ namespace Donor
             storyboard.Begin();
         }
 
-        Microsoft.Phone.Controls.FlickGestureEventArgs move;
 
-        private void storyboard_CompletedBottom(object sender, EventArgs e)
+        private void StartAnimationTop2()
         {
-            
+            Storyboard storyboard = new Storyboard();
+            TranslateTransform trans = new TranslateTransform() { X = 1.0, Y = 1.0 };
+            Calendar1.RenderTransformOrigin = new Point(0.5, 0.5);
+            Calendar1.RenderTransform = trans;
+
+            DoubleAnimation moveAnim = new DoubleAnimation();
+            moveAnim.Duration = TimeSpan.FromMilliseconds(600);
+            moveAnim.BeginTime = TimeSpan.FromMilliseconds(0);
+            moveAnim.From = 0;
+            moveAnim.To = -800;
+            Storyboard.SetTarget(moveAnim, Calendar1);
+            storyboard.Completed += new System.EventHandler(storyboard_Completed);
+            Storyboard.SetTargetProperty(moveAnim, new PropertyPath("(UIElement.RenderTransform).(TranslateTransform.Y)"));
+            storyboard.Children.Add(moveAnim);
+            storyboard.Begin();
+        }
+        private void StartAnimationBottom2()
+        {
+            this.Calendar1.Visibility = Visibility.Visible;
+            Storyboard storyboard = new Storyboard();
+            TranslateTransform trans = new TranslateTransform() { X = 1.0, Y = 1.0 };
+            Calendar1.RenderTransformOrigin = new Point(0.5, 0.5);
+            Calendar1.RenderTransform = trans;
+
+            DoubleAnimation moveAnim = new DoubleAnimation();
+            moveAnim.Duration = TimeSpan.FromMilliseconds(600);
+            moveAnim.BeginTime = TimeSpan.FromMilliseconds(0);
+            moveAnim.From = -800;
+            moveAnim.To = 0;
+            Storyboard.SetTarget(moveAnim, Calendar1);
+            storyboard.Completed += new System.EventHandler(storyboard_CompletedBottom);
+            Storyboard.SetTargetProperty(moveAnim, new PropertyPath("(UIElement.RenderTransform).(TranslateTransform.Y)"));
+            storyboard.Children.Add(moveAnim);
+            storyboard.Begin();
         }
 
+
+        Microsoft.Phone.Controls.FlickGestureEventArgs move;
+        private void storyboard_CompletedBottom(object sender, EventArgs e)
+        {            
+        }
         private void storyboard_Completed(object sender, EventArgs e)
         {
             this.Calendar1.Visibility = Visibility.Collapsed;
-
             if (move.Direction == System.Windows.Controls.Orientation.Vertical)
             {
                 if (move.VerticalVelocity < 0)
                 {
-
                     try
                     {
                         App.ViewModel.Events.CurrentMonth = App.ViewModel.Events.CurrentMonth.AddMonths(1);
@@ -103,6 +137,8 @@ namespace Donor
 
                         this.PageTitle.Text = CultureInfo.CurrentCulture.DateTimeFormat.MonthNames[App.ViewModel.Events.CurrentMonth.Month - 1];
                         this.ApplicationTitle.Text = App.ViewModel.Events.CurrentMonth.Year.ToString();
+
+                        StartAnimationBottom();
                     }
                     catch
                     {
@@ -118,6 +154,8 @@ namespace Donor
 
                         this.PageTitle.Text = CultureInfo.CurrentCulture.DateTimeFormat.MonthNames[App.ViewModel.Events.CurrentMonth.Month - 1];
                         this.ApplicationTitle.Text = App.ViewModel.Events.CurrentMonth.Year.ToString();
+
+                        StartAnimationBottom2();
                     }
                     catch
                     {
@@ -133,14 +171,24 @@ namespace Donor
                 {
                 }
             };
-
-            StartAnimationBottom();
+            
         }
 
         private void GestureListener_Flick(object sender, Microsoft.Phone.Controls.FlickGestureEventArgs e)
         {
             move = e;
-            StartAnimationTop();
+            if (move.Direction == System.Windows.Controls.Orientation.Vertical)
+            {
+                if (move.VerticalVelocity < 0)
+                {
+                    StartAnimationTop2();
+                }
+                else
+                {
+                    StartAnimationTop();
+                };
+            };
+            
         }
 
         private void TodayButton_Click(object sender, EventArgs e)
