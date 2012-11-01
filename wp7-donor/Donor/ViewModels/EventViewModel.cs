@@ -105,18 +105,18 @@ namespace Donor.ViewModels
                     case "1":
                         if (this.Finished == true)
                         {
-                            outTitle = "Вы сдали: " + this.GiveType;
+                            outTitle = Donor.AppResources.YouGiveBlood + this.GiveType;
                         }
                         else
                         {
-                            outTitle = "Запланировано: " + this.GiveType;
+                            outTitle = Donor.AppResources.PlanedBloodGive + this.GiveType;
                         };
-                        break;
+                        outTitle = Donor.AppResources.Analisis;
+                        break;                        
                     case "0":
-                        outTitle = "Анализ";
                         break;
                     case "PossibleBloodGive":
-                        outTitle = "Можно сдавать: " + this.GiveType;
+                        outTitle = Donor.AppResources.PossibleBloodGive + this.GiveType;
                         break;
                     default: outTitle = _title; break;
                 };
@@ -157,11 +157,11 @@ namespace Donor.ViewModels
 
                 switch (_notice)
                 {
-                    case "3": this.ReminderDate = "15 минут"; break;
-                    case "4": this.ReminderDate = "1 час"; break;
-                    case "5": this.ReminderDate = "1 день"; break;
-                    case "6": this.ReminderDate = "2 дня"; break;
-                    case "7": this.ReminderDate = "1 неделя"; break;
+                    case "3": this.ReminderDate = Donor.AppResources.Reminder15Minutes; break;
+                    case "4": this.ReminderDate = Donor.AppResources.Reminder1Hour; break;
+                    case "5": this.ReminderDate = Donor.AppResources.Reminder1Day; break;
+                    case "6": this.ReminderDate = Donor.AppResources.Reminder2Days; break;
+                    case "7": this.ReminderDate = Donor.AppResources.Reminder1Week; break;
                     default: break;
                 };
             }
@@ -214,7 +214,7 @@ namespace Donor.ViewModels
         {
             get
             {
-                if (this.Type == "empty")
+                if (this.Type == Donor.AppResources.EmptyType)
                 {
                     return " ";
                 }
@@ -233,7 +233,7 @@ namespace Donor.ViewModels
         {
             get
             {
-                if (this.Type == "empty")
+                if (this.Type == Donor.AppResources.EmptyType)
                 {
                     return " ";
                 }
@@ -303,11 +303,11 @@ namespace Donor.ViewModels
             {
                 if (_finished)
                 {
-                    return "Выполнено";
+                    return Donor.AppResources.Finished;
                 }
                 else
                 {
-                    return "Еще не отмечено как выполненное";
+                    return Donor.AppResources.DontFinished;
                 };
             }
             private set
@@ -522,9 +522,9 @@ namespace Donor.ViewModels
                     };
 
                     //в день в 17:00
-                    this.AddReminder(-60 * 60 * 17, "Вы сегодня сдавали кровь?");
+                    this.AddReminder(-60 * 60 * 17, Donor.AppResources.DoYouGiveBloodToday);
                     //за день в 12:00
-                    this.AddReminder(60 * 60 * 12, "Завтра у вас запланирована кроводача.");
+                    this.AddReminder(60 * 60 * 12, Donor.AppResources.YouHaveBloodGiveTomorrow);
                 };
             };
         }
@@ -554,24 +554,21 @@ namespace Donor.ViewModels
 
                 if (rtitle == "")
                 {
-                    objReminder.Title = "Доноры";
+                    objReminder.Title = Donor.AppResources.Donors;
                     objReminder.Content = this.Title;
                 }
                 else
                 {
-                    objReminder.Title = "Доноры";
+                    objReminder.Title = Donor.AppResources.Donors;
                     objReminder.Content = rtitle;
                 };
 
                 if (this.Type != "PossibleBloodGive")
-                {
-                    //objReminder.NavigationUri = new Uri("/EventPage.xaml?id=" + this.Id, UriKind.Relative);
+                {                    
                     objReminder.NavigationUri = new Uri("/MainPage.xaml?eventid=" + this.Id, UriKind.Relative);
-                    //objReminder.
                 }
                 else
-                {
-                    //objReminder.NavigationUri = new Uri("/EventEditPage.xaml?id=" + this.Id, UriKind.Relative);
+                {                    
                     objReminder.NavigationUri = new Uri("/MainPage.xaml?editeventid=" + this.Id, UriKind.Relative);
                 };
                 
@@ -661,14 +658,6 @@ namespace Donor.ViewModels
             {
             };
 
-            /*try
-            {
-                jsonitem.Time = DateTime.Parse(item["date"]["iso"].ToString());
-            }
-            catch
-            {
-            };*/
-
             try
             {
                 jsonitem.Place = item["adress"].ToString();
@@ -714,11 +703,11 @@ namespace Donor.ViewModels
                     7 – 1 неделя */
                 switch (item["notice"].ToString())
                 {
-                    case "3": jsonitem.ReminderDate = "15 минут"; break;
-                    case "4": jsonitem.ReminderDate = "1 час"; break;
-                    case "5": jsonitem.ReminderDate = "1 день"; break;
-                    case "6": jsonitem.ReminderDate = "2 дня"; break;
-                    case "7": jsonitem.ReminderDate = "1 неделя"; break;
+                    case "3": jsonitem.ReminderDate = Donor.AppResources.Reminder15Minutes; break;
+                    case "4": jsonitem.ReminderDate = Donor.AppResources.Reminder1Hour; break;
+                    case "5": jsonitem.ReminderDate = Donor.AppResources.Reminder1Day; break;
+                    case "6": jsonitem.ReminderDate = Donor.AppResources.Reminder2Days; break;
+                    case "7": jsonitem.ReminderDate = Donor.AppResources.Reminder1Week; break;
                     default: break;
                 };
             }
@@ -740,7 +729,7 @@ namespace Donor.ViewModels
                     switch (jsonitem.Type.ToString())
                     {
                         case "0":
-                            jsonitem.Title = "Анализ";
+                            jsonitem.Title = Donor.AppResources.Analisis;
                             break;
                         case "1":
                             jsonitem.Title = jsonitem.GiveType.ToString(); //"Кроводача - " + 
@@ -827,33 +816,6 @@ namespace Donor.ViewModels
                         this.NotifyPropertyChanged("Items");
                         this.NotifyPropertyChanged("WeekItems");
                     });
-
-                    /*var client = new RestClient("https://api.parse.com");
-                    var request = new RestRequest("1/classes/Events", Method.GET);
-                    request.Parameters.Clear();
-                    string strJSONContent = "{\"type\":1, \"user_id\":\"" + App.ViewModel.User.objectId.ToString() + "\"}";
-                    request.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
-                    request.AddHeader("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
-                    request.AddParameter("where", strJSONContent);
-                    client.ExecuteAsync(request, response =>
-                    {
-                        try
-                        {
-                            ObservableCollection<EventViewModel> eventslist1 = new ObservableCollection<EventViewModel>();
-                            JObject o = JObject.Parse(response.Content.ToString());
-                            foreach (JObject item in o["results"])
-                            {
-                                EventFromJSON(item);
-                            };
-                            App.ViewModel.Events.UpdateItems();
-                        }
-                        catch
-                        {
-                        };
-                        this.NotifyPropertyChanged("Items");
-                        this.NotifyPropertyChanged("WeekItems");
-                    });*/
-
                 };
             }
             catch { };

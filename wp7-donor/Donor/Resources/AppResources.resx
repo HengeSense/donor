@@ -447,4 +447,52 @@
   <data name="FacebookUnlinkedMessage" xml:space="preserve">
     <value>Связь с Facebook разорвана</value>
   </data>
+  <data name="Analisis" xml:space="preserve">
+    <value>Анализ</value>
+  </data>
+  <data name="DataSend" xml:space="preserve">
+    <value>Данные отправлены</value>
+  </data>
+  <data name="Donors" xml:space="preserve">
+    <value>Доноры</value>
+  </data>
+  <data name="DontFinished" xml:space="preserve">
+    <value>Еще не отмечено как выполненное</value>
+  </data>
+  <data name="DoYouGiveBloodToday" xml:space="preserve">
+    <value>Вы сегодня сдавали кровь?</value>
+  </data>
+  <data name="EmptyType" xml:space="preserve">
+    <value>empty</value>
+  </data>
+  <data name="Finished" xml:space="preserve">
+    <value>Выполнено</value>
+  </data>
+  <data name="PlanedBloodGive" xml:space="preserve">
+    <value>Запланировано: </value>
+  </data>
+  <data name="PossibleBloodGive" xml:space="preserve">
+    <value>Можно сдавать: </value>
+  </data>
+  <data name="Reminder15Minutes" xml:space="preserve">
+    <value>15 минут</value>
+  </data>
+  <data name="Reminder1Day" xml:space="preserve">
+    <value>1 день</value>
+  </data>
+  <data name="Reminder1Hour" xml:space="preserve">
+    <value>1 час</value>
+  </data>
+  <data name="Reminder1Week" xml:space="preserve">
+    <value>1 неделя</value>
+  </data>
+  <data name="Reminder2Days" xml:space="preserve">
+    <value>2 дня</value>
+  </data>
+  <data name="YouGiveBlood" xml:space="preserve">
+    <value>Вы сдали: </value>
+  </data>
+  <data name="YouHaveBloodGiveTomorrow" xml:space="preserve">
+    <value>Завтра у вас запланирована кроводача.</value>
+  </data>
 </root>

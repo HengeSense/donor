@@ -124,6 +124,15 @@ namespace Donor {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Анализ.
+        /// </summary>
+        public static string Analisis {
+            get {
+                return ResourceManager.GetString("Analisis", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Применить.
         /// </summary>
         public static string Apply {
@@ -295,6 +304,15 @@ namespace Donor {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Данные отправлены.
+        /// </summary>
+        public static string DataSend {
+            get {
+                return ResourceManager.GetString("DataSend", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Дата и время.
         /// </summary>
         public static string DateAndTime {
@@ -313,6 +331,15 @@ namespace Donor {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Доноры.
+        /// </summary>
+        public static string Donors {
+            get {
+                return ResourceManager.GetString("Donors", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Доноры детям.
         /// </summary>
         public static string DonorsForChildren {
@@ -322,11 +349,38 @@ namespace Donor {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Еще не отмечено как выполненное.
+        /// </summary>
+        public static string DontFinished {
+            get {
+                return ResourceManager.GetString("DontFinished", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Вы сегодня сдавали кровь?.
+        /// </summary>
+        public static string DoYouGiveBloodToday {
+            get {
+                return ResourceManager.GetString("DoYouGiveBloodToday", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to E-mail.
         /// </summary>
         public static string EmailHelp {
             get {
                 return ResourceManager.GetString("EmailHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to empty.
+        /// </summary>
+        public static string EmptyType {
+            get {
+                return ResourceManager.GetString("EmptyType", resourceCulture);
             }
         }
         
@@ -417,6 +471,15 @@ namespace Donor {
         public static string Filter {
             get {
                 return ResourceManager.GetString("Filter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Выполнено.
+        /// </summary>
+        public static string Finished {
+            get {
+                return ResourceManager.GetString("Finished", resourceCulture);
             }
         }
         
@@ -646,6 +709,15 @@ namespace Donor {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Запланировано: .
+        /// </summary>
+        public static string PlanedBloodGive {
+            get {
+                return ResourceManager.GetString("PlanedBloodGive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Планы.
         /// </summary>
         public static string Plans {
@@ -660,6 +732,15 @@ namespace Donor {
         public static string PodariZhizn {
             get {
                 return ResourceManager.GetString("PodariZhizn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Можно сдавать: .
+        /// </summary>
+        public static string PossibleBloodGive {
+            get {
+                return ResourceManager.GetString("PossibleBloodGive", resourceCulture);
             }
         }
         
@@ -741,6 +822,51 @@ namespace Donor {
         public static string Reminder {
             get {
                 return ResourceManager.GetString("Reminder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 15 минут.
+        /// </summary>
+        public static string Reminder15Minutes {
+            get {
+                return ResourceManager.GetString("Reminder15Minutes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1 день.
+        /// </summary>
+        public static string Reminder1Day {
+            get {
+                return ResourceManager.GetString("Reminder1Day", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1 час.
+        /// </summary>
+        public static string Reminder1Hour {
+            get {
+                return ResourceManager.GetString("Reminder1Hour", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1 неделя.
+        /// </summary>
+        public static string Reminder1Week {
+            get {
+                return ResourceManager.GetString("Reminder1Week", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 2 дня.
+        /// </summary>
+        public static string Reminder2Days {
+            get {
+                return ResourceManager.GetString("Reminder2Days", resourceCulture);
             }
         }
         
@@ -1038,6 +1164,24 @@ namespace Donor {
         public static string YouCanGiveBloodIf {
             get {
                 return ResourceManager.GetString("YouCanGiveBloodIf", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Вы сдали: .
+        /// </summary>
+        public static string YouGiveBlood {
+            get {
+                return ResourceManager.GetString("YouGiveBlood", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Завтра у вас запланирована кроводача..
+        /// </summary>
+        public static string YouHaveBloodGiveTomorrow {
+            get {
+                return ResourceManager.GetString("YouHaveBloodGiveTomorrow", resourceCulture);
             }
         }
         

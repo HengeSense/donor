@@ -98,24 +98,26 @@ namespace Donor.ViewModels
         public void SendQRData(string QrHash)
         {
             var client = new RestClient("http://havevalue.herokuapp.com/");
-            //var request = new RestRequest("donation/activate.json?json_hash=" + QrHash + "&fbuser=" + App.ViewModel.User.FacebookId, Method.GET);
-            //var request = new RestRequest("donation/activate.json", Method.GET);
             var request = new RestRequest("donation/activate.json", Method.POST);
+            //request.Parameters.Clear();
+
             request.AddHeader("Accept", "application/json");
             request.AddParameter("json_hash", QrHash);
+            request.AddParameter("name", App.ViewModel.User.Name);
             request.AddParameter("fbuser", App.ViewModel.User.FacebookId);
 
-            string strJSONContent = "{ \"json_hash\": \"" + QrHash + "\", \"fbuser\": \"" + App.ViewModel.User.FacebookId + "\" }";
-            //request.AddParameter("application/json", strJSONContent, ParameterType.RequestBody);
+            /*request.AddParameter("json_hash", "643fd91b03220c12ce7fdd6d09a909a739d3a5f8");
+            request.AddParameter("name", "John Amdei");
+            request.AddParameter("fbuser", "100004596188232");*/
 
-            request.Parameters.Clear();
+            string strJSONContent = "{ \"json_hash\": \"" + QrHash + "\", \"fbuser\": \"" + App.ViewModel.User.FacebookId + "\" }";
 
             client.ExecuteAsync(request, response =>
             {
                 try
                 {
                     JObject o = JObject.Parse(response.Content.ToString());
-                    MessageBox.Show("Данные отправлены.");
+                    MessageBox.Show(Donor.AppResources.DataSend);
                 }
                 catch { 
                 };
