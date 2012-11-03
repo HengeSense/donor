@@ -949,6 +949,37 @@ namespace Donor.ViewModels
         }
 
         /// <summary>
+        /// Удаляем события, попадающие в интервал отдыха выполненных событий
+        /// </summary>
+        private void DeleteUncorrectEvents()
+        {
+            List<string> TypesGive = new List<string>() { Donor.AppResources.Platelets, 
+                Donor.AppResources.Plasma, Donor.AppResources.WholeBlood, Donor.AppResources.Granulocytes };
+
+            var _selected_user_items = (from item in this.Items
+                                        where ((item.UserId == App.ViewModel.User.objectId) && (item.Type == "1") && (item.Finished == true))
+                                        orderby item.Date ascending
+                                        select item);
+
+            // проверяем периодыдля всех выполненных событий
+            foreach (var item in _selected_user_items)
+            {
+                // ищем события в периодах отдыха для разных типов кроводачи
+                foreach (var give in TypesGive)
+                {
+                    int daysc1 = App.ViewModel.Events.DaysFromEvent(item.GiveType, give);
+                    // выбираем события, попадающие в период отдыха, не являющиеся выполненными и являющимися соыбтиями типа кроводачи
+                    var deleteitems = App.ViewModel.Events.UserItems.Where(c => (c.Date <= item.Date.AddDays(daysc1)) && (c.Date >= item.Date) && (c.Finished == false) && (c.Type == "1"));
+                    foreach (var delitem in deleteitems)
+                    {
+                        //this.Items.Remove(delitem);
+                        DeleteEventWithoutUpdate(delitem);
+                    };
+                };
+            }
+        }
+
+        /// <summary>
         /// Подсчет будущих событий в календаре пользователя
         /// </summary>
         /// <returns></returns>
@@ -1209,6 +1240,19 @@ namespace Donor.ViewModels
         }
 
 
+        public void DeleteEventWithoutUpdate(EventViewModel _currentEvent = null)
+        {
+            try
+            {
+                App.ViewModel.Events.Items.Remove(_currentEvent);
+                App.ViewModel.Events.RemoveItemFromParse(_currentEvent);
+            }
+            catch
+            {
+            };
+        }
+
+
         public void UpdateEventParse(EventViewModel addedItems = null)
         {
             if ((addedItems != null) && ((addedItems.Type == "0") || (addedItems.Type == "1")))
@@ -1238,6 +1282,8 @@ namespace Donor.ViewModels
                         NotifyPropertyChanged("WeekItems");
                         NotifyPropertyChanged("ThisMonthItems");
                         UpdateNearestEvents();
+
+                        this.DeleteUncorrectEvents();
 
                         App.ViewModel.Events.OnEventsChanged(EventArgs.Empty);
 
@@ -1303,6 +1349,8 @@ namespace Donor.ViewModels
                         NotifyPropertyChanged("ThisMonthItems");
                         UpdateNearestEvents();
 
+                        this.DeleteUncorrectEvents();
+
                         App.ViewModel.Events.OnEventsChanged(EventArgs.Empty);
 
                         App.ViewModel.SaveToIsolatedStorage();
@@ -1332,6 +1380,8 @@ namespace Donor.ViewModels
                 NotifyPropertyChanged("WeekItems");
                 NotifyPropertyChanged("ThisMonthItems");
                 UpdateNearestEvents();
+
+                this.DeleteUncorrectEvents();
 
                 App.ViewModel.Events.OnEventsChanged(EventArgs.Empty);
             }

@@ -582,4 +582,7 @@
   <data name="UserBirthday" xml:space="preserve">
     <value>Дата рождения</value>
   </data>
+  <data name="ReadQRAboutText" xml:space="preserve">
+    <value>Считайте код с приложения к справке донора для добавления достижения в Facebook. Подробности здесь.</value>
+  </data>
 </root>

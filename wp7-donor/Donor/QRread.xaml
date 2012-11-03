@@ -53,7 +53,7 @@
             <Rectangle x:Name="_previewRect" 
                Margin="0" 
                Height="700" 
-               Width="500" 
+               Width="500" Grid.Row="0" Grid.Column="0"
                HorizontalAlignment="Center" 
                VerticalAlignment="Center">
                 <Rectangle.Fill>
@@ -65,7 +65,13 @@
                     </VideoBrush>
                 </Rectangle.Fill>
             </Rectangle>
-            
+
+            <TextBlock 
+                TextWrapping="Wrap"
+                Margin="20"                
+                Text="{Binding ReadQRAboutText, Source={StaticResource Loc}}" 
+                VerticalAlignment="Bottom" />
+
             <ListBox Margin="10" x:Name="_matchesList" FontSize="30" FontWeight="ExtraBold" />
         </Grid>
     </Grid>

@@ -907,6 +907,15 @@ namespace Donor {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Считайте код с приложения к справке донора для добавления достижения в Facebook. Подробности здесь..
+        /// </summary>
+        public static string ReadQRAboutText {
+            get {
+                return ResourceManager.GetString("ReadQRAboutText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Считать QR код.
         /// </summary>
         public static string ReadQrCode {
