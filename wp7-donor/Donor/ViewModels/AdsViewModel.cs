@@ -54,13 +54,15 @@ namespace Donor.ViewModels
                         };*/
 
                         //save to isolated storage
-                        IsolatedStorageHelper.SaveSerializableObject<ObservableCollection<AdsViewModel>>(App.ViewModel.Ads.Items, "ads.xml");
+                        
 
                         Deployment.Current.Dispatcher.BeginInvoke(() =>
                         {
                             //App.ViewModel.Ads.Items = new ObservableCollection<AdsViewModel>();
                             this.Items = new ObservableCollection<AdsViewModel>(sortedAds);
                         });
+
+                        IsolatedStorageHelper.SaveSerializableObject<ObservableCollection<AdsViewModel>>(App.ViewModel.Ads.Items, "ads.xml");
                     };
                     bw.RunWorkerAsync();
                 }

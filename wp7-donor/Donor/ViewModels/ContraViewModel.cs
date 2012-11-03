@@ -62,13 +62,21 @@ namespace Donor.ViewModels
             {
                 try
                 {
+                    var bw = new BackgroundWorker();
+                    bw.DoWork += delegate
+                    {
                     ObservableCollection<ContraViewModel> contraslist1 = new ObservableCollection<ContraViewModel>();
                     JObject o = JObject.Parse(response.Content.ToString());
                     contraslist1 = JsonConvert.DeserializeObject<ObservableCollection<ContraViewModel>>(o["results"].ToString());
-                    this.Items = contraslist1;
-                    this.NotifyPropertyChanged("Items");
-                    //save to isolated storage
-                    IsolatedStorageHelper.SaveSerializableObject<ObservableCollection<NewsViewModel>>(App.ViewModel.News.Items, "contras.xml");
+                    
+                        Deployment.Current.Dispatcher.BeginInvoke(() =>
+                        {
+                            this.Items = contraslist1;
+                            this.NotifyPropertyChanged("Items");
+                        });
+                        IsolatedStorageHelper.SaveSerializableObject<ObservableCollection<NewsViewModel>>(App.ViewModel.News.Items, "contras.xml");
+                    };
+                    bw.RunWorkerAsync();
                 }
                 catch
                 {

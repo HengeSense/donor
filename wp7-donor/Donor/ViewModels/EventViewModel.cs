@@ -110,10 +110,10 @@ namespace Donor.ViewModels
                         else
                         {
                             outTitle = Donor.AppResources.PlanedBloodGive + this.GiveType;
-                        };
-                        outTitle = Donor.AppResources.Analisis;
+                        };                        
                         break;                        
                     case "0":
+                        outTitle = Donor.AppResources.Analisis;
                         break;
                     case "PossibleBloodGive":
                         outTitle = Donor.AppResources.PossibleBloodGive + this.GiveType;

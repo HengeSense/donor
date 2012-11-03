@@ -46,13 +46,12 @@ namespace Donor.ViewModels
                         JObject o = JObject.Parse(response.Content.ToString());
                         newslist1 = JsonConvert.DeserializeObject<ObservableCollection<NewsViewModel>>(o["results"].ToString());
                         //var newslist2 = (from news in newslist1 orderby news.CreatedTimestamp descending select news);
-                        
-                        IsolatedStorageHelper.SaveSerializableObject<ObservableCollection<NewsViewModel>>(App.ViewModel.News.Items, "news.xml");
 
                         Deployment.Current.Dispatcher.BeginInvoke(() =>
                         {
                             this.Items = new ObservableCollection<NewsViewModel>(newslist1);
                         });
+                        IsolatedStorageHelper.SaveSerializableObject<ObservableCollection<NewsViewModel>>(App.ViewModel.News.Items, "news.xml");
                     };
                     bw.RunWorkerAsync();
                 }
