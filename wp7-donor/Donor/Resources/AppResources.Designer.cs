@@ -1078,6 +1078,15 @@ namespace Donor {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Фамилия.
+        /// </summary>
+        public static string SecondName {
+            get {
+                return ResourceManager.GetString("SecondName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Пол.
         /// </summary>
         public static string Sex {
@@ -1254,6 +1263,15 @@ namespace Donor {
         public static string UncorrectLoginData {
             get {
                 return ResourceManager.GetString("UncorrectLoginData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Дата рождения.
+        /// </summary>
+        public static string UserBirthday {
+            get {
+                return ResourceManager.GetString("UserBirthday", resourceCulture);
             }
         }
         

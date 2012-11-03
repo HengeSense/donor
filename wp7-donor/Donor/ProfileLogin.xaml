@@ -10,12 +10,12 @@
     xmlns:WPExtensions="clr-namespace:WPExtensions;assembly=WPExtensions"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit" 
     x:Class="Donor.ProfileLogin" 
-    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="768"
+    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="800"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait"  Orientation="Portrait"
-    shell:SystemTray.IsVisible="True">
+    shell:SystemTray.IsVisible="False">
 
 
     <toolkit:TransitionService.NavigationInTransition>
@@ -63,224 +63,284 @@
                     <TextBlock Style="{StaticResource Text70pxWhite}" 
 					Text="{Binding AccountHeader, Source={StaticResource Loc}}" Margin="0,30,0,0"/>
                 </controls:PivotItem.Header>
-                <Grid>
-                    <StackPanel Name="EditProfile" Visibility="Collapsed">
-                        <TextBlock Text="{Binding Name, Source={StaticResource Loc}}" Margin="10,5,10,0"
-					Style="{StaticResource Text24pxCBB2A3}"/>
-                    <TextBox Name="EditName" 
-					Style="{StaticResource TextBoxStyle1}"	
-					Text="{Binding Path=App.ViewModel.User.Name, 
-					Mode=TwoWay}" />
-                        <TextBlock Text="{Binding Sex, Source={StaticResource Loc}}" Margin="10,0,10,0"
-						Style="{StaticResource Text24pxCBB2A3}"/>
-                        <StackPanel Orientation="Horizontal" 
-						Name="SexEditGroup">
-                            <toolkit:WrapPanel ItemHeight="90" ItemWidth="210" Margin="10,0,10,0">
-                                <RadioButton 
-							    Content="{Binding Male, Source={StaticResource Loc}}" Name="EditMale" 
-							    Foreground="#FFCBB2A3" />
-                                <RadioButton Content="{Binding Female, Source={StaticResource Loc}}"
-							    Name="EditFemale" DataContext="{Binding}" 
-							    Foreground="#FFCBB2A3" />
-                            </toolkit:WrapPanel>
-                        </StackPanel>
 
-                        <TextBlock Text="{Binding BloodGroup, Source={StaticResource Loc}}" Margin="10,0,10,0"
-						Style="{StaticResource Text24pxCBB2A3}" />
-                        <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left">
-                            <toolkit:WrapPanel ItemHeight="90" Margin="10,0,10,0" ItemWidth="210" Name="BloudTypeGroupEdit" VerticalAlignment="Top" HorizontalAlignment="Left" Height="160">
-                            <RadioButton Content="{Binding FirstBloodGroup, Source={StaticResource Loc}}" 
-							Foreground="#FFCBB2A3"
-							Name="o" Height="75" VerticalAlignment="Top" />
-                            <RadioButton 
-							Foreground="#FFCBB2A3"
-							Content="{Binding SecondBloodGroup, Source={StaticResource Loc}}" Name="a" Height="75" VerticalAlignment="Top" />            
-                        
-                            <RadioButton 
-							Content="{Binding ThirdBloodGroup, Source={StaticResource Loc}}" 
-							Foreground="#FFCBB2A3"
-							Name="b" Height="75" VerticalAlignment="Top" />
-                            <RadioButton 
-							Foreground="#FFCBB2A3"
-							Content="{Binding ForthBloodGroup, Source={StaticResource Loc}}" Name="ab" Height="75" VerticalAlignment="Top" />
-                        </toolkit:WrapPanel>
-                        </StackPanel>
+                <StackPanel>
 
-                        <TextBlock Text="{Binding RhFactor, Source={StaticResource Loc}}" Margin="10,0,10,0"
-						Style="{StaticResource Text24pxCBB2A3}"/>
-                        <StackPanel Orientation="Horizontal" Name="RHedit">
-                            <toolkit:WrapPanel Margin="10,0,10,0" ItemHeight="90" ItemWidth="210"> 
-                                <RadioButton Content="RH+" 
-							    Foreground="#FFCBB2A3"
-							    Name="EditRHpl" />
-                                <RadioButton Content="RH-" 
-							    Foreground="#FFCBB2A3"
-							    Name="EditRHd" DataContext="{Binding}" />
-                            </toolkit:WrapPanel>
-                        </StackPanel>
-                    </StackPanel>
-                    <StackPanel Margin="0,10" Name="UserProfile" Visibility="Collapsed">
-                        <StackPanel Margin="10,0,10,0">
-                            <TextBlock
+                    <Grid>
+
+                        <ScrollViewer>
+                            <StackPanel Margin="0,10" Name="UserProfile" Visibility="Collapsed">
+                                <StackPanel Margin="10,0,10,0">
+                                    <TextBlock
 							Style="{StaticResource Text36pxCBB2A3}"
 							Text="{Binding Name, Source={StaticResource Loc}}" TextWrapping="Wrap"/>
-                            <TextBlock Text="{Binding User.Name}" 
+                                    <TextBlock Text="{Binding User.Name}" 
 							Name="ProfileName" TextWrapping="Wrap" 
 							Margin="12,-6,12,0" 
 							Style="{StaticResource Text24pxDF8D4B}"
 							/>
-                        </StackPanel>
-                        <StackPanel Margin="10">
-                            <TextBlock Text="{Binding Sex, Source={StaticResource Loc}}" TextWrapping="Wrap" 
+                                </StackPanel>
+
+                                <StackPanel Margin="10">
+                                    <TextBlock
+							Style="{StaticResource Text36pxCBB2A3}"
+							Text="{Binding SecondName, Source={StaticResource Loc}}" TextWrapping="Wrap"/>
+                                    <TextBlock Text="{Binding User.SecondName}" 
+							Name="SecondName" TextWrapping="Wrap" 
+							Margin="12,-6,12,0" 
+							Style="{StaticResource Text24pxDF8D4B}"
+							/>
+                                </StackPanel>
+
+                                <StackPanel Margin="10">
+                                    <TextBlock
+							Style="{StaticResource Text36pxCBB2A3}"
+							Text="{Binding UserBirthday, Source={StaticResource Loc}}" TextWrapping="Wrap"/>
+                                    <TextBlock Text="{Binding User.Birthday}" 
+							Name="Birthday" TextWrapping="Wrap" 
+							Margin="12,-6,12,0" 
+							Style="{StaticResource Text24pxDF8D4B}"
+							/>
+                                </StackPanel>
+
+                                <StackPanel Margin="10">
+                                    <TextBlock Text="{Binding Sex, Source={StaticResource Loc}}" TextWrapping="Wrap" 
 							Style="{StaticResource Text36pxCBB2A3}"/>
-                            <TextBlock Name="ProfileSex" 
-							Text="{Binding User.Sex}"  
+                                    <TextBlock Name="ProfileSex" 
+							Text="{Binding User.OutSex}"  
 							TextWrapping="Wrap" Margin="12,-6,12,0" 
 							Style="{StaticResource Text24pxDF8D4B}"/>
-                        </StackPanel>
-                        <StackPanel Margin="10">
-                            <TextBlock Text="{Binding BloodGroup, Source={StaticResource Loc}}" 
+                                </StackPanel>
+                                <StackPanel Margin="10">
+                                    <TextBlock Text="{Binding BloodGroup, Source={StaticResource Loc}}" 
 							TextWrapping="Wrap" 
 							Style="{StaticResource Text36pxCBB2A3}"/>
-                            <TextBlock Text="{Binding User.OutBloodDataString}" 
+                                    <TextBlock Text="{Binding User.OutBloodDataString}" 
 							Name="ProfileBloodGroup" TextWrapping="Wrap" 
 							Margin="12,-6,12,0" 
 							Style="{StaticResource Text24pxDF8D4B}"/>
-                        </StackPanel>
-                        <StackPanel Margin="10">
-                            <TextBlock Text="{Binding NextBloodGive, Source={StaticResource Loc}}" TextWrapping="Wrap" Style="{StaticResource Text36pxCBB2A3}"/>
-                            <TextBlock Text="{Binding User.NearestBloodGive}" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource Text24pxDF8D4B}"/>
-                        </StackPanel>
+                                </StackPanel>
+                                <StackPanel Margin="10">
+                                    <TextBlock Text="{Binding NextBloodGive, Source={StaticResource Loc}}" TextWrapping="Wrap" Style="{StaticResource Text36pxCBB2A3}"/>
+                                    <TextBlock Text="{Binding User.NearestBloodGive}" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource Text24pxDF8D4B}"/>
+                                </StackPanel>
 
-                        <StackPanel Margin="10">
-                            <TextBlock Text="{Binding GivedBloodCount, Source={StaticResource Loc}}" TextWrapping="Wrap" Style="{StaticResource Text36pxCBB2A3}"/>
-                            <TextBlock Text="{Binding User.GivedBlood}" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource Text24pxDF8D4B}"/>
-                        </StackPanel>
+                                <StackPanel Margin="10">
+                                    <TextBlock Text="{Binding GivedBloodCount, Source={StaticResource Loc}}" TextWrapping="Wrap" Style="{StaticResource Text36pxCBB2A3}"/>
+                                    <TextBlock Text="{Binding User.GivedBlood}" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource Text24pxDF8D4B}"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </ScrollViewer>
 
-                        
-                    </StackPanel>
-                    <StackPanel Name="RegisterForm" Visibility="Collapsed">
-                    	<ScrollViewer>
-                    		<StackPanel>
-                        <TextBlock Margin="10,10,10,0"
+                        <StackPanel Name="RegisterForm" Visibility="Visible">
+                            <ScrollViewer Height="540">
+                                <StackPanel>
+                                    <TextBlock Margin="10,10,10,0"
 						Style="{StaticResource Text24pxCBB2A3}"
 						Text="{Binding EmailHelp, Source={StaticResource Loc}}" />
-                        <TextBox x:Name="email1" Style="{StaticResource TextBoxStyle1}" Text="" />
-                        <TextBlock Margin="10,0,10,0"
+                                    <TextBox x:Name="email1" Style="{StaticResource TextBoxStyle1}" Text="" />
+                                    <TextBlock Margin="10,0,10,0"
 						Style="{StaticResource Text24pxCBB2A3}"
 						Text="{Binding Password, Source={StaticResource Loc}}" />
-                        <PasswordBox 
+                                    <PasswordBox 
 						x:Name="password1" Password="" Style="{StaticResource PasswordBoxStyle1}"/>
-                        <TextBlock Margin="10,0,10,0"
+                                    <TextBlock Margin="10,0,10,0"
 						Style="{StaticResource Text24pxCBB2A3}"
 						Text="{Binding ConfirmPassword, Source={StaticResource Loc}}" />
-                        <PasswordBox  Style="{StaticResource PasswordBoxStyle1}"	
+                                    <PasswordBox  Style="{StaticResource PasswordBoxStyle1}"	
 						x:Name="password2" Password="" />
-                                <TextBlock Margin="10,0,10,0"
+                                    
+                                    <TextBlock Margin="10,0,10,0"
 						Style="{StaticResource Text24pxCBB2A3}"
 						Text="{Binding Name, Source={StaticResource Loc}}" />
-                        <TextBox x:Name="name1" Text="" 
+                                    <TextBox x:Name="name1" Text="" 
 						Style="{StaticResource TextBoxStyle1}"/>
 
-                                <StackPanel Orientation="Horizontal" 
+                                    <TextBlock Margin="10,0,10,0"
+						Style="{StaticResource Text24pxCBB2A3}"
+						Text="{Binding SecondName, Source={StaticResource Loc}}" />
+                                    <TextBox x:Name="SecondNameRegister" Text="" 
+						Style="{StaticResource TextBoxStyle1}"/>
+                                    
+                                    <TextBlock Text="{Binding UserBirthday, Source={StaticResource Loc}}" Margin="10,5,10,0"
+					Style="{StaticResource Text24pxCBB2A3}"/>
+                                    <toolkit:DatePicker Name="UserBirthdayRegister" 
+					Background="#FF4F3B34" Foreground="#FFDF8D4B"/>
+
+                                    <StackPanel Orientation="Horizontal" 
 						Name="SexEditGroupCreate">
-                                    <RadioButton 
+                                        <RadioButton 
 							Content="{Binding Male, Source={StaticResource Loc}}" Name="CreateMale" 
 							Foreground="#FFCBB2A3" />
-                                    <RadioButton Content="{Binding Female, Source={StaticResource Loc}}"
+                                        <RadioButton Content="{Binding Female, Source={StaticResource Loc}}"
 							
 							Name="CreateFemale" DataContext="{Binding}" 
 							Foreground="#FFCBB2A3" />
-</StackPanel>
+                                    </StackPanel>
 
-                                <Button Name="RegisterButton" 
+                                    <Button Name="RegisterButton" 
 						FontSize="24"
 						Background="#FF4186A3" 
 						BorderBrush="#FF4186A3" 
 						FontFamily="Segoe WP Regular"
 						Content="{Binding Registration, Source={StaticResource Loc}}" Click="RegisterButton_Click" Foreground="White" />
-						</StackPanel>
-						</ScrollViewer>
-                    </StackPanel>
-                    <StackPanel Name="LoginForm" Visibility="Visible">
-                        <TextBlock Text="{Binding EnterEmail, Source={StaticResource Loc}}" Margin="10,10,0,0"
+                                </StackPanel>
+                            </ScrollViewer>
+                        </StackPanel>
+                        
+                        <StackPanel Name="LoginForm" Visibility="Collapsed">
+                            <TextBlock Text="{Binding EnterEmail, Source={StaticResource Loc}}" Margin="10,10,0,0"
 						Style="{StaticResource Text24pxCBB2A3}"/>
-                        <TextBox Background="#FF4F3B34" Style="{StaticResource TextBoxStyle1}"
+                            <TextBox Background="#FF4F3B34" Style="{StaticResource TextBoxStyle1}"
 BorderBrush="#FF4F3B34" Foreground="#FFCBB2A3" x:Name="email" 
 						Text="" />
-                        <TextBlock Text="{Binding EnterPassword, Source={StaticResource Loc}}"  Margin="10,5,0,0"
+                            <TextBlock Text="{Binding EnterPassword, Source={StaticResource Loc}}"  Margin="10,5,0,0"
 						Style="{StaticResource Text24pxCBB2A3}" />
-                        <PasswordBox Background="#FF4F3B34" 
+                            <PasswordBox Background="#FF4F3B34" 
 Style="{StaticResource PasswordBoxStyle1}" BorderBrush="#FF4F3B34" 	Foreground="#FFCBB2A3" x:Name="password" Password="" />
-                        
-                        <Button Name="Login" 
+
+                            <Button Name="Login" 
 						Content="{Binding Login, Source={StaticResource Loc}}" 
 						Click="Login_Click"
 						FontSize="24"
 						Background="#FF4186A3" 
 						BorderBrush="#FF4186A3" 
 						FontFamily="Segoe WP Regular" Foreground="White" />
-                        
-                        <TextBlock 
+
+                            <TextBlock 
 						Foreground="#FF847168"
 						Style="{StaticResource Text24pxCBB2A3}"
 						Text="{Binding EnterLoginAndPasswordToRegister, Source={StaticResource Loc}}" TextWrapping="Wrap" Visibility="Collapsed" />
 
-                        <Button Name="RegisterShowButton" 
+                            <Button Name="RegisterShowButton" 
 						Content="Регистрация" 
 						FontSize="24"
 						Background="#FF4186A3" 
 						BorderBrush="#FF4186A3" 
 						FontFamily="Segoe WP Regular" Foreground="White" Click="RegisterShowButton_Click" />
-                        <TextBlock 
+                            <TextBlock 
 						Foreground="#FF847168"
 						Style="{StaticResource Text24pxCBB2A3}"
 						Text="{Binding EnterLoginAndPasswordToRegister, Source={StaticResource Loc}}" TextWrapping="Wrap" Visibility="Collapsed" />
 
 
-                        <Button Name="RestorePassword" 
+                            <Button Name="RestorePassword" 
 						Content="{Binding RestorePassoword, Source={StaticResource Loc}}" 
 						Click="RestorePassword_Click" 
 						FontSize="24"
 						Background="#FF4186A3" 
 						BorderBrush="#FF4186A3" 
 						FontFamily="Segoe WP Regular" Foreground="#FFFFFFFF"/>
-                    </StackPanel>
-                    
-					<WPExtensions:AdvancedApplicationBar Background="#FF211E1D" BackgroundColor="#FF211E1D" 
+                        </StackPanel>
+
+                        <WPExtensions:AdvancedApplicationBar Background="#FF211E1D" BackgroundColor="#FF211E1D" 
                         Foreground="White" BorderBrush="#FF211E1D" ForegroundColor="White" OpacityMask="White" Name="AppBar" IsVisible="False" IsMenuEnabled="False" >
 
-                        <WPExtensions:AdvancedApplicationBarIconButton 
+                            <WPExtensions:AdvancedApplicationBarIconButton 
 						IconUri="/icons/appbar.feature.settings.rest.png" 
 						Name="FacebookButton" Text="Facebook" 
 						Click="FacebookButton_Click" />
 
-                        <WPExtensions:AdvancedApplicationBarIconButton 
+                            <WPExtensions:AdvancedApplicationBarIconButton 
 						IconUri="/icons/appbar.feature.settings.rest.png" 
 						Name="FacebookUnlinkingButton" Text="Facebook отвязать" Click="FacebookUnlinkingButton_Click" />
 
-                        <WPExtensions:AdvancedApplicationBarIconButton 
+                            <WPExtensions:AdvancedApplicationBarIconButton 
 						IconUri="/icons/appbar.edit.rest.png" 
 						Name="EditButton" Text="{Binding Change, Source={StaticResource Loc}}" 
 						Visibility="Visible" 
 						Click="AdvancedApplicationBarIconButton_Click" />
 
-                        <WPExtensions:AdvancedApplicationBarIconButton 
+                            <WPExtensions:AdvancedApplicationBarIconButton 
 						IconUri="/icons/ic_ApplicationBar_exit.png" 
 						Text="{Binding Exit, Source={StaticResource Loc}}" Visibility="Visible" 
 						Name="DeleteUserButton" Click="DeleteUserButton_Click" />
-                        
-<WPExtensions:AdvancedApplicationBarIconButton 
+
+                            <WPExtensions:AdvancedApplicationBarIconButton 
 IconUri="/icons/ic_ApplicationBar_done.png" Text="Сохранить" 
 Visibility="Collapsed" Name="SaveEditProfileButton" Click="SaveEditProfileButton_Click" />
-                        <WPExtensions:AdvancedApplicationBarIconButton 
+                            <WPExtensions:AdvancedApplicationBarIconButton 
 						IconUri="/icons/ic_ApplicationBar_close.png" Text="Отмена" 
 						Visibility="Collapsed" Name="CancelEditProfileButton" 
-						Click="CancelEditProfileButton_Click" />                        
-                    </WPExtensions:AdvancedApplicationBar>          
-                    
-                    
-                </Grid>
+						Click="CancelEditProfileButton_Click" />
+                        </WPExtensions:AdvancedApplicationBar>
+
+
+                    </Grid>
+
+                    <ScrollViewer>
+                        <StackPanel Name="EditProfile" Visibility="Collapsed">
+
+                            <TextBlock Text="{Binding Name, Source={StaticResource Loc}}" Margin="10,5,10,0"
+					Style="{StaticResource Text24pxCBB2A3}"/>
+                            <TextBox Name="EditName" 
+					Style="{StaticResource TextBoxStyle1}"	
+					Text="{Binding Path=App.ViewModel.User.Name, 
+					Mode=TwoWay}" />
+
+                            <TextBlock Text="{Binding SecondName, Source={StaticResource Loc}}" Margin="10,5,10,0"
+					Style="{StaticResource Text24pxCBB2A3}"/>
+                            <TextBox Name="EditSecondName" 
+					Style="{StaticResource TextBoxStyle1}"	
+					Text="{Binding Path=App.ViewModel.User.SecondName, 
+					Mode=TwoWay}" />
+
+                            <TextBlock Text="{Binding UserBirthday, Source={StaticResource Loc}}" Margin="10,5,10,0"
+					Style="{StaticResource Text24pxCBB2A3}"/>
+                            <toolkit:DatePicker Name="EditUserBirthday" 
+					Background="#FF4F3B34" Foreground="#FFDF8D4B"/>
+
+                            <TextBlock Text="{Binding Sex, Source={StaticResource Loc}}" Margin="10,0,10,0"
+						Style="{StaticResource Text24pxCBB2A3}"/>
+                            <StackPanel Orientation="Horizontal" 
+						Name="SexEditGroup">
+                                <toolkit:WrapPanel ItemHeight="90" ItemWidth="210" Margin="10,0,10,0">
+                                    <RadioButton 
+							    Content="{Binding Male, Source={StaticResource Loc}}" Name="EditMale" 
+							    Foreground="#FFCBB2A3" />
+                                    <RadioButton Content="{Binding Female, Source={StaticResource Loc}}"
+							    Name="EditFemale" DataContext="{Binding}" 
+							    Foreground="#FFCBB2A3" />
+                                </toolkit:WrapPanel>
+                            </StackPanel>
+
+                            <TextBlock Text="{Binding BloodGroup, Source={StaticResource Loc}}" Margin="10,0,10,0"
+						Style="{StaticResource Text24pxCBB2A3}" />
+                            <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left">
+                                <toolkit:WrapPanel ItemHeight="90" Margin="10,0,10,0" ItemWidth="210" Name="BloudTypeGroupEdit" VerticalAlignment="Top" HorizontalAlignment="Left" Height="160">
+                                    <RadioButton Content="{Binding FirstBloodGroup, Source={StaticResource Loc}}" 
+							Foreground="#FFCBB2A3"
+							Name="o" Height="75" VerticalAlignment="Top" />
+                                    <RadioButton 
+							Foreground="#FFCBB2A3"
+							Content="{Binding SecondBloodGroup, Source={StaticResource Loc}}" Name="a" Height="75" VerticalAlignment="Top" />
+
+                                    <RadioButton 
+							Content="{Binding ThirdBloodGroup, Source={StaticResource Loc}}" 
+							Foreground="#FFCBB2A3"
+							Name="b" Height="75" VerticalAlignment="Top" />
+                                    <RadioButton 
+							Foreground="#FFCBB2A3"
+							Content="{Binding ForthBloodGroup, Source={StaticResource Loc}}" Name="ab" Height="75" VerticalAlignment="Top" />
+                                </toolkit:WrapPanel>
+                            </StackPanel>
+
+                            <TextBlock Text="{Binding RhFactor, Source={StaticResource Loc}}" Margin="10,0,10,0"
+						Style="{StaticResource Text24pxCBB2A3}"/>
+                            <StackPanel Orientation="Horizontal" Name="RHedit">
+                                <toolkit:WrapPanel Margin="10,0,10,0" ItemHeight="90" ItemWidth="210">
+                                    <RadioButton Content="RH+" 
+							    Foreground="#FFCBB2A3"
+							    Name="EditRHpl" />
+                                    <RadioButton Content="RH-" 
+							    Foreground="#FFCBB2A3"
+							    Name="EditRHd" DataContext="{Binding}" />
+                                </toolkit:WrapPanel>
+                            </StackPanel>
+                        </StackPanel>
+                    </ScrollViewer>
+
+                </StackPanel>
             </controls:PivotItem>
 
             <!--Pivot item two-->

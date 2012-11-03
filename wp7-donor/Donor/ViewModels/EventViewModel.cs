@@ -795,24 +795,33 @@ namespace Donor.ViewModels
 
                     clientuser.ExecuteAsync(requestuser, responseuser =>
                     {
-                        try
-                        {
-                            ObservableCollection<EventViewModel> eventslist1 = new ObservableCollection<EventViewModel>();
-                            JObject o = JObject.Parse(responseuser.Content.ToString());
-                            foreach (JObject item in o["results"])
-                            {
-                                EventFromJSON(item);
-                            };
-                            App.ViewModel.Events.UpdateItems();
 
-                            App.ViewModel.OnDataFLoaded(EventArgs.Empty);
-                            App.ViewModel.IsDataLoaded = true;
-                        }
-                        catch
-                        {
-                            App.ViewModel.OnDataFLoaded(EventArgs.Empty);
-                            App.ViewModel.IsDataLoaded = true;
-                        };
+                            //var bw = new BackgroundWorker();
+                            //bw.DoWork += delegate
+                            //{
+                                try
+                                {
+                                    ObservableCollection<EventViewModel> eventslist1 = new ObservableCollection<EventViewModel>();
+                                    JObject o = JObject.Parse(responseuser.Content.ToString());
+                                    foreach (JObject item in o["results"])
+                                    {
+                                        EventFromJSON(item);
+                                    };
+                                    App.ViewModel.Events.UpdateItems();
+                                    App.ViewModel.OnDataFLoaded(EventArgs.Empty);
+                                    App.ViewModel.IsDataLoaded = true;
+                                }
+                                catch
+                                {
+                                    App.ViewModel.OnDataFLoaded(EventArgs.Empty);
+                                    App.ViewModel.IsDataLoaded = true;
+                                };
+                            //Deployment.Current.Dispatcher.BeginInvoke(() =>
+                            //{
+                            //});
+                        //};
+                        //bw.RunWorkerAsync();
+
                         this.NotifyPropertyChanged("Items");
                         this.NotifyPropertyChanged("WeekItems");
                     });

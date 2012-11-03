@@ -177,9 +177,7 @@ namespace Donor
                     reg_sex = 1;
                 };
 
-
-
-                string strJSONContent = "{\"username\":\"" + this.email1.Text.ToString().ToLower() + "\",\"password\":\"" + this.password1.Password.ToString() + "\", \"Name\":\"" + this.name1.Text.ToString().ToLower() + "\", \"email\":\"" + this.email1.Text.ToString().ToLower() + "\", \"Sex\":" + reg_sex + "}";
+                string strJSONContent = "{\"username\":\"" + this.email1.Text.ToString().ToLower() + "\",\"password\":\"" + this.password1.Password.ToString() + "\", \"birthday\":\"" + this.UserBirthdayRegister.Value.Value.ToShortDateString() + "\", \"Name\":\"" + this.name1.Text.ToString() + "\", \"secondName\":\"" + this.SecondNameRegister.Text.ToString() + "\", \"email\":\"" + this.email1.Text.ToString().ToLower() + "\", \"Sex\":" + reg_sex + "}";
                 request.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
                 request.AddHeader("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
                 request.AddHeader("Content-Type", "application/json");
@@ -202,6 +200,8 @@ namespace Donor
                             App.ViewModel.OnUserEnter(EventArgs.Empty);
 
                             App.ViewModel.User.Name = this.name1.Text.ToString();
+                            App.ViewModel.User.SecondName = this.SecondNameRegister.Text.ToString();
+                            App.ViewModel.User.Birthday = this.UserBirthdayRegister.Value.Value.ToShortDateString();
                             App.ViewModel.User.UserName = this.email1.Text.ToString();
 
                             this.RegisterForm.Visibility = Visibility.Collapsed;
@@ -252,6 +252,9 @@ namespace Donor
             try
             {
                 this.ProfileName.Text = App.ViewModel.User.Name.ToString();
+                this.SecondName.Text = App.ViewModel.User.SecondName.ToString();
+                this.Birthday.Text = App.ViewModel.User.Birthday.ToString();
+
                 this.ProfileSex.Text = App.ViewModel.User.OutSex.ToString();
                 this.ProfileBloodGroup.Text = App.ViewModel.User.OutBloodDataString.ToString();
             }
@@ -376,6 +379,10 @@ namespace Donor
 
         private void SetEditFields() {
             this.EditName.Text = App.ViewModel.User.Name;
+
+            this.EditSecondName.Text = App.ViewModel.User.SecondName;
+            this.EditUserBirthday.Value = App.ViewModel.User.DateBirthday;
+
             try
             {
                 if (App.ViewModel.User.Sex == 1)
@@ -454,9 +461,6 @@ namespace Donor
         private void AdvancedApplicationBarIconButton_Click(object sender, EventArgs e)
         {
             this.EditProfile.Visibility = Visibility.Visible;
-            
-            this.CancelEditProfileButton.Visibility = Visibility.Visible;
-            this.SaveEditProfileButton.Visibility = Visibility.Visible;
 
             this.EditButton.Visibility = Visibility.Collapsed;
             this.DeleteUserButton.Visibility = Visibility.Collapsed;
@@ -466,6 +470,13 @@ namespace Donor
             this.LoginForm.Visibility = Visibility.Collapsed;
             this.UserProfile.Visibility = Visibility.Collapsed;
 
+            this.FacebookButton.Visibility = Visibility.Collapsed;
+            this.FacebookUnlinkingButton.Visibility = Visibility.Collapsed;
+
+            
+
+            this.CancelEditProfileButton.Visibility = Visibility.Visible;
+            this.SaveEditProfileButton.Visibility = Visibility.Visible;
 
             SetEditFields();
         }
@@ -480,6 +491,7 @@ namespace Donor
             this.EditButton.Visibility = Visibility.Visible;
             this.DeleteUserButton.Visibility = Visibility.Visible;
             this.FacebookButton.Visibility = Visibility.Visible;
+            this.FacebookUnlinkingButton.Visibility = Visibility.Visible;
 
             this.RegisterForm.Visibility = Visibility.Collapsed;
             this.LoginForm.Visibility = Visibility.Collapsed;
@@ -542,11 +554,23 @@ namespace Donor
             }
             catch { };
 
+            try
+            {
+                App.ViewModel.User.SecondName = this.EditSecondName.Text;
+            }
+            catch { };
+
+            try
+            {
+                App.ViewModel.User.Birthday = this.EditUserBirthday.Value.GetValueOrDefault().ToShortDateString();
+            }
+            catch { };
+
                 var client = new RestClient("https://api.parse.com");
                 var request = new RestRequest("1/users/" + App.ViewModel.User.objectId.ToString(), Method.PUT);
                 request.AddHeader("Accept", "application/json");
                 request.Parameters.Clear();
-                string strJSONContent = "{\"Sex\":" + App.ViewModel.User.Sex + ", \"Name\":\"" + App.ViewModel.User.Name + "\", \"BloodGroup\":" + App.ViewModel.User.BloodGroup + ", \"BloodRh\":" + App.ViewModel.User.BloodRh + "}";
+                string strJSONContent = "{\"Sex\":" + App.ViewModel.User.Sex + ", \"Name\":\"" + App.ViewModel.User.Name + "\", \"secondName\":\"" + App.ViewModel.User.SecondName + "\", \"birthday\": \"" + App.ViewModel.User.Birthday+ "\", \"BloodGroup\":" + App.ViewModel.User.BloodGroup + ", \"BloodRh\":" + App.ViewModel.User.BloodRh + "}";
                 request.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
                 request.AddHeader("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
                 request.AddHeader("X-Parse-Session-Token", App.ViewModel.User.sessionToken);

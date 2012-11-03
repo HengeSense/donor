@@ -29,8 +29,42 @@ namespace Donor.ViewModels
         }
         private string _username;
         public string UserName { get { return _username; } set { _username = value; NotifyPropertyChanged("UserName"); } }
+        
         private string _name;
+        /// <summary>
+        /// Имя пользователя
+        /// </summary>
         public string Name { get { return _name; } set { _name = value; NotifyPropertyChanged("Name"); } }
+
+        private string _secondName;
+        /// <summary>
+        /// Фамилия пользователя
+        /// </summary>
+        public string SecondName { get { return _secondName; } set { _secondName = value; NotifyPropertyChanged("SecondName"); } }
+
+        private string _birthday;
+        public string Birthday
+        {
+            get
+            {
+                return _birthday;
+            }
+            set
+            {
+                _birthday = value;
+                try
+                {
+                    //JObject o = JObject.Parse(_birthday);
+                    //_birthday = o["iso"].ToString();
+
+                    DateBirthday = DateTime.Parse(_birthday.ToString());
+                }
+                catch { };
+            }
+        }
+
+        public DateTime DateBirthday { get; set; }
+
         private string _password;
         public string Password { get { return _password; } set { _password = value; NotifyPropertyChanged("Password"); } }
 

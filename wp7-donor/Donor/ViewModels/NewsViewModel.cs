@@ -34,27 +34,32 @@ namespace Donor.ViewModels
             request.Parameters.Clear();
             request.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
             request.AddHeader("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
-            //string strJSONContent = "limit=100\norder=-createdTimestamp";
-            //request.AddBody(strJSONContent);
 
             client.ExecuteAsync(request, response =>
             {
                 try
                 {
-                    ObservableCollection<NewsViewModel> newslist1 = new ObservableCollection<NewsViewModel>();
-                    JObject o = JObject.Parse(response.Content.ToString());
-                    newslist1 = JsonConvert.DeserializeObject<ObservableCollection<NewsViewModel>>(o["results"].ToString());
-                    var newslist2 = (from news in newslist1
-                               orderby news.CreatedTimestamp descending
-                               select news);
-                    this.Items = new ObservableCollection<NewsViewModel>(newslist2);
-                    //save to isolated storage
-                    IsolatedStorageHelper.SaveSerializableObject<ObservableCollection<NewsViewModel>>(App.ViewModel.News.Items, "news.xml");
+                    var bw = new BackgroundWorker();
+                    bw.DoWork += delegate
+                    {
+                        ObservableCollection<NewsViewModel> newslist1 = new ObservableCollection<NewsViewModel>();
+                        JObject o = JObject.Parse(response.Content.ToString());
+                        newslist1 = JsonConvert.DeserializeObject<ObservableCollection<NewsViewModel>>(o["results"].ToString());
+                        //var newslist2 = (from news in newslist1 orderby news.CreatedTimestamp descending select news);
+                        
+                        IsolatedStorageHelper.SaveSerializableObject<ObservableCollection<NewsViewModel>>(App.ViewModel.News.Items, "news.xml");
+
+                        Deployment.Current.Dispatcher.BeginInvoke(() =>
+                        {
+                            this.Items = new ObservableCollection<NewsViewModel>(newslist1);
+                        });
+                    };
+                    bw.RunWorkerAsync();
                 }
                 catch
                 {
                 };
-                this.NotifyPropertyChanged("Items");
+                //this.NotifyPropertyChanged("Items");
             });
         }
 

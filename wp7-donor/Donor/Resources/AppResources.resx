@@ -576,4 +576,10 @@
   <data name="YouHaveEventAtThisDay" xml:space="preserve">
     <value>На этот день у вас уже запланировано событие</value>
   </data>
+  <data name="SecondName" xml:space="preserve">
+    <value>Фамилия</value>
+  </data>
+  <data name="UserBirthday" xml:space="preserve">
+    <value>Дата рождения</value>
+  </data>
 </root>

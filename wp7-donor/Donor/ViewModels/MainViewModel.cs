@@ -61,6 +61,8 @@ namespace Donor
             Qr = new QRViewModel();
             
             this.LoadFromIsolatedStorage();
+
+            this.IsDataStartLoaded = false;
         }
 
 
@@ -84,6 +86,12 @@ namespace Donor
         public bool IsSettings = false;
 
         public bool IsDataLoaded
+        {
+            get;
+            set;
+        }
+
+        public bool IsDataStartLoaded
         {
             get;
             set;
@@ -140,7 +148,8 @@ namespace Donor
         public void LoadData()
         {
             var bw = new BackgroundWorker();
-            
+            this.IsDataStartLoaded = true;
+
             bw.DoWork += delegate
             {
             System.Threading.Thread.Sleep(400);

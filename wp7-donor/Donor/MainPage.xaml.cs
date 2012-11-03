@@ -15,6 +15,7 @@ using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
 using RestSharp;
 using Microsoft.Phone.Net.NetworkInformation;
+using System.Windows.Threading;
 
 namespace Donor
 {
@@ -32,19 +33,26 @@ namespace Donor
             bool hasNetworkConnection =
               NetworkInterface.NetworkInterfaceType != NetworkInterfaceType.None;
             if (hasNetworkConnection) {
-            this.progressOverlay.Visibility = Visibility.Visible;
-            this.progressOverlay.IsEnabled = true;
-            } else {
-                /// DWP-95
-                //MessageBox.Show("Не удается выполнить выход. Проверьте подключение к интернет-сети");
+                this.progressOverlay.Visibility = Visibility.Visible;
+                this.progressOverlay.IsEnabled = true;
+            } else {};
+
+            DispatcherTimer dt = new DispatcherTimer();
+            dt.Interval = TimeSpan.FromSeconds(15);
+            dt.Tick += delegate
+            {
+                dt.Stop(); 
+                this.progressOverlay.Visibility = Visibility.Collapsed;
+                this.progressOverlay.IsEnabled = false;
             };
+            dt.Start();
         }
 
         // Load data for the ViewModel Items
         private void MainPage_Loaded(object sender, RoutedEventArgs e)
         {
             try {
-                if (!App.ViewModel.IsDataLoaded)
+                if (!App.ViewModel.IsDataStartLoaded)
                 {
                     App.ViewModel.LoadData();
                 }
@@ -272,8 +280,8 @@ namespace Donor
                 client.ExecuteAsync(request, response =>
                 {
                     this.LoginLoadingBar.IsIndeterminate = false;
-                    try
-                    {
+                    //try
+                    //{
                         JObject o = JObject.Parse(response.Content.ToString());
                         if (o["error"] == null)
                         {
@@ -310,8 +318,8 @@ namespace Donor
 
                             MessageBox.Show(Donor.AppResources.UncorrectLoginData);
                         };
-                    }
-                    catch { };
+                    //}
+                    //catch { };
                 });
             }
             catch { };
