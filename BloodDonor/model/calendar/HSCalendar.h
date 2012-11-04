@@ -10,6 +10,7 @@
 
 #import "HSModelCommon.h"
 #import "HSEvent.h"
+#import "HSBloodRemoteEvent.h"
 
 /// @name HSCalendar protocol declaration
 
@@ -89,6 +90,22 @@
  * Notifies observers with [HSCalendarEventObserver eventWasUpdated:] methods.
  */
 - (void)updateEvent: (HSEvent *)event;
+
+/// @name Remote blood events manipulation methods
+
+/**
+ * Adds blood remote event.
+ * @param remoteBloodEvent - remote planning blood event
+ * @param completion - completion block of code
+ */
+- (void) addBloodRemoteEvent: (HSBloodRemoteEvent *)bloodRemoteEvent completion: (CompletionBlockType)completion;
+
+/**
+ * Removes blood remote event.
+ * @param remoteBloodEvent - remote planning blood event
+ * @param completion - completion block of code
+ */
+- (void) removeBloodRemoteEvent: (HSBloodRemoteEvent *)bloodRemoteEvent completion: (CompletionBlockType)completion;
 
 /**
  * Returns all events in the calendar.

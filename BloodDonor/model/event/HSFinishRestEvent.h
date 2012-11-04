@@ -13,8 +13,8 @@
 @interface HSFinishRestEvent : HSNotificationEvent
 
 /**
- * Possible type of blood donation which are allowed after the donor's rest.
+ * Blood donation type which are allowed after the donor's rest.
  */
-@property (nonatomic, assign) HSBloodDonationType possibleBloodDonationType;
+@property (nonatomic, assign) HSBloodDonationType bloodDonationType;
 
 @end

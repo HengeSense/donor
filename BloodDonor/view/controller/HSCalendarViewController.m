@@ -236,8 +236,6 @@
         [self.calendarImageView addSubview: dayButton];
         dayButtonFrame.origin.x += 44;
     }
-    
-    NSLog(@"Day of weak: %d", dateComponents.weekday);
 }
 
 #pragma mark - Private action methods

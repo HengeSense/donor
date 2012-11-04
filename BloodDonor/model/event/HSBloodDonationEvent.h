@@ -20,4 +20,10 @@
  */
 @property (nonatomic, assign) HSBloodDonationType bloodDonationType;
 
+/**
+ * Calculates and returns array of HSFinishRestEvent objects, which provide information about dates when user can
+ *      plans his next blood donation.
+ */
+- (NSArray *)getFinishRestEvents;
+
 @end

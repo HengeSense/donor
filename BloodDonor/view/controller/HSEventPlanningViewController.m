@@ -11,6 +11,8 @@
 #import "HSDateTimePicker.h"
 #import "HSAddressPicker.h"
 
+#import "MBProgressHUD.h"
+
 #pragma mark - Private types
 typedef enum {
     HSEventPlanningViewControllerMode_BloodDonation = 0,
@@ -102,6 +104,18 @@ static const CGFloat kTabBarHeight = 55.0f;
  */
 - (void)configureViewForEditingBloodTestEvent;
 
+/// @name Private UI action handlers
+
+/**
+ * Handler for "Готово" button - add planning event to the calendar.
+ */
+- (void)donePlanningButtonClicked: (id)sender;
+
+/**
+ * Handler for "Отмена" button - do not add planning event to the calendar.
+ */
+- (void)cancelPlanningButtonClicked: (id)sender;
+
 /// @name Keyboard interaction
 
 @property (nonatomic, assign) BOOL isKeyboardShown;
@@ -182,6 +196,46 @@ static const CGFloat kTabBarHeight = 55.0f;
 
 
 #pragma mark - UI life cycle
+- (void) configureNavigationBar {
+    self.title = @"Планирование";
+    
+    self.navigationItem.backBarButtonItem =
+    [[UIBarButtonItem alloc] initWithTitle:@"Назад" style:UIBarButtonItemStyleBordered target:nil action:nil];
+    
+    UIImage *barImageNormal = [UIImage imageNamed:@"barButtonNormal"];
+    UIImage *barImagePressed = [UIImage imageNamed:@"barButtonPressed"];
+    
+    UIButton *cancelButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    CGRect cancelButtonFrame = CGRectMake(0, 0, barImageNormal.size.width, barImageNormal.size.height);
+    [cancelButton setBackgroundImage:barImageNormal forState:UIControlStateNormal];
+    [cancelButton setBackgroundImage:barImagePressed forState:UIControlStateHighlighted];
+    [cancelButton setTitle:@"Отмена" forState:UIControlStateNormal];
+    [cancelButton setTitle:@"Отмена" forState:UIControlStateHighlighted];
+    cancelButton.titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:12];
+    cancelButton.frame = cancelButtonFrame;
+    [cancelButton addTarget:self action:@selector(cancelPlanningButtonClicked:)
+           forControlEvents:UIControlEventTouchUpInside];
+    
+    UIBarButtonItem *cancelBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:cancelButton];
+    [cancelBarButtonItem setTitlePositionAdjustment:UIOffsetMake(0, -1) forBarMetrics:UIBarMetricsDefault];
+    self.navigationItem.leftBarButtonItem = cancelBarButtonItem;
+    
+    UIButton *doneButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    CGRect doneButtonFrame = CGRectMake(0, 0, barImageNormal.size.width, barImageNormal.size.height);
+    [doneButton setBackgroundImage:barImageNormal forState:UIControlStateNormal];
+    [doneButton setBackgroundImage:barImagePressed forState:UIControlStateHighlighted];
+    [doneButton setTitle:@"Готово" forState:UIControlStateNormal];
+    [doneButton setTitle:@"Готово" forState:UIControlStateHighlighted];
+    doneButton.titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:12];
+    doneButton.frame = doneButtonFrame;
+    [doneButton addTarget:self action:@selector(donePlanningButtonClicked:)
+         forControlEvents:UIControlEventTouchUpInside];
+    
+    UIBarButtonItem *doneBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:doneButton];
+    [doneBarButtonItem setTitlePositionAdjustment:UIOffsetMake(0, -1) forBarMetrics:UIBarMetricsDefault];
+    self.navigationItem.rightBarButtonItem = doneBarButtonItem;
+}
+
 - (void)configureComponents {
     [self.rootScrollView addSubview: self.contentView];
     self.rootScrollView.contentSize = self.contentView.bounds.size;
@@ -220,6 +274,7 @@ static const CGFloat kTabBarHeight = 55.0f;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self configureNavigationBar];
     [self configureComponents];
     [self configureViewMode];
     [self registerKeyboardEventsObserver];
@@ -352,6 +407,25 @@ static const CGFloat kTabBarHeight = 55.0f;
         self.currentViewMode = HSEventPlanningViewControllerMode_BloodTest;
     }
     self.currentEditedEvent = self.bloodTestsEvent;
+}
+
+#pragma mark - Private UI action handlers
+- (void)donePlanningButtonClicked: (id)sender {
+    MBProgressHUD *progressHud = [MBProgressHUD showHUDAddedTo: self.navigationController.view animated: YES];
+    [self.calendar addBloodRemoteEvent: self.currentEditedEvent completion: ^(BOOL success, NSError *error) {
+        [progressHud hide: YES];
+        if (success) {
+            [self.navigationController popViewControllerAnimated: YES];
+        } else {
+            UIAlertView *allert = [[UIAlertView alloc] initWithTitle: @"Ошибка" message: [error localizedDescription]
+                    delegate: nil cancelButtonTitle: @"Ок" otherButtonTitles: nil];
+            [allert show];
+        }
+    }];
+}
+
+- (void)cancelPlanningButtonClicked: (id)sender {
+    [self.navigationController popViewControllerAnimated: YES];
 }
 
 #pragma mark - Keyboard interaction

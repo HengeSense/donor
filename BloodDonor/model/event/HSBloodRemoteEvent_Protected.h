@@ -23,7 +23,7 @@
 /// @name Initialization
 
 /**
- * This initializator is used for creation local event from the remote event.
+ * This initializer is used for creation local event from the remote event.
  */
 - (id)initWithRemoteEvent: (PFObject *)remoteEvent;
 @end

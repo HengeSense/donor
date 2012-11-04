@@ -78,6 +78,10 @@
 
 #pragma mark - Private interface implementation
 - (void)updateUI {
+    if (!self.isEnabled) {
+        // Do not render events for disabled button
+        return;
+    }
     // remove old events representations
     for (UIView *view in self.subviews) {
         [view removeFromSuperview];
