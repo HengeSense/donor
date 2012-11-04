@@ -30,6 +30,14 @@
 /**
  * Create HSEvent with scheduledDate property set to NOW.
  */
-- (id) init;
+- (id)init;
+
+/// @name Prittify methods
+
+/**
+ * Returns scheduledDate property value (date) formated with dateFormatter.
+ */
+- (NSString *)formatScheduledDate;
+
 
 @end

@@ -6,9 +6,6 @@
 //  Copyright (c) 2012 Hint Solutions. All rights reserved.
 //
 
-#ifndef BloodDonor_HSBloodDonationType_h
-#define BloodDonor_HSBloodDonationType_h
-
 /**
  * This enum type describes different possible types of blood donations.
  */
@@ -19,4 +16,4 @@ typedef enum {
     HSBloodDonationType_Granulocytes
 } HSBloodDonationType;
 
-#endif
+NSString* bloodDonationTypeToString(HSBloodDonationType bloodDonationType);

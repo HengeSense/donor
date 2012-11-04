@@ -270,8 +270,8 @@
         }
     }
     HSEventPlanningViewController *eventPlanningViewController = [[HSEventPlanningViewController alloc]
-            initWithNibName: @"HSEventPlanningViewController" bundle: nil bloodDonationEvent: bloodDonationEvent
-            bloodTestEvent: bloodTestsEvent];
+            initWithNibName: @"HSEventPlanningViewController" bundle: nil calendar: self.calendarModel
+            date: dayButton.date bloodDonationEvent: bloodDonationEvent bloodTestEvent: bloodTestsEvent];
     
     [self.navigationController pushViewController: eventPlanningViewController animated: YES];
     NSLog(@"Clicked day button with title: %@", dayButton.titleLabel.text);

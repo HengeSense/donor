@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+#import "HSCalendar.h"
 #import "HSBloodDonationEvent.h"
 #import "HSBloodTestsEvent.h"
 
@@ -18,25 +19,26 @@
 /**
  * Initialises HSEventPlanningViewController to create new blood donation event.
  */
-- (id) initWithNibName: (NSString *)nibNameOrNil bundle: (NSBundle *)nibBundleOrNil;
+- (id) initWithNibName: (NSString *)nibNameOrNil bundle: (NSBundle *)nibBundleOrNil calendar: (HSCalendar *)calendar
+                  date: (NSDate *)date;
 
 /**
  * Initialises HSEventPlanningViewController to edit existing blood donation event.
  */
-- (id) initWithNibName: (NSString *)nibNameOrNil bundle: (NSBundle *)nibBundleOrNil
-        bloodDonationEvent: (HSBloodDonationEvent *)bloodDonationEvent;
+- (id) initWithNibName: (NSString *)nibNameOrNil bundle: (NSBundle *)nibBundleOrNil calendar: (HSCalendar *)calendar
+                  date: (NSDate *)date bloodDonationEvent: (HSBloodDonationEvent *)bloodDonationEvent;
 
 /**
  * Initialises HSEventPlanningViewController to edit existing blood test event.
  */
-- (id) initWithNibName: (NSString *)nibNameOrNil bundle: (NSBundle *)nibBundleOrNil
-        bloodTestEvent: (HSBloodTestsEvent *)bloodTestEvent;
+- (id) initWithNibName: (NSString *)nibNameOrNil bundle: (NSBundle *)nibBundleOrNil calendar: (HSCalendar *)calendar
+                  date: (NSDate *)date bloodTestEvent: (HSBloodTestsEvent *)bloodTestEvent;
 
 /**
  * Initialises HSEventPlanningViewController to edit existing blood donation event and blood test event.
  */
-- (id) initWithNibName: (NSString *)nibNameOrNil bundle: (NSBundle *)nibBundleOrNil
-        bloodDonationEvent: (HSBloodDonationEvent *)bloodDonationEvent
+- (id) initWithNibName: (NSString *)nibNameOrNil bundle: (NSBundle *)nibBundleOrNil calendar: (HSCalendar *)calendar
+                  date: (NSDate *)date bloodDonationEvent: (HSBloodDonationEvent *)bloodDonationEvent
         bloodTestEvent: (HSBloodTestsEvent *)bloodTestEvent;
 
 
