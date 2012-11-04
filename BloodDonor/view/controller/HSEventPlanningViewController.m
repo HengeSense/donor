@@ -262,14 +262,12 @@ static const CGFloat kTabBarHeight = 55.0f;
 }
 
 - (IBAction)selectBloodDonationCenterAddress: (id)sender {
-    [self unregisterKeyboardEventListener];
     [self.addressPicker showInView: self.tabBarController.view defaultAddress: self.currentEditedEvent.labAddress
             completion: ^(BOOL isDone) {
         if (isDone) {
             self.bloodDonationCenterAddressLabel.text = self.addressPicker.selectedAddress;
             self.currentEditedEvent.labAddress = self.addressPicker.selectedAddress;
         }
-        [self registerKeyboardEventsObserver];
     }];
 }
 
@@ -357,6 +355,7 @@ static const CGFloat kTabBarHeight = 55.0f;
 - (void)unregisterKeyboardEventListener {
     [[NSNotificationCenter defaultCenter] removeObserver: self name: UIKeyboardWillShowNotification object: nil];
     [[NSNotificationCenter defaultCenter] removeObserver: self name: UIKeyboardWillHideNotification object: nil];
+    self.isKeyboardShown = NO;
 }
 
 - (void)keyboardWillShow: (NSNotification *)notification {
