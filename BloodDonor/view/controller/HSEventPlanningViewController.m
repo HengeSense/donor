@@ -301,6 +301,18 @@ static const CGFloat kTabBarHeight = 55.0f;
 
 #pragma mark - User's interaction hadlers
 - (IBAction)removeBloodEvent: (id)sender {
+    MBProgressHUD *progressHud = [MBProgressHUD showHUDAddedTo: self.navigationController.view animated: YES];
+    [self.calendar removeBloodRemoteEvent: self.currentEditedEvent completion: ^(BOOL success, NSError *error) {
+        [progressHud hide: YES];
+        if (success) {
+            [self.navigationController popToRootViewControllerAnimated: YES];
+        } else {
+            UIAlertView *allert = [[UIAlertView alloc] initWithTitle: @"Ошибка"
+                    message: errorDomainToLicalizedDescription(error.domain)
+                    delegate: nil cancelButtonTitle: @"Ок" otherButtonTitles: nil];
+            [allert show];
+        }
+    }];
 }
 
 - (IBAction)changeBloodDonationEventType: (id)sender {
@@ -324,6 +336,7 @@ static const CGFloat kTabBarHeight = 55.0f;
         if (isDone) {
             self.bloodDonationTypeLabel.text =
                     bloodDonationTypeToString(self.bloodDonationTypePicker.bloodDonationType);
+            self.bloodDonationEvent.bloodDonationType = self.bloodDonationTypePicker.bloodDonationType;
         }
     }];
 }
@@ -356,6 +369,7 @@ static const CGFloat kTabBarHeight = 55.0f;
 - (BOOL)textView: (UITextView *)textView shouldChangeTextInRange: (NSRange)range replacementText: (NSString *)text {
     
     if([text isEqualToString:@"\n"]) {
+        self.currentEditedEvent.comments = self.commentsTextView.text;
         [textView resignFirstResponder];
         return NO;
     } else if (self.commentsTextView.text.length > 20) {
@@ -383,6 +397,8 @@ static const CGFloat kTabBarHeight = 55.0f;
         self.currentViewMode = HSEventPlanningViewControllerMode_BloodDonation;
     }
     self.currentEditedEvent = self.bloodDonationEvent;
+    self.commentsTextView.text = self.currentEditedEvent.comments;
+    self.bloodDonationCenterAddressLabel.text = self.currentEditedEvent.labAddress;
 }
 
 - (void)configureViewForEditingBloodTestEvent {
@@ -407,17 +423,21 @@ static const CGFloat kTabBarHeight = 55.0f;
         self.currentViewMode = HSEventPlanningViewControllerMode_BloodTest;
     }
     self.currentEditedEvent = self.bloodTestsEvent;
+    self.commentsTextView.text = self.currentEditedEvent.comments;
+    self.bloodDonationCenterAddressLabel.text = self.currentEditedEvent.labAddress;
 }
 
 #pragma mark - Private UI action handlers
 - (void)donePlanningButtonClicked: (id)sender {
     MBProgressHUD *progressHud = [MBProgressHUD showHUDAddedTo: self.navigationController.view animated: YES];
+    self.currentEditedEvent.isDone = NO;
     [self.calendar addBloodRemoteEvent: self.currentEditedEvent completion: ^(BOOL success, NSError *error) {
         [progressHud hide: YES];
         if (success) {
-            [self.navigationController popViewControllerAnimated: YES];
+            [self.navigationController popToRootViewControllerAnimated: YES];
         } else {
-            UIAlertView *allert = [[UIAlertView alloc] initWithTitle: @"Ошибка" message: [error localizedDescription]
+            UIAlertView *allert = [[UIAlertView alloc] initWithTitle: @"Ошибка"
+                    message: errorDomainToLicalizedDescription( error.domain)
                     delegate: nil cancelButtonTitle: @"Ок" otherButtonTitles: nil];
             [allert show];
         }

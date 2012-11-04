@@ -17,6 +17,7 @@
 @interface HSRemoteEventViewController : UIViewController
 
 /// @name Outlets properties
+@property (weak, nonatomic) IBOutlet UIButton *doneButton;
 
 /// @name Root views
 @property (strong, nonatomic) IBOutlet UIView *rootView;
@@ -25,7 +26,7 @@
 /// @name Blood donation event view and it's components
 @property (strong, nonatomic) IBOutlet UIView *bloodDonationView;
 
-@property (weak, nonatomic) IBOutlet UILabel *labAddressLabel;
+@property (weak, nonatomic) IBOutlet UILabel *bloodDonationLabAddressLabel;
 @property (weak, nonatomic) IBOutlet UILabel *bloodDonationTypeLabel;
 
 @property (weak, nonatomic) IBOutlet UILabel *bloodDonationDateLabel;
@@ -35,7 +36,7 @@
 /// @name Blood tests view and it's components
 @property (strong, nonatomic) IBOutlet UIView *bloodTestsView;
 @property (weak, nonatomic) IBOutlet UILabel *bloodTestsDateLabel;
-@property (weak, nonatomic) IBOutlet UILabel *bloodTestsLabAdressLabel;
+@property (weak, nonatomic) IBOutlet UILabel *bloodTestsLabAddressLabel;
 @property (weak, nonatomic) IBOutlet UILabel *bloodTestsCommentsLabel;
 
 /// @name Initialization methods

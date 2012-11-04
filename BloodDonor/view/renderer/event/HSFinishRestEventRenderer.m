@@ -18,7 +18,7 @@
     UIImage *resultImage = [self imageForBloodDonationType: finishRestEvent.bloodDonationType];
     if (resultImage == nil) {
         // Rendering granulocytes
-        return [[UIView alloc] initWithFrame: bounds];
+        return [[UIView alloc] initWithFrame: CGRectMake(0.0f, 0.0f, 0.0f, 0.0f)];
     }
     
     UIImageView *resultImageView = [[UIImageView alloc] initWithImage: resultImage];

@@ -16,6 +16,7 @@
 #import "HSEvent.h"
 #import "HSBloodRemoteEvent.h"
 #import "HSBloodDonationEvent.h"
+#import "HSBloodTestsEvent.h"
 #import "HSFinishRestEvent.h"
 
 #pragma mark - Remote Users object's field keys
@@ -33,9 +34,14 @@ static NSString * const kEventDate = @"date";
 @property (nonatomic, strong) NSMutableArray *events;
 
 /**
- *
+ * Array of HSFinishRestEvent objects.
  */
-@property (nonatomic, strong) NSMutableArray *calculatedEvents;
+@property (nonatomic, strong) NSMutableArray *finishRestEvents;
+
+/**
+ * Array of HSBloodRemoteEvent objects.
+ */
+@property (nonatomic, strong) NSMutableArray *bloodRemoteEvents;
 
 /**
  * Calendar events observers.
@@ -58,15 +64,25 @@ static NSString * const kEventDate = @"date";
 - (void) fireNotificationEventWasUpdated: (HSEvent *) event;
 
 /**
- * Makes period calculations ans adds depended events to the calendar;
+ * Makes period calculations ans adds depended finish rest events to the calendar.
  */
-- (void)addCalculatedEvents;
+- (void)addFinishRestEvents;
+
+/**
+ * Updates all finish rest events (removes old and adds new).
+ */
+- (void)updateFinishRestEvents;
 
 /// @name Utility methods
 /**
- * Removes all calculated events from the specified date, including specified date.
+ * Removes all finish rest events from the specified date, including specified date.
  */
-- (void)removeAllCalculatedEventsAfterDate: (NSDate *)date;
+- (void)removeAllFinishRestEventsAfterDate: (NSDate *)date;
+
+/**
+ * Check whether calendar can add specified blood remote event to the calendar or not.
+ */
+- (BOOL)canAddBloodRemoteEvent: (HSBloodRemoteEvent *)bloodRemoteEvent;
 @end
 
 @implementation HSCalendar
@@ -76,7 +92,8 @@ static NSString * const kEventDate = @"date";
 - (id) init {
     if (self = [super init]) {
         self.events = [[NSMutableArray alloc] init];
-        self.calculatedEvents = [[NSMutableArray alloc] init];
+        self.finishRestEvents = [[NSMutableArray alloc] init];
+        self.bloodRemoteEvents = [[NSMutableArray alloc] init];
         self.eventObservers = [[NSMutableSet alloc] init];
     }
     return self;
@@ -125,17 +142,18 @@ static NSString * const kEventDate = @"date";
     }
     
     [self.events addObject: event];
-    [self addCalculatedEvents];
+    [self addFinishRestEvents];
     
 }
 
-- (NSSet *)allEvents {
+- (NSArray *)allEvents {
     NSMutableArray *allArrays = [[NSMutableArray alloc] initWithArray: self.events];
-    [allArrays addObjectsFromArray: self.calculatedEvents];
-    return [NSSet setWithArray: allArrays];
+    [allArrays addObjectsFromArray: self.finishRestEvents];
+    [allArrays addObjectsFromArray: self.bloodRemoteEvents];
+    return [NSArray arrayWithArray: allArrays];
 }
 
-- (NSSet *)eventsForDay: (NSDate *)dayDate {
+- (NSArray *)eventsForDay: (NSDate *)dayDate {
     THROW_IF_ARGUMENT_NIL(dayDate, @"dayDate is not specified");
     NSCalendar *currentCalendar = [NSCalendar currentCalendar];
     NSDateComponents *dayDateComponents =
@@ -143,7 +161,7 @@ static NSString * const kEventDate = @"date";
                                fromDate: dayDate];
     NSDate *roundedDayDate = [currentCalendar dateFromComponents: dayDateComponents];
     
-    NSSet *allEvents = [self allEvents];
+    NSArray *allEvents = [self allEvents];
     NSPredicate *eventsBetweenDates =
     [NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
         HSEvent *testedEvent = (HSEvent *)evaluatedObject;
@@ -157,18 +175,52 @@ static NSString * const kEventDate = @"date";
             return NO;
         }
     }];
-    NSSet *resultEvents = [allEvents filteredSetUsingPredicate: eventsBetweenDates];
+    NSArray *resultEvents = [allEvents filteredArrayUsingPredicate: eventsBetweenDates];
     return resultEvents;
 }
 
 #pragma mark - Remote events manipulation methods
 - (void)addBloodRemoteEvent: (HSBloodRemoteEvent *)bloodRemoteEvent completion: (CompletionBlockType)completion {
     THROW_IF_ARGUMENT_NIL(bloodRemoteEvent, @"bloodRemoteEvent is not specified");
-    //if ([self can])
+    if([self canAddBloodRemoteEvent: bloodRemoteEvent]) {
+        [bloodRemoteEvent saveWithCompletionBlock:^(BOOL success, NSError *error) {
+            if (success) {
+                if (![self.bloodRemoteEvents containsObject: bloodRemoteEvent]) {
+                    [self.bloodRemoteEvents addObject: bloodRemoteEvent];
+                }
+            }
+            if (completion != nil) {
+                NSError *localError = [NSError errorWithDomain: HSRemoteServerResonseError code: 0 userInfo: nil];
+                completion(success, localError);
+            }
+        }];
+    } else {
+        NSError *error = [NSError errorWithDomain: HSBloodDonationRestPeriodNotFinishedError code: 0 userInfo: nil];
+        if (completion != nil) {
+            completion(NO, error);
+        }
+    }
 }
 
 - (void)removeBloodRemoteEvent:(HSBloodRemoteEvent *)bloodRemoteEvent completion:(CompletionBlockType)completion {
-
+    THROW_IF_ARGUMENT_NIL(bloodRemoteEvent, @"bloodRemoteEvent is not specified");
+    if ([self.bloodRemoteEvents containsObject: bloodRemoteEvent]) {
+        [bloodRemoteEvent removeWithCompletionBlock:^(BOOL success, NSError *error) {
+            if (success) {
+                [self.bloodRemoteEvents removeObject: bloodRemoteEvent];
+                [self updateFinishRestEvents];
+                if (completion != nil) {
+                    completion(success, error);
+                }
+            } else {
+                NSError *localError = [NSError errorWithDomain: HSRemoteServerResonseError code: 0 userInfo: nil];
+                if (completion != nil) {
+                    completion(NO, localError);
+                }
+            }
+        }];
+        
+    }
 }
 
 #pragma mark - Methods to interact with cloud data service - parse.com
@@ -181,12 +233,12 @@ static NSString * const kEventDate = @"date";
         [eventsQuery orderByDescending: kEventDate];
         
         [eventsQuery findObjectsInBackgroundWithBlock: ^(NSArray *remoteEvents, NSError *error) {
-            [self.events removeAllObjects];
+            [self.bloodRemoteEvents removeAllObjects];
             for (PFObject *remoteEvent in remoteEvents) {
-                [self.events addObject: [HSBloodRemoteEvent buildBloodEventWithRemoteEvent: remoteEvent]];
+                [self.bloodRemoteEvents addObject: [HSBloodRemoteEvent buildBloodEventWithRemoteEvent: remoteEvent]];
             }
-            [self addCalculatedEvents];
-            [self fireNotificationEventsWasUpdated: self.events];
+            [self addFinishRestEvents];
+            [self fireNotificationEventsWasUpdated: self.bloodRemoteEvents];
             BOOL success = error == nil ? YES : NO;
             completion(success, error);
         }];
@@ -197,10 +249,7 @@ static NSString * const kEventDate = @"date";
 }
 
 - (void)pushEventsToServer: (CompletionBlockType)completion {
-    NSArray *remoteBloodEvents = [self.events filteredArrayUsingPredicate:
-            [NSPredicate predicateWithFormat: @"SELF isKindOfClass: %@", [HSBloodRemoteEvent class]]];
-    
-    __block size_t unsavedRemoteObjectsCount = remoteBloodEvents.count;
+    __block size_t unsavedRemoteObjectsCount = self.bloodRemoteEvents.count;
     __block BOOL allEventsWasSavedOrError = NO;
     CompletionBlockType partialCompletion = ^(BOOL succeed, NSError *error) {
         if (!allEventsWasSavedOrError) {
@@ -215,7 +264,7 @@ static NSString * const kEventDate = @"date";
             }
         }
     };
-    for (HSBloodRemoteEvent *remoteBloodEvent in remoteBloodEvents) {
+    for (HSBloodRemoteEvent *remoteBloodEvent in self.bloodRemoteEvents) {
         [remoteBloodEvent saveWithCompletionBlock: partialCompletion];
     }
 }
@@ -253,8 +302,8 @@ static NSString * const kEventDate = @"date";
     }
 }
 
--(void)addCalculatedEvents {
-    NSArray *bloodDonationEvents = [self.events filteredArrayUsingPredicate:
+-(void)addFinishRestEvents {
+    NSArray *bloodDonationEvents = [self.bloodRemoteEvents filteredArrayUsingPredicate:
             [NSPredicate predicateWithFormat: @"SELF isKindOfClass: %@", [HSBloodDonationEvent class]]];
     
     NSArray *orderedBloodDonationEvents = [bloodDonationEvents
@@ -271,13 +320,18 @@ static NSString * const kEventDate = @"date";
     }];
     
     for (HSBloodDonationEvent *event in orderedBloodDonationEvents) {
-        [self removeAllCalculatedEventsAfterDate: event.scheduledDate];
-        [self.calculatedEvents addObjectsFromArray: [event getFinishRestEvents]];
+        [self removeAllFinishRestEventsAfterDate: event.scheduledDate];
+        [self.finishRestEvents addObjectsFromArray: [event getFinishRestEvents]];
     }
 }
 
+- (void)updateFinishRestEvents {
+    [self.finishRestEvents removeAllObjects];
+    [self addFinishRestEvents];
+}
+
 #pragma mark - Utility methods
-- (void)removeAllCalculatedEventsAfterDate: (NSDate *)date {
+- (void)removeAllFinishRestEventsAfterDate: (NSDate *)date {
     THROW_IF_ARGUMENT_NIL(date, @"date is not specified");
     NSCalendar *systemCalendar = [NSCalendar currentCalendar];
     int dateComponentsUnits = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit |
@@ -290,12 +344,85 @@ static NSString * const kEventDate = @"date";
     NSDate *yesterday = [systemCalendar dateFromComponents: yesterdayComponents];
     
     NSMutableArray *eventsToDelete = [[NSMutableArray alloc] init];
-    for (HSFinishRestEvent *event in self.calculatedEvents) {
+    for (HSFinishRestEvent *event in self.finishRestEvents) {
         if (event.scheduledDate.timeIntervalSince1970 > yesterday.timeIntervalSince1970) {
             [eventsToDelete addObject: event];
         }
     }
     
-    [self.calculatedEvents removeObjectsInArray: eventsToDelete];
+    [self.finishRestEvents removeObjectsInArray: eventsToDelete];
 }
+
+- (BOOL)canAddBloodRemoteEvent: (HSBloodRemoteEvent *)bloodRemoteEvent {
+    THROW_IF_ARGUMENT_NIL(bloodRemoteEvent, @"bloodRemoteEvent is not specified");
+    NSArray *eventsInTheSameDay = [self eventsForDay: bloodRemoteEvent.scheduledDate];
+    NSArray *remoteEventsInTheSameDay = [eventsInTheSameDay filteredArrayUsingPredicate:
+            [NSPredicate predicateWithFormat: @"SELF isKindOfClass: %@", [HSBloodRemoteEvent class]]];
+    BOOL isFreeDay = remoteEventsInTheSameDay.count == 0;
+    if (isFreeDay) {
+        if ([bloodRemoteEvent isKindOfClass: [HSBloodTestsEvent class]]) {
+            return YES;
+        } else {
+            HSBloodDonationEvent *bloodDonationEvent = (HSBloodDonationEvent *)bloodRemoteEvent;
+            if ([self isLatestBloodDonationEvent: bloodDonationEvent] &&
+                [self isBloodDonationEventAfterRestPeriod: bloodDonationEvent]) {
+                return YES;
+            } else {
+                return NO;
+            }
+        }
+    } else if ([remoteEventsInTheSameDay objectAtIndex: 0] == bloodRemoteEvent) {
+        if ([bloodRemoteEvent isKindOfClass: [HSBloodTestsEvent class]]) {
+            return YES;
+        } else {
+            HSBloodDonationEvent *bloodDonationEvent = (HSBloodDonationEvent *)bloodRemoteEvent;
+            // Before next checks this event should be deleted  from the self.bloodRemoteEvents array.
+            [self.bloodRemoteEvents removeObject: bloodDonationEvent];
+            [self updateFinishRestEvents];
+            @try {
+                if ([self isLatestBloodDonationEvent: bloodDonationEvent] &&
+                    [self isBloodDonationEventAfterRestPeriod: bloodDonationEvent]) {
+                    return YES;
+                } else {
+                    return NO;
+                }
+            } @finally {
+                // Restore removed object naytime 
+                [self.bloodRemoteEvents addObject: bloodDonationEvent];
+                [self updateFinishRestEvents];
+            }
+        }
+    } else {
+        // Day is busy with other blood remote event.
+        return NO;
+    }
+}
+
+- (BOOL)isLatestBloodDonationEvent: (HSBloodDonationEvent *)bloodDonationEvent {
+    THROW_IF_ARGUMENT_NIL(bloodDonationEvent, @"bloodDonationEvent is not specified");
+    NSArray *bloodDonationEvents = [self.bloodRemoteEvents filteredArrayUsingPredicate:
+            [NSPredicate predicateWithFormat: @"SELF isKindOfClass: %@", [HSBloodDonationEvent class]]];
+
+    for (HSBloodDonationEvent *bloodRemoteEvent in bloodDonationEvents) {
+        if (bloodRemoteEvent.scheduledDate.timeIntervalSince1970 >
+                bloodDonationEvent.scheduledDate.timeIntervalSince1970) {
+            return NO;
+        }
+    }
+    return YES;
+}
+
+- (BOOL)isBloodDonationEventAfterRestPeriod: (HSBloodDonationEvent *)bloodDonationEvent {
+    THROW_IF_ARGUMENT_NIL(bloodDonationEvent, @"bloodDonationEvent is not specified");
+    for (HSFinishRestEvent *finishRestEvent in self.finishRestEvents) {
+#warning Need to round both dates to day only.
+        if ((bloodDonationEvent.scheduledDate.timeIntervalSince1970 <
+             finishRestEvent.scheduledDate.timeIntervalSince1970) &&
+            (bloodDonationEvent.bloodDonationType == finishRestEvent.bloodDonationType)) {
+            return NO;
+        }
+    }
+    return YES;
+}
+
 @end

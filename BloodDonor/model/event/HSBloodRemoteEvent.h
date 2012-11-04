@@ -57,5 +57,10 @@
  */
 - (void)saveWithCompletionBlock: (CompletionBlockType)completion;
 
+/**
+ * Async removes edited event from the remote server.
+ */
+- (void)removeWithCompletionBlock: (CompletionBlockType)completion;
+
 
 @end

@@ -16,3 +16,8 @@ typedef void(^CompletionBlockType)(BOOL success, NSError *error);
 /// @name Remote model constants
 extern NSString * const kRemoteEvent_BaseClassName;
 
+/// @name Error domains
+extern NSString * const HSRemoteServerResonseError;
+extern NSString * const HSBloodDonationRestPeriodNotFinishedError;
+
+NSString* errorDomainToLicalizedDescription (NSString *errorDomain);

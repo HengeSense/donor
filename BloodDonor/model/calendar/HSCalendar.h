@@ -110,11 +110,11 @@
 /**
  * Returns all events in the calendar.
  */
-- (NSSet *)allEvents;
+- (NSArray *)allEvents;
 
 /**
  * Returns all events for the specified day.
  */
-- (NSSet *)eventsForDay: (NSDate *)dayDate;
+- (NSArray *)eventsForDay: (NSDate *)dayDate;
 
 @end

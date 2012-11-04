@@ -224,7 +224,7 @@
         HSCalendarDayButton *dayButton = [self createDayButtonWhithDate: dayDate frame: dayButtonFrame
                                                                 enabled: dayButtonEnabled];
         
-        NSSet *dayEvents = [self.calendarModel eventsForDay: dayDate];
+        NSArray *dayEvents = [self.calendarModel eventsForDay: dayDate];
         for (HSEvent *event in dayEvents) {
             [dayButton addEvent: event];
         }

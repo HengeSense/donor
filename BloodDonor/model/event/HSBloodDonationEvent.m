@@ -52,12 +52,16 @@ static const size_t const REST_PERIODS_TABLE[4][4] =
     switch (bloodDonationType) {
         case HSBloodDonationType_Platelets:
             remoteBloodDonationTypeCode = kRemoteEventFields_BloodDonationType_Platelets;
+            break;
         case HSBloodDonationType_Plasma:
             remoteBloodDonationTypeCode = kRemoteEventFields_BloodDonationType_Plasma;
+            break;
         case HSBloodDonationType_Blood:
             remoteBloodDonationTypeCode = kRemoteEventFields_BloodDonationType_Whole;
+            break;
         case HSBloodDonationType_Granulocytes:
             remoteBloodDonationTypeCode = kRemoteEventFields_BloodDonationType_Granulocytes;
+            break;
         default:
             @throw [NSException exceptionWithName: NSInternalInconsistencyException
                                            reason: @"Unexpected type of bloof donation" userInfo: nil];

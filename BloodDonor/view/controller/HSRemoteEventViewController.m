@@ -27,6 +27,11 @@
 @property (nonatomic, strong) HSBloodTestsEvent *bloodTestsEvent;
 
 /**
+ * Current displayed blood tests event or blood donation event.
+ */
+@property (nonatomic, strong) HSBloodRemoteEvent *currentBloodRemoteEvent;
+
+/**
  * Private initialization for displaying blood donation (HSBloodDonationEvent) remote event and
  *     for displaying blood tests (HSBloodTestsEvent) remote event. Does not check input parameters.
  */
@@ -78,19 +83,31 @@
     [self setRootView:nil];
     [self setRootScrollView:nil];
     [self setBloodDonationView:nil];
-    [self setLabAddressLabel:nil];
+    [self setBloodDonationLabAddressLabel:nil];
     [self setBloodDonationTypeLabel:nil];
     [self setBloodDonationDateLabel:nil];
     [self setBloodDonationCommentLabel:nil];
     [self setBloodTestsDateLabel:nil];
-    [self setBloodTestsLabAdressLabel:nil];
+    [self setBloodTestsLabAddressLabel:nil];
     [self setBloodTestsCommentsLabel:nil];
     [self setBloodTestsView:nil];
+    [self setDoneButton:nil];
     [super viewDidUnload];
 }
 
 #pragma mark - UI action handlers
 - (IBAction)eventDoneButtonClicked:(id)sender {
+    self.currentBloodRemoteEvent.isDone = YES;
+    [self.currentBloodRemoteEvent saveWithCompletionBlock: ^(BOOL success, NSError *error) {
+        if (success) {
+            [self.navigationController popToRootViewControllerAnimated: YES];
+        } else {
+            UIAlertView *allert = [[UIAlertView alloc] initWithTitle: @"Ошибка"
+                    message: errorDomainToLicalizedDescription(error.domain)
+                    delegate: nil cancelButtonTitle: @"Ок" otherButtonTitles: nil];
+            [allert show];
+        }
+    }];
 }
 
 #pragma mark - Private methods
@@ -137,22 +154,27 @@
     CGSize rootScrollViewContentSize = CGSizeMake(self.rootScrollView.bounds.size.width, 0.0f);
     if (self.bloodDonationEvent != nil) {
         // Display view for blood donation event.
+        self.currentBloodRemoteEvent = self.bloodDonationEvent;
         CGSize bloodDonationSize = self.bloodDonationView.bounds.size;
         self.bloodDonationView.frame = CGRectMake(0.0f, 0.0f, bloodDonationSize.width, bloodDonationSize.height);
         self.bloodDonationTypeLabel.text = bloodDonationTypeToString(self.bloodDonationEvent.bloodDonationType);
         self.bloodDonationDateLabel.text = [self.bloodDonationEvent formatScheduledDate];
-        self.bloodTestsCommentsLabel.text = self.bloodDonationEvent.comments;
+        self.bloodDonationLabAddressLabel.text = self.bloodDonationEvent.labAddress;
+        self.bloodDonationCommentLabel.text = self.bloodDonationEvent.comments;
         [self.rootScrollView addSubview: self.bloodDonationView];
         rootScrollViewContentSize.height += bloodDonationSize.height;
     } else if (self.bloodTestsEvent != nil) {
+        self.currentBloodRemoteEvent = self.bloodTestsEvent;
         // Display view for blood tests event.
         CGSize bloodTestsSize = self.bloodTestsView.bounds.size;
         self.bloodTestsView.frame = CGRectMake(0.0f, 0.0f, bloodTestsSize.width, bloodTestsSize.height);
         self.bloodTestsDateLabel.text = [self.bloodTestsEvent formatScheduledDate];
         self.bloodTestsCommentsLabel.text = self.bloodDonationEvent.comments;
+        self.bloodTestsLabAddressLabel.text = self.bloodTestsEvent.labAddress;
         [self.rootScrollView addSubview: self.bloodTestsView];
         rootScrollViewContentSize.height += bloodTestsSize.height;
     }
+    self.doneButton.enabled = !self.currentBloodRemoteEvent.isDone;
     
     self.rootScrollView.contentSize = rootScrollViewContentSize;
 }
