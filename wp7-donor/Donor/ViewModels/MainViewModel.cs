@@ -113,14 +113,20 @@ namespace Donor
                     standardTile = new StandardTileData
                     {
                         Title = "",
-                        Count = App.ViewModel.Events.Items.Count(),
+                        Count = App.ViewModel.Events.UserItems.Where(c => (c.Type=="0") || (c.Type=="1")).Count(),
                         BackTitle = eventData.Date.ToShortDateString(),
                         BackContent = eventData.Title
                     };
                 }
                 else
                 {
-                    if (App.ViewModel.Events.NearestEventsAll() != null)
+                    standardTile = new StandardTileData
+                    {
+                        Title = "",
+                        Count = App.ViewModel.Events.UserItems.Where(c => (c.Type == "0") || (c.Type == "1")).Count()
+                    };
+                    /*
+                     * if (App.ViewModel.Events.NearestEventsAll() != null)
                     {
                         standardTile = new StandardTileData
                         {
@@ -139,10 +145,10 @@ namespace Donor
                             BackContent = Donor.AppResources.NoEvents,
                         };
                     };
+                     */
                 };
 
-                // hidden in current version
-                //appTile.Update(standardTile);
+                appTile.Update(standardTile);
             }
         }
 

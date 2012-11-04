@@ -103,7 +103,10 @@ namespace Donor.ViewModels
                 return _isLoggedIn; 
             } 
             set {
-                _isLoggedIn = value;                
+                _isLoggedIn = value;
+
+                App.ViewModel.CreateApplicationTile(App.ViewModel.Events.NearestEvents());
+
                 NotifyPropertyChanged("IsLoggedIn"); 
             } 
         }

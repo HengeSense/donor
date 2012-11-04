@@ -1179,7 +1179,7 @@ namespace Donor.ViewModels
         public EventViewModel NearestEvents()
         {
             var item_near2 = (from item in this.UserItems
-                              where (item.Date >= DateTime.Now) && (item.Type == "1") && (item.Type == "0")
+                              where (item.Date >= DateTime.Now) && ((item.Type == "1") || (item.Type == "0"))
                               orderby item.Date ascending
                               select item).Take(1);
             return item_near2.FirstOrDefault();
@@ -1285,6 +1285,9 @@ namespace Donor.ViewModels
 
                         this.DeleteUncorrectEvents();
 
+                        // обновляем Tile приложения
+                        App.ViewModel.CreateApplicationTile(App.ViewModel.Events.NearestEvents());
+
                         App.ViewModel.Events.OnEventsChanged(EventArgs.Empty);
 
                         App.ViewModel.SaveToIsolatedStorage();
@@ -1350,6 +1353,9 @@ namespace Donor.ViewModels
                         UpdateNearestEvents();
 
                         this.DeleteUncorrectEvents();
+
+                        // обновляем Tile приложения
+                        App.ViewModel.CreateApplicationTile(App.ViewModel.Events.NearestEvents());
 
                         App.ViewModel.Events.OnEventsChanged(EventArgs.Empty);
 
