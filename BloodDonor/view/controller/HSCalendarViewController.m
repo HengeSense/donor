@@ -254,7 +254,7 @@
             filteredSetUsingPredicate: [NSPredicate predicateWithFormat: @"self isKindOfClass: %@",
             [HSBloodRemoteEvent class]]];
     
-    const size_t BLOOD_REMOTE_EVENTS_PER_DAY_MAX = 2;
+    const size_t BLOOD_REMOTE_EVENTS_PER_DAY_MAX = 1;
     if (remoteBloodEvents.count > BLOOD_REMOTE_EVENTS_PER_DAY_MAX) {
         [NSException exceptionWithName: NSInternalInconsistencyException
                 reason: [NSString stringWithFormat: @"Supported count of remote events per day is %zu,"
@@ -272,12 +272,7 @@
     }
     
     UIViewController *pushedViewController = nil;
-    if (bloodDonationEvent != nil && bloodTestsEvent != nil) {
-        // both remote events are specified
-        pushedViewController = [[HSRemoteEventViewController alloc] initWithNibName: @"HSRemoteEventViewController"
-                bundle: nil calendar: self.calendarModel bloodDonationEvent: bloodDonationEvent
-                bloodTestsEvent: bloodTestsEvent];
-    } else if (bloodDonationEvent != nil) {
+    if (bloodDonationEvent != nil) {
         // only blood donation event specified
         pushedViewController = [[HSRemoteEventViewController alloc] initWithNibName: @"HSRemoteEventViewController"
                 bundle: nil calendar: self.calendarModel bloodDonationEvent: bloodDonationEvent];

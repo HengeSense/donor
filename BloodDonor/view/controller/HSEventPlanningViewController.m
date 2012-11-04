@@ -83,6 +83,15 @@ static const CGFloat kTabBarHeight = 55.0f;
  */
 @property (nonatomic, strong) HSAddressPicker *addressPicker;
 
+
+/**
+ * Initialises HSEventPlanningViewController to edit existing blood donation event and blood test event.
+ */
+- (id) initWithNibNameInternal: (NSString *)nibNameOrNil bundle: (NSBundle *)nibBundleOrNil
+                      calendar: (HSCalendar *)calendar date: (NSDate *)date
+            bloodDonationEvent: (HSBloodDonationEvent *)bloodDonationEvent
+                bloodTestEvent: (HSBloodTestsEvent *)bloodTestsEvent;
+
 /**
  * Configures view for editing existing blood donation event.
  */
@@ -135,25 +144,28 @@ static const CGFloat kTabBarHeight = 55.0f;
 #pragma mark - Initialization
 - (id)initWithNibName: (NSString *)nibNameOrNil bundle: (NSBundle *)nibBundleOrNil calendar: (HSCalendar *)calendar
                  date: (NSDate *)date {
-    return [self initWithNibName: nibNameOrNil bundle: nibBundleOrNil calendar: calendar date: date
-              bloodDonationEvent: nil bloodTestEvent: nil];
+    return [self initWithNibNameInternal: nibNameOrNil bundle: nibBundleOrNil calendar: calendar date: date
+            bloodDonationEvent: nil bloodTestEvent: nil];
 }
 
 - (id)initWithNibName: (NSString *)nibNameOrNil bundle: (NSBundle *)nibBundleOrNil calendar: (HSCalendar *)calendar
                  date: (NSDate *)date bloodDonationEvent: (HSBloodDonationEvent *)bloodDonationEvent {
-    return [self initWithNibName: nibNameOrNil bundle: nibBundleOrNil calendar: calendar date: date
-              bloodDonationEvent: bloodDonationEvent bloodTestEvent: nil];
+    THROW_IF_ARGUMENT_NIL(bloodDonationEvent, @"bloodDonationEvent is not specified")
+    return [self initWithNibNameInternal: nibNameOrNil bundle: nibBundleOrNil calendar: calendar date: date
+            bloodDonationEvent: bloodDonationEvent bloodTestEvent: nil];
 }
 
 - (id)initWithNibName: (NSString *)nibNameOrNil bundle: (NSBundle *)nibBundleOrNil calendar: (HSCalendar *)calendar
-                 date: (NSDate *)date bloodTestEvent: (HSBloodTestsEvent *)bloodTestEvent {
-    return [self initWithNibName: nibNameOrNil bundle: nibBundleOrNil calendar: calendar date: date
-              bloodDonationEvent: nil bloodTestEvent: bloodTestEvent];
+                 date: (NSDate *)date bloodTestsEvent: (HSBloodTestsEvent *)bloodTestsEvent {
+    THROW_IF_ARGUMENT_NIL(bloodTestsEvent, @"bloodDonationEvent is not specified")
+    return [self initWithNibNameInternal: nibNameOrNil bundle: nibBundleOrNil calendar: calendar date: date
+            bloodDonationEvent: nil bloodTestEvent: bloodTestsEvent];
 }
 
-- (id)initWithNibName: (NSString *)nibNameOrNil bundle: (NSBundle *)nibBundleOrNil calendar: (HSCalendar *)calendar
-                 date: (NSDate *)date bloodDonationEvent: (HSBloodDonationEvent *)bloodDonationEvent
-       bloodTestEvent: (HSBloodTestsEvent *)bloodTestEvent {
+- (id)initWithNibNameInternal: (NSString *)nibNameOrNil bundle: (NSBundle *)nibBundleOrNil
+                     calendar: (HSCalendar *)calendar
+                         date: (NSDate *)date bloodDonationEvent: (HSBloodDonationEvent *)bloodDonationEvent
+               bloodTestEvent: (HSBloodTestsEvent *)bloodTestsEvent {
     
     THROW_IF_ARGUMENT_NIL(calendar, @"calendar is not specified");
     THROW_IF_ARGUMENT_NIL(date, @"date is note specified");
@@ -163,7 +175,7 @@ static const CGFloat kTabBarHeight = 55.0f;
         self.initialDate = date;
         self.currentViewMode = HSEventPlanningViewControllerMode_BloodDonation;
         self.bloodDonationEvent = bloodDonationEvent;
-        self.bloodTestsEvent = bloodTestEvent;
+        self.bloodTestsEvent = bloodTestsEvent;
     }
     return self;
 }

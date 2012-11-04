@@ -52,12 +52,5 @@
 - (id)initWithNibName: (NSString *)nibNameOrNil bundle: (NSBundle *)nibBundleOrNil calendar: (HSCalendar *)calendar
         bloodTestsEvent: (HSBloodTestsEvent *)bloodTestsEvent;
 
-/**
- * Initialization for displaying blood donation (HSBloodDonationEvent) remote event and
- *     for displaying blood tests (HSBloodTestsEvent) remote event.
- */
-- (id)initWithNibName: (NSString *)nibNameOrNil bundle: (NSBundle *)nibBundleOrNil calendar: (HSCalendar *)calendar
-        bloodDonationEvent: (HSBloodDonationEvent *)bloodDonationEvent
-        bloodTestsEvent: (HSBloodTestsEvent *)bloodTestsEvent;
 
 @end

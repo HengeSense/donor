@@ -32,15 +32,7 @@
  * Initialises HSEventPlanningViewController to edit existing blood test event.
  */
 - (id) initWithNibName: (NSString *)nibNameOrNil bundle: (NSBundle *)nibBundleOrNil calendar: (HSCalendar *)calendar
-                  date: (NSDate *)date bloodTestEvent: (HSBloodTestsEvent *)bloodTestEvent;
-
-/**
- * Initialises HSEventPlanningViewController to edit existing blood donation event and blood test event.
- */
-- (id) initWithNibName: (NSString *)nibNameOrNil bundle: (NSBundle *)nibBundleOrNil calendar: (HSCalendar *)calendar
-                  date: (NSDate *)date bloodDonationEvent: (HSBloodDonationEvent *)bloodDonationEvent
-        bloodTestEvent: (HSBloodTestsEvent *)bloodTestEvent;
-
+                  date: (NSDate *)date bloodTestsEvent: (HSBloodTestsEvent *)bloodTestsEvent;
 
 /// @name Subviews properties
 

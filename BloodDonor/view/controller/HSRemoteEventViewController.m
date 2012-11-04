@@ -67,16 +67,6 @@
             bloodDonationEvent: nil bloodTestsEvent:bloodTestsEvent];
 }
 
-- (id)initWithNibName: (NSString *)nibNameOrNil bundle: (NSBundle *)nibBundleOrNil calendar: (HSCalendar *)calendar
-        bloodDonationEvent: (HSBloodDonationEvent *)bloodDonationEvent
-        bloodTestsEvent: (HSBloodTestsEvent *)bloodTestsEvent {
-    THROW_IF_ARGUMENT_NIL(calendar, @"calendar is not specified");
-    THROW_IF_ARGUMENT_NIL(bloodDonationEvent, @"bloodDonationEvent is not specified");
-    THROW_IF_ARGUMENT_NIL(bloodTestsEvent, @"bloodTestsEvent is not specified");
-    return [self initWithNibNameInternal: nibNameOrNil bundle: nibBundleOrNil calendar: calendar
-            bloodDonationEvent: bloodDonationEvent bloodTestsEvent: bloodTestsEvent];
-}
-
 #pragma mark - UI lifecycle
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -144,7 +134,6 @@
 }
 
 - (void)configureViews {
-    CGPoint bloodTestsViewOriginal = CGPointMake(0.0f, 0.0f);
     CGSize rootScrollViewContentSize = CGSizeMake(self.rootScrollView.bounds.size.width, 0.0f);
     if (self.bloodDonationEvent != nil) {
         // Display view for blood donation event.
@@ -153,16 +142,12 @@
         self.bloodDonationTypeLabel.text = bloodDonationTypeToString(self.bloodDonationEvent.bloodDonationType);
         self.bloodDonationDateLabel.text = [self.bloodDonationEvent formatScheduledDate];
         self.bloodTestsCommentsLabel.text = self.bloodDonationEvent.comments;
-        bloodTestsViewOriginal.y += bloodDonationSize.height + 10;
         [self.rootScrollView addSubview: self.bloodDonationView];
-        rootScrollViewContentSize.height += bloodTestsViewOriginal.y;
-    }
-    
-    if (self.bloodTestsEvent != nil) {
+        rootScrollViewContentSize.height += bloodDonationSize.height;
+    } else if (self.bloodTestsEvent != nil) {
         // Display view for blood tests event.
         CGSize bloodTestsSize = self.bloodTestsView.bounds.size;
-        self.bloodTestsView.frame = CGRectMake(bloodTestsViewOriginal.x, bloodTestsViewOriginal.y,
-                                               bloodTestsSize.width, bloodTestsSize.height);
+        self.bloodTestsView.frame = CGRectMake(0.0f, 0.0f, bloodTestsSize.width, bloodTestsSize.height);
         self.bloodTestsDateLabel.text = [self.bloodTestsEvent formatScheduledDate];
         self.bloodTestsCommentsLabel.text = self.bloodDonationEvent.comments;
         [self.rootScrollView addSubview: self.bloodTestsView];
@@ -174,13 +159,20 @@
 
 #pragma mark - Private UI action handlers
 - (void)editButtonClick: (id)sender {
-    NSDate *dateForEditedEvent = self.bloodDonationEvent != nil ? self.bloodDonationEvent.scheduledDate :
-                                                                  self.bloodTestsEvent.scheduledDate;
-    HSEventPlanningViewController *eventPlanningViewController =
-            [[HSEventPlanningViewController alloc] initWithNibName: @"HSEventPlanningViewController" bundle: nil
-            calendar: self.calendar date: dateForEditedEvent bloodDonationEvent: self.bloodDonationEvent
-            bloodTestEvent: self.bloodTestsEvent];
-    
+    HSEventPlanningViewController *eventPlanningViewController = nil;
+    if (self.bloodDonationEvent != nil) {
+        eventPlanningViewController = [[HSEventPlanningViewController alloc]
+                initWithNibName: @"HSEventPlanningViewController" bundle: nil calendar: self.calendar
+                date: self.bloodDonationEvent.scheduledDate bloodDonationEvent: self.bloodDonationEvent];
+    } else if (self.bloodTestsEvent != nil) {
+        eventPlanningViewController = [[HSEventPlanningViewController alloc]
+                initWithNibName: @"HSEventPlanningViewController" bundle: nil calendar: self.calendar
+                date: self.bloodTestsEvent.scheduledDate bloodTestsEvent: self.bloodTestsEvent];
+    } else {
+        @throw [NSException exceptionWithName: NSInternalInconsistencyException
+                                       reason: @"HSRemoteEventViewController was configured without remote event"
+                                     userInfo: nil];
+    }
     [self.navigationController pushViewController: eventPlanningViewController animated: YES];
 }
 
