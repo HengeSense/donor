@@ -30,13 +30,14 @@ namespace Donor.ViewModels
             this.IsFilter = false;
             this.IsSaturdayWork = false;
             this.IsRegional = false;
+
+            this.Items = new ObservableCollection<StationViewModel>();
         }
 
         public GeoCoordinateWatcher myCoordinateWatcher;
         private bool _getCoordinates = false;
         void myCoordinateWatcher_PositionChanged(object sender, GeoPositionChangedEventArgs<GeoCoordinate> e)
         {
-
             if ((!e.Position.Location.IsUnknown) && (_getCoordinates == false))
             {                
                 Latitued = e.Position.Location.Latitude;
@@ -62,11 +63,25 @@ namespace Donor.ViewModels
         //selected station for edit
         public string SelectedStation { get; set; }
 
+        /// <summary>
+        /// Загрузка станций с parse.com
+        /// </summary>
         public void LoadStations()
         {
             myCoordinateWatcher = new GeoCoordinateWatcher(GeoPositionAccuracy.Default);
             myCoordinateWatcher.PositionChanged += new EventHandler<GeoPositionChangedEventArgs<GeoCoordinate>>(myCoordinateWatcher_PositionChanged);
             myCoordinateWatcher.Start();
+
+            try
+            {
+                ObservableCollection<StationViewModel> stationslist1 = new ObservableCollection<StationViewModel>();
+                stationslist1 = IsolatedStorageHelper.LoadSerializableObject<ObservableCollection<StationViewModel>>("stations.xml");
+                this.Items = stationslist1;
+            }
+            catch { this.Items = new ObservableCollection<StationViewModel>(); };
+
+            // загружаем станции если их нет или дата последнего обновления была более чем одни сутки в прошлом
+            if ((App.ViewModel.Stations.Items.Count() == 0) || (App.ViewModel.Settings.StationsUpdated.AddDays(1) < DateTime.Now)) {
 
             var client = new RestClient("https://api.parse.com");
             var request = new RestRequest("1/classes/Stations", Method.GET);
@@ -79,81 +94,98 @@ namespace Donor.ViewModels
             {
                 try
                 {
-                    ObservableCollection<StationViewModel> eventslist1 = new ObservableCollection<StationViewModel>();
-                    JObject o = JObject.Parse(response.Content.ToString());
-                    foreach (var item in o["results"])
+                    var bw = new BackgroundWorker();
+                    bw.DoWork += delegate
                     {
-                        StationViewModel station = new StationViewModel();
-                        station.Adress = item["adress"].ToString();
-                        try
+                        ObservableCollection<StationViewModel> eventslist1 = new ObservableCollection<StationViewModel>();
+                        JObject o = JObject.Parse(response.Content.ToString());
+                        foreach (var item in o["results"])
                         {
-                            station.BloodFor = item["bloodFor"].ToString();
-                        }
-                        catch
-                        {
-                            station.BloodFor = "";
-                        };
-                        station.City = item["city"].ToString();
-                        station.Description = item["description"].ToString();
-                        try
-                        {
-                            station.DonorsForChildrens = bool.Parse(item["donorsForChildrens"].ToString());
-                        }
-                        catch
-                        {
-                            station.DonorsForChildrens = false;
+                            StationViewModel station = new StationViewModel();
+                            station.Adress = item["adress"].ToString();
+                            try
+                            {
+                                station.BloodFor = item["bloodFor"].ToString();
+                            }
+                            catch
+                            {
+                                station.BloodFor = "";
+                            };
+                            station.City = item["city"].ToString();
+                            station.Description = item["description"].ToString();
+                            try
+                            {
+                                station.DonorsForChildrens = bool.Parse(item["donorsForChildrens"].ToString());
+                            }
+                            catch
+                            {
+                                station.DonorsForChildrens = false;
+                            };
+
+                            station.Nid = Int64.Parse(item["nid"].ToString());
+
+                            station.Lat = item["latlon"]["latitude"].ToString();
+                            station.Lon = item["latlon"]["longitude"].ToString();
+                            station.objectId = item["objectId"].ToString();
+                            station.Phone = item["phone"].ToString();
+                            try
+                            {
+                                station.ReceiptTime = item["receiptTime"].ToString();
+                            }
+                            catch
+                            {
+                                station.ReceiptTime = "";
+                            };
+                            try
+                            {
+                                station.RegionalRegistration = bool.Parse(item["regionalRegistration"].ToString());
+                            }
+                            catch
+                            {
+                                station.RegionalRegistration = false;
+                            };
+                            try
+                            {
+                                station.SaturdayWork = bool.Parse(item["saturdayWork"].ToString());
+                            }
+                            catch
+                            {
+                                station.SaturdayWork = false;
+                            };
+                            station.Title = item["title"].ToString();
+                            station.Transportaion = item["transportation"].ToString();
+                            try
+                            {
+                                station.Url = item["url"].ToString();
+                            }
+                            catch
+                            {
+                                station.Url = "http://www.podari-zhizn.ru/main";
+                            };
+                            eventslist1.Add(station);
                         };
 
-                        station.Nid = Int64.Parse(item["nid"].ToString());
+                        Deployment.Current.Dispatcher.BeginInvoke(() =>
+                        {
+                            App.ViewModel.Settings.StationsUpdated = DateTime.Now;
+                            App.ViewModel.SaveSettingsToStorage();
+                            this.Items = eventslist1;
 
-                        station.Lat = item["latlon"]["latitude"].ToString();
-                        station.Lon = item["latlon"]["longitude"].ToString();
-                        station.objectId = item["objectId"].ToString();
-                        station.Phone = item["phone"].ToString();
-                        try
-                        {
-                            station.ReceiptTime = item["receiptTime"].ToString();
-                        }
-                        catch
-                        {
-                            station.ReceiptTime = "";
-                        };
-                        try
-                        {
-                            station.RegionalRegistration = bool.Parse(item["regionalRegistration"].ToString());
-                        }
-                        catch
-                        {
-                            station.RegionalRegistration = false;
-                        };
-                        try
-                        {
-                            station.SaturdayWork = bool.Parse(item["saturdayWork"].ToString());
-                        }
-                        catch
-                        {
-                            station.SaturdayWork = false;
-                        };
-                        station.Title = item["title"].ToString();
-                        station.Transportaion = item["transportation"].ToString();
-                        try
-                        {
-                            station.Url = item["url"].ToString();
-                        }
-                        catch
-                        {
-                            station.Url = "http://www.podari-zhizn.ru/main";
-                        };
-                        eventslist1.Add(station);
+                            IsolatedStorageHelper.SaveSerializableObject<ObservableCollection<StationViewModel>>(this.Items, "stations.xml");
+
+                            this.NotifyPropertyChanged("Items");
+                        });
+
+                        
                     };
-                    this.Items = eventslist1;
-                    IsolatedStorageHelper.SaveSerializableObject<ObservableCollection<StationViewModel>>(App.ViewModel.Stations.Items, "stations.xml");
+                    bw.RunWorkerAsync();
                 }
                 catch
                 {
                 };
-                this.NotifyPropertyChanged("Items");
+                
             });
+        } else {};
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

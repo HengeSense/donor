@@ -42,16 +42,19 @@ namespace Donor.ViewModels
                     var bw = new BackgroundWorker();
                     bw.DoWork += delegate
                     {
-                        ObservableCollection<NewsViewModel> newslist1 = new ObservableCollection<NewsViewModel>();
-                        JObject o = JObject.Parse(response.Content.ToString());
-                        newslist1 = JsonConvert.DeserializeObject<ObservableCollection<NewsViewModel>>(o["results"].ToString());
-                        //var newslist2 = (from news in newslist1 orderby news.CreatedTimestamp descending select news);
-
-                        Deployment.Current.Dispatcher.BeginInvoke(() =>
+                        try
                         {
-                            this.Items = new ObservableCollection<NewsViewModel>(newslist1);
-                        });
-                        IsolatedStorageHelper.SaveSerializableObject<ObservableCollection<NewsViewModel>>(App.ViewModel.News.Items, "news.xml");
+                            ObservableCollection<NewsViewModel> newslist1 = new ObservableCollection<NewsViewModel>();
+                            JObject o = JObject.Parse(response.Content.ToString());
+                            newslist1 = JsonConvert.DeserializeObject<ObservableCollection<NewsViewModel>>(o["results"].ToString());
+                            //var newslist2 = (from news in newslist1 orderby news.CreatedTimestamp descending select news);
+
+                            Deployment.Current.Dispatcher.BeginInvoke(() =>
+                            {
+                                this.Items = new ObservableCollection<NewsViewModel>(newslist1);
+                            });
+                            IsolatedStorageHelper.SaveSerializableObject<ObservableCollection<NewsViewModel>>(App.ViewModel.News.Items, "news.xml");
+                        } catch {};
                     };
                     bw.RunWorkerAsync();
                 }

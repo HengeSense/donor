@@ -29,7 +29,7 @@ namespace Donor {
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        public AppResources() {
+        public  AppResources() {
         }
         
         /// <summary>
@@ -907,7 +907,8 @@ namespace Donor {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Считайте код с приложения к справке донора для добавления достижения в Facebook. Подробности здесь..
+        ///   Looks up a localized string similar to Для активации достижения сделайте скан QR кода с наклейки к донорской справке. &lt;a href=&quot;http://www.blood.ru&quot;&gt;Подробнее о достижениях&lt;/a&gt;
+        ///Функционал дотижений доступен только в СПК ГНЦ РАМН. (http://www.blood.ru).
         /// </summary>
         public static string ReadQRAboutText {
             get {

@@ -97,6 +97,10 @@ namespace Donor
             set;
         }
 
+        /// <summary>
+        /// Обновляем ApplicationTile - выводим колическтво событий и ближайшее событие в будущем
+        /// </summary>
+        /// <param name="eventData"></param>
         public void CreateApplicationTile(EventViewModel eventData)
         {
             var appTile = ShellTile.ActiveTiles.FirstOrDefault();
@@ -160,7 +164,6 @@ namespace Donor
 
                     App.ViewModel.Events.LoadDonorsSaturdays();
                     
-
                     App.ViewModel.Stations.LoadStations();
 
                     this.NotifyPropertyChanged("Events");
@@ -200,7 +203,7 @@ namespace Donor
             {
             };
 
-            try
+            /*try
             {
                 if (this.Stations.Items.Count > 0)
                 {
@@ -209,7 +212,7 @@ namespace Donor
             }
             catch
             {
-            };
+            };*/
 
             try
             {
@@ -439,13 +442,13 @@ namespace Donor
 
                 try
                 {
-                    ObservableCollection<StationViewModel> stationslist1 = new ObservableCollection<StationViewModel>();
+                    /*ObservableCollection<StationViewModel> stationslist1 = new ObservableCollection<StationViewModel>();
                     stationslist1 = IsolatedStorageHelper.LoadSerializableObject<ObservableCollection<StationViewModel>>("stations.xml");
                     Deployment.Current.Dispatcher.BeginInvoke(() =>
                     {
                         this.Stations.Items = stationslist1;
                         this.NotifyPropertyChanged("Stations");
-                    });
+                    });*/
                 }
                 catch //(System.IO.FileNotFoundException)
                 {

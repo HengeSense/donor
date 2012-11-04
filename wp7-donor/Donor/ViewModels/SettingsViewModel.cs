@@ -26,6 +26,8 @@ namespace Donor.ViewModels
         public bool EventBefore = false;
         public bool EventAfter = false;
 
-        List<string> PossibleTypes { get; set; } 
+        List<string> PossibleTypes { get; set; }
+
+        public DateTime StationsUpdated { get; set; }
     }
 }

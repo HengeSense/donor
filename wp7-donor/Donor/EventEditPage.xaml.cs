@@ -25,7 +25,6 @@ namespace Donor
             CurrentEvent = null;
             List<string> giveTypes = new List<string>() { Donor.AppResources.Platelets, 
                 Donor.AppResources.Plasma, Donor.AppResources.WholeBlood, Donor.AppResources.Granulocytes };
-            //, "Гранулоциты"
 
             List<string> reminderTypes = new List<string>() { Donor.AppResources.Reminder15Minutes, 
                 Donor.AppResources.Reminder1Hour, Donor.AppResources.Reminder1Day, 
@@ -36,6 +35,7 @@ namespace Donor
             this.ReminderPeriod.ItemsSource = reminderTypes;
 
             this.Time.Value = new DateTime(DateTime.Now.AddDays(1).Year, DateTime.Now.AddDays(1).Month, DateTime.Now.AddDays(1).Day, 8, 0, 0);
+            // устанавливаем дату на завтрашний день
             this.Date.Value = new DateTime(DateTime.Now.AddDays(1).Year, DateTime.Now.AddDays(1).Month, DateTime.Now.AddDays(1).Day);
 
             this.DataContext = CurrentEvent;
@@ -153,7 +153,6 @@ namespace Donor
             {
             };
             this.DataContext = CurrentEvent;
-
             if (CurrentEvent == null)
             {
                 try
@@ -170,8 +169,6 @@ namespace Donor
                     {
                         this.Date.Value = new DateTime(YearNumber, MonthNumber, DayNumber);
                     };
-
-
                 }
                 catch { };
             };
@@ -179,21 +176,8 @@ namespace Donor
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                App.ViewModel.DataFLoaded += new MainViewModel.DataFLoadedEventHandler(this.DataFLoaded);
-            }
-            catch
-            {
-            };
-
-            try
-            {
-                DataFLoaded(this, EventArgs.Empty);
-            }
-            catch
-            {
-            };
+            try { App.ViewModel.DataFLoaded += new MainViewModel.DataFLoadedEventHandler(this.DataFLoaded);} catch { };
+            try { DataFLoaded(this, EventArgs.Empty); } catch { };
         }
 
         private void CancelButton_Click(object sender, EventArgs e)
@@ -202,6 +186,7 @@ namespace Donor
         }
 
         private EventViewModel itemother;
+
         private void SaveButton_Click(object sender, EventArgs e)
         {
             BuildEvent(true);
@@ -210,7 +195,6 @@ namespace Donor
          private EventViewModel BuildEvent(bool save = true) {
              if (App.ViewModel.User.IsLoggedIn == false)
              {
-                 //MessageBox.Show("You can't add events until you enter your email and password.");
                  return null;
              };
 
@@ -383,7 +367,6 @@ namespace Donor
 
                              App.ViewModel.Events.UpdateItems(CurrentEvent);
                              App.ViewModel.Events.UpdateItems();
-                             //App.ViewModel.SaveToIsolatedStorage();
 
                              App.ViewModel.Events.CurrentMonth = CurrentEvent.Date;
 
@@ -442,7 +425,6 @@ namespace Donor
 
                                  App.ViewModel.Events.CurrentMonth = CurrentEvent.Date;
 
-                                 //App.ViewModel.SaveToIsolatedStorage();
                                  NavigationService.GoBack();
                              }
                              else
@@ -511,7 +493,7 @@ namespace Donor
 
         double InputHeight = 0.0;
 
-        private void MessageText_GotFocus(object sender, System.Windows.RoutedEventArgs e)
+        /*private void MessageText_GotFocus(object sender, System.Windows.RoutedEventArgs e)
         {
             (App.Current as App).RootFrame.RenderTransform = new CompositeTransform();
         }
@@ -529,12 +511,12 @@ namespace Donor
 
                 InputHeight = CurrentInputHeight;
             });
-        }
+        }*/
 
-        public void MessageText_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        /*public void MessageText_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
             InputScrollViewer.ScrollToVerticalOffset(e.GetPosition(Description).Y - 80);
-        }
+        }*/
 
 
         private void EventType_Loaded(object sender, RoutedEventArgs e)

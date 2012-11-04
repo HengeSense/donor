@@ -7,6 +7,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit" 
+    xmlns:msp="clr-namespace:MSPToolkit.Controls;assembly=MSPToolkit"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
@@ -66,10 +67,9 @@
                 </Rectangle.Fill>
             </Rectangle>
 
-            <TextBlock 
-                TextWrapping="Wrap"
-                Margin="20"                
-                Text="{Binding ReadQRAboutText, Source={StaticResource Loc}}" 
+            <msp:HTMLTextBox Html="{Binding ReadQRAboutText, Source={StaticResource Loc}}" 
+                TextWrapping="Wrap" FontSize="22"
+                Margin="15" NavigaionPolitic="Automatic"                 
                 VerticalAlignment="Bottom" />
 
             <ListBox Margin="10" x:Name="_matchesList" FontSize="30" FontWeight="ExtraBold" />
