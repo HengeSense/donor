@@ -87,12 +87,20 @@ static NSString * const kRemoteEventField_Type = @"type";
     return [self.remoteEvent objectForKey: kRemoteEventField_ReminderDate];
 }
 
-- (void) setNotificationDate: (NSDate *)notificationDate {
+- (void)setNotificationDate: (NSDate *)notificationDate {
     [self.remoteEvent setObject: notificationDate forKey: kRemoteEventField_ReminderDate];
 }
 
 - (NSString *)notificationMessage {
     return [self.remoteEvent objectForKey: kRemoteEventField_ReminderMessage];
+}
+
+- (void)setComments: (NSString *)comments {
+    [self.remoteEvent setObject: comments forKey: kRemoteEventField_Comment];
+}
+
+- (NSString *)comments {
+    return [self.remoteEvent objectForKey: kRemoteEventField_Comment];
 }
 
 
@@ -115,10 +123,10 @@ static NSString * const kRemoteEventField_Type = @"type";
 }
 
 #pragma mark - Interaction with server side.
-- (void)saveWithCompletionBlock: (CompletionBlockType)comletion {
-    THROW_IF_ARGUMENT_NIL(comletion, @"completion block is not defined");
+- (void)saveWithCompletionBlock: (CompletionBlockType)completion {
+    THROW_IF_ARGUMENT_NIL(completion, @"completion block is not defined");
     [self.remoteEvent saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        comletion(succeeded, error);
+        completion(succeeded, error);
     }];
  }
 

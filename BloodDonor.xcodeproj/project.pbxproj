@@ -154,6 +154,12 @@
 		683F8A87164577090066C47A /* HSDateTimePicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 683F8A85164577090066C47A /* HSDateTimePicker.xib */; };
 		683F8A8B16466F2C0066C47A /* HSAddressPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 683F8A8916466F2C0066C47A /* HSAddressPicker.m */; };
 		683F8A8C16466F2C0066C47A /* HSAddressPicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 683F8A8A16466F2C0066C47A /* HSAddressPicker.xib */; };
+		683F8A9016468B870066C47A /* HSRemoteEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 683F8A8E16468B870066C47A /* HSRemoteEventViewController.m */; };
+		683F8A9116468B870066C47A /* HSRemoteEventViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 683F8A8F16468B870066C47A /* HSRemoteEventViewController.xib */; };
+		683F8A9716468E300066C47A /* event_done_button_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 683F8A9316468E300066C47A /* event_done_button_normal.png */; };
+		683F8A9816468E300066C47A /* event_done_button_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 683F8A9416468E300066C47A /* event_done_button_normal@2x.png */; };
+		683F8A9916468E300066C47A /* event_done_button_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 683F8A9516468E300066C47A /* event_done_button_pressed.png */; };
+		683F8A9A16468E300066C47A /* event_done_button_pressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 683F8A9616468E300066C47A /* event_done_button_pressed@2x.png */; };
 		685CB2F8163F200A004FF9AC /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 685CB2F7163F2008004FF9AC /* MBProgressHUD.m */; };
 		685CB3131640E87F004FF9AC /* icon_blood.png in Resources */ = {isa = PBXBuildFile; fileRef = 685CB2FE1640E87E004FF9AC /* icon_blood.png */; };
 		685CB3141640E87F004FF9AC /* icon_blood@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 685CB2FF1640E87E004FF9AC /* icon_blood@2x.png */; };
@@ -676,6 +682,13 @@
 		683F8A8816466F2C0066C47A /* HSAddressPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSAddressPicker.h; sourceTree = "<group>"; };
 		683F8A8916466F2C0066C47A /* HSAddressPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSAddressPicker.m; sourceTree = "<group>"; };
 		683F8A8A16466F2C0066C47A /* HSAddressPicker.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HSAddressPicker.xib; sourceTree = "<group>"; };
+		683F8A8D16468B870066C47A /* HSRemoteEventViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSRemoteEventViewController.h; sourceTree = "<group>"; };
+		683F8A8E16468B870066C47A /* HSRemoteEventViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSRemoteEventViewController.m; sourceTree = "<group>"; };
+		683F8A8F16468B870066C47A /* HSRemoteEventViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HSRemoteEventViewController.xib; sourceTree = "<group>"; };
+		683F8A9316468E300066C47A /* event_done_button_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = event_done_button_normal.png; sourceTree = "<group>"; };
+		683F8A9416468E300066C47A /* event_done_button_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "event_done_button_normal@2x.png"; sourceTree = "<group>"; };
+		683F8A9516468E300066C47A /* event_done_button_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = event_done_button_pressed.png; sourceTree = "<group>"; };
+		683F8A9616468E300066C47A /* event_done_button_pressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "event_done_button_pressed@2x.png"; sourceTree = "<group>"; };
 		685CB2F6163F2005004FF9AC /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MBProgressHUD.h; path = Libs/MBProgressHUD/MBProgressHUD.h; sourceTree = "<group>"; };
 		685CB2F7163F2008004FF9AC /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MBProgressHUD.m; path = Libs/MBProgressHUD/MBProgressHUD.m; sourceTree = "<group>"; };
 		685CB2FE1640E87E004FF9AC /* icon_blood.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_blood.png; sourceTree = "<group>"; };
@@ -1653,6 +1666,17 @@
 			path = Images;
 			sourceTree = "<group>";
 		};
+		683F8A9216468E300066C47A /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				683F8A9316468E300066C47A /* event_done_button_normal.png */,
+				683F8A9416468E300066C47A /* event_done_button_normal@2x.png */,
+				683F8A9516468E300066C47A /* event_done_button_pressed.png */,
+				683F8A9616468E300066C47A /* event_done_button_pressed@2x.png */,
+			);
+			path = Buttons;
+			sourceTree = "<group>";
+		};
 		685CB2F9163F2016004FF9AC /* Libs */ = {
 			isa = PBXGroup;
 			children = (
@@ -1673,6 +1697,7 @@
 		685CB2FB1640E87A004FF9AC /* Calendar */ = {
 			isa = PBXGroup;
 			children = (
+				683F8A9216468E300066C47A /* Buttons */,
 				685CB2FC1640E87E004FF9AC /* Events */,
 			);
 			path = Calendar;
@@ -1780,6 +1805,9 @@
 				6891637A1639D92400E219B3 /* HSEventPlanningViewController.h */,
 				6891637B1639D92400E219B3 /* HSEventPlanningViewController.m */,
 				6891637C1639D92500E219B3 /* HSEventPlanningViewController.xib */,
+				683F8A8D16468B870066C47A /* HSRemoteEventViewController.h */,
+				683F8A8E16468B870066C47A /* HSRemoteEventViewController.m */,
+				683F8A8F16468B870066C47A /* HSRemoteEventViewController.xib */,
 				685CB33616442120004FF9AC /* HSBloodDonationTypePicker.h */,
 				685CB33716442120004FF9AC /* HSBloodDonationTypePicker.m */,
 				685CB33816442121004FF9AC /* HSBloodDonationTypePicker.xib */,
@@ -2425,6 +2453,11 @@
 				685CB33A16442121004FF9AC /* HSBloodDonationTypePicker.xib in Resources */,
 				683F8A87164577090066C47A /* HSDateTimePicker.xib in Resources */,
 				683F8A8C16466F2C0066C47A /* HSAddressPicker.xib in Resources */,
+				683F8A9116468B870066C47A /* HSRemoteEventViewController.xib in Resources */,
+				683F8A9716468E300066C47A /* event_done_button_normal.png in Resources */,
+				683F8A9816468E300066C47A /* event_done_button_normal@2x.png in Resources */,
+				683F8A9916468E300066C47A /* event_done_button_pressed.png in Resources */,
+				683F8A9A16468E300066C47A /* event_done_button_pressed@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2526,6 +2559,7 @@
 				683F8A81164573860066C47A /* HSBloodDonationType.m in Sources */,
 				683F8A86164577090066C47A /* HSDateTimePicker.m in Sources */,
 				683F8A8B16466F2C0066C47A /* HSAddressPicker.m in Sources */,
+				683F8A9016468B870066C47A /* HSRemoteEventViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

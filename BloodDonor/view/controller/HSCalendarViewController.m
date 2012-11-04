@@ -18,6 +18,7 @@
 #import "HSBloodDonationEvent.h"
 #import "HSBloodTestsEvent.h"
 
+#import "HSRemoteEventViewController.h"
 #import "HSEventPlanningViewController.h"
 #import "CalendarInfoViewController.h"
 
@@ -146,7 +147,7 @@
     self.title = @"Календарь";
     self.navigationItem.backBarButtonItem =
             [[UIBarButtonItem alloc] initWithTitle: @"Назад" style: UIBarButtonItemStyleBordered
-                                            target: nil action:nil];
+                                            target: nil action: nil];
     
     UIButton *infoButton = [UIButton buttonWithType: UIButtonTypeCustom];
     UIImage *infoImageNormal = [UIImage imageNamed: @"calendarInfoButtonNormal.png"];
@@ -269,12 +270,28 @@
             bloodTestsEvent = (HSBloodTestsEvent *)remoteBloodEvent;
         }
     }
-    HSEventPlanningViewController *eventPlanningViewController = [[HSEventPlanningViewController alloc]
-            initWithNibName: @"HSEventPlanningViewController" bundle: nil calendar: self.calendarModel
-            date: dayButton.date bloodDonationEvent: bloodDonationEvent bloodTestEvent: bloodTestsEvent];
     
-    [self.navigationController pushViewController: eventPlanningViewController animated: YES];
-    NSLog(@"Clicked day button with title: %@", dayButton.titleLabel.text);
+    UIViewController *pushedViewController = nil;
+    if (bloodDonationEvent != nil && bloodTestsEvent != nil) {
+        // both remote events are specified
+        pushedViewController = [[HSRemoteEventViewController alloc] initWithNibName: @"HSRemoteEventViewController"
+                bundle: nil calendar: self.calendarModel bloodDonationEvent: bloodDonationEvent
+                bloodTestsEvent: bloodTestsEvent];
+    } else if (bloodDonationEvent != nil) {
+        // only blood donation event specified
+        pushedViewController = [[HSRemoteEventViewController alloc] initWithNibName: @"HSRemoteEventViewController"
+                bundle: nil calendar: self.calendarModel bloodDonationEvent: bloodDonationEvent];
+    } else if (bloodTestsEvent != nil) {
+        // only blood tests event specified
+        pushedViewController = [[HSRemoteEventViewController alloc] initWithNibName: @"HSRemoteEventViewController"
+                bundle: nil calendar: self.calendarModel bloodTestsEvent: bloodTestsEvent];
+    } else {
+        // no events was specified ob this day, so it should be created
+        pushedViewController = [[HSEventPlanningViewController alloc] initWithNibName: @"HSEventPlanningViewController"
+                bundle: nil calendar: self.calendarModel date: dayButton.date];
+    }
+    
+    [self.navigationController pushViewController: pushedViewController animated: YES];
 }
 
 #pragma mark - Private utility methods for UI components creation

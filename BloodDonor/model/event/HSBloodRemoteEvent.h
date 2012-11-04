@@ -45,12 +45,17 @@
  */
 @property (nonatomic, strong) NSString *notificationMessage;
 
+/**
+ * Comments to the event.
+ */
+@property (nonatomic, strong) NSString *comments;
+
 /// @name Interacting with remote server.
 
 /**
  * Async saves edited event to the remote server.
  */
-- (void)saveWithCompletionBlock: (CompletionBlockType)comletion;
+- (void)saveWithCompletionBlock: (CompletionBlockType)completion;
 
 
 @end
