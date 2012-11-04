@@ -29,5 +29,6 @@ namespace Donor.ViewModels
         List<string> PossibleTypes { get; set; }
 
         public DateTime StationsUpdated { get; set; }
+        public DateTime ContrasUpdated { get; set; }
     }
 }

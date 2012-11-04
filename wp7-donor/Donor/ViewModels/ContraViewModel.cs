@@ -53,6 +53,16 @@ namespace Donor.ViewModels
 
         public void LoadContras()
         {
+            try
+            {
+                ObservableCollection<ContraViewModel> contraslist1 = new ObservableCollection<ContraViewModel>();
+                contraslist1 = IsolatedStorageHelper.LoadSerializableObject<ObservableCollection<ContraViewModel>>("contras.xml");
+                this.Items = contraslist1;
+            }
+            catch { this.Items = new ObservableCollection<ContraViewModel>(); };
+
+            if ((App.ViewModel.Contras.Items.Count == 0) || (App.ViewModel.Settings.ContrasUpdated.AddDays(7) < DateTime.Now)) {
+
             var client = new RestClient("https://api.parse.com");
             var request = new RestRequest("1/classes/Contras", Method.GET);
             request.Parameters.Clear();
@@ -72,9 +82,14 @@ namespace Donor.ViewModels
                         Deployment.Current.Dispatcher.BeginInvoke(() =>
                         {
                             this.Items = contraslist1;
+
+                            IsolatedStorageHelper.SaveSerializableObject<ObservableCollection<ContraViewModel>>(App.ViewModel.Contras.Items, "contras.xml");   
+
+                            App.ViewModel.Settings.ContrasUpdated = DateTime.Now;
+                            App.ViewModel.SaveSettingsToStorage();
+
                             this.NotifyPropertyChanged("Items");
-                        });
-                        IsolatedStorageHelper.SaveSerializableObject<ObservableCollection<NewsViewModel>>(App.ViewModel.News.Items, "contras.xml");
+                        });                        
                     };
                     bw.RunWorkerAsync();
                 }
@@ -83,6 +98,7 @@ namespace Donor.ViewModels
                 };
                 this.NotifyPropertyChanged("Items");
             });
+            } else {};
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
