@@ -107,6 +107,7 @@ static NSString * const kRemoteEventField_Type = @"type";
 #pragma mark - Initialization
 - (id)init {
     PFObject *newEvent = [[PFObject alloc] initWithClassName: kRemoteEvent_BaseClassName];
+    
     if ([self initWithRemoteEvent: newEvent]) {
         self.scheduledDate = [NSDate date];
         self.isDone = NO;
@@ -125,8 +126,19 @@ static NSString * const kRemoteEventField_Type = @"type";
 #pragma mark - Interaction with server side.
 - (void)saveWithCompletionBlock: (CompletionBlockType)completion {
     THROW_IF_ARGUMENT_NIL(completion, @"completion block is not defined");
+
     [self.remoteEvent saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        completion(succeeded, error);
+        if (succeeded) {
+            PFUser *currentUser = [PFUser currentUser];
+            PFRelation *eventsRelation = [currentUser relationforKey:@"events"];
+            
+            [eventsRelation addObject: self.remoteEvent];
+            [currentUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                completion(succeeded, error);
+            }];
+        } else {
+            completion(succeeded, error);
+        }
     }];
  }
 

@@ -389,6 +389,7 @@ static const CGFloat kTabBarHeight = 55.0f;
     self.bloodDonationEventTypeLabel.text = kBloodDonationEventTypeLabel_Donation;
     self.bloodDonationEventDateLabel.text =
             [self.bloodDonationEvent.dateFormatter stringFromDate: self.bloodDonationEvent.scheduledDate];
+    self.bloodDonationTypeLabel.text = bloodDonationTypeToString(self.bloodDonationEvent.bloodDonationType);
     if (self.bloodDonationTypeView.isHidden || self.bloodDonationTypeView.alpha <= 0.0f) {
         [UIView animateWithDuration: kViewMovementDuration animations:^{
             self.dataAndPlaceView.frame = self.flexibleViewInitialFrame;
