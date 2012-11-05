@@ -13,6 +13,7 @@ using MSPToolkit.Utilities;
 using System.Linq;
 using RestSharp;
 using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
 //using Parse;
 
 namespace Donor.ViewModels
@@ -26,7 +27,82 @@ namespace Donor.ViewModels
         public DonorUser()
         {
             this.IsLoggedIn = false;
+            this.loginCommand = new DelegateCommand(this.LoginAction);
         }
+
+        private ICommand loginCommand;
+
+        private void LoginAction(object p)
+        {
+            try
+            {
+                var client = new RestClient("https://api.parse.com");
+                var request = new RestRequest("1/login?username=" + Uri.EscapeUriString(this.UserName.ToLower()) + "&password=" + Uri.EscapeUriString(this.Password), Method.GET);
+                request.Parameters.Clear();
+                request.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
+                request.AddHeader("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
+
+                App.ViewModel.User.IsLoggedIn = false;
+
+                //this.LoginLoadingBar.IsIndeterminate = true;
+
+                client.ExecuteAsync(request, response =>
+                {
+                    //this.LoginLoadingBar.IsIndeterminate = false;
+                    //try
+                    //{
+                    JObject o = JObject.Parse(response.Content.ToString());
+                    if (o["error"] == null)
+                    {
+                        App.ViewModel.User = JsonConvert.DeserializeObject<DonorUser>(response.Content.ToString());
+                        App.ViewModel.User.IsLoggedIn = true;
+
+                        //App.ViewModel.User.Password = this.password.Password;
+                        App.ViewModel.SaveUserToStorage();
+
+                        //this.LoginForm.Visibility = Visibility.Collapsed;
+                        //this.UserProfile.Visibility = Visibility.Visible;
+
+                        App.ViewModel.Events.WeekItemsUpdated();
+
+                        App.ViewModel.Events.LoadEventsParse();
+
+                        App.ViewModel.OnUserEnter(EventArgs.Empty);
+
+                        try
+                        {
+                            //this.ProfileName.Text = App.ViewModel.User.Name.ToString();
+                            //this.ProfileSex.Text = App.ViewModel.User.OutSex.ToString();
+                            //this.ProfileBloodGroup.Text = App.ViewModel.User.OutBloodDataString.ToString();
+                            //this.GivedBlood.Text = App.ViewModel.User.GivedBlood.ToString();
+                        }
+                        catch { };
+                    }
+                    else
+                    {
+                        App.ViewModel.User.IsLoggedIn = false;
+
+                        //this.LoginForm.Visibility = Visibility.Visible;
+                        //this.UserProfile.Visibility = Visibility.Collapsed;
+
+                        MessageBox.Show(Donor.AppResources.UncorrectLoginData);
+                    };
+                    //}
+                    //catch { };
+                });
+            }
+            catch { };
+        }
+
+        public ICommand LoginCommand
+        {
+            get
+            {
+                return this.loginCommand;
+            }
+        }
+
+
         private string _username;
         public string UserName { get { return _username; } set { _username = value; NotifyPropertyChanged("UserName"); } }
         
@@ -54,16 +130,35 @@ namespace Donor.ViewModels
                 _birthday = value;
                 try
                 {
-                    //JObject o = JObject.Parse(_birthday);
-                    //_birthday = o["iso"].ToString();
+                    if (_birthday != "")
+                    {
+                        DateBirthday = DateTime.Parse(_birthday.ToString());
+                    }
+                    else
+                    {
+                        DateBirthday = DateTime.Today;
+                        _birthday = DateBirthday.ToShortDateString();
+                    };
 
-                    DateBirthday = DateTime.Parse(_birthday.ToString());
                 }
                 catch { };
+                NotifyPropertyChanged("Birthday");
             }
         }
 
-        public DateTime DateBirthday { get; set; }
+        private DateTime _dateBirthday;
+        public DateTime DateBirthday
+        {
+            get
+            {
+                return _dateBirthday;
+            }
+            set
+            {
+                _dateBirthday = value;
+                NotifyPropertyChanged("DateBirthday");
+            }
+        }
 
         private string _password;
         public string Password { get { return _password; } set { _password = value; NotifyPropertyChanged("Password"); } }
@@ -104,8 +199,7 @@ namespace Donor.ViewModels
             } 
             set {
                 _isLoggedIn = value;
-
-                App.ViewModel.CreateApplicationTile(App.ViewModel.Events.NearestEvents());
+                //App.ViewModel.CreateApplicationTile(App.ViewModel.Events.NearestEvents());
 
                 NotifyPropertyChanged("IsLoggedIn"); 
             } 

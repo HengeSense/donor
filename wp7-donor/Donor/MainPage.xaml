@@ -9,6 +9,7 @@
     xmlns:toolkitPrimitives="clr-namespace:Microsoft.Phone.Controls.Primitives;assembly=Microsoft.Phone.Controls.Toolkit" 
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     xmlns:Controls="clr-namespace:Coding4Fun.Phone.Controls;assembly=Coding4Fun.Phone.Controls"
+    xmlns:ControlsConv="clr-namespace:Coding4Fun.Phone.Controls.Converters;assembly=Coding4Fun.Phone.Controls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     xmlns:tilteffect="clr-namespace:ControlTiltEffect"
     mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="800" 
@@ -19,10 +20,12 @@
     SupportedOrientations="Portrait"  Orientation="Portrait"
     shell:SystemTray.IsVisible="False" Loaded="PhoneApplicationPage_Loaded" 
 	DataContext="{Binding Path=App.ViewModel,Source=App.ViewModel}">
-	<phone:PhoneApplicationPage.Resources>
-
-
-	</phone:PhoneApplicationPage.Resources>
+    
+	    <phone:PhoneApplicationPage.Resources>
+            <ControlsConv:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+            <ControlsConv:VisibilityToBooleanConverter x:Key="VisibilityToBooleanConverter"/>
+        </phone:PhoneApplicationPage.Resources>
+    
 	<phone:PhoneApplicationPage.ApplicationBar>
 		<shell:ApplicationBar IsVisible="False"/>
 	</phone:PhoneApplicationPage.ApplicationBar>
@@ -255,23 +258,25 @@
                         <TextBlock 
 						Style="{StaticResource Text24pxCBB2A3}"
 						Text="{Binding EnterEmail, Source={StaticResource Loc}}" />
-                    <TextBox x:Name="email" Text="" Background="#FF4F3B34" BorderBrush="#FF4F3B34" Foreground="#FFCBB2A3" 
+                    <TextBox x:Name="email" Text="{Binding Path=User.UserName, Mode=TwoWay}" Background="#FF4F3B34" BorderBrush="#FF4F3B34" Foreground="#FFCBB2A3" 
 					CaretBrush="#FFCBB2A3" Style="{StaticResource TextBoxStyle1}" />
                     <TextBlock 
 					Style="{StaticResource Text24pxCBB2A3}"
 					Text="{Binding EnterPassword, Source={StaticResource Loc}}" />
                     <PasswordBox 
-					x:Name="password" Password="" 
+					x:Name="password" Password="{Binding Path=User.Password, Mode=TwoWay}" 
 					Background="#FF4F3B34" 
 					BorderBrush="#FF4F3B34" 
 					Foreground="#FFCBB2A3" Style="{StaticResource PasswordBoxStyle1}"/>
+                    
                     <Button 
 					FontSize="24"
 					Background="#FF4186A3" 
 					BorderBrush="#FF4186A3" 
 					FontFamily="Segoe WP Regular"
-					Name="Login" Content="{Binding Login, Source={StaticResource Loc}}" Click="Login_Click" 
-					Foreground="#FFFFFFFF" />
+					Name="Login" Content="{Binding Login, Source={StaticResource Loc}}" 
+					Foreground="#FFFFFFFF" Click="Login_Click" />
+                        <!-- Click="Login_Click" Command="{Binding Path=User.LoginCommand}" -->
 
                     <Button 
 					FontSize="24"

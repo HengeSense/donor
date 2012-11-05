@@ -229,12 +229,20 @@ namespace Donor
                         {
                             MessageBox.Show("Не удалось произвести регистрацию.");
                             App.ViewModel.User.IsLoggedIn = false;
+
+                            this.password1.Password = "";
+                            this.password2.Password = "";
+
                             this.RegisterForm.Visibility = Visibility.Visible;
                             this.LoginForm.Visibility = Visibility.Collapsed;
                             this.UserProfile.Visibility = Visibility.Collapsed;
                         };
                     }
                     catch {
+
+                        this.password1.Password = "";
+                        this.password2.Password = "";
+
                         App.ViewModel.User.IsLoggedIn = false;
                         this.RegisterForm.Visibility = Visibility.Visible;
                         this.LoginForm.Visibility = Visibility.Collapsed;
@@ -245,6 +253,16 @@ namespace Donor
             else
             {
                 MessageBox.Show("Проверьте корректность указанных регистрационных данных.");
+
+                this.password1.Password = "";
+                this.password2.Password = "";
+
+                App.ViewModel.User.IsLoggedIn = false;
+                this.RegisterForm.Visibility = Visibility.Visible;
+                this.LoginForm.Visibility = Visibility.Collapsed;
+                this.UserProfile.Visibility = Visibility.Collapsed;
+
+
             };
         }
 
@@ -381,6 +399,7 @@ namespace Donor
             this.EditName.Text = App.ViewModel.User.Name;
 
             this.EditSecondName.Text = App.ViewModel.User.SecondName;
+
             this.EditUserBirthday.Value = App.ViewModel.User.DateBirthday;
 
             try

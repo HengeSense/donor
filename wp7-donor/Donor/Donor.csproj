@@ -198,6 +198,7 @@
     </Compile>
     <Compile Include="ViewModels\AdsViewModel.cs" />
     <Compile Include="ViewModels\ContraViewModel.cs" />
+    <Compile Include="ViewModels\DelegateCommand.cs" />
     <Compile Include="ViewModels\QRViewModel.cs" />
     <Compile Include="ViewModels\ReviewsViewModel.cs" />
     <Compile Include="ViewModels\EventViewModel.cs" />

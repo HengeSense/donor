@@ -969,7 +969,7 @@ namespace Donor.ViewModels
                 {
                     int daysc1 = App.ViewModel.Events.DaysFromEvent(item.GiveType, give);
                     // выбираем события, попадающие в период отдыха, не являющиеся выполненными и являющимися соыбтиями типа кроводачи
-                    var deleteitems = App.ViewModel.Events.UserItems.Where(c => (c.Date <= item.Date.AddDays(daysc1)) && (c.Date >= item.Date) && (c.Finished == false) && (c.Type == "1"));
+                    var deleteitems = App.ViewModel.Events.UserItems.Where(c => (c.Date <= item.Date.AddDays(daysc1)) && (c.Date >= item.Date) && (c.Finished == false) && (c.Type == "1") && (c.GiveType == give));
                     foreach (var delitem in deleteitems)
                     {
                         //this.Items.Remove(delitem);

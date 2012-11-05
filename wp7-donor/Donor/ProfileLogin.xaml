@@ -133,7 +133,7 @@
                         </ScrollViewer>
 
                         <StackPanel Name="RegisterForm" Visibility="Visible">
-                            <ScrollViewer Height="540">
+                            <ScrollViewer Height="600">
                                 <StackPanel>
                                     <TextBlock Margin="10,10,10,0"
 						Style="{StaticResource Text24pxCBB2A3}"
