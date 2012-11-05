@@ -37,11 +37,19 @@ namespace Donor
                 this.progressOverlay.IsEnabled = true;
             } else {};
 
+            HideSpalashscreenByTimer();
+        }
+
+        /// <summary>
+        /// Скрываем "сплешскрин" по таймеру
+        /// </summary>
+        private void HideSpalashscreenByTimer()
+        {
             DispatcherTimer dt = new DispatcherTimer();
             dt.Interval = TimeSpan.FromSeconds(15);
             dt.Tick += delegate
             {
-                dt.Stop(); 
+                dt.Stop();
                 this.progressOverlay.Visibility = Visibility.Collapsed;
                 this.progressOverlay.IsEnabled = false;
             };
@@ -61,9 +69,8 @@ namespace Donor
                 {
                     this.LoginForm.Visibility = Visibility.Collapsed;
                     this.UserProfile.Visibility = Visibility.Visible;
-                    this.GivedBlood.Text = App.ViewModel.User.GivedBlood.ToString();
-
-                    this.EventsChanged(this, EventArgs.Empty);
+                    //this.GivedBlood.Text = App.ViewModel.User.GivedBlood.ToString();
+                    //this.EventsChanged(this, EventArgs.Empty);
                 }
                 else
                 {
@@ -71,18 +78,12 @@ namespace Donor
                     this.UserProfile.Visibility = Visibility.Collapsed;
                 };
 
-                this.email.Text = "";
-                this.password.Password = "";
+                //this.email.Text = "";
+                //this.password.Password = "";
 
-                bool hasNetworkConnection =
-      NetworkInterface.NetworkInterfaceType != NetworkInterfaceType.None;
-                if (hasNetworkConnection)
-                {
-                }
-                else
-                {
-                    MessageBox.Show(Donor.AppResources.CantEnterCheckNetwork);
-                };
+                bool hasNetworkConnection = NetworkInterface.NetworkInterfaceType != NetworkInterfaceType.None;
+                if (hasNetworkConnection) {} else { MessageBox.Show(Donor.AppResources.CantEnterCheckNetwork); };
+
             } catch {};
         }
 
@@ -135,17 +136,7 @@ namespace Donor
         {
         }
 
-        private void EventsChanged(object sender, EventArgs e)
-        {
-            if (App.ViewModel.User.IsLoggedIn)
-            {
-                this.EventsList.ItemsSource = App.ViewModel.Events.WeekItems;
-            }
-            else
-            {
-                this.EventsList.ItemsSource = null;
-            };
-        }
+        private void EventsChanged(object sender, EventArgs e) { }
 
         private bool _userLoaded = false;
 
@@ -155,14 +146,6 @@ namespace Donor
             {
                 if (App.ViewModel.User.IsLoggedIn == true)
                 {
-                    try
-                    {
-                        //this.ProfileName.Text = App.ViewModel.User.Name.ToString();
-                        //this.ProfileSex.Text = App.ViewModel.User.OutSex.ToString();
-                        //this.ProfileBloodGroup.Text = App.ViewModel.User.OutBloodDataString.ToString();
-                        //this.GivedBlood.Text = App.ViewModel.User.GivedBlood.ToString();
-                    }
-                    catch { };
                     this.UserProfile.Visibility = Visibility.Visible;
                     this.LoginForm.Visibility = Visibility.Collapsed;
                 }
@@ -208,9 +191,7 @@ namespace Donor
                         string _editeventid = this.NavigationContext.QueryString["editeventid"];
                         NavigationService.Navigate(new Uri("/EditEventPage.xaml?id=" + _editeventid, UriKind.Relative));
                     }
-                    catch
-                    {
-                    };
+                    catch { };
                 };
             };
 
@@ -237,18 +218,9 @@ namespace Donor
             {
                 if (App.ViewModel.User.IsLoggedIn == true)
                 {
-                    try
-                    {
-                        //this.ProfileName.Text = App.ViewModel.User.Name.ToString();
-                        //this.ProfileSex.Text = App.ViewModel.User.OutSex.ToString();
-                        //this.ProfileBloodGroup.Text = App.ViewModel.User.OutBloodDataString.ToString();
-                    }
-                    catch { };
                     this.UserProfile.Visibility = Visibility.Visible;
                 }
-                else
-                {
-                };
+                else { };
             }
             catch { 
             };
@@ -294,11 +266,7 @@ namespace Donor
 
         private void Register_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                NavigationService.Navigate(new Uri("/ProfileLogin.xaml?task=register&email=" + this.email.Text.ToString() + "&password=" + this.password.Password.ToString(), UriKind.Relative));
-            }
-            catch { };
+            try { NavigationService.Navigate(new Uri("/ProfileLogin.xaml?task=register&email=" + this.email.Text.ToString() + "&password=" + this.password.Password.ToString(), UriKind.Relative)); } catch { };
         }
 
         private void EventsList_Tap(object sender, System.Windows.Input.GestureEventArgs e)

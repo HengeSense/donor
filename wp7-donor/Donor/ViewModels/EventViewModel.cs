@@ -1402,6 +1402,8 @@ namespace Donor.ViewModels
                     AddEventParse(addedItems);
                 };
             };
+
+            App.ViewModel.User.NotifyAll();
         }
 
         /// <summary>

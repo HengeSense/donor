@@ -286,12 +286,12 @@ namespace Donor
         private void UpdateUserInfoView() {
             try
             {
-                this.ProfileName.Text = App.ViewModel.User.Name.ToString();
+                /*this.ProfileName.Text = App.ViewModel.User.Name.ToString();
                 this.SecondName.Text = App.ViewModel.User.SecondName.ToString();
                 this.Birthday.Text = App.ViewModel.User.Birthday.ToString();
 
                 this.ProfileSex.Text = App.ViewModel.User.OutSex.ToString();
-                this.ProfileBloodGroup.Text = App.ViewModel.User.OutBloodDataString.ToString();
+                this.ProfileBloodGroup.Text = App.ViewModel.User.OutBloodDataString.ToString();*/
             }
             catch { };
         }

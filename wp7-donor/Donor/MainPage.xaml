@@ -184,7 +184,10 @@
                 
 				<ScrollViewer>
                 <StackPanel>
-                <ListBox Margin="0,15,-12,0" ItemsSource="{Binding Events.WeekItems}" ScrollViewer.VerticalScrollBarVisibility="Disabled" Name="EventsList" SelectionChanged="EventsList_SelectionChanged" Loaded="EventsList_Loaded" BorderThickness="0" Tap="EventsList_Tap">
+                <ListBox Margin="0,15,-12,0" ItemsSource="{Binding Path=Events.WeekItems, Mode=OneWay}" 
+                         ScrollViewer.VerticalScrollBarVisibility="Disabled" Name="EventsList" 
+                         SelectionChanged="EventsList_SelectionChanged" Loaded="EventsList_Loaded" 
+                         BorderThickness="0" Tap="EventsList_Tap">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal" Margin="0,0,0,17">          

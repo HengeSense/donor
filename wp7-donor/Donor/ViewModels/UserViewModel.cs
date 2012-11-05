@@ -168,6 +168,18 @@ namespace Donor.ViewModels
             }
         }
 
+        public void NotifyAll()
+        {
+            NotifyPropertyChanged("Birthday");
+            NotifyPropertyChanged("DateBirthday");
+            NotifyPropertyChanged("OutBloodGroup");
+            NotifyPropertyChanged("OutBloodRh");
+            NotifyPropertyChanged("NearestBloodGive");
+            NotifyPropertyChanged("OutBloodDataString");
+            NotifyPropertyChanged("OutSex");
+            NotifyPropertyChanged("GivedBlood");
+        }
+
         private string _password;
         public string Password { get { return _password; } set { _password = value; NotifyPropertyChanged("Password"); } }
 
