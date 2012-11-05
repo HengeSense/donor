@@ -157,10 +157,10 @@ namespace Donor
                 {
                     try
                     {
-                        this.ProfileName.Text = App.ViewModel.User.Name.ToString();
-                        this.ProfileSex.Text = App.ViewModel.User.OutSex.ToString();
-                        this.ProfileBloodGroup.Text = App.ViewModel.User.OutBloodDataString.ToString();
-                        this.GivedBlood.Text = App.ViewModel.User.GivedBlood.ToString();
+                        //this.ProfileName.Text = App.ViewModel.User.Name.ToString();
+                        //this.ProfileSex.Text = App.ViewModel.User.OutSex.ToString();
+                        //this.ProfileBloodGroup.Text = App.ViewModel.User.OutBloodDataString.ToString();
+                        //this.GivedBlood.Text = App.ViewModel.User.GivedBlood.ToString();
                     }
                     catch { };
                     this.UserProfile.Visibility = Visibility.Visible;
@@ -239,9 +239,9 @@ namespace Donor
                 {
                     try
                     {
-                        this.ProfileName.Text = App.ViewModel.User.Name.ToString();
-                        this.ProfileSex.Text = App.ViewModel.User.OutSex.ToString();
-                        this.ProfileBloodGroup.Text = App.ViewModel.User.OutBloodDataString.ToString();
+                        //this.ProfileName.Text = App.ViewModel.User.Name.ToString();
+                        //this.ProfileSex.Text = App.ViewModel.User.OutSex.ToString();
+                        //this.ProfileBloodGroup.Text = App.ViewModel.User.OutBloodDataString.ToString();
                     }
                     catch { };
                     this.UserProfile.Visibility = Visibility.Visible;

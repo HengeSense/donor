@@ -275,7 +275,7 @@ Visibility="Collapsed" Name="SaveEditProfileButton" Click="SaveEditProfileButton
 
                     </Grid>
 
-                    <ScrollViewer>
+                    <ScrollViewer Height="550">
                         <StackPanel Name="EditProfile" Visibility="Collapsed">
 
                             <TextBlock Text="{Binding Name, Source={StaticResource Loc}}" Margin="10,5,10,0"
@@ -295,13 +295,13 @@ Visibility="Collapsed" Name="SaveEditProfileButton" Click="SaveEditProfileButton
                             <TextBlock Text="{Binding UserBirthday, Source={StaticResource Loc}}" Margin="10,5,10,0"
 					Style="{StaticResource Text24pxCBB2A3}"/>
                             <toolkit:DatePicker Name="EditUserBirthday" 
-					Background="#FF4F3B34" Foreground="#FFDF8D4B"/>
+                                                Value="{Binding Path=User.DateBirthday, Mode=TwoWay}"
+                            Background="#FF4F3B34" Foreground="#FFDF8D4B"/>
 
                             <TextBlock Text="{Binding Sex, Source={StaticResource Loc}}" Margin="10,0,10,0"
 						Style="{StaticResource Text24pxCBB2A3}"/>
-                            <StackPanel Orientation="Horizontal" 
-						Name="SexEditGroup">
-                                <toolkit:WrapPanel ItemHeight="90" ItemWidth="210" Margin="10,0,10,0">
+                            <StackPanel Orientation="Horizontal">
+                                <toolkit:WrapPanel Name="SexEditGroup" ItemHeight="90" ItemWidth="210" Margin="10,0,10,0">
                                     <RadioButton 
 							    Content="{Binding Male, Source={StaticResource Loc}}" Name="EditMale" 
 							    Foreground="#FFCBB2A3" />

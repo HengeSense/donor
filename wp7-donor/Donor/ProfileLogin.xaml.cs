@@ -378,6 +378,12 @@ namespace Donor
                             this.EditProfile.Visibility = Visibility.Collapsed;
                             break;
                         case "edit":
+
+                            this.EditButton.Visibility = Visibility.Collapsed;
+                            this.DeleteUserButton.Visibility = Visibility.Collapsed;
+                            this.FacebookButton.Visibility = Visibility.Collapsed;
+                            this.FacebookUnlinkingButton.Visibility = Visibility.Collapsed;
+
                             this.RegisterForm.Visibility = Visibility.Collapsed;
                             this.LoginForm.Visibility = Visibility.Collapsed;
                             this.UserProfile.Visibility = Visibility.Collapsed;
@@ -387,10 +393,6 @@ namespace Donor
             
                             this.CancelEditProfileButton.Visibility = Visibility.Visible;
                             this.SaveEditProfileButton.Visibility = Visibility.Visible;
-
-                            this.EditButton.Visibility = Visibility.Collapsed;
-                            this.DeleteUserButton.Visibility = Visibility.Collapsed;
-                            this.FacebookButton.Visibility = Visibility.Collapsed;
 
                             SetEditFields();
 
@@ -419,7 +421,7 @@ namespace Donor
 
             this.EditSecondName.Text = App.ViewModel.User.SecondName;
 
-            this.EditUserBirthday.Value = App.ViewModel.User.DateBirthday;
+            //this.EditUserBirthday.Value = App.ViewModel.User.DateBirthday;
 
             try
             {
@@ -665,8 +667,10 @@ namespace Donor
             App.ViewModel.User.IsLoggedIn = false;
 
             App.ViewModel.User = new DonorUser();
-            App.ViewModel.SaveUserToStorage();
+            App.ViewModel.User.UserName = "";
+            App.ViewModel.User.Password = "";
 
+            App.ViewModel.SaveUserToStorage();
             App.ViewModel.Events.UpdateItems();
 
             NavigationService.GoBack();

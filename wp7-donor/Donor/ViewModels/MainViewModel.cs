@@ -309,6 +309,7 @@ namespace Donor
                             {
                                 App.ViewModel.User = JsonConvert.DeserializeObject<DonorUser>(response.Content.ToString());
                                 App.ViewModel.User.IsLoggedIn = true;
+
                                 App.ViewModel.Events.WeekItemsUpdated();
                                 App.ViewModel.OnUserEnter(EventArgs.Empty);
 
@@ -322,6 +323,8 @@ namespace Donor
                             };
                         }
                         catch { };
+
+                        NotifyPropertyChanged("User");
                     });
                 };
                 }

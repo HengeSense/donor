@@ -54,6 +54,9 @@ namespace Donor.ViewModels
             try
             {
                 UserLoading = true;
+
+                string passwordCurrent = this.Password;
+
                 var client = new RestClient("https://api.parse.com");
                 var request = new RestRequest("1/login?username=" + Uri.EscapeUriString(this.UserName.ToLower()) + "&password=" + Uri.EscapeUriString(this.Password), Method.GET);
                 request.Parameters.Clear();
@@ -71,6 +74,7 @@ namespace Donor.ViewModels
                         {
                             App.ViewModel.User = JsonConvert.DeserializeObject<DonorUser>(response.Content.ToString());
                             App.ViewModel.User.IsLoggedIn = true;
+                            App.ViewModel.User.Password = passwordCurrent;
 
                             App.ViewModel.SaveUserToStorage();
 
@@ -158,6 +162,8 @@ namespace Donor.ViewModels
             set
             {
                 _dateBirthday = value;
+                _birthday = DateBirthday.ToShortDateString();
+                NotifyPropertyChanged("Birthday");
                 NotifyPropertyChanged("DateBirthday");
             }
         }
@@ -203,16 +209,40 @@ namespace Donor.ViewModels
                 _isLoggedIn = value;
                 //App.ViewModel.CreateApplicationTile(App.ViewModel.Events.NearestEvents());
 
-                NotifyPropertyChanged("IsLoggedIn"); 
+                NotifyPropertyChanged("IsLoggedIn");
+                NotifyPropertyChanged("GivedBlood");
+                NotifyPropertyChanged("Sex");
+                NotifyPropertyChanged("OutSex");
+                NotifyPropertyChanged("OutBloodDataString"); 
             } 
         }
 
         public string objectId {get;set;}
         public string sessionToken {get;set;}
 
-        public int BloodGroup { get; set; }
-        public int BloodRh { get; set; }
-        public int Sex { get; set; }
+        private int _bloodGroup = 0;
+        public int BloodGroup { 
+            get { return _bloodGroup; } 
+            set { 
+                _bloodGroup = value; 
+                NotifyPropertyChanged("BloodGroup");
+                NotifyPropertyChanged("OutBloodGroup");
+                NotifyPropertyChanged("OutBloodDataString"); 
+            } 
+        }
+
+        private int _bloodRh = 0;
+        public int BloodRh { get { return _bloodRh; } 
+            set { 
+                _bloodRh = value; 
+                NotifyPropertyChanged("BloodRh");
+                NotifyPropertyChanged("OutBloodRh");
+                NotifyPropertyChanged("OutBloodDataString"); 
+            } 
+        }
+
+        private int _sex = 0;
+        public int Sex { get { return _sex; } set { _sex = value; NotifyPropertyChanged("Sex"); NotifyPropertyChanged("OutSex"); } }
 
         public int GivedBlood
         {
