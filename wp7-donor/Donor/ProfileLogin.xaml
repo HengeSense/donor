@@ -132,7 +132,7 @@
                             </StackPanel>
                         </ScrollViewer>
 
-                        <StackPanel Name="RegisterForm" Visibility="Visible">
+                        <StackPanel Name="RegisterForm" Visibility="Collapsed">
                             <ScrollViewer Height="600">
                                 <StackPanel>
                                     <TextBlock Margin="10,10,10,0"
@@ -188,24 +188,26 @@
                             </ScrollViewer>
                         </StackPanel>
                         
-                        <StackPanel Name="LoginForm" Visibility="Collapsed">
+                        <StackPanel Name="LoginForm" Visibility="Visible">
                             <TextBlock Text="{Binding EnterEmail, Source={StaticResource Loc}}" Margin="10,10,0,0"
 						Style="{StaticResource Text24pxCBB2A3}"/>
                             <TextBox Background="#FF4F3B34" Style="{StaticResource TextBoxStyle1}"
 BorderBrush="#FF4F3B34" Foreground="#FFCBB2A3" x:Name="email" 
-						Text="" />
+						Text="{Binding Path=User.UserName, Mode=TwoWay}" />
                             <TextBlock Text="{Binding EnterPassword, Source={StaticResource Loc}}"  Margin="10,5,0,0"
 						Style="{StaticResource Text24pxCBB2A3}" />
                             <PasswordBox Background="#FF4F3B34" 
-Style="{StaticResource PasswordBoxStyle1}" BorderBrush="#FF4F3B34" 	Foreground="#FFCBB2A3" x:Name="password" Password="" />
+                            Style="{StaticResource PasswordBoxStyle1}" BorderBrush="#FF4F3B34" 	
+                            Foreground="#FFCBB2A3" x:Name="password" Password="{Binding Path=User.Password, Mode=TwoWay}" />
 
                             <Button Name="Login" 
 						Content="{Binding Login, Source={StaticResource Loc}}" 
-						Click="Login_Click"
+						Command="{Binding Path=User.LoginCommand}"
 						FontSize="24"
 						Background="#FF4186A3" 
 						BorderBrush="#FF4186A3" 
 						FontFamily="Segoe WP Regular" Foreground="White" />
+                            <!-- Click="Login_Click" -->
 
                             <TextBlock 
 						Foreground="#FF847168"

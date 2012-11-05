@@ -95,6 +95,7 @@ namespace Donor
             //var user = new DonorUser { UserName = "test", Password = "test" };
         }
 
+        /*
         private void Login_Click(object sender, RoutedEventArgs e)
         {
             var client = new RestClient("https://api.parse.com");
@@ -150,12 +151,28 @@ namespace Donor
                 };
                 } catch {};
             });
-        }
+        }*/
 
-        void webClient_UploadStringCompleted(object sender, UploadStringCompletedEventArgs e)
+        private void UserLoaded(object sender, EventArgs e)
         {
+            this.LoadingBar.IsIndeterminate = false;
+
+            this.RegisterForm.Visibility = Visibility.Collapsed;
+            this.LoginForm.Visibility = Visibility.Collapsed;
+            this.UserProfile.Visibility = Visibility.Visible;
+
+            if (App.ViewModel.User.IsLoggedIn == true)
+            {
+                this.AppBar.IsVisible = true;
+            }
+            else
+            {
+                this.AppBar.IsVisible = false;
+            };
+
             try
             {
+                this.UpdateUserInfoView();
             }
             catch
             {
@@ -328,6 +345,8 @@ namespace Donor
 
         private void Pivot_Loaded(object sender, RoutedEventArgs e)
         {
+            App.ViewModel.UserEnter += new MainViewModel.UserEnterEventHandler(this.UserLoaded);
+
             this.AppBar.DataContext = App.ViewModel;
             if (this.NavigationContext.QueryString.ContainsKey("task"))
             {

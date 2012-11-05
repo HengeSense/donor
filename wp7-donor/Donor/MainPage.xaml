@@ -275,7 +275,7 @@
 					BorderBrush="#FF4186A3" 
 					FontFamily="Segoe WP Regular"
 					Name="Login" Content="{Binding Login, Source={StaticResource Loc}}" 
-					Foreground="#FFFFFFFF" Click="Login_Click" />
+					Foreground="#FFFFFFFF" Command="{Binding Path=User.LoginCommand}" />
                         <!-- Click="Login_Click" Command="{Binding Path=User.LoginCommand}" -->
 
                     <Button 

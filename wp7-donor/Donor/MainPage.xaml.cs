@@ -262,7 +262,7 @@ namespace Donor
         }
 
 
-
+        /*
         private void Login_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -280,8 +280,8 @@ namespace Donor
                 client.ExecuteAsync(request, response =>
                 {
                     this.LoginLoadingBar.IsIndeterminate = false;
-                    //try
-                    //{
+                    try
+                    {
                         JObject o = JObject.Parse(response.Content.ToString());
                         if (o["error"] == null)
                         {
@@ -318,12 +318,13 @@ namespace Donor
 
                             MessageBox.Show(Donor.AppResources.UncorrectLoginData);
                         };
-                    //}
-                    //catch { };
+                    }
+                    catch { };
                 });
             }
             catch { };
         }
+        */
 
         private void adsMenuText_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
