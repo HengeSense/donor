@@ -32,66 +32,68 @@ namespace Donor.ViewModels
 
         private ICommand loginCommand;
 
+        private bool _userLoading = false;
+        /// <summary>
+        /// Происходит ли сейчас загрузка данных о пользователе\авторизация
+        /// </summary>
+        public bool UserLoading
+        {
+            get
+            {
+                return _userLoading;
+            }
+            set
+            {
+                _userLoading = value;
+                NotifyPropertyChanged("UserLoading");
+            }
+        }
+
         private void LoginAction(object p)
         {
             try
             {
+                UserLoading = true;
                 var client = new RestClient("https://api.parse.com");
                 var request = new RestRequest("1/login?username=" + Uri.EscapeUriString(this.UserName.ToLower()) + "&password=" + Uri.EscapeUriString(this.Password), Method.GET);
                 request.Parameters.Clear();
                 request.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
                 request.AddHeader("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
 
-                App.ViewModel.User.IsLoggedIn = false;
-
-                //this.LoginLoadingBar.IsIndeterminate = true;
+                App.ViewModel.User.IsLoggedIn = false;                
 
                 client.ExecuteAsync(request, response =>
                 {
-                    //this.LoginLoadingBar.IsIndeterminate = false;
-                    //try
-                    //{
-                    JObject o = JObject.Parse(response.Content.ToString());
-                    if (o["error"] == null)
+                    try
                     {
-                        App.ViewModel.User = JsonConvert.DeserializeObject<DonorUser>(response.Content.ToString());
-                        App.ViewModel.User.IsLoggedIn = true;
-
-                        //App.ViewModel.User.Password = this.password.Password;
-                        App.ViewModel.SaveUserToStorage();
-
-                        //this.LoginForm.Visibility = Visibility.Collapsed;
-                        //this.UserProfile.Visibility = Visibility.Visible;
-
-                        App.ViewModel.Events.WeekItemsUpdated();
-
-                        App.ViewModel.Events.LoadEventsParse();
-
-                        App.ViewModel.OnUserEnter(EventArgs.Empty);
-
-                        try
+                        JObject o = JObject.Parse(response.Content.ToString());
+                        if (o["error"] == null)
                         {
-                            //this.ProfileName.Text = App.ViewModel.User.Name.ToString();
-                            //this.ProfileSex.Text = App.ViewModel.User.OutSex.ToString();
-                            //this.ProfileBloodGroup.Text = App.ViewModel.User.OutBloodDataString.ToString();
-                            //this.GivedBlood.Text = App.ViewModel.User.GivedBlood.ToString();
+                            App.ViewModel.User = JsonConvert.DeserializeObject<DonorUser>(response.Content.ToString());
+                            App.ViewModel.User.IsLoggedIn = true;
+
+                            App.ViewModel.SaveUserToStorage();
+
+                            App.ViewModel.Events.WeekItemsUpdated();
+                            App.ViewModel.Events.LoadEventsParse();
+
+                            App.ViewModel.OnUserEnter(EventArgs.Empty);
                         }
-                        catch { };
+                        else
+                        {
+                            App.ViewModel.User.IsLoggedIn = false;
+                            MessageBox.Show(Donor.AppResources.UncorrectLoginData);
+                        };
+                        UserLoading = false;
                     }
-                    else
-                    {
-                        App.ViewModel.User.IsLoggedIn = false;
-
-                        //this.LoginForm.Visibility = Visibility.Visible;
-                        //this.UserProfile.Visibility = Visibility.Collapsed;
-
-                        MessageBox.Show(Donor.AppResources.UncorrectLoginData);
+                    catch {
+                        UserLoading = false;
                     };
-                    //}
-                    //catch { };
                 });
             }
-            catch { };
+            catch {
+                UserLoading = false;
+            };
         }
 
         public ICommand LoginCommand
