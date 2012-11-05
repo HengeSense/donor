@@ -49,21 +49,6 @@ static NSString * const kEventDate = @"date";
 @property (nonatomic, strong) NSMutableSet *eventObservers;
 
 /**
- * Notifies all calendar events observers with message eventWasAdded:.
- */
-- (void) fireNotificationEventWasAdded: (HSEvent *) event;
-
-/**
- * Notifies all calendar events observers with message eventWasAdded:.
- */
-- (void) fireNotificationEventWasRemoved: (HSEvent *) event;
-
-/**
- * Notifies all calendar events observers with message eventWasUpdated:.
- */
-- (void) fireNotificationEventWasUpdated: (HSEvent *) event;
-
-/**
  * Makes period calculations ans adds depended finish rest events to the calendar.
  */
 - (void)addFinishRestEvents;
@@ -99,52 +84,7 @@ static NSString * const kEventDate = @"date";
     return self;
 }
 
-#pragma mark - Calendar events observers methods
-
-- (void)addEventObserver: (id<HSCalendarEventObserver>)eventObserver {
-    THROW_IF_ARGUMENT_NIL(eventObserver, @"eventObserver is not specified");
-    if (![self.eventObservers containsObject: eventObserver]) {
-        [self.eventObservers addObject: eventObserver];
-    }
-}
-
-- (void)removeEventObserver: (id<HSCalendarEventObserver>)eventObserver {
-    THROW_IF_ARGUMENT_NIL(eventObserver, @"eventObserver is not specified");
-    if ([self.eventObservers containsObject: eventObserver]) {
-        [self.eventObservers removeObject: eventObserver];
-    }
-}
-
-#pragma mark - Event manipulation methods
-
-- (void)addEvent: (HSEvent *)event {
-    THROW_IF_ARGUMENT_NIL(event, @"event is not specified");
-    
-    if (![self.events containsObject: event]) {
-        [self.events addObject: event];
-        [self fireNotificationEventWasAdded: event];
-    }
-}
-
-- (void)removeEvent: (HSEvent *)event {
-    THROW_IF_ARGUMENT_NIL(event, @"event is not specified");
-    if ([self.events containsObject: event]) {
-        [self.events removeObject: event];
-        [self fireNotificationEventWasRemoved: event];
-    }
-}
-
-- (void)updateEvent: (HSEvent *)event {
-    THROW_IF_ARGUMENT_NIL(event, @"event is not specified")
-    // remove event
-    if ([self.events containsObject: event]) {
-    
-    }
-    
-    [self.events addObject: event];
-    [self addFinishRestEvents];
-    
-}
+#pragma mark - Events accessors
 
 - (NSArray *)allEvents {
     NSMutableArray *allArrays = [[NSMutableArray alloc] initWithArray: self.events];
@@ -238,7 +178,6 @@ static NSString * const kEventDate = @"date";
                 [self.bloodRemoteEvents addObject: [HSBloodRemoteEvent buildBloodEventWithRemoteEvent: remoteEvent]];
             }
             [self addFinishRestEvents];
-            [self fireNotificationEventsWasUpdated: self.bloodRemoteEvents];
             BOOL success = error == nil ? YES : NO;
             completion(success, error);
         }];
@@ -266,39 +205,6 @@ static NSString * const kEventDate = @"date";
     };
     for (HSBloodRemoteEvent *remoteBloodEvent in self.bloodRemoteEvents) {
         [remoteBloodEvent saveWithCompletionBlock: partialCompletion];
-    }
-}
-
-#pragma mark - Private section implementation
-- (void)fireNotificationEventWasAdded: (HSEvent *) event {
-    for (id<HSCalendarEventObserver> observer in self.eventObservers) {
-        if ([observer respondsToSelector: @selector(eventWasAdded:)]) {
-            [observer eventWasAdded: event];
-        }
-    }
-}
-
-- (void)fireNotificationEventWasRemoved: (HSEvent *) event {
-    for (id<HSCalendarEventObserver> observer in self.eventObservers) {
-        if ([observer respondsToSelector: @selector(eventWasAdded:)]) {
-            [observer eventWasAdded: event];
-        }
-    }
-}
-
-- (void)fireNotificationEventsWasUpdated: (NSArray *) events {
-    for (id<HSCalendarEventObserver> observer in self.eventObservers) {
-        if ([observer respondsToSelector: @selector(eventsWasUpdated:)]) {
-            [observer eventsWasUpdated: events];
-        }
-    }
-}
-
-- (void) fireNotificationEventWasUpdated: (HSEvent *)event {
-    for (id<HSCalendarEventObserver> observer in self.eventObservers) {
-        if ([observer respondsToSelector: @selector(eventWasUpdated:)]) {
-            [observer eventWasUpdated: event];
-        }
     }
 }
 
