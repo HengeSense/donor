@@ -9,6 +9,7 @@
     xmlns:toolkitPrimitives="clr-namespace:Microsoft.Phone.Controls.Primitives;assembly=Microsoft.Phone.Controls.Toolkit" 
     xmlns:WPExtensions="clr-namespace:WPExtensions;assembly=WPExtensions"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit" 
+    xmlns:ControlsConv="clr-namespace:Coding4Fun.Phone.Controls.Converters;assembly=Coding4Fun.Phone.Controls"
     x:Class="Donor.ProfileLogin" 
     mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="800"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
@@ -17,6 +18,10 @@
     SupportedOrientations="Portrait"  Orientation="Portrait"
     shell:SystemTray.IsVisible="False">
 
+    <phone:PhoneApplicationPage.Resources>
+        <ControlsConv:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+        <ControlsConv:VisibilityToBooleanConverter x:Key="VisibilityToBooleanConverter"/>
+    </phone:PhoneApplicationPage.Resources>
 
     <toolkit:TransitionService.NavigationInTransition>
         <toolkit:NavigationInTransition>
@@ -51,7 +56,7 @@
                 <StackPanel>
                 <toolkit:PerformanceProgressBar HorizontalAlignment="Left" 
 				Height="8" Margin="0" VerticalAlignment="Top"
-				 IsIndeterminate="False" Width="460" Name="LoadingBar" />
+				 IsIndeterminate="{Binding User.UserLoading}" Width="460" Name="LoadingBar" />
                     <TextBlock 
 					Style="{StaticResource Text24pxWhite}" 
 					Text="{Binding ProfileHeader, Source={StaticResource Loc}}"/>   

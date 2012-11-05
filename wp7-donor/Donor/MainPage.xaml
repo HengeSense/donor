@@ -254,7 +254,9 @@
                 </controls:PanoramaItem.Header>
                 <StackPanel Margin="0,15,0,0">
                 <StackPanel Name="LoginForm">
-                                  <toolkit:PerformanceProgressBar HorizontalAlignment="Left" Height="8" Margin="0" VerticalAlignment="Top" IsIndeterminate="False" Width="460" Name="LoginLoadingBar" />
+                    <toolkit:PerformanceProgressBar HorizontalAlignment="Left" Height="8" Margin="0" 
+                            VerticalAlignment="Top" IsIndeterminate="{Binding User.UserLoading}"
+                            Width="460" Name="LoginLoadingBar" />
                         <TextBlock 
 						Style="{StaticResource Text24pxCBB2A3}"
 						Text="{Binding EnterEmail, Source={StaticResource Loc}}" />
