@@ -431,7 +431,12 @@ static const CGFloat kTabBarHeight = 55.0f;
 #pragma mark - Private UI action handlers
 - (void)donePlanningButtonClicked: (id)sender {
     MBProgressHUD *progressHud = [MBProgressHUD showHUDAddedTo: self.navigationController.view animated: YES];
-    self.currentEditedEvent.isDone = NO;
+    NSDate *nowDate = [NSDate date];
+    if (self.currentEditedEvent.scheduledDate.timeIntervalSince1970 < nowDate.timeIntervalSince1970) {
+        self.currentEditedEvent.isDone = YES;
+    } else {
+        self.currentEditedEvent.isDone = NO;
+    }
     [self.calendar addBloodRemoteEvent: self.currentEditedEvent completion: ^(BOOL success, NSError *error) {
         [progressHud hide: YES];
         if (success) {
