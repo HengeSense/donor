@@ -108,7 +108,16 @@ static NSString * const kRemoteEventField_Type = @"type";
 - (id)init {
     PFObject *newEvent = [[PFObject alloc] initWithClassName: kRemoteEvent_BaseClassName];
     
-    if ([self initWithRemoteEvent: newEvent]) {
+    if([self isKindOfClass: [HSBloodDonationEvent class]]) {
+        [newEvent setObject: [NSNumber numberWithInt: HSRemoteEventChildType_BloodDonationType]
+                     forKey: kRemoteEventField_Type];
+
+    } else if ([self isKindOfClass: [HSBloodTestsEvent class]]) {
+        [newEvent setObject: [NSNumber numberWithInt: HSRemoteEventChildType_BloodTestsType]
+                     forKey: kRemoteEventField_Type];
+    }
+    
+    if (self = [self initWithRemoteEvent: newEvent]) {
         self.scheduledDate = [NSDate date];
         self.isDone = NO;
     }

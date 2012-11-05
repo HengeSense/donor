@@ -29,14 +29,6 @@ static const size_t const REST_PERIODS_TABLE[4][4] =
 
 @implementation HSBloodDonationEvent
 
-#pragma mark - Initialize
-- (id)init {
-    if (self = [super init]) {
-        [self.remoteEvent setObject: [NSNumber numberWithInt: 1] forKey: @"type"];
-    }
-    return self;
-}
-
 #pragma mark - Getters / Setters bridget to PFObject class object.
 - (HSBloodDonationType)bloodDonationType {
     size_t bloodDonationType = [[self.remoteEvent objectForKey: kRemoteEventFields_BloodDonationType] intValue];
