@@ -11,12 +11,12 @@
 #import "HSCalendarTypes.h"
 
 /**
- * This event allows modify default value of the calendar.
- * For example saturday is day off, but blood center decided to make this day workday,
+ * This event allows modify default purpose of the calendar day.
+ * For example, saturday is day off, but blood center decided to make this day workday,
  *     so creating this event overrides default calendar behaviour and user can schedule blood donation event
- *     on this day. And vise versa some holiday may be instead of work day.
+ *     on this day. And vise versa some holiday may be instead of working day.
  */
-@interface HSTimetableModifierEvent : HSEvent
+@interface HSDayPurposeModifierEvent : HSEvent
 
 /**
  * This value overrides default calendar day type.

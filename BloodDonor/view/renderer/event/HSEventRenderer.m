@@ -11,12 +11,11 @@
 #import "HSBloodDonationEvent.h"
 #import "HSBloodTestsEvent.h"
 #import "HSFinishRestEvent.h"
-#import "HSTimetableModifierEvent.h"
+#import "HSDayPurposeModifierEvent.h"
 
 #import "HSBloodDonationEventRenderer.h"
 #import "HSBloodTestsEventRenderer.h"
 #import "HSFinishRestEventRenderer.h"
-#import "HSTimetableModifierEventRenderer.h"
 
 @implementation HSEventRenderer
 
@@ -27,8 +26,6 @@
         resultEventRenderer = [[HSBloodDonationEventRenderer alloc] init];
     } else if ([event isKindOfClass: [HSFinishRestEvent class]]) {
         resultEventRenderer = [[HSFinishRestEventRenderer alloc] init];
-    } else if ([event isKindOfClass: [HSTimetableModifierEvent class]]) {
-        resultEventRenderer = [[HSTimetableModifierEventRenderer alloc] init];
     } else if ([event isKindOfClass: [HSBloodTestsEvent class]]) {
         resultEventRenderer = [[HSBloodTestsEventRenderer alloc] init];
     } else {

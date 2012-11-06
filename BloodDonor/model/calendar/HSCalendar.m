@@ -31,7 +31,7 @@ static NSString * const kEventDate = @"date";
 /**
  * Calendar events. Objects of HSEvent class and it's subclasses.
  */
-@property (nonatomic, strong) NSMutableArray *events;
+@property (nonatomic, strong) NSMutableArray *datePurposeModifierEvents;
 
 /**
  * Array of HSFinishRestEvent objects.
@@ -76,7 +76,7 @@ static NSString * const kEventDate = @"date";
 
 - (id) init {
     if (self = [super init]) {
-        self.events = [[NSMutableArray alloc] init];
+        self.datePurposeModifierEvents = [[NSMutableArray alloc] init];
         self.finishRestEvents = [[NSMutableArray alloc] init];
         self.bloodRemoteEvents = [[NSMutableArray alloc] init];
         self.eventObservers = [[NSMutableSet alloc] init];
@@ -87,7 +87,7 @@ static NSString * const kEventDate = @"date";
 #pragma mark - Events accessors
 
 - (NSArray *)allEvents {
-    NSMutableArray *allArrays = [[NSMutableArray alloc] initWithArray: self.events];
+    NSMutableArray *allArrays = [[NSMutableArray alloc] initWithArray: self.datePurposeModifierEvents];
     [allArrays addObjectsFromArray: self.finishRestEvents];
     [allArrays addObjectsFromArray: self.bloodRemoteEvents];
     return [NSArray arrayWithArray: allArrays];

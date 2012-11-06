@@ -6,8 +6,8 @@
 //  Copyright (c) 2012 Hint Solutions. All rights reserved.
 //
 
-#import "HSTimetableModifierEvent.h"
+#import "HSDayPurposeModifierEvent.h"
 
-@implementation HSTimetableModifierEvent
+@implementation HSDayPurposeModifierEvent
 
 @end

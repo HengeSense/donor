@@ -22,11 +22,20 @@
  * Removes public property 'date' readonly restiction.
  */
 @property (nonatomic, strong) NSDate *date;
+/**
+ * Adds today marker view as subview. Note that old marker view does not deleted.
+ */
+- (void)addTodayMarkerView;
 
 /**
  * Updates all UI components. Is used after adding or removing events.
  */
 - (void)updateUI;
+
+/**
+ * Returns YES, if current day bautton represents today.
+ */
+- (BOOL)isToday;
 
 @end
 
@@ -51,6 +60,9 @@
         [self setTitleColor: [UIColor grayColor] forState: UIControlStateDisabled];
 
         self.backgroundColor = [UIColor clearColor];
+        if ([self isToday]) {
+            [self addTodayMarkerView];
+        }
     }
     return self;
 }
@@ -77,6 +89,16 @@
 }
 
 #pragma mark - Private interface implementation
+- (void)addTodayMarkerView {
+    UIImage *borderImage = [UIImage imageNamed: @"calendarItemBorder.png"];
+    UIImageView *borderView = [[UIImageView alloc] initWithImage: borderImage];
+    CGRect borderViewFrame = borderView.frame;
+    const CGFloat kTopMargin = 2.0f;
+    borderViewFrame.origin.y = kTopMargin;
+    borderView.frame = borderViewFrame;
+    [self addSubview: borderView];
+}
+
 - (void)updateUI {
     if (!self.isEnabled) {
         // Do not render events for disabled button
@@ -94,7 +116,24 @@
         [self addSubview: eventView];
     }
     
+    if ([self isToday]) {
+        [self addTodayMarkerView];
+    }
+    
     [self setNeedsLayout];
 }
 
+- (BOOL)isToday {
+    int dateComponentsUnits = NSYearCalendarUnit |NSMonthCalendarUnit | NSDayCalendarUnit;
+    
+    NSCalendar *systemCalendar = [NSCalendar currentCalendar];
+    NSDateComponents *todayDateComponents = [systemCalendar components: dateComponentsUnits fromDate: [NSDate date]];
+    NSDateComponents *selfDateComponents = [systemCalendar components: dateComponentsUnits fromDate: self.date];
+    
+    if ([selfDateComponents isEqual: todayDateComponents]) {
+        return YES;
+    } else {
+        return NO;
+    }
+}
 @end
