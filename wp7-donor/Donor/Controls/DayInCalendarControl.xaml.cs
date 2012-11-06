@@ -30,7 +30,7 @@ namespace Donor.Controls
             {
                 this.EditContextMenu.Visibility = Visibility.Collapsed;
                 this.DeleteContextMenu.Visibility = Visibility.Collapsed;
-                this.AddContextMenu.Visibility = Visibility.Visible;
+                this.AddContextMenu.Visibility = Visibility.Collapsed;
             }
             else
             {
@@ -39,6 +39,9 @@ namespace Donor.Controls
                 this.AddContextMenu.Visibility = Visibility.Collapsed;
             };            
         }
+
+        //public DaysModel DayData { get; set; }
+
         public bool deleted;
         public bool checkedEvent = false;
         private void GestureListener_Tap(object sender, Microsoft.Phone.Controls.GestureEventArgs e)
@@ -77,7 +80,7 @@ namespace Donor.Controls
             };
         }
 
-        private string _imagePath;
+        private string _imagePath = "";
         public string ImagePath
         {
             get
@@ -241,10 +244,7 @@ namespace Donor.Controls
 
         public bool Inactive { get; set; }
 
-        public event EventHandler<Microsoft.Phone.Controls.GestureEventArgs> Tap;
-
         public event PropertyChangedEventHandler PropertyChanged;
-
         private void NotifyPropertyChanged(String info)
         {
             if (PropertyChanged != null)
@@ -316,8 +316,8 @@ namespace Donor.Controls
 
         public int PossibleBloodGive;
 
-        private void LayoutRoot_Loaded(object sender, RoutedEventArgs e)
-        {
+
+        void initializePage() {
             try
             {
                 this.DayImageRB.Visibility = Visibility.Visible;
@@ -364,6 +364,11 @@ namespace Donor.Controls
                 };
             }
             catch { };
+        }
+
+        private void LayoutRoot_Loaded(object sender, RoutedEventArgs e)
+        {
+            initializePage();
         }
 
     }

@@ -11,15 +11,11 @@
     d:DesignHeight="65" d:DesignWidth="65">
 
     <Border BorderThickness="1" Width="65" Height="65"
-                BorderBrush="Gray" 
-                Name="MainBorder2" Margin="0,0,0,0">
+                BorderBrush="Gray" Name="MainBorder2" Margin="0,0,0,0">
     <Grid x:Name="LayoutRoot" Background="#FFEEEEEE" Margin="0" Loaded="LayoutRoot_Loaded">
-            <!-- 
-                Background="{Binding BgColor}"
-            -->
+
             <Border Name="MainBorder" Background="{Binding CurrentColor}" BorderThickness="3" BorderBrush="{Binding BorderColor}" Margin="3">
                 <Grid Width="52" Height="52" Background="{Binding BgColor}">
-                    
 
                     <Grid Width="52" Background="Transparent" Height="52" Grid.Row="0" Grid.Column="0">
                         <Grid.RowDefinitions>
@@ -76,7 +72,6 @@
                        Name="DayImageLB2" Visibility="Collapsed"
                            Grid.Row="0" Height="18"
                            Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Bottom" />
-                        <!-- {Binding ImagePath} -->
                 </Grid>
 
                     

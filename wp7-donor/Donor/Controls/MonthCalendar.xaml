@@ -24,8 +24,93 @@
                 <TextBlock Width="68" VerticalAlignment="Center" TextAlignment="Center" Style="{StaticResource Text16pxDEAD86}" Text="{Binding SaturdayShort, Source={StaticResource Loc}}"/>
                 <TextBlock Width="68" VerticalAlignment="Center" TextAlignment="Center" Style="{StaticResource Text16pxDEAD86}" Text="{Binding SundayShort, Source={StaticResource Loc}}"/>
             </toolkit:WrapPanel>
-        <toolkit:WrapPanel Background="White" ItemHeight="68" ItemWidth="68" Name="CalendarDays">
-        </toolkit:WrapPanel>
+            
+            <ListBox Name="CalendarDays" ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+                ScrollViewer.VerticalScrollBarVisibility="Disabled" Tap="CalendarDays_Tap" Loaded="CalendarDays_Loaded">
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <toolkit:WrapPanel Background="White" ItemHeight="68" ItemWidth="68"/>
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Border BorderThickness="1" Width="65" Height="65"
+                BorderBrush="Gray" Name="MainBorder2" Margin="0,0,0,0">
+                            <Grid x:Name="LayoutRoot" Background="#FFEEEEEE" Margin="0">
+
+                                <Border Name="MainBorder" Background="{Binding CurrentColor}" BorderThickness="3" BorderBrush="{Binding BorderColor}" Margin="3">
+                                    <Grid Width="52" Height="52" Background="{Binding BgColor}">
+
+                                        <Grid Width="52" Background="Transparent" Height="52" Grid.Row="0" Grid.Column="0">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="*"/>
+                                                <RowDefinition Height="1"/>
+                                                <RowDefinition Height="1"/>
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <StackPanel Grid.ColumnSpan="2" Grid.RowSpan="2" Height="Auto" Grid.Row="0"
+                           Grid.Column="2" VerticalAlignment="Top" 
+                           HorizontalAlignment="Right">
+                                                <Image Margin="0" Name="DayImageRT" Stretch="None" Source="{Binding DayImageRT}" />
+                                                <Image Margin="0" Name="DayImageRT1" Stretch="None" Source="{Binding DayImageRT1}" />
+                                                <Image Margin="0" Name="DayImageRT2" Stretch="None" Source="{Binding DayImageRT2}" />
+                                                <Image Margin="0" Name="DayImageRT3" Stretch="None" Source="{Binding DayImageRT3}" />
+                                            </StackPanel>
+                                        </Grid>
+
+                           <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Height="52" Width="52" 
+                           TextAlignment="Center" Margin="0,10,0,0" FontSize="28" Foreground="{Binding TextColor}" 
+                           Text="{Binding DayNumber}"/>
+
+                                        <Grid Width="52" Background="Transparent" Height="52" Grid.Row="0" Grid.Column="0">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="*"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <Image Margin="0,0,0,4"
+                                           Name="DayImageRB" Source="{Binding DayImageRB}"
+                                               VerticalAlignment="Bottom" Height="18"
+                                               HorizontalAlignment="Right"
+                                               Grid.Row="2" Grid.Column="2"/>
+                                            
+                                           <Image 
+                                           Name="DayImageLB" Margin="0,0,0,4"
+                                               Grid.Row="2" Height="18" Source="{Binding DayImageLB}"
+                                               Grid.Column="0" HorizontalAlignment="Left" 
+                                               VerticalAlignment="Bottom" />
+
+                                        </Grid>
+
+
+                                    </Grid>
+                                </Border>
+                                <!--<toolkit:ContextMenuService.ContextMenu>
+                                    <toolkit:ContextMenu Name="ContextMenu">
+                                        <toolkit:MenuItem Header="{Binding Add, Source={StaticResource Loc}}" Name="AddContextMenu" Visibility="Collapsed"/>
+                                        <toolkit:MenuItem Header="{Binding WasFinished, Source={StaticResource Loc}}" Name="FinishedContextMenu" Visibility="Collapsed"/>
+                                        <toolkit:MenuItem Header="{Binding Edit, Source={StaticResource Loc}}" Name="EditContextMenu" />
+                                        <toolkit:MenuItem Header="{Binding Delete, Source={StaticResource Loc}}" Name="DeleteContextMenu" />
+                                    </toolkit:ContextMenu>
+                                </toolkit:ContextMenuService.ContextMenu>-->
+
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <!--<toolkit:WrapPanel Background="White" ItemHeight="68" ItemWidth="68" Name="CalendarDays">
+        </toolkit:WrapPanel>-->
         </StackPanel>
     </Grid>
 </UserControl>
