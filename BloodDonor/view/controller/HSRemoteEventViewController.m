@@ -9,6 +9,8 @@
 #import "HSRemoteEventViewController.h"
 #import "HSEventPlanningViewController.h"
 
+#import "NSDate+HSCalendar.h"
+
 @interface HSRemoteEventViewController ()
 
 /**
@@ -97,6 +99,11 @@
 
 #pragma mark - UI action handlers
 - (IBAction)eventDoneButtonClicked:(id)sender {
+    if ([self.currentBloodRemoteEvent.scheduledDate isAfterDay: [NSDate date]]) {
+        @throw [NSException exceptionWithName: NSInternalInconsistencyException
+                                       reason: @"eventButton was triggered fot event in future,"
+                                                " actualy in this case the button should be disabled" userInfo: nil];
+    }
     self.currentBloodRemoteEvent.isDone = YES;
     [self.currentBloodRemoteEvent saveWithCompletionBlock: ^(BOOL success, NSError *error) {
         if (success) {
@@ -163,6 +170,13 @@
         self.bloodDonationCommentLabel.text = self.bloodDonationEvent.comments;
         [self.rootScrollView addSubview: self.bloodDonationView];
         rootScrollViewContentSize.height += bloodDonationSize.height;
+        
+        if ([self.bloodDonationEvent.scheduledDate isAfterDay: [NSDate date]]) {
+            self.doneButton.enabled = NO;
+        } else {
+            self.doneButton.enabled = !self.currentBloodRemoteEvent.isDone;
+        }
+
     } else if (self.bloodTestsEvent != nil) {
         self.currentBloodRemoteEvent = self.bloodTestsEvent;
         // Display view for blood tests event.
@@ -173,9 +187,7 @@
         self.bloodTestsLabAddressLabel.text = self.bloodTestsEvent.labAddress;
         [self.rootScrollView addSubview: self.bloodTestsView];
         rootScrollViewContentSize.height += bloodTestsSize.height;
-    }
-    self.doneButton.enabled = !self.currentBloodRemoteEvent.isDone;
-    
+    }    
     self.rootScrollView.contentSize = rootScrollViewContentSize;
 }
 

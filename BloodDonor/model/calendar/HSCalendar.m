@@ -19,6 +19,8 @@
 #import "HSBloodTestsEvent.h"
 #import "HSFinishRestEvent.h"
 
+#import "NSDate+HSCalendar.h"
+
 #pragma mark - Remote Users object's field keys
 static NSString * const kUserEventsRelation = @"events";
 

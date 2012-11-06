@@ -10,6 +10,8 @@
 
 #import "HSEventRenderer.h"
 
+#import "NSDate+HSCalendar.h"
+
 #pragma mark - Private interface declaration
 @interface HSCalendarDayButton ()
 
@@ -31,11 +33,6 @@
  * Updates all UI components. Is used after adding or removing events.
  */
 - (void)updateUI;
-
-/**
- * Returns YES, if current day bautton represents today.
- */
-- (BOOL)isToday;
 
 @end
 
@@ -60,7 +57,7 @@
         [self setTitleColor: [UIColor grayColor] forState: UIControlStateDisabled];
 
         self.backgroundColor = [UIColor clearColor];
-        if ([self isToday]) {
+        if ([self.date isTheSameDay: [NSDate date]]) {
             [self addTodayMarkerView];
         }
     }
@@ -116,24 +113,10 @@
         [self addSubview: eventView];
     }
     
-    if ([self isToday]) {
+    if ([self.date isTheSameDay: [NSDate date]]) {
         [self addTodayMarkerView];
     }
     
     [self setNeedsLayout];
-}
-
-- (BOOL)isToday {
-    int dateComponentsUnits = NSYearCalendarUnit |NSMonthCalendarUnit | NSDayCalendarUnit;
-    
-    NSCalendar *systemCalendar = [NSCalendar currentCalendar];
-    NSDateComponents *todayDateComponents = [systemCalendar components: dateComponentsUnits fromDate: [NSDate date]];
-    NSDateComponents *selfDateComponents = [systemCalendar components: dateComponentsUnits fromDate: self.date];
-    
-    if ([selfDateComponents isEqual: todayDateComponents]) {
-        return YES;
-    } else {
-        return NO;
-    }
 }
 @end
