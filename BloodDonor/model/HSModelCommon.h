@@ -17,7 +17,17 @@ typedef void(^CompletionBlockType)(BOOL success, NSError *error);
 extern NSString * const kRemoteEvent_BaseClassName;
 
 /// @name Error domains
-extern NSString * const HSRemoteServerResonseError;
-extern NSString * const HSBloodDonationRestPeriodNotFinishedError;
+extern NSString * const HSRemoteServerResonseErrorDomain;
 
-NSString* errorDomainToLicalizedDescription (NSString *errorDomain);
+/**
+ * This domain errors may occur during add avant to the calendar
+ */
+extern NSString * const HSCalendarAddEventErrorDomain;
+
+typedef enum {
+    HSCalendarAddEventErrorDomainCode_RestPeriodNotFinished = 0,
+    HSCalendarAddEventErrorDomainCode_DayIsBusy,
+    HSCalendarAddEventErrorDomainCode_BeforeFirstDonation
+} HSCalendarAddEventErrorDomainCode;
+
+NSString* localizedDescriptionForError (NSError *error);

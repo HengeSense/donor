@@ -267,7 +267,7 @@ static const CGFloat kTabBarHeight = 55.0f;
         self.bloodDonationEvent = [[HSBloodDonationEvent alloc] init];
         self.bloodDonationEvent.scheduledDate = self.initialDate;
         self.bloodTestsEvent = [[HSBloodTestsEvent alloc] init];
-        self.bloodDonationEvent.scheduledDate = self.initialDate;
+        self.bloodTestsEvent.scheduledDate = self.initialDate;
         [self configureViewForEditingBloodDonationEvent];
     }
 }
@@ -308,7 +308,7 @@ static const CGFloat kTabBarHeight = 55.0f;
             [self.navigationController popToRootViewControllerAnimated: YES];
         } else {
             UIAlertView *allert = [[UIAlertView alloc] initWithTitle: @"Ошибка"
-                    message: errorDomainToLicalizedDescription(error.domain)
+                    message: localizedDescriptionForError(error)
                     delegate: nil cancelButtonTitle: @"Ок" otherButtonTitles: nil];
             [allert show];
         }
@@ -443,7 +443,7 @@ static const CGFloat kTabBarHeight = 55.0f;
             [self.navigationController popToRootViewControllerAnimated: YES];
         } else {
             UIAlertView *allert = [[UIAlertView alloc] initWithTitle: @"Ошибка"
-                    message: errorDomainToLicalizedDescription( error.domain)
+                    message: localizedDescriptionForError(error)
                     delegate: nil cancelButtonTitle: @"Ок" otherButtonTitles: nil];
             [allert show];
         }

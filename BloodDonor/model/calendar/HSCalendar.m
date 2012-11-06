@@ -67,7 +67,7 @@ static NSString * const kEventDate = @"date";
 /**
  * Check whether calendar can add specified blood remote event to the calendar or not.
  */
-- (BOOL)canAddBloodRemoteEvent: (HSBloodRemoteEvent *)bloodRemoteEvent;
+- (BOOL)canAddBloodRemoteEvent: (HSBloodRemoteEvent *)bloodRemoteEvent error: (NSError **)error;
 @end
 
 @implementation HSCalendar
@@ -122,7 +122,8 @@ static NSString * const kEventDate = @"date";
 #pragma mark - Remote events manipulation methods
 - (void)addBloodRemoteEvent: (HSBloodRemoteEvent *)bloodRemoteEvent completion: (CompletionBlockType)completion {
     THROW_IF_ARGUMENT_NIL(bloodRemoteEvent, @"bloodRemoteEvent is not specified");
-    if([self canAddBloodRemoteEvent: bloodRemoteEvent]) {
+    NSError *addError = nil;
+    if([self canAddBloodRemoteEvent: bloodRemoteEvent error: &addError]) {
         [bloodRemoteEvent saveWithCompletionBlock:^(BOOL success, NSError *error) {
             if (success) {
                 if (![self.bloodRemoteEvents containsObject: bloodRemoteEvent]) {
@@ -130,14 +131,13 @@ static NSString * const kEventDate = @"date";
                 }
             }
             if (completion != nil) {
-                NSError *localError = [NSError errorWithDomain: HSRemoteServerResonseError code: 0 userInfo: nil];
+                NSError *localError = [NSError errorWithDomain: HSRemoteServerResonseErrorDomain code: 0 userInfo: nil];
                 completion(success, localError);
             }
         }];
     } else {
-        NSError *error = [NSError errorWithDomain: HSBloodDonationRestPeriodNotFinishedError code: 0 userInfo: nil];
         if (completion != nil) {
-            completion(NO, error);
+            completion(NO, addError);
         }
     }
 }
@@ -153,7 +153,7 @@ static NSString * const kEventDate = @"date";
                     completion(success, error);
                 }
             } else {
-                NSError *localError = [NSError errorWithDomain: HSRemoteServerResonseError code: 0 userInfo: nil];
+                NSError *localError = [NSError errorWithDomain: HSRemoteServerResonseErrorDomain code: 0 userInfo: nil];
                 if (completion != nil) {
                     completion(NO, localError);
                 }
@@ -258,9 +258,9 @@ static NSString * const kEventDate = @"date";
     
     [self.finishRestEvents removeObjectsInArray: eventsToDelete];
 }
-
-- (BOOL)canAddBloodRemoteEvent: (HSBloodRemoteEvent *)bloodRemoteEvent {
-    THROW_IF_ARGUMENT_NIL(bloodRemoteEvent, @"bloodRemoteEvent is not specified");
+ 
+- (BOOL)canAddBloodRemoteEvent: (HSBloodRemoteEvent *)bloodRemoteEvent error: (NSError **)error {
+    THROW_IF_ARGUMENT_NIL(bloodRemoteEvent, @"bloodRemoteEvent is not specified");    
     NSArray *eventsInTheSameDay = [self eventsForDay: bloodRemoteEvent.scheduledDate];
     NSArray *remoteEventsInTheSameDay = [eventsInTheSameDay filteredArrayUsingPredicate:
             [NSPredicate predicateWithFormat: @"SELF isKindOfClass: %@", [HSBloodRemoteEvent class]]];
@@ -274,6 +274,10 @@ static NSString * const kEventDate = @"date";
                 [self isBloodDonationEventAfterRestPeriod: bloodDonationEvent]) {
                 return YES;
             } else {
+                if (error != NULL) {
+                    *error = [[NSError alloc] initWithDomain: HSCalendarAddEventErrorDomain
+                            code: HSCalendarAddEventErrorDomainCode_RestPeriodNotFinished userInfo: nil];
+                }
                 return NO;
             }
         }
@@ -290,6 +294,10 @@ static NSString * const kEventDate = @"date";
                     [self isBloodDonationEventAfterRestPeriod: bloodDonationEvent]) {
                     return YES;
                 } else {
+                    if (error != NULL) {
+                        *error = [[NSError alloc] initWithDomain: HSCalendarAddEventErrorDomain
+                                code: HSCalendarAddEventErrorDomainCode_RestPeriodNotFinished userInfo: nil];
+                    }
                     return NO;
                 }
             } @finally {
@@ -300,6 +308,10 @@ static NSString * const kEventDate = @"date";
         }
     } else {
         // Day is busy with other blood remote event.
+        if (error != NULL) {
+            *error = [[NSError alloc] initWithDomain: HSCalendarAddEventErrorDomain
+                    code: HSCalendarAddEventErrorDomainCode_DayIsBusy userInfo: nil];
+        }
         return NO;
     }
 }

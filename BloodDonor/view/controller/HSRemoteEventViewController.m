@@ -103,7 +103,7 @@
             [self.navigationController popToRootViewControllerAnimated: YES];
         } else {
             UIAlertView *allert = [[UIAlertView alloc] initWithTitle: @"Ошибка"
-                    message: errorDomainToLicalizedDescription(error.domain)
+                    message: localizedDescriptionForError(error)
                     delegate: nil cancelButtonTitle: @"Ок" otherButtonTitles: nil];
             [allert show];
         }
