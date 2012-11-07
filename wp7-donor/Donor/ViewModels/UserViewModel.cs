@@ -14,6 +14,8 @@ using System.Linq;
 using RestSharp;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
+using System.Windows.Navigation;
+using Microsoft.Phone.Controls;
 //using Parse;
 
 namespace Donor.ViewModels
@@ -28,9 +30,11 @@ namespace Donor.ViewModels
         {
             this.IsLoggedIn = false;
             this.loginCommand = new DelegateCommand(this.LoginAction);
+            this.logoutCommand = new DelegateCommand(this.LogoutAction);
         }
 
         private ICommand loginCommand;
+        private ICommand logoutCommand;
 
         private bool _userLoading = false;
         /// <summary>
@@ -48,6 +52,23 @@ namespace Donor.ViewModels
                 NotifyPropertyChanged("UserLoading");
             }
         }
+
+
+        private void LogoutAction(object p)
+        {
+            this.IsLoggedIn = false;
+            this.UserName = "";
+            this.Password = "";
+
+            App.ViewModel.SaveUserToStorage();
+            App.ViewModel.Events.UpdateItems();
+
+            this.NotifyAll();
+
+            (Application.Current.RootVisual as PhoneApplicationFrame).GoBack();
+            //NavigationService.GoBack();
+        }
+
 
         private void LoginAction(object p)
         {
@@ -100,6 +121,9 @@ namespace Donor.ViewModels
             };
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public ICommand LoginCommand
         {
             get
@@ -108,6 +132,16 @@ namespace Donor.ViewModels
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        public ICommand LogoutCommand
+        {
+            get
+            {
+                return this.logoutCommand;
+            }
+        }
 
         private string _username;
         public string UserName { get { return _username; } set { _username = value; NotifyPropertyChanged("UserName"); } }
@@ -116,7 +150,13 @@ namespace Donor.ViewModels
         /// <summary>
         /// Имя пользователя
         /// </summary>
-        public string Name { get { return _name; } set { _name = value; NotifyPropertyChanged("Name"); } }
+        public string Name { 
+            get { return _name; } 
+            set { 
+                _name = value; 
+                NotifyPropertyChanged("Name"); 
+            } 
+        }
 
         private string _secondName;
         /// <summary>
@@ -170,6 +210,8 @@ namespace Donor.ViewModels
 
         public void NotifyAll()
         {
+            NotifyPropertyChanged("Name");
+            NotifyPropertyChanged("UserName");
             NotifyPropertyChanged("Birthday");
             NotifyPropertyChanged("DateBirthday");
             NotifyPropertyChanged("OutBloodGroup");
@@ -220,6 +262,12 @@ namespace Donor.ViewModels
             set {
                 _isLoggedIn = value;
                 //App.ViewModel.CreateApplicationTile(App.ViewModel.Events.NearestEvents());
+
+                /*if (_isLoggedIn == false)
+                {
+                    this.UserName = "";
+                    this.Password = "";                 
+                };*/
 
                 NotifyPropertyChanged("IsLoggedIn");
                 NotifyPropertyChanged("GivedBlood");

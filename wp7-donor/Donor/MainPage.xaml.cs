@@ -148,6 +148,9 @@ namespace Donor
                 {
                     this.UserProfile.Visibility = Visibility.Visible;
                     this.LoginForm.Visibility = Visibility.Collapsed;
+
+                    this.ProfileName.Text = App.ViewModel.User.Name;
+                    this.GivedBlood.Text = App.ViewModel.User.GivedBlood.ToString();
                 }
                 else
                 {

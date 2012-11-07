@@ -263,7 +263,8 @@ BorderBrush="#FF4F3B34" Foreground="#FFCBB2A3" x:Name="email"
                             <WPExtensions:AdvancedApplicationBarIconButton 
 						IconUri="/icons/ic_ApplicationBar_exit.png" 
 						Text="{Binding Exit, Source={StaticResource Loc}}" Visibility="Visible" 
-						Name="DeleteUserButton" Click="DeleteUserButton_Click" />
+						Name="DeleteUserButton" Command="{Binding Path=User.LogoutCommand, Mode=TwoWay}" />
+                            <!-- Click="DeleteUserButton_Click" -->
 
                             <WPExtensions:AdvancedApplicationBarIconButton 
 IconUri="/icons/ic_ApplicationBar_done.png" Text="Сохранить" 
@@ -336,8 +337,8 @@ Visibility="Collapsed" Name="SaveEditProfileButton" Click="SaveEditProfileButton
 
                             <TextBlock Text="{Binding RhFactor, Source={StaticResource Loc}}" Margin="10,0,10,0"
 						Style="{StaticResource Text24pxCBB2A3}"/>
-                            <StackPanel Orientation="Horizontal" Name="RHedit">
-                                <toolkit:WrapPanel Margin="10,0,10,0" ItemHeight="90" ItemWidth="210">
+                            <StackPanel Orientation="Horizontal">
+                                <toolkit:WrapPanel Name="RHedit" Margin="10,0,10,0" ItemHeight="90" ItemWidth="210">
                                     <RadioButton Content="RH+" 
 							    Foreground="#FFCBB2A3"
 							    Name="EditRHpl" />

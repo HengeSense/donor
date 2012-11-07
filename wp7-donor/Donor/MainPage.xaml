@@ -300,7 +300,7 @@
                     <StackPanel>
                         <TextBlock Text="{Binding Name, Source={StaticResource Loc}}"  TextWrapping="Wrap" 
 						Style="{StaticResource Text36pxCBB2A3}"/>
-                            <TextBlock Text="{Binding Path=User.Name, Mode=TwoWay}" 
+                            <TextBlock Text="{Binding Path=User.Name}" 
 						Name="ProfileName" TextWrapping="Wrap" Margin="12,-6,12,0" 
 						Style="{StaticResource Text24pxDF8D4B}"/>
                     </StackPanel>

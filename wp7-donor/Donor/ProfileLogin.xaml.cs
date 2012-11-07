@@ -654,7 +654,7 @@ namespace Donor
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void DeleteUserButton_Click(object sender, EventArgs e)
+        /*private void DeleteUserButton_Click(object sender, EventArgs e)
         {
             App.ViewModel.User.IsLoggedIn = false;
 
@@ -666,7 +666,7 @@ namespace Donor
             App.ViewModel.Events.UpdateItems();
 
             NavigationService.GoBack();
-        }
+        }*/
 
         private void Check_Checked(object sender, RoutedEventArgs e)
         {
