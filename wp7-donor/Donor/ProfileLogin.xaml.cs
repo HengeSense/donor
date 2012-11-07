@@ -284,16 +284,6 @@ namespace Donor
         }
 
         private void UpdateUserInfoView() {
-            try
-            {
-                /*this.ProfileName.Text = App.ViewModel.User.Name.ToString();
-                this.SecondName.Text = App.ViewModel.User.SecondName.ToString();
-                this.Birthday.Text = App.ViewModel.User.Birthday.ToString();
-
-                this.ProfileSex.Text = App.ViewModel.User.OutSex.ToString();
-                this.ProfileBloodGroup.Text = App.ViewModel.User.OutBloodDataString.ToString();*/
-            }
-            catch { };
         }
 
         private MessagePrompt messagePrompt;
@@ -381,8 +371,8 @@ namespace Donor
 
                             this.EditButton.Visibility = Visibility.Collapsed;
                             this.DeleteUserButton.Visibility = Visibility.Collapsed;
-                            this.FacebookButton.Visibility = Visibility.Collapsed;
-                            this.FacebookUnlinkingButton.Visibility = Visibility.Collapsed;
+                            //this.FacebookButton.Visibility = Visibility.Collapsed;
+                            //this.FacebookUnlinkingButton.Visibility = Visibility.Collapsed;
 
                             this.RegisterForm.Visibility = Visibility.Collapsed;
                             this.LoginForm.Visibility = Visibility.Collapsed;
@@ -504,14 +494,13 @@ namespace Donor
 
             this.EditButton.Visibility = Visibility.Collapsed;
             this.DeleteUserButton.Visibility = Visibility.Collapsed;
-            this.FacebookButton.Visibility = Visibility.Collapsed;
 
             this.RegisterForm.Visibility = Visibility.Collapsed;
             this.LoginForm.Visibility = Visibility.Collapsed;
             this.UserProfile.Visibility = Visibility.Collapsed;
 
-            this.FacebookButton.Visibility = Visibility.Collapsed;
-            this.FacebookUnlinkingButton.Visibility = Visibility.Collapsed;
+            //this.FacebookButton.Visibility = Visibility.Collapsed;
+            //this.FacebookUnlinkingButton.Visibility = Visibility.Collapsed;
 
             
 
@@ -530,8 +519,9 @@ namespace Donor
 
             this.EditButton.Visibility = Visibility.Visible;
             this.DeleteUserButton.Visibility = Visibility.Visible;
-            this.FacebookButton.Visibility = Visibility.Visible;
-            this.FacebookUnlinkingButton.Visibility = Visibility.Visible;
+
+            //this.FacebookButton.Visibility = Visibility.Visible;
+            //this.FacebookUnlinkingButton.Visibility = Visibility.Visible;
 
             this.RegisterForm.Visibility = Visibility.Collapsed;
             this.LoginForm.Visibility = Visibility.Collapsed;
@@ -648,7 +638,9 @@ namespace Donor
 
             this.EditButton.Visibility = Visibility.Visible;
             this.DeleteUserButton.Visibility = Visibility.Visible;
-            this.FacebookButton.Visibility = Visibility.Visible;
+
+            //this.FacebookButton.Visibility = Visibility.Visible;
+            //this.FacebookUnlinkingButton.Visibility = Visibility.Visible;
 
             this.RegisterForm.Visibility = Visibility.Collapsed;
             this.LoginForm.Visibility = Visibility.Collapsed;
