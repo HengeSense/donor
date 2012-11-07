@@ -29,7 +29,7 @@ namespace Donor {
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        public  AppResources() {
+        public AppResources() {
         }
         
         /// <summary>
@@ -462,6 +462,15 @@ namespace Donor {
         public static string EnterToWorkWithCalendar {
             get {
                 return ResourceManager.GetString("EnterToWorkWithCalendar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Введите ваш e-mail.
+        /// </summary>
+        public static string EnterYourEmailForRestorePassword {
+            get {
+                return ResourceManager.GetString("EnterYourEmailForRestorePassword", resourceCulture);
             }
         }
         
@@ -907,7 +916,7 @@ namespace Donor {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Для активации достижения сделайте скан QR кода с наклейки к донорской справке. &lt;a href=&quot;http://www.blood.ru&quot;&gt;Подробнее о достижениях&lt;/a&gt;
+        ///   Looks up a localized string similar to Для активации достижения сделайте скан QR кода с наклейки к донорской справке. &lt;a href=&quot;http://www.blood.ru&quot;&gt;Подробнее о достижениях&lt;/a&gt;.
         ///Функционал дотижений доступен только в СПК ГНЦ РАМН. (http://www.blood.ru).
         /// </summary>
         public static string ReadQRAboutText {
@@ -1034,11 +1043,29 @@ namespace Donor {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to На E-mail отправлено письмо с инструкцией по востановлению доступа к учетной записи..
+        /// </summary>
+        public static string RestoreEmailSend {
+            get {
+                return ResourceManager.GetString("RestoreEmailSend", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Восстановить пароль.
         /// </summary>
         public static string RestorePassoword {
             get {
                 return ResourceManager.GetString("RestorePassoword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Востановление пароля.
+        /// </summary>
+        public static string RestorePassword {
+            get {
+                return ResourceManager.GetString("RestorePassword", resourceCulture);
             }
         }
         

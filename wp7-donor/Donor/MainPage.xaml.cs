@@ -56,7 +56,11 @@ namespace Donor
             dt.Start();
         }
 
-        // Load data for the ViewModel Items
+        /// <summary>
+        /// Load data for the ViewModel Items
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MainPage_Loaded(object sender, RoutedEventArgs e)
         {
             try {
@@ -69,17 +73,12 @@ namespace Donor
                 {
                     this.LoginForm.Visibility = Visibility.Collapsed;
                     this.UserProfile.Visibility = Visibility.Visible;
-                    //this.GivedBlood.Text = App.ViewModel.User.GivedBlood.ToString();
-                    //this.EventsChanged(this, EventArgs.Empty);
                 }
                 else
                 {
                     this.LoginForm.Visibility = Visibility.Visible;
                     this.UserProfile.Visibility = Visibility.Collapsed;
                 };
-
-                //this.email.Text = "";
-                //this.password.Password = "";
 
                 bool hasNetworkConnection = NetworkInterface.NetworkInterfaceType != NetworkInterfaceType.None;
                 if (hasNetworkConnection) {} else { MessageBox.Show(Donor.AppResources.CantEnterCheckNetwork); };

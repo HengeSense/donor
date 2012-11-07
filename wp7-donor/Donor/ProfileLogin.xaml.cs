@@ -271,11 +271,11 @@ namespace Donor
         private void RestorePassword_Click(object sender, RoutedEventArgs e)
         {
             StackPanel restore = new StackPanel();
-            restore.Children.Add(new TextBlock { Text = "Введите ваш e-mail", TextWrapping = TextWrapping.Wrap });
-            restore.Children.Add(new TextBox { Text = "m0rg0t.Anton@gmail.com", Name = "RestoreEmail" });
+            restore.Children.Add(new TextBlock { Text = Donor.AppResources.EnterYourEmailForRestorePassword, TextWrapping = TextWrapping.Wrap });
+            restore.Children.Add(new TextBox { Text = "", Name = "RestoreEmail" });
             messagePrompt = new MessagePrompt
             {
-                Title = "Востановление пароля",
+                Title = Donor.AppResources.RestorePassword,
                 Body = restore,
                 IsAppBarVisible = true,
                 IsCancelVisible = true
@@ -287,31 +287,7 @@ namespace Donor
         void messagePrompt_Completed(object sender, PopUpEventArgs<string, PopUpResult> e)
         {
             string _email = ((messagePrompt.Body as StackPanel).Children.FirstOrDefault(c => (c as FrameworkElement).Name == "RestoreEmail") as TextBox).Text.ToString();
-
-            var client = new RestClient("https://api.parse.com");
-            var request = new RestRequest("1/requestPasswordReset", Method.POST);
-            request.AddHeader("Accept", "application/json");
-            request.Parameters.Clear();
-            string strJSONContent = "{\"email\":\"" + _email.ToLower() + "\"}";
-            request.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
-            request.AddHeader("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
-            request.AddHeader("Content-Type", "application/json");
-
-            request.AddParameter("application/json", strJSONContent, ParameterType.RequestBody);
-            this.LoadingBar.IsIndeterminate = true;
-            client.ExecuteAsync(request, response =>
-                {
-                    this.LoadingBar.IsIndeterminate = false;
-                    JObject o = JObject.Parse(response.Content.ToString());
-                    if (o["error"] == null)
-                    {
-
-                    }
-                    else
-                    {
-
-                    };
-                });
+            App.ViewModel.User.RestoreUserPassword(_email);
         }
 
         private void Pivot_Loaded(object sender, RoutedEventArgs e)
@@ -388,10 +364,6 @@ namespace Donor
         }
 
         private void SetEditFields() {
-            //this.EditName.Text = App.ViewModel.User.Name;
-            //this.EditSecondName.Text = App.ViewModel.User.SecondName;
-            //this.EditUserBirthday.Value = App.ViewModel.User.DateBirthday;
-
             try
             {
                 if (App.ViewModel.User.Sex == 1)
@@ -481,8 +453,6 @@ namespace Donor
             //this.FacebookButton.Visibility = Visibility.Collapsed;
             //this.FacebookUnlinkingButton.Visibility = Visibility.Collapsed;
 
-            
-
             this.CancelEditProfileButton.Visibility = Visibility.Visible;
             this.SaveEditProfileButton.Visibility = Visibility.Visible;
 
@@ -507,6 +477,11 @@ namespace Donor
             this.UserProfile.Visibility = Visibility.Visible;
         }
 
+        /// <summary>
+        /// Сохраняем изменения
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void SaveEditProfileButton_Click(object sender, EventArgs e)
         {
             try
@@ -577,7 +552,6 @@ namespace Donor
             this.UserProfile.Visibility = Visibility.Visible;
 
         }
-
 
         private void Check_Checked(object sender, RoutedEventArgs e)
         {
@@ -666,6 +640,11 @@ namespace Donor
             catch
             {
             };
+        }
+
+        private void DeleteUserButton_Click(object sender, EventArgs e)
+        {
+            App.ViewModel.User.LogoutAction(null);
         }
 
     }

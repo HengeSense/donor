@@ -263,7 +263,7 @@ BorderBrush="#FF4F3B34" Foreground="#FFCBB2A3" x:Name="email"
                             <WPExtensions:AdvancedApplicationBarIconButton 
 						IconUri="/icons/ic_ApplicationBar_exit.png" 
 						Text="{Binding Exit, Source={StaticResource Loc}}" Visibility="Visible" 
-						Name="DeleteUserButton" Command="{Binding Path=User.LogoutCommand, Mode=TwoWay}" />
+						Name="DeleteUserButton" Click="DeleteUserButton_Click" />
                             <!-- Click="DeleteUserButton_Click" -->
 
                             <WPExtensions:AdvancedApplicationBarIconButton 

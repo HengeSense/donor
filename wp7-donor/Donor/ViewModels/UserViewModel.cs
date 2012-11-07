@@ -55,7 +55,7 @@ namespace Donor.ViewModels
         }
 
 
-        private void LogoutAction(object p)
+        public void LogoutAction(object p)
         {
             this.IsLoggedIn = false;
             this.UserName = "";
@@ -271,6 +271,34 @@ namespace Donor.ViewModels
             NotifyPropertyChanged("OutSex");
             NotifyPropertyChanged("GivedBlood");
         }
+
+
+        public void RestoreUserPassword(string email) {
+            var client = new RestClient("https://api.parse.com");
+            var request = new RestRequest("1/requestPasswordReset", Method.POST);
+            request.AddHeader("Accept", "application/json");
+            request.Parameters.Clear();
+            string strJSONContent = "{\"email\":\"" + email.ToLower() + "\"}";
+            request.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
+            request.AddHeader("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
+            request.AddHeader("Content-Type", "application/json");
+
+            request.AddParameter("application/json", strJSONContent, ParameterType.RequestBody);
+            this.UserLoading = true;
+            client.ExecuteAsync(request, response =>
+            {
+                this.UserLoading = false;
+                JObject o = JObject.Parse(response.Content.ToString());
+                if (o["error"] == null)
+                {
+                    MessageBox.Show(Donor.AppResources.RestoreEmailSend);
+                }
+                else
+                {
+                };
+            });
+        }
+
 
         private string _password;
         public string Password { get { return _password; } set { _password = value; NotifyPropertyChanged("Password"); } }
