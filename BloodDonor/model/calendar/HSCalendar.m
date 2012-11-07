@@ -274,7 +274,7 @@ static NSString * const kEventDate = @"date";
             return YES;
         } else {
             HSBloodDonationEvent *bloodDonationEvent = (HSBloodDonationEvent *)bloodRemoteEvent;
-            if ([self isLatestBloodDonationEvent: bloodDonationEvent] &&
+            if ([self isLatestDoneBloodDonationEvent: bloodDonationEvent] &&
                 [self isBloodDonationEventAfterRestPeriod: bloodDonationEvent]) {
                 return YES;
             } else {
@@ -294,7 +294,7 @@ static NSString * const kEventDate = @"date";
             [self.bloodRemoteEvents removeObject: bloodDonationEvent];
             [self updateFinishRestEvents];
             @try {
-                if ([self isLatestBloodDonationEvent: bloodDonationEvent] &&
+                if ([self isLatestDoneBloodDonationEvent: bloodDonationEvent] &&
                     [self isBloodDonationEventAfterRestPeriod: bloodDonationEvent]) {
                     return YES;
                 } else {
@@ -320,13 +320,13 @@ static NSString * const kEventDate = @"date";
     }
 }
 
-- (BOOL)isLatestBloodDonationEvent: (HSBloodDonationEvent *)bloodDonationEvent {
+- (BOOL)isLatestDoneBloodDonationEvent: (HSBloodDonationEvent *)bloodDonationEvent {
     THROW_IF_ARGUMENT_NIL(bloodDonationEvent, @"bloodDonationEvent is not specified");
     NSArray *bloodDonationEvents = [self.bloodRemoteEvents filteredArrayUsingPredicate:
             [NSPredicate predicateWithFormat: @"SELF isKindOfClass: %@", [HSBloodDonationEvent class]]];
 
-    for (HSBloodDonationEvent *bloodRemoteEvent in bloodDonationEvents) {
-        if (bloodRemoteEvent.scheduledDate.timeIntervalSince1970 >
+    for (HSBloodDonationEvent *bloodDonationEvent in bloodDonationEvents) {
+        if (bloodDonationEvent.isDone && bloodDonationEvent.scheduledDate.timeIntervalSince1970 >
                 bloodDonationEvent.scheduledDate.timeIntervalSince1970) {
             return NO;
         }

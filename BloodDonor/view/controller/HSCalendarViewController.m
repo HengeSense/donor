@@ -279,7 +279,7 @@
         pushedViewController = [[HSRemoteEventViewController alloc] initWithNibName: @"HSRemoteEventViewController"
                 bundle: nil calendar: self.calendarModel bloodTestsEvent: bloodTestsEvent];
     } else {
-        // no events was specified ob this day, so it should be created
+        // no events was specified on this day, so it should be created
         pushedViewController = [[HSEventPlanningViewController alloc] initWithNibName: @"HSEventPlanningViewController"
                 bundle: nil calendar: self.calendarModel date: dayButton.date];
     }

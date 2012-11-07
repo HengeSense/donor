@@ -11,6 +11,8 @@
 #import "HSDateTimePicker.h"
 #import "HSAddressPicker.h"
 
+#import "NSDate+HSCalendar.h"
+
 #import "MBProgressHUD.h"
 
 #pragma mark - Private types
@@ -20,6 +22,10 @@ typedef enum {
 } HSEventPlanningViewControllerMode;
 
 #pragma mark - Private constants
+#pragma mark - Default time for created events
+static const NSUInteger kEventDefaultTimeHour = 8;
+static const NSUInteger kEventDefaultTimeMinute = 0;
+
 #pragma mark - Animation constants
 static const CGFloat kViewAppearanceDuration = 0.5f;
 static const CGFloat kViewMovementDuration = 0.5f;
@@ -255,19 +261,23 @@ static const CGFloat kTabBarHeight = 55.0f;
         [self configureViewForEditingBloodDonationEvent];
         if (self.bloodTestsEvent == nil) {
             self.bloodTestsEvent = [[HSBloodTestsEvent alloc] init];
-            self.bloodTestsEvent.scheduledDate = self.initialDate;
+            self.bloodTestsEvent.scheduledDate = [self.initialDate dateMovedToHour: kEventDefaultTimeHour
+                                                                            minute: kEventDefaultTimeMinute];
         }
     } else if (self.bloodTestsEvent != nil) {
         [self configureViewForEditingBloodTestEvent];
-        if (self.bloodDonationEvent == nil) {
-            self.bloodDonationEvent = [[HSBloodDonationEvent alloc] init];
-            self.bloodDonationEvent.scheduledDate = self.initialDate;
-        }
+        self.bloodDonationEvent = [[HSBloodDonationEvent alloc] init];
+        self.bloodDonationEvent.scheduledDate = [self.initialDate dateMovedToHour: kEventDefaultTimeHour
+                                                                           minute: kEventDefaultTimeMinute];
+        self.bloodDonationEvent.bloodDonationType = HSBloodDonationType_Blood;
     } else {
         self.bloodDonationEvent = [[HSBloodDonationEvent alloc] init];
-        self.bloodDonationEvent.scheduledDate = self.initialDate;
+        self.bloodDonationEvent.scheduledDate = [self.initialDate dateMovedToHour: kEventDefaultTimeHour
+                                                                           minute: kEventDefaultTimeMinute];
+        self.bloodDonationEvent.bloodDonationType = HSBloodDonationType_Blood;
         self.bloodTestsEvent = [[HSBloodTestsEvent alloc] init];
-        self.bloodTestsEvent.scheduledDate = self.initialDate;
+        self.bloodTestsEvent.scheduledDate = [self.initialDate dateMovedToHour: kEventDefaultTimeHour
+                                                                        minute: kEventDefaultTimeMinute];
         [self configureViewForEditingBloodDonationEvent];
     }
 }
@@ -509,20 +519,29 @@ static const CGFloat kTabBarHeight = 55.0f;
 }
 
 - (NSDate *)calculateFirstAvailableDateForPlanning {
-    return [NSDate date];
+    NSCalendar *systemCalendar = [NSCalendar currentCalendar];
+    NSDateComponents *firstYearDayComponets =
+            [systemCalendar components: NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit
+                              fromDate: [NSDate date]];
+    
+    firstYearDayComponets.month = 1;
+    firstYearDayComponets.day = 1;
+    
+    return [systemCalendar dateFromComponents: firstYearDayComponets];
 }
 
 - (NSDate *)calculateLastAvailableDateForPlanning {
     
     NSCalendar *systemCalendar = [NSCalendar currentCalendar];
-    NSDateComponents *lastYearDayComponets =
+    NSDateComponents *nextYearLastYearDayComponets =
             [systemCalendar components: NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit
                               fromDate: [NSDate date]];
     
-    lastYearDayComponets.month = 12;
-    lastYearDayComponets.day = 31;
+    ++nextYearLastYearDayComponets.year;
+    nextYearLastYearDayComponets.month = 12;
+    nextYearLastYearDayComponets.day = 31;
     
-    return [systemCalendar dateFromComponents: lastYearDayComponets];
+    return [systemCalendar dateFromComponents: nextYearLastYearDayComponets];
 }
 
 @end

@@ -51,5 +51,15 @@
     return roundedSelfDate.timeIntervalSince1970 > roundedDate.timeIntervalSince1970;
 }
 
+- (NSDate *)dateMovedToHour: (NSUInteger)hour minute: (NSUInteger)minute {
+    int calendarUnits = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit |
+                        NSMinuteCalendarUnit;
+    NSDateComponents *dateComponents = [[NSCalendar currentCalendar] components: calendarUnits fromDate: self];
+    
+    dateComponents.hour = hour;
+    dateComponents.minute = minute;
+    
+    return [[NSCalendar currentCalendar] dateFromComponents: dateComponents];
+}
 
 @end

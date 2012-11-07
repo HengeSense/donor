@@ -108,11 +108,11 @@ static const NSUInteger kNumberOfSupportedBloodDonationTypes = 4;
         case 0:
             return HSBloodDonationType_Blood;
         case 1:
-            return HSBloodDonationType_Granulocytes;
+            return HSBloodDonationType_Platelets;
         case 2:
             return HSBloodDonationType_Plasma;
         case 3:
-            return HSBloodDonationType_Platelets;
+            return HSBloodDonationType_Granulocytes;
         default:
             @throw [NSException exceptionWithName: NSInternalInconsistencyException
                                            reason: @"Unknown blood donation type for the specified row." userInfo: nil];

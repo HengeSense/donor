@@ -28,4 +28,9 @@
  */
 - (BOOL)isAfterDay: (NSDate *)date;
 
+/**
+ * Returns new date object related to the same day but moved to the specified time.
+ */
+- (NSDate *) dateMovedToHour: (NSUInteger)hour minute: (NSUInteger)minute;
+
 @end
