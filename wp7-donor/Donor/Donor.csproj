@@ -366,7 +366,6 @@
     <Content Include="icons\ic_whole_blood.png" />
     <Content Include="images\ic_donors_act.png" />
     <Resource Include="images\ic_search.png" />
-    <Content Include="libs\GART.dll" />
     <Content Include="libs\Silverlight_ZXing_Core.dll" />
     <Content Include="libs\Silverlight_ZXing_Core.pdb" />
     <Content Include="MS-LPL License.txt" />

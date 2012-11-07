@@ -70,6 +70,12 @@ namespace Donor.Controls
             for (var i = 1; i <= DateTime.DaysInMonth(Date.Year, Date.Month); i++)
             {
                 DaysModel day2 = new DaysModel();
+
+                day2.DayImageRT = null;
+                day2.DayImageRT1 = null;
+                day2.DayImageRT2 = null;
+                day2.DayImageRB = null;
+                day2.DayImageLB = null;
                
                 day2.EventDay = this.Items.FirstOrDefault(a => a.Date == new DateTime(Date.Year, Date.Month, i));
                 day2.EventDayList = this.Items.Where(a => a.Date == new DateTime(Date.Year, Date.Month, i)).ToList();
@@ -109,9 +115,9 @@ namespace Donor.Controls
                     day2.PossibleBloodGive = 0;
                     if (day2.EventDayList.Count() > 0)
                     {
-                        foreach (var dayitem in day2.EventDayList)
+                        Deployment.Current.Dispatcher.BeginInvoke(() =>
                         {
-                            Deployment.Current.Dispatcher.BeginInvoke(() =>
+                            foreach (var dayitem in day2.EventDayList)
                             {
                             Uri uri = new Uri(dayitem.SmallImage, UriKind.Relative);
                             ImageSource imgSource = new BitmapImage(uri);
@@ -143,16 +149,16 @@ namespace Donor.Controls
                                     day2.DayImageLB = imgSource;
                                 };
                             };
-                            });
+                            
                         }                        
                         if (day2.PossibleBloodGive > 2)
                         {
                         };
+                        });
                     };
-
-
                 dayscount++;
                 DaysList.Add(day2);
+                
             };
 
             int dayscount2 = (int)(dayscount % 7);
