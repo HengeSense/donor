@@ -27,7 +27,6 @@ namespace Donor
             InitializeComponent();
 
             DataContext = App.ViewModel;
-            this.UpdateUserInfoView();
 
             if (App.ViewModel.User.IsLoggedIn == true)
             {
@@ -170,13 +169,6 @@ namespace Donor
                 this.AppBar.IsVisible = false;
             };
 
-            try
-            {
-                this.UpdateUserInfoView();
-            }
-            catch
-            {
-            };
         }
 
         private void RegisterButton_Click(object sender, RoutedEventArgs e)
@@ -233,14 +225,6 @@ namespace Donor
                             {
                                 this.AppBar.IsVisible = false;
                             };
-
-                            try
-                            {
-                                this.UpdateUserInfoView();
-                            }
-                            catch
-                            {
-                            };
                         }
                         else
                         {
@@ -281,9 +265,6 @@ namespace Donor
 
 
             };
-        }
-
-        private void UpdateUserInfoView() {
         }
 
         private MessagePrompt messagePrompt;
@@ -407,10 +388,8 @@ namespace Donor
         }
 
         private void SetEditFields() {
-            this.EditName.Text = App.ViewModel.User.Name;
-
-            this.EditSecondName.Text = App.ViewModel.User.SecondName;
-
+            //this.EditName.Text = App.ViewModel.User.Name;
+            //this.EditSecondName.Text = App.ViewModel.User.SecondName;
             //this.EditUserBirthday.Value = App.ViewModel.User.DateBirthday;
 
             try
@@ -578,58 +557,9 @@ namespace Donor
             }
             catch { };
 
-            try
-            {
-                App.ViewModel.User.Name = this.EditName.Text;
-            }
-            catch { };
 
-            try
-            {
-                App.ViewModel.User.SecondName = this.EditSecondName.Text;
-            }
-            catch { };
+            App.ViewModel.User.UpdateAction(null);
 
-            try
-            {
-                App.ViewModel.User.Birthday = this.EditUserBirthday.Value.GetValueOrDefault().ToShortDateString();
-            }
-            catch { };
-
-                var client = new RestClient("https://api.parse.com");
-                var request = new RestRequest("1/users/" + App.ViewModel.User.objectId.ToString(), Method.PUT);
-                request.AddHeader("Accept", "application/json");
-                request.Parameters.Clear();
-                string strJSONContent = "{\"Sex\":" + App.ViewModel.User.Sex + ", \"Name\":\"" + App.ViewModel.User.Name + "\", \"secondName\":\"" + App.ViewModel.User.SecondName + "\", \"birthday\": \"" + App.ViewModel.User.Birthday+ "\", \"BloodGroup\":" + App.ViewModel.User.BloodGroup + ", \"BloodRh\":" + App.ViewModel.User.BloodRh + "}";
-                request.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
-                request.AddHeader("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
-                request.AddHeader("X-Parse-Session-Token", App.ViewModel.User.sessionToken);
-                request.AddHeader("Content-Type", "application/json");
-                request.AddParameter("application/json", strJSONContent, ParameterType.RequestBody);
-
-                this.LoadingBar.IsIndeterminate = true;
-
-                client.ExecuteAsync(request, response =>
-                {
-                    this.LoadingBar.IsIndeterminate = false;
-                    try
-                    {
-                        JObject o = JObject.Parse(response.Content.ToString());
-                        if (o["error"] == null)
-                        {
-                            MessageBox.Show("Данные профиля обновлены.");
-                        }
-                        else
-                        {
-                            MessageBox.Show(response.Content.ToString());
-                        };
-                    }
-                    catch
-                    {
-                    };
-                });
-
-            this.UpdateUserInfoView();
 
             this.EditProfile.Visibility = Visibility.Collapsed;
 
@@ -648,25 +578,6 @@ namespace Donor
 
         }
 
-
-        /// <summary>
-        /// Logout user from account and clear saved data
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        /*private void DeleteUserButton_Click(object sender, EventArgs e)
-        {
-            App.ViewModel.User.IsLoggedIn = false;
-
-            App.ViewModel.User = new DonorUser();
-            App.ViewModel.User.UserName = "";
-            App.ViewModel.User.Password = "";
-
-            App.ViewModel.SaveUserToStorage();
-            App.ViewModel.Events.UpdateItems();
-
-            NavigationService.GoBack();
-        }*/
 
         private void Check_Checked(object sender, RoutedEventArgs e)
         {

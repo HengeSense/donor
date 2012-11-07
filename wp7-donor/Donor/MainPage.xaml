@@ -307,7 +307,7 @@
                     <StackPanel Margin="0,10">
                             <TextBlock Text="{Binding Sex, Source={StaticResource Loc}}" TextWrapping="Wrap" 
 						Style="{StaticResource Text36pxCBB2A3}"/>
-                            <TextBlock Name="ProfileSex" Text="{Binding Path=User.OutSex, Mode=TwoWay}"  
+                            <TextBlock Name="ProfileSex" Text="{Binding Path=User.OutSex}"  
 							TextWrapping="Wrap" Margin="12,-6,12,0" 
 							Style="{StaticResource Text24pxDF8D4B}"/>
                     </StackPanel>

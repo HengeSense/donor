@@ -285,14 +285,14 @@ Visibility="Collapsed" Name="SaveEditProfileButton" Click="SaveEditProfileButton
 					Style="{StaticResource Text24pxCBB2A3}"/>
                             <TextBox Name="EditName" 
 					Style="{StaticResource TextBoxStyle1}"	
-					Text="{Binding Path=App.ViewModel.User.Name, 
+					Text="{Binding Path=User.Name, 
 					Mode=TwoWay}" />
 
                             <TextBlock Text="{Binding SecondName, Source={StaticResource Loc}}" Margin="10,5,10,0"
 					Style="{StaticResource Text24pxCBB2A3}"/>
                             <TextBox Name="EditSecondName" 
 					Style="{StaticResource TextBoxStyle1}"	
-					Text="{Binding Path=App.ViewModel.User.SecondName, 
+					Text="{Binding Path=User.SecondName, 
 					Mode=TwoWay}" />
 
                             <TextBlock Text="{Binding UserBirthday, Source={StaticResource Loc}}" Margin="10,5,10,0"

@@ -30,11 +30,12 @@ namespace Donor.ViewModels
         {
             this.IsLoggedIn = false;
             this.loginCommand = new DelegateCommand(this.LoginAction);
-            this.logoutCommand = new DelegateCommand(this.LogoutAction);
+            this.updateCommand = new DelegateCommand(this.UpdateAction);
         }
 
         private ICommand loginCommand;
         private ICommand logoutCommand;
+        private ICommand updateCommand;
 
         private bool _userLoading = false;
         /// <summary>
@@ -66,7 +67,46 @@ namespace Donor.ViewModels
             this.NotifyAll();
 
             (Application.Current.RootVisual as PhoneApplicationFrame).GoBack();
-            //NavigationService.GoBack();
+        }
+
+        /// <summary>
+        /// Обновление данных профиля пользователя на parse.com
+        /// </summary>
+        /// <param name="p"></param>
+        public void UpdateAction(object p)
+        {
+            var client = new RestClient("https://api.parse.com");
+            var request = new RestRequest("1/users/" + this.objectId.ToString(), Method.PUT);
+            request.AddHeader("Accept", "application/json");
+            request.Parameters.Clear();
+            string strJSONContent = "{\"Sex\":" + this.Sex + ", \"Name\":\"" + this.Name + "\", \"secondName\":\"" + this.SecondName + "\", \"birthday\": \"" + this.Birthday + "\", \"BloodGroup\":" + this.BloodGroup + ", \"BloodRh\":" + this.BloodRh + "}";
+            request.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
+            request.AddHeader("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
+            request.AddHeader("X-Parse-Session-Token", App.ViewModel.User.sessionToken);
+            request.AddHeader("Content-Type", "application/json");
+            request.AddParameter("application/json", strJSONContent, ParameterType.RequestBody);
+
+            this.UserLoading = true;
+
+            client.ExecuteAsync(request, response =>
+            {
+                this.UserLoading = false;
+                try
+                {
+                    JObject o = JObject.Parse(response.Content.ToString());
+                    if (o["error"] == null)
+                    {
+                        MessageBox.Show("Данные профиля обновлены.");
+                    }
+                    else
+                    {
+                        //MessageBox.Show(response.Content.ToString());
+                    };
+                }
+                catch
+                {
+                };
+            });
         }
 
 
@@ -142,6 +182,16 @@ namespace Donor.ViewModels
                 return this.logoutCommand;
             }
         }
+
+
+        public ICommand UpdateCommand
+        {
+            get
+            {
+                return this.UpdateCommand;
+            }
+        }
+
 
         private string _username;
         public string UserName { get { return _username; } set { _username = value; NotifyPropertyChanged("UserName"); } }
@@ -261,13 +311,6 @@ namespace Donor.ViewModels
             } 
             set {
                 _isLoggedIn = value;
-                //App.ViewModel.CreateApplicationTile(App.ViewModel.Events.NearestEvents());
-
-                /*if (_isLoggedIn == false)
-                {
-                    this.UserName = "";
-                    this.Password = "";                 
-                };*/
 
                 NotifyPropertyChanged("IsLoggedIn");
                 NotifyPropertyChanged("GivedBlood");
