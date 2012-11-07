@@ -106,13 +106,13 @@
     }
     self.currentBloodRemoteEvent.isDone = YES;
     [self.currentBloodRemoteEvent saveWithCompletionBlock: ^(BOOL success, NSError *error) {
+        NSString *resultAlertTitle = success ? @"" : @"Ошибка";
+        NSString *resultAlertMessage = success ? @"Спасибо за спасенную жизнь!" : localizedDescriptionForError(error);
+        UIAlertView *resultAlert = [[UIAlertView alloc] initWithTitle: resultAlertTitle message:resultAlertMessage
+                delegate: nil cancelButtonTitle: @"Ок" otherButtonTitles: nil];
+        [resultAlert show];
         if (success) {
             [self.navigationController popToRootViewControllerAnimated: YES];
-        } else {
-            UIAlertView *allert = [[UIAlertView alloc] initWithTitle: @"Ошибка"
-                    message: localizedDescriptionForError(error)
-                    delegate: nil cancelButtonTitle: @"Ок" otherButtonTitles: nil];
-            [allert show];
         }
     }];
 }
