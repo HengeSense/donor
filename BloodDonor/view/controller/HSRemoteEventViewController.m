@@ -207,6 +207,7 @@
                                        reason: @"HSRemoteEventViewController was configured without remote event"
                                      userInfo: nil];
     }
+    eventPlanningViewController.title = @"Изменить";
     [self.navigationController pushViewController: eventPlanningViewController animated: YES];
 }
 

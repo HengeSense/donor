@@ -191,6 +191,9 @@ static const CGFloat kTabBarHeight = 55.0f;
     THROW_IF_ARGUMENT_NIL(date, @"date is note specified");
     self = [super initWithNibName: nibNameOrNil bundle: nibBundleOrNil];
     if (self) {
+        // UI
+        self.title = @"Планирование";
+        // Core
         self.calendar = calendar;
         self.initialDate = date;
         self.currentViewMode = HSEventPlanningViewControllerMode_BloodDonation;
@@ -203,8 +206,6 @@ static const CGFloat kTabBarHeight = 55.0f;
 
 #pragma mark - UI life cycle
 - (void) configureNavigationBar {
-    self.title = @"Планирование";
-    
     self.navigationItem.backBarButtonItem =
     [[UIBarButtonItem alloc] initWithTitle:@"Назад" style:UIBarButtonItemStyleBordered target:nil action:nil];
     
