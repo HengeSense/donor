@@ -228,8 +228,10 @@ static NSString * const kEventDate = @"date";
     }];
     
     for (HSBloodDonationEvent *event in orderedBloodDonationEvents) {
-        [self removeAllFinishRestEventsAfterDate: event.scheduledDate];
-        [self.finishRestEvents addObjectsFromArray: [event getFinishRestEvents]];
+        if (event.isDone) {
+            [self removeAllFinishRestEventsAfterDate: event.scheduledDate];
+            [self.finishRestEvents addObjectsFromArray: [event getFinishRestEvents]];
+        }
     }
 }
 
