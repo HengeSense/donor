@@ -252,7 +252,7 @@
     const NSUInteger VISIBLE_DAYS_IN_CALENDAR_MONTH = 42;
     
     const NSUInteger DAY_BUTTON_INITIAL_X = 7;
-    const NSUInteger DAY_BUTTON_INITIAL_Y = 25;
+    const NSUInteger DAY_BUTTON_INITIAL_Y = 26;
     const NSUInteger DAY_BUTTON_WIDTH = 44;
     const NSUInteger DAY_BUTTON_HEIGHT = 42;
 
@@ -279,7 +279,7 @@
                 [self.systemCalendar components: NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit |
                 NSWeekdayCalendarUnit fromDate: [self.systemCalendar dateFromComponents: visibleDayDateComponents]];
         [self.calendarImageView addSubview: dayButton];
-        dayButtonFrame.origin.x += 44;
+        dayButtonFrame.origin.x += DAY_BUTTON_WIDTH;
     }
 }
 

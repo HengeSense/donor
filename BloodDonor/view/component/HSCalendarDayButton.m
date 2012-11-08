@@ -55,7 +55,11 @@
         [self setTitleColor: [UIColor blackColor] forState: UIControlStateNormal];
         [self setTitleColor: [UIColor blackColor] forState: UIControlStateHighlighted];
         [self setTitleColor: [UIColor grayColor] forState: UIControlStateDisabled];
-
+        
+        UIColor *highlightColor = [UIColor lightGrayColor];
+        UIImage *backgroundColorImage = [self imageWithColor: highlightColor frame: self.bounds];
+        [self setBackgroundImage: backgroundColorImage forState: UIControlStateHighlighted];
+        
         self.backgroundColor = [UIColor clearColor];
         if ([self.date isTheSameDay: [NSDate date]]) {
             [self addTodayMarkerView];
@@ -90,7 +94,7 @@
     UIImage *borderImage = [UIImage imageNamed: @"calendarItemBorder.png"];
     UIImageView *borderView = [[UIImageView alloc] initWithImage: borderImage];
     CGRect borderViewFrame = borderView.frame;
-    const CGFloat kTopMargin = 2.0f;
+    const CGFloat kTopMargin = 1.0f;
     borderViewFrame.origin.y = kTopMargin;
     borderView.frame = borderViewFrame;
     [self addSubview: borderView];
@@ -118,5 +122,18 @@
     }
     
     [self setNeedsLayout];
+}
+
+- (UIImage *)imageWithColor: (UIColor *)color frame: (CGRect)frame {
+    UIGraphicsBeginImageContext(frame.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    CGContextSetFillColorWithColor(context, [color CGColor]);
+    CGContextFillRect(context, frame);
+    
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return image;
 }
 @end
