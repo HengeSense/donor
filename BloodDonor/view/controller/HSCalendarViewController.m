@@ -22,6 +22,10 @@
 #import "HSEventPlanningViewController.h"
 #import "CalendarInfoViewController.h"
 
+#warning Needs to be refactored
+#import "Common.h"
+#import "ProfileViewController.h"
+
 @interface HSCalendarViewController ()
 
 /**
@@ -69,6 +73,11 @@
  */
 - (void)updateDaysButtonsToDate: (NSDate *)date;
 
+/**
+ * Reads calendar statistic information and stores it to the permanent storage.
+ */
+- (void)updatePersistanceUserDefaults;
+
 /// @name  Action methods
 
 /**
@@ -84,12 +93,26 @@
 /// @name Utility methods for UI components creation
 - (HSCalendarDayButton *)createDayButtonWhithDate: (NSDate *)date frame: (CGRect)frame enabled: (BOOL)enabled;
 
+/**
+ * Removes all event buttons from the calendar view.
+ */
+- (void)clearCalendarView;
+
 /// @name Representation conversion methods
 
 /**
  * Converts specified month number from 1 to 12 to it's string representation.
  */
 - (NSString *) nameForMonth: (size_t) monthNumber;
+
+/// @name Authorization utility methods
+/**
+ * Returns YES, if user has already logged in.
+ */
+- (BOOL)userAuthorized;
+
+- (void)showAlertUserUnauthorized;
+- (void)navigateToLoginPage;
 
 @end
 
@@ -101,6 +124,15 @@
         self.calendarModel = [[HSCalendar alloc] init];
         self.currentDate = [NSDate date];
         self.systemCalendar = [NSCalendar currentCalendar];
+        
+        if ([PFUser currentUser] != nil) {
+            // try to prefetch data
+            [self.calendarModel pullEventsFromServer:^(BOOL success, NSError *error) {
+                if (success) {
+                    [Common getInstance].wholeBloodCount = [self.calendarModel numberOfDoneBloodDonationEvents];
+                }
+            }];
+        }
     }
     return self;
 }
@@ -112,7 +144,14 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewDidAppear: animated];
-    [self updateCalendarToDate: self.currentDate];
+    if ([self userAuthorized]) {
+        [self updateCalendarToDate: self.currentDate];
+        [self updatePersistanceUserDefaults];
+    } else {
+        [self clearCalendarView];
+        [self showAlertUserUnauthorized];
+        [self navigateToLoginPage];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -170,12 +209,15 @@
 
     MBProgressHUD *progressHud = [MBProgressHUD showHUDAddedTo: self.navigationController.view animated: YES];
     [self.calendarModel pullEventsFromServer:^(BOOL success, NSError *error) {
-        if (!success) {
+        [progressHud hide: YES];
+        if (success) {
+            [self updateDaysButtonsToDate: date];
+            self.currentDate = date;
+        } else {
+#warning TODO: Refactor to handle this situation more suitable
+            [self clearCalendarView];
             NSLog(@"Unable to load remote events due to error: %@", error);
         }
-        [progressHud hide: YES];
-        [self updateDaysButtonsToDate: date];
-        self.currentDate = date;
     }];
 }
 
@@ -190,12 +232,15 @@
             [self nameForMonth: dateComponents.month], dateComponents.year];
 }
 
-- (void)updateDaysButtonsToDate: (NSDate *)date {
-    
-    // Removes old buttons views
+- (void)clearCalendarView {
     for (UIView *view in self.calendarImageView.subviews) {
         [view removeFromSuperview];
     }
+}
+
+- (void)updateDaysButtonsToDate: (NSDate *)date {
+    
+    [self clearCalendarView];
     
     // Create new buttons views
     NSDateComponents *dateComponents = [self.systemCalendar components: NSYearCalendarUnit | NSMonthCalendarUnit |
@@ -236,6 +281,10 @@
         [self.calendarImageView addSubview: dayButton];
         dayButtonFrame.origin.x += 44;
     }
+}
+
+- (void)updatePersistanceUserDefaults {
+    [Common getInstance].wholeBloodCount = [self.calendarModel numberOfDoneBloodDonationEvents];
 }
 
 #pragma mark - Private action methods
@@ -328,5 +377,21 @@
             return @"?";
             
     }
+}
+
+#pragma mark - Private authorization utility methods
+- (BOOL)userAuthorized {
+    return [PFUser currentUser] != nil;
+}
+
+- (void)showAlertUserUnauthorized {
+    NSString *message = @"Пользователь не вошел в систему. Функции календаря недоступны.";
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Информация" message: message delegate: nil
+            cancelButtonTitle: @"Готово" otherButtonTitles: nil, nil];
+    [alert show];
+}
+- (void)navigateToLoginPage {
+#warning Not implemented yet
+    return;
 }
 @end

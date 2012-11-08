@@ -121,6 +121,13 @@ static NSString * const kEventDate = @"date";
     return resultEvents;
 }
 
+- (NSUInteger)numberOfDoneBloodDonationEvents {
+    NSPredicate *doneBloodDonationEventsPredicate =
+            [NSPredicate predicateWithFormat: @"(SELF isKindOfClass: %@) AND (isDone == YES)",
+                    [HSBloodDonationEvent class]];
+    return [[self.bloodRemoteEvents filteredArrayUsingPredicate: doneBloodDonationEventsPredicate] count];
+}
+
 #pragma mark - Remote events manipulation methods
 - (void)addBloodRemoteEvent: (HSBloodRemoteEvent *)bloodRemoteEvent completion: (CompletionBlockType)completion {
     THROW_IF_ARGUMENT_NIL(bloodRemoteEvent, @"bloodRemoteEvent is not specified");

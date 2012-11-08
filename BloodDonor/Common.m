@@ -10,7 +10,7 @@
 
 @implementation Common
 
-@synthesize wholeBloodCount, lastWholeBloodDate;
+@synthesize lastWholeBloodDate;
 
 @synthesize email, name, password, userObjectId, sex, bloodGroup, bloodRH, events, eventTimeReminderIndex, availablePlasmaDateComponents, availablePlateletsDateComponents, availableWholeBloodDateComponents, eventStationAddress;
 @synthesize isNeedClosingEvent, isNeedExpressSearch, isNeedPassword, isNeedPlasmaPush, isNeedPlateletsPush, isNeedPushAnnotations, isNeedReminders, isNeedWholeBloodPush;
@@ -175,6 +175,16 @@ static void singleton_remover()
     isNeedPlasmaPush = isNeed;
     [defaults setBool:isNeed forKey:@"isNeedPlasmaPush"];
     [defaults synchronize];
+}
+
+- (void)setWholeBloodCount:(int)wholeBloodCount
+{
+    [defaults setInteger: wholeBloodCount forKey:@"wholeBloodCount"];
+    [defaults synchronize];
+}
+
+- (int)wholeBloodCount {
+    return [defaults integerForKey:@"wholeBloodCount"];
 }
 
 - (void)dealloc

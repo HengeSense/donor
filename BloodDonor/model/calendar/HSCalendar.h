@@ -58,4 +58,9 @@
  */
 - (NSArray *)eventsForDay: (NSDate *)dayDate;
 
+/**
+ * Returns done blood donation event total number.
+ */
+- (NSUInteger)numberOfDoneBloodDonationEvents;
+
 @end

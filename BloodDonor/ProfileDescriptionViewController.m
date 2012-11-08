@@ -230,6 +230,10 @@
     selectBoodGroupViewController.delegate = self;
     sexSelectViewController = [[ProfileSexSelectViewController alloc] init];
     sexSelectViewController.delegate = self;
+    
+    bloodDonationCountLabel.text = [NSString stringWithFormat:@"%d", [Common getInstance].wholeBloodCount];
+    Common *commonStorage = [Common getInstance];
+    [commonStorage addObserver: self forKeyPath: @"wholeBloodCount" options: NSKeyValueChangeReplacement context: nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -280,7 +284,6 @@
     nameTextField.textColor = [UIColor colorWithRed:132.0f/255.0f green:113.0f/255.0f blue:104.0f/255.0f alpha:1];
     //Приватное свойство!
     [nameTextField setValue:[UIColor colorWithRed:132.0f/255.0f green:113.0f/255.0f blue:104.0f/255.0f alpha:1] forKeyPath:@"_placeholderLabel.textColor"];
-    bloodDonationCountLabel.text = [NSString stringWithFormat:@"%d", [Common getInstance].wholeBloodCount];
     
     NSDateFormatter *dateFormat = [[[NSDateFormatter alloc] init] autorelease];
     [dateFormat setDateFormat:@"dd.MM.yyyy"];
@@ -316,11 +319,24 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+- (void)viewDidUnload {
+    [[Common getInstance] removeObserver: self forKeyPath: @"wholeBloodCount"];
+    [super viewDidUnload];
+}
+
 - (void)dealloc
 {
     [sexSelectViewController release];
     [selectBoodGroupViewController release];
     [super dealloc];
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if ([keyPath isEqualToString: @"wholeBloodCount"])
+    {
+        bloodDonationCountLabel.text = [NSString stringWithFormat:@"%d", [Common getInstance].wholeBloodCount];
+    }
 }
 
 @end
