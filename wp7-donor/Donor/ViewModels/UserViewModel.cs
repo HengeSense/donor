@@ -250,7 +250,7 @@ namespace Donor.ViewModels
             }
         }
 
-        private DateTime _dateBirthday;
+        private DateTime _dateBirthday = DateTime.Today;
         public DateTime DateBirthday
         {
             get
