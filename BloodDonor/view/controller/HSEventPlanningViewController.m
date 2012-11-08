@@ -347,7 +347,8 @@ static const CGFloat kTabBarHeight = 55.0f;
 }
 
 - (IBAction)selectBloodDonationType: (id)sender {
-    [self.bloodDonationTypePicker showInView: self.tabBarController.view bloodDonationType: HSBloodDonationType_Blood
+    [self.bloodDonationTypePicker showInView: self.tabBarController.view
+                           bloodDonationType: self.bloodDonationEvent.bloodDonationType
     completion:^(BOOL isDone) {
         if (isDone) {
             self.bloodDonationTypeLabel.text =
