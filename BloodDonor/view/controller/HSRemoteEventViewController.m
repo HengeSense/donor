@@ -183,7 +183,7 @@
         CGSize bloodTestsSize = self.bloodTestsView.bounds.size;
         self.bloodTestsView.frame = CGRectMake(0.0f, 0.0f, bloodTestsSize.width, bloodTestsSize.height);
         self.bloodTestsDateLabel.text = [self.bloodTestsEvent formatScheduledDate];
-        self.bloodTestsCommentsLabel.text = self.bloodDonationEvent.comments;
+        self.bloodTestsCommentsLabel.text = self.bloodTestsEvent.comments;
         self.bloodTestsLabAddressLabel.text = self.bloodTestsEvent.labAddress;
         [self.rootScrollView addSubview: self.bloodTestsView];
         rootScrollViewContentSize.height += bloodTestsSize.height;
