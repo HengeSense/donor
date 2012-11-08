@@ -110,6 +110,9 @@ static const CGFloat kTabBarHeight = 55.0f;
  */
 - (void)configureViewForEditingBloodTestEvent;
 
+/// @name Private UI utility methods
+- (void)sayThanksToUser;
+
 /// @name Private UI action handlers
 
 /**
@@ -146,8 +149,10 @@ static const CGFloat kTabBarHeight = 55.0f;
  */
 - (void)keyboardWillHide: (NSNotification *)notification;
 
+/// @name Utility methods
+
 /**
- * Calculates first date availbale for blanning blood donation.
+ * Calculates first date availbale for planning blood donation.
  */
 - (NSDate *)calculateFirstAvailableDateForPlanning;
 
@@ -439,6 +444,15 @@ static const CGFloat kTabBarHeight = 55.0f;
     self.bloodDonationCenterAddressLabel.text = self.currentEditedEvent.labAddress;
 }
 
+#pragma mark - Private UI utility methods
+- (void)sayThanksToUser {
+    NSString *thanksTitle = @"Спасибо, Вы сдали кровь!";
+    NSString *thanks = @"Рассчитан интервал до следующей возможной кроводачи";
+    UIAlertView *thaksAlert = [[UIAlertView alloc] initWithTitle: thanksTitle message: thanks delegate: nil
+                                               cancelButtonTitle: @"Готово" otherButtonTitles: nil];
+    [thaksAlert show];
+}
+
 #pragma mark - Private UI action handlers
 - (void)donePlanningButtonClicked: (id)sender {
     MBProgressHUD *progressHud = [MBProgressHUD showHUDAddedTo: self.navigationController.view animated: YES];
@@ -448,9 +462,15 @@ static const CGFloat kTabBarHeight = 55.0f;
     } else {
         self.currentEditedEvent.isDone = NO;
     }
+    
+    __weak HSEventPlanningViewController *weakSelf = self;
     [self.calendar addBloodRemoteEvent: self.currentEditedEvent completion: ^(BOOL success, NSError *error) {
+        __strong HSEventPlanningViewController *strongSelf = weakSelf;
         [progressHud hide: YES];
         if (success) {
+            if (self.currentEditedEvent.isDone) {
+                [strongSelf sayThanksToUser];
+            }
             [self.navigationController popToRootViewControllerAnimated: YES];
         } else {
             UIAlertView *allert = [[UIAlertView alloc] initWithTitle: @"Ошибка"
