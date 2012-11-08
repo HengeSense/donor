@@ -80,30 +80,30 @@ static const size_t const REST_PERIODS_TABLE[4][4] =
     
     const size_t kSecondsInDay = 24 * 60 * 60;
     
-    NSDate *finishRestDateForBlood =
-            [NSDate dateWithTimeInterval: REST_PERIODS_TABLE[self.bloodDonationType][HSBloodDonationType_Blood] * kSecondsInDay
-                               sinceDate: beginingDay];
+    NSUInteger restPeriodForBlood = REST_PERIODS_TABLE[self.bloodDonationType][HSBloodDonationType_Blood];
+    NSDate *finishRestDateForBlood = [NSDate dateWithTimeInterval: (restPeriodForBlood + 1) * kSecondsInDay
+                                                        sinceDate: beginingDay];
     HSFinishRestEvent *finishRestEventForBlood = [[HSFinishRestEvent alloc] init];
     finishRestEventForBlood.bloodDonationType = HSBloodDonationType_Blood;
     finishRestEventForBlood.scheduledDate = finishRestDateForBlood;
     
-//    NSDate *finishRestDateForGranulocytes =
-//            [NSDate dateWithTimeInterval: REST_PERIODS_TABLE[self.bloodDonationType][HSBloodDonationType_Granulocytes] * kSecondsInDay
+//    NSUInteger restPeriodForGranulocytes = REST_PERIODS_TABLE[self.bloodDonationType][HSBloodDonationType_Granulocytes];
+//    NSDate *finishRestDateForGranulocytes = [NSDate dateWithTimeInterval: (restPeriodForGranulocytes + 1) * kSecondsInDay
 //                               sinceDate: beginingDay];
 //    HSFinishRestEvent *finishRestEventForGranulocytes = [[HSFinishRestEvent alloc] init];
 //    finishRestEventForGranulocytes.bloodDonationType = HSBloodDonationType_Granulocytes;
 //    finishRestEventForGranulocytes.scheduledDate = finishRestDateForGranulocytes;
 
-    NSDate *finishRestDateForPlasma =
-            [NSDate dateWithTimeInterval: REST_PERIODS_TABLE[self.bloodDonationType][HSBloodDonationType_Plasma] * kSecondsInDay
-                               sinceDate: beginingDay];
+    NSUInteger restPeriodForPlasma = REST_PERIODS_TABLE[self.bloodDonationType][HSBloodDonationType_Plasma];
+    NSDate *finishRestDateForPlasma = [NSDate dateWithTimeInterval: (restPeriodForPlasma + 1) * kSecondsInDay
+                                                         sinceDate: beginingDay];
     HSFinishRestEvent *finishRestEventForPlasma = [[HSFinishRestEvent alloc] init];
     finishRestEventForPlasma.bloodDonationType = HSBloodDonationType_Plasma;
     finishRestEventForPlasma.scheduledDate = finishRestDateForPlasma;
     
-    NSDate *finishRestDateForPlatelets =
-            [NSDate dateWithTimeInterval: REST_PERIODS_TABLE[self.bloodDonationType][HSBloodDonationType_Platelets] * kSecondsInDay
-                               sinceDate: beginingDay];
+    NSUInteger restPeriodForPlateletes = REST_PERIODS_TABLE[self.bloodDonationType][HSBloodDonationType_Platelets];
+    NSDate *finishRestDateForPlatelets = [NSDate dateWithTimeInterval: (restPeriodForPlateletes + 1) * kSecondsInDay
+                                                            sinceDate: beginingDay];
     HSFinishRestEvent *finishRestEventForPlatelets = [[HSFinishRestEvent alloc] init];
     finishRestEventForPlatelets.bloodDonationType = HSBloodDonationType_Platelets;
     finishRestEventForPlatelets.scheduledDate = finishRestDateForPlatelets;
