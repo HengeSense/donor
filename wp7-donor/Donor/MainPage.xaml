@@ -280,7 +280,8 @@
 					BorderBrush="#FF4186A3" 
 					FontFamily="Segoe WP Regular"
 					Name="Login" Content="{Binding Login, Source={StaticResource Loc}}" 
-					Foreground="#FFFFFFFF" Command="{Binding Path=User.LoginCommand}" />
+					Foreground="#FFFFFFFF" 
+                    Command="{Binding Path=User.LoginCommand}" />
                         <!-- Click="Login_Click" Command="{Binding Path=User.LoginCommand}" -->
 
                     <Button 
@@ -288,7 +289,8 @@
 					Background="#FF4186A3" 
 					BorderBrush="#FF4186A3" 
 					FontFamily="Segoe WP Regular"
-					Name="Register" Content="{Binding Registration, Source={StaticResource Loc}}" 
+					Name="Register" 
+                    Content="{Binding Registration, Source={StaticResource Loc}}" 
 					Foreground="#FFFFFFFF" Click="Register_Click" />
 
                         <TextBlock 
@@ -300,14 +302,14 @@
                     <StackPanel>
                         <TextBlock Text="{Binding Name, Source={StaticResource Loc}}"  TextWrapping="Wrap" 
 						Style="{StaticResource Text36pxCBB2A3}"/>
-                            <TextBlock Text="{Binding Path=User.Name}" 
+                            <TextBlock Text="{Binding Path=User.Name, Mode=TwoWay}" 
 						Name="ProfileName" TextWrapping="Wrap" Margin="12,-6,12,0" 
 						Style="{StaticResource Text24pxDF8D4B}"/>
                     </StackPanel>
                     <StackPanel Margin="0,10">
                             <TextBlock Text="{Binding Sex, Source={StaticResource Loc}}" TextWrapping="Wrap" 
 						Style="{StaticResource Text36pxCBB2A3}"/>
-                            <TextBlock Name="ProfileSex" Text="{Binding Path=User.OutSex}"  
+                            <TextBlock Name="ProfileSex" Text="{Binding Path=User.OutSex, Mode=TwoWay}"  
 							TextWrapping="Wrap" Margin="12,-6,12,0" 
 							Style="{StaticResource Text24pxDF8D4B}"/>
                     </StackPanel>

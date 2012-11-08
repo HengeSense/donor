@@ -284,6 +284,11 @@ namespace Donor
             messagePrompt.Show();
         }
 
+        /// <summary>
+        /// Отправляем запрос на parse.com для востановления пароля
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         void messagePrompt_Completed(object sender, PopUpEventArgs<string, PopUpResult> e)
         {
             string _email = ((messagePrompt.Body as StackPanel).Children.FirstOrDefault(c => (c as FrameworkElement).Name == "RestoreEmail") as TextBox).Text.ToString();

@@ -84,6 +84,8 @@ namespace Donor
                 if (hasNetworkConnection) {} else { MessageBox.Show(Donor.AppResources.CantEnterCheckNetwork); };
 
             } catch {};
+
+            App.ViewModel.User.NotifyAll();
         }
 
         private void TextBlock_Tap(object sender, System.Windows.Input.GestureEventArgs e)
@@ -157,7 +159,7 @@ namespace Donor
             catch
             {
             };
-
+            App.ViewModel.User.NotifyAll();
             App.ViewModel.Events.UpdateItems();
 
             _userLoaded = true;

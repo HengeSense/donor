@@ -31,6 +31,7 @@ namespace Donor.ViewModels
             this.IsLoggedIn = false;
             this.loginCommand = new DelegateCommand(this.LoginAction);
             this.updateCommand = new DelegateCommand(this.UpdateAction);
+            //this.updateCommand = new DelegateCommand(this.UpdateAction);
         }
 
         private ICommand loginCommand;
@@ -60,6 +61,9 @@ namespace Donor.ViewModels
             this.IsLoggedIn = false;
             this.UserName = "";
             this.Password = "";
+
+            App.ViewModel.User.UserName = "";
+            App.ViewModel.User.Password = "";
 
             App.ViewModel.SaveUserToStorage();
             App.ViewModel.Events.UpdateItems();
@@ -143,11 +147,15 @@ namespace Donor.ViewModels
                             App.ViewModel.Events.LoadEventsParse();
 
                             App.ViewModel.OnUserEnter(EventArgs.Empty);
+                            this.NotifyAll();
+                            App.ViewModel.User.NotifyAll();
                         }
                         else
                         {
                             App.ViewModel.User.IsLoggedIn = false;
                             MessageBox.Show(Donor.AppResources.UncorrectLoginData);
+                            this.NotifyAll();
+                            App.ViewModel.User.NotifyAll();
                         };
                         UserLoading = false;
                     }
