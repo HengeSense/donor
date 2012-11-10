@@ -19,8 +19,7 @@ namespace Donor
         public CalendarMonthPage()
         {
             InitializeComponent();
-            DataContext = App.ViewModel;
-            //this.Calendar1.Items = App.ViewModel.Events.Items;
+            DataContext = App.ViewModel;            
 
             this.PageTitle.Text = CultureInfo.CurrentCulture.DateTimeFormat.MonthNames[App.ViewModel.Events.CurrentMonth.Month - 1];
             this.ApplicationTitle.Text = App.ViewModel.Events.CurrentMonth.Year.ToString();
@@ -28,14 +27,23 @@ namespace Donor
             var gl = GestureService.GetGestureListener(this.Calendar1);
             gl.Flick += new EventHandler<Microsoft.Phone.Controls.FlickGestureEventArgs>(GestureListener_Flick);
 
-            var glVerticalDrag = GestureService.GetGestureListener(this.Calendar1);            
-            glVerticalDrag.DragCompleted += new EventHandler<Microsoft.Phone.Controls.DragCompletedGestureEventArgs>(DragListener);
+            //var glVerticalDrag = GestureService.GetGestureListener(this.Calendar1);            
+            //glVerticalDrag.DragCompleted += new EventHandler<Microsoft.Phone.Controls.DragCompletedGestureEventArgs>(DragListener);
         }
 
         private void LayoutRoot_Loaded(object sender, RoutedEventArgs e)
         {
             this.PageTitle.Text = CultureInfo.CurrentCulture.DateTimeFormat.MonthNames[App.ViewModel.Events.CurrentMonth.Month - 1];
             this.ApplicationTitle.Text = App.ViewModel.Events.CurrentMonth.Year.ToString();
+
+            this.Calendar1.UpdateCalendar();
+        }
+
+        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+
+            this.Calendar1.UpdateCalendar();
         }
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
@@ -207,22 +215,6 @@ namespace Donor
                     this.Calendar1.UpdateCalendar();
                 };
             };
-        }
-
-        private void DragListener(object sender, Microsoft.Phone.Controls.DragCompletedGestureEventArgs e)
-        {
-            /*move = e;
-            if (e.Direction == System.Windows.Controls.Orientation.Vertical)
-            {
-                if (e.VerticalVelocity < 0)
-                {
-                    StartAnimationTop2();
-                }
-                else
-                {
-                    StartAnimationTop();
-                };
-            };*/
         }
 
         private void TodayButton_Click(object sender, EventArgs e)

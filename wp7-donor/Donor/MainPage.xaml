@@ -11,15 +11,15 @@
     xmlns:Controls="clr-namespace:Coding4Fun.Phone.Controls;assembly=Coding4Fun.Phone.Controls"
     xmlns:ControlsConv="clr-namespace:Coding4Fun.Phone.Controls.Converters;assembly=Coding4Fun.Phone.Controls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-    xmlns:tilteffect="clr-namespace:ControlTiltEffect"
+    xmlns:tilteffect="clr-namespace:ControlTiltEffect"   
     mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="800" 
-    d:DataContext="{d:DesignData SampleData/MainViewModelSampleData.xaml}"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
-    SupportedOrientations="Portrait"  Orientation="Portrait"
-    shell:SystemTray.IsVisible="False" Loaded="PhoneApplicationPage_Loaded" 
-	DataContext="{Binding Path=App.ViewModel,Source=App.ViewModel}">
+    SupportedOrientations="Portrait"  Orientation="Portrait"    
+    shell:SystemTray.IsVisible="False" Loaded="PhoneApplicationPage_Loaded">
+    <!-- DataContext="{Binding Path=App.ViewModel,Source=App.ViewModel}"
+     d:DataContext="{d:DesignData SampleData/MainViewModelSampleData.xaml}" -->
     
 	    <phone:PhoneApplicationPage.Resources>
             <ControlsConv:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
@@ -302,26 +302,26 @@
                     <StackPanel>
                         <TextBlock Text="{Binding Name, Source={StaticResource Loc}}"  TextWrapping="Wrap" 
 						Style="{StaticResource Text36pxCBB2A3}"/>
-                            <TextBlock Text="{Binding Path=User.Name, Mode=TwoWay}" 
+                            <TextBlock Text="{Binding Path=User.Name}" 
 						Name="ProfileName" TextWrapping="Wrap" Margin="12,-6,12,0" 
 						Style="{StaticResource Text24pxDF8D4B}"/>
                     </StackPanel>
                     <StackPanel Margin="0,10">
                             <TextBlock Text="{Binding Sex, Source={StaticResource Loc}}" TextWrapping="Wrap" 
 						Style="{StaticResource Text36pxCBB2A3}"/>
-                            <TextBlock Name="ProfileSex" Text="{Binding Path=User.OutSex, Mode=TwoWay}"  
+                            <TextBlock Name="ProfileSex" Text="{Binding Path=User.OutSex}"  
 							TextWrapping="Wrap" Margin="12,-6,12,0" 
 							Style="{StaticResource Text24pxDF8D4B}"/>
                     </StackPanel>
                     <StackPanel Margin="0,10">
                             <TextBlock Text="{Binding BloodGroup, Source={StaticResource Loc}}" TextWrapping="Wrap" 
 						Style="{StaticResource Text36pxCBB2A3}"/>
-                            <TextBlock Text="{Binding Path=User.OutBloodDataString, Mode=TwoWay}" Name="ProfileBloodGroup" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                            <TextBlock Text="{Binding Path=User.OutBloodDataString}" Name="ProfileBloodGroup" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
                     </StackPanel>
                     <StackPanel Margin="0,10">
                             <TextBlock Text="{Binding GivedBloodCount, Source={StaticResource Loc}}" TextWrapping="Wrap" 
 						Style="{StaticResource Text36pxCBB2A3}"/>
-                            <TextBlock Text="{Binding Path=User.GivedBlood, Mode=TwoWay}" TextWrapping="Wrap" Margin="12,-6,12,0" Name="GivedBlood" Style="{StaticResource Text24pxDF8D4B}"/>
+                            <TextBlock Text="{Binding Path=User.GivedBlood}" TextWrapping="Wrap" Margin="12,-6,12,0" Name="GivedBlood" Style="{StaticResource Text24pxDF8D4B}"/>
                     </StackPanel>
 					<Button 
 					FontSize="24"

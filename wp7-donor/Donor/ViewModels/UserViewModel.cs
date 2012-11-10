@@ -61,14 +61,19 @@ namespace Donor.ViewModels
             this.IsLoggedIn = false;
             this.UserName = "";
             this.Password = "";
+            this.NotifyAll();
+
+            //App.ViewModel.User = new DonorUser();
 
             App.ViewModel.User.UserName = "";
             App.ViewModel.User.Password = "";
+            this.NotifyAll();
 
             App.ViewModel.SaveUserToStorage();
+
             App.ViewModel.Events.UpdateItems();
 
-            this.NotifyAll();
+            
 
             (Application.Current.RootVisual as PhoneApplicationFrame).GoBack();
         }
@@ -106,6 +111,7 @@ namespace Donor.ViewModels
                     {
                         //MessageBox.Show(response.Content.ToString());
                     };
+                    ClassToUser();
                 }
                 catch
                 {
@@ -114,11 +120,11 @@ namespace Donor.ViewModels
         }
 
 
-        private void LoginAction(object p)
+        public void LoginAction(object p)
         {
-            try
-            {
-                UserLoading = true;
+            //try
+            //{
+                App.ViewModel.User.UserLoading = true;
 
                 string passwordCurrent = this.Password;
 
@@ -138,7 +144,11 @@ namespace Donor.ViewModels
                         if (o["error"] == null)
                         {
                             App.ViewModel.User = JsonConvert.DeserializeObject<DonorUser>(response.Content.ToString());
+                            ClassToUser();
+
                             App.ViewModel.User.IsLoggedIn = true;
+                            this.IsLoggedIn = true;
+                            this.Password = passwordCurrent;
                             App.ViewModel.User.Password = passwordCurrent;
 
                             App.ViewModel.SaveUserToStorage();
@@ -146,27 +156,31 @@ namespace Donor.ViewModels
                             App.ViewModel.Events.WeekItemsUpdated();
                             App.ViewModel.Events.LoadEventsParse();
 
-                            App.ViewModel.OnUserEnter(EventArgs.Empty);
-                            this.NotifyAll();
+                            App.ViewModel.SaveUserToStorage();
+
                             App.ViewModel.User.NotifyAll();
+                            this.NotifyAll();
+
+                            App.ViewModel.OnUserEnter(EventArgs.Empty);
                         }
                         else
                         {
                             App.ViewModel.User.IsLoggedIn = false;
                             MessageBox.Show(Donor.AppResources.UncorrectLoginData);
-                            this.NotifyAll();
+
                             App.ViewModel.User.NotifyAll();
+                            this.NotifyAll();
                         };
-                        UserLoading = false;
+                        App.ViewModel.User.UserLoading = false;
                     }
                     catch {
-                        UserLoading = false;
+                        App.ViewModel.User.UserLoading = false;
                     };
                 });
-            }
-            catch {
-                UserLoading = false;
-            };
+            //}
+            //catch {
+            //    App.ViewModel.User.UserLoading = false;
+            //};
         }
 
         /// <summary>
@@ -202,7 +216,15 @@ namespace Donor.ViewModels
 
 
         private string _username;
-        public string UserName { get { return _username; } set { _username = value; NotifyPropertyChanged("UserName"); } }
+        public string UserName { 
+            get { return _username; } 
+            set {
+                if (_username != value)
+                {
+                    _username = value; NotifyPropertyChanged("UserName");
+                };
+            } 
+        }
         
         private string _name;
         /// <summary>
@@ -268,6 +290,8 @@ namespace Donor.ViewModels
 
         public void NotifyAll()
         {
+            ClassToUser();
+
             NotifyPropertyChanged("Name");
             NotifyPropertyChanged("UserName");
             NotifyPropertyChanged("Birthday");
@@ -280,6 +304,47 @@ namespace Donor.ViewModels
             NotifyPropertyChanged("GivedBlood");
         }
 
+        public void ClassToUser()
+        {
+            this.UserLoading = App.ViewModel.User.UserLoading;
+            this.UserName = App.ViewModel.User.UserName;
+            this.Name = App.ViewModel.User.Name;
+            this.SecondName = App.ViewModel.User.SecondName;
+            this.Sex = App.ViewModel.User.Sex;
+            this.sessionToken = App.ViewModel.User.sessionToken;
+            this.objectId = App.ViewModel.User.objectId;
+            this.Birthday = App.ViewModel.User.Birthday;
+            this.BloodGroup = App.ViewModel.User.BloodGroup;
+            this.BloodRh = App.ViewModel.User.BloodRh;
+            this.CreatedAt = App.ViewModel.User.CreatedAt;
+            this.DateBirthday = App.ViewModel.User.DateBirthday;
+            this.FacebookId = App.ViewModel.User.FacebookId;
+            this.GivedBlood = App.ViewModel.User.GivedBlood;
+            this.IsFacebookLoggedIn = App.ViewModel.User.IsFacebookLoggedIn;
+            this.IsLoggedIn = App.ViewModel.User.IsLoggedIn;
+            this.Password = App.ViewModel.User.Password;
+        }
+
+        public void UserToClass()
+        {
+            App.ViewModel.User.UserLoading = this.UserLoading;
+            App.ViewModel.User.UserName = this.UserName;
+            App.ViewModel.User.Name = this.Name;
+            App.ViewModel.User.SecondName = this.SecondName;
+            App.ViewModel.User.Sex = this.Sex;
+            App.ViewModel.User.sessionToken = this.sessionToken;
+            App.ViewModel.User.objectId = this.objectId;
+            App.ViewModel.User.Birthday = this.Birthday;
+            App.ViewModel.User.BloodGroup = this.BloodGroup;
+            App.ViewModel.User.BloodRh = this.BloodRh;
+            App.ViewModel.User.CreatedAt = this.CreatedAt;
+            App.ViewModel.User.DateBirthday = this.DateBirthday;
+            App.ViewModel.User.FacebookId = this.FacebookId;
+            App.ViewModel.User.GivedBlood = this.GivedBlood;
+            App.ViewModel.User.IsFacebookLoggedIn = this.IsFacebookLoggedIn;
+            App.ViewModel.User.IsLoggedIn = this.IsLoggedIn;
+            App.ViewModel.User.Password = this.Password;
+        }
 
         public void RestoreUserPassword(string email) {
             var client = new RestClient("https://api.parse.com");
@@ -309,7 +374,15 @@ namespace Donor.ViewModels
 
 
         private string _password;
-        public string Password { get { return _password; } set { _password = value; NotifyPropertyChanged("Password"); } }
+        public string Password { 
+            get { return _password; } 
+            set {
+                if (_password!=value)
+                {
+                    _password = value; NotifyPropertyChanged("Password"); 
+                };
+            } 
+        }
 
 
         public DateTime? UpdatedAt { get; set; }

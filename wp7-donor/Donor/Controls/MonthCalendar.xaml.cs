@@ -35,8 +35,8 @@ namespace Donor.Controls
             //this.CalendarDays.ItemsSource = null;
 
             var bw = new BackgroundWorker();
-            bw.DoWork += delegate
-            {
+            //bw.DoWork += delegate
+            //{
 
             int dayscount = 0;
             this.Items = App.ViewModel.Events.ThisMonthItems;
@@ -78,6 +78,8 @@ namespace Donor.Controls
                 day2.DayImageLB = null;
                
                 day2.EventDay = this.Items.FirstOrDefault(a => a.Date == new DateTime(Date.Year, Date.Month, i));
+
+                day2.EventDayList = null;
                 day2.EventDayList = this.Items.Where(a => a.Date == new DateTime(Date.Year, Date.Month, i)).ToList();
 
                 if (day2.EventDay != null) {
@@ -87,36 +89,36 @@ namespace Donor.Controls
                     /// show border for current day
                     if ((DateTime.Now.Day == i) && (Date.Month == DateTime.Now.Month))
                     {
-                        Deployment.Current.Dispatcher.BeginInvoke(() =>
-                        {
+                        //Deployment.Current.Dispatcher.BeginInvoke(() =>
+                        //{
                             day2.CurrentColor = new SolidColorBrush(new Color() { A = 1, B = 238, G = 31, R = 173 });
                             day2.BorderColor = new SolidColorBrush(Colors.Red);
-                        });
+                        //});
                     };
 
                     day2.MonthNumber = Date.Month;
                     day2.YearNumber = Date.Year;
                     day2.DayNumber = i.ToString();
-                    Deployment.Current.Dispatcher.BeginInvoke(() =>
-                    {
+                    //Deployment.Current.Dispatcher.BeginInvoke(() =>
+                    //{
                         day2.TextColor = new SolidColorBrush(Colors.Black);
-                    });
+                    //});
                     day2.Inactive = false;
 
                     if ((day2.EventDay != null) && (day2.EventDay.Type == "Праздник"))
                     {
-                        Deployment.Current.Dispatcher.BeginInvoke(() =>
-                        {
+                        //Deployment.Current.Dispatcher.BeginInvoke(() =>
+                        //{
                             Color darkred = new Color() { A = 255, B = 111, G = 63, R = 209 };
                             day2.TextColor = new SolidColorBrush(darkred);
-                        });
+                        //});
                     };
 
                     day2.PossibleBloodGive = 0;
                     if (day2.EventDayList.Count() > 0)
                     {
-                        Deployment.Current.Dispatcher.BeginInvoke(() =>
-                        {
+                        //Deployment.Current.Dispatcher.BeginInvoke(() =>
+                        //{
                             foreach (var dayitem in day2.EventDayList)
                             {
                             Uri uri = new Uri(dayitem.SmallImage, UriKind.Relative);
@@ -142,11 +144,17 @@ namespace Donor.Controls
                             {
                                 if (dayitem.Finished == true)
                                 {
-                                    day2.DayImageRB = imgSource;
+                                    if (day2.DayImageLB == null)
+                                    {
+                                        day2.DayImageRB = imgSource;
+                                    };
                                 }
                                 else
                                 {
-                                    day2.DayImageLB = imgSource;
+                                    if (day2.DayImageLB == null)
+                                    {
+                                        day2.DayImageLB = imgSource;
+                                    };
                                 };
                             };
                             
@@ -154,11 +162,12 @@ namespace Donor.Controls
                         if (day2.PossibleBloodGive > 2)
                         {
                         };
-                        });
+                        //});
                     };
                 dayscount++;
                 DaysList.Add(day2);
-                
+                day2.EventDayList = null;
+                day2 = null;
             };
 
             int dayscount2 = (int)(dayscount % 7);
@@ -169,28 +178,26 @@ namespace Donor.Controls
                     DaysModel day3 = new DaysModel();
                     day3.ImagePath = "";
 
-
                         day3.DayNumber = i.ToString();
                         day3.MonthNumber = Date.AddMonths(1).Month;
                         day3.YearNumber = FirstDayPrev.AddMonths(1).Year;
                         day3.Inactive = true;
-                        Deployment.Current.Dispatcher.BeginInvoke(() =>
-                        {
+                        //Deployment.Current.Dispatcher.BeginInvoke(() =>
+                        //{
                             day3.TextColor = new SolidColorBrush(Colors.Gray);
-                        });
+                        //});
                         DaysList.Add(day3);
                 };
             };
 
 
 
-            Deployment.Current.Dispatcher.BeginInvoke(() =>
-                {
+            //Deployment.Current.Dispatcher.BeginInvoke(() =>
+                //{
                     this.CalendarDays.ItemsSource = DaysList;
-                });            
-            };
-
-            bw.RunWorkerAsync();  
+                //});            
+            //};
+            //bw.RunWorkerAsync();  
         }
 
         public DateTime Date { get; set; }

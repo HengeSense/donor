@@ -86,7 +86,7 @@
                                             
                                            <Image 
                                            Name="DayImageLB" Margin="0,0,0,4"
-                                               Grid.Row="2" Height="18" Source="{Binding DayImageLB}"
+                                               Grid.Row="2" Height="18" Source="{Binding Path=DayImageLB}"
                                                Grid.Column="0" HorizontalAlignment="Left" 
                                                VerticalAlignment="Bottom" />
 

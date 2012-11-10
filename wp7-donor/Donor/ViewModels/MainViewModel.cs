@@ -292,40 +292,8 @@ namespace Donor
                         App.ViewModel.OnUserEnter(EventArgs.Empty);
                     }
                     else {
-                    App.ViewModel.User.IsLoggedIn = false;
-
-                    var client = new RestClient("https://api.parse.com");
-                    var request = new RestRequest("1/login?include=events&username=" + Uri.EscapeUriString(App.ViewModel.User.UserName.ToLower()) + "&password=" + Uri.EscapeUriString(App.ViewModel.User.Password), Method.GET);
-                    request.Parameters.Clear();
-                    request.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
-                    request.AddHeader("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
-
-                    client.ExecuteAsync(request, response =>
-                    {
-                        try
-                        {
-                            JObject o = JObject.Parse(response.Content.ToString());
-                            if (o["error"] == null)
-                            {
-                                App.ViewModel.User = JsonConvert.DeserializeObject<DonorUser>(response.Content.ToString());
-                                App.ViewModel.User.IsLoggedIn = true;
-
-                                App.ViewModel.Events.WeekItemsUpdated();
-                                App.ViewModel.OnUserEnter(EventArgs.Empty);
-
-                                App.ViewModel.Events.LoadEventsParse();
-
-                            }
-                            else
-                            {
-                                App.ViewModel.User.IsLoggedIn = false;
-                                App.ViewModel.OnUserEnter(EventArgs.Empty);
-                            };
-                        }
-                        catch { };
-
-                        NotifyPropertyChanged("User");
-                    });
+                        App.ViewModel.User.IsLoggedIn = false;
+                        App.ViewModel.User.LoginAction(null);
                 };
                 }
                 catch
@@ -449,30 +417,6 @@ namespace Donor
                     });
                 };
 
-                try
-                {
-                    /*ObservableCollection<StationViewModel> stationslist1 = new ObservableCollection<StationViewModel>();
-                    stationslist1 = IsolatedStorageHelper.LoadSerializableObject<ObservableCollection<StationViewModel>>("stations.xml");
-                    Deployment.Current.Dispatcher.BeginInvoke(() =>
-                    {
-                        this.Stations.Items = stationslist1;
-                        this.NotifyPropertyChanged("Stations");
-                    });*/
-                }
-                catch //(System.IO.FileNotFoundException)
-                {
-                    Deployment.Current.Dispatcher.BeginInvoke(() =>
-                    {
-                        this.Stations.Items = new ObservableCollection<StationViewModel>();
-                        this.NotifyPropertyChanged("Stations");
-
-                        if (this.IsSettings == false)
-                        {
-                            //(Application.Current.RootVisual as PhoneApplicationFrame).Navigate(new Uri("/ProfileLogin.xaml", UriKind.Relative));
-                            
-                        };
-                    });
-                };
             };
             bw.RunWorkerAsync();            
         }
@@ -524,18 +468,6 @@ namespace Donor
                 shareLinkTask.LinkUri = new Uri(link, UriKind.Absolute);
                 shareLinkTask.Show();
             };
-        }
-
-        private void RemoveAgent(string name)
-        {
-            try
-            {
-                ScheduledActionService.Remove(name);
-
-            }
-            catch (Exception)
-            {
-            }
         }
 
 

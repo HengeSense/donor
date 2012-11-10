@@ -28,6 +28,7 @@ namespace Donor
 
             // Set the data context of the listbox control to the sample data
             DataContext = App.ViewModel;
+
             this.Loaded += new RoutedEventHandler(MainPage_Loaded);
 
             bool hasNetworkConnection =
@@ -84,6 +85,8 @@ namespace Donor
                 if (hasNetworkConnection) {} else { MessageBox.Show(Donor.AppResources.CantEnterCheckNetwork); };
 
             } catch {};
+            
+            SetUserFIelds();
 
             App.ViewModel.User.NotifyAll();
         }
@@ -137,8 +140,15 @@ namespace Donor
         {
         }
 
-        private void EventsChanged(object sender, EventArgs e) { }
 
+        private void SetUserFIelds() {
+            this.ProfileName.Text = App.ViewModel.User.Name;
+            this.ProfileSex.Text = App.ViewModel.User.OutSex;
+            this.ProfileBloodGroup.Text = App.ViewModel.User.OutBloodDataString;
+            this.GivedBlood.Text = App.ViewModel.User.GivedBlood.ToString();
+        }
+
+        private void EventsChanged(object sender, EventArgs e) { }
         private bool _userLoaded = false;
 
         private void UserLoaded(object sender, EventArgs e)
@@ -149,6 +159,8 @@ namespace Donor
                 {
                     this.UserProfile.Visibility = Visibility.Visible;
                     this.LoginForm.Visibility = Visibility.Collapsed;
+
+                    SetUserFIelds();
                 }
                 else
                 {
@@ -159,6 +171,8 @@ namespace Donor
             catch
             {
             };
+            DataContext = App.ViewModel;
+
             App.ViewModel.User.NotifyAll();
             App.ViewModel.Events.UpdateItems();
 
@@ -203,6 +217,8 @@ namespace Donor
             };
 
             App.ViewModel.Events.UpdateItems();
+
+            DataContext = App.ViewModel;
         }
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
