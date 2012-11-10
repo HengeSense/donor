@@ -36,7 +36,7 @@ namespace Donor
             this.PageTitle.Text = CultureInfo.CurrentCulture.DateTimeFormat.MonthNames[App.ViewModel.Events.CurrentMonth.Month - 1];
             this.ApplicationTitle.Text = App.ViewModel.Events.CurrentMonth.Year.ToString();
 
-            this.Calendar1.UpdateCalendar();
+            //this.Calendar1.UpdateCalendar();
         }
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
