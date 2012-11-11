@@ -10,6 +10,8 @@
 #import "SelectBloodGroupViewController.h"
 #import "ProfileSexSelectViewController.h"
 
+#import "HSCalendarInfo.h"
+
 @interface ProfileDescriptionViewController : UIViewController <UITextFieldDelegate, IBloodGroupListener, ISexListener>
 {
     UIButton *editButton;
@@ -25,11 +27,14 @@
     ProfileSexSelectViewController *sexSelectViewController;
 }
 
+@property (nonatomic, assign) id<HSCalendarInfo> calendarInfoDelegate;
+
 - (IBAction)settingsButtonClick:(id)sender;
 - (IBAction)editButtonClick:(id)sender;
 
 - (IBAction)sexButtonClick:(id)sender;
 - (IBAction)bloodGroupButtonClick:(id)sender;
 - (IBAction)exitButtonClick:(id)sender;
+
 - (void)cancelEditPressed;
 @end

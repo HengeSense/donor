@@ -19,10 +19,10 @@
 #import "ProfileViewController.h"
 #import <Parse/Parse.h>
 #import "Common.h"
-//#import "SHKConfiguration.h"
-//#import "SHKFacebook.h"
 #import "MessageBoxViewController.h"
 #import "TutorialViewController.h"
+
+#import "HSCalendar.h"
 
 @interface AppDelegate ()
 
@@ -69,6 +69,7 @@
     [[UIBarButtonItem appearance] setBackButtonBackgroundImage:backButtonImagePressed forState:UIControlStateHighlighted barMetrics:UIBarMetricsDefault];
     [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, -1) forBarMetrics:UIBarMetricsDefault];
 
+    HSCalendar *calendar = [[[HSCalendar alloc] init] autorelease];
 #ifdef NEW_CALENDAR_FUNCTIONALITY_DEVELOPEMENT
     HSCalendarViewController *calendarViewController = [[[HSCalendarViewController alloc] initWithNibName:@"HSCalendarViewController" bundle:nil] autorelease];
 #else
@@ -83,6 +84,7 @@
     UINavigationController *infoNavigationController = [[[UINavigationController alloc] initWithRootViewController:infoViewController] autorelease];
     
     ProfileViewController *profileViewController = [[[ProfileViewController alloc] initWithNibName:@"ProfileViewController" bundle:nil] autorelease];
+    profileViewController.calendarViewController = calendarViewController;
     UINavigationController *profileNavigationController = [[[UINavigationController alloc] initWithRootViewController:profileViewController] autorelease];
     
     self.tabBarController = [[[UITabBarController alloc] init] autorelease];
@@ -109,10 +111,7 @@
     
     [self makeTabBarHidden:YES];
     
-    if (![PFUser currentUser])
-    {
-        [self.tabBarController setSelectedIndex:3];
-    }
+    [self.tabBarController setSelectedIndex:3];
     
     [self.sTabBarController selectTab];
         

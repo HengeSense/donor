@@ -128,8 +128,26 @@ static NSString * const kEventDate = @"date";
     return resultEvents;
 }
 
+#pragma mark - HSCalendarInfo protocaol implementation
 - (NSUInteger)numberOfDoneBloodDonationEvents {
     return [[self doneBloodDonationEvents] count];
+}
+
+- (NSDate *)nextBloodDonationDate {
+        NSArray *descendingUndoneBloodDonationEvents = [[self undoneBloodDonationEvents]
+            sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        HSBloodDonationEvent *first = obj1;
+        HSBloodDonationEvent *second = obj2;
+        if (first.scheduledDate.timeIntervalSince1970 < second.scheduledDate.timeIntervalSince1970) {
+            return NSOrderedDescending;
+        } else if (first.scheduledDate.timeIntervalSince1970 > second.scheduledDate.timeIntervalSince1970) {
+            return NSOrderedAscending;
+        } else {
+            return NSOrderedSame;
+        }
+    }];
+    
+    return [[descendingUndoneBloodDonationEvents lastObject] scheduledDate];
 }
 
 #pragma mark - Remote events manipulation methods

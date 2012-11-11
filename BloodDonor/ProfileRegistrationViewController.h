@@ -10,6 +10,7 @@
 #import "SelectBloodGroupViewController.h"
 #import "ProfileSexSelectViewController.h"
 #import "MessageBoxViewController.h"
+#import "HSCalendarViewController.h"
 
 @interface ProfileRegistrationViewController : UIViewController <UITextFieldDelegate, IBloodGroupListener, ISexListener, MessageBoxDelegate>
 {
@@ -26,6 +27,11 @@
     SelectBloodGroupViewController *selectBloodGroupViewController;
     ProfileSexSelectViewController *sexSelectViewController;
 }
+
+/**
+ * This refrence is used to configure HSCalendarViewController object, after successfull registration.
+ */
+@property (nonatomic, retain) HSCalendarViewController *calendarViewController;
 
 - (IBAction)cancelButtonClick:(id)sender;
 - (IBAction)doneButtonClick:(id)sender;

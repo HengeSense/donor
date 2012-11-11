@@ -13,10 +13,13 @@
 #import <Parse/Parse.h>
 #import "MessageBoxViewController.h"
 #import "ProfileDescriptionViewController.h"
+#import "HSCalendar.h"
 
 @implementation ProfileRegistrationViewController
 
 #pragma mark Actions
+
+@synthesize calendarViewController;
 
 - (IBAction)cancelButtonClick:(id)sender
 {
@@ -73,7 +76,7 @@
         [user setObject:[Common getInstance].name forKey:@"Name"];
  
         [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-            if (!error)
+            if (succeeded)
             {
                 [indicatorView removeFromSuperview];
                 [indicatorView release];
@@ -167,17 +170,29 @@
         {
             if (!error)
             {
-                ProfileDescriptionViewController *controller = [[[ProfileDescriptionViewController alloc] initWithNibName:@"ProfileDescriptionViewController" bundle:nil] autorelease];
-                [self.navigationController pushViewController:controller animated:YES];
+                HSCalendar *calendarModel = [[HSCalendar alloc] init];
+                self.calendarViewController.calendarModel = calendarModel;
+                [calendarModel pullEventsFromServer:^(BOOL success, NSError *error) {
+                    if (success) {
+                        ProfileDescriptionViewController *controller = [[[ProfileDescriptionViewController alloc]
+                                initWithNibName:@"ProfileDescriptionViewController" bundle:nil] autorelease];
+                        controller.calendarInfoDelegate = calendarModel;
+                        [self.navigationController pushViewController:controller animated:YES];
+                    } else {
+                        MessageBoxViewController *messageBox = [[MessageBoxViewController alloc]
+                                initWithNibName:@"MessageBoxViewController" bundle:nil title:nil
+                                message:@"Ошибка при загрузке событий календаря" cancelButton:@"Ок" okButton:nil];
+                        messageBox.delegate = self;
+                        [self.view addSubview:messageBox.view];
+                        [self.navigationController popToRootViewControllerAnimated:YES];
+                    }
+                }];
             }
             else
             {
-                MessageBoxViewController *messageBox = [[MessageBoxViewController alloc] initWithNibName:@"MessageBoxViewController"
-                                                                                                  bundle:nil
-                                                                                                   title:nil
-                                                                                                 message:@"Ошибка при авторизации"
-                                                                                            cancelButton:@"Ок"
-                                                                                                okButton:nil];
+                MessageBoxViewController *messageBox = [[MessageBoxViewController alloc]
+                        initWithNibName:@"MessageBoxViewController" bundle:nil title:nil
+                        message:@"Ошибка при авторизации" cancelButton:@"Ок" okButton:nil];
                 messageBox.delegate = self;
                 [self.view addSubview:messageBox.view];
                 [self.navigationController popToRootViewControllerAnimated:YES];

@@ -8,7 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+@class HSCalendar;
+
 @interface HSCalendarViewController : UIViewController
+
+@property (nonatomic, strong) HSCalendar *calendarModel;
 
 /**
  * Calendar month label.

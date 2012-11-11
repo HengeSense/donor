@@ -11,13 +11,14 @@
 #import "HSModelCommon.h"
 #import "HSEvent.h"
 #import "HSBloodRemoteEvent.h"
+#import "HSCalendarInfo.h"
 
 /// @name HSCalendar protocol declaration
 
 /**
  * This class provides core application functionality - planing and managing events.
  */
-@interface HSCalendar : NSObject
+@interface HSCalendar : NSObject<HSCalendarInfo>
 
 /// @name Methods to interact with cloud data service - parse.com
 
@@ -57,10 +58,5 @@
  * Returns all events for the specified day.
  */
 - (NSArray *)eventsForDay: (NSDate *)dayDate;
-
-/**
- * Returns done blood donation event total number.
- */
-- (NSUInteger)numberOfDoneBloodDonationEvents;
 
 @end

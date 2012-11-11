@@ -14,6 +14,8 @@
 
 @implementation ProfileDescriptionViewController
 
+@synthesize calendarInfoDelegate;
+
 #pragma mark Actions
 
 - (IBAction)settingsButtonClick:(id)sender
@@ -230,15 +232,11 @@
     selectBoodGroupViewController.delegate = self;
     sexSelectViewController = [[ProfileSexSelectViewController alloc] init];
     sexSelectViewController.delegate = self;
-    
-    bloodDonationCountLabel.text = [NSString stringWithFormat:@"%d", [Common getInstance].wholeBloodCount];
-    Common *commonStorage = [Common getInstance];
-    [commonStorage addObserver: self forKeyPath: @"wholeBloodCount" options: NSKeyValueChangeReplacement context: nil];
 }
 
-- (void)viewDidAppear:(BOOL)animated
+- (void)viewWillAppear:(BOOL)animated
 {
-    [super viewDidAppear:animated];
+    [super viewWillAppear:animated];
     
     PFUser *user = [PFUser currentUser];
     NSString *buttonTite;
@@ -285,28 +283,19 @@
     //Приватное свойство!
     [nameTextField setValue:[UIColor colorWithRed:132.0f/255.0f green:113.0f/255.0f blue:104.0f/255.0f alpha:1] forKeyPath:@"_placeholderLabel.textColor"];
     
-    NSDateFormatter *dateFormat = [[[NSDateFormatter alloc] init] autorelease];
-    [dateFormat setDateFormat:@"dd.MM.yyyy"];
-    NSDate *date = [NSDate date];
-       
-    PFRelation *relation = [user relationforKey:@"events"];
-    PFQuery *query = [relation query];
-    [query whereKey:@"date" notEqualTo:[NSNull null]];
-    [query orderByAscending:@"date"];
-    [query whereKey:@"date" greaterThanOrEqualTo:date];
-    [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error)
-        {
-            if (object)
-            {
-                nextBloodDonateDateLabel.text = [dateFormat stringFromDate:[object valueForKey:@"date"]];
-                NSLog(@"%@", object);
-            }
-            else
-            {
-                nextBloodDonateDateLabel.text = @"-";
-            }
+    
+    if (self.calendarInfoDelegate != nil) {
+        NSDateFormatter *dateFormat = [[[NSDateFormatter alloc] init] autorelease];
+        [dateFormat setDateFormat:@"dd.MM.yyyy"];
+        
+        NSDate *nextBloodDonationDate = [self.calendarInfoDelegate nextBloodDonationDate];
+        nextBloodDonateDateLabel.text = nextBloodDonationDate != nil ?
+                [dateFormat stringFromDate:nextBloodDonationDate] : @"-";
+        
+        bloodDonationCountLabel.text = [NSString stringWithFormat:@"%d",
+                [self.calendarInfoDelegate numberOfDoneBloodDonationEvents]];
+    }
 
-        }];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -320,7 +309,6 @@
 }
 
 - (void)viewDidUnload {
-    [[Common getInstance] removeObserver: self forKeyPath: @"wholeBloodCount"];
     [super viewDidUnload];
 }
 
@@ -329,14 +317,6 @@
     [sexSelectViewController release];
     [selectBoodGroupViewController release];
     [super dealloc];
-}
-
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
-{
-    if ([keyPath isEqualToString: @"wholeBloodCount"])
-    {
-        bloodDonationCountLabel.text = [NSString stringWithFormat:@"%d", [Common getInstance].wholeBloodCount];
-    }
 }
 
 @end

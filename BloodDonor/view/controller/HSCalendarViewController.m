@@ -8,7 +8,10 @@
 
 #import "HSCalendarViewController.h"
 
+#import <Parse/Parse.h>
+
 #import "MBProgressHUD.h"
+#import "HSBlockUIViewController.h"
 
 #import "HSCalendar.h"
 #import "HSCalendarDayButton.h"
@@ -22,16 +25,9 @@
 #import "HSEventPlanningViewController.h"
 #import "CalendarInfoViewController.h"
 
-#warning Needs to be refactored
-#import "Common.h"
 #import "ProfileViewController.h"
 
 @interface HSCalendarViewController ()
-
-/**
- * Calendar model.
- */
-@property (nonatomic, strong) HSCalendar *calendarModel;
 
 /**
  * Current date displayed by calendar.
@@ -47,6 +43,8 @@
  * System calendar with ru_RU locale.
  */
 @property (nonatomic, strong) NSCalendar *systemCalendar;
+
+@property (nonatomic, strong) HSBlockUIViewController *blockUIViewController;
 
 /// @name Methods for configuring UI.
 - (void)configureNavigationItem;
@@ -72,11 +70,6 @@
  * Replace old day buttons with new one.
  */
 - (void)updateDaysButtonsToDate: (NSDate *)date;
-
-/**
- * Reads calendar statistic information and stores it to the permanent storage.
- */
-- (void)updatePersistanceUserDefaults;
 
 /// @name  Action methods
 
@@ -111,7 +104,8 @@
  */
 - (BOOL)userAuthorized;
 
-- (void)showAlertUserUnauthorized;
+- (void)showBlockUI;
+- (void)hideBlockUI;
 - (void)navigateToLoginPage;
 
 @end
@@ -121,23 +115,15 @@
 - (id)initWithNibName: (NSString *)nibNameOrNil bundle: (NSBundle *)nibBundleOrNil {
     self = [super initWithNibName: nibNameOrNil bundle: nibBundleOrNil];
     if (self) {
-        self.calendarModel = [[HSCalendar alloc] init];
         self.currentDate = [NSDate date];
         self.systemCalendar = [NSCalendar currentCalendar];
-        
-        if ([PFUser currentUser] != nil) {
-            // try to prefetch data
-            [self.calendarModel pullEventsFromServer:^(BOOL success, NSError *error) {
-                if (success) {
-                    [Common getInstance].wholeBloodCount = [self.calendarModel numberOfDoneBloodDonationEvents];
-                }
-            }];
-        }
     }
     return self;
 }
 
 - (void)viewDidLoad {
+    self.blockUIViewController = [[HSBlockUIViewController alloc] initWithNibName:@"HSBlockUIViewController"
+                                                                           bundle:nil];
     [super viewDidLoad];
     [self configureNavigationItem];
 }
@@ -145,11 +131,11 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewDidAppear: animated];
     if ([self userAuthorized]) {
+        [self hideBlockUI];
         [self updateCalendarToDate: self.currentDate];
-        [self updatePersistanceUserDefaults];
     } else {
+        [self showBlockUI];
         [self clearCalendarView];
-        [self showAlertUserUnauthorized];
         [self navigateToLoginPage];
     }
 }
@@ -161,6 +147,7 @@
 - (void)viewDidUnload {
     [self setCalendarImageView: nil];
     [self setMonthLabel: nil];
+    [self setBlockUIViewController: nil];
     [super viewDidUnload];
 }
 
@@ -283,10 +270,6 @@
     }
 }
 
-- (void)updatePersistanceUserDefaults {
-    [Common getInstance].wholeBloodCount = [self.calendarModel numberOfDoneBloodDonationEvents];
-}
-
 #pragma mark - Private action methods
 - (void)showInfo: (id)sender {
     CalendarInfoViewController *calendarInfoViewController = [[CalendarInfoViewController alloc]
@@ -381,15 +364,19 @@
 
 #pragma mark - Private authorization utility methods
 - (BOOL)userAuthorized {
-    return [PFUser currentUser] != nil;
+    return self.calendarModel != nil && [PFUser currentUser] != nil;
 }
 
-- (void)showAlertUserUnauthorized {
+- (void)showBlockUI {
     NSString *message = @"Пользователь не вошел в систему. Функции календаря недоступны.";
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle: @"Информация" message: message delegate: nil
-            cancelButtonTitle: @"Готово" otherButtonTitles: nil, nil];
-    [alert show];
+    self.blockUIViewController.blockMessage.text = message;
+    [self.blockUIViewController.view removeFromSuperview];
+    [self.view addSubview: self.blockUIViewController.view];
 }
+- (void)hideBlockUI {
+    [self.blockUIViewController.view removeFromSuperview];
+}
+
 - (void)navigateToLoginPage {
 #warning Not implemented yet
     return;
