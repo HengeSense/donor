@@ -69,7 +69,6 @@
     [[UIBarButtonItem appearance] setBackButtonBackgroundImage:backButtonImagePressed forState:UIControlStateHighlighted barMetrics:UIBarMetricsDefault];
     [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, -1) forBarMetrics:UIBarMetricsDefault];
 
-    HSCalendar *calendar = [[[HSCalendar alloc] init] autorelease];
 #ifdef NEW_CALENDAR_FUNCTIONALITY_DEVELOPEMENT
     HSCalendarViewController *calendarViewController = [[[HSCalendarViewController alloc] initWithNibName:@"HSCalendarViewController" bundle:nil] autorelease];
 #else
