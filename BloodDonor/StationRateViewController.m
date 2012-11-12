@@ -19,6 +19,7 @@
 
 - (IBAction)doneButtonPressed:(id)sender
 {
+    [commentTextField resignFirstResponder];
     indicatorView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
     indicatorView.backgroundColor = [UIColor blackColor];
     indicatorView.alpha = 0.5f;
