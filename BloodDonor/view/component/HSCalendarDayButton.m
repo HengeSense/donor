@@ -111,11 +111,13 @@
     }
     
     // add new events representations
+    UIView *eventsView = [self createViewForEvents];
     for (HSEvent *event in self.allEvents) {
         HSEventRenderer *eventRenderer = [HSEventRenderer createEventRendererForEvent: event];
-        UIView *eventView = [eventRenderer renderViewInBounds: self.bounds];
-        [self addSubview: eventView];
+        UIView *eventView = [eventRenderer renderViewInBounds: eventsView.bounds];
+        [eventsView addSubview: eventView];
     }
+    [self addSubview: eventsView];
     
     if ([self.date isTheSameDay: [NSDate date]]) {
         [self addTodayMarkerView];
@@ -135,5 +137,15 @@
     UIGraphicsEndImageContext();
     
     return image;
+}
+
+- (UIView *)createViewForEvents {
+    const CGFloat padding = 4.0f;
+    CGRect eventsFrame =
+            CGRectMake(padding, padding, self.bounds.size.width - 2 * padding, self.bounds.size.height - 2 * padding);
+    UIView *result = [[UIView alloc] initWithFrame: eventsFrame];
+    result.userInteractionEnabled = NO;
+    [result setBackgroundColor: [UIColor clearColor]];
+    return result;
 }
 @end
