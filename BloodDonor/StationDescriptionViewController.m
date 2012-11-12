@@ -15,10 +15,12 @@
 #import "AppDelegate.h"
 
 @interface StationDescriptionViewController ()
-
+@property (nonatomic, retain) StationsViewController *stationsViewController;
 @end
 
 @implementation StationDescriptionViewController
+
+@synthesize stationsViewController;
 
 #pragma mare Actions
 
@@ -58,8 +60,7 @@
 
 - (IBAction)showOnMapPressed:(id)sender
 {
-    StationsViewController *controller = [[[StationsViewController alloc] initWithNibName:@"StationsViewController" bundle:nil station:station] autorelease];
-    [self.navigationController pushViewController:controller animated:YES];
+    [self.navigationController pushViewController:self.stationsViewController animated:YES];
 }
 
 #pragma mark UIWebViewDelegate
@@ -90,6 +91,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.stationsViewController = [[StationsViewController alloc] initWithNibName:@"StationsViewController" bundle:nil
+                                                                           station:station];
+
     
     // Hides forDodonorsView (JIRA: DOI-65)
     [forDodonorsView removeFromSuperview];
@@ -309,13 +314,15 @@
     [reviews findObjectsInBackgroundWithTarget:self selector:@selector(callbackWithResult: error:)];
 }
 
-- (void)viewDidDisappear:(BOOL)animated
+- (void)viewDidUnload
 {
-    [super viewDidDisappear:animated];
+    [super viewDidUnload];
+    [self setStationsViewController: nil];
 }
 
 - (void)dealloc
 {
+    [self setStationsViewController: nil];
     [indicatorView release];
     [reviewsArrayList release];
     [super dealloc];
