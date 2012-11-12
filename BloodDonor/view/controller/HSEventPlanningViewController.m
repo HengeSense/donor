@@ -469,7 +469,8 @@ static const CGFloat kTabBarHeight = 55.0f;
         __strong HSEventPlanningViewController *strongSelf = weakSelf;
         [progressHud hide: YES];
         if (success) {
-            if (self.currentEditedEvent.isDone) {
+            if ([self.currentEditedEvent isKindOfClass:[HSBloodDonationEvent class]] &&
+                    self.currentEditedEvent.isDone) {
                 [strongSelf sayThanksToUser];
             }
             [self.navigationController popToRootViewControllerAnimated: YES];
