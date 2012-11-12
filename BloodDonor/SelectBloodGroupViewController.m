@@ -131,9 +131,11 @@
     group = @"O(I)";
     rh = @"RH+";
     
+    [self configureUIAndStates];
+    
 }
 
-- (void)viewDidAppear:(BOOL)animated
+- (void)configureUIAndStates
 {
     if ([PFUser currentUser])
     {

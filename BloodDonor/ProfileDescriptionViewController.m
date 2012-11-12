@@ -12,16 +12,11 @@
 #import <Parse/Parse.h>
 #import "Common.h"
 
-@interface ProfileDescriptionViewController () {
-@private
-    NSUInteger bloodGroupTemp;
-    NSUInteger bloodRhTemp;
-}
-@end
-
 @implementation ProfileDescriptionViewController
 
 @synthesize calendarInfoDelegate;
+@synthesize selectBoodGroupViewController;
+@synthesize sexSelectViewController;
 
 #pragma mark Actions
 
@@ -98,13 +93,13 @@
 - (IBAction)sexButtonClick:(id)sender
 {
     [nameTextField resignFirstResponder];
-    [self showModal:sexSelectViewController.view];
+    [self showModal:self.sexSelectViewController.view];
 }
 
 - (IBAction)bloodGroupButtonClick:(id)sender
 {
     [nameTextField resignFirstResponder];
-    [self showModal:selectBoodGroupViewController.view];
+    [self showModal:self.selectBoodGroupViewController.view];
 }
 
 - (void) showModal:(UIView*) modalView 
@@ -194,18 +189,6 @@
     
     [self.navigationItem setHidesBackButton:YES];
     
-    /*UIButton *settingsButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    UIImage *settingsImageNormal = [UIImage imageNamed:@"settingsButtonNormal"];
-    UIImage *settingsImagePressed = [UIImage imageNamed:@"settingsButtonPressed"];
-    CGRect settingsButtonFrame = CGRectMake(0, 0, settingsImageNormal.size.width, settingsImageNormal.size.height);
-    [settingsButton setImage:settingsImageNormal forState:UIControlStateNormal];
-    [settingsButton setImage:settingsImagePressed forState:UIControlStateHighlighted];
-    settingsButton.frame = settingsButtonFrame;
-    [settingsButton addTarget:self action:@selector(settingsButtonClick:) forControlEvents:UIControlEventTouchUpInside];
-    
-    UIBarButtonItem *settingsBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:settingsButton] autorelease];
-    self.navigationItem.leftBarButtonItem = settingsBarButtonItem;*/
-    
     UIImage *barImageNormal = [UIImage imageNamed:@"barButtonNormal"];
     UIImage *barImagePressed = [UIImage imageNamed:@"barButtonPressed"];
     
@@ -222,11 +205,11 @@
     UIBarButtonItem *editBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:editButton] autorelease];
     [editBarButtonItem setTitlePositionAdjustment:UIOffsetMake(0, -1) forBarMetrics:UIBarMetricsDefault];
     self.navigationItem.rightBarButtonItem = editBarButtonItem;
-    
-    selectBoodGroupViewController = [[SelectBloodGroupViewController alloc] init];
-    selectBoodGroupViewController.delegate = self;
-    sexSelectViewController = [[ProfileSexSelectViewController alloc] init];
-    sexSelectViewController.delegate = self;
+
+    self.selectBoodGroupViewController = [[SelectBloodGroupViewController alloc] init];
+    self.selectBoodGroupViewController.delegate = self;
+    self.sexSelectViewController = [[ProfileSexSelectViewController alloc] init];
+    self.sexSelectViewController.delegate = self;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -305,12 +288,14 @@
 
 - (void)viewDidUnload {
     [super viewDidUnload];
+    [self setSexSelectViewController: nil];
+    [self setSelectBoodGroupViewController: nil];
 }
 
 - (void)dealloc
 {
-    [sexSelectViewController release];
-    [selectBoodGroupViewController release];
+    [self setSexSelectViewController: nil];
+    [self setSelectBoodGroupViewController: nil];
     [super dealloc];
 }
 

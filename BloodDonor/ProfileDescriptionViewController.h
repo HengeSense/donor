@@ -22,12 +22,12 @@
     IBOutlet UIView *hiddenView;
     IBOutlet UILabel *bloodDonationCountLabel;
     IBOutlet UILabel *nextBloodDonateDateLabel;
-    
-    SelectBloodGroupViewController *selectBoodGroupViewController;
-    ProfileSexSelectViewController *sexSelectViewController;
 }
 
 @property (nonatomic, assign) id<HSCalendarInfo> calendarInfoDelegate;
+
+@property (nonatomic, retain) SelectBloodGroupViewController *selectBoodGroupViewController;
+@property (nonatomic, retain) ProfileSexSelectViewController *sexSelectViewController;
 
 - (IBAction)settingsButtonClick:(id)sender;
 - (IBAction)editButtonClick:(id)sender;
