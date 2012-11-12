@@ -12,6 +12,13 @@
 #import <Parse/Parse.h>
 #import "Common.h"
 
+@interface ProfileDescriptionViewController () {
+@private
+    NSUInteger bloodGroupTemp;
+    NSUInteger bloodRhTemp;
+}
+@end
+
 @implementation ProfileDescriptionViewController
 
 @synthesize calendarInfoDelegate;
@@ -35,18 +42,6 @@
     [nameTextField setValue:[UIColor colorWithRed:132.0f/255.0f green:113.0f/255.0f blue:104.0f/255.0f alpha:1] forKeyPath:@"_placeholderLabel.textColor"];
     sexButton.enabled = NO;
     bloodGroupButton.enabled = NO;
-    
-    /*UIButton *settingsButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    UIImage *settingsImageNormal = [UIImage imageNamed:@"settingsButtonNormal"];
-    UIImage *settingsImagePressed = [UIImage imageNamed:@"settingsButtonPressed"];
-    CGRect settingsButtonFrame = CGRectMake(0, 0, settingsImageNormal.size.width, settingsImageNormal.size.height);
-    [settingsButton setImage:settingsImageNormal forState:UIControlStateNormal];
-    [settingsButton setImage:settingsImagePressed forState:UIControlStateHighlighted];
-    settingsButton.frame = settingsButtonFrame;
-    [settingsButton addTarget:self action:@selector(settingsButtonClick:) forControlEvents:UIControlEventTouchUpInside];
-    
-    UIBarButtonItem *settingsBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:settingsButton] autorelease];
-    self.navigationItem.leftBarButtonItem = settingsBarButtonItem;*/
     self.navigationItem.leftBarButtonItem = nil;
 }
 
