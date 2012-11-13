@@ -202,6 +202,18 @@
 		687EFE2A1625F6B3005CE7D6 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 687EFE261625F6B3005CE7D6 /* Icon@2x.png */; };
 		68893A1B165043D400955990 /* HSBlockUIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68893A19165043D300955990 /* HSBlockUIViewController.m */; };
 		68893A1C165043D400955990 /* HSBlockUIViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68893A1A165043D400955990 /* HSBlockUIViewController.xib */; };
+		68893A3F16518CA800955990 /* BloodDonor_tutorial_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 68893A3316518CA800955990 /* BloodDonor_tutorial_1.png */; };
+		68893A4016518CA800955990 /* BloodDonor_tutorial_1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68893A3416518CA800955990 /* BloodDonor_tutorial_1@2x.png */; };
+		68893A4116518CA800955990 /* BloodDonor_tutorial_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 68893A3516518CA800955990 /* BloodDonor_tutorial_2.png */; };
+		68893A4216518CA800955990 /* BloodDonor_tutorial_2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68893A3616518CA800955990 /* BloodDonor_tutorial_2@2x.png */; };
+		68893A4316518CA800955990 /* BloodDonor_tutorial_3.png in Resources */ = {isa = PBXBuildFile; fileRef = 68893A3716518CA800955990 /* BloodDonor_tutorial_3.png */; };
+		68893A4416518CA800955990 /* BloodDonor_tutorial_3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68893A3816518CA800955990 /* BloodDonor_tutorial_3@2x.png */; };
+		68893A4516518CA800955990 /* BloodDonor_tutorial_4.png in Resources */ = {isa = PBXBuildFile; fileRef = 68893A3916518CA800955990 /* BloodDonor_tutorial_4.png */; };
+		68893A4616518CA800955990 /* BloodDonor_tutorial_4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68893A3A16518CA800955990 /* BloodDonor_tutorial_4@2x.png */; };
+		68893A4716518CA800955990 /* BloodDonor_tutorial_5.png in Resources */ = {isa = PBXBuildFile; fileRef = 68893A3B16518CA800955990 /* BloodDonor_tutorial_5.png */; };
+		68893A4816518CA800955990 /* BloodDonor_tutorial_5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68893A3C16518CA800955990 /* BloodDonor_tutorial_5@2x.png */; };
+		68893A4916518CA800955990 /* BloodDonor_tutorial_6.png in Resources */ = {isa = PBXBuildFile; fileRef = 68893A3D16518CA800955990 /* BloodDonor_tutorial_6.png */; };
+		68893A4A16518CA800955990 /* BloodDonor_tutorial_6@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68893A3E16518CA800955990 /* BloodDonor_tutorial_6@2x.png */; };
 		6891637D1639D92500E219B3 /* HSEventPlanningViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6891637B1639D92400E219B3 /* HSEventPlanningViewController.m */; };
 		6891637E1639D92500E219B3 /* HSEventPlanningViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6891637C1639D92500E219B3 /* HSEventPlanningViewController.xib */; };
 		68B455B81635BC5100811A0F /* HSEventRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B455B71635BC5100811A0F /* HSEventRenderer.m */; };
@@ -261,20 +273,6 @@
 		851245901603443B00752AE1 /* tutorialDotActive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8512457E1603443B00752AE1 /* tutorialDotActive@2x.png */; };
 		851245911603443B00752AE1 /* tutorialDotNormal.png in Resources */ = {isa = PBXBuildFile; fileRef = 8512457F1603443B00752AE1 /* tutorialDotNormal.png */; };
 		851245921603443B00752AE1 /* tutorialDotNormal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 851245801603443B00752AE1 /* tutorialDotNormal@2x.png */; };
-		851245931603443B00752AE1 /* tutorialImage1.png in Resources */ = {isa = PBXBuildFile; fileRef = 851245811603443B00752AE1 /* tutorialImage1.png */; };
-		851245941603443B00752AE1 /* tutorialImage1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 851245821603443B00752AE1 /* tutorialImage1@2x.png */; };
-		851245951603443B00752AE1 /* tutorialImage2.png in Resources */ = {isa = PBXBuildFile; fileRef = 851245831603443B00752AE1 /* tutorialImage2.png */; };
-		851245961603443B00752AE1 /* tutorialImage2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 851245841603443B00752AE1 /* tutorialImage2@2x.png */; };
-		851245971603443B00752AE1 /* tutorialImage3.png in Resources */ = {isa = PBXBuildFile; fileRef = 851245851603443B00752AE1 /* tutorialImage3.png */; };
-		851245981603443B00752AE1 /* tutorialImage3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 851245861603443B00752AE1 /* tutorialImage3@2x.png */; };
-		851245991603443B00752AE1 /* tutorialImage4.png in Resources */ = {isa = PBXBuildFile; fileRef = 851245871603443B00752AE1 /* tutorialImage4.png */; };
-		8512459A1603443B00752AE1 /* tutorialImage4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 851245881603443B00752AE1 /* tutorialImage4@2x.png */; };
-		8512459B1603443B00752AE1 /* tutorialImage5.png in Resources */ = {isa = PBXBuildFile; fileRef = 851245891603443B00752AE1 /* tutorialImage5.png */; };
-		8512459C1603443B00752AE1 /* tutorialImage5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8512458A1603443B00752AE1 /* tutorialImage5@2x.png */; };
-		8512459D1603443B00752AE1 /* tutorialImage6.png in Resources */ = {isa = PBXBuildFile; fileRef = 8512458B1603443B00752AE1 /* tutorialImage6.png */; };
-		8512459E1603443B00752AE1 /* tutorialImage6@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8512458C1603443B00752AE1 /* tutorialImage6@2x.png */; };
-		8512459F1603443B00752AE1 /* tutorialImage7.png in Resources */ = {isa = PBXBuildFile; fileRef = 8512458D1603443B00752AE1 /* tutorialImage7.png */; };
-		851245A01603443B00752AE1 /* tutorialImage7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8512458E1603443B00752AE1 /* tutorialImage7@2x.png */; };
 		851245A31603457200752AE1 /* PageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 851245A21603457200752AE1 /* PageControl.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		856B398415CEDEE100F0DEA7 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 856B398315CEDEE100F0DEA7 /* MessageUI.framework */; };
 		856B398A15CEDF2A00F0DEA7 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 856B398915CEDF2A00F0DEA7 /* CoreFoundation.framework */; };
@@ -744,6 +742,18 @@
 		68893A18165043D300955990 /* HSBlockUIViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSBlockUIViewController.h; sourceTree = "<group>"; };
 		68893A19165043D300955990 /* HSBlockUIViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSBlockUIViewController.m; sourceTree = "<group>"; };
 		68893A1A165043D400955990 /* HSBlockUIViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HSBlockUIViewController.xib; sourceTree = "<group>"; };
+		68893A3316518CA800955990 /* BloodDonor_tutorial_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BloodDonor_tutorial_1.png; sourceTree = "<group>"; };
+		68893A3416518CA800955990 /* BloodDonor_tutorial_1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BloodDonor_tutorial_1@2x.png"; sourceTree = "<group>"; };
+		68893A3516518CA800955990 /* BloodDonor_tutorial_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BloodDonor_tutorial_2.png; sourceTree = "<group>"; };
+		68893A3616518CA800955990 /* BloodDonor_tutorial_2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BloodDonor_tutorial_2@2x.png"; sourceTree = "<group>"; };
+		68893A3716518CA800955990 /* BloodDonor_tutorial_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BloodDonor_tutorial_3.png; sourceTree = "<group>"; };
+		68893A3816518CA800955990 /* BloodDonor_tutorial_3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BloodDonor_tutorial_3@2x.png"; sourceTree = "<group>"; };
+		68893A3916518CA800955990 /* BloodDonor_tutorial_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BloodDonor_tutorial_4.png; sourceTree = "<group>"; };
+		68893A3A16518CA800955990 /* BloodDonor_tutorial_4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BloodDonor_tutorial_4@2x.png"; sourceTree = "<group>"; };
+		68893A3B16518CA800955990 /* BloodDonor_tutorial_5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BloodDonor_tutorial_5.png; sourceTree = "<group>"; };
+		68893A3C16518CA800955990 /* BloodDonor_tutorial_5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BloodDonor_tutorial_5@2x.png"; sourceTree = "<group>"; };
+		68893A3D16518CA800955990 /* BloodDonor_tutorial_6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BloodDonor_tutorial_6.png; sourceTree = "<group>"; };
+		68893A3E16518CA800955990 /* BloodDonor_tutorial_6@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BloodDonor_tutorial_6@2x.png"; sourceTree = "<group>"; };
 		6891637A1639D92400E219B3 /* HSEventPlanningViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSEventPlanningViewController.h; sourceTree = "<group>"; };
 		6891637B1639D92400E219B3 /* HSEventPlanningViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSEventPlanningViewController.m; sourceTree = "<group>"; };
 		6891637C1639D92500E219B3 /* HSEventPlanningViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HSEventPlanningViewController.xib; sourceTree = "<group>"; };
@@ -824,20 +834,6 @@
 		8512457E1603443B00752AE1 /* tutorialDotActive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tutorialDotActive@2x.png"; sourceTree = "<group>"; };
 		8512457F1603443B00752AE1 /* tutorialDotNormal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tutorialDotNormal.png; sourceTree = "<group>"; };
 		851245801603443B00752AE1 /* tutorialDotNormal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tutorialDotNormal@2x.png"; sourceTree = "<group>"; };
-		851245811603443B00752AE1 /* tutorialImage1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tutorialImage1.png; sourceTree = "<group>"; };
-		851245821603443B00752AE1 /* tutorialImage1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tutorialImage1@2x.png"; sourceTree = "<group>"; };
-		851245831603443B00752AE1 /* tutorialImage2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tutorialImage2.png; sourceTree = "<group>"; };
-		851245841603443B00752AE1 /* tutorialImage2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tutorialImage2@2x.png"; sourceTree = "<group>"; };
-		851245851603443B00752AE1 /* tutorialImage3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tutorialImage3.png; sourceTree = "<group>"; };
-		851245861603443B00752AE1 /* tutorialImage3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tutorialImage3@2x.png"; sourceTree = "<group>"; };
-		851245871603443B00752AE1 /* tutorialImage4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tutorialImage4.png; sourceTree = "<group>"; };
-		851245881603443B00752AE1 /* tutorialImage4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tutorialImage4@2x.png"; sourceTree = "<group>"; };
-		851245891603443B00752AE1 /* tutorialImage5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tutorialImage5.png; sourceTree = "<group>"; };
-		8512458A1603443B00752AE1 /* tutorialImage5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tutorialImage5@2x.png"; sourceTree = "<group>"; };
-		8512458B1603443B00752AE1 /* tutorialImage6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tutorialImage6.png; sourceTree = "<group>"; };
-		8512458C1603443B00752AE1 /* tutorialImage6@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tutorialImage6@2x.png"; sourceTree = "<group>"; };
-		8512458D1603443B00752AE1 /* tutorialImage7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tutorialImage7.png; sourceTree = "<group>"; };
-		8512458E1603443B00752AE1 /* tutorialImage7@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tutorialImage7@2x.png"; sourceTree = "<group>"; };
 		851245A11603457200752AE1 /* PageControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageControl.h; sourceTree = "<group>"; };
 		851245A21603457200752AE1 /* PageControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageControl.m; sourceTree = "<group>"; };
 		856B398315CEDEE100F0DEA7 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
@@ -1339,6 +1335,7 @@
 			children = (
 				685CB2FB1640E87A004FF9AC /* Calendar */,
 				68EB2752163090060092FDBA /* device */,
+				68893A3216518CA800955990 /* tutorial */,
 				858EE0AA161D38D000A09858 /* userLocation.png */,
 				8585E179161AB04C00275AE7 /* check.png */,
 				8585E17A161AB04C00275AE7 /* check@2x.png */,
@@ -1349,20 +1346,6 @@
 				8512457E1603443B00752AE1 /* tutorialDotActive@2x.png */,
 				8512457F1603443B00752AE1 /* tutorialDotNormal.png */,
 				851245801603443B00752AE1 /* tutorialDotNormal@2x.png */,
-				851245811603443B00752AE1 /* tutorialImage1.png */,
-				851245821603443B00752AE1 /* tutorialImage1@2x.png */,
-				851245831603443B00752AE1 /* tutorialImage2.png */,
-				851245841603443B00752AE1 /* tutorialImage2@2x.png */,
-				851245851603443B00752AE1 /* tutorialImage3.png */,
-				851245861603443B00752AE1 /* tutorialImage3@2x.png */,
-				851245871603443B00752AE1 /* tutorialImage4.png */,
-				851245881603443B00752AE1 /* tutorialImage4@2x.png */,
-				851245891603443B00752AE1 /* tutorialImage5.png */,
-				8512458A1603443B00752AE1 /* tutorialImage5@2x.png */,
-				8512458B1603443B00752AE1 /* tutorialImage6.png */,
-				8512458C1603443B00752AE1 /* tutorialImage6@2x.png */,
-				8512458D1603443B00752AE1 /* tutorialImage7.png */,
-				8512458E1603443B00752AE1 /* tutorialImage7@2x.png */,
 				85ADBCC115E8E071006E6CB7 /* sharingBackground@2x.png */,
 				85ADBCC215E8E071006E6CB7 /* sharingBackground.png */,
 				85ADBCB915E8DFF9006E6CB7 /* sharingCancelButtonNormal@2x.png */,
@@ -1842,6 +1825,25 @@
 				683F8A9F1649B8C10066C47A /* NSDate+HSCalendar.m */,
 			);
 			path = extensions;
+			sourceTree = "<group>";
+		};
+		68893A3216518CA800955990 /* tutorial */ = {
+			isa = PBXGroup;
+			children = (
+				68893A3316518CA800955990 /* BloodDonor_tutorial_1.png */,
+				68893A3416518CA800955990 /* BloodDonor_tutorial_1@2x.png */,
+				68893A3516518CA800955990 /* BloodDonor_tutorial_2.png */,
+				68893A3616518CA800955990 /* BloodDonor_tutorial_2@2x.png */,
+				68893A3716518CA800955990 /* BloodDonor_tutorial_3.png */,
+				68893A3816518CA800955990 /* BloodDonor_tutorial_3@2x.png */,
+				68893A3916518CA800955990 /* BloodDonor_tutorial_4.png */,
+				68893A3A16518CA800955990 /* BloodDonor_tutorial_4@2x.png */,
+				68893A3B16518CA800955990 /* BloodDonor_tutorial_5.png */,
+				68893A3C16518CA800955990 /* BloodDonor_tutorial_5@2x.png */,
+				68893A3D16518CA800955990 /* BloodDonor_tutorial_6.png */,
+				68893A3E16518CA800955990 /* BloodDonor_tutorial_6@2x.png */,
+			);
+			path = tutorial;
 			sourceTree = "<group>";
 		};
 		68B455B41635BC0700811A0F /* renderer */ = {
@@ -2412,20 +2414,6 @@
 				851245901603443B00752AE1 /* tutorialDotActive@2x.png in Resources */,
 				851245911603443B00752AE1 /* tutorialDotNormal.png in Resources */,
 				851245921603443B00752AE1 /* tutorialDotNormal@2x.png in Resources */,
-				851245931603443B00752AE1 /* tutorialImage1.png in Resources */,
-				851245941603443B00752AE1 /* tutorialImage1@2x.png in Resources */,
-				851245951603443B00752AE1 /* tutorialImage2.png in Resources */,
-				851245961603443B00752AE1 /* tutorialImage2@2x.png in Resources */,
-				851245971603443B00752AE1 /* tutorialImage3.png in Resources */,
-				851245981603443B00752AE1 /* tutorialImage3@2x.png in Resources */,
-				851245991603443B00752AE1 /* tutorialImage4.png in Resources */,
-				8512459A1603443B00752AE1 /* tutorialImage4@2x.png in Resources */,
-				8512459B1603443B00752AE1 /* tutorialImage5.png in Resources */,
-				8512459C1603443B00752AE1 /* tutorialImage5@2x.png in Resources */,
-				8512459D1603443B00752AE1 /* tutorialImage6.png in Resources */,
-				8512459E1603443B00752AE1 /* tutorialImage6@2x.png in Resources */,
-				8512459F1603443B00752AE1 /* tutorialImage7.png in Resources */,
-				851245A01603443B00752AE1 /* tutorialImage7@2x.png in Resources */,
 				8585E172161A991E00275AE7 /* userLocation@2x.png in Resources */,
 				8585E17D161AB04C00275AE7 /* check.png in Resources */,
 				8585E17E161AB04C00275AE7 /* check@2x.png in Resources */,
@@ -2474,6 +2462,18 @@
 				683F8A9916468E300066C47A /* event_done_button_pressed.png in Resources */,
 				683F8A9A16468E300066C47A /* event_done_button_pressed@2x.png in Resources */,
 				68893A1C165043D400955990 /* HSBlockUIViewController.xib in Resources */,
+				68893A3F16518CA800955990 /* BloodDonor_tutorial_1.png in Resources */,
+				68893A4016518CA800955990 /* BloodDonor_tutorial_1@2x.png in Resources */,
+				68893A4116518CA800955990 /* BloodDonor_tutorial_2.png in Resources */,
+				68893A4216518CA800955990 /* BloodDonor_tutorial_2@2x.png in Resources */,
+				68893A4316518CA800955990 /* BloodDonor_tutorial_3.png in Resources */,
+				68893A4416518CA800955990 /* BloodDonor_tutorial_3@2x.png in Resources */,
+				68893A4516518CA800955990 /* BloodDonor_tutorial_4.png in Resources */,
+				68893A4616518CA800955990 /* BloodDonor_tutorial_4@2x.png in Resources */,
+				68893A4716518CA800955990 /* BloodDonor_tutorial_5.png in Resources */,
+				68893A4816518CA800955990 /* BloodDonor_tutorial_5@2x.png in Resources */,
+				68893A4916518CA800955990 /* BloodDonor_tutorial_6.png in Resources */,
+				68893A4A16518CA800955990 /* BloodDonor_tutorial_6@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

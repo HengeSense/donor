@@ -99,7 +99,7 @@
         [rootNavigationController pushViewController:tutorialViewController animated:NO];
         [defaults setBool:YES forKey:@"isFirstStart"];
     }
-    
+
     self.sTabBarController = [[STabBarController alloc] init];
     self.sTabBarController.tabBarController = self.tabBarController;
     [self.sTabBarController addSubview];

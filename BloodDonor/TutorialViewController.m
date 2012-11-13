@@ -56,8 +56,8 @@
     
     CGFloat pageWidth = scrollView.frame.size.width;
     int page = floor((scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
-    
-    if (scrollView.contentOffset.x >= 1960)
+    int tutorialEndOffsetX = pageWidth * (pageControl.numberOfPages - 1);
+    if (scrollView.contentOffset.x > tutorialEndOffsetX)
     {
         [self doneButtonClick:nil];
         return;
@@ -102,7 +102,7 @@
     
     CGRect f = CGRectMake(0, 448, 320, 36);
     pageControl = [[PageControl alloc] initWithFrame:f];
-    pageControl.numberOfPages = 7;
+    pageControl.numberOfPages = 6;
     pageControl.currentPage = 0;
     pageControl.dotColorCurrentPage = [UIColor colorWithRed:223.0f/255.0f green:141.0f/255.0f blue:75.0f/255.0f alpha:1.0f];
     pageControl.dotColorOtherPage = [UIColor colorWithRed:79.0f/255.0f green:59.0f/255.0f blue:52.0f/255.0f alpha:1.0f];
@@ -111,7 +111,7 @@
     
     for (int i = 0; i < pageControl.numberOfPages; i++)
     {
-        UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"tutorialImage%d", i + 1]];
+        UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"BloodDonor_tutorial_%d", i + 1]];
         [imageArray addObject:[[[UIImageView alloc] initWithImage:image] autorelease]];
     }
     
