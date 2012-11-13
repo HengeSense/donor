@@ -386,7 +386,6 @@ static const CGFloat kTabBarHeight = 55.0f;
 - (BOOL)textView: (UITextView *)textView shouldChangeTextInRange: (NSRange)range replacementText: (NSString *)text {
     
     if([text isEqualToString:@"\n"]) {
-        self.currentEditedEvent.comments = self.commentsTextView.text;
         [textView resignFirstResponder];
         return NO;
     } else if (self.commentsTextView.text.length > 20) {
@@ -456,6 +455,8 @@ static const CGFloat kTabBarHeight = 55.0f;
 
 #pragma mark - Private UI action handlers
 - (void)donePlanningButtonClicked: (id)sender {
+    [self.commentsTextView resignFirstResponder];
+    
     MBProgressHUD *progressHud = [MBProgressHUD showHUDAddedTo: self.navigationController.view animated: YES];
     NSDate *nowDate = [NSDate date];
     if (self.currentEditedEvent.scheduledDate.timeIntervalSince1970 < nowDate.timeIntervalSince1970) {
@@ -463,7 +464,8 @@ static const CGFloat kTabBarHeight = 55.0f;
     } else {
         self.currentEditedEvent.isDone = NO;
     }
-    
+    self.currentEditedEvent.comments = self.commentsTextView.text;
+
     __weak HSEventPlanningViewController *weakSelf = self;
     [self.calendar addBloodRemoteEvent: self.currentEditedEvent completion: ^(BOOL success, NSError *error) {
         __strong HSEventPlanningViewController *strongSelf = weakSelf;
