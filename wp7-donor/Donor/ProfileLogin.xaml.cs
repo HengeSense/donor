@@ -652,5 +652,35 @@ namespace Donor
             App.ViewModel.User.LogoutAction(null);
         }
 
+        private void Login_Click(object sender, RoutedEventArgs e)
+        {
+            string username = this.email.Text;
+            string password = this.password.Password;
+
+            this.email.Text = "";
+            this.password.Password = "";
+
+            App.ViewModel.User.UserName = username;
+            App.ViewModel.User.Password = password;
+
+            App.ViewModel.User.LoginAction(null);
+        }
+
+        /// <summary>
+        /// Вход через facebook
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void FacebookLogin_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                NavigationService.Navigate(new Uri("/FacebookPages/FacebookLoginPage.xaml", UriKind.Relative));
+            }
+            catch
+            {
+            }
+        }
+
     }
 }

@@ -200,21 +200,35 @@
 						Style="{StaticResource Text24pxCBB2A3}"/>
                             <TextBox Background="#FF4F3B34" Style="{StaticResource TextBoxStyle1}"
 BorderBrush="#FF4F3B34" Foreground="#FFCBB2A3" x:Name="email" 
-						Text="{Binding Path=User.UserName, Mode=TwoWay}" />
+						Text="" />
+                            <!-- {Binding Path=User.UserName, Mode=TwoWay} -->
                             <TextBlock Text="{Binding EnterPassword, Source={StaticResource Loc}}"  Margin="10,5,0,0"
 						Style="{StaticResource Text24pxCBB2A3}" />
                             <PasswordBox Background="#FF4F3B34" 
                             Style="{StaticResource PasswordBoxStyle1}" BorderBrush="#FF4F3B34" 	
-                            Foreground="#FFCBB2A3" x:Name="password" Password="{Binding Path=User.Password, Mode=TwoWay}" />
+                            Foreground="#FFCBB2A3" x:Name="password" Password="" />
+                            <!-- {Binding Path=User.Password, Mode=TwoWay} -->
 
+                                                   
+                            
                             <Button Name="Login" 
-						Content="{Binding Login, Source={StaticResource Loc}}" 
-						Command="{Binding Path=User.LoginCommand}"
+						Content="{Binding Login, Source={StaticResource Loc}}" 						
 						FontSize="24"
 						Background="#FF4186A3" 
 						BorderBrush="#FF4186A3" 
-						FontFamily="Segoe WP Regular" Foreground="White" />
-                            <!-- Click="Login_Click" -->
+						FontFamily="Segoe WP Regular" Foreground="White" Click="Login_Click"/>
+                            <!-- Click="Login_Click" 
+                            Command="{Binding Path=User.LoginCommand}"
+                            -->
+
+                            <Button 
+					FontSize="24"
+					Background="#FF4186A3" 
+					BorderBrush="#FF4186A3" 
+					FontFamily="Segoe WP Regular"
+					Name="FacebookLogin" Content="{Binding FacebookLogin, Source={StaticResource Loc}}" 
+					Foreground="#FFFFFFFF" Click="FacebookLogin_Click" />
+
 
                             <TextBlock 
 						Foreground="#FF847168"

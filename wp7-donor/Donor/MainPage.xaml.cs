@@ -331,5 +331,53 @@ namespace Donor
             {
             }
         }
+
+        /// <summary>
+        /// Вход пользователя
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Login_Click(object sender, RoutedEventArgs e)
+        {
+            string username = this.email.Text;
+            string password = this.password.Password;
+
+            this.email.Text = "";
+            this.password.Password = "";
+
+            App.ViewModel.User.UserName = username;
+            App.ViewModel.User.Password = password;
+
+            App.ViewModel.User.LoginAction(null);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="e"></param>
+        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
+        {
+            this.email.Text = "";
+            this.password.Password = "";
+
+            base.OnNavigatedTo(e);
+        }
+
+        /// <summary>
+        /// Вход с использованием Facebook аккаунта
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void FacebookLogin_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                NavigationService.Navigate(new Uri("/FacebookPages/FacebookLoginPage.xaml", UriKind.Relative));
+            }
+            catch
+            {
+            }
+        }
+
     }
 }

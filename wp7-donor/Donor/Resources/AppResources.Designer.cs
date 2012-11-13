@@ -502,6 +502,15 @@ namespace Donor {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Вход через Facebook.
+        /// </summary>
+        public static string FacebookLogin {
+            get {
+                return ResourceManager.GetString("FacebookLogin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Связь с Facebook разорвана.
         /// </summary>
         public static string FacebookUnlinkedMessage {

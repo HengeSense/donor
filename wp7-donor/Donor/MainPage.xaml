@@ -263,25 +263,38 @@
                         <TextBlock 
 						Style="{StaticResource Text24pxCBB2A3}"
 						Text="{Binding EnterEmail, Source={StaticResource Loc}}" />
-                    <TextBox x:Name="email" Text="{Binding Path=User.UserName, Mode=TwoWay}" Background="#FF4F3B34" BorderBrush="#FF4F3B34" Foreground="#FFCBB2A3" 
+                    <TextBox x:Name="email" Text="" Background="#FF4F3B34" BorderBrush="#FF4F3B34" Foreground="#FFCBB2A3" 
 					CaretBrush="#FFCBB2A3" Style="{StaticResource TextBoxStyle1}" />
+                        <!--{Binding Path=User.UserName, Mode=TwoWay}-->
+                    
                     <TextBlock 
 					Style="{StaticResource Text24pxCBB2A3}"
 					Text="{Binding EnterPassword, Source={StaticResource Loc}}" />
                     <PasswordBox 
-					x:Name="password" Password="{Binding Path=User.Password, Mode=TwoWay}" 
+					x:Name="password" Password="" 
 					Background="#FF4F3B34" 
 					BorderBrush="#FF4F3B34" 
 					Foreground="#FFCBB2A3" Style="{StaticResource PasswordBoxStyle1}"/>
-                    
-                    <Button 
+                        <!--{Binding Path=User.Password, Mode=TwoWay}-->
+
+
+                        <Button 
+					FontSize="24"
+					Background="#FF4186A3" 
+					BorderBrush="#FF4186A3" 
+					FontFamily="Segoe WP Regular"
+					Name="FacebookLogin" Content="{Binding FacebookLogin, Source={StaticResource Loc}}" 
+					Foreground="#FFFFFFFF" Click="FacebookLogin_Click" />
+
+
+                        <Button 
 					FontSize="24"
 					Background="#FF4186A3" 
 					BorderBrush="#FF4186A3" 
 					FontFamily="Segoe WP Regular"
 					Name="Login" Content="{Binding Login, Source={StaticResource Loc}}" 
 					Foreground="#FFFFFFFF" 
-                    Command="{Binding Path=User.LoginCommand}" />
+                    Click="Login_Click" />
                         <!-- Click="Login_Click" Command="{Binding Path=User.LoginCommand}" -->
 
                     <Button 

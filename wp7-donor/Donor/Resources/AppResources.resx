@@ -595,4 +595,7 @@
   <data name="RestorePassword" xml:space="preserve">
     <value>Востановление пароля</value>
   </data>
+  <data name="FacebookLogin" xml:space="preserve">
+    <value>Вход через Facebook</value>
+  </data>
 </root>
