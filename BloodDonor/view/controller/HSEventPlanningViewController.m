@@ -260,6 +260,12 @@ static const CGFloat kTabBarHeight = 55.0f;
                                                                                bundle: nil];
     self.dateTimePicker = [[HSDateTimePicker alloc] initWithNibName: @"HSDateTimePicker" bundle: nil];
     self.addressPicker = [[HSAddressPicker alloc] initWithNibName: @"HSAddressPicker" bundle: nil];
+    
+    [self.removeRemoteEventButton setBackgroundImage: [UIImage imageNamed: @"delete_mark_active.png"]
+                                            forState: UIControlStateNormal];
+    [self.removeRemoteEventButton setBackgroundImage: [UIImage imageNamed: @"delete_mark_pressed.png"]
+                                            forState: UIControlStateHighlighted];
+    self.removeRemoteEventButton.enabled = self.bloodDonationEvent != nil || self.bloodTestsEvent != nil;
 }
 
 - (void)configureViewMode {
@@ -308,6 +314,7 @@ static const CGFloat kTabBarHeight = 55.0f;
     [self setRootScrollView:nil];
     [self setContentView:nil];
     [self setBloodDonationTypePicker: nil];
+    [self setRemoveRemoteEventButton:nil];
     [super viewDidUnload];
 }
 

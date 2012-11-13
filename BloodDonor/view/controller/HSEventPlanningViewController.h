@@ -58,6 +58,11 @@
 @property (weak, nonatomic) IBOutlet UIView *dataAndPlaceView;
 
 /**
+ * Button for removing existing remote event, otherwise it's not enabled.
+ */
+@property (weak, nonatomic) IBOutlet UIButton *removeRemoteEventButton;
+
+/**
  * This is text editor for specifying user comments.
  */
 @property (weak, nonatomic) IBOutlet UITextView *commentsTextView;
