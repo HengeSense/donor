@@ -17,7 +17,7 @@ typedef void(^CompletionBlockType)(BOOL success, NSError *error);
 extern NSString * const kRemoteEvent_BaseClassName;
 
 /// @name Error domains
-extern NSString * const HSRemoteServerResonseErrorDomain;
+extern NSString * const HSRemoteServerResponseErrorDomain;
 
 /**
  * This domain errors may occur during add avant to the calendar

@@ -10,7 +10,7 @@
 
 NSString * const kRemoteEvent_BaseClassName = @"Events";
 
-NSString * const HSRemoteServerResonseErrorDomain = @"HSRemoteServerResonseErrorDomain";
+NSString * const HSRemoteServerResponseErrorDomain = @"HSRemoteServerResonseErrorDomain";
 
 NSString * const HSCalendarAddEventErrorDomain = @"HSCalendarAddEventErrorDomain";
 
@@ -28,7 +28,7 @@ NSString* localizedDescriptionForError (NSError *error) {
                 break;
         }
         
-    } else if ([error.domain isEqualToString: HSRemoteServerResonseErrorDomain]) {
+    } else if ([error.domain isEqualToString: HSRemoteServerResponseErrorDomain]) {
         return @"Невозможно сохранить данные на сервере, возможно нет подключения.";
     }
     return @"Ошибка неизвестна.";
