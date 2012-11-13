@@ -75,8 +75,12 @@
     pageControlUsed = NO;
 }
 
-- (void)pageControlPageDidChange
+- (IBAction)doneButtonClick:(id)sender
 {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (IBAction)changePage:(id)sender {
     int page = pageControl.currentPage;
     
     [self loadScrollViewWithPage:page - 1];
@@ -91,22 +95,12 @@
     pageControlUsed = YES;
 }
 
-- (IBAction)doneButtonClick:(id)sender
-{
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    CGRect f = CGRectMake(0, 448, 320, 36);
-    pageControl = [[PageControl alloc] initWithFrame:f];
     pageControl.numberOfPages = 6;
     pageControl.currentPage = 0;
-    pageControl.dotColorCurrentPage = [UIColor colorWithRed:223.0f/255.0f green:141.0f/255.0f blue:75.0f/255.0f alpha:1.0f];
-    pageControl.dotColorOtherPage = [UIColor colorWithRed:79.0f/255.0f green:59.0f/255.0f blue:52.0f/255.0f alpha:1.0f];
-    pageControl.delegate = self;
     [self.navigationController.tabBarController.view addSubview:pageControl];
     
     for (int i = 0; i < pageControl.numberOfPages; i++)
@@ -129,6 +123,7 @@
 
 - (void)viewDidUnload
 {
+    pageControl = nil;
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;

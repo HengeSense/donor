@@ -273,7 +273,6 @@
 		851245901603443B00752AE1 /* tutorialDotActive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8512457E1603443B00752AE1 /* tutorialDotActive@2x.png */; };
 		851245911603443B00752AE1 /* tutorialDotNormal.png in Resources */ = {isa = PBXBuildFile; fileRef = 8512457F1603443B00752AE1 /* tutorialDotNormal.png */; };
 		851245921603443B00752AE1 /* tutorialDotNormal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 851245801603443B00752AE1 /* tutorialDotNormal@2x.png */; };
-		851245A31603457200752AE1 /* PageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 851245A21603457200752AE1 /* PageControl.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		856B398415CEDEE100F0DEA7 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 856B398315CEDEE100F0DEA7 /* MessageUI.framework */; };
 		856B398A15CEDF2A00F0DEA7 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 856B398915CEDF2A00F0DEA7 /* CoreFoundation.framework */; };
 		8580F64515ECB26600376079 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8580F64415ECB26600376079 /* Default@2x.png */; };
@@ -834,8 +833,6 @@
 		8512457E1603443B00752AE1 /* tutorialDotActive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tutorialDotActive@2x.png"; sourceTree = "<group>"; };
 		8512457F1603443B00752AE1 /* tutorialDotNormal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tutorialDotNormal.png; sourceTree = "<group>"; };
 		851245801603443B00752AE1 /* tutorialDotNormal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tutorialDotNormal@2x.png"; sourceTree = "<group>"; };
-		851245A11603457200752AE1 /* PageControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageControl.h; sourceTree = "<group>"; };
-		851245A21603457200752AE1 /* PageControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageControl.m; sourceTree = "<group>"; };
 		856B398315CEDEE100F0DEA7 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		856B398515CEDEF600F0DEA7 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		856B398915CEDF2A00F0DEA7 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
@@ -1188,8 +1185,6 @@
 				8585E1A6161B0A5D00275AE7 /* FTCoreTextStyle.m */,
 				8585E1A7161B0A5D00275AE7 /* FTCoreTextView.h */,
 				8585E1A8161B0A5D00275AE7 /* FTCoreTextView.m */,
-				851245A11603457200752AE1 /* PageControl.h */,
-				851245A21603457200752AE1 /* PageControl.m */,
 				851245771603442400752AE1 /* TutorialViewController.h */,
 				851245781603442400752AE1 /* TutorialViewController.m */,
 				851245791603442400752AE1 /* TutorialViewController.xib */,
@@ -2547,7 +2542,6 @@
 				85A1473D15DA48D80026AB9E /* AbsoluteContraindicationsCell.m in Sources */,
 				8594B19D15DBC57200896105 /* CalendarInfoViewController.m in Sources */,
 				8512457A1603442400752AE1 /* TutorialViewController.m in Sources */,
-				851245A31603457200752AE1 /* PageControl.m in Sources */,
 				8585E1A9161B0A5D00275AE7 /* FTCoreTextStyle.m in Sources */,
 				8585E1AA161B0A5D00275AE7 /* FTCoreTextView.m in Sources */,
 				85939C65162D616D0081A46C /* ForDonorsCell.m in Sources */,

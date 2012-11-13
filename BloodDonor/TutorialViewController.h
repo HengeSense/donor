@@ -7,17 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "PageControl.h"
 
-@interface TutorialViewController : UIViewController <UIScrollViewDelegate, PageControlDelegate>
+@interface TutorialViewController : UIViewController <UIScrollViewDelegate>
 {
     IBOutlet UIButton *doneButton;
     IBOutlet UIScrollView *scrollView;
-    PageControl *pageControl;
     NSMutableArray *imageArray;
     BOOL pageControlUsed;
+    __weak IBOutlet UIPageControl *pageControl;
 }
 
 - (IBAction)doneButtonClick:(id)sender;
+- (IBAction)changePage:(id)sender;
 
 @end
