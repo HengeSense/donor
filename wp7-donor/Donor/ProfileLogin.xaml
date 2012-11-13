@@ -195,7 +195,7 @@
                             </ScrollViewer>
                         </StackPanel>
                         
-                        <StackPanel Name="LoginForm" Visibility="Visible">
+                        <StackPanel Name="LoginForm" Visibility="Collapsed">
                             <TextBlock Text="{Binding EnterEmail, Source={StaticResource Loc}}" Margin="10,10,0,0"
 						Style="{StaticResource Text24pxCBB2A3}"/>
                             <TextBox Background="#FF4F3B34" Style="{StaticResource TextBoxStyle1}"
@@ -293,7 +293,7 @@ Visibility="Collapsed" Name="SaveEditProfileButton" Click="SaveEditProfileButton
                     </Grid>
 
                     <ScrollViewer Height="550">
-                        <StackPanel Name="EditProfile" Visibility="Collapsed">
+                        <StackPanel Name="EditProfile" Visibility="Visible">
 
                             <TextBlock Text="{Binding Name, Source={StaticResource Loc}}" Margin="10,5,10,0"
 					Style="{StaticResource Text24pxCBB2A3}"/>
@@ -349,6 +349,7 @@ Visibility="Collapsed" Name="SaveEditProfileButton" Click="SaveEditProfileButton
                                 </toolkit:WrapPanel>
                             </StackPanel>
 
+
                             <TextBlock Text="{Binding RhFactor, Source={StaticResource Loc}}" Margin="10,0,10,0"
 						Style="{StaticResource Text24pxCBB2A3}"/>
                             <StackPanel Orientation="Horizontal">
@@ -361,6 +362,16 @@ Visibility="Collapsed" Name="SaveEditProfileButton" Click="SaveEditProfileButton
 							    Name="EditRHd" DataContext="{Binding}" />
                                 </toolkit:WrapPanel>
                             </StackPanel>
+
+                            <Button 
+					            FontSize="24"
+					            Background="#FF4186A3" 
+					            BorderBrush="#FF4186A3" 
+					            FontFamily="Segoe WP Regular"
+					            Name="FacebookLinkingButton" 
+                                Content="{Binding FacebookLinking, Source={StaticResource Loc}}" 
+					            Foreground="#FFFFFFFF" Click="FacebookLinkingButton_Click" />
+
                         </StackPanel>
                     </ScrollViewer>
 

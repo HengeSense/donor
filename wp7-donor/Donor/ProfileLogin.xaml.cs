@@ -682,5 +682,28 @@ namespace Donor
             }
         }
 
+        /// <summary>
+        /// Связываем или отвязываем профиль facebook
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void FacebookLinkingButton_Click(object sender, RoutedEventArgs e)
+        {
+            if ((App.ViewModel.User.IsLoggedIn) && (App.ViewModel.User.FacebookToken != "") && (App.ViewModel.User.FacebookId!=""))
+            {
+                App.ViewModel.User.FacebookLinking(App.ViewModel.User.FacebookId, App.ViewModel.User.FacebookToken);
+            }
+            else
+            {
+                try
+                {
+                    NavigationService.Navigate(new Uri("/FacebookPages/FacebookLoginPage.xaml", UriKind.Relative));
+                }
+                catch
+                {
+                };
+            };
+        }
+
     }
 }

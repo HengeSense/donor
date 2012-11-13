@@ -209,17 +209,6 @@ namespace Donor
             {
             };
 
-            /*try
-            {
-                if (this.Stations.Items.Count > 0)
-                {
-                    IsolatedStorageHelper.SaveSerializableObject<ObservableCollection<StationViewModel>>(this.Stations.Items, "stations.xml");
-                };
-            }
-            catch
-            {
-            };*/
-
             try
             {
                 if (this.News.Items.Count > 0)
@@ -293,7 +282,17 @@ namespace Donor
                     }
                     else {
                         App.ViewModel.User.IsLoggedIn = false;
-                        App.ViewModel.User.LoginAction(null);
+                        if (App.ViewModel.User.Password != "" && App.ViewModel.User.Password != null)
+                        {
+                            App.ViewModel.User.LoginAction(null);
+                        }
+                        else
+                        {
+                            if ((App.ViewModel.User.FacebookId != "") && (App.ViewModel.User.FacebookToken!=""))
+                            {
+                                App.ViewModel.User.FacebookLogin(App.ViewModel.User.FacebookId, App.ViewModel.User.FacebookToken);
+                            };
+                        };
                 };
                 }
                 catch

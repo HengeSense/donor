@@ -388,7 +388,7 @@ namespace Donor.ViewModels
         public DateTime? UpdatedAt { get; set; }
         public DateTime? CreatedAt { get; set; }
 
-        private string _facebookId = "";
+        private string _facebookId;
         public string FacebookId { 
             get { return _facebookId; } 
             set { 
@@ -396,6 +396,18 @@ namespace Donor.ViewModels
                 NotifyPropertyChanged("FacebookId");
                 NotifyPropertyChanged("IsFacebookLoggedIn"); 
             } 
+        }
+
+        private string _facebookToken;
+        public string FacebookToken
+        {
+            get { return _facebookToken; }
+            set
+            {
+                _facebookToken = value;
+                NotifyPropertyChanged("FacebookToken");
+                NotifyPropertyChanged("IsFacebookLoggedIn");
+            }
         }
 
         public bool IsFacebookLoggedIn {
@@ -568,7 +580,7 @@ namespace Donor.ViewModels
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
-        public string FacebookToken;
+       
         private void NotifyPropertyChanged(String propertyName)
         {
             PropertyChangedEventHandler handler = PropertyChanged;
@@ -576,6 +588,69 @@ namespace Donor.ViewModels
             {
                 handler(this, new PropertyChangedEventArgs(propertyName));
             }
+        }
+
+
+        public void FacebookLogin(string id, string accessToken)
+        {
+            App.ViewModel.User.UserLoading = true;
+
+            var client = new RestClient("https://api.parse.com");
+            var request = new RestRequest("1/users", Method.POST);
+            request.AddHeader("Accept", "application/json");
+            request.Parameters.Clear();
+
+            string strJSONContent = "{\"authData\": { \"facebook\":{ \"id\": \"" + id + "\", \"access_token\": \"" + accessToken + "\", \"expiration_date\": \"" + DateTime.Now.AddMonths(1).ToString("s") + "\"  }  } }";
+            request.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
+            request.AddHeader("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
+            if (App.ViewModel.User.sessionToken != "" && App.ViewModel.User.sessionToken != null)
+            {
+                request.AddHeader("X-Parse-Session-Token", App.ViewModel.User.sessionToken);
+            };
+            request.AddHeader("Content-Type", "application/json");
+
+            request.AddParameter("application/json", strJSONContent, ParameterType.RequestBody);
+
+            client.ExecuteAsync(request, response =>
+            {
+                try
+                {
+                    JObject o = JObject.Parse(response.Content.ToString());
+                    if (o["error"] == null)
+                    {
+                        App.ViewModel.User = JsonConvert.DeserializeObject<DonorUser>(response.Content.ToString());
+                        ClassToUser();
+
+                        App.ViewModel.User.IsLoggedIn = true;
+                        this.IsLoggedIn = true;
+
+                        App.ViewModel.SaveUserToStorage();
+
+                        App.ViewModel.Events.WeekItemsUpdated();
+                        App.ViewModel.Events.LoadEventsParse();
+
+                        App.ViewModel.User.FacebookId = id;
+                        App.ViewModel.User.FacebookToken = accessToken;
+
+                        App.ViewModel.SaveUserToStorage();
+
+                        App.ViewModel.User.NotifyAll();
+                        this.NotifyAll();
+
+                        App.ViewModel.OnUserEnter(EventArgs.Empty);
+                    }
+                    else
+                    {
+                        App.ViewModel.User.IsLoggedIn = false;
+                        MessageBox.Show(Donor.AppResources.UncorrectLoginData);
+
+                        App.ViewModel.User.NotifyAll();
+                        this.NotifyAll();
+                    };
+                    App.ViewModel.User.UserLoading = false;
+                }
+                catch { App.ViewModel.User.IsLoggedIn = false; App.ViewModel.User.UserLoading = false; };
+            });
         }
 
         public void FacebookLinking(string id, string accessToken)
@@ -601,6 +676,8 @@ namespace Donor.ViewModels
                         if (o["error"] == null)
                         {
                             MessageBox.Show("Выполнен вход c использованием Facebook.");
+
+                            App.ViewModel.SaveUserToStorage();
                         }
                         else
                         {
@@ -630,9 +707,11 @@ namespace Donor.ViewModels
                 try
                 {
                     JObject o = JObject.Parse(response.Content.ToString());
+
                     if (o["error"] == null)
                     {
                         MessageBox.Show(Donor.AppResources.FacebookUnlinkedMessage);
+                        App.ViewModel.SaveUserToStorage();
                     }
                     else
                     {

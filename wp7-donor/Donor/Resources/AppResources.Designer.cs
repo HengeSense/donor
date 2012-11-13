@@ -502,6 +502,15 @@ namespace Donor {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Привязать профиль Facebook.
+        /// </summary>
+        public static string FacebookLinking {
+            get {
+                return ResourceManager.GetString("FacebookLinking", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Вход через Facebook.
         /// </summary>
         public static string FacebookLogin {
@@ -1210,6 +1219,15 @@ namespace Donor {
         public static string StPetersburg {
             get {
                 return ResourceManager.GetString("StPetersburg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string String {
+            get {
+                return ResourceManager.GetString("String", resourceCulture);
             }
         }
         
