@@ -153,9 +153,10 @@ static NSString * const kRemoteEventField_Type = @"type";
 
 - (void)removeWithCompletionBlock: (CompletionBlockType)completion {
     THROW_IF_ARGUMENT_NIL(completion, @"completion block is not defined");
-    [self.remoteEvent deleteInBackgroundWithBlock: ^(BOOL succeeded, NSError *error) {
-        completion(succeeded, error);
-    }];
+    // Sync deletion is used because async deletion crashes the application.
+    NSError *deleteError = nil;
+    BOOL succeed = [self.remoteEvent delete: &deleteError];
+    completion(succeed, deleteError);
 }
 
 @end

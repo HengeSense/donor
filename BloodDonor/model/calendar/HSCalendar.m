@@ -406,7 +406,14 @@ static NSString * const kEventDate = @"date";
     for (HSBloodDonationEvent *undoneEvent in [self undoneBloodDonationEvents]) {
         if (undoneEvent.bloodDonationType == bloodDonationType &&
                 [undoneEvent.scheduledDate isAfterDay:fromDate] && [undoneEvent.scheduledDate isBeforeDay:toDate]) {
-            [self.bloodRemoteEvents removeObject: undoneEvent];
+            [self removeBloodRemoteEvent: undoneEvent completion: ^(BOOL success, NSError *error) {
+                if (success) {
+                    [self.bloodRemoteEvents removeObject: undoneEvent];
+                } else {
+#warning Notify user
+                    NSLog (@"Unable to remove event due to reason: %@", error);
+                }
+            }];
         }
     }
 }
