@@ -12,6 +12,7 @@
 #import "ProfileSettingsViewController.h"
 #import <Parse/Parse.h>
 #import "Common.h"
+#import "MBProgressHUD.h"
 
 #import "HSCalendar.h"
 
@@ -41,6 +42,7 @@
     }
     else
     {
+        MBProgressHUD *progressHud = [MBProgressHUD showHUDAddedTo: self.navigationController.view animated: YES];
         [PFUser logInWithUsernameInBackground:loginTextField.text password:passwordTextField.text 
         block:^(PFUser *user, NSError *error) {
             if (user)
@@ -55,6 +57,7 @@
                 HSCalendar *calendarModel = [[HSCalendar alloc] init];
                 self.calendarViewController.calendarModel = calendarModel;
                 [calendarModel pullEventsFromServer:^(BOOL success, NSError *error) {
+                    [progressHud hide: YES];
                     if (success) {
                         ProfileDescriptionViewController *controller = [[[ProfileDescriptionViewController alloc]
                                 initWithNibName:@"ProfileDescriptionViewController" bundle:nil] autorelease];
@@ -72,6 +75,7 @@
             }
             else
             {
+                [progressHud hide: YES];
                 NSString *errorString;
                 NSInteger errorCode = [[[error userInfo] objectForKey:@"code"] intValue];
                 
@@ -147,9 +151,11 @@
     
     if ([PFUser currentUser])
     {
+        MBProgressHUD *progressHud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
         HSCalendar *calendarModel = [[HSCalendar alloc] init];
         self.calendarViewController.calendarModel = calendarModel;
         [calendarModel pullEventsFromServer:^(BOOL success, NSError *error) {
+            [progressHud hide:YES];
             if (success) {
                 ProfileDescriptionViewController *controller = [[[ProfileDescriptionViewController alloc]
                         initWithNibName:@"ProfileDescriptionViewController" bundle:nil] autorelease];
