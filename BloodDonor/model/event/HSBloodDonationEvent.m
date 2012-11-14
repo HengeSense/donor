@@ -87,12 +87,12 @@ static const size_t const REST_PERIODS_TABLE[4][4] =
     finishRestEventForBlood.bloodDonationType = HSBloodDonationType_Blood;
     finishRestEventForBlood.scheduledDate = finishRestDateForBlood;
     
-//    NSUInteger restPeriodForGranulocytes = REST_PERIODS_TABLE[self.bloodDonationType][HSBloodDonationType_Granulocytes];
-//    NSDate *finishRestDateForGranulocytes = [NSDate dateWithTimeInterval: (restPeriodForGranulocytes + 1) * kSecondsInDay
-//                               sinceDate: beginingDay];
-//    HSFinishRestEvent *finishRestEventForGranulocytes = [[HSFinishRestEvent alloc] init];
-//    finishRestEventForGranulocytes.bloodDonationType = HSBloodDonationType_Granulocytes;
-//    finishRestEventForGranulocytes.scheduledDate = finishRestDateForGranulocytes;
+    NSUInteger restPeriodForGranulocytes = REST_PERIODS_TABLE[self.bloodDonationType][HSBloodDonationType_Granulocytes];
+    NSDate *finishRestDateForGranulocytes = [NSDate dateWithTimeInterval: (restPeriodForGranulocytes + 1) * kSecondsInDay
+                               sinceDate: beginingDay];
+    HSFinishRestEvent *finishRestEventForGranulocytes = [[HSFinishRestEvent alloc] init];
+    finishRestEventForGranulocytes.bloodDonationType = HSBloodDonationType_Granulocytes;
+    finishRestEventForGranulocytes.scheduledDate = finishRestDateForGranulocytes;
 
     NSUInteger restPeriodForPlasma = REST_PERIODS_TABLE[self.bloodDonationType][HSBloodDonationType_Plasma];
     NSDate *finishRestDateForPlasma = [NSDate dateWithTimeInterval: (restPeriodForPlasma + 1) * kSecondsInDay
@@ -109,7 +109,7 @@ static const size_t const REST_PERIODS_TABLE[4][4] =
     finishRestEventForPlatelets.scheduledDate = finishRestDateForPlatelets;
     
     return [NSArray arrayWithObjects: finishRestEventForBlood, finishRestEventForPlasma, finishRestEventForPlatelets,
-            nil];
+            finishRestEventForGranulocytes, nil];
 }
 
 @end
