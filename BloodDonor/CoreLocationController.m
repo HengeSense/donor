@@ -28,13 +28,7 @@
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
 {
-    //if (step >= 10)
-    //{
     [self.delegate locationUpdate:newLocation];
-    //step = 0;
-    //}
-    
-    //step++;
 }
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error

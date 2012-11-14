@@ -1174,6 +1174,7 @@
         [indicatorView addSubview:indicator];
         [indicator startAnimating];
     }
+    [self locationUpdate: nil];
     [self reloadMapAnnotations];
 }
 
