@@ -169,6 +169,8 @@ namespace Donor
                     {
                         this.Date.Value = new DateTime(YearNumber, MonthNumber, DayNumber);
                     };
+
+                    BuildEvent(false);
                 }
                 catch { };
             };
@@ -176,8 +178,10 @@ namespace Donor
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
+            try { DataFLoaded(this, EventArgs.Empty); }
+            catch { };
             try { App.ViewModel.DataFLoaded += new MainViewModel.DataFLoadedEventHandler(this.DataFLoaded);} catch { };
-            try { DataFLoaded(this, EventArgs.Empty); } catch { };
+            
         }
 
         private void CancelButton_Click(object sender, EventArgs e)
