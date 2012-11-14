@@ -171,7 +171,7 @@
         [self.rootScrollView addSubview: self.bloodDonationView];
         rootScrollViewContentSize.height += bloodDonationSize.height;
         
-        if ([self.bloodDonationEvent.scheduledDate isAfterDay: [NSDate date]]) {
+        if (self.bloodDonationEvent.scheduledDate.timeIntervalSince1970 > [[NSDate date] timeIntervalSince1970]) {
             self.doneButton.enabled = NO;
         } else {
             self.doneButton.enabled = !self.currentBloodRemoteEvent.isDone;
