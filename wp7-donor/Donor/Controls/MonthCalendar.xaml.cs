@@ -39,7 +39,7 @@ namespace Donor.Controls
             {
 
             int dayscount = 0;
-            this.Items = App.ViewModel.Events.ThisMonthItems;
+            this.Items = App.ViewModel.Events.ThisMonthItemsWithoutEmpty;
             List<DaysModel> DaysList = new List<DaysModel>();
             DaysList = new List<DaysModel>();
 
@@ -67,7 +67,7 @@ namespace Donor.Controls
                 DaysList.Add(day);
             };
 
-            for (var i = 1; i <= DateTime.DaysInMonth(Date.Year, Date.Month); i++)
+            for (var i = 1; i < DateTime.DaysInMonth(Date.Year, Date.Month); i++)
             {
                 DaysModel day2 = new DaysModel();
 
@@ -76,7 +76,7 @@ namespace Donor.Controls
                 day2.DayImageRT2 = null;
                 day2.DayImageRB = null;
                 day2.DayImageLB = null;
-               
+
                 day2.EventDay = this.Items.FirstOrDefault(a => a.Date == new DateTime(Date.Year, Date.Month, i));
 
                 day2.EventDayList = null;
@@ -117,10 +117,11 @@ namespace Donor.Controls
                     };
 
                     day2.PossibleBloodGive = 0;
-                    if (day2.EventDayList.Count() > 0)
-                    {
+
                         Deployment.Current.Dispatcher.BeginInvoke(() =>
                         {
+                            if (day2.EventDayList.Count() > 0)
+                            {
                             foreach (var dayitem in day2.EventDayList)
                             {
                             Uri uri = new Uri(dayitem.SmallImage, UriKind.Relative);
@@ -164,8 +165,10 @@ namespace Donor.Controls
                         if (day2.PossibleBloodGive > 2)
                         {
                         };
+
+                        };
                         });
-                    };
+                    
                 dayscount++;
                 DaysList.Add(day2);
                 //day2.EventDayList = null;

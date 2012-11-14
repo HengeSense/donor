@@ -1668,6 +1668,24 @@ namespace Donor.ViewModels
             private set { }
         }
 
+        private List<EventViewModel> _thisMonthItemsWithoutEmpty;
+        public List<EventViewModel> ThisMonthItemsWithoutEmpty
+        {
+            get
+            {
+                var newitems = (from eventCal in this.Items
+                                where ((eventCal.UserId == App.ViewModel.User.objectId) || ((eventCal.Type != "0") && (eventCal.Type != "1"))) &&
+                                (eventCal.Date.Month == CurrentMonth.Month) && (eventCal.Date.Year == CurrentMonth.Year)
+                                orderby eventCal.Date descending
+                                select eventCal);
+                List<EventViewModel> _thisMonthItemsWithoutEmpty = newitems.ToList();
+
+                return _thisMonthItemsWithoutEmpty;
+            }
+            private set { }
+        }
+
+
         private DateTime _currentMonth = DateTime.Now;
         public DateTime CurrentMonth
         {
