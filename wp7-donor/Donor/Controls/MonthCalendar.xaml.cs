@@ -67,7 +67,7 @@ namespace Donor.Controls
                 DaysList.Add(day);
             };
 
-            for (var i = 1; i < DateTime.DaysInMonth(Date.Year, Date.Month); i++)
+            for (var i = 1; i <= DateTime.DaysInMonth(Date.Year, Date.Month); i++)
             {
                 DaysModel day2 = new DaysModel();
 
