@@ -12,9 +12,10 @@
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d" d:DesignHeight="728" d:DesignWidth="480"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit" 
-    xmlns:ARControls="clr-namespace:GART.Controls;assembly=GART"
+    
     xmlns:maps="clr-namespace:Microsoft.Phone.Controls.Maps;assembly=Microsoft.Phone.Controls.Maps"
     shell:SystemTray.IsVisible="False" Loaded="PhoneApplicationPage_Loaded">
+    <!-- xmlns:ARControls="clr-namespace:GART.Controls;assembly=GART" -->
 
     <toolkit:TransitionService.NavigationInTransition>
         <toolkit:NavigationInTransition>
@@ -81,10 +82,10 @@
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
             <maps:Map Name="map1" Height="500" CredentialsProvider="{StaticResource BingCredentials}" Width="450"/>
-            <ARControls:ARDisplay Height="500" x:Name="ARDisplay" d:LayoutOverrides="Width" ShowGridLines="True" Video="Transparent">
+            <!--<ARControls:ARDisplay Height="500" x:Name="ARDisplay" d:LayoutOverrides="Width" ShowGridLines="True" Video="Transparent">
                 <ARControls:VideoPreview x:Name="VideoPreview" />
                 <ARControls:WorldView x:Name="WorldView" ItemTemplate="{StaticResource RestaurantItem}"/>                
-            </ARControls:ARDisplay>
+            </ARControls:ARDisplay>-->
         </Grid>
     </Grid>
 

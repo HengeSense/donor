@@ -195,7 +195,7 @@
                             </ScrollViewer>
                         </StackPanel>
                         
-                        <StackPanel Name="LoginForm" Visibility="Collapsed">
+                        <StackPanel Name="LoginForm" Visibility="Visible">
                             <TextBlock Text="{Binding EnterEmail, Source={StaticResource Loc}}" Margin="10,10,0,0"
 						Style="{StaticResource Text24pxCBB2A3}"/>
                             <TextBox Background="#FF4F3B34" Style="{StaticResource TextBoxStyle1}"
@@ -227,7 +227,7 @@ BorderBrush="#FF4F3B34" Foreground="#FFCBB2A3" x:Name="email"
 					BorderBrush="#FF4186A3" 
 					FontFamily="Segoe WP Regular"
 					Name="FacebookLogin" Content="{Binding FacebookLogin, Source={StaticResource Loc}}" 
-					Foreground="#FFFFFFFF" Click="FacebookLogin_Click" />
+					Foreground="#FFFFFFFF" Click="FacebookLogin_Click" Visibility="Collapsed" />
 
 
                             <TextBlock 
@@ -293,7 +293,7 @@ Visibility="Collapsed" Name="SaveEditProfileButton" Click="SaveEditProfileButton
                     </Grid>
 
                     <ScrollViewer Height="550">
-                        <StackPanel Name="EditProfile" Visibility="Visible">
+                        <StackPanel Name="EditProfile" Visibility="Collapsed">
 
                             <TextBlock Text="{Binding Name, Source={StaticResource Loc}}" Margin="10,5,10,0"
 					Style="{StaticResource Text24pxCBB2A3}"/>

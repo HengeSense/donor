@@ -11,9 +11,9 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using Donor.ViewModels;
-using GART;
-using GART.Controls;
-using GART.Data;
+//using GART;
+//using GART.Controls;
+//using GART.Data;
 using System.Collections.ObjectModel;
 using System.Device.Location;
 using Microsoft.Phone.Controls.Maps;
@@ -43,9 +43,9 @@ namespace Donor
                 }
                 catch { };
             };
-            ObservableCollection<ARItem> items = new ObservableCollection<ARItem>();
+            //ObservableCollection<ARItem> items = new ObservableCollection<ARItem>();
 
-            ARStation mapitem = new ARStation();
+            //ARStation mapitem = new ARStation();
             GeoCoordinate currentLocation = new GeoCoordinate(Convert.ToDouble(App.ViewModel.Stations.Latitued.ToString()), Convert.ToDouble(App.ViewModel.Stations.Longitude.ToString()));
             
             map1.Children.Add(new Pushpin() { Location = currentLocation, Content = "Я" });
@@ -59,11 +59,11 @@ namespace Donor
                 map1.Center = new GeoCoordinate(Convert.ToDouble(_currentStation.Lat.ToString()), Convert.ToDouble(_currentStation.Lon.ToString()));
             };
 
-            mapitem.GeoLocation = currentLocation;
+            //mapitem.GeoLocation = currentLocation;
 
-            mapitem.Title = "Я";
-            mapitem.Adress = "Текущее положение";
-            items.Add(mapitem);
+            //mapitem.Title = "Я";
+            //mapitem.Adress = "Текущее положение";
+            //items.Add(mapitem);
 
 
             ///
@@ -108,33 +108,37 @@ namespace Donor
             {
                 foreach (var item in filteredItems)
                 {
-                    mapitem = new ARStation();
+                    /*mapitem = new ARStation();
                     mapitem.GeoLocation = new GeoCoordinate(Convert.ToDouble(item.Lat.ToString()), Convert.ToDouble(item.Lon.ToString()));
-                    mapitem.Content = item.Title;
+                    mapitem.Content = item.Title;*/
+
+                    currentLocation = new GeoCoordinate(Convert.ToDouble(item.Lat.ToString()), Convert.ToDouble(item.Lon.ToString()));
 
                     Pushpin pushpinItem = new Pushpin()
                     {
-                        Location = mapitem.GeoLocation,
+                        Location = currentLocation, //mapitem.GeoLocation,
                         Content = item.Title
                     };
                     pushpinItem.Tag = item.Nid;
                     pushpinItem.Tap += this.Pushpin_Tap;
                     map1.Children.Add(pushpinItem);
 
-                    mapitem.Title = item.Title;
+                    /*mapitem.Title = item.Title;
                     mapitem.Adress = item.Adress;
-                    items.Add(mapitem);
+                    items.Add(mapitem);*/
                 };
             }
             else
             {
-                mapitem = new ARStation();
+                /*mapitem = new ARStation();
                 mapitem.GeoLocation = new GeoCoordinate(Convert.ToDouble(_currentStation.Lat.ToString()), Convert.ToDouble(_currentStation.Lon.ToString()));
-                mapitem.Content = _currentStation.Title;
+                mapitem.Content = _currentStation.Title;*/
+
+                currentLocation = new GeoCoordinate(Convert.ToDouble(_currentStation.Lat.ToString()), Convert.ToDouble(_currentStation.Lon.ToString()));
 
                 Pushpin pushpinItem = new Pushpin()
                 {
-                    Location = mapitem.GeoLocation,
+                    Location = currentLocation, //mapitem.GeoLocation,
                     Content = _currentStation.Title
                 };
                 //pushpinItem.Tag = _currentStation.Nid;
@@ -142,12 +146,12 @@ namespace Donor
 
                 map1.Children.Add(pushpinItem);
 
-                mapitem.Title = _currentStation.Title;
+                /*mapitem.Title = _currentStation.Title;
                 mapitem.Adress = _currentStation.Adress;
-                items.Add(mapitem);
+                items.Add(mapitem);*/
             };
 
-            ARDisplay.ARItems = items;
+            //ARDisplay.ARItems = items;
             
         }
 
@@ -173,23 +177,21 @@ namespace Donor
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
-            // Start AR services
-            //ARDisplay.StartServices();
-            ARDisplay.Visibility = Visibility.Collapsed;
+            //ARDisplay.Visibility = Visibility.Collapsed;
             base.OnNavigatedTo(e);
         }
 
         private void ThreeDButton_Click(object sender, System.EventArgs e)
         {
-           //UIHelper.ToggleVisibility(WorldView);
-           ARDisplay.StartServices();
-           this.ARDisplay.Visibility = Visibility.Visible;
+
+           //ARDisplay.StartServices();
+           //this.ARDisplay.Visibility = Visibility.Visible;
         }
 
         private void RemoveAR_Click(object sender, EventArgs e)
         {
-            this.ARDisplay.Visibility = Visibility.Collapsed;
-            ARDisplay.StopServices();
+            //this.ARDisplay.Visibility = Visibility.Collapsed;
+            //ARDisplay.StopServices();
         }
     }
 }

@@ -16,7 +16,7 @@ using System.Linq;
 using Newtonsoft.Json;
 using MSPToolkit.Utilities;
 using System.Device.Location;
-using GART.Data;
+//using GART.Data;
 using System.Collections.Generic;
 
 namespace Donor.ViewModels
@@ -480,7 +480,7 @@ namespace Donor.ViewModels
         
     }
 
-    public class ARStation : ARItem
+    public class ARStation //: ARItem
     {
         public ARStation()
         {
