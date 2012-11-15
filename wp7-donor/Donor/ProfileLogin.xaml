@@ -371,7 +371,7 @@ Visibility="Collapsed" Name="SaveEditProfileButton" Click="SaveEditProfileButton
 					            FontFamily="Segoe WP Regular"
 					            Name="FacebookLinkingButton" 
                                 Content="{Binding FacebookLinking, Source={StaticResource Loc}}" 
-					            Foreground="#FFFFFFFF" Click="FacebookLinkingButton_Click" />
+					            Foreground="#FFFFFFFF" Click="FacebookLinkingButton_Click" Visibility="Collapsed" />
 
                         </StackPanel>
                     </ScrollViewer>

@@ -101,6 +101,12 @@ namespace Donor
 
                         this.Description.Text = _currentEvent.Description;
 
+                        try
+                        {
+                            this.Place.Text = _currentEvent.Place;
+                        }
+                        catch { };
+
                     }
                     catch
                     {

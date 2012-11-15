@@ -95,10 +95,10 @@ namespace Donor
                 this.EventType.ItemsSource = eventTypes;
                 this.GiveType.ItemsSource = giveTypes;
 
-                if (this.Date.Value == new DateTime(DateTime.Now.AddDays(1).Year, DateTime.Now.AddDays(1).Month, DateTime.Now.AddDays(1).Day))
+                /*if (this.Date.Value == new DateTime(DateTime.Now.AddDays(1).Year, DateTime.Now.AddDays(1).Month, DateTime.Now.AddDays(1).Day))
                 {
                     this.Date.Value = CurrentEvent.Date;
-                };
+                };*/
                 try
                 {
                     if (CurrentEvent.Type.ToString() != "PossibleBloodGive")
@@ -157,6 +157,9 @@ namespace Donor
             {
                 try
                 {
+                    CurrentEvent = new EventViewModel();
+                    CurrentEvent.Finished = false;
+
                     MonthNumber = int.Parse(this.NavigationContext.QueryString["month"]);
                     DayNumber = int.Parse(this.NavigationContext.QueryString["day"]);
                     YearNumber = int.Parse(this.NavigationContext.QueryString["year"]);
@@ -164,10 +167,12 @@ namespace Donor
                     if (this.Date.Value == new DateTime(DateTime.Now.AddDays(1).Year, DateTime.Now.AddDays(1).Month, DateTime.Now.AddDays(1).Day))
                     {
                         this.Date.Value = new DateTime(YearNumber, MonthNumber, DayNumber);
+                        CurrentEvent.Date = new DateTime(YearNumber, MonthNumber, DayNumber);
                     };
                     if (this.Date.Value == new DateTime(DateTime.Now.AddDays(1).Year, DateTime.Now.AddDays(1).Month, DateTime.Now.AddDays(1).Day))
                     {
                         this.Date.Value = new DateTime(YearNumber, MonthNumber, DayNumber);
+                        CurrentEvent.Date = new DateTime(YearNumber, MonthNumber, DayNumber);
                     };
 
                     BuildEvent(false);
@@ -407,6 +412,10 @@ namespace Donor
                                  {
                                      MessageBox.Show(Donor.AppResources.YouGiveBloodThanks);
                                  };
+                             }
+                             else
+                             {
+                                 CurrentEvent.Finished = false;
                              };
                              if ((save) && (App.ViewModel.Events.ThisDayEvents(CurrentEvent.Date)==false))
                              {
