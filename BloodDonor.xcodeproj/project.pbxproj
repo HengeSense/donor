@@ -162,7 +162,7 @@
 		683F8A9A16468E300066C47A /* event_done_button_pressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 683F8A9616468E300066C47A /* event_done_button_pressed@2x.png */; };
 		683F8A9D1648C0EA0066C47A /* HSDayHolidayEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 683F8A9C1648C0E90066C47A /* HSDayHolidayEvent.m */; };
 		683F8AA01649B8C10066C47A /* NSDate+HSCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 683F8A9F1649B8C10066C47A /* NSDate+HSCalendar.m */; };
-		685CB2F8163F200A004FF9AC /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 685CB2F7163F2008004FF9AC /* MBProgressHUD.m */; };
+		685CB2F8163F200A004FF9AC /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 685CB2F7163F2008004FF9AC /* MBProgressHUD.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		685CB3131640E87F004FF9AC /* icon_blood.png in Resources */ = {isa = PBXBuildFile; fileRef = 685CB2FE1640E87E004FF9AC /* icon_blood.png */; };
 		685CB3141640E87F004FF9AC /* icon_blood@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 685CB2FF1640E87E004FF9AC /* icon_blood@2x.png */; };
 		685CB3151640E87F004FF9AC /* icon_blood_check.png in Resources */ = {isa = PBXBuildFile; fileRef = 685CB3001640E87E004FF9AC /* icon_blood_check.png */; };
@@ -2537,6 +2537,7 @@
 				8585E1A9161B0A5D00275AE7 /* FTCoreTextStyle.m in Sources */,
 				8585E1AA161B0A5D00275AE7 /* FTCoreTextView.m in Sources */,
 				85939C65162D616D0081A46C /* ForDonorsCell.m in Sources */,
+				685CB2F8163F200A004FF9AC /* MBProgressHUD.m in Sources */,
 				68EB2758163090B90092FDBA /* HSCalendar.m in Sources */,
 				68EB275C163091190092FDBA /* HSEvent.m in Sources */,
 				68EB27601630952A0092FDBA /* HSCalendarException.m in Sources */,
@@ -2555,7 +2556,6 @@
 				68B455CE163739E900811A0F /* HSBloodRemoteEvent.m in Sources */,
 				68F7F3F11638878800740CCF /* HSModelCommon.m in Sources */,
 				6891637D1639D92500E219B3 /* HSEventPlanningViewController.m in Sources */,
-				685CB2F8163F200A004FF9AC /* MBProgressHUD.m in Sources */,
 				685CB33916442121004FF9AC /* HSBloodDonationTypePicker.m in Sources */,
 				683F8A81164573860066C47A /* HSBloodDonationType.m in Sources */,
 				683F8A86164577090066C47A /* HSDateTimePicker.m in Sources */,
