@@ -9,13 +9,24 @@
 #import "HSBlockUIViewController.h"
 
 @interface HSBlockUIViewController ()
-
+@property (weak, nonatomic) IBOutlet UILabel *blockMessageLabel;
 @end
 
 @implementation HSBlockUIViewController
 
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.blockMessageLabel.text = self.blockMessage;
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    self.blockMessageLabel.text = self.blockMessage;
+}
+
 - (void)viewDidUnload {
     [self setBlockMessage:nil];
+    [self setBlockMessageLabel:nil];
     [super viewDidUnload];
 }
 

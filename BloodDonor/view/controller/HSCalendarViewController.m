@@ -122,9 +122,9 @@
 }
 
 - (void)viewDidLoad {
+    [super viewDidLoad];
     self.blockUIViewController = [[HSBlockUIViewController alloc] initWithNibName:@"HSBlockUIViewController"
                                                                            bundle:nil];
-    [super viewDidLoad];
     [self configureNavigationItem];
 }
 
@@ -368,8 +368,7 @@
 }
 
 - (void)showBlockUI {
-    NSString *message = @"Пользователь не вошел в систему. Функции календаря недоступны.";
-    self.blockUIViewController.blockMessage.text = message;
+    self.blockUIViewController.blockMessage = @"Пользователь не вошел в систему. Функции календаря недоступны.";
     [self.blockUIViewController.view removeFromSuperview];
     [self.view addSubview: self.blockUIViewController.view];
 }

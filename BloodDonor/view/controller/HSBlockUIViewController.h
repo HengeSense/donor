@@ -10,6 +10,6 @@
 
 @interface HSBlockUIViewController : UIViewController
 
-@property (weak, nonatomic) IBOutlet UILabel *blockMessage;
+@property (strong, nonatomic) NSString *blockMessage;
 
 @end
