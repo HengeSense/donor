@@ -49,7 +49,7 @@
 			<string></string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>fb[AppId]</string>
+				<string>donor</string>
 			</array>
 		</dict>
 	</array>
