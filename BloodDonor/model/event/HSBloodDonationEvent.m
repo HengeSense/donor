@@ -24,7 +24,7 @@ static const size_t const REST_PERIODS_TABLE[4][4] =
     /*HSBloodDonationType_Blood*/       {60, 30, 30, 30},
     /*HSBloodDonationType_Platelets*/   {30, 14, 14, 30},
     /*HSBloodDonationType_Plasma*/      {14, 14, 14, 14},
-    /*HSBloodDonationType_Granulocytes*/{30, 30, 14, 30}
+    /*HSBloodDonationType_Granulocytes*/{30, 30, 14, 360}
 };
 
 @implementation HSBloodDonationEvent
