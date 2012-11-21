@@ -47,9 +47,6 @@
     InfoViewController *infoViewController = [infoNavigationController.viewControllers objectAtIndex:0];
     [infoViewController selectTab:0];
     [self.tabBarController setSelectedIndex:2];
-    
-    AppDelegate *appDelegate= (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    [appDelegate.sTabBarController selectTab];
 }
 
 - (IBAction)reviewsPressed:(id)sender

@@ -3,25 +3,14 @@
 //  BloodDonor
 //
 //  Created by Andrey Rebrik on 13.07.12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//  Modified by Sergey Seroshtan 21.11.12.
+//  Copyright (c) 2012 Hint Solutions. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface STabBarController : NSObject <UITabBarControllerDelegate, UITabBarDelegate>
-{
-    UIImageView *tabBarBackground;
-    UIButton *calendarButton;
-    UIButton *stationsButton;
-    UIButton *infoButton;
-    UIButton *profileButton;
-}
+@interface STabBarController : NSObject
 
-@property (nonatomic, assign) UITabBarController *tabBarController;
-
-- (void)addSubview;
-- (void)removeSubviews;
-- (IBAction)tabButtonClick:(id)sender;
-- (void)selectTab;
+- (id)initWithNativeTabBarController: (UITabBarController *)tabBarController;
 
 @end

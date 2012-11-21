@@ -27,7 +27,7 @@
 
 #import "ProfileViewController.h"
 
-@interface HSCalendarViewController ()
+@interface HSCalendarViewController ()<UIAlertViewDelegate>
 
 /**
  * Current date displayed by calendar.
@@ -136,7 +136,6 @@
     } else {
         [self showBlockUI];
         [self clearCalendarView];
-        [self navigateToLoginPage];
     }
 }
 
@@ -368,16 +367,28 @@
 }
 
 - (void)showBlockUI {
-    self.blockUIViewController.blockMessage = @"Пользователь не вошел в систему. Функции календаря недоступны.";
+    self.blockUIViewController.blockMessage = @"";
     [self.blockUIViewController.view removeFromSuperview];
     [self.view addSubview: self.blockUIViewController.view];
+    
+    NSString *alertTitle = @"Внимание";
+    NSString *alertMessage = @"Планирование событий недоступно. Выполните вход.";
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:alertTitle message:alertMessage delegate:self
+                                          cancelButtonTitle:@"Отмена" otherButtonTitles:@"Вход", nil];
+    [alert show];
 }
 - (void)hideBlockUI {
     [self.blockUIViewController.view removeFromSuperview];
 }
 
 - (void)navigateToLoginPage {
-#warning Not implemented yet
-    return;
+    self.tabBarController.selectedIndex = 3;
+}
+
+#pragma mark - UIAlertViewDelegate protocol implementation
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 1) {
+        [self navigateToLoginPage];
+    }
 }
 @end

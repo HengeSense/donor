@@ -100,20 +100,13 @@
         [defaults setBool:YES forKey:@"isFirstStart"];
     }
 
-    self.sTabBarController = [[STabBarController alloc] init];
-    self.sTabBarController.tabBarController = self.tabBarController;
-    [self.sTabBarController addSubview];
+    self.sTabBarController = [[STabBarController alloc] initWithNativeTabBarController:self.tabBarController];
+    self.tabBarController.selectedIndex = 3;
     
     self.window.rootViewController = rootNavigationController;
-    
-    [self.window makeKeyAndVisible];
-    
     [self makeTabBarHidden:YES];
     
-    [self.tabBarController setSelectedIndex:3];
-    
-    [self.sTabBarController selectTab];
-        
+    [self.window makeKeyAndVisible];
     return YES;
 }
 
