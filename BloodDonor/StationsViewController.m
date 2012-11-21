@@ -3,7 +3,8 @@
 //  BloodDonor
 //
 //  Created by Andrey Rebrik on 13.07.12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//  Modified by Sergey Seroshtan on 21.11.12
+//  Copyright (c) 2012 Hint Solutions. All rights reserved.
 //
 
 #import "StationsViewController.h"
@@ -498,12 +499,6 @@
                 [tableDictionary setObject:currentArray forKey:@"other"];
             }
         }
-       // [stationsTable beginUpdates];
-        //[stationsTable deleteRowsAtIndexPaths:deleteIndexPathsArray withRowAnimation:UITableViewRowAnimationNone];
-        //[stationsTable deleteSections:deleteIndexSet withRowAnimation:UITableViewRowAnimationNone];
-        //[stationsTable insertSections:insertIndexSet withRowAnimation:UITableViewRowAnimationNone];
-        //[stationsTable insertRowsAtIndexPaths:insertIndexPathsArray withRowAnimation:UITableViewRowAnimationNone];
-        //[stationsTable endUpdates];
         if ([tableDictionary objectForKey:@"last"] != [NSNull null] || [tableDictionary objectForKey:@"one"] != [NSNull null] || [tableDictionary objectForKey:@"three"] != [NSNull null] || [tableDictionary objectForKey:@"five"] != [NSNull null] || [tableDictionary objectForKey:@"ten"] != [NSNull null] || [tableDictionary objectForKey:@"fifteen"] != [NSNull null] || [tableDictionary objectForKey:@"other"] != [NSNull null])
             emptySearchLabel.hidden = YES;
         else
@@ -707,19 +702,6 @@
         objectForEvent = object;
         cell.indicatorView.hidden = NO;
         cell.indicatorView.image = [UIImage imageNamed:@"check"];
-        /*[Common getInstance].eventStationAddress = [object valueForKey:@"small_adress"];
-        
-        BOOL isInLastStations = NO;
-        for (int i = 0; [Common getInstance].lastStations.count > i; i++)
-        {
-            if ([[object valueForKey:@"objectId"] isEqual:[[Common getInstance].lastStations objectAtIndex:i]])
-                isInLastStations = YES;
-        }
-        if (!isInLastStations)
-            [Common getInstance].lastStations = [NSArray arrayWithObject:[object valueForKey:@"objectId"]]; */
-
-        
-        //[self.navigationController popViewControllerAnimated:YES];
     }
     else
     {
@@ -734,8 +716,6 @@
 - (NSIndexPath *)tableView:(UITableView *)tableView willDeselectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     StationsCell *cell = (StationsCell *)[tableView cellForRowAtIndexPath:indexPath];
-    //cell.shadowSelectionView.alpha = 0.0f;
-    //cell.addressLabel.textColor = [UIColor colorWithRed:100.0f/255.0f green:91.0f/255.0f blue:84.0f/255.0f alpha:1];
     NSArray *viewControllers = self.navigationController.viewControllers;
     if (viewControllers.count > 2 && [[viewControllers objectAtIndex:viewControllers.count - 2] isKindOfClass:[EventPlanningViewController class]])
         cell.indicatorView.hidden = YES;
@@ -925,8 +905,6 @@
         
         for (int i = 0; mapArray.count > i; i++)
         {
-            //MKCoordinateRegion region;
-            //MKCoordinateSpan span;
             PFGeoPoint *stationPoint = [[mapArray objectAtIndex:i] objectForKey:@"latlon"];
             CLLocation *location = [[[CLLocation alloc] initWithLatitude:stationPoint.latitude longitude:stationPoint.longitude] autorelease];
             
@@ -938,15 +916,6 @@
             
             [stationsMap addAnnotation:annotation];
             [annotation release];
-            
-            /*if (i == 0)
-                region.center = annotation.coordinate;
-            
-            span.latitudeDelta = 0.5;
-            span.longitudeDelta = 0.5;
-            region.span=span;
-            [stationsMap setRegion:region animated:TRUE];
-            [stationsMap regionThatFits:region];*/
         }
        
         MKCoordinateRegion region;
@@ -1308,7 +1277,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    
+    [self locationUpdate: nil];
     [coreLocationController.locationManager startUpdatingLocation];
 }
 
