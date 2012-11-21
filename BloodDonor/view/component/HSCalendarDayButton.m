@@ -53,10 +53,10 @@
         [self setTitle: title forState: UIControlStateDisabled];
         
         [self setTitleColor: [UIColor blackColor] forState: UIControlStateNormal];
-        [self setTitleColor: [UIColor blackColor] forState: UIControlStateHighlighted];
+        [self setTitleColor: [UIColor redColor] forState: UIControlStateHighlighted];
         [self setTitleColor: [UIColor grayColor] forState: UIControlStateDisabled];
         
-        UIColor *highlightColor = [UIColor lightGrayColor];
+        UIColor *highlightColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.07f];
         UIImage *backgroundColorImage = [self imageWithColor: highlightColor frame: self.bounds];
         [self setBackgroundImage: backgroundColorImage forState: UIControlStateHighlighted];
         
