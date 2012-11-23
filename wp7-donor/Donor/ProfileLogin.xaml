@@ -227,7 +227,7 @@ BorderBrush="#FF4F3B34" Foreground="#FFCBB2A3" x:Name="email"
 					BorderBrush="#FF4186A3" 
 					FontFamily="Segoe WP Regular"
 					Name="FacebookLogin" Content="{Binding FacebookLogin, Source={StaticResource Loc}}" 
-					Foreground="#FFFFFFFF" Click="FacebookLogin_Click" Visibility="Collapsed" />
+					Foreground="#FFFFFFFF" Click="FacebookLogin_Click"/>
 
 
                             <TextBlock 
@@ -371,7 +371,7 @@ Visibility="Collapsed" Name="SaveEditProfileButton" Click="SaveEditProfileButton
 					            FontFamily="Segoe WP Regular"
 					            Name="FacebookLinkingButton" 
                                 Content="{Binding FacebookLinking, Source={StaticResource Loc}}" 
-					            Foreground="#FFFFFFFF" Click="FacebookLinkingButton_Click" Visibility="Collapsed" />
+					            Foreground="#FFFFFFFF" Click="FacebookLinkingButton_Click"/>
 
                         </StackPanel>
                     </ScrollViewer>

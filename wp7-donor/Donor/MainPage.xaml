@@ -284,7 +284,7 @@
 					BorderBrush="#FF4186A3" 
 					FontFamily="Segoe WP Regular"
 					Name="FacebookLogin" Content="{Binding FacebookLogin, Source={StaticResource Loc}}" 
-					Foreground="#FFFFFFFF" Click="FacebookLogin_Click" Visibility="Collapsed" />
+					Foreground="#FFFFFFFF" Click="FacebookLogin_Click"/>
 
 
                     <Button 
