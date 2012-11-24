@@ -70,6 +70,9 @@
     <Reference Include="Facebook, Version=6.0.10.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Facebook.6.1.2\lib\wp71\Facebook.dll</HintPath>
     </Reference>
+    <Reference Include="FlurryWP7SDK">
+      <HintPath>..\packages\Flurry WindowsPhone SDK v2.0.4\FlurryWP7SDK.dll</HintPath>
+    </Reference>
     <Reference Include="HtmlAgilityPack, Version=1.4.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Devices.Sensors" />
     <Reference Include="Microsoft.Expression.Interactions" />

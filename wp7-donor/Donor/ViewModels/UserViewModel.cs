@@ -106,6 +106,8 @@ namespace Donor.ViewModels
                     if (o["error"] == null)
                     {
                         MessageBox.Show("Данные профиля обновлены.");
+
+                        FlurryWP7SDK.Api.LogEvent("User_updae_profile");
                     }
                     else
                     {
@@ -162,6 +164,8 @@ namespace Donor.ViewModels
                             this.NotifyAll();
 
                             App.ViewModel.OnUserEnter(EventArgs.Empty);
+
+                            FlurryWP7SDK.Api.LogEvent("User_login");
                         }
                         else
                         {
@@ -365,6 +369,7 @@ namespace Donor.ViewModels
                 if (o["error"] == null)
                 {
                     MessageBox.Show(Donor.AppResources.RestoreEmailSend);
+                    FlurryWP7SDK.Api.LogEvent("User_restore_password");
                 }
                 else
                 {
@@ -638,6 +643,8 @@ namespace Donor.ViewModels
                         this.NotifyAll();
 
                         App.ViewModel.OnUserEnter(EventArgs.Empty);
+
+                        FlurryWP7SDK.Api.LogEvent("User_login");
                     }
                     else
                     {
@@ -678,6 +685,8 @@ namespace Donor.ViewModels
                             MessageBox.Show("Выполнена привязка.");
 
                             App.ViewModel.SaveUserToStorage();
+
+                            FlurryWP7SDK.Api.LogEvent("Facebook_linking");
                         }
                         else
                         {
@@ -712,6 +721,8 @@ namespace Donor.ViewModels
                     {
                         MessageBox.Show(Donor.AppResources.FacebookUnlinkedMessage);
                         App.ViewModel.SaveUserToStorage();
+
+                        FlurryWP7SDK.Api.LogEvent("Facebook_unlinking");
                     }
                     else
                     {

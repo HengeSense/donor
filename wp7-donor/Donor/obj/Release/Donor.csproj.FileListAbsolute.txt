@@ -92,3 +92,4 @@ C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\obj\Release\FacebookPa
 C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\obj\Release\FacebookPages\FacebookLoginPage.g.i.cs
 C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\obj\Release\FacebookPages\FacebookLogoutPage.g.i.cs
 C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\obj\Release\QRread.g.i.cs
+C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\Bin\Release\FlurryWP7SDK.dll

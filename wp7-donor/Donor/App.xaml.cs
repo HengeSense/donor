@@ -102,12 +102,14 @@ namespace Donor
         // This code will not execute when the application is reactivated
         private void Application_Launching(object sender, LaunchingEventArgs e)
         {
+            FlurryWP7SDK.Api.StartSession("NMFNQBS8Z6PD8KXTK863");
         }
 
         // Code to execute when the application is activated (brought to foreground)
         // This code will not execute when the application is first launched
         private void Application_Activated(object sender, ActivatedEventArgs e)
         {
+            FlurryWP7SDK.Api.StartSession("NMFNQBS8Z6PD8KXTK863");
             // Ensure that application state is restored appropriately
             if (!App.ViewModel.IsDataStartLoaded)
             {
