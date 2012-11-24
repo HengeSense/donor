@@ -373,73 +373,24 @@ namespace Donor
             {
                 if (App.ViewModel.User.Sex == 1)
                 {
-                    this.EditFemale.IsChecked = true;
-                    this.EditMale.IsChecked = false;
+                    this.SexEditGroup.SelectedIndex = 1;
                 }
                 else
                 {
-                    this.EditFemale.IsChecked = false;
-                    this.EditMale.IsChecked = true;
+                    this.SexEditGroup.SelectedIndex = 0;
                 };
             }
             catch { };
 
             try
             {
-                switch (App.ViewModel.User.BloodGroup)
-                {
-                    case 0:
-                        this.o.IsChecked = true;
-                        this.a.IsChecked = false;
-                        this.b.IsChecked = false;
-                        this.ab.IsChecked = false;
-                        break;
-                    case 1:
-                        this.o.IsChecked = false;
-                        this.a.IsChecked = true;
-                        this.b.IsChecked = false;
-                        this.ab.IsChecked = false;
-                        break;
-                    case 2:
-                        this.o.IsChecked = false;
-                        this.a.IsChecked = false;
-                        this.b.IsChecked = true;
-                        this.ab.IsChecked = false;
-                        break;
-                    case 3:
-                        this.o.IsChecked = false;
-                        this.a.IsChecked = false;
-                        this.b.IsChecked = false;
-                        this.ab.IsChecked = true;
-                        break;
-                    default:
-                        this.o.IsChecked = false;
-                        this.a.IsChecked = false;
-                        this.b.IsChecked = false;
-                        this.ab.IsChecked = false;
-                        break;
-                };
+                this.BloudTypeGroupEdit.SelectedIndex = App.ViewModel.User.BloodGroup;
             }
             catch { };
 
             try
             {
-                switch (App.ViewModel.User.BloodRh)
-                {
-                    case 0:
-                        this.EditRHpl.IsChecked = true;
-                        this.EditRHd.IsChecked = false;
-
-                        break;
-                    case 1:
-                        this.EditRHpl.IsChecked = false;
-                        this.EditRHd.IsChecked = true;
-                        break;
-                    default:
-                        this.EditRHpl.IsChecked = false;
-                        this.EditRHd.IsChecked = false;
-                        break;
-                };
+                this.RHedit.SelectedIndex = App.ViewModel.User.BloodRh;
             }
             catch { };
         }
@@ -491,49 +442,19 @@ namespace Donor
         {
             try
             {
-                for (int i = 0; i < this.BloudTypeGroupEdit.Children.Count; i++)
-                {
-                    if (this.BloudTypeGroupEdit.Children[i].GetType().Name == "RadioButton")
-                    {
-                        RadioButton radio = (RadioButton)this.BloudTypeGroupEdit.Children[i];
-                        if ((bool)radio.IsChecked)
-                        {
-                            App.ViewModel.User.BloodGroup = i;
-                        }
-                    }
-                };
+                App.ViewModel.User.BloodGroup = this.BloudTypeGroupEdit.SelectedIndex;
             }
             catch { };
 
             try
             {
-                for (int i = 0; i < this.SexEditGroup.Children.Count; i++)
-                {
-                    if (this.SexEditGroup.Children[i].GetType().Name == "RadioButton")
-                    {
-                        RadioButton radio = (RadioButton)this.SexEditGroup.Children[i];
-                        if ((bool)radio.IsChecked)
-                        {
-                            App.ViewModel.User.Sex = i;
-                        }
-                    }
-                };
+                App.ViewModel.User.Sex = this.SexEditGroup.SelectedIndex;
             }
             catch { };
 
             try
             {
-                for (int i = 0; i < this.SexEditGroup.Children.Count; i++)
-                {
-                    if (this.RHedit.Children[i].GetType().Name == "RadioButton")
-                    {
-                        RadioButton radio = (RadioButton)this.RHedit.Children[i];
-                        if ((bool)radio.IsChecked)
-                        {
-                            App.ViewModel.User.BloodRh = i;
-                        }
-                    }
-                };
+                App.ViewModel.User.BloodRh = this.RHedit.SelectedIndex;
             }
             catch { };
 

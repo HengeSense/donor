@@ -195,7 +195,7 @@
                             </ScrollViewer>
                         </StackPanel>
                         
-                        <StackPanel Name="LoginForm" Visibility="Visible">
+                        <StackPanel Name="LoginForm" Visibility="Collapsed">
                             <TextBlock Text="{Binding EnterEmail, Source={StaticResource Loc}}" Margin="10,10,0,0"
 						Style="{StaticResource Text24pxCBB2A3}"/>
                             <TextBox Background="#FF4F3B34" Style="{StaticResource TextBoxStyle1}"
@@ -293,78 +293,124 @@ Visibility="Collapsed" Name="SaveEditProfileButton" Click="SaveEditProfileButton
                     </Grid>
 
                     <ScrollViewer Height="550">
-                        <StackPanel Name="EditProfile" Visibility="Collapsed">
+                        <StackPanel Name="EditProfile" Visibility="Visible">
 
                             <TextBlock Text="{Binding Name, Source={StaticResource Loc}}" Margin="10,5,10,0"
 					Style="{StaticResource Text24pxCBB2A3}"/>
-                            <TextBox Name="EditName" 
+                            <TextBox Name="EditName" Margin="0,-5,0,0"
 					Style="{StaticResource TextBoxStyle1}"	
 					Text="{Binding Path=User.Name, 
 					Mode=TwoWay}" />
 
-                            <TextBlock Text="{Binding SecondName, Source={StaticResource Loc}}" Margin="10,5,10,0"
+                            <TextBlock Text="{Binding SecondName, Source={StaticResource Loc}}" Margin="10,-5,10,0"
 					Style="{StaticResource Text24pxCBB2A3}"/>
                             <TextBox Name="EditSecondName" 
-					Style="{StaticResource TextBoxStyle1}"	
+					Style="{StaticResource TextBoxStyle1}" Margin="0,-5,0,0"	
 					Text="{Binding Path=User.SecondName, 
 					Mode=TwoWay}" />
 
-                            <TextBlock Text="{Binding UserBirthday, Source={StaticResource Loc}}" Margin="10,5,10,0"
+
+                            <toolkit:ListPicker x:Name="SexEditGroup" 
+                                        Margin="12,-5,12,10"
+			FullModeHeader="" FontSize="24" Foreground="#FFDF8D4B" 
+                                        Background="#FF4F3B34" 
+                                        BorderBrush="#FF4F3B34" 
+                                        Style="{StaticResource ListPickerStyle1}">
+                                <toolkit:ListPicker.Header>
+                                    <TextBlock Text="{Binding Sex, Source={StaticResource Loc}}" FontSize="24" 
+					Foreground="#FFCBB2A3"/>
+                                </toolkit:ListPicker.Header>
+                                <toolkit:ListPicker.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal" Background="#FF4F3B34" Margin="0">
+                                            <TextBlock Foreground="#FFDF8D4B" Text="{Binding}" />
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </toolkit:ListPicker.ItemTemplate>
+                                <toolkit:ListPicker.Items>
+                                    <toolkit:ListPickerItem>
+                                        <TextBlock Text="{Binding Male, Source={StaticResource Loc}}"/>
+                                    </toolkit:ListPickerItem>
+                                    <toolkit:ListPickerItem>
+                                        <TextBlock Text="{Binding Female, Source={StaticResource Loc}}"/>
+                                    </toolkit:ListPickerItem>
+                                </toolkit:ListPicker.Items>
+                            </toolkit:ListPicker>
+
+
+                            <TextBlock Text="{Binding UserBirthday, Source={StaticResource Loc}}" Margin="10,0,10,0"
 					Style="{StaticResource Text24pxCBB2A3}"/>
                             <toolkit:DatePicker Name="EditUserBirthday" 
                                                 Value="{Binding Path=User.DateBirthday, Mode=TwoWay}"
                             Background="#FF4F3B34" Foreground="#FFDF8D4B"/>
 
-                            <TextBlock Text="{Binding Sex, Source={StaticResource Loc}}" Margin="10,0,10,0"
-						Style="{StaticResource Text24pxCBB2A3}"/>
-                            <StackPanel Orientation="Horizontal">
-                                <toolkit:WrapPanel Name="SexEditGroup" ItemHeight="90" ItemWidth="210" Margin="10,0,10,0">
-                                    <RadioButton 
-							    Content="{Binding Male, Source={StaticResource Loc}}" Name="EditMale" 
-							    Foreground="#FFCBB2A3" />
-                                    <RadioButton Content="{Binding Female, Source={StaticResource Loc}}"
-							    Name="EditFemale" DataContext="{Binding}" 
-							    Foreground="#FFCBB2A3" />
-                                </toolkit:WrapPanel>
-                            </StackPanel>
+                            <TextBlock Text="Группа крови и резус-фактор" Margin="10,0,10,0"
+					Style="{StaticResource Text24pxCBB2A3}"/>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="225" />
+                                    <ColumnDefinition Width="225" />
+                                </Grid.ColumnDefinitions>
 
-                            <TextBlock Text="{Binding BloodGroup, Source={StaticResource Loc}}" Margin="10,0,10,0"
-						Style="{StaticResource Text24pxCBB2A3}" />
-                            <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left">
-                                <toolkit:WrapPanel ItemHeight="90" Margin="10,0,10,0" ItemWidth="210" Name="BloudTypeGroupEdit" VerticalAlignment="Top" HorizontalAlignment="Left" Height="160">
-                                    <RadioButton Content="{Binding FirstBloodGroup, Source={StaticResource Loc}}" 
-							Foreground="#FFCBB2A3"
-							Name="o" Height="75" VerticalAlignment="Top" />
-                                    <RadioButton 
-							Foreground="#FFCBB2A3"
-							Content="{Binding SecondBloodGroup, Source={StaticResource Loc}}" Name="a" Height="75" VerticalAlignment="Top" />
+                                <toolkit:ListPicker Grid.Row="0" Grid.Column="0" x:Name="BloudTypeGroupEdit" 
+                                        Margin="12,-5,12,10"
+			FullModeHeader="" FontSize="24" Foreground="#FFDF8D4B" 
+                                        Background="#FF4F3B34" 
+                                        BorderBrush="#FF4F3B34" 
+                                        Style="{StaticResource ListPickerStyle1}">
+                                <toolkit:ListPicker.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal" Background="#FF4F3B34" Margin="0">
+                                            <TextBlock Foreground="#FFDF8D4B" Text="{Binding}" />
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </toolkit:ListPicker.ItemTemplate>
+                                <toolkit:ListPicker.Items>
+                                    <toolkit:ListPickerItem>
+                                        <TextBlock Text="{Binding FirstBloodGroup, Source={StaticResource Loc}}"/>
+                                    </toolkit:ListPickerItem>
+                                    <toolkit:ListPickerItem>
+                                        <TextBlock Text="{Binding SecondBloodGroup, Source={StaticResource Loc}}"/>
+                                    </toolkit:ListPickerItem>
+                                    <toolkit:ListPickerItem>
+                                        <TextBlock Text="{Binding ThirdBloodGroup, Source={StaticResource Loc}}"/>
+                                    </toolkit:ListPickerItem>
+                                    <toolkit:ListPickerItem>
+                                        <TextBlock Text="{Binding ForthBloodGroup, Source={StaticResource Loc}}"/>
+                                    </toolkit:ListPickerItem>
+                                </toolkit:ListPicker.Items>
+                            </toolkit:ListPicker>
 
-                                    <RadioButton 
-							Content="{Binding ThirdBloodGroup, Source={StaticResource Loc}}" 
-							Foreground="#FFCBB2A3"
-							Name="b" Height="75" VerticalAlignment="Top" />
-                                    <RadioButton 
-							Foreground="#FFCBB2A3"
-							Content="{Binding ForthBloodGroup, Source={StaticResource Loc}}" Name="ab" Height="75" VerticalAlignment="Top" />
-                                </toolkit:WrapPanel>
-                            </StackPanel>
 
+                                <toolkit:ListPicker x:Name="RHedit" Grid.Row="0" Grid.Column="1"
+                                        Margin="12,-5,12,10"
+			FullModeHeader="" FontSize="24" Foreground="#FFDF8D4B" 
+                                        Background="#FF4F3B34" 
+                                        BorderBrush="#FF4F3B34" 
+                                        Style="{StaticResource ListPickerStyle1}">
 
-                            <TextBlock Text="{Binding RhFactor, Source={StaticResource Loc}}" Margin="10,0,10,0"
-						Style="{StaticResource Text24pxCBB2A3}"/>
-                            <StackPanel Orientation="Horizontal">
-                                <toolkit:WrapPanel Name="RHedit" Margin="10,0,10,0" ItemHeight="90" ItemWidth="210">
-                                    <RadioButton Content="RH+" 
-							    Foreground="#FFCBB2A3"
-							    Name="EditRHpl" />
-                                    <RadioButton Content="RH-" 
-							    Foreground="#FFCBB2A3"
-							    Name="EditRHd" DataContext="{Binding}" />
-                                </toolkit:WrapPanel>
-                            </StackPanel>
+                                <toolkit:ListPicker.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal" Background="#FF4F3B34" Margin="0">
+                                            <TextBlock Foreground="#FFDF8D4B" Text="{Binding}" />
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </toolkit:ListPicker.ItemTemplate>
+                                <toolkit:ListPicker.Items>
+                                    <toolkit:ListPickerItem>
+                                        <TextBlock Text="RH+"/>
+                                    </toolkit:ListPickerItem>
+                                    <toolkit:ListPickerItem>
+                                        <TextBlock Text="RH-"/>
+                                    </toolkit:ListPickerItem>
+                                </toolkit:ListPicker.Items>
+                            </toolkit:ListPicker>
+                            
+                            </Grid>
+
 
                             <Button 
-                                Margin="0,5,0,10"
+                                Margin="0,-5,0,10"
 					            FontSize="24"
 					            Background="#FF4186A3" 
 					            BorderBrush="#FF4186A3" 
