@@ -341,7 +341,16 @@ namespace Donor
                             this.UserProfile.Visibility = Visibility.Collapsed;
                             this.EditProfile.Visibility = Visibility.Visible;
 
-                            this.EditProfile.Visibility = Visibility.Visible;
+                            if (App.ViewModel.User.FacebookId != "")
+                            {
+                                this.FacebookLinkingButton.Visibility = Visibility.Collapsed;
+                                this.FacebookUnLinkingButton.Visibility = Visibility.Visible;
+                            }
+                            else
+                            {
+                                this.FacebookLinkingButton.Visibility = Visibility.Visible;
+                                this.FacebookUnLinkingButton.Visibility = Visibility.Collapsed;
+                            };
             
                             this.CancelEditProfileButton.Visibility = Visibility.Visible;
                             this.SaveEditProfileButton.Visibility = Visibility.Visible;
@@ -398,6 +407,17 @@ namespace Donor
         private void AdvancedApplicationBarIconButton_Click(object sender, EventArgs e)
         {
             this.EditProfile.Visibility = Visibility.Visible;
+
+            if (App.ViewModel.User.FacebookId != "")
+            {
+                this.FacebookLinkingButton.Visibility = Visibility.Collapsed;
+                this.FacebookUnLinkingButton.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                this.FacebookLinkingButton.Visibility = Visibility.Visible;
+                this.FacebookUnLinkingButton.Visibility = Visibility.Collapsed;
+            };
 
             this.EditButton.Visibility = Visibility.Collapsed;
             this.DeleteUserButton.Visibility = Visibility.Collapsed;
@@ -624,6 +644,11 @@ namespace Donor
                 {
                 };
             };
+        }
+
+        private void FacebookUnLinkingButton_Click(object sender, RoutedEventArgs e)
+        {
+            App.ViewModel.User.FacebookUnlinking();
         }
 
     }

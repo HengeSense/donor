@@ -529,6 +529,15 @@ namespace Donor {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Привязан профиль Facebook.
+        /// </summary>
+        public static string FacebookUnLinking {
+            get {
+                return ResourceManager.GetString("FacebookUnLinking", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Женский.
         /// </summary>
         public static string Female {

@@ -412,12 +412,22 @@ Visibility="Collapsed" Name="SaveEditProfileButton" Click="SaveEditProfileButton
                             <Button 
                                 Margin="0,-5,0,10"
 					            FontSize="24"
-					            Background="#FF4F3B34" 
+					            Background="#FF261B17" 
 					            BorderBrush="#FF4F3B34" 
 					            FontFamily="Segoe WP Regular"
 					            Name="FacebookLinkingButton" 
                                 Content="{Binding FacebookLinking, Source={StaticResource Loc}}" 
 					            Foreground="#FFCBB2A3" Click="FacebookLinkingButton_Click"/>
+
+                            <Button 
+                                Margin="0,-5,0,10"
+					            FontSize="24"
+					            Background="#FF4F3B34" 
+					            BorderBrush="#FF4F3B34" 
+					            FontFamily="Segoe WP Regular"
+					            Name="FacebookUnLinkingButton" 
+                                Content="{Binding FacebookUnLinking, Source={StaticResource Loc}}" 
+					            Foreground="#FFCBB2A3" Click="FacebookUnLinkingButton_Click" />
 
                         </StackPanel>
                     </ScrollViewer>
