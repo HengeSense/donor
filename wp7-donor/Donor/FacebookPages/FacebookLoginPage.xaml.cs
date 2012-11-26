@@ -103,6 +103,7 @@ namespace facebook_windows_phone_sample.Pages
 
                     if (App.ViewModel.User.IsLoggedIn)
                     {
+
                         App.ViewModel.User.FacebookLinking(id, accessToken);
                     } else {
                         App.ViewModel.User.FacebookLogin(id, accessToken);
@@ -113,7 +114,12 @@ namespace facebook_windows_phone_sample.Pages
                 });
             };
 
-            fb.GetAsync("me?fields=id");
+            fb.GetAsync("me");
+
+
+                    //FirstName.Text = "Имя: " + (string)result["first_name"];
+                    //FirstName.Text = "Фамилия: " + (string)result["last_name"];
+
         }
     }
 }

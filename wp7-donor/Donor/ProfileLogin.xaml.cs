@@ -644,11 +644,17 @@ namespace Donor
                 {
                 };
             };
+
+            this.FacebookLinkingButton.Visibility = Visibility.Collapsed;
+            this.FacebookUnlinkingButton.Visibility = Visibility.Visible;
         }
 
         private void FacebookUnLinkingButton_Click(object sender, RoutedEventArgs e)
         {
             App.ViewModel.User.FacebookUnlinking();
+
+            this.FacebookLinkingButton.Visibility = Visibility.Visible;
+            this.FacebookUnlinkingButton.Visibility = Visibility.Collapsed;
         }
 
     }
