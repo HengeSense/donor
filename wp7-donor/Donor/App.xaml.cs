@@ -20,6 +20,7 @@ namespace Donor
 
     public class LocalizedStrings
     {
+
         public LocalizedStrings()
         {
         }
@@ -38,6 +39,8 @@ namespace Donor
 
     public partial class App : Application
     {
+        public const string FlurryKey = "BFKZPN5DWWWSDZ9WDMB5";
+
         private static MainViewModel viewModel = null;
 
         /// <summary>
@@ -102,14 +105,14 @@ namespace Donor
         // This code will not execute when the application is reactivated
         private void Application_Launching(object sender, LaunchingEventArgs e)
         {
-            FlurryWP7SDK.Api.StartSession("NMFNQBS8Z6PD8KXTK863");
+            FlurryWP7SDK.Api.StartSession(FlurryKey);
         }
 
         // Code to execute when the application is activated (brought to foreground)
         // This code will not execute when the application is first launched
         private void Application_Activated(object sender, ActivatedEventArgs e)
         {
-            FlurryWP7SDK.Api.StartSession("NMFNQBS8Z6PD8KXTK863");
+            FlurryWP7SDK.Api.StartSession(FlurryKey);
             // Ensure that application state is restored appropriately
             if (!App.ViewModel.IsDataStartLoaded)
             {

@@ -16,6 +16,7 @@ using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
 using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
+using System.Collections.Generic;
 //using Parse;
 
 namespace Donor.ViewModels
@@ -73,7 +74,12 @@ namespace Donor.ViewModels
 
             App.ViewModel.Events.UpdateItems();
 
-            
+            ///log event to flurry.com
+            List<FlurryWP7SDK.Models.Parameter> articleParams = new List<FlurryWP7SDK.Models.Parameter> { 
+                new FlurryWP7SDK.Models.Parameter("objectId", App.ViewModel.User.objectId), 
+                new FlurryWP7SDK.Models.Parameter("platform", "wp7") };
+            FlurryWP7SDK.Api.LogEvent("User_logout", articleParams);
+
 
             (Application.Current.RootVisual as PhoneApplicationFrame).GoBack();
         }
@@ -105,9 +111,21 @@ namespace Donor.ViewModels
                     JObject o = JObject.Parse(response.Content.ToString());
                     if (o["error"] == null)
                     {
-                        MessageBox.Show("Данные профиля обновлены.");
+                        try
+                        {
+                            if ((int)p == 1)
+                            {
+                            }
+                            else
+                            {
+                                MessageBox.Show("Данные профиля обновлены.");
+                            };
+                        }
+                        catch {
+                            MessageBox.Show("Данные профиля обновлены.");
+                        };
 
-                        FlurryWP7SDK.Api.LogEvent("User_updae_profile");
+                        FlurryWP7SDK.Api.LogEvent("User_update_profile");
                     }
                     else
                     {
@@ -596,7 +614,7 @@ namespace Donor.ViewModels
         }
 
 
-        public void FacebookLogin(string id, string accessToken)
+        public void FacebookLogin(string id, string accessToken, IDictionary<string, object> result = null)
         {
             App.ViewModel.User.UserLoading = true;
 
@@ -624,7 +642,21 @@ namespace Donor.ViewModels
                     if (o["error"] == null)
                     {
                         App.ViewModel.User = JsonConvert.DeserializeObject<DonorUser>(response.Content.ToString());
-                        ClassToUser();
+                        //ClassToUser();
+
+                        try
+                        {
+                            if ((App.ViewModel.User.Name == "") || (App.ViewModel.User.Name == null))
+                            {
+                                App.ViewModel.User.Name = (string)result["first_name"];
+                            };
+
+                            if ((App.ViewModel.User.SecondName == "") || (App.ViewModel.User.SecondName == null))
+                            {
+                                App.ViewModel.User.SecondName = (string)result["last_name"];
+                            };
+                        }
+                        catch { };
 
                         App.ViewModel.User.IsLoggedIn = true;
                         this.IsLoggedIn = true;
@@ -643,6 +675,8 @@ namespace Donor.ViewModels
                         this.NotifyAll();
 
                         App.ViewModel.OnUserEnter(EventArgs.Empty);
+
+                        this.UpdateAction(1);
 
                         FlurryWP7SDK.Api.LogEvent("User_login");
                     }
@@ -685,6 +719,8 @@ namespace Donor.ViewModels
                             MessageBox.Show("Выполнена привязка.");
 
                             App.ViewModel.SaveUserToStorage();
+
+                            this.UpdateAction(null);
 
                             FlurryWP7SDK.Api.LogEvent("Facebook_linking");
                         }

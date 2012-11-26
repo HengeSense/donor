@@ -105,8 +105,9 @@ namespace facebook_windows_phone_sample.Pages
                     {
 
                         App.ViewModel.User.FacebookLinking(id, accessToken);
+
                     } else {
-                        App.ViewModel.User.FacebookLogin(id, accessToken);
+                        App.ViewModel.User.FacebookLogin(id, accessToken, result);
                     };
 
                     NavigationService.GoBack(); //NavigationService.Navigate(new Uri(url, UriKind.Relative)));
@@ -115,10 +116,6 @@ namespace facebook_windows_phone_sample.Pages
             };
 
             fb.GetAsync("me");
-
-
-                    //FirstName.Text = "Имя: " + (string)result["first_name"];
-                    //FirstName.Text = "Фамилия: " + (string)result["last_name"];
 
         }
     }
