@@ -125,7 +125,12 @@ namespace Donor.ViewModels
                             MessageBox.Show("Данные профиля обновлены.");
                         };
 
-                        FlurryWP7SDK.Api.LogEvent("User_update_profile");
+                        ///Обновление профиля пользователя - событие для flurry
+                        List<FlurryWP7SDK.Models.Parameter> articleParams = new List<FlurryWP7SDK.Models.Parameter> { 
+                            new FlurryWP7SDK.Models.Parameter("objectId", App.ViewModel.User.objectId), 
+                            new FlurryWP7SDK.Models.Parameter("platform", "wp7") };
+                        FlurryWP7SDK.Api.LogEvent("User_updated", articleParams);
+
                     }
                     else
                     {
@@ -678,7 +683,7 @@ namespace Donor.ViewModels
 
                         this.UpdateAction(1);
 
-                        FlurryWP7SDK.Api.LogEvent("User_login");
+                        
                     }
                     else
                     {
@@ -756,6 +761,10 @@ namespace Donor.ViewModels
                     if (o["error"] == null)
                     {
                         MessageBox.Show(Donor.AppResources.FacebookUnlinkedMessage);
+
+                        App.ViewModel.User.FacebookId = "";
+                        App.ViewModel.User.FacebookToken = "";
+
                         App.ViewModel.SaveUserToStorage();
 
                         FlurryWP7SDK.Api.LogEvent("Facebook_unlinking");

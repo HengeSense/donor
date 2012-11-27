@@ -225,6 +225,12 @@ namespace Donor
                             {
                                 this.AppBar.IsVisible = false;
                             };
+
+                            List<FlurryWP7SDK.Models.Parameter> articleParams = new List<FlurryWP7SDK.Models.Parameter> { 
+                            new FlurryWP7SDK.Models.Parameter("objectId", App.ViewModel.User.objectId), 
+                            new FlurryWP7SDK.Models.Parameter("platform", "wp7") };
+                            FlurryWP7SDK.Api.LogEvent("User_register", articleParams);
+
                         }
                         else
                         {
@@ -341,7 +347,7 @@ namespace Donor
                             this.UserProfile.Visibility = Visibility.Collapsed;
                             this.EditProfile.Visibility = Visibility.Visible;
 
-                            if (App.ViewModel.User.FacebookId != "")
+                            if ((App.ViewModel.User.FacebookId != "") && (App.ViewModel.User.FacebookId != null))
                             {
                                 this.FacebookLinkingButton.Visibility = Visibility.Collapsed;
                                 this.FacebookUnLinkingButton.Visibility = Visibility.Visible;
@@ -408,7 +414,7 @@ namespace Donor
         {
             this.EditProfile.Visibility = Visibility.Visible;
 
-            if (App.ViewModel.User.FacebookId != "")
+            if ((App.ViewModel.User.FacebookId != "") && (App.ViewModel.User.FacebookId != null))
             {
                 this.FacebookLinkingButton.Visibility = Visibility.Collapsed;
                 this.FacebookUnLinkingButton.Visibility = Visibility.Visible;
