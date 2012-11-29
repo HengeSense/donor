@@ -14,6 +14,7 @@
 #import "NSDate+HSCalendar.h"
 
 #import "MBProgressHUD.h"
+#import "HSFlurryAnalytics.h"
 
 #pragma mark - Private types
 typedef enum {
@@ -328,6 +329,7 @@ static const CGFloat kTabBarHeight = 55.0f;
     [self.calendar removeBloodRemoteEvent: self.currentEditedEvent completion: ^(BOOL success, NSError *error) {
         [progressHud hide: YES];
         if (success) {
+            [HSFlurryAnalytics userDeletedCalendarEvent:self.currentEditedEvent];
             [self.navigationController popToRootViewControllerAnimated: YES];
         } else {
             UIAlertView *allert = [[UIAlertView alloc] initWithTitle: @"Ошибка"
@@ -483,6 +485,7 @@ static const CGFloat kTabBarHeight = 55.0f;
                 [strongSelf sayThanksToUser];
             }
             [self.navigationController popToRootViewControllerAnimated: YES];
+            [HSFlurryAnalytics userCreatedCalendarEvent:self.currentEditedEvent];
         } else {
             UIAlertView *allert = [[UIAlertView alloc] initWithTitle: @"Ошибка"
                     message: localizedDescriptionForError(error)

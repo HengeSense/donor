@@ -7,6 +7,8 @@
 //
 
 #import "AppDelegate.h"
+#import <Parse/Parse.h>
+#import "HSFlurryAnalytics.h"
 
 #ifdef NEW_CALENDAR_FUNCTIONALITY_DEVELOPEMENT
 #import "HSCalendarViewController.h"
@@ -17,7 +19,6 @@
 #import "StationsViewController.h"
 #import "InfoViewController.h"
 #import "ProfileViewController.h"
-#import <Parse/Parse.h>
 #import "Common.h"
 #import "MessageBoxViewController.h"
 #import "TutorialViewController.h"
@@ -27,6 +28,7 @@
 static NSString * const PARSE_APP_ID = @"EIpakVdZblHedhqgxMgiEVnIGCRGvWdy9v8gkKZu";
 static NSString * const PARSE_CLIENT_KEY = @"uNarhakSf1on8lJjrAVs1VWmPlG1D6ZJf9dO5QZY";
 static NSString * const FACEBOOK_APP_ID = @"438918122827407";
+static NSString * const FLURRY_APP_ID = @"2WRYH35MS5SW4ZY2TNPB";
 
 @interface AppDelegate ()
 
@@ -52,6 +54,7 @@ static NSString * const FACEBOOK_APP_ID = @"438918122827407";
 {
     [Parse setApplicationId:PARSE_APP_ID clientKey:PARSE_CLIENT_KEY];
     [PFFacebookUtils initializeWithApplicationId:FACEBOOK_APP_ID];
+    [HSFlurryAnalytics initWithAppId:FLURRY_APP_ID];
     
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     

@@ -3,13 +3,17 @@
 //  BloodDonor
 //
 //  Created by Andrey Rebrik on 12.07.12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//  Updated be Sergey Seroshtan on 29.11.12.
+//  Copyright (c) 2012 HintSolutions. All rights reserved.
 //
 
 #import "ProfileDescriptionViewController.h"
+
+#import <Parse/Parse.h>
+#import "HSFlurryAnalytics.h"
+
 #import "ProfileSettingsViewController.h"
 #import "AppDelegate.h"
-#import <Parse/Parse.h>
 #import "Common.h"
 
 @implementation ProfileDescriptionViewController
@@ -55,6 +59,7 @@
         [user setObject:[Common getInstance].bloodRH forKey:@"BloodRh"];
         [user setObject:nameTextField.text forKey:@"Name"];
         [user saveInBackground];
+        [HSFlurryAnalytics userUpdatedProfile];
     }
     else
     {
@@ -117,8 +122,9 @@
     [UIView commitAnimations];
 }
 
-- (IBAction)exitButtonClick:(id)sender
+- (IBAction)logoutButtonClick:(id)sender
 {
+    [HSFlurryAnalytics userLoggedOut];
     [PFUser logOut];
     [Common getInstance].email = nil;
     [Common getInstance].name = nil;

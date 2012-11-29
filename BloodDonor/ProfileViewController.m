@@ -3,14 +3,18 @@
 //  BloodDonor
 //
 //  Created by Andrey Rebrik on 12.07.12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//  Updated by SergeySeroshtan on 25.11.12.
+//  Copyright (c) 2012 HintSolutions. All rights reserved.
 //
 
 #import "ProfileViewController.h"
+
+#import <Parse/Parse.h>
+#import "HSFlurryAnalytics.h"
+
 #import "ProfileDescriptionViewController.h"
 #import "ProfileRegistrationViewController.h"
 #import "ProfileSettingsViewController.h"
-#import <Parse/Parse.h>
 #import "Common.h"
 #import "MBProgressHUD.h"
 
@@ -23,6 +27,11 @@
 #pragma mark Actions
 
 - (void)processAuthorizationSuccessWithUser:(PFUser *)user completion: (void(^)(void))completion {
+    if (user.isNew) {
+        [HSFlurryAnalytics userRegistered];
+    } else {
+        [HSFlurryAnalytics userLoggedIn];
+    }
     [Common getInstance].email = [user objectForKey:@"email"];
     [Common getInstance].password = passwordTextField.text;
     [Common getInstance].name = [user objectForKey:@"Name"];
