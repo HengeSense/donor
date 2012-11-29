@@ -89,7 +89,6 @@
 		37153EAA15AEBA3400C985C1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 37153EA815AEBA3400C985C1 /* InfoPlist.strings */; };
 		37153EAC15AEBA3400C985C1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 37153EAB15AEBA3400C985C1 /* main.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		37153EB015AEBA3400C985C1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 37153EAF15AEBA3400C985C1 /* AppDelegate.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		371CBA5315AFD452008CA154 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 371CBA5215AFD452008CA154 /* Parse.framework */; };
 		371CBA5715AFD4A8008CA154 /* STabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 371CBA5615AFD4A8008CA154 /* STabBarController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		371CBA8315AFF3E1008CA154 /* StationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 371CBA8115AFF3E1008CA154 /* StationsViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		371CBA8415AFF3E1008CA154 /* StationsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 371CBA8215AFF3E1008CA154 /* StationsViewController.xib */; };
@@ -149,6 +148,7 @@
 		37B1367A15B598820022B8D8 /* calendarSliderSectionBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37B1367615B598820022B8D8 /* calendarSliderSectionBackground@2x.png */; };
 		37B1367B15B598820022B8D8 /* calendarSliderSectionShadowBottom.png in Resources */ = {isa = PBXBuildFile; fileRef = 37B1367715B598820022B8D8 /* calendarSliderSectionShadowBottom.png */; };
 		37B1367C15B598820022B8D8 /* calendarSliderSectionShadowBottom@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37B1367815B598820022B8D8 /* calendarSliderSectionShadowBottom@2x.png */; };
+		6802A1671665D4FD0034B124 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 371CBA5215AFD452008CA154 /* Parse.framework */; };
 		683F8A81164573860066C47A /* HSBloodDonationType.m in Sources */ = {isa = PBXBuildFile; fileRef = 683F8A80164573860066C47A /* HSBloodDonationType.m */; };
 		683F8A86164577090066C47A /* HSDateTimePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 683F8A84164577090066C47A /* HSDateTimePicker.m */; };
 		683F8A87164577090066C47A /* HSDateTimePicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 683F8A85164577090066C47A /* HSDateTimePicker.xib */; };
@@ -162,6 +162,15 @@
 		683F8A9A16468E300066C47A /* event_done_button_pressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 683F8A9616468E300066C47A /* event_done_button_pressed@2x.png */; };
 		683F8A9D1648C0EA0066C47A /* HSDayHolidayEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 683F8A9C1648C0E90066C47A /* HSDayHolidayEvent.m */; };
 		683F8AA01649B8C10066C47A /* NSDate+HSCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 683F8A9F1649B8C10066C47A /* NSDate+HSCalendar.m */; };
+		685088C91666B6A3004EC3CC /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 685088C81666B6A3004EC3CC /* Social.framework */; };
+		685088CB1666B6AC004EC3CC /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 685088CA1666B6AC004EC3CC /* libsqlite3.dylib */; };
+		685088CD1666B715004EC3CC /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 685088CC1666B715004EC3CC /* Accounts.framework */; };
+		685088CF1666B738004EC3CC /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 685088CE1666B738004EC3CC /* StoreKit.framework */; };
+		685088D11666B74B004EC3CC /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 685088D01666B74B004EC3CC /* AdSupport.framework */; };
+		685088E71667638A004EC3CC /* facebook_login_button_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 685088E31667638A004EC3CC /* facebook_login_button_normal.png */; };
+		685088E81667638A004EC3CC /* facebook_login_button_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 685088E41667638A004EC3CC /* facebook_login_button_normal@2x.png */; };
+		685088E91667638A004EC3CC /* facebook_login_button_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 685088E51667638A004EC3CC /* facebook_login_button_pressed.png */; };
+		685088EA1667638A004EC3CC /* facebook_login_button_pressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 685088E61667638A004EC3CC /* facebook_login_button_pressed@2x.png */; };
 		685CB2F8163F200A004FF9AC /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 685CB2F7163F2008004FF9AC /* MBProgressHUD.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		685CB3131640E87F004FF9AC /* icon_blood.png in Resources */ = {isa = PBXBuildFile; fileRef = 685CB2FE1640E87E004FF9AC /* icon_blood.png */; };
 		685CB3141640E87F004FF9AC /* icon_blood@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 685CB2FF1640E87E004FF9AC /* icon_blood@2x.png */; };
@@ -691,6 +700,15 @@
 		683F8A9C1648C0E90066C47A /* HSDayHolidayEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSDayHolidayEvent.m; sourceTree = "<group>"; };
 		683F8A9E1649B8C10066C47A /* NSDate+HSCalendar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+HSCalendar.h"; sourceTree = "<group>"; };
 		683F8A9F1649B8C10066C47A /* NSDate+HSCalendar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+HSCalendar.m"; sourceTree = "<group>"; };
+		685088C81666B6A3004EC3CC /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		685088CA1666B6AC004EC3CC /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		685088CC1666B715004EC3CC /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		685088CE1666B738004EC3CC /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		685088D01666B74B004EC3CC /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		685088E31667638A004EC3CC /* facebook_login_button_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = facebook_login_button_normal.png; sourceTree = "<group>"; };
+		685088E41667638A004EC3CC /* facebook_login_button_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "facebook_login_button_normal@2x.png"; sourceTree = "<group>"; };
+		685088E51667638A004EC3CC /* facebook_login_button_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = facebook_login_button_pressed.png; sourceTree = "<group>"; };
+		685088E61667638A004EC3CC /* facebook_login_button_pressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "facebook_login_button_pressed@2x.png"; sourceTree = "<group>"; };
 		685CB2F6163F2005004FF9AC /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MBProgressHUD.h; path = Libs/MBProgressHUD/MBProgressHUD.h; sourceTree = "<group>"; };
 		685CB2F7163F2008004FF9AC /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MBProgressHUD.m; path = Libs/MBProgressHUD/MBProgressHUD.m; sourceTree = "<group>"; };
 		685CB2FE1640E87E004FF9AC /* icon_blood.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_blood.png; sourceTree = "<group>"; };
@@ -1094,6 +1112,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				685088D11666B74B004EC3CC /* AdSupport.framework in Frameworks */,
+				685088CF1666B738004EC3CC /* StoreKit.framework in Frameworks */,
+				685088CD1666B715004EC3CC /* Accounts.framework in Frameworks */,
+				685088CB1666B6AC004EC3CC /* libsqlite3.dylib in Frameworks */,
+				685088C91666B6A3004EC3CC /* Social.framework in Frameworks */,
+				85A0F6F715B91E1500EBC942 /* AudioToolbox.framework in Frameworks */,
+				6802A1671665D4FD0034B124 /* Parse.framework in Frameworks */,
 				8585E189161AF9C700275AE7 /* CoreText.framework in Frameworks */,
 				859F211315D2A20800A4021A /* CoreLocation.framework in Frameworks */,
 				859F210515D265E600A4021A /* MapKit.framework in Frameworks */,
@@ -1106,10 +1131,8 @@
 				85A0F6FE15B91E3700EBC942 /* MobileCoreServices.framework in Frameworks */,
 				85A0F6FC15B91E2B00EBC942 /* SystemConfiguration.framework in Frameworks */,
 				85A0F6FA15B91E2100EBC942 /* CFNetwork.framework in Frameworks */,
-				85A0F6F715B91E1500EBC942 /* AudioToolbox.framework in Frameworks */,
 				37153EA015AEBA3400C985C1 /* UIKit.framework in Frameworks */,
 				37153EA215AEBA3400C985C1 /* Foundation.framework in Frameworks */,
-				371CBA5315AFD452008CA154 /* Parse.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1130,6 +1153,11 @@
 		37153E9015AEBA3400C985C1 = {
 			isa = PBXGroup;
 			children = (
+				685088D01666B74B004EC3CC /* AdSupport.framework */,
+				685088CE1666B738004EC3CC /* StoreKit.framework */,
+				685088CC1666B715004EC3CC /* Accounts.framework */,
+				685088CA1666B6AC004EC3CC /* libsqlite3.dylib */,
+				685088C81666B6A3004EC3CC /* Social.framework */,
 				685CB2F9163F2016004FF9AC /* Libs */,
 				37153EA515AEBA3400C985C1 /* BloodDonor */,
 				68BB4056162F0B9400098861 /* BloodDonorTests */,
@@ -1324,6 +1352,7 @@
 		3758525915AEE959006DF7E1 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				685088E01667638A004EC3CC /* profile */,
 				685CB2FB1640E87A004FF9AC /* Calendar */,
 				68EB2752163090060092FDBA /* device */,
 				68893A3216518CA800955990 /* tutorial */,
@@ -1656,6 +1685,33 @@
 				683F8A9616468E300066C47A /* event_done_button_pressed@2x.png */,
 			);
 			path = Buttons;
+			sourceTree = "<group>";
+		};
+		685088E01667638A004EC3CC /* profile */ = {
+			isa = PBXGroup;
+			children = (
+				685088E11667638A004EC3CC /* login */,
+			);
+			path = profile;
+			sourceTree = "<group>";
+		};
+		685088E11667638A004EC3CC /* login */ = {
+			isa = PBXGroup;
+			children = (
+				685088E21667638A004EC3CC /* facebook */,
+			);
+			path = login;
+			sourceTree = "<group>";
+		};
+		685088E21667638A004EC3CC /* facebook */ = {
+			isa = PBXGroup;
+			children = (
+				685088E31667638A004EC3CC /* facebook_login_button_normal.png */,
+				685088E41667638A004EC3CC /* facebook_login_button_normal@2x.png */,
+				685088E51667638A004EC3CC /* facebook_login_button_pressed.png */,
+				685088E61667638A004EC3CC /* facebook_login_button_pressed@2x.png */,
+			);
+			path = facebook;
 			sourceTree = "<group>";
 		};
 		685CB2F9163F2016004FF9AC /* Libs */ = {
@@ -2461,6 +2517,10 @@
 				6877928A165266890003D818 /* delete_mark_active@2x.png in Resources */,
 				6877928B165266890003D818 /* delete_mark_pressed.png in Resources */,
 				6877928C165266890003D818 /* delete_mark_pressed@2x.png in Resources */,
+				685088E71667638A004EC3CC /* facebook_login_button_normal.png in Resources */,
+				685088E81667638A004EC3CC /* facebook_login_button_normal@2x.png in Resources */,
+				685088E91667638A004EC3CC /* facebook_login_button_pressed.png in Resources */,
+				685088EA1667638A004EC3CC /* facebook_login_button_pressed@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -40,6 +40,7 @@
 @property (nonatomic, retain) NSNumber *bloodGroup;
 @property (nonatomic, retain) NSNumber *bloodRH;
 @property (nonatomic, retain) NSMutableArray *events;
+@property (nonatomic, assign) BOOL authenticatedWithFacebook;
 
 //Последние использованные станции
 @property (nonatomic, retain, setter = lastStationsSetter:) NSArray *lastStations;

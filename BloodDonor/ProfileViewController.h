@@ -21,9 +21,11 @@
  * This refrence is used to configure HSCalendarViewController object, after successfull login operation.
  */
 @property (nonatomic, retain) HSCalendarViewController *calendarViewController;
+@property (nonatomic, assign) IBOutlet UIButton *facebookAuthorizationButton;
 
 - (IBAction)authorizationButtonClick:(id)sender;
 - (IBAction)registrationButtonClick:(id)sender;
 - (IBAction)settingsButtonClick:(id)sender;
+- (IBAction)facebookAuthorizationButtonClick:(id)sender;
 
 @end

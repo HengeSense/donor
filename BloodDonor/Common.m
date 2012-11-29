@@ -45,9 +45,6 @@ static void singleton_remover()
     bloodRH = [[[NSNumber alloc] initWithInt:0] retain];
     bloodGroup = [[[NSNumber new] initWithInt:0] retain];
     
-   // bloodGroup = [[NSNumber numberWithInt:1] retain];
-   // bloodRH = [[NSNumber numberWithInt:1] retain];
-    
     events = [NSMutableArray new];
     
     isNeedPassword = [defaults boolForKey:@"isNeedPassword"];
@@ -74,6 +71,17 @@ static void singleton_remover()
     atexit(singleton_remover);
     
     return self;
+}
+
+- (BOOL)isAuthenticatedWithFacebook
+{
+    return [defaults boolForKey:@"authenticatedWithFacebook"];
+}
+
+- (void)setAuthenticatedWithFacebook:(BOOL)authenticatedWithFacebook
+{
+    [defaults setBool:authenticatedWithFacebook forKey:@"authenticatedWithFacebook"];
+    [defaults synchronize];
 }
 
 - (void)isMoscowSetter:(BOOL)setterValue
