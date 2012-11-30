@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>Facebook</id>
-    <version>6.1.2</version>
+    <version>6.1.4</version>
     <title />
     <authors>Outercurve Foundation</authors>
     <owners>Outercurve Foundation</owners>

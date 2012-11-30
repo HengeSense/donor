@@ -636,7 +636,7 @@ namespace Donor
         /// <param name="e"></param>
         private void FacebookLinkingButton_Click(object sender, RoutedEventArgs e)
         {
-            if ((App.ViewModel.User.IsLoggedIn) && (App.ViewModel.User.FacebookToken != "") && (App.ViewModel.User.FacebookId!=""))
+            if ((App.ViewModel.User.IsLoggedIn) && (App.ViewModel.User.FacebookToken != "") && (App.ViewModel.User.FacebookId != "") && (App.ViewModel.User.FacebookToken != null) && (App.ViewModel.User.FacebookId != null))
             {
                 App.ViewModel.User.FacebookLinking(App.ViewModel.User.FacebookId, App.ViewModel.User.FacebookToken);
             }
@@ -652,7 +652,7 @@ namespace Donor
             };
 
             this.FacebookLinkingButton.Visibility = Visibility.Collapsed;
-            this.FacebookUnlinkingButton.Visibility = Visibility.Visible;
+            this.FacebookUnLinkingButton.Visibility = Visibility.Visible;
         }
 
         private void FacebookUnLinkingButton_Click(object sender, RoutedEventArgs e)
@@ -660,7 +660,7 @@ namespace Donor
             App.ViewModel.User.FacebookUnlinking();
 
             this.FacebookLinkingButton.Visibility = Visibility.Visible;
-            this.FacebookUnlinkingButton.Visibility = Visibility.Collapsed;
+            this.FacebookUnLinkingButton.Visibility = Visibility.Collapsed;
         }
 
     }

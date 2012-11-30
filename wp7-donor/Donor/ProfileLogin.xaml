@@ -259,7 +259,7 @@ BorderBrush="#FF4F3B34" Foreground="#FFCBB2A3" x:Name="email"
                         <WPExtensions:AdvancedApplicationBar Background="#FF211E1D" BackgroundColor="#FF211E1D" 
                         Foreground="White" BorderBrush="#FF211E1D" ForegroundColor="White" OpacityMask="White" Name="AppBar" IsVisible="False" IsMenuEnabled="False" >
 
-                            <WPExtensions:AdvancedApplicationBarIconButton 
+                            <!--<WPExtensions:AdvancedApplicationBarIconButton 
 						IconUri="/icons/appbar.feature.settings.rest.png" 
 						Name="FacebookButton" Text="Facebook" 
 						Click="FacebookButton_Click" Visibility="Collapsed" />
@@ -267,6 +267,7 @@ BorderBrush="#FF4F3B34" Foreground="#FFCBB2A3" x:Name="email"
                             <WPExtensions:AdvancedApplicationBarIconButton 
 						IconUri="/icons/appbar.feature.settings.rest.png" 
 						Name="FacebookUnlinkingButton" Text="Facebook отвязать" Click="FacebookUnlinkingButton_Click" Visibility="Collapsed" />
+                            -->
 
                             <WPExtensions:AdvancedApplicationBarIconButton 
 						IconUri="/icons/appbar.edit.rest.png" 
