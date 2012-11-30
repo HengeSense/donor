@@ -37,7 +37,10 @@ static NSString * const kBloodDonationActionDeleted = @"Deleted";
 @implementation HSFlurryAnalytics
 
 +(void)initWithAppId:(NSString *)appId {
-    [Flurry setAppVersion:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"]];
+    NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
+    NSString *majorVersion = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
+    NSString *minorVersion = [infoDictionary objectForKey:@"CFBundleVersion"];
+    [Flurry setAppVersion: [NSString stringWithFormat:@"%@ (%@)", majorVersion, minorVersion]];
     [Flurry setSecureTransportEnabled:YES];
     [Flurry startSession:appId];
 }
