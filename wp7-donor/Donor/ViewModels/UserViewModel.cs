@@ -17,6 +17,7 @@ using Newtonsoft.Json;
 using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using System.Collections.Generic;
+using System.Globalization;
 //using Parse;
 
 namespace Donor.ViewModels
@@ -94,7 +95,7 @@ namespace Donor.ViewModels
             var request = new RestRequest("1/users/" + this.objectId.ToString(), Method.PUT);
             request.AddHeader("Accept", "application/json");
             request.Parameters.Clear();
-            string strJSONContent = "{\"Sex\":" + this.Sex + ", \"Name\":\"" + this.Name + "\", \"secondName\":\"" + this.SecondName + "\", \"birthday\": \"" + this.Birthday + "\", \"BloodGroup\":" + this.BloodGroup + ", \"BloodRh\":" + this.BloodRh + "}";
+            string strJSONContent = "{\"username\":\"" + this.UserName + "\", \"email\":\"" + this.UserName + "\", \"Sex\":" + this.Sex + ", \"Name\":\"" + this.Name + "\", \"secondName\":\"" + this.SecondName + "\", \"birthday\": \"" + this.Birthday + "\", \"BloodGroup\":" + this.BloodGroup + ", \"BloodRh\":" + this.BloodRh + "}";
             request.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
             request.AddHeader("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
             request.AddHeader("X-Parse-Session-Token", App.ViewModel.User.sessionToken);
@@ -648,8 +649,8 @@ namespace Donor.ViewModels
 
             client.ExecuteAsync(request, response =>
             {
-                try
-                {
+                //try
+                //{
                     JObject o = JObject.Parse(response.Content.ToString());
                     if (o["error"] == null)
                     {
@@ -667,6 +668,32 @@ namespace Donor.ViewModels
                             {
                                 App.ViewModel.User.SecondName = (string)result["last_name"];
                             };
+                        }
+                        catch { };
+
+                        try
+                        {
+                            if ((string)result["gender"]=="male") {
+                                App.ViewModel.User.Sex = 0;
+                            };
+                            if ((string)result["gender"] == "female")
+                            {
+                                App.ViewModel.User.Sex = 1;
+                            };
+                        }
+                        catch { };
+
+                        try
+                        {
+                            App.ViewModel.User.UserName = (string)result["email"];
+                        }
+                        catch { };
+
+                        try
+                        {
+                            string birthday = (string)result["birthday"];
+                            CultureInfo provider = CultureInfo.InvariantCulture;
+                            App.ViewModel.User.DateBirthday = DateTime.ParseExact(birthday, "d", provider);
                         }
                         catch { };
 
@@ -701,8 +728,13 @@ namespace Donor.ViewModels
                         this.NotifyAll();
                     };
                     App.ViewModel.User.UserLoading = false;
-                }
-                catch { App.ViewModel.User.IsLoggedIn = false; App.ViewModel.User.UserLoading = false; };
+                /*}
+                catch { 
+                    App.ViewModel.User.IsLoggedIn = false; 
+                    App.ViewModel.User.UserLoading = false;
+                    App.ViewModel.User.NotifyAll();
+                    this.NotifyAll();
+                };*/
             });
         }
 

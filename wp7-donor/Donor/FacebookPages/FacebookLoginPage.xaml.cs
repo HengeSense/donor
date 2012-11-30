@@ -26,7 +26,7 @@ namespace facebook_windows_phone_sample.Pages
         /// For extensive list of available extended permissions refer to 
         /// https://developers.facebook.com/docs/reference/api/permissions/
         /// </remarks>
-        private const string ExtendedPermissions = "user_about_me,read_stream,publish_stream,publish_actions";
+        private const string ExtendedPermissions = "user_about_me, read_stream, publish_stream, publish_actions, email, user_birthday";
 
         private readonly FacebookClient _fb = new FacebookClient();
 
