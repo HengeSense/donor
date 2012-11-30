@@ -29,9 +29,8 @@
 - (void)processAuthorizationSuccessWithUser:(PFUser *)user completion: (void(^)(void))completion {
     if (user.isNew) {
         [HSFlurryAnalytics userRegistered];
-    } else {
-        [HSFlurryAnalytics userLoggedIn];
     }
+    [HSFlurryAnalytics userLoggedIn];
     [Common getInstance].email = [user objectForKey:@"email"];
     [Common getInstance].password = passwordTextField.text;
     [Common getInstance].name = [user objectForKey:@"Name"];
