@@ -1233,6 +1233,15 @@ namespace Donor.ViewModels
                 App.ViewModel.Events.Items.Remove(_currentEvent);
                 App.ViewModel.Events.RemoveItemFromParse(_currentEvent);
                 App.ViewModel.Events.UpdateItems();
+
+                /// Add event to Flurry about vent delete
+                List<FlurryWP7SDK.Models.Parameter> articleParams = new List<FlurryWP7SDK.Models.Parameter> { 
+                            new FlurryWP7SDK.Models.Parameter("Type", _currentEvent.Type), 
+                            new FlurryWP7SDK.Models.Parameter("Delivery", _currentEvent.Delivery), 
+                            new FlurryWP7SDK.Models.Parameter("Action", "deleted") 
+                        };
+                FlurryWP7SDK.Api.LogEvent("Event", articleParams);
+
             }
             catch
             {
@@ -1274,6 +1283,13 @@ namespace Donor.ViewModels
                     JObject o = JObject.Parse(response.Content.ToString());
                     if (o["error"] == null)
                     {
+                        List<FlurryWP7SDK.Models.Parameter> articleParams = new List<FlurryWP7SDK.Models.Parameter> { 
+                            new FlurryWP7SDK.Models.Parameter("Type", addedItems.Type), 
+                            new FlurryWP7SDK.Models.Parameter("Delivery", addedItems.Delivery), 
+                            new FlurryWP7SDK.Models.Parameter("Action", "updated") 
+                        };
+                        FlurryWP7SDK.Api.LogEvent("Event", articleParams);
+
                         /// Устанавливаем напоминания
                         addedItems.AddREventReminders();
 
@@ -1342,6 +1358,13 @@ namespace Donor.ViewModels
                         {
                             JObject orel = JObject.Parse(responserel.Content.ToString());
                         });
+
+                        List<FlurryWP7SDK.Models.Parameter> articleParams = new List<FlurryWP7SDK.Models.Parameter> { 
+                            new FlurryWP7SDK.Models.Parameter("Type", addedItems.Type), 
+                            new FlurryWP7SDK.Models.Parameter("Delivery", addedItems.Delivery), 
+                            new FlurryWP7SDK.Models.Parameter("Action", "created") 
+                        };
+                        FlurryWP7SDK.Api.LogEvent("Event", articleParams);
 
                         /// Устанавливаем напоминания после получения идентификатора parse.com
                         addedItems.AddREventReminders();

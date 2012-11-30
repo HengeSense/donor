@@ -171,6 +171,13 @@ namespace Donor.ViewModels
                             App.ViewModel.User = JsonConvert.DeserializeObject<DonorUser>(response.Content.ToString());
                             ClassToUser();
 
+                            try
+                            {
+                                App.ViewModel.User.FacebookId = o["authData"]["facebook"]["id"].ToString();
+                                App.ViewModel.User.FacebookToken = o["authData"]["facebook"]["access_token"].ToString();
+                            }
+                            catch { };
+
                             App.ViewModel.User.IsLoggedIn = true;
                             this.IsLoggedIn = true;
                             this.Password = passwordCurrent;
