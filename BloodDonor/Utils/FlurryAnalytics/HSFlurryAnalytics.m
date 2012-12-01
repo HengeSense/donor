@@ -15,18 +15,18 @@
 #import "HSBloodTestsEvent.h"
 
 #pragma mark - Flurry event names
-static NSString * const kUserRegisteredFlurryEvent = @"User Registered";
-static NSString * const kUserLoggedInFlurryEvent = @"User Logged In";
-static NSString * const kUserLoggedOutFlurryEvent = @"User Logged Out";
-static NSString * const kUserUpdatedProfileFlurryEvent = @"User Updated Profile";
-static NSString * const kUserCalendarFlurryEvent = @"User Made Calendar Action";
+static NSString * const kUserRegisteredFlurryEvent = @"User_Registered";
+static NSString * const kUserLoggedInFlurryEvent = @"User_Logged_In";
+static NSString * const kUserLoggedOutFlurryEvent = @"User_Logged_Out";
+static NSString * const kUserUpdatedProfileFlurryEvent = @"User_Updated_Profile";
+static NSString * const kUserCalendarFlurryEvent = @"User_Made_Calendar_Action";
 
 #pragma mark - Flurry event parameters
-static NSString * const kUserParseId = @"User Parse.com ID";
-static NSString * const kUserPlatform = @"User Platform";
-static NSString * const kBloodEvent = @"Blood Event";
-static NSString * const kBloodDonationType = @"Blood Donation Type";
-static NSString * const kBloodDonationAction = @"Blood Donation Action";
+static NSString * const kUserParseId = @"User_Parse_ID";
+static NSString * const kUserPlatform = @"User_Platform";
+static NSString * const kBloodEvent = @"Blood_Event";
+static NSString * const kBloodDonationType = @"Blood_Donation_Type";
+static NSString * const kBloodDonationAction = @"Blood_Donation_Action";
 
 #pragma mark - Static values
 static NSString * const kUserPlatfrormValue = @"iphone";
@@ -41,7 +41,6 @@ static NSString * const kBloodDonationActionDeleted = @"Deleted";
     NSString *majorVersion = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
     NSString *minorVersion = [infoDictionary objectForKey:@"CFBundleVersion"];
     [Flurry setAppVersion: [NSString stringWithFormat:@"%@ (%@)", majorVersion, minorVersion]];
-    [Flurry setSecureTransportEnabled:YES];
     [Flurry startSession:appId];
 }
 
