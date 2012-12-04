@@ -1,17 +1,18 @@
 //
-//  HSRemoteEventViewController.m
+//  HSEventViewController.m
 //  BloodDonor
 //
 //  Created by Sergey Seroshtan on 04.11.12.
+//  Modified by Sergey Seroshtan on 04.12.12.
 //  Copyright (c) 2012 Hint Solutions. All rights reserved.
 //
 
-#import "HSRemoteEventViewController.h"
+#import "HSEventViewController.h"
 #import "HSEventPlanningViewController.h"
 
 #import "NSDate+HSCalendar.h"
 
-@interface HSRemoteEventViewController ()
+@interface HSEventViewController ()
 
 /**
  * Reference to the calendar model.
@@ -55,7 +56,7 @@
 
 @end
 
-@implementation HSRemoteEventViewController
+@implementation HSEventViewController
 
 #pragma mark - Initialization methods
 - (id)initWithNibName: (NSString *)nibNameOrNil bundle: (NSBundle *)nibBundleOrNil calendar: (HSCalendar *)calendar

@@ -1,8 +1,9 @@
 //
-//  HSRemoteEventViewController.h
+//  HSEventViewController.h
 //  BloodDonor
 //
 //  Created by Sergey Seroshtan on 04.11.12.
+//  Modified by Sergey Seroshtan on 04.12.12.
 //  Copyright (c) 2012 Hint Solutions. All rights reserved.
 //
 
@@ -14,7 +15,7 @@
 /**
  * This view controller's aim is to display existing (already planned) remote events.
  */
-@interface HSRemoteEventViewController : UIViewController
+@interface HSEventViewController : UIViewController
 
 /// @name Outlets properties
 @property (weak, nonatomic) IBOutlet UIButton *doneButton;

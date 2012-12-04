@@ -21,7 +21,7 @@
 #import "HSBloodDonationEvent.h"
 #import "HSBloodTestsEvent.h"
 
-#import "HSRemoteEventViewController.h"
+#import "HSEventViewController.h"
 #import "HSEventPlanningViewController.h"
 #import "CalendarInfoViewController.h"
 
@@ -303,11 +303,11 @@
     UIViewController *pushedViewController = nil;
     if (bloodDonationEvent != nil) {
         // only blood donation event specified
-        pushedViewController = [[HSRemoteEventViewController alloc] initWithNibName: @"HSRemoteEventViewController"
+        pushedViewController = [[HSEventViewController alloc] initWithNibName: @"HSRemoteEventViewController"
                 bundle: nil calendar: self.calendarModel bloodDonationEvent: bloodDonationEvent];
     } else if (bloodTestsEvent != nil) {
         // only blood tests event specified
-        pushedViewController = [[HSRemoteEventViewController alloc] initWithNibName: @"HSRemoteEventViewController"
+        pushedViewController = [[HSEventViewController alloc] initWithNibName: @"HSRemoteEventViewController"
                 bundle: nil calendar: self.calendarModel bloodTestsEvent: bloodTestsEvent];
     } else {
         // no events was specified on this day, so it should be created
