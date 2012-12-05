@@ -288,7 +288,7 @@ namespace Donor
                         }
                         else
                         {
-                            if ((App.ViewModel.User.FacebookId != "") && (App.ViewModel.User.FacebookToken!=""))
+                            if ((App.ViewModel.User.FacebookId != "") && (App.ViewModel.User.FacebookToken != "") && (App.ViewModel.User.FacebookToken != null) && (App.ViewModel.User.FacebookId != null))
                             {
                                 App.ViewModel.User.FacebookLogin(App.ViewModel.User.FacebookId, App.ViewModel.User.FacebookToken);
                             };
@@ -320,6 +320,9 @@ namespace Donor
             if (UserEnter != null)
                 UserEnter(this, e);
         }
+
+
+
 
         /// <summary>
         /// Event, when data from parse and so on is loaded

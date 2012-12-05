@@ -89,69 +89,6 @@ namespace Donor
 
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            //var user = new DonorUser { UserName = "test", Password = "test" };
-        }
-
-        /*
-        private void Login_Click(object sender, RoutedEventArgs e)
-        {
-            var client = new RestClient("https://api.parse.com");
-            var request = new RestRequest("1/login?username=" + Uri.EscapeUriString(this.email.Text.ToString().ToLower()) + "&password=" + Uri.EscapeUriString(this.password.Password), Method.GET);
-            request.Parameters.Clear();
-
-            App.ViewModel.User.IsLoggedIn = false;
-            
-            request.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
-            request.AddHeader("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
-
-            this.LoadingBar.IsIndeterminate = true;
-
-            client.ExecuteAsync(request, response =>
-            {
-                this.LoadingBar.IsIndeterminate = false;
-                try {
-                JObject o = JObject.Parse(response.Content.ToString());
-                if (o["error"] == null)
-                {
-                    App.ViewModel.User = JsonConvert.DeserializeObject<DonorUser>(response.Content.ToString());
-                    App.ViewModel.User.IsLoggedIn = true;                    
-
-                    this.RegisterForm.Visibility = Visibility.Collapsed;
-                    this.LoginForm.Visibility = Visibility.Collapsed;
-                    this.UserProfile.Visibility = Visibility.Visible;
-
-                    if (App.ViewModel.User.IsLoggedIn == true)
-                    {
-                        this.AppBar.IsVisible = true;
-                    }
-                    else
-                    {
-                        this.AppBar.IsVisible = false;
-                    };
-
-                    try
-                    {
-                        this.UpdateUserInfoView();
-                    }
-                    catch
-                    {
-                    };
-
-                    App.ViewModel.Events.LoadEventsParse();
-                    App.ViewModel.Events.WeekItemsUpdated();
-                }
-                else
-                {
-                    App.ViewModel.User.IsLoggedIn = false;
-
-                    MessageBox.Show("Указаны некорректные данные.");
-                };
-                } catch {};
-            });
-        }*/
-
         private void UserLoaded(object sender, EventArgs e)
         {
             this.LoadingBar.IsIndeterminate = false;
@@ -169,6 +106,16 @@ namespace Donor
                 this.AppBar.IsVisible = false;
             };
 
+            if ((App.ViewModel.User.FacebookId != "") && (App.ViewModel.User.FacebookId != null))
+            {
+                this.FacebookLinkingButton.Visibility = Visibility.Collapsed;
+                this.FacebookUnLinkingButton.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                this.FacebookLinkingButton.Visibility = Visibility.Visible;
+                this.FacebookUnLinkingButton.Visibility = Visibility.Collapsed;
+            };
         }
 
         private void RegisterButton_Click(object sender, RoutedEventArgs e)
@@ -301,9 +248,21 @@ namespace Donor
             App.ViewModel.User.RestoreUserPassword(_email);
         }
 
+        /// <summary>
+        /// show and hide buttons for unlinking and linking after linking account with facebook account finished
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void FacebookLinkingFinished(object sender, EventArgs e)
+        {
+            this.FacebookLinkingButton.Visibility = Visibility.Collapsed;
+            this.FacebookUnLinkingButton.Visibility = Visibility.Visible;
+        }
+
         private void Pivot_Loaded(object sender, RoutedEventArgs e)
         {
             App.ViewModel.UserEnter += new MainViewModel.UserEnterEventHandler(this.UserLoaded);
+            App.ViewModel.User.FacebookLinked += new DonorUser.FacebookLinkedEventHandler(this.FacebookLinkingFinished);
 
             this.AppBar.DataContext = App.ViewModel;
             if (this.NavigationContext.QueryString.ContainsKey("task"))
@@ -651,8 +610,8 @@ namespace Donor
                 };
             };
 
-            this.FacebookLinkingButton.Visibility = Visibility.Collapsed;
-            this.FacebookUnLinkingButton.Visibility = Visibility.Visible;
+            //this.FacebookLinkingButton.Visibility = Visibility.Collapsed;
+            //this.FacebookUnLinkingButton.Visibility = Visibility.Visible;
         }
 
         private void FacebookUnLinkingButton_Click(object sender, RoutedEventArgs e)

@@ -221,6 +221,20 @@ namespace Donor.ViewModels
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public delegate void FacebookLinkedEventHandler(object sender, EventArgs e);
+        public event FacebookLinkedEventHandler FacebookLinked;
+        public virtual void OnFacebookLinked(EventArgs e)
+        {
+            if (FacebookLinked != null)
+                FacebookLinked(this, e);
+        }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
         public ICommand LoginCommand
         {
             get
@@ -767,14 +781,28 @@ namespace Donor.ViewModels
                             this.UpdateAction(null);
 
                             FlurryWP7SDK.Api.LogEvent("Facebook_linking");
+
+                            this.FacebookLinked(this, EventArgs.Empty);
                         }
                         else
                         {
+                            //Another user is already linked to this facebook id.
+                            if (o["code"].ToString() == "208")
+                            {
+                                MessageBox.Show("Не удалось привязать профиль, т.к. он привязан к другому аккаунту.");
+                            }
+                            else
+                            {
+                                MessageBox.Show("Не удалось выполнить привязку.");
+                            };
                         };
                     }
                     catch { };
                 });
         }
+
+        public Visibility FacebookLinkingButtonVisible = Visibility.Visible;
+        public Visibility FacebookUnlinkingButtonVisible = Visibility.Collapsed;
 
         public void FacebookUnlinking()
         {
@@ -807,9 +835,16 @@ namespace Donor.ViewModels
                         App.ViewModel.SaveUserToStorage();
 
                         FlurryWP7SDK.Api.LogEvent("Facebook_unlinking");
+
+                        FacebookLinkingButtonVisible = Visibility.Visible;
+                        FacebookUnlinkingButtonVisible = Visibility.Collapsed;
                     }
                     else
                     {
+                        MessageBox.Show("Не удалось отзвять профиль facebook.");
+
+                        FacebookLinkingButtonVisible = Visibility.Collapsed;
+                        FacebookUnlinkingButtonVisible = Visibility.Visible;
                     };
                 }
                 catch { };
