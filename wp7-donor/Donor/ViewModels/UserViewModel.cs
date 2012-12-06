@@ -232,6 +232,15 @@ namespace Donor.ViewModels
         }
 
 
+        public delegate void FacebookUnLinkedEventHandler(object sender, EventArgs e);
+        public event FacebookUnLinkedEventHandler FacebookUnLinked;
+        public virtual void OnFacebookUnLinked(EventArgs e)
+        {
+            if (FacebookUnLinked != null)
+                FacebookUnLinked(this, e);
+        }
+
+
         /// <summary>
         /// 
         /// </summary>
@@ -795,14 +804,15 @@ namespace Donor.ViewModels
                             {
                                 MessageBox.Show("Не удалось выполнить привязку.");
                             };
+                            this.FacebookUnLinked(this, EventArgs.Empty);
                         };
                     }
                     catch { };
                 });
         }
 
-        public Visibility FacebookLinkingButtonVisible = Visibility.Visible;
-        public Visibility FacebookUnlinkingButtonVisible = Visibility.Collapsed;
+        //public Visibility FacebookLinkingButtonVisible = Visibility.Visible;
+        //public Visibility FacebookUnlinkingButtonVisible = Visibility.Collapsed;
 
         public void FacebookUnlinking()
         {
@@ -835,16 +845,12 @@ namespace Donor.ViewModels
                         App.ViewModel.SaveUserToStorage();
 
                         FlurryWP7SDK.Api.LogEvent("Facebook_unlinking");
-
-                        FacebookLinkingButtonVisible = Visibility.Visible;
-                        FacebookUnlinkingButtonVisible = Visibility.Collapsed;
+                        this.FacebookUnLinked(this, EventArgs.Empty);
                     }
                     else
                     {
                         MessageBox.Show("Не удалось отзвять профиль facebook.");
-
-                        FacebookLinkingButtonVisible = Visibility.Collapsed;
-                        FacebookUnlinkingButtonVisible = Visibility.Visible;
+                        this.FacebookLinked(this, EventArgs.Empty);
                     };
                 }
                 catch { };

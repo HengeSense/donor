@@ -259,10 +259,17 @@ namespace Donor
             this.FacebookUnLinkingButton.Visibility = Visibility.Visible;
         }
 
+        private void FacebookUnLinkingFinished(object sender, EventArgs e)
+        {
+            this.FacebookLinkingButton.Visibility = Visibility.Visible;
+            this.FacebookUnLinkingButton.Visibility = Visibility.Collapsed;
+        }
+
         private void Pivot_Loaded(object sender, RoutedEventArgs e)
         {
             App.ViewModel.UserEnter += new MainViewModel.UserEnterEventHandler(this.UserLoaded);
             App.ViewModel.User.FacebookLinked += new DonorUser.FacebookLinkedEventHandler(this.FacebookLinkingFinished);
+            App.ViewModel.User.FacebookUnLinked += new DonorUser.FacebookUnLinkedEventHandler(this.FacebookUnLinkingFinished);
 
             this.AppBar.DataContext = App.ViewModel;
             if (this.NavigationContext.QueryString.ContainsKey("task"))
@@ -609,9 +616,6 @@ namespace Donor
                 {
                 };
             };
-
-            //this.FacebookLinkingButton.Visibility = Visibility.Collapsed;
-            //this.FacebookUnLinkingButton.Visibility = Visibility.Visible;
         }
 
         private void FacebookUnLinkingButton_Click(object sender, RoutedEventArgs e)
