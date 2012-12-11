@@ -379,5 +379,13 @@ namespace Donor
             }
         }
 
+        private void email_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                this.password.Focus();
+            };   
+        }
+
     }
 }

@@ -160,6 +160,8 @@ namespace Donor
                             App.ViewModel.User.Birthday = this.UserBirthdayRegister.Value.Value.ToShortDateString();
                             App.ViewModel.User.UserName = this.email1.Text.ToString();
 
+                            App.ViewModel.User.Password = this.password1.Password.ToString();
+
                             this.RegisterForm.Visibility = Visibility.Collapsed;
                             this.UserProfile.Visibility = Visibility.Visible;
                             this.LoginForm.Visibility = Visibility.Collapsed;
@@ -177,6 +179,8 @@ namespace Donor
                             new FlurryWP7SDK.Models.Parameter("objectId", App.ViewModel.User.objectId), 
                             new FlurryWP7SDK.Models.Parameter("platform", "wp7") };
                             FlurryWP7SDK.Api.LogEvent("User_register", articleParams);
+
+                            App.ViewModel.SaveUserToStorage();
 
                         }
                         else
@@ -621,9 +625,62 @@ namespace Donor
         private void FacebookUnLinkingButton_Click(object sender, RoutedEventArgs e)
         {
             App.ViewModel.User.FacebookUnlinking();
+        }
 
-            this.FacebookLinkingButton.Visibility = Visibility.Visible;
-            this.FacebookUnLinkingButton.Visibility = Visibility.Collapsed;
+        private void email1_TextChanged(object sender, TextChangedEventArgs e)
+        {
+        }
+
+        private void email1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                this.password1.Focus();
+            };
+        }
+
+        private void password1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                this.password2.Focus();
+            };
+        }
+
+        private void password2_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                this.name1.Focus();
+            };
+        }
+
+        private void SecondNameRegister_KeyDown(object sender, KeyEventArgs e)
+        {
+        }
+
+        private void name1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                this.SecondNameRegister.Focus();
+            };
+        }
+
+        private void email_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                this.password.Focus();
+            };
+        }
+
+        private void EditName_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                this.EditSecondName.Focus();
+            };            
         }
 
     }

@@ -264,7 +264,7 @@
 						Style="{StaticResource Text24pxCBB2A3}"
 						Text="{Binding EnterEmail, Source={StaticResource Loc}}" />
                     <TextBox x:Name="email" Text="" Background="#FF4F3B34" BorderBrush="#FF4F3B34" Foreground="#FFCBB2A3" 
-					CaretBrush="#FFCBB2A3" Style="{StaticResource TextBoxStyle1}" />
+					CaretBrush="#FFCBB2A3" Style="{StaticResource TextBoxStyle1}" KeyDown="email_KeyDown" />
                         <!--{Binding Path=User.UserName, Mode=TwoWay}-->
                     
                     <TextBlock 

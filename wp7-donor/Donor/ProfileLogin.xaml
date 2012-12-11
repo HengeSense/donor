@@ -145,29 +145,29 @@
                                     <TextBlock Margin="10,10,10,0"
 						Style="{StaticResource Text24pxCBB2A3}"
 						Text="{Binding EmailHelp, Source={StaticResource Loc}}" />
-                                    <TextBox x:Name="email1" Style="{StaticResource TextBoxStyle1}" Text="" />
+                                    <TextBox x:Name="email1" Style="{StaticResource TextBoxStyle1}" Text="" TextChanged="email1_TextChanged" KeyDown="email1_KeyDown" />
                                     <TextBlock Margin="10,0,10,0"
 						Style="{StaticResource Text24pxCBB2A3}"
 						Text="{Binding Password, Source={StaticResource Loc}}" />
                                     <PasswordBox 
-						x:Name="password1" Password="" Style="{StaticResource PasswordBoxStyle1}"/>
+						x:Name="password1" Password="" Style="{StaticResource PasswordBoxStyle1}" KeyDown="password1_KeyDown" />
                                     <TextBlock Margin="10,0,10,0"
 						Style="{StaticResource Text24pxCBB2A3}"
 						Text="{Binding ConfirmPassword, Source={StaticResource Loc}}" />
                                     <PasswordBox  Style="{StaticResource PasswordBoxStyle1}"	
-						x:Name="password2" Password="" />
+						x:Name="password2" Password="" KeyDown="password2_KeyDown" />
                                     
                                     <TextBlock Margin="10,0,10,0"
 						Style="{StaticResource Text24pxCBB2A3}"
 						Text="{Binding Name, Source={StaticResource Loc}}" />
                                     <TextBox x:Name="name1" Text="" 
-						Style="{StaticResource TextBoxStyle1}"/>
+						Style="{StaticResource TextBoxStyle1}" KeyDown="name1_KeyDown" />
 
                                     <TextBlock Margin="10,0,10,0"
 						Style="{StaticResource Text24pxCBB2A3}"
 						Text="{Binding SecondName, Source={StaticResource Loc}}" />
                                     <TextBox x:Name="SecondNameRegister" Text="" 
-						Style="{StaticResource TextBoxStyle1}"/>
+						Style="{StaticResource TextBoxStyle1}" KeyDown="SecondNameRegister_KeyDown" />
                                     
                                     <TextBlock Text="{Binding UserBirthday, Source={StaticResource Loc}}" Margin="10,5,10,0"
 					Style="{StaticResource Text24pxCBB2A3}"/>
@@ -200,7 +200,7 @@
 						Style="{StaticResource Text24pxCBB2A3}"/>
                             <TextBox Background="#FF4F3B34" Style="{StaticResource TextBoxStyle1}"
 BorderBrush="#FF4F3B34" Foreground="#FFCBB2A3" x:Name="email" 
-						Text="" />
+						Text="" KeyDown="email_KeyDown" />
                             <!-- {Binding Path=User.UserName, Mode=TwoWay} -->
                             <TextBlock Text="{Binding EnterPassword, Source={StaticResource Loc}}"  Margin="10,5,0,0"
 						Style="{StaticResource Text24pxCBB2A3}" />
@@ -301,7 +301,7 @@ Visibility="Collapsed" Name="SaveEditProfileButton" Click="SaveEditProfileButton
                             <TextBox Name="EditName" Margin="0,-5,0,0"
 					Style="{StaticResource TextBoxStyle1}"	
 					Text="{Binding Path=User.Name, 
-					Mode=TwoWay}" />
+					Mode=TwoWay}" KeyDown="EditName_KeyDown" />
 
                             <TextBlock Text="{Binding SecondName, Source={StaticResource Loc}}" Margin="10,-5,10,0"
 					Style="{StaticResource Text24pxCBB2A3}"/>

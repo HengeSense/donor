@@ -804,6 +804,12 @@ namespace Donor.ViewModels
                             {
                                 MessageBox.Show("Не удалось выполнить привязку.");
                             };
+
+                            App.ViewModel.User.FacebookId = "";
+                            App.ViewModel.User.FacebookToken = "";                            
+                            App.ViewModel.SaveUserToStorage();
+                            //this.UpdateAction(null);
+
                             this.FacebookUnLinked(this, EventArgs.Empty);
                         };
                     }
