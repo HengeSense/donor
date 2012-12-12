@@ -163,6 +163,11 @@
 		680516EA166D7C050013E83E /* HSBloodDonationTypePicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 680516E3166D7C050013E83E /* HSBloodDonationTypePicker.xib */; };
 		680516EB166D7C050013E83E /* HSDateTimePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 680516E5166D7C050013E83E /* HSDateTimePicker.m */; };
 		680516EC166D7C050013E83E /* HSDateTimePicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 680516E6166D7C050013E83E /* HSDateTimePicker.xib */; };
+		680516F8166D80280013E83E /* HSContraindicationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 680516F6166D80280013E83E /* HSContraindicationsViewController.m */; };
+		680516F9166D80280013E83E /* HSContraindicationsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 680516F7166D80280013E83E /* HSContraindicationsViewController.xib */; };
+		680516FD166D85BF0013E83E /* HSContraindicationsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 680516FC166D85BF0013E83E /* HSContraindicationsDataSource.m */; };
+		68051708166D90210013E83E /* HSAbsoluteContraindicationsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 68051707166D90210013E83E /* HSAbsoluteContraindicationsDataSource.m */; };
+		6805170B166D913B0013E83E /* HSTempContraindicationsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 6805170A166D913A0013E83E /* HSTempContraindicationsDataSource.m */; };
 		683F8A81164573860066C47A /* HSBloodDonationType.m in Sources */ = {isa = PBXBuildFile; fileRef = 683F8A80164573860066C47A /* HSBloodDonationType.m */; };
 		683F8A9716468E300066C47A /* event_done_button_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 683F8A9316468E300066C47A /* event_done_button_normal.png */; };
 		683F8A9816468E300066C47A /* event_done_button_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 683F8A9416468E300066C47A /* event_done_button_normal@2x.png */; };
@@ -231,6 +236,7 @@
 		68893A4816518CA800955990 /* BloodDonor_tutorial_5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68893A3C16518CA800955990 /* BloodDonor_tutorial_5@2x.png */; };
 		68893A4916518CA800955990 /* BloodDonor_tutorial_6.png in Resources */ = {isa = PBXBuildFile; fileRef = 68893A3D16518CA800955990 /* BloodDonor_tutorial_6.png */; };
 		68893A4A16518CA800955990 /* BloodDonor_tutorial_6@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68893A3E16518CA800955990 /* BloodDonor_tutorial_6@2x.png */; };
+		68A028DB166E9571000E18D8 /* HSContraindicationsLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 68A028DA166E9571000E18D8 /* HSContraindicationsLoader.m */; };
 		68B455B81635BC5100811A0F /* HSEventRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B455B71635BC5100811A0F /* HSEventRenderer.m */; };
 		68B455BC1635C0B500811A0F /* HSBloodDonationEventRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B455BB1635C0B500811A0F /* HSBloodDonationEventRenderer.m */; };
 		68B455BF1635C3D300811A0F /* HSFinishRestEventRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B455BE1635C3D300811A0F /* HSFinishRestEventRenderer.m */; };
@@ -248,6 +254,10 @@
 		68EB27681630A5780092FDBA /* HSBloodDonationEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 68EB27671630A5780092FDBA /* HSBloodDonationEvent.m */; };
 		68EB276C1630AA840092FDBA /* HSFinishRestEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 68EB276B1630AA840092FDBA /* HSFinishRestEvent.m */; };
 		68EB27711630AD930092FDBA /* HSDayPurposeModifierEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 68EB27701630AD930092FDBA /* HSDayPurposeModifierEvent.m */; };
+		68F3B30C16754A85003E8376 /* contraindications.json in Resources */ = {isa = PBXBuildFile; fileRef = 68F3B30B16754A85003E8376 /* contraindications.json */; };
+		68F3B31016755557003E8376 /* HSContraindication.m in Sources */ = {isa = PBXBuildFile; fileRef = 68F3B30F16755557003E8376 /* HSContraindication.m */; };
+		68F3B32016767665003E8376 /* HSContraindicationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 68F3B31F16767665003E8376 /* HSContraindicationCell.m */; };
+		68F3B32316767699003E8376 /* HSContraindicationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68F3B32216767699003E8376 /* HSContraindicationCell.xib */; };
 		68F7F3F11638878800740CCF /* HSModelCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 68F7F3F01638878800740CCF /* HSModelCommon.m */; };
 		68F7F3F216388D1600740CCF /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 371CBA5215AFD452008CA154 /* Parse.framework */; };
 		85040C0415CEAAC500CD3A16 /* ContraindicationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85040C0215CEAAC500CD3A16 /* ContraindicationsViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -705,6 +715,15 @@
 		680516E4166D7C050013E83E /* HSDateTimePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSDateTimePicker.h; sourceTree = "<group>"; };
 		680516E5166D7C050013E83E /* HSDateTimePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSDateTimePicker.m; sourceTree = "<group>"; };
 		680516E6166D7C050013E83E /* HSDateTimePicker.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HSDateTimePicker.xib; sourceTree = "<group>"; };
+		680516F5166D80280013E83E /* HSContraindicationsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSContraindicationsViewController.h; sourceTree = "<group>"; };
+		680516F6166D80280013E83E /* HSContraindicationsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSContraindicationsViewController.m; sourceTree = "<group>"; };
+		680516F7166D80280013E83E /* HSContraindicationsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HSContraindicationsViewController.xib; sourceTree = "<group>"; };
+		680516FB166D85BF0013E83E /* HSContraindicationsDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSContraindicationsDataSource.h; sourceTree = "<group>"; };
+		680516FC166D85BF0013E83E /* HSContraindicationsDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSContraindicationsDataSource.m; sourceTree = "<group>"; };
+		68051706166D90210013E83E /* HSAbsoluteContraindicationsDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSAbsoluteContraindicationsDataSource.h; sourceTree = "<group>"; };
+		68051707166D90210013E83E /* HSAbsoluteContraindicationsDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSAbsoluteContraindicationsDataSource.m; sourceTree = "<group>"; };
+		68051709166D913A0013E83E /* HSTempContraindicationsDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSTempContraindicationsDataSource.h; sourceTree = "<group>"; };
+		6805170A166D913A0013E83E /* HSTempContraindicationsDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSTempContraindicationsDataSource.m; sourceTree = "<group>"; };
 		683F8A80164573860066C47A /* HSBloodDonationType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSBloodDonationType.m; sourceTree = "<group>"; };
 		683F8A9316468E300066C47A /* event_done_button_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = event_done_button_normal.png; sourceTree = "<group>"; };
 		683F8A9416468E300066C47A /* event_done_button_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "event_done_button_normal@2x.png"; sourceTree = "<group>"; };
@@ -782,6 +801,8 @@
 		68893A3C16518CA800955990 /* BloodDonor_tutorial_5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BloodDonor_tutorial_5@2x.png"; sourceTree = "<group>"; };
 		68893A3D16518CA800955990 /* BloodDonor_tutorial_6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BloodDonor_tutorial_6.png; sourceTree = "<group>"; };
 		68893A3E16518CA800955990 /* BloodDonor_tutorial_6@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BloodDonor_tutorial_6@2x.png"; sourceTree = "<group>"; };
+		68A028D9166E9571000E18D8 /* HSContraindicationsLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSContraindicationsLoader.h; sourceTree = "<group>"; };
+		68A028DA166E9571000E18D8 /* HSContraindicationsLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSContraindicationsLoader.m; sourceTree = "<group>"; };
 		68B455B61635BC5100811A0F /* HSEventRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HSEventRenderer.h; path = event/HSEventRenderer.h; sourceTree = "<group>"; };
 		68B455B71635BC5100811A0F /* HSEventRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HSEventRenderer.m; path = event/HSEventRenderer.m; sourceTree = "<group>"; };
 		68B455BA1635C0B500811A0F /* HSBloodDonationEventRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HSBloodDonationEventRenderer.h; path = event/HSBloodDonationEventRenderer.h; sourceTree = "<group>"; };
@@ -815,6 +836,12 @@
 		68EB276F1630AD930092FDBA /* HSDayPurposeModifierEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSDayPurposeModifierEvent.h; sourceTree = "<group>"; };
 		68EB27701630AD930092FDBA /* HSDayPurposeModifierEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSDayPurposeModifierEvent.m; sourceTree = "<group>"; };
 		68EB27731630B02F0092FDBA /* HSCalendarTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSCalendarTypes.h; sourceTree = "<group>"; };
+		68F3B30B16754A85003E8376 /* contraindications.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = contraindications.json; sourceTree = "<group>"; };
+		68F3B30E16755557003E8376 /* HSContraindication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSContraindication.h; sourceTree = "<group>"; };
+		68F3B30F16755557003E8376 /* HSContraindication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSContraindication.m; sourceTree = "<group>"; };
+		68F3B31E16767665003E8376 /* HSContraindicationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSContraindicationCell.h; sourceTree = "<group>"; };
+		68F3B31F16767665003E8376 /* HSContraindicationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSContraindicationCell.m; sourceTree = "<group>"; };
+		68F3B32216767699003E8376 /* HSContraindicationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HSContraindicationCell.xib; sourceTree = "<group>"; };
 		68F7F3ED16387A0300740CCF /* HSBloodRemoteEvent_Protected.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSBloodRemoteEvent_Protected.h; sourceTree = "<group>"; };
 		68F7F3EF1638878800740CCF /* HSModelCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSModelCommon.h; sourceTree = "<group>"; };
 		68F7F3F01638878800740CCF /* HSModelCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSModelCommon.m; sourceTree = "<group>"; };
@@ -1164,6 +1191,7 @@
 				37153EA515AEBA3400C985C1 /* BloodDonor */,
 				68BB4056162F0B9400098861 /* BloodDonorTests */,
 				3758525915AEE959006DF7E1 /* Images */,
+				68F3B30A16754A85003E8376 /* Data */,
 				37153E9E15AEBA3400C985C1 /* Frameworks */,
 				37153E9C15AEBA3400C985C1 /* Products */,
 			);
@@ -1716,6 +1744,53 @@
 			path = picker;
 			sourceTree = "<group>";
 		};
+		680516F1166D7FDC0013E83E /* info */ = {
+			isa = PBXGroup;
+			children = (
+				680516F2166D7FDC0013E83E /* contraindications */,
+			);
+			path = info;
+			sourceTree = "<group>";
+		};
+		680516F2166D7FDC0013E83E /* contraindications */ = {
+			isa = PBXGroup;
+			children = (
+				680516FA166D85550013E83E /* data */,
+				680516F3166D7FDC0013E83E /* cell */,
+				680516F5166D80280013E83E /* HSContraindicationsViewController.h */,
+				680516F6166D80280013E83E /* HSContraindicationsViewController.m */,
+				680516F7166D80280013E83E /* HSContraindicationsViewController.xib */,
+			);
+			path = contraindications;
+			sourceTree = "<group>";
+		};
+		680516F3166D7FDC0013E83E /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				68F3B31E16767665003E8376 /* HSContraindicationCell.h */,
+				68F3B31F16767665003E8376 /* HSContraindicationCell.m */,
+				68F3B32216767699003E8376 /* HSContraindicationCell.xib */,
+			);
+			path = cell;
+			sourceTree = "<group>";
+		};
+		680516FA166D85550013E83E /* data */ = {
+			isa = PBXGroup;
+			children = (
+				68F3B30E16755557003E8376 /* HSContraindication.h */,
+				68F3B30F16755557003E8376 /* HSContraindication.m */,
+				68A028D9166E9571000E18D8 /* HSContraindicationsLoader.h */,
+				68A028DA166E9571000E18D8 /* HSContraindicationsLoader.m */,
+				680516FB166D85BF0013E83E /* HSContraindicationsDataSource.h */,
+				680516FC166D85BF0013E83E /* HSContraindicationsDataSource.m */,
+				68051706166D90210013E83E /* HSAbsoluteContraindicationsDataSource.h */,
+				68051707166D90210013E83E /* HSAbsoluteContraindicationsDataSource.m */,
+				68051709166D913A0013E83E /* HSTempContraindicationsDataSource.h */,
+				6805170A166D913A0013E83E /* HSTempContraindicationsDataSource.m */,
+			);
+			path = data;
+			sourceTree = "<group>";
+		};
 		683F8A9216468E300066C47A /* Buttons */ = {
 			isa = PBXGroup;
 			children = (
@@ -1909,6 +1984,7 @@
 			isa = PBXGroup;
 			children = (
 				680516B9166D7B4A0013E83E /* calendar */,
+				680516F1166D7FDC0013E83E /* info */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -2055,6 +2131,14 @@
 				686BA629163469C3004D7082 /* HSBloodDonorTests_Calendar.m */,
 			);
 			path = calendar;
+			sourceTree = "<group>";
+		};
+		68F3B30A16754A85003E8376 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				68F3B30B16754A85003E8376 /* contraindications.json */,
+			);
+			path = Data;
 			sourceTree = "<group>";
 		};
 		85B213DC15D797F000D2ADBE /* StationsCells */ = {
@@ -2573,6 +2657,9 @@
 				680516E8166D7C050013E83E /* HSAddressPicker.xib in Resources */,
 				680516EA166D7C050013E83E /* HSBloodDonationTypePicker.xib in Resources */,
 				680516EC166D7C050013E83E /* HSDateTimePicker.xib in Resources */,
+				680516F9166D80280013E83E /* HSContraindicationsViewController.xib in Resources */,
+				68F3B30C16754A85003E8376 /* contraindications.json in Resources */,
+				68F3B32316767699003E8376 /* HSContraindicationCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2677,6 +2764,13 @@
 				680516E7166D7C050013E83E /* HSAddressPicker.m in Sources */,
 				680516E9166D7C050013E83E /* HSBloodDonationTypePicker.m in Sources */,
 				680516EB166D7C050013E83E /* HSDateTimePicker.m in Sources */,
+				680516F8166D80280013E83E /* HSContraindicationsViewController.m in Sources */,
+				680516FD166D85BF0013E83E /* HSContraindicationsDataSource.m in Sources */,
+				68051708166D90210013E83E /* HSAbsoluteContraindicationsDataSource.m in Sources */,
+				6805170B166D913B0013E83E /* HSTempContraindicationsDataSource.m in Sources */,
+				68A028DB166E9571000E18D8 /* HSContraindicationsLoader.m in Sources */,
+				68F3B31016755557003E8376 /* HSContraindication.m in Sources */,
+				68F3B32016767665003E8376 /* HSContraindicationCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

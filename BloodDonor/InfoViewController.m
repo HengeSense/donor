@@ -11,7 +11,7 @@
 #import "NewsViewController.h"
 #import <Parse/Parse.h>
 #import "RecommendationsViewController.h"
-#import "ContraindicationsViewController.h"
+#import "HSContraindicationsViewController.h"
 #import "StationDescriptionViewController.h"
 
 @implementation InfoViewController
@@ -133,7 +133,7 @@
     }
     else
     {
-        ContraindicationsViewController *controller = [[[ContraindicationsViewController alloc] initWithNibName:@"ContraindicationsViewController" bundle:nil] autorelease];
+        HSContraindicationsViewController *controller = [[HSContraindicationsViewController alloc] initWithNibName:@"HSContraindicationsViewController" bundle:nil];
         [self.navigationController pushViewController:controller animated:YES];
     }
 }
