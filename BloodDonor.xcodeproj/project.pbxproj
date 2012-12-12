@@ -260,8 +260,6 @@
 		68F3B32316767699003E8376 /* HSContraindicationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68F3B32216767699003E8376 /* HSContraindicationCell.xib */; };
 		68F7F3F11638878800740CCF /* HSModelCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 68F7F3F01638878800740CCF /* HSModelCommon.m */; };
 		68F7F3F216388D1600740CCF /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 371CBA5215AFD452008CA154 /* Parse.framework */; };
-		85040C0415CEAAC500CD3A16 /* ContraindicationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85040C0215CEAAC500CD3A16 /* ContraindicationsViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		85040C0515CEAAC500CD3A16 /* ContraindicationsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85040C0315CEAAC500CD3A16 /* ContraindicationsViewController.xib */; };
 		85040C0F15CEAE7F00CD3A16 /* absoluteSegmentButtonSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 85040C0715CEAE7F00CD3A16 /* absoluteSegmentButtonSelected.png */; };
 		85040C1015CEAE7F00CD3A16 /* timeSegmentButtonSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85040C0815CEAE7F00CD3A16 /* timeSegmentButtonSelected@2x.png */; };
 		85040C1115CEAE7F00CD3A16 /* timeSegmentButtonSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 85040C0915CEAE7F00CD3A16 /* timeSegmentButtonSelected.png */; };
@@ -280,8 +278,6 @@
 		85040C2A15CEB5F000CD3A16 /* iconSearch.png in Resources */ = {isa = PBXBuildFile; fileRef = 85040C2815CEB5F000CD3A16 /* iconSearch.png */; };
 		85040C2D15CEBB3900CD3A16 /* dottedLineVertical.png in Resources */ = {isa = PBXBuildFile; fileRef = 85040C2B15CEBB3900CD3A16 /* dottedLineVertical.png */; };
 		85040C2E15CEBB3900CD3A16 /* dottedLineVertical@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85040C2C15CEBB3900CD3A16 /* dottedLineVertical@2x.png */; };
-		85040C3115CEBB9C00CD3A16 /* TempContraindicationsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 85040C3015CEBB9C00CD3A16 /* TempContraindicationsCell.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		85040C3315CEBBBD00CD3A16 /* TempContraindicationsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85040C3215CEBBBD00CD3A16 /* TempContraindicationsCell.xib */; };
 		85040C3615CEC2A100CD3A16 /* contraindicationsSectionBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85040C3415CEC29300CD3A16 /* contraindicationsSectionBackground@2x.png */; };
 		85040C3715CEC2A100CD3A16 /* contraindicationsSectionBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 85040C3515CEC29A00CD3A16 /* contraindicationsSectionBackground.png */; };
 		8509917515D903B0002FCFDE /* recomendationIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 8509916D15D903B0002FCFDE /* recomendationIcon.png */; };
@@ -399,8 +395,6 @@
 		85A0F70015B91E5800EBC942 /* libz.1.1.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 85A0F6FF15B91E5800EBC942 /* libz.1.1.3.dylib */; };
 		85A0F70215B91E6900EBC942 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85A0F70115B91E6900EBC942 /* Security.framework */; };
 		85A0F70415B91E7600EBC942 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85A0F70315B91E7600EBC942 /* QuartzCore.framework */; };
-		85A1473D15DA48D80026AB9E /* AbsoluteContraindicationsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 85A1473C15DA48D80026AB9E /* AbsoluteContraindicationsCell.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		85A1474015DA48F40026AB9E /* AbsoluteContraindicationsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85A1473F15DA48F40026AB9E /* AbsoluteContraindicationsCell.xib */; };
 		85A2656515B7D48D00064061 /* modalViewShadow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85A2655D15B7D48D00064061 /* modalViewShadow@2x.png */; };
 		85A2656615B7D48D00064061 /* modalViewShadow.png in Resources */ = {isa = PBXBuildFile; fileRef = 85A2655E15B7D48D00064061 /* modalViewShadow.png */; };
 		85A2656715B7D48D00064061 /* sexLabel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85A2655F15B7D48D00064061 /* sexLabel@2x.png */; };
@@ -845,9 +839,6 @@
 		68F7F3ED16387A0300740CCF /* HSBloodRemoteEvent_Protected.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSBloodRemoteEvent_Protected.h; sourceTree = "<group>"; };
 		68F7F3EF1638878800740CCF /* HSModelCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSModelCommon.h; sourceTree = "<group>"; };
 		68F7F3F01638878800740CCF /* HSModelCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSModelCommon.m; sourceTree = "<group>"; };
-		85040C0115CEAAC500CD3A16 /* ContraindicationsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContraindicationsViewController.h; sourceTree = "<group>"; };
-		85040C0215CEAAC500CD3A16 /* ContraindicationsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContraindicationsViewController.m; sourceTree = "<group>"; };
-		85040C0315CEAAC500CD3A16 /* ContraindicationsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContraindicationsViewController.xib; sourceTree = "<group>"; };
 		85040C0715CEAE7F00CD3A16 /* absoluteSegmentButtonSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = absoluteSegmentButtonSelected.png; sourceTree = "<group>"; };
 		85040C0815CEAE7F00CD3A16 /* timeSegmentButtonSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "timeSegmentButtonSelected@2x.png"; sourceTree = "<group>"; };
 		85040C0915CEAE7F00CD3A16 /* timeSegmentButtonSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = timeSegmentButtonSelected.png; sourceTree = "<group>"; };
@@ -866,9 +857,6 @@
 		85040C2815CEB5F000CD3A16 /* iconSearch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iconSearch.png; sourceTree = "<group>"; };
 		85040C2B15CEBB3900CD3A16 /* dottedLineVertical.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dottedLineVertical.png; sourceTree = "<group>"; };
 		85040C2C15CEBB3900CD3A16 /* dottedLineVertical@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dottedLineVertical@2x.png"; sourceTree = "<group>"; };
-		85040C2F15CEBB9C00CD3A16 /* TempContraindicationsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TempContraindicationsCell.h; sourceTree = "<group>"; };
-		85040C3015CEBB9C00CD3A16 /* TempContraindicationsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TempContraindicationsCell.m; sourceTree = "<group>"; };
-		85040C3215CEBBBD00CD3A16 /* TempContraindicationsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TempContraindicationsCell.xib; sourceTree = "<group>"; };
 		85040C3415CEC29300CD3A16 /* contraindicationsSectionBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "contraindicationsSectionBackground@2x.png"; sourceTree = "<group>"; };
 		85040C3515CEC29A00CD3A16 /* contraindicationsSectionBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = contraindicationsSectionBackground.png; sourceTree = "<group>"; };
 		8509916D15D903B0002FCFDE /* recomendationIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = recomendationIcon.png; sourceTree = "<group>"; };
@@ -997,9 +985,6 @@
 		85A0F6FF15B91E5800EBC942 /* libz.1.1.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.1.3.dylib; path = usr/lib/libz.1.1.3.dylib; sourceTree = SDKROOT; };
 		85A0F70115B91E6900EBC942 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		85A0F70315B91E7600EBC942 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		85A1473B15DA48D80026AB9E /* AbsoluteContraindicationsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbsoluteContraindicationsCell.h; sourceTree = "<group>"; };
-		85A1473C15DA48D80026AB9E /* AbsoluteContraindicationsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbsoluteContraindicationsCell.m; sourceTree = "<group>"; };
-		85A1473F15DA48F40026AB9E /* AbsoluteContraindicationsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AbsoluteContraindicationsCell.xib; sourceTree = "<group>"; };
 		85A2655D15B7D48D00064061 /* modalViewShadow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "modalViewShadow@2x.png"; sourceTree = "<group>"; };
 		85A2655E15B7D48D00064061 /* modalViewShadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = modalViewShadow.png; sourceTree = "<group>"; };
 		85A2655F15B7D48D00064061 /* sexLabel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sexLabel@2x.png"; sourceTree = "<group>"; };
@@ -1353,9 +1338,6 @@
 				85AB70DA15CBCD4600C6A2BA /* RecommendationsViewController.h */,
 				85AB70DB15CBCD4600C6A2BA /* RecommendationsViewController.m */,
 				85AB70DC15CBCD4600C6A2BA /* RecommendationsViewController.xib */,
-				85040C0115CEAAC500CD3A16 /* ContraindicationsViewController.h */,
-				85040C0215CEAAC500CD3A16 /* ContraindicationsViewController.m */,
-				85040C0315CEAAC500CD3A16 /* ContraindicationsViewController.xib */,
 			);
 			name = Info;
 			sourceTree = "<group>";
@@ -2166,12 +2148,6 @@
 				85B7CDAB15C24F87008C1BEC /* AdsCell.h */,
 				85B7CDAC15C24F87008C1BEC /* AdsCell.m */,
 				85B7CDAE15C24F94008C1BEC /* AdsCell.xib */,
-				85040C2F15CEBB9C00CD3A16 /* TempContraindicationsCell.h */,
-				85040C3015CEBB9C00CD3A16 /* TempContraindicationsCell.m */,
-				85040C3215CEBBBD00CD3A16 /* TempContraindicationsCell.xib */,
-				85A1473B15DA48D80026AB9E /* AbsoluteContraindicationsCell.h */,
-				85A1473C15DA48D80026AB9E /* AbsoluteContraindicationsCell.m */,
-				85A1473F15DA48F40026AB9E /* AbsoluteContraindicationsCell.xib */,
 			);
 			name = STableViewCell;
 			sourceTree = "<group>";
@@ -2451,7 +2427,6 @@
 				85A9938215CAA40C0073E87B /* newsCell@2x.png in Resources */,
 				85A9938D15CAA4260073E87B /* EventReminderViewController.xib in Resources */,
 				85AB70DE15CBCD4600C6A2BA /* RecommendationsViewController.xib in Resources */,
-				85040C0515CEAAC500CD3A16 /* ContraindicationsViewController.xib in Resources */,
 				85040C0F15CEAE7F00CD3A16 /* absoluteSegmentButtonSelected.png in Resources */,
 				85040C1015CEAE7F00CD3A16 /* timeSegmentButtonSelected@2x.png in Resources */,
 				85040C1115CEAE7F00CD3A16 /* timeSegmentButtonSelected.png in Resources */,
@@ -2470,7 +2445,6 @@
 				85040C2A15CEB5F000CD3A16 /* iconSearch.png in Resources */,
 				85040C2D15CEBB3900CD3A16 /* dottedLineVertical.png in Resources */,
 				85040C2E15CEBB3900CD3A16 /* dottedLineVertical@2x.png in Resources */,
-				85040C3315CEBBBD00CD3A16 /* TempContraindicationsCell.xib in Resources */,
 				85040C3615CEC2A100CD3A16 /* contraindicationsSectionBackground@2x.png in Resources */,
 				85040C3715CEC2A100CD3A16 /* contraindicationsSectionBackground.png in Resources */,
 				85A8F7A315CF88F500535E7E /* StationsCell.xib in Resources */,
@@ -2554,7 +2528,6 @@
 				8509917A15D903B0002FCFDE /* spoilerButtonClose@2x.png in Resources */,
 				8509917B15D903B0002FCFDE /* spoilerButtonOpen.png in Resources */,
 				8509917C15D903B0002FCFDE /* spoilerButtonOpen@2x.png in Resources */,
-				85A1474015DA48F40026AB9E /* AbsoluteContraindicationsCell.xib in Resources */,
 				8594B18015DBB49700896105 /* dot.png in Resources */,
 				8594B18115DBB49700896105 /* dot@2x.png in Resources */,
 				8594B19415DBC25000896105 /* calendarInfoButtonNormal.png in Resources */,
@@ -2718,8 +2691,6 @@
 				85B35FFF15C9217800F20CDA /* NewsViewController.m in Sources */,
 				85A9938C15CAA4260073E87B /* EventReminderViewController.m in Sources */,
 				85AB70DD15CBCD4600C6A2BA /* RecommendationsViewController.m in Sources */,
-				85040C0415CEAAC500CD3A16 /* ContraindicationsViewController.m in Sources */,
-				85040C3115CEBB9C00CD3A16 /* TempContraindicationsCell.m in Sources */,
 				85A8F7A115CF88DF00535E7E /* StationsCell.m in Sources */,
 				85A0DC1415CFD922008618F8 /* FilterViewController.m in Sources */,
 				8593A8BA15D0DB1100EA51F2 /* StationDescriptionViewController.m in Sources */,
@@ -2730,7 +2701,6 @@
 				85A429CF15D3C80B006F53C6 /* MessageBoxViewController.m in Sources */,
 				85A429D315D3CD8D006F53C6 /* CoreLocationController.m in Sources */,
 				85B213DF15D7986800D2ADBE /* ReviewsCell.m in Sources */,
-				85A1473D15DA48D80026AB9E /* AbsoluteContraindicationsCell.m in Sources */,
 				8594B19D15DBC57200896105 /* CalendarInfoViewController.m in Sources */,
 				8512457A1603442400752AE1 /* TutorialViewController.m in Sources */,
 				8585E1A9161B0A5D00275AE7 /* FTCoreTextStyle.m in Sources */,
