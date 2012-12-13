@@ -91,6 +91,7 @@ namespace Donor
 
         private void UserLoaded(object sender, EventArgs e)
         {
+            DataContext = App.ViewModel;
             this.LoadingBar.IsIndeterminate = false;
 
             this.RegisterForm.Visibility = Visibility.Collapsed;
@@ -451,6 +452,15 @@ namespace Donor
                 App.ViewModel.User.BloodRh = this.RHedit.SelectedIndex;
             }
             catch { };
+
+            try
+            {
+                App.ViewModel.User.Name = this.EditName.Text;
+                App.ViewModel.User.SecondName = this.EditSecondName.Text;
+            }
+            catch
+            {
+            };
 
             App.ViewModel.User.UpdateAction(null);
 

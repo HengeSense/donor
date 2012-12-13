@@ -173,7 +173,7 @@ namespace Donor.ViewModels
                         if (o["error"] == null)
                         {
                             App.ViewModel.User = JsonConvert.DeserializeObject<DonorUser>(response.Content.ToString());
-                            ClassToUser();
+                            //ClassToUser();
 
                             try
                             {
@@ -196,6 +196,8 @@ namespace Donor.ViewModels
 
                             App.ViewModel.User.NotifyAll();
                             this.NotifyAll();
+
+                            ClassToUser();
 
                             App.ViewModel.OnUserEnter(EventArgs.Empty);
 
