@@ -132,6 +132,7 @@ namespace Donor.ViewModels
                             new FlurryWP7SDK.Models.Parameter("platform", "wp7") };
                         FlurryWP7SDK.Api.LogEvent("User_updated", articleParams);
 
+                        
                     }
                     else
                     {
@@ -142,6 +143,8 @@ namespace Donor.ViewModels
                 catch
                 {
                 };
+
+                App.ViewModel.SaveUserToStorage();
             });
         }
 
@@ -669,6 +672,10 @@ namespace Donor.ViewModels
             request.AddHeader("Content-Type", "application/json");
 
             request.AddParameter("application/json", strJSONContent, ParameterType.RequestBody);
+            
+            string oldname = App.ViewModel.User.Name;
+            string oldsecondname = App.ViewModel.User.SecondName;
+            int oldsex = App.ViewModel.User.Sex;
 
             client.ExecuteAsync(request, response =>
             {
@@ -678,18 +685,32 @@ namespace Donor.ViewModels
                     if (o["error"] == null)
                     {
                         App.ViewModel.User = JsonConvert.DeserializeObject<DonorUser>(response.Content.ToString());
-                        //ClassToUser();
+                        ClassToUser();
 
                         try
                         {
-                            if ((App.ViewModel.User.Name == "") || (App.ViewModel.User.Name == null))
+                            try
                             {
-                                App.ViewModel.User.Name = (string)result["first_name"];
+                                if ((App.ViewModel.User.Name == "") || (App.ViewModel.User.Name == null))
+                                {
+                                    App.ViewModel.User.Name = (string)result["first_name"];
+                                };
+                            }
+                            catch
+                            {
+                                App.ViewModel.User.Name = oldname;
                             };
 
-                            if ((App.ViewModel.User.SecondName == "") || (App.ViewModel.User.SecondName == null))
+                            try
                             {
-                                App.ViewModel.User.SecondName = (string)result["last_name"];
+                                if ((App.ViewModel.User.SecondName == "") || (App.ViewModel.User.SecondName == null))
+                                {
+                                    App.ViewModel.User.SecondName = (string)result["last_name"];
+                                };
+                            }
+                            catch
+                            {
+                                App.ViewModel.User.SecondName = oldsecondname;
                             };
                         }
                         catch { };
@@ -704,7 +725,9 @@ namespace Donor.ViewModels
                                 App.ViewModel.User.Sex = 1;
                             };
                         }
-                        catch { };
+                        catch {
+                            App.ViewModel.User.Sex = oldsex;
+                        };
 
                         try
                         {

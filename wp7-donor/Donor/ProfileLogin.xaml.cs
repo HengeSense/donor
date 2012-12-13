@@ -309,8 +309,6 @@ namespace Donor
 
                             this.EditButton.Visibility = Visibility.Collapsed;
                             this.DeleteUserButton.Visibility = Visibility.Collapsed;
-                            //this.FacebookButton.Visibility = Visibility.Collapsed;
-                            //this.FacebookUnlinkingButton.Visibility = Visibility.Collapsed;
 
                             this.RegisterForm.Visibility = Visibility.Collapsed;
                             this.LoginForm.Visibility = Visibility.Collapsed;
@@ -454,9 +452,7 @@ namespace Donor
             }
             catch { };
 
-
             App.ViewModel.User.UpdateAction(null);
-
 
             this.EditProfile.Visibility = Visibility.Collapsed;
 
@@ -465,9 +461,6 @@ namespace Donor
 
             this.EditButton.Visibility = Visibility.Visible;
             this.DeleteUserButton.Visibility = Visibility.Visible;
-
-            //this.FacebookButton.Visibility = Visibility.Visible;
-            //this.FacebookUnlinkingButton.Visibility = Visibility.Visible;
 
             this.RegisterForm.Visibility = Visibility.Collapsed;
             this.LoginForm.Visibility = Visibility.Collapsed;
