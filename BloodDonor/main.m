@@ -17,6 +17,7 @@ int main(int argc, char *argv[])
             return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));
         } @catch (NSException *exception) {
             NSLog(@"System was crashed with exception: %@", [exception reason]);
+            @throw exception;
         }
     }
 }

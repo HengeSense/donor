@@ -7,12 +7,21 @@
 //
 
 #import "HSModelCommon.h"
+#import <Parse/Parse.h>
 
 NSString * const kRemoteEvent_BaseClassName = @"Events";
 
 NSString * const HSRemoteServerResponseErrorDomain = @"HSRemoteServerResonseErrorDomain";
 
 NSString * const HSCalendarAddEventErrorDomain = @"HSCalendarAddEventErrorDomain";
+
+NSString* localizedDescriptionForParseError (NSError *error) {
+    THROW_IF_ARGUMENT_NIL(error, @"erro is not specified");
+    if (error.code == kPFErrorUserEmailTaken) {
+        return @"Невозможно сохранить данные, так как почтовый ящик используется другим пользователем.";
+    }
+    return @"Невозможно сохранить данные. Ошибка на сервере.";
+}
 
 NSString* localizedDescriptionForError (NSError *error) {
     THROW_IF_ARGUMENT_NIL(error, @"erro is not specified");
@@ -29,7 +38,12 @@ NSString* localizedDescriptionForError (NSError *error) {
         }
         
     } else if ([error.domain isEqualToString: HSRemoteServerResponseErrorDomain]) {
-        return @"Невозможно сохранить данные на сервере, возможно нет подключения.";
+        NSError *parseError = [error.userInfo objectForKey:NSUnderlyingErrorKey];
+        if (parseError != nil) {
+            return localizedDescriptionForParseError(parseError);
+        } else {
+            return @"Невозможно сохранить данные на сервере, возможно нет подключения.";
+        }
     }
     return @"Ошибка неизвестна.";
 }

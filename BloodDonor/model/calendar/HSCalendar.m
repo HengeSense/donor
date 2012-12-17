@@ -164,8 +164,15 @@ static NSString * const kEventDate = @"date";
                 }
             }
             if (completion != nil) {
-                NSError *localError = [NSError errorWithDomain: HSRemoteServerResponseErrorDomain code: 0 userInfo: nil];
-                completion(success, localError);
+                NSError *customError = nil;
+                if (error) {
+                    NSDictionary *userInfo = @{
+                        NSUnderlyingErrorKey : error
+                    };
+                    customError = [NSError errorWithDomain: HSRemoteServerResponseErrorDomain code: 0
+                                                  userInfo: userInfo];
+                }
+                completion(success, customError);
             }
         }];
     } else {

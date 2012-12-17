@@ -99,7 +99,7 @@
                     errorString = @"Отсутсвует соединение с интернетом";
                 else if (errorCode == 125)
                     errorString = @"Неправильный Email";
-                else if (errorCode == 202)
+                else if (errorCode == 203)
                     errorString = @"Такой Email уже зарегистрирован";
                 else
                     errorString = @"Ошибка соединения с сервером";

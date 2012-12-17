@@ -78,6 +78,10 @@ static void singleton_remover()
     return [defaults boolForKey:@"authenticatedWithFacebook"];
 }
 
+- (BOOL)authenticatedWithFacebook {
+    return [self isAuthenticatedWithFacebook];
+}
+
 - (void)setAuthenticatedWithFacebook:(BOOL)authenticatedWithFacebook
 {
     [defaults setBool:authenticatedWithFacebook forKey:@"authenticatedWithFacebook"];

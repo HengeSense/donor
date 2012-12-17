@@ -121,7 +121,11 @@
     [PFFacebookUtils logInWithPermissions:permissionsArray block:^(PFUser *user, NSError *error) {
         if (user) {
             [self specifyPlatformInfoForUser:user];
-            [self specifyFacebookInfoInfoForUser:user completion:^{
+            [self specifyFacebookInfoInfoForUser:user completion:^(BOOL success, NSError *error) {
+                if (!success) {
+                    [progressHud hide:YES];
+                    [self processAuthorizationWithError:error];
+                }
                 [user saveInBackground];
                 [self processAuthorizationSuccessWithUser:user completion: ^ {
                     [Common getInstance].authenticatedWithFacebook = YES;
@@ -202,24 +206,37 @@
             return;
         }
         MBProgressHUD *progressHud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
-        HSCalendar *calendarModel = [[HSCalendar alloc] init];
-        self.calendarViewController.calendarModel = calendarModel;
-        [calendarModel pullEventsFromServer:^(BOOL success, NSError *error) {
-            [progressHud hide:YES];
-            if (success) {
-                ProfileDescriptionViewController *controller = [[[ProfileDescriptionViewController alloc]
-                        initWithNibName:@"ProfileDescriptionViewController" bundle:nil] autorelease];
-                controller.calendarInfoDelegate = calendarModel;
-                [self.navigationController pushViewController:controller animated:YES];
-            } else {
-                MessageBoxViewController *messageBox = [[MessageBoxViewController alloc]
-                        initWithNibName:@"MessageBoxViewController" bundle:nil title:nil
-                        message:@"Ошибка при загрузке событий календаря" cancelButton:@"Ок" okButton:nil];
-                messageBox.delegate = self;
-                [self.view addSubview:messageBox.view];
-                [self.navigationController popToRootViewControllerAnimated:YES];
-            }
-        }];
+        if ([Common getInstance].authenticatedWithFacebook) {
+            [self specifyFacebookInfoInfoForUser:[PFUser currentUser] completion:^(BOOL success, NSError *error) {
+                if (!success) {
+                    [progressHud hide:YES];
+                    NSLog(@"%@", error);
+                    NSString *authError = error.userInfo[PF_FBErrorParsedJSONResponseKey][@"body"][@"error"][@"type"];
+                    if ([authError isEqualToString:@"OAuthException"]) {
+                        [PFUser logOut];
+                    }
+                    return;
+                }
+                HSCalendar *calendarModel = [[HSCalendar alloc] init];
+                self.calendarViewController.calendarModel = calendarModel;
+                [calendarModel pullEventsFromServer:^(BOOL success, NSError *error) {
+                    [progressHud hide:YES];
+                    if (success) {
+                        ProfileDescriptionViewController *controller = [[[ProfileDescriptionViewController alloc]
+                                                                         initWithNibName:@"ProfileDescriptionViewController" bundle:nil] autorelease];
+                        controller.calendarInfoDelegate = calendarModel;
+                        [self.navigationController pushViewController:controller animated:YES];
+                    } else {
+                        MessageBoxViewController *messageBox = [[MessageBoxViewController alloc]
+                                                                initWithNibName:@"MessageBoxViewController" bundle:nil title:nil
+                                                                message:@"Ошибка при загрузке событий календаря" cancelButton:@"Ок" okButton:nil];
+                        messageBox.delegate = self;
+                        [self.view addSubview:messageBox.view];
+                        [self.navigationController popToRootViewControllerAnimated:YES];
+                    }
+                }];
+            }];
+        }
     }
 }
 
@@ -241,7 +258,7 @@
     [user setObject:@"iphone" forKey:@"platform"];
 }
 
-- (void)specifyFacebookInfoInfoForUser:(PFUser *)user completion:(void(^)(void))completion {
+- (void)specifyFacebookInfoInfoForUser:(PFUser *)user completion:(void(^)(BOOL success, NSError *error))completion {
     NSString *infoRequestPath = @"me/?fields=first_name,last_name,email,gender";
     MBProgressHUD *progressHud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
     PF_FBRequest *infoRequest = [PF_FBRequest requestForGraphPath:infoRequestPath];
@@ -259,8 +276,10 @@
             [user setObject:firstName forKey:@"Name"];
             [user setObject:secondName forKey:@"secondName"];
             [user setObject:[NSNumber numberWithInteger: isMale ? 0 : 1]  forKey:@"Sex"];
+            completion(YES, nil);
+        } else {
+            completion(NO, error);
         }
-        completion();
     }];
 }
 - (void)viewDidUnload {
