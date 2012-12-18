@@ -205,7 +205,7 @@
                 date: self.bloodTestsEvent.scheduledDate bloodTestsEvent: self.bloodTestsEvent];
     } else {
         @throw [NSException exceptionWithName: NSInternalInconsistencyException
-                                       reason: @"HSRemoteEventViewController was configured without remote event"
+                                       reason: @"HSEventViewController was configured without remote event"
                                      userInfo: nil];
     }
     eventPlanningViewController.title = @"Изменить";
