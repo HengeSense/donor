@@ -50,6 +50,7 @@ static NSString * const kBloodDonationActionDeleted = @"Deleted";
             kUserPlatfrormValue, kUserPlatform,
             nil];
     [Flurry logEvent:kUserRegisteredFlurryEvent withParameters:parameters];
+    [TestFlight passCheckpoint:kUserRegisteredFlurryEvent];
 }
 
 + (void)userLoggedIn {
@@ -58,6 +59,7 @@ static NSString * const kBloodDonationActionDeleted = @"Deleted";
             kUserPlatfrormValue, kUserPlatform,
             nil];
     [Flurry logEvent:kUserLoggedInFlurryEvent withParameters:parameters];
+    [TestFlight passCheckpoint:kUserLoggedInFlurryEvent];
 }
 
 + (void)userLoggedOut {
@@ -66,6 +68,7 @@ static NSString * const kBloodDonationActionDeleted = @"Deleted";
             kUserPlatfrormValue, kUserPlatform,
             nil];
     [Flurry logEvent:kUserLoggedOutFlurryEvent withParameters:parameters];
+    [TestFlight passCheckpoint:kUserLoggedOutFlurryEvent];
 
 }
 
@@ -75,6 +78,7 @@ static NSString * const kBloodDonationActionDeleted = @"Deleted";
             kUserPlatfrormValue, kUserPlatform,
             nil];
     [Flurry logEvent:kUserUpdatedProfileFlurryEvent withParameters:parameters];
+    [TestFlight passCheckpoint:kUserUpdatedProfileFlurryEvent];
 }
 
 + (void)userCreatedCalendarEvent: (HSBloodRemoteEvent *)bloodRemoteEvent {
@@ -86,6 +90,7 @@ static NSString * const kBloodDonationActionDeleted = @"Deleted";
             kBloodDonationActionCreated, kBloodDonationAction,
             nil];
     [Flurry logEvent:kUserCalendarFlurryEvent withParameters:parameters];
+    [TestFlight passCheckpoint:kUserCalendarFlurryEvent];
 }
 
 + (void)userUpdatedCalendarEvent: (HSBloodRemoteEvent *)bloodRemoteEvent {
@@ -97,6 +102,7 @@ static NSString * const kBloodDonationActionDeleted = @"Deleted";
             kBloodDonationActionUpdated, kBloodDonationAction,
             nil];
     [Flurry logEvent:kUserCalendarFlurryEvent withParameters:parameters];
+    [TestFlight passCheckpoint:kUserCalendarFlurryEvent];
 }
 
 + (void)userDeletedCalendarEvent: (HSBloodRemoteEvent *)bloodRemoteEvent {
@@ -108,6 +114,7 @@ static NSString * const kBloodDonationActionDeleted = @"Deleted";
             kBloodDonationActionDeleted, kBloodDonationAction,
             nil];
     [Flurry logEvent:kUserCalendarFlurryEvent withParameters:parameters];
+    [TestFlight passCheckpoint:kUserCalendarFlurryEvent];
 }
 
 + (NSString *)eventStringFromBloodRemoteEvent: (HSBloodRemoteEvent *)bloodRemoteEvent {

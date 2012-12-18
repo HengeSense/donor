@@ -2,8 +2,8 @@
 //  main.m
 //  BloodDonor
 //
-//  Created by Andrey Rebrik on 12.07.12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//  Created by Sergey Seroshtan on 12.10.12.
+//  Copyright (c) 2012 Hint Solutions. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

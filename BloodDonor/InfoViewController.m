@@ -193,7 +193,6 @@
     [super viewDidAppear:animated];
     
     NSArray *viewControllers = self.navigationController.viewControllers;
-    NSLog(@"%d", viewControllers.count);
     if (viewControllers.count > 2 && [[viewControllers objectAtIndex:viewControllers.count - 2] isKindOfClass:[StationDescriptionViewController class]])
     {
         [self tabSelected:adsButton];

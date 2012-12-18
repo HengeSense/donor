@@ -210,7 +210,7 @@
             [self specifyFacebookInfoInfoForUser:[PFUser currentUser] completion:^(BOOL success, NSError *error) {
                 if (!success) {
                     [progressHud hide:YES];
-                    NSLog(@"%@", error);
+                    NSLog(@"Loggin user failed with error: %@", error);
                     NSString *authError = error.userInfo[PF_FBErrorParsedJSONResponseKey][@"body"][@"error"][@"type"];
                     if ([authError isEqualToString:@"OAuthException"]) {
                         [PFUser logOut];

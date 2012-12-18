@@ -25,6 +25,7 @@ NSString* localizedDescriptionForParseError (NSError *error) {
 
 NSString* localizedDescriptionForError (NSError *error) {
     THROW_IF_ARGUMENT_NIL(error, @"erro is not specified");
+    NSLog(@"Trying to make localization for error: %@", error);
     if ([error.domain isEqualToString: HSCalendarAddEventErrorDomain]) {
         switch (error.code) {
             case HSCalendarAddEventErrorDomainCode_RestPeriodNotFinished:

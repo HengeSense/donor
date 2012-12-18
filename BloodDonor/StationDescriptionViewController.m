@@ -271,7 +271,6 @@
     if (inputString)
     {
         outString = [[NSString alloc] initWithString:inputString];
-        NSLog(@"%@", outString);
         if ([inputString length] > 0)
         {
             NSArray *entities = [[NSArray alloc] initWithObjects:@" **", @"** ", @"_**", @"**_", @"**", @".**",nil];

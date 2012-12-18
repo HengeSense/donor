@@ -216,6 +216,7 @@
 		686BA62216344DE2004D7082 /* HSCalendarDayButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 686BA62116344DE2004D7082 /* HSCalendarDayButton.m */; };
 		686BA62716345D0E004D7082 /* NSCalendar+HSCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 686BA62616345D0E004D7082 /* NSCalendar+HSCalendar.m */; };
 		686BA62A163469C3004D7082 /* HSBloodDonorTests_Calendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 686BA629163469C3004D7082 /* HSBloodDonorTests_Calendar.m */; };
+		6871DF641681184B004E5EBB /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6871DF621681184B004E5EBB /* libTestFlight.a */; };
 		68779289165266890003D818 /* delete_mark_active.png in Resources */ = {isa = PBXBuildFile; fileRef = 68779285165266890003D818 /* delete_mark_active.png */; };
 		6877928A165266890003D818 /* delete_mark_active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68779286165266890003D818 /* delete_mark_active@2x.png */; };
 		6877928B165266890003D818 /* delete_mark_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 68779287165266890003D818 /* delete_mark_pressed.png */; };
@@ -774,6 +775,8 @@
 		686BA62616345D0E004D7082 /* NSCalendar+HSCalendar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSCalendar+HSCalendar.m"; sourceTree = "<group>"; };
 		686BA628163469C3004D7082 /* HSBloodDonorTests_Calendar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSBloodDonorTests_Calendar.h; sourceTree = "<group>"; };
 		686BA629163469C3004D7082 /* HSBloodDonorTests_Calendar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSBloodDonorTests_Calendar.m; sourceTree = "<group>"; };
+		6871DF621681184B004E5EBB /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
+		6871DF631681184B004E5EBB /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
 		68779285165266890003D818 /* delete_mark_active.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = delete_mark_active.png; sourceTree = "<group>"; };
 		68779286165266890003D818 /* delete_mark_active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "delete_mark_active@2x.png"; sourceTree = "<group>"; };
 		68779287165266890003D818 /* delete_mark_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = delete_mark_pressed.png; sourceTree = "<group>"; };
@@ -1152,6 +1155,7 @@
 				85A0F6FA15B91E2100EBC942 /* CFNetwork.framework in Frameworks */,
 				37153EA015AEBA3400C985C1 /* UIKit.framework in Frameworks */,
 				37153EA215AEBA3400C985C1 /* Foundation.framework in Frameworks */,
+				6871DF641681184B004E5EBB /* libTestFlight.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1845,6 +1849,7 @@
 		685CB2F9163F2016004FF9AC /* Libs */ = {
 			isa = PBXGroup;
 			children = (
+				6871DF611681184B004E5EBB /* TestFlightSDK */,
 				685088EB1667F6D3004EC3CC /* Flurry */,
 				685CB2FA163F202C004FF9AC /* MBProgressHUD */,
 			);
@@ -1980,6 +1985,16 @@
 				683F8A9F1649B8C10066C47A /* NSDate+HSCalendar.m */,
 			);
 			path = extensions;
+			sourceTree = "<group>";
+		};
+		6871DF611681184B004E5EBB /* TestFlightSDK */ = {
+			isa = PBXGroup;
+			children = (
+				6871DF631681184B004E5EBB /* TestFlight.h */,
+				6871DF621681184B004E5EBB /* libTestFlight.a */,
+			);
+			name = TestFlightSDK;
+			path = Libs/TestFlightSDK;
 			sourceTree = "<group>";
 		};
 		68893A3216518CA800955990 /* tutorial */ = {
@@ -2809,6 +2824,7 @@
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
+				STRIP_INSTALLED_PRODUCT = NO;
 			};
 			name = Debug;
 		};
@@ -2821,7 +2837,7 @@
 				CLANG_WARN_OBJCPP_ARC_ABI = NO;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				COPY_PHASE_STRIP = YES;
+				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -2833,6 +2849,7 @@
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
+				STRIP_INSTALLED_PRODUCT = NO;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -2855,6 +2872,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Libs/Flurry\"",
+					"\"$(SRCROOT)/Libs/TestFlightSDK\"",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -2887,6 +2905,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Libs/Flurry\"",
+					"\"$(SRCROOT)/Libs/TestFlightSDK\"",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -2908,9 +2927,9 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_OBJCPP_ARC_ABI = NO;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Havevalue Ltd";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Havevalue Ltd";
-				COPY_PHASE_STRIP = YES;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -2919,9 +2938,10 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "C2853488-6C40-4A6A-B589-0DBFE2CA2B73";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "C2853488-6C40-4A6A-B589-0DBFE2CA2B73";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
+				STRIP_INSTALLED_PRODUCT = NO;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = AdHoc;
@@ -2944,6 +2964,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Libs/Flurry\"",
+					"\"$(SRCROOT)/Libs/TestFlightSDK\"",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -3026,6 +3047,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Libs/Flurry\"",
+					"\"$(SRCROOT)/Libs/TestFlightSDK\"",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",

@@ -11,8 +11,10 @@
 #ifdef __OBJC__
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
+    #import "TestFlight.h"
 #endif
 
+#define NSLog TFLog
 #define NEW_CALENDAR_FUNCTIONALITY_DEVELOPEMENT
 
 #define THROW_IF_ARGUMENT_NIL(argument,message)\
