@@ -455,7 +455,7 @@ static const CGFloat kTabBarHeight = 55.0f;
 
 #pragma mark - Private UI utility methods
 - (void)sayThanksToUser {
-    NSString *thanksTitle = @"Спасибо, Вы сдали кровь!";
+    NSString *thanksTitle = @"Спасибо, Вы спасли жизнь!";
     NSString *thanks = @"Рассчитан интервал до следующей возможной кроводачи";
     UIAlertView *thaksAlert = [[UIAlertView alloc] initWithTitle: thanksTitle message: thanks delegate: nil
                                                cancelButtonTitle: @"Готово" otherButtonTitles: nil];
