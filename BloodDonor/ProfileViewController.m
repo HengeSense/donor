@@ -206,37 +206,24 @@
             return;
         }
         MBProgressHUD *progressHud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
-        if ([Common getInstance].authenticatedWithFacebook) {
-            [self specifyFacebookInfoInfoForUser:[PFUser currentUser] completion:^(BOOL success, NSError *error) {
-                if (!success) {
-                    [progressHud hide:YES];
-                    NSLog(@"Loggin user failed with error: %@", error);
-                    NSString *authError = error.userInfo[PF_FBErrorParsedJSONResponseKey][@"body"][@"error"][@"type"];
-                    if ([authError isEqualToString:@"OAuthException"]) {
-                        [PFUser logOut];
-                    }
-                    return;
-                }
-                HSCalendar *calendarModel = [[HSCalendar alloc] init];
-                self.calendarViewController.calendarModel = calendarModel;
-                [calendarModel pullEventsFromServer:^(BOOL success, NSError *error) {
-                    [progressHud hide:YES];
-                    if (success) {
-                        ProfileDescriptionViewController *controller = [[[ProfileDescriptionViewController alloc]
-                                                                         initWithNibName:@"ProfileDescriptionViewController" bundle:nil] autorelease];
-                        controller.calendarInfoDelegate = calendarModel;
-                        [self.navigationController pushViewController:controller animated:YES];
-                    } else {
-                        MessageBoxViewController *messageBox = [[MessageBoxViewController alloc]
-                                                                initWithNibName:@"MessageBoxViewController" bundle:nil title:nil
-                                                                message:@"Ошибка при загрузке событий календаря" cancelButton:@"Ок" okButton:nil];
-                        messageBox.delegate = self;
-                        [self.view addSubview:messageBox.view];
-                        [self.navigationController popToRootViewControllerAnimated:YES];
-                    }
-                }];
-            }];
-        }
+        HSCalendar *calendarModel = [[HSCalendar alloc] init];
+        self.calendarViewController.calendarModel = calendarModel;
+        [calendarModel pullEventsFromServer:^(BOOL success, NSError *error) {
+            [progressHud hide:YES];
+            if (success) {
+                ProfileDescriptionViewController *controller = [[[ProfileDescriptionViewController alloc]
+                                                                 initWithNibName:@"ProfileDescriptionViewController" bundle:nil] autorelease];
+                controller.calendarInfoDelegate = calendarModel;
+                [self.navigationController pushViewController:controller animated:YES];
+            } else {
+                MessageBoxViewController *messageBox = [[MessageBoxViewController alloc]
+                                                        initWithNibName:@"MessageBoxViewController" bundle:nil title:nil
+                                                        message:@"Ошибка при загрузке событий календаря" cancelButton:@"Ок" okButton:nil];
+                messageBox.delegate = self;
+                [self.view addSubview:messageBox.view];
+                [self.navigationController popToRootViewControllerAnimated:YES];
+            }
+        }];
     }
 }
 
