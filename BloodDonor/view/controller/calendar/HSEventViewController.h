@@ -26,19 +26,17 @@
 
 /// @name Blood donation event view and it's components
 @property (strong, nonatomic) IBOutlet UIView *bloodDonationView;
-
 @property (weak, nonatomic) IBOutlet UILabel *bloodDonationLabAddressLabel;
 @property (weak, nonatomic) IBOutlet UILabel *bloodDonationTypeLabel;
-
 @property (weak, nonatomic) IBOutlet UILabel *bloodDonationDateLabel;
-@property (weak, nonatomic) IBOutlet UILabel *bloodDonationCommentLabel;
+@property (weak, nonatomic) IBOutlet UITextView *bloodDonationCommentTextView;
 - (IBAction)eventDoneButtonClicked:(id)sender;
 
 /// @name Blood tests view and it's components
 @property (strong, nonatomic) IBOutlet UIView *bloodTestsView;
 @property (weak, nonatomic) IBOutlet UILabel *bloodTestsDateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *bloodTestsLabAddressLabel;
-@property (weak, nonatomic) IBOutlet UILabel *bloodTestsCommentsLabel;
+@property (weak, nonatomic) IBOutlet UITextView *bloodTestsCommentsTextView;
 
 /// @name Initialization methods
 

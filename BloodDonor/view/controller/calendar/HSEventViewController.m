@@ -89,10 +89,10 @@
     [self setBloodDonationLabAddressLabel:nil];
     [self setBloodDonationTypeLabel:nil];
     [self setBloodDonationDateLabel:nil];
-    [self setBloodDonationCommentLabel:nil];
+    [self setBloodDonationCommentTextView:nil];
     [self setBloodTestsDateLabel:nil];
     [self setBloodTestsLabAddressLabel:nil];
-    [self setBloodTestsCommentsLabel:nil];
+    [self setBloodTestsCommentsTextView:nil];
     [self setBloodTestsView:nil];
     [self setDoneButton:nil];
     [super viewDidUnload];
@@ -168,7 +168,7 @@
         self.bloodDonationTypeLabel.text = bloodDonationTypeToString(self.bloodDonationEvent.bloodDonationType);
         self.bloodDonationDateLabel.text = [self.bloodDonationEvent formatScheduledDate];
         self.bloodDonationLabAddressLabel.text = self.bloodDonationEvent.labAddress;
-        self.bloodDonationCommentLabel.text = self.bloodDonationEvent.comments;
+        self.bloodDonationCommentTextView.text = self.bloodDonationEvent.comments;
         [self.rootScrollView addSubview: self.bloodDonationView];
         rootScrollViewContentSize.height += bloodDonationSize.height;
         
@@ -184,7 +184,7 @@
         CGSize bloodTestsSize = self.bloodTestsView.bounds.size;
         self.bloodTestsView.frame = CGRectMake(0.0f, 0.0f, bloodTestsSize.width, bloodTestsSize.height);
         self.bloodTestsDateLabel.text = [self.bloodTestsEvent formatScheduledDate];
-        self.bloodTestsCommentsLabel.text = self.bloodTestsEvent.comments;
+        self.bloodTestsCommentsTextView.text = self.bloodTestsEvent.comments;
         self.bloodTestsLabAddressLabel.text = self.bloodTestsEvent.labAddress;
         [self.rootScrollView addSubview: self.bloodTestsView];
         rootScrollViewContentSize.height += bloodTestsSize.height;
