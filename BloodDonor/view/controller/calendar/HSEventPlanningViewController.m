@@ -39,6 +39,9 @@ static NSString * const kBloodDonationEventTypeLabel_Test = @"Анализ";
 static const CGFloat kViewShiftedByKeyboardDuration = 0.3f;
 static const CGFloat kTabBarHeight = 55.0f;
 
+#pragma mark - UI text fields constants
+static const NSUInteger kCommentsTextViewSymbolsMax = 260;
+
 #pragma mark - Private interface declaration
 @interface HSEventPlanningViewController () <UITextViewDelegate>
 
@@ -397,7 +400,7 @@ static const CGFloat kTabBarHeight = 55.0f;
     if([text isEqualToString:@"\n"]) {
         [textView resignFirstResponder];
         return NO;
-    } else if (self.commentsTextView.text.length > 20) {
+    } else if (self.commentsTextView.text.length > kCommentsTextViewSymbolsMax) {
         return NO;
     }
     
