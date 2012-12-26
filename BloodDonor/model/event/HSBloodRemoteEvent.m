@@ -95,6 +95,10 @@ static NSString * const kRemoteEventField_Type = @"type";
     return [self.remoteEvent objectForKey: kRemoteEventField_ReminderMessage];
 }
 
+- (void)setNotificationMessage:(NSString *)notificationMessage {
+    [self.remoteEvent setObject: notificationMessage forKey: kRemoteEventField_ReminderMessage];
+}
+
 - (void)setComments: (NSString *)comments {
     [self.remoteEvent setObject: comments forKey: kRemoteEventField_Comment];
 }
@@ -157,6 +161,28 @@ static NSString * const kRemoteEventField_Type = @"type";
     NSError *deleteError = nil;
     BOOL succeed = [self.remoteEvent delete: &deleteError];
     completion(succeed, deleteError);
+}
+
+#pragma mark - NSCopying protocol implementation
+- (id)copyWithZone:(NSZone *)__unused zone {
+    HSBloodRemoteEvent *event = [[[self class] alloc] init];
+    event.isDone = self.isDone;
+    if (self.scheduledDate != nil) {
+        event.scheduledDate = self.scheduledDate;
+    }
+    if (self.labAddress != nil) {
+        event.labAddress = self.labAddress;
+    }
+    if (self.notificationDate != nil) {
+        event.notificationDate = self.notificationDate;
+    }
+    if (self.notificationMessage != nil) {
+        event.notificationMessage = self.notificationMessage;
+    }
+    if (self.comments != nil) {
+        event.comments = self.comments;
+    }
+    return event;
 }
 
 @end

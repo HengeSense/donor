@@ -112,4 +112,10 @@ static const size_t const REST_PERIODS_TABLE[4][4] =
             finishRestEventForGranulocytes, nil];
 }
 
+#pragma mark - NSCopying protocol implementation
+- (id)copyWithZone:(NSZone *)zone {
+    HSBloodDonationEvent *event = [super copyWithZone:zone];
+    event.bloodDonationType = self.bloodDonationType;
+    return event;
+}
 @end

@@ -23,11 +23,6 @@
 /// @name Methods to interact with cloud data service - parse.com
 
 /**
- * Pushes new events to the server.
- */
-- (void)pushEventsToServer: (CompletionBlockType)completion;
-
-/**
  * Pulls all remote events from the server.
  * Notifies observers with [HSCalendarEventObserver calendarWasUpdatedWithEvents] method.
  */
@@ -36,18 +31,26 @@
 /// @name Remote blood events manipulation methods
 
 /**
- * Adds blood remote event.
+ * Adds blood remote event. Server synchronized.
  * @param remoteBloodEvent - remote planning blood event
  * @param completion - completion block of code
  */
 - (void) addBloodRemoteEvent: (HSBloodRemoteEvent *)bloodRemoteEvent completion: (CompletionBlockType)completion;
 
 /**
- * Removes blood remote event.
+ * Removes blood remote event. Server synchronized.
  * @param remoteBloodEvent - remote planning blood event
  * @param completion - completion block of code
  */
 - (void) removeBloodRemoteEvent: (HSBloodRemoteEvent *)bloodRemoteEvent completion: (CompletionBlockType)completion;
+
+/**
+ * Replace blood remote event. Server synchronized.
+ * @param remoteBloodEvent - remote planning blood event
+ * @param completion - completion block of code
+ */
+- (void) replaceBloodRemoteEvent: (HSBloodRemoteEvent *)oldEvent withEvent:(HSBloodRemoteEvent *)newEvent
+                      completion: (CompletionBlockType)completion;
 
 /**
  * Returns all events in the calendar.

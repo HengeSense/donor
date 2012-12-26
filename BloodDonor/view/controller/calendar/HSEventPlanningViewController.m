@@ -56,6 +56,22 @@ static const NSUInteger kCommentsTextViewSymbolsMax = 260;
 @property (nonatomic, strong) HSCalendar *calendar;
 
 /**
+ * Original blood donation event.
+ */
+@property (nonatomic, strong) HSBloodDonationEvent *originalBloodDonationEvent;
+
+/**
+ * Original blood test event.
+ */
+@property (nonatomic, strong) HSBloodTestsEvent *originalBloodTestsEvent;
+
+/**
+ * Weak reference to the current edited event.
+ */
+@property (nonatomic, weak) HSBloodRemoteEvent *currentOriginalEvent;
+
+
+/**
  * Handles initial date, used for creating new event.
  */
 @property (nonatomic, strong) NSDate *initialDate;
@@ -206,8 +222,11 @@ static const NSUInteger kCommentsTextViewSymbolsMax = 260;
         self.calendar = calendar;
         self.initialDate = date;
         self.currentViewMode = HSEventPlanningViewControllerMode_BloodDonation;
-        self.bloodDonationEvent = bloodDonationEvent;
-        self.bloodTestsEvent = bloodTestsEvent;
+        self.originalBloodDonationEvent = bloodDonationEvent;
+        self.originalBloodTestsEvent = bloodTestsEvent;
+        
+        self.bloodDonationEvent = [bloodDonationEvent copy];
+        self.bloodTestsEvent = [bloodTestsEvent copy];
     }
     return self;
 }
@@ -269,7 +288,8 @@ static const NSUInteger kCommentsTextViewSymbolsMax = 260;
                                             forState: UIControlStateNormal];
     [self.removeRemoteEventButton setBackgroundImage: [UIImage imageNamed: @"delete_mark_pressed.png"]
                                             forState: UIControlStateHighlighted];
-    self.removeRemoteEventButton.enabled = self.bloodDonationEvent != nil || self.bloodTestsEvent != nil;
+    self.removeRemoteEventButton.enabled =
+            self.originalBloodDonationEvent != nil || self.originalBloodTestsEvent != nil;
 }
 
 - (void)configureViewMode {
@@ -329,7 +349,8 @@ static const NSUInteger kCommentsTextViewSymbolsMax = 260;
 #pragma mark - User's interaction hadlers
 - (IBAction)removeBloodEvent: (id)sender {
     MBProgressHUD *progressHud = [MBProgressHUD showHUDAddedTo: self.navigationController.view animated: YES];
-    [self.calendar removeBloodRemoteEvent: self.currentEditedEvent completion: ^(BOOL success, NSError *error) {
+    
+    [self.calendar removeBloodRemoteEvent: self.currentOriginalEvent completion: ^(BOOL success, NSError *error) {
         [progressHud hide: YES];
         if (success) {
             [HSFlurryAnalytics userDeletedCalendarEvent:self.currentEditedEvent];
@@ -426,6 +447,7 @@ static const NSUInteger kCommentsTextViewSymbolsMax = 260;
         self.currentViewMode = HSEventPlanningViewControllerMode_BloodDonation;
     }
     self.currentEditedEvent = self.bloodDonationEvent;
+    self.currentOriginalEvent = self.originalBloodDonationEvent;
     self.commentsTextView.text = self.currentEditedEvent.comments;
     self.bloodDonationCenterAddressLabel.text = self.currentEditedEvent.labAddress;
 }
@@ -452,6 +474,7 @@ static const NSUInteger kCommentsTextViewSymbolsMax = 260;
         self.currentViewMode = HSEventPlanningViewControllerMode_BloodTest;
     }
     self.currentEditedEvent = self.bloodTestsEvent;
+    self.currentOriginalEvent = self.originalBloodTestsEvent;
     self.commentsTextView.text = self.currentEditedEvent.comments;
     self.bloodDonationCenterAddressLabel.text = self.currentEditedEvent.labAddress;
 }
@@ -465,11 +488,52 @@ static const NSUInteger kCommentsTextViewSymbolsMax = 260;
     [thaksAlert show];
 }
 
+- (void)replaceBloodRemoteEvent:(HSBloodRemoteEvent *)oldEvent withEvent:(HSBloodRemoteEvent *)newEvent {
+    MBProgressHUD *progressHud = [MBProgressHUD showHUDAddedTo: self.navigationController.view animated: YES];
+    __weak HSEventPlanningViewController *weakSelf = self;
+    [self.calendar replaceBloodRemoteEvent:oldEvent withEvent:newEvent completion: ^(BOOL success, NSError *error) {
+        __strong HSEventPlanningViewController *strongSelf = weakSelf;
+        [progressHud hide: YES];
+        if (success) {
+            if ([newEvent isKindOfClass:[HSBloodDonationEvent class]] && newEvent.isDone) {
+                [strongSelf sayThanksToUser];
+            }
+            [self.navigationController popToRootViewControllerAnimated: YES];
+            [HSFlurryAnalytics userCreatedCalendarEvent:newEvent];
+        } else {
+            UIAlertView *allert = [[UIAlertView alloc] initWithTitle: @"Ошибка"
+                    message: localizedDescriptionForError(error) delegate: nil cancelButtonTitle: @"Ок"
+                    otherButtonTitles: nil];
+            [allert show];
+        }
+    }];
+}
+
+- (void)addBloodRemoteEvent:(HSBloodRemoteEvent *)event {
+    MBProgressHUD *progressHud = [MBProgressHUD showHUDAddedTo: self.navigationController.view animated: YES];
+    __weak HSEventPlanningViewController *weakSelf = self;
+    [self.calendar addBloodRemoteEvent: event completion: ^(BOOL success, NSError *error) {
+        __strong HSEventPlanningViewController *strongSelf = weakSelf;
+        [progressHud hide: YES];
+        if (success) {
+            if ([event isKindOfClass:[HSBloodDonationEvent class]] && event.isDone) {
+                [strongSelf sayThanksToUser];
+            }
+            [self.navigationController popToRootViewControllerAnimated: YES];
+            [HSFlurryAnalytics userCreatedCalendarEvent:event];
+        } else {
+            UIAlertView *allert = [[UIAlertView alloc] initWithTitle: @"Ошибка"
+                    message: localizedDescriptionForError(error) delegate: nil cancelButtonTitle: @"Ок"
+                    otherButtonTitles: nil];
+            [allert show];
+        }
+    }];
+}
+
 #pragma mark - Private UI action handlers
 - (void)donePlanningButtonClicked: (id)sender {
     [self.commentsTextView resignFirstResponder];
     
-    MBProgressHUD *progressHud = [MBProgressHUD showHUDAddedTo: self.navigationController.view animated: YES];
     NSDate *nowDate = [NSDate date];
     if (self.currentEditedEvent.scheduledDate.timeIntervalSince1970 < nowDate.timeIntervalSince1970) {
         self.currentEditedEvent.isDone = YES;
@@ -477,25 +541,14 @@ static const NSUInteger kCommentsTextViewSymbolsMax = 260;
         self.currentEditedEvent.isDone = NO;
     }
     self.currentEditedEvent.comments = self.commentsTextView.text;
-
-    __weak HSEventPlanningViewController *weakSelf = self;
-    [self.calendar addBloodRemoteEvent: self.currentEditedEvent completion: ^(BOOL success, NSError *error) {
-        __strong HSEventPlanningViewController *strongSelf = weakSelf;
-        [progressHud hide: YES];
-        if (success) {
-            if ([self.currentEditedEvent isKindOfClass:[HSBloodDonationEvent class]] &&
-                    self.currentEditedEvent.isDone) {
-                [strongSelf sayThanksToUser];
-            }
-            [self.navigationController popToRootViewControllerAnimated: YES];
-            [HSFlurryAnalytics userCreatedCalendarEvent:self.currentEditedEvent];
-        } else {
-            UIAlertView *allert = [[UIAlertView alloc] initWithTitle: @"Ошибка"
-                    message: localizedDescriptionForError(error)
-                    delegate: nil cancelButtonTitle: @"Ок" otherButtonTitles: nil];
-            [allert show];
-        }
-    }];
+    
+    HSBloodRemoteEvent *eventToBeReplaced = self.originalBloodDonationEvent != nil ?
+            self.originalBloodDonationEvent : self.originalBloodTestsEvent;
+    if (eventToBeReplaced != nil) {
+        [self replaceBloodRemoteEvent:eventToBeReplaced withEvent:self.currentEditedEvent];
+    } else {
+        [self addBloodRemoteEvent: self.currentEditedEvent];
+    }
 }
 
 - (void)cancelPlanningButtonClicked: (id)sender {

@@ -139,21 +139,8 @@ static NSString * const kEventDate = @"date";
 #pragma mark - Remote events manipulation methods
 - (void)addBloodRemoteEvent: (HSBloodRemoteEvent *)bloodRemoteEvent completion: (CompletionBlockType)completion {
     THROW_IF_ARGUMENT_NIL(bloodRemoteEvent, @"bloodRemoteEvent is not specified");
-    NSArray *eventsInTheSameDay = [self bloodRemoteEventsFromEvents:
-            [self eventsForDay: bloodRemoteEvent.scheduledDate]];
-
-    for (HSBloodRemoteEvent *remoteEvent in eventsInTheSameDay) {
-        if (remoteEvent == bloodRemoteEvent) {
-            continue;
-        }
-        [self removeBloodRemoteEvent: remoteEvent completion: ^(BOOL success, NSError *error) {
-            if (!success) {
-                if (completion != nil) {
-                    completion(success, error);
-                }
-                return;
-            }
-        }];
+    if ([self.bloodRemoteEvents containsObject:bloodRemoteEvent]) {
+        [NSException raise:NSInvalidArgumentException format:@"Can't add already existing event in calendar"];
     }
     NSError *addError = nil;
     if([self canAddBloodRemoteEvent: bloodRemoteEvent error: &addError]) {
@@ -182,22 +169,80 @@ static NSString * const kEventDate = @"date";
 
 - (void)removeBloodRemoteEvent:(HSBloodRemoteEvent *)bloodRemoteEvent completion:(CompletionBlockType)completion {
     THROW_IF_ARGUMENT_NIL(bloodRemoteEvent, @"bloodRemoteEvent is not specified");
-    if ([self.bloodRemoteEvents containsObject: bloodRemoteEvent]) {
-        [bloodRemoteEvent removeWithCompletionBlock:^(BOOL success, NSError *error) {
+    if (![self.bloodRemoteEvents containsObject:bloodRemoteEvent]) {
+        [NSException raise:NSInvalidArgumentException format:@"Can't remove not existing event in calendar"];
+    }
+    [bloodRemoteEvent removeWithCompletionBlock:^(BOOL success, NSError *error) {
+        if (success) {
+            [self.bloodRemoteEvents removeObject: bloodRemoteEvent];
+            [self updateFinishRestEvents];
+            if (completion != nil) {
+                completion(success, error);
+            }
+        } else {
+            NSError *localError = [NSError errorWithDomain: HSRemoteServerResponseErrorDomain code: 0 userInfo: nil];
+            if (completion != nil) {
+                completion(NO, localError);
+            }
+        }
+    }];
+}
+
+- (void)replaceBloodRemoteEvent:(HSBloodRemoteEvent *)oldEvent withEvent:(HSBloodRemoteEvent *)newEvent
+                     completion:(CompletionBlockType)completion {
+    THROW_IF_ARGUMENT_NIL(oldEvent, @"oldEvent is not specified");
+    THROW_IF_ARGUMENT_NIL(newEvent, @"newEvent is not specified");
+    if (![self.bloodRemoteEvents containsObject:oldEvent]) {
+        [NSException raise:NSInvalidArgumentException format:@"Can't replace not existing event in calendar"];
+    }
+    if ([self.bloodRemoteEvents containsObject:newEvent]) {
+        [NSException raise:NSInvalidArgumentException format:@"Can't replace with existing event in calendar"];
+    }
+    
+    [self.bloodRemoteEvents removeObject:oldEvent];
+    NSError *replaceError = nil;
+    if ([self canAddBloodRemoteEvent:newEvent error:&replaceError]) {
+        [oldEvent removeWithCompletionBlock:^(BOOL success, NSError *error) {
             if (success) {
-                [self.bloodRemoteEvents removeObject: bloodRemoteEvent];
-                [self updateFinishRestEvents];
-                if (completion != nil) {
-                    completion(success, error);
-                }
+                [newEvent saveWithCompletionBlock:^(BOOL success, NSError *error) {
+                    if (success) {
+                        [self.bloodRemoteEvents addObject: newEvent];
+                    } else {
+                        NSLog(@"Replace failed in the middle if transaction: old event was removed,"
+                              " but adding new one was fifnished with error: %@", error);
+                    }
+                    if (completion != nil) {
+                        NSError *customError = nil;
+                        if (error) {
+                            NSDictionary *userInfo = @{
+                                NSUnderlyingErrorKey : error
+                            };
+                            customError = [NSError errorWithDomain: HSRemoteServerResponseErrorDomain code: 0
+                                                          userInfo: userInfo];
+                        }
+                        completion(success, customError);
+                    }
+                }];
             } else {
-                NSError *localError = [NSError errorWithDomain: HSRemoteServerResponseErrorDomain code: 0 userInfo: nil];
+                [self.bloodRemoteEvents addObject:oldEvent];
                 if (completion != nil) {
-                    completion(NO, localError);
+                    NSError *customError = nil;
+                    if (error) {
+                        NSDictionary *userInfo = @{
+                        NSUnderlyingErrorKey : error
+                        };
+                        customError = [NSError errorWithDomain: HSRemoteServerResponseErrorDomain code: 0
+                                                      userInfo: userInfo];
+                    }
+                    completion(success, customError);
                 }
             }
         }];
-        
+    } else {
+        [self.bloodRemoteEvents addObject:oldEvent];
+        if (completion != nil) {
+            completion(NO, replaceError);
+        }
     }
 }
 
@@ -222,27 +267,6 @@ static NSString * const kEventDate = @"date";
     } else {
         @throw [HSCalendarException exceptionWithName: HSCalendarExceptionUserUnauthorized
                 reason: @"User is not authorized yet. Calendar can't be used." userInfo: nil];
-    }
-}
-
-- (void)pushEventsToServer: (CompletionBlockType)completion {
-    __block size_t unsavedRemoteObjectsCount = self.bloodRemoteEvents.count;
-    __block BOOL allEventsWasSavedOrError = NO;
-    CompletionBlockType partialCompletion = ^(BOOL succeed, NSError *error) {
-        if (!allEventsWasSavedOrError) {
-            if (succeed) {
-                --unsavedRemoteObjectsCount;
-                allEventsWasSavedOrError = unsavedRemoteObjectsCount > 0 ? NO : YES;
-            } else {
-                allEventsWasSavedOrError = YES;
-            }
-            if (allEventsWasSavedOrError) {
-                completion(succeed, error);
-            }
-        }
-    };
-    for (HSBloodRemoteEvent *remoteBloodEvent in self.bloodRemoteEvents) {
-        [remoteBloodEvent saveWithCompletionBlock: partialCompletion];
     }
 }
 
@@ -274,8 +298,6 @@ static NSString * const kEventDate = @"date";
         
         [self.finishRestEvents addObjectsFromArray: finishRestEvents];
     }
-    
-    
 }
 
 - (void)updateFinishRestEvents {
@@ -317,7 +339,7 @@ static NSString * const kEventDate = @"date";
             return YES;
         } else {
             HSBloodDonationEvent *bloodDonationEvent = (HSBloodDonationEvent *)bloodRemoteEvent;
-            if ([self isLatestDoneBloodDonationEvent: bloodDonationEvent] &&
+            if ([self isAfterLastDoneBloodDonationEvent: bloodDonationEvent] &&
                 [self isBloodDonationEventAfterRestPeriod: bloodDonationEvent]) {
                 return YES;
             } else {
@@ -326,31 +348,6 @@ static NSString * const kEventDate = @"date";
                             code: HSCalendarAddEventErrorDomainCode_RestPeriodNotFinished userInfo: nil];
                 }
                 return NO;
-            }
-        }
-    } else if ([remoteEventsInTheSameDay objectAtIndex: 0] == bloodRemoteEvent) {
-        if ([bloodRemoteEvent isKindOfClass: [HSBloodTestsEvent class]]) {
-            return YES;
-        } else {
-            HSBloodDonationEvent *bloodDonationEvent = (HSBloodDonationEvent *)bloodRemoteEvent;
-            // Before next checks this event should be deleted  from the self.bloodRemoteEvents array.
-            [self.bloodRemoteEvents removeObject: bloodDonationEvent];
-            [self updateFinishRestEvents];
-            @try {
-                if ([self isLatestDoneBloodDonationEvent: bloodDonationEvent] &&
-                    [self isBloodDonationEventAfterRestPeriod: bloodDonationEvent]) {
-                    return YES;
-                } else {
-                    if (error != NULL) {
-                        *error = [[NSError alloc] initWithDomain: HSCalendarAddEventErrorDomain
-                                code: HSCalendarAddEventErrorDomainCode_RestPeriodNotFinished userInfo: nil];
-                    }
-                    return NO;
-                }
-            } @finally {
-                // Restore removed object naytime 
-                [self.bloodRemoteEvents addObject: bloodDonationEvent];
-                [self updateFinishRestEvents];
             }
         }
     } else {
@@ -389,14 +386,10 @@ static NSString * const kEventDate = @"date";
 }
 
 
-- (BOOL)isLatestDoneBloodDonationEvent: (HSBloodDonationEvent *)bloodDonationEvent {
-    THROW_IF_ARGUMENT_NIL(bloodDonationEvent, @"bloodDonationEvent is not specified");
-    NSArray *bloodDonationEvents;
-    bloodDonationEvents = [self bloodDonationEvents];
-
-    for (HSBloodDonationEvent *bloodDonationEvent in bloodDonationEvents) {
-        if (bloodDonationEvent.isDone && bloodDonationEvent.scheduledDate.timeIntervalSince1970 >
-                bloodDonationEvent.scheduledDate.timeIntervalSince1970) {
+- (BOOL)isAfterLastDoneBloodDonationEvent: (HSBloodDonationEvent *)checkedEvent {
+    THROW_IF_ARGUMENT_NIL(checkedEvent, @"bloodDonationEvent is not specified");
+    for (HSBloodDonationEvent *bloodDonationEvent in [self bloodDonationEvents]) {
+        if (bloodDonationEvent.isDone && [checkedEvent.scheduledDate isBeforeDay:bloodDonationEvent.scheduledDate]) {
             return NO;
         }
     }

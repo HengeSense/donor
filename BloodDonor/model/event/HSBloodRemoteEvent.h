@@ -14,12 +14,12 @@
 /**
  * This class represents wrapper for the remote event from the parse.com server.
  */
-@interface HSBloodRemoteEvent : HSNotificationEvent
+@interface HSBloodRemoteEvent : HSNotificationEvent <NSCopying>
 
 /// @name Remote event creation methods
 
 /**
- * Build concrte blood remote event based on the specified remote event object.
+ * Build concrete blood remote event based on the specified remote event object.
  */
 + (HSBloodRemoteEvent *)buildBloodEventWithRemoteEvent: (PFObject *)remoteEvent;
 
@@ -34,16 +34,6 @@
  * Address of blood laboratory.
  */
 @property (nonatomic, strong) NSString *labAddress;
-
-/**
- * Date when user should be notified.
- */
-@property (nonatomic, strong) NSDate *notificationDate;
-
-/**
- * Custom notification message.
- */
-@property (nonatomic, strong) NSString *notificationMessage;
 
 /**
  * Comments to the event.
