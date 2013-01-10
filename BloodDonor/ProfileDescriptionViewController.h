@@ -23,10 +23,11 @@
     IBOutlet UILabel *bloodDonationCountLabel;
     IBOutlet UILabel *nextBloodDonateDateLabel;
 }
+@property (nonatomic, retain) IBOutlet UIButton *linkUnlinkToFacebookButton;
 
 @property (nonatomic, assign) id<HSCalendarInfo> calendarInfoDelegate;
 
-@property (nonatomic, retain) SelectBloodGroupViewController *selectBoodGroupViewController;
+@property (nonatomic, retain) SelectBloodGroupViewController *selectBloodGroupViewController;
 @property (nonatomic, retain) ProfileSexSelectViewController *sexSelectViewController;
 
 - (IBAction)settingsButtonClick:(id)sender;
@@ -35,6 +36,7 @@
 - (IBAction)sexButtonClick:(id)sender;
 - (IBAction)bloodGroupButtonClick:(id)sender;
 - (IBAction)logoutButtonClick:(id)sender;
+- (IBAction)linkUnlinkToFacebook:(id)sender;
 
 - (void)cancelEditPressed;
 @end

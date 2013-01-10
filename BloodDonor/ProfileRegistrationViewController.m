@@ -341,7 +341,7 @@
     [sexButton setTitle:@"муж" forState:UIControlStateNormal];
     [sexButton setTitle:@"муж" forState:UIControlStateHighlighted];
   
-    //Приватное свойство!
+    //Private property setting
     [nameTextField setValue:[UIColor colorWithRed:223.0f/255.0f green:141.0f/255.0f blue:75.0f/255.0f alpha:1] forKeyPath:@"_placeholderLabel.textColor"];
     [emailTextField setValue:[UIColor colorWithRed:203.0f/255.0f green:178.0f/255.0f blue:163.0f/255.0f alpha:1] forKeyPath:@"_placeholderLabel.textColor"];
     [passwordTextField setValue:[UIColor colorWithRed:203.0f/255.0f green:178.0f/255.0f blue:163.0f/255.0f alpha:1] forKeyPath:@"_placeholderLabel.textColor"];

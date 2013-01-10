@@ -25,7 +25,7 @@
 #import "HSEventPlanningViewController.h"
 #import "CalendarInfoViewController.h"
 
-#import "ProfileViewController.h"
+#import "HSBaseLoginViewController.h"
 
 @interface HSCalendarViewController ()<UIAlertViewDelegate>
 

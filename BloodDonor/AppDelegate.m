@@ -18,7 +18,7 @@
 
 #import "StationsViewController.h"
 #import "InfoViewController.h"
-#import "ProfileViewController.h"
+#import "HSLoginChoiceViewController.h"
 #import "Common.h"
 #import "MessageBoxViewController.h"
 #import "TutorialViewController.h"
@@ -89,9 +89,9 @@ static NSString * const TEST_FLIGHT_APP_ID = @"43651a8fd308e9fd491a1c8aa068f158_
     InfoViewController *infoViewController = [[[InfoViewController alloc] initWithNibName:@"InfoViewController" bundle:nil] autorelease];
     UINavigationController *infoNavigationController = [[[UINavigationController alloc] initWithRootViewController:infoViewController] autorelease];
     
-    ProfileViewController *profileViewController = [[[ProfileViewController alloc] initWithNibName:@"ProfileViewController" bundle:nil] autorelease];
-    profileViewController.calendarViewController = calendarViewController;
-    UINavigationController *profileNavigationController = [[[UINavigationController alloc] initWithRootViewController:profileViewController] autorelease];
+    HSLoginChoiceViewController *loginChoiceViewController = [[[HSLoginChoiceViewController alloc] initWithNibName:@"HSLoginChoiceViewController" bundle:nil] autorelease];
+    loginChoiceViewController.calendarViewController = calendarViewController;
+    UINavigationController *profileNavigationController = [[[UINavigationController alloc] initWithRootViewController:loginChoiceViewController] autorelease];
     
     self.tabBarController = [[[UITabBarController alloc] init] autorelease];
     self.tabBarController.viewControllers = [NSArray arrayWithObjects:calendarNavigationController, stationsNavigationController, infoNavigationController, profileNavigationController, nil];

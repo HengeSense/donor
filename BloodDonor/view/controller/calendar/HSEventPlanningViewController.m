@@ -10,6 +10,7 @@
 #import "HSBloodDonationTypePicker.h"
 #import "HSDateTimePicker.h"
 #import "HSAddressPicker.h"
+#import "HSMessageView.h"
 
 #import "NSDate+HSCalendar.h"
 
@@ -356,10 +357,7 @@ static const NSUInteger kCommentsTextViewSymbolsMax = 260;
             [HSFlurryAnalytics userDeletedCalendarEvent:self.currentEditedEvent];
             [self.navigationController popToRootViewControllerAnimated: YES];
         } else {
-            UIAlertView *allert = [[UIAlertView alloc] initWithTitle: @"Ошибка"
-                    message: localizedDescriptionForError(error)
-                    delegate: nil cancelButtonTitle: @"Ок" otherButtonTitles: nil];
-            [allert show];
+            [HSMessageView showWithTitle:@"Ошибка" message:localizedDescriptionForError(error)];
         }
     }];
 }
@@ -481,11 +479,9 @@ static const NSUInteger kCommentsTextViewSymbolsMax = 260;
 
 #pragma mark - Private UI utility methods
 - (void)sayThanksToUser {
-    NSString *thanksTitle = @"Спасибо, Вы спасли жизнь!";
-    NSString *thanks = @"Рассчитан интервал до следующей возможной кроводачи";
-    UIAlertView *thaksAlert = [[UIAlertView alloc] initWithTitle: thanksTitle message: thanks delegate: nil
-                                               cancelButtonTitle: @"Готово" otherButtonTitles: nil];
-    [thaksAlert show];
+    [HSMessageView showWithTitle:@"Спасибо, Вы спасли жизнь!"
+                              message:@"Рассчитан интервал до следующей возможной кроводачи"
+                    cancelButtonTitle:@"Готово"];
 }
 
 - (void)replaceBloodRemoteEvent:(HSBloodRemoteEvent *)oldEvent withEvent:(HSBloodRemoteEvent *)newEvent {
@@ -501,10 +497,7 @@ static const NSUInteger kCommentsTextViewSymbolsMax = 260;
             [self.navigationController popToRootViewControllerAnimated: YES];
             [HSFlurryAnalytics userCreatedCalendarEvent:newEvent];
         } else {
-            UIAlertView *allert = [[UIAlertView alloc] initWithTitle: @"Ошибка"
-                    message: localizedDescriptionForError(error) delegate: nil cancelButtonTitle: @"Ок"
-                    otherButtonTitles: nil];
-            [allert show];
+            [HSMessageView showWithTitle:@"Ошибка" message:localizedDescriptionForError(error)];
         }
     }];
 }
@@ -522,10 +515,7 @@ static const NSUInteger kCommentsTextViewSymbolsMax = 260;
             [self.navigationController popToRootViewControllerAnimated: YES];
             [HSFlurryAnalytics userCreatedCalendarEvent:event];
         } else {
-            UIAlertView *allert = [[UIAlertView alloc] initWithTitle: @"Ошибка"
-                    message: localizedDescriptionForError(error) delegate: nil cancelButtonTitle: @"Ок"
-                    otherButtonTitles: nil];
-            [allert show];
+            [HSMessageView showWithTitle:@"Ошибка" message:localizedDescriptionForError(error)];
         }
     }];
 }

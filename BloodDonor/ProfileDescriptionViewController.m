@@ -11,16 +11,23 @@
 
 #import <Parse/Parse.h>
 #import "HSFlurryAnalytics.h"
+#import "MBProgressHUD.h"
 
 #import "ProfileSettingsViewController.h"
 #import "AppDelegate.h"
 #import "Common.h"
+#import "HSMessageView.h"
+#import "HSModelCommon.h"
+
+static NSString * const kLinkFacebookTitle = @"Привязать Facebook";
+static NSString * const kUnlinkFacebookTitle = @"Отвязать Facebook";
 
 @implementation ProfileDescriptionViewController
 
 @synthesize calendarInfoDelegate;
-@synthesize selectBoodGroupViewController;
+@synthesize selectBloodGroupViewController;
 @synthesize sexSelectViewController;
+@synthesize linkUnlinkToFacebookButton;
 
 #pragma mark Actions
 
@@ -37,7 +44,7 @@
     [editButton setTitle:@"Изменить" forState:UIControlStateHighlighted];
     nameTextField.enabled = NO;
     nameTextField.textColor = [UIColor colorWithRed:132.0f/255.0f green:113.0f/255.0f blue:104.0f/255.0f alpha:1];
-    //Приватное свойство!
+    //Private property setting
     [nameTextField setValue:[UIColor colorWithRed:132.0f/255.0f green:113.0f/255.0f blue:104.0f/255.0f alpha:1] forKeyPath:@"_placeholderLabel.textColor"];
     sexButton.enabled = NO;
     bloodGroupButton.enabled = NO;
@@ -69,7 +76,7 @@
         nameTextField.enabled = YES;
         sexButton.enabled = YES;
         nameTextField.textColor = [UIColor colorWithRed:223.0f/255.0f green:141.0f/255.0f blue:75.0f/255.0f alpha:1];
-        //Приватное свойство!
+        //Private property setting
         [nameTextField setValue:[UIColor colorWithRed:223.0f/255.0f green:141.0f/255.0f blue:75.0f/255.0f alpha:1] forKeyPath:@"_placeholderLabel.textColor"];
         bloodGroupButton.enabled = YES;
         [Common getInstance].sex = [[PFUser currentUser] valueForKey:@"Sex"];
@@ -104,7 +111,7 @@
 - (IBAction)bloodGroupButtonClick:(id)sender
 {
     [nameTextField resignFirstResponder];
-    [self showModal:self.selectBoodGroupViewController.view];
+    [self showModal:self.selectBloodGroupViewController.view];
 }
 
 - (void) showModal:(UIView*) modalView 
@@ -135,6 +142,32 @@
     [Common getInstance].sex = 0;
     
     [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
+- (IBAction)linkUnlinkToFacebook:(id)sender {
+    MBProgressHUD *progressHud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+    if ([PFFacebookUtils isLinkedWithUser:[PFUser currentUser]]) {
+        [PFFacebookUtils unlinkUserInBackground:[PFUser currentUser] block:^(BOOL succeeded, NSError *error) {
+            [progressHud hide:YES];
+            if (succeeded) {
+                self.linkUnlinkToFacebookButton.titleLabel.text = kLinkFacebookTitle;
+            } else {
+                [HSMessageView showWithTitle:@"Ошибка" message:localizedDescriptionForParseError(error)];
+                NSLog(@"Facebook unlink failed due to error: %@", error);
+            }
+        }];
+    } else {
+        NSArray *permissions = @[@"user_about_me", @"email"];
+        [PFFacebookUtils linkUser:[PFUser currentUser] permissions:permissions block:^(BOOL succeeded, NSError *error) {
+            [progressHud hide:YES];
+            if (succeeded) {
+                self.linkUnlinkToFacebookButton.titleLabel.text = kUnlinkFacebookTitle;
+            } else {
+                [HSMessageView showWithTitle:@"Ошибка" message:localizedDescriptionForParseError(error)];
+                NSLog(@"Facebook link failed due to error: %@", error);
+            }
+        }];
+    }
 }
 
 #pragma mark SelectBloodGroupDelegate
@@ -187,10 +220,7 @@
     return self;
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    
+- (void)configureUI {
     self.title = @"Профиль";
     
     [self.navigationItem setHidesBackButton:YES];
@@ -211,9 +241,26 @@
     UIBarButtonItem *editBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:editButton] autorelease];
     [editBarButtonItem setTitlePositionAdjustment:UIOffsetMake(0, -1) forBarMetrics:UIBarMetricsDefault];
     self.navigationItem.rightBarButtonItem = editBarButtonItem;
+    
+    if ([Common getInstance].authenticatedWithFacebook) {
+        self.linkUnlinkToFacebookButton.hidden = YES;
+    } else {
+        self.linkUnlinkToFacebookButton.hidden = NO;
+        if ([PFFacebookUtils isLinkedWithUser:[PFUser currentUser]]) {
+            self.linkUnlinkToFacebookButton.titleLabel.text = @"Отвязать Facebook";
+        } else {
+            self.linkUnlinkToFacebookButton.titleLabel.text = @"Привязать Facebook";
+        }
+    }
+}
 
-    self.selectBoodGroupViewController = [[SelectBloodGroupViewController alloc] init];
-    self.selectBoodGroupViewController.delegate = self;
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    [self configureUI];
+
+    self.selectBloodGroupViewController = [[SelectBloodGroupViewController alloc] init];
+    self.selectBloodGroupViewController.delegate = self;
     self.sexSelectViewController = [[ProfileSexSelectViewController alloc] init];
     self.sexSelectViewController.delegate = self;
 }
@@ -264,7 +311,7 @@
     
     nameTextField.text = [user objectForKey:@"Name"];
     nameTextField.textColor = [UIColor colorWithRed:132.0f/255.0f green:113.0f/255.0f blue:104.0f/255.0f alpha:1];
-    //Приватное свойство!
+    //Private property setting
     [nameTextField setValue:[UIColor colorWithRed:132.0f/255.0f green:113.0f/255.0f blue:104.0f/255.0f alpha:1] forKeyPath:@"_placeholderLabel.textColor"];
     
     
@@ -282,26 +329,21 @@
 
 }
 
-- (void)viewDidDisappear:(BOOL)animated
-{
-    [super viewDidDisappear:animated];
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
 - (void)viewDidUnload {
     [super viewDidUnload];
     [self setSexSelectViewController: nil];
-    [self setSelectBoodGroupViewController: nil];
+    [self setSelectBloodGroupViewController: nil];
+    [self setLinkUnlinkToFacebookButton:nil];
 }
 
-- (void)dealloc
-{
+- (void)dealloc {
     [self setSexSelectViewController: nil];
-    [self setSelectBoodGroupViewController: nil];
+    [self setSelectBloodGroupViewController: nil];
+    [self setLinkUnlinkToFacebookButton:nil];
     [super dealloc];
 }
 

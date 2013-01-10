@@ -31,3 +31,5 @@ typedef enum {
 } HSCalendarAddEventErrorDomainCode;
 
 NSString* localizedDescriptionForError (NSError *error);
+NSString* localizedDescriptionForParseError (NSError *error);
+    

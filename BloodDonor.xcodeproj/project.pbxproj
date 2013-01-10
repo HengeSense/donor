@@ -118,8 +118,8 @@
 		374D002E15BD5E490094CEFE /* EventPlanningViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 374D002C15BD5E490094CEFE /* EventPlanningViewController.xib */; };
 		374DFFFA15BD172F0094CEFE /* EventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 374DFFF815BD172F0094CEFE /* EventViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		374DFFFB15BD172F0094CEFE /* EventViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 374DFFF915BD172F0094CEFE /* EventViewController.xib */; };
-		3758506E15AED1FE006DF7E1 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3758506C15AED1FE006DF7E1 /* ProfileViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		3758506F15AED1FE006DF7E1 /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3758506D15AED1FE006DF7E1 /* ProfileViewController.xib */; };
+		3758506E15AED1FE006DF7E1 /* HSBaseLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3758506C15AED1FE006DF7E1 /* HSBaseLoginViewController.m */; };
+		3758506F15AED1FE006DF7E1 /* HSBaseLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3758506D15AED1FE006DF7E1 /* HSBaseLoginViewController.xib */; };
 		3758507315AED544006DF7E1 /* ProfileDescriptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3758507115AED544006DF7E1 /* ProfileDescriptionViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		3758507415AED544006DF7E1 /* ProfileDescriptionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3758507215AED544006DF7E1 /* ProfileDescriptionViewController.xib */; };
 		3758507C15AEDCF5006DF7E1 /* ProfileRegistrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3758507A15AEDCF5006DF7E1 /* ProfileRegistrationViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -175,6 +175,10 @@
 		683F8A9A16468E300066C47A /* event_done_button_pressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 683F8A9616468E300066C47A /* event_done_button_pressed@2x.png */; };
 		683F8A9D1648C0EA0066C47A /* HSDayHolidayEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 683F8A9C1648C0E90066C47A /* HSDayHolidayEvent.m */; };
 		683F8AA01649B8C10066C47A /* NSDate+HSCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 683F8A9F1649B8C10066C47A /* NSDate+HSCalendar.m */; };
+		683FDAC4169E12AF00B3BF51 /* HSLoginChoiceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 683FDAC2169E12AE00B3BF51 /* HSLoginChoiceViewController.m */; };
+		683FDAC5169E12AF00B3BF51 /* HSLoginChoiceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 683FDAC3169E12AE00B3BF51 /* HSLoginChoiceViewController.xib */; };
+		683FDAC9169E61AC00B3BF51 /* HSLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 683FDAC8169E61AB00B3BF51 /* HSLoginViewController.m */; };
+		683FDACD169E72B800B3BF51 /* HSMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 683FDACC169E72B800B3BF51 /* HSMessageView.m */; };
 		685088C91666B6A3004EC3CC /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 685088C81666B6A3004EC3CC /* Social.framework */; };
 		685088CB1666B6AC004EC3CC /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 685088CA1666B6AC004EC3CC /* libsqlite3.dylib */; };
 		685088CD1666B715004EC3CC /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 685088CC1666B715004EC3CC /* Accounts.framework */; };
@@ -654,9 +658,9 @@
 		374DFFFD15BD351E0094CEFE /* calendarCompletedWholeBloodIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "calendarCompletedWholeBloodIcon@2x.png"; sourceTree = "<group>"; };
 		374DFFFE15BD351E0094CEFE /* calendarScheduledPlateletsIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calendarScheduledPlateletsIcon.png; sourceTree = "<group>"; };
 		374DFFFF15BD351E0094CEFE /* calendarScheduledPlateletsIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "calendarScheduledPlateletsIcon@2x.png"; sourceTree = "<group>"; };
-		3758506B15AED1FE006DF7E1 /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
-		3758506C15AED1FE006DF7E1 /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
-		3758506D15AED1FE006DF7E1 /* ProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileViewController.xib; sourceTree = "<group>"; };
+		3758506B15AED1FE006DF7E1 /* HSBaseLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSBaseLoginViewController.h; sourceTree = "<group>"; };
+		3758506C15AED1FE006DF7E1 /* HSBaseLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSBaseLoginViewController.m; sourceTree = "<group>"; };
+		3758506D15AED1FE006DF7E1 /* HSBaseLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HSBaseLoginViewController.xib; sourceTree = "<group>"; };
 		3758507015AED544006DF7E1 /* ProfileDescriptionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileDescriptionViewController.h; sourceTree = "<group>"; };
 		3758507115AED544006DF7E1 /* ProfileDescriptionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileDescriptionViewController.m; sourceTree = "<group>"; };
 		3758507215AED544006DF7E1 /* ProfileDescriptionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileDescriptionViewController.xib; sourceTree = "<group>"; };
@@ -728,6 +732,13 @@
 		683F8A9C1648C0E90066C47A /* HSDayHolidayEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSDayHolidayEvent.m; sourceTree = "<group>"; };
 		683F8A9E1649B8C10066C47A /* NSDate+HSCalendar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+HSCalendar.h"; sourceTree = "<group>"; };
 		683F8A9F1649B8C10066C47A /* NSDate+HSCalendar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+HSCalendar.m"; sourceTree = "<group>"; };
+		683FDAC1169E12AE00B3BF51 /* HSLoginChoiceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSLoginChoiceViewController.h; sourceTree = "<group>"; };
+		683FDAC2169E12AE00B3BF51 /* HSLoginChoiceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSLoginChoiceViewController.m; sourceTree = "<group>"; };
+		683FDAC3169E12AE00B3BF51 /* HSLoginChoiceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HSLoginChoiceViewController.xib; sourceTree = "<group>"; };
+		683FDAC7169E61AB00B3BF51 /* HSLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSLoginViewController.h; sourceTree = "<group>"; };
+		683FDAC8169E61AB00B3BF51 /* HSLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSLoginViewController.m; sourceTree = "<group>"; };
+		683FDACB169E72B800B3BF51 /* HSMessageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSMessageView.h; sourceTree = "<group>"; };
+		683FDACC169E72B800B3BF51 /* HSMessageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSMessageView.m; sourceTree = "<group>"; };
 		685088C81666B6A3004EC3CC /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		685088CA1666B6AC004EC3CC /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		685088CC1666B715004EC3CC /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
@@ -1352,21 +1363,26 @@
 				85AA3B2E15B3D3690077D336 /* SelectBloodGroupViewController.h */,
 				85AA3B2F15B3D3690077D336 /* SelectBloodGroupViewController.m */,
 				85AA3B3015B3D3690077D336 /* SelectBloodGroupViewController.xib */,
-				3758506B15AED1FE006DF7E1 /* ProfileViewController.h */,
-				3758506C15AED1FE006DF7E1 /* ProfileViewController.m */,
-				3758506D15AED1FE006DF7E1 /* ProfileViewController.xib */,
 				3758507015AED544006DF7E1 /* ProfileDescriptionViewController.h */,
 				3758507115AED544006DF7E1 /* ProfileDescriptionViewController.m */,
 				3758507215AED544006DF7E1 /* ProfileDescriptionViewController.xib */,
-				3758507915AEDCF5006DF7E1 /* ProfileRegistrationViewController.h */,
-				3758507A15AEDCF5006DF7E1 /* ProfileRegistrationViewController.m */,
-				3758507B15AEDCF5006DF7E1 /* ProfileRegistrationViewController.xib */,
 				3758508315AEDE69006DF7E1 /* ProfileSettingsViewController.h */,
 				3758508415AEDE69006DF7E1 /* ProfileSettingsViewController.m */,
 				3758508515AEDE69006DF7E1 /* ProfileSettingsViewController.xib */,
 				858B436815B6B03200A7A67D /* ProfileSexSelectViewController.h */,
 				858B436915B6B03200A7A67D /* ProfileSexSelectViewController.m */,
 				858B436A15B6B03200A7A67D /* ProfileSexSelectViewController.xib */,
+				683FDAC7169E61AB00B3BF51 /* HSLoginViewController.h */,
+				683FDAC8169E61AB00B3BF51 /* HSLoginViewController.m */,
+				683FDAC1169E12AE00B3BF51 /* HSLoginChoiceViewController.h */,
+				683FDAC2169E12AE00B3BF51 /* HSLoginChoiceViewController.m */,
+				683FDAC3169E12AE00B3BF51 /* HSLoginChoiceViewController.xib */,
+				3758506B15AED1FE006DF7E1 /* HSBaseLoginViewController.h */,
+				3758506C15AED1FE006DF7E1 /* HSBaseLoginViewController.m */,
+				3758506D15AED1FE006DF7E1 /* HSBaseLoginViewController.xib */,
+				3758507915AEDCF5006DF7E1 /* ProfileRegistrationViewController.h */,
+				3758507A15AEDCF5006DF7E1 /* ProfileRegistrationViewController.m */,
+				3758507B15AEDCF5006DF7E1 /* ProfileRegistrationViewController.xib */,
 			);
 			name = Profile;
 			sourceTree = "<group>";
@@ -1792,6 +1808,15 @@
 			path = Buttons;
 			sourceTree = "<group>";
 		};
+		683FDACA169E727100B3BF51 /* error */ = {
+			isa = PBXGroup;
+			children = (
+				683FDACB169E72B800B3BF51 /* HSMessageView.h */,
+				683FDACC169E72B800B3BF51 /* HSMessageView.m */,
+			);
+			path = error;
+			sourceTree = "<group>";
+		};
 		685088E01667638A004EC3CC /* profile */ = {
 			isa = PBXGroup;
 			children = (
@@ -1954,6 +1979,7 @@
 				686BA62316345C9E004D7082 /* extensions */,
 				686BA61916332CB3004D7082 /* component */,
 				686BA61A16332CB3004D7082 /* controller */,
+				683FDACA169E727100B3BF51 /* error */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -2240,7 +2266,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				37153EAA15AEBA3400C985C1 /* InfoPlist.strings in Resources */,
-				3758506F15AED1FE006DF7E1 /* ProfileViewController.xib in Resources */,
+				3758506F15AED1FE006DF7E1 /* HSBaseLoginViewController.xib in Resources */,
 				3758507415AED544006DF7E1 /* ProfileDescriptionViewController.xib in Resources */,
 				3758507D15AEDCF5006DF7E1 /* ProfileRegistrationViewController.xib in Resources */,
 				3758508715AEDE69006DF7E1 /* ProfileSettingsViewController.xib in Resources */,
@@ -2648,6 +2674,7 @@
 				680516F9166D80280013E83E /* HSContraindicationsViewController.xib in Resources */,
 				68F3B30C16754A85003E8376 /* contraindications.json in Resources */,
 				68F3B32316767699003E8376 /* HSContraindicationCell.xib in Resources */,
+				683FDAC5169E12AF00B3BF51 /* HSLoginChoiceViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2684,7 +2711,6 @@
 			files = (
 				37153EAC15AEBA3400C985C1 /* main.m in Sources */,
 				37153EB015AEBA3400C985C1 /* AppDelegate.m in Sources */,
-				3758506E15AED1FE006DF7E1 /* ProfileViewController.m in Sources */,
 				3758507315AED544006DF7E1 /* ProfileDescriptionViewController.m in Sources */,
 				3758507C15AEDCF5006DF7E1 /* ProfileRegistrationViewController.m in Sources */,
 				3758508615AEDE69006DF7E1 /* ProfileSettingsViewController.m in Sources */,
@@ -2722,6 +2748,7 @@
 				8585E1AA161B0A5D00275AE7 /* FTCoreTextView.m in Sources */,
 				85939C65162D616D0081A46C /* ForDonorsCell.m in Sources */,
 				685CB2F8163F200A004FF9AC /* MBProgressHUD.m in Sources */,
+				3758506E15AED1FE006DF7E1 /* HSBaseLoginViewController.m in Sources */,
 				68EB2758163090B90092FDBA /* HSCalendar.m in Sources */,
 				68EB275C163091190092FDBA /* HSEvent.m in Sources */,
 				68EB27601630952A0092FDBA /* HSCalendarException.m in Sources */,
@@ -2756,6 +2783,9 @@
 				68A028DB166E9571000E18D8 /* HSContraindicationsLoader.m in Sources */,
 				68F3B31016755557003E8376 /* HSContraindication.m in Sources */,
 				68F3B32016767665003E8376 /* HSContraindicationCell.m in Sources */,
+				683FDAC4169E12AF00B3BF51 /* HSLoginChoiceViewController.m in Sources */,
+				683FDAC9169E61AC00B3BF51 /* HSLoginViewController.m in Sources */,
+				683FDACD169E72B800B3BF51 /* HSMessageView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

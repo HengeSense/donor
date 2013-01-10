@@ -16,11 +16,18 @@ NSString * const HSRemoteServerResponseErrorDomain = @"HSRemoteServerResonseErro
 NSString * const HSCalendarAddEventErrorDomain = @"HSCalendarAddEventErrorDomain";
 
 NSString* localizedDescriptionForParseError (NSError *error) {
-    THROW_IF_ARGUMENT_NIL(error, @"erro is not specified");
-    if (error.code == kPFErrorUserEmailTaken) {
-        return @"Невозможно сохранить данные, так как почтовый ящик используется другим пользователем.";
+    THROW_IF_ARGUMENT_NIL(error, @"error is not specified");
+    if (error.code == kPFErrorConnectionFailed) {
+        return @"Отсутсвует соединение с интернетом";
+    } else if (error.code == kPFErrorObjectNotFound) {
+        return @"Неверный логин или пароль";
+    } else if (error.code == kPFErrorUserEmailTaken) {
+        return @"Данный почтовый ящик используется другим пользователем.";
+    } else if (error.code == kPFErrorFacebookAccountAlreadyLinked) {
+        return @"Данный Facebook аккаунт уже привязан к другому аккаунту.";
+    } else {
+        return @"Невозможно сохранить данные. Ошибка на сервере.";
     }
-    return @"Невозможно сохранить данные. Ошибка на сервере.";
 }
 
 NSString* localizedDescriptionForError (NSError *error) {
