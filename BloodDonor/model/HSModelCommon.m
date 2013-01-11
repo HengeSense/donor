@@ -21,10 +21,14 @@ NSString* localizedDescriptionForParseError (NSError *error) {
         return @"Отсутсвует соединение с интернетом";
     } else if (error.code == kPFErrorObjectNotFound) {
         return @"Неверный логин или пароль";
+    } else if (error.code == kPFErrorUsernameTaken) {
+        return @"Пользователь с указанной почтой уже зарегистрирован.";
     } else if (error.code == kPFErrorUserEmailTaken) {
         return @"Данный почтовый ящик используется другим пользователем.";
     } else if (error.code == kPFErrorFacebookAccountAlreadyLinked) {
         return @"Данный Facebook аккаунт уже привязан к другому аккаунту.";
+    } else if (error.code == kPFErrorInvalidEmailAddress) {
+        return @"Неправильный Email";
     } else {
         return @"Невозможно сохранить данные. Ошибка на сервере.";
     }

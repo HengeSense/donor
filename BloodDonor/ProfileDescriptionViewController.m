@@ -16,7 +16,7 @@
 #import "ProfileSettingsViewController.h"
 #import "AppDelegate.h"
 #import "Common.h"
-#import "HSMessageView.h"
+#import "HSAlertViewController.h"
 #import "HSModelCommon.h"
 
 static NSString * const kLinkFacebookTitle = @"Привязать Facebook";
@@ -152,7 +152,7 @@ static NSString * const kUnlinkFacebookTitle = @"Отвязать Facebook";
             if (succeeded) {
                 self.linkUnlinkToFacebookButton.titleLabel.text = kLinkFacebookTitle;
             } else {
-                [HSMessageView showWithTitle:@"Ошибка" message:localizedDescriptionForParseError(error)];
+                [HSAlertViewController showWithTitle:@"Ошибка" message:localizedDescriptionForParseError(error)];
                 NSLog(@"Facebook unlink failed due to error: %@", error);
             }
         }];
@@ -163,7 +163,7 @@ static NSString * const kUnlinkFacebookTitle = @"Отвязать Facebook";
             if (succeeded) {
                 self.linkUnlinkToFacebookButton.titleLabel.text = kUnlinkFacebookTitle;
             } else {
-                [HSMessageView showWithTitle:@"Ошибка" message:localizedDescriptionForParseError(error)];
+                [HSAlertViewController showWithTitle:@"Ошибка" message:localizedDescriptionForParseError(error)];
                 NSLog(@"Facebook link failed due to error: %@", error);
             }
         }];

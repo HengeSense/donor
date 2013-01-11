@@ -24,28 +24,39 @@ typedef void(^HSAlertViewControllerResultBlock)(BOOL isOkButtonPressed);
 - (IBAction)cancelButtonClick:(id)sender;
 
 /**
- * Shows error message with specifed message's text and 'Ok' cancel button.
+ * Shows error message with specified message text and 'Ok' cancel button.
  */
 + (void)showWithMessage:(NSString *)message;
 
 /**
- * Shows error message with specific message title, and text.
+ * Shows error message with specifed message text, 'Ok' cancel button and finishes with resultBlock.
+ */
++ (void)showWithMessage:(NSString *)message resultBlock:(HSAlertViewControllerResultBlock)resultBlock;
+
+/**
+ * Shows error message with specified message title and text.
  */
 + (void)showWithTitle:(NSString *)title message:(NSString *)message;
 
 /**
- * Shows error message with specific message title, text, and cancel button title.
+ * Shows error message with specified message title, text and finishes with resultBlock.
+ */
++ (void)showWithTitle:(NSString *)title message:(NSString *)message
+          resultBlock:(HSAlertViewControllerResultBlock)resultBlock;
+
+/**
+ * Shows error message with specified message title, text, and cancel button title.
  */
 + (void)showWithTitle:(NSString *)title message:(NSString *)message cancelButtonTitle:(NSString *)cancelButtonTitle;
 
 /**
- * Shows error message with specific message title, text, and cancel button title, ok button title.
+ * Shows error message with specified message title, text, and cancel button title, ok button title.
  */
 + (void)showWithTitle:(NSString *)title message:(NSString *)message cancelButtonTitle:(NSString *)cancelButtonTitle
         okButtonTitle:(NSString  *)okButtonTitle;
 
 /**
- * Shows error message with specific message title, text, and cancel button title, ok button title
+ * Shows error message with specified message title, text, and cancel button title, ok button title
  *     and result block of code which is called after alert disappearance.
  */
 + (void)showWithTitle:(NSString *)title message:(NSString *)message cancelButtonTitle:(NSString *)cancelButtonTitle

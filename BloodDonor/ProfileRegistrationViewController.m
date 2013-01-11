@@ -3,7 +3,8 @@
 //  BloodDonor
 //
 //  Created by Andrey Rebrik on 12.07.12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//  Modified by Sergey Seroshtan on 11.01.13.
+//  Copyright (c) 2012 Hint Solutions. All rights reserved.
 //
 
 #import "ProfileRegistrationViewController.h"
@@ -11,9 +12,17 @@
 #import "AppDelegate.h"
 #import "Common.h"
 #import <Parse/Parse.h>
-#import "MessageBoxViewController.h"
+#import "HSAlertViewController.h"
 #import "ProfileDescriptionViewController.h"
 #import "HSCalendar.h"
+#import "MBProgressHUD.h"
+#import "NSString+HSUtils.h"
+
+@interface ProfileRegistrationViewController ()
+
+@property (nonatomic, weak) UITextField *currentEditingTextField;
+
+@end
 
 @implementation ProfileRegistrationViewController
 
@@ -23,100 +32,39 @@
 
 - (IBAction)cancelButtonClick:(id)sender
 {
+    [self hideKeyboard];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (IBAction)doneButtonClick:(id)sender
-{
-    if (![passwordTextField.text isEqual: passwordConfirmTextField.text])
-    {
-        MessageBoxViewController *messageBox = [[MessageBoxViewController alloc] initWithNibName:@"MessageBoxViewController"
-                                                                                          bundle:nil
-                                                                                           title:nil
-                                                                                         message:@"Пароли не совпадают"
-                                                                                    cancelButton:@"Ок"
-                                                                                        okButton:nil];
-        messageBox.delegate = self;
-        [self.navigationController.tabBarController.view addSubview:messageBox.view];
-    }
-    else if ([emailTextField.text isEqualToString:@""] || [passwordTextField.text isEqualToString:@""] || [nameTextField.text isEqualToString:@""])
-    {
-        MessageBoxViewController *messageBox = [[MessageBoxViewController alloc] initWithNibName:@"MessageBoxViewController"
-                                                                                        bundle:nil
-                                                                                        title:nil
-                                                                                        message:@"Не все поля заполнены!"
-                                                                                        cancelButton:@"Ок"
-                                                                                        okButton:nil];
-        messageBox.delegate = self;
-        [self.navigationController.tabBarController.view addSubview:messageBox.view];
-    }
-    else
-    {
-        UIView *indicatorView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 331)];
-        indicatorView.backgroundColor = [UIColor blackColor];
-        indicatorView.alpha = 0.5f;
-        UIActivityIndicatorView *indicator = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge] autorelease];
-        indicator.frame = CGRectMake(160 - indicator.frame.size.width / 2.0f,
-                                     240 - indicator.frame.size.height / 2.0f,
-                                     indicator.frame.size.width,
-                                     indicator.frame.size.height);
-        
-        [indicatorView addSubview:indicator];
-        [indicator startAnimating];
-        [self.navigationController.tabBarController.view addSubview:indicatorView];
-        
+- (IBAction)doneButtonClick:(id)sender {
+    [self hideKeyboard];
+    if (![passwordTextField.text isEqual: passwordConfirmTextField.text]) {
+        [HSAlertViewController showWithMessage:@"Пароли не совпадают!"];
+    } else if ([emailTextField.text isNotEmpty] && [passwordTextField.text isNotEmpty] &&
+               [nameTextField.text isNotEmpty]) {
         PFUser *user = [PFUser user];
-        user.username = [Common getInstance].email;
-        user.password = [Common getInstance].password;
-        user.email = [Common getInstance].email;
+        user.username = emailTextField.text;
+        user.password = passwordTextField.text;
+        user.email = emailTextField.text;
         
         [user setObject:[Common getInstance].sex forKey:@"Sex"];
         [user setObject:[Common getInstance].bloodGroup forKey:@"BloodGroup"];
         [user setObject:[Common getInstance].bloodRH forKey:@"BloodRh"];
-        [user setObject:[Common getInstance].name forKey:@"Name"];
- 
+        [user setObject:nameTextField.text forKey:@"Name"];
+        
+        MBProgressHUD *progressHud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
         [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-            if (succeeded)
-            {
-                [indicatorView removeFromSuperview];
-                [indicatorView release];
-                
-                MessageBoxViewController *messageBox = [[MessageBoxViewController alloc] initWithNibName:@"MessageBoxViewController"
-                                                                                                  bundle:nil
-                                                                                                   title:nil
-                                                                                                 message:@"Регистрация завершена"
-                                                                                            cancelButton:@"Ок"
-                                                                                                okButton:nil];
-                messageBox.delegate = self;
-                [self.navigationController.tabBarController.view addSubview:messageBox.view];
-            }
-            else
-            {
-                NSString *errorString;
-                NSInteger errorCode = [[[error userInfo] objectForKey:@"code"] intValue];
-                
-                if (errorCode == 100)
-                    errorString = @"Отсутсвует соединение с интернетом";
-                else if (errorCode == 125)
-                    errorString = @"Неправильный Email";
-                else if (errorCode == 203)
-                    errorString = @"Такой Email уже зарегистрирован";
-                else
-                    errorString = @"Ошибка соединения с сервером";
-                
-                MessageBoxViewController *messageBox = [[MessageBoxViewController alloc] initWithNibName:@"MessageBoxViewController"
-                                                                                                  bundle:nil
-                                                                                                   title:nil
-                                                                                                 message:errorString
-                                                                                            cancelButton:@"Ок"
-                                                                                                okButton:nil];
-                messageBox.delegate = self;
-                [self.navigationController.tabBarController.view addSubview:messageBox.view];
-                [indicatorView removeFromSuperview];
-                [indicatorView release];
+            [progressHud hide:YES];
+            if (succeeded) {
+                [HSAlertViewController showWithMessage:@"Регистрация завершена."];
+                [self loadCalendarEventsAndGoToProfile];
+            } else {
+                [HSAlertViewController showWithMessage:localizedDescriptionForParseError(error)];
             }
         }];
-    }    
+    } else {
+        [HSAlertViewController showWithMessage:@"Не все поля заполнены!"];
+    }
 }
 
 - (IBAction)sexButtonClick:(id)sender
@@ -131,7 +79,7 @@
     [self showModal:selectBloodGroupViewController];
 }
 
-- (void) showModal:(UIViewController*) modalView
+- (void)showModal:(UIViewController*)modalView
 {
     UIWindow* mainWindow = (((AppDelegate*) [UIApplication sharedApplication].delegate).window);
     CGPoint middleCenter = modalView.view.center;
@@ -158,50 +106,23 @@
     [UIView commitAnimations];
 }
 
-#pragma  mark MessageBoxDelegate
-
-- (void)messageBoxResult:(BOOL)result controller:(MessageBoxViewController *)controller message:(NSString *)message
+- (void)loadCalendarEventsAndGoToProfile
 {
-    if ([message isEqualToString:@"Регистрация завершена"])
-    {
-        [PFUser logOut];
-        [PFUser logInWithUsername:emailTextField.text password:passwordTextField.text];
-        [PFUser logInWithUsernameInBackground:emailTextField.text password:passwordTextField.text block:^(PFUser *user, NSError *error)
-        {
-            if (!error)
-            {
-                HSCalendar *calendarModel = [[HSCalendar alloc] init];
-                self.calendarViewController.calendarModel = calendarModel;
-                [calendarModel pullEventsFromServer:^(BOOL success, NSError *error) {
-                    if (success) {
-                        ProfileDescriptionViewController *controller = [[[ProfileDescriptionViewController alloc]
-                                initWithNibName:@"ProfileDescriptionViewController" bundle:nil] autorelease];
-                        controller.calendarInfoDelegate = calendarModel;
-                        [self.navigationController pushViewController:controller animated:YES];
-                    } else {
-                        MessageBoxViewController *messageBox = [[MessageBoxViewController alloc]
-                                initWithNibName:@"MessageBoxViewController" bundle:nil title:nil
-                                message:@"Ошибка при загрузке событий календаря" cancelButton:@"Ок" okButton:nil];
-                        messageBox.delegate = self;
-                        [self.view addSubview:messageBox.view];
-                        [self.navigationController popToRootViewControllerAnimated:YES];
-                    }
-                }];
-            }
-            else
-            {
-                MessageBoxViewController *messageBox = [[MessageBoxViewController alloc]
-                        initWithNibName:@"MessageBoxViewController" bundle:nil title:nil
-                        message:@"Ошибка при авторизации" cancelButton:@"Ок" okButton:nil];
-                messageBox.delegate = self;
-                [self.view addSubview:messageBox.view];
-                [self.navigationController popToRootViewControllerAnimated:YES];
-            }
-        }];
-    }
-    
-    [controller release];
-    
+    MBProgressHUD *progressHud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+    HSCalendar *calendarModel = [[HSCalendar alloc] init];
+    self.calendarViewController.calendarModel = calendarModel;
+    [calendarModel pullEventsFromServer:^(BOOL success, NSError *error) {
+        [progressHud hide:YES];
+        if (success) {
+            ProfileDescriptionViewController *controller = [[ProfileDescriptionViewController alloc]
+                    initWithNibName:@"ProfileDescriptionViewController" bundle:nil];
+            controller.calendarInfoDelegate = calendarModel;
+            [self.navigationController pushViewController:controller animated:YES];
+        } else {
+            [HSAlertViewController showWithTitle:@"Ошибка" message:@"Не удалось загрузить события календаря."];
+            [self.navigationController popToRootViewControllerAnimated:YES];
+        }
+    }];
 }
 
 #pragma mark SelectBloodGroupDelegate
@@ -265,8 +186,8 @@
     }
 }
 
-- (void)textFieldDidBeginEditing:(UITextField *)textField
-{
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    self.currentEditingTextField = textField;
     if (textField.tag == 4)
     {   
         [UIView beginAnimations:nil context:nil];
@@ -284,16 +205,6 @@
 }
 
 #pragma mark Lifecycle
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self)
-    {
-        
-    }
-    return self;
-}
 
 - (void)viewDidLoad
 {
@@ -314,7 +225,7 @@
     cancelButton.frame = cancelButtonFrame;
     [cancelButton addTarget:self action:@selector(cancelButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     
-    UIBarButtonItem *cancelBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:cancelButton] autorelease];
+    UIBarButtonItem *cancelBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:cancelButton];
     [cancelBarButtonItem setTitlePositionAdjustment:UIOffsetMake(0, -1) forBarMetrics:UIBarMetricsDefault];
     self.navigationItem.leftBarButtonItem = cancelBarButtonItem;
     
@@ -328,7 +239,7 @@
     doneButton.frame = doneButtonFrame;
     [doneButton addTarget:self action:@selector(doneButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     
-    UIBarButtonItem *doneBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:doneButton] autorelease];
+    UIBarButtonItem *doneBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:doneButton];
     [doneBarButtonItem setTitlePositionAdjustment:UIOffsetMake(0, -1) forBarMetrics:UIBarMetricsDefault];
     self.navigationItem.rightBarButtonItem = doneBarButtonItem;
     
@@ -367,10 +278,10 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
-- (void)dealloc
-{
-    [selectBloodGroupViewController release];
-    [super dealloc];
+- (void)hideKeyboard {
+    if (self.currentEditingTextField != nil) {
+        [self.currentEditingTextField resignFirstResponder];
+        self.currentEditingTextField = nil;
+    }
 }
-
 @end

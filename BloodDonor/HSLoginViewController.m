@@ -13,7 +13,7 @@
 #import "HSCalendar.h"
 #import "HSCalendarViewController.h"
 #import "ProfileDescriptionViewController.h"
-#import "HSMessageView.h"
+#import "HSAlertViewController.h"
 
 @interface HSLoginViewController ()
 
@@ -43,14 +43,14 @@
             controller.calendarInfoDelegate = calendarModel;
             [self.navigationController pushViewController:controller animated:YES];
         } else {
-            [HSMessageView showWithMessage:@"Ошибка при загрузке событий календаря"];
+            [HSAlertViewController showWithMessage:@"Ошибка при загрузке событий календаря"];
             [self.navigationController popToRootViewControllerAnimated:YES];
         }
     }];
 }
 
 - (void)processAuthorizationWithError: (NSError *)error {
-    [HSMessageView showWithMessage:localizedDescriptionForParseError(error)];
+    [HSAlertViewController showWithMessage:localizedDescriptionForParseError(error)];
 }
 
 - (void)specifyPlatformInfoForUser:(PFUser *)user {

@@ -24,10 +24,10 @@
 #import "HSEventViewController.h"
 #import "HSEventPlanningViewController.h"
 #import "CalendarInfoViewController.h"
-
 #import "HSBaseLoginViewController.h"
+#import "HSAlertViewController.h"
 
-@interface HSCalendarViewController ()<UIAlertViewDelegate>
+@interface HSCalendarViewController ()
 
 /**
  * Current date displayed by calendar.
@@ -373,9 +373,12 @@
     
     NSString *alertTitle = @"Внимание";
     NSString *alertMessage = @"Планирование событий недоступно. Выполните вход.";
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:alertTitle message:alertMessage delegate:self
-                                          cancelButtonTitle:@"Отмена" otherButtonTitles:@"Вход", nil];
-    [alert show];
+    [HSAlertViewController showWithTitle:alertTitle message:alertMessage cancelButtonTitle:@"Отмена"
+                           okButtonTitle:@"Вход" resultBlock:^(BOOL isOkButtonPressed) {
+        if (isOkButtonPressed) {
+            [self navigateToLoginPage];
+        }
+    }];
 }
 - (void)hideBlockUI {
     [self.blockUIViewController.view removeFromSuperview];
@@ -383,12 +386,5 @@
 
 - (void)navigateToLoginPage {
     self.tabBarController.selectedIndex = 3;
-}
-
-#pragma mark - UIAlertViewDelegate protocol implementation
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    if (buttonIndex == 1) {
-        [self navigateToLoginPage];
-    }
 }
 @end

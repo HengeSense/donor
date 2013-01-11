@@ -8,12 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
-#import "MessageBoxViewController.h"
 
-@interface StationRateViewController : UIViewController <UITextFieldDelegate, UITextViewDelegate, MessageBoxDelegate>
+@interface StationRateViewController : UIViewController <UITextFieldDelegate, UITextViewDelegate>
 {
-    UIView *indicatorView;
-    
     IBOutlet UIScrollView *scrollView;
     IBOutlet UIImageView *backgroundImage;
     

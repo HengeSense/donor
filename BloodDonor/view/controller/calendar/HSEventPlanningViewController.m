@@ -10,7 +10,7 @@
 #import "HSBloodDonationTypePicker.h"
 #import "HSDateTimePicker.h"
 #import "HSAddressPicker.h"
-#import "HSMessageView.h"
+#import "HSAlertViewController.h"
 
 #import "NSDate+HSCalendar.h"
 
@@ -357,7 +357,7 @@ static const NSUInteger kCommentsTextViewSymbolsMax = 260;
             [HSFlurryAnalytics userDeletedCalendarEvent:self.currentEditedEvent];
             [self.navigationController popToRootViewControllerAnimated: YES];
         } else {
-            [HSMessageView showWithTitle:@"Ошибка" message:localizedDescriptionForError(error)];
+            [HSAlertViewController showWithTitle:@"Ошибка" message:localizedDescriptionForError(error)];
         }
     }];
 }
@@ -479,9 +479,9 @@ static const NSUInteger kCommentsTextViewSymbolsMax = 260;
 
 #pragma mark - Private UI utility methods
 - (void)sayThanksToUser {
-    [HSMessageView showWithTitle:@"Спасибо, Вы спасли жизнь!"
-                              message:@"Рассчитан интервал до следующей возможной кроводачи"
-                    cancelButtonTitle:@"Готово"];
+    [HSAlertViewController showWithTitle:@"Спасибо, Вы спасли жизнь!"
+                                 message:@"Рассчитан интервал до следующей возможной кроводачи"
+                       cancelButtonTitle:@"Готово"];
 }
 
 - (void)replaceBloodRemoteEvent:(HSBloodRemoteEvent *)oldEvent withEvent:(HSBloodRemoteEvent *)newEvent {
@@ -497,7 +497,7 @@ static const NSUInteger kCommentsTextViewSymbolsMax = 260;
             [self.navigationController popToRootViewControllerAnimated: YES];
             [HSFlurryAnalytics userCreatedCalendarEvent:newEvent];
         } else {
-            [HSMessageView showWithTitle:@"Ошибка" message:localizedDescriptionForError(error)];
+            [HSAlertViewController showWithTitle:@"Ошибка" message:localizedDescriptionForError(error)];
         }
     }];
 }
@@ -515,7 +515,7 @@ static const NSUInteger kCommentsTextViewSymbolsMax = 260;
             [self.navigationController popToRootViewControllerAnimated: YES];
             [HSFlurryAnalytics userCreatedCalendarEvent:event];
         } else {
-            [HSMessageView showWithTitle:@"Ошибка" message:localizedDescriptionForError(error)];
+            [HSAlertViewController showWithTitle:@"Ошибка" message:localizedDescriptionForError(error)];
         }
     }];
 }

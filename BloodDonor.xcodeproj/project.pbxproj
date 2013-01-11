@@ -92,8 +92,6 @@
 		371CBA5715AFD4A8008CA154 /* STabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 371CBA5615AFD4A8008CA154 /* STabBarController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		371CBA8315AFF3E1008CA154 /* StationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 371CBA8115AFF3E1008CA154 /* StationsViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		371CBA8415AFF3E1008CA154 /* StationsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 371CBA8215AFF3E1008CA154 /* StationsViewController.xib */; };
-		371CBA8815AFF3F2008CA154 /* CalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 371CBA8615AFF3F2008CA154 /* CalendarViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		371CBA8915AFF3F2008CA154 /* CalendarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 371CBA8715AFF3F2008CA154 /* CalendarViewController.xib */; };
 		374D000615BD351E0094CEFE /* calendarCompletedWholeBloodIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 374DFFFD15BD351E0094CEFE /* calendarCompletedWholeBloodIcon@2x.png */; };
 		374D000715BD351E0094CEFE /* calendarScheduledPlateletsIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 374DFFFE15BD351E0094CEFE /* calendarScheduledPlateletsIcon.png */; };
 		374D000815BD351E0094CEFE /* calendarScheduledPlateletsIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 374DFFFF15BD351E0094CEFE /* calendarScheduledPlateletsIcon@2x.png */; };
@@ -114,15 +112,11 @@
 		374D002515BD54F90094CEFE /* eventReminderDateBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 374D002315BD54F80094CEFE /* eventReminderDateBackground.png */; };
 		374D002615BD54F90094CEFE /* eventReminderDateBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 374D002415BD54F80094CEFE /* eventReminderDateBackground@2x.png */; };
 		374D002915BD57CD0094CEFE /* SLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 374D002815BD57CD0094CEFE /* SLabel.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		374D002D15BD5E490094CEFE /* EventPlanningViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 374D002B15BD5E490094CEFE /* EventPlanningViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		374D002E15BD5E490094CEFE /* EventPlanningViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 374D002C15BD5E490094CEFE /* EventPlanningViewController.xib */; };
-		374DFFFA15BD172F0094CEFE /* EventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 374DFFF815BD172F0094CEFE /* EventViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		374DFFFB15BD172F0094CEFE /* EventViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 374DFFF915BD172F0094CEFE /* EventViewController.xib */; };
 		3758506E15AED1FE006DF7E1 /* HSBaseLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3758506C15AED1FE006DF7E1 /* HSBaseLoginViewController.m */; };
 		3758506F15AED1FE006DF7E1 /* HSBaseLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3758506D15AED1FE006DF7E1 /* HSBaseLoginViewController.xib */; };
 		3758507315AED544006DF7E1 /* ProfileDescriptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3758507115AED544006DF7E1 /* ProfileDescriptionViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		3758507415AED544006DF7E1 /* ProfileDescriptionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3758507215AED544006DF7E1 /* ProfileDescriptionViewController.xib */; };
-		3758507C15AEDCF5006DF7E1 /* ProfileRegistrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3758507A15AEDCF5006DF7E1 /* ProfileRegistrationViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		3758507C15AEDCF5006DF7E1 /* ProfileRegistrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3758507A15AEDCF5006DF7E1 /* ProfileRegistrationViewController.m */; };
 		3758507D15AEDCF5006DF7E1 /* ProfileRegistrationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3758507B15AEDCF5006DF7E1 /* ProfileRegistrationViewController.xib */; };
 		3758508615AEDE69006DF7E1 /* ProfileSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3758508415AEDE69006DF7E1 /* ProfileSettingsViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		3758508715AEDE69006DF7E1 /* ProfileSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3758508515AEDE69006DF7E1 /* ProfileSettingsViewController.xib */; };
@@ -178,7 +172,6 @@
 		683FDAC4169E12AF00B3BF51 /* HSLoginChoiceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 683FDAC2169E12AE00B3BF51 /* HSLoginChoiceViewController.m */; };
 		683FDAC5169E12AF00B3BF51 /* HSLoginChoiceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 683FDAC3169E12AE00B3BF51 /* HSLoginChoiceViewController.xib */; };
 		683FDAC9169E61AC00B3BF51 /* HSLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 683FDAC8169E61AB00B3BF51 /* HSLoginViewController.m */; };
-		683FDACD169E72B800B3BF51 /* HSMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 683FDACC169E72B800B3BF51 /* HSMessageView.m */; };
 		685088C91666B6A3004EC3CC /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 685088C81666B6A3004EC3CC /* Social.framework */; };
 		685088CB1666B6AC004EC3CC /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 685088CA1666B6AC004EC3CC /* libsqlite3.dylib */; };
 		685088CD1666B715004EC3CC /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 685088CC1666B715004EC3CC /* Accounts.framework */; };
@@ -189,7 +182,6 @@
 		685088E91667638A004EC3CC /* facebook_login_button_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 685088E51667638A004EC3CC /* facebook_login_button_pressed.png */; };
 		685088EA1667638A004EC3CC /* facebook_login_button_pressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 685088E61667638A004EC3CC /* facebook_login_button_pressed@2x.png */; };
 		685088F01667F702004EC3CC /* libFlurry.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 685088EF1667F702004EC3CC /* libFlurry.a */; };
-		685088F51667FA0A004EC3CC /* HSFlurryAnalytics.m in Sources */ = {isa = PBXBuildFile; fileRef = 685088F41667FA0A004EC3CC /* HSFlurryAnalytics.m */; };
 		685CB2F8163F200A004FF9AC /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 685CB2F7163F2008004FF9AC /* MBProgressHUD.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		685CB3131640E87F004FF9AC /* icon_blood.png in Resources */ = {isa = PBXBuildFile; fileRef = 685CB2FE1640E87E004FF9AC /* icon_blood.png */; };
 		685CB3141640E87F004FF9AC /* icon_blood@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 685CB2FF1640E87E004FF9AC /* icon_blood@2x.png */; };
@@ -243,7 +235,8 @@
 		68893A4A16518CA800955990 /* BloodDonor_tutorial_6@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68893A3E16518CA800955990 /* BloodDonor_tutorial_6@2x.png */; };
 		688F7F7C169FCD29008581D4 /* HSAlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 688F7F7A169FCD29008581D4 /* HSAlertViewController.m */; };
 		688F7F7D169FCD29008581D4 /* HSAlertViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 688F7F7B169FCD29008581D4 /* HSAlertViewController.xib */; };
-		688F7F81169FE0AE008581D4 /* NSString+HSAlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 688F7F80169FE0AE008581D4 /* NSString+HSAlertViewController.m */; };
+		688F7F8716A012FD008581D4 /* HSFlurryAnalytics.m in Sources */ = {isa = PBXBuildFile; fileRef = 688F7F8516A012FD008581D4 /* HSFlurryAnalytics.m */; };
+		688F7F8A16A01343008581D4 /* NSString+HSUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 688F7F8916A01343008581D4 /* NSString+HSUtils.m */; };
 		68A028DB166E9571000E18D8 /* HSContraindicationsLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 68A028DA166E9571000E18D8 /* HSContraindicationsLoader.m */; };
 		68B455B81635BC5100811A0F /* HSEventRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B455B71635BC5100811A0F /* HSEventRenderer.m */; };
 		68B455BC1635C0B500811A0F /* HSBloodDonationEventRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B455BB1635C0B500811A0F /* HSBloodDonationEventRenderer.m */; };
@@ -422,8 +415,6 @@
 		85A429C915D3C7AE006F53C6 /* messageBoxDoubleButtonOk@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85A429C115D3C7AE006F53C6 /* messageBoxDoubleButtonOk@2x.png */; };
 		85A429CA15D3C7AE006F53C6 /* messageBoxSingleButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 85A429C215D3C7AE006F53C6 /* messageBoxSingleButton.png */; };
 		85A429CB15D3C7AE006F53C6 /* messageBoxSingleButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85A429C315D3C7AE006F53C6 /* messageBoxSingleButton@2x.png */; };
-		85A429CF15D3C80B006F53C6 /* MessageBoxViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85A429CD15D3C80B006F53C6 /* MessageBoxViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		85A429D015D3C80B006F53C6 /* MessageBoxViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85A429CE15D3C80B006F53C6 /* MessageBoxViewController.xib */; };
 		85A429D315D3CD8D006F53C6 /* CoreLocationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85A429D215D3CD8D006F53C6 /* CoreLocationController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		85A8F7A115CF88DF00535E7E /* StationsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 85A8F7A015CF88DF00535E7E /* StationsCell.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		85A8F7A315CF88F500535E7E /* StationsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85A8F7A215CF88F500535E7E /* StationsCell.xib */; };
@@ -445,8 +436,6 @@
 		85A9938015CAA40C0073E87B /* eventReminderCircle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85A9937215CAA40C0073E87B /* eventReminderCircle@2x.png */; };
 		85A9938115CAA40C0073E87B /* newsCell.png in Resources */ = {isa = PBXBuildFile; fileRef = 85A9937315CAA40C0073E87B /* newsCell.png */; };
 		85A9938215CAA40C0073E87B /* newsCell@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85A9937415CAA40C0073E87B /* newsCell@2x.png */; };
-		85A9938C15CAA4260073E87B /* EventReminderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85A9938815CAA4260073E87B /* EventReminderViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		85A9938D15CAA4260073E87B /* EventReminderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85A9938915CAA4260073E87B /* EventReminderViewController.xib */; };
 		85AA3B3115B3D3690077D336 /* SelectBloodGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85AA3B2F15B3D3690077D336 /* SelectBloodGroupViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		85AA3B3215B3D3690077D336 /* SelectBloodGroupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85AA3B3015B3D3690077D336 /* SelectBloodGroupViewController.xib */; };
 		85AA3B3615B3D9250077D336 /* Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 85AA3B3515B3D9250077D336 /* Common.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -631,9 +620,6 @@
 		371CBA8015AFF3E1008CA154 /* StationsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StationsViewController.h; sourceTree = "<group>"; };
 		371CBA8115AFF3E1008CA154 /* StationsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StationsViewController.m; sourceTree = "<group>"; };
 		371CBA8215AFF3E1008CA154 /* StationsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StationsViewController.xib; sourceTree = "<group>"; };
-		371CBA8515AFF3F2008CA154 /* CalendarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarViewController.h; sourceTree = "<group>"; };
-		371CBA8615AFF3F2008CA154 /* CalendarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarViewController.m; sourceTree = "<group>"; };
-		371CBA8715AFF3F2008CA154 /* CalendarViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CalendarViewController.xib; sourceTree = "<group>"; };
 		374D000015BD351E0094CEFE /* calendarScheduledSectionIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calendarScheduledSectionIcon.png; sourceTree = "<group>"; };
 		374D000115BD351E0094CEFE /* calendarScheduledSectionIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "calendarScheduledSectionIcon@2x.png"; sourceTree = "<group>"; };
 		374D000215BD351E0094CEFE /* calendarScheduledTestIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calendarScheduledTestIcon.png; sourceTree = "<group>"; };
@@ -652,12 +638,6 @@
 		374D002415BD54F80094CEFE /* eventReminderDateBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "eventReminderDateBackground@2x.png"; sourceTree = "<group>"; };
 		374D002715BD57CD0094CEFE /* SLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLabel.h; sourceTree = "<group>"; };
 		374D002815BD57CD0094CEFE /* SLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLabel.m; sourceTree = "<group>"; };
-		374D002A15BD5E490094CEFE /* EventPlanningViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventPlanningViewController.h; sourceTree = "<group>"; };
-		374D002B15BD5E490094CEFE /* EventPlanningViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventPlanningViewController.m; sourceTree = "<group>"; };
-		374D002C15BD5E490094CEFE /* EventPlanningViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventPlanningViewController.xib; sourceTree = "<group>"; };
-		374DFFF715BD172F0094CEFE /* EventViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventViewController.h; sourceTree = "<group>"; };
-		374DFFF815BD172F0094CEFE /* EventViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventViewController.m; sourceTree = "<group>"; };
-		374DFFF915BD172F0094CEFE /* EventViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventViewController.xib; sourceTree = "<group>"; };
 		374DFFFD15BD351E0094CEFE /* calendarCompletedWholeBloodIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "calendarCompletedWholeBloodIcon@2x.png"; sourceTree = "<group>"; };
 		374DFFFE15BD351E0094CEFE /* calendarScheduledPlateletsIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calendarScheduledPlateletsIcon.png; sourceTree = "<group>"; };
 		374DFFFF15BD351E0094CEFE /* calendarScheduledPlateletsIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "calendarScheduledPlateletsIcon@2x.png"; sourceTree = "<group>"; };
@@ -740,8 +720,6 @@
 		683FDAC3169E12AE00B3BF51 /* HSLoginChoiceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HSLoginChoiceViewController.xib; sourceTree = "<group>"; };
 		683FDAC7169E61AB00B3BF51 /* HSLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSLoginViewController.h; sourceTree = "<group>"; };
 		683FDAC8169E61AB00B3BF51 /* HSLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSLoginViewController.m; sourceTree = "<group>"; };
-		683FDACB169E72B800B3BF51 /* HSMessageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSMessageView.h; sourceTree = "<group>"; };
-		683FDACC169E72B800B3BF51 /* HSMessageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSMessageView.m; sourceTree = "<group>"; };
 		685088C81666B6A3004EC3CC /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		685088CA1666B6AC004EC3CC /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		685088CC1666B715004EC3CC /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
@@ -753,8 +731,6 @@
 		685088E61667638A004EC3CC /* facebook_login_button_pressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "facebook_login_button_pressed@2x.png"; sourceTree = "<group>"; };
 		685088EC1667F6D3004EC3CC /* Flurry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Flurry.h; sourceTree = "<group>"; };
 		685088EF1667F702004EC3CC /* libFlurry.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry.a; sourceTree = "<group>"; };
-		685088F31667FA0A004EC3CC /* HSFlurryAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSFlurryAnalytics.h; sourceTree = "<group>"; };
-		685088F41667FA0A004EC3CC /* HSFlurryAnalytics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSFlurryAnalytics.m; sourceTree = "<group>"; };
 		685CB2F6163F2005004FF9AC /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MBProgressHUD.h; path = Libs/MBProgressHUD/MBProgressHUD.h; sourceTree = "<group>"; };
 		685CB2F7163F2008004FF9AC /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MBProgressHUD.m; path = Libs/MBProgressHUD/MBProgressHUD.m; sourceTree = "<group>"; };
 		685CB2FE1640E87E004FF9AC /* icon_blood.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_blood.png; sourceTree = "<group>"; };
@@ -815,8 +791,10 @@
 		688F7F79169FCD29008581D4 /* HSAlertViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSAlertViewController.h; sourceTree = "<group>"; };
 		688F7F7A169FCD29008581D4 /* HSAlertViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSAlertViewController.m; sourceTree = "<group>"; };
 		688F7F7B169FCD29008581D4 /* HSAlertViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HSAlertViewController.xib; sourceTree = "<group>"; };
-		688F7F7F169FE0AE008581D4 /* NSString+HSAlertViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+HSAlertViewController.h"; sourceTree = "<group>"; };
-		688F7F80169FE0AE008581D4 /* NSString+HSAlertViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+HSAlertViewController.m"; sourceTree = "<group>"; };
+		688F7F8416A012FD008581D4 /* HSFlurryAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSFlurryAnalytics.h; sourceTree = "<group>"; };
+		688F7F8516A012FD008581D4 /* HSFlurryAnalytics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSFlurryAnalytics.m; sourceTree = "<group>"; };
+		688F7F8816A01343008581D4 /* NSString+HSUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+HSUtils.h"; sourceTree = "<group>"; };
+		688F7F8916A01343008581D4 /* NSString+HSUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+HSUtils.m"; sourceTree = "<group>"; };
 		68A028D9166E9571000E18D8 /* HSContraindicationsLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSContraindicationsLoader.h; sourceTree = "<group>"; };
 		68A028DA166E9571000E18D8 /* HSContraindicationsLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSContraindicationsLoader.m; sourceTree = "<group>"; };
 		68B455B61635BC5100811A0F /* HSEventRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HSEventRenderer.h; path = event/HSEventRenderer.h; sourceTree = "<group>"; };
@@ -1027,9 +1005,6 @@
 		85A429C115D3C7AE006F53C6 /* messageBoxDoubleButtonOk@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "messageBoxDoubleButtonOk@2x.png"; sourceTree = "<group>"; };
 		85A429C215D3C7AE006F53C6 /* messageBoxSingleButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = messageBoxSingleButton.png; sourceTree = "<group>"; };
 		85A429C315D3C7AE006F53C6 /* messageBoxSingleButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "messageBoxSingleButton@2x.png"; sourceTree = "<group>"; };
-		85A429CC15D3C80B006F53C6 /* MessageBoxViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageBoxViewController.h; sourceTree = "<group>"; };
-		85A429CD15D3C80B006F53C6 /* MessageBoxViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageBoxViewController.m; sourceTree = "<group>"; };
-		85A429CE15D3C80B006F53C6 /* MessageBoxViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessageBoxViewController.xib; sourceTree = "<group>"; };
 		85A429D115D3CD8D006F53C6 /* CoreLocationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreLocationController.h; sourceTree = "<group>"; };
 		85A429D215D3CD8D006F53C6 /* CoreLocationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreLocationController.m; sourceTree = "<group>"; };
 		85A8F79F15CF88DF00535E7E /* StationsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StationsCell.h; sourceTree = "<group>"; };
@@ -1053,9 +1028,6 @@
 		85A9937215CAA40C0073E87B /* eventReminderCircle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "eventReminderCircle@2x.png"; sourceTree = "<group>"; };
 		85A9937315CAA40C0073E87B /* newsCell.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = newsCell.png; sourceTree = "<group>"; };
 		85A9937415CAA40C0073E87B /* newsCell@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "newsCell@2x.png"; sourceTree = "<group>"; };
-		85A9938715CAA4260073E87B /* EventReminderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventReminderViewController.h; sourceTree = "<group>"; };
-		85A9938815CAA4260073E87B /* EventReminderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventReminderViewController.m; sourceTree = "<group>"; };
-		85A9938915CAA4260073E87B /* EventReminderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventReminderViewController.xib; sourceTree = "<group>"; };
 		85AA3B2E15B3D3690077D336 /* SelectBloodGroupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectBloodGroupViewController.h; sourceTree = "<group>"; };
 		85AA3B2F15B3D3690077D336 /* SelectBloodGroupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectBloodGroupViewController.m; sourceTree = "<group>"; };
 		85AA3B3015B3D3690077D336 /* SelectBloodGroupViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectBloodGroupViewController.xib; sourceTree = "<group>"; };
@@ -1248,7 +1220,7 @@
 			children = (
 				686BA61816332CB3004D7082 /* view */,
 				68EB27531630906A0092FDBA /* model */,
-				685088F11667F9DE004EC3CC /* Utils */,
+				688F7F8216A012FC008581D4 /* utils */,
 				8585E1A5161B0A5D00275AE7 /* FTCoreTextStyle.h */,
 				8585E1A6161B0A5D00275AE7 /* FTCoreTextStyle.m */,
 				8585E1A7161B0A5D00275AE7 /* FTCoreTextView.h */,
@@ -1262,9 +1234,6 @@
 				3758506A15AEC61E006DF7E1 /* Profile */,
 				37153EAE15AEBA3400C985C1 /* AppDelegate.h */,
 				37153EAF15AEBA3400C985C1 /* AppDelegate.m */,
-				85A429CC15D3C80B006F53C6 /* MessageBoxViewController.h */,
-				85A429CD15D3C80B006F53C6 /* MessageBoxViewController.m */,
-				85A429CE15D3C80B006F53C6 /* MessageBoxViewController.xib */,
 				85AA3B3415B3D9250077D336 /* Common.h */,
 				85AA3B3515B3D9250077D336 /* Common.m */,
 				371CBA5515AFD4A8008CA154 /* STabBarController.h */,
@@ -1293,18 +1262,6 @@
 				8594B19A15DBC57200896105 /* CalendarInfoViewController.h */,
 				8594B19B15DBC57200896105 /* CalendarInfoViewController.m */,
 				8594B19C15DBC57200896105 /* CalendarInfoViewController.xib */,
-				85A9938715CAA4260073E87B /* EventReminderViewController.h */,
-				85A9938815CAA4260073E87B /* EventReminderViewController.m */,
-				85A9938915CAA4260073E87B /* EventReminderViewController.xib */,
-				371CBA8515AFF3F2008CA154 /* CalendarViewController.h */,
-				371CBA8615AFF3F2008CA154 /* CalendarViewController.m */,
-				371CBA8715AFF3F2008CA154 /* CalendarViewController.xib */,
-				374DFFF715BD172F0094CEFE /* EventViewController.h */,
-				374DFFF815BD172F0094CEFE /* EventViewController.m */,
-				374DFFF915BD172F0094CEFE /* EventViewController.xib */,
-				374D002A15BD5E490094CEFE /* EventPlanningViewController.h */,
-				374D002B15BD5E490094CEFE /* EventPlanningViewController.m */,
-				374D002C15BD5E490094CEFE /* EventPlanningViewController.xib */,
 			);
 			name = Calendar;
 			sourceTree = "<group>";
@@ -1819,13 +1776,9 @@
 		683FDACA169E727100B3BF51 /* error */ = {
 			isa = PBXGroup;
 			children = (
-				683FDACB169E72B800B3BF51 /* HSMessageView.h */,
-				683FDACC169E72B800B3BF51 /* HSMessageView.m */,
 				688F7F79169FCD29008581D4 /* HSAlertViewController.h */,
 				688F7F7A169FCD29008581D4 /* HSAlertViewController.m */,
 				688F7F7B169FCD29008581D4 /* HSAlertViewController.xib */,
-				688F7F7F169FE0AE008581D4 /* NSString+HSAlertViewController.h */,
-				688F7F80169FE0AE008581D4 /* NSString+HSAlertViewController.m */,
 			);
 			path = error;
 			sourceTree = "<group>";
@@ -1865,23 +1818,6 @@
 			);
 			name = Flurry;
 			path = Libs/Flurry;
-			sourceTree = "<group>";
-		};
-		685088F11667F9DE004EC3CC /* Utils */ = {
-			isa = PBXGroup;
-			children = (
-				685088F21667F9DF004EC3CC /* FlurryAnalytics */,
-			);
-			path = Utils;
-			sourceTree = "<group>";
-		};
-		685088F21667F9DF004EC3CC /* FlurryAnalytics */ = {
-			isa = PBXGroup;
-			children = (
-				685088F31667FA0A004EC3CC /* HSFlurryAnalytics.h */,
-				685088F41667FA0A004EC3CC /* HSFlurryAnalytics.m */,
-			);
-			path = FlurryAnalytics;
 			sourceTree = "<group>";
 		};
 		685CB2F9163F2016004FF9AC /* Libs */ = {
@@ -2053,6 +1989,33 @@
 				68893A3E16518CA800955990 /* BloodDonor_tutorial_6@2x.png */,
 			);
 			path = tutorial;
+			sourceTree = "<group>";
+		};
+		688F7F8216A012FC008581D4 /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				688F7F8316A012FD008581D4 /* FlurryAnalytics */,
+				688F7F8616A012FD008581D4 /* string */,
+			);
+			path = utils;
+			sourceTree = "<group>";
+		};
+		688F7F8316A012FD008581D4 /* FlurryAnalytics */ = {
+			isa = PBXGroup;
+			children = (
+				688F7F8416A012FD008581D4 /* HSFlurryAnalytics.h */,
+				688F7F8516A012FD008581D4 /* HSFlurryAnalytics.m */,
+			);
+			path = FlurryAnalytics;
+			sourceTree = "<group>";
+		};
+		688F7F8616A012FD008581D4 /* string */ = {
+			isa = PBXGroup;
+			children = (
+				688F7F8816A01343008581D4 /* NSString+HSUtils.h */,
+				688F7F8916A01343008581D4 /* NSString+HSUtils.m */,
+			);
+			path = string;
 			sourceTree = "<group>";
 		};
 		68B455B41635BC0700811A0F /* renderer */ = {
@@ -2285,7 +2248,6 @@
 				3758508715AEDE69006DF7E1 /* ProfileSettingsViewController.xib in Resources */,
 				3758508D15AEE41A006DF7E1 /* InfoViewController.xib in Resources */,
 				371CBA8415AFF3E1008CA154 /* StationsViewController.xib in Resources */,
-				371CBA8915AFF3F2008CA154 /* CalendarViewController.xib in Resources */,
 				85AA3B3215B3D3690077D336 /* SelectBloodGroupViewController.xib in Resources */,
 				370FA64C15B42A4500FC1C86 /* tabBarBackground.png in Resources */,
 				370FA64D15B42A4500FC1C86 /* tabBarBackground@2x.png in Resources */,
@@ -2392,7 +2354,6 @@
 				85A2656A15B7D48D00064061 /* sexModalViewBackground.png in Resources */,
 				85A2656B15B7D48D00064061 /* yellowBar@2x.png in Resources */,
 				85A2656C15B7D48D00064061 /* yellowBar.png in Resources */,
-				374DFFFB15BD172F0094CEFE /* EventViewController.xib in Resources */,
 				374D000615BD351E0094CEFE /* calendarCompletedWholeBloodIcon@2x.png in Resources */,
 				374D000715BD351E0094CEFE /* calendarScheduledPlateletsIcon.png in Resources */,
 				374D000815BD351E0094CEFE /* calendarScheduledPlateletsIcon@2x.png in Resources */,
@@ -2412,7 +2373,6 @@
 				374D002215BD463A0094CEFE /* eventReminderIcon@2x.png in Resources */,
 				374D002515BD54F90094CEFE /* eventReminderDateBackground.png in Resources */,
 				374D002615BD54F90094CEFE /* eventReminderDateBackground@2x.png in Resources */,
-				374D002E15BD5E490094CEFE /* EventPlanningViewController.xib in Resources */,
 				85BE8CDB15C13E6000CF5606 /* AdsSubViewController.xib in Resources */,
 				85BE8CE015C13E7800CF5606 /* NewsSubViewController.xib in Resources */,
 				85BE8CED15C1467500CF5606 /* adsSegmentButtonNotSelected.png in Resources */,
@@ -2479,7 +2439,6 @@
 				85A9938015CAA40C0073E87B /* eventReminderCircle@2x.png in Resources */,
 				85A9938115CAA40C0073E87B /* newsCell.png in Resources */,
 				85A9938215CAA40C0073E87B /* newsCell@2x.png in Resources */,
-				85A9938D15CAA4260073E87B /* EventReminderViewController.xib in Resources */,
 				85AB70DE15CBCD4600C6A2BA /* RecommendationsViewController.xib in Resources */,
 				85040C0F15CEAE7F00CD3A16 /* absoluteSegmentButtonSelected.png in Resources */,
 				85040C1015CEAE7F00CD3A16 /* timeSegmentButtonSelected@2x.png in Resources */,
@@ -2570,7 +2529,6 @@
 				85A429C915D3C7AE006F53C6 /* messageBoxDoubleButtonOk@2x.png in Resources */,
 				85A429CA15D3C7AE006F53C6 /* messageBoxSingleButton.png in Resources */,
 				85A429CB15D3C7AE006F53C6 /* messageBoxSingleButton@2x.png in Resources */,
-				85A429D015D3C80B006F53C6 /* MessageBoxViewController.xib in Resources */,
 				85ADF99715D52D4900853641 /* calendarSliderCellBackground.png in Resources */,
 				85ADF99815D52D4900853641 /* calendarSliderCellBackground@2x.png in Resources */,
 				85B213E115D7987F00D2ADBE /* ReviewsCell.xib in Resources */,
@@ -2726,25 +2684,20 @@
 				37153EAC15AEBA3400C985C1 /* main.m in Sources */,
 				37153EB015AEBA3400C985C1 /* AppDelegate.m in Sources */,
 				3758507315AED544006DF7E1 /* ProfileDescriptionViewController.m in Sources */,
-				3758507C15AEDCF5006DF7E1 /* ProfileRegistrationViewController.m in Sources */,
 				3758508615AEDE69006DF7E1 /* ProfileSettingsViewController.m in Sources */,
 				3758508C15AEE41A006DF7E1 /* InfoViewController.m in Sources */,
 				371CBA5715AFD4A8008CA154 /* STabBarController.m in Sources */,
 				371CBA8315AFF3E1008CA154 /* StationsViewController.m in Sources */,
-				371CBA8815AFF3F2008CA154 /* CalendarViewController.m in Sources */,
 				85AA3B3115B3D3690077D336 /* SelectBloodGroupViewController.m in Sources */,
 				85AA3B3615B3D9250077D336 /* Common.m in Sources */,
 				858B436B15B6B03200A7A67D /* ProfileSexSelectViewController.m in Sources */,
-				374DFFFA15BD172F0094CEFE /* EventViewController.m in Sources */,
 				374D002915BD57CD0094CEFE /* SLabel.m in Sources */,
-				374D002D15BD5E490094CEFE /* EventPlanningViewController.m in Sources */,
 				85BE8CDA15C13E6000CF5606 /* AdsSubViewController.m in Sources */,
 				85BE8CDF15C13E7800CF5606 /* NewsSubViewController.m in Sources */,
 				85BE8D3C15C16F0600CF5606 /* NewsCell.m in Sources */,
 				85B7CDAD15C24F87008C1BEC /* AdsCell.m in Sources */,
 				85F1185315C6A984000A1183 /* InfoSubViewController.m in Sources */,
 				85B35FFF15C9217800F20CDA /* NewsViewController.m in Sources */,
-				85A9938C15CAA4260073E87B /* EventReminderViewController.m in Sources */,
 				85AB70DD15CBCD4600C6A2BA /* RecommendationsViewController.m in Sources */,
 				85A8F7A115CF88DF00535E7E /* StationsCell.m in Sources */,
 				85A0DC1415CFD922008618F8 /* FilterViewController.m in Sources */,
@@ -2753,7 +2706,6 @@
 				8593A8C915D0DFA500EA51F2 /* StationReviewsViewController.m in Sources */,
 				859F20EA15D2324400A4021A /* StationRateViewController.m in Sources */,
 				85A429AB15D3B18F006F53C6 /* StationsAnnotation.m in Sources */,
-				85A429CF15D3C80B006F53C6 /* MessageBoxViewController.m in Sources */,
 				85A429D315D3CD8D006F53C6 /* CoreLocationController.m in Sources */,
 				85B213DF15D7986800D2ADBE /* ReviewsCell.m in Sources */,
 				8594B19D15DBC57200896105 /* CalendarInfoViewController.m in Sources */,
@@ -2762,6 +2714,7 @@
 				8585E1AA161B0A5D00275AE7 /* FTCoreTextView.m in Sources */,
 				85939C65162D616D0081A46C /* ForDonorsCell.m in Sources */,
 				685CB2F8163F200A004FF9AC /* MBProgressHUD.m in Sources */,
+				3758507C15AEDCF5006DF7E1 /* ProfileRegistrationViewController.m in Sources */,
 				3758506E15AED1FE006DF7E1 /* HSBaseLoginViewController.m in Sources */,
 				68EB2758163090B90092FDBA /* HSCalendar.m in Sources */,
 				68EB275C163091190092FDBA /* HSEvent.m in Sources */,
@@ -2782,7 +2735,6 @@
 				683F8A81164573860066C47A /* HSBloodDonationType.m in Sources */,
 				683F8A9D1648C0EA0066C47A /* HSDayHolidayEvent.m in Sources */,
 				683F8AA01649B8C10066C47A /* NSDate+HSCalendar.m in Sources */,
-				685088F51667FA0A004EC3CC /* HSFlurryAnalytics.m in Sources */,
 				680516D1166D7B4A0013E83E /* HSBlockUIViewController.m in Sources */,
 				680516D5166D7B4A0013E83E /* HSCalendarViewController.m in Sources */,
 				680516D9166D7B4A0013E83E /* HSEventPlanningViewController.m in Sources */,
@@ -2799,9 +2751,9 @@
 				68F3B32016767665003E8376 /* HSContraindicationCell.m in Sources */,
 				683FDAC4169E12AF00B3BF51 /* HSLoginChoiceViewController.m in Sources */,
 				683FDAC9169E61AC00B3BF51 /* HSLoginViewController.m in Sources */,
-				683FDACD169E72B800B3BF51 /* HSMessageView.m in Sources */,
 				688F7F7C169FCD29008581D4 /* HSAlertViewController.m in Sources */,
-				688F7F81169FE0AE008581D4 /* NSString+HSAlertViewController.m in Sources */,
+				688F7F8716A012FD008581D4 /* HSFlurryAnalytics.m in Sources */,
+				688F7F8A16A01343008581D4 /* NSString+HSUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

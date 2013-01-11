@@ -20,7 +20,6 @@
 #import "InfoViewController.h"
 #import "HSLoginChoiceViewController.h"
 #import "Common.h"
-#import "MessageBoxViewController.h"
 #import "TutorialViewController.h"
 
 #import "HSCalendar.h"
@@ -155,32 +154,6 @@ static NSString * const TEST_FLIGHT_APP_ID = @"43651a8fd308e9fd491a1c8aa068f158_
     
     self.tabBarController.tabBar.hidden = hide;
     self.tabBarController.moreNavigationController.navigationBar.hidden = YES;
-}
-
-- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
-{
-    [self.tabBarController setSelectedIndex:0];
-    UINavigationController *navigationController = [self.tabBarController.viewControllers objectAtIndex:0];
-    [navigationController popToRootViewControllerAnimated:NO];
-#ifdef NEW_CALENDAR_FUNCTIONALITY_DEVELOPEMENT
-    HSCalendarViewController *calendarViewController = [[navigationController viewControllers] objectAtIndex:0];
-#else
-    CalendarViewController *calendarViewController = [[navigationController viewControllers] objectAtIndex:0];
-#endif
-    
-    MessageBoxViewController *messageBox = [[MessageBoxViewController alloc] initWithNibName:@"MessageBoxViewController"
-                                                                                      bundle:nil
-                                                                                       title:nil
-                                                                                     message:notification.alertBody
-                                                                                cancelButton:@"Позже"
-                                                                                    okButton:@"Ок"];
-
-#ifdef NEW_CALENDAR_FUNCTIONALITY_DEVELOPEMENT
-#warning TODO Add this functionality to the HSCalendarViewController view controller.
-#else
-    messageBox.delegate = calendarViewController;
-#endif
-    [calendarViewController.navigationController.tabBarController.view addSubview:messageBox.view];
 }
 
 - (BOOL)handleOpenURL:(NSURL*)url

@@ -11,12 +11,12 @@
 #import <Parse/Parse.h>
 #import "HSFlurryAnalytics.h"
 
-#import "HSMessageView.h"
 #import "ProfileDescriptionViewController.h"
 #import "ProfileRegistrationViewController.h"
 #import "ProfileSettingsViewController.h"
 #import "Common.h"
 #import "MBProgressHUD.h"
+#import "HSAlertViewController.h"
 
 #import "HSCalendar.h"
 
@@ -56,7 +56,7 @@
     }
     
     if ([self.loginTextField.text isEqualToString:@""]|| [self.passwordTextField.text isEqualToString:@""]) {
-        [HSMessageView showWithMessage:@"Введите логин и пароль"];
+        [HSAlertViewController showWithMessage:@"Введите логин и пароль"];
     } else {
         MBProgressHUD *progressHud = [MBProgressHUD showHUDAddedTo: self.navigationController.view animated: YES];
         [PFUser logInWithUsernameInBackground:self.loginTextField.text password:self.passwordTextField.text

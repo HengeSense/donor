@@ -9,10 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "SelectBloodGroupViewController.h"
 #import "ProfileSexSelectViewController.h"
-#import "MessageBoxViewController.h"
 #import "HSCalendarViewController.h"
 
-@interface ProfileRegistrationViewController : UIViewController <UITextFieldDelegate, IBloodGroupListener, ISexListener, MessageBoxDelegate>
+@interface ProfileRegistrationViewController : UIViewController <UITextFieldDelegate, IBloodGroupListener, ISexListener>
 {
     IBOutlet UIButton *sexButton;
     IBOutlet UIButton *bloodGroupButton;

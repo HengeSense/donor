@@ -7,6 +7,9 @@
 //
 
 #import "StationRateViewController.h"
+#import "HSAlertViewController.h"
+
+#import "MBProgressHUD.h"
 
 @implementation StationRateViewController
 
@@ -20,19 +23,6 @@
 - (IBAction)doneButtonPressed:(id)sender
 {
     [commentTextField resignFirstResponder];
-    indicatorView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
-    indicatorView.backgroundColor = [UIColor blackColor];
-    indicatorView.alpha = 0.5f;
-    UIActivityIndicatorView *indicator = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge] autorelease];
-    indicator.frame = CGRectMake(160 - indicator.frame.size.width / 2.0f,
-                                 240 - indicator.frame.size.height / 2.0f,
-                                 indicator.frame.size.width,
-                                 indicator.frame.size.height);
-    
-    [indicatorView addSubview:indicator];
-    [indicator startAnimating];
-    [self.navigationController.tabBarController.view addSubview:indicatorView];
-    
     PFObject *review = [PFObject objectWithClassName:@"StationReviews"];
     if (![nameField.text isEqualToString:@""])
         [review setObject:nameField.text forKey:@"username"];
@@ -69,18 +59,19 @@
     
     [review setObject:[NSNumber numberWithInt:rateInt] forKey:@"vote"];
     
-    [review saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
-    {
-        [indicatorView removeFromSuperview];
-        
-        MessageBoxViewController *messageBox = [[MessageBoxViewController alloc] initWithNibName:@"MessageBoxViewController"
-                                                                                          bundle:nil
-                                                                                           title:nil
-                                                                                         message:@"Спасибо за отзыв!"
-                                                                                    cancelButton:@"Ок"
-                                                                                        okButton:nil];
-        messageBox.delegate = self;
-        [self.navigationController.tabBarController.view addSubview:messageBox.view];
+    MBProgressHUD *progressHud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+    [review saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        [progressHud hide:YES];
+        if (succeeded) {
+            [HSAlertViewController showWithMessage:@"Спасибо за отзыв!" resultBlock:^(BOOL isOkButtonPressed) {
+                [self.navigationController popViewControllerAnimated:YES];
+            }];
+        } else {
+            [HSAlertViewController showWithTitle:@"Ошибка" message:@"Не удалось сохранить отзыв!"
+                                     resultBlock:^(BOOL isOkButtonPressed) {
+                [self.navigationController popViewControllerAnimated:YES];
+            }];
+        }
     }];
 }
 
@@ -425,14 +416,6 @@
         default:
             break;
     }
-}
-
-#pragma  mark MessageBoxDelegate
-
-- (void)messageBoxResult:(BOOL)result controller:(MessageBoxViewController *)controller message:(NSString *)message
-{
-    [controller release];
-    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark UITextViewDelegate

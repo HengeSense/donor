@@ -14,7 +14,6 @@
 #import <Parse/Parse.h>
 #import "Common.h"
 #import "StationsAnnotation.h"
-#import "EventPlanningViewController.h"
 #import "NewsViewController.h"
 
 @interface StationsViewController ()
@@ -660,25 +659,13 @@
         cell.addressLabel.hidden = NO;
         cell.addressLabel.text = [object valueForKey:@"small_adress"];
     }
-    
-    NSArray *viewControllers = self.navigationController.viewControllers;
-    if (viewControllers.count > 2 && [[viewControllers objectAtIndex:viewControllers.count - 2] isKindOfClass:[EventPlanningViewController class]])
-    {
-        cell.indicatorView.hidden = YES;
-        cell.isEvent = YES;
-    }
-    else
-        cell.isEvent = NO;
+
+    cell.isEvent = NO;
     
     return cell;
 }
 
-- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    StationsCell *cell = (StationsCell *)[tableView cellForRowAtIndexPath:indexPath];
-    //cell.shadowSelectionView.alpha = 0.05f;
-    //cell.addressLabel.textColor = [UIColor colorWithRed:215.0f/255.0f green:54.0f/255.0f blue:30.0f/255.0f alpha:1];
-    
+- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     PFObject *object;
     
     if (indexPath.section == 0)
@@ -696,29 +683,11 @@
     else
         object = (PFObject *)[(NSArray *)[tableDictionary objectForKey:@"other"] objectAtIndex:indexPath.row];
     
-    NSArray *viewControllers = self.navigationController.viewControllers;
-    if (viewControllers.count > 2 && [[viewControllers objectAtIndex:viewControllers.count - 2] isKindOfClass:[EventPlanningViewController class]])
-    {
-        objectForEvent = object;
-        cell.indicatorView.hidden = NO;
-        cell.indicatorView.image = [UIImage imageNamed:@"check"];
-    }
-    else
-    {
-        StationDescriptionViewController *controller = [[[StationDescriptionViewController alloc] initWithNibName:@"StationDescriptionViewController" bundle:nil station:object] autorelease];
-        [self.navigationController pushViewController:controller animated:YES];
-        [self searchCancelPressed:nil];
-    }
+ 
+    StationDescriptionViewController *controller = [[[StationDescriptionViewController alloc] initWithNibName:@"StationDescriptionViewController" bundle:nil station:object] autorelease];
+    [self.navigationController pushViewController:controller animated:YES];
+    [self searchCancelPressed:nil];
     
-    return indexPath;
-}
-
-- (NSIndexPath *)tableView:(UITableView *)tableView willDeselectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    StationsCell *cell = (StationsCell *)[tableView cellForRowAtIndexPath:indexPath];
-    NSArray *viewControllers = self.navigationController.viewControllers;
-    if (viewControllers.count > 2 && [[viewControllers objectAtIndex:viewControllers.count - 2] isKindOfClass:[EventPlanningViewController class]])
-        cell.indicatorView.hidden = YES;
     return indexPath;
 }
 
@@ -1065,66 +1034,12 @@
     if (viewControllers.count > 1)
     {
         backButton.hidden = NO;
-        if (viewControllers.count > 2 && [[viewControllers objectAtIndex:viewControllers.count - 2] isKindOfClass:[EventPlanningViewController class]])
-        {
-            UIImage *barImageNormal = [UIImage imageNamed:@"barButtonNormal"];
-            UIImage *barImagePressed = [UIImage imageNamed:@"barButtonPressed"];
-            
-            UIButton *cancelButton = [UIButton buttonWithType:UIButtonTypeCustom];
-            CGRect cancelButtonFrame = CGRectMake(0, 0, barImageNormal.size.width, barImageNormal.size.height);
-            [cancelButton setBackgroundImage:barImageNormal forState:UIControlStateNormal];
-            [cancelButton setBackgroundImage:barImagePressed forState:UIControlStateHighlighted];
-            [cancelButton setTitle:@"Отмена" forState:UIControlStateNormal];
-            [cancelButton setTitle:@"Отмена" forState:UIControlStateHighlighted];
-            cancelButton.titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:12];
-            cancelButton.frame = cancelButtonFrame;
-            [cancelButton addTarget:self action:@selector(backButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-            
-            UIBarButtonItem *cancelBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:cancelButton] autorelease];
-            [cancelBarButtonItem setTitlePositionAdjustment:UIOffsetMake(0, -1) forBarMetrics:UIBarMetricsDefault];
-            self.navigationItem.leftBarButtonItem = cancelBarButtonItem;
-            
-            UIButton *doneButton = [UIButton buttonWithType:UIButtonTypeCustom];
-            CGRect doneButtonFrame = CGRectMake(0, 0, barImageNormal.size.width, barImageNormal.size.height);
-            [doneButton setBackgroundImage:barImageNormal forState:UIControlStateNormal];
-            [doneButton setBackgroundImage:barImagePressed forState:UIControlStateHighlighted];
-            [doneButton setTitle:@"Готово" forState:UIControlStateNormal];
-            [doneButton setTitle:@"Готово" forState:UIControlStateHighlighted];
-            doneButton.titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:12];
-            doneButton.frame = doneButtonFrame;
-            [doneButton addTarget:self action:@selector(doneButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-            
-            UIBarButtonItem *doneBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:doneButton] autorelease];
-            [doneBarButtonItem setTitlePositionAdjustment:UIOffsetMake(0, -1) forBarMetrics:UIBarMetricsDefault];
-            self.navigationItem.rightBarButtonItem = doneBarButtonItem;
-           
-            isShowOneStation = NO;
-            [coreLocationController.locationManager startUpdatingLocation];
-            [contentView addSubview:stationsTableView];
-            mapButton.enabled = NO;
-            [contentView addSubview:stationsTableView];
-                        
-            indicatorView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
-            indicatorView.backgroundColor = [UIColor blackColor];
-            indicatorView.alpha = 0.5f;
-            UIActivityIndicatorView *indicator = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge] autorelease];
-            indicator.frame = CGRectMake(160 - indicator.frame.size.width / 2.0f,
-                                         160 - indicator.frame.size.height / 2.0f,
-                                         indicator.frame.size.width,
-                                         indicator.frame.size.height);
-            
-            [indicatorView addSubview:indicator];
-            [indicator startAnimating];
-        }
-        else
-        {
-            isShowOneStation = YES;
-            tableButton.enabled = NO;
-            mapButton.selected = YES;
-            [contentView addSubview:stationsMapView];
-            filterButton.enabled = NO;
-            searchField.enabled = NO;
-        }
+        isShowOneStation = YES;
+        tableButton.enabled = NO;
+        mapButton.selected = YES;
+        [contentView addSubview:stationsMapView];
+        filterButton.enabled = NO;
+        searchField.enabled = NO;
     }
     else
     {

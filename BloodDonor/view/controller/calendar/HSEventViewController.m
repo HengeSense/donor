@@ -9,7 +9,7 @@
 
 #import "HSEventViewController.h"
 #import "HSEventPlanningViewController.h"
-#import "HSMessageView.h"
+#import "HSAlertViewController.h"
 
 #import "NSDate+HSCalendar.h"
 
@@ -109,12 +109,12 @@
     self.currentBloodRemoteEvent.isDone = YES;
     [self.currentBloodRemoteEvent saveWithCompletionBlock: ^(BOOL success, NSError *error) {
         if (success) {
-            [HSMessageView showWithTitle:@"Спасибо, Вы спасли жизнь!"
-                                 message:@"Рассчитан интервал до следующей возможной кроводачи"
-                       cancelButtonTitle:@"Готово"];
+            [HSAlertViewController showWithTitle:@"Спасибо, Вы спасли жизнь!"
+                                         message:@"Рассчитан интервал до следующей возможной кроводачи"
+                               cancelButtonTitle:@"Готово"];
             [self.navigationController popToRootViewControllerAnimated: YES];
         } else {
-            [HSMessageView showWithTitle:@"Ошибка" message:localizedDescriptionForError(error)];
+            [HSAlertViewController showWithTitle:@"Ошибка" message:localizedDescriptionForError(error)];
         }
     }];
 }

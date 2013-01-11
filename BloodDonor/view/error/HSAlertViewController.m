@@ -7,9 +7,9 @@
 //
 
 #import "HSAlertViewController.h"
-#import "NSString+HSAlertViewController.h"
+#import "NSString+HSUtils.h"
 
-static NSString * const kSingleCancelButtonTitleDefault = @"Продолжить";
+static NSString * const kSingleCancelButtonTitleDefault = @"Ok";
 
 @interface HSAlertViewController ()
 
@@ -63,11 +63,29 @@ static NSString * const kSingleCancelButtonTitleDefault = @"Продолжить
              resultBlock:nil];
 }
 
++ (void)showWithMessage:(NSString *)message resultBlock:(HSAlertViewControllerResultBlock)resultBlock {
+    THROW_IF_ARGUMENT_NIL(message, @"message is not specified");
+    THROW_IF_ARGUMENT_NIL(resultBlock, @"resultBlock is not specified");
+
+    [self _showWithTitle:@"" message:message cancelButtonTitle:kSingleCancelButtonTitleDefault okButtonTitle:@""
+             resultBlock:resultBlock];
+}
+
 + (void)showWithTitle:(NSString *)title message:(NSString *)message {
     THROW_IF_ARGUMENT_NIL(title, @"title is not specified");
     THROW_IF_ARGUMENT_NIL(message, @"message is not specified");
     [self _showWithTitle:title message:message cancelButtonTitle:kSingleCancelButtonTitleDefault okButtonTitle:@""
              resultBlock:nil];
+}
+
++ (void)showWithTitle:(NSString *)title message:(NSString *)message
+          resultBlock:(HSAlertViewControllerResultBlock)resultBlock {
+    THROW_IF_ARGUMENT_NIL(title, @"title is not specified");
+    THROW_IF_ARGUMENT_NIL(message, @"message is not specified");
+    THROW_IF_ARGUMENT_NIL(resultBlock, @"resultBlock is not specified");
+
+    [self _showWithTitle:title message:message cancelButtonTitle:kSingleCancelButtonTitleDefault okButtonTitle:@""
+             resultBlock:resultBlock];
 }
 
 + (void)showWithTitle:(NSString *)title message:(NSString *)message cancelButtonTitle:(NSString *)cancelButtonTitle {

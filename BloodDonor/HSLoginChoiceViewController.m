@@ -16,7 +16,7 @@
 #import "ProfileDescriptionViewController.h"
 #import "HSBaseLoginViewController.h"
 #import "HSCalendar.h"
-#import "HSMessageView.h"
+#import "HSAlertViewController.h"
 
 @interface HSLoginChoiceViewController ()
 
@@ -102,7 +102,7 @@
                 controller.calendarInfoDelegate = calendarModel;
                 [self.navigationController pushViewController:controller animated:YES];
             } else {
-                [HSMessageView showWithMessage:@"Ошибка при загрузке событий календаря"];
+                [HSAlertViewController showWithMessage:@"Ошибка при загрузке событий календаря"];
                 [self.navigationController popToRootViewControllerAnimated:YES];
             }
         }];
