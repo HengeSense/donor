@@ -241,6 +241,9 @@
 		68893A4816518CA800955990 /* BloodDonor_tutorial_5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68893A3C16518CA800955990 /* BloodDonor_tutorial_5@2x.png */; };
 		68893A4916518CA800955990 /* BloodDonor_tutorial_6.png in Resources */ = {isa = PBXBuildFile; fileRef = 68893A3D16518CA800955990 /* BloodDonor_tutorial_6.png */; };
 		68893A4A16518CA800955990 /* BloodDonor_tutorial_6@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68893A3E16518CA800955990 /* BloodDonor_tutorial_6@2x.png */; };
+		688F7F7C169FCD29008581D4 /* HSAlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 688F7F7A169FCD29008581D4 /* HSAlertViewController.m */; };
+		688F7F7D169FCD29008581D4 /* HSAlertViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 688F7F7B169FCD29008581D4 /* HSAlertViewController.xib */; };
+		688F7F81169FE0AE008581D4 /* NSString+HSAlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 688F7F80169FE0AE008581D4 /* NSString+HSAlertViewController.m */; };
 		68A028DB166E9571000E18D8 /* HSContraindicationsLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 68A028DA166E9571000E18D8 /* HSContraindicationsLoader.m */; };
 		68B455B81635BC5100811A0F /* HSEventRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B455B71635BC5100811A0F /* HSEventRenderer.m */; };
 		68B455BC1635C0B500811A0F /* HSBloodDonationEventRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B455BB1635C0B500811A0F /* HSBloodDonationEventRenderer.m */; };
@@ -809,6 +812,11 @@
 		68893A3C16518CA800955990 /* BloodDonor_tutorial_5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BloodDonor_tutorial_5@2x.png"; sourceTree = "<group>"; };
 		68893A3D16518CA800955990 /* BloodDonor_tutorial_6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BloodDonor_tutorial_6.png; sourceTree = "<group>"; };
 		68893A3E16518CA800955990 /* BloodDonor_tutorial_6@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BloodDonor_tutorial_6@2x.png"; sourceTree = "<group>"; };
+		688F7F79169FCD29008581D4 /* HSAlertViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSAlertViewController.h; sourceTree = "<group>"; };
+		688F7F7A169FCD29008581D4 /* HSAlertViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSAlertViewController.m; sourceTree = "<group>"; };
+		688F7F7B169FCD29008581D4 /* HSAlertViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HSAlertViewController.xib; sourceTree = "<group>"; };
+		688F7F7F169FE0AE008581D4 /* NSString+HSAlertViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+HSAlertViewController.h"; sourceTree = "<group>"; };
+		688F7F80169FE0AE008581D4 /* NSString+HSAlertViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+HSAlertViewController.m"; sourceTree = "<group>"; };
 		68A028D9166E9571000E18D8 /* HSContraindicationsLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSContraindicationsLoader.h; sourceTree = "<group>"; };
 		68A028DA166E9571000E18D8 /* HSContraindicationsLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSContraindicationsLoader.m; sourceTree = "<group>"; };
 		68B455B61635BC5100811A0F /* HSEventRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HSEventRenderer.h; path = event/HSEventRenderer.h; sourceTree = "<group>"; };
@@ -1813,6 +1821,11 @@
 			children = (
 				683FDACB169E72B800B3BF51 /* HSMessageView.h */,
 				683FDACC169E72B800B3BF51 /* HSMessageView.m */,
+				688F7F79169FCD29008581D4 /* HSAlertViewController.h */,
+				688F7F7A169FCD29008581D4 /* HSAlertViewController.m */,
+				688F7F7B169FCD29008581D4 /* HSAlertViewController.xib */,
+				688F7F7F169FE0AE008581D4 /* NSString+HSAlertViewController.h */,
+				688F7F80169FE0AE008581D4 /* NSString+HSAlertViewController.m */,
 			);
 			path = error;
 			sourceTree = "<group>";
@@ -2675,6 +2688,7 @@
 				68F3B30C16754A85003E8376 /* contraindications.json in Resources */,
 				68F3B32316767699003E8376 /* HSContraindicationCell.xib in Resources */,
 				683FDAC5169E12AF00B3BF51 /* HSLoginChoiceViewController.xib in Resources */,
+				688F7F7D169FCD29008581D4 /* HSAlertViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2786,6 +2800,8 @@
 				683FDAC4169E12AF00B3BF51 /* HSLoginChoiceViewController.m in Sources */,
 				683FDAC9169E61AC00B3BF51 /* HSLoginViewController.m in Sources */,
 				683FDACD169E72B800B3BF51 /* HSMessageView.m in Sources */,
+				688F7F7C169FCD29008581D4 /* HSAlertViewController.m in Sources */,
+				688F7F81169FE0AE008581D4 /* NSString+HSAlertViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
