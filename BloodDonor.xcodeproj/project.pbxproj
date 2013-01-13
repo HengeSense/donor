@@ -177,10 +177,6 @@
 		685088CD1666B715004EC3CC /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 685088CC1666B715004EC3CC /* Accounts.framework */; };
 		685088CF1666B738004EC3CC /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 685088CE1666B738004EC3CC /* StoreKit.framework */; };
 		685088D11666B74B004EC3CC /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 685088D01666B74B004EC3CC /* AdSupport.framework */; };
-		685088E71667638A004EC3CC /* facebook_login_button_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 685088E31667638A004EC3CC /* facebook_login_button_normal.png */; };
-		685088E81667638A004EC3CC /* facebook_login_button_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 685088E41667638A004EC3CC /* facebook_login_button_normal@2x.png */; };
-		685088E91667638A004EC3CC /* facebook_login_button_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 685088E51667638A004EC3CC /* facebook_login_button_pressed.png */; };
-		685088EA1667638A004EC3CC /* facebook_login_button_pressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 685088E61667638A004EC3CC /* facebook_login_button_pressed@2x.png */; };
 		685088F01667F702004EC3CC /* libFlurry.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 685088EF1667F702004EC3CC /* libFlurry.a */; };
 		685CB2F8163F200A004FF9AC /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 685CB2F7163F2008004FF9AC /* MBProgressHUD.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		685CB3131640E87F004FF9AC /* icon_blood.png in Resources */ = {isa = PBXBuildFile; fileRef = 685CB2FE1640E87E004FF9AC /* icon_blood.png */; };
@@ -237,6 +233,9 @@
 		688F7F7D169FCD29008581D4 /* HSAlertViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 688F7F7B169FCD29008581D4 /* HSAlertViewController.xib */; };
 		688F7F8716A012FD008581D4 /* HSFlurryAnalytics.m in Sources */ = {isa = PBXBuildFile; fileRef = 688F7F8516A012FD008581D4 /* HSFlurryAnalytics.m */; };
 		688F7F8A16A01343008581D4 /* NSString+HSUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 688F7F8916A01343008581D4 /* NSString+HSUtils.m */; };
+		688F7FCA16A308A5008581D4 /* NSUnderlinedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 688F7FC916A308A5008581D4 /* NSUnderlinedButton.m */; };
+		688F7FCD16A30DF2008581D4 /* HSRestorePasswordViewCotroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 688F7FCC16A30DF2008581D4 /* HSRestorePasswordViewCotroller.m */; };
+		688F7FCF16A30E16008581D4 /* HSRestorePasswordViewCotroller.xib in Resources */ = {isa = PBXBuildFile; fileRef = 688F7FCE16A30E15008581D4 /* HSRestorePasswordViewCotroller.xib */; };
 		68A028DB166E9571000E18D8 /* HSContraindicationsLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 68A028DA166E9571000E18D8 /* HSContraindicationsLoader.m */; };
 		68B455B81635BC5100811A0F /* HSEventRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B455B71635BC5100811A0F /* HSEventRenderer.m */; };
 		68B455BC1635C0B500811A0F /* HSBloodDonationEventRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B455BB1635C0B500811A0F /* HSBloodDonationEventRenderer.m */; };
@@ -725,10 +724,6 @@
 		685088CC1666B715004EC3CC /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		685088CE1666B738004EC3CC /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		685088D01666B74B004EC3CC /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
-		685088E31667638A004EC3CC /* facebook_login_button_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = facebook_login_button_normal.png; sourceTree = "<group>"; };
-		685088E41667638A004EC3CC /* facebook_login_button_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "facebook_login_button_normal@2x.png"; sourceTree = "<group>"; };
-		685088E51667638A004EC3CC /* facebook_login_button_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = facebook_login_button_pressed.png; sourceTree = "<group>"; };
-		685088E61667638A004EC3CC /* facebook_login_button_pressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "facebook_login_button_pressed@2x.png"; sourceTree = "<group>"; };
 		685088EC1667F6D3004EC3CC /* Flurry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Flurry.h; sourceTree = "<group>"; };
 		685088EF1667F702004EC3CC /* libFlurry.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry.a; sourceTree = "<group>"; };
 		685CB2F6163F2005004FF9AC /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MBProgressHUD.h; path = Libs/MBProgressHUD/MBProgressHUD.h; sourceTree = "<group>"; };
@@ -795,6 +790,11 @@
 		688F7F8516A012FD008581D4 /* HSFlurryAnalytics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSFlurryAnalytics.m; sourceTree = "<group>"; };
 		688F7F8816A01343008581D4 /* NSString+HSUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+HSUtils.h"; sourceTree = "<group>"; };
 		688F7F8916A01343008581D4 /* NSString+HSUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+HSUtils.m"; sourceTree = "<group>"; };
+		688F7FC816A308A5008581D4 /* NSUnderlinedButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSUnderlinedButton.h; sourceTree = "<group>"; };
+		688F7FC916A308A5008581D4 /* NSUnderlinedButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSUnderlinedButton.m; sourceTree = "<group>"; };
+		688F7FCB16A30DF2008581D4 /* HSRestorePasswordViewCotroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSRestorePasswordViewCotroller.h; sourceTree = "<group>"; };
+		688F7FCC16A30DF2008581D4 /* HSRestorePasswordViewCotroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSRestorePasswordViewCotroller.m; sourceTree = "<group>"; };
+		688F7FCE16A30E15008581D4 /* HSRestorePasswordViewCotroller.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HSRestorePasswordViewCotroller.xib; sourceTree = "<group>"; };
 		68A028D9166E9571000E18D8 /* HSContraindicationsLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSContraindicationsLoader.h; sourceTree = "<group>"; };
 		68A028DA166E9571000E18D8 /* HSContraindicationsLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSContraindicationsLoader.m; sourceTree = "<group>"; };
 		68B455B61635BC5100811A0F /* HSEventRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HSEventRenderer.h; path = event/HSEventRenderer.h; sourceTree = "<group>"; };
@@ -1348,6 +1348,9 @@
 				3758507915AEDCF5006DF7E1 /* ProfileRegistrationViewController.h */,
 				3758507A15AEDCF5006DF7E1 /* ProfileRegistrationViewController.m */,
 				3758507B15AEDCF5006DF7E1 /* ProfileRegistrationViewController.xib */,
+				688F7FCB16A30DF2008581D4 /* HSRestorePasswordViewCotroller.h */,
+				688F7FCC16A30DF2008581D4 /* HSRestorePasswordViewCotroller.m */,
+				688F7FCE16A30E15008581D4 /* HSRestorePasswordViewCotroller.xib */,
 			);
 			name = Profile;
 			sourceTree = "<group>";
@@ -1786,28 +1789,8 @@
 		685088E01667638A004EC3CC /* profile */ = {
 			isa = PBXGroup;
 			children = (
-				685088E11667638A004EC3CC /* login */,
 			);
 			path = profile;
-			sourceTree = "<group>";
-		};
-		685088E11667638A004EC3CC /* login */ = {
-			isa = PBXGroup;
-			children = (
-				685088E21667638A004EC3CC /* facebook */,
-			);
-			path = login;
-			sourceTree = "<group>";
-		};
-		685088E21667638A004EC3CC /* facebook */ = {
-			isa = PBXGroup;
-			children = (
-				685088E31667638A004EC3CC /* facebook_login_button_normal.png */,
-				685088E41667638A004EC3CC /* facebook_login_button_normal@2x.png */,
-				685088E51667638A004EC3CC /* facebook_login_button_pressed.png */,
-				685088E61667638A004EC3CC /* facebook_login_button_pressed@2x.png */,
-			);
-			path = facebook;
 			sourceTree = "<group>";
 		};
 		685088EB1667F6D3004EC3CC /* Flurry */ = {
@@ -1938,6 +1921,8 @@
 			children = (
 				686BA62016344DE2004D7082 /* HSCalendarDayButton.h */,
 				686BA62116344DE2004D7082 /* HSCalendarDayButton.m */,
+				688F7FC816A308A5008581D4 /* NSUnderlinedButton.h */,
+				688F7FC916A308A5008581D4 /* NSUnderlinedButton.m */,
 			);
 			path = component;
 			sourceTree = "<group>";
@@ -2631,10 +2616,6 @@
 				6877928A165266890003D818 /* delete_mark_active@2x.png in Resources */,
 				6877928B165266890003D818 /* delete_mark_pressed.png in Resources */,
 				6877928C165266890003D818 /* delete_mark_pressed@2x.png in Resources */,
-				685088E71667638A004EC3CC /* facebook_login_button_normal.png in Resources */,
-				685088E81667638A004EC3CC /* facebook_login_button_normal@2x.png in Resources */,
-				685088E91667638A004EC3CC /* facebook_login_button_pressed.png in Resources */,
-				685088EA1667638A004EC3CC /* facebook_login_button_pressed@2x.png in Resources */,
 				680516D2166D7B4A0013E83E /* HSBlockUIViewController.xib in Resources */,
 				680516D6166D7B4A0013E83E /* HSCalendarViewController.xib in Resources */,
 				680516DA166D7B4A0013E83E /* HSEventPlanningViewController.xib in Resources */,
@@ -2647,6 +2628,7 @@
 				68F3B32316767699003E8376 /* HSContraindicationCell.xib in Resources */,
 				683FDAC5169E12AF00B3BF51 /* HSLoginChoiceViewController.xib in Resources */,
 				688F7F7D169FCD29008581D4 /* HSAlertViewController.xib in Resources */,
+				688F7FCF16A30E16008581D4 /* HSRestorePasswordViewCotroller.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2754,6 +2736,8 @@
 				688F7F7C169FCD29008581D4 /* HSAlertViewController.m in Sources */,
 				688F7F8716A012FD008581D4 /* HSFlurryAnalytics.m in Sources */,
 				688F7F8A16A01343008581D4 /* NSString+HSUtils.m in Sources */,
+				688F7FCA16A308A5008581D4 /* NSUnderlinedButton.m in Sources */,
+				688F7FCD16A30DF2008581D4 /* HSRestorePasswordViewCotroller.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

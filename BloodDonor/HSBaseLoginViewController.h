@@ -14,6 +14,7 @@
 @property (nonatomic, weak) IBOutlet UITextField *loginTextField;
 @property (nonatomic, weak) IBOutlet UITextField *passwordTextField;
 
-- (IBAction)authorizationButtonClick:(id)sender;
+- (IBAction)authorizationButtonClicked:(id)sender;
 
+- (IBAction)forgotPasswordButtonClicked:(id)sender;
 @end

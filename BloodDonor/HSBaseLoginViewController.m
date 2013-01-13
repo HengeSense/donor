@@ -14,6 +14,8 @@
 #import "ProfileDescriptionViewController.h"
 #import "ProfileRegistrationViewController.h"
 #import "ProfileSettingsViewController.h"
+#import "HSRestorePasswordViewCotroller.h"
+
 #import "Common.h"
 #import "MBProgressHUD.h"
 #import "HSAlertViewController.h"
@@ -47,7 +49,7 @@
 }
 
 #pragma mark Actions
-- (IBAction)authorizationButtonClick:(id)sender
+- (IBAction)authorizationButtonClicked:(id)sender
 {
     if (self.loginTextField.isFirstResponder) {
         [self.loginTextField resignFirstResponder];
@@ -75,6 +77,12 @@
         }];
     }
    
+}
+
+- (IBAction)forgotPasswordButtonClicked:(id)sender {
+    HSRestorePasswordViewCotroller *restorePasswordVeiwController =
+            [[HSRestorePasswordViewCotroller alloc] initWithNibName:@"HSRestorePasswordViewCotroller" bundle:nil];
+    [self.navigationController pushViewController:restorePasswordVeiwController animated:YES];
 }
 
 #pragma mark TextEditDelegate

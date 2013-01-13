@@ -25,11 +25,7 @@
 @implementation HSLoginChoiceViewController
 
 - (void)configureUI {
-    self.title = @"Вход";
-    [self.facebookAuthorizationButton setImage:[UIImage imageNamed:@"facebook_login_button_normal"]
-                                      forState:UIControlStateNormal];
-    [self.facebookAuthorizationButton setImage:[UIImage imageNamed:@"facebook_login_button_pressed"]
-                                      forState:UIControlStateHighlighted];
+    self.title = @"Донор";
 }
 
 - (void)viewDidLoad {
