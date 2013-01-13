@@ -56,6 +56,7 @@
         [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             [progressHud hide:YES];
             if (succeeded) {
+                [Common getInstance].authenticatedWithFacebook = NO;
                 [HSAlertViewController showWithMessage:@"Регистрация завершена."];
                 [self loadCalendarEventsAndGoToProfile];
             } else {

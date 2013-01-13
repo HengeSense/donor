@@ -19,66 +19,69 @@
 #import "HSAlertViewController.h"
 #import "HSModelCommon.h"
 
-static NSString * const kLinkFacebookTitle = @"Привязать Facebook";
-static NSString * const kUnlinkFacebookTitle = @"Отвязать Facebook";
+static const CGFloat kActionSheetAnimationDuration = 0.2;
+
+static NSString * const kNotLinkedToFacebookTitle = @"не привязан";
+static NSString * const kLinkedToFacebookTitle = @"привязан";
+
+@interface ProfileDescriptionViewController ()
+@property (nonatomic, weak) UIView *currentActionSheet;
+@end
 
 @implementation ProfileDescriptionViewController
 
-@synthesize calendarInfoDelegate;
-@synthesize selectBloodGroupViewController;
-@synthesize sexSelectViewController;
-@synthesize linkUnlinkToFacebookButton;
-
 #pragma mark Actions
 
-- (IBAction)settingsButtonClick:(id)sender
-{
-    ProfileSettingsViewController *controller = [[[ProfileSettingsViewController alloc] initWithNibName:@"ProfileSettingsViewController" bundle:nil] autorelease];
+- (IBAction)settingsButtonClick:(id)sender {
+    ProfileSettingsViewController *controller = [[ProfileSettingsViewController alloc]
+            initWithNibName:@"ProfileSettingsViewController" bundle:nil];
     [self.navigationController pushViewController:controller animated:YES];
 }
 
-- (void)cancelEditPressed
-{
-    hiddenView.hidden = NO;
-    [editButton setTitle:@"Изменить" forState:UIControlStateNormal];
-    [editButton setTitle:@"Изменить" forState:UIControlStateHighlighted];
-    nameTextField.enabled = NO;
-    nameTextField.textColor = [UIColor colorWithRed:132.0f/255.0f green:113.0f/255.0f blue:104.0f/255.0f alpha:1];
+- (void)cancelEditPressed {
+    [self hideCurrentActionSheetView];
+
+    self.hiddenView.hidden = NO;
+    self.facebookLinkUnlinkContainerView.hidden = YES;
+    [self.editButton setTitle:@"Изменить" forState:UIControlStateNormal];
+    [self.editButton setTitle:@"Изменить" forState:UIControlStateHighlighted];
+    self.nameTextField.enabled = NO;
+    self.nameTextField.textColor = [UIColor colorWithRed:132.0f/255.0f green:113.0f/255.0f blue:104.0f/255.0f alpha:1];
     //Private property setting
-    [nameTextField setValue:[UIColor colorWithRed:132.0f/255.0f green:113.0f/255.0f blue:104.0f/255.0f alpha:1] forKeyPath:@"_placeholderLabel.textColor"];
-    sexButton.enabled = NO;
-    bloodGroupButton.enabled = NO;
+    [self.nameTextField setValue:[UIColor colorWithRed:132.0f/255.0f green:113.0f/255.0f blue:104.0f/255.0f alpha:1] forKeyPath:@"_placeholderLabel.textColor"];
+    self.sexButton.enabled = NO;
+    self.bloodGroupButton.enabled = NO;
     self.navigationItem.leftBarButtonItem = nil;
 }
 
 - (IBAction)editButtonClick:(id)sender
 {
-    if (hiddenView.hidden)
+    if (self.hiddenView.hidden)
     {
         [self cancelEditPressed];
         
-        [Common getInstance].name = nameTextField.text;
+        [Common getInstance].name = self.nameTextField.text;
         
         PFUser *user = [PFUser currentUser];
         
         [user setObject:[Common getInstance].sex forKey:@"Sex"];
         [user setObject:[Common getInstance].bloodGroup forKey:@"BloodGroup"];
         [user setObject:[Common getInstance].bloodRH forKey:@"BloodRh"];
-        [user setObject:nameTextField.text forKey:@"Name"];
+        [user setObject:self.nameTextField.text forKey:@"Name"];
         [user saveInBackground];
         [HSFlurryAnalytics userUpdatedProfile];
     }
     else
     {
-        hiddenView.hidden = YES;
-        [editButton setTitle:@"Готово" forState:UIControlStateNormal];
-        [editButton setTitle:@"Готово" forState:UIControlStateHighlighted];
-        nameTextField.enabled = YES;
-        sexButton.enabled = YES;
-        nameTextField.textColor = [UIColor colorWithRed:223.0f/255.0f green:141.0f/255.0f blue:75.0f/255.0f alpha:1];
+        self.hiddenView.hidden = YES;
+        [self.editButton setTitle:@"Готово" forState:UIControlStateNormal];
+        [self.editButton setTitle:@"Готово" forState:UIControlStateHighlighted];
+        self.nameTextField.enabled = YES;
+        self.sexButton.enabled = YES;
+        self.nameTextField.textColor = [UIColor colorWithRed:223.0f/255.0f green:141.0f/255.0f blue:75.0f/255.0f alpha:1];
         //Private property setting
-        [nameTextField setValue:[UIColor colorWithRed:223.0f/255.0f green:141.0f/255.0f blue:75.0f/255.0f alpha:1] forKeyPath:@"_placeholderLabel.textColor"];
-        bloodGroupButton.enabled = YES;
+        [self.nameTextField setValue:[UIColor colorWithRed:223.0f/255.0f green:141.0f/255.0f blue:75.0f/255.0f alpha:1] forKeyPath:@"_placeholderLabel.textColor"];
+        self.bloodGroupButton.enabled = YES;
         [Common getInstance].sex = [[PFUser currentUser] valueForKey:@"Sex"];
         [Common getInstance].bloodGroup = [[PFUser currentUser] valueForKey:@"BloodGroup"];
         [Common getInstance].bloodRH = [[PFUser currentUser] valueForKey:@"BloodRh"];
@@ -96,26 +99,27 @@ static NSString * const kUnlinkFacebookTitle = @"Отвязать Facebook";
         cancelButton.frame = cancelButtonFrame;
         [cancelButton addTarget:self action:@selector(cancelEditPressed) forControlEvents:UIControlEventTouchUpInside];
         
-        UIBarButtonItem *cancelBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:cancelButton] autorelease];
+        UIBarButtonItem *cancelBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:cancelButton];
         [cancelBarButtonItem setTitlePositionAdjustment:UIOffsetMake(0, -1) forBarMetrics:UIBarMetricsDefault];
         self.navigationItem.leftBarButtonItem = cancelBarButtonItem;
+        
+        if (![Common getInstance].authenticatedWithFacebook) {
+            self.facebookLinkUnlinkContainerView.hidden = NO;
+        } 
     }
 }
 
-- (IBAction)sexButtonClick:(id)sender
-{
-    [nameTextField resignFirstResponder];
+- (IBAction)sexButtonClick:(id)sender {
+    [self.nameTextField resignFirstResponder];
     [self showModal:self.sexSelectViewController.view];
 }
 
-- (IBAction)bloodGroupButtonClick:(id)sender
-{
-    [nameTextField resignFirstResponder];
+- (IBAction)bloodGroupButtonClick:(id)sender {
+    [self.nameTextField resignFirstResponder];
     [self showModal:self.selectBloodGroupViewController.view];
 }
 
-- (void) showModal:(UIView*) modalView 
-{
+- (void) showModal:(UIView*) modalView  {
     UIWindow* mainWindow = (((AppDelegate*) [UIApplication sharedApplication].delegate).window);
     CGPoint middleCenter = modalView.center;
     CGSize offSize = [UIScreen mainScreen].bounds.size;
@@ -123,14 +127,12 @@ static NSString * const kUnlinkFacebookTitle = @"Отвязать Facebook";
     modalView.center = offScreenCenter;
     [mainWindow addSubview:modalView];
     
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:0.5];
-    modalView.center = middleCenter;
-    [UIView commitAnimations];
+    [UIView animateWithDuration:0.5 animations:^{
+        modalView.center = middleCenter;
+    }];
 }
 
-- (IBAction)logoutButtonClick:(id)sender
-{
+- (IBAction)logoutButtonClick:(id)sender {
     [HSFlurryAnalytics userLoggedOut];
     [PFUser logOut];
     [Common getInstance].email = nil;
@@ -144,29 +146,99 @@ static NSString * const kUnlinkFacebookTitle = @"Отвязать Facebook";
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
-- (IBAction)linkUnlinkToFacebook:(id)sender {
+- (void)unlinkFacebook {
     MBProgressHUD *progressHud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+    [PFFacebookUtils unlinkUserInBackground:[PFUser currentUser] block:^(BOOL succeeded, NSError *error) {
+        [progressHud hide:YES];
+        if (succeeded) {
+            [self.proposeFacebookLinkUnlinkButton setTitle:kNotLinkedToFacebookTitle forState:UIControlStateNormal];
+        } else {
+            [HSAlertViewController showWithTitle:@"Ошибка" message:localizedDescriptionForParseError(error)];
+            NSLog(@"Facebook unlink failed due to error: %@", error);
+        }
+    }];
+}
+
+- (void)linkFacebook {
+    MBProgressHUD *progressHud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+    NSArray *permissions = @[@"user_about_me", @"email"];
+    [PFFacebookUtils linkUser:[PFUser currentUser] permissions:permissions block:^(BOOL succeeded, NSError *error) {
+        [progressHud hide:YES];
+        if (succeeded) {
+            [self.proposeFacebookLinkUnlinkButton setTitle:kLinkedToFacebookTitle forState:UIControlStateNormal];
+        } else {
+            [HSAlertViewController showWithTitle:@"Ошибка" message:localizedDescriptionForParseError(error)];
+            NSLog(@"Facebook link failed due to error: %@", error);
+        }
+    }];
+}
+
+- (void)showViewAsActionSheet:(UIView *)actionSheetView {
+    self.view.userInteractionEnabled = NO;
+    if (self.currentActionSheet != nil) {
+        [self hideCurrentActionSheetView];
+    }
+    self.currentActionSheet = actionSheetView;
+
+    
+    CGRect invisibleFrame = actionSheetView.frame;
+    CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
+    invisibleFrame.origin.x = 0;
+    invisibleFrame.origin.y = screenHeight;
+    actionSheetView.frame = invisibleFrame;
+
+    UIWindow* mainWindow = (((AppDelegate*) [UIApplication sharedApplication].delegate).window);
+    [mainWindow addSubview:actionSheetView];
+    
+    [UIView animateWithDuration:kActionSheetAnimationDuration animations:^{
+        CGRect visibleFrame = actionSheetView.frame;
+        visibleFrame.origin.y = screenHeight - visibleFrame.size.height;
+        actionSheetView.frame = visibleFrame;
+    }];
+}
+
+- (void)hideCurrentActionSheetView {
+    if (self.currentActionSheet == nil) {
+        return;
+    }
+    CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
+    CGRect invisibleFrame = self.currentActionSheet.frame;
+    invisibleFrame.origin.y = screenHeight;
+    [UIView animateWithDuration:kActionSheetAnimationDuration animations:^{
+        self.currentActionSheet.frame = invisibleFrame;
+    } completion:^(BOOL finished) {
+        [self.currentActionSheet removeFromSuperview];
+    }];
+    self.currentActionSheet = nil;
+    self.view.userInteractionEnabled = YES;
+}
+
+- (void)proposeUserLinkFacebook {
+    [self showViewAsActionSheet:self.linkFacebookView];
+}
+
+- (void)proposeUserUnlinkFacebook {
+    [self showViewAsActionSheet:self.unlinkFacebookView];
+}
+
+- (IBAction)cancelFacebookLinkUnlinkActionSheet:(id)sender {
+    [self hideCurrentActionSheetView];
+}
+
+- (IBAction)linkUnlinkToFacebook:(id)sender {
+    [self cancelFacebookLinkUnlinkActionSheet:sender];
     if ([PFFacebookUtils isLinkedWithUser:[PFUser currentUser]]) {
-        [PFFacebookUtils unlinkUserInBackground:[PFUser currentUser] block:^(BOOL succeeded, NSError *error) {
-            [progressHud hide:YES];
-            if (succeeded) {
-                self.linkUnlinkToFacebookButton.titleLabel.text = kLinkFacebookTitle;
-            } else {
-                [HSAlertViewController showWithTitle:@"Ошибка" message:localizedDescriptionForParseError(error)];
-                NSLog(@"Facebook unlink failed due to error: %@", error);
-            }
-        }];
+        [self unlinkFacebook];
     } else {
-        NSArray *permissions = @[@"user_about_me", @"email"];
-        [PFFacebookUtils linkUser:[PFUser currentUser] permissions:permissions block:^(BOOL succeeded, NSError *error) {
-            [progressHud hide:YES];
-            if (succeeded) {
-                self.linkUnlinkToFacebookButton.titleLabel.text = kUnlinkFacebookTitle;
-            } else {
-                [HSAlertViewController showWithTitle:@"Ошибка" message:localizedDescriptionForParseError(error)];
-                NSLog(@"Facebook link failed due to error: %@", error);
-            }
-        }];
+        [self linkFacebook];
+    }
+}
+
+- (IBAction)proposeLinkUnlinkFacebook:(id)sender {
+    if ([PFFacebookUtils isLinkedWithUser:[PFUser currentUser]]) {
+        [self proposeUserUnlinkFacebook];
+    } else {
+        [self proposeUserLinkFacebook];
     }
 }
 
@@ -176,8 +248,8 @@ static NSString * const kUnlinkFacebookTitle = @"Отвязать Facebook";
 {
     if (bloodGroup) 
     {
-        [bloodGroupButton setTitle:bloodGroup forState:UIControlStateNormal];
-        [bloodGroupButton setTitle:bloodGroup forState:UIControlStateHighlighted];
+        [self.bloodGroupButton setTitle:bloodGroup forState:UIControlStateNormal];
+        [self.bloodGroupButton setTitle:bloodGroup forState:UIControlStateHighlighted];
     }
 }
 
@@ -189,13 +261,13 @@ static NSString * const kUnlinkFacebookTitle = @"Отвязать Facebook";
     {
         if ([selectedSex isEqualToString:@"Мужской"])
         {
-            [sexButton setTitle:@"муж" forState:UIControlStateNormal];
-            [sexButton setTitle:@"муж" forState:UIControlStateHighlighted];
+            [self.sexButton setTitle:@"муж" forState:UIControlStateNormal];
+            [self.sexButton setTitle:@"муж" forState:UIControlStateHighlighted];
         }
         else
         {
-            [sexButton setTitle:@"жен" forState:UIControlStateNormal];
-            [sexButton setTitle:@"жен" forState:UIControlStateHighlighted];
+            [self.sexButton setTitle:@"жен" forState:UIControlStateNormal];
+            [self.sexButton setTitle:@"жен" forState:UIControlStateHighlighted];
         }
     }
 }
@@ -209,49 +281,45 @@ static NSString * const kUnlinkFacebookTitle = @"Отвязать Facebook";
 }
 
 #pragma mark Lifecycle
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self)
-    {
-        
+- (void)configureFacebookUI {
+    // Configure facebook link/unlink container view controller.
+    self.facebookLinkUnlinkContainerView.hidden = YES;
+    self.proposeFacebookLinkUnlinkButton.enabled = YES;
+    if ([PFFacebookUtils isLinkedWithUser:[PFUser currentUser]]) {
+        [self.proposeFacebookLinkUnlinkButton setTitle:kLinkedToFacebookTitle forState:UIControlStateNormal];
+    } else {
+        [self.proposeFacebookLinkUnlinkButton setTitle:kNotLinkedToFacebookTitle forState:UIControlStateNormal];
     }
-    return self;
+    
+    // Configure facebook container view controller.
+    self.facebookContainerView.hidden = YES;
 }
 
-- (void)configureUI {
-    self.title = @"Профиль";
-    
+- (void)configureNavigationBar {
     [self.navigationItem setHidesBackButton:YES];
     
     UIImage *barImageNormal = [UIImage imageNamed:@"barButtonNormal"];
     UIImage *barImagePressed = [UIImage imageNamed:@"barButtonPressed"];
     
-    editButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.editButton = [UIButton buttonWithType:UIButtonTypeCustom];
     CGRect editButtonFrame = CGRectMake(0, 0, barImageNormal.size.width, barImageNormal.size.height);
-    [editButton setBackgroundImage:barImageNormal forState:UIControlStateNormal];
-    [editButton setBackgroundImage:barImagePressed forState:UIControlStateHighlighted];
-    [editButton setTitle:@"Изменить" forState:UIControlStateNormal];
-    [editButton setTitle:@"Изменить" forState:UIControlStateHighlighted];
-    editButton.titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:12];
-    editButton.frame = editButtonFrame;
-    [editButton addTarget:self action:@selector(editButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+    [self.editButton setBackgroundImage:barImageNormal forState:UIControlStateNormal];
+    [self.editButton setBackgroundImage:barImagePressed forState:UIControlStateHighlighted];
+    [self.editButton setTitle:@"Изменить" forState:UIControlStateNormal];
+    [self.editButton setTitle:@"Изменить" forState:UIControlStateHighlighted];
+    self.editButton.titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:12];
+    self.editButton.frame = editButtonFrame;
+    [self.editButton addTarget:self action:@selector(editButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     
-    UIBarButtonItem *editBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:editButton] autorelease];
+    UIBarButtonItem *editBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.editButton];
     [editBarButtonItem setTitlePositionAdjustment:UIOffsetMake(0, -1) forBarMetrics:UIBarMetricsDefault];
     self.navigationItem.rightBarButtonItem = editBarButtonItem;
-    
-    if ([Common getInstance].authenticatedWithFacebook) {
-        self.linkUnlinkToFacebookButton.hidden = YES;
-    } else {
-        self.linkUnlinkToFacebookButton.hidden = NO;
-        if ([PFFacebookUtils isLinkedWithUser:[PFUser currentUser]]) {
-            self.linkUnlinkToFacebookButton.titleLabel.text = @"Отвязать Facebook";
-        } else {
-            self.linkUnlinkToFacebookButton.titleLabel.text = @"Привязать Facebook";
-        }
-    }
+}
+
+- (void)configureUI {
+    self.title = @"Профиль";
+    [self configureNavigationBar];
+    [self configureFacebookUI];
 }
 
 - (void)viewDidLoad
@@ -295,35 +363,35 @@ static NSString * const kUnlinkFacebookTitle = @"Отвязать Facebook";
     else
         buttonTite = [NSString stringWithFormat:@"%@RH-", buttonTite];
     
-    [bloodGroupButton setTitle:buttonTite forState:UIControlStateNormal];
-    [bloodGroupButton setTitle:buttonTite forState:UIControlStateHighlighted];
+    [self.bloodGroupButton setTitle:buttonTite forState:UIControlStateNormal];
+    [self.bloodGroupButton setTitle:buttonTite forState:UIControlStateHighlighted];
     
     if ([[user objectForKey:@"Sex"] intValue] == 0)
     {
-        [sexButton setTitle:@"муж" forState:UIControlStateNormal];
-        [sexButton setTitle:@"муж" forState:UIControlStateHighlighted];
+        [self.sexButton setTitle:@"муж" forState:UIControlStateNormal];
+        [self.sexButton setTitle:@"муж" forState:UIControlStateHighlighted];
     }
     else
     {
-        [sexButton setTitle:@"жен" forState:UIControlStateNormal];
-        [sexButton setTitle:@"жен" forState:UIControlStateHighlighted];
+        [self.sexButton setTitle:@"жен" forState:UIControlStateNormal];
+        [self.sexButton setTitle:@"жен" forState:UIControlStateHighlighted];
     }
     
-    nameTextField.text = [user objectForKey:@"Name"];
-    nameTextField.textColor = [UIColor colorWithRed:132.0f/255.0f green:113.0f/255.0f blue:104.0f/255.0f alpha:1];
+    self.nameTextField.text = [user objectForKey:@"Name"];
+    self.nameTextField.textColor = [UIColor colorWithRed:132.0f/255.0f green:113.0f/255.0f blue:104.0f/255.0f alpha:1];
     //Private property setting
-    [nameTextField setValue:[UIColor colorWithRed:132.0f/255.0f green:113.0f/255.0f blue:104.0f/255.0f alpha:1] forKeyPath:@"_placeholderLabel.textColor"];
+    [self.nameTextField setValue:[UIColor colorWithRed:132.0f/255.0f green:113.0f/255.0f blue:104.0f/255.0f alpha:1] forKeyPath:@"_placeholderLabel.textColor"];
     
     
     if (self.calendarInfoDelegate != nil) {
-        NSDateFormatter *dateFormat = [[[NSDateFormatter alloc] init] autorelease];
+        NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
         [dateFormat setDateFormat:@"dd.MM.yyyy"];
         
         NSDate *nextBloodDonationDate = [self.calendarInfoDelegate nextBloodDonationDate];
-        nextBloodDonateDateLabel.text = nextBloodDonationDate != nil ?
+        self.nextBloodDonateDateLabel.text = nextBloodDonationDate != nil ?
                 [dateFormat stringFromDate:nextBloodDonationDate] : @"-";
         
-        bloodDonationCountLabel.text = [NSString stringWithFormat:@"%d",
+        self.bloodDonationCountLabel.text = [NSString stringWithFormat:@"%d",
                 [self.calendarInfoDelegate numberOfDoneBloodDonationEvents]];
     }
 
@@ -331,20 +399,6 @@ static NSString * const kUnlinkFacebookTitle = @"Отвязать Facebook";
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-
-- (void)viewDidUnload {
-    [super viewDidUnload];
-    [self setSexSelectViewController: nil];
-    [self setSelectBloodGroupViewController: nil];
-    [self setLinkUnlinkToFacebookButton:nil];
-}
-
-- (void)dealloc {
-    [self setSexSelectViewController: nil];
-    [self setSelectBloodGroupViewController: nil];
-    [self setLinkUnlinkToFacebookButton:nil];
-    [super dealloc];
 }
 
 @end
