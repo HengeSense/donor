@@ -172,11 +172,11 @@
 		683FDAC4169E12AF00B3BF51 /* HSLoginChoiceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 683FDAC2169E12AE00B3BF51 /* HSLoginChoiceViewController.m */; };
 		683FDAC5169E12AF00B3BF51 /* HSLoginChoiceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 683FDAC3169E12AE00B3BF51 /* HSLoginChoiceViewController.xib */; };
 		683FDAC9169E61AC00B3BF51 /* HSLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 683FDAC8169E61AB00B3BF51 /* HSLoginViewController.m */; };
-		685088C91666B6A3004EC3CC /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 685088C81666B6A3004EC3CC /* Social.framework */; };
+		685088C91666B6A3004EC3CC /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 685088C81666B6A3004EC3CC /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		685088CB1666B6AC004EC3CC /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 685088CA1666B6AC004EC3CC /* libsqlite3.dylib */; };
-		685088CD1666B715004EC3CC /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 685088CC1666B715004EC3CC /* Accounts.framework */; };
+		685088CD1666B715004EC3CC /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 685088CC1666B715004EC3CC /* Accounts.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		685088CF1666B738004EC3CC /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 685088CE1666B738004EC3CC /* StoreKit.framework */; };
-		685088D11666B74B004EC3CC /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 685088D01666B74B004EC3CC /* AdSupport.framework */; };
+		685088D11666B74B004EC3CC /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 685088D01666B74B004EC3CC /* AdSupport.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		685088F01667F702004EC3CC /* libFlurry.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 685088EF1667F702004EC3CC /* libFlurry.a */; };
 		685CB2F8163F200A004FF9AC /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 685CB2F7163F2008004FF9AC /* MBProgressHUD.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		685CB3131640E87F004FF9AC /* icon_blood.png in Resources */ = {isa = PBXBuildFile; fileRef = 685CB2FE1640E87E004FF9AC /* icon_blood.png */; };
@@ -1124,12 +1124,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				685088F01667F702004EC3CC /* libFlurry.a in Frameworks */,
-				685088D11666B74B004EC3CC /* AdSupport.framework in Frameworks */,
-				685088CF1666B738004EC3CC /* StoreKit.framework in Frameworks */,
 				685088CD1666B715004EC3CC /* Accounts.framework in Frameworks */,
-				685088CB1666B6AC004EC3CC /* libsqlite3.dylib in Frameworks */,
+				685088D11666B74B004EC3CC /* AdSupport.framework in Frameworks */,
 				685088C91666B6A3004EC3CC /* Social.framework in Frameworks */,
+				685088F01667F702004EC3CC /* libFlurry.a in Frameworks */,
+				685088CB1666B6AC004EC3CC /* libsqlite3.dylib in Frameworks */,
+				685088CF1666B738004EC3CC /* StoreKit.framework in Frameworks */,
 				85A0F6F715B91E1500EBC942 /* AudioToolbox.framework in Frameworks */,
 				6802A1671665D4FD0034B124 /* Parse.framework in Frameworks */,
 				8585E189161AF9C700275AE7 /* CoreText.framework in Frameworks */,
@@ -2850,7 +2850,7 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_PEDANTIC = NO;
 				INFOPLIST_FILE = "BloodDonor/BloodDonor-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Libs/Flurry\"",
@@ -2883,7 +2883,7 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_PEDANTIC = NO;
 				INFOPLIST_FILE = "BloodDonor/BloodDonor-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Libs/Flurry\"",
@@ -2942,7 +2942,7 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_PEDANTIC = NO;
 				INFOPLIST_FILE = "BloodDonor/BloodDonor-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Libs/Flurry\"",
@@ -3025,7 +3025,7 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_PEDANTIC = NO;
 				INFOPLIST_FILE = "BloodDonor/BloodDonor-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Libs/Flurry\"",
