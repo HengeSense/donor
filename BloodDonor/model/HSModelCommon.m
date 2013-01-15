@@ -29,6 +29,8 @@ NSString* localizedDescriptionForParseError (NSError *error) {
         return @"Данный Facebook аккаунт уже привязан к другому аккаунту.";
     } else if (error.code == kPFErrorInvalidEmailAddress) {
         return @"Неправильный Email";
+    } else if (error.code == kPFErrorUserWithEmailNotFound) {
+        return @"Пользователь с данной почтой не зарегистрирован.";
     } else {
         return @"Невозможно сохранить данные. Ошибка на сервере.";
     }
