@@ -291,9 +291,9 @@
 					FontSize="24"
 					Background="#FF4F3B34" 
 					BorderBrush="#FF4F3B34" 
+                    Foreground="#FFCBB2A3" 
 					FontFamily="Segoe WP Regular"
 					Name="Login" Content="{Binding Login, Source={StaticResource Loc}}" 
-					Foreground="#FFCBB2A3" 
                     Click="Login_Click" />
                         <!-- Click="Login_Click" Command="{Binding Path=User.LoginCommand}" -->
 

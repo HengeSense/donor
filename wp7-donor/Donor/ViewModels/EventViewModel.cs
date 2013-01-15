@@ -838,7 +838,7 @@ namespace Donor.ViewModels
         public bool ThisDayEvents(DateTime date)
         {
             bool existsEvent = false;
-            if (this.UserItems.FirstOrDefault(c => ((c.Date == date) && (c.Type != "PossibleBloodGive"))) != null)
+            if (this.UserItems.FirstOrDefault(c => ((c.Date == date) && (c.Type != "PossibleBloodGive") && (c.Type != "Праздник"))) != null)
             {
                 existsEvent = true;
             };

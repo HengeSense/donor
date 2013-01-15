@@ -209,31 +209,28 @@ BorderBrush="#FF4F3B34" Foreground="#FFCBB2A3" x:Name="email"
                             Foreground="#FFCBB2A3" x:Name="password" Password="" />
                             <!-- {Binding Path=User.Password, Mode=TwoWay} -->
 
-                                                   
-                            
+
                             <Button Name="Login" 
-						Content="{Binding Login, Source={StaticResource Loc}}" 						
-						FontSize="24"
-						Background="#FF4186A3" 
-						BorderBrush="#FF4186A3" 
-						FontFamily="Segoe WP Regular" Foreground="White" Click="Login_Click"/>
+						    Content="{Binding Login, Source={StaticResource Loc}}" 						
+						    FontSize="24"
+					        Background="#FF4F3B34" 
+					        BorderBrush="#FF4F3B34" 
+                            Foreground="#FFCBB2A3" 
+						    FontFamily="Segoe WP Regular" 
+                            Click="Login_Click"/>
                             <!-- Click="Login_Click" 
                             Command="{Binding Path=User.LoginCommand}"
                             -->
 
                             <Button 
-					FontSize="24"
-					Background="#FF4186A3" 
-					BorderBrush="#FF4186A3" 
-					FontFamily="Segoe WP Regular"
-					Name="FacebookLogin" Content="{Binding FacebookLogin, Source={StaticResource Loc}}" 
-					Foreground="#FFFFFFFF" Click="FacebookLogin_Click"/>
+					        FontSize="24"
+					        Background="#FF4F3B34" 
+					        BorderBrush="#FF4F3B34" 
+                            Foreground="#FFCBB2A3" 
+					        FontFamily="Segoe WP Regular"
+					        Name="FacebookLogin" Content="{Binding FacebookLogin, Source={StaticResource Loc}}" 
+					        Click="FacebookLogin_Click"/>
 
-
-                            <TextBlock 
-						Foreground="#FF847168"
-						Style="{StaticResource Text24pxCBB2A3}"
-						Text="{Binding EnterLoginAndPasswordToRegister, Source={StaticResource Loc}}" TextWrapping="Wrap" Visibility="Collapsed" />
 
                             <Button Name="RegisterShowButton" 
 						Content="Регистрация" 
@@ -241,6 +238,13 @@ BorderBrush="#FF4F3B34" Foreground="#FFCBB2A3" x:Name="email"
 						Background="#FF4186A3" 
 						BorderBrush="#FF4186A3" 
 						FontFamily="Segoe WP Regular" Foreground="White" Click="RegisterShowButton_Click" />
+
+                            
+                            <TextBlock 
+						Foreground="#FF847168"
+						Style="{StaticResource Text24pxCBB2A3}"
+						Text="{Binding EnterLoginAndPasswordToRegister, Source={StaticResource Loc}}" TextWrapping="Wrap" Visibility="Collapsed" />
+
                             <TextBlock 
 						Foreground="#FF847168"
 						Style="{StaticResource Text24pxCBB2A3}"
@@ -253,7 +257,7 @@ BorderBrush="#FF4F3B34" Foreground="#FFCBB2A3" x:Name="email"
 						FontSize="24"
 						Background="#FF4186A3" 
 						BorderBrush="#FF4186A3" 
-						FontFamily="Segoe WP Regular" Foreground="#FFFFFFFF"/>
+						FontFamily="Segoe WP Regular" Foreground="#FFFFFFFF" Visibility="Collapsed" />
                         </StackPanel>
 
                         <WPExtensions:AdvancedApplicationBar Background="#FF211E1D" BackgroundColor="#FF211E1D" 
