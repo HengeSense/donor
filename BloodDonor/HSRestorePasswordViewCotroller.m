@@ -22,8 +22,16 @@
 
 #pragma mark - Lifecycle
 
+- (void)configureRestorePasswordButton {
+    [self.restorePasswordButton setBackgroundImage:[UIImage imageNamed:@"restore_password_button_normal"]
+                                          forState:UIControlStateNormal];
+    [self.restorePasswordButton setBackgroundImage:[UIImage imageNamed:@"restore_password_button_pressed"]
+                                          forState:UIControlStateHighlighted];
+}
+
 - (void)configureUI {
     self.title = @"Восстановление пароля";
+    [self configureRestorePasswordButton];
 }
 
 - (void)viewDidLoad {
@@ -53,5 +61,9 @@
     else {
         [HSAlertViewController showWithTitle:@"Ошибка" message:@"Не указан email"];
     }
+}
+- (void)viewDidUnload {
+    [self setRestorePasswordButton:nil];
+    [super viewDidUnload];
 }
 @end
