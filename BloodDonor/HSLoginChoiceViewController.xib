@@ -34,7 +34,7 @@
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 			</object>
 			<object class="IBUIView" id="718683247">
-				<reference key="NSNextResponder"/>
+				<nil key="NSNextResponder"/>
 				<int key="NSvFlags">274</int>
 				<array class="NSMutableArray" key="NSSubviews">
 					<object class="IBUIImageView" id="88321318">
@@ -42,7 +42,6 @@
 						<int key="NSvFlags">274</int>
 						<string key="NSFrameSize">{320, 480}</string>
 						<reference key="NSSuperview" ref="718683247"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="621904952"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -57,7 +56,6 @@
 						<int key="NSvFlags">290</int>
 						<string key="NSFrame">{{90, 219}, {140, 23}}</string>
 						<reference key="NSSuperview" ref="718683247"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="862324688"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
@@ -88,26 +86,25 @@
 						<int key="NSvFlags">290</int>
 						<string key="NSFrame">{{40, 147}, {240, 44}}</string>
 						<reference key="NSSuperview" ref="718683247"/>
-						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="1032388398"/>
+						<reference key="NSNextKeyView" ref="118802990"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
-						<int key="IBUIButtonType">1</int>
 						<string key="IBUINormalTitle">Войти</string>
 						<object class="NSColor" key="IBUIHighlightedTitleColor" id="278498172">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MQA</bytes>
 						</object>
-						<object class="NSColor" key="IBUINormalTitleColor">
-							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
-						</object>
+						<reference key="IBUINormalTitleColor" ref="278498172"/>
 						<object class="NSColor" key="IBUINormalTitleShadowColor" id="584196425">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MC41AA</bytes>
+						</object>
+						<object class="NSCustomResource" key="IBUINormalBackgroundImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">login_base_auth_button_normal.png</string>
 						</object>
 						<reference key="IBUIFontDescription" ref="321292421"/>
 						<reference key="IBUIFont" ref="6888016"/>
@@ -117,21 +114,20 @@
 						<int key="NSvFlags">290</int>
 						<string key="NSFrame">{{40, 250}, {240, 44}}</string>
 						<reference key="NSSuperview" ref="718683247"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="335704825"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
-						<int key="IBUIButtonType">1</int>
-						<string key="IBUINormalTitle">Войти через facebook</string>
+						<string key="IBUINormalTitle">Войти через Facebook</string>
 						<reference key="IBUIHighlightedTitleColor" ref="278498172"/>
-						<object class="NSColor" key="IBUINormalTitleColor">
-							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
-						</object>
+						<reference key="IBUINormalTitleColor" ref="278498172"/>
 						<reference key="IBUINormalTitleShadowColor" ref="584196425"/>
+						<object class="NSCustomResource" key="IBUINormalBackgroundImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">login_facebook_auth_button_normal.png</string>
+						</object>
 						<reference key="IBUIFontDescription" ref="321292421"/>
 						<reference key="IBUIFont" ref="6888016"/>
 					</object>
@@ -140,28 +136,39 @@
 						<int key="NSvFlags">290</int>
 						<string key="NSFrame">{{40, 301}, {240, 44}}</string>
 						<reference key="NSSuperview" ref="718683247"/>
-						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
-						<int key="IBUIButtonType">1</int>
 						<string key="IBUINormalTitle">Регистрация</string>
 						<reference key="IBUIHighlightedTitleColor" ref="278498172"/>
-						<object class="NSColor" key="IBUINormalTitleColor">
-							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
-						</object>
+						<reference key="IBUINormalTitleColor" ref="278498172"/>
 						<reference key="IBUINormalTitleShadowColor" ref="584196425"/>
+						<object class="NSCustomResource" key="IBUINormalBackgroundImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">login_registration_button_normal.png</string>
+						</object>
 						<reference key="IBUIFontDescription" ref="321292421"/>
 						<reference key="IBUIFont" ref="6888016"/>
 					</object>
+					<object class="IBUIImageView" id="118802990">
+						<reference key="NSNextResponder" ref="718683247"/>
+						<int key="NSvFlags">292</int>
+						<string key="NSFrame">{{64, -3}, {193, 193}}</string>
+						<reference key="NSSuperview" ref="718683247"/>
+						<reference key="NSNextKeyView" ref="1032388398"/>
+						<string key="NSReuseIdentifierKey">_NS:9</string>
+						<int key="IBUIContentMode">2</int>
+						<bool key="IBUIUserInteractionEnabled">NO</bool>
+						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+						<object class="NSCustomResource" key="IBUIImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">login_logo.png</string>
+						</object>
+					</object>
 				</array>
 				<string key="NSFrame">{{0, 44}, {320, 392}}</string>
-				<reference key="NSSuperview"/>
-				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="88321318"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
@@ -196,13 +203,29 @@
 					<int key="connectionID">55</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">baseAuthorizationButton</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="621904952"/>
+					</object>
+					<int key="connectionID">61</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">registrationButton</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="335704825"/>
+					</object>
+					<int key="connectionID">62</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">basicAuthenticationSelected:</string>
+						<string key="label">baseAuthorizationSelected:</string>
 						<reference key="source" ref="621904952"/>
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">7</int>
 					</object>
-					<int key="connectionID">56</int>
+					<int key="connectionID">64</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
@@ -251,6 +274,7 @@
 							<reference ref="1032388398"/>
 							<reference ref="621904952"/>
 							<reference ref="335704825"/>
+							<reference ref="118802990"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -279,6 +303,11 @@
 						<reference key="object" ref="1032388398"/>
 						<reference key="parent" ref="718683247"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">59</int>
+						<reference key="object" ref="118802990"/>
+						<reference key="parent" ref="718683247"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -292,12 +321,13 @@
 				<string key="52.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="53.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="54.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="59.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">58</int>
+			<int key="maxID">64</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -323,17 +353,25 @@
 							<string key="candidateClassName">id</string>
 						</object>
 					</dictionary>
-					<object class="NSMutableDictionary" key="outlets">
-						<string key="NS.key.0">facebookAuthorizationButton</string>
-						<string key="NS.object.0">UIButton</string>
-					</object>
-					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<string key="NS.key.0">facebookAuthorizationButton</string>
-						<object class="IBToOneOutletInfo" key="NS.object.0">
+					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="baseAuthorizationButton">UIButton</string>
+						<string key="facebookAuthorizationButton">UIButton</string>
+						<string key="registrationButton">UIButton</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="baseAuthorizationButton">
+							<string key="name">baseAuthorizationButton</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="facebookAuthorizationButton">
 							<string key="name">facebookAuthorizationButton</string>
 							<string key="candidateClassName">UIButton</string>
 						</object>
-					</object>
+						<object class="IBToOneOutletInfo" key="registrationButton">
+							<string key="name">registrationButton</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+					</dictionary>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">./Classes/HSLoginChoiceViewController.h</string>
@@ -357,10 +395,13 @@
 		</object>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
-		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="NS.key.0">background.png</string>
-			<string key="NS.object.0">{320, 480}</string>
-		</object>
+		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
+			<string key="background.png">{320, 480}</string>
+			<string key="login_base_auth_button_normal.png">{240, 40}</string>
+			<string key="login_facebook_auth_button_normal.png">{240, 40}</string>
+			<string key="login_logo.png">{193, 193}</string>
+			<string key="login_registration_button_normal.png">{240, 40}</string>
+		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">1930</string>
 	</data>
 </archive>

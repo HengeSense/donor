@@ -11,9 +11,11 @@
 
 @interface HSLoginChoiceViewController : HSLoginViewController
 
-- (IBAction)basicAuthenticationSelected:(id)sender;
+- (IBAction)baseAuthorizationSelected:(id)sender;
 - (IBAction)facebookAuthenticationSelected:(id)sender;
 - (IBAction)registrationSelected:(id)sender;
 
+@property (weak, nonatomic) IBOutlet UIButton *baseAuthorizationButton;
 @property (weak, nonatomic) IBOutlet UIButton *facebookAuthorizationButton;
+@property (weak, nonatomic) IBOutlet UIButton *registrationButton;
 @end

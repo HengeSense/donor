@@ -172,6 +172,22 @@
 		683FDAC4169E12AF00B3BF51 /* HSLoginChoiceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 683FDAC2169E12AE00B3BF51 /* HSLoginChoiceViewController.m */; };
 		683FDAC5169E12AF00B3BF51 /* HSLoginChoiceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 683FDAC3169E12AE00B3BF51 /* HSLoginChoiceViewController.xib */; };
 		683FDAC9169E61AC00B3BF51 /* HSLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 683FDAC8169E61AB00B3BF51 /* HSLoginViewController.m */; };
+		6846114016A544FC00EE9030 /* login_base_auth_button_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 6846113216A544FC00EE9030 /* login_base_auth_button_normal.png */; };
+		6846114116A544FC00EE9030 /* login_base_auth_button_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6846113316A544FC00EE9030 /* login_base_auth_button_normal@2x.png */; };
+		6846114216A544FC00EE9030 /* login_base_auth_button_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 6846113416A544FC00EE9030 /* login_base_auth_button_pressed.png */; };
+		6846114316A544FC00EE9030 /* login_base_auth_button_pressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6846113516A544FC00EE9030 /* login_base_auth_button_pressed@2x.png */; };
+		6846114416A544FC00EE9030 /* login_facebook_auth_button_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 6846113616A544FC00EE9030 /* login_facebook_auth_button_normal.png */; };
+		6846114516A544FC00EE9030 /* login_facebook_auth_button_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6846113716A544FC00EE9030 /* login_facebook_auth_button_normal@2x.png */; };
+		6846114616A544FC00EE9030 /* login_facebook_auth_button_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 6846113816A544FC00EE9030 /* login_facebook_auth_button_pressed.png */; };
+		6846114716A544FC00EE9030 /* login_facebook_auth_button_pressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6846113916A544FC00EE9030 /* login_facebook_auth_button_pressed@2x.png */; };
+		6846114816A544FC00EE9030 /* login_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 6846113A16A544FC00EE9030 /* login_logo.png */; };
+		6846114916A544FC00EE9030 /* login_logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6846113B16A544FC00EE9030 /* login_logo@2x.png */; };
+		6846114A16A544FC00EE9030 /* login_registration_button_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 6846113C16A544FC00EE9030 /* login_registration_button_normal.png */; };
+		6846114B16A544FC00EE9030 /* login_registration_button_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6846113D16A544FC00EE9030 /* login_registration_button_normal@2x.png */; };
+		6846114C16A544FC00EE9030 /* login_registration_button_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 6846113E16A544FC00EE9030 /* login_registration_button_pressed.png */; };
+		6846114D16A544FC00EE9030 /* login_registration_button_pressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6846113F16A544FC00EE9030 /* login_registration_button_pressed@2x.png */; };
+		6846115016A547B700EE9030 /* login_facebook_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 6846114E16A547B700EE9030 /* login_facebook_logo.png */; };
+		6846115116A547B700EE9030 /* login_facebook_logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6846114F16A547B700EE9030 /* login_facebook_logo@2x.png */; };
 		685088C91666B6A3004EC3CC /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 685088C81666B6A3004EC3CC /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		685088CB1666B6AC004EC3CC /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 685088CA1666B6AC004EC3CC /* libsqlite3.dylib */; };
 		685088CD1666B715004EC3CC /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 685088CC1666B715004EC3CC /* Accounts.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -719,6 +735,22 @@
 		683FDAC3169E12AE00B3BF51 /* HSLoginChoiceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HSLoginChoiceViewController.xib; sourceTree = "<group>"; };
 		683FDAC7169E61AB00B3BF51 /* HSLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSLoginViewController.h; sourceTree = "<group>"; };
 		683FDAC8169E61AB00B3BF51 /* HSLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSLoginViewController.m; sourceTree = "<group>"; };
+		6846113216A544FC00EE9030 /* login_base_auth_button_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login_base_auth_button_normal.png; sourceTree = "<group>"; };
+		6846113316A544FC00EE9030 /* login_base_auth_button_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_base_auth_button_normal@2x.png"; sourceTree = "<group>"; };
+		6846113416A544FC00EE9030 /* login_base_auth_button_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login_base_auth_button_pressed.png; sourceTree = "<group>"; };
+		6846113516A544FC00EE9030 /* login_base_auth_button_pressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_base_auth_button_pressed@2x.png"; sourceTree = "<group>"; };
+		6846113616A544FC00EE9030 /* login_facebook_auth_button_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login_facebook_auth_button_normal.png; sourceTree = "<group>"; };
+		6846113716A544FC00EE9030 /* login_facebook_auth_button_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_facebook_auth_button_normal@2x.png"; sourceTree = "<group>"; };
+		6846113816A544FC00EE9030 /* login_facebook_auth_button_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login_facebook_auth_button_pressed.png; sourceTree = "<group>"; };
+		6846113916A544FC00EE9030 /* login_facebook_auth_button_pressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_facebook_auth_button_pressed@2x.png"; sourceTree = "<group>"; };
+		6846113A16A544FC00EE9030 /* login_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login_logo.png; sourceTree = "<group>"; };
+		6846113B16A544FC00EE9030 /* login_logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_logo@2x.png"; sourceTree = "<group>"; };
+		6846113C16A544FC00EE9030 /* login_registration_button_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login_registration_button_normal.png; sourceTree = "<group>"; };
+		6846113D16A544FC00EE9030 /* login_registration_button_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_registration_button_normal@2x.png"; sourceTree = "<group>"; };
+		6846113E16A544FC00EE9030 /* login_registration_button_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login_registration_button_pressed.png; sourceTree = "<group>"; };
+		6846113F16A544FC00EE9030 /* login_registration_button_pressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_registration_button_pressed@2x.png"; sourceTree = "<group>"; };
+		6846114E16A547B700EE9030 /* login_facebook_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login_facebook_logo.png; sourceTree = "<group>"; };
+		6846114F16A547B700EE9030 /* login_facebook_logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_facebook_logo@2x.png"; sourceTree = "<group>"; };
 		685088C81666B6A3004EC3CC /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		685088CA1666B6AC004EC3CC /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		685088CC1666B715004EC3CC /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
@@ -1786,9 +1818,33 @@
 			path = error;
 			sourceTree = "<group>";
 		};
+		6846113116A544FC00EE9030 /* login */ = {
+			isa = PBXGroup;
+			children = (
+				6846113A16A544FC00EE9030 /* login_logo.png */,
+				6846113B16A544FC00EE9030 /* login_logo@2x.png */,
+				6846114E16A547B700EE9030 /* login_facebook_logo.png */,
+				6846114F16A547B700EE9030 /* login_facebook_logo@2x.png */,
+				6846113216A544FC00EE9030 /* login_base_auth_button_normal.png */,
+				6846113316A544FC00EE9030 /* login_base_auth_button_normal@2x.png */,
+				6846113416A544FC00EE9030 /* login_base_auth_button_pressed.png */,
+				6846113516A544FC00EE9030 /* login_base_auth_button_pressed@2x.png */,
+				6846113616A544FC00EE9030 /* login_facebook_auth_button_normal.png */,
+				6846113716A544FC00EE9030 /* login_facebook_auth_button_normal@2x.png */,
+				6846113816A544FC00EE9030 /* login_facebook_auth_button_pressed.png */,
+				6846113916A544FC00EE9030 /* login_facebook_auth_button_pressed@2x.png */,
+				6846113C16A544FC00EE9030 /* login_registration_button_normal.png */,
+				6846113D16A544FC00EE9030 /* login_registration_button_normal@2x.png */,
+				6846113E16A544FC00EE9030 /* login_registration_button_pressed.png */,
+				6846113F16A544FC00EE9030 /* login_registration_button_pressed@2x.png */,
+			);
+			path = login;
+			sourceTree = "<group>";
+		};
 		685088E01667638A004EC3CC /* profile */ = {
 			isa = PBXGroup;
 			children = (
+				6846113116A544FC00EE9030 /* login */,
 			);
 			path = profile;
 			sourceTree = "<group>";
@@ -2629,6 +2685,22 @@
 				683FDAC5169E12AF00B3BF51 /* HSLoginChoiceViewController.xib in Resources */,
 				688F7F7D169FCD29008581D4 /* HSAlertViewController.xib in Resources */,
 				688F7FCF16A30E16008581D4 /* HSRestorePasswordViewCotroller.xib in Resources */,
+				6846114016A544FC00EE9030 /* login_base_auth_button_normal.png in Resources */,
+				6846114116A544FC00EE9030 /* login_base_auth_button_normal@2x.png in Resources */,
+				6846114216A544FC00EE9030 /* login_base_auth_button_pressed.png in Resources */,
+				6846114316A544FC00EE9030 /* login_base_auth_button_pressed@2x.png in Resources */,
+				6846114416A544FC00EE9030 /* login_facebook_auth_button_normal.png in Resources */,
+				6846114516A544FC00EE9030 /* login_facebook_auth_button_normal@2x.png in Resources */,
+				6846114616A544FC00EE9030 /* login_facebook_auth_button_pressed.png in Resources */,
+				6846114716A544FC00EE9030 /* login_facebook_auth_button_pressed@2x.png in Resources */,
+				6846114816A544FC00EE9030 /* login_logo.png in Resources */,
+				6846114916A544FC00EE9030 /* login_logo@2x.png in Resources */,
+				6846114A16A544FC00EE9030 /* login_registration_button_normal.png in Resources */,
+				6846114B16A544FC00EE9030 /* login_registration_button_normal@2x.png in Resources */,
+				6846114C16A544FC00EE9030 /* login_registration_button_pressed.png in Resources */,
+				6846114D16A544FC00EE9030 /* login_registration_button_pressed@2x.png in Resources */,
+				6846115016A547B700EE9030 /* login_facebook_logo.png in Resources */,
+				6846115116A547B700EE9030 /* login_facebook_logo@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

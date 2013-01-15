@@ -24,8 +24,40 @@
 
 @implementation HSLoginChoiceViewController
 
+- (void)configureBaseAuthButton {
+    [self.baseAuthorizationButton setBackgroundImage:[UIImage imageNamed:@"login_base_auth_button_normal"]
+                                            forState:UIControlStateNormal];
+    [self.baseAuthorizationButton setBackgroundImage:[UIImage imageNamed:@"login_base_auth_button_pressed"]
+                                            forState:UIControlStateHighlighted];
+}
+
+- (void)configureRegistrationButton {
+    [self.registrationButton setBackgroundImage:[UIImage imageNamed:@"login_registration_button_normal"]
+                                                forState:UIControlStateNormal];
+    [self.registrationButton setBackgroundImage:[UIImage imageNamed:@"login_registartion_button_pressed"]
+                                                forState:UIControlStateHighlighted];
+}
+
+- (void)configureFacebookAuthButton {
+    [self.facebookAuthorizationButton setBackgroundImage:[UIImage imageNamed:@"login_facebook_auth_button_normal"]
+                                                forState:UIControlStateNormal];
+    [self.facebookAuthorizationButton setBackgroundImage:[UIImage imageNamed:@"login_facebook_auth_button_pressed"]
+                                                forState:UIControlStateHighlighted];
+    
+    UIImageView *facebookLogoView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"login_facebook_logo"]];
+    CGRect facebookLogoViewFrame = facebookLogoView.frame;
+    facebookLogoViewFrame.origin.x = 10;
+    facebookLogoViewFrame.origin.y =
+            (self.facebookAuthorizationButton.bounds.size.height - facebookLogoViewFrame.size.height) / 2;
+    facebookLogoView.frame = facebookLogoViewFrame;
+    [self.facebookAuthorizationButton addSubview:facebookLogoView];
+}
+
 - (void)configureUI {
     self.title = @"Донор";
+    [self configureFacebookAuthButton];
+    [self configureBaseAuthButton];
+    [self configureRegistrationButton];
 }
 
 - (void)viewDidLoad {
@@ -34,7 +66,7 @@
     [self loginStoredUserIfPossible];
 }
 
-- (IBAction)basicAuthenticationSelected:(id)sender {
+- (IBAction)baseAuthorizationSelected:(id)sender {
     HSBaseLoginViewController *profileViewController =
             [[HSBaseLoginViewController alloc] initWithNibName:@"HSBaseLoginViewController" bundle:nil];
     profileViewController.calendarViewController = self.calendarViewController;
@@ -133,4 +165,9 @@
     }];
 }
 
+- (void)viewDidUnload {
+    [self setBaseAuthorizationButton:nil];
+    [self setRegistrationButton:nil];
+    [super viewDidUnload];
+}
 @end
