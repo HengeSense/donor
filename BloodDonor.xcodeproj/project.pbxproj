@@ -456,18 +456,6 @@
 		85AA3B3615B3D9250077D336 /* Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 85AA3B3515B3D9250077D336 /* Common.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		85AB70DD15CBCD4600C6A2BA /* RecommendationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85AB70DB15CBCD4600C6A2BA /* RecommendationsViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		85AB70DE15CBCD4600C6A2BA /* RecommendationsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85AB70DC15CBCD4600C6A2BA /* RecommendationsViewController.xib */; };
-		85ADBCAC15E8DEB2006E6CB7 /* twitterButtonPressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85ADBCA015E8DEB2006E6CB7 /* twitterButtonPressed@2x.png */; };
-		85ADBCAD15E8DEB2006E6CB7 /* twitterButtonNormal.png in Resources */ = {isa = PBXBuildFile; fileRef = 85ADBCA115E8DEB2006E6CB7 /* twitterButtonNormal.png */; };
-		85ADBCAE15E8DEB2006E6CB7 /* twitterButtonPressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 85ADBCA215E8DEB2006E6CB7 /* twitterButtonPressed.png */; };
-		85ADBCAF15E8DEB2006E6CB7 /* facebookButtonPressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85ADBCA315E8DEB2006E6CB7 /* facebookButtonPressed@2x.png */; };
-		85ADBCB015E8DEB2006E6CB7 /* vkontakteButtonNormal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85ADBCA415E8DEB2006E6CB7 /* vkontakteButtonNormal@2x.png */; };
-		85ADBCB115E8DEB2006E6CB7 /* vkontakteButtonNormal.png in Resources */ = {isa = PBXBuildFile; fileRef = 85ADBCA515E8DEB2006E6CB7 /* vkontakteButtonNormal.png */; };
-		85ADBCB215E8DEB2006E6CB7 /* facebookButtonNormal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85ADBCA615E8DEB2006E6CB7 /* facebookButtonNormal@2x.png */; };
-		85ADBCB315E8DEB2006E6CB7 /* facebookButtonNormal.png in Resources */ = {isa = PBXBuildFile; fileRef = 85ADBCA715E8DEB2006E6CB7 /* facebookButtonNormal.png */; };
-		85ADBCB415E8DEB2006E6CB7 /* facebookButtonPressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 85ADBCA815E8DEB2006E6CB7 /* facebookButtonPressed.png */; };
-		85ADBCB515E8DEB2006E6CB7 /* vkontakteButtonPressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85ADBCA915E8DEB2006E6CB7 /* vkontakteButtonPressed@2x.png */; };
-		85ADBCB615E8DEB2006E6CB7 /* vkontakteButtonPressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 85ADBCAA15E8DEB2006E6CB7 /* vkontakteButtonPressed.png */; };
-		85ADBCB715E8DEB2006E6CB7 /* twitterButtonNormal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85ADBCAB15E8DEB2006E6CB7 /* twitterButtonNormal@2x.png */; };
 		85ADBCBD15E8DFF9006E6CB7 /* sharingCancelButtonNormal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85ADBCB915E8DFF9006E6CB7 /* sharingCancelButtonNormal@2x.png */; };
 		85ADBCBE15E8DFF9006E6CB7 /* sharingCancelButtonPressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85ADBCBA15E8DFF9006E6CB7 /* sharingCancelButtonPressed@2x.png */; };
 		85ADBCBF15E8DFF9006E6CB7 /* sharingCancelButtonPressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 85ADBCBB15E8DFF9006E6CB7 /* sharingCancelButtonPressed.png */; };
@@ -1068,18 +1056,6 @@
 		85AB70DA15CBCD4600C6A2BA /* RecommendationsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecommendationsViewController.h; sourceTree = "<group>"; };
 		85AB70DB15CBCD4600C6A2BA /* RecommendationsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecommendationsViewController.m; sourceTree = "<group>"; };
 		85AB70DC15CBCD4600C6A2BA /* RecommendationsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecommendationsViewController.xib; sourceTree = "<group>"; };
-		85ADBCA015E8DEB2006E6CB7 /* twitterButtonPressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "twitterButtonPressed@2x.png"; sourceTree = "<group>"; };
-		85ADBCA115E8DEB2006E6CB7 /* twitterButtonNormal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = twitterButtonNormal.png; sourceTree = "<group>"; };
-		85ADBCA215E8DEB2006E6CB7 /* twitterButtonPressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = twitterButtonPressed.png; sourceTree = "<group>"; };
-		85ADBCA315E8DEB2006E6CB7 /* facebookButtonPressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "facebookButtonPressed@2x.png"; sourceTree = "<group>"; };
-		85ADBCA415E8DEB2006E6CB7 /* vkontakteButtonNormal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "vkontakteButtonNormal@2x.png"; sourceTree = "<group>"; };
-		85ADBCA515E8DEB2006E6CB7 /* vkontakteButtonNormal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vkontakteButtonNormal.png; sourceTree = "<group>"; };
-		85ADBCA615E8DEB2006E6CB7 /* facebookButtonNormal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "facebookButtonNormal@2x.png"; sourceTree = "<group>"; };
-		85ADBCA715E8DEB2006E6CB7 /* facebookButtonNormal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = facebookButtonNormal.png; sourceTree = "<group>"; };
-		85ADBCA815E8DEB2006E6CB7 /* facebookButtonPressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = facebookButtonPressed.png; sourceTree = "<group>"; };
-		85ADBCA915E8DEB2006E6CB7 /* vkontakteButtonPressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "vkontakteButtonPressed@2x.png"; sourceTree = "<group>"; };
-		85ADBCAA15E8DEB2006E6CB7 /* vkontakteButtonPressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vkontakteButtonPressed.png; sourceTree = "<group>"; };
-		85ADBCAB15E8DEB2006E6CB7 /* twitterButtonNormal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "twitterButtonNormal@2x.png"; sourceTree = "<group>"; };
 		85ADBCB915E8DFF9006E6CB7 /* sharingCancelButtonNormal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sharingCancelButtonNormal@2x.png"; sourceTree = "<group>"; };
 		85ADBCBA15E8DFF9006E6CB7 /* sharingCancelButtonPressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sharingCancelButtonPressed@2x.png"; sourceTree = "<group>"; };
 		85ADBCBB15E8DFF9006E6CB7 /* sharingCancelButtonPressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sharingCancelButtonPressed.png; sourceTree = "<group>"; };
@@ -1410,18 +1386,6 @@
 				85ADBCBA15E8DFF9006E6CB7 /* sharingCancelButtonPressed@2x.png */,
 				85ADBCBB15E8DFF9006E6CB7 /* sharingCancelButtonPressed.png */,
 				85ADBCBC15E8DFF9006E6CB7 /* sharingCancelButtonNormal.png */,
-				85ADBCA015E8DEB2006E6CB7 /* twitterButtonPressed@2x.png */,
-				85ADBCA115E8DEB2006E6CB7 /* twitterButtonNormal.png */,
-				85ADBCA215E8DEB2006E6CB7 /* twitterButtonPressed.png */,
-				85ADBCA315E8DEB2006E6CB7 /* facebookButtonPressed@2x.png */,
-				85ADBCA415E8DEB2006E6CB7 /* vkontakteButtonNormal@2x.png */,
-				85ADBCA515E8DEB2006E6CB7 /* vkontakteButtonNormal.png */,
-				85ADBCA615E8DEB2006E6CB7 /* facebookButtonNormal@2x.png */,
-				85ADBCA715E8DEB2006E6CB7 /* facebookButtonNormal.png */,
-				85ADBCA815E8DEB2006E6CB7 /* facebookButtonPressed.png */,
-				85ADBCA915E8DEB2006E6CB7 /* vkontakteButtonPressed@2x.png */,
-				85ADBCAA15E8DEB2006E6CB7 /* vkontakteButtonPressed.png */,
-				85ADBCAB15E8DEB2006E6CB7 /* twitterButtonNormal@2x.png */,
 				8594B18E15DBC25000896105 /* calendarInfoButtonNormal.png */,
 				8594B18F15DBC25000896105 /* calendarInfoButtonNormal@2x.png */,
 				8594B19015DBC25000896105 /* calendarInfoButtonPressed.png */,
@@ -2590,18 +2554,6 @@
 				8594B19815DBC25000896105 /* calendarInfoSectionBackground.png in Resources */,
 				8594B19915DBC25000896105 /* calendarInfoSectionBackground@2x.png in Resources */,
 				8594B19E15DBC57200896105 /* CalendarInfoViewController.xib in Resources */,
-				85ADBCAC15E8DEB2006E6CB7 /* twitterButtonPressed@2x.png in Resources */,
-				85ADBCAD15E8DEB2006E6CB7 /* twitterButtonNormal.png in Resources */,
-				85ADBCAE15E8DEB2006E6CB7 /* twitterButtonPressed.png in Resources */,
-				85ADBCAF15E8DEB2006E6CB7 /* facebookButtonPressed@2x.png in Resources */,
-				85ADBCB015E8DEB2006E6CB7 /* vkontakteButtonNormal@2x.png in Resources */,
-				85ADBCB115E8DEB2006E6CB7 /* vkontakteButtonNormal.png in Resources */,
-				85ADBCB215E8DEB2006E6CB7 /* facebookButtonNormal@2x.png in Resources */,
-				85ADBCB315E8DEB2006E6CB7 /* facebookButtonNormal.png in Resources */,
-				85ADBCB415E8DEB2006E6CB7 /* facebookButtonPressed.png in Resources */,
-				85ADBCB515E8DEB2006E6CB7 /* vkontakteButtonPressed@2x.png in Resources */,
-				85ADBCB615E8DEB2006E6CB7 /* vkontakteButtonPressed.png in Resources */,
-				85ADBCB715E8DEB2006E6CB7 /* twitterButtonNormal@2x.png in Resources */,
 				85ADBCBD15E8DFF9006E6CB7 /* sharingCancelButtonNormal@2x.png in Resources */,
 				85ADBCBE15E8DFF9006E6CB7 /* sharingCancelButtonPressed@2x.png in Resources */,
 				85ADBCBF15E8DFF9006E6CB7 /* sharingCancelButtonPressed.png in Resources */,
