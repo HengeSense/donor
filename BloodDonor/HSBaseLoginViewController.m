@@ -10,16 +10,15 @@
 
 #import <Parse/Parse.h>
 #import "HSFlurryAnalytics.h"
+#import "MBProgressHUD.h"
 
 #import "ProfileDescriptionViewController.h"
 #import "ProfileRegistrationViewController.h"
 #import "ProfileSettingsViewController.h"
 #import "HSRestorePasswordViewCotroller.h"
-
-#import "Common.h"
-#import "MBProgressHUD.h"
 #import "HSAlertViewController.h"
 
+#import "Common.h"
 #import "HSCalendar.h"
 
 @implementation HSBaseLoginViewController
@@ -42,6 +41,12 @@
     //Private property setting
     [self.loginTextField setValue:[UIColor colorWithRed:203.0f/255.0f green:178.0f/255.0f blue:163.0f/255.0f alpha:1] forKeyPath:@"_placeholderLabel.textColor"];
     [self.passwordTextField setValue:[UIColor colorWithRed:203.0f/255.0f green:178.0f/255.0f blue:163.0f/255.0f alpha:1] forKeyPath:@"_placeholderLabel.textColor"];
+    
+    if (self.facebookUser != nil)
+    {
+        self.loginTextField.text = self.facebookUser.email;
+        self.loginTextField.enabled = NO;
+    }
 }
 
 - (void)configureUI {
@@ -54,12 +59,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self configureUI];
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-    self.loginTextField.text = @"";
-    self.passwordTextField.text = @"";
-    [super viewDidAppear:animated];
 }
 
 #pragma mark Actions
@@ -77,19 +76,23 @@
         [PFUser logInWithUsernameInBackground:self.loginTextField.text password:self.passwordTextField.text
         block:^(PFUser *user, NSError *error) {
             if (user) {
+                // TODO: Move next 2 lines to registration procedure.
                 [self specifyPlatformInfoForUser:user];
                 [user saveInBackground];
-                [self processAuthorizationSuccessWithUser:user completion:^ {
-                    [Common getInstance].authenticatedWithFacebook = NO;
-                    [progressHud hide:YES];
-                }];
+                if (self.facebookUser != nil) {
+                    [self linkFacebookAccountForUser:user hideProgressHud:progressHud];
+                } else {
+                    [self processAuthorizationSuccessWithUser:user completion:^ {
+                        [Common getInstance].authenticatedWithFacebook = NO;
+                        [progressHud hide:YES];
+                    }];
+                }
             } else {
                 [progressHud hide:YES];
                 [self processAuthorizationWithError:error];
             }
         }];
     }
-   
 }
 
 - (IBAction)forgotPasswordButtonClicked:(id)sender {
@@ -102,6 +105,24 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
     return YES;
+}
+
+#pragma mark - Private interface
+- (void)linkFacebookAccountForUser:(PFUser *)user hideProgressHud:(MBProgressHUD *)progressHud {
+    THROW_IF_ARGUMENT_NIL(user, @"user is not specified");
+    THROW_IF_ARGUMENT_NIL(progressHud, @"progressHud is not specified");
+    NSArray *permissions = @[@"user_about_me", @"email"];
+    [PFFacebookUtils linkUser:user permissions:permissions block:^(BOOL succeeded, NSError *error) {
+        if (succeeded) {
+            [self processAuthorizationSuccessWithUser:user completion:^ {
+                [Common getInstance].authenticatedWithFacebook = NO;
+                [progressHud hide:YES];
+            }];
+        } else {
+            [progressHud hide:YES];
+            [self processAuthorizationWithError:error];
+        }
+    }];
 }
 
 @end

@@ -73,6 +73,15 @@
     [self.navigationController pushViewController:profileViewController animated:YES];
 }
 
+- (void)loginWithBaseAuthForFacebookUser:(PFUser *)facebookUser {
+    THROW_IF_ARGUMENT_NIL(facebookUser, @"facebookUser is not specified");
+    HSBaseLoginViewController *profileViewController =
+            [[HSBaseLoginViewController alloc] initWithNibName:@"HSBaseLoginViewController" bundle:nil];
+    profileViewController.facebookUser = facebookUser;
+    profileViewController.calendarViewController = self.calendarViewController;
+    [self.navigationController pushViewController:profileViewController animated:YES];
+}
+
 - (IBAction)facebookAuthenticationSelected:(id)sender {
     NSArray *permissionsArray = @[@"user_about_me", @"email"];
     
@@ -88,8 +97,19 @@
                         }];
                     } else {
                         [progressHud hide:YES];
-                        [self processAuthorizationWithError:error];
                         [user deleteEventually];
+                        if (error.code == kPFErrorUserEmailTaken) {
+                            // Possible user has base account?
+                            [HSAlertViewController showWithTitle:@"Вы уже зарегестрированы" message:@"Ввести пароль?"
+                                    cancelButtonTitle:@"Отмена" okButtonTitle:@"Перейти"
+                                    resultBlock:^(BOOL isOkButtonPressed) {
+                                if (isOkButtonPressed) {
+                                    [self loginWithBaseAuthForFacebookUser:user];
+                                }
+                            }];
+                        } else {
+                            [self processAuthorizationWithError:error];
+                        }
                     }
                 }];
             } else {
@@ -100,7 +120,7 @@
             }
         } else {
             [progressHud hide:YES];
-            [self processAuthorizationWithError: error];
+            [self processAuthorizationWithError:error];
         }
     }];
 }
