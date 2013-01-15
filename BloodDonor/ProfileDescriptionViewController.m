@@ -214,19 +214,21 @@ static NSString * const kLinkedToFacebookTitle = @"привязан";
 }
 
 - (void)proposeUserLinkFacebook {
-    [self showViewAsActionSheet:self.linkFacebookView];
+    [self.linkUnlinkFacebookButton setTitle:@"Привязать" forState:UIControlStateNormal];
+    [self showViewAsActionSheet:self.linkUnlinkFacebookView];
 }
 
 - (void)proposeUserUnlinkFacebook {
-    [self showViewAsActionSheet:self.unlinkFacebookView];
+    [self.linkUnlinkFacebookButton setTitle:@"Отвязать" forState:UIControlStateNormal];
+    [self showViewAsActionSheet:self.linkUnlinkFacebookView];
 }
 
-- (IBAction)cancelFacebookLinkUnlinkActionSheet:(id)sender {
+- (IBAction)cancelFacebookLinkingPropose:(id)sender {
     [self hideCurrentActionSheetView];
 }
 
 - (IBAction)linkUnlinkToFacebook:(id)sender {
-    [self cancelFacebookLinkUnlinkActionSheet:sender];
+    [self cancelFacebookLinkingPropose:sender];
     if ([PFFacebookUtils isLinkedWithUser:[PFUser currentUser]]) {
         [self unlinkFacebook];
     } else {
@@ -293,6 +295,17 @@ static NSString * const kLinkedToFacebookTitle = @"привязан";
     
     // Configure facebook container view controller.
     self.facebookContainerView.hidden = YES;
+    
+    // Configure link/unlink buttons
+    [self.linkUnlinkFacebookButton setBackgroundImage:[UIImage imageNamed:@"profile_facebook_link_button_normal"]
+                                             forState:UIControlStateNormal];
+    [self.linkUnlinkFacebookButton setBackgroundImage:[UIImage imageNamed:@"profile_facebook_link_button_pressed"]
+                                             forState:UIControlStateHighlighted];
+
+    [self.cancelFacebookLinkProposeButton setBackgroundImage:[UIImage imageNamed:@"profile_facebook_link_button_normal"]
+                                                    forState:UIControlStateNormal];
+    [self.cancelFacebookLinkProposeButton setBackgroundImage:[UIImage imageNamed:@"profile_facebook_link_button_pressed"]
+                                                    forState:UIControlStateHighlighted];
 }
 
 - (void)configureNavigationBar {
@@ -401,4 +414,9 @@ static NSString * const kLinkedToFacebookTitle = @"привязан";
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+- (void)viewDidUnload {
+    [self setLinkUnlinkFacebookButton:nil];
+    [self setCancelFacebookLinkProposeButton:nil];
+    [super viewDidUnload];
+}
 @end

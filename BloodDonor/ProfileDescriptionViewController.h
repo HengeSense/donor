@@ -32,8 +32,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *facebookUserNameTextField;
 @property (weak, nonatomic) IBOutlet UIButton *proposeFacebookLinkUnlinkButton;
 @property (weak, nonatomic) IBOutlet UIView *facebookLinkUnlinkContainerView;
-@property (strong, nonatomic) IBOutlet UIView *unlinkFacebookView;
-@property (strong, nonatomic) IBOutlet UIView *linkFacebookView;
+@property (strong, nonatomic) IBOutlet UIView *linkUnlinkFacebookView;
+@property (weak, nonatomic) IBOutlet UIButton *linkUnlinkFacebookButton;
+@property (weak, nonatomic) IBOutlet UIButton *cancelFacebookLinkProposeButton;
 
 ///  @name Model properties
 @property (nonatomic, assign) id<HSCalendarInfo> calendarInfoDelegate;
@@ -49,7 +50,7 @@
 - (IBAction)logoutButtonClick:(id)sender;
 - (IBAction)linkUnlinkToFacebook:(id)sender;
 - (IBAction)proposeLinkUnlinkFacebook:(id)sender;
-- (IBAction)cancelFacebookLinkUnlinkActionSheet:(id)sender;
+- (IBAction)cancelFacebookLinkingPropose:(id)sender;
 
 - (void)cancelEditPressed;
 @end

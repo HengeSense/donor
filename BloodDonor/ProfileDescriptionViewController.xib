@@ -126,7 +126,7 @@
 						<string key="NSFrame">{{9, 140}, {301, 3}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="127708295"/>
+						<reference key="NSNextKeyView" ref="54862752"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -271,7 +271,7 @@
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">-2147483356</int>
 						<array class="NSMutableArray" key="NSSubviews">
-							<object class="IBUIImageView" id="190946184">
+							<object class="IBUIImageView" id="307888141">
 								<reference key="NSNextResponder" ref="127708295"/>
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{9, 9}, {19, 19}}</string>
@@ -282,7 +282,7 @@
 								<int key="IBUIContentMode">2</int>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<object class="NSCustomResource" key="IBUIImage" id="748906688">
+								<object class="NSCustomResource" key="IBUIImage" id="744023449">
 									<string key="NSClassName">NSImage</string>
 									<string key="NSResourceName">profile_description_facebook_logo.png</string>
 								</object>
@@ -293,7 +293,6 @@
 								<string key="NSFrame">{{0, 41}, {301, 3}}</string>
 								<reference key="NSSuperview" ref="127708295"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="54862752"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -305,7 +304,7 @@
 								<string key="NSFrameSize">{296, 37}</string>
 								<reference key="NSSuperview" ref="127708295"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="190946184"/>
+								<reference key="NSNextKeyView" ref="307888141"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -506,7 +505,7 @@
 								<string key="NSFrame">{{64, 183}, {192, 38}}</string>
 								<reference key="NSSuperview" ref="54862752"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
+								<reference key="NSNextKeyView" ref="127708295"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -554,7 +553,7 @@
 										<string key="NSFrameSize">{301, 3}</string>
 										<reference key="NSSuperview" ref="51451074"/>
 										<reference key="NSWindow"/>
-										<reference key="NSNextKeyView" ref="245851584"/>
+										<reference key="NSNextKeyView" ref="882768705"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
 										<bool key="IBUIUserInteractionEnabled">NO</bool>
 										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -609,7 +608,7 @@
 										<reference key="IBUIFontDescription" ref="547634097"/>
 										<reference key="IBUIFont" ref="470573871"/>
 									</object>
-									<object class="IBUIImageView" id="245851584">
+									<object class="IBUIImageView" id="882768705">
 										<reference key="NSNextResponder" ref="51451074"/>
 										<int key="NSvFlags">292</int>
 										<string key="NSFrame">{{10, 12}, {19, 19}}</string>
@@ -620,7 +619,7 @@
 										<int key="IBUIContentMode">2</int>
 										<bool key="IBUIUserInteractionEnabled">NO</bool>
 										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-										<reference key="IBUIImage" ref="748906688"/>
+										<reference key="IBUIImage" ref="744023449"/>
 									</object>
 								</array>
 								<string key="NSFrame">{{10, 128}, {301, 47}}</string>
@@ -665,22 +664,22 @@
 					<object class="IBUIImageView" id="582927547">
 						<reference key="NSNextResponder" ref="227944980"/>
 						<int key="NSvFlags">274</int>
-						<string key="NSFrameSize">{320, 175}</string>
+						<string key="NSFrameSize">{320, 134}</string>
 						<reference key="NSSuperview" ref="227944980"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="442520765"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<object class="NSCustomResource" key="IBUIImage" id="926307909">
+						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">sexModalViewBackground.png</string>
 						</object>
 					</object>
 					<object class="IBUIButton" id="442520765">
 						<reference key="NSNextResponder" ref="227944980"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{20, 20}, {280, 44}}</string>
+						<int key="NSvFlags">290</int>
+						<string key="NSFrame">{{20, 20}, {290, 40}}</string>
 						<reference key="NSSuperview" ref="227944980"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="1009404282"/>
@@ -689,37 +688,33 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
-						<int key="IBUIButtonType">1</int>
 						<string key="IBUINormalTitle">Привязать</string>
 						<reference key="IBUIHighlightedTitleColor" ref="341337496"/>
-						<object class="NSColor" key="IBUINormalTitleColor">
-							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
-						</object>
+						<reference key="IBUINormalTitleColor" ref="341337496"/>
 						<reference key="IBUINormalTitleShadowColor" ref="374955886"/>
+						<object class="NSCustomResource" key="IBUINormalBackgroundImage" id="694661447">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">profile_facebook_link_button_normal.png</string>
+						</object>
 						<reference key="IBUIFontDescription" ref="547634097"/>
 						<reference key="IBUIFont" ref="470573871"/>
 					</object>
 					<object class="IBUIButton" id="1009404282">
 						<reference key="NSNextResponder" ref="227944980"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{20, 71}, {280, 44}}</string>
+						<int key="NSvFlags">290</int>
+						<string key="NSFrame">{{20, 74}, {290, 40}}</string>
 						<reference key="NSSuperview" ref="227944980"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
-						<int key="IBUIButtonType">1</int>
 						<string key="IBUINormalTitle">Отменить</string>
 						<reference key="IBUIHighlightedTitleColor" ref="341337496"/>
-						<object class="NSColor" key="IBUINormalTitleColor">
-							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
-						</object>
+						<reference key="IBUINormalTitleColor" ref="341337496"/>
 						<reference key="IBUINormalTitleShadowColor" ref="374955886"/>
+						<reference key="IBUINormalBackgroundImage" ref="694661447"/>
 						<reference key="IBUIFontDescription" ref="547634097"/>
 						<reference key="IBUIFont" ref="470573871"/>
 					</object>
@@ -734,86 +729,10 @@
 					<bytes key="NSWhite">MQA</bytes>
 					<reference key="NSCustomColorSpace" ref="461098606"/>
 				</object>
-				<object class="IBUISimulatedSizeMetrics" key="IBUISimulatedDestinationMetrics" id="61785607">
+				<object class="IBUISimulatedSizeMetrics" key="IBUISimulatedDestinationMetrics">
 					<string key="IBUISimulatedSizeMetricsClass">IBUISimulatedFreeformSizeMetricsSentinel</string>
 					<string key="IBUIDisplayName">Freeform</string>
 				</object>
-				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-			</object>
-			<object class="IBUIView" id="832348834">
-				<reference key="NSNextResponder"/>
-				<int key="NSvFlags">292</int>
-				<array class="NSMutableArray" key="NSSubviews">
-					<object class="IBUIImageView" id="374545988">
-						<reference key="NSNextResponder" ref="832348834"/>
-						<int key="NSvFlags">274</int>
-						<string key="NSFrameSize">{320, 175}</string>
-						<reference key="NSSuperview" ref="832348834"/>
-						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="523086074"/>
-						<string key="NSReuseIdentifierKey">_NS:9</string>
-						<bool key="IBUIUserInteractionEnabled">NO</bool>
-						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<reference key="IBUIImage" ref="926307909"/>
-					</object>
-					<object class="IBUIButton" id="523086074">
-						<reference key="NSNextResponder" ref="832348834"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{20, 20}, {280, 44}}</string>
-						<reference key="NSSuperview" ref="832348834"/>
-						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="251721743"/>
-						<string key="NSReuseIdentifierKey">_NS:9</string>
-						<bool key="IBUIOpaque">NO</bool>
-						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<int key="IBUIContentHorizontalAlignment">0</int>
-						<int key="IBUIContentVerticalAlignment">0</int>
-						<int key="IBUIButtonType">1</int>
-						<string key="IBUINormalTitle">Отвязать</string>
-						<reference key="IBUIHighlightedTitleColor" ref="341337496"/>
-						<object class="NSColor" key="IBUINormalTitleColor">
-							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
-						</object>
-						<reference key="IBUINormalTitleShadowColor" ref="374955886"/>
-						<reference key="IBUIFontDescription" ref="547634097"/>
-						<reference key="IBUIFont" ref="470573871"/>
-					</object>
-					<object class="IBUIButton" id="251721743">
-						<reference key="NSNextResponder" ref="832348834"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{20, 71}, {280, 44}}</string>
-						<reference key="NSSuperview" ref="832348834"/>
-						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
-						<string key="NSReuseIdentifierKey">_NS:9</string>
-						<bool key="IBUIOpaque">NO</bool>
-						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<int key="IBUIContentHorizontalAlignment">0</int>
-						<int key="IBUIContentVerticalAlignment">0</int>
-						<int key="IBUIButtonType">1</int>
-						<string key="IBUINormalTitle">Отменить</string>
-						<reference key="IBUIHighlightedTitleColor" ref="341337496"/>
-						<object class="NSColor" key="IBUINormalTitleColor">
-							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
-						</object>
-						<reference key="IBUINormalTitleShadowColor" ref="374955886"/>
-						<reference key="IBUIFontDescription" ref="547634097"/>
-						<reference key="IBUIFont" ref="470573871"/>
-					</object>
-				</array>
-				<string key="NSFrameSize">{320, 134}</string>
-				<reference key="NSSuperview"/>
-				<reference key="NSWindow"/>
-				<reference key="NSNextKeyView" ref="374545988"/>
-				<string key="NSReuseIdentifierKey">_NS:9</string>
-				<object class="NSColor" key="IBUIBackgroundColor">
-					<int key="NSColorSpace">3</int>
-					<bytes key="NSWhite">MQA</bytes>
-					<reference key="NSCustomColorSpace" ref="461098606"/>
-				</object>
-				<reference key="IBUISimulatedDestinationMetrics" ref="61785607"/>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 			</object>
 		</array>
@@ -901,27 +820,35 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">unlinkFacebookView</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="832348834"/>
-					</object>
-					<int key="connectionID">108</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">linkFacebookView</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="227944980"/>
-					</object>
-					<int key="connectionID">109</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">proposeFacebookLinkUnlinkButton</string>
 						<reference key="source" ref="372490531"/>
 						<reference key="destination" ref="920148421"/>
 					</object>
 					<int key="connectionID">113</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">linkUnlinkFacebookView</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="227944980"/>
+					</object>
+					<int key="connectionID">116</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">linkUnlinkFacebookButton</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="442520765"/>
+					</object>
+					<int key="connectionID">117</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">cancelFacebookLinkProposeButton</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="1009404282"/>
+					</object>
+					<int key="connectionID">118</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
@@ -978,30 +905,12 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">cancelFacebookLinkUnlinkActionSheet:</string>
+						<string key="label">cancelFacebookLinkingPropose:</string>
 						<reference key="source" ref="1009404282"/>
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">7</int>
 					</object>
-					<int key="connectionID">107</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">cancelFacebookLinkUnlinkActionSheet:</string>
-						<reference key="source" ref="251721743"/>
-						<reference key="destination" ref="372490531"/>
-						<int key="IBEventType">7</int>
-					</object>
-					<int key="connectionID">106</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">linkUnlinkToFacebook:</string>
-						<reference key="source" ref="523086074"/>
-						<reference key="destination" ref="372490531"/>
-						<int key="IBEventType">7</int>
-					</object>
-					<int key="connectionID">104</int>
+					<int key="connectionID">119</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -1099,7 +1008,7 @@
 							<reference ref="937520533"/>
 							<reference ref="920148421"/>
 							<reference ref="971501714"/>
-							<reference ref="190946184"/>
+							<reference ref="307888141"/>
 						</array>
 						<reference key="parent" ref="191373211"/>
 					</object>
@@ -1144,33 +1053,8 @@
 						<reference key="parent" ref="227944980"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">100</int>
-						<reference key="object" ref="832348834"/>
-						<array class="NSMutableArray" key="children">
-							<reference ref="251721743"/>
-							<reference ref="523086074"/>
-							<reference ref="374545988"/>
-						</array>
-						<reference key="parent" ref="0"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">101</int>
-						<reference key="object" ref="251721743"/>
-						<reference key="parent" ref="832348834"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">102</int>
-						<reference key="object" ref="523086074"/>
-						<reference key="parent" ref="832348834"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">103</int>
-						<reference key="object" ref="374545988"/>
-						<reference key="parent" ref="832348834"/>
-					</object>
-					<object class="IBObjectRecord">
 						<int key="objectID">115</int>
-						<reference key="object" ref="190946184"/>
+						<reference key="object" ref="307888141"/>
 						<reference key="parent" ref="127708295"/>
 					</object>
 					<object class="IBObjectRecord">
@@ -1197,13 +1081,13 @@
 							<reference ref="730020637"/>
 							<reference ref="45696842"/>
 							<reference ref="553484762"/>
-							<reference ref="245851584"/>
+							<reference ref="882768705"/>
 						</array>
 						<reference key="parent" ref="54862752"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">114</int>
-						<reference key="object" ref="245851584"/>
+						<reference key="object" ref="882768705"/>
 						<reference key="parent" ref="51451074"/>
 					</object>
 					<object class="IBObjectRecord">
@@ -1274,10 +1158,6 @@
 				<string key="-2.CustomClassName">UIResponder</string>
 				<string key="-2.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="1.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="100.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="101.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="102.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="103.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="11.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="114.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="115.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -1321,7 +1201,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">115</int>
+			<int key="maxID">119</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1330,7 +1210,7 @@
 					<string key="superclassName">UIViewController</string>
 					<dictionary class="NSMutableDictionary" key="actions">
 						<string key="bloodGroupButtonClick:">id</string>
-						<string key="cancelFacebookLinkUnlinkActionSheet:">id</string>
+						<string key="cancelFacebookLinkingPropose:">id</string>
 						<string key="editButtonClick:">id</string>
 						<string key="linkUnlinkToFacebook:">id</string>
 						<string key="logoutButtonClick:">id</string>
@@ -1343,8 +1223,8 @@
 							<string key="name">bloodGroupButtonClick:</string>
 							<string key="candidateClassName">id</string>
 						</object>
-						<object class="IBActionInfo" key="cancelFacebookLinkUnlinkActionSheet:">
-							<string key="name">cancelFacebookLinkUnlinkActionSheet:</string>
+						<object class="IBActionInfo" key="cancelFacebookLinkingPropose:">
+							<string key="name">cancelFacebookLinkingPropose:</string>
 							<string key="candidateClassName">id</string>
 						</object>
 						<object class="IBActionInfo" key="editButtonClick:">
@@ -1375,16 +1255,17 @@
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="bloodDonationCountLabel">UILabel</string>
 						<string key="bloodGroupButton">UIButton</string>
+						<string key="cancelFacebookLinkProposeButton">UIButton</string>
 						<string key="facebookContainerView">UIView</string>
 						<string key="facebookLinkUnlinkContainerView">UIView</string>
 						<string key="facebookUserNameTextField">UILabel</string>
 						<string key="hiddenView">UIView</string>
-						<string key="linkFacebookView">UIView</string>
+						<string key="linkUnlinkFacebookButton">UIButton</string>
+						<string key="linkUnlinkFacebookView">UIView</string>
 						<string key="nameTextField">UITextField</string>
 						<string key="nextBloodDonateDateLabel">UILabel</string>
 						<string key="proposeFacebookLinkUnlinkButton">UIButton</string>
 						<string key="sexButton">UIButton</string>
-						<string key="unlinkFacebookView">UIView</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
 						<object class="IBToOneOutletInfo" key="bloodDonationCountLabel">
@@ -1393,6 +1274,10 @@
 						</object>
 						<object class="IBToOneOutletInfo" key="bloodGroupButton">
 							<string key="name">bloodGroupButton</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="cancelFacebookLinkProposeButton">
+							<string key="name">cancelFacebookLinkProposeButton</string>
 							<string key="candidateClassName">UIButton</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="facebookContainerView">
@@ -1411,8 +1296,12 @@
 							<string key="name">hiddenView</string>
 							<string key="candidateClassName">UIView</string>
 						</object>
-						<object class="IBToOneOutletInfo" key="linkFacebookView">
-							<string key="name">linkFacebookView</string>
+						<object class="IBToOneOutletInfo" key="linkUnlinkFacebookButton">
+							<string key="name">linkUnlinkFacebookButton</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="linkUnlinkFacebookView">
+							<string key="name">linkUnlinkFacebookView</string>
 							<string key="candidateClassName">UIView</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="nameTextField">
@@ -1430,10 +1319,6 @@
 						<object class="IBToOneOutletInfo" key="sexButton">
 							<string key="name">sexButton</string>
 							<string key="candidateClassName">UIButton</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="unlinkFacebookView">
-							<string key="name">unlinkFacebookView</string>
-							<string key="candidateClassName">UIView</string>
 						</object>
 					</dictionary>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
@@ -1457,6 +1342,7 @@
 			<string key="exitButtonNormal.png">{192, 38}</string>
 			<string key="exitButtonPressed.png">{192, 38}</string>
 			<string key="profile_description_facebook_logo.png">{19, 19}</string>
+			<string key="profile_facebook_link_button_normal.png">{290, 40}</string>
 			<string key="sexModalViewBackground.png">{320, 134}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">1930</string>
