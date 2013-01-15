@@ -93,7 +93,7 @@ static NSString * const kSingleCancelButtonTitleDefault = @"Ok";
     THROW_IF_ARGUMENT_NIL(message, @"message is not specified");
     THROW_IF_ARGUMENT_NIL(cancelButtonTitle, @"cancelButtonTitle is not specified");
 
-    [self _showWithTitle:@"" message:message cancelButtonTitle:cancelButtonTitle okButtonTitle:@""
+    [self _showWithTitle:title message:message cancelButtonTitle:cancelButtonTitle okButtonTitle:@""
              resultBlock:nil];
 }
 
