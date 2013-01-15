@@ -10,14 +10,16 @@
 #import <Parse/Parse.h>
 
 NSString * const kRemoteEvent_BaseClassName = @"Events";
-
 NSString * const HSRemoteServerResponseErrorDomain = @"HSRemoteServerResonseErrorDomain";
-
 NSString * const HSCalendarAddEventErrorDomain = @"HSCalendarAddEventErrorDomain";
+
+static NSString * const kFacebookSDKErrorDomain = @"com.facebook.sdk";
 
 NSString* localizedDescriptionForParseError (NSError *error) {
     THROW_IF_ARGUMENT_NIL(error, @"error is not specified");
-    if (error.code == kPFErrorConnectionFailed) {
+    if ([error.domain isEqualToString:kFacebookSDKErrorDomain]) {
+        return @"Ошибка авторизации через Facebook.";
+    } else if (error.code == kPFErrorConnectionFailed) {
         return @"Отсутсвует соединение с интернетом";
     } else if (error.code == kPFErrorObjectNotFound) {
         return @"Неверный логин или пароль";
