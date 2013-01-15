@@ -187,19 +187,19 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
-						<int key="IBUIButtonType">1</int>
 						<string key="IBUINormalTitle">Войти</string>
 						<object class="NSColor" key="IBUIHighlightedTitleColor" id="958696507">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MQA</bytes>
 						</object>
-						<object class="NSColor" key="IBUINormalTitleColor">
-							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
-						</object>
+						<reference key="IBUINormalTitleColor" ref="958696507"/>
 						<object class="NSColor" key="IBUINormalTitleShadowColor" id="653773907">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MC41AA</bytes>
+						</object>
+						<object class="NSCustomResource" key="IBUINormalBackgroundImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">login_base_auth_button_normal.png</string>
 						</object>
 						<reference key="IBUIFontDescription" ref="147879004"/>
 						<reference key="IBUIFont" ref="1069859526"/>
@@ -276,6 +276,14 @@
 						<reference key="destination" ref="839313714"/>
 					</object>
 					<int key="connectionID">34</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">baseAuthorizationButton</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="1039228292"/>
+					</object>
+					<int key="connectionID">52</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
@@ -415,7 +423,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">51</int>
+			<int key="maxID">52</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -437,10 +445,15 @@
 						</object>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="baseAuthorizationButton">UIButton</string>
 						<string key="loginTextField">UITextField</string>
 						<string key="passwordTextField">UITextField</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="baseAuthorizationButton">
+							<string key="name">baseAuthorizationButton</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
 						<object class="IBToOneOutletInfo" key="loginTextField">
 							<string key="name">loginTextField</string>
 							<string key="candidateClassName">UITextField</string>
@@ -485,6 +498,7 @@
 			<string key="background.png">{320, 480}</string>
 			<string key="cell.png">{306, 37}</string>
 			<string key="dottedLine.png">{301, 3}</string>
+			<string key="login_base_auth_button_normal.png">{240, 40}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">1930</string>
 	</data>

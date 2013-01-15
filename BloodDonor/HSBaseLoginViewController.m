@@ -25,16 +25,30 @@
 @implementation HSBaseLoginViewController
 
 #pragma mark Lifecycle
-- (void)configureUI
-{
-    self.title = @"Профиль";
-    
+
+- (void)configureBaseAuthButton {
+    [self.baseAuthorizationButton setBackgroundImage:[UIImage imageNamed:@"login_base_auth_button_normal"]
+                                            forState:UIControlStateNormal];
+    [self.baseAuthorizationButton setBackgroundImage:[UIImage imageNamed:@"login_base_auth_button_pressed"]
+                                            forState:UIControlStateHighlighted];
+}
+
+- (void)configureNavigationBar {
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Назад"
-            style:UIBarButtonItemStyleBordered target:nil action:nil];
-    
+                                                                             style:UIBarButtonItemStyleBordered target:nil action:nil];
+}
+
+- (void)configureTextFields {
     //Private property setting
     [self.loginTextField setValue:[UIColor colorWithRed:203.0f/255.0f green:178.0f/255.0f blue:163.0f/255.0f alpha:1] forKeyPath:@"_placeholderLabel.textColor"];
     [self.passwordTextField setValue:[UIColor colorWithRed:203.0f/255.0f green:178.0f/255.0f blue:163.0f/255.0f alpha:1] forKeyPath:@"_placeholderLabel.textColor"];
+}
+
+- (void)configureUI {
+    self.title = @"Профиль";
+    [self configureNavigationBar];
+    [self configureTextFields];
+    [self configureBaseAuthButton];
 }
 
 - (void)viewDidLoad {
@@ -49,8 +63,7 @@
 }
 
 #pragma mark Actions
-- (IBAction)authorizationButtonClicked:(id)sender
-{
+- (IBAction)authorizationButtonClicked:(id)sender {
     if (self.loginTextField.isFirstResponder) {
         [self.loginTextField resignFirstResponder];
     } else if (self.passwordTextField.isFirstResponder) {
@@ -86,8 +99,7 @@
 }
 
 #pragma mark TextEditDelegate
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
-{
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
     return YES;
 }

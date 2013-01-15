@@ -13,6 +13,7 @@
 
 @property (nonatomic, weak) IBOutlet UITextField *loginTextField;
 @property (nonatomic, weak) IBOutlet UITextField *passwordTextField;
+@property (weak, nonatomic) IBOutlet UIButton *baseAuthorizationButton;
 
 - (IBAction)authorizationButtonClicked:(id)sender;
 
