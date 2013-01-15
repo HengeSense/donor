@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import <Parse/Parse.h>
 #import "HSFlurryAnalytics.h"
+#import "Crittercism.h"
 
 #ifdef NEW_CALENDAR_FUNCTIONALITY_DEVELOPEMENT
 #import "HSCalendarViewController.h"
@@ -29,6 +30,7 @@ static NSString * const PARSE_CLIENT_KEY = @"uNarhakSf1on8lJjrAVs1VWmPlG1D6ZJf9d
 static NSString * const FACEBOOK_APP_ID = @"438918122827407";
 static NSString * const FLURRY_APP_ID = @"2WRYH35MS5SW4ZY2TNPB";
 static NSString * const TEST_FLIGHT_APP_ID = @"43651a8fd308e9fd491a1c8aa068f158_MTQxMjA0MjAxMi0xMC0wOSAwOTozMToyMS4zNzU1ODc";
+static NSString * const CRITTERCISM_APP_ID = @"50f5e3804f633a256d000003";
 
 @interface AppDelegate ()
 
@@ -56,6 +58,7 @@ static NSString * const TEST_FLIGHT_APP_ID = @"43651a8fd308e9fd491a1c8aa068f158_
     [PFFacebookUtils initializeWithApplicationId:FACEBOOK_APP_ID];
     [HSFlurryAnalytics initWithAppId:FLURRY_APP_ID];
     [TestFlight takeOff:TEST_FLIGHT_APP_ID];
+    [Crittercism enableWithAppID: CRITTERCISM_APP_ID];
     
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     
