@@ -590,7 +590,7 @@
     <value>Введите ваш e-mail</value>
   </data>
   <data name="RestoreEmailSend" xml:space="preserve">
-    <value>На E-mail отправлено письмо с инструкцией по востановлению доступа к учетной записи.</value>
+    <value>На указанный e-mail отправлено письмо с инструкцией по востановлению доступа к учетной записи.</value>
   </data>
   <data name="RestorePassword" xml:space="preserve">
     <value>Востановление пароля</value>
@@ -606,5 +606,8 @@
   </data>
   <data name="FacebookUnLinking" xml:space="preserve">
     <value>Привязан профиль Facebook</value>
+  </data>
+  <data name="RestoreEmailProblem" xml:space="preserve">
+    <value>Пользователь с указанной почтой не зарегистрирован</value>
   </data>
 </root>

@@ -432,6 +432,7 @@ namespace Donor.ViewModels
                 }
                 else
                 {
+                    MessageBox.Show(Donor.AppResources.RestoreEmailProblem);                    
                 };
             });
         }

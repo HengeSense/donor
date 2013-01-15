@@ -29,7 +29,8 @@ namespace Donor {
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        public AppResources() {
+        public AppResources()
+        {
         }
         
         /// <summary>
@@ -1070,7 +1071,16 @@ namespace Donor {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to На E-mail отправлено письмо с инструкцией по востановлению доступа к учетной записи..
+        ///   Looks up a localized string similar to Пользователь с указанной почтой не зарегистрирован.
+        /// </summary>
+        public static string RestoreEmailProblem {
+            get {
+                return ResourceManager.GetString("RestoreEmailProblem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to На указанный e-mail отправлено письмо с инструкцией по востановлению доступа к учетной записи..
         /// </summary>
         public static string RestoreEmailSend {
             get {
