@@ -537,7 +537,7 @@
 			containerPortal = 37153E9215AEBA3400C985C1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 37153E9A15AEBA3400C985C1;
-			remoteInfo = BloodDonor;
+			remoteInfo = Donor;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -618,14 +618,14 @@
 		370FA6CC15B434F700FC1C86 /* segmentButtonOff@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "segmentButtonOff@2x.png"; sourceTree = "<group>"; };
 		370FA6CD15B434F700FC1C86 /* segmentButtonOn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = segmentButtonOn.png; sourceTree = "<group>"; };
 		370FA6CE15B434F700FC1C86 /* segmentButtonOn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "segmentButtonOn@2x.png"; sourceTree = "<group>"; };
-		37153E9B15AEBA3400C985C1 /* BloodDonor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BloodDonor.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		37153E9B15AEBA3400C985C1 /* Donor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Donor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		37153E9F15AEBA3400C985C1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		37153EA115AEBA3400C985C1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		37153EA315AEBA3400C985C1 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		37153EA715AEBA3400C985C1 /* BloodDonor-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BloodDonor-Info.plist"; sourceTree = "<group>"; };
+		37153EA715AEBA3400C985C1 /* Donor-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Donor-Info.plist"; sourceTree = "<group>"; };
 		37153EA915AEBA3400C985C1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		37153EAB15AEBA3400C985C1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		37153EAD15AEBA3400C985C1 /* BloodDonor-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BloodDonor-Prefix.pch"; sourceTree = "<group>"; };
+		37153EAD15AEBA3400C985C1 /* Donor-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Donor-Prefix.pch"; sourceTree = "<group>"; };
 		37153EAE15AEBA3400C985C1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		37153EAF15AEBA3400C985C1 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		371CBA5215AFD452008CA154 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
@@ -853,11 +853,11 @@
 		68B455C71635CE7A00811A0F /* HSBloodTestsEventRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HSBloodTestsEventRenderer.m; path = event/HSBloodTestsEventRenderer.m; sourceTree = "<group>"; };
 		68B455CC163739E800811A0F /* HSBloodRemoteEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSBloodRemoteEvent.h; sourceTree = "<group>"; };
 		68B455CD163739E900811A0F /* HSBloodRemoteEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSBloodRemoteEvent.m; sourceTree = "<group>"; };
-		68BB4051162F0B9400098861 /* BloodDonorTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BloodDonorTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		68BB4051162F0B9400098861 /* DonorTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DonorTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		68BB4052162F0B9400098861 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		68BB4058162F0B9500098861 /* BloodDonorTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BloodDonorTests-Info.plist"; sourceTree = "<group>"; };
+		68BB4058162F0B9500098861 /* DonorTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DonorTests-Info.plist"; sourceTree = "<group>"; };
 		68BB405A162F0B9500098861 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		68BB405F162F0B9500098861 /* BloodDonorTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BloodDonorTests-Prefix.pch"; sourceTree = "<group>"; };
+		68BB405F162F0B9500098861 /* DonorTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DonorTests-Prefix.pch"; sourceTree = "<group>"; };
 		68EB2756163090B90092FDBA /* HSCalendar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSCalendar.h; sourceTree = "<group>"; };
 		68EB2757163090B90092FDBA /* HSCalendar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSCalendar.m; sourceTree = "<group>"; };
 		68EB275A163091190092FDBA /* HSEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSEvent.h; sourceTree = "<group>"; };
@@ -1201,8 +1201,8 @@
 			isa = PBXGroup;
 			children = (
 				685CB2F9163F2016004FF9AC /* Libs */,
-				37153EA515AEBA3400C985C1 /* BloodDonor */,
-				68BB4056162F0B9400098861 /* BloodDonorTests */,
+				37153EA515AEBA3400C985C1 /* Donor */,
+				68BB4056162F0B9400098861 /* DonorTests */,
 				3758525915AEE959006DF7E1 /* Images */,
 				68F3B30A16754A85003E8376 /* Data */,
 				37153E9E15AEBA3400C985C1 /* Frameworks */,
@@ -1213,8 +1213,8 @@
 		37153E9C15AEBA3400C985C1 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				37153E9B15AEBA3400C985C1 /* BloodDonor.app */,
-				68BB4051162F0B9400098861 /* BloodDonorTests.octest */,
+				37153E9B15AEBA3400C985C1 /* Donor.app */,
+				68BB4051162F0B9400098861 /* DonorTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1248,7 +1248,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		37153EA515AEBA3400C985C1 /* BloodDonor */ = {
+		37153EA515AEBA3400C985C1 /* Donor */ = {
 			isa = PBXGroup;
 			children = (
 				686BA61816332CB3004D7082 /* view */,
@@ -1275,16 +1275,16 @@
 				374D002815BD57CD0094CEFE /* SLabel.m */,
 				37153EA615AEBA3400C985C1 /* Supporting Files */,
 			);
-			path = BloodDonor;
+			path = Donor;
 			sourceTree = "<group>";
 		};
 		37153EA615AEBA3400C985C1 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				37153EA715AEBA3400C985C1 /* BloodDonor-Info.plist */,
+				37153EA715AEBA3400C985C1 /* Donor-Info.plist */,
 				37153EA815AEBA3400C985C1 /* InfoPlist.strings */,
 				37153EAB15AEBA3400C985C1 /* main.m */,
-				37153EAD15AEBA3400C985C1 /* BloodDonor-Prefix.pch */,
+				37153EAD15AEBA3400C985C1 /* Donor-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -2109,21 +2109,21 @@
 			name = event;
 			sourceTree = "<group>";
 		};
-		68BB4056162F0B9400098861 /* BloodDonorTests */ = {
+		68BB4056162F0B9400098861 /* DonorTests */ = {
 			isa = PBXGroup;
 			children = (
 				68EB27741630B2470092FDBA /* calendar */,
 				68BB4057162F0B9400098861 /* Supporting Files */,
 			);
-			path = BloodDonorTests;
+			path = DonorTests;
 			sourceTree = "<group>";
 		};
 		68BB4057162F0B9400098861 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				68BB4058162F0B9500098861 /* BloodDonorTests-Info.plist */,
+				68BB4058162F0B9500098861 /* DonorTests-Info.plist */,
 				68BB4059162F0B9500098861 /* InfoPlist.strings */,
-				68BB405F162F0B9500098861 /* BloodDonorTests-Prefix.pch */,
+				68BB405F162F0B9500098861 /* DonorTests-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -2240,9 +2240,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		37153E9A15AEBA3400C985C1 /* BloodDonor */ = {
+		37153E9A15AEBA3400C985C1 /* Donor */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 37153EC715AEBA3400C985C1 /* Build configuration list for PBXNativeTarget "BloodDonor" */;
+			buildConfigurationList = 37153EC715AEBA3400C985C1 /* Build configuration list for PBXNativeTarget "Donor" */;
 			buildPhases = (
 				37153E9715AEBA3400C985C1 /* Sources */,
 				37153E9815AEBA3400C985C1 /* Frameworks */,
@@ -2252,14 +2252,14 @@
 			);
 			dependencies = (
 			);
-			name = BloodDonor;
-			productName = BloodDonor;
-			productReference = 37153E9B15AEBA3400C985C1 /* BloodDonor.app */;
+			name = Donor;
+			productName = Donor;
+			productReference = 37153E9B15AEBA3400C985C1 /* Donor.app */;
 			productType = "com.apple.product-type.application";
 		};
-		68BB4050162F0B9400098861 /* BloodDonorTests */ = {
+		68BB4050162F0B9400098861 /* DonorTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 68BB4062162F0B9500098861 /* Build configuration list for PBXNativeTarget "BloodDonorTests" */;
+			buildConfigurationList = 68BB4062162F0B9500098861 /* Build configuration list for PBXNativeTarget "DonorTests" */;
 			buildPhases = (
 				68BB404C162F0B9400098861 /* Sources */,
 				68BB404D162F0B9400098861 /* Frameworks */,
@@ -2271,9 +2271,9 @@
 			dependencies = (
 				68BB4065162F0C9C00098861 /* PBXTargetDependency */,
 			);
-			name = BloodDonorTests;
-			productName = BloodDonorTests;
-			productReference = 68BB4051162F0B9400098861 /* BloodDonorTests.octest */;
+			name = DonorTests;
+			productName = DonorTests;
+			productReference = 68BB4051162F0B9400098861 /* DonorTests.octest */;
 			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
@@ -2286,7 +2286,7 @@
 				LastUpgradeCheck = 0430;
 				ORGANIZATIONNAME = "Hint Solutions";
 			};
-			buildConfigurationList = 37153E9515AEBA3400C985C1 /* Build configuration list for PBXProject "BloodDonor" */;
+			buildConfigurationList = 37153E9515AEBA3400C985C1 /* Build configuration list for PBXProject "Donor" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -2298,8 +2298,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				37153E9A15AEBA3400C985C1 /* BloodDonor */,
-				68BB4050162F0B9400098861 /* BloodDonorTests */,
+				37153E9A15AEBA3400C985C1 /* Donor */,
+				68BB4050162F0B9400098861 /* DonorTests */,
 			);
 		};
 /* End PBXProject section */
@@ -2851,7 +2851,7 @@
 /* Begin PBXTargetDependency section */
 		68BB4065162F0C9C00098861 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 37153E9A15AEBA3400C985C1 /* BloodDonor */;
+			target = 37153E9A15AEBA3400C985C1 /* Donor */;
 			targetProxy = 68BB4064162F0C9C00098861 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -2943,10 +2943,10 @@
 					"\"$(SRCROOT)\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "BloodDonor/BloodDonor-Prefix.pch";
+				GCC_PREFIX_HEADER = "Donor/Donor-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_PEDANTIC = NO;
-				INFOPLIST_FILE = "BloodDonor/BloodDonor-Info.plist";
+				INFOPLIST_FILE = "Donor/Donor-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2977,10 +2977,10 @@
 					"\"$(SRCROOT)\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "BloodDonor/BloodDonor-Prefix.pch";
+				GCC_PREFIX_HEADER = "Donor/Donor-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_PEDANTIC = NO;
-				INFOPLIST_FILE = "BloodDonor/BloodDonor-Info.plist";
+				INFOPLIST_FILE = "Donor/Donor-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3037,10 +3037,10 @@
 					"\"$(SRCROOT)\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "BloodDonor/BloodDonor-Prefix.pch";
+				GCC_PREFIX_HEADER = "Donor/Donor-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_PEDANTIC = NO;
-				INFOPLIST_FILE = "BloodDonor/BloodDonor-Info.plist";
+				INFOPLIST_FILE = "Donor/Donor-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3064,7 +3064,7 @@
 		68893A2E1650BD2200955990 /* AdHoc */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/BloodDonor.app/BloodDonor";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Donor.app/Donor";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -3075,9 +3075,9 @@
 					"\"$(SRCROOT)\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "BloodDonorTests/BloodDonorTests-Prefix.pch";
+				GCC_PREFIX_HEADER = "DonorTests/DonorTests-Prefix.pch";
 				GCC_WARN_PEDANTIC = NO;
-				INFOPLIST_FILE = "BloodDonorTests/BloodDonorTests-Info.plist";
+				INFOPLIST_FILE = "DonorTests/DonorTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
@@ -3121,10 +3121,10 @@
 					"\"$(SRCROOT)\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "BloodDonor/BloodDonor-Prefix.pch";
+				GCC_PREFIX_HEADER = "Donor/Donor-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_PEDANTIC = NO;
-				INFOPLIST_FILE = "BloodDonor/BloodDonor-Info.plist";
+				INFOPLIST_FILE = "Donor/Donor-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3148,7 +3148,7 @@
 		68893A311650BD2C00955990 /* AppStore */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/BloodDonor.app/BloodDonor";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Donor.app/Donor";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -3159,9 +3159,9 @@
 					"\"$(SRCROOT)\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "BloodDonorTests/BloodDonorTests-Prefix.pch";
+				GCC_PREFIX_HEADER = "DonorTests/DonorTests-Prefix.pch";
 				GCC_WARN_PEDANTIC = NO;
-				INFOPLIST_FILE = "BloodDonorTests/BloodDonorTests-Info.plist";
+				INFOPLIST_FILE = "DonorTests/DonorTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
@@ -3173,7 +3173,7 @@
 		68BB4060162F0B9500098861 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/BloodDonor.app/BloodDonor";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Donor.app/Donor";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -3184,9 +3184,9 @@
 					"\"$(SRCROOT)\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "BloodDonorTests/BloodDonorTests-Prefix.pch";
+				GCC_PREFIX_HEADER = "DonorTests/DonorTests-Prefix.pch";
 				GCC_WARN_PEDANTIC = NO;
-				INFOPLIST_FILE = "BloodDonorTests/BloodDonorTests-Info.plist";
+				INFOPLIST_FILE = "DonorTests/DonorTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
@@ -3198,7 +3198,7 @@
 		68BB4061162F0B9500098861 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/BloodDonor.app/BloodDonor";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Donor.app/Donor";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -3209,9 +3209,9 @@
 					"\"$(SRCROOT)\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "BloodDonorTests/BloodDonorTests-Prefix.pch";
+				GCC_PREFIX_HEADER = "DonorTests/DonorTests-Prefix.pch";
 				GCC_WARN_PEDANTIC = NO;
-				INFOPLIST_FILE = "BloodDonorTests/BloodDonorTests-Info.plist";
+				INFOPLIST_FILE = "DonorTests/DonorTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
@@ -3223,7 +3223,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		37153E9515AEBA3400C985C1 /* Build configuration list for PBXProject "BloodDonor" */ = {
+		37153E9515AEBA3400C985C1 /* Build configuration list for PBXProject "Donor" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				37153EC515AEBA3400C985C1 /* Debug */,
@@ -3234,7 +3234,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		37153EC715AEBA3400C985C1 /* Build configuration list for PBXNativeTarget "BloodDonor" */ = {
+		37153EC715AEBA3400C985C1 /* Build configuration list for PBXNativeTarget "Donor" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				37153EC815AEBA3400C985C1 /* Debug */,
@@ -3245,7 +3245,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		68BB4062162F0B9500098861 /* Build configuration list for PBXNativeTarget "BloodDonorTests" */ = {
+		68BB4062162F0B9500098861 /* Build configuration list for PBXNativeTarget "DonorTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				68BB4060162F0B9500098861 /* Debug */,
