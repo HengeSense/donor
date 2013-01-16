@@ -27,7 +27,7 @@
         </phone:PhoneApplicationPage.Resources>
     
 	<phone:PhoneApplicationPage.ApplicationBar>
-		<shell:ApplicationBar IsVisible="False"/>
+		<shell:ApplicationBar IsVisible="False" IsMenuEnabled="False" Mode="Minimized"/>
 	</phone:PhoneApplicationPage.ApplicationBar>
 
     <toolkit:TransitionService.NavigationInTransition>
@@ -260,21 +260,21 @@
                     <toolkit:PerformanceProgressBar HorizontalAlignment="Left" Height="8" Margin="0" 
                             VerticalAlignment="Top" IsIndeterminate="{Binding User.UserLoading}"
                             Width="460" Name="LoginLoadingBar" />
-                        <TextBlock 
+                    <TextBlock 
 						Style="{StaticResource Text24pxCBB2A3}"
-						Text="{Binding EnterEmail, Source={StaticResource Loc}}" />
+						Text="{Binding EnterEmail, Source={StaticResource Loc}}" Visibility="Collapsed" />
                     <TextBox x:Name="email" Text="" Background="#FF4F3B34" BorderBrush="#FF4F3B34" Foreground="#FFCBB2A3" 
-					CaretBrush="#FFCBB2A3" Style="{StaticResource TextBoxStyle1}" KeyDown="email_KeyDown" />
+					CaretBrush="#FFCBB2A3" Style="{StaticResource TextBoxStyle1}" KeyDown="email_KeyDown" Visibility="Collapsed" />
                         <!--{Binding Path=User.UserName, Mode=TwoWay}-->
                     
                     <TextBlock 
 					Style="{StaticResource Text24pxCBB2A3}"
-					Text="{Binding EnterPassword, Source={StaticResource Loc}}" />
+					Text="{Binding EnterPassword, Source={StaticResource Loc}}" Visibility="Collapsed" />
                     <PasswordBox 
 					x:Name="password" Password="" 
 					Background="#FF4F3B34" 
 					BorderBrush="#FF4F3B34" 
-					Foreground="#FFCBB2A3" Style="{StaticResource PasswordBoxStyle1}"/>
+					Foreground="#FFCBB2A3" Style="{StaticResource PasswordBoxStyle1}" Visibility="Collapsed" />
                         <!--{Binding Path=User.Password, Mode=TwoWay}-->
 
 
@@ -293,8 +293,7 @@
 					BorderBrush="#FF4F3B34" 
                     Foreground="#FFCBB2A3" 
 					FontFamily="Segoe WP Regular"
-					Name="Login" Content="{Binding Login, Source={StaticResource Loc}}" 
-                    Click="Login_Click" />
+					Name="Login" Content="Есть аккаунт" Click="Login_Click_1" />
                         <!-- Click="Login_Click" Command="{Binding Path=User.LoginCommand}" -->
 
                     <Button 
@@ -303,7 +302,7 @@
 					BorderBrush="#FF4186A3" 
 					FontFamily="Segoe WP Regular"
 					Name="Register" 
-                    Content="{Binding Registration, Source={StaticResource Loc}}" 
+                    Content="Зарегистрироваться" 
 					Foreground="#FFFFFFFF" Click="Register_Click" />
 
                         <TextBlock 

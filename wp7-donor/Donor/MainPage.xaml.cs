@@ -247,7 +247,14 @@ namespace Donor
 
         private void TextBlock_Tap_1(object sender, System.Windows.Input.GestureEventArgs e)
         {
-            NavigationService.Navigate(new Uri("/ProfileLogin.xaml", UriKind.Relative));
+            if (App.ViewModel.User.IsLoggedIn == true)
+            {
+                NavigationService.Navigate(new Uri("/ProfileLogin.xaml", UriKind.Relative));
+            }
+            else
+            {
+                NavigationService.Navigate(new Uri("/EnterPage.xaml", UriKind.Relative));
+            };
         }
 
         private void adsMenuText_Tap(object sender, System.Windows.Input.GestureEventArgs e)
@@ -385,6 +392,17 @@ namespace Donor
             {
                 this.password.Focus();
             };   
+        }
+
+        private void Login_Click_1(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                NavigationService.Navigate(new Uri("/EnterPage.xaml", UriKind.Relative));
+            }
+            catch
+            {
+            }
         }
 
     }

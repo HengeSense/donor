@@ -1,0 +1,110 @@
+﻿<phone:PhoneApplicationPage 
+    x:Class="Donor.EnterPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
+    
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:toolkitPrimitives="clr-namespace:Microsoft.Phone.Controls.Primitives;assembly=Microsoft.Phone.Controls.Toolkit" 
+    xmlns:WPExtensions="clr-namespace:WPExtensions;assembly=WPExtensions"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit" 
+    xmlns:ControlsConv="clr-namespace:Coding4Fun.Phone.Controls.Converters;assembly=Coding4Fun.Phone.Controls"
+    
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d" d:DesignHeight="768" d:DesignWidth="480"
+    shell:SystemTray.IsVisible="True">
+
+    <phone:PhoneApplicationPage.Resources>
+        <ControlsConv:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+        <ControlsConv:VisibilityToBooleanConverter x:Key="VisibilityToBooleanConverter"/>
+    </phone:PhoneApplicationPage.Resources>
+
+    <toolkit:TransitionService.NavigationInTransition>
+        <toolkit:NavigationInTransition>
+            <toolkit:NavigationInTransition.Backward>
+                <toolkit:TurnstileTransition Mode="BackwardIn"/>
+            </toolkit:NavigationInTransition.Backward>
+            <toolkit:NavigationInTransition.Forward>
+                <toolkit:TurnstileTransition Mode="ForwardIn"/>
+            </toolkit:NavigationInTransition.Forward>
+        </toolkit:NavigationInTransition>
+    </toolkit:TransitionService.NavigationInTransition>
+    <toolkit:TransitionService.NavigationOutTransition>
+        <toolkit:NavigationOutTransition>
+            <toolkit:NavigationOutTransition.Backward>
+                <toolkit:TurnstileTransition Mode="BackwardOut"/>
+            </toolkit:NavigationOutTransition.Backward>
+            <toolkit:NavigationOutTransition.Forward>
+                <toolkit:TurnstileTransition Mode="ForwardOut"/>
+            </toolkit:NavigationOutTransition.Forward>
+        </toolkit:NavigationOutTransition>
+    </toolkit:TransitionService.NavigationOutTransition>
+
+
+    <Grid x:Name="LayoutRoot" Loaded="LayoutRoot_Loaded">
+        <Grid.Background>
+            <ImageBrush ImageSource="images/bg_04.png"/>
+        </Grid.Background>
+        <!--Pivot Control-->
+        <controls:Pivot>
+
+            <controls:Pivot.Title>
+                <StackPanel>
+                    <toolkit:PerformanceProgressBar HorizontalAlignment="Left" 
+				Height="8" Margin="0" VerticalAlignment="Top"
+				 IsIndeterminate="{Binding User.UserLoading}" Width="460" Name="LoadingBar" />
+                    <TextBlock 
+					Style="{StaticResource Text24pxWhite}" 
+					Text="{Binding ProfileHeader, Source={StaticResource Loc}}"/>
+                </StackPanel>
+            </controls:Pivot.Title>
+            <!--Pivot item one-->
+            <controls:PivotItem Margin="12,35,12,0">
+                <controls:PivotItem.Header>
+                    <TextBlock Style="{StaticResource Text70pxWhite}" 
+					Text="{Binding AccountHeader, Source={StaticResource Loc}}" Margin="0,30,0,0"/>
+                </controls:PivotItem.Header>
+
+                <StackPanel>
+                    
+                    <Image Width="249" Source="/Donor;component/images/donor_enter_logo.png" />
+                    
+                            <Button Name="Login" 
+						    Content="{Binding Login, Source={StaticResource Loc}}" 						
+						    FontSize="24"
+					        Background="#FF4186A3" Foreground="White"
+						    BorderBrush="#FF4186A3" 
+						    FontFamily="Segoe WP Regular" Click="Login_Click" />
+
+                            <TextBlock
+                                Margin="20,20,10,10"
+                                Text="Присоединяйся!" Foreground="#FFCBB2A3"/>
+
+                            <Button 
+					        FontSize="24"
+					        Background="#FF3F5890" 
+					        BorderBrush="#FF3F5890" 
+                            Foreground="white" 
+					        FontFamily="Segoe WP Regular"
+					        Name="FacebookLogin" Content="{Binding FacebookLogin, Source={StaticResource Loc}}" Click="FacebookLogin_Click" />
+
+                            <Button Name="RegisterShowButton" 
+						    Content="Регистрация" 
+						    FontSize="24"
+						    Background="#FFDD6020" Foreground="White"
+						    BorderBrush="#FFDD6020" 
+						    FontFamily="Segoe WP Regular" Click="RegisterShowButton_Click" />
+
+                        </StackPanel>
+            </controls:PivotItem>
+
+        </controls:Pivot>
+    </Grid>
+    
+</phone:PhoneApplicationPage>

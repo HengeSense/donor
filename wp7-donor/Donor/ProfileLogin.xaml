@@ -228,12 +228,14 @@ BorderBrush="#FF4F3B34" Foreground="#FFCBB2A3" x:Name="email"
 					        BorderBrush="#FF4F3B34" 
                             Foreground="#FFCBB2A3" 
 					        FontFamily="Segoe WP Regular"
+                            Visibility="Collapsed"
 					        Name="FacebookLogin" Content="{Binding FacebookLogin, Source={StaticResource Loc}}" 
 					        Click="FacebookLogin_Click"/>
 
 
                             <Button Name="RegisterShowButton" 
 						Content="Регистрация" 
+                        Visibility="Collapsed"
 						FontSize="24"
 						Background="#FF4186A3" 
 						BorderBrush="#FF4186A3" 

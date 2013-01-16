@@ -80,7 +80,7 @@
     <Reference Include="Microsoft.Phone.Controls" />
     <Reference Include="Microsoft.Phone.Controls.Maps, Version=7.0.0.0, Culture=neutral, PublicKeyToken=24eec0d8c86cda1e, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Phone.Controls.Toolkit, Version=7.0.0.0, Culture=neutral, PublicKeyToken=b772ad94eb9ca604, processorArchitecture=MSIL">
-      <HintPath>..\packages\SilverlightToolkitWP.4.2012.10.9\lib\sl4-windowsphone71\Microsoft.Phone.Controls.Toolkit.dll</HintPath>
+      <HintPath>..\packages\WPtoolkit.4.2012.10.30\lib\sl4-windowsphone71\Microsoft.Phone.Controls.Toolkit.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Phone.Interop" />
     <Reference Include="Microsoft.Xna.Framework" />
@@ -88,11 +88,13 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\MSPToolkit.1.7.26.1\lib\sl4-wp71\MSPToolkit.dll</HintPath>
     </Reference>
-    <Reference Include="MyToolkit">
-      <HintPath>..\packages\MyToolkit.1.6.0\lib\sl4-wp71\MyToolkit.dll</HintPath>
+    <Reference Include="MyToolkit, Version=1.9.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\MyToolkit.1.9.0\lib\sl4-wp71\MyToolkit.dll</HintPath>
     </Reference>
-    <Reference Include="MyToolkit.Extended">
-      <HintPath>..\packages\MyToolkit.Extended.1.6.0\lib\sl4-wp71\MyToolkit.Extended.dll</HintPath>
+    <Reference Include="MyToolkit.Extended, Version=1.9.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\MyToolkit.Extended.1.9.0\lib\sl4-wp71\MyToolkit.Extended.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\sl4-windowsphone71\Newtonsoft.Json.dll</HintPath>
@@ -145,6 +147,9 @@
     </Compile>
     <Compile Include="CreateReviewPage.xaml.cs">
       <DependentUpon>CreateReviewPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EnterPage.xaml.cs">
+      <DependentUpon>EnterPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="EventPage.xaml.cs">
       <DependentUpon>EventPage.xaml</DependentUpon>
@@ -247,6 +252,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CreateReviewPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EnterPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -366,6 +375,7 @@
     <Content Include="icons\ic_plasma.png" />
     <Content Include="icons\ic_platelets.png" />
     <Content Include="icons\ic_whole_blood.png" />
+    <Resource Include="images\donor_enter_logo.png" />
     <Content Include="images\ic_donors_act.png" />
     <Resource Include="images\ic_search.png" />
     <Content Include="libs\Silverlight_ZXing_Core.dll" />
