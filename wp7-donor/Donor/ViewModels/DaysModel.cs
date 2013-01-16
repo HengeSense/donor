@@ -103,6 +103,8 @@ namespace Donor.ViewModels
             set;
         }
 
+        public EventViewModel EventDayHoliday;
+
         private EventViewModel _eventDay;
         public EventViewModel EventDay
         {

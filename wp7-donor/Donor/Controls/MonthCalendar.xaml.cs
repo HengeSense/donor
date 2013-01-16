@@ -78,6 +78,7 @@ namespace Donor.Controls
                 day2.DayImageLB = null;
 
                 day2.EventDay = this.Items.FirstOrDefault(a => a.Date == new DateTime(Date.Year, Date.Month, i) && (a.Type!="Праздник"));
+                day2.EventDayHoliday = this.Items.FirstOrDefault(a => a.Date == new DateTime(Date.Year, Date.Month, i) && (a.Type=="Праздник"));
 
                 day2.EventDayList = null;
                 day2.EventDayList = this.Items.Where(a => a.Date == new DateTime(Date.Year, Date.Month, i) && (a.Type != "Праздник")).ToList();
@@ -107,7 +108,7 @@ namespace Donor.Controls
 
                     day2.Inactive = false;
 
-                    if ((day2.EventDay != null) && (day2.EventDay.Type == "Праздник"))
+                    if ((day2.EventDayHoliday != null) && (day2.EventDayHoliday.Type == "Праздник"))
                     {
                         Deployment.Current.Dispatcher.BeginInvoke(() =>
                         {
