@@ -249,8 +249,11 @@ namespace Donor
         /// <param name="e"></param>
         void messagePrompt_Completed(object sender, PopUpEventArgs<string, PopUpResult> e)
         {
-            string _email = ((messagePrompt.Body as StackPanel).Children.FirstOrDefault(c => (c as FrameworkElement).Name == "RestoreEmail") as TextBox).Text.ToString();
-            App.ViewModel.User.RestoreUserPassword(_email);
+            if (e.PopUpResult == PopUpResult.Ok)
+            {
+                string _email = ((messagePrompt.Body as StackPanel).Children.FirstOrDefault(c => (c as FrameworkElement).Name == "RestoreEmail") as TextBox).Text.ToString();
+                App.ViewModel.User.RestoreUserPassword(_email);
+            };
         }
 
         /// <summary>

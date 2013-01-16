@@ -251,13 +251,14 @@ BorderBrush="#FF4F3B34" Foreground="#FFCBB2A3" x:Name="email"
 						Text="{Binding EnterLoginAndPasswordToRegister, Source={StaticResource Loc}}" TextWrapping="Wrap" Visibility="Collapsed" />
 
 
-                            <Button Name="RestorePassword" 
+                        <Button Name="RestorePassword" 
 						Content="{Binding RestorePassoword, Source={StaticResource Loc}}" 
 						Click="RestorePassword_Click" 
 						FontSize="24"
 						Background="#FF4186A3" 
 						BorderBrush="#FF4186A3" 
-						FontFamily="Segoe WP Regular" Foreground="#FFFFFFFF" Visibility="Collapsed" />
+						FontFamily="Segoe WP Regular" 
+                        Foreground="#FFFFFFFF"/>
                         </StackPanel>
 
                         <WPExtensions:AdvancedApplicationBar Background="#FF211E1D" BackgroundColor="#FF211E1D" 

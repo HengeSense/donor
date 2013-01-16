@@ -77,10 +77,10 @@ namespace Donor.Controls
                 day2.DayImageRB = null;
                 day2.DayImageLB = null;
 
-                day2.EventDay = this.Items.FirstOrDefault(a => a.Date == new DateTime(Date.Year, Date.Month, i));
+                day2.EventDay = this.Items.FirstOrDefault(a => a.Date == new DateTime(Date.Year, Date.Month, i) && (a.Type!="Праздник"));
 
                 day2.EventDayList = null;
-                day2.EventDayList = this.Items.Where(a => a.Date == new DateTime(Date.Year, Date.Month, i)).ToList();
+                day2.EventDayList = this.Items.Where(a => a.Date == new DateTime(Date.Year, Date.Month, i) && (a.Type != "Праздник")).ToList();
 
                 if (day2.EventDay != null) {
                     day2.ImagePath = day2.EventDay.SmallImage.ToString();
