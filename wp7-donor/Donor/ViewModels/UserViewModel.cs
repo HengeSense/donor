@@ -660,6 +660,39 @@ namespace Donor.ViewModels
         {
             App.ViewModel.User.UserLoading = true;
 
+            //check is exist user with such email
+            var clientCheck = new RestClient("https://api.parse.com");
+            var requestCheck = new RestRequest("1/users?where={\"username\":\"123" + result["email"].ToString().ToLower() + "\"}", Method.GET);
+            //requestCheck.AddHeader("Accept", "application/json");
+            requestCheck.Parameters.Clear();
+            //string strJSONContentCheck = "{\"authData\": { \"facebook\":{ \"id\": \"" + id + "\", \"access_token\": \"" + accessToken + "\", \"expiration_date\": \"" + DateTime.Now.AddMonths(1).ToString("s") + "\"  }  } }";
+            requestCheck.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
+            requestCheck.AddHeader("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
+            //requestCheck.AddHeader("Content-Type", "application/json");
+            //requestCheck.AddParameter("application/json", strJSONContentCheck, ParameterType.RequestBody);
+            clientCheck.ExecuteAsync(requestCheck, response =>
+            {
+                try
+                {
+                    JObject o = JObject.Parse(response.Content.ToString());
+                    if (o["error"] == null)
+                    {
+                        /*if (o["results"].Count() > 0)
+                        {
+                            MessageBox.Show("Похоже такой пользователь уже есть. Введите пароль, чтобы привязать профиль.");
+                        }
+                        else
+                        {
+                        };*/
+                    }
+                    else
+                    {
+                    };
+                }
+                catch { };
+            });
+            ////////////////////////////////////////
+
             var client = new RestClient("https://api.parse.com");
             var request = new RestRequest("1/users", Method.POST);
             request.AddHeader("Accept", "application/json");
