@@ -205,6 +205,7 @@
       <DependentUpon>StationsSearchFilter.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\AdsViewModel.cs" />
+    <Compile Include="ViewModels\BadgesViewModel.cs" />
     <Compile Include="ViewModels\ContraViewModel.cs" />
     <Compile Include="ViewModels\DaysModel.cs" />
     <Compile Include="ViewModels\DelegateCommand.cs" />
