@@ -209,6 +209,38 @@ namespace Donor.ViewModels
             }
         }
 
+        private string _mbody = "";
+        public string MediumBody
+        {
+            private set { }
+            get
+            {
+                if (_mbody == "")
+                {
+                    string sbody = this.Body;
+                    HtmlAgilityPack.HtmlDocument htmlDoc = new HtmlAgilityPack.HtmlDocument();
+                    htmlDoc.OptionFixNestedTags = true;
+                    htmlDoc.LoadHtml(sbody);
+                    var text = htmlDoc.DocumentNode.InnerText;
+                    sbody = text.Trim();
+                    try
+                    {
+                        if (sbody.Length <= 800)
+                        {
+                            _mbody = sbody;
+                        }
+                        else
+                        {
+                            _mbody = sbody.Substring(0, 800) + "...";
+                        }
+                        
+                    }
+                    catch { _mbody = sbody; };
+                };
+                return _mbody;
+            }
+        }
+
         public string CreatedAtText
         {
             private set { }

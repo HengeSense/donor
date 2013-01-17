@@ -304,6 +304,11 @@ namespace Donor
                             this.EditProfile.Visibility = Visibility.Collapsed;
                             break;
                         case "login":
+                            if (this.NavigationContext.QueryString.ContainsKey("email"))
+                            {
+                                string _email = this.NavigationContext.QueryString["email"];
+                                this.email.Text = _email;
+                            };
                             this.RegisterForm.Visibility = Visibility.Collapsed;
                             this.LoginForm.Visibility = Visibility.Visible;
                             this.UserProfile.Visibility = Visibility.Collapsed;
@@ -687,6 +692,11 @@ namespace Donor
             {
                 this.EditSecondName.Focus();
             };            
+        }
+
+        private void TextBlock_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            RestorePassword_Click(sender, null);
         }
 
     }

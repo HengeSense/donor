@@ -398,7 +398,7 @@ namespace Donor
         {
             try
             {
-                NavigationService.Navigate(new Uri("/EnterPage.xaml", UriKind.Relative));
+                NavigationService.Navigate(new Uri("/ProfileLogin.xaml?task=login", UriKind.Relative));
             }
             catch
             {

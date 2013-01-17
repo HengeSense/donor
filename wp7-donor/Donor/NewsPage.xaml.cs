@@ -61,5 +61,12 @@ namespace Donor
             webTask.Uri = new Uri(_currentNews.Url);
             webTask.Show();
         }
+
+        private void ReadMore_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            WebBrowserTask webTask = new WebBrowserTask();
+            webTask.Uri = new Uri(_currentNews.Url);
+            webTask.Show();
+        }
     }
 }

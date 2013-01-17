@@ -102,6 +102,7 @@
     <Reference Include="Parse, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\parse.0.4.2\lib\Parse.dll</HintPath>
     </Reference>
+    <Reference Include="Phone.Controls, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="RestSharp.WindowsPhone, Version=104.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\RestSharp.104.1\lib\sl4-wp71\RestSharp.WindowsPhone.dll</HintPath>
@@ -378,6 +379,7 @@
     <Resource Include="images\donor_enter_logo.png" />
     <Content Include="images\ic_donors_act.png" />
     <Resource Include="images\ic_search.png" />
+    <Content Include="libs\Phone.Controls.dll" />
     <Content Include="libs\Silverlight_ZXing_Core.dll" />
     <Content Include="libs\Silverlight_ZXing_Core.pdb" />
     <Content Include="MS-LPL License.txt" />

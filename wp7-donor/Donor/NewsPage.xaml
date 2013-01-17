@@ -11,6 +11,7 @@
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit" 
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     xmlns:my="clr-namespace:MyToolkit.Controls;assembly=MyToolkit.Extended"
+    xmlns:myscroll="clr-namespace:Phone.Controls;assembly=Phone.Controls"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d" d:DesignHeight="696" d:DesignWidth="480"
@@ -71,17 +72,17 @@
                                     FontSize="24" 
                                     ScrollViewer.VerticalScrollBarVisibility="Disabled"                
                                     Foreground="#FF847168" 
-                                    Html="{Binding Path=Body}" 
+                                    Html="{Binding Path=MediumBody}" 
                                     HorizontalContentAlignment="Left" />
-                    <!--<my:FixedHtmlTextBlock 
-                        x:Name="Description" FontSize="24" 
-                        HorizontalContentAlignment="Left"
-                        Foreground="#FF847168" Html="{Binding Path=Body}" />-->
+                    <TextBlock Text="Читатать дальше" 
+					Name="ReadMore" Margin="10,20,0,0"
+					Style="{StaticResource Text36pxB9A194}" 
+					TextWrapping="Wrap" Tap="ReadMore_Tap" />
+                    <!--<myscroll:ScrollableTextBlock  Text="{Binding Path=Body}"     
+                        Foreground="#FF847168" FontSize="24" Width="450" Height="500"
+                        HorizontalAlignment="Left"  Name="Description" 
+                        VerticalAlignment="Top"/>-->
 
-
-                    <!--<TextBlock Text="{Binding Path=Body}" 
-					Name="Description" 
-					Style="{StaticResource Text24px847168}"/>-->
             </StackPanel>
             </ScrollViewer>
         </Grid>

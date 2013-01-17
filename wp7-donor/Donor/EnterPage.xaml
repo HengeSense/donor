@@ -78,24 +78,25 @@
                             <Button Name="Login" 
 						    Content="{Binding Login, Source={StaticResource Loc}}" 						
 						    FontSize="24"
+                            Margin="0,20,0,0"
 					        Background="#FF4186A3" Foreground="White"
 						    BorderBrush="#FF4186A3" 
 						    FontFamily="Segoe WP Regular" Click="Login_Click" />
 
-                            <TextBlock
-                                Margin="20,20,10,10"
-                                Text="Присоединяйся!" Foreground="#FFCBB2A3"/>
 
                             <Button 
 					        FontSize="24"
 					        Background="#FF3F5890" 
 					        BorderBrush="#FF3F5890" 
+                            Margin="0,0,0,10"
                             Foreground="white" 
 					        FontFamily="Segoe WP Regular"
-					        Name="FacebookLogin" Content="{Binding FacebookLogin, Source={StaticResource Loc}}" Click="FacebookLogin_Click" />
+					        Name="FacebookLogin" 
+                            Content="Войти через Facebook" Click="FacebookLogin_Click" />
 
                             <Button Name="RegisterShowButton" 
 						    Content="Регистрация" 
+                            Margin="0,40,0,10"
 						    FontSize="24"
 						    Background="#FFDD6020" Foreground="White"
 						    BorderBrush="#FFDD6020" 

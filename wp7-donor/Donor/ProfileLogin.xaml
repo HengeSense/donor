@@ -213,10 +213,11 @@ BorderBrush="#FF4F3B34" Foreground="#FFCBB2A3" x:Name="email"
                             <Button Name="Login" 
 						    Content="{Binding Login, Source={StaticResource Loc}}" 						
 						    FontSize="24"
-					        Background="#FF4F3B34" 
-					        BorderBrush="#FF4F3B34" 
-                            Foreground="#FFCBB2A3" 
+					        Background="#FF4186A3" 
+						    BorderBrush="#FF4186A3" 
+                            Foreground="#FFFFFFFF" 
 						    FontFamily="Segoe WP Regular" 
+                            Margin="0,10,0,0"
                             Click="Login_Click"/>
                             <!-- Click="Login_Click" 
                             Command="{Binding Path=User.LoginCommand}"
@@ -257,11 +258,19 @@ BorderBrush="#FF4F3B34" Foreground="#FFCBB2A3" x:Name="email"
 						Content="{Binding RestorePassoword, Source={StaticResource Loc}}" 
 						Click="RestorePassword_Click" 
 						FontSize="24"
+                        Visibility="Collapsed"
 						Background="#FF4186A3" 
+                        
 						BorderBrush="#FF4186A3" 
 						FontFamily="Segoe WP Regular" 
                         Foreground="#FFFFFFFF"/>
+
+                        <TextBlock TextDecorations="Underline" 
+                        Margin="14,230,0,0" Style="{StaticResource Text24pxCBB2A3}" Text="{Binding RestorePassoword, Source={StaticResource Loc}}" Tap="TextBlock_Tap" />
+
                         </StackPanel>
+
+                        
 
                         <WPExtensions:AdvancedApplicationBar Background="#FF211E1D" BackgroundColor="#FF211E1D" 
                         Foreground="White" BorderBrush="#FF211E1D" ForegroundColor="White" OpacityMask="White" Name="AppBar" IsVisible="False" IsMenuEnabled="False" >
