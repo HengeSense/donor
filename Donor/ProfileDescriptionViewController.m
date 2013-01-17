@@ -18,6 +18,7 @@
 #import "Common.h"
 #import "HSAlertViewController.h"
 #import "HSModelCommon.h"
+#import "NSString+HSUtils.h"
 
 static const CGFloat kActionSheetAnimationDuration = 0.2;
 
@@ -58,18 +59,47 @@ static NSString * const kLinkedToFacebookTitle = @"привязан";
 {
     if (self.hiddenView.hidden)
     {
+        if ([self.nameTextField isFirstResponder]) {
+            [self.nameTextField resignFirstResponder];
+        }
+        
+        if ([self.nameTextField.text isNotEmpty]) {
+            [Common getInstance].name = self.nameTextField.text;
+        } else {
+            [HSAlertViewController showWithMessage:@"Имя пользователя не задано."
+                resultBlock:^(BOOL isOkButtonPressed) {
+                   [self.nameTextField becomeFirstResponder];
+            }];
+            return;
+        }
         [self cancelEditPressed];
-        
-        [Common getInstance].name = self.nameTextField.text;
-        
+
         PFUser *user = [PFUser currentUser];
         
-        [user setObject:[Common getInstance].sex forKey:@"Sex"];
-        [user setObject:[Common getInstance].bloodGroup forKey:@"BloodGroup"];
-        [user setObject:[Common getInstance].bloodRH forKey:@"BloodRh"];
-        [user setObject:self.nameTextField.text forKey:@"Name"];
-        [user saveInBackground];
-        [HSFlurryAnalytics userUpdatedProfile];
+        if ([Common getInstance].sex != nil) {
+            [user setObject:[Common getInstance].sex forKey:@"Sex"];
+        }
+        
+        if ([Common getInstance].bloodGroup != nil) {
+            [user setObject:[Common getInstance].bloodGroup forKey:@"BloodGroup"];
+        }
+        
+        if ([Common getInstance].bloodRH != nil) {
+            [user setObject:[Common getInstance].bloodRH forKey:@"BloodRh"];
+        }
+        
+        if ([Common getInstance].name != nil) {
+            [user setObject:[Common getInstance].name forKey:@"Name"];
+        }
+        MBProgressHUD *progressHud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+        [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            [progressHud hide:YES];
+            if (succeeded) {
+                [HSFlurryAnalytics userUpdatedProfile];
+            } else {
+                [HSAlertViewController showWithTitle:@"Ошибка" message:localizedDescriptionForParseError(error)];
+            }
+        }];
     }
     else
     {
