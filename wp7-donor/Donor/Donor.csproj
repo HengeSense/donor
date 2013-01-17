@@ -137,6 +137,9 @@
     <Compile Include="CalendarYearPage.xaml.cs">
       <DependentUpon>CalendarYearPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\BadgeControl.xaml.cs">
+      <DependentUpon>BadgeControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\DayInCalendarControl.xaml.cs">
       <DependentUpon>DayInCalendarControl.xaml</DependentUpon>
     </Compile>
@@ -238,6 +241,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CalendarYearPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\BadgeControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -378,6 +385,7 @@
     <Content Include="icons\ic_platelets.png" />
     <Content Include="icons\ic_whole_blood.png" />
     <Resource Include="images\donor_enter_logo.png" />
+    <Resource Include="images\donor_badge.png" />
     <Content Include="images\ic_donors_act.png" />
     <Resource Include="images\ic_search.png" />
     <Content Include="libs\Phone.Controls.dll" />

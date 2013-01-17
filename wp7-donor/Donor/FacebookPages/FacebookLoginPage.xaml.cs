@@ -17,7 +17,7 @@ namespace facebook_windows_phone_sample.Pages
 {
     public partial class FacebookLoginPage : PhoneApplicationPage
     {
-        private const string AppId = "438918122827407";
+        private const string AppId = "264918200296425";
 
         /// <summary>
         /// Extended permissions is a comma separated list of permissions to ask the user.

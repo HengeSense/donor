@@ -95,3 +95,4 @@ C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\obj\Release\QRread.g.i
 C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\Bin\Release\FlurryWP7SDK.dll
 C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\obj\Release\EnterPage.g.i.cs
 C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\Bin\Release\Phone.Controls.dll
+C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\obj\Release\Controls\BadgeControl.g.i.cs

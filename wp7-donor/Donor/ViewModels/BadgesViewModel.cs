@@ -10,6 +10,8 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using RestSharp;
 using Newtonsoft.Json.Linq;
+using Coding4Fun.Phone.Controls;
+using Donor.Controls;
 
 namespace Donor.ViewModels
 {
@@ -66,6 +68,18 @@ namespace Donor.ViewModels
                         try
                         {
                             JObject o = JObject.Parse(response.Content.ToString());
+                            if (o["id"].ToString() != "")
+                            {
+                                MessagePrompt messagePrompt = new MessagePrompt();
+                                try
+                                {
+                                    messagePrompt.Body = new BadgeControl();
+                                }
+                                catch
+                                {
+                                };
+                                messagePrompt.Show();
+                            };
                         }
                         catch { };
                     });

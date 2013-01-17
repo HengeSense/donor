@@ -1,0 +1,26 @@
+﻿<UserControl x:Class="Donor.Controls.BadgeControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    xmlns:msp="clr-namespace:MSPToolkit.Controls;assembly=MSPToolkit"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    d:DesignHeight="480" d:DesignWidth="480">
+    
+    <Grid x:Name="LayoutRoot">
+        <StackPanel>
+            <TextBlock Text="Новое достижение!" HorizontalAlignment="Center" 
+                       Style="{StaticResource PhoneTextTitle2Style}" />
+            <Image Width="160" Margin="20" 
+                   Source="/Donor;component/images/donor_badge.png" />
+            <msp:HTMLViewer NavigaionPolitic="Automatic" 
+            HorizontalContentAlignment="Left"
+                            Margin="20"
+            Html="Вы стали &lt;strong>Другом Донора&lt;/strong>. Подробнее о достижениях на сайте &lt;a href='http://itsbeta.com'>itsbeta.com&lt;/a>."/>
+
+        </StackPanel>
+    </Grid>
+</UserControl>
