@@ -793,6 +793,21 @@ namespace Donor.ViewModels
                                         this.UpdateAction(1);
                                     } 
                                     else {
+
+                                        var clientDelete = new RestClient("https://api.parse.com");
+                                        var requestDelete = new RestRequest("1/users/" + o["objectId"].ToString(), Method.DELETE);
+                                        requestDelete.AddHeader("Accept", "application/json");
+                                        requestDelete.Parameters.Clear();
+
+                                        requestDelete.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
+                                        requestDelete.AddHeader("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
+                                        requestDelete.AddHeader("X-Parse-Session-Token", o["sessionToken"].ToString());
+
+                                        clientDelete.ExecuteAsync(requestDelete, responseDelete =>
+                                        {
+                                            string test = responseDelete.Content.ToString();
+                                        });
+
                                         App.ViewModel.User.IsLoggedIn = false;
                                         App.ViewModel.User.UserLoading = false;
                                         MessageBox.Show("Похоже такой пользователь уже есть. Введите пароль, чтобы привязать профиль.");
