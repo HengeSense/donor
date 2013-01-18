@@ -12,12 +12,15 @@ using RestSharp;
 using Newtonsoft.Json.Linq;
 using Coding4Fun.Phone.Controls;
 using Donor.Controls;
+using Microsoft.Phone.Tasks;
 
 namespace Donor.ViewModels
 {
     static public class BadgesViewModel
     {
         static public string activation_code = "";
+        static MessagePrompt messagePrompt;
+        static string facebook_id = "";
 
         /// <summary>
         /// Получение кода активации достижения:
@@ -44,20 +47,43 @@ namespace Donor.ViewModels
                             JObject o = JObject.Parse(response.Content.ToString());
                             if (o["id"].ToString() != "")
                             {
-                                string facebook_id = o["fb_id"].ToString();
-                                MessagePrompt messagePrompt = new MessagePrompt();
+                                facebook_id = o["fb_id"].ToString();
+                                messagePrompt = new MessagePrompt();
                                 try
                                 {
                                     messagePrompt.Body = new BadgeControl();
+
+                                    Button closeButton = new Button() { Content = "Закрыть" };
+                                    Button moreButton = new Button() { Content = "Подробнее" };
+
+                                    closeButton.Click += new RoutedEventHandler(closeButton_Click);
+                                    moreButton.Click += new RoutedEventHandler(moreButton_Click);
+
+                                    messagePrompt.ActionPopUpButtons.Clear();
+                                    messagePrompt.ActionPopUpButtons.Add(closeButton);
+                                    messagePrompt.ActionPopUpButtons.Add(moreButton);
                                 }
                                 catch
                                 {
                                 };
+                                
                                 messagePrompt.Show();
                             };
                         }
                         catch { };
                     });
+        }
+
+        static void closeButton_Click(object sender, RoutedEventArgs e)
+        {
+            messagePrompt.Hide();
+        }
+
+        static void moreButton_Click(object sender, RoutedEventArgs e)
+        {            
+            WebBrowserTask webTask = new WebBrowserTask();
+            webTask.Uri = new Uri("http://www.itsbeta.com/s/healthcare/donor/achieves/fb?locale=ru&name=donorfriend&fb_action_ids="+facebook_id);
+            webTask.Show();
         }
 
     }
