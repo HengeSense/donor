@@ -36,6 +36,9 @@ namespace Donor.ViewModels
             //this.updateCommand = new DelegateCommand(this.UpdateAction);
         }
 
+        public string FbId = "";
+        public string FbToken = "";
+
         private ICommand loginCommand;
         private ICommand logoutCommand;
         private ICommand updateCommand;
@@ -172,6 +175,14 @@ namespace Donor.ViewModels
                         JObject o = JObject.Parse(response.Content.ToString());
                         if (o["error"] == null)
                         {
+                            //auto linking
+                            if ((App.ViewModel.User.FbId!="") && (App.ViewModel.User.FbToken!="")) {
+                                App.ViewModel.User.FacebookLinking(App.ViewModel.User.FbId, App.ViewModel.User.FbToken);
+                                App.ViewModel.User.FacebookId = App.ViewModel.User.FbId;
+                                App.ViewModel.User.FacebookToken = App.ViewModel.User.FbToken;
+                                App.ViewModel.User.FbId = "";
+                                App.ViewModel.User.FbToken = "";
+                            };
                             App.ViewModel.User = JsonConvert.DeserializeObject<DonorUser>(response.Content.ToString());
                             //ClassToUser();
 
@@ -707,7 +718,7 @@ namespace Donor.ViewModels
                                 JObject o = JObject.Parse(response.Content.ToString());
                                 if (o["error"] == null)
                                 {
-                                    if ((userscount>0) && (o["username"].ToString().ToLower() == result["email"].ToString().ToLower()))
+                                    if ((userscount==0) || (o["username"].ToString().ToLower() == result["email"].ToString().ToLower()))
                                     {
                                         BadgesViewModel.PostAchieve(id, accessToken);
 

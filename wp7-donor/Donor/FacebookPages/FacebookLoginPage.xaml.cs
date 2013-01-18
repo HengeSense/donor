@@ -103,11 +103,12 @@ namespace facebook_windows_phone_sample.Pages
 
                     if (App.ViewModel.User.IsLoggedIn)
                     {
-
                         App.ViewModel.User.FacebookLinking(id, accessToken);
 
                     } else {
                         App.ViewModel.User.FacebookLogin(id, accessToken, result);
+                        App.ViewModel.User.FbId = id;
+                        App.ViewModel.User.FbToken = accessToken;
                     };
 
                     NavigationService.GoBack(); //NavigationService.Navigate(new Uri(url, UriKind.Relative)));
