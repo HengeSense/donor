@@ -199,6 +199,7 @@ static NSString * const kEventDate = @"date";
     }
     
     [self.bloodRemoteEvents removeObject:oldEvent];
+    [self updateFinishRestEvents];
     NSError *replaceError = nil;
     if ([self canAddBloodRemoteEvent:newEvent error:&replaceError]) {
         [oldEvent removeWithCompletionBlock:^(BOOL success, NSError *error) {
@@ -206,6 +207,7 @@ static NSString * const kEventDate = @"date";
                 [newEvent saveWithCompletionBlock:^(BOOL success, NSError *error) {
                     if (success) {
                         [self.bloodRemoteEvents addObject: newEvent];
+                        [self updateFinishRestEvents];
                     } else {
                         NSLog(@"Replace failed in the middle if transaction: old event was removed,"
                               " but adding new one was fifnished with error: %@", error);
@@ -224,6 +226,7 @@ static NSString * const kEventDate = @"date";
                 }];
             } else {
                 [self.bloodRemoteEvents addObject:oldEvent];
+                [self updateFinishRestEvents];
                 if (completion != nil) {
                     NSError *customError = nil;
                     if (error) {
@@ -239,6 +242,7 @@ static NSString * const kEventDate = @"date";
         }];
     } else {
         [self.bloodRemoteEvents addObject:oldEvent];
+        [self updateFinishRestEvents];
         if (completion != nil) {
             completion(NO, replaceError);
         }
