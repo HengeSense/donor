@@ -175,7 +175,6 @@ static NSString * const kEventDate = @"date";
     [bloodRemoteEvent removeWithCompletionBlock:^(BOOL success, NSError *error) {
         if (success) {
             [self.bloodRemoteEvents removeObject: bloodRemoteEvent];
-            [self updateFinishRestEvents];
             if (completion != nil) {
                 completion(success, error);
             }
