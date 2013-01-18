@@ -85,6 +85,9 @@ namespace Donor
         public QRViewModel Qr { get; set; }
         public bool IsSettings = false;
 
+        public string FbId = "";
+        public string FbToken = "";
+
         public bool IsDataLoaded
         {
             get;

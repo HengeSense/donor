@@ -107,8 +107,8 @@ namespace facebook_windows_phone_sample.Pages
 
                     } else {
                         App.ViewModel.User.FacebookLogin(id, accessToken, result);
-                        App.ViewModel.User.FbId = id;
-                        App.ViewModel.User.FbToken = accessToken;
+                        App.ViewModel.FbId = id;
+                        App.ViewModel.FbToken = accessToken;
                     };
 
                     NavigationService.GoBack(); //NavigationService.Navigate(new Uri(url, UriKind.Relative)));

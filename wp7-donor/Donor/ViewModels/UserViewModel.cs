@@ -36,8 +36,6 @@ namespace Donor.ViewModels
             //this.updateCommand = new DelegateCommand(this.UpdateAction);
         }
 
-        public string FbId = "";
-        public string FbToken = "";
 
         private ICommand loginCommand;
         private ICommand logoutCommand;
@@ -176,13 +174,6 @@ namespace Donor.ViewModels
                         if (o["error"] == null)
                         {
                             //auto linking
-                            if ((App.ViewModel.User.FbId!="") && (App.ViewModel.User.FbToken!="")) {
-                                App.ViewModel.User.FacebookLinking(App.ViewModel.User.FbId, App.ViewModel.User.FbToken);
-                                App.ViewModel.User.FacebookId = App.ViewModel.User.FbId;
-                                App.ViewModel.User.FacebookToken = App.ViewModel.User.FbToken;
-                                App.ViewModel.User.FbId = "";
-                                App.ViewModel.User.FbToken = "";
-                            };
                             App.ViewModel.User = JsonConvert.DeserializeObject<DonorUser>(response.Content.ToString());
                             //ClassToUser();
 
@@ -213,6 +204,15 @@ namespace Donor.ViewModels
                             App.ViewModel.OnUserEnter(EventArgs.Empty);
 
                             FlurryWP7SDK.Api.LogEvent("User_login");
+
+                            if ((App.ViewModel.FbId != "") && (App.ViewModel.FbToken != ""))
+                            {
+                                App.ViewModel.User.FacebookLinking(App.ViewModel.FbId, App.ViewModel.FbToken);
+                                App.ViewModel.User.FacebookId = App.ViewModel.FbId;
+                                App.ViewModel.User.FacebookToken = App.ViewModel.FbToken;
+                                App.ViewModel.FbId = "";
+                                App.ViewModel.FbToken = "";
+                            };
                         }
                         else
                         {
