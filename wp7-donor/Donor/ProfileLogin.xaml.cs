@@ -186,7 +186,20 @@ namespace Donor
                         }
                         else
                         {
-                            MessageBox.Show("Не удалось произвести регистрацию.");
+                            try {
+                                switch (o["code"].ToString())
+                                {
+                                    case "202":
+                                        this.email1.Text = "";
+                                        MessageBox.Show("Аккаунт с указанной почтой уже существует.");
+                                        break;
+                                    default:
+                                        MessageBox.Show("Не удалось произвести регистрацию.");
+                                        break;
+                                };
+                            } catch {
+                                MessageBox.Show("Не удалось произвести регистрацию."); 
+                            };                            
                             App.ViewModel.User.IsLoggedIn = false;
 
                             this.password1.Password = "";
