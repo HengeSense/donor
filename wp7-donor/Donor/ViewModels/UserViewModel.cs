@@ -771,7 +771,10 @@ namespace Donor.ViewModels
 
                                         try
                                         {
-                                            App.ViewModel.User.UserName = (string)result["email"];
+                                            if (o["username"].ToString() == "")
+                                            {
+                                                App.ViewModel.User.UserName = (string)result["email"];
+                                            };
                                         }
                                         catch { };
 
