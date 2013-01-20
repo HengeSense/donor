@@ -2,27 +2,36 @@
 //  NewsSubViewController.m
 //  BloodDonor
 //
-//  Created by Владимир Носков on 26.07.12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//  Created by Vladimir Noskov on 26.07.12.
+//  Updated by Sergey Seroshtan on 20.01.13
+//  Copyright (c) 2012 Hint Solutions. All rights reserved.
 //
 
 #import "NewsSubViewController.h"
+
+#import <Parse/Parse.h>
+#import "MBProgressHUD.h"
+
 #import "NewsCell.h"
+#import "HSModelCommon.h"
+#import "HSAlertViewController.h"
+
+
+@interface NewsSubViewController () <UITableViewDataSource, UITableViewDelegate>
+
+@property (nonatomic, strong) NSArray *contentArray;
+
+@end
 
 @implementation NewsSubViewController
 
-@synthesize delegate;
-
-#pragma mark TableView
- 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return contentArray.count;
+#pragma mark - UITableViewDataSource protocol
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.contentArray.count;
 }
  
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    PFObject *object = [contentArray objectAtIndex:indexPath.row];
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    PFObject *object = [self.contentArray objectAtIndex:indexPath.row];
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init] ;
     [dateFormat setDateFormat:@"dd.MM.yyyy"];
     NSDateFormatter *parsecomDateFormat = [[NSDateFormatter alloc] init] ;
@@ -32,94 +41,48 @@
     
     NewsCell *cell = (NewsCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
-    if (cell == nil)
-    {
+    if (cell == nil) {
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"NewsCell" owner:self options:nil];
         cell = [nib objectAtIndex:0];
     }
     
     cell.newsTitleLabel.text = [object valueForKey:@"title"];
-    cell.dateLabel.text = [dateFormat stringFromDate:[parsecomDateFormat dateFromString:[[NSString stringWithFormat:@"%@", [object objectForKey:@"created"]] stringByReplacingCharactersInRange:NSMakeRange(22, 1) withString:@""]]];
+    cell.dateLabel.text = [dateFormat stringFromDate:[parsecomDateFormat dateFromString:
+            [[NSString stringWithFormat:@"%@", [object objectForKey:@"created"]]
+                    stringByReplacingCharactersInRange:NSMakeRange(22, 1) withString:@""]]];
     return cell;
 }
 
-- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    [delegate newSelected:[contentArray objectAtIndex:indexPath.row]];
+- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [self.delegate newSelected:[self.contentArray objectAtIndex:indexPath.row]];
     return indexPath;
 }
 
-#pragma mark Lifecycle
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:NO];
+#pragma mark - Lifecycle
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    static dispatch_once_t once;
+    dispatch_once(&once, ^{
+        [self loadData];
+    });
 }
 
-- (void)viewDidDisappear:(BOOL)animated
-{
-    [super viewDidDisappear:NO];
-    [indicatorView removeFromSuperview];
-}
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    
-    ((UITableView *)self.view).scrollsToTop = YES;
-    
-    indicatorView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
-    indicatorView.backgroundColor = [UIColor blackColor];
-    indicatorView.alpha = 0.5f;
-    UIActivityIndicatorView *indicator = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge] autorelease];
-    indicator.frame = CGRectMake(160 - indicator.frame.size.width / 2.0f,
-                                 160 - indicator.frame.size.height / 2.0f,
-                                 indicator.frame.size.width,
-                                 indicator.frame.size.height);
-    
-    [indicatorView addSubview:indicator];
-    [indicator startAnimating];
-    // didAppear
-    [(UITableView *)self.view scrollToRowAtIndexPath:0 atScrollPosition:UITableViewScrollPositionTop animated:YES];
-    ((UITableView *)self.view).userInteractionEnabled = NO;
-    
+#pragma mark - Private data loading
+- (void)loadData {
+    self.view.userInteractionEnabled = NO;
+    MBProgressHUD *progressHud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     PFQuery *query = [PFQuery queryWithClassName:@"News"];
     [query orderByDescending:@"createdTimestamp"];
-    
-    [self.view addSubview:indicatorView];
-    
-    [query findObjectsInBackgroundWithTarget:self selector:@selector(callbackWithResult:error:)];
-}
-
-- (void)callbackWithResult:(NSArray *)result error:(NSError *)error
-{
-    if (result)
-    {
-        if (contentArray)
-            [contentArray release];
-        
-        contentArray = [[NSArray alloc] initWithArray:result];
-        [(UITableView *)self.view reloadData];
-    }
-    [indicatorView removeFromSuperview];
-    ((UITableView *)self.view).userInteractionEnabled = YES;
-}
-
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-}
-
-- (void)dealloc
-{
-    [indicatorView release];
-    [contentArray release];
-    [super dealloc];
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        [progressHud hide:YES];
+        if (error == nil) {
+            self.contentArray = objects;
+            [(UITableView *)self.view reloadData];
+        } else {
+            [HSAlertViewController showWithTitle:@"Ошибка" message:localizedDescriptionForParseError(error)];
+        }
+        self.view.userInteractionEnabled = YES;
+    }];
 }
 
 @end

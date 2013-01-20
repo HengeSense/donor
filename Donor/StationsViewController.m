@@ -110,6 +110,8 @@
         {
             [subview removeFromSuperview];
         }
+        
+        stationsMap.frame = contentView.bounds;
         [contentView addSubview:stationsMapView];
       
         [self reloadMapAnnotations];
@@ -649,10 +651,10 @@
         NSString *outString = [address stringByReplacingOccurrencesOfString:[address substringWithRange:addressRange] withString:[NSString stringWithFormat:@"<search>%@</search>", [address substringWithRange:addressRange]]];
         FTCoreTextView *coreTextView = [[FTCoreTextView alloc] initWithFrame:cell.addressLabel.frame];
         coreTextView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-        [cell addSubview:coreTextView];
         [coreTextView addStyles:coreTextStyle];
         [coreTextView setText:outString];
         [coreTextView fitToSuggestedHeight];
+        [cell addSubview:coreTextView];
     }
     else
     {
@@ -889,7 +891,7 @@
        
         MKCoordinateRegion region;
         MKCoordinateSpan span;
-        region.center = stationsMap.userLocation.coordinate;
+        region.center = CLLocationCoordinate2DMake(55.77, 37.60);
         region.span = MKCoordinateSpanMake(0.1, 0.1);
         span.latitudeDelta = 0.5;
         span.longitudeDelta = 0.5;

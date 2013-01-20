@@ -120,7 +120,7 @@
 		3758507D15AEDCF5006DF7E1 /* ProfileRegistrationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3758507B15AEDCF5006DF7E1 /* ProfileRegistrationViewController.xib */; };
 		3758508615AEDE69006DF7E1 /* ProfileSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3758508415AEDE69006DF7E1 /* ProfileSettingsViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		3758508715AEDE69006DF7E1 /* ProfileSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3758508515AEDE69006DF7E1 /* ProfileSettingsViewController.xib */; };
-		3758508C15AEE41A006DF7E1 /* InfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3758508A15AEE41A006DF7E1 /* InfoViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		3758508C15AEE41A006DF7E1 /* InfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3758508A15AEE41A006DF7E1 /* InfoViewController.m */; };
 		3758508D15AEE41A006DF7E1 /* InfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3758508B15AEE41A006DF7E1 /* InfoViewController.xib */; };
 		37B1364E15B538610022B8D8 /* calendarBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 37B1364615B538610022B8D8 /* calendarBackground.png */; };
 		37B1364F15B538610022B8D8 /* calendarBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37B1364715B538610022B8D8 /* calendarBackground@2x.png */; };
@@ -263,6 +263,7 @@
 		688F7FCA16A308A5008581D4 /* NSUnderlinedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 688F7FC916A308A5008581D4 /* NSUnderlinedButton.m */; };
 		688F7FCD16A30DF2008581D4 /* HSRestorePasswordViewCotroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 688F7FCC16A30DF2008581D4 /* HSRestorePasswordViewCotroller.m */; };
 		688F7FCF16A30E16008581D4 /* HSRestorePasswordViewCotroller.xib in Resources */ = {isa = PBXBuildFile; fileRef = 688F7FCE16A30E15008581D4 /* HSRestorePasswordViewCotroller.xib */; };
+		689B00AF16A7537C00B5CA4C /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 689B00AE16A7537C00B5CA4C /* Default-568h@2x.png */; };
 		68A028DB166E9571000E18D8 /* HSContraindicationsLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 68A028DA166E9571000E18D8 /* HSContraindicationsLoader.m */; };
 		68B455B81635BC5100811A0F /* HSEventRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B455B71635BC5100811A0F /* HSEventRenderer.m */; };
 		68B455BC1635C0B500811A0F /* HSBloodDonationEventRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B455BB1635C0B500811A0F /* HSBloodDonationEventRenderer.m */; };
@@ -486,9 +487,9 @@
 		85B7CDA915C24F2B008C1BEC /* NewsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85B7CDA815C24F2B008C1BEC /* NewsCell.xib */; };
 		85B7CDAD15C24F87008C1BEC /* AdsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 85B7CDAC15C24F87008C1BEC /* AdsCell.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		85B7CDAF15C24F94008C1BEC /* AdsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85B7CDAE15C24F94008C1BEC /* AdsCell.xib */; };
-		85BE8CDA15C13E6000CF5606 /* AdsSubViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85BE8CD815C13E6000CF5606 /* AdsSubViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		85BE8CDA15C13E6000CF5606 /* AdsSubViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85BE8CD815C13E6000CF5606 /* AdsSubViewController.m */; };
 		85BE8CDB15C13E6000CF5606 /* AdsSubViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85BE8CD915C13E6000CF5606 /* AdsSubViewController.xib */; };
-		85BE8CDF15C13E7800CF5606 /* NewsSubViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85BE8CDD15C13E7800CF5606 /* NewsSubViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		85BE8CDF15C13E7800CF5606 /* NewsSubViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85BE8CDD15C13E7800CF5606 /* NewsSubViewController.m */; };
 		85BE8CE015C13E7800CF5606 /* NewsSubViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85BE8CDE15C13E7800CF5606 /* NewsSubViewController.xib */; };
 		85BE8CED15C1467500CF5606 /* adsSegmentButtonNotSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 85BE8CE115C1467500CF5606 /* adsSegmentButtonNotSelected.png */; };
 		85BE8CEE15C1467500CF5606 /* adsSegmentButtonNotSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85BE8CE215C1467500CF5606 /* adsSegmentButtonNotSelected@2x.png */; };
@@ -839,6 +840,7 @@
 		688F7FCB16A30DF2008581D4 /* HSRestorePasswordViewCotroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSRestorePasswordViewCotroller.h; sourceTree = "<group>"; };
 		688F7FCC16A30DF2008581D4 /* HSRestorePasswordViewCotroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSRestorePasswordViewCotroller.m; sourceTree = "<group>"; };
 		688F7FCE16A30E15008581D4 /* HSRestorePasswordViewCotroller.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HSRestorePasswordViewCotroller.xib; sourceTree = "<group>"; };
+		689B00AE16A7537C00B5CA4C /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		68A028D9166E9571000E18D8 /* HSContraindicationsLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSContraindicationsLoader.h; sourceTree = "<group>"; };
 		68A028DA166E9571000E18D8 /* HSContraindicationsLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSContraindicationsLoader.m; sourceTree = "<group>"; };
 		68B455B61635BC5100811A0F /* HSEventRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HSEventRenderer.h; path = event/HSEventRenderer.h; sourceTree = "<group>"; };
@@ -1200,6 +1202,7 @@
 		37153E9015AEBA3400C985C1 = {
 			isa = PBXGroup;
 			children = (
+				689B00AE16A7537C00B5CA4C /* Default-568h@2x.png */,
 				685CB2F9163F2016004FF9AC /* Libs */,
 				37153EA515AEBA3400C985C1 /* Donor */,
 				68BB4056162F0B9400098861 /* DonorTests */,
@@ -2726,6 +2729,7 @@
 				6846116A16A6157000EE9030 /* profile_facebook_link_button_normal@2x.png in Resources */,
 				6846116B16A6157000EE9030 /* profile_facebook_link_button_pressed.png in Resources */,
 				6846116C16A6157000EE9030 /* profile_facebook_link_button_pressed@2x.png in Resources */,
+				689B00AF16A7537C00B5CA4C /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2763,15 +2767,12 @@
 				37153EAC15AEBA3400C985C1 /* main.m in Sources */,
 				37153EB015AEBA3400C985C1 /* AppDelegate.m in Sources */,
 				3758508615AEDE69006DF7E1 /* ProfileSettingsViewController.m in Sources */,
-				3758508C15AEE41A006DF7E1 /* InfoViewController.m in Sources */,
 				371CBA5715AFD4A8008CA154 /* STabBarController.m in Sources */,
 				371CBA8315AFF3E1008CA154 /* StationsViewController.m in Sources */,
 				85AA3B3115B3D3690077D336 /* SelectBloodGroupViewController.m in Sources */,
 				85AA3B3615B3D9250077D336 /* Common.m in Sources */,
 				858B436B15B6B03200A7A67D /* ProfileSexSelectViewController.m in Sources */,
 				374D002915BD57CD0094CEFE /* SLabel.m in Sources */,
-				85BE8CDA15C13E6000CF5606 /* AdsSubViewController.m in Sources */,
-				85BE8CDF15C13E7800CF5606 /* NewsSubViewController.m in Sources */,
 				85BE8D3C15C16F0600CF5606 /* NewsCell.m in Sources */,
 				85B7CDAD15C24F87008C1BEC /* AdsCell.m in Sources */,
 				85F1185315C6A984000A1183 /* InfoSubViewController.m in Sources */,
@@ -2792,6 +2793,9 @@
 				8585E1AA161B0A5D00275AE7 /* FTCoreTextView.m in Sources */,
 				85939C65162D616D0081A46C /* ForDonorsCell.m in Sources */,
 				685CB2F8163F200A004FF9AC /* MBProgressHUD.m in Sources */,
+				85BE8CDF15C13E7800CF5606 /* NewsSubViewController.m in Sources */,
+				85BE8CDA15C13E6000CF5606 /* AdsSubViewController.m in Sources */,
+				3758508C15AEE41A006DF7E1 /* InfoViewController.m in Sources */,
 				3758507315AED544006DF7E1 /* ProfileDescriptionViewController.m in Sources */,
 				3758507C15AEDCF5006DF7E1 /* ProfileRegistrationViewController.m in Sources */,
 				3758506E15AED1FE006DF7E1 /* HSBaseLoginViewController.m in Sources */,

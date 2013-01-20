@@ -10,12 +10,9 @@
 #import <Parse/Parse.h>
 #import "HSFlurryAnalytics.h"
 #import "Crittercism.h"
+#import "TestFlight.h"
 
-#ifdef NEW_CALENDAR_FUNCTIONALITY_DEVELOPEMENT
 #import "HSCalendarViewController.h"
-#else
-#import "CalendarViewController.h"
-#endif
 
 #import "StationsViewController.h"
 #import "InfoViewController.h"
@@ -78,11 +75,7 @@ static NSString * const CRITTERCISM_APP_ID = @"50f5e3804f633a256d000003";
     [[UIBarButtonItem appearance] setBackButtonBackgroundImage:backButtonImagePressed forState:UIControlStateHighlighted barMetrics:UIBarMetricsDefault];
     [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, -1) forBarMetrics:UIBarMetricsDefault];
 
-#ifdef NEW_CALENDAR_FUNCTIONALITY_DEVELOPEMENT
     HSCalendarViewController *calendarViewController = [[[HSCalendarViewController alloc] initWithNibName:@"HSCalendarViewController" bundle:nil] autorelease];
-#else
-    CalendarViewController *calendarViewController = [[[CalendarViewController alloc] initWithNibName:@"CalendarViewController" bundle:nil] autorelease];
-#endif
     UINavigationController *calendarNavigationController = [[[UINavigationController alloc] initWithRootViewController:calendarViewController] autorelease];
     
     StationsViewController *stationsViewController = [[[StationsViewController alloc] initWithNibName:@"StationsViewController" bundle:nil] autorelease];

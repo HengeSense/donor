@@ -9,6 +9,9 @@
 
 #import "STabBarController.h"
 
+static const NSUInteger kTabBarHeight = 55;
+static const NSUInteger kTabBarButtonHeight = 52;
+
 @interface STabBarController () {
     UIImageView *tabBarBackground;
     UIButton *calendarButton;
@@ -25,14 +28,18 @@
 - (id)initWithNativeTabBarController:(UITabBarController *)tabBarController {
     THROW_IF_ARGUMENT_NIL(tabBarController, @"tabBarController is not defined");
     if (self = [super init]) {
+        NSUInteger screenWidth = [UIScreen mainScreen].bounds.size.width;
+        NSUInteger screenHeight = [UIScreen mainScreen].bounds.size.height;
+        
         self.tabBarController = tabBarController;
         
-        tabBarBackground = [[UIImageView alloc] initWithFrame:CGRectMake(0, 425, 320, 55)];
+        tabBarBackground =
+                [[UIImageView alloc] initWithFrame:CGRectMake(0, screenHeight - kTabBarHeight, screenWidth, kTabBarHeight)];
         tabBarBackground.image = [UIImage imageNamed:@"tabBarBackground"];
         [self.tabBarController.view addSubview:tabBarBackground];
 
         calendarButton = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
-        calendarButton.frame = CGRectMake(0, 425, 101, 52);
+        calendarButton.frame = CGRectMake(0, screenHeight - kTabBarHeight, 101, kTabBarButtonHeight);
         [calendarButton addTarget:self
                          action:@selector(tabButtonClick:)
                forControlEvents:UIControlEventTouchUpInside];
@@ -43,7 +50,7 @@
 
         
         stationsButton = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
-        stationsButton.frame = CGRectMake(54, 425, 118, 52);
+        stationsButton.frame = CGRectMake(54, screenHeight - kTabBarHeight, 118, kTabBarButtonHeight);
         [stationsButton addTarget:self
                            action:@selector(tabButtonClick:)
                  forControlEvents:UIControlEventTouchUpInside];
@@ -53,7 +60,7 @@
         [self.tabBarController.view addSubview:stationsButton];
         
         infoButton = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
-        infoButton.frame = CGRectMake(137, 425, 118, 52);
+        infoButton.frame = CGRectMake(137, screenHeight - kTabBarHeight, 118, kTabBarButtonHeight);
         [infoButton addTarget:self
                            action:@selector(tabButtonClick:)
                  forControlEvents:UIControlEventTouchUpInside];
@@ -64,7 +71,7 @@
 
         
         profileButton = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
-        profileButton.frame = CGRectMake(216, 425, 104, 52);
+        profileButton.frame = CGRectMake(216, screenHeight - kTabBarHeight, 104, kTabBarButtonHeight);
         [profileButton addTarget:self
                            action:@selector(tabButtonClick:)
                  forControlEvents:UIControlEventTouchUpInside];

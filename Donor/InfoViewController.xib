@@ -14,7 +14,6 @@
 			<string>IBProxyObject</string>
 			<string>IBUIButton</string>
 			<string>IBUIImageView</string>
-			<string>IBUIScrollView</string>
 			<string>IBUIView</string>
 		</array>
 		<array key="IBDocument.PluginDependencies">
@@ -39,8 +38,8 @@
 				<array class="NSMutableArray" key="NSSubviews">
 					<object class="IBUIImageView" id="1022633765">
 						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrameSize">{320, 480}</string>
+						<int key="NSvFlags">274</int>
+						<string key="NSFrameSize">{320, 431}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -54,7 +53,7 @@
 					<object class="IBUIImageView" id="833742718">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{0, 2}, {320, 63}}</string>
+						<string key="NSFrameSize">{320, 62}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="636196234"/>
@@ -147,7 +146,7 @@
 						<string key="NSFrame">{{210, 11}, {100, 32}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="740836114"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<int key="IBUITag">2</int>
@@ -172,23 +171,8 @@
 						<reference key="IBUIFontDescription" ref="309346460"/>
 						<reference key="IBUIFont" ref="171826547"/>
 					</object>
-					<object class="IBUIScrollView" id="740836114">
-						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{0, 57}, {320, 323}}</string>
-						<reference key="NSSuperview" ref="191373211"/>
-						<reference key="NSWindow"/>
-						<string key="NSReuseIdentifierKey">_NS:9</string>
-						<object class="NSColor" key="IBUIBackgroundColor">
-							<int key="NSColorSpace">3</int>
-							<bytes key="NSWhite">MCAwAA</bytes>
-						</object>
-						<bool key="IBUIClipsSubviews">YES</bool>
-						<bool key="IBUIMultipleTouchEnabled">YES</bool>
-						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-					</object>
 				</array>
-				<string key="NSFrame">{{0, 44}, {320, 436}}</string>
+				<string key="NSFrame">{{0, 44}, {320, 387}}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="1022633765"/>
@@ -201,6 +185,11 @@
 				</object>
 				<object class="IBUISimulatedNavigationBarMetrics" key="IBUISimulatedTopBarMetrics">
 					<bool key="IBUIPrompted">NO</bool>
+				</object>
+				<object class="IBUISimulatedTabBarMetrics" key="IBUISimulatedBottomBarMetrics"/>
+				<object class="IBUISimulatedSizeMetrics" key="IBUISimulatedDestinationMetrics">
+					<string key="IBUISimulatedSizeMetricsClass">IBUISimulatedFreeformSizeMetricsSentinel</string>
+					<string key="IBUIDisplayName">Freeform</string>
 				</object>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 			</object>
@@ -240,39 +229,31 @@
 					<int key="connectionID">62</int>
 				</object>
 				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">infoSubView</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="740836114"/>
-					</object>
-					<int key="connectionID">73</int>
-				</object>
-				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">tabSelected:</string>
+						<string key="label">showAdsView:</string>
 						<reference key="source" ref="636196234"/>
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">7</int>
 					</object>
-					<int key="connectionID">64</int>
+					<int key="connectionID">74</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">tabSelected:</string>
+						<string key="label">showNewsView:</string>
 						<reference key="source" ref="207699264"/>
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">7</int>
 					</object>
-					<int key="connectionID">65</int>
+					<int key="connectionID">75</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">tabSelected:</string>
+						<string key="label">showInfoView:</string>
 						<reference key="source" ref="587612170"/>
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">7</int>
 					</object>
-					<int key="connectionID">66</int>
+					<int key="connectionID">76</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -292,7 +273,6 @@
 							<reference ref="636196234"/>
 							<reference ref="207699264"/>
 							<reference ref="587612170"/>
-							<reference ref="740836114"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -332,11 +312,6 @@
 						<reference key="object" ref="587612170"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">72</int>
-						<reference key="object" ref="740836114"/>
-						<reference key="parent" ref="191373211"/>
-					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -351,7 +326,6 @@
 				<real value="1" key="11.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="6.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="7.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="72.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="9.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<real value="1" key="9.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 			</dictionary>
@@ -359,28 +333,40 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">73</int>
+			<int key="maxID">76</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
 				<object class="IBPartialClassDescription">
 					<string key="className">InfoViewController</string>
 					<string key="superclassName">UIViewController</string>
-					<object class="NSMutableDictionary" key="actions">
-						<string key="NS.key.0">tabSelected:</string>
-						<string key="NS.object.0">id</string>
-					</object>
-					<object class="NSMutableDictionary" key="actionInfosByName">
-						<string key="NS.key.0">tabSelected:</string>
-						<object class="IBActionInfo" key="NS.object.0">
+					<dictionary class="NSMutableDictionary" key="actions">
+						<string key="showAdsView:">id</string>
+						<string key="showInfoView:">id</string>
+						<string key="showNewsView:">id</string>
+						<string key="tabSelected:">id</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="actionInfosByName">
+						<object class="IBActionInfo" key="showAdsView:">
+							<string key="name">showAdsView:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="showInfoView:">
+							<string key="name">showInfoView:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="showNewsView:">
+							<string key="name">showNewsView:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="tabSelected:">
 							<string key="name">tabSelected:</string>
 							<string key="candidateClassName">id</string>
 						</object>
-					</object>
+					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="adsButton">UIButton</string>
 						<string key="infoButton">UIButton</string>
-						<string key="infoSubView">UIScrollView</string>
 						<string key="newsButton">UIButton</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
@@ -391,10 +377,6 @@
 						<object class="IBToOneOutletInfo" key="infoButton">
 							<string key="name">infoButton</string>
 							<string key="candidateClassName">UIButton</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="infoSubView">
-							<string key="name">infoSubView</string>
-							<string key="candidateClassName">UIScrollView</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="newsButton">
 							<string key="name">newsButton</string>

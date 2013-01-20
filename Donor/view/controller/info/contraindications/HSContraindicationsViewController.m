@@ -56,6 +56,19 @@
     [self loadContraindicationsDataSources];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    NSUInteger screenHeight = [UIScreen mainScreen].bounds.size.height;
+    NSUInteger navigationBarHeight = self.navigationController.navigationBar.bounds.size.height;
+    NSUInteger topTabBarHeight = 60;
+    NSUInteger bottomTabBarHeight = 55;
+    NSUInteger contentViewHeight = screenHeight - navigationBarHeight - topTabBarHeight - bottomTabBarHeight;
+    
+    CGRect contentViewFrame = self.contraindicationsTableView.frame;
+    contentViewFrame.size.height = contentViewHeight;
+    self.contraindicationsTableView.frame = contentViewFrame;
+    [super viewWillAppear:animated];
+}
+
 - (IBAction)absoluteButtonClicked:(id)sender {
     self.contraindicationsTableView.dataSource = self.absoluteContraindicationsDataSource;
     self.contraindicationsTableView.delegate = self.absoluteContraindicationsDataSource;

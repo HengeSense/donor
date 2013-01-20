@@ -2,8 +2,9 @@
 //  NewsSubViewController.h
 //  BloodDonor
 //
-//  Created by Владимир Носков on 26.07.12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//  Created by Vladimir Noskov on 26.07.12.
+//  Updated by Sergey Seroshtan on 20.01.13
+//  Copyright (c) 2012 Hint Solutions. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
@@ -15,14 +16,8 @@
 
 @end
 
-@interface NewsSubViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
-{
-    NSArray *contentArray;
-    UIView *indicatorView;
-}
+@interface NewsSubViewController : UIViewController
 
-@property (nonatomic, retain) id delegate;
-
-- (void)callbackWithResult:(NSArray *)result error:(NSError *)error;
+@property (nonatomic, weak) id delegate;
 
 @end

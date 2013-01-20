@@ -3,31 +3,20 @@
 //  BloodDonor
 //
 //  Created by Andrey Rebrik on 12.07.12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//  Updated by Sergey Seroshtan on 17.01.13
+//  Copyright (c) 2012 HintSolution. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
-#import "NewsSubViewController.h"
-#import "AdsSubViewController.h"
-#import "InfoSubViewController.h"
 
-@interface InfoViewController : UIViewController <UINavigationControllerDelegate, INewsSelectListener, IAdsSelectListener, IInfoSubViewListener>
-{
-    IBOutlet UIButton *adsButton;
-    IBOutlet UIButton *newsButton;
-    IBOutlet UIButton *infoButton;
-    
-    UIViewController *infoSubViewController;
-    UIScrollView *infoSubView;
-}
+@interface InfoViewController : UIViewController
 
-@property (nonatomic, retain, readwrite) IBOutlet UIScrollView *infoSubView;
-@property (nonatomic, retain, readwrite) UIViewController *infoSubViewController;
-@property (nonatomic, retain, readwrite) NSArray *segmentedViewControllers;
+@property (nonatomic, weak) IBOutlet UIButton *adsButton;
+@property (nonatomic, weak) IBOutlet UIButton *newsButton;
+@property (nonatomic, weak) IBOutlet UIButton *infoButton;
 
-- (void)didChangeSegmentControl:(UIButton *)button;
-- (void)selectTab:(int)index;
-- (IBAction)tabSelected:(id)sender;
-- (NSArray *)segmentedViewControllerContent;
+- (IBAction)showAdsView:(id)sender;
+- (IBAction)showNewsView:(id)sender;
+- (IBAction)showInfoView:(id)sender;
 
 @end

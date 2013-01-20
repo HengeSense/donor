@@ -41,7 +41,7 @@
 	
     if (nil == imageView.superview)
     {
-        CGRect frame = scrollView.frame;
+        CGRect frame = imageView.frame;
         frame.origin.x = frame.size.width * page;
         frame.origin.y = 0;
         imageView.frame = frame;
