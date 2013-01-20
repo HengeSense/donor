@@ -264,6 +264,11 @@
 		688F7FCD16A30DF2008581D4 /* HSRestorePasswordViewCotroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 688F7FCC16A30DF2008581D4 /* HSRestorePasswordViewCotroller.m */; };
 		688F7FCF16A30E16008581D4 /* HSRestorePasswordViewCotroller.xib in Resources */ = {isa = PBXBuildFile; fileRef = 688F7FCE16A30E15008581D4 /* HSRestorePasswordViewCotroller.xib */; };
 		689B00AF16A7537C00B5CA4C /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 689B00AE16A7537C00B5CA4C /* Default-568h@2x.png */; };
+		689B00FD16AC37CC00B5CA4C /* recommendations.json in Resources */ = {isa = PBXBuildFile; fileRef = 689B00FC16AC37CC00B5CA4C /* recommendations.json */; };
+		689B010316AC425900B5CA4C /* HSRecommendation.m in Sources */ = {isa = PBXBuildFile; fileRef = 689B010216AC425900B5CA4C /* HSRecommendation.m */; };
+		689B010616AC444F00B5CA4C /* HSRecommendationsLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 689B010516AC444F00B5CA4C /* HSRecommendationsLoader.m */; };
+		689B010A16AC47A200B5CA4C /* HSRecommendationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 689B010816AC47A100B5CA4C /* HSRecommendationsViewController.m */; };
+		689B010B16AC47A200B5CA4C /* HSRecommendationsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 689B010916AC47A100B5CA4C /* HSRecommendationsViewController.xib */; };
 		68A028DB166E9571000E18D8 /* HSContraindicationsLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 68A028DA166E9571000E18D8 /* HSContraindicationsLoader.m */; };
 		68B455B81635BC5100811A0F /* HSEventRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B455B71635BC5100811A0F /* HSEventRenderer.m */; };
 		68B455BC1635C0B500811A0F /* HSBloodDonationEventRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B455BB1635C0B500811A0F /* HSBloodDonationEventRenderer.m */; };
@@ -466,8 +471,6 @@
 		85AA3B3115B3D3690077D336 /* SelectBloodGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85AA3B2F15B3D3690077D336 /* SelectBloodGroupViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		85AA3B3215B3D3690077D336 /* SelectBloodGroupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85AA3B3015B3D3690077D336 /* SelectBloodGroupViewController.xib */; };
 		85AA3B3615B3D9250077D336 /* Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 85AA3B3515B3D9250077D336 /* Common.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		85AB70DD15CBCD4600C6A2BA /* RecommendationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85AB70DB15CBCD4600C6A2BA /* RecommendationsViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		85AB70DE15CBCD4600C6A2BA /* RecommendationsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85AB70DC15CBCD4600C6A2BA /* RecommendationsViewController.xib */; };
 		85ADBCBD15E8DFF9006E6CB7 /* sharingCancelButtonNormal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85ADBCB915E8DFF9006E6CB7 /* sharingCancelButtonNormal@2x.png */; };
 		85ADBCBE15E8DFF9006E6CB7 /* sharingCancelButtonPressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85ADBCBA15E8DFF9006E6CB7 /* sharingCancelButtonPressed@2x.png */; };
 		85ADBCBF15E8DFF9006E6CB7 /* sharingCancelButtonPressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 85ADBCBB15E8DFF9006E6CB7 /* sharingCancelButtonPressed.png */; };
@@ -841,6 +844,14 @@
 		688F7FCC16A30DF2008581D4 /* HSRestorePasswordViewCotroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSRestorePasswordViewCotroller.m; sourceTree = "<group>"; };
 		688F7FCE16A30E15008581D4 /* HSRestorePasswordViewCotroller.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HSRestorePasswordViewCotroller.xib; sourceTree = "<group>"; };
 		689B00AE16A7537C00B5CA4C /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		689B00FC16AC37CC00B5CA4C /* recommendations.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = recommendations.json; sourceTree = "<group>"; };
+		689B010116AC425900B5CA4C /* HSRecommendation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSRecommendation.h; sourceTree = "<group>"; };
+		689B010216AC425900B5CA4C /* HSRecommendation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSRecommendation.m; sourceTree = "<group>"; };
+		689B010416AC444F00B5CA4C /* HSRecommendationsLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSRecommendationsLoader.h; sourceTree = "<group>"; };
+		689B010516AC444F00B5CA4C /* HSRecommendationsLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSRecommendationsLoader.m; sourceTree = "<group>"; };
+		689B010716AC47A100B5CA4C /* HSRecommendationsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSRecommendationsViewController.h; sourceTree = "<group>"; };
+		689B010816AC47A100B5CA4C /* HSRecommendationsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSRecommendationsViewController.m; sourceTree = "<group>"; };
+		689B010916AC47A100B5CA4C /* HSRecommendationsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HSRecommendationsViewController.xib; sourceTree = "<group>"; };
 		68A028D9166E9571000E18D8 /* HSContraindicationsLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSContraindicationsLoader.h; sourceTree = "<group>"; };
 		68A028DA166E9571000E18D8 /* HSContraindicationsLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSContraindicationsLoader.m; sourceTree = "<group>"; };
 		68B455B61635BC5100811A0F /* HSEventRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HSEventRenderer.h; path = event/HSEventRenderer.h; sourceTree = "<group>"; };
@@ -1079,9 +1090,6 @@
 		85AA3B3015B3D3690077D336 /* SelectBloodGroupViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectBloodGroupViewController.xib; sourceTree = "<group>"; };
 		85AA3B3415B3D9250077D336 /* Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
 		85AA3B3515B3D9250077D336 /* Common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Common.m; sourceTree = "<group>"; };
-		85AB70DA15CBCD4600C6A2BA /* RecommendationsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecommendationsViewController.h; sourceTree = "<group>"; };
-		85AB70DB15CBCD4600C6A2BA /* RecommendationsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecommendationsViewController.m; sourceTree = "<group>"; };
-		85AB70DC15CBCD4600C6A2BA /* RecommendationsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecommendationsViewController.xib; sourceTree = "<group>"; };
 		85ADBCB915E8DFF9006E6CB7 /* sharingCancelButtonNormal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sharingCancelButtonNormal@2x.png"; sourceTree = "<group>"; };
 		85ADBCBA15E8DFF9006E6CB7 /* sharingCancelButtonPressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sharingCancelButtonPressed@2x.png"; sourceTree = "<group>"; };
 		85ADBCBB15E8DFF9006E6CB7 /* sharingCancelButtonPressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sharingCancelButtonPressed.png; sourceTree = "<group>"; };
@@ -1351,9 +1359,6 @@
 				85B35FFC15C9217800F20CDA /* NewsViewController.h */,
 				85B35FFD15C9217800F20CDA /* NewsViewController.m */,
 				85B35FFE15C9217800F20CDA /* NewsViewController.xib */,
-				85AB70DA15CBCD4600C6A2BA /* RecommendationsViewController.h */,
-				85AB70DB15CBCD4600C6A2BA /* RecommendationsViewController.m */,
-				85AB70DC15CBCD4600C6A2BA /* RecommendationsViewController.xib */,
 			);
 			name = Info;
 			sourceTree = "<group>";
@@ -1742,6 +1747,7 @@
 			isa = PBXGroup;
 			children = (
 				680516F2166D7FDC0013E83E /* contraindications */,
+				689B00FE16AC3E5A00B5CA4C /* recommendations */,
 			);
 			path = info;
 			sourceTree = "<group>";
@@ -2089,6 +2095,36 @@
 			path = string;
 			sourceTree = "<group>";
 		};
+		689B00FE16AC3E5A00B5CA4C /* recommendations */ = {
+			isa = PBXGroup;
+			children = (
+				689B010016AC3E5A00B5CA4C /* data */,
+				689B00FF16AC3E5A00B5CA4C /* cell */,
+				689B010716AC47A100B5CA4C /* HSRecommendationsViewController.h */,
+				689B010816AC47A100B5CA4C /* HSRecommendationsViewController.m */,
+				689B010916AC47A100B5CA4C /* HSRecommendationsViewController.xib */,
+			);
+			path = recommendations;
+			sourceTree = "<group>";
+		};
+		689B00FF16AC3E5A00B5CA4C /* cell */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = cell;
+			sourceTree = "<group>";
+		};
+		689B010016AC3E5A00B5CA4C /* data */ = {
+			isa = PBXGroup;
+			children = (
+				689B010116AC425900B5CA4C /* HSRecommendation.h */,
+				689B010216AC425900B5CA4C /* HSRecommendation.m */,
+				689B010416AC444F00B5CA4C /* HSRecommendationsLoader.h */,
+				689B010516AC444F00B5CA4C /* HSRecommendationsLoader.m */,
+			);
+			path = data;
+			sourceTree = "<group>";
+		};
 		68B455B41635BC0700811A0F /* renderer */ = {
 			isa = PBXGroup;
 			children = (
@@ -2207,6 +2243,7 @@
 			isa = PBXGroup;
 			children = (
 				68F3B30B16754A85003E8376 /* contraindications.json */,
+				689B00FC16AC37CC00B5CA4C /* recommendations.json */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -2510,7 +2547,6 @@
 				85A9938015CAA40C0073E87B /* eventReminderCircle@2x.png in Resources */,
 				85A9938115CAA40C0073E87B /* newsCell.png in Resources */,
 				85A9938215CAA40C0073E87B /* newsCell@2x.png in Resources */,
-				85AB70DE15CBCD4600C6A2BA /* RecommendationsViewController.xib in Resources */,
 				85040C0F15CEAE7F00CD3A16 /* absoluteSegmentButtonSelected.png in Resources */,
 				85040C1015CEAE7F00CD3A16 /* timeSegmentButtonSelected@2x.png in Resources */,
 				85040C1115CEAE7F00CD3A16 /* timeSegmentButtonSelected.png in Resources */,
@@ -2730,6 +2766,8 @@
 				6846116B16A6157000EE9030 /* profile_facebook_link_button_pressed.png in Resources */,
 				6846116C16A6157000EE9030 /* profile_facebook_link_button_pressed@2x.png in Resources */,
 				689B00AF16A7537C00B5CA4C /* Default-568h@2x.png in Resources */,
+				689B00FD16AC37CC00B5CA4C /* recommendations.json in Resources */,
+				689B010B16AC47A200B5CA4C /* HSRecommendationsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2777,7 +2815,6 @@
 				85B7CDAD15C24F87008C1BEC /* AdsCell.m in Sources */,
 				85F1185315C6A984000A1183 /* InfoSubViewController.m in Sources */,
 				85B35FFF15C9217800F20CDA /* NewsViewController.m in Sources */,
-				85AB70DD15CBCD4600C6A2BA /* RecommendationsViewController.m in Sources */,
 				85A8F7A115CF88DF00535E7E /* StationsCell.m in Sources */,
 				85A0DC1415CFD922008618F8 /* FilterViewController.m in Sources */,
 				8593A8BA15D0DB1100EA51F2 /* StationDescriptionViewController.m in Sources */,
@@ -2839,6 +2876,9 @@
 				688F7F8A16A01343008581D4 /* NSString+HSUtils.m in Sources */,
 				688F7FCA16A308A5008581D4 /* NSUnderlinedButton.m in Sources */,
 				688F7FCD16A30DF2008581D4 /* HSRestorePasswordViewCotroller.m in Sources */,
+				689B010316AC425900B5CA4C /* HSRecommendation.m in Sources */,
+				689B010616AC444F00B5CA4C /* HSRecommendationsLoader.m in Sources */,
+				689B010A16AC47A200B5CA4C /* HSRecommendationsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

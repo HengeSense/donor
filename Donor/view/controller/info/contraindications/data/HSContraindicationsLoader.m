@@ -48,7 +48,7 @@ static NSString * const kContraindicationsKey_Temporary = @"temporary";
     }
 }
 
-- (NSArray *)buildContraindicationsFromRawData: (NSArray *)rawContraindications {
+- (NSArray *)buildContraindicationsFromRawData:(NSArray *)rawContraindications {
     NSMutableArray *contraindications = [[NSMutableArray alloc] initWithCapacity:rawContraindications.count];
     for (NSDictionary *rawContraindication in rawContraindications) {
         [contraindications addObject:[[HSContraindication alloc] initWithDictionary:rawContraindication]];

@@ -28,7 +28,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 30.0;
+    return 30.0f;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
@@ -45,6 +45,7 @@
     headerLabel.backgroundColor = [UIColor clearColor];
     headerLabel.textColor = [UIColor colorWithRed:203.0f/255.0f green:178.0f/255.0f blue:163.0f/255.0f alpha:1.0f];
     headerLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:12];
+    headerLabel.backgroundColor = [UIColor clearColor];
     [headerView addSubview:headerLabel];
 
     return headerView;

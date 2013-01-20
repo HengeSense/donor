@@ -16,7 +16,7 @@
 #import "InfoSubViewController.h"
 
 #import "NewsViewController.h"
-#import "RecommendationsViewController.h"
+#import "HSRecommendationsViewController.h"
 #import "HSContraindicationsViewController.h"
 #import "StationDescriptionViewController.h"
 
@@ -105,8 +105,8 @@
 #pragma mark NewsSubViewControllerDelegate
  - (void)nextViewSelected:(int)viewId {
     if (viewId == 0) {
-        RecommendationsViewController *controller =
-                [[RecommendationsViewController alloc] initWithNibName:@"RecommendationsViewController" bundle:nil];
+        HSRecommendationsViewController *controller =
+                [[HSRecommendationsViewController alloc] initWithNibName:@"HSRecommendationsViewController" bundle:nil];
         [self.navigationController pushViewController:controller animated:YES];
     } else {
         HSContraindicationsViewController *controller =

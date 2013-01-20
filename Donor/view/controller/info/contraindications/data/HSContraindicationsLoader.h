@@ -23,7 +23,7 @@
  * Loads data from the Parse.com.
  * Precondition [PFUser currentUser] should exist.
  */
-- (void)loadDataWithCompletion: (void(^)(BOOL success, NSError *error))completion;
+- (void)loadDataWithCompletion:(void(^)(BOOL success, NSError *error))completion;
 
 /**
  * Absolute contraindications (HSContraindication class objects).
