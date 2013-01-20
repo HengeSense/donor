@@ -43,9 +43,6 @@
 
 - (IBAction)adsPressed:(id)sender
 {
-    UINavigationController *infoNavigationController = [self.tabBarController.viewControllers objectAtIndex:2];
-    InfoViewController *infoViewController = [infoNavigationController.viewControllers objectAtIndex:0];
-    [infoViewController selectTab:0];
     [self.tabBarController setSelectedIndex:2];
 }
 

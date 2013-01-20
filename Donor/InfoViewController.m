@@ -20,6 +20,8 @@
 #import "HSContraindicationsViewController.h"
 #import "StationDescriptionViewController.h"
 
+#import "UIView+HSLayoutManager.h"
+
 @interface InfoViewController () <INewsSelectListener, IAdsSelectListener, IInfoSubViewListener>
 
 @property (nonatomic, strong) AdsSubViewController *adsSubViewController;
@@ -119,26 +121,15 @@
 #pragma mark - Private UI utils
 - (void)showContentViewController:(UIViewController *)contentViewController {
     [self.currentContentViewController.view removeFromSuperview];
-    contentViewController.view.frame = [self defineContentFrame];
+    [contentViewController.view adjustAsContentViewIncludeAdditionalNavigationBar:self.topTabBarView];
     [self.view addSubview:contentViewController.view];
     self.currentContentViewController = contentViewController;
 }
 
 
-- (CGRect)defineContentFrame {
-    const NSUInteger topTabBarHeight = 54;
-    const NSUInteger bottomTabBarHeight = 55;
 
-    NSUInteger screenHeight = [UIScreen mainScreen].bounds.size.height;
-    NSUInteger screenWidth = [UIScreen mainScreen].bounds.size.width;
-    NSUInteger navigationBarHeight = self.navigationController.navigationBar.bounds.size.height;
-    
-    CGRect contentViewFrame = CGRectZero;
-    contentViewFrame.origin.x = 0;
-    contentViewFrame.origin.y = topTabBarHeight;
-    contentViewFrame.size.height = screenHeight - navigationBarHeight - topTabBarHeight - bottomTabBarHeight;
-    contentViewFrame.size.width = screenWidth;
-    return contentViewFrame;
+- (void)viewDidUnload {
+    [self setTopTabBarView:nil];
+    [super viewDidUnload];
 }
-
 @end

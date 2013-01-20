@@ -13,6 +13,7 @@
 #import "HSRecommendation.h"
 #import "HSRecommendationsLoader.h"
 #import "HSContraindicationCell.h"
+#import "UIView+HSLayoutManager.h"
 
 @interface HSRecommendationsViewController ()
 
@@ -48,7 +49,8 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:YES];
-    self.recommendationsTableView.frame = [self defineContentFrame];
+    UIView *fakePaddingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 5)];
+    [self.recommendationsTableView adjustAsContentViewIncludeAdditionalNavigationBar:fakePaddingView];
 }
 
 
@@ -123,23 +125,6 @@
         return recommendation.recommendations.count;
     }
     return 0;
-}
-
-#pragma mark - Private utils
-- (CGRect)defineContentFrame {
-    const NSUInteger paddingFromNavigationBar = 3;
-    const NSUInteger bottomTabBarHeight = 55;
-    
-    NSUInteger screenHeight = [UIScreen mainScreen].bounds.size.height;
-    NSUInteger screenWidth = [UIScreen mainScreen].bounds.size.width;
-    NSUInteger navigationBarHeight = self.navigationController.navigationBar.bounds.size.height;
-    
-    CGRect contentViewFrame = CGRectZero;
-    contentViewFrame.origin.x = 0;
-    contentViewFrame.origin.y = paddingFromNavigationBar;
-    contentViewFrame.size.height = screenHeight - navigationBarHeight - paddingFromNavigationBar - bottomTabBarHeight;
-    contentViewFrame.size.width = screenWidth;
-    return contentViewFrame;
 }
 
 @end

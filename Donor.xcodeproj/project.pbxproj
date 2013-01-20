@@ -269,6 +269,7 @@
 		689B010616AC444F00B5CA4C /* HSRecommendationsLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 689B010516AC444F00B5CA4C /* HSRecommendationsLoader.m */; };
 		689B010A16AC47A200B5CA4C /* HSRecommendationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 689B010816AC47A100B5CA4C /* HSRecommendationsViewController.m */; };
 		689B010B16AC47A200B5CA4C /* HSRecommendationsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 689B010916AC47A100B5CA4C /* HSRecommendationsViewController.xib */; };
+		689B010F16ACA69A00B5CA4C /* UIView+HSLayoutManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 689B010E16ACA69A00B5CA4C /* UIView+HSLayoutManager.m */; };
 		68A028DB166E9571000E18D8 /* HSContraindicationsLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 68A028DA166E9571000E18D8 /* HSContraindicationsLoader.m */; };
 		68B455B81635BC5100811A0F /* HSEventRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B455B71635BC5100811A0F /* HSEventRenderer.m */; };
 		68B455BC1635C0B500811A0F /* HSBloodDonationEventRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B455BB1635C0B500811A0F /* HSBloodDonationEventRenderer.m */; };
@@ -852,6 +853,8 @@
 		689B010716AC47A100B5CA4C /* HSRecommendationsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSRecommendationsViewController.h; sourceTree = "<group>"; };
 		689B010816AC47A100B5CA4C /* HSRecommendationsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSRecommendationsViewController.m; sourceTree = "<group>"; };
 		689B010916AC47A100B5CA4C /* HSRecommendationsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HSRecommendationsViewController.xib; sourceTree = "<group>"; };
+		689B010D16ACA69A00B5CA4C /* UIView+HSLayoutManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+HSLayoutManager.h"; sourceTree = "<group>"; };
+		689B010E16ACA69A00B5CA4C /* UIView+HSLayoutManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+HSLayoutManager.m"; sourceTree = "<group>"; };
 		68A028D9166E9571000E18D8 /* HSContraindicationsLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSContraindicationsLoader.h; sourceTree = "<group>"; };
 		68A028DA166E9571000E18D8 /* HSContraindicationsLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSContraindicationsLoader.m; sourceTree = "<group>"; };
 		68B455B61635BC5100811A0F /* HSEventRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HSEventRenderer.h; path = event/HSEventRenderer.h; sourceTree = "<group>"; };
@@ -2035,6 +2038,8 @@
 				686BA62616345D0E004D7082 /* NSCalendar+HSCalendar.m */,
 				683F8A9E1649B8C10066C47A /* NSDate+HSCalendar.h */,
 				683F8A9F1649B8C10066C47A /* NSDate+HSCalendar.m */,
+				689B010D16ACA69A00B5CA4C /* UIView+HSLayoutManager.h */,
+				689B010E16ACA69A00B5CA4C /* UIView+HSLayoutManager.m */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -2879,6 +2884,7 @@
 				689B010316AC425900B5CA4C /* HSRecommendation.m in Sources */,
 				689B010616AC444F00B5CA4C /* HSRecommendationsLoader.m in Sources */,
 				689B010A16AC47A200B5CA4C /* HSRecommendationsViewController.m in Sources */,
+				689B010F16ACA69A00B5CA4C /* UIView+HSLayoutManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -11,6 +11,7 @@
 #import "HSContraindicationsLoader.h"
 #import "HSAbsoluteContraindicationsDataSource.h"
 #import "HSTempContraindicationsDataSource.h"
+#import "UIView+HSLayoutManager.h"
 
 #import "MBProgressHUD.h"
 
@@ -57,16 +58,8 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    NSUInteger screenHeight = [UIScreen mainScreen].bounds.size.height;
-    NSUInteger navigationBarHeight = self.navigationController.navigationBar.bounds.size.height;
-    NSUInteger topTabBarHeight = 60;
-    NSUInteger bottomTabBarHeight = 55;
-    NSUInteger contentViewHeight = screenHeight - navigationBarHeight - topTabBarHeight - bottomTabBarHeight;
-    
-    CGRect contentViewFrame = self.contraindicationsTableView.frame;
-    contentViewFrame.size.height = contentViewHeight;
-    self.contraindicationsTableView.frame = contentViewFrame;
     [super viewWillAppear:animated];
+    [self.contraindicationsTableView adjustAsContentViewIncludeAdditionalNavigationBar:self.topTabBarView];
 }
 
 - (IBAction)absoluteButtonClicked:(id)sender {
@@ -85,4 +78,8 @@
     [self.contraindicationsTableView reloadData];
 }
 
+- (void)viewDidUnload {
+    [self setTopTabBarView:nil];
+    [super viewDidUnload];
+}
 @end

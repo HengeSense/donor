@@ -19,6 +19,7 @@
 /// @name Views
 @property (weak, nonatomic) IBOutlet UIView *searchViewContainer;
 @property (weak, nonatomic) IBOutlet UITableView *contraindicationsTableView;
+@property (weak, nonatomic) IBOutlet UIImageView *topTabBarView;
 
 /// @name UI actions
 - (IBAction)absoluteButtonClicked:(id)sender;

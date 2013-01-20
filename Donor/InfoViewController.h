@@ -14,6 +14,7 @@
 @property (nonatomic, weak) IBOutlet UIButton *adsButton;
 @property (nonatomic, weak) IBOutlet UIButton *newsButton;
 @property (nonatomic, weak) IBOutlet UIButton *infoButton;
+@property (weak, nonatomic) IBOutlet UIImageView *topTabBarView;
 
 - (IBAction)showAdsView:(id)sender;
 - (IBAction)showNewsView:(id)sender;
