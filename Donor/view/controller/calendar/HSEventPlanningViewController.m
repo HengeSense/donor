@@ -491,7 +491,7 @@ static const NSUInteger kCommentsTextViewSymbolsMax = 260;
         __strong HSEventPlanningViewController *strongSelf = weakSelf;
         [progressHud hide: YES];
         if (success) {
-            if ([newEvent isKindOfClass:[HSBloodDonationEvent class]] && newEvent.isDone) {
+            if ([newEvent isKindOfClass:[HSBloodDonationEvent class]] && newEvent.isDone && !oldEvent.isDone) {
                 [strongSelf sayThanksToUser];
             }
             [self.navigationController popToRootViewControllerAnimated: YES];
