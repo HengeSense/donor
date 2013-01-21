@@ -242,13 +242,13 @@ namespace Donor
                          {
                              int days = App.ViewModel.Events.DaysFromEvent(item.GiveType, give);
                              int days2 = App.ViewModel.Events.DaysFromEvent(give, item.GiveType);
-                             if ((curdate <= item.Date.AddDays(days))) //&& (curdate >= item.Date))
+                             if ((curdate <= item.Date.AddDays(days)) && (curdate >= item.Date))
                              {
                                  possible = false;
                                  itemother = item;
                                  break;
                              };
-                             if ((item.Date <= curdate.AddDays(days2)))// && (curdate < item.Date))
+                             if ((item.Date <= curdate.AddDays(days2)) && (curdate < item.Date))
                              {
                                  possible = false;
                                  itemother = item;
@@ -464,21 +464,27 @@ namespace Donor
              }
              else
              {
-                 DateTime curdate = this.Date.Value.Value;
-                 int days = App.ViewModel.Events.DaysFromEvent(itemother.GiveType, give);
-                 int days2 = App.ViewModel.Events.DaysFromEvent(give, itemother.GiveType);
-                 var dif = Math.Abs(days - days2);
+                 try
+                 {
+                     DateTime curdate = this.Date.Value.Value;
+                     int days = App.ViewModel.Events.DaysFromEvent(itemother.GiveType, give);
+                     int days2 = App.ViewModel.Events.DaysFromEvent(give, itemother.GiveType);
+                     var dif = Math.Abs(days - days2);
 
-                 DateTime when = curdate;
-                 if ((curdate <= itemother.Date.AddDays(days)) && (curdate >= itemother.Date))
-                 {
-                     when = itemother.Date.AddDays(days + 1);
+                     DateTime when = curdate;
+                     if ((curdate <= itemother.Date.AddDays(days)) && (curdate >= itemother.Date))
+                     {
+                         when = itemother.Date.AddDays(days + 1);
+                     };
+                     if ((itemother.Date <= curdate.AddDays(days2)) && (curdate < itemother.Date))
+                     {
+                         when = itemother.Date.AddDays(days2 + 1);
+                     };
+                     MessageBox.Show(Donor.AppResources.NotTooMuchDaysFromLastBloodGive + this.GiveType.SelectedItem.ToString() + Donor.AppResources.PossibleGiveBloodStartingFrom + when.ToShortDateString());
+                 }
+                 catch {
+                     MessageBox.Show(Donor.AppResources.NotTooMuchDaysFromLastBloodGive);
                  };
-                 if ((itemother.Date <= curdate.AddDays(days2)) && (curdate < itemother.Date))
-                 {
-                     when = itemother.Date.AddDays(days2 + 1);
-                 };
-                 MessageBox.Show(Donor.AppResources.NotTooMuchDaysFromLastBloodGive + this.GiveType.SelectedItem.ToString() + Donor.AppResources.PossibleGiveBloodStartingFrom + when.ToShortDateString());
              };
 
              return CurrentEvent;

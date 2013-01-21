@@ -780,9 +780,12 @@ namespace Donor.ViewModels
 
                                         try
                                         {
-                                            string birthday = (string)result["birthday"];
-                                            CultureInfo provider = CultureInfo.InvariantCulture;
-                                            App.ViewModel.User.DateBirthday = DateTime.ParseExact(birthday, "d", provider);
+                                            if (o["birthday"].ToString() == "")
+                                            {
+                                                string birthday = (string)result["birthday"];
+                                                CultureInfo provider = CultureInfo.InvariantCulture;
+                                                App.ViewModel.User.DateBirthday = DateTime.ParseExact(birthday, "d", provider);
+                                            };
                                         }
                                         catch { };
 
