@@ -87,6 +87,12 @@ FontSize="24" FontFamily="Segoe WP Semibold" />
 							Style="{StaticResource Text24pxDF8D4B}" 
 							Tap="Site_Tap" />
                         </StackPanel>
+						
+						<StackPanel>
+                            <TextBlock Margin="0,20,0,0" Style="{StaticResource Text36pxC0A89A}" 
+							Text="Оценить приложение" Name="Rate" Tap="Rate_Tap" />
+                            
+                        </StackPanel>
 
                     </StackPanel>
                 </Grid>

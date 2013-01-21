@@ -89,6 +89,18 @@ namespace Donor
             };
         }
 
+        private void Rate_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            try
+            {
+                var marketplaceReviewTask = new MarketplaceReviewTask();
+                marketplaceReviewTask.Show();
+            }
+            catch
+            {
+            };
+        }
+
         private void TextBlock_Tap_1(object sender, System.Windows.Input.GestureEventArgs e)
         {
             if (this.AbsContra.Visibility == Visibility.Visible)
