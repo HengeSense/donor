@@ -22,7 +22,7 @@ namespace Donor
 
         private void Login_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Uri("/ProfileLogin.xaml", UriKind.Relative));
+            NavigationService.Navigate(new Uri("/ProfileLogin.xaml?task=login", UriKind.Relative));
             //NavigationService.GoBack();
         }
 

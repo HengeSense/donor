@@ -140,7 +140,7 @@
                 </StackPanel>
 
                 <StackPanel Name="RegisterForm" Visibility="Collapsed">
-                            <ScrollViewer Height="600">
+                            <ScrollViewer Height="550">
                                 <StackPanel>
                                     <TextBlock Margin="10,10,10,0"
 						Style="{StaticResource Text24pxCBB2A3}"
@@ -190,7 +190,7 @@
 						Background="#FF4186A3" 
 						BorderBrush="#FF4186A3" 
 						FontFamily="Segoe WP Regular"
-						Content="{Binding Registration, Source={StaticResource Loc}}" Click="RegisterButton_Click" Foreground="White" />
+						Content="{Binding Registration, Source={StaticResource Loc}}" Click="RegisterButton_Click" Foreground="White" Visibility="Collapsed" />
                                 </StackPanel>
                             </ScrollViewer>
                         </StackPanel>
@@ -218,30 +218,7 @@ BorderBrush="#FF4F3B34" Foreground="#FFCBB2A3" x:Name="email"
                             Foreground="#FFFFFFFF" 
 						    FontFamily="Segoe WP Regular" 
                             Margin="0,10,0,0"
-                            Click="Login_Click"/>
-                            <!-- Click="Login_Click" 
-                            Command="{Binding Path=User.LoginCommand}"
-                            -->
-
-                            <Button 
-					        FontSize="24"
-					        Background="#FF4F3B34" 
-					        BorderBrush="#FF4F3B34" 
-                            Foreground="#FFCBB2A3" 
-					        FontFamily="Segoe WP Regular"
-                            Visibility="Collapsed"
-					        Name="FacebookLogin" Content="{Binding FacebookLogin, Source={StaticResource Loc}}" 
-					        Click="FacebookLogin_Click"/>
-
-
-                            <Button Name="RegisterShowButton" 
-						Content="Регистрация" 
-                        Visibility="Collapsed"
-						FontSize="24"
-						Background="#FF4186A3" 
-						BorderBrush="#FF4186A3" 
-						FontFamily="Segoe WP Regular" Foreground="White" Click="RegisterShowButton_Click" />
-
+                            Click="Login_Click" Visibility="Collapsed" />                            
                             
                             <TextBlock 
 						Foreground="#FF847168"
@@ -253,37 +230,17 @@ BorderBrush="#FF4F3B34" Foreground="#FFCBB2A3" x:Name="email"
 						Style="{StaticResource Text24pxCBB2A3}"
 						Text="{Binding EnterLoginAndPasswordToRegister, Source={StaticResource Loc}}" TextWrapping="Wrap" Visibility="Collapsed" />
 
-
-                        <Button Name="RestorePassword" 
-						Content="{Binding RestorePassoword, Source={StaticResource Loc}}" 
-						Click="RestorePassword_Click" 
-						FontSize="24"
-                        Visibility="Collapsed"
-						Background="#FF4186A3" 
-                        
-						BorderBrush="#FF4186A3" 
-						FontFamily="Segoe WP Regular" 
-                        Foreground="#FFFFFFFF"/>
-
                         <TextBlock TextDecorations="Underline" 
                         Margin="14,230,0,0" Style="{StaticResource Text24pxCBB2A3}" Text="{Binding RestorePassoword, Source={StaticResource Loc}}" Tap="TextBlock_Tap" />
 
+                            
+                            
                         </StackPanel>
 
                         
 
                         <WPExtensions:AdvancedApplicationBar Background="#FF211E1D" BackgroundColor="#FF211E1D" 
                         Foreground="White" BorderBrush="#FF211E1D" ForegroundColor="White" OpacityMask="White" Name="AppBar" IsVisible="False" IsMenuEnabled="False" >
-
-                            <!--<WPExtensions:AdvancedApplicationBarIconButton 
-						IconUri="/icons/appbar.feature.settings.rest.png" 
-						Name="FacebookButton" Text="Facebook" 
-						Click="FacebookButton_Click" Visibility="Collapsed" />
-
-                            <WPExtensions:AdvancedApplicationBarIconButton 
-						IconUri="/icons/appbar.feature.settings.rest.png" 
-						Name="FacebookUnlinkingButton" Text="Facebook отвязать" Click="FacebookUnlinkingButton_Click" Visibility="Collapsed" />
-                            -->
 
                             <WPExtensions:AdvancedApplicationBarIconButton 
 						IconUri="/icons/appbar.edit.rest.png" 
@@ -295,15 +252,26 @@ BorderBrush="#FF4F3B34" Foreground="#FFCBB2A3" x:Name="email"
 						IconUri="/icons/ic_ApplicationBar_exit.png" 
 						Text="{Binding Exit, Source={StaticResource Loc}}" Visibility="Visible" 
 						Name="DeleteUserButton" Click="DeleteUserButton_Click" />
-                            <!-- Click="DeleteUserButton_Click" -->
+
+                            <WPExtensions:AdvancedApplicationBarIconButton 
+						IconUri="/icons/ic_ApplicationBar_done.png" 
+						Text="{Binding Login, Source={StaticResource Loc}}" Visibility="Collapsed" 
+						Name="LoginUserButton" Click="LoginUserButton_Click" />
+
+                            <WPExtensions:AdvancedApplicationBarIconButton 
+						IconUri="/icons/ic_ApplicationBar_done.png" 
+						Text="{Binding Registration, Source={StaticResource Loc}}" Visibility="Collapsed" 
+						Name="RegisterUserButton" Click="RegisterUserButton_Click" />
 
                             <WPExtensions:AdvancedApplicationBarIconButton 
 IconUri="/icons/ic_ApplicationBar_done.png" Text="Сохранить" 
 Visibility="Collapsed" Name="SaveEditProfileButton" Click="SaveEditProfileButton_Click" />
+                            
                             <WPExtensions:AdvancedApplicationBarIconButton 
 						IconUri="/icons/ic_ApplicationBar_close.png" Text="Отмена" 
 						Visibility="Collapsed" Name="CancelEditProfileButton" 
 						Click="CancelEditProfileButton_Click" />
+                            
                         </WPExtensions:AdvancedApplicationBar>
 
 

@@ -79,7 +79,9 @@
 
 
         <!--<local:LocalizedStrings xmlns:local="clr-namespace:sdkGlobalizationCS" x:Key="LocalizedStrings" />-->
-        <my:AppResources x:Key="Loc" />
+        
+		<my:AppResources x:Key="Loc" />
+		
         <!--<my:LocalizedStrings xmlns:local="clr-namespace:Donor" x:Key="LocalizedStrings"/>-->
 
 

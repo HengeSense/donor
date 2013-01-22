@@ -28,6 +28,7 @@ namespace Donor
 
             DataContext = App.ViewModel;
 
+            AppBarVisibitilty("");
             if (App.ViewModel.User.IsLoggedIn == true)
             {
                 this.RegisterForm.Visibility = Visibility.Collapsed;
@@ -98,8 +99,10 @@ namespace Donor
             this.LoginForm.Visibility = Visibility.Collapsed;
             this.UserProfile.Visibility = Visibility.Visible;
 
+            AppBarVisibitilty("");
             if (App.ViewModel.User.IsLoggedIn == true)
             {
+                AppBarVisibitilty("show");
                 this.AppBar.IsVisible = true;
             }
             else
@@ -167,15 +170,6 @@ namespace Donor
                             this.UserProfile.Visibility = Visibility.Visible;
                             this.LoginForm.Visibility = Visibility.Collapsed;
 
-                            if (App.ViewModel.User.IsLoggedIn == true)
-                            {
-                                this.AppBar.IsVisible = true;
-                            }
-                            else
-                            {
-                                this.AppBar.IsVisible = false;
-                            };
-
                             List<FlurryWP7SDK.Models.Parameter> articleParams = new List<FlurryWP7SDK.Models.Parameter> { 
                             new FlurryWP7SDK.Models.Parameter("objectId", App.ViewModel.User.objectId), 
                             new FlurryWP7SDK.Models.Parameter("platform", "wp7") };
@@ -230,6 +224,7 @@ namespace Donor
                 this.password2.Password = "";
 
                 App.ViewModel.User.IsLoggedIn = false;
+                App.ViewModel.User.UserLoading = false;
                 this.RegisterForm.Visibility = Visibility.Visible;
                 this.LoginForm.Visibility = Visibility.Collapsed;
                 this.UserProfile.Visibility = Visibility.Collapsed;
@@ -298,6 +293,7 @@ namespace Donor
                 try
                 {
                     string _taskid = this.NavigationContext.QueryString["task"];
+                    AppBarVisibitilty("");
                     switch (_taskid)
                     {
                         case "register":
@@ -315,8 +311,13 @@ namespace Donor
                             this.LoginForm.Visibility = Visibility.Collapsed;
                             this.UserProfile.Visibility = Visibility.Collapsed;
                             this.EditProfile.Visibility = Visibility.Collapsed;
+
+                            AppBarVisibitilty("register");
                             break;
                         case "login":
+                            AppBarVisibitilty("login");
+                            App.ViewModel.User.UserLoading = false;
+
                             if (this.NavigationContext.QueryString.ContainsKey("email"))
                             {
                                 string _email = this.NavigationContext.QueryString["email"];
@@ -326,6 +327,10 @@ namespace Donor
                             this.LoginForm.Visibility = Visibility.Visible;
                             this.UserProfile.Visibility = Visibility.Collapsed;
                             this.EditProfile.Visibility = Visibility.Collapsed;
+
+                            /*this.LoginUserButton.Visibility = Visibility.Visible;
+                            this.AppBar.Visibility = Visibility.Visible;*/                          
+
                             break;
                         case "edit":
 
@@ -347,14 +352,14 @@ namespace Donor
                                 this.FacebookLinkingButton.Visibility = Visibility.Visible;
                                 this.FacebookUnLinkingButton.Visibility = Visibility.Collapsed;
                             };
-            
-                            this.CancelEditProfileButton.Visibility = Visibility.Visible;
-                            this.SaveEditProfileButton.Visibility = Visibility.Visible;
+
+                            AppBarVisibitilty("edit");
 
                             SetEditFields();
 
                             break;
                         default:
+                            AppBarVisibitilty("");                            
                             break;
                     };
                 }
@@ -363,14 +368,15 @@ namespace Donor
                 };
             };
 
-            if (App.ViewModel.User.IsLoggedIn == true)
+            /*if (App.ViewModel.User.IsLoggedIn == true)
             {
                 this.AppBar.IsVisible = true;
             }
             else
             {
                 this.AppBar.IsVisible = false;
-            };
+            };*/
+            this.AppBar.IsVisible = true;
         }
 
         private void SetEditFields() {
@@ -487,11 +493,7 @@ namespace Donor
 
             this.EditProfile.Visibility = Visibility.Collapsed;
 
-            this.CancelEditProfileButton.Visibility = Visibility.Collapsed;
-            this.SaveEditProfileButton.Visibility = Visibility.Collapsed;
-
-            this.EditButton.Visibility = Visibility.Visible;
-            this.DeleteUserButton.Visibility = Visibility.Visible;
+            AppBarVisibitilty("show");
 
             this.RegisterForm.Visibility = Visibility.Collapsed;
             this.LoginForm.Visibility = Visibility.Collapsed;
@@ -712,5 +714,47 @@ namespace Donor
             RestorePassword_Click(sender, null);
         }
 
+        private void LoginUserButton_Click(object sender, EventArgs e)
+        {
+            Login_Click(sender, null);
+        }
+
+        private void AppBarVisibitilty(string taskChange = "")
+        {
+            this.LoginUserButton.Visibility = Visibility.Collapsed;
+            this.CancelEditProfileButton.Visibility = Visibility.Collapsed;
+            this.SaveEditProfileButton.Visibility = Visibility.Collapsed;
+            this.DeleteUserButton.Visibility = Visibility.Collapsed;
+            this.EditButton.Visibility = Visibility.Collapsed;
+            this.RegisterUserButton.Visibility = Visibility.Collapsed;
+
+            switch (taskChange) {
+                case "login":
+                    this.LoginUserButton.Visibility = Visibility.Visible;
+                    break;
+                case "register":
+                    this.RegisterUserButton.Visibility = Visibility.Visible;
+                    break;
+                case "edit":
+                    this.CancelEditProfileButton.Visibility = Visibility.Visible;
+                    this.SaveEditProfileButton.Visibility = Visibility.Visible;
+                    break;
+                case "show":
+                    this.EditButton.Visibility = Visibility.Visible;
+                    this.DeleteUserButton.Visibility = Visibility.Visible;
+                    break;
+                case "":
+                    this.AppBar.IsVisible = false;
+                    break;
+                default: 
+                    this.AppBar.IsVisible = false;
+                    break;
+            };
+        }
+
+        private void RegisterUserButton_Click(object sender, EventArgs e)
+        {
+            RegisterButton_Click(sender, null);
+        }
     }
 }
