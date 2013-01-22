@@ -64,9 +64,8 @@ static NSString * const APP_STORE_APP_ID = @"578970724";
 
     [Appirater setAppId:APP_STORE_APP_ID];
     [Appirater setDaysUntilPrompt:2];
-    [Appirater setUsesUntilPrompt:5];
+    [Appirater setUsesUntilPrompt:3];
     [Appirater setTimeBeforeReminding:2];
-
     
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     
