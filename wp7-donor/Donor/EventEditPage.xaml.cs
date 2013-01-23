@@ -219,7 +219,8 @@ namespace Donor
                  else
                  {
                      checkit = false;
-                 }
+                 };
+                 checkit = true;
              }
              catch { };
              bool curan = false;
