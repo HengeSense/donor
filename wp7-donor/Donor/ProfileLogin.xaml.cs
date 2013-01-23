@@ -287,6 +287,19 @@ namespace Donor
             App.ViewModel.User.FacebookLinked += new DonorUser.FacebookLinkedEventHandler(this.FacebookLinkingFinished);
             App.ViewModel.User.FacebookUnLinked += new DonorUser.FacebookUnLinkedEventHandler(this.FacebookUnLinkingFinished);
 
+            if (App.ViewModel.User.IsLoggedIn == true)
+            {
+                this.RegisterForm.Visibility = Visibility.Collapsed;
+                this.LoginForm.Visibility = Visibility.Collapsed;
+                this.UserProfile.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                this.RegisterForm.Visibility = Visibility.Collapsed;
+                this.LoginForm.Visibility = Visibility.Visible;
+                this.UserProfile.Visibility = Visibility.Collapsed;
+            };
+
             this.AppBar.DataContext = App.ViewModel;
             if (this.NavigationContext.QueryString.ContainsKey("task"))
             {
