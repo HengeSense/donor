@@ -220,7 +220,10 @@ namespace Donor
                  {
                      checkit = false;
                  };
-                 checkit = true;
+                 if (save)
+                 {
+                     checkit = true;
+                 };
              }
              catch { };
              bool curan = false;

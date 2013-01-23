@@ -780,7 +780,13 @@ namespace Donor.ViewModels
 
                                         try
                                         {
-                                            if (o["birthday"].ToString() == "")
+                                            string temp_birthday = "";
+                                            try
+                                            {
+                                                temp_birthday = o["birthday"].ToString();
+                                            }
+                                            catch { };
+                                            if (temp_birthday == "")
                                             {
                                                 string birthday = (string)result["birthday"];
                                                 CultureInfo provider = CultureInfo.InvariantCulture;

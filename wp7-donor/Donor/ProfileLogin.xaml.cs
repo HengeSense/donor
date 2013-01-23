@@ -329,7 +329,7 @@ namespace Donor
                             this.EditProfile.Visibility = Visibility.Collapsed;
 
                             /*this.LoginUserButton.Visibility = Visibility.Visible;
-                            this.AppBar.Visibility = Visibility.Visible;*/                          
+                            this.AppBar.Visibility = Visibility.Visible;*/
 
                             break;
                         case "edit":
@@ -359,13 +359,17 @@ namespace Donor
 
                             break;
                         default:
-                            AppBarVisibitilty("");                            
+                            AppBarVisibitilty("");
                             break;
                     };
                 }
                 catch
                 {
                 };
+            }
+            else
+            {
+                AppBarVisibitilty("show");   
             };
 
             /*if (App.ViewModel.User.IsLoggedIn == true)
