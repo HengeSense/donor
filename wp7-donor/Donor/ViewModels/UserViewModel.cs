@@ -887,6 +887,7 @@ namespace Donor.ViewModels
                         JObject o = JObject.Parse(response.Content.ToString());
                         if (o["error"] == null)
                         {
+                            BadgesViewModel.PostAchieve(id, accessToken);
                             MessageBox.Show("Выполнена привязка.");
 
                             App.ViewModel.SaveUserToStorage();

@@ -12,14 +12,15 @@
     
     <Grid x:Name="LayoutRoot">
         <StackPanel>
-            <TextBlock Text="Новое достижение!" HorizontalAlignment="Center" 
+            <TextBlock Text="Друг донора!" HorizontalAlignment="Center" 
                        Style="{StaticResource PhoneTextTitle2Style}" />
             <Image Width="160" Margin="20" 
                    Source="/Donor;component/images/donor_badge.png" />
-            <msp:HTMLViewer NavigaionPolitic="Automatic" 
+            <TextBlock Text="Вы получили новое достижение." Margin="20"/>
+            <!--<msp:HTMLViewer NavigaionPolitic="Automatic" 
             HorizontalContentAlignment="Left"
                             Margin="20"
-            Html="Вы стали &lt;strong>Другом Донора&lt;/strong>. Подробнее о достижениях на сайте &lt;a href='http://itsbeta.com'>itsbeta.com&lt;/a>."/>
+            Html="Вы стали &lt;strong>Другом Донора&lt;/strong>. Подробнее о достижениях на сайте &lt;a href='http://itsbeta.com'>itsbeta.com&lt;/a>."/>-->
 
         </StackPanel>
     </Grid>
