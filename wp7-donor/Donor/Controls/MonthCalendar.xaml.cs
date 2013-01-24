@@ -223,19 +223,26 @@ namespace Donor.Controls
             {
                 if (day.EventDay != null)
                 {
-                    if (day.PossibleBloodGive == 1)
+                    if (day.PossibleBloodGive == 0)
                     {
-                        (Application.Current.RootVisual as PhoneApplicationFrame).Navigate(new Uri("/EventEditPage.xaml?id=" + day.EventDay.Id, UriKind.Relative));
-                    }
-                    else
-                    {
-                        if (day.PossibleBloodGive > 1)
-                        {
-                            (Application.Current.RootVisual as PhoneApplicationFrame).Navigate(new Uri("/EventEditPage.xaml?month=" + day.MonthNumber.ToString() + "&day=" + day.DayNumber.ToString() + "&year=" + day.YearNumber.ToString(), UriKind.Relative));
-                        };
+                        (Application.Current.RootVisual as PhoneApplicationFrame).Navigate(new Uri("/EventPage.xaml?id=" + day.EventDay.Id, UriKind.Relative));
                     };
 
-                    if (day.PossibleBloodGive == 0)
+                    if (day.EventDay.Type == "2")
+                    {
+                        if (day.PossibleBloodGive == 1)
+                        {
+                            (Application.Current.RootVisual as PhoneApplicationFrame).Navigate(new Uri("/EventEditPage.xaml?id=" + day.EventDay.Id, UriKind.Relative));
+                        }
+                        else
+                        {
+                            if (day.PossibleBloodGive > 1)
+                            {
+                                (Application.Current.RootVisual as PhoneApplicationFrame).Navigate(new Uri("/EventEditPage.xaml?month=" + day.MonthNumber.ToString() + "&day=" + day.DayNumber.ToString() + "&year=" + day.YearNumber.ToString(), UriKind.Relative));
+                            };
+                        };
+                    }
+                    else
                     {
                         (Application.Current.RootVisual as PhoneApplicationFrame).Navigate(new Uri("/EventPage.xaml?id=" + day.EventDay.Id, UriKind.Relative));
                     };
