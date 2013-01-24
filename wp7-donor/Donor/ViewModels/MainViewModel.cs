@@ -63,6 +63,9 @@ namespace Donor
             this.LoadFromIsolatedStorage();
 
             this.IsDataStartLoaded = false;
+
+            App.ViewModel.FbId = "";
+            App.ViewModel.FbToken = "";
         }
 
 

@@ -66,6 +66,9 @@ namespace Donor.ViewModels
             this.Password = "";
             this.NotifyAll();
 
+            App.ViewModel.FbId = "";
+            App.ViewModel.FbToken = "";
+
             //App.ViewModel.User = new DonorUser();
 
             App.ViewModel.User.UserName = "";
