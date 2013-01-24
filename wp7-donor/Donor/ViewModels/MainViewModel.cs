@@ -64,8 +64,8 @@ namespace Donor
 
             this.IsDataStartLoaded = false;
 
-            App.ViewModel.FbId = "";
-            App.ViewModel.FbToken = "";
+            this.FbId = "";
+            this.FbToken = "";
         }
 
 
