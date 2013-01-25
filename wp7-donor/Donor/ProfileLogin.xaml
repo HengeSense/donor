@@ -22,6 +22,13 @@
         <ControlsConv:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
         <ControlsConv:VisibilityToBooleanConverter x:Key="VisibilityToBooleanConverter"/>
     </phone:PhoneApplicationPage.Resources>
+    
+	<!--<phone:PhoneApplicationPage.ApplicationBar>
+		<shell:ApplicationBar>
+			<shell:ApplicationBarIconButton IconUri="appbar_button.png" Text="button"/>
+		</shell:ApplicationBar>
+	</phone:PhoneApplicationPage.ApplicationBar>-->
+
 
     <toolkit:TransitionService.NavigationInTransition>
         <toolkit:NavigationInTransition>
@@ -233,11 +240,8 @@ BorderBrush="#FF4F3B34" Foreground="#FFCBB2A3" x:Name="email"
                         <TextBlock TextDecorations="Underline" 
                         Margin="14,230,0,0" Style="{StaticResource Text24pxCBB2A3}" Text="{Binding RestorePassoword, Source={StaticResource Loc}}" Tap="TextBlock_Tap" />
 
-                            
-                            
                         </StackPanel>
 
-                        
 
                         <WPExtensions:AdvancedApplicationBar Background="#FF211E1D" BackgroundColor="#FF211E1D" 
                         Foreground="White" BorderBrush="#FF211E1D" ForegroundColor="White" OpacityMask="White" Name="AppBar" IsVisible="False" IsMenuEnabled="False" >
@@ -266,14 +270,14 @@ BorderBrush="#FF4F3B34" Foreground="#FFCBB2A3" x:Name="email"
                             <WPExtensions:AdvancedApplicationBarIconButton 
 IconUri="/icons/ic_ApplicationBar_done.png" Text="Сохранить" 
 Visibility="Collapsed" Name="SaveEditProfileButton" Click="SaveEditProfileButton_Click" />
-                            
+
                             <WPExtensions:AdvancedApplicationBarIconButton 
 						IconUri="/icons/ic_ApplicationBar_close.png" Text="Отмена" 
 						Visibility="Collapsed" Name="CancelEditProfileButton" 
 						Click="CancelEditProfileButton_Click" />
-                            
-                        </WPExtensions:AdvancedApplicationBar>
 
+                        </WPExtensions:AdvancedApplicationBar>
+                        
 
                     </Grid>
 

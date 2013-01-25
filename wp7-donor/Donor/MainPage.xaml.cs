@@ -64,6 +64,8 @@ namespace Donor
         /// <param name="e"></param>
         private void MainPage_Loaded(object sender, RoutedEventArgs e)
         {
+            this.ApplicationBar.IsVisible = false;
+
             try {
                 if (!App.ViewModel.IsDataStartLoaded)
                 {
@@ -153,6 +155,8 @@ namespace Donor
 
         private void UserLoaded(object sender, EventArgs e)
         {
+            this.ApplicationBar.IsVisible = false;
+
             try
             {
                 if (App.ViewModel.User.IsLoggedIn == true)

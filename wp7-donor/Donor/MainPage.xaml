@@ -27,7 +27,7 @@
         </phone:PhoneApplicationPage.Resources>
     
 	<phone:PhoneApplicationPage.ApplicationBar>
-		<shell:ApplicationBar IsVisible="False" IsMenuEnabled="False" Mode="Minimized"/>
+		<shell:ApplicationBar x:Name="AppBar" IsVisible="False" IsMenuEnabled="False" Mode="Minimized"/>
 	</phone:PhoneApplicationPage.ApplicationBar>
 
     <toolkit:TransitionService.NavigationInTransition>
