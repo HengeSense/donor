@@ -228,7 +228,7 @@ namespace Donor.Controls
                         (Application.Current.RootVisual as PhoneApplicationFrame).Navigate(new Uri("/EventPage.xaml?id=" + day.EventDay.Id, UriKind.Relative));
                     };
 
-                    if (day.EventDay.Type == "2")
+                    if (day.EventDay.Type == "PossibleBloodGive")
                     {
                         if (day.PossibleBloodGive == 1)
                         {
