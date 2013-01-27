@@ -59,6 +59,8 @@ namespace Donor
                 CurrentEvent = App.ViewModel.Events.Items.FirstOrDefault(c => c.Id == EventId);
                 CurrentEvent.ParseExists = true;
                 InitialCurrentEvent = CurrentEvent;
+
+                this.Date.Value = CurrentEvent.Date;
             }
             catch
             {
