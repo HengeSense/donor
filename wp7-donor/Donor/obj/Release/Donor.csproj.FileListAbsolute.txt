@@ -96,3 +96,4 @@ C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\Bin\Release\FlurryWP7S
 C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\obj\Release\EnterPage.g.i.cs
 C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\Bin\Release\Phone.Controls.dll
 C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\obj\Release\Controls\BadgeControl.g.i.cs
+C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\obj\Release\AchievesPage.g.i.cs

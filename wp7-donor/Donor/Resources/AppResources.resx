@@ -610,4 +610,10 @@
   <data name="RestoreEmailProblem" xml:space="preserve">
     <value>Пользователь с указанной почтой не зарегистрирован</value>
   </data>
+  <data name="Achieves" xml:space="preserve">
+    <value>достижения</value>
+  </data>
+  <data name="MyBadges" xml:space="preserve">
+    <value>мои значки</value>
+  </data>
 </root>

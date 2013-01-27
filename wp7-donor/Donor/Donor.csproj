@@ -122,6 +122,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AchievesPage.xaml.cs">
+      <DependentUpon>AchievesPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AdsList.xaml.cs">
       <DependentUpon>AdsList.xaml</DependentUpon>
     </Compile>
@@ -207,6 +210,7 @@
     <Compile Include="StationsSearchFilter.xaml.cs">
       <DependentUpon>StationsSearchFilter.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\AchievesViewModel.cs" />
     <Compile Include="ViewModels\AdsViewModel.cs" />
     <Compile Include="ViewModels\BadgesViewModel.cs" />
     <Compile Include="ViewModels\ContraViewModel.cs" />
@@ -228,6 +232,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
+    <Page Include="AchievesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AdsList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
