@@ -233,6 +233,10 @@ namespace Donor
                  curan = CurrentEvent.Type != "0";
              } catch {
              };
+             if (this.EventType.SelectedItem.ToString() == Donor.AppResources.Analisis)
+             {
+                 checkit = false;
+             };
              if ((this.EventType.SelectedItem.ToString() != Donor.AppResources.Analisis || curan || this.EventType.SelectedIndex != 1) && checkit)
              {
                  try
