@@ -61,6 +61,7 @@ namespace Donor
                 InitialCurrentEvent = CurrentEvent;
 
                 this.Date.Value = CurrentEvent.Date;
+                this.Time.Value = CurrentEvent.Time;
             }
             catch
             {
