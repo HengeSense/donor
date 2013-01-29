@@ -175,7 +175,6 @@ static NSString * const kEventDate = @"date";
     [bloodRemoteEvent removeWithCompletionBlock:^(BOOL success, NSError *error) {
         if (success) {
             [self.bloodRemoteEvents removeObject: bloodRemoteEvent];
-            [self updateFinishRestEvents];
             if (completion != nil) {
                 completion(success, error);
             }
@@ -200,6 +199,7 @@ static NSString * const kEventDate = @"date";
     }
     
     [self.bloodRemoteEvents removeObject:oldEvent];
+    [self updateFinishRestEvents];
     NSError *replaceError = nil;
     if ([self canAddBloodRemoteEvent:newEvent error:&replaceError]) {
         [oldEvent removeWithCompletionBlock:^(BOOL success, NSError *error) {
@@ -207,6 +207,7 @@ static NSString * const kEventDate = @"date";
                 [newEvent saveWithCompletionBlock:^(BOOL success, NSError *error) {
                     if (success) {
                         [self.bloodRemoteEvents addObject: newEvent];
+                        [self updateFinishRestEvents];
                     } else {
                         NSLog(@"Replace failed in the middle if transaction: old event was removed,"
                               " but adding new one was fifnished with error: %@", error);
@@ -225,6 +226,7 @@ static NSString * const kEventDate = @"date";
                 }];
             } else {
                 [self.bloodRemoteEvents addObject:oldEvent];
+                [self updateFinishRestEvents];
                 if (completion != nil) {
                     NSError *customError = nil;
                     if (error) {
@@ -240,6 +242,7 @@ static NSString * const kEventDate = @"date";
         }];
     } else {
         [self.bloodRemoteEvents addObject:oldEvent];
+        [self updateFinishRestEvents];
         if (completion != nil) {
             completion(NO, replaceError);
         }
@@ -412,14 +415,16 @@ static NSString * const kEventDate = @"date";
     for (HSBloodDonationEvent *undoneEvent in [self undoneBloodDonationEvents]) {
         if (undoneEvent.bloodDonationType == bloodDonationType &&
                 [undoneEvent.scheduledDate isAfterDay:fromDate] && [undoneEvent.scheduledDate isBeforeDay:toDate]) {
-            [self removeBloodRemoteEvent: undoneEvent completion: ^(BOOL success, NSError *error) {
-                if (success) {
-                    [self.bloodRemoteEvents removeObject: undoneEvent];
-                } else {
-#warning Notify user
-                    NSLog (@"Unable to remove event due to reason: %@", error);
-                }
-            }];
+            if ([self.bloodRemoteEvents containsObject:undoneEvent]) {
+                [self removeBloodRemoteEvent: undoneEvent completion: ^(BOOL success, NSError *error) {
+                    if (success) {
+                        [self.bloodRemoteEvents removeObject: undoneEvent];
+                    } else {
+                        #warning Notify user
+                        NSLog (@"Unable to remove event due to reason: %@", error);
+                    }
+                }];
+            }
         }
     }
 }

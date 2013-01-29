@@ -11,6 +11,7 @@
 #import "HSFlurryAnalytics.h"
 #import "Crittercism.h"
 #import "TestFlight.h"
+#import "Appirater.h"
 
 #import "HSCalendarViewController.h"
 
@@ -28,6 +29,7 @@ static NSString * const FACEBOOK_APP_ID = @"438918122827407";
 static NSString * const FLURRY_APP_ID = @"2WRYH35MS5SW4ZY2TNPB";
 static NSString * const TEST_FLIGHT_APP_ID = @"43651a8fd308e9fd491a1c8aa068f158_MTQxMjA0MjAxMi0xMC0wOSAwOTozMToyMS4zNzU1ODc";
 static NSString * const CRITTERCISM_APP_ID = @"50f5e3804f633a256d000003";
+static NSString * const APP_STORE_APP_ID = @"578970724";
 
 @interface AppDelegate ()
 
@@ -56,6 +58,11 @@ static NSString * const CRITTERCISM_APP_ID = @"50f5e3804f633a256d000003";
     [HSFlurryAnalytics initWithAppId:FLURRY_APP_ID];
     [TestFlight takeOff:TEST_FLIGHT_APP_ID];
     [Crittercism enableWithAppID: CRITTERCISM_APP_ID];
+
+    [Appirater setAppId:APP_STORE_APP_ID];
+    [Appirater setDaysUntilPrompt:2];
+    [Appirater setUsesUntilPrompt:3];
+    [Appirater setTimeBeforeReminding:2];
     
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     
@@ -109,7 +116,13 @@ static NSString * const CRITTERCISM_APP_ID = @"50f5e3804f633a256d000003";
     [self makeTabBarHidden:YES];
     
     [self.window makeKeyAndVisible];
+    
+    [Appirater appLaunched:YES];
     return YES;
+}
+
+- (void)applicationWillEnterForeground:(UIApplication *)application {
+    [Appirater appEnteredForeground:YES];
 }
 
 - (void)backButtonPressed:(UIBarButtonItem *)sender
