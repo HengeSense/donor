@@ -233,7 +233,7 @@ namespace Donor
                  curan = CurrentEvent.Type != "0";
              } catch {
              };
-             if (this.EventType.SelectedItem.ToString() == Donor.AppResources.Analisis)
+             if ((this.EventType.SelectedItem.ToString() == Donor.AppResources.Analisis) || (this.EventType.SelectedItem.ToString()=="0"))
              {
                  checkit = false;
              };
