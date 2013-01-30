@@ -553,7 +553,9 @@ namespace Donor.ViewModels
                     ScheduledActionService.Remove(this.Id + addSeconds.ToString());
                 objReminder = new Reminder(this.Id + addSeconds.ToString());
                 DateTime RememberDate = this.Date;
-
+                TimeSpan ts = new TimeSpan(this.Time.Hour, this.Time.Minute, 0);
+                RememberDate = RememberDate.Date + ts;
+                
                 RememberDate = RememberDate.AddSeconds(-addSeconds);
                 objReminder.BeginTime = RememberDate;
 
