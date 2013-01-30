@@ -189,6 +189,8 @@ namespace Donor.ViewModels
             set
             {
                 _date = value;
+                NotifyPropertyChanged("Date");
+                NotifyPropertyChanged("DateAndTime");
             }
         }
 
@@ -437,6 +439,8 @@ namespace Donor.ViewModels
             set
             {
                 _time = value;
+                NotifyPropertyChanged("Time");
+                NotifyPropertyChanged("ShortTime");
             }
         }
 

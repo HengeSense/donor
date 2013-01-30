@@ -130,11 +130,11 @@ namespace Donor
                 var request = new RestRequest("1/users", Method.POST);
                 request.AddHeader("Accept", "application/json");
                 request.Parameters.Clear();
-                int reg_sex = 0;
+                int reg_sex = 1;
 
                 if (this.CreateMale.IsChecked == true)
                 {
-                    reg_sex = 1;
+                    reg_sex = 0;
                 };
 
                 string strJSONContent = "{\"username\":\"" + this.email1.Text.ToString().ToLower() + "\",\"password\":\"" + this.password1.Password.ToString() + "\", \"birthday\":\"" + this.UserBirthdayRegister.Value.Value.ToShortDateString() + "\", \"Name\":\"" + this.name1.Text.ToString() + "\", \"secondName\":\"" + this.SecondNameRegister.Text.ToString() + "\", \"email\":\"" + this.email1.Text.ToString().ToLower() + "\", \"Sex\":" + reg_sex + "}";

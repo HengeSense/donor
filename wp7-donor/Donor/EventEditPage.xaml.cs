@@ -51,6 +51,19 @@ namespace Donor
 
         public string EventId = "";
 
+        protected override void OnNavigatedFrom(System.Windows.Navigation.NavigationEventArgs e)
+        {
+            try
+            {
+                if (e.Uri.ToString() != "/EventPage.xaml?id=" + EventId)
+                {
+                    App.ViewModel.Events.EditedEvent = BuildEvent(false);
+                };
+            }
+            catch { };
+            base.OnNavigatedFrom(e);
+        }
+
         private void DataFLoaded(object sender, EventArgs e)
         {
             try
