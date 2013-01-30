@@ -191,6 +191,7 @@ namespace Donor.ViewModels
                 _date = value;
                 NotifyPropertyChanged("Date");
                 NotifyPropertyChanged("DateAndTime");
+                NotifyPropertyChanged("ShortDate");
             }
         }
 
