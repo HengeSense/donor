@@ -70,8 +70,15 @@ namespace Donor
             {
                 EventId = this.NavigationContext.QueryString["id"];
                 CurrentEvent = App.ViewModel.Events.Items.FirstOrDefault(c => c.Id == EventId);
-                CurrentEvent.ParseExists = true;
+                if (CurrentEvent.Type == "PossibleBloodGive")
+                {
+                    CurrentEvent.ParseExists = false;
+                } else  {
+                    CurrentEvent.ParseExists = true;
+                };                
+
                 InitialCurrentEvent = CurrentEvent;
+
 
                 this.Date.Value = CurrentEvent.Date;
                 this.Time.Value = CurrentEvent.Time;

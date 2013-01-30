@@ -1488,6 +1488,7 @@ namespace Donor.ViewModels
                         possibleItem.Id = cnt.ToString() + DateTime.Now.Ticks.ToString();
                         possibleItem.UserId = App.ViewModel.User.objectId;
                         possibleItem.ReminderDate = "";
+                        possibleItem.ParseExists = false;
 
                         possibleEvents.Add(possibleItem);
                         this.Items.Add(possibleItem);
