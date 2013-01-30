@@ -41,14 +41,19 @@ namespace Donor
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
-            base.OnNavigatedTo(e);
-
             this.Calendar1.UpdateCalendar();
+            base.OnNavigatedTo(e);            
+        }
+
+        protected override void OnNavigatedFrom(System.Windows.Navigation.NavigationEventArgs e)
+        {
+            //this.Calendar1.UpdateCalendar();
+            base.OnNavigatedTo(e);
         }
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
-            
+            //this.Calendar1.UpdateCalendar();
         }
 
         private void StartAnimationTop()

@@ -1323,6 +1323,7 @@ namespace Donor.ViewModels
 
         public void AddEventParse(EventViewModel addedItems = null)
         {
+            this.Items.Add(addedItems);
             if ((addedItems != null) && ((addedItems.Type == "0") || (addedItems.Type == "1")))
             {
                 var client = new RestClient("https://api.parse.com");
@@ -1339,59 +1340,63 @@ namespace Donor.ViewModels
                 request.AddParameter("application/json", strJSONContent, ParameterType.RequestBody);
                 client.ExecuteAsync(request, response =>
                 {
-                    JObject o = JObject.Parse(response.Content.ToString());
-                    if (o["error"] == null)
+                    try
                     {
-                        this.Items.Remove(addedItems);
-                        addedItems.Id = o["objectId"].ToString();
-                        this.Items.Add(addedItems);
-
-                        var clientrel = new RestClient("https://api.parse.com");
-                        var requestrel = new RestRequest("1/users/" + App.ViewModel.User.objectId, Method.PUT);
-                        request.AddHeader("Accept", "application/json");
-                        request.Parameters.Clear();
-                        string strJSONContentrel = "{\"events\":{\"__op\":\"AddRelation\",\"objects\":[{\"__type\":\"Pointer\",\"className\":\"Events\",\"objectId\":\"" + addedItems.Id + "\"}]}}";
-
-                        requestrel.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
-                        requestrel.AddHeader("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
-                        requestrel.AddHeader("X-Parse-Session-Token", App.ViewModel.User.sessionToken);
-                        requestrel.AddHeader("Content-Type", "application/json");
-
-                        requestrel.AddParameter("application/json", strJSONContentrel, ParameterType.RequestBody);
-                        client.ExecuteAsync(requestrel, responserel =>
+                        JObject o = JObject.Parse(response.Content.ToString());
+                        if (o["error"] == null)
                         {
-                            JObject orel = JObject.Parse(responserel.Content.ToString());
-                        });
+                            this.Items.Remove(addedItems);
+                            addedItems.Id = o["objectId"].ToString();
+                            this.Items.Add(addedItems);
 
-                        List<FlurryWP7SDK.Models.Parameter> articleParams = new List<FlurryWP7SDK.Models.Parameter> { 
+                            var clientrel = new RestClient("https://api.parse.com");
+                            var requestrel = new RestRequest("1/users/" + App.ViewModel.User.objectId, Method.PUT);
+                            request.AddHeader("Accept", "application/json");
+                            request.Parameters.Clear();
+                            string strJSONContentrel = "{\"events\":{\"__op\":\"AddRelation\",\"objects\":[{\"__type\":\"Pointer\",\"className\":\"Events\",\"objectId\":\"" + addedItems.Id + "\"}]}}";
+
+                            requestrel.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
+                            requestrel.AddHeader("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
+                            requestrel.AddHeader("X-Parse-Session-Token", App.ViewModel.User.sessionToken);
+                            requestrel.AddHeader("Content-Type", "application/json");
+
+                            requestrel.AddParameter("application/json", strJSONContentrel, ParameterType.RequestBody);
+                            client.ExecuteAsync(requestrel, responserel =>
+                            {
+                                JObject orel = JObject.Parse(responserel.Content.ToString());
+                            });
+
+                            List<FlurryWP7SDK.Models.Parameter> articleParams = new List<FlurryWP7SDK.Models.Parameter> { 
                             new FlurryWP7SDK.Models.Parameter("Type", addedItems.Type), 
                             new FlurryWP7SDK.Models.Parameter("Delivery", addedItems.Delivery), 
                             new FlurryWP7SDK.Models.Parameter("Action", "created") 
                         };
-                        FlurryWP7SDK.Api.LogEvent("Event", articleParams);
+                            FlurryWP7SDK.Api.LogEvent("Event", articleParams);
 
-                        /// Устанавливаем напоминания после получения идентификатора parse.com
-                        addedItems.AddREventReminders();
+                            /// Устанавливаем напоминания после получения идентификатора parse.com
+                            addedItems.AddREventReminders();
 
-                        NotifyPropertyChanged("Items");
-                        NotifyPropertyChanged("UserItems");
-                        NotifyPropertyChanged("WeekItems");
-                        NotifyPropertyChanged("ThisMonthItems");
-                        UpdateNearestEvents();
+                            NotifyPropertyChanged("Items");
+                            NotifyPropertyChanged("UserItems");
+                            NotifyPropertyChanged("WeekItems");
+                            NotifyPropertyChanged("ThisMonthItems");
+                            UpdateNearestEvents();
 
-                        this.DeleteUncorrectEvents();
+                            this.DeleteUncorrectEvents();
 
-                        // обновляем Tile приложения
-                        App.ViewModel.CreateApplicationTile(App.ViewModel.Events.NearestEvents());
+                            // обновляем Tile приложения
+                            App.ViewModel.CreateApplicationTile(App.ViewModel.Events.NearestEvents());
 
-                        App.ViewModel.Events.OnEventsChanged(EventArgs.Empty);
+                            App.ViewModel.Events.OnEventsChanged(EventArgs.Empty);
 
-                        App.ViewModel.SaveToIsolatedStorage();
+                            App.ViewModel.SaveToIsolatedStorage();
+                        }
+                        else
+                        {
+
+                        };
                     }
-                    else
-                    {
-
-                    };
+                    catch { };
                 });
 
             };
