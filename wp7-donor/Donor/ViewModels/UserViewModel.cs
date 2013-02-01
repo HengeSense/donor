@@ -758,13 +758,22 @@ namespace Donor.ViewModels
 
                                         try
                                         {
-                                            if ((string)result["gender"] == "male")
+                                            string temp_gender = "";
+                                            try
                                             {
-                                                App.ViewModel.User.Sex = 0;
-                                            };
-                                            if ((string)result["gender"] == "female")
+                                                temp_gender = o["Sex"].ToString();
+                                            }
+                                            catch { };
+                                            if (temp_gender == "")
                                             {
-                                                App.ViewModel.User.Sex = 1;
+                                                if ((string)result["gender"] == "male")
+                                                {
+                                                    App.ViewModel.User.Sex = 0;
+                                                };
+                                                if ((string)result["gender"] == "female")
+                                                {
+                                                    App.ViewModel.User.Sex = 1;
+                                                };
                                             };
                                         }
                                         catch
