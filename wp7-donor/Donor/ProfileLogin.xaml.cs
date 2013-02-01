@@ -309,6 +309,9 @@ namespace Donor
                     AppBarVisibitilty("");
                     switch (_taskid)
                     {
+                        case "show":
+                            AppBarVisibitilty("show");
+                            break;
                         case "register":
                             if (this.NavigationContext.QueryString.ContainsKey("email"))
                             {
@@ -382,7 +385,7 @@ namespace Donor
             }
             else
             {
-                AppBarVisibitilty("show");   
+                //AppBarVisibitilty("show");   
             };
 
             /*if (App.ViewModel.User.IsLoggedIn == true)

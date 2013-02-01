@@ -253,7 +253,7 @@ namespace Donor
         {
             if (App.ViewModel.User.IsLoggedIn == true)
             {
-                NavigationService.Navigate(new Uri("/ProfileLogin.xaml", UriKind.Relative));
+                NavigationService.Navigate(new Uri("/ProfileLogin.xaml?task=show", UriKind.Relative));
             }
             else
             {
