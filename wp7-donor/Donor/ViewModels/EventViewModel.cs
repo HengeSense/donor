@@ -602,9 +602,9 @@ namespace Donor.ViewModels
                 switch (GiveType)
                 {
                     case "Тромбоциты":      return "0";
-                    case "Плазма":          return "0";
-                    case "Цельная кровь":   return "1";
-                    case "Гранулоциты":     return "2";
+                    case "Плазма":          return "1";
+                    case "Цельная кровь":   return "2";
+                    case "Гранулоциты":     return "3";
                     default:                return "0";
                 };
             }
