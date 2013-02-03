@@ -46,25 +46,44 @@
         </Grid.RowDefinitions>
 
         <!--TitlePanel contains the name of the application and page title-->
-        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="20,20,0,50">
-            <TextBlock x:Name="ApplicationTitle" Text="{Binding AdsTitle, Source={StaticResource Loc}}" Style="{StaticResource Text30pxWhite}"/>
+        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,50">
+            <TextBlock x:Name="ApplicationTitle" Text="{Binding Achieves, Source={StaticResource Loc}}" 
+                    Style="{StaticResource Text24pxWhite}"/>
             <TextBlock Text="{Binding MyBadges, Source={StaticResource Loc}}" 
-					FontSize="49" 
-					Foreground="White"
-					FontFamily="Segoe WP" Margin="0,20,0,0" />
+					Style="{StaticResource Text70pxWhite}" Margin="0,20,0,0" />
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-            <ListBox Margin="0,15,-12,0" tilteffect:TiltEffect.IsTiltEnabled="True">
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Margin="0,20,0,5" Width="432">                            
-                            <TextBlock Text="{Binding Title}" TextWrapping="Wrap" Style="{StaticResource Text24pxB9A194}"/>
-                        </StackPanel>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
+            <ScrollViewer>
+            <StackPanel>
+                    <ListBox Margin="0,15,-12,0" Name="AvailableBadges"
+                             ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                             tilteffect:TiltEffect.IsTiltEnabled="True" Loaded="ListBox_Loaded">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Margin="0,20,0,5" Width="432" Orientation="Horizontal">
+                                            <Image Source="{Binding Image}" Width="90"/>
+                                            <TextBlock Text="{Binding Title}" TextWrapping="Wrap" Margin="20,0,0,0" Style="{StaticResource Text24pxB9A194}" VerticalAlignment="Center" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                    <TextBlock Text="Скоро" Margin="0,20,0,20" Foreground="Gray" FontSize="36"/>
+                    <ListBox Margin="0,15,-12,0" Name="SoonBadges"
+                     ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                     tilteffect:TiltEffect.IsTiltEnabled="True" Loaded="ListBox_Loaded">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Margin="0,20,0,5" Width="432" Orientation="Horizontal">
+                                    <Image Source="{Binding Image}" Width="90"/>
+                                    <TextBlock Text="{Binding Title}" TextWrapping="Wrap" Margin="20,0,0,0" Style="{StaticResource Text24pxB9A194}"  VerticalAlignment="Center"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </StackPanel>
+            </ScrollViewer>
         </Grid>
     </Grid>
  

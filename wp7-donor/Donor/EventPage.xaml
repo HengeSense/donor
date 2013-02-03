@@ -47,12 +47,12 @@
         </Grid.RowDefinitions>
 
         <!--TitlePanel contains the name of the application and page title-->
-        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,70">
+        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,20">
             <TextBlock x:Name="ApplicationTitle" 
 			Text="{Binding BloodGiveTitle, Source={StaticResource Loc}}" 
 			Style="{StaticResource Text24pxWhite}"/>
             <TextBlock Text="{Binding BloodGiveMore, Source={StaticResource Loc}}" 
-			Style="{StaticResource Text70pxWhite}" 
+			Style="{StaticResource Text70pxWhite}" Margin="0,20,0,0" 
 			TextWrapping="Wrap"/>
         </StackPanel>
 

@@ -409,5 +409,16 @@ namespace Donor
             }
         }
 
+        private void PhoneApplicationPage_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            try
+            {
+                NavigationService.Navigate(new Uri("/AchievesPage.xaml", UriKind.Relative));
+            }
+            catch
+            {
+            }
+        }
+
     }
 }

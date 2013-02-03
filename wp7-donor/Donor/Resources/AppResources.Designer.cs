@@ -29,7 +29,8 @@ namespace Donor {
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        public AppResources() {
+        public AppResources()
+        {
         }
         
         /// <summary>
@@ -763,7 +764,7 @@ namespace Donor {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to мои значки.
+        ///   Looks up a localized string similar to Мои значки.
         /// </summary>
         public static string MyBadges {
             get {

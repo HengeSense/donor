@@ -10,6 +10,8 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
+using Donor.ViewModels;
+using System.Collections.ObjectModel;
 
 namespace Donor
 {
@@ -18,6 +20,12 @@ namespace Donor
         public AchievesPage()
         {
             InitializeComponent();
+        }
+
+        private void ListBox_Loaded(object sender, RoutedEventArgs e)
+        {
+            this.AvailableBadges.ItemsSource = BadgesViewModel.AvailableAchieves;
+            this.SoonBadges.ItemsSource = BadgesViewModel.SoonAchieves;
         }
     }
 }

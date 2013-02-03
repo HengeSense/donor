@@ -13,14 +13,134 @@ using Newtonsoft.Json.Linq;
 using Coding4Fun.Phone.Controls;
 using Donor.Controls;
 using Microsoft.Phone.Tasks;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 
 namespace Donor.ViewModels
 {
+    public class AchieveItem : INotifyPropertyChanged
+    {
+        public AchieveItem()
+        {
+        }
+        private string _title = "";
+        public string Title
+        {
+            get
+            {
+                return _title;
+            }
+            set
+            {
+                _title = value;
+                NotifyPropertyChanged("Title");
+            }
+        }
+        private string _image = "";
+        public string Image
+        {
+            get
+            {
+                return _image;
+            }
+            set
+            {
+                _image = value;
+                NotifyPropertyChanged("Image");
+            }
+        }
+
+        public string _description = "";
+        public string Description 
+        {
+            get
+            {
+                return _image;
+            }
+            set
+            {
+                _image = value;
+                NotifyPropertyChanged("Image");
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void NotifyPropertyChanged(String propertyName)
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (null != handler)
+            {
+                handler(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+
+        public void RaisePropertyChanged(string property)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(property));
+            }
+        }
+    }
+
     static public class BadgesViewModel
     {
+
         static public string activation_code = "";
         static MessagePrompt messagePrompt;
         static string facebook_id = "";
+
+        static BadgesViewModel()
+        {
+            AvailableAchieves = new ObservableCollection<AchieveItem>();
+            AvailableAchieves.Add(new AchieveItem() { Title = "Друг донора", Image = "/images/achieves/Achive-donor_firstBlood.png" });
+
+            SoonAchieves = new ObservableCollection<AchieveItem>();
+            SoonAchieves.Add(new AchieveItem() { Title = "Первая помощь", Image = "/images/achieves/Achive-donor_firstBlood_unavailible.png" });
+            SoonAchieves.Add(new AchieveItem() { Title = "Вторая кровь", Image = "/images/achieves/Achive-donor_secondBlood_unavailible.png" });
+        }
+
+        static private ObservableCollection<AchieveItem> _availableAchieves = new ObservableCollection<AchieveItem>();
+        static public ObservableCollection<AchieveItem> AvailableAchieves
+        {
+            get
+            {
+                if (_availableAchieves == null)
+                {
+                    _availableAchieves = new ObservableCollection<AchieveItem>();
+                }
+                return _availableAchieves;
+            }
+            set
+            {
+                try
+                {
+                    _availableAchieves = value;
+                }
+                catch { };
+            }
+        }
+
+        static private ObservableCollection<AchieveItem> _soonAchieves = new ObservableCollection<AchieveItem>();
+        static public ObservableCollection<AchieveItem> SoonAchieves
+        {
+            get
+            {
+                if (_soonAchieves == null)
+                {
+                    _soonAchieves = new ObservableCollection<AchieveItem>();
+                }
+                return _soonAchieves;
+            }
+            set
+            {
+                try
+                {
+                    _soonAchieves = value;
+                }
+                catch { };
+            }
+        }
 
         /// <summary>
         /// Получение кода активации достижения:

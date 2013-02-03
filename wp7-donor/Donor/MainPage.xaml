@@ -17,7 +17,7 @@
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait"  Orientation="Portrait"    
-    shell:SystemTray.IsVisible="False" Loaded="PhoneApplicationPage_Loaded">
+    shell:SystemTray.IsVisible="False" Loaded="PhoneApplicationPage_Loaded" Tap="PhoneApplicationPage_Tap">
     <!-- DataContext="{Binding Path=App.ViewModel,Source=App.ViewModel}"
      d:DataContext="{d:DesignData SampleData/MainViewModelSampleData.xaml}" -->
     
@@ -159,6 +159,17 @@
 						 Tap="TextBlock_Tap_1"/>
                         </StackPanel>
                     </ListBoxItem>
+
+                         <ListBoxItem Name="AchievesMenu">
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Height="64" Width="64" 
+						 Source="images/ic_menu_profile_normal.png"/>
+                                    <TextBlock Margin="0,15,0,0" 
+						 Text="{Binding MyBadges, Source={StaticResource Loc}}"
+						 TextWrapping="Wrap" 
+						 Style="{StaticResource Text30pxCBB2A3}"/>
+                                </StackPanel>
+                            </ListBoxItem>
 
                             <ListBoxItem Visibility="Collapsed" Name="QrButtonMenu" Tap="QrButtonMenu_Tap">
                                 <StackPanel Orientation="Horizontal">
