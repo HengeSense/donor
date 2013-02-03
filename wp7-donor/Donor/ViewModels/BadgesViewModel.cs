@@ -97,7 +97,7 @@ namespace Donor.ViewModels
 
             SoonAchieves = new ObservableCollection<AchieveItem>();
             SoonAchieves.Add(new AchieveItem() { Title = "Первая помощь", Image = "/images/achieves/Achive-donor_firstBlood_unavailible.png" });
-            SoonAchieves.Add(new AchieveItem() { Title = "Вторая кровь", Image = "/images/achieves/Achive-donor_secondBlood_unavailible.png" });
+            SoonAchieves.Add(new AchieveItem() { Title = "Два подряд", Image = "/images/achieves/Achive-donor_secondBlood_unavailible.png" });
         }
 
         static private ObservableCollection<AchieveItem> _availableAchieves = new ObservableCollection<AchieveItem>();
