@@ -393,9 +393,11 @@
     <Content Include="icons\ic_whole_blood.png" />
     <Resource Include="images\donor_enter_logo.png" />
     <Resource Include="images\donor_badge.png" />
+    <Content Include="images\achieves\Achive-donor.png" />
     <Content Include="images\achieves\Achive-donor_firstBlood.png" />
     <Content Include="images\achieves\Achive-donor_firstBlood_unavailible.png" />
     <Content Include="images\achieves\Achive-donor_secondBlood_unavailible.png" />
+    <Content Include="images\achieves\Achive-donor_unavailible.png" />
     <Content Include="images\ic_donors_act.png" />
     <Resource Include="images\ic_search.png" />
     <Content Include="libs\Phone.Controls.dll" />

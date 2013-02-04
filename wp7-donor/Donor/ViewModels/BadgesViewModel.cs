@@ -36,6 +36,21 @@ namespace Donor.ViewModels
                 NotifyPropertyChanged("Title");
             }
         }
+
+        private string _api_name = "";
+        public string Api_name
+        {
+            get
+            {
+                return _api_name;
+            }
+            set
+            {
+                _api_name = value;
+                NotifyPropertyChanged("Api_name");
+            }
+        }
+
         private string _image = "";
         public string Image
         {
@@ -47,6 +62,55 @@ namespace Donor.ViewModels
             {
                 _image = value;
                 NotifyPropertyChanged("Image");
+                NotifyPropertyChanged("CurrentImage");
+            }
+        }
+
+        private string _unactiveImage = "";
+        public string UnactiveImage
+        {
+            get
+            {
+                return _unactiveImage;
+            }
+            set
+            {
+                _unactiveImage = value;
+                NotifyPropertyChanged("UnactiveImage");
+                NotifyPropertyChanged("CurrentImage");
+            }
+        }
+
+        public string CurrentImage {
+            private set 
+            {
+            }
+            get
+            {
+                if (Status == true)
+                {
+                    return this.Image;
+                }
+                else
+                {
+                    return this.UnactiveImage;
+                };
+            }
+        }
+        
+
+        private bool _status = false;
+        public bool Status
+        {
+            get
+            {
+                return _status;
+            }
+            set
+            {
+                _status = value;
+                NotifyPropertyChanged("Status");
+                NotifyPropertyChanged("CurrentImage");
             }
         }
 
@@ -60,7 +124,7 @@ namespace Donor.ViewModels
             set
             {
                 _image = value;
-                NotifyPropertyChanged("Image");
+                NotifyPropertyChanged("Description");
             }
         }
 
@@ -93,11 +157,72 @@ namespace Donor.ViewModels
         static BadgesViewModel()
         {
             AvailableAchieves = new ObservableCollection<AchieveItem>();
-            AvailableAchieves.Add(new AchieveItem() { Title = "Друг донора", Image = "/images/achieves/Achive-donor_firstBlood.png" });
+            AvailableAchieves.Add(new AchieveItem() { Title = "Друг донора",
+                Api_name = "donorfriend",
+                UnactiveImage = "/images/achieves/Achive-donor_unavailible.png",
+                Image = "/images/achieves/Achive-donor.png" });
 
             SoonAchieves = new ObservableCollection<AchieveItem>();
-            SoonAchieves.Add(new AchieveItem() { Title = "Первая помощь", Image = "/images/achieves/Achive-donor_firstBlood_unavailible.png" });
-            SoonAchieves.Add(new AchieveItem() { Title = "Два подряд", Image = "/images/achieves/Achive-donor_secondBlood_unavailible.png" });
+            SoonAchieves.Add(new AchieveItem() { Title = "Первая помощь",
+                Api_name = "secondblood",
+                Image = "/images/achieves/Achive-donor_firstBlood_unavailible.png",
+                UnactiveImage = "/images/achieves/Achive-donor_firstBlood_unavailible.png" });
+            SoonAchieves.Add(new AchieveItem() { Title = "Два подряд",
+                Api_name = "thirdblood",
+                Image = "/images/achieves/Achive-donor_secondBlood_unavailible.png",
+                UnactiveImage = "/images/achieves/Achive-donor_secondBlood_unavailible.png" });
+
+            App.ViewModel.UserEnter += new MainViewModel.UserEnterEventHandler(BadgesViewModel.UserLoaded);
+        }
+
+        private static void UserLoaded(object sender, EventArgs e)
+        {
+            if (App.ViewModel.User.IsLoggedIn == true)
+            {
+                GetPlayerAchieves(App.ViewModel.User.FacebookId);
+            };
+        }
+
+        static private void GetPlayerAchieves(string fb_id = "")
+        {
+            try
+            {
+                var client_player = new RestClient("http://www.itsbeta.com");
+                var request_player = new RestRequest("s/info/playerid.json", Method.GET);
+                request_player.Parameters.Clear();
+                request_player.AddParameter("access_token", "059db4f010c5f40bf4a73a28222dd3e3");
+                request_player.AddParameter("type", "fb_user_id");
+                request_player.AddParameter("id", fb_id);
+
+                client_player.ExecuteAsync(request_player, response_player =>
+                {
+                    try
+                    {
+                        JObject o_player = JObject.Parse(response_player.Content.ToString());
+
+                        string player_id = o_player["player_id"].ToString();
+
+                        var client = new RestClient("http://www.itsbeta.com");
+                        var request = new RestRequest("s/info/achievements.json", Method.GET);
+                        request.Parameters.Clear();
+                        request.AddParameter("access_token", "059db4f010c5f40bf4a73a28222dd3e3");
+                        request.AddParameter("player_id", player_id);
+
+                        client.ExecuteAsync(request, response =>
+                        {
+                            try
+                            {
+                                JObject o = JObject.Parse(response.Content.ToString());
+
+
+                            }
+                            catch { };
+                        });
+                    }
+                    catch { };
+                });
+            }
+            catch { };
         }
 
         static private ObservableCollection<AchieveItem> _availableAchieves = new ObservableCollection<AchieveItem>();
@@ -170,6 +295,11 @@ namespace Donor.ViewModels
                             if (o["id"].ToString() != "")
                             {
                                 facebook_id = o["fb_id"].ToString();
+
+                                App.ViewModel.Settings.AchieveDonor = true;
+                                App.ViewModel.Settings.AchieveDonorUser = App.ViewModel.User.objectId;
+                                App.ViewModel.SaveSettingsToStorage();
+
                                 messagePrompt = new MessagePrompt();
                                 try
                                 {

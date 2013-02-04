@@ -30,5 +30,19 @@ namespace Donor.ViewModels
 
         public DateTime StationsUpdated { get; set; }
         public DateTime ContrasUpdated { get; set; }
+
+        private bool _achieveDonor = false;
+        public bool AchieveDonor
+        {
+            get
+            {
+                return _achieveDonor;
+            }
+            set
+            {
+                _achieveDonor = value;
+            }
+        }
+        public string AchieveDonorUser { get; set; }
     }
 }

@@ -63,8 +63,8 @@
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Margin="0,20,0,5" Width="432" Orientation="Horizontal">
-                                            <Image Source="{Binding Image}" Width="90"/>
-                                            <TextBlock Text="{Binding Title}" TextWrapping="Wrap" Margin="20,0,0,0" Style="{StaticResource Text24pxB9A194}" VerticalAlignment="Center" />
+                                    <Image Source="{Binding CurrentImage}" Width="90"/>
+                                    <TextBlock Text="{Binding Title}" TextWrapping="Wrap" Margin="20,0,0,0" Style="{StaticResource Text24pxB9A194}" VerticalAlignment="Center" />
                                 </StackPanel>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
@@ -76,7 +76,7 @@
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Margin="0,20,0,5" Width="432" Orientation="Horizontal">
-                                    <Image Source="{Binding Image}" Width="90"/>
+                                    <Image Source="{Binding CurrentImage}" Width="90"/>
                                     <TextBlock Text="{Binding Title}" TextWrapping="Wrap" Margin="20,0,0,0" Style="{StaticResource Text24pxB9A194}"  VerticalAlignment="Center"/>
                                 </StackPanel>
                             </DataTemplate>
