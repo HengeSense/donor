@@ -790,6 +790,9 @@ namespace Donor.ViewModels
         {
             try
             {
+                var bw = new BackgroundWorker();
+                bw.DoWork += delegate
+                {
                 if ((App.ViewModel.User != null) && (App.ViewModel.User.objectId != ""))
                 {
                     var clientuser = new RestClient("https://api.parse.com");
@@ -802,37 +805,40 @@ namespace Donor.ViewModels
 
                     clientuser.ExecuteAsync(requestuser, responseuser =>
                     {
-
-                            //var bw = new BackgroundWorker();
-                            //bw.DoWork += delegate
-                            //{
                                 try
                                 {
                                     ObservableCollection<EventViewModel> eventslist1 = new ObservableCollection<EventViewModel>();
                                     JObject o = JObject.Parse(responseuser.Content.ToString());
-                                    foreach (JObject item in o["results"])
+                                    Deployment.Current.Dispatcher.BeginInvoke(() =>
                                     {
-                                        EventFromJSON(item);
+                                    foreach (JObject item in o["results"])
+                                    {                                        
+                                        EventFromJSON(item);                                        
                                     };
-                                    App.ViewModel.Events.UpdateItems();
-                                    App.ViewModel.OnDataFLoaded(EventArgs.Empty);
-                                    App.ViewModel.IsDataLoaded = true;
+                                    //Deployment.Current.Dispatcher.BeginInvoke(() =>
+                                    //{
+                                        App.ViewModel.Events.UpdateItems();
+                                        App.ViewModel.OnDataFLoaded(EventArgs.Empty);
+                                        App.ViewModel.IsDataLoaded = true;
+                                    });
                                 }
                                 catch
                                 {
-                                    App.ViewModel.OnDataFLoaded(EventArgs.Empty);
-                                    App.ViewModel.IsDataLoaded = true;
+                                    Deployment.Current.Dispatcher.BeginInvoke(() =>
+                                    {
+                                        App.ViewModel.OnDataFLoaded(EventArgs.Empty);
+                                        App.ViewModel.IsDataLoaded = true;
+                                    });                                    
                                 };
-                            //Deployment.Current.Dispatcher.BeginInvoke(() =>
-                            //{
-                            //});
-                        //};
-                        //bw.RunWorkerAsync();
-
-                        this.NotifyPropertyChanged("Items");
-                        this.NotifyPropertyChanged("WeekItems");
+                        Deployment.Current.Dispatcher.BeginInvoke(() =>
+                        {
+                            this.NotifyPropertyChanged("Items");
+                            this.NotifyPropertyChanged("WeekItems");
+                        });  
                     });
                 };
+                };
+                bw.RunWorkerAsync();
             }
             catch { };
         }

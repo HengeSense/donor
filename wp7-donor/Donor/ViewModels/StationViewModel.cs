@@ -82,7 +82,10 @@ namespace Donor.ViewModels
 
             // загружаем станции если их нет или дата последнего обновления была более чем одни сутки в прошлом
             if ((App.ViewModel.Stations.Items.Count() == 0) || (App.ViewModel.Settings.StationsUpdated.AddDays(1) < DateTime.Now)) {
-
+            
+            var bw = new BackgroundWorker();
+            bw.DoWork += delegate
+            {
             var client = new RestClient("https://api.parse.com");
             var request = new RestRequest("1/classes/Stations", Method.GET);
             request.Parameters.Clear();
@@ -94,9 +97,6 @@ namespace Donor.ViewModels
             {
                 try
                 {
-                    var bw = new BackgroundWorker();
-                    bw.DoWork += delegate
-                    {
                         ObservableCollection<StationViewModel> eventslist1 = new ObservableCollection<StationViewModel>();
                         JObject o = JObject.Parse(response.Content.ToString());
                         foreach (var item in o["results"])
@@ -174,18 +174,17 @@ namespace Donor.ViewModels
                             IsolatedStorageHelper.SaveSerializableObject<ObservableCollection<StationViewModel>>(this.Items, "stations.xml");
 
                             this.NotifyPropertyChanged("Items");
-                        });
-
-                        
-                    };
-                    bw.RunWorkerAsync();
+                        });                       
+                    
                 }
                 catch
                 {
                 };
                 
             });
-        } else {};
+            };
+            bw.RunWorkerAsync();
+            } else {};
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

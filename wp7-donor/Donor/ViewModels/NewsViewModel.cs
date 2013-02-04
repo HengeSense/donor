@@ -29,40 +29,44 @@ namespace Donor.ViewModels
 
         public void LoadNews()
         {
-            var client = new RestClient("https://api.parse.com");
-            var request = new RestRequest("1/classes/News?order=-createdTimestamp", Method.GET);
-            request.Parameters.Clear();
-            request.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
-            request.AddHeader("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
-
-            client.ExecuteAsync(request, response =>
+            var bw = new BackgroundWorker();
+            bw.DoWork += delegate
             {
-                try
-                {
-                    var bw = new BackgroundWorker();
-                    bw.DoWork += delegate
-                    {
-                        try
-                        {
-                            ObservableCollection<NewsViewModel> newslist1 = new ObservableCollection<NewsViewModel>();
-                            JObject o = JObject.Parse(response.Content.ToString());
-                            newslist1 = JsonConvert.DeserializeObject<ObservableCollection<NewsViewModel>>(o["results"].ToString());
-                            //var newslist2 = (from news in newslist1 orderby news.CreatedTimestamp descending select news);
+                var client = new RestClient("https://api.parse.com");
+                var request = new RestRequest("1/classes/News?order=-createdTimestamp&limit=50", Method.GET);
+                request.Parameters.Clear();
+                request.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
+                request.AddHeader("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
 
-                            Deployment.Current.Dispatcher.BeginInvoke(() =>
-                            {
-                                this.Items = new ObservableCollection<NewsViewModel>(newslist1);
-                            });
-                            IsolatedStorageHelper.SaveSerializableObject<ObservableCollection<NewsViewModel>>(App.ViewModel.News.Items, "news.xml");
-                        } catch {};
-                    };
-                    bw.RunWorkerAsync();
-                }
-                catch
+                client.ExecuteAsync(request, response =>
                 {
-                };
-                //this.NotifyPropertyChanged("Items");
-            });
+                    try
+                    {
+                        //var bw = new BackgroundWorker();
+                        //bw.DoWork += delegate
+                        //{
+                            try
+                            {
+                                ObservableCollection<NewsViewModel> newslist1 = new ObservableCollection<NewsViewModel>();
+                                JObject o = JObject.Parse(response.Content.ToString());
+                                newslist1 = JsonConvert.DeserializeObject<ObservableCollection<NewsViewModel>>(o["results"].ToString());                                
+
+                                Deployment.Current.Dispatcher.BeginInvoke(() =>
+                                {
+                                    this.Items = new ObservableCollection<NewsViewModel>(newslist1);                                
+                                    IsolatedStorageHelper.SaveSerializableObject<ObservableCollection<NewsViewModel>>(App.ViewModel.News.Items, "news.xml");
+                                });
+                            }
+                            catch { };
+                        //};
+                        //bw.RunWorkerAsync();
+                    }
+                    catch
+                    {
+                    };
+                });
+            };
+            bw.RunWorkerAsync();
         }
 
         private ObservableCollection<NewsViewModel> _items;

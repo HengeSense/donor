@@ -95,70 +95,84 @@ namespace Donor.ViewModels
         /// <param name="p"></param>
         public void UpdateAction(object p)
         {
-            var client = new RestClient("https://api.parse.com");
-            var request = new RestRequest("1/users/" + this.objectId.ToString(), Method.PUT);
-            request.AddHeader("Accept", "application/json");
-            request.Parameters.Clear();
-            string strJSONContent = "{\"username\":\"" + this.UserName + "\", \"email\":\"" + this.UserName + "\", \"Sex\":" + this.Sex + ", \"Name\":\"" + this.Name + "\", \"secondName\":\"" + this.SecondName + "\", \"birthday\": \"" + this.Birthday + "\", \"BloodGroup\":" + this.BloodGroup + ", \"BloodRh\":" + this.BloodRh + "}";
-            request.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
-            request.AddHeader("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
-            request.AddHeader("X-Parse-Session-Token", App.ViewModel.User.sessionToken);
-            request.AddHeader("Content-Type", "application/json");
-            request.AddParameter("application/json", strJSONContent, ParameterType.RequestBody);
-
-            this.UserLoading = true;
-
-            client.ExecuteAsync(request, response =>
+            var bw = new BackgroundWorker();
+            bw.DoWork += delegate
             {
-                this.UserLoading = false;
-                try
-                {
-                    JObject o = JObject.Parse(response.Content.ToString());
-                    if (o["error"] == null)
-                    {
-                        try
+                var client = new RestClient("https://api.parse.com");
+                var request = new RestRequest("1/users/" + this.objectId.ToString(), Method.PUT);
+                request.AddHeader("Accept", "application/json");
+                request.Parameters.Clear();
+                string strJSONContent = "{\"username\":\"" + this.UserName + "\", \"email\":\"" + this.UserName + "\", \"Sex\":" + this.Sex + ", \"Name\":\"" + this.Name + "\", \"secondName\":\"" + this.SecondName + "\", \"birthday\": \"" + this.Birthday + "\", \"BloodGroup\":" + this.BloodGroup + ", \"BloodRh\":" + this.BloodRh + "}";
+                request.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
+                request.AddHeader("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
+                request.AddHeader("X-Parse-Session-Token", App.ViewModel.User.sessionToken);
+                request.AddHeader("Content-Type", "application/json");
+                request.AddParameter("application/json", strJSONContent, ParameterType.RequestBody);
+
+                Deployment.Current.Dispatcher.BeginInvoke(() =>
                         {
-                            if ((int)p == 1)
+                            this.UserLoading = true;
+                        });
+
+                client.ExecuteAsync(request, response =>
+                {
+                    Deployment.Current.Dispatcher.BeginInvoke(() =>
+                        {
+                            this.UserLoading = false;
+                        });
+                    try
+                    {
+                        JObject o = JObject.Parse(response.Content.ToString());
+                        Deployment.Current.Dispatcher.BeginInvoke(() =>
+                        {
+                            if (o["error"] == null)
                             {
+                                try
+                                {
+                                    if ((int)p == 1)
+                                    {
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("Данные профиля обновлены.");
+                                    };
+                                }
+                                catch
+                                {
+                                    MessageBox.Show("Данные профиля обновлены.");
+                                };
+                                ///Обновление профиля пользователя - событие для flurry
+                                List<FlurryWP7SDK.Models.Parameter> articleParams = new List<FlurryWP7SDK.Models.Parameter> { 
+                                new FlurryWP7SDK.Models.Parameter("objectId", App.ViewModel.User.objectId), 
+                                new FlurryWP7SDK.Models.Parameter("platform", "wp7") };
+                                FlurryWP7SDK.Api.LogEvent("User_updated", articleParams);                        
                             }
                             else
                             {
-                                MessageBox.Show("Данные профиля обновлены.");
                             };
-                        }
-                        catch {
-                            MessageBox.Show("Данные профиля обновлены.");
-                        };
-
-                        ///Обновление профиля пользователя - событие для flurry
-                        List<FlurryWP7SDK.Models.Parameter> articleParams = new List<FlurryWP7SDK.Models.Parameter> { 
-                            new FlurryWP7SDK.Models.Parameter("objectId", App.ViewModel.User.objectId), 
-                            new FlurryWP7SDK.Models.Parameter("platform", "wp7") };
-                        FlurryWP7SDK.Api.LogEvent("User_updated", articleParams);
-
-                        
+                            ClassToUser();
+                        });
                     }
-                    else
+                    catch
                     {
-                        //MessageBox.Show(response.Content.ToString());
                     };
-                    ClassToUser();
-                }
-                catch
-                {
-                };
-
-                App.ViewModel.SaveUserToStorage();
-            });
+                    Deployment.Current.Dispatcher.BeginInvoke(() =>
+                        {
+                            App.ViewModel.SaveUserToStorage();
+                        });
+                });
+            };
+            bw.RunWorkerAsync();
         }
 
 
         public void LoginAction(object p)
         {
-            //try
-            //{
+            try {
+            var bw = new BackgroundWorker();
+            bw.DoWork += delegate
+            {
                 App.ViewModel.User.UserLoading = true;
-
                 string passwordCurrent = this.Password;
 
                 var client = new RestClient("https://api.parse.com");
@@ -167,7 +181,7 @@ namespace Donor.ViewModels
                 request.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
                 request.AddHeader("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
 
-                App.ViewModel.User.IsLoggedIn = false;                
+                App.ViewModel.User.IsLoggedIn = false;
 
                 client.ExecuteAsync(request, response =>
                 {
@@ -176,65 +190,76 @@ namespace Donor.ViewModels
                         JObject o = JObject.Parse(response.Content.ToString());
                         if (o["error"] == null)
                         {
-                            //auto linking
-                            App.ViewModel.User = JsonConvert.DeserializeObject<DonorUser>(response.Content.ToString());
-                            //ClassToUser();
-
-                            try
+                            Deployment.Current.Dispatcher.BeginInvoke(() =>
                             {
-                                App.ViewModel.User.FacebookId = o["authData"]["facebook"]["id"].ToString();
-                                App.ViewModel.User.FacebookToken = o["authData"]["facebook"]["access_token"].ToString();
-                            }
-                            catch { };
+                                //auto linking
+                                App.ViewModel.User = JsonConvert.DeserializeObject<DonorUser>(response.Content.ToString());
 
-                            App.ViewModel.User.IsLoggedIn = true;
-                            this.IsLoggedIn = true;
-                            this.Password = passwordCurrent;
-                            App.ViewModel.User.Password = passwordCurrent;
+                                try
+                                {
+                                    App.ViewModel.User.FacebookId = o["authData"]["facebook"]["id"].ToString();
+                                    App.ViewModel.User.FacebookToken = o["authData"]["facebook"]["access_token"].ToString();
+                                }
+                                catch { };
 
-                            App.ViewModel.SaveUserToStorage();
+                                App.ViewModel.User.IsLoggedIn = true;
+                                this.IsLoggedIn = true;
+                                this.Password = passwordCurrent;
+                                App.ViewModel.User.Password = passwordCurrent;
 
-                            App.ViewModel.Events.WeekItemsUpdated();
-                            App.ViewModel.Events.LoadEventsParse();
+                                App.ViewModel.SaveUserToStorage();
 
-                            App.ViewModel.SaveUserToStorage();
+                                App.ViewModel.Events.WeekItemsUpdated();
+                                App.ViewModel.Events.LoadEventsParse();
 
-                            App.ViewModel.User.NotifyAll();
-                            this.NotifyAll();
+                                App.ViewModel.SaveUserToStorage();
 
-                            ClassToUser();
+                                App.ViewModel.User.NotifyAll();
+                                this.NotifyAll();
 
-                            App.ViewModel.OnUserEnter(EventArgs.Empty);
+                                ClassToUser();
 
-                            FlurryWP7SDK.Api.LogEvent("User_login");
+                                App.ViewModel.OnUserEnter(EventArgs.Empty);
 
-                            if ((App.ViewModel.FbId != "") && (App.ViewModel.FbToken != ""))
-                            {
-                                App.ViewModel.User.FacebookLinking(App.ViewModel.FbId, App.ViewModel.FbToken);
-                                App.ViewModel.User.FacebookId = App.ViewModel.FbId;
-                                App.ViewModel.User.FacebookToken = App.ViewModel.FbToken;
-                                App.ViewModel.FbId = "";
-                                App.ViewModel.FbToken = "";
-                            };
+                                FlurryWP7SDK.Api.LogEvent("User_login");
+
+                                if ((App.ViewModel.FbId != "") && (App.ViewModel.FbToken != ""))
+                                {
+                                    App.ViewModel.User.FacebookLinking(App.ViewModel.FbId, App.ViewModel.FbToken);
+                                    App.ViewModel.User.FacebookId = App.ViewModel.FbId;
+                                    App.ViewModel.User.FacebookToken = App.ViewModel.FbToken;
+                                    App.ViewModel.FbId = "";
+                                    App.ViewModel.FbToken = "";
+                                };
+                            });
                         }
                         else
                         {
-                            App.ViewModel.User.IsLoggedIn = false;
-                            MessageBox.Show(Donor.AppResources.UncorrectLoginData);
+                            Deployment.Current.Dispatcher.BeginInvoke(() =>
+                            {
+                                App.ViewModel.User.IsLoggedIn = false;
+                                MessageBox.Show(Donor.AppResources.UncorrectLoginData);
 
-                            App.ViewModel.User.NotifyAll();
-                            this.NotifyAll();
+                                App.ViewModel.User.NotifyAll();
+                                this.NotifyAll();
+                            });
                         };
-                        App.ViewModel.User.UserLoading = false;
+                        Deployment.Current.Dispatcher.BeginInvoke(() =>
+                            {
+                                App.ViewModel.User.UserLoading = false;
+                            });
                     }
-                    catch {
-                        App.ViewModel.User.UserLoading = false;
+                    catch
+                    {
+                        Deployment.Current.Dispatcher.BeginInvoke(() =>
+                            {
+                                App.ViewModel.User.UserLoading = false;
+                            });
                     };
                 });
-            //}
-            //catch {
-            //    App.ViewModel.User.UserLoading = false;
-            //};
+            };
+            bw.RunWorkerAsync();
+            } catch {};
         }
 
         /// <summary>
@@ -367,88 +392,103 @@ namespace Donor.ViewModels
 
         public void NotifyAll()
         {
-            ClassToUser();
+            try
+            {
+                ClassToUser();
 
-            NotifyPropertyChanged("Name");
-            NotifyPropertyChanged("UserName");
-            NotifyPropertyChanged("Birthday");
-            NotifyPropertyChanged("DateBirthday");
-            NotifyPropertyChanged("OutBloodGroup");
-            NotifyPropertyChanged("OutBloodRh");
-            NotifyPropertyChanged("NearestBloodGive");
-            NotifyPropertyChanged("OutBloodDataString");
-            NotifyPropertyChanged("OutSex");
-            NotifyPropertyChanged("GivedBlood");
+                NotifyPropertyChanged("Name");
+                NotifyPropertyChanged("UserName");
+                NotifyPropertyChanged("Birthday");
+                NotifyPropertyChanged("DateBirthday");
+                NotifyPropertyChanged("OutBloodGroup");
+                NotifyPropertyChanged("OutBloodRh");
+                NotifyPropertyChanged("NearestBloodGive");
+                NotifyPropertyChanged("OutBloodDataString");
+                NotifyPropertyChanged("OutSex");
+                NotifyPropertyChanged("GivedBlood");
+            }
+            catch { };
         }
 
         public void ClassToUser()
         {
-            this.UserLoading = App.ViewModel.User.UserLoading;
-            this.UserName = App.ViewModel.User.UserName;
-            this.Name = App.ViewModel.User.Name;
-            this.SecondName = App.ViewModel.User.SecondName;
-            this.Sex = App.ViewModel.User.Sex;
-            this.sessionToken = App.ViewModel.User.sessionToken;
-            this.objectId = App.ViewModel.User.objectId;
-            this.Birthday = App.ViewModel.User.Birthday;
-            this.BloodGroup = App.ViewModel.User.BloodGroup;
-            this.BloodRh = App.ViewModel.User.BloodRh;
-            this.CreatedAt = App.ViewModel.User.CreatedAt;
-            this.DateBirthday = App.ViewModel.User.DateBirthday;
-            this.FacebookId = App.ViewModel.User.FacebookId;
-            this.GivedBlood = App.ViewModel.User.GivedBlood;
-            this.IsFacebookLoggedIn = App.ViewModel.User.IsFacebookLoggedIn;
-            this.IsLoggedIn = App.ViewModel.User.IsLoggedIn;
-            this.Password = App.ViewModel.User.Password;
+            try
+            {
+                this.UserLoading = App.ViewModel.User.UserLoading;
+                this.UserName = App.ViewModel.User.UserName;
+                this.Name = App.ViewModel.User.Name;
+                this.SecondName = App.ViewModel.User.SecondName;
+                this.Sex = App.ViewModel.User.Sex;
+                this.sessionToken = App.ViewModel.User.sessionToken;
+                this.objectId = App.ViewModel.User.objectId;
+                this.Birthday = App.ViewModel.User.Birthday;
+                this.BloodGroup = App.ViewModel.User.BloodGroup;
+                this.BloodRh = App.ViewModel.User.BloodRh;
+                this.CreatedAt = App.ViewModel.User.CreatedAt;
+                this.DateBirthday = App.ViewModel.User.DateBirthday;
+                this.FacebookId = App.ViewModel.User.FacebookId;
+                this.GivedBlood = App.ViewModel.User.GivedBlood;
+                this.IsFacebookLoggedIn = App.ViewModel.User.IsFacebookLoggedIn;
+                this.IsLoggedIn = App.ViewModel.User.IsLoggedIn;
+                this.Password = App.ViewModel.User.Password;
+            } catch {};
         }
 
         public void UserToClass()
         {
-            App.ViewModel.User.UserLoading = this.UserLoading;
-            App.ViewModel.User.UserName = this.UserName;
-            App.ViewModel.User.Name = this.Name;
-            App.ViewModel.User.SecondName = this.SecondName;
-            App.ViewModel.User.Sex = this.Sex;
-            App.ViewModel.User.sessionToken = this.sessionToken;
-            App.ViewModel.User.objectId = this.objectId;
-            App.ViewModel.User.Birthday = this.Birthday;
-            App.ViewModel.User.BloodGroup = this.BloodGroup;
-            App.ViewModel.User.BloodRh = this.BloodRh;
-            App.ViewModel.User.CreatedAt = this.CreatedAt;
-            App.ViewModel.User.DateBirthday = this.DateBirthday;
-            App.ViewModel.User.FacebookId = this.FacebookId;
-            App.ViewModel.User.GivedBlood = this.GivedBlood;
-            App.ViewModel.User.IsFacebookLoggedIn = this.IsFacebookLoggedIn;
-            App.ViewModel.User.IsLoggedIn = this.IsLoggedIn;
-            App.ViewModel.User.Password = this.Password;
+            try
+            {
+                App.ViewModel.User.UserLoading = this.UserLoading;
+                App.ViewModel.User.UserName = this.UserName;
+                App.ViewModel.User.Name = this.Name;
+                App.ViewModel.User.SecondName = this.SecondName;
+                App.ViewModel.User.Sex = this.Sex;
+                App.ViewModel.User.sessionToken = this.sessionToken;
+                App.ViewModel.User.objectId = this.objectId;
+                App.ViewModel.User.Birthday = this.Birthday;
+                App.ViewModel.User.BloodGroup = this.BloodGroup;
+                App.ViewModel.User.BloodRh = this.BloodRh;
+                App.ViewModel.User.CreatedAt = this.CreatedAt;
+                App.ViewModel.User.DateBirthday = this.DateBirthday;
+                App.ViewModel.User.FacebookId = this.FacebookId;
+                App.ViewModel.User.GivedBlood = this.GivedBlood;
+                App.ViewModel.User.IsFacebookLoggedIn = this.IsFacebookLoggedIn;
+                App.ViewModel.User.IsLoggedIn = this.IsLoggedIn;
+                App.ViewModel.User.Password = this.Password;
+            }
+            catch { };
         }
 
         public void RestoreUserPassword(string email) {
-            var client = new RestClient("https://api.parse.com");
-            var request = new RestRequest("1/requestPasswordReset", Method.POST);
-            request.AddHeader("Accept", "application/json");
-            request.Parameters.Clear();
-            string strJSONContent = "{\"email\":\"" + email.ToLower() + "\"}";
-            request.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
-            request.AddHeader("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
-            request.AddHeader("Content-Type", "application/json");
-
-            request.AddParameter("application/json", strJSONContent, ParameterType.RequestBody);
-            this.UserLoading = true;
-            client.ExecuteAsync(request, response =>
+            try
             {
-                this.UserLoading = false;
-                JObject o = JObject.Parse(response.Content.ToString());
-                if (o["error"] == null)
+                var client = new RestClient("https://api.parse.com");
+                var request = new RestRequest("1/requestPasswordReset", Method.POST);
+                request.AddHeader("Accept", "application/json");
+                request.Parameters.Clear();
+                string strJSONContent = "{\"email\":\"" + email.ToLower() + "\"}";
+                request.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
+                request.AddHeader("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
+                request.AddHeader("Content-Type", "application/json");
+
+                request.AddParameter("application/json", strJSONContent, ParameterType.RequestBody);
+                this.UserLoading = true;
+                client.ExecuteAsync(request, response =>
                 {
-                    MessageBox.Show(Donor.AppResources.RestoreEmailSend);
-                    FlurryWP7SDK.Api.LogEvent("User_restore_password");
-                }
-                else
-                {
-                    MessageBox.Show(Donor.AppResources.RestoreEmailProblem);                    
-                };
-            });
+                    this.UserLoading = false;
+                    JObject o = JObject.Parse(response.Content.ToString());
+                    if (o["error"] == null)
+                    {
+                        MessageBox.Show(Donor.AppResources.RestoreEmailSend);
+                        FlurryWP7SDK.Api.LogEvent("User_restore_password");
+                    }
+                    else
+                    {
+                        MessageBox.Show(Donor.AppResources.RestoreEmailProblem);
+                    };
+                });
+            }
+            catch { };
         }
 
 
@@ -672,28 +712,30 @@ namespace Donor.ViewModels
 
         public void FacebookLogin(string id, string accessToken, IDictionary<string, object> result = null)
         {
-            App.ViewModel.User.UserLoading = true;
-
-            //BadgesViewModel.PostAchieve();
-
-            //check is exist user with such email
-            var clientCheck = new RestClient("https://api.parse.com");
-            var requestCheck = new RestRequest("1/users?where={\"username\":\"" + result["email"].ToString().ToLower() + "\"}", Method.GET);
-            requestCheck.Parameters.Clear();           
-            requestCheck.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
-            requestCheck.AddHeader("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
-            clientCheck.ExecuteAsync(requestCheck, responseCheck =>
+            try
             {
-                try
+                App.ViewModel.User.UserLoading = true;
+
+                //BadgesViewModel.PostAchieve();
+
+                //check is exist user with such email
+                var clientCheck = new RestClient("https://api.parse.com");
+                var requestCheck = new RestRequest("1/users?where={\"username\":\"" + result["email"].ToString().ToLower() + "\"}", Method.GET);
+                requestCheck.Parameters.Clear();
+                requestCheck.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
+                requestCheck.AddHeader("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
+                clientCheck.ExecuteAsync(requestCheck, responseCheck =>
                 {
-                    JObject o2 = JObject.Parse(responseCheck.Content.ToString());
-                    if (o2["error"] == null)
+                    try
                     {
-                        int userscount = 0;
-                        foreach (JObject item in o2["results"])
-                        {                            
-                            userscount++;
-                        };
+                        JObject o2 = JObject.Parse(responseCheck.Content.ToString());
+                        if (o2["error"] == null)
+                        {
+                            int userscount = 0;
+                            foreach (JObject item in o2["results"])
+                            {
+                                userscount++;
+                            };
                             var client = new RestClient("https://api.parse.com");
                             var request = new RestRequest("1/users", Method.POST);
                             request.AddHeader("Accept", "application/json");
@@ -715,13 +757,13 @@ namespace Donor.ViewModels
                             int oldsex = App.ViewModel.User.Sex;
 
                             client.ExecuteAsync(request, response =>
-                            {                                
+                            {
                                 //try
                                 //{
                                 JObject o = JObject.Parse(response.Content.ToString());
                                 if (o["error"] == null)
                                 {
-                                    if ((userscount==0) || (o["username"].ToString().ToLower() == result["email"].ToString().ToLower()))
+                                    if ((userscount == 0) || (o["username"].ToString().ToLower() == result["email"].ToString().ToLower()))
                                     {
                                         BadgesViewModel.PostAchieve(id, accessToken);
 
@@ -832,8 +874,9 @@ namespace Donor.ViewModels
                                         App.ViewModel.OnUserEnter(EventArgs.Empty);
 
                                         this.UpdateAction(1);
-                                    } 
-                                    else {
+                                    }
+                                    else
+                                    {
 
                                         var clientDelete = new RestClient("https://api.parse.com");
                                         var requestDelete = new RestRequest("1/users/" + o["objectId"].ToString(), Method.DELETE);
@@ -870,23 +913,28 @@ namespace Donor.ViewModels
 
                             });
 
-                        //};
+                            //};
+                        }
+                        else
+                        {
+                        };
                     }
-                    else
+                    catch
                     {
+                        App.ViewModel.User.UserLoading = false;
                     };
-                }
-                catch {
-                    App.ViewModel.User.UserLoading = false;
-                };
-            });
+                });
+            }
+            catch { };
             ////////////////////////////////////////
         }
 
         public void FacebookLinking(string id, string accessToken)
         {
+            try
+            {
                 var client = new RestClient("https://api.parse.com");
-                var request = new RestRequest("1/users/"+App.ViewModel.User.objectId, Method.PUT);
+                var request = new RestRequest("1/users/" + App.ViewModel.User.objectId, Method.PUT);
                 request.AddHeader("Accept", "application/json");
                 request.Parameters.Clear();
 
@@ -929,7 +977,7 @@ namespace Donor.ViewModels
                             };
 
                             App.ViewModel.User.FacebookId = "";
-                            App.ViewModel.User.FacebookToken = "";                            
+                            App.ViewModel.User.FacebookToken = "";
                             App.ViewModel.SaveUserToStorage();
                             //this.UpdateAction(null);
 
@@ -938,6 +986,8 @@ namespace Donor.ViewModels
                     }
                     catch { };
                 });
+            }
+            catch { };
         }
 
         //public Visibility FacebookLinkingButtonVisible = Visibility.Visible;
@@ -945,45 +995,49 @@ namespace Donor.ViewModels
 
         public void FacebookUnlinking()
         {
-            var client = new RestClient("https://api.parse.com");
-            var request = new RestRequest("1/users/" + App.ViewModel.User.objectId, Method.PUT);
-            request.AddHeader("Accept", "application/json");
-            request.Parameters.Clear();
-
-            string strJSONContent = "{\"authData\": { \"facebook\": null } }";
-            request.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
-            request.AddHeader("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
-            request.AddHeader("X-Parse-Session-Token", App.ViewModel.User.sessionToken);
-            request.AddHeader("Content-Type", "application/json");
-
-            request.AddParameter("application/json", strJSONContent, ParameterType.RequestBody);
-
-            client.ExecuteAsync(request, response =>
+            try
             {
-                try
+                var client = new RestClient("https://api.parse.com");
+                var request = new RestRequest("1/users/" + App.ViewModel.User.objectId, Method.PUT);
+                request.AddHeader("Accept", "application/json");
+                request.Parameters.Clear();
+
+                string strJSONContent = "{\"authData\": { \"facebook\": null } }";
+                request.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
+                request.AddHeader("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
+                request.AddHeader("X-Parse-Session-Token", App.ViewModel.User.sessionToken);
+                request.AddHeader("Content-Type", "application/json");
+
+                request.AddParameter("application/json", strJSONContent, ParameterType.RequestBody);
+
+                client.ExecuteAsync(request, response =>
                 {
-                    JObject o = JObject.Parse(response.Content.ToString());
-
-                    if (o["error"] == null)
+                    try
                     {
-                        MessageBox.Show(Donor.AppResources.FacebookUnlinkedMessage);
+                        JObject o = JObject.Parse(response.Content.ToString());
 
-                        App.ViewModel.User.FacebookId = "";
-                        App.ViewModel.User.FacebookToken = "";
+                        if (o["error"] == null)
+                        {
+                            MessageBox.Show(Donor.AppResources.FacebookUnlinkedMessage);
 
-                        App.ViewModel.SaveUserToStorage();
+                            App.ViewModel.User.FacebookId = "";
+                            App.ViewModel.User.FacebookToken = "";
 
-                        FlurryWP7SDK.Api.LogEvent("Facebook_unlinking");
-                        this.FacebookUnLinked(this, EventArgs.Empty);
+                            App.ViewModel.SaveUserToStorage();
+
+                            FlurryWP7SDK.Api.LogEvent("Facebook_unlinking");
+                            this.FacebookUnLinked(this, EventArgs.Empty);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Не удалось отзвять профиль facebook.");
+                            this.FacebookLinked(this, EventArgs.Empty);
+                        };
                     }
-                    else
-                    {
-                        MessageBox.Show("Не удалось отзвять профиль facebook.");
-                        this.FacebookLinked(this, EventArgs.Empty);
-                    };
-                }
-                catch { };
-            });
+                    catch { };
+                });
+            }
+            catch { };
         }
 
     };

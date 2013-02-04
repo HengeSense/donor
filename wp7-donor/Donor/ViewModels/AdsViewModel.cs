@@ -28,8 +28,11 @@ namespace Donor.ViewModels
 
         public void LoadAds()
         {
+            var bw = new BackgroundWorker();
+            bw.DoWork += delegate
+            {
             var client = new RestClient("https://api.parse.com");
-            var request = new RestRequest("1/classes/Ads?order=-createdTimestamp", Method.GET);
+            var request = new RestRequest("1/classes/Ads?order=-createdTimestamp&limit=50", Method.GET);
             request.Parameters.Clear();
             request.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
             request.AddHeader("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
@@ -37,9 +40,6 @@ namespace Donor.ViewModels
             {
                 try
                 {
-                    var bw = new BackgroundWorker();
-                    bw.DoWork += delegate
-                    {
                         ObservableCollection<AdsViewModel> adslist1 = new ObservableCollection<AdsViewModel>();
                         JObject o = JObject.Parse(response.Content.ToString());
                         adslist1 = JsonConvert.DeserializeObject<ObservableCollection<AdsViewModel>>(o["results"].ToString());
@@ -47,30 +47,24 @@ namespace Donor.ViewModels
                         var sortedAds = (from ads in adslist1
                                          orderby ads.CreatedTimestamp descending
                                          select ads);
-                        /*
-                        foreach (var item in sortedAds)
-                        {
-                            App.ViewModel.Ads.Items.Add(item);
-                        };*/
-
-                        //save to isolated storage
                         
 
                         Deployment.Current.Dispatcher.BeginInvoke(() =>
                         {
-                            //App.ViewModel.Ads.Items = new ObservableCollection<AdsViewModel>();
                             this.Items = new ObservableCollection<AdsViewModel>(sortedAds);
-                        });
-
-                        IsolatedStorageHelper.SaveSerializableObject<ObservableCollection<AdsViewModel>>(App.ViewModel.Ads.Items, "ads.xml");
-                    };
-                    bw.RunWorkerAsync();
+                            IsolatedStorageHelper.SaveSerializableObject<ObservableCollection<AdsViewModel>>(App.ViewModel.Ads.Items, "ads.xml");
+                        });                      
                 }
                 catch
                 {
                 };
-                this.NotifyPropertyChanged("Items");
+                Deployment.Current.Dispatcher.BeginInvoke(() =>
+                {
+                    this.NotifyPropertyChanged("Items");
+                });  
             });
+            };
+            bw.RunWorkerAsync();
         }
 
         public List<AdsViewModel> LoadStationAds(string objectid)

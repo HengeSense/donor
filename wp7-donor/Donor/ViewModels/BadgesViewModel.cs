@@ -185,44 +185,47 @@ namespace Donor.ViewModels
 
         static private void GetPlayerAchieves(string fb_id = "")
         {
-            try
+            var bw = new BackgroundWorker();
+            bw.DoWork += delegate
             {
-                var client_player = new RestClient("http://www.itsbeta.com");
-                var request_player = new RestRequest("s/info/playerid.json", Method.GET);
-                request_player.Parameters.Clear();
-                request_player.AddParameter("access_token", "059db4f010c5f40bf4a73a28222dd3e3");
-                request_player.AddParameter("type", "fb_user_id");
-                request_player.AddParameter("id", fb_id);
-
-                client_player.ExecuteAsync(request_player, response_player =>
+                try
                 {
-                    try
+                    var client_player = new RestClient("http://www.itsbeta.com");
+                    var request_player = new RestRequest("s/info/playerid.json", Method.GET);
+                    request_player.Parameters.Clear();
+                    request_player.AddParameter("access_token", "059db4f010c5f40bf4a73a28222dd3e3");
+                    request_player.AddParameter("type", "fb_user_id");
+                    request_player.AddParameter("id", fb_id);
+
+                    client_player.ExecuteAsync(request_player, response_player =>
                     {
-                        JObject o_player = JObject.Parse(response_player.Content.ToString());
-
-                        string player_id = o_player["player_id"].ToString();
-
-                        var client = new RestClient("http://www.itsbeta.com");
-                        var request = new RestRequest("s/info/achievements.json", Method.GET);
-                        request.Parameters.Clear();
-                        request.AddParameter("access_token", "059db4f010c5f40bf4a73a28222dd3e3");
-                        request.AddParameter("player_id", player_id);
-
-                        client.ExecuteAsync(request, response =>
+                        try
                         {
-                            try
+                            JObject o_player = JObject.Parse(response_player.Content.ToString());
+
+                            string player_id = o_player["player_id"].ToString();
+
+                            var client = new RestClient("http://www.itsbeta.com");
+                            var request = new RestRequest("s/info/achievements.json", Method.GET);
+                            request.Parameters.Clear();
+                            request.AddParameter("access_token", "059db4f010c5f40bf4a73a28222dd3e3");
+                            request.AddParameter("player_id", player_id);
+
+                            client.ExecuteAsync(request, response =>
                             {
-                                JObject o = JObject.Parse(response.Content.ToString());
-
-
-                            }
-                            catch { };
-                        });
-                    }
-                    catch { };
-                });
-            }
-            catch { };
+                                try
+                                {
+                                    JObject o = JObject.Parse(response.Content.ToString());
+                                }
+                                catch { };
+                            });
+                        }
+                        catch { };
+                    });
+                }
+                catch { };
+            };
+            bw.RunWorkerAsync();
         }
 
         static private ObservableCollection<AchieveItem> _availableAchieves = new ObservableCollection<AchieveItem>();
@@ -276,7 +279,9 @@ namespace Donor.ViewModels
         /// </summary>
         static public void PostAchieve(string user_id = "", string user_token="")
         {
-
+            var bw = new BackgroundWorker();
+            bw.DoWork += delegate
+            {
                     var client = new RestClient("http://www.itsbeta.com");
                     var request = new RestRequest("s/healthcare/donor/achieves/posttofbonce.json", Method.POST);
                     request.Parameters.Clear();
@@ -296,34 +301,39 @@ namespace Donor.ViewModels
                             {
                                 facebook_id = o["fb_id"].ToString();
 
-                                App.ViewModel.Settings.AchieveDonor = true;
-                                App.ViewModel.Settings.AchieveDonorUser = App.ViewModel.User.objectId;
-                                App.ViewModel.SaveSettingsToStorage();
-
-                                messagePrompt = new MessagePrompt();
-                                try
+                                Deployment.Current.Dispatcher.BeginInvoke(() =>
                                 {
-                                    messagePrompt.Body = new BadgeControl();
+                                    App.ViewModel.Settings.AchieveDonor = true;
+                                    App.ViewModel.Settings.AchieveDonorUser = App.ViewModel.User.objectId;
+                                    App.ViewModel.SaveSettingsToStorage();
 
-                                    Button closeButton = new Button() { Content = "Закрыть" };
-                                    Button moreButton = new Button() { Content = "Подробнее" };
+                                    messagePrompt = new MessagePrompt();
+                                    try
+                                    {
+                                        messagePrompt.Body = new BadgeControl();
 
-                                    closeButton.Click += new RoutedEventHandler(closeButton_Click);
-                                    moreButton.Click += new RoutedEventHandler(moreButton_Click);
+                                        Button closeButton = new Button() { Content = "Закрыть" };
+                                        Button moreButton = new Button() { Content = "Подробнее" };
 
-                                    messagePrompt.ActionPopUpButtons.Clear();
-                                    messagePrompt.ActionPopUpButtons.Add(closeButton);
-                                    messagePrompt.ActionPopUpButtons.Add(moreButton);
-                                }
-                                catch
-                                {
-                                };
-                                
-                                messagePrompt.Show();
+                                        closeButton.Click += new RoutedEventHandler(closeButton_Click);
+                                        moreButton.Click += new RoutedEventHandler(moreButton_Click);
+
+                                        messagePrompt.ActionPopUpButtons.Clear();
+                                        messagePrompt.ActionPopUpButtons.Add(closeButton);
+                                        messagePrompt.ActionPopUpButtons.Add(moreButton);
+                                    }
+                                    catch
+                                    {
+                                    };
+
+                                    messagePrompt.Show();
+                                });
                             };
                         }
                         catch { };
                     });
+            };
+            bw.RunWorkerAsync();
         }
 
         static void closeButton_Click(object sender, RoutedEventArgs e)
