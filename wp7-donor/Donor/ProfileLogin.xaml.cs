@@ -22,6 +22,8 @@ namespace Donor
 {
     public partial class ProfileLogin : PhoneApplicationPage
     {
+        public string CurrentTask = "";
+
         public ProfileLogin()
         {
             InitializeComponent();
@@ -29,6 +31,7 @@ namespace Donor
             DataContext = App.ViewModel;
 
             AppBarVisibitilty("");
+            CurrentTask = "";
             if (App.ViewModel.User.IsLoggedIn == true)
             {
                 this.RegisterForm.Visibility = Visibility.Collapsed;
@@ -102,6 +105,7 @@ namespace Donor
             AppBarVisibitilty("");
             if (App.ViewModel.User.IsLoggedIn == true)
             {
+                CurrentTask = "show";
                 AppBarVisibitilty("show");
                 this.AppBar.IsVisible = true;
             }
@@ -306,8 +310,12 @@ namespace Donor
                 try
                 {
                     string _taskid = this.NavigationContext.QueryString["task"];
+                    if (CurrentTask == "")
+                    {
+                        CurrentTask = _taskid;
+                    };
                     AppBarVisibitilty("");
-                    switch (_taskid)
+                    switch (CurrentTask)
                     {
                         case "show":
                             AppBarVisibitilty("show");
@@ -370,12 +378,14 @@ namespace Donor
                             };
 
                             AppBarVisibitilty("edit");
+                            CurrentTask = "edit";
 
                             SetEditFields();
 
                             break;
                         default:
                             AppBarVisibitilty("");
+                            CurrentTask = "";
                             break;
                     };
                 }
@@ -448,11 +458,10 @@ namespace Donor
             this.LoginForm.Visibility = Visibility.Collapsed;
             this.UserProfile.Visibility = Visibility.Collapsed;
 
-            //this.FacebookButton.Visibility = Visibility.Collapsed;
-            //this.FacebookUnlinkingButton.Visibility = Visibility.Collapsed;
-
             this.CancelEditProfileButton.Visibility = Visibility.Visible;
             this.SaveEditProfileButton.Visibility = Visibility.Visible;
+
+            CurrentTask = "edit";
 
             SetEditFields();
         }
@@ -473,6 +482,8 @@ namespace Donor
             this.RegisterForm.Visibility = Visibility.Collapsed;
             this.LoginForm.Visibility = Visibility.Collapsed;
             this.UserProfile.Visibility = Visibility.Visible;
+
+            CurrentTask = "show";
         }
 
         /// <summary>
@@ -514,11 +525,11 @@ namespace Donor
             this.EditProfile.Visibility = Visibility.Collapsed;
 
             AppBarVisibitilty("show");
+            CurrentTask = "show";
 
             this.RegisterForm.Visibility = Visibility.Collapsed;
             this.LoginForm.Visibility = Visibility.Collapsed;
             this.UserProfile.Visibility = Visibility.Visible;
-
         }
 
         private void Check_Checked(object sender, RoutedEventArgs e)

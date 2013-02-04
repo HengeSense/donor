@@ -400,6 +400,7 @@
     <Content Include="images\achieves\Achive-donor_unavailible.png" />
     <Content Include="images\ic_donors_act.png" />
     <Resource Include="images\ic_search.png" />
+    <Content Include="images\ic_menu_achivement_normal.png" />
     <Content Include="libs\Phone.Controls.dll" />
     <Content Include="libs\Silverlight_ZXing_Core.dll" />
     <Content Include="libs\Silverlight_ZXing_Core.pdb" />

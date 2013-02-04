@@ -163,7 +163,7 @@
                          <ListBoxItem Name="AchievesMenu">
                                 <StackPanel Orientation="Horizontal">
                                     <Image Height="64" Width="64" 
-						 Source="images/ic_menu_profile_normal.png"/>
+						 Source="images/ic_menu_achivement_normal.png"/>
                                     <TextBlock Margin="0,15,0,0" 
 						 Text="{Binding MyBadges, Source={StaticResource Loc}}"
 						 TextWrapping="Wrap" 
