@@ -180,7 +180,7 @@ namespace Donor.ViewModels
         {
             if (App.ViewModel.User.IsLoggedIn == true)
             {
-                GetPlayerAchieves(App.ViewModel.User.FacebookId);
+                //GetPlayerAchieves(App.ViewModel.User.FacebookId);
             };
         }
 

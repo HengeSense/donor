@@ -61,7 +61,18 @@ namespace Donor
             {
                 if (App.ViewModel.User.IsLoggedIn == true)
                 {
-                    NavigationService.GoBack();
+                    try
+                    {
+                        if (NavigationService.CanGoBack == true)
+                        {
+                            NavigationService.GoBack();
+                        }
+                        else
+                        {
+                            NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative)); 
+                        };
+                    }
+                    catch { };
                 }
                 else
                 {

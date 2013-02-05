@@ -46,8 +46,6 @@ namespace Donor
 
         public MainViewModel()
         {            
-            this.Items = new ObservableCollection<ItemViewModel>();
-
             News = new NewsListViewModel();
             Events = new EventsListViewModel();
             Stations = new StationsLitViewModel();
@@ -68,11 +66,6 @@ namespace Donor
             this.FbToken = "";
         }
 
-
-        /// <summary>
-        /// A collection for ItemViewModel objects.
-        /// </summary>
-        public ObservableCollection<ItemViewModel> Items { get; private set; }
 
         //PeriodicTask periodicTask;
         //string periodicTaskName = "PeriodicAgent";
@@ -131,27 +124,6 @@ namespace Donor
                         Title = "",
                         Count = App.ViewModel.Events.UserItems.Where(c => (c.Type == "0") || (c.Type == "1")).Count()
                     };
-                    /*
-                     * if (App.ViewModel.Events.NearestEventsAll() != null)
-                    {
-                        standardTile = new StandardTileData
-                        {
-                            Title = "",
-                            Count = App.ViewModel.Events.Items.Count(),
-                            BackTitle = App.ViewModel.Events.NearestEventsAll().Date.ToShortDateString(),
-                            BackContent = App.ViewModel.Events.NearestEventsAll().Title.ToString()
-                        };
-                    }
-                    else
-                    {
-                        standardTile = new StandardTileData
-                        {
-                            Title = "",
-                            Count = App.ViewModel.Events.Items.Count(),
-                            BackContent = Donor.AppResources.NoEvents,
-                        };
-                    };
-                     */
                 };
 
                 appTile.Update(standardTile);
@@ -168,8 +140,7 @@ namespace Donor
 
             bw.DoWork += delegate
             {
-            System.Threading.Thread.Sleep(400);
-
+                //System.Threading.Thread.Sleep(400);
                 Deployment.Current.Dispatcher.BeginInvoke(() =>
                 {
                     this.LoadUserFromStorage();
@@ -189,8 +160,6 @@ namespace Donor
                     this.NotifyPropertyChanged("News");
 
                     CreateApplicationTile(App.ViewModel.Events.NearestEvents());
-
-
                 });            
             };
             bw.RunWorkerAsync();  

@@ -174,8 +174,8 @@ namespace Donor.ViewModels
             {
                 Deployment.Current.Dispatcher.BeginInvoke(() =>
                 {
-                                App.ViewModel.User.UserLoading = true;
-                                App.ViewModel.User.IsLoggedIn = false;
+                    App.ViewModel.User.UserLoading = true;
+                    App.ViewModel.User.IsLoggedIn = false;
                 });
                 string passwordCurrent = this.Password;
 
@@ -219,12 +219,10 @@ namespace Donor.ViewModels
                                 App.ViewModel.SaveUserToStorage();
 
                                 App.ViewModel.User.NotifyAll();
-                                this.NotifyAll();
-
-                                ClassToUser();
+                                //this.NotifyAll();
+                                //ClassToUser();
 
                                 App.ViewModel.OnUserEnter(EventArgs.Empty);
-
                                 FlurryWP7SDK.Api.LogEvent("User_login");
 
                                 if ((App.ViewModel.FbId != "") && (App.ViewModel.FbToken != ""))
