@@ -24,10 +24,13 @@ namespace Donor.ViewModels
     {
         public AdsListViewModel()
         {
+            _items = new ObservableCollection<AdsViewModel>();
         }
 
         public void LoadAds()
         {
+            if ((App.ViewModel.Ads.Items.Count() == 0) || (App.ViewModel.Settings.AdsUpdated.AddHours(12) < DateTime.Now))
+            {
             var bw = new BackgroundWorker();
             bw.DoWork += delegate
             {
@@ -51,6 +54,9 @@ namespace Donor.ViewModels
 
                         Deployment.Current.Dispatcher.BeginInvoke(() =>
                         {
+                            App.ViewModel.Settings.AdsUpdated = DateTime.Now;
+                            App.ViewModel.SaveSettingsToStorage();
+
                             this.Items = new ObservableCollection<AdsViewModel>(sortedAds);
                             IsolatedStorageHelper.SaveSerializableObject<ObservableCollection<AdsViewModel>>(App.ViewModel.Ads.Items, "ads.xml");
                         });                      
@@ -65,6 +71,7 @@ namespace Donor.ViewModels
             });
             };
             bw.RunWorkerAsync();
+            };
         }
 
         public List<AdsViewModel> LoadStationAds(string objectid)

@@ -635,7 +635,7 @@ namespace Donor.ViewModels
                 EventsChanged(this, e);
         }
 
-        private void EventFromJSON(JObject item)
+        private EventViewModel EventFromJSON(JObject item)
         {
             EventViewModel jsonitem = new EventViewModel();
 
@@ -781,9 +781,7 @@ namespace Donor.ViewModels
             catch
             {
             };
-
-            this.Items.Remove(this.Items.FirstOrDefault(c => c.Id == jsonitem.Id));
-            this.Items.Add(jsonitem);
+            return jsonitem;
         }
 
         public void LoadEventsParse()
@@ -809,14 +807,21 @@ namespace Donor.ViewModels
                                 {
                                     ObservableCollection<EventViewModel> eventslist1 = new ObservableCollection<EventViewModel>();
                                     JObject o = JObject.Parse(responseuser.Content.ToString());
+
+                                    ObservableCollection<EventViewModel> loadedItems = new ObservableCollection<EventViewModel>();
+                                    foreach (JObject item in o["results"])
+                                    {
+                                        loadedItems.Add(EventFromJSON(item));                                        
+                                    };
+
+                                    foreach (var item in loadedItems)
+                                    {
+                                        this.Items.Remove(this.Items.FirstOrDefault(c => c.Id == item.Id));
+                                        this.Items.Add(item);
+                                    };
+
                                     Deployment.Current.Dispatcher.BeginInvoke(() =>
                                     {
-                                    foreach (JObject item in o["results"])
-                                    {                                        
-                                        EventFromJSON(item);                                        
-                                    };
-                                    //Deployment.Current.Dispatcher.BeginInvoke(() =>
-                                    //{
                                         App.ViewModel.Events.UpdateItems();
                                         App.ViewModel.OnDataFLoaded(EventArgs.Empty);
                                         App.ViewModel.IsDataLoaded = true;
@@ -1636,7 +1641,7 @@ namespace Donor.ViewModels
                                 (new DateTime(eventCal.Date.Year, eventCal.Date.Month, eventCal.Date.Day) >= DateTime.Today)
                                 && (App.ViewModel.User.objectId == eventCal.UserId)
                                 orderby eventCal.Date descending
-                                select eventCal).Take(20);
+                                select eventCal).Take(15);
                 List<EventViewModel> outnews = newitems.ToList();
                 return outnews;
             }

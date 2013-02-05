@@ -731,6 +731,7 @@ namespace Donor.ViewModels
                         };
                     }
                     catch { };
+                    bool changed = false;
                     //check is exist user with such email
                     var clientCheck = new RestClient("https://api.parse.com");
                     var requestCheck = new RestRequest("1/users?where={\"username\":\"" + emailIn + "\"}", Method.GET);
@@ -792,6 +793,7 @@ namespace Donor.ViewModels
                                                         if ((App.ViewModel.User.Name == "") || (App.ViewModel.User.Name == null))
                                                         {
                                                             App.ViewModel.User.Name = (string)result["first_name"];
+                                                            changed = true;
                                                         };
                                                     }
                                                     catch
@@ -804,6 +806,7 @@ namespace Donor.ViewModels
                                                         if ((App.ViewModel.User.SecondName == "") || (App.ViewModel.User.SecondName == null))
                                                         {
                                                             App.ViewModel.User.SecondName = (string)result["last_name"];
+                                                            changed = true;
                                                         };
                                                     }
                                                     catch
@@ -826,10 +829,12 @@ namespace Donor.ViewModels
                                                         if ((string)result["gender"] == "male")
                                                         {
                                                             App.ViewModel.User.Sex = 0;
+                                                            changed = true;
                                                         };
                                                         if ((string)result["gender"] == "female")
                                                         {
                                                             App.ViewModel.User.Sex = 1;
+                                                            changed = true;
                                                         };
                                                     };
                                                 }
@@ -849,6 +854,7 @@ namespace Donor.ViewModels
                                                     if (temp_username != "")
                                                     {
                                                         App.ViewModel.User.UserName = (string)result["email"];
+                                                        changed = true;
                                                     };
                                                 }
                                                 catch { };
@@ -866,6 +872,7 @@ namespace Donor.ViewModels
                                                         string birthday = (string)result["birthday"];
                                                         CultureInfo provider = CultureInfo.InvariantCulture;
                                                         App.ViewModel.User.DateBirthday = DateTime.ParseExact(birthday, "d", provider);
+                                                        changed = true;
                                                     };
                                                 }
                                                 catch { };
@@ -888,7 +895,10 @@ namespace Donor.ViewModels
 
                                                 App.ViewModel.OnUserEnter(EventArgs.Empty);
 
-                                                this.UpdateAction(1);
+                                                if (changed == true)
+                                                {
+                                                    this.UpdateAction(1);
+                                                };
                                                 App.ViewModel.User.UserLoading = false;
                                             });
                                         }

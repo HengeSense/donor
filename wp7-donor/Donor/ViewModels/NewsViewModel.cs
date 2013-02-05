@@ -29,6 +29,8 @@ namespace Donor.ViewModels
 
         public void LoadNews()
         {
+            if ((App.ViewModel.News.Items.Count() == 0) || (App.ViewModel.Settings.NewsUpdated.AddHours(12) < DateTime.Now))
+            {
             var bw = new BackgroundWorker();
             bw.DoWork += delegate
             {
@@ -53,6 +55,9 @@ namespace Donor.ViewModels
 
                                 Deployment.Current.Dispatcher.BeginInvoke(() =>
                                 {
+                                    App.ViewModel.Settings.NewsUpdated = DateTime.Now;
+                                    App.ViewModel.SaveSettingsToStorage();
+
                                     this.Items = new ObservableCollection<NewsViewModel>(newslist1);                                
                                     IsolatedStorageHelper.SaveSerializableObject<ObservableCollection<NewsViewModel>>(App.ViewModel.News.Items, "news.xml");
                                 });
@@ -67,6 +72,7 @@ namespace Donor.ViewModels
                 });
             };
             bw.RunWorkerAsync();
+            };
         }
 
         private ObservableCollection<NewsViewModel> _items;
@@ -84,7 +90,7 @@ namespace Donor.ViewModels
             {
                 var newitems = (from news in this.Items
                                orderby news.CreatedTimestamp descending
-                               select news).Take(10);
+                               select news).Take(6);
                 List<NewsViewModel> outnews = newitems.ToList();
                 return outnews;
             }
