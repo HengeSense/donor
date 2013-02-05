@@ -172,7 +172,11 @@ namespace Donor.ViewModels
             var bw = new BackgroundWorker();
             bw.DoWork += delegate
             {
-                App.ViewModel.User.UserLoading = true;
+                Deployment.Current.Dispatcher.BeginInvoke(() =>
+                {
+                                App.ViewModel.User.UserLoading = true;
+                                App.ViewModel.User.IsLoggedIn = false;
+                });
                 string passwordCurrent = this.Password;
 
                 var client = new RestClient("https://api.parse.com");
@@ -181,7 +185,7 @@ namespace Donor.ViewModels
                 request.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
                 request.AddHeader("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
 
-                App.ViewModel.User.IsLoggedIn = false;
+                
 
                 client.ExecuteAsync(request, response =>
                 {
