@@ -178,10 +178,14 @@ namespace Donor.ViewModels
 
         private static void UserLoaded(object sender, EventArgs e)
         {
-            if (App.ViewModel.User.IsLoggedIn == true)
+            try
             {
-                //GetPlayerAchieves(App.ViewModel.User.FacebookId);
-            };
+                if (App.ViewModel.User.IsLoggedIn == true)
+                {
+                    GetPlayerAchieves(App.ViewModel.User.FacebookId);
+                };
+            }
+            catch { };
         }
 
         static private void GetPlayerAchieves(string fb_id = "")
@@ -207,10 +211,11 @@ namespace Donor.ViewModels
                             string player_id = o_player["player_id"].ToString();
 
                             var client = new RestClient("http://www.itsbeta.com");
-                            var request = new RestRequest("s/info/achievements.json", Method.GET);
+                            var request = new RestRequest("s/info/badges.json", Method.GET);
                             request.Parameters.Clear();
                             request.AddParameter("access_token", "059db4f010c5f40bf4a73a28222dd3e3");
                             request.AddParameter("player_id", player_id);
+                            request.AddParameter("project_id", "50d78a38d870307e9b000002");
 
                             client.ExecuteAsync(request, response =>
                             {
@@ -218,21 +223,13 @@ namespace Donor.ViewModels
                                 {
                                     JArray o = JArray.Parse(response.Content.ToString());
                                     foreach (var item in o) {
-                                        if (item["api_name"].ToString() == "healthcare")
+                                        string activated = "";
+                                        activated = item["activated"].ToString();
+                                        if (activated == "True")
                                         {
-                                            var projects = item["projects"];
-                                            foreach (var prj in projects)
-                                            {
-                                                if (prj["api_name"].ToString() == "donor")
-                                                {
-                                                    var achievements = item["achievements"];
-                                                    foreach (var badge in achievements)
-                                                    {
-                                                        BadgesViewModel.AvailableAchieves.FirstOrDefault(c => c.Api_name == badge["api_name"].ToString());
-                                                    };
-                                                };
-                                            };
+                                            BadgesViewModel.AvailableAchieves.FirstOrDefault(c=>c.Api_name==item["api_name"].ToString()).Status=true;
                                         };
+
                                     };
                                 }
                                 catch { };
