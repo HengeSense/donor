@@ -14,6 +14,7 @@ using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using System.Resources;
 using System.Reflection;
+using BugSense;
 
 namespace Donor
 {
@@ -70,8 +71,10 @@ namespace Donor
         /// </summary>
         public App()
         {
+            BugSenseHandler.Instance.Init(this, "0bc8941b");
             // Global handler for uncaught exceptions. 
-            UnhandledException += Application_UnhandledException;
+            //UnhandledException += Application_UnhandledException;
+            BugSenseHandler.Instance.UnhandledException += Application_UnhandledException; 
 
             // Standard Silverlight initialization
             InitializeComponent();

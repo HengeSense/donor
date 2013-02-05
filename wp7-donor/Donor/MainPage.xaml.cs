@@ -93,6 +93,7 @@ namespace Donor
             App.ViewModel.User.NotifyAll();
         }
 
+
         private void TextBlock_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
             NavigationService.Navigate(new Uri("/ProfileLogin.xaml?task=edit", UriKind.Relative));
@@ -185,44 +186,48 @@ namespace Donor
 
         private void DataFLoaded(object sender, EventArgs e)
         {
-            if (App.ViewModel.User.IsLoggedIn == true)
+            try
             {
-                if (this.NavigationContext.QueryString.ContainsKey("eventid"))
+                if (App.ViewModel.User.IsLoggedIn == true)
                 {
-                    try
+                    if (this.NavigationContext.QueryString.ContainsKey("eventid"))
                     {
-                        string _eventid = this.NavigationContext.QueryString["eventid"];
-                        // проверяем, есть ли это событие среди событие среди событий пользователя
-                        if (App.ViewModel.Events.UserItems.FirstOrDefault(c => c.Id == _eventid) != null)
+                        try
                         {
-                            NavigationService.Navigate(new Uri("/EventPage.xaml?id=" + _eventid, UriKind.Relative));
+                            string _eventid = this.NavigationContext.QueryString["eventid"];
+                            // проверяем, есть ли это событие среди событие среди событий пользователя
+                            if (App.ViewModel.Events.UserItems.FirstOrDefault(c => c.Id == _eventid) != null)
+                            {
+                                NavigationService.Navigate(new Uri("/EventPage.xaml?id=" + _eventid, UriKind.Relative));
+                            };
+                        }
+                        catch
+                        {
                         };
-                    }
-                    catch
+                    };
+
+                    if (this.NavigationContext.QueryString.ContainsKey("editeventid"))
                     {
+                        try
+                        {
+                            string _editeventid = this.NavigationContext.QueryString["editeventid"];
+                            NavigationService.Navigate(new Uri("/EditEventPage.xaml?id=" + _editeventid, UriKind.Relative));
+                        }
+                        catch { };
                     };
                 };
 
-                if (this.NavigationContext.QueryString.ContainsKey("editeventid"))
+                if (_userLoaded == true)
                 {
-                    try
-                    {
-                        string _editeventid = this.NavigationContext.QueryString["editeventid"];
-                        NavigationService.Navigate(new Uri("/EditEventPage.xaml?id=" + _editeventid, UriKind.Relative));
-                    }
-                    catch { };
+                    this.progressOverlay.Visibility = Visibility.Collapsed;
+                    this.progressOverlay.IsEnabled = false;
                 };
-            };
 
-            if (_userLoaded == true)
-            {
-                this.progressOverlay.Visibility = Visibility.Collapsed;
-                this.progressOverlay.IsEnabled = false;
-            };
+                App.ViewModel.Events.UpdateItems();
 
-            App.ViewModel.Events.UpdateItems();
-
-            DataContext = App.ViewModel;
+                DataContext = App.ViewModel;
+            }
+            catch { };
         }
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
@@ -251,14 +256,18 @@ namespace Donor
 
         private void TextBlock_Tap_1(object sender, System.Windows.Input.GestureEventArgs e)
         {
-            if (App.ViewModel.User.IsLoggedIn == true)
+            try
             {
-                NavigationService.Navigate(new Uri("/ProfileLogin.xaml?task=show", UriKind.Relative));
+                if (App.ViewModel.User.IsLoggedIn == true)
+                {
+                    NavigationService.Navigate(new Uri("/ProfileLogin.xaml?task=show", UriKind.Relative));
+                }
+                else
+                {
+                    NavigationService.Navigate(new Uri("/EnterPage.xaml", UriKind.Relative));
+                };
             }
-            else
-            {
-                NavigationService.Navigate(new Uri("/EnterPage.xaml", UriKind.Relative));
-            };
+            catch { };
         }
 
         private void adsMenuText_Tap(object sender, System.Windows.Input.GestureEventArgs e)
@@ -368,10 +377,14 @@ namespace Donor
         /// <param name="e"></param>
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
-            this.email.Text = "";
-            this.password.Password = "";
+            try
+            {
+                this.email.Text = "";
+                this.password.Password = "";
 
-            base.OnNavigatedTo(e);
+                base.OnNavigatedTo(e);
+            }
+            catch { };
         }
 
         /// <summary>

@@ -15,6 +15,7 @@ using Donor.Controls;
 using Microsoft.Phone.Tasks;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 
 namespace Donor.ViewModels
 {
@@ -215,7 +216,24 @@ namespace Donor.ViewModels
                             {
                                 try
                                 {
-                                    JObject o = JObject.Parse(response.Content.ToString());
+                                    JArray o = JArray.Parse(response.Content.ToString());
+                                    foreach (var item in o) {
+                                        if (item["api_name"].ToString() == "healthcare")
+                                        {
+                                            var projects = item["projects"];
+                                            foreach (var prj in projects)
+                                            {
+                                                if (prj["api_name"].ToString() == "donor")
+                                                {
+                                                    var achievements = item["achievements"];
+                                                    foreach (var badge in achievements)
+                                                    {
+                                                        BadgesViewModel.AvailableAchieves.FirstOrDefault(c => c.Api_name == badge["api_name"].ToString());
+                                                    };
+                                                };
+                                            };
+                                        };
+                                    };
                                 }
                                 catch { };
                             });

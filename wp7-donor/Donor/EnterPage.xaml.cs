@@ -22,8 +22,11 @@ namespace Donor
 
         private void Login_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Uri("/ProfileLogin.xaml?task=login", UriKind.Relative));
-            //NavigationService.GoBack();
+            try
+            {
+                NavigationService.Navigate(new Uri("/ProfileLogin.xaml?task=login", UriKind.Relative));
+            }
+            catch { };
         }
 
         private void FacebookLogin_Click(object sender, RoutedEventArgs e)

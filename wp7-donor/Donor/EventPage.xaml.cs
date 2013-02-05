@@ -110,12 +110,26 @@ namespace Donor
                     }
                     catch
                     {
-                        NavigationService.GoBack();
+                        try
+                        {
+                            if (NavigationService.CanGoBack == true)
+                            {
+                                NavigationService.GoBack();
+                            };
+                        }
+                        catch { };
                     };
                 }
                 else
                 {
-                    NavigationService.GoBack();
+                    try
+                    {
+                        if (NavigationService.CanGoBack == true)
+                        {
+                            NavigationService.GoBack();
+                        };
+                    }
+                    catch { };
                 };
             };
         }

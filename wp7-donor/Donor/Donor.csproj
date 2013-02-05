@@ -50,6 +50,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BugSense">
+      <HintPath>..\packages\BugSense.WP7.0.9.9.1\lib\sl3-wp\BugSense.dll</HintPath>
+    </Reference>
     <Reference Include="Coding4Fun.Phone.Audio">
       <HintPath>..\packages\Coding4Fun.Phone.Audio.1.6.1\lib\sl4-windowsphone71\Coding4Fun.Phone.Audio.dll</HintPath>
     </Reference>
@@ -88,13 +91,13 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\MSPToolkit.1.7.26.1\lib\sl4-wp71\MSPToolkit.dll</HintPath>
     </Reference>
-    <Reference Include="MyToolkit, Version=1.9.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="MyToolkit, Version=1.10.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\MyToolkit.1.9.0\lib\sl4-wp71\MyToolkit.dll</HintPath>
+      <HintPath>..\packages\MyToolkit.1.10.0\lib\sl4-wp71\MyToolkit.dll</HintPath>
     </Reference>
-    <Reference Include="MyToolkit.Extended, Version=1.9.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="MyToolkit.Extended, Version=1.10.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\MyToolkit.Extended.1.9.0\lib\sl4-wp71\MyToolkit.Extended.dll</HintPath>
+      <HintPath>..\packages\MyToolkit.Extended.1.10.0\lib\sl4-wp71\MyToolkit.Extended.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\sl4-windowsphone71\Newtonsoft.Json.dll</HintPath>

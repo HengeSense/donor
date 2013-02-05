@@ -715,215 +715,243 @@ namespace Donor.ViewModels
             try
             {
                 App.ViewModel.User.UserLoading = true;
-
                 //BadgesViewModel.PostAchieve();
 
-                //check is exist user with such email
-                var clientCheck = new RestClient("https://api.parse.com");
-                var requestCheck = new RestRequest("1/users?where={\"username\":\"" + result["email"].ToString().ToLower() + "\"}", Method.GET);
-                requestCheck.Parameters.Clear();
-                requestCheck.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
-                requestCheck.AddHeader("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
-                clientCheck.ExecuteAsync(requestCheck, responseCheck =>
+                var bw = new BackgroundWorker();
+                bw.DoWork += delegate
                 {
+                    string emailIn = "";
                     try
                     {
-                        JObject o2 = JObject.Parse(responseCheck.Content.ToString());
-                        if (o2["error"] == null)
+                        if (result != null)
                         {
-                            int userscount = 0;
-                            foreach (JObject item in o2["results"])
+                            emailIn = result["email"].ToString().ToLower();
+                        };
+                    }
+                    catch { };
+                    //check is exist user with such email
+                    var clientCheck = new RestClient("https://api.parse.com");
+                    var requestCheck = new RestRequest("1/users?where={\"username\":\"" + emailIn + "\"}", Method.GET);
+                    requestCheck.Parameters.Clear();
+                    requestCheck.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
+                    requestCheck.AddHeader("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
+                    clientCheck.ExecuteAsync(requestCheck, responseCheck =>
+                    {
+                        try
+                        {
+                            JObject o2 = JObject.Parse(responseCheck.Content.ToString());
+                            if (o2["error"] == null)
                             {
-                                userscount++;
-                            };
-                            var client = new RestClient("https://api.parse.com");
-                            var request = new RestRequest("1/users", Method.POST);
-                            request.AddHeader("Accept", "application/json");
-                            request.Parameters.Clear();
-
-                            string strJSONContent = "{\"authData\": { \"facebook\":{ \"id\": \"" + id + "\", \"access_token\": \"" + accessToken + "\", \"expiration_date\": \"" + DateTime.Now.AddMonths(1).ToString("s") + "\"  }  } }";
-                            request.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
-                            request.AddHeader("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
-                            if (App.ViewModel.User.sessionToken != "" && App.ViewModel.User.sessionToken != null)
-                            {
-                                request.AddHeader("X-Parse-Session-Token", App.ViewModel.User.sessionToken);
-                            };
-                            request.AddHeader("Content-Type", "application/json");
-
-                            request.AddParameter("application/json", strJSONContent, ParameterType.RequestBody);
-
-                            string oldname = App.ViewModel.User.Name;
-                            string oldsecondname = App.ViewModel.User.SecondName;
-                            int oldsex = App.ViewModel.User.Sex;
-
-                            client.ExecuteAsync(request, response =>
-                            {
-                                //try
-                                //{
-                                JObject o = JObject.Parse(response.Content.ToString());
-                                if (o["error"] == null)
+                                int userscount = 0;
+                                foreach (JObject item in o2["results"])
                                 {
-                                    if ((userscount == 0) || (o["username"].ToString().ToLower() == result["email"].ToString().ToLower()))
+                                    userscount++;
+                                };
+                                var client = new RestClient("https://api.parse.com");
+                                var request = new RestRequest("1/users", Method.POST);
+                                request.AddHeader("Accept", "application/json");
+                                request.Parameters.Clear();
+
+                                string strJSONContent = "{\"authData\": { \"facebook\":{ \"id\": \"" + id + "\", \"access_token\": \"" + accessToken + "\", \"expiration_date\": \"" + DateTime.Now.AddMonths(1).ToString("s") + "\"  }  } }";
+                                request.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
+                                request.AddHeader("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
+                                if (App.ViewModel.User.sessionToken != "" && App.ViewModel.User.sessionToken != null)
+                                {
+                                    request.AddHeader("X-Parse-Session-Token", App.ViewModel.User.sessionToken);
+                                };
+                                request.AddHeader("Content-Type", "application/json");
+
+                                request.AddParameter("application/json", strJSONContent, ParameterType.RequestBody);
+
+                                string oldname = App.ViewModel.User.Name;
+                                string oldsecondname = App.ViewModel.User.SecondName;
+                                int oldsex = App.ViewModel.User.Sex;
+
+                                client.ExecuteAsync(request, response =>
+                                {
+                                    //try
+                                    //{
+                                    JObject o = JObject.Parse(response.Content.ToString());
+                                    if (o["error"] == null)
                                     {
-                                        BadgesViewModel.PostAchieve(id, accessToken);
-
-                                        App.ViewModel.User = JsonConvert.DeserializeObject<DonorUser>(response.Content.ToString());
-                                        ClassToUser();
-
-                                        try
+                                        if ((userscount == 0) || (o["username"].ToString().ToLower() == result["email"].ToString().ToLower()))
                                         {
-                                            try
-                                            {
-                                                if ((App.ViewModel.User.Name == "") || (App.ViewModel.User.Name == null))
-                                                {
-                                                    App.ViewModel.User.Name = (string)result["first_name"];
-                                                };
-                                            }
-                                            catch
-                                            {
-                                                App.ViewModel.User.Name = oldname;
-                                            };
+                                            BadgesViewModel.PostAchieve(id, accessToken);
 
-                                            try
+                                            Deployment.Current.Dispatcher.BeginInvoke(() =>
                                             {
-                                                if ((App.ViewModel.User.SecondName == "") || (App.ViewModel.User.SecondName == null))
+                                                App.ViewModel.User = JsonConvert.DeserializeObject<DonorUser>(response.Content.ToString());
+                                                ClassToUser();
+
+                                                try
                                                 {
-                                                    App.ViewModel.User.SecondName = (string)result["last_name"];
+                                                    try
+                                                    {
+                                                        if ((App.ViewModel.User.Name == "") || (App.ViewModel.User.Name == null))
+                                                        {
+                                                            App.ViewModel.User.Name = (string)result["first_name"];
+                                                        };
+                                                    }
+                                                    catch
+                                                    {
+                                                        App.ViewModel.User.Name = oldname;
+                                                    };
+
+                                                    try
+                                                    {
+                                                        if ((App.ViewModel.User.SecondName == "") || (App.ViewModel.User.SecondName == null))
+                                                        {
+                                                            App.ViewModel.User.SecondName = (string)result["last_name"];
+                                                        };
+                                                    }
+                                                    catch
+                                                    {
+                                                        App.ViewModel.User.SecondName = oldsecondname;
+                                                    };
+                                                }
+                                                catch { };
+
+                                                try
+                                                {
+                                                    string temp_gender = "";
+                                                    try
+                                                    {
+                                                        temp_gender = o["Sex"].ToString();
+                                                    }
+                                                    catch { };
+                                                    if (temp_gender == "")
+                                                    {
+                                                        if ((string)result["gender"] == "male")
+                                                        {
+                                                            App.ViewModel.User.Sex = 0;
+                                                        };
+                                                        if ((string)result["gender"] == "female")
+                                                        {
+                                                            App.ViewModel.User.Sex = 1;
+                                                        };
+                                                    };
+                                                }
+                                                catch
+                                                {
+                                                    App.ViewModel.User.Sex = oldsex;
                                                 };
-                                            }
-                                            catch
-                                            {
-                                                App.ViewModel.User.SecondName = oldsecondname;
-                                            };
+
+                                                try
+                                                {
+                                                    string temp_username = "";
+                                                    try
+                                                    {
+                                                        temp_username = o["createdAt"].ToString();
+                                                    }
+                                                    catch { };
+                                                    if (temp_username != "")
+                                                    {
+                                                        App.ViewModel.User.UserName = (string)result["email"];
+                                                    };
+                                                }
+                                                catch { };
+
+                                                try
+                                                {
+                                                    string temp_birthday = "";
+                                                    try
+                                                    {
+                                                        temp_birthday = o["birthday"].ToString();
+                                                    }
+                                                    catch { };
+                                                    if (temp_birthday == "")
+                                                    {
+                                                        string birthday = (string)result["birthday"];
+                                                        CultureInfo provider = CultureInfo.InvariantCulture;
+                                                        App.ViewModel.User.DateBirthday = DateTime.ParseExact(birthday, "d", provider);
+                                                    };
+                                                }
+                                                catch { };
+
+                                                App.ViewModel.User.IsLoggedIn = true;
+                                                this.IsLoggedIn = true;
+
+                                                App.ViewModel.SaveUserToStorage();
+
+                                                App.ViewModel.Events.WeekItemsUpdated();
+                                                App.ViewModel.Events.LoadEventsParse();
+
+                                                App.ViewModel.User.FacebookId = id;
+                                                App.ViewModel.User.FacebookToken = accessToken;
+
+                                                App.ViewModel.SaveUserToStorage();
+
+                                                App.ViewModel.User.NotifyAll();
+                                                this.NotifyAll();
+
+                                                App.ViewModel.OnUserEnter(EventArgs.Empty);
+
+                                                this.UpdateAction(1);
+                                                App.ViewModel.User.UserLoading = false;
+                                            });
                                         }
-                                        catch { };
+                                        else
+                                        {
 
-                                        try
-                                        {
-                                            string temp_gender = "";
-                                            try
+                                            var clientDelete = new RestClient("https://api.parse.com");
+                                            var requestDelete = new RestRequest("1/users/" + o["objectId"].ToString(), Method.DELETE);
+                                            requestDelete.AddHeader("Accept", "application/json");
+                                            requestDelete.Parameters.Clear();
+
+                                            requestDelete.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
+                                            requestDelete.AddHeader("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
+                                            requestDelete.AddHeader("X-Parse-Session-Token", o["sessionToken"].ToString());
+
+                                            clientDelete.ExecuteAsync(requestDelete, responseDelete =>
                                             {
-                                                temp_gender = o["Sex"].ToString();
-                                            }
-                                            catch { };
-                                            if (temp_gender == "")
+                                                string test = responseDelete.Content.ToString();
+                                            });
+
+                                            Deployment.Current.Dispatcher.BeginInvoke(() =>
                                             {
-                                                if ((string)result["gender"] == "male")
+                                                App.ViewModel.User.IsLoggedIn = false;
+                                                App.ViewModel.User.UserLoading = false;
+                                                MessageBox.Show("Похоже такой пользователь уже есть. Введите пароль, чтобы привязать профиль.");
+                                                try
                                                 {
-                                                    App.ViewModel.User.Sex = 0;
-                                                };
-                                                if ((string)result["gender"] == "female")
-                                                {
-                                                    App.ViewModel.User.Sex = 1;
-                                                };
-                                            };
-                                        }
-                                        catch
-                                        {
-                                            App.ViewModel.User.Sex = oldsex;
+                                                    (Application.Current.RootVisual as PhoneApplicationFrame).Navigate(new Uri("/ProfileLogin.xaml?task=login&email=" + result["email"].ToString().ToLower(), UriKind.Relative));
+                                                }
+                                                catch { };
+                                                App.ViewModel.User.UserLoading = false;
+                                            });
                                         };
-
-                                        try
-                                        {
-                                            string temp_username = "";
-                                            try
-                                            {
-                                                temp_username = o["createdAt"].ToString();
-                                            }
-                                            catch { };
-                                            if (temp_username != "")
-                                            {
-                                                App.ViewModel.User.UserName = (string)result["email"];
-                                            };
-                                        }
-                                        catch { };
-
-                                        try
-                                        {
-                                            string temp_birthday = "";
-                                            try
-                                            {
-                                                temp_birthday = o["birthday"].ToString();
-                                            }
-                                            catch { };
-                                            if (temp_birthday == "")
-                                            {
-                                                string birthday = (string)result["birthday"];
-                                                CultureInfo provider = CultureInfo.InvariantCulture;
-                                                App.ViewModel.User.DateBirthday = DateTime.ParseExact(birthday, "d", provider);
-                                            };
-                                        }
-                                        catch { };
-
-                                        App.ViewModel.User.IsLoggedIn = true;
-                                        this.IsLoggedIn = true;
-
-                                        App.ViewModel.SaveUserToStorage();
-
-                                        App.ViewModel.Events.WeekItemsUpdated();
-                                        App.ViewModel.Events.LoadEventsParse();
-
-                                        App.ViewModel.User.FacebookId = id;
-                                        App.ViewModel.User.FacebookToken = accessToken;
-
-                                        App.ViewModel.SaveUserToStorage();
-
-                                        App.ViewModel.User.NotifyAll();
-                                        this.NotifyAll();
-
-                                        App.ViewModel.OnUserEnter(EventArgs.Empty);
-
-                                        this.UpdateAction(1);
                                     }
                                     else
                                     {
-
-                                        var clientDelete = new RestClient("https://api.parse.com");
-                                        var requestDelete = new RestRequest("1/users/" + o["objectId"].ToString(), Method.DELETE);
-                                        requestDelete.AddHeader("Accept", "application/json");
-                                        requestDelete.Parameters.Clear();
-
-                                        requestDelete.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
-                                        requestDelete.AddHeader("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
-                                        requestDelete.AddHeader("X-Parse-Session-Token", o["sessionToken"].ToString());
-
-                                        clientDelete.ExecuteAsync(requestDelete, responseDelete =>
+                                        Deployment.Current.Dispatcher.BeginInvoke(() =>
                                         {
-                                            string test = responseDelete.Content.ToString();
+                                            App.ViewModel.User.IsLoggedIn = false;
+                                            MessageBox.Show(Donor.AppResources.UncorrectLoginData);
+                                            App.ViewModel.User.NotifyAll();
+                                            this.NotifyAll();
+                                            App.ViewModel.User.UserLoading = false;
                                         });
-
-                                        App.ViewModel.User.IsLoggedIn = false;
-                                        App.ViewModel.User.UserLoading = false;
-                                        MessageBox.Show("Похоже такой пользователь уже есть. Введите пароль, чтобы привязать профиль.");
-                                        try
-                                        {
-                                            (Application.Current.RootVisual as PhoneApplicationFrame).Navigate(new Uri("/ProfileLogin.xaml?task=login&email=" + result["email"].ToString().ToLower(), UriKind.Relative));
-                                        }
-                                        catch { };
                                     };
-                                }
-                                else
-                                {
-                                    App.ViewModel.User.IsLoggedIn = false;
-                                    MessageBox.Show(Donor.AppResources.UncorrectLoginData);
-                                    App.ViewModel.User.NotifyAll();
-                                    this.NotifyAll();
-                                };
-                                App.ViewModel.User.UserLoading = false;
+                                    
 
-                            });
+                                });
 
-                            //};
+                                //};
+                            }
+                            else
+                            {
+                            };
                         }
-                        else
+                        catch
                         {
+                            Deployment.Current.Dispatcher.BeginInvoke(() =>
+                                    {
+                                        App.ViewModel.User.UserLoading = false;
+                                    });
                         };
-                    }
-                    catch
-                    {
-                        App.ViewModel.User.UserLoading = false;
-                    };
-                });
+                    });
+                };
+                bw.RunWorkerAsync();
             }
             catch { };
             ////////////////////////////////////////
