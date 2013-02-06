@@ -347,7 +347,7 @@ namespace Donor.Controls
                         }
                         else
                         {
-                            if (dayitem.Finished == true)
+                            if ((dayitem.Finished == true) && (dayitem.Type!="0"))
                             {
                                 this.DayImageRB.Source = imgSource;
                             }

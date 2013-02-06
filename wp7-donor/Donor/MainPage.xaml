@@ -160,7 +160,7 @@
                         </StackPanel>
                     </ListBoxItem>
 
-                         <ListBoxItem Name="AchievesMenu">
+                         <ListBoxItem Name="AchievesMenu" Tap="AchievesMenu_Tap">
                                 <StackPanel Orientation="Horizontal">
                                     <Image Height="64" Width="64" 
 						 Source="images/ic_menu_achivement_normal.png"/>
