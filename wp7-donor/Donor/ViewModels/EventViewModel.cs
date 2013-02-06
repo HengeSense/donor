@@ -1851,29 +1851,33 @@ CurrentMonth.Month - 1];
 
         public void RemoveItemFromParse(EventViewModel _currentEvent)
         {
-            var client = new RestClient("https://api.parse.com");
-            var request = new RestRequest("1/classes/Events/" + _currentEvent.Id, Method.DELETE);
-            request.AddHeader("Accept", "application/json");
-            request.Parameters.Clear();
-            string strJSONContent = "";
-            request.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
-            request.AddHeader("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
-            request.AddHeader("Content-Type", "application/json");
-
-            request.AddParameter("application/json", strJSONContent, ParameterType.RequestBody);
-
-            client.ExecuteAsync(request, response =>
+            try
             {
-                JObject o = JObject.Parse(response.Content.ToString());
-                if (o["error"] == null)
-                {
-                    App.ViewModel.SaveToIsolatedStorage();
-                }
-                else
-                {
+                this.Items.Remove(_currentEvent);
+                var client = new RestClient("https://api.parse.com");
+                var request = new RestRequest("1/classes/Events/" + _currentEvent.Id, Method.DELETE);
+                request.AddHeader("Accept", "application/json");
+                request.Parameters.Clear();
+                string strJSONContent = "";
+                request.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
+                request.AddHeader("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
+                request.AddHeader("Content-Type", "application/json");
 
-                };
-            });
+                request.AddParameter("application/json", strJSONContent, ParameterType.RequestBody);
+
+                client.ExecuteAsync(request, response =>
+                {
+                    JObject o = JObject.Parse(response.Content.ToString());
+                    if (o["error"] == null)
+                    {
+                        App.ViewModel.SaveToIsolatedStorage();
+                    }
+                    else
+                    {
+                    };
+                });
+            }
+            catch { };
         }
     }
 }

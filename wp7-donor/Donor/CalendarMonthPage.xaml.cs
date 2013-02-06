@@ -19,14 +19,17 @@ namespace Donor
         public CalendarMonthPage()
         {
             InitializeComponent();
-            DataContext = App.ViewModel;            
+            DataContext = App.ViewModel;
 
-            this.PageTitle.Text = CultureInfo.CurrentCulture.DateTimeFormat.MonthNames[App.ViewModel.Events.CurrentMonth.Month - 1];
-            this.ApplicationTitle.Text = App.ViewModel.Events.CurrentMonth.Year.ToString();
+            try
+            {
+                this.PageTitle.Text = CultureInfo.CurrentCulture.DateTimeFormat.MonthNames[App.ViewModel.Events.CurrentMonth.Month - 1];
+                this.ApplicationTitle.Text = App.ViewModel.Events.CurrentMonth.Year.ToString();
 
-            var gl = GestureService.GetGestureListener(this.Calendar1);
-            gl.Flick += new EventHandler<Microsoft.Phone.Controls.FlickGestureEventArgs>(GestureListener_Flick);
-
+                var gl = GestureService.GetGestureListener(this.Calendar1);
+                gl.Flick += new EventHandler<Microsoft.Phone.Controls.FlickGestureEventArgs>(GestureListener_Flick);
+            }
+            catch { };
             //var glVerticalDrag = GestureService.GetGestureListener(this.Calendar1);            
             //glVerticalDrag.DragCompleted += new EventHandler<Microsoft.Phone.Controls.DragCompletedGestureEventArgs>(DragListener);
         }

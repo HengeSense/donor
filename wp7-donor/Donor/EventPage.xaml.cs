@@ -112,9 +112,14 @@ namespace Donor
                     {
                         try
                         {
+                            this.EditButton.Visibility = Visibility.Collapsed;
                             if (NavigationService.CanGoBack == true)
                             {
                                 NavigationService.GoBack();
+                            }
+                            else
+                            {
+                                NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
                             };
                         }
                         catch { };
@@ -190,7 +195,7 @@ namespace Donor
             }
             catch
             {
-                NavigationService.GoBack();
+                NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
             };
         }
 
