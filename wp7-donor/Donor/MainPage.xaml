@@ -165,7 +165,7 @@
                                     <Image Height="64" Width="64" 
 						 Source="images/ic_menu_achivement_normal.png"/>
                                     <TextBlock Margin="0,15,0,0" 
-						 Text="{Binding MyBadges, Source={StaticResource Loc}}"
+						 Text="{Binding AchievesMenu, Source={StaticResource Loc}}"
 						 TextWrapping="Wrap" 
 						 Style="{StaticResource Text30pxCBB2A3}"/>
                                 </StackPanel>

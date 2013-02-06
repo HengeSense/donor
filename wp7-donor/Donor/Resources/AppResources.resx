@@ -616,4 +616,7 @@
   <data name="MyBadges" xml:space="preserve">
     <value>Мои значки</value>
   </data>
+  <data name="AchievesMenu" xml:space="preserve">
+    <value>Достижения</value>
+  </data>
 </root>

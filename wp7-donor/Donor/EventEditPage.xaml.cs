@@ -511,10 +511,16 @@ namespace Donor
                      {
                          when = itemother.Date.AddDays(days2 + 1);
                      };
-                     MessageBox.Show(Donor.AppResources.NotTooMuchDaysFromLastBloodGive + this.GiveType.SelectedItem.ToString() + Donor.AppResources.PossibleGiveBloodStartingFrom + when.ToShortDateString());
+                     if (save)
+                     {
+                         MessageBox.Show(Donor.AppResources.NotTooMuchDaysFromLastBloodGive + this.GiveType.SelectedItem.ToString() + Donor.AppResources.PossibleGiveBloodStartingFrom + when.ToShortDateString());
+                     };
                  }
                  catch {
-                     MessageBox.Show(Donor.AppResources.NotTooMuchDaysFromLastBloodGive);
+                     if (save)
+                     {
+                         MessageBox.Show(Donor.AppResources.NotTooMuchDaysFromLastBloodGive);
+                     };
                  };
              };
 

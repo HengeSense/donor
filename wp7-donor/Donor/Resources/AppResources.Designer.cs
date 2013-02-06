@@ -89,6 +89,15 @@ namespace Donor {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Достижения.
+        /// </summary>
+        public static string AchievesMenu {
+            get {
+                return ResourceManager.GetString("AchievesMenu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Добавить.
         /// </summary>
         public static string Add {
