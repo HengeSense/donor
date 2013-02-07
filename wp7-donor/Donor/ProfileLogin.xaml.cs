@@ -124,6 +124,15 @@ namespace Donor
                 this.FacebookLinkingButton.Visibility = Visibility.Visible;
                 this.FacebookUnLinkingButton.Visibility = Visibility.Collapsed;
             };
+
+            try
+            {
+                this.Sex = App.ViewModel.User.Sex;
+                this.BloodGroup = App.ViewModel.User.BloodGroup;
+                this.RHEdit = App.ViewModel.User.BloodRh;
+                this.UserDataSet = true;
+            }
+            catch { };
         }
 
         private void RegisterButton_Click(object sender, RoutedEventArgs e)
@@ -240,6 +249,11 @@ namespace Donor
         }
 
         private MessagePrompt messagePrompt;
+        private int Sex = 0;
+        private int BloodGroup = 0;
+        private int RHEdit = 0;
+        private bool UserDataSet = false;
+
         private void RestorePassword_Click(object sender, RoutedEventArgs e)
         {
             StackPanel restore = new StackPanel();
@@ -320,6 +334,15 @@ namespace Donor
                     switch (CurrentTask)
                     {
                         case "show":
+                            try
+                            {
+                                this.Sex = App.ViewModel.User.Sex;
+                                this.BloodGroup = App.ViewModel.User.BloodGroup;
+                                this.RHEdit = App.ViewModel.User.BloodRh;
+                                this.UserDataSet = true;
+                            }
+                            catch { };
+
                             AppBarVisibitilty("show");
                             break;
                         case "register":
@@ -359,6 +382,17 @@ namespace Donor
 
                             break;
                         case "edit":
+                            try
+                            {
+                                if (this.UserDataSet == false)
+                                {
+                                    this.Sex = App.ViewModel.User.Sex;
+                                    this.BloodGroup = App.ViewModel.User.BloodGroup;
+                                    this.RHEdit = App.ViewModel.User.BloodRh;
+                                    this.UserDataSet = true;
+                                };
+                            }
+                            catch { };
 
                             this.EditButton.Visibility = Visibility.Collapsed;
                             this.DeleteUserButton.Visibility = Visibility.Collapsed;
@@ -412,9 +446,13 @@ namespace Donor
         }
 
         private void SetEditFields() {
+            /*
+             *              this.Sex = App.ViewModel.User.Sex;
+                            this.BloodGroup = App.ViewModel.User.BloodGroup;
+                            this.RHEdit = App.ViewModel.User.BloodRh;*/
             try
             {
-                if (App.ViewModel.User.Sex == 1)
+                if (this.Sex == 1)
                 {
                     this.SexEditGroup.SelectedIndex = 1;
                 }
@@ -427,13 +465,13 @@ namespace Donor
 
             try
             {
-                this.BloudTypeGroupEdit.SelectedIndex = App.ViewModel.User.BloodGroup;
+                this.BloudTypeGroupEdit.SelectedIndex = this.BloodGroup;
             }
             catch { };
 
             try
             {
-                this.RHedit.SelectedIndex = App.ViewModel.User.BloodRh;
+                this.RHedit.SelectedIndex = this.RHEdit;
             }
             catch { };
         }
@@ -788,6 +826,65 @@ namespace Donor
         private void RegisterUserButton_Click(object sender, EventArgs e)
         {
             RegisterButton_Click(sender, null);
+        }
+
+        private void SexEditGroup_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+                this.Sex = this.SexEditGroup.SelectedIndex;
+            }
+            catch { };
+        }
+
+        private void BloudTypeGroupEdit_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+                this.BloodGroup = this.BloudTypeGroupEdit.SelectedIndex;
+            }
+            catch { };
+        }
+
+        private void BloudTypeGroupEdit_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            try
+            {
+                this.BloodGroup = this.BloudTypeGroupEdit.SelectedIndex;
+            }
+            catch { };
+        }
+
+        private void RHedit_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            try
+            {
+                this.RHEdit = this.RHedit.SelectedIndex;
+            }
+            catch { };
+        }
+
+        private void SexEditGroup_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            try
+            {
+                this.Sex = this.SexEditGroup.SelectedIndex;
+            }
+            catch { };
+        }
+
+        private void RHedit_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+
+        }
+
+        private void RHedit_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+                this.RHEdit = this.RHedit.SelectedIndex;
+            }
+            catch { };
         }
     }
 }

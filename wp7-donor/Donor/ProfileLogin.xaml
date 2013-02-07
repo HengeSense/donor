@@ -304,7 +304,7 @@ Visibility="Collapsed" Name="SaveEditProfileButton" Click="SaveEditProfileButton
 			FullModeHeader="" FontSize="24" Foreground="#FFDF8D4B" 
                                         Background="#FF4F3B34" 
                                         BorderBrush="#FF4F3B34" 
-                                        Style="{StaticResource ListPickerStyle1}">
+                                        Style="{StaticResource ListPickerStyle1}" SelectionChanged="SexEditGroup_SelectionChanged" Tap="SexEditGroup_Tap">
                                 <toolkit:ListPicker.Header>
                                     <TextBlock Text="{Binding Sex, Source={StaticResource Loc}}" FontSize="24" 
 					Foreground="#FFCBB2A3"/>
@@ -346,7 +346,7 @@ Visibility="Collapsed" Name="SaveEditProfileButton" Click="SaveEditProfileButton
 			FullModeHeader="" FontSize="24" Foreground="#FFDF8D4B" 
                                         Background="#FF4F3B34" 
                                         BorderBrush="#FF4F3B34" 
-                                        Style="{StaticResource ListPickerStyle1}">
+                                        Style="{StaticResource ListPickerStyle1}" SelectionChanged="BloudTypeGroupEdit_SelectionChanged" Tap="BloudTypeGroupEdit_Tap">
                                 <toolkit:ListPicker.ItemTemplate>
                                     <DataTemplate>
                                         <StackPanel Orientation="Horizontal" Background="#FF4F3B34" Margin="0">
@@ -376,7 +376,7 @@ Visibility="Collapsed" Name="SaveEditProfileButton" Click="SaveEditProfileButton
 			FullModeHeader="" FontSize="24" Foreground="#FFDF8D4B" 
                                         Background="#FF4F3B34" 
                                         BorderBrush="#FF4F3B34" 
-                                        Style="{StaticResource ListPickerStyle1}">
+                                        Style="{StaticResource ListPickerStyle1}" Tap="RHedit_Tap" SizeChanged="RHedit_SizeChanged" SelectionChanged="RHedit_SelectionChanged">
 
                                 <toolkit:ListPicker.ItemTemplate>
                                     <DataTemplate>
