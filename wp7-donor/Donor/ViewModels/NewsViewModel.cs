@@ -29,7 +29,7 @@ namespace Donor.ViewModels
 
         public void LoadNews()
         {
-            if ((App.ViewModel.News.Items.Count() == 0) || (App.ViewModel.Settings.NewsUpdated.AddHours(12) < DateTime.Now))
+            if ((App.ViewModel.News.Items.Count() == 0) || (App.ViewModel.Settings.NewsUpdated.AddHours(1) < DateTime.Now))
             {
             var bw = new BackgroundWorker();
             bw.DoWork += delegate

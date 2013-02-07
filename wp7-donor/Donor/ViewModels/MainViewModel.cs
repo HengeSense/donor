@@ -312,6 +312,15 @@ namespace Donor
                 DataFLoaded(this, e);
         }
 
+
+        public delegate void EventsChangedCalendarEventHandler(object sender, EventArgs e);
+        public event EventsChangedCalendarEventHandler EventsChangedCalendar;
+        public virtual void OnEventsChangedCalendar(EventArgs e)
+        {
+            if (EventsChangedCalendar != null)
+                EventsChangedCalendar(this, e);
+        }
+
         /// <summary>
         /// 
         /// </summary>

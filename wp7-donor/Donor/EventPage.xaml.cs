@@ -26,7 +26,8 @@ namespace Donor
 
         private void DataFLoaded(object sender, EventArgs e)
         {
-            if (App.ViewModel.IsDataLoaded == true)            
+            //Uri currentUri = ((App)Application.Current).RootFrame.CurrentSource;
+            if (App.ViewModel.IsDataLoaded == true)
             {
                 if (this.NavigationContext.QueryString.ContainsKey("id"))
                 {
@@ -35,6 +36,24 @@ namespace Donor
                         string _eventid = this.NavigationContext.QueryString["id"];
                         _eventid_current = _eventid;
                         _currentEvent = App.ViewModel.Events.Items.FirstOrDefault(c => c.Id == _eventid.ToString());
+
+                        if (_currentEvent == null)
+                        {
+                            try
+                            {
+                                this.EditButton.Visibility = Visibility.Collapsed;
+                                if (NavigationService.CanGoBack == true)
+                                {
+                                    NavigationService.GoBack();
+                                }
+                                else
+                                {
+                                    NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
+                                };
+                            }
+                            catch { };
+                        };
+
                         DataContext = _currentEvent;
 
                         if ((_currentEvent.Station_nid != null) && (_currentEvent.Station_nid != 0))
@@ -129,13 +148,37 @@ namespace Donor
                 {
                     try
                     {
+                        this.EditButton.Visibility = Visibility.Collapsed;
                         if (NavigationService.CanGoBack == true)
                         {
                             NavigationService.GoBack();
+                        }
+                        else
+                        {
+                            NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
                         };
                     }
-                    catch { };
+                    catch
+                    {
+                        NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
+                    };
                 };
+            }
+            else
+            {
+                try
+                {
+                    this.EditButton.Visibility = Visibility.Collapsed;
+                    if (NavigationService.CanGoBack == true)
+                    {
+                        NavigationService.GoBack();
+                    }
+                    else
+                    {
+                        NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
+                    };
+                }
+                catch { };
             };
         }
 

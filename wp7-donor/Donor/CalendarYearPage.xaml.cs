@@ -37,6 +37,8 @@ namespace Donor
 
             try
             {
+                App.ViewModel.EventsChangedCalendar += new MainViewModel.EventsChangedCalendarEventHandler(this.EventsChangedCalendar);
+
                 this.EventsListPrev.ItemsSource = null;
                 this.EventsList.ItemsSource = App.ViewModel.Events.ThisMonthItems;
                 this.EventsList.DataContext = App.ViewModel.Events;
@@ -51,6 +53,30 @@ namespace Donor
             try
             {
                 this.Monthes.IsLocked = true;
+            }
+            catch { };
+        }
+
+        private void EventsChangedCalendar(object sender, EventArgs e)
+        {
+            try
+            {
+                if (this.Monthes.SelectedIndex != previndex)
+                {
+                    Microsoft.Phone.Controls.PivotItemEventArgs arg = null;
+                    this.Monthes_LoadedPivotItem(this.Monthes, arg);
+                }
+                else
+                {
+                    this.EventsListPrev.ItemsSource = null;
+                    this.EventsList.ItemsSource = App.ViewModel.Events.ThisMonthItems;
+                    this.EventsList.DataContext = App.ViewModel.Events;
+                    this.EventsListNext.ItemsSource = null;
+
+                    this.NextMonth.Header = App.ViewModel.Events.NextMonthString;
+                    this.ThisMonth.Header = App.ViewModel.Events.CurrentMonthString;
+                    this.PrevMonth.Header = App.ViewModel.Events.PrevMonthString;
+                };
             }
             catch { };
         }

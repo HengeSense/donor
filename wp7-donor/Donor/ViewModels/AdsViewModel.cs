@@ -29,7 +29,7 @@ namespace Donor.ViewModels
 
         public void LoadAds()
         {
-            if ((App.ViewModel.Ads.Items.Count() == 0) || (App.ViewModel.Settings.AdsUpdated.AddHours(12) < DateTime.Now))
+            if ((App.ViewModel.Ads.Items.Count() == 0) || (App.ViewModel.Settings.AdsUpdated.AddHours(1) < DateTime.Now))
             {
             var bw = new BackgroundWorker();
             bw.DoWork += delegate

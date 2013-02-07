@@ -403,7 +403,10 @@ namespace Donor
                              {
                              };
 
-                             App.ViewModel.Events.Items.Add(CurrentEvent);
+                             if (CurrentEvent.ParseExists == true)
+                             {
+                                 App.ViewModel.Events.Items.Add(CurrentEvent);
+                             };
 
                              App.ViewModel.Events.UpdateItems(CurrentEvent);
                              App.ViewModel.Events.UpdateItems();
@@ -462,7 +465,10 @@ namespace Donor
                                  {
                                  };
 
-                                 App.ViewModel.Events.Items.Add(CurrentEvent);
+                                 if (CurrentEvent.ParseExists == true)
+                                 {
+                                     App.ViewModel.Events.Items.Add(CurrentEvent);
+                                 };
 
                                  App.ViewModel.Events.UpdateItems(CurrentEvent);
                                  App.ViewModel.Events.UpdateItems();

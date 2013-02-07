@@ -45,16 +45,12 @@ namespace Donor.ViewModels
             
             bw.DoWork += delegate
             {
-            //System.Threading.Thread.Sleep(400);
             var client = new RestClient("https://api.parse.com");
             var request = new RestRequest("1/classes/StationReviews?where={\"station_nid\":" + Uri.EscapeUriString(StationId.ToString().ToLower()) + "}&norder=-createdTimestamp", Method.GET);
             request.Parameters.Clear();
             request.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
             request.AddHeader("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
-
             //request.AddBody("where={\"station_nid\":" + StationId.ToString() + "}\norder=-createdTimestamp");
-
-            //request.AddParameter("application/json", strJSONContent, ParameterType.RequestBody);
 
             client.ExecuteAsync(request, response =>
             {
@@ -86,9 +82,7 @@ namespace Donor.ViewModels
                 this.NotifyPropertyChanged("Items");
             });
             };
-            bw.RunWorkerAsync();  
-            //this.OnReviewsLoaded(EventArgs.Empty);
-            
+            bw.RunWorkerAsync();              
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

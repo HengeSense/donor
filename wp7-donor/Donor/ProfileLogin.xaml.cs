@@ -168,6 +168,8 @@ namespace Donor
                             App.ViewModel.User.Birthday = this.UserBirthdayRegister.Value.Value.ToShortDateString();
                             App.ViewModel.User.UserName = this.email1.Text.ToString();
 
+                            App.ViewModel.User.Sex = reg_sex;
+
                             App.ViewModel.User.Password = this.password1.Password.ToString();
 
                             this.RegisterForm.Visibility = Visibility.Collapsed;

@@ -1319,6 +1319,8 @@ namespace Donor.ViewModels
 
                         this.DeleteUncorrectEvents();
 
+                        App.ViewModel.OnEventsChangedCalendar(EventArgs.Empty);
+
                         // обновляем Tile приложения
                         App.ViewModel.CreateApplicationTile(App.ViewModel.Events.NearestEvents());
 
@@ -1397,6 +1399,8 @@ namespace Donor.ViewModels
                             UpdateNearestEvents();
 
                             this.DeleteUncorrectEvents();
+
+                            App.ViewModel.OnEventsChangedCalendar(EventArgs.Empty);
 
                             // обновляем Tile приложения
                             App.ViewModel.CreateApplicationTile(App.ViewModel.Events.NearestEvents());

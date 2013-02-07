@@ -21,6 +21,8 @@ namespace Donor
             InitializeComponent();
             DataContext = App.ViewModel;
 
+            App.ViewModel.EventsChangedCalendar += new MainViewModel.EventsChangedCalendarEventHandler(this.EventsChangedCalendar);
+
             try
             {
                 this.PageTitle.Text = CultureInfo.CurrentCulture.DateTimeFormat.MonthNames[App.ViewModel.Events.CurrentMonth.Month - 1];
@@ -30,16 +32,21 @@ namespace Donor
                 gl.Flick += new EventHandler<Microsoft.Phone.Controls.FlickGestureEventArgs>(GestureListener_Flick);
             }
             catch { };
-            //var glVerticalDrag = GestureService.GetGestureListener(this.Calendar1);            
-            //glVerticalDrag.DragCompleted += new EventHandler<Microsoft.Phone.Controls.DragCompletedGestureEventArgs>(DragListener);
+        }
+
+        private void EventsChangedCalendar(object sender, EventArgs e)
+        {
+            try
+            {
+                this.Calendar1.UpdateCalendar();
+            }
+            catch { };
         }
 
         private void LayoutRoot_Loaded(object sender, RoutedEventArgs e)
         {
             this.PageTitle.Text = CultureInfo.CurrentCulture.DateTimeFormat.MonthNames[App.ViewModel.Events.CurrentMonth.Month - 1];
             this.ApplicationTitle.Text = App.ViewModel.Events.CurrentMonth.Year.ToString();
-
-            //this.Calendar1.UpdateCalendar();
         }
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
@@ -50,13 +57,11 @@ namespace Donor
 
         protected override void OnNavigatedFrom(System.Windows.Navigation.NavigationEventArgs e)
         {
-            //this.Calendar1.UpdateCalendar();
             base.OnNavigatedTo(e);
         }
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
-            //this.Calendar1.UpdateCalendar();
         }
 
         private void StartAnimationTop()
