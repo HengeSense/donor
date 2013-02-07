@@ -70,6 +70,20 @@ namespace Donor
         //PeriodicTask periodicTask;
         //string periodicTaskName = "PeriodicAgent";
 
+        private bool _eventChanging = false;
+        public bool EventChanging
+        {
+            get
+            {
+                return _eventChanging;
+            }
+            set
+            {
+                _eventChanging = value;
+                NotifyPropertyChanged("EventChanging");
+            }
+        }
+
         public ReviewsListViewModel Reviews { get; set; }
         public NewsListViewModel News { get; set; }
         public AdsListViewModel Ads { get; set; }

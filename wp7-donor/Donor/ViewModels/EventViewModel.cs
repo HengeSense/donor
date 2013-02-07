@@ -1320,6 +1320,7 @@ namespace Donor.ViewModels
                         this.DeleteUncorrectEvents();
 
                         App.ViewModel.OnEventsChangedCalendar(EventArgs.Empty);
+                        App.ViewModel.EventChanging = false;
 
                         // обновляем Tile приложения
                         App.ViewModel.CreateApplicationTile(App.ViewModel.Events.NearestEvents());
@@ -1401,6 +1402,7 @@ namespace Donor.ViewModels
                             this.DeleteUncorrectEvents();
 
                             App.ViewModel.OnEventsChangedCalendar(EventArgs.Empty);
+                            App.ViewModel.EventChanging = false;
 
                             // обновляем Tile приложения
                             App.ViewModel.CreateApplicationTile(App.ViewModel.Events.NearestEvents());
@@ -1443,6 +1445,8 @@ namespace Donor.ViewModels
             }
             else
             {
+                App.ViewModel.EventChanging = true;
+
                 if (addedItems.ParseExists == true)
                 {
                     UpdateEventParse(addedItems);
