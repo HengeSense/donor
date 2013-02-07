@@ -84,16 +84,16 @@
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel x:Name="TitlePanel" 
                     Grid.Row="0" Margin="12,17,0,28">
+            <toolkit:PerformanceProgressBar HorizontalAlignment="Left" 
+				Height="8" Margin="0" VerticalAlignment="Top" Foreground="White"
+				 IsIndeterminate="{Binding Path=EventChanging}" Width="460" Name="LoadingBar" />
             <TextBlock 
                 x:Name="ApplicationTitle" 
                 Text="2012" 
                 Style="{StaticResource Text24pxWhite}"/>
             <TextBlock 
                 x:Name="PageTitle" Text="Июнь" 
-                Margin="10,30,0,0" 
-                
-                
-      Style="{StaticResource Text70pxWhite}"/>
+                Margin="10,25,0,0" Style="{StaticResource Text70pxWhite}"/>
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
