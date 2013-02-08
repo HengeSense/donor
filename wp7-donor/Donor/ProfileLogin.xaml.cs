@@ -185,6 +185,9 @@ namespace Donor
                             this.UserProfile.Visibility = Visibility.Visible;
                             this.LoginForm.Visibility = Visibility.Collapsed;
 
+                            //App.ViewModel.OnDataFLoaded(EventArgs.Empty);
+                            App.ViewModel.IsDataLoaded = true;
+
                             List<FlurryWP7SDK.Models.Parameter> articleParams = new List<FlurryWP7SDK.Models.Parameter> { 
                             new FlurryWP7SDK.Models.Parameter("objectId", App.ViewModel.User.objectId), 
                             new FlurryWP7SDK.Models.Parameter("platform", "wp7") };

@@ -1861,7 +1861,11 @@ CurrentMonth.Month - 1];
         {
             try
             {
+                App.ViewModel.Events.Items.Remove(_currentEvent);
                 this.Items.Remove(_currentEvent);
+                this.NotifyPropertyChanged("Items");
+                App.ViewModel.OnEventsChangedCalendar(EventArgs.Empty);
+
                 var client = new RestClient("https://api.parse.com");
                 var request = new RestRequest("1/classes/Events/" + _currentEvent.Id, Method.DELETE);
                 request.AddHeader("Accept", "application/json");
@@ -1878,6 +1882,7 @@ CurrentMonth.Month - 1];
                     JObject o = JObject.Parse(response.Content.ToString());
                     if (o["error"] == null)
                     {
+                        App.ViewModel.OnEventsChangedCalendar(EventArgs.Empty);
                         App.ViewModel.SaveToIsolatedStorage();
                     }
                     else

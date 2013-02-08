@@ -783,7 +783,7 @@ namespace Donor.ViewModels
                                     JObject o = JObject.Parse(response.Content.ToString());
                                     if (o["error"] == null)
                                     {
-                                        if ((userscount == 0) || (o["username"].ToString().ToLower() == result["email"].ToString().ToLower()))
+                                        if ((userscount == 0)) // || (o["username"].ToString().ToLower() == result["email"].ToString().ToLower())
                                         {
                                             BadgesViewModel.PostAchieve(id, accessToken);
 
@@ -911,7 +911,6 @@ namespace Donor.ViewModels
                                         }
                                         else
                                         {
-
                                             var clientDelete = new RestClient("https://api.parse.com");
                                             var requestDelete = new RestRequest("1/users/" + o["objectId"].ToString(), Method.DELETE);
                                             requestDelete.AddHeader("Accept", "application/json");
