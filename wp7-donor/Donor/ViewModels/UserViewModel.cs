@@ -63,11 +63,15 @@ namespace Donor.ViewModels
         {
             this.IsLoggedIn = false;
             this.UserName = "";
+            this.Name = "";
+            this.SecondName = ""; 
             this.Password = "";
             this.NotifyAll();
 
             App.ViewModel.FbId = "";
             App.ViewModel.FbToken = "";
+            App.ViewModel.User.Name = "";
+            App.ViewModel.User.SecondName = "";
 
             //App.ViewModel.User = new DonorUser();
 
@@ -199,6 +203,7 @@ namespace Donor.ViewModels
                             {
                                 //auto linking
                                 App.ViewModel.User = JsonConvert.DeserializeObject<DonorUser>(response.Content.ToString());
+                                ClassToUser();
 
                                 try
                                 {
@@ -433,7 +438,7 @@ namespace Donor.ViewModels
                 this.GivedBlood = App.ViewModel.User.GivedBlood;
                 this.IsFacebookLoggedIn = App.ViewModel.User.IsFacebookLoggedIn;
                 this.IsLoggedIn = App.ViewModel.User.IsLoggedIn;
-                this.Password = App.ViewModel.User.Password;
+                //this.Password = App.ViewModel.User.Password;
             } catch {};
         }
 
@@ -457,7 +462,7 @@ namespace Donor.ViewModels
                 App.ViewModel.User.GivedBlood = this.GivedBlood;
                 App.ViewModel.User.IsFacebookLoggedIn = this.IsFacebookLoggedIn;
                 App.ViewModel.User.IsLoggedIn = this.IsLoggedIn;
-                App.ViewModel.User.Password = this.Password;
+                //App.ViewModel.User.Password = this.Password;
             }
             catch { };
         }
@@ -880,6 +885,7 @@ namespace Donor.ViewModels
 
                                                 App.ViewModel.User.IsLoggedIn = true;
                                                 this.IsLoggedIn = true;
+                                                ClassToUser();
 
                                                 App.ViewModel.SaveUserToStorage();
 
