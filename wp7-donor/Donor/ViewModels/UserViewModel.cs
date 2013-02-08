@@ -783,7 +783,7 @@ namespace Donor.ViewModels
                                     JObject o = JObject.Parse(response.Content.ToString());
                                     if (o["error"] == null)
                                     {
-                                        if ((userscount == 0)) // || (o["username"].ToString().ToLower() == result["email"].ToString().ToLower())
+                                        if (o["createdAt"] == null) //((userscount == 0)) // || (o["username"].ToString().ToLower() == result["email"].ToString().ToLower())
                                         {
                                             BadgesViewModel.PostAchieve(id, accessToken);
 
@@ -911,32 +911,34 @@ namespace Donor.ViewModels
                                         }
                                         else
                                         {
-                                            var clientDelete = new RestClient("https://api.parse.com");
-                                            var requestDelete = new RestRequest("1/users/" + o["objectId"].ToString(), Method.DELETE);
-                                            requestDelete.AddHeader("Accept", "application/json");
-                                            requestDelete.Parameters.Clear();
+                                            //if (o["createdAt"] != null)
+                                            //{
+                                                var clientDelete = new RestClient("https://api.parse.com");
+                                                var requestDelete = new RestRequest("1/users/" + o["objectId"].ToString(), Method.DELETE);
+                                                requestDelete.AddHeader("Accept", "application/json");
+                                                requestDelete.Parameters.Clear();
 
-                                            requestDelete.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
-                                            requestDelete.AddHeader("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
-                                            requestDelete.AddHeader("X-Parse-Session-Token", o["sessionToken"].ToString());
+                                                requestDelete.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
+                                                requestDelete.AddHeader("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
+                                                requestDelete.AddHeader("X-Parse-Session-Token", o["sessionToken"].ToString());
 
-                                            clientDelete.ExecuteAsync(requestDelete, responseDelete =>
-                                            {
-                                                string test = responseDelete.Content.ToString();
-                                            });
-
-                                            Deployment.Current.Dispatcher.BeginInvoke(() =>
-                                            {
-                                                App.ViewModel.User.IsLoggedIn = false;
-                                                App.ViewModel.User.UserLoading = false;
-                                                MessageBox.Show("Похоже такой пользователь уже есть. Введите пароль, чтобы привязать профиль.");
-                                                try
+                                                clientDelete.ExecuteAsync(requestDelete, responseDelete =>
                                                 {
-                                                    (Application.Current.RootVisual as PhoneApplicationFrame).Navigate(new Uri("/ProfileLogin.xaml?task=login&email=" + result["email"].ToString().ToLower(), UriKind.Relative));
-                                                }
-                                                catch { };
-                                                App.ViewModel.User.UserLoading = false;
-                                            });
+                                                    string test = responseDelete.Content.ToString();
+                                                });
+
+                                                Deployment.Current.Dispatcher.BeginInvoke(() =>
+                                                {
+                                                    App.ViewModel.User.IsLoggedIn = false;
+                                                    App.ViewModel.User.UserLoading = false;
+                                                    MessageBox.Show("Похоже такой пользователь уже есть. Введите пароль, чтобы привязать профиль.");
+                                                    try
+                                                    {
+                                                        (Application.Current.RootVisual as PhoneApplicationFrame).Navigate(new Uri("/ProfileLogin.xaml?task=login&email=" + result["email"].ToString().ToLower(), UriKind.Relative));
+                                                    }
+                                                    catch { };
+                                                    App.ViewModel.User.UserLoading = false;
+                                                });    
                                         };
                                     }
                                     else

@@ -257,6 +257,9 @@ namespace Donor
         private int RHEdit = 0;
         private bool UserDataSet = false;
 
+        private string passwordsaved = "";
+        private string emailsaved = "";
+
         private void RestorePassword_Click(object sender, RoutedEventArgs e)
         {
             StackPanel restore = new StackPanel();
@@ -304,6 +307,18 @@ namespace Donor
             this.FacebookUnLinkingButton.Visibility = Visibility.Collapsed;
         }
 
+        protected override void OnNavigatedFrom(System.Windows.Navigation.NavigationEventArgs e)
+        {
+            try
+            {
+                emailsaved = this.email1.Text;
+                passwordsaved = this.password1.Password;
+            }
+            catch { };
+            base.OnNavigatedFrom(e);
+        }
+
+
         private void Pivot_Loaded(object sender, RoutedEventArgs e)
         {
             App.ViewModel.UserEnter += new MainViewModel.UserEnterEventHandler(this.UserLoaded);
@@ -349,12 +364,14 @@ namespace Donor
                             AppBarVisibitilty("show");
                             break;
                         case "register":
-                            if (this.NavigationContext.QueryString.ContainsKey("email"))
+                            this.email1.Text = emailsaved;
+                            if ((this.NavigationContext.QueryString.ContainsKey("email")) && (this.emailsaved==""))
                             {
                                 string _email = this.NavigationContext.QueryString["email"];
                                 this.email1.Text = _email;
                             };
-                            if (this.NavigationContext.QueryString.ContainsKey("password"))
+                            this.password1.Password = passwordsaved;
+                            if ((this.NavigationContext.QueryString.ContainsKey("password")) && (this.passwordsaved==""))
                             {
                                 string _password = this.NavigationContext.QueryString["password"];
                                 this.password1.Password = _password;
@@ -666,6 +683,8 @@ namespace Donor
 
         private void DeleteUserButton_Click(object sender, EventArgs e)
         {
+            emailsaved = "";
+            passwordsaved = "";
             App.ViewModel.User.LogoutAction(null);
         }
 
