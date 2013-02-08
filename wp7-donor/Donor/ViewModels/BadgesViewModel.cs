@@ -88,7 +88,7 @@ namespace Donor.ViewModels
             }
             get
             {
-                if (Status == true)
+                if ((Status == true) && (App.ViewModel.User.IsLoggedIn))
                 {
                     return this.Image;
                 }
@@ -241,6 +241,14 @@ namespace Donor.ViewModels
                 catch { };
             };
             bw.RunWorkerAsync();
+        }
+
+        static public void ClearStatus()
+        {
+            foreach (var item in BadgesViewModel.AvailableAchieves)
+            {
+                item.Status = false;
+            };
         }
 
         static private ObservableCollection<AchieveItem> _availableAchieves = new ObservableCollection<AchieveItem>();

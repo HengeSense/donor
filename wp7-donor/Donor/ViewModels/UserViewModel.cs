@@ -74,6 +74,7 @@ namespace Donor.ViewModels
             App.ViewModel.User.UserName = "";
             App.ViewModel.User.Password = "";
             this.NotifyAll();
+            BadgesViewModel.ClearStatus();
 
             App.ViewModel.SaveUserToStorage();
 
