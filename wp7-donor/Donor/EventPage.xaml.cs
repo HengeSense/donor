@@ -287,6 +287,7 @@ namespace Donor
 
                         App.ViewModel.Events.UpdateItems(_currentEvent);
 
+                        this.EditButton.Visibility = Visibility.Collapsed;
                         MessageBox.Show("Вы сдали кровь. Спасибо! Рассчитан интервал до следующей возможной кроводачи");
                     }
                     else {

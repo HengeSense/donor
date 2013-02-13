@@ -783,7 +783,7 @@ namespace Donor.ViewModels
                                     JObject o = JObject.Parse(response.Content.ToString());
                                     if (o["error"] == null)
                                     {
-                                        if (o["createdAt"] == null) //((userscount == 0)) // || (o["username"].ToString().ToLower() == result["email"].ToString().ToLower())
+                                        if ((response.StatusCode!=HttpStatusCode.Created) || (userscount==0)) //((userscount == 0)) // || (o["username"].ToString().ToLower() == result["email"].ToString().ToLower())
                                         {
                                             BadgesViewModel.PostAchieve(id, accessToken);
 
@@ -796,7 +796,7 @@ namespace Donor.ViewModels
                                                 {
                                                     try
                                                     {
-                                                        if ((App.ViewModel.User.Name == "") || (App.ViewModel.User.Name == null))
+                                                        if ((App.ViewModel.User.Name == "") || (App.ViewModel.User.Name == null) || (response.StatusCode == HttpStatusCode.Created))
                                                         {
                                                             App.ViewModel.User.Name = (string)result["first_name"];
                                                             changed = true;
@@ -809,7 +809,7 @@ namespace Donor.ViewModels
 
                                                     try
                                                     {
-                                                        if ((App.ViewModel.User.SecondName == "") || (App.ViewModel.User.SecondName == null))
+                                                        if ((App.ViewModel.User.SecondName == "") || (App.ViewModel.User.SecondName == null) || (response.StatusCode == HttpStatusCode.Created))
                                                         {
                                                             App.ViewModel.User.SecondName = (string)result["last_name"];
                                                             changed = true;
@@ -851,13 +851,13 @@ namespace Donor.ViewModels
 
                                                 try
                                                 {
-                                                    string temp_username = "";
+                                                    /*string temp_username = "";
                                                     try
                                                     {
                                                         temp_username = o["createdAt"].ToString();
                                                     }
-                                                    catch { };
-                                                    if (temp_username != "")
+                                                    catch { };*/
+                                                    if ((response.StatusCode == HttpStatusCode.Created))
                                                     {
                                                         App.ViewModel.User.UserName = (string)result["email"];
                                                         changed = true;
@@ -873,7 +873,7 @@ namespace Donor.ViewModels
                                                         temp_birthday = o["birthday"].ToString();
                                                     }
                                                     catch { };
-                                                    if (temp_birthday == "")
+                                                    if ((temp_birthday == "") || (response.StatusCode == HttpStatusCode.Created))
                                                     {
                                                         string birthday = (string)result["birthday"];
                                                         CultureInfo provider = CultureInfo.InvariantCulture;
@@ -911,8 +911,8 @@ namespace Donor.ViewModels
                                         }
                                         else
                                         {
-                                            //if (o["createdAt"] != null)
-                                            //{
+                                            if (userscount > 0)
+                                            {
                                                 var clientDelete = new RestClient("https://api.parse.com");
                                                 var requestDelete = new RestRequest("1/users/" + o["objectId"].ToString(), Method.DELETE);
                                                 requestDelete.AddHeader("Accept", "application/json");
@@ -938,7 +938,8 @@ namespace Donor.ViewModels
                                                     }
                                                     catch { };
                                                     App.ViewModel.User.UserLoading = false;
-                                                });    
+                                                });
+                                            };
                                         };
                                     }
                                     else
