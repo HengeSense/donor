@@ -13,6 +13,8 @@ using Microsoft.Phone.Controls;
 using Microsoft.Phone.Tasks;
 using Donor.ViewModels;
 using System.Collections.ObjectModel;
+using Coding4Fun.Phone.Controls;
+using MSPToolkit.Controls;
 
 namespace Donor
 {
@@ -183,6 +185,18 @@ namespace Donor
                 };
             }
             catch { };
+        }
+
+        private void PrivacyMenu_Click(object sender, System.EventArgs e)
+        {
+            var messagePrompt = new MessagePrompt
+            {
+                Title = "Политика конфиденциальности",
+                Body = new HTMLViewer { Html = AppResources.PrivacyPolicy },
+                IsAppBarVisible = false,
+                IsCancelVisible = false
+            };
+            messagePrompt.Show();
         }
 
     }
