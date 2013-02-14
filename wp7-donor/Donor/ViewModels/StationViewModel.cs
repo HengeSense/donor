@@ -38,13 +38,18 @@ namespace Donor.ViewModels
         private bool _getCoordinates = false;
         void myCoordinateWatcher_PositionChanged(object sender, GeoPositionChangedEventArgs<GeoCoordinate> e)
         {
-            if ((!e.Position.Location.IsUnknown) && (_getCoordinates == false))
-            {                
+            if (((!e.Position.Location.IsUnknown) && (_getCoordinates == false)) && (App.ViewModel.Settings.Location == true))
+            {
                 Latitued = e.Position.Location.Latitude;
                 Longitude = e.Position.Location.Longitude;
 
                 _getCoordinates = true;
             }
+            else
+            {
+                Latitued = 55.45;
+                Longitude = 37.36;
+            };
         }
 
         public double Latitued, Longitude; 

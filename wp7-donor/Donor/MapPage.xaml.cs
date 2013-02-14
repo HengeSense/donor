@@ -32,6 +32,18 @@ namespace Donor
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
+            if (App.ViewModel.Settings.Location == true)
+            {
+                
+                //DisableLocation.IsEnabled = true;
+                //EnableLocation.IsEnabled = false;
+            }
+            else
+            {
+                //DisableLocation.IsEnabled = false;
+                //EnableLocation.IsEnabled = true;
+            };
+
             if (this.NavigationContext.QueryString.ContainsKey("id"))
             {
                 try
@@ -192,6 +204,16 @@ namespace Donor
         {
             //this.ARDisplay.Visibility = Visibility.Collapsed;
             //ARDisplay.StopServices();
+        }
+
+        private void DisableLocation_Click(object sender, EventArgs e)
+        {
+            App.ViewModel.Settings.Location = false;
+        }
+
+        private void EnableLocation_Click(object sender, EventArgs e)
+        {
+            App.ViewModel.Settings.Location = true;
         }
     }
 }

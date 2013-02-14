@@ -89,13 +89,15 @@
         </Grid>
     </Grid>
 
-    <!--<phone:PhoneApplicationPage.ApplicationBar>
-        <shell:ApplicationBar Mode="Minimized">            
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar Mode="Minimized" x:Name="AppBar">            
             <shell:ApplicationBar.MenuItems>
-                <shell:ApplicationBarMenuItem x:Name="AddLocationsMenu" Text="Включить AR просмотр" Click="ThreeDButton_Click"/>
-                <shell:ApplicationBarMenuItem x:Name="RemoveAR" Text="Выключить AR просмотр" Click="RemoveAR_Click" />
+                <!--<shell:ApplicationBarMenuItem x:Name="AddLocationsMenu" Text="Включить AR просмотр" Click="ThreeDButton_Click"/>
+                <shell:ApplicationBarMenuItem x:Name="RemoveAR" Text="Выключить AR просмотр" Click="RemoveAR_Click" />-->
+                <shell:ApplicationBarMenuItem x:Name="DisableLocation" Text="Отключить геолокацию" IsEnabled="True" Click="DisableLocation_Click" />
+                <shell:ApplicationBarMenuItem x:Name="EnableLocation" Text="Включить геолокацию" IsEnabled="False" Click="EnableLocation_Click" />
             </shell:ApplicationBar.MenuItems>
         </shell:ApplicationBar>
-    </phone:PhoneApplicationPage.ApplicationBar>-->
+    </phone:PhoneApplicationPage.ApplicationBar>
 
 </phone:PhoneApplicationPage>

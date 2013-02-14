@@ -19,6 +19,19 @@ namespace Donor.ViewModels
             PossibleTypes = new List<string>();
         }
 
+        private bool _location = true;
+        public bool Location
+        {
+            get
+            {
+                return _location;
+            }
+            set
+            {
+                _location = value;
+            }
+        }
+
         public bool Password = false;
         public bool Push = false;
 

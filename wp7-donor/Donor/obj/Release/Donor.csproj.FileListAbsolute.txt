@@ -23,7 +23,6 @@ C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\Bin\Release\Microsoft.
 C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\Bin\Release\Microsoft.Phone.Controls.Toolkit.dll
 C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\Bin\Release\MSPToolkit.dll
 C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\Bin\Release\Newtonsoft.Json.dll
-C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\Bin\Release\Parse.dll
 C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\Bin\Release\RestSharp.WindowsPhone.dll
 C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\Bin\Release\Silverlight_ZXing_Core.dll
 C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\Bin\Release\System.Windows.Interactivity.dll
