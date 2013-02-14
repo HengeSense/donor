@@ -17,7 +17,7 @@
     SupportedOrientations="Portrait"  Orientation="Portrait"
     shell:SystemTray.IsVisible="False">
 	<phone:PhoneApplicationPage.ApplicationBar>
-		<shell:ApplicationBar Mode="Minimized">
+		<shell:ApplicationBar Mode="Minimized" BackgroundColor="#FF211E1D" ForegroundColor="White">
 			<shell:ApplicationBar.MenuItems>
 				<shell:ApplicationBarMenuItem x:Name="PrivacyMenu" Text="Политика конфиденциальности" Click="PrivacyMenu_Click"/>
 			</shell:ApplicationBar.MenuItems>
