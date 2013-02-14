@@ -9,8 +9,9 @@
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
+    xmlns:WPExtensions="clr-namespace:WPExtensions;assembly=WPExtensions"
     SupportedOrientations="Portrait" Orientation="Portrait"
-    mc:Ignorable="d" d:DesignHeight="728" d:DesignWidth="480"
+    mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit" 
     
     xmlns:maps="clr-namespace:Microsoft.Phone.Controls.Maps;assembly=Microsoft.Phone.Controls.Maps"
@@ -86,18 +87,22 @@
                 <ARControls:VideoPreview x:Name="VideoPreview" />
                 <ARControls:WorldView x:Name="WorldView" ItemTemplate="{StaticResource RestaurantItem}"/>                
             </ARControls:ARDisplay>-->
+            <WPExtensions:AdvancedApplicationBar x:Name="AppBar" IsVisible="True" IsMenuEnabled="False" Background="#FF211E1D" BackgroundColor="#FF211E1D" Foreground="White" BorderBrush="#FF211E1D" ForegroundColor="White" OpacityMask="White">
+                <WPExtensions:AdvancedApplicationBarMenuItem Text="Отключить геолокацию" Visibility="Visible" Name="DisableLocation" Click="DisableLocation_Click_1" />
+                <WPExtensions:AdvancedApplicationBarMenuItem Text="Включить геолокацию" Visibility="Collapsed" Name="EnableLocation" Click="EnableLocation_Click_1" />
+            </WPExtensions:AdvancedApplicationBar>
         </Grid>
     </Grid>
 
-    <phone:PhoneApplicationPage.ApplicationBar>
+    <!--<phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar Mode="Minimized" x:Name="AppBar">            
             <shell:ApplicationBar.MenuItems>
-                <!--<shell:ApplicationBarMenuItem x:Name="AddLocationsMenu" Text="Включить AR просмотр" Click="ThreeDButton_Click"/>
-                <shell:ApplicationBarMenuItem x:Name="RemoveAR" Text="Выключить AR просмотр" Click="RemoveAR_Click" />-->
+                <shell:ApplicationBarMenuItem x:Name="AddLocationsMenu" Text="Включить AR просмотр" Click="ThreeDButton_Click"/>
+                <shell:ApplicationBarMenuItem x:Name="RemoveAR" Text="Выключить AR просмотр" Click="RemoveAR_Click" />
                 <shell:ApplicationBarMenuItem x:Name="DisableLocation" Text="Отключить геолокацию" IsEnabled="True" Click="DisableLocation_Click" />
                 <shell:ApplicationBarMenuItem x:Name="EnableLocation" Text="Включить геолокацию" IsEnabled="False" Click="EnableLocation_Click" />
             </shell:ApplicationBar.MenuItems>
         </shell:ApplicationBar>
-    </phone:PhoneApplicationPage.ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>-->
 
 </phone:PhoneApplicationPage>

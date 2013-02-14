@@ -192,7 +192,7 @@ namespace Donor
             var messagePrompt = new MessagePrompt
             {
                 Title = "Политика конфиденциальности",
-                Body = new HTMLViewer { Html = AppResources.PrivacyPolicy },
+                Body = new HTMLViewer { Html = AppResources.PrivacyPolicy, MaxHeight=500 },
                 IsAppBarVisible = false,
                 IsCancelVisible = false
             };

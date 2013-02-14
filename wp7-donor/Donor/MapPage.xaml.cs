@@ -30,19 +30,22 @@ namespace Donor
         private string _stationid_current;
         private StationViewModel _currentStation = null;
 
-        private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
-        {
+        private void ChangeGeolocation() {
             if (App.ViewModel.Settings.Location == true)
-            {
-                
-                //DisableLocation.IsEnabled = true;
-                //EnableLocation.IsEnabled = false;
+            {                
+                DisableLocation.Visibility = Visibility.Visible;
+                EnableLocation.Visibility = Visibility.Collapsed;
             }
             else
             {
-                //DisableLocation.IsEnabled = false;
-                //EnableLocation.IsEnabled = true;
+                DisableLocation.Visibility = Visibility.Collapsed;
+                EnableLocation.Visibility = Visibility.Visible;
             };
+        }
+
+        private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
+        {
+            ChangeGeolocation();
 
             if (this.NavigationContext.QueryString.ContainsKey("id"))
             {
@@ -214,6 +217,20 @@ namespace Donor
         private void EnableLocation_Click(object sender, EventArgs e)
         {
             App.ViewModel.Settings.Location = true;
+        }
+
+        private void DisableLocation_Click_1(object sender, EventArgs e)
+        {
+            App.ViewModel.Settings.Location = false;
+            App.ViewModel.SaveSettingsToStorage();
+            ChangeGeolocation();
+        }
+
+        private void EnableLocation_Click_1(object sender, EventArgs e)
+        {
+            App.ViewModel.Settings.Location = true;
+            App.ViewModel.SaveSettingsToStorage();
+            ChangeGeolocation();
         }
     }
 }

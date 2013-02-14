@@ -34,16 +34,31 @@ namespace Donor.ViewModels
             this.Items = new ObservableCollection<StationViewModel>();
         }
 
+        public void UpdateCoordinatesWatcher()
+        {
+            try
+            {
+                myCoordinateWatcher.Stop();
+                myCoordinateWatcher = new GeoCoordinateWatcher(GeoPositionAccuracy.Default);
+                myCoordinateWatcher.PositionChanged += new EventHandler<GeoPositionChangedEventArgs<GeoCoordinate>>(myCoordinateWatcher_PositionChanged);
+                myCoordinateWatcher.Start();
+            }
+            catch { };
+        }
+
         public GeoCoordinateWatcher myCoordinateWatcher;
         private bool _getCoordinates = false;
         void myCoordinateWatcher_PositionChanged(object sender, GeoPositionChangedEventArgs<GeoCoordinate> e)
         {
-            if (((!e.Position.Location.IsUnknown) && (_getCoordinates == false)) && (App.ViewModel.Settings.Location == true))
+            if (App.ViewModel.Settings.Location == true)
             {
-                Latitued = e.Position.Location.Latitude;
-                Longitude = e.Position.Location.Longitude;
+                if (((!e.Position.Location.IsUnknown) && (_getCoordinates == false)))
+                {
+                    Latitued = e.Position.Location.Latitude;
+                    Longitude = e.Position.Location.Longitude;
 
-                _getCoordinates = true;
+                    _getCoordinates = true;
+                };
             }
             else
             {

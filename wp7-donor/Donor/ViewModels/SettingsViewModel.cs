@@ -28,6 +28,7 @@ namespace Donor.ViewModels
             }
             set
             {
+                App.ViewModel.Stations.UpdateCoordinatesWatcher();
                 _location = value;
             }
         }

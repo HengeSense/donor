@@ -953,16 +953,9 @@ namespace Donor {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;p&gt;Данный текст описывает, как используется информация, предоставляемая приложению.&lt;/p&gt;
-        ///&lt;ul&gt;
-        ///&lt;li&gt;Приложение не собирает никаких данных без вашего ведома.
-        ///&lt;/li&gt;
-        ///&lt;li&gt;2. Приложение не собирает и не хранит информацию, которая связана с определенным именем. Мы также делаем все возможное, чтобы обезопасить хранимые данные.
-        ///&lt;/li&gt;
-        ///&lt;li&gt;
-        ///3. Принимая условия, которые включают эту политику вы соглашаетесь с данной политикой конфиденциальности.
-        ///&lt;/li&gt;
-        ///&lt;/ul&gt;.
+        ///   Looks up a localized string similar to &lt;p&gt;Hint Solutions PRIVACY POLICY&lt;/p&gt;
+        ///&lt;p&gt;This site is owned and operated by Hint Solutions Your privacy on the Internet is of the utmost importance to us. At Hint Solutions, we want to make your experience online satisfying and safe.&lt;br&gt;
+        ///Because we gather certain types of information about our users, we feel you should fully understand our policy and the terms and conditions surrounding the capture and use of that information. This privacy statement discloses what information we gather and how we use it.&lt;b [rest of string was truncated]&quot;;.
         /// </summary>
         public static string PrivacyPolicy {
             get {
