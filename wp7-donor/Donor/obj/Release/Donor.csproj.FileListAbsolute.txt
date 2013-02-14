@@ -98,3 +98,5 @@ C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\Bin\Release\Phone.Cont
 C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\obj\Release\Controls\BadgeControl.g.i.cs
 C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\obj\Release\AchievesPage.g.i.cs
 C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\Bin\Release\BugSense.dll
+C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\Bin\Release\GalaSoft.MvvmLight.WP71.dll
+C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\Bin\Release\GalaSoft.MvvmLight.WP71.xml

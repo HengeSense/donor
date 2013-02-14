@@ -12,6 +12,7 @@
 
         <!--Application Resources-->
     <Application.Resources>
+        <vm:ViewModelLocator xmlns:vm="clr-namespace:Donor.ViewModels" x:Key="Locator" />
 
         <Style x:Key="ListPickerStyle1" TargetType="toolkit:ListPicker">
             <Setter Property="Background" Value="{StaticResource PhoneTextBoxBrush}"/>
