@@ -29,8 +29,7 @@ namespace Donor {
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        public AppResources()
-        {
+        public AppResources() {
         }
         
         /// <summary>
@@ -161,7 +160,7 @@ namespace Donor {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to задать вопрос.
+        ///   Looks up a localized string similar to О нас.
         /// </summary>
         public static string AskQuestion {
             get {
@@ -953,9 +952,10 @@ namespace Donor {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;p&gt;Hint Solutions PRIVACY POLICY&lt;/p&gt;
-        ///&lt;p&gt;This site is owned and operated by Hint Solutions Your privacy on the Internet is of the utmost importance to us. At Hint Solutions, we want to make your experience online satisfying and safe.&lt;br&gt;
-        ///Because we gather certain types of information about our users, we feel you should fully understand our policy and the terms and conditions surrounding the capture and use of that information. This privacy statement discloses what information we gather and how we use it.&lt;b [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to &lt;p&gt;Donor PRIVACY POLICY&lt;/p&gt;
+        ///&lt;p&gt;This application is owned and operated by Donor Your privacy on the Internet is of the utmost importance to us. At Donor, we want to make your experience online satisfying and safe.&lt;br&gt;
+        ///Because we gather certain types of information about our users, we feel you should fully understand our policy and the terms and conditions surrounding the capture and use of that information. This privacy statement discloses what information we gather and how we use it.&lt;br&gt;
+        ///INFORMATION Dono [rest of string was truncated]&quot;;.
         /// </summary>
         public static string PrivacyPolicy {
             get {

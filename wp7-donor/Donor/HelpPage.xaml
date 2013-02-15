@@ -10,7 +10,7 @@
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit" 
     DataContext="{Binding Path=App.ViewModel,Source=App.ViewModel}"
     xmlns:msp="clr-namespace:MSPToolkit.Controls;assembly=MSPToolkit" 
-    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="800"
+    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="728"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
@@ -74,12 +74,25 @@ FontSize="24" FontFamily="Segoe WP Semibold" />
 						Text="{Binding Phone, Source={StaticResource Loc}}"/>
                             <TextBlock Name="PhoneNumber" 
 							Style="{StaticResource Text24pxDF8D4B}" 							
-							Text="+7 (495) 471-71-36" Tap="PhoneNumber_Tap"/>
+							Text="88002505222" Tap="PhoneNumber_Tap"/>
+                            <TextBlock Name="PhoneNumber2" 
+							Style="{StaticResource Text24pxDF8D4B}" 							
+							Text="+74992455826" Tap="PhoneNumber_Tap"/>
+                            <TextBlock Name="PhoneNumber3" 
+							Style="{StaticResource Text24pxDF8D4B}" 							
+							Text="+74992462239" Tap="PhoneNumber_Tap"/>
+                            <TextBlock Name="PhoneNumber4" 
+							Style="{StaticResource Text24pxDF8D4B}" 							
+							Text="+74954100112" Tap="PhoneNumber_Tap"/>
                         </StackPanel>
 
                     <StackPanel>
                             <TextBlock Style="{StaticResource Text36pxC0A89A}" 
 							Text="{Binding EmailHelp, Source={StaticResource Loc}}"  />
+                            <TextBlock Name="Email2" 
+							Text="info@podari-zhizn.ru" 
+							Style="{StaticResource Text24pxDF8D4B}" 
+							Tap="TextBlock_Tap"/>
                             <TextBlock Name="Email" 
 							Text="{Binding InfoDonorsEmail, Source={StaticResource Loc}}" 
 							Style="{StaticResource Text24pxDF8D4B}" 

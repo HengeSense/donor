@@ -55,7 +55,7 @@ namespace Donor
             try
             {
                 PhoneCallTask callTask = new PhoneCallTask();
-                callTask.PhoneNumber = "+74954717136";
+                callTask.PhoneNumber = (sender as TextBlock).Text; //"88002505222";
                 callTask.DisplayName = (sender as TextBlock).Text;
                 callTask.Show();
             }
@@ -69,7 +69,7 @@ namespace Donor
             {
                 EmailComposeTask emilTask = new EmailComposeTask();
                 emilTask.To = (sender as TextBlock).Text;
-                emilTask.Subject = "WP7 Donors";
+                emilTask.Subject = "WP7 Донор";
                 emilTask.Body = "";
                 emilTask.Show();
             }
