@@ -9,7 +9,6 @@
 #import "HSBloodDonationTypePicker.h"
 
 #pragma mark - Private constants
-static const CGFloat kShowHideAnimationDuration = 0.3f;
 static const NSUInteger kNumberOfSupportedBloodDonationTypes = 4;
 
 
@@ -17,7 +16,6 @@ static const NSUInteger kNumberOfSupportedBloodDonationTypes = 4;
 
 @property (weak, nonatomic) IBOutlet UIPickerView *bloodDonatioTypePickerView;
 
-@property (nonatomic, assign) HSBloodDonationType bloodDonationType;
 @property (nonatomic, copy) void(^completion)(BOOL isDone);
 
 /**
@@ -25,21 +23,13 @@ static const NSUInteger kNumberOfSupportedBloodDonationTypes = 4;
  */
 - (void)hideViewWithResult: (BOOL)isDone;
 
-/**
- * Shows view in the specified container view.
- */
-- (void)showViewInView: (UIView *)containerView;
-
 @end
 
 @implementation HSBloodDonationTypePicker
 
-- (void)showInView: (UIView *)containerView bloodDonationType: (HSBloodDonationType)bloodDonationType
-        completion: (void (^)(BOOL))completion {
-    THROW_IF_ARGUMENT_NIL(containerView ,@"containerView is not specifed");
-    self.bloodDonationType = bloodDonationType;
+- (void)showWithCompletion: (void (^)(BOOL))completion {
     self.completion = completion;
-    [self showViewInView: containerView];
+    [self showModal];
 }
 
 - (IBAction)doneButtonClicked:(id)sender {
@@ -77,30 +67,11 @@ static const NSUInteger kNumberOfSupportedBloodDonationTypes = 4;
 }
 
 #pragma mark - Private interface implementation
-
-- (void)showViewInView: (UIView *)containerView {
-    [UIView animateWithDuration: kShowHideAnimationDuration animations: ^{
-        [containerView addSubview: self.view];
-        self.view.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
-    } completion: ^(BOOL finished) {
-        [self.bloodDonatioTypePickerView selectRow: [self pickerRowForBloodDonationType: self.bloodDonationType]
-                                       inComponent: 0 animated:YES];
-    }];
-}
-
 - (void)hideViewWithResult: (BOOL)isDone {
-    CGRect screenBounds = [[UIScreen mainScreen] bounds];
-    CGRect outOfBoundsFrame =
-            CGRectMake(0, screenBounds.size.height, self.view.bounds.size.width, self.view.bounds.size.height);
-    
-    [UIView animateWithDuration: kShowHideAnimationDuration animations:^{
-        self.view.frame = outOfBoundsFrame;
-    } completion: ^(BOOL finished) {
-        [self.view removeFromSuperview];
-        if (self.completion != nil) {
-            self.completion(isDone);
-        }
-    }];
+    [self hideModal];
+    if (self.completion != nil) {
+        self.completion(isDone);
+    }
 }
 
 #pragma mark - Private utility metods

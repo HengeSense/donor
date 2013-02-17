@@ -57,11 +57,6 @@ static const NSUInteger kDateTimePickerComponentsNumber = 3;
 - (void)hideViewWithResult: (BOOL)isDone;
 
 /**
- * Shows view in the specified container view.
- */
-- (void)showViewInView: (UIView *)containerView;
-
-/**
  * Configures date and time picker view with specified restrictions.
  */
 - (void)configureDateTimePickerView;
@@ -71,9 +66,8 @@ static const NSUInteger kDateTimePickerComponentsNumber = 3;
 @implementation HSDateTimePicker
 
 #pragma mark - Public interface implementation
-- (void)showInView: (UIView *)containerView startDate: (NSDate *)startDate endDate: (NSDate *)endDate
-        currentDate:(NSDate *)currentDate completion: (void (^)(BOOL))completion {
-    THROW_IF_ARGUMENT_NIL(containerView, @"containerView is not specified");
+- (void)showWithStartDate: (NSDate *)startDate endDate: (NSDate *)endDate currentDate:(NSDate *)currentDate
+               completion: (void (^)(BOOL))completion {
     THROW_IF_ARGUMENT_NIL(startDate, @"startDate is not specified");
     THROW_IF_ARGUMENT_NIL(currentDate, @"currentDate is not specified");
     THROW_IF_ARGUMENT_NIL(endDate, @"endDate is not specified");
@@ -83,7 +77,7 @@ static const NSUInteger kDateTimePickerComponentsNumber = 3;
     self.completion = completion;
     self.selectedDate = currentDate;
 
-    [self showViewInView: containerView];
+    [self showModal];
 }
 
 
@@ -98,6 +92,11 @@ static const NSUInteger kDateTimePickerComponentsNumber = 3;
 }
 
 #pragma mark - UI life cycle
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self configureDateTimePickerView];
+}
+
 - (void)viewDidUnload {
     [self setDateTimePicker:nil];
     [self setDateTimePicker:nil];
@@ -105,29 +104,11 @@ static const NSUInteger kDateTimePickerComponentsNumber = 3;
 }
 
 #pragma mark - Private interface implementation
-
-- (void)showViewInView: (UIView *)containerView {
-    [UIView animateWithDuration: kShowHideAnimationDuration animations: ^{
-        [containerView addSubview: self.view];
-        self.view.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
-    } completion: ^(BOOL finished) {
-        [self configureDateTimePickerView];
-    }];
-}
-
 - (void)hideViewWithResult: (BOOL)isDone {
-    CGRect screenBounds = [[UIScreen mainScreen] bounds];
-    CGRect outOfBoundsFrame =
-    CGRectMake(0, screenBounds.size.height, self.view.bounds.size.width, self.view.bounds.size.height);
-    
-    [UIView animateWithDuration: kShowHideAnimationDuration animations:^{
-        self.view.frame = outOfBoundsFrame;
-    } completion: ^(BOOL finished) {
-        [self.view removeFromSuperview];
-        if (self.completion != nil) {
-            self.completion(isDone);
-        }
-    }];
+    [self hideModal];
+    if (self.completion != nil) {
+        self.completion(isDone);
+    }
 }
 
 - (void)configureDateTimePickerView {

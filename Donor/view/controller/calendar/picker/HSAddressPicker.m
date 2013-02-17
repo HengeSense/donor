@@ -8,9 +8,6 @@
 
 #import "HSAddressPicker.h"
 
-#pragma mark - Private constants
-static const CGFloat kShowHideAnimationDuration = 0.3f;
-
 #pragma mark - Private interface declaration
 @interface HSAddressPicker () <UITextFieldDelegate>
 
@@ -18,11 +15,6 @@ static const CGFloat kShowHideAnimationDuration = 0.3f;
  * Text filed for specifieng address.
  */
 @property (weak, nonatomic) IBOutlet UITextField *addressTextField;
-
-/**
- * Current selected address, removed readonly restriction.
- */
-@property (nonatomic, strong) NSString *selectedAddress;
 
 /**
  * Copy of user defined completion block.
@@ -35,11 +27,6 @@ static const CGFloat kShowHideAnimationDuration = 0.3f;
 - (void)hideViewWithResult: (BOOL)isDone;
 
 /**
- * Shows view in the specified container view.
- */
-- (void)showViewInView: (UIView *)containerView;
-
-/**
  * Specifies default value and restrictions for addressTextField property.
  */
 - (void)configureAddressTextField;
@@ -47,13 +34,11 @@ static const CGFloat kShowHideAnimationDuration = 0.3f;
 
 @implementation HSAddressPicker
 
-- (void)showInView: (UIView *)containerView defaultAddress: (NSString *)defaultAdress
-        completion: (void (^)(BOOL))completion {
+- (void)showWithCompletion: (void (^)(BOOL))completion {
 
     THROW_IF_ARGUMENT_NIL(completion, @"completion is not specified");
     self.completion = completion;
-    self.selectedAddress = defaultAdress;
-    [self showViewInView: containerView];
+    [self showModal];
 }
 
 #pragma mark - UI lifecycle
@@ -66,6 +51,12 @@ static const CGFloat kShowHideAnimationDuration = 0.3f;
 - (void)viewDidUnload {
     [self setAddressTextField:nil];
     [super viewDidUnload];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.addressTextField becomeFirstResponder];
+    [self configureAddressTextField];
 }
 
 #pragma mark - Public actions implemntations
@@ -86,32 +77,12 @@ static const CGFloat kShowHideAnimationDuration = 0.3f;
 }
 
 #pragma mark - Private interface implementation
-
-- (void)showViewInView: (UIView *)containerView {
-    [UIView animateWithDuration: kShowHideAnimationDuration animations: ^{
-        [containerView addSubview: self.view];
-        self.view.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
-        [self.addressTextField becomeFirstResponder];
-    } completion: ^(BOOL finished) {
-        [self configureAddressTextField];
-    }];
-}
-
 - (void)hideViewWithResult: (BOOL)isDone {
-    CGRect screenBounds = [[UIScreen mainScreen] bounds];
-    CGRect outOfBoundsFrame =
-            CGRectMake(0, screenBounds.size.height, self.view.bounds.size.width, self.view.bounds.size.height);
-    self.selectedAddress = self.addressTextField.text;
-    
-    [UIView animateWithDuration: kShowHideAnimationDuration animations:^{
-        self.view.frame = outOfBoundsFrame;
-        [self.addressTextField resignFirstResponder];
-    } completion: ^(BOOL finished) {
-        [self.view removeFromSuperview];
-        if (self.completion != nil) {
-            self.completion(isDone);
-        }
-    }];
+    [self hideModal];
+    [self.addressTextField resignFirstResponder];
+    if (self.completion != nil) {
+        self.completion(isDone);
+    }
 }
 
 - (void)configureAddressTextField {

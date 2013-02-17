@@ -13,6 +13,7 @@
 #import "HSAlertViewController.h"
 
 #import "NSDate+HSCalendar.h"
+#import "UIView+HSLayoutManager.h"
 
 #import "MBProgressHUD.h"
 #import "HSFlurryAnalytics.h"
@@ -343,6 +344,11 @@ static const NSUInteger kCommentsTextViewSymbolsMax = 260;
     [super viewDidUnload];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.rootScrollView adjustAsContentView];
+}
+
 - (void)dealloc {
     [self unregisterKeyboardEventListener];
 }
@@ -378,9 +384,8 @@ static const NSUInteger kCommentsTextViewSymbolsMax = 260;
 }
 
 - (IBAction)selectBloodDonationType: (id)sender {
-    [self.bloodDonationTypePicker showInView: self.tabBarController.view
-                           bloodDonationType: self.bloodDonationEvent.bloodDonationType
-    completion:^(BOOL isDone) {
+    self.bloodDonationTypePicker.bloodDonationType = self.bloodDonationEvent.bloodDonationType;
+    [self.bloodDonationTypePicker showWithCompletion:^(BOOL isDone) {
         if (isDone) {
             self.bloodDonationTypeLabel.text =
                     bloodDonationTypeToString(self.bloodDonationTypePicker.bloodDonationType);
@@ -390,8 +395,8 @@ static const NSUInteger kCommentsTextViewSymbolsMax = 260;
 }
 
 - (IBAction)selectBloodDonationCenterAddress: (id)sender {
-    [self.addressPicker showInView: self.tabBarController.view defaultAddress: self.currentEditedEvent.labAddress
-            completion: ^(BOOL isDone) {
+    self.addressPicker.selectedAddress = self.currentEditedEvent.labAddress;
+    [self.addressPicker showWithCompletion: ^(BOOL isDone) {
         if (isDone) {
             self.bloodDonationCenterAddressLabel.text = self.addressPicker.selectedAddress;
             self.currentEditedEvent.labAddress = self.addressPicker.selectedAddress;
@@ -402,8 +407,8 @@ static const NSUInteger kCommentsTextViewSymbolsMax = 260;
 - (IBAction)selectBloodDonationEventDate: (id)sender {
     NSDate *startDate = [self calculateFirstAvailableDateForPlanning];
     NSDate *endDate = [self calculateLastAvailableDateForPlanning];
-            [self.dateTimePicker showInView: self.tabBarController.view startDate: startDate endDate: endDate
-            currentDate: self.currentEditedEvent.scheduledDate completion: ^(BOOL isDone)
+            [self.dateTimePicker showWithStartDate: startDate endDate: endDate
+                                       currentDate: self.currentEditedEvent.scheduledDate completion: ^(BOOL isDone)
     {
         if (isDone) {
             self.currentEditedEvent.scheduledDate = self.dateTimePicker.selectedDate;

@@ -12,6 +12,7 @@
 #import "HSAlertViewController.h"
 
 #import "NSDate+HSCalendar.h"
+#import "UIView+HSLayoutManager.h"
 
 @interface HSEventViewController ()
 
@@ -97,6 +98,11 @@
     [self setBloodTestsView:nil];
     [self setDoneButton:nil];
     [super viewDidUnload];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.rootScrollView adjustAsContentView];
 }
 
 #pragma mark - UI action handlers

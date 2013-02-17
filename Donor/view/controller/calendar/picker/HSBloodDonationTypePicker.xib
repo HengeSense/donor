@@ -3,12 +3,12 @@
 	<data>
 		<int key="IBDocument.SystemTarget">1280</int>
 		<string key="IBDocument.SystemVersion">11G63</string>
-		<string key="IBDocument.InterfaceBuilderVersion">2840</string>
+		<string key="IBDocument.InterfaceBuilderVersion">3084</string>
 		<string key="IBDocument.AppKitVersion">1138.51</string>
 		<string key="IBDocument.HIToolboxVersion">569.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-			<string key="NS.object.0">1926</string>
+			<string key="NS.object.0">2083</string>
 		</object>
 		<array key="IBDocument.IntegratedClassDependencies">
 			<string>IBProxyObject</string>
@@ -40,7 +40,7 @@
 				<array class="NSMutableArray" key="NSSubviews">
 					<object class="IBUIImageView" id="445943484">
 						<reference key="NSNextResponder" ref="423307031"/>
-						<int key="NSvFlags">292</int>
+						<int key="NSvFlags">266</int>
 						<string key="NSFrame">{{0, 78}, {320, 135}}</string>
 						<reference key="NSSuperview" ref="423307031"/>
 						<reference key="NSWindow"/>
@@ -55,7 +55,7 @@
 					</object>
 					<object class="IBUIImageView" id="705407801">
 						<reference key="NSNextResponder" ref="423307031"/>
-						<int key="NSvFlags">292</int>
+						<int key="NSvFlags">266</int>
 						<string key="NSFrame">{{0, 213}, {320, 51}}</string>
 						<reference key="NSSuperview" ref="423307031"/>
 						<reference key="NSWindow"/>
@@ -70,7 +70,7 @@
 					</object>
 					<object class="IBUILabel" id="263961823">
 						<reference key="NSNextResponder" ref="423307031"/>
-						<int key="NSvFlags">292</int>
+						<int key="NSvFlags">269</int>
 						<string key="NSFrame">{{97, 225}, {126, 23}}</string>
 						<reference key="NSSuperview" ref="423307031"/>
 						<reference key="NSWindow"/>
@@ -101,7 +101,7 @@
 					</object>
 					<object class="IBUIButton" id="490967857">
 						<reference key="NSNextResponder" ref="423307031"/>
-						<int key="NSvFlags">292</int>
+						<int key="NSvFlags">265</int>
 						<string key="NSFrame">{{228, 221}, {84, 36}}</string>
 						<reference key="NSSuperview" ref="423307031"/>
 						<reference key="NSWindow"/>
@@ -143,11 +143,10 @@
 					</object>
 					<object class="IBUIButton" id="979148503">
 						<reference key="NSNextResponder" ref="423307031"/>
-						<int key="NSvFlags">292</int>
+						<int key="NSvFlags">268</int>
 						<string key="NSFrame">{{9, 221}, {84, 36}}</string>
 						<reference key="NSSuperview" ref="423307031"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -172,7 +171,7 @@
 					</object>
 					<object class="IBUIPickerView" id="946179970">
 						<reference key="NSNextResponder" ref="423307031"/>
-						<int key="NSvFlags">290</int>
+						<int key="NSvFlags">266</int>
 						<string key="NSFrame">{{0, 264}, {320, 216}}</string>
 						<reference key="NSSuperview" ref="423307031"/>
 						<reference key="NSWindow"/>
@@ -336,7 +335,7 @@
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
 				<object class="IBPartialClassDescription">
 					<string key="className">HSBloodDonationTypePicker</string>
-					<string key="superclassName">UIViewController</string>
+					<string key="superclassName">HSModalViewController</string>
 					<dictionary class="NSMutableDictionary" key="actions">
 						<string key="cancelButtonClicked:">id</string>
 						<string key="doneButtonClicked:">id</string>
@@ -367,6 +366,14 @@
 						<string key="minorKey">./Classes/HSBloodDonationTypePicker.h</string>
 					</object>
 				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">HSModalViewController</string>
+					<string key="superclassName">UIViewController</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/HSModalViewController.h</string>
+					</object>
+				</object>
 			</array>
 		</object>
 		<int key="IBDocument.localizationMode">0</int>
@@ -385,6 +392,6 @@
 			<string key="yellowDoneButtonNormal.png">{84, 36}</string>
 			<string key="yellowDoneButtonPressed.png">{84, 36}</string>
 		</dictionary>
-		<string key="IBCocoaTouchPluginVersion">1926</string>
+		<string key="IBCocoaTouchPluginVersion">2083</string>
 	</data>
 </archive>
