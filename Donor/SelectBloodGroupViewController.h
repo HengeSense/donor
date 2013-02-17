@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HSModalViewController.h"
 
 @protocol IBloodGroupListener <NSObject>
 
@@ -14,7 +15,7 @@
 
 @end
 
-@interface SelectBloodGroupViewController : UIViewController
+@interface SelectBloodGroupViewController : HSModalViewController
 {
     IBOutlet UIButton *buttonOI;
     IBOutlet UIButton *buttonAII;

@@ -19,7 +19,7 @@
 - (IBAction)cancelClick:(id)sender
 {
     [delegate sexChanged:sex];
-    [self.view removeFromSuperview];
+    [self hideModal];
 }
 
 - (IBAction)doneClick:(id)sender
@@ -31,7 +31,7 @@
     else
         [Common getInstance].sex = [NSNumber numberWithInt:1];
     
-    [self.view removeFromSuperview];
+    [self hideModal];
 }
 
 - (IBAction)sexSelected:(id)sender

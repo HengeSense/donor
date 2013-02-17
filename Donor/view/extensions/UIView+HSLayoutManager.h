@@ -20,4 +20,24 @@
  * Adjusts view frame to locate in parent view between navigation bar, additional navigation bar and tab bar.
  */
 - (void)adjustAsContentViewIncludeAdditionalNavigationBar:(UIView *)additionalNavBar;
+
+/**
+ *
+ */
+- (void)shiftFromScreenToBottom;
+
+/**
+ *
+ */
+- (void)shiftToScreenFromBottom;
+
+/**
+ *
+ */
+- (void)shiftFromScreenToTop;
+
+/**
+ *
+ */
+- (void)shiftToScreenFromTop;
 @end

@@ -33,5 +33,42 @@ static const NSUInteger kBottomTabBarHeight = 55;
     return contentViewFrame;
 }
 
+/**
+ *
+ */
+- (void)shiftFromScreenToBottom {
+    CGSize screenSize = [UIScreen mainScreen].bounds.size;
+    CGRect frame = self.frame;
+    frame.origin.y = screenSize.height;
+    self.frame = frame;
+}
+
+/**
+ *
+ */
+- (void)shiftToScreenFromBottom {
+    CGSize screenSize = [UIScreen mainScreen].bounds.size;
+    CGRect frame = self.frame;
+    frame.origin.y = screenSize.height - frame.size.height;
+    self.frame = frame;
+}
+
+/**
+ *
+ */
+- (void)shiftFromScreenToTop {
+    CGRect frame = self.frame;
+    frame.origin.y = -frame.size.height;
+    self.frame = frame;
+}
+
+/**
+ *
+ */
+- (void)shiftToScreenFromTop {
+    CGRect frame = self.frame;
+    frame.origin.y = 0;
+    self.frame = frame;
+}
 
 @end

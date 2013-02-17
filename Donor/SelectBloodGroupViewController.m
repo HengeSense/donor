@@ -26,7 +26,7 @@
 - (IBAction)cancelClick:(id)sender
 {
     [delegate bloodGroupChanged:nil];
-    [self.view removeFromSuperview];
+    [self hideModal];
 }
 
 - (IBAction)doneClick:(id)sender;
@@ -34,7 +34,7 @@
     [delegate bloodGroupChanged:[NSString stringWithFormat:@"%@%@", group,rh]];
     [Common getInstance].bloodGroup  = [NSNumber numberWithInt:bloodGroupInt];
     [Common getInstance].bloodRH = [NSNumber numberWithInt:bloodRHInt];
-    [self.view removeFromSuperview];
+    [self hideModal];
 }
 
 - (IBAction)bloodGroupSelected:(id)sender

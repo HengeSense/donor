@@ -11,16 +11,13 @@
 #import "StationsViewController.h"
 #import "MBProgressHUD.h"
 #import "UIView+HSLayoutManager.h"
+#import "HSSocailShareViewController.h"
 
 @interface NewsViewController ()
 
+@property (nonatomic, strong) HSSocailShareViewController *socailShareViewController;
+
 @end
-
-static NSString * FACEBOOK_SHARE_URL = @"http://www.facebook.com/sharer.php?u=";
-static NSString * TWITTER_SHARE_URL = @"https://twitter.com/share?url=";
-static NSString * VKONTAKTE_SHARE_URL = @"http://vkontakte.ru/share.php?url=";
-
-static NSString * PODARI_ZHIZN_NEWS_URL = @"http://www.podari-zhizn.ru/main/node/";
 
 @implementation NewsViewController
 
@@ -33,44 +30,15 @@ static NSString * PODARI_ZHIZN_NEWS_URL = @"http://www.podari-zhizn.ru/main/node
 
 - (IBAction)shareButtonPressed:(id)sender
 {
-    [self.navigationController.tabBarController.view addSubview:self.sharingView];
-}
-
-- (IBAction)shareButtonSelected:(id)sender
-{
-    UIButton *button = (UIButton *)sender;
-    NSString *htmlString = @"";
-    int nid;
-    
-    if ([self.content valueForKey:@"station_nid"])
-        nid = [[self.content objectForKey:@"station_nid"] intValue];
-    else
-        nid = [[self.content objectForKey:@"nid"] intValue];
-        
-    switch (button.tag)
-    {
-        case 0:
-            htmlString = [NSString stringWithFormat:@"%@%@%d", VKONTAKTE_SHARE_URL, PODARI_ZHIZN_NEWS_URL, nid];
-            break;
-            
-        case 1:
-            htmlString = [NSString stringWithFormat:@"%@%@%d", TWITTER_SHARE_URL, PODARI_ZHIZN_NEWS_URL, nid];
-            break;
-            
-        case 2:
-            htmlString = [NSString stringWithFormat:@"%@%@%d", FACEBOOK_SHARE_URL, PODARI_ZHIZN_NEWS_URL, nid];
-            break;
-            
-        default:
-            break;
+    if (self.socailShareViewController == nil) {
+        self.socailShareViewController =
+                [[HSSocailShareViewController alloc] initWithNibName:@"HSSocailShareViewController" bundle:nil];
     }
-    [self.sharingView removeFromSuperview];
-    
-    if (![htmlString isEqualToString:@""])
-    {
-        NSURL *url = [NSURL URLWithString:htmlString];
-        [[UIApplication sharedApplication] openURL:url];
-    }
+    NSInteger newsId = [self.content valueForKey:@"station_nid"] ?
+            [[self.content objectForKey:@"station_nid"] integerValue] :
+            [[self.content objectForKey:@"nid"] integerValue];
+    self.socailShareViewController.newsId = newsId;
+    [self.socailShareViewController showModal];
 }
 
 - (IBAction)showAtMapPressed:(id)sender
@@ -84,7 +52,6 @@ static NSString * PODARI_ZHIZN_NEWS_URL = @"http://www.podari-zhizn.ru/main/node
         if (object)
         {
             StationsViewController *controller = [[StationsViewController alloc] initWithNibName:@"StationsViewController" bundle:nil station:object];
-            //[controller showOnMap:object];
             [self.navigationController pushViewController:controller animated:YES];
         }
     }];
@@ -195,8 +162,6 @@ static NSString * PODARI_ZHIZN_NEWS_URL = @"http://www.podari-zhizn.ru/main/node
     NSString *htmlString = [NSString stringWithFormat:@"<html><head><style type='text/css'>* { margin:0; padding-top:%d; padding-left:6; padding-right:6; } p { color:#847168; font-family:Helvetica; font-size:12px; font-weight:bold;  } a { color:#0B8B99; text-decoration:underline; } h1 { color:#CBB2A3; font-family:Helvetica; font-size:15px; font-weight:bold; }</style></head><body><p><br />%@</p></body></html>", padding_top, bodyString];
     
     [self.newsBodyWebView loadHTMLString:[NSString stringWithFormat:@"%@%@", htmlString1, htmlString] baseURL:nil];
-    
-    self.sharingView.frame = [UIScreen mainScreen].bounds;
 }
 
 - (NSString *)stringByStrippingHTML:(NSString *)inputString

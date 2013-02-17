@@ -16,7 +16,6 @@
 @property (nonatomic, weak) IBOutlet UIWebView *newsBodyWebView;
 @property (nonatomic, weak) IBOutlet UIView *newsView;
 @property (nonatomic, weak) IBOutlet UIView *adsView;
-@property (nonatomic, strong) IBOutlet UIView *sharingView;
 
 /// @name Conten 
 @property (nonatomic, strong) PFObject *content;
@@ -25,8 +24,6 @@
 - (IBAction)backButtonPressed:(id)sender;
 - (IBAction)shareButtonPressed:(id)sender;
 - (IBAction)showAtMapPressed:(id)sender;
-
-- (IBAction)shareButtonSelected:(id)sender;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil selectedNew:(PFObject *)selectedNew;
 

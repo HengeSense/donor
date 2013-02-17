@@ -141,25 +141,12 @@ static NSString * const kLinkedToFacebookTitle = @"привязан";
 
 - (IBAction)sexButtonClick:(id)sender {
     [self.nameTextField resignFirstResponder];
-    [self showModal:self.sexSelectViewController.view];
+    [self.sexSelectViewController showModal];
 }
 
 - (IBAction)bloodGroupButtonClick:(id)sender {
     [self.nameTextField resignFirstResponder];
-    [self showModal:self.selectBloodGroupViewController.view];
-}
-
-- (void) showModal:(UIView*) modalView  {
-    UIWindow* mainWindow = (((AppDelegate*) [UIApplication sharedApplication].delegate).window);
-    CGPoint middleCenter = modalView.center;
-    CGSize offSize = [UIScreen mainScreen].bounds.size;
-    CGPoint offScreenCenter = CGPointMake(offSize.width / 2.0, offSize.height * 1.5);
-    modalView.center = offScreenCenter;
-    [mainWindow addSubview:modalView];
-    
-    [UIView animateWithDuration:0.5 animations:^{
-        modalView.center = middleCenter;
-    }];
+    [self.selectBloodGroupViewController showModal];
 }
 
 - (IBAction)logoutButtonClick:(id)sender {

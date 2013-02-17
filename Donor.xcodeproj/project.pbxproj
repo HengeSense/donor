@@ -291,6 +291,9 @@
 		68B455C51635CDD500811A0F /* HSBloodTestsEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B455C41635CDD500811A0F /* HSBloodTestsEvent.m */; };
 		68B455C81635CE7A00811A0F /* HSBloodTestsEventRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B455C71635CE7A00811A0F /* HSBloodTestsEventRenderer.m */; };
 		68B455CE163739E900811A0F /* HSBloodRemoteEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B455CD163739E900811A0F /* HSBloodRemoteEvent.m */; };
+		68B82F2D16D0F8ED00533701 /* HSModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B82F2C16D0F8ED00533701 /* HSModalViewController.m */; };
+		68B82F3116D1040F00533701 /* HSSocailShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B82F2F16D1040F00533701 /* HSSocailShareViewController.m */; };
+		68B82F3216D1040F00533701 /* HSSocailShareViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68B82F3016D1040F00533701 /* HSSocailShareViewController.xib */; };
 		68BB4053162F0B9400098861 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68BB4052162F0B9400098861 /* SenTestingKit.framework */; };
 		68BB4054162F0B9400098861 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37153E9F15AEBA3400C985C1 /* UIKit.framework */; };
 		68BB4055162F0B9400098861 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37153EA115AEBA3400C985C1 /* Foundation.framework */; };
@@ -920,6 +923,11 @@
 		68B455C71635CE7A00811A0F /* HSBloodTestsEventRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HSBloodTestsEventRenderer.m; path = event/HSBloodTestsEventRenderer.m; sourceTree = "<group>"; };
 		68B455CC163739E800811A0F /* HSBloodRemoteEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSBloodRemoteEvent.h; sourceTree = "<group>"; };
 		68B455CD163739E900811A0F /* HSBloodRemoteEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSBloodRemoteEvent.m; sourceTree = "<group>"; };
+		68B82F2B16D0F8ED00533701 /* HSModalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSModalViewController.h; sourceTree = "<group>"; };
+		68B82F2C16D0F8ED00533701 /* HSModalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSModalViewController.m; sourceTree = "<group>"; };
+		68B82F2E16D1040F00533701 /* HSSocailShareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSSocailShareViewController.h; sourceTree = "<group>"; };
+		68B82F2F16D1040F00533701 /* HSSocailShareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSSocailShareViewController.m; sourceTree = "<group>"; };
+		68B82F3016D1040F00533701 /* HSSocailShareViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HSSocailShareViewController.xib; sourceTree = "<group>"; };
 		68BB4051162F0B9400098861 /* DonorTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DonorTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		68BB4052162F0B9400098861 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		68BB4058162F0B9500098861 /* DonorTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DonorTests-Info.plist"; sourceTree = "<group>"; };
@@ -1413,6 +1421,9 @@
 				85B35FFC15C9217800F20CDA /* NewsViewController.h */,
 				85B35FFD15C9217800F20CDA /* NewsViewController.m */,
 				85B35FFE15C9217800F20CDA /* NewsViewController.xib */,
+				68B82F2E16D1040F00533701 /* HSSocailShareViewController.h */,
+				68B82F2F16D1040F00533701 /* HSSocailShareViewController.m */,
+				68B82F3016D1040F00533701 /* HSSocailShareViewController.xib */,
 			);
 			name = Info;
 			sourceTree = "<group>";
@@ -1423,15 +1434,15 @@
 				85AA3B2E15B3D3690077D336 /* SelectBloodGroupViewController.h */,
 				85AA3B2F15B3D3690077D336 /* SelectBloodGroupViewController.m */,
 				85AA3B3015B3D3690077D336 /* SelectBloodGroupViewController.xib */,
+				858B436815B6B03200A7A67D /* ProfileSexSelectViewController.h */,
+				858B436915B6B03200A7A67D /* ProfileSexSelectViewController.m */,
+				858B436A15B6B03200A7A67D /* ProfileSexSelectViewController.xib */,
 				3758507015AED544006DF7E1 /* ProfileDescriptionViewController.h */,
 				3758507115AED544006DF7E1 /* ProfileDescriptionViewController.m */,
 				3758507215AED544006DF7E1 /* ProfileDescriptionViewController.xib */,
 				3758508315AEDE69006DF7E1 /* ProfileSettingsViewController.h */,
 				3758508415AEDE69006DF7E1 /* ProfileSettingsViewController.m */,
 				3758508515AEDE69006DF7E1 /* ProfileSettingsViewController.xib */,
-				858B436815B6B03200A7A67D /* ProfileSexSelectViewController.h */,
-				858B436915B6B03200A7A67D /* ProfileSexSelectViewController.m */,
-				858B436A15B6B03200A7A67D /* ProfileSexSelectViewController.xib */,
 				683FDAC7169E61AB00B3BF51 /* HSLoginViewController.h */,
 				683FDAC8169E61AB00B3BF51 /* HSLoginViewController.m */,
 				683FDAC1169E12AE00B3BF51 /* HSLoginChoiceViewController.h */,
@@ -2071,6 +2082,8 @@
 				686BA62116344DE2004D7082 /* HSCalendarDayButton.m */,
 				688F7FC816A308A5008581D4 /* NSUnderlinedButton.h */,
 				688F7FC916A308A5008581D4 /* NSUnderlinedButton.m */,
+				68B82F2B16D0F8ED00533701 /* HSModalViewController.h */,
+				68B82F2C16D0F8ED00533701 /* HSModalViewController.m */,
 			);
 			path = component;
 			sourceTree = "<group>";
@@ -2899,6 +2912,7 @@
 				689B00AF16A7537C00B5CA4C /* Default-568h@2x.png in Resources */,
 				689B00FD16AC37CC00B5CA4C /* recommendations.json in Resources */,
 				689B010B16AC47A200B5CA4C /* HSRecommendationsViewController.xib in Resources */,
+				68B82F3216D1040F00533701 /* HSSocailShareViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3012,6 +3026,8 @@
 				689B010616AC444F00B5CA4C /* HSRecommendationsLoader.m in Sources */,
 				689B010A16AC47A200B5CA4C /* HSRecommendationsViewController.m in Sources */,
 				689B010F16ACA69A00B5CA4C /* UIView+HSLayoutManager.m in Sources */,
+				68B82F2D16D0F8ED00533701 /* HSModalViewController.m in Sources */,
+				68B82F3116D1040F00533701 /* HSSocailShareViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

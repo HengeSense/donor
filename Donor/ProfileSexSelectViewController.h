@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HSModalViewController.h"
 
 @protocol ISexListener <NSObject>
 
@@ -14,7 +15,7 @@
 
 @end
 
-@interface ProfileSexSelectViewController : UIViewController
+@interface ProfileSexSelectViewController : HSModalViewController
 {
     IBOutlet UIButton *maleButton;
     IBOutlet UIButton *femaleButton;
