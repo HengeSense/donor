@@ -15,6 +15,7 @@
 #import "Common.h"
 #import "StationsAnnotation.h"
 #import "NewsViewController.h"
+#import "MBProgressHUD.h"
 
 @interface StationsViewController ()
 
@@ -909,14 +910,18 @@
    
     if (!isShowOneStation)
     {
+        MBProgressHUD  *progressHud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
         PFQuery *stations = [PFQuery queryWithClassName:@"Stations"];
-        [stations findObjectsInBackgroundWithTarget:self selector:@selector(callbackWithResult: error:)];
-        [contentView addSubview:indicatorView];
+        [stations findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+            [self processLocationUpdateWitResult:objects error:error];
+            [progressHud hide:YES];
+        }];
     }
     else
     {
-        if (self.navigationController.isBeingPresented)
+        if (self.navigationController.isBeingPresented) {
             [self reloadMapAnnotations];
+        }
     }
 }
 
@@ -1048,23 +1053,11 @@
         isShowOneStation = NO;
         [contentView addSubview:stationsTableView];
         [coreLocationController.locationManager startUpdatingLocation];
-        indicatorView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
-        indicatorView.backgroundColor = [UIColor blackColor];
-        indicatorView.alpha = 0.5f;
-        UIActivityIndicatorView *indicator = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge] autorelease];
-        indicator.frame = CGRectMake(160 - indicator.frame.size.width / 2.0f,
-                                     160 - indicator.frame.size.height / 2.0f,
-                                     indicator.frame.size.width,
-                                     indicator.frame.size.height);
-        
-        [indicatorView addSubview:indicator];
-        [indicator startAnimating];
     }
-    [self locationUpdate: nil];
     [self reloadMapAnnotations];
 }
 
-- (void)callbackWithResult:(NSArray *)result error:(NSError *)error
+- (void)processLocationUpdateWitResult:(NSArray *)result error:(NSError *)error
 {
     if (result)
     {
@@ -1186,21 +1179,20 @@
         [searchTableDictionary setDictionary:tableDictionary];
     }
     
-    [indicatorView removeFromSuperview];
     [self reloadData];
     [self reloadMapAnnotations];
 }
 
-- (void)viewDidAppear:(BOOL)animated
+- (void)viewWillAppear:(BOOL)animated
 {
-    [super viewDidAppear:animated];
-    [self locationUpdate: nil];
+    [super viewWillAppear:animated];
     [coreLocationController.locationManager startUpdatingLocation];
 }
 
-- (void)viewDidDisappear:(BOOL)animated
+- (void)viewWillDisappear:(BOOL)animated
 {
-    [super viewDidDisappear:animated];
+    [super viewWillDisappear:animated];
+    [coreLocationController.locationManager stopUpdatingLocation];
 }
 
 - (void)dealloc
@@ -1209,7 +1201,6 @@
     [stationsArrayList release];
     [tableDictionary release];
     [searchTableDictionary release];
-    [indicatorView release];
     [fadeView release];
     [super dealloc];
 }

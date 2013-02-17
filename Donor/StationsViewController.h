@@ -37,7 +37,6 @@
     IBOutlet MKMapView *stationsMap;
     IBOutlet UITableView *stationsTable;
     
-    UIView *indicatorView;
     UIView *fadeView;
     
     NSMutableDictionary *tableDictionary;
@@ -65,9 +64,6 @@
 
 - (IBAction)backButtonPressed:(id)sender;
 
-//- (void)showOnMap:(PFObject *)station;
-
-- (void)callbackWithResult:(NSArray *)result error:(NSError *)error;
 - (void)reloadMapAnnotations;
 
 @end

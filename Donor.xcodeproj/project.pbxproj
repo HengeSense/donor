@@ -496,7 +496,7 @@
 		85ADF99815D52D4900853641 /* calendarSliderCellBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85ADF99615D52D4900853641 /* calendarSliderCellBackground@2x.png */; };
 		85B213DF15D7986800D2ADBE /* ReviewsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 85B213DE15D7986800D2ADBE /* ReviewsCell.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		85B213E115D7987F00D2ADBE /* ReviewsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85B213E015D7987F00D2ADBE /* ReviewsCell.xib */; };
-		85B35FFF15C9217800F20CDA /* NewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85B35FFD15C9217800F20CDA /* NewsViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		85B35FFF15C9217800F20CDA /* NewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85B35FFD15C9217800F20CDA /* NewsViewController.m */; };
 		85B3600015C9217800F20CDA /* NewsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85B35FFE15C9217800F20CDA /* NewsViewController.xib */; };
 		85B3600615C922D000F20CDA /* shareButtonNormal.png in Resources */ = {isa = PBXBuildFile; fileRef = 85B3600215C922D000F20CDA /* shareButtonNormal.png */; };
 		85B3600715C922D000F20CDA /* shareButtonPressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85B3600315C922D000F20CDA /* shareButtonPressed@2x.png */; };
@@ -2945,7 +2945,6 @@
 				85BE8D3C15C16F0600CF5606 /* NewsCell.m in Sources */,
 				85B7CDAD15C24F87008C1BEC /* AdsCell.m in Sources */,
 				85F1185315C6A984000A1183 /* InfoSubViewController.m in Sources */,
-				85B35FFF15C9217800F20CDA /* NewsViewController.m in Sources */,
 				85A8F7A115CF88DF00535E7E /* StationsCell.m in Sources */,
 				85A0DC1415CFD922008618F8 /* FilterViewController.m in Sources */,
 				8593A8BA15D0DB1100EA51F2 /* StationDescriptionViewController.m in Sources */,
@@ -2961,6 +2960,7 @@
 				8585E1AA161B0A5D00275AE7 /* FTCoreTextView.m in Sources */,
 				85939C65162D616D0081A46C /* ForDonorsCell.m in Sources */,
 				685CB2F8163F200A004FF9AC /* MBProgressHUD.m in Sources */,
+				85B35FFF15C9217800F20CDA /* NewsViewController.m in Sources */,
 				85BE8CDF15C13E7800CF5606 /* NewsSubViewController.m in Sources */,
 				85BE8CDA15C13E6000CF5606 /* AdsSubViewController.m in Sources */,
 				3758508C15AEE41A006DF7E1 /* InfoViewController.m in Sources */,

@@ -53,7 +53,7 @@
     return cell;
 }
 
-- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+- (NSIndexPath *)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [self.delegate newSelected:[self.contentArray objectAtIndex:indexPath.row]];
     return indexPath;
 }

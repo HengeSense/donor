@@ -8,8 +8,9 @@
 
 #import "NewsViewController.h"
 #import <Foundation/Foundation.h>
-//#import "SHK.h"
 #import "StationsViewController.h"
+#import "MBProgressHUD.h"
+#import "UIView+HSLayoutManager.h"
 
 @interface NewsViewController ()
 
@@ -32,7 +33,7 @@ static NSString * PODARI_ZHIZN_NEWS_URL = @"http://www.podari-zhizn.ru/main/node
 
 - (IBAction)shareButtonPressed:(id)sender
 {
-    [self.navigationController.tabBarController.view addSubview:sharingView];
+    [self.navigationController.tabBarController.view addSubview:self.sharingView];
 }
 
 - (IBAction)shareButtonSelected:(id)sender
@@ -41,10 +42,10 @@ static NSString * PODARI_ZHIZN_NEWS_URL = @"http://www.podari-zhizn.ru/main/node
     NSString *htmlString = @"";
     int nid;
     
-    if ([content valueForKey:@"station_nid"])
-        nid = [[content objectForKey:@"station_nid"] intValue];
+    if ([self.content valueForKey:@"station_nid"])
+        nid = [[self.content objectForKey:@"station_nid"] intValue];
     else
-        nid = [[content objectForKey:@"nid"] intValue];
+        nid = [[self.content objectForKey:@"nid"] intValue];
         
     switch (button.tag)
     {
@@ -63,7 +64,7 @@ static NSString * PODARI_ZHIZN_NEWS_URL = @"http://www.podari-zhizn.ru/main/node
         default:
             break;
     }
-    [sharingView removeFromSuperview];
+    [self.sharingView removeFromSuperview];
     
     if (![htmlString isEqualToString:@""])
     {
@@ -74,30 +75,18 @@ static NSString * PODARI_ZHIZN_NEWS_URL = @"http://www.podari-zhizn.ru/main/node
 
 - (IBAction)showAtMapPressed:(id)sender
 {
-    UIView *indicatorView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 331)];
-    indicatorView.backgroundColor = [UIColor blackColor];
-    indicatorView.alpha = 0.5f;
-    UIActivityIndicatorView *indicator = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge] autorelease];
-    indicator.frame = CGRectMake(160 - indicator.frame.size.width / 2.0f,
-                                 240 - indicator.frame.size.height / 2.0f,
-                                 indicator.frame.size.width,
-                                 indicator.frame.size.height);
-    
-    [indicatorView addSubview:indicator];
-    [indicator startAnimating];
-    [self.navigationController.tabBarController.view addSubview:indicatorView];
-    
+    MBProgressHUD *progressHud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
     PFQuery *stations = [PFQuery queryWithClassName:@"Stations"];
-    [stations getObjectInBackgroundWithId:[content valueForKey:@"station_id"] block:^(PFObject *object, NSError *error)
+    [stations getObjectInBackgroundWithId:[self.content valueForKey:@"station_id"]
+                                    block:^(PFObject *object, NSError *error)
     {
+        [progressHud hide:YES];
         if (object)
         {
-            StationsViewController *controller = [[[StationsViewController alloc] initWithNibName:@"StationsViewController" bundle:nil station:object] autorelease];
+            StationsViewController *controller = [[StationsViewController alloc] initWithNibName:@"StationsViewController" bundle:nil station:object];
             //[controller showOnMap:object];
             [self.navigationController pushViewController:controller animated:YES];
         }
-        [indicatorView removeFromSuperview];
-        [indicatorView release];
     }];
 }
 
@@ -105,23 +94,23 @@ static NSString * PODARI_ZHIZN_NEWS_URL = @"http://www.podari-zhizn.ru/main/node
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 { 
-    if ([content valueForKey:@"station_nid"])
+    if ([self.content valueForKey:@"station_nid"])
     {
-        if ([content valueForKey:@"station_id"])
+        if ([self.content valueForKey:@"station_id"])
         {
-            adsView.frame = CGRectMake(0, newBodyWebView.scrollView.contentSize.height + 20.0f, 320, 48);
-            [newBodyWebView.scrollView addSubview:adsView];
-            CGSize newContentSize = newBodyWebView.scrollView.contentSize;
-            newContentSize.height += adsView.frame.size.height;
-            newBodyWebView.scrollView.contentSize = newContentSize;
+            self.adsView.frame = CGRectMake(0, self.newsBodyWebView.scrollView.contentSize.height + 20.0f, 320, 48);
+            [self.newsBodyWebView.scrollView addSubview:self.adsView];
+            CGSize newContentSize = self.newsBodyWebView.scrollView.contentSize;
+            newContentSize.height += self.adsView.frame.size.height;
+            self.newsBodyWebView.scrollView.contentSize = newContentSize;
         }
     }
     else
     {
-        [newBodyWebView.scrollView addSubview:newsView];
+        [self.newsBodyWebView.scrollView addSubview:self.newsView];
     }
     
-    for (UIView* subView in [newBodyWebView subviews])
+    for (UIView* subView in [self.newsBodyWebView subviews])
     {
         if ([subView isKindOfClass:[UIScrollView class]])
         {
@@ -155,7 +144,7 @@ static NSString * PODARI_ZHIZN_NEWS_URL = @"http://www.podari-zhizn.ru/main/node
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self)
     {
-        content = selectedNew;
+        self.content = selectedNew;
     }
     return self;
 }
@@ -175,39 +164,39 @@ static NSString * PODARI_ZHIZN_NEWS_URL = @"http://www.podari-zhizn.ru/main/node
     shareButton.frame = shareButtonFrame;
     [shareButton addTarget:self action:@selector(shareButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     
-    UIBarButtonItem *shareBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:shareButton] autorelease];
+    UIBarButtonItem *shareBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:shareButton];
     self.navigationItem.rightBarButtonItem = shareBarButtonItem;
     
     NSString *htmlString1 = @"";
     
     int padding_top;
-    NSDateFormatter *dateFormat = [[[NSDateFormatter alloc] init] autorelease];
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
     [dateFormat setDateFormat:@"dd.MM.yyyy"];
-    NSDateFormatter *parsecomDateFormat = [[[NSDateFormatter alloc] init] autorelease];
+    NSDateFormatter *parsecomDateFormat = [[NSDateFormatter alloc] init];
     [parsecomDateFormat setDateFormat:@"yyyy-MM-dd'T'HH:mm:sszzz"];
    
     //Ads
-    if ([content valueForKey:@"station_nid"])
+    if ([self.content valueForKey:@"station_nid"])
     {
-        NSString *createString = [dateFormat stringFromDate:[parsecomDateFormat dateFromString:[[NSString stringWithFormat:@"%@", [content objectForKey:@"created"]] stringByReplacingCharactersInRange:NSMakeRange(22, 1) withString:@""]]];
+        NSString *createString = [dateFormat stringFromDate:[parsecomDateFormat dateFromString:[[NSString stringWithFormat:@"%@", [self.content objectForKey:@"created"]] stringByReplacingCharactersInRange:NSMakeRange(22, 1) withString:@""]]];
         
-        htmlString1 = [NSString stringWithFormat:@"<html><head><style type='text/css'>* { margin:0; padding:0; } p { color:#847168; font-family:Helvetica; font-size:12px; font-weight:bold;  }</style></head><body><p>%@ <font color=\"#CBB2A3\">%@</font></p></body></html>", createString, [content valueForKey:@"title"]];
-        padding_top = 7;
+        htmlString1 = [NSString stringWithFormat:@"<html><head><style type='text/css'>* { margin:0; padding:0; } p { color:#847168; font-family:Helvetica; font-size:12px; font-weight:bold;  }</style></head><body><p>%@ <font color=\"#CBB2A3\">%@</font></p></body></html>", createString, [self.content valueForKey:@"title"]];
+        padding_top = 1;
     }
     //News
     else
     {
-        titleLabel.text = [content valueForKey:@"title"];
-        padding_top = 19;
+        self.titleLabel.text = [self.content valueForKey:@"title"];
+        padding_top = 1;
     }
     
-    NSString *bodyString = [self stringByStrippingHTML:[content valueForKey:@"body"]];
+    NSString *bodyString = [self stringByStrippingHTML:[self.content valueForKey:@"body"]];
      
     NSString *htmlString = [NSString stringWithFormat:@"<html><head><style type='text/css'>* { margin:0; padding-top:%d; padding-left:6; padding-right:6; } p { color:#847168; font-family:Helvetica; font-size:12px; font-weight:bold;  } a { color:#0B8B99; text-decoration:underline; } h1 { color:#CBB2A3; font-family:Helvetica; font-size:15px; font-weight:bold; }</style></head><body><p><br />%@</p></body></html>", padding_top, bodyString];
     
-    [newBodyWebView loadHTMLString:[NSString stringWithFormat:@"%@%@", htmlString1, htmlString] baseURL:nil];
+    [self.newsBodyWebView loadHTMLString:[NSString stringWithFormat:@"%@%@", htmlString1, htmlString] baseURL:nil];
     
-    sharingView.frame = [UIScreen mainScreen].bounds;
+    self.sharingView.frame = [UIScreen mainScreen].bounds;
 }
 
 - (NSString *)stringByStrippingHTML:(NSString *)inputString
@@ -246,29 +235,10 @@ static NSString * PODARI_ZHIZN_NEWS_URL = @"http://www.podari-zhizn.ru/main/node
     return outString; 
 }
 
-- (void)viewDidUnload
+- (void)viewWillAppear:(BOOL)animated
 {
-    [super viewDidUnload];
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-}
-
-- (void)viewDidDisappear:(BOOL)animated
-{
-    [super viewDidDisappear:animated];
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-
-- (void)dealloc
-{
-    [super dealloc];
+    [super viewWillAppear:animated];
+    [self.newsBodyWebView adjustAsContentView];
 }
 
 @end
