@@ -512,7 +512,7 @@ static const NSUInteger kCommentsTextViewSymbolsMax = 260;
             if ([event isKindOfClass:[HSBloodDonationEvent class]] && event.isDone) {
                 [strongSelf sayThanksToUser];
             }
-            [self.navigationController popToRootViewControllerAnimated: YES];
+            [strongSelf.navigationController popToRootViewControllerAnimated: YES];
             [HSFlurryAnalytics userCreatedCalendarEvent:event];
         } else {
             [HSAlertViewController showWithTitle:@"Ошибка" message:localizedDescriptionForError(error)];
