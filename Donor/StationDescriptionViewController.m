@@ -263,7 +263,7 @@
 
 - (NSString *)stringByStrippingHTML:(NSString *)inputString
 {
-    NSString *outString;
+    NSString *outString = nil;
     
     if (inputString)
     {

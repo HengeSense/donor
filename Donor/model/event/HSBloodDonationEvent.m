@@ -19,7 +19,7 @@ static const size_t kRemoteEventFields_BloodDonationType_Plasma = 1;
 static const size_t kRemoteEventFields_BloodDonationType_Whole = 2;
 static const size_t kRemoteEventFields_BloodDonationType_Granulocytes = 3;
 
-static const size_t const REST_PERIODS_TABLE[4][4] =
+static const size_t REST_PERIODS_TABLE[4][4] =
 {
     /*HSBloodDonationType_Blood*/       {60, 30, 30, 30},
     /*HSBloodDonationType_Platelets*/   {30, 14, 14, 30},

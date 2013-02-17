@@ -265,6 +265,7 @@
 		688F7FCA16A308A5008581D4 /* NSUnderlinedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 688F7FC916A308A5008581D4 /* NSUnderlinedButton.m */; };
 		688F7FCD16A30DF2008581D4 /* HSRestorePasswordViewCotroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 688F7FCC16A30DF2008581D4 /* HSRestorePasswordViewCotroller.m */; };
 		688F7FCF16A30E16008581D4 /* HSRestorePasswordViewCotroller.xib in Resources */ = {isa = PBXBuildFile; fileRef = 688F7FCE16A30E15008581D4 /* HSRestorePasswordViewCotroller.xib */; };
+		689B00AF16A7537C00B5CA4C /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 689B00AE16A7537C00B5CA4C /* Default-568h@2x.png */; };
 		689B00C316A7783400B5CA4C /* facebookButtonNormal.png in Resources */ = {isa = PBXBuildFile; fileRef = 689B00B716A7783400B5CA4C /* facebookButtonNormal.png */; };
 		689B00C416A7783400B5CA4C /* facebookButtonNormal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 689B00B816A7783400B5CA4C /* facebookButtonNormal@2x.png */; };
 		689B00C516A7783400B5CA4C /* facebookButtonPressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 689B00B916A7783400B5CA4C /* facebookButtonPressed.png */; };
@@ -277,7 +278,6 @@
 		689B00CC16A7783400B5CA4C /* vkontakteButtonNormal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 689B00C016A7783400B5CA4C /* vkontakteButtonNormal@2x.png */; };
 		689B00CD16A7783400B5CA4C /* vkontakteButtonPressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 689B00C116A7783400B5CA4C /* vkontakteButtonPressed.png */; };
 		689B00CE16A7783400B5CA4C /* vkontakteButtonPressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 689B00C216A7783400B5CA4C /* vkontakteButtonPressed@2x.png */; };
-		689B00AF16A7537C00B5CA4C /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 689B00AE16A7537C00B5CA4C /* Default-568h@2x.png */; };
 		689B00FD16AC37CC00B5CA4C /* recommendations.json in Resources */ = {isa = PBXBuildFile; fileRef = 689B00FC16AC37CC00B5CA4C /* recommendations.json */; };
 		689B010316AC425900B5CA4C /* HSRecommendation.m in Sources */ = {isa = PBXBuildFile; fileRef = 689B010216AC425900B5CA4C /* HSRecommendation.m */; };
 		689B010616AC444F00B5CA4C /* HSRecommendationsLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 689B010516AC444F00B5CA4C /* HSRecommendationsLoader.m */; };
@@ -883,6 +883,7 @@
 		688F7FCB16A30DF2008581D4 /* HSRestorePasswordViewCotroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSRestorePasswordViewCotroller.h; sourceTree = "<group>"; };
 		688F7FCC16A30DF2008581D4 /* HSRestorePasswordViewCotroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSRestorePasswordViewCotroller.m; sourceTree = "<group>"; };
 		688F7FCE16A30E15008581D4 /* HSRestorePasswordViewCotroller.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HSRestorePasswordViewCotroller.xib; sourceTree = "<group>"; };
+		689B00AE16A7537C00B5CA4C /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		689B00B716A7783400B5CA4C /* facebookButtonNormal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = facebookButtonNormal.png; sourceTree = "<group>"; };
 		689B00B816A7783400B5CA4C /* facebookButtonNormal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "facebookButtonNormal@2x.png"; sourceTree = "<group>"; };
 		689B00B916A7783400B5CA4C /* facebookButtonPressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = facebookButtonPressed.png; sourceTree = "<group>"; };
@@ -895,7 +896,6 @@
 		689B00C016A7783400B5CA4C /* vkontakteButtonNormal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "vkontakteButtonNormal@2x.png"; sourceTree = "<group>"; };
 		689B00C116A7783400B5CA4C /* vkontakteButtonPressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vkontakteButtonPressed.png; sourceTree = "<group>"; };
 		689B00C216A7783400B5CA4C /* vkontakteButtonPressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "vkontakteButtonPressed@2x.png"; sourceTree = "<group>"; };
-		689B00AE16A7537C00B5CA4C /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		689B00FC16AC37CC00B5CA4C /* recommendations.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = recommendations.json; sourceTree = "<group>"; };
 		689B010116AC425900B5CA4C /* HSRecommendation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSRecommendation.h; sourceTree = "<group>"; };
 		689B010216AC425900B5CA4C /* HSRecommendation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSRecommendation.m; sourceTree = "<group>"; };
@@ -2420,7 +2420,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = HS;
-				LastUpgradeCheck = 0430;
+				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = "Hint Solutions";
 			};
 			buildConfigurationList = 37153E9515AEBA3400C985C1 /* Build configuration list for PBXProject "Donor" */;
@@ -3088,7 +3088,6 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_OBJCPP_ARC_ABI = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
@@ -3119,7 +3118,6 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_OBJCPP_ARC_ABI = NO;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = NO;
@@ -3213,7 +3211,6 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_OBJCPP_ARC_ABI = NO;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = NO;
@@ -3298,7 +3295,6 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_OBJCPP_ARC_ABI = NO;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Havevalue Ltd";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Havevalue Ltd";
 				COPY_PHASE_STRIP = YES;

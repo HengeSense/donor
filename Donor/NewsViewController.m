@@ -212,7 +212,7 @@ static NSString * PODARI_ZHIZN_NEWS_URL = @"http://www.podari-zhizn.ru/main/node
 
 - (NSString *)stringByStrippingHTML:(NSString *)inputString
 {
-    NSString *outString;
+    NSString *outString = nil;
     
     if (inputString)
     {

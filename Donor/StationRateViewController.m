@@ -42,7 +42,7 @@
     
     
     float rateFloat =  ((float)workOfRegistryVote + (float)workOfTherapistVote + (float)workOfBuffetVote + (float)workOfLabVote + (float)scheduleVote + (float)bloodDonateOrganizationVote + (float)pointOfDonationSpaceVote)/7.0f;
-    int rateInt;
+    int rateInt = 0;
     
     if (rateFloat == 0)
         rateInt = 0;
