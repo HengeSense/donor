@@ -72,9 +72,15 @@ FontSize="24" FontFamily="Segoe WP Semibold" />
                         <StackPanel>
                         <TextBlock Style="{StaticResource Text36pxC0A89A}" 
 						Text="{Binding Phone, Source={StaticResource Loc}}"/>
-                            <TextBlock Name="PhoneNumber" 
-							Style="{StaticResource Text24pxDF8D4B}" 							
-							Text="88002505222" Tap="PhoneNumber_Tap"/>
+                            <StackPanel>
+                                <TextBlock Name="PhoneNumber" 
+							    Style="{StaticResource Text24pxDF8D4B}" 							
+							    Text="88002505222" Tap="PhoneNumber_Tap"/>
+                                <TextBlock
+                                    FontSize="24" FontWeight="Normal"
+							    Style="{StaticResource Text24pxC0A89A}" 							
+							    Text="(звонок из регионов бесплатный)"/>
+                            </StackPanel>
                             <TextBlock Name="PhoneNumber2" 
 							Style="{StaticResource Text24pxDF8D4B}" 							
 							Text="+74992455826" Tap="PhoneNumber_Tap"/>

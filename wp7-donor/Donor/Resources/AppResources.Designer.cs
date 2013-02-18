@@ -29,7 +29,8 @@ namespace Donor {
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        public AppResources() {
+        public AppResources()
+        {
         }
         
         /// <summary>
@@ -952,10 +953,9 @@ namespace Donor {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;p&gt;Donor PRIVACY POLICY&lt;/p&gt;
-        ///&lt;p&gt;This application is owned and operated by Donor Your privacy on the Internet is of the utmost importance to us. At Donor, we want to make your experience online satisfying and safe.&lt;br&gt;
-        ///Because we gather certain types of information about our users, we feel you should fully understand our policy and the terms and conditions surrounding the capture and use of that information. This privacy statement discloses what information we gather and how we use it.&lt;br&gt;
-        ///INFORMATION Dono [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to &lt;p&gt;Donor application PRIVACY POLICY&lt;/p&gt;
+        ///&lt;p&gt;This application is owned and operated by Hintsolutions. Your privacy on the Internet is of the utmost importance to us. At Donor application, we want to make your experience online satisfying and safe.&lt;br&gt;
+        ///Because we gather certain types of information about our users, we feel you should fully understand our policy and the terms and conditions surrounding the capture and use of that information. This privacy statement discloses what information we gather and how [rest of string was truncated]&quot;;.
         /// </summary>
         public static string PrivacyPolicy {
             get {
