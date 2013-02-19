@@ -22,22 +22,22 @@
 - (void)adjustAsContentViewIncludeAdditionalNavigationBar:(UIView *)additionalNavBar;
 
 /**
- *
+ * Moves view's frame under the screen bottom line.
  */
 - (void)shiftFromScreenToBottom;
 
 /**
- *
+ * Moves view's frame over the screen bottom line.
  */
 - (void)shiftToScreenFromBottom;
 
 /**
- *
+ * Moves view's frame over the screen top line.
  */
 - (void)shiftFromScreenToTop;
 
 /**
- *
+ * Moves view's frame under the screen top line.
  */
 - (void)shiftToScreenFromTop;
 @end
