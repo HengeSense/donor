@@ -33,9 +33,6 @@ static const NSUInteger kBottomTabBarHeight = 55;
     return contentViewFrame;
 }
 
-/**
- *
- */
 - (void)shiftFromScreenToBottom {
     CGSize screenSize = [UIScreen mainScreen].bounds.size;
     CGRect frame = self.frame;
@@ -43,9 +40,6 @@ static const NSUInteger kBottomTabBarHeight = 55;
     self.frame = frame;
 }
 
-/**
- *
- */
 - (void)shiftToScreenFromBottom {
     CGSize screenSize = [UIScreen mainScreen].bounds.size;
     CGRect frame = self.frame;
@@ -53,21 +47,39 @@ static const NSUInteger kBottomTabBarHeight = 55;
     self.frame = frame;
 }
 
-/**
- *
- */
 - (void)shiftFromScreenToTop {
     CGRect frame = self.frame;
     frame.origin.y = -frame.size.height;
     self.frame = frame;
 }
 
-/**
- *
- */
 - (void)shiftToScreenFromTop {
     CGRect frame = self.frame;
     frame.origin.y = 0;
+    self.frame = frame;
+}
+
+- (void)moveFrameX:(CGFloat)xPos {
+    CGRect frame = self.frame;
+    frame.origin.x = xPos;
+    self.frame = frame;
+}
+
+- (void)moveFrameY:(CGFloat)yPos {
+    CGRect frame = self.frame;
+    frame.origin.y = yPos;
+    self.frame = frame;
+}
+
+- (void)changeFrameHeight:(CGFloat)height {
+    CGRect frame = self.frame;
+    frame.size.height = height;
+    self.frame = frame;
+}
+
+- (void)changeFrameWidth:(CGFloat)width {
+    CGRect frame = self.frame;
+    frame.size.width = width;
     self.frame = frame;
 }
 

@@ -40,4 +40,24 @@
  * Moves view's frame under the screen top line.
  */
 - (void)shiftToScreenFromTop;
+
+/**
+ * Moves frame to new 'x' position.
+ */
+-(void)moveFrameX:(CGFloat)xPos;
+
+/**
+ * Moves frame to new 'y' position.
+ */
+-(void)moveFrameY:(CGFloat)yPos;
+
+/**
+ * Changes frame width.
+ */
+- (void)changeFrameWidth:(CGFloat)width;
+
+/**
+ * Changes frame height.
+ */
+- (void)changeFrameHeight:(CGFloat)height;
 @end

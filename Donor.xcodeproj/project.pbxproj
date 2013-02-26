@@ -348,6 +348,8 @@
 		68BB4054162F0B9400098861 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37153E9F15AEBA3400C985C1 /* UIKit.framework */; };
 		68BB4055162F0B9400098861 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37153EA115AEBA3400C985C1 /* Foundation.framework */; };
 		68BB405B162F0B9500098861 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 68BB4059162F0B9500098861 /* InfoPlist.strings */; };
+		68D6CD9216DD34EF00972D41 /* HSContactView.m in Sources */ = {isa = PBXBuildFile; fileRef = 68D6CD9116DD34EF00972D41 /* HSContactView.m */; };
+		68D6CD9416DD351800972D41 /* HSContactView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68D6CD9316DD351800972D41 /* HSContactView.xib */; };
 		68EB2758163090B90092FDBA /* HSCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 68EB2757163090B90092FDBA /* HSCalendar.m */; };
 		68EB275C163091190092FDBA /* HSEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 68EB275B163091190092FDBA /* HSEvent.m */; };
 		68EB27601630952A0092FDBA /* HSCalendarException.m in Sources */ = {isa = PBXBuildFile; fileRef = 68EB275F1630952A0092FDBA /* HSCalendarException.m */; };
@@ -1018,6 +1020,9 @@
 		68BB4058162F0B9500098861 /* DonorTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DonorTests-Info.plist"; sourceTree = "<group>"; };
 		68BB405A162F0B9500098861 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		68BB405F162F0B9500098861 /* DonorTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DonorTests-Prefix.pch"; sourceTree = "<group>"; };
+		68D6CD9016DD34EF00972D41 /* HSContactView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSContactView.h; sourceTree = "<group>"; };
+		68D6CD9116DD34EF00972D41 /* HSContactView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSContactView.m; sourceTree = "<group>"; };
+		68D6CD9316DD351800972D41 /* HSContactView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HSContactView.xib; sourceTree = "<group>"; };
 		68EB2756163090B90092FDBA /* HSCalendar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSCalendar.h; sourceTree = "<group>"; };
 		68EB2757163090B90092FDBA /* HSCalendar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSCalendar.m; sourceTree = "<group>"; };
 		68EB275A163091190092FDBA /* HSEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSEvent.h; sourceTree = "<group>"; };
@@ -2122,6 +2127,9 @@
 				68B82F6D16D1113A00533701 /* InfoSubViewController.h */,
 				68B82F6E16D1113A00533701 /* InfoSubViewController.m */,
 				68B82F6F16D1113A00533701 /* InfoSubViewController.xib */,
+				68D6CD9016DD34EF00972D41 /* HSContactView.h */,
+				68D6CD9116DD34EF00972D41 /* HSContactView.m */,
+				68D6CD9316DD351800972D41 /* HSContactView.xib */,
 				68B82F5A16D1113A00533701 /* contraindications */,
 				68B82F7016D1113A00533701 /* recommendations */,
 			);
@@ -2975,6 +2983,7 @@
 				68B8302516D1113B00533701 /* StationsCell.xib in Resources */,
 				68B8302916D1113B00533701 /* StationsViewController.xib in Resources */,
 				68B8302E16D1803200533701 /* HSSocailShareViewController.xib in Resources */,
+				68D6CD9416DD351800972D41 /* HSContactView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3094,6 +3103,7 @@
 				68B8304C16D186CF00533701 /* FTCoreTextStyle.m in Sources */,
 				68B8304D16D186CF00533701 /* FTCoreTextView.m in Sources */,
 				68B8304E16D186CF00533701 /* TTTAttributedLabel.m in Sources */,
+				68D6CD9216DD34EF00972D41 /* HSContactView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
