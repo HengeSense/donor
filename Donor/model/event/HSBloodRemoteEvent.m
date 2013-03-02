@@ -7,11 +7,13 @@
 //
 
 #import "HSBloodRemoteEvent.h"
+#import "HSBloodRemoteEvent+LocalNotification_Protected.h"
 
 #import <Parse/Parse.h>
 
 #import "HSBloodTestsEvent.h"
 #import "HSBloodDonationEvent.h"
+#import "NSDate+HSCalendar.h"
 
 #pragma mark - Private types
 typedef enum {
@@ -183,6 +185,12 @@ static NSString * const kRemoteEventField_Type = @"type";
         event.comments = self.comments;
     }
     return event;
+}
+
+- (void)scheduleRemindLocalNotificationAtHour:(NSUInteger)hour minute:(NSUInteger)minute {
+    NSDate *remindDate = [[self.scheduledDate yesterday] dateMovedToHour:hour minute:minute];
+    [super scheduleLocalNotificationAtDate:remindDate withAlertAction:kNotificationEventAlertActionDefault
+                                 alertBody:[self alertBodyForRemindLocalNotification]];
 }
 
 @end

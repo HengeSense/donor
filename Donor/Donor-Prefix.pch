@@ -21,3 +21,9 @@
     if (argument == nil) {\
         @throw [NSException exceptionWithName: NSInvalidArgumentException reason: message userInfo: nil];\
     }
+
+#define THROW_IF_ARGUMENT_NIL_2(argument)\
+    if (argument == nil) {\
+        @throw [NSException exceptionWithName: NSInvalidArgumentException reason: @"##argument is not specified"\
+                userInfo: nil];\
+    }

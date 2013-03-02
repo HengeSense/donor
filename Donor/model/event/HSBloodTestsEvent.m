@@ -7,7 +7,13 @@
 //
 
 #import "HSBloodTestsEvent.h"
+#import "HSBloodRemoteEvent+LocalNotification_Protected.h"
 
 @implementation HSBloodTestsEvent
+
+#pragma mark - Protected interface implementation
+- (NSString *)alertBodyForRemindLocalNotification {
+    return @"Завтра у Вас запланирован анализ.";
+}
 
 @end

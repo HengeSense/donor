@@ -52,6 +52,8 @@
 }
 
 - (NSDate *)dateMovedToHour: (NSUInteger)hour minute: (NSUInteger)minute {
+    [self checkDateComponentHour:hour andMinute:minute];
+    
     int calendarUnits = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit |
                         NSMinuteCalendarUnit;
     NSDateComponents *dateComponents = [[NSCalendar currentCalendar] components: calendarUnits fromDate: self];
@@ -60,6 +62,46 @@
     dateComponents.minute = minute;
     
     return [[NSCalendar currentCalendar] dateFromComponents: dateComponents];
+}
+
+- (NSDate *)yesterday {
+    int calendarUnits = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit |
+                        NSMinuteCalendarUnit;
+    NSDateComponents *dateComponents = [[NSCalendar currentCalendar] components: calendarUnits fromDate: self];
+    
+    --dateComponents.day;
+    
+    return [[NSCalendar currentCalendar] dateFromComponents: dateComponents];
+}
+
+- (NSDate *)tomorrow {
+    int calendarUnits = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit |
+                        NSMinuteCalendarUnit;
+    NSDateComponents *dateComponents = [[NSCalendar currentCalendar] components: calendarUnits fromDate: self];
+    
+    ++dateComponents.day;
+    
+    return [[NSCalendar currentCalendar] dateFromComponents: dateComponents];
+}
+
+#pragma mark - Private check utility methods
+- (void)checkdateComponentHour:(NSUInteger)hour {
+    if (hour > 23) {
+        @throw [NSException exceptionWithName:NSInvalidArgumentException
+                                       reason:@"specified hour parameter is greater than 23" userInfo:nil];
+    }
+}
+
+- (void)checkDateComponentMinute:(NSUInteger)minute {
+    if (minute > 59) {
+        @throw [NSException exceptionWithName:NSInvalidArgumentException
+                                       reason:@"specified minute parameter is greater than 59" userInfo:nil];
+    }
+}
+
+- (void)checkDateComponentHour:(NSUInteger)hour andMinute:(NSUInteger)minute {
+    [self checkdateComponentHour:hour];
+    [self checkDateComponentMinute:minute];
 }
 
 @end

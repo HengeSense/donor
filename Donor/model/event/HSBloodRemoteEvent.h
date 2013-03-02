@@ -52,5 +52,10 @@
  */
 - (void)removeWithCompletionBlock: (CompletionBlockType)completion;
 
+/// @name Schedule local notifications
+/**
+ * Schedules local notification to remind user about blood donation.
+ */
+- (void)scheduleRemindLocalNotificationAtHour:(NSUInteger)hour minute:(NSUInteger)minute;
 
 @end

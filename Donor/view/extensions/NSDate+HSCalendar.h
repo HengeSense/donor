@@ -31,6 +31,16 @@
 /**
  * Returns new date object related to the same day but moved to the specified time.
  */
-- (NSDate *) dateMovedToHour: (NSUInteger)hour minute: (NSUInteger)minute;
+- (NSDate *)dateMovedToHour: (NSUInteger)hour minute: (NSUInteger)minute;
+
+/**
+ * Returns new date before current at the same time.
+ */
+- (NSDate *)yesterday;
+
+/**
+ * Returns new date after current at the same time.
+ */
+- (NSDate *)tomorrow;
 
 @end

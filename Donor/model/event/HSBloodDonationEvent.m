@@ -8,8 +8,11 @@
 
 #import "HSBloodDonationEvent.h"
 #import "HSBloodRemoteEvent_Protected.h"
+#import "HSBloodRemoteEvent+LocalNotification_Protected.h"
+
 #import "HSModelCommon.h"
 #import "HSFinishRestEvent.h"
+#import "NSDate+HSCalendar.h"
 
 #import <Parse/Parse.h>
 
@@ -110,6 +113,18 @@ static const size_t REST_PERIODS_TABLE[4][4] =
     
     return [NSArray arrayWithObjects: finishRestEventForBlood, finishRestEventForPlasma, finishRestEventForPlatelets,
             finishRestEventForGranulocytes, nil];
+}
+
+- (void)scheduleConfirmationLocalNotification {
+    [super scheduleLocalNotificationAtDate:[self.scheduledDate dateMovedToHour:17 minute:00]
+                                 withAlertAction:kNotificationEventAlertActionDefault
+                                   alertBody:@"Вы сдавали кровь?"];
+}
+
+#pragma mark - Protected interface implementation
+- (NSString *)alertBodyForRemindLocalNotification {
+    return [NSString stringWithFormat:@"Завтра у Вас запланирована кроводача: %@.",
+            [bloodDonationTypeToString(self.bloodDonationType) lowercaseString]];
 }
 
 #pragma mark - NSCopying protocol implementation

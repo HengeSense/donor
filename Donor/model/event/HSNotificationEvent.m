@@ -8,6 +8,28 @@
 
 #import "HSNotificationEvent.h"
 
+NSString *kNotificationEventAlertActionDefault = @"Open";
+NSString *kNotificationEventUserInfoEventClassNameKey = @"eventClassName";
+
 @implementation HSNotificationEvent
+
+- (void)scheduleLocalNotificationAtDate:(NSDate *)date withAlertAction:(NSString *)alertAction
+        alertBody:(NSString *)alertBody {
+    THROW_IF_ARGUMENT_NIL_2(date);
+    THROW_IF_ARGUMENT_NIL_2(alertAction);
+    THROW_IF_ARGUMENT_NIL_2(alertBody);
+
+    UILocalNotification *notification = [[UILocalNotification alloc] init];
+    notification.fireDate = date;
+    notification.alertBody = alertBody;
+    notification.alertAction = alertAction;
+    notification.userInfo = @{kNotificationEventUserInfoEventClassNameKey : NSStringFromClass(self.class)};
+    
+    [[UIApplication sharedApplication] scheduleLocalNotification:notification];
+}
+
++ (void)cancelAllLocalNotifications {
+    [[UIApplication sharedApplication] cancelAllLocalNotifications];
+}
 
 @end
