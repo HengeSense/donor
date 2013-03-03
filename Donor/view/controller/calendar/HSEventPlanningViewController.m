@@ -29,6 +29,9 @@ typedef enum {
 static const NSUInteger kEventDefaultTimeHour = 8;
 static const NSUInteger kEventDefaultTimeMinute = 0;
 
+static const NSUInteger kEventLocalNotificationReminderTimeDefault_Hour = 12;
+static const NSUInteger kEventLocalNotificationReminderTimeDefault_Minute = 0;
+
 #pragma mark - Animation constants
 static const CGFloat kViewAppearanceDuration = 0.5f;
 static const CGFloat kViewMovementDuration = 0.5f;
@@ -299,23 +302,34 @@ static const NSUInteger kCommentsTextViewSymbolsMax = 260;
         [self configureViewForEditingBloodDonationEvent];
         if (self.bloodTestsEvent == nil) {
             self.bloodTestsEvent = [[HSBloodTestsEvent alloc] init];
-            self.bloodTestsEvent.scheduledDate = [self.initialDate dateMovedToHour: kEventDefaultTimeHour
+            self.bloodTestsEvent.scheduleDate = [self.initialDate dateMovedToHour: kEventDefaultTimeHour
                                                                             minute: kEventDefaultTimeMinute];
+            self.bloodTestsEvent.localNotificationFireDate =
+                    [[self.initialDate dayBefore] dateMovedToHour:kEventLocalNotificationReminderTimeDefault_Hour
+                                                           minute:kEventLocalNotificationReminderTimeDefault_Minute];
         }
     } else if (self.bloodTestsEvent != nil) {
         [self configureViewForEditingBloodTestEvent];
         self.bloodDonationEvent = [[HSBloodDonationEvent alloc] init];
-        self.bloodDonationEvent.scheduledDate = [self.initialDate dateMovedToHour: kEventDefaultTimeHour
+        self.bloodDonationEvent.scheduleDate = [self.initialDate dateMovedToHour: kEventDefaultTimeHour
                                                                            minute: kEventDefaultTimeMinute];
         self.bloodDonationEvent.bloodDonationType = HSBloodDonationType_Blood;
     } else {
         self.bloodDonationEvent = [[HSBloodDonationEvent alloc] init];
-        self.bloodDonationEvent.scheduledDate = [self.initialDate dateMovedToHour: kEventDefaultTimeHour
+        self.bloodDonationEvent.scheduleDate = [self.initialDate dateMovedToHour: kEventDefaultTimeHour
                                                                            minute: kEventDefaultTimeMinute];
+        self.bloodDonationEvent.localNotificationFireDate =
+                [[self.initialDate dayBefore] dateMovedToHour:kEventLocalNotificationReminderTimeDefault_Hour
+                                                       minute:kEventLocalNotificationReminderTimeDefault_Minute];
+
         self.bloodDonationEvent.bloodDonationType = HSBloodDonationType_Blood;
         self.bloodTestsEvent = [[HSBloodTestsEvent alloc] init];
-        self.bloodTestsEvent.scheduledDate = [self.initialDate dateMovedToHour: kEventDefaultTimeHour
+        self.bloodTestsEvent.scheduleDate = [self.initialDate dateMovedToHour: kEventDefaultTimeHour
                                                                         minute: kEventDefaultTimeMinute];
+        self.bloodTestsEvent.localNotificationFireDate =
+                [[self.initialDate dayBefore] dateMovedToHour:kEventLocalNotificationReminderTimeDefault_Hour
+                                                       minute:kEventLocalNotificationReminderTimeDefault_Minute];
+
         [self configureViewForEditingBloodDonationEvent];
     }
 }
@@ -341,6 +355,7 @@ static const NSUInteger kCommentsTextViewSymbolsMax = 260;
     [self setContentView:nil];
     [self setBloodDonationTypePicker: nil];
     [self setRemoveRemoteEventButton:nil];
+    [self setBloodDonationEventReminderDateLabel:nil];
     [super viewDidUnload];
 }
 
@@ -408,13 +423,26 @@ static const NSUInteger kCommentsTextViewSymbolsMax = 260;
     NSDate *startDate = [self calculateFirstAvailableDateForPlanning];
     NSDate *endDate = [self calculateLastAvailableDateForPlanning];
             [self.dateTimePicker showWithStartDate: startDate endDate: endDate
-                                       currentDate: self.currentEditedEvent.scheduledDate completion: ^(BOOL isDone)
+                                       currentDate: self.currentEditedEvent.scheduleDate completion: ^(BOOL isDone)
     {
         if (isDone) {
-            self.currentEditedEvent.scheduledDate = self.dateTimePicker.selectedDate;
-            self.bloodDonationEventDateLabel.text = [self.currentEditedEvent formatScheduledDate];
+            self.currentEditedEvent.scheduleDate = self.dateTimePicker.selectedDate;
+            self.bloodDonationEventDateLabel.text = [self.currentEditedEvent formatedScheduleDate];
         }
     }];
+}
+
+- (IBAction)selectBloodDonationReminderDate:(id)sender {
+    NSDate *startDate = [[self.currentEditedEvent.scheduleDate dayBefore] dateMovedToHour:00 minute:00];
+    NSDate *endDate = [startDate dateMovedToHour:23 minute:59];
+    [self.dateTimePicker showWithStartDate: startDate endDate: endDate
+                               currentDate: self.currentEditedEvent.localNotificationFireDate completion: ^(BOOL isDone)
+     {
+         if (isDone) {
+             self.currentEditedEvent.localNotificationFireDate = self.dateTimePicker.selectedDate;
+             self.bloodDonationEventReminderDateLabel.text = [self.currentEditedEvent formattedFireDate];
+         }
+     }];
 }
 
 #pragma mark - UI delegation protocols implementation
@@ -439,8 +467,8 @@ static const NSUInteger kCommentsTextViewSymbolsMax = 260;
                 reason: @"bloodDonationEvent property is not defined" userInfo: nil];
     }
     self.bloodDonationEventTypeLabel.text = kBloodDonationEventTypeLabel_Donation;
-    self.bloodDonationEventDateLabel.text =
-            [self.bloodDonationEvent.dateFormatter stringFromDate: self.bloodDonationEvent.scheduledDate];
+    self.bloodDonationEventDateLabel.text = [self.bloodDonationEvent formatedScheduleDate];
+    self.bloodDonationEventReminderDateLabel.text = [self.bloodDonationEvent formattedFireDate];
     self.bloodDonationTypeLabel.text = bloodDonationTypeToString(self.bloodDonationEvent.bloodDonationType);
     if (self.bloodDonationTypeView.isHidden || self.bloodDonationTypeView.alpha <= 0.0f) {
         [UIView animateWithDuration: kViewMovementDuration animations:^{
@@ -461,8 +489,8 @@ static const NSUInteger kCommentsTextViewSymbolsMax = 260;
                                 reason: @"bloodTestEvent property is not defined" userInfo: nil];
     }
     self.bloodDonationEventTypeLabel.text = kBloodDonationEventTypeLabel_Test;
-    self.bloodDonationEventDateLabel.text =
-            [self.bloodTestsEvent.dateFormatter stringFromDate: self.bloodTestsEvent.scheduledDate];
+    self.bloodDonationEventDateLabel.text = [self.bloodTestsEvent formatedScheduleDate];
+    self.bloodDonationEventReminderDateLabel.text = [self.bloodTestsEvent formattedFireDate];
     if (!self.bloodDonationTypeView.isHidden || self.bloodDonationTypeView.alpha >= 1.0) {
         [UIView animateWithDuration: kViewMovementDuration animations:^{
             CGRect currentBloodDonationTypeFrame = self.bloodDonationTypeView.frame;
@@ -530,7 +558,7 @@ static const NSUInteger kCommentsTextViewSymbolsMax = 260;
     [self.commentsTextView resignFirstResponder];
     
     NSDate *nowDate = [NSDate date];
-    if (self.currentEditedEvent.scheduledDate.timeIntervalSince1970 < nowDate.timeIntervalSince1970) {
+    if (self.currentEditedEvent.scheduleDate.timeIntervalSince1970 < nowDate.timeIntervalSince1970) {
         self.currentEditedEvent.isDone = YES;
     } else {
         self.currentEditedEvent.isDone = NO;

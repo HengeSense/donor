@@ -26,9 +26,15 @@ extern NSString * const kLocalNotificationUserInfoKey_ClassName;
  *     [self scheduleConfirmationLocalNotificationAtDate:] in case if fireDate parameter is nil.
  * This property can also be nil. In this case correspond methods use default values for fireDate.
  */
-@property (nonatomic, strong) NSDate *fireDate;
+@property (nonatomic, strong) NSDate *localNotificationFireDate;
 
 /// @name Public methods.
+
+/**
+ * Returns fireDate property value (date) formated with dateFormatter.
+ */
+- (NSString *)formattedFireDate;
+
 /**
  * Schedules a local notification for delivery at specified date and time.
  *

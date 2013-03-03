@@ -103,7 +103,7 @@ static NSString * const kEventDate = @"date";
     NSPredicate *eventsBetweenDates =
         [NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
             HSEvent *testedEvent = (HSEvent *)evaluatedObject;
-            return [dayDate isTheSameDay: testedEvent.scheduledDate];
+            return [dayDate isTheSameDay: testedEvent.scheduleDate];
         }];
     NSArray *resultEvents = [allEvents filteredArrayUsingPredicate: eventsBetweenDates];
     return resultEvents;
@@ -119,16 +119,16 @@ static NSString * const kEventDate = @"date";
             sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
         HSBloodDonationEvent *first = obj1;
         HSBloodDonationEvent *second = obj2;
-        if (first.scheduledDate.timeIntervalSince1970 < second.scheduledDate.timeIntervalSince1970) {
+        if (first.scheduleDate.timeIntervalSince1970 < second.scheduleDate.timeIntervalSince1970) {
             return NSOrderedDescending;
-        } else if (first.scheduledDate.timeIntervalSince1970 > second.scheduledDate.timeIntervalSince1970) {
+        } else if (first.scheduleDate.timeIntervalSince1970 > second.scheduleDate.timeIntervalSince1970) {
             return NSOrderedAscending;
         } else {
             return NSOrderedSame;
         }
     }];
     
-    return [[descendingUndoneBloodDonationEvents lastObject] scheduledDate];
+    return [[descendingUndoneBloodDonationEvents lastObject] scheduleDate];
 }
 
 #pragma mark - Remote events manipulation methods
@@ -279,9 +279,9 @@ static NSString * const kEventDate = @"date";
             sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
         HSBloodDonationEvent *first = obj1;
         HSBloodDonationEvent *second = obj2;
-        if (first.scheduledDate.timeIntervalSince1970 < second.scheduledDate.timeIntervalSince1970) {
+        if (first.scheduleDate.timeIntervalSince1970 < second.scheduleDate.timeIntervalSince1970) {
             return NSOrderedAscending;
-        } else if (first.scheduledDate.timeIntervalSince1970 > second.scheduledDate.timeIntervalSince1970) {
+        } else if (first.scheduleDate.timeIntervalSince1970 > second.scheduleDate.timeIntervalSince1970) {
             return NSOrderedDescending;
         } else {
             return NSOrderedSame;
@@ -294,8 +294,8 @@ static NSString * const kEventDate = @"date";
 
         for (HSFinishRestEvent *finishRestEvent in finishRestEvents) {
             [self removeUndoneBloodDonationEventsOfType:finishRestEvent.bloodDonationType
-                                               fromDate:lastDoneBloodDonationEvent.scheduledDate
-                                                 toDate:finishRestEvent.scheduledDate];
+                                               fromDate:lastDoneBloodDonationEvent.scheduleDate
+                                                 toDate:finishRestEvent.scheduleDate];
         }
         
         for (HSFinishRestEvent *finishRestEvent in finishRestEvents) {
@@ -316,7 +316,7 @@ static NSString * const kEventDate = @"date";
 #pragma mark - Utility methods 
 - (BOOL)canAddBloodRemoteEvent: (HSBloodRemoteEvent *)bloodRemoteEvent error: (NSError **)error {
     THROW_IF_ARGUMENT_NIL(bloodRemoteEvent, @"bloodRemoteEvent is not specified");    
-    NSArray *eventsInTheSameDay = [self eventsForDay: bloodRemoteEvent.scheduledDate];
+    NSArray *eventsInTheSameDay = [self eventsForDay: bloodRemoteEvent.scheduleDate];
     NSArray *remoteEventsInTheSameDay = [eventsInTheSameDay filteredArrayUsingPredicate:
             [NSPredicate predicateWithFormat: @"SELF isKindOfClass: %@", [HSBloodRemoteEvent class]]];
     BOOL isFreeDay = remoteEventsInTheSameDay.count == 0;
@@ -375,7 +375,7 @@ static NSString * const kEventDate = @"date";
 - (BOOL)isAfterLastDoneBloodDonationEvent: (HSBloodDonationEvent *)checkedEvent {
     THROW_IF_ARGUMENT_NIL(checkedEvent, @"bloodDonationEvent is not specified");
     for (HSBloodDonationEvent *bloodDonationEvent in [self bloodDonationEvents]) {
-        if (bloodDonationEvent.isDone && [checkedEvent.scheduledDate isBeforeDay:bloodDonationEvent.scheduledDate]) {
+        if (bloodDonationEvent.isDone && [checkedEvent.scheduleDate isBeforeDay:bloodDonationEvent.scheduleDate]) {
             return NO;
         }
     }
@@ -386,7 +386,7 @@ static NSString * const kEventDate = @"date";
     THROW_IF_ARGUMENT_NIL(bloodDonationEvent, @"bloodDonationEvent is not specified");
     for (HSFinishRestEvent *finishRestEvent in self.finishRestEvents) {
         if ((bloodDonationEvent.bloodDonationType == finishRestEvent.bloodDonationType) &&
-            [bloodDonationEvent.scheduledDate isBeforeDay: finishRestEvent.scheduledDate]) {
+            [bloodDonationEvent.scheduleDate isBeforeDay: finishRestEvent.scheduleDate]) {
             return NO;
         }
     }
@@ -397,7 +397,7 @@ static NSString * const kEventDate = @"date";
                                        toDate:(NSDate *)toDate {
     for (HSBloodDonationEvent *undoneEvent in [self undoneBloodDonationEvents]) {
         if (undoneEvent.bloodDonationType == bloodDonationType &&
-                [undoneEvent.scheduledDate isAfterDay:fromDate] && [undoneEvent.scheduledDate isBeforeDay:toDate]) {
+                [undoneEvent.scheduleDate isAfterDay:fromDate] && [undoneEvent.scheduleDate isBeforeDay:toDate]) {
             if ([self.bloodRemoteEvents containsObject:undoneEvent]) {
                 [self removeBloodRemoteEvent: undoneEvent completion: ^(BOOL success, NSError *error) {
                     if (success) {

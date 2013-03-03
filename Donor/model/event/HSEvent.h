@@ -18,7 +18,7 @@
 /**
  * Date when event should be scheduled.
  */
-@property (nonatomic, strong) NSDate *scheduledDate;
+@property (nonatomic, strong) NSDate *scheduleDate;
 
 /**
  * Common event date formatter. This property has default value, but it can be replaced.
@@ -37,7 +37,7 @@
 /**
  * Returns scheduledDate property value (date) formated with dateFormatter.
  */
-- (NSString *)formatScheduledDate;
+- (NSString *)formatedScheduleDate;
 
 
 @end

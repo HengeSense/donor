@@ -107,7 +107,7 @@
 
 #pragma mark - UI action handlers
 - (IBAction)eventDoneButtonClicked:(id)sender {
-    if ([self.currentBloodRemoteEvent.scheduledDate isAfterDay: [NSDate date]]) {
+    if ([self.currentBloodRemoteEvent.scheduleDate isAfterDay: [NSDate date]]) {
         @throw [NSException exceptionWithName: NSInternalInconsistencyException
                                        reason: @"eventButton was triggered fot event in future,"
                                                 " actualy in this case the button should be disabled" userInfo: nil];
@@ -173,13 +173,13 @@
         CGSize bloodDonationSize = self.bloodDonationView.bounds.size;
         self.bloodDonationView.frame = CGRectMake(0.0f, 0.0f, bloodDonationSize.width, bloodDonationSize.height);
         self.bloodDonationTypeLabel.text = bloodDonationTypeToString(self.bloodDonationEvent.bloodDonationType);
-        self.bloodDonationDateLabel.text = [self.bloodDonationEvent formatScheduledDate];
+        self.bloodDonationDateLabel.text = [self.bloodDonationEvent formatedScheduleDate];
         self.bloodDonationLabAddressLabel.text = self.bloodDonationEvent.labAddress;
         self.bloodDonationCommentTextView.text = self.bloodDonationEvent.comments;
         [self.rootScrollView addSubview: self.bloodDonationView];
         rootScrollViewContentSize.height += bloodDonationSize.height;
         
-        if (self.bloodDonationEvent.scheduledDate.timeIntervalSince1970 > [[NSDate date] timeIntervalSince1970]) {
+        if (self.bloodDonationEvent.scheduleDate.timeIntervalSince1970 > [[NSDate date] timeIntervalSince1970]) {
             self.doneButton.enabled = NO;
         } else {
             self.doneButton.enabled = !self.currentBloodRemoteEvent.isDone;
@@ -190,7 +190,7 @@
         // Display view for blood tests event.
         CGSize bloodTestsSize = self.bloodTestsView.bounds.size;
         self.bloodTestsView.frame = CGRectMake(0.0f, 0.0f, bloodTestsSize.width, bloodTestsSize.height);
-        self.bloodTestsDateLabel.text = [self.bloodTestsEvent formatScheduledDate];
+        self.bloodTestsDateLabel.text = [self.bloodTestsEvent formatedScheduleDate];
         self.bloodTestsCommentsTextView.text = self.bloodTestsEvent.comments;
         self.bloodTestsLabAddressLabel.text = self.bloodTestsEvent.labAddress;
         [self.rootScrollView addSubview: self.bloodTestsView];
@@ -205,11 +205,11 @@
     if (self.bloodDonationEvent != nil) {
         eventPlanningViewController = [[HSEventPlanningViewController alloc]
                 initWithNibName: @"HSEventPlanningViewController" bundle: nil calendar: self.calendar
-                date: self.bloodDonationEvent.scheduledDate bloodDonationEvent: self.bloodDonationEvent];
+                date: self.bloodDonationEvent.scheduleDate bloodDonationEvent: self.bloodDonationEvent];
     } else if (self.bloodTestsEvent != nil) {
         eventPlanningViewController = [[HSEventPlanningViewController alloc]
                 initWithNibName: @"HSEventPlanningViewController" bundle: nil calendar: self.calendar
-                date: self.bloodTestsEvent.scheduledDate bloodTestsEvent: self.bloodTestsEvent];
+                date: self.bloodTestsEvent.scheduleDate bloodTestsEvent: self.bloodTestsEvent];
     } else {
         @throw [NSException exceptionWithName: NSInternalInconsistencyException
                                        reason: @"HSEventViewController was configured without remote event"

@@ -22,11 +22,11 @@
 - (void)scheduleReminderLocalNotificationAtDate:(NSDate *)fireDate {
 
     // Set default value
-    NSDate *correctedFireDate = [[self.scheduledDate dayBefore] dateMovedToHour:12 minute:00];
+    NSDate *correctedFireDate = [[self.scheduleDate dayBefore] dateMovedToHour:12 minute:00];
     if (fireDate != nil) {
         correctedFireDate = fireDate;
-    } else if (self.fireDate != nil) {
-        correctedFireDate = self.fireDate;
+    } else if (self.localNotificationFireDate != nil) {
+        correctedFireDate = self.localNotificationFireDate;
     }
             
     NSString *bloodDonationTypeString = [bloodDonationTypeToString(self.bloodDonationType) lowercaseString];

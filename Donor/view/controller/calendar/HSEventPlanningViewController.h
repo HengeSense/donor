@@ -85,6 +85,11 @@
 @property (weak, nonatomic) IBOutlet UILabel *bloodDonationEventDateLabel;
 
 /**
+ * Contains text representation of blood donation event reminder date.
+ */
+@property (weak, nonatomic) IBOutlet UILabel *bloodDonationEventReminderDateLabel;
+
+/**
  * Contains text representation of blood donation center address.
  */
 @property (weak, nonatomic) IBOutlet UILabel *bloodDonationCenterAddressLabel;
@@ -116,5 +121,9 @@
  */
 - (IBAction)selectBloodDonationEventDate:(id)sender;
 
+/**
+ * Shows UI component for selecting blood donation event reminder date.
+ */
+- (IBAction)selectBloodDonationReminderDate:(id)sender;
 
 @end

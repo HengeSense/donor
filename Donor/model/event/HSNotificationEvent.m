@@ -13,6 +13,10 @@ NSString * const kLocalNotificationUserInfoKey_ClassName = @"eventClassName";
 
 @implementation HSNotificationEvent
 
+- (NSString *)formattedFireDate {
+    return [self.dateFormatter stringFromDate: self.localNotificationFireDate];
+}
+
 - (void)scheduleLocalNotificationAtDate:(NSDate *)date withAlertAction:(NSString *)alertAction
         alertBody:(NSString *)alertBody userInfo:(NSDictionary *)userInfo {
     THROW_IF_ARGUMENT_NIL_2(date);

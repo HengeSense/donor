@@ -72,11 +72,11 @@ static NSString * const kLocalNotificationUserInfoKey_ID = @"remoteObectId";
     [self.remoteEvent setObject: [NSNumber numberWithBool: isDone] forKey: kRemoteEventField_Finished];
 }
 
-- (NSDate *)scheduledDate {
+- (NSDate *)scheduleDate {
     return [self.remoteEvent objectForKey: kRemoteEventField_Date];
 }
 
-- (void) setScheduledDate: (NSDate *)scheduledDate {
+- (void) setScheduleDate: (NSDate *)scheduledDate {
     [self.remoteEvent setObject: scheduledDate forKey: kRemoteEventField_Date];
 }
 
@@ -127,7 +127,7 @@ static NSString * const kLocalNotificationUserInfoKey_ID = @"remoteObectId";
     }
     
     if (self = [self initWithRemoteEvent: newEvent]) {
-        self.scheduledDate = [NSDate date];
+        self.scheduleDate = [NSDate date];
         self.isDone = NO;
     }
     return self;
@@ -172,8 +172,8 @@ static NSString * const kLocalNotificationUserInfoKey_ID = @"remoteObectId";
 - (id)copyWithZone:(NSZone *)__unused zone {
     HSBloodRemoteEvent *event = [[[self class] alloc] init];
     event.isDone = self.isDone;
-    if (self.scheduledDate != nil) {
-        event.scheduledDate = self.scheduledDate;
+    if (self.scheduleDate != nil) {
+        event.scheduleDate = self.scheduleDate;
     }
     if (self.labAddress != nil) {
         event.labAddress = self.labAddress;
@@ -193,11 +193,11 @@ static NSString * const kLocalNotificationUserInfoKey_ID = @"remoteObectId";
 - (void)scheduleConfirmationLocalNotificationAtDate:(NSDate *)fireDate {
     
     // Set default value
-    NSDate *correctedFireDate = [self.scheduledDate dateMovedToHour:17 minute:00];
+    NSDate *correctedFireDate = [self.scheduleDate dateMovedToHour:17 minute:00];
     if (fireDate != nil) {
         correctedFireDate = fireDate;
-    } else if (self.fireDate != nil) {
-        correctedFireDate = self.fireDate;
+    } else if (self.localNotificationFireDate != nil) {
+        correctedFireDate = self.localNotificationFireDate;
     }
 
     NSDictionary *userInfo = @{kLocalNotificationUserInfoKey_ClassName : NSStringFromClass(self.class),
@@ -210,11 +210,11 @@ static NSString * const kLocalNotificationUserInfoKey_ID = @"remoteObectId";
 - (void)scheduleReminderLocalNotificationAtDate:(NSDate *)fireDate {
     
     // Set default value
-    NSDate *correctedFireDate = [[self.scheduledDate dayBefore] dateMovedToHour:12 minute:00];
+    NSDate *correctedFireDate = [[self.scheduleDate dayBefore] dateMovedToHour:12 minute:00];
     if (fireDate != nil) {
         correctedFireDate = fireDate;
-    } else if (self.fireDate != nil) {
-        correctedFireDate = self.fireDate;
+    } else if (self.localNotificationFireDate != nil) {
+        correctedFireDate = self.localNotificationFireDate;
     }
 
     NSDictionary *userInfo = @{kLocalNotificationUserInfoKey_ClassName : NSStringFromClass(self.class),
