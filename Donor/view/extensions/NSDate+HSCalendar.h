@@ -36,11 +36,11 @@
 /**
  * Returns new date before current at the same time.
  */
-- (NSDate *)yesterday;
+- (NSDate *)dayBefore;
 
 /**
  * Returns new date after current at the same time.
  */
-- (NSDate *)tomorrow;
+- (NSDate *)dayAfter;
 
 @end

@@ -115,16 +115,14 @@ static const size_t REST_PERIODS_TABLE[4][4] =
             finishRestEventForGranulocytes, nil];
 }
 
-- (void)scheduleConfirmationLocalNotification {
-    [super scheduleLocalNotificationAtDate:[self.scheduledDate dateMovedToHour:17 minute:00]
-                                 withAlertAction:kNotificationEventAlertActionDefault
-                                   alertBody:@"Вы сдавали кровь?"];
-}
-
 #pragma mark - Protected interface implementation
 - (NSString *)alertBodyForRemindLocalNotification {
     return [NSString stringWithFormat:@"Завтра у Вас запланирована кроводача: %@.",
             [bloodDonationTypeToString(self.bloodDonationType) lowercaseString]];
+}
+
+- (NSString *)alertBodyForConfirmationLocalNotification {
+    return @"Вы сдавали сегодня кровь?";
 }
 
 #pragma mark - NSCopying protocol implementation

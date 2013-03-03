@@ -62,11 +62,6 @@ static NSString * const kEventDate = @"date";
 
 /// @name Utility methods
 /**
- * Removes all finish rest events from the specified date, including specified date.
- */
-- (void)removeAllFinishRestEventsAfterDate: (NSDate *)date;
-
-/**
  * Check whether calendar can add specified blood remote event to the calendar or not.
  */
 - (BOOL)canAddBloodRemoteEvent: (HSBloodRemoteEvent *)bloodRemoteEvent error: (NSError **)error;
@@ -147,6 +142,8 @@ static NSString * const kEventDate = @"date";
         [bloodRemoteEvent saveWithCompletionBlock:^(BOOL success, NSError *error) {
             if (success) {
                 if (![self.bloodRemoteEvents containsObject: bloodRemoteEvent]) {
+                    [bloodRemoteEvent scheduleReminderLocalNotificationAtDate:nil];
+                    [bloodRemoteEvent scheduleConfirmationLocalNotificationAtDate:nil];
                     [self.bloodRemoteEvents addObject: bloodRemoteEvent];
                 }
             }
@@ -174,6 +171,7 @@ static NSString * const kEventDate = @"date";
     }
     [bloodRemoteEvent removeWithCompletionBlock:^(BOOL success, NSError *error) {
         if (success) {
+            [bloodRemoteEvent cancelScheduledLocalNotification];
             [self.bloodRemoteEvents removeObject: bloodRemoteEvent];
             if (completion != nil) {
                 completion(success, error);
@@ -204,8 +202,11 @@ static NSString * const kEventDate = @"date";
     if ([self canAddBloodRemoteEvent:newEvent error:&replaceError]) {
         [oldEvent removeWithCompletionBlock:^(BOOL success, NSError *error) {
             if (success) {
+                [oldEvent cancelScheduledLocalNotification];
                 [newEvent saveWithCompletionBlock:^(BOOL success, NSError *error) {
                     if (success) {
+                        [newEvent scheduleReminderLocalNotificationAtDate:nil];
+                        [newEvent scheduleConfirmationLocalNotificationAtDate:nil];
                         [self.bloodRemoteEvents addObject: newEvent];
                         [self updateFinishRestEvents];
                     } else {
@@ -263,7 +264,7 @@ static NSString * const kEventDate = @"date";
             for (PFObject *remoteEvent in remoteEvents) {
                 [self.bloodRemoteEvents addObject: [HSBloodRemoteEvent buildBloodEventWithRemoteEvent: remoteEvent]];
             }
-            [self addFinishRestEvents];
+            [self updateFinishRestEvents];
             BOOL success = error == nil ? YES : NO;
             completion(success, error);
         }];
@@ -273,9 +274,7 @@ static NSString * const kEventDate = @"date";
     }
 }
 
--(void)addFinishRestEvents {
-    [self.finishRestEvents removeAllObjects];
-    
+-(void)addFinishRestEvents {    
     NSArray *orderedDoneBloodDonationEvents = [[self doneBloodDonationEvents]
             sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
         HSBloodDonationEvent *first = obj1;
@@ -299,38 +298,22 @@ static NSString * const kEventDate = @"date";
                                                  toDate:finishRestEvent.scheduledDate];
         }
         
+        for (HSFinishRestEvent *finishRestEvent in finishRestEvents) {
+            [finishRestEvent scheduleReminderLocalNotificationAtDate:nil];
+        }
         [self.finishRestEvents addObjectsFromArray: finishRestEvents];
     }
 }
 
 - (void)updateFinishRestEvents {
+    for (HSNotificationEvent *finishRestEvent in self.finishRestEvents) {
+        [finishRestEvent cancelScheduledLocalNotification];
+    }
     [self.finishRestEvents removeAllObjects];
     [self addFinishRestEvents];
 }
 
-#pragma mark - Utility methods
-- (void)removeAllFinishRestEventsAfterDate: (NSDate *)date {
-    THROW_IF_ARGUMENT_NIL(date, @"date is not specified");
-    NSCalendar *systemCalendar = [NSCalendar currentCalendar];
-    int dateComponentsUnits = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit |
-            NSMinuteCalendarUnit;
-    NSDateComponents *yesterdayComponents = [systemCalendar components: dateComponentsUnits fromDate: date];
-    --yesterdayComponents.day;
-    yesterdayComponents.hour = 23;
-    yesterdayComponents.minute = 59;
-    
-    NSDate *yesterday = [systemCalendar dateFromComponents: yesterdayComponents];
-    
-    NSMutableArray *eventsToDelete = [[NSMutableArray alloc] init];
-    for (HSFinishRestEvent *event in self.finishRestEvents) {
-        if (event.scheduledDate.timeIntervalSince1970 > yesterday.timeIntervalSince1970) {
-            [eventsToDelete addObject: event];
-        }
-    }
-    
-    [self.finishRestEvents removeObjectsInArray: eventsToDelete];
-}
- 
+#pragma mark - Utility methods 
 - (BOOL)canAddBloodRemoteEvent: (HSBloodRemoteEvent *)bloodRemoteEvent error: (NSError **)error {
     THROW_IF_ARGUMENT_NIL(bloodRemoteEvent, @"bloodRemoteEvent is not specified");    
     NSArray *eventsInTheSameDay = [self eventsForDay: bloodRemoteEvent.scheduledDate];

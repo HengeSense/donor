@@ -26,10 +26,4 @@
  */
 - (NSArray *)getFinishRestEvents;
 
-/// @name Schedule local notifications
-/**
- * Schedules local notification to ask user about done (undone) blood donation.
- */
-- (void)scheduleConfirmationLocalNotification;
-
 @end

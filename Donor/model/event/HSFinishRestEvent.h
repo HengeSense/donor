@@ -17,8 +17,4 @@
  */
 @property (nonatomic, assign) HSBloodDonationType bloodDonationType;
 
-/**
- * Schedule local notification with specific for this event remind parameters (fire date, title, message).
- */
-- (void)scheduleRemindLocalNotification;
 @end

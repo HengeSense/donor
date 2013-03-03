@@ -16,4 +16,8 @@
     return @"Завтра у Вас запланирован анализ.";
 }
 
+- (NSString *)alertBodyForConfirmationLocalNotification {
+    return @"Вы сегодня здавали анализ?";
+}
+
 @end

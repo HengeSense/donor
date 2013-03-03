@@ -11,8 +11,13 @@
 @interface HSBloodRemoteEvent (LocalNotification_Protected)
 
 /**
- * Subclass should implement this method to provide event specific alett body for remind local notification.
+ * Subclass should implement this method to provide event specific alert body for reminder local notification.
  */
-- (NSString *)alertBodyForRemindLocalNotification;
+- (NSString *)alertBodyForReminderLocalNotification;
+
+/**
+ * Subclass should implement this method to provide event specific alert body for confirmation local notification.
+ */
+- (NSString *)alertBodyForConfirmationLocalNotification;
 
 @end

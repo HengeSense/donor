@@ -10,10 +10,12 @@
 
 @implementation HSBloodRemoteEvent (LocalNotification_Protected)
 
-- (NSString *)alertBodyForRemindLocalNotification {
-    @throw [NSException exceptionWithName:NSInternalInconsistencyException
-                reason:[NSString stringWithFormat:@"%@ should be implemented in subclusses", NSStringFromSelector(_cmd)]
-                userInfo:nil];
+- (NSString *)alertBodyForReminderLocalNotification {
+    THROW_UNIMPLEMENTED_EXCEPTION;
+}
+
+- (NSString *)alertBodyForConfirmationLocalNotification {
+    THROW_UNIMPLEMENTED_EXCEPTION;
 }
 
 @end

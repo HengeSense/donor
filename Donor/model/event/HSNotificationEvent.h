@@ -11,27 +11,59 @@
 /// @name Constatns section
 
 extern NSString *kNotificationEventAlertActionDefault;
-extern NSString *kNotificationEventUserInfoEventClassNameKey;
+extern NSString * const kLocalNotificationUserInfoKey_ClassName;
 
 /**
  * This class provides information about events, which user should be notified.
  */
 @interface HSNotificationEvent : HSEvent
 
-/// @name Public info properties.
+/// @name Public configuration properties.
+
+/**
+ * Defines a date when user will be notified.
+ * This property is used in [self scheduleReminderLocalNotificationAtDate:] method and
+ *     [self scheduleConfirmationLocalNotificationAtDate:] in case if fireDate parameter is nil.
+ * This property can also be nil. In this case correspond methods use default values for fireDate.
+ */
+@property (nonatomic, strong) NSDate *fireDate;
+
+/// @name Public methods.
 /**
  * Schedules a local notification for delivery at specified date and time.
  *
  * @param date - the date and time when user should be notified.
- * @param title - notification title that would be displayed for user.
- * @param message - notification message that would be displayed for user.
+ * @param title - notification title that would be displayed for user or nil.
+ * @param message - notification message that would be displayed for user or nil.
+ * @param userInfo - custom user-specific data passed to the local notification's payload.
  */
-- (void)scheduleLocalNotificationAtDate:(NSDate *)date withAlertAction:(NSString *)title alertBody:(NSString *)message;
+- (void)scheduleLocalNotificationAtDate:(NSDate *)date withAlertAction:(NSString *)alertAction
+        alertBody:(NSString *)alertBody userInfo:(NSDictionary *)userInfo;
 
 /**
  * Cancels the delivery of all scheduled local notifications.
  * Delegates functionality ot [UIApplication cancelAllLocalNotifications].
  */
 + (void)cancelAllLocalNotifications;
+
+/// @name Abstract methods.
+/**
+ * Schedules reminder local notification for delivery at specified date and time.
+ * Should be overriden in subclasses.
+ */
+- (void)scheduleReminderLocalNotificationAtDate:(NSDate *)fireDate;
+
+/**
+ * Schedules confirmation local notification for delivery at specified date and time.
+ * Should be overriden in subclasses.
+ */
+- (void)scheduleConfirmationLocalNotificationAtDate:(NSDate *)fireDate;
+
+/**
+ * Cancels scheduled local notification.
+ * Should be overriden in subclasses.
+ */
+- (void)cancelScheduledLocalNotification;
+
 
 @end

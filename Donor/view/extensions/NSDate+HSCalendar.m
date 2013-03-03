@@ -64,7 +64,7 @@
     return [[NSCalendar currentCalendar] dateFromComponents: dateComponents];
 }
 
-- (NSDate *)yesterday {
+- (NSDate *)dayBefore {
     int calendarUnits = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit |
                         NSMinuteCalendarUnit;
     NSDateComponents *dateComponents = [[NSCalendar currentCalendar] components: calendarUnits fromDate: self];
@@ -74,7 +74,7 @@
     return [[NSCalendar currentCalendar] dateFromComponents: dateComponents];
 }
 
-- (NSDate *)tomorrow {
+- (NSDate *)dayAfter {
     int calendarUnits = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit |
                         NSMinuteCalendarUnit;
     NSDateComponents *dateComponents = [[NSCalendar currentCalendar] components: calendarUnits fromDate: self];
