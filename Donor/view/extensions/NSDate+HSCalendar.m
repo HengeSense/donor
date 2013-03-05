@@ -84,6 +84,18 @@
     return [[NSCalendar currentCalendar] dateFromComponents: dateComponents];
 }
 
+- (NSUInteger)hour {
+    int calendarUnits = NSHourCalendarUnit;
+    NSDateComponents *dateComponents = [[NSCalendar currentCalendar] components: calendarUnits fromDate: self];
+    return dateComponents.hour;
+}
+
+- (NSUInteger)minute {
+    int calendarUnits = NSMinuteCalendarUnit;
+    NSDateComponents *dateComponents = [[NSCalendar currentCalendar] components: calendarUnits fromDate: self];
+    return dateComponents.minute;
+}
+
 #pragma mark - Private check utility methods
 - (void)checkdateComponentHour:(NSUInteger)hour {
     if (hour > 23) {

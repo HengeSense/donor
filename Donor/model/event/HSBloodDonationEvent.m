@@ -116,7 +116,7 @@ static const size_t REST_PERIODS_TABLE[4][4] =
 }
 
 #pragma mark - Protected interface implementation
-- (NSString *)alertBodyForRemindLocalNotification {
+- (NSString *)alertBodyForReminderLocalNotification {
     return [NSString stringWithFormat:@"Завтра у Вас запланирована кроводача: %@.",
             [bloodDonationTypeToString(self.bloodDonationType) lowercaseString]];
 }
@@ -131,4 +131,5 @@ static const size_t REST_PERIODS_TABLE[4][4] =
     event.bloodDonationType = self.bloodDonationType;
     return event;
 }
+
 @end

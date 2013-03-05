@@ -43,4 +43,15 @@
  */
 - (NSDate *)dayAfter;
 
+/// @name Access to date components
+/**
+ * Returns hour date component.
+ */
+- (NSUInteger)hour;
+
+/**
+ * Returns hour date component.
+ */
+- (NSUInteger)minute;
+
 @end

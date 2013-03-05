@@ -11,7 +11,6 @@
 @implementation HSEvent
 
 #pragma mark - Initializing
-
 - (id)init {
     if (self = [super init]) {
         self.scheduleDate = [NSDate date];
@@ -24,5 +23,15 @@
 #pragma mark - Prettify methods
 - (NSString *)formatedScheduleDate {
     return [self.dateFormatter stringFromDate: self.scheduleDate];
+}
+
+#pragma mark - HSUIDProvider protocol implementation
+- (NSUInteger)uid {
+    NSUInteger prime = 31;
+    NSUInteger result = 1;
+    
+    result = prime * result + [self.scheduleDate hash];
+    
+    return result;
 }
 @end

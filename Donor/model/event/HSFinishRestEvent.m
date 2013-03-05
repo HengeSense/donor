@@ -14,39 +14,43 @@
  */
 @implementation HSFinishRestEvent
 
-#pragma mark - Protected interface implementation
-- (void)scheduleConfirmationLocalNotificationAtDate:(NSDate *)fireDate {
+- (NSDate *)reminderFireDateDefault {
+    return [self.scheduleDate dateMovedToHour:12 minute:00];
+}
+
+- (void)scheduleConfirmationLocalNotification {
     // Do nothing
 }
 
 - (void)scheduleReminderLocalNotificationAtDate:(NSDate *)fireDate {
+    if ([self hasScheduledReminderLocalNotification]) {
+        return;
+    }
 
     // Set default value
-    NSDate *correctedFireDate = [[self.scheduleDate dayBefore] dateMovedToHour:12 minute:00];
+    NSDate *correctedFireDate = [self reminderFireDateDefault];
     if (fireDate != nil) {
         correctedFireDate = fireDate;
-    } else if (self.localNotificationFireDate != nil) {
-        correctedFireDate = self.localNotificationFireDate;
+    } else if (self.reminderFireDate != nil) {
+        correctedFireDate = self.reminderFireDate;
     }
+    self.reminderFireDate = correctedFireDate;
             
     NSString *bloodDonationTypeString = [bloodDonationTypeToString(self.bloodDonationType) lowercaseString];
-    NSDictionary *userInfo = @{};
-
     [super scheduleLocalNotificationAtDate:correctedFireDate withAlertAction:nil
-            alertBody:[NSString stringWithFormat:@"Можно сдать %@.", bloodDonationTypeString] userInfo:userInfo];
+            alertBody:[NSString stringWithFormat:@"Можно сдать %@.", bloodDonationTypeString]
+            userInfo:[self localNotificationBaseUserInfo]];
 }
 
-- (void)cancelScheduledLocalNotification {
-    NSArray *localNotifications = [[UIApplication sharedApplication] scheduledLocalNotifications];
-    NSPredicate *idPredicate = [NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
-        UILocalNotification *candidate = evaluatedObject;
-        NSString *className = [candidate.userInfo objectForKey:kLocalNotificationUserInfoKey_ClassName];
-        return [className isEqualToString:NSStringFromClass(self.class)];
-    }];
-    NSArray *localNotificationsForDeletion = [localNotifications filteredArrayUsingPredicate:idPredicate];
-    for (UILocalNotification *forDeletion in localNotificationsForDeletion) {
-        [[UIApplication sharedApplication] cancelLocalNotification:forDeletion];
-    }
+#pragma mark - HSUIDProvider protocol implementation
+- (NSUInteger)uid {
+    NSUInteger prime = 31;
+    NSUInteger result = [super uid];
+    
+    result = prime * result + self.bloodDonationType;
+    
+    return result;
 }
+
 
 @end

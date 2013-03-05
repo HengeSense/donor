@@ -12,7 +12,7 @@
 @implementation HSBloodTestsEvent
 
 #pragma mark - Protected interface implementation
-- (NSString *)alertBodyForRemindLocalNotification {
+- (NSString *)alertBodyForReminderLocalNotification {
     return @"Завтра у Вас запланирован анализ.";
 }
 

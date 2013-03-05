@@ -34,9 +34,6 @@ static NSString * const kRemoteEventField_Station = @"station";
 static NSString * const kRemoteEventField_Title = @"title";
 static NSString * const kRemoteEventField_Type = @"type";
 
-#pragma mark - Local notification keys
-static NSString * const kLocalNotificationUserInfoKey_ID = @"remoteObectId";
-
 #pragma mark - Private section declaration
 @interface HSBloodRemoteEvent ()
 
@@ -187,56 +184,61 @@ static NSString * const kLocalNotificationUserInfoKey_ID = @"remoteObectId";
     if (self.comments != nil) {
         event.comments = self.comments;
     }
+    if (self.reminderFireDate != nil) {
+        event.reminderFireDate = self.reminderFireDate;
+    } else {
+        event.reminderFireDate = [self reminderFireDateDefault];
+    }
     return event;
 }
 
-- (void)scheduleConfirmationLocalNotificationAtDate:(NSDate *)fireDate {
+#pragma mark - HSNotificationEvent protected interface implementation
+- (NSDate *)reminderFireDateDefault {
+    return [[self.scheduleDate dayBefore] dateMovedToHour:12 minute:00];
+}
+
+- (NSDate *)confirmationFireDateDefault {
+    return [self.scheduleDate dateMovedToHour:17 minute:00];
+}
+
+- (void)scheduleConfirmationLocalNotification {
+    if ([self hasScheduledConfirmationLocalNotification]) {
+        return;
+    }
     
     // Set default value
-    NSDate *correctedFireDate = [self.scheduleDate dateMovedToHour:17 minute:00];
-    if (fireDate != nil) {
-        correctedFireDate = fireDate;
-    } else if (self.localNotificationFireDate != nil) {
-        correctedFireDate = self.localNotificationFireDate;
-    }
-
-    NSDictionary *userInfo = @{kLocalNotificationUserInfoKey_ClassName : NSStringFromClass(self.class),
-                               kLocalNotificationUserInfoKey_ID : self.remoteEvent.objectId};
+    NSDate *fireDate = [self confirmationFireDateDefault];
     
-    [super scheduleLocalNotificationAtDate:correctedFireDate withAlertAction:kNotificationEventAlertActionDefault
-            alertBody:[self alertBodyForConfirmationLocalNotification] userInfo:userInfo];
+    [super scheduleLocalNotificationAtDate:fireDate withAlertAction:kNotificationEventAlertActionDefault
+            alertBody:[self alertBodyForConfirmationLocalNotification]
+            userInfo:[self confirmationLocalNotificationBaseUserInfo]];
 }
 
 - (void)scheduleReminderLocalNotificationAtDate:(NSDate *)fireDate {
     
     // Set default value
-    NSDate *correctedFireDate = [[self.scheduleDate dayBefore] dateMovedToHour:12 minute:00];
+    NSDate *correctedFireDate = [self reminderFireDateDefault];
     if (fireDate != nil) {
         correctedFireDate = fireDate;
-    } else if (self.localNotificationFireDate != nil) {
-        correctedFireDate = self.localNotificationFireDate;
+    } else if (self.reminderFireDate != nil) {
+        correctedFireDate = self.reminderFireDate;
     }
-
-    NSDictionary *userInfo = @{kLocalNotificationUserInfoKey_ClassName : NSStringFromClass(self.class),
-                               kLocalNotificationUserInfoKey_ID : self.remoteEvent.objectId};
+    self.reminderFireDate = correctedFireDate;
     
     [super scheduleLocalNotificationAtDate:correctedFireDate withAlertAction:kNotificationEventAlertActionDefault
-            alertBody:[self alertBodyForReminderLocalNotification] userInfo:userInfo];
+            alertBody:[self alertBodyForReminderLocalNotification]
+            userInfo:[self reminderLocalNotificationBaseUserInfo]];
 }
 
-- (void)cancelScheduledLocalNotification {
-    NSArray *localNotifications = [[UIApplication sharedApplication] scheduledLocalNotifications];
-    NSPredicate *idPredicate = [NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
-        UILocalNotification *candidate = evaluatedObject;
-        NSString *className = [candidate.userInfo objectForKey:kLocalNotificationUserInfoKey_ClassName];
-        NSString *objectId = [candidate.userInfo objectForKey:kLocalNotificationUserInfoKey_ID];
-        return [className isEqualToString:NSStringFromClass(self.class)] &&
-                [objectId isEqualToString:self.remoteEvent.objectId];
-    }];
-    NSArray *localNotificationsForDeletion = [localNotifications filteredArrayUsingPredicate:idPredicate];
-    for (UILocalNotification *forDeletion in localNotificationsForDeletion) {
-        [[UIApplication sharedApplication] cancelLocalNotification:forDeletion];
-    }
+#pragma mark - HSUIDProvider protocol implementation
+- (NSUInteger)uid {
+    NSUInteger prime = 31;
+    NSUInteger result = [super uid];
+    
+    result = prime * result + [self.remoteEvent.objectId hash];
+    
+    return result;
 }
+
 
 @end

@@ -12,7 +12,6 @@
 
 extern NSString *kNotificationEventAlertActionDefault;
 extern NSString * const kLocalNotificationUserInfoKey_ClassName;
-
 /**
  * This class provides information about events, which user should be notified.
  */
@@ -22,18 +21,18 @@ extern NSString * const kLocalNotificationUserInfoKey_ClassName;
 
 /**
  * Defines a date when user will be notified.
- * This property is used in [self scheduleReminderLocalNotificationAtDate:] method and
- *     [self scheduleConfirmationLocalNotificationAtDate:] in case if fireDate parameter is nil.
+ * This property is used in [self scheduleReminderLocalNotificationAtDate:] in case
+ *     if localNotificationFireDate parameter is nil.
  * This property can also be nil. In this case correspond methods use default values for fireDate.
  */
-@property (nonatomic, strong) NSDate *localNotificationFireDate;
+@property (nonatomic, strong) NSDate *reminderFireDate;
 
 /// @name Public methods.
 
 /**
  * Returns fireDate property value (date) formated with dateFormatter.
  */
-- (NSString *)formattedFireDate;
+- (NSString *)formattedReminderFireDate;
 
 /**
  * Schedules a local notification for delivery at specified date and time.
@@ -52,7 +51,51 @@ extern NSString * const kLocalNotificationUserInfoKey_ClassName;
  */
 + (void)cancelAllLocalNotifications;
 
+/// @name Protected helpers.
+/**
+ * Returns YES if local notification belongs to this object.
+ * Base implementation checks only class belongings.
+ */
+- (BOOL)isSelfLocalNotification:(UILocalNotification *)localNotification;
+
+/**
+ * Returns base userInfo dictionary for local notification.
+ */
+- (NSDictionary *)localNotificationBaseUserInfo;
+
+/**
+ * Returns base userInfo dictionary for reminder local notification.
+ */
+- (NSDictionary *)reminderLocalNotificationBaseUserInfo;
+
+/**
+ * Returns base userInfo dictionary for confirmation local notification.
+ */
+- (NSDictionary *)confirmationLocalNotificationBaseUserInfo;
+
+/**
+ * Checks whether event has scheduled reminder local notification.
+ */
+- (BOOL)hasScheduledReminderLocalNotification;
+
+/**
+ * Checks whether event has scheduled confirmation local notification.
+ */
+- (BOOL)hasScheduledConfirmationLocalNotification;
+
+/**
+ * Cancels scheduled local notification.
+ * Uses method isSelfLocalNotification: to determine wheter or not make canceling.
+ */
+- (void)cancelScheduledLocalNotification;
+
 /// @name Abstract methods.
+/**
+ * Provides information about default value of reminderFireDate.
+ * Should be overriden in subclasses.
+ */
+- (NSDate *)reminderFireDateDefault;
+
 /**
  * Schedules reminder local notification for delivery at specified date and time.
  * Should be overriden in subclasses.
@@ -60,16 +103,9 @@ extern NSString * const kLocalNotificationUserInfoKey_ClassName;
 - (void)scheduleReminderLocalNotificationAtDate:(NSDate *)fireDate;
 
 /**
- * Schedules confirmation local notification for delivery at specified date and time.
+ * Schedules confirmation local notification for delivery at hardcoded time in the same day.
  * Should be overriden in subclasses.
  */
-- (void)scheduleConfirmationLocalNotificationAtDate:(NSDate *)fireDate;
-
-/**
- * Cancels scheduled local notification.
- * Should be overriden in subclasses.
- */
-- (void)cancelScheduledLocalNotification;
-
+- (void)scheduleConfirmationLocalNotification;
 
 @end

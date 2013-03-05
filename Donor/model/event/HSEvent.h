@@ -7,11 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "HSUIDProvider.h"
 
 /**
  * This class provides common behaviour for all calendar events.
  */
-@interface HSEvent : NSObject
+@interface HSEvent : NSObject <HSUIDProvider>
 
 /// @name Properties
 

@@ -143,7 +143,7 @@ static NSString * const kEventDate = @"date";
             if (success) {
                 if (![self.bloodRemoteEvents containsObject: bloodRemoteEvent]) {
                     [bloodRemoteEvent scheduleReminderLocalNotificationAtDate:nil];
-                    [bloodRemoteEvent scheduleConfirmationLocalNotificationAtDate:nil];
+                    [bloodRemoteEvent scheduleConfirmationLocalNotification];
                     [self.bloodRemoteEvents addObject: bloodRemoteEvent];
                 }
             }
@@ -206,7 +206,7 @@ static NSString * const kEventDate = @"date";
                 [newEvent saveWithCompletionBlock:^(BOOL success, NSError *error) {
                     if (success) {
                         [newEvent scheduleReminderLocalNotificationAtDate:nil];
-                        [newEvent scheduleConfirmationLocalNotificationAtDate:nil];
+                        [newEvent scheduleConfirmationLocalNotification];
                         [self.bloodRemoteEvents addObject: newEvent];
                         [self updateFinishRestEvents];
                     } else {
@@ -264,6 +264,7 @@ static NSString * const kEventDate = @"date";
             for (PFObject *remoteEvent in remoteEvents) {
                 [self.bloodRemoteEvents addObject: [HSBloodRemoteEvent buildBloodEventWithRemoteEvent: remoteEvent]];
             }
+            [self updateBloodRemoteLocalNotifications];
             [self updateFinishRestEvents];
             BOOL success = error == nil ? YES : NO;
             completion(success, error);
@@ -302,6 +303,17 @@ static NSString * const kEventDate = @"date";
             [finishRestEvent scheduleReminderLocalNotificationAtDate:nil];
         }
         [self.finishRestEvents addObjectsFromArray: finishRestEvents];
+    }
+}
+
+- (void)updateBloodRemoteLocalNotifications {
+    for (HSNotificationEvent *notificationEvent in self.bloodRemoteEvents) {
+        if (![notificationEvent hasScheduledConfirmationLocalNotification]) {
+            [notificationEvent scheduleConfirmationLocalNotification];
+        }
+        if (![notificationEvent hasScheduledReminderLocalNotification]) {
+            [notificationEvent scheduleReminderLocalNotificationAtDate:nil];
+        }
     }
 }
 
