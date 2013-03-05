@@ -17,6 +17,9 @@ using RestSharp;
 using Newtonsoft.Json;
 using MSPToolkit.Utilities;
 using System.Text.RegularExpressions;
+using System.Runtime.Serialization;
+using System.Xml;
+using System.Xml.Linq;
 
 namespace Donor.ViewModels
 {
@@ -27,7 +30,7 @@ namespace Donor.ViewModels
             this.Items = new ObservableCollection<NewsViewModel>();
         }
 
-        public void LoadNews()
+        public void LoadNewsParse()
         {
             if ((App.ViewModel.News.Items.Count() == 0) || (App.ViewModel.Settings.NewsUpdated.AddHours(1) < DateTime.Now))
             {
@@ -75,6 +78,73 @@ namespace Donor.ViewModels
             };
         }
 
+        public void LoadNews()
+        {
+            if ((App.ViewModel.News.Items.Count() == 0) || (App.ViewModel.Settings.NewsUpdated.AddHours(1) < DateTime.Now))
+            {
+                var bw = new BackgroundWorker();
+                bw.DoWork += delegate
+                {
+                    var client = new RestClient("http://yadonor.ru");
+                    var request = new RestRequest("ru/news_rss/", Method.GET);
+                    request.Parameters.Clear();
+                    //request.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
+                    //request.AddHeader("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
+
+                    client.ExecuteAsync(request, response =>
+                    {
+                        try
+                        {
+                            try
+                            {
+                                ObservableCollection<NewsViewModel> newslist1 = new ObservableCollection<NewsViewModel>();
+                                //JObject o = JObject.Parse(response.Content.ToString());
+                                //newslist1 = JsonConvert.DeserializeObject<ObservableCollection<NewsViewModel>>(o["results"].ToString());
+                                try
+                                {
+                                    var xdoc = XDocument.Parse(response.Content.ToString());
+                                    foreach (XElement item in xdoc.Descendants("item"))
+                                    {
+                                        var itemnews = new NewsViewModel();
+                                        itemnews.Nid = 0;
+                                        itemnews.Url = item.Element("guid").Value.ToString();
+                                        itemnews.Title = item.Element("title").Value.ToString();
+                                        itemnews.Body = item.Element("description").Value.ToString();
+                                        itemnews.ObjectId = item.Element("guid").Value.ToString();
+                                        itemnews.Created = item.Element("pubDate").Value.ToString();
+                                        DateTime origin = new DateTime(1970, 1, 1, 0, 0, 0, 0);
+                                        DateTime date = DateTime.Parse(item.Element("pubDate").Value.ToString());
+                                        TimeSpan diff = date - origin;
+                                        itemnews.CreatedTimestamp = (long)Math.Round(Math.Floor(diff.TotalSeconds));
+                                        //itemnews.DateText = (string)item.Element("pubDate").Value.ToString();
+                                        newslist1.Add(itemnews);
+                                    };
+                                }
+                                catch
+                                {
+                                };
+
+                                Deployment.Current.Dispatcher.BeginInvoke(() =>
+                                {
+                                    App.ViewModel.Settings.NewsUpdated = DateTime.Now;
+                                    App.ViewModel.SaveSettingsToStorage();
+
+                                    this.Items = new ObservableCollection<NewsViewModel>(newslist1);
+                                    IsolatedStorageHelper.SaveSerializableObject<ObservableCollection<NewsViewModel>>(App.ViewModel.News.Items, "news.xml");
+                                });
+                            }
+                            catch { };
+                        }
+                        catch
+                        {
+                        };
+                    });
+                };
+                bw.RunWorkerAsync();
+            };
+        }
+
+
         private ObservableCollection<NewsViewModel> _items;
         public ObservableCollection<NewsViewModel> Items { 
             get { return _items; } 
@@ -116,6 +186,7 @@ namespace Donor.ViewModels
     }
 
 
+    [DataContract]
     public class NewsViewModel
     {
         public NewsViewModel()
@@ -126,6 +197,7 @@ namespace Donor.ViewModels
         /// news title
         /// </summary>
         private string _title;
+        [DataMember] 
         public string Title
         {
             get
@@ -139,6 +211,19 @@ namespace Donor.ViewModels
         }
 
         public string ObjectId { get; set; }
+
+        /*[DataMember] 
+        public string Description
+        {
+            get
+            {
+                return _body;
+            }
+            set
+            {
+                _body = value;
+            }
+        }*/
 
         private string _body;
         public string Body {
@@ -186,13 +271,23 @@ namespace Donor.ViewModels
                 return _outbody;
             }
         }
+
+        private string _url;
         public string Url
         {
             get
             {
-                return "http://www.podari-zhizn.ru/main/node/" + this.Nid.ToString();
+                if (this.Nid != 0)
+                {
+                    return "http://www.pdari-zhizn.ru/main/node/" + this.Nid.ToString();
+                } else {
+                    return _url;
+                };
             }
-            private set { }
+            set {
+                _url = value;
+                //NotifyPropertyChanged("Url");
+            }
         }
         public int Nid { get; set; }
 
@@ -256,7 +351,12 @@ namespace Donor.ViewModels
             private set { }
             get
             {
-                DateTime created1 = DateTime.Parse(this.Created);
+                DateTime created1 = DateTime.Now;
+                try
+                {
+                    created1 = DateTime.Parse(this.Created);
+                }
+                catch {  };
                 return created1.ToShortDateString();
             }
         }
