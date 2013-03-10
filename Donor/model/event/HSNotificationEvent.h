@@ -10,7 +10,7 @@
 
 /// @name Constatns section
 
-extern NSString *kNotificationEventAlertActionDefault;
+extern NSString * const kNotificationEventAlertActionDefault;
 extern NSString * const kLocalNotificationUserInfoKey_ClassName;
 /**
  * This class provides information about events, which user should be notified.

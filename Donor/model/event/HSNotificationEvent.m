@@ -9,9 +9,10 @@
 #import "HSNotificationEvent.h"
 #import "NSDate+HSCalendar.h"
 
-NSString *kNotificationEventAlertActionDefault = @"Open";
+NSString * const kNotificationEventAlertActionDefault = @"Open";
 
 NSString * const kLocalNotificationUserInfoKey_ClassName = @"eventClassName";
+NSString * const kLocalNotificationUserInfoKey_ScheduleDate = @"eventScheduleDate";
 static NSString * const kLocalNotificationUserInfoKey_UID = @"eventUID";
 static NSString * const kLocalNotificationUserInfoKey_IsReminder = @"isReminder";
 static NSString * const kLocalNotificationUserInfoKey_IsConfirmation = @"isConfirmation";
@@ -90,7 +91,8 @@ static NSString * const kObservingKey_ScheduleDate = @"scheduleDate";
 
 - (NSDictionary *)localNotificationBaseUserInfo {
     return @{kLocalNotificationUserInfoKey_ClassName : NSStringFromClass(self.class),
-             kLocalNotificationUserInfoKey_UID : [NSNumber numberWithUnsignedInteger:[self uid]]};
+             kLocalNotificationUserInfoKey_UID : [NSNumber numberWithUnsignedInteger:[self uid]],
+             kLocalNotificationUserInfoKey_ScheduleDate : self.scheduleDate};
 }
 
 - (NSDictionary *)reminderLocalNotificationBaseUserInfo {
