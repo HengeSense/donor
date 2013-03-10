@@ -132,7 +132,7 @@ static NSString * const kObservingKey_ScheduleDate = @"scheduleDate";
     return [[localNotifications filteredArrayUsingPredicate:checkPredicate] count] > 0;
 }
 
-- (void)cancelScheduledLocalNotification {
+- (void)cancelScheduledLocalNotifications {
     NSArray *localNotifications = [[UIApplication sharedApplication] scheduledLocalNotifications];
     NSPredicate *idPredicate = [NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
         return [self isSelfLocalNotification:evaluatedObject];

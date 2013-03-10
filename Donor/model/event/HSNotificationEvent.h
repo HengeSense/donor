@@ -84,10 +84,10 @@ extern NSString * const kLocalNotificationUserInfoKey_ClassName;
 - (BOOL)hasScheduledConfirmationLocalNotification;
 
 /**
- * Cancels scheduled local notification.
+ * Cancels scheduled local notifications (reminder or/and confirmation).
  * Uses method isSelfLocalNotification: to determine wheter or not make canceling.
  */
-- (void)cancelScheduledLocalNotification;
+- (void)cancelScheduledLocalNotifications;
 
 /// @name Abstract methods.
 /**

@@ -171,7 +171,7 @@ static NSString * const kEventDate = @"date";
     }
     [bloodRemoteEvent removeWithCompletionBlock:^(BOOL success, NSError *error) {
         if (success) {
-            [bloodRemoteEvent cancelScheduledLocalNotification];
+            [bloodRemoteEvent cancelScheduledLocalNotifications];
             [self.bloodRemoteEvents removeObject: bloodRemoteEvent];
             if (completion != nil) {
                 completion(success, error);
@@ -202,7 +202,7 @@ static NSString * const kEventDate = @"date";
     if ([self canAddBloodRemoteEvent:newEvent error:&replaceError]) {
         [oldEvent removeWithCompletionBlock:^(BOOL success, NSError *error) {
             if (success) {
-                [oldEvent cancelScheduledLocalNotification];
+                [oldEvent cancelScheduledLocalNotifications];
                 [newEvent saveWithCompletionBlock:^(BOOL success, NSError *error) {
                     if (success) {
                         [newEvent scheduleReminderLocalNotificationAtDate:nil];
@@ -319,7 +319,7 @@ static NSString * const kEventDate = @"date";
 
 - (void)updateFinishRestEvents {
     for (HSNotificationEvent *finishRestEvent in self.finishRestEvents) {
-        [finishRestEvent cancelScheduledLocalNotification];
+        [finishRestEvent cancelScheduledLocalNotifications];
     }
     [self.finishRestEvents removeAllObjects];
     [self addFinishRestEvents];
