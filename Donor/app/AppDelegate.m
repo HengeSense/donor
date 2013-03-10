@@ -45,7 +45,9 @@ static NSString * const APP_STORE_APP_ID = @"578970724";
     [Parse setApplicationId:PARSE_APP_ID clientKey:PARSE_CLIENT_KEY];
     [PFFacebookUtils initializeWithApplicationId:FACEBOOK_APP_ID];
     [HSFlurryAnalytics initWithAppId:FLURRY_APP_ID];
+#ifndef DEBUG
     [TestFlight takeOff:TEST_FLIGHT_APP_ID];
+#endif
     [Crittercism enableWithAppID: CRITTERCISM_APP_ID];
 
     [Appirater setAppId:APP_STORE_APP_ID];
