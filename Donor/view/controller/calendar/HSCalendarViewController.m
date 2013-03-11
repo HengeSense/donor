@@ -35,11 +35,6 @@
 @property (nonatomic, strong) NSDate *currentDate;
 
 /**
- * Current month events. This set defined in loadEventsForDate: private method.
- */
-@property (nonatomic, strong) NSSet *currentDateEvents;
-
-/**
  * System calendar with ru_RU locale.
  */
 @property (nonatomic, strong) NSCalendar *systemCalendar;
@@ -55,11 +50,6 @@
  * Loads events for the month, specified in date parameter, and updates calendar view.
  */
 - (void)updateCalendarToDate: (NSDate *)date;
-
-/**
- * Loads events from the calendar model to the view. Actualy now all events are loaded.
- */
-- (void)loadEventsForDate: (NSDate *)date;
 
 /**
  * Updates calendar month label property correspond to the specified date.
@@ -205,10 +195,6 @@
             NSLog(@"Unable to load remote events due to error: %@", error);
         }
     }];
-}
-
--(void)loadEventsForDate: (NSDate *)date {
-    THROW_IF_ARGUMENT_NIL(date, @"date is not specified");
 }
 
 - (void)updateMonthLabelToDate: (NSDate *)date {
