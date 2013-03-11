@@ -620,7 +620,8 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     PFObject *object;
-  
+
+#warning Crash point. Check array bounds.
     if (indexPath.section == 0)
         object = (PFObject *)[(NSArray *)[self.tableDictionary objectForKey:@"last"] objectAtIndex:indexPath.row];
     else if (indexPath.section == 1)
@@ -667,7 +668,8 @@
         cell.addressLabel.hidden = YES;
         NSString *address = [object valueForKey:@"small_adress"];
         NSRange addressRange = [address rangeOfString:self.searchField.text options:NSCaseInsensitiveSearch];
-        
+
+#warning Crash point. Check substring range.
         NSString *outString = [address stringByReplacingOccurrencesOfString:[address substringWithRange:addressRange] withString:[NSString stringWithFormat:@"<search>%@</search>", [address substringWithRange:addressRange]]];
         FTCoreTextView *coreTextView = [[FTCoreTextView alloc] initWithFrame:cell.addressLabel.frame];
         coreTextView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;

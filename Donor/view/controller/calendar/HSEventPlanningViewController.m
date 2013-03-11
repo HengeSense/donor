@@ -372,6 +372,7 @@ static const NSUInteger kCommentsTextViewSymbolsMax = 260;
 - (IBAction)removeBloodEvent: (id)sender {
     MBProgressHUD *progressHud = [MBProgressHUD showHUDAddedTo: self.navigationController.view animated: YES];
     
+#warning Crash point. Check event existance.
     [self.calendar removeBloodRemoteEvent: self.currentOriginalEvent completion: ^(BOOL success, NSError *error) {
         [progressHud hide: YES];
         if (success) {
