@@ -72,7 +72,7 @@ FontSize="24" FontFamily="Segoe WP Semibold" />
                         <StackPanel>
                         <TextBlock Style="{StaticResource Text36pxC0A89A}" 
 						Text="{Binding Phone, Source={StaticResource Loc}}"/>
-                            <StackPanel>
+                            <!--<StackPanel>
                                 <TextBlock Name="PhoneNumber" 
 							    Style="{StaticResource Text24pxDF8D4B}" 							
 							    Text="88002505222" Tap="PhoneNumber_Tap"/>
@@ -89,27 +89,40 @@ FontSize="24" FontFamily="Segoe WP Semibold" />
 							Text="+74992462239" Tap="PhoneNumber_Tap"/>
                             <TextBlock Name="PhoneNumber4" 
 							Style="{StaticResource Text24pxDF8D4B}" 							
-							Text="+74954100112" Tap="PhoneNumber_Tap"/>
+							Text="+74954100112" Tap="PhoneNumber_Tap"/>-->
+                            <StackPanel>
+                                <TextBlock Name="PhoneNumber" 
+							    Style="{StaticResource Text24pxDF8D4B}" 							
+							    Text="88003333330" Tap="PhoneNumber_Tap"/>
+                                <TextBlock
+                                    FontSize="24" FontWeight="Normal"
+							    Style="{StaticResource Text24pxC0A89A}" 							
+							    Text="(звонок из регионов бесплатный)"/>
+                            </StackPanel>
                         </StackPanel>
 
                     <StackPanel>
                             <TextBlock Style="{StaticResource Text36pxC0A89A}" 
 							Text="{Binding EmailHelp, Source={StaticResource Loc}}"  />
                             <TextBlock Name="Email2" 
-							Text="info@podari-zhizn.ru" 
+							Text="info@yadonor.ru" 
 							Style="{StaticResource Text24pxDF8D4B}" 
 							Tap="TextBlock_Tap"/>
-                            <TextBlock Name="Email" 
+                            <!--<TextBlock Name="Email" 
 							Text="{Binding InfoDonorsEmail, Source={StaticResource Loc}}" 
 							Style="{StaticResource Text24pxDF8D4B}" 
-							Tap="TextBlock_Tap"/>
+							Tap="TextBlock_Tap"/>-->
                     </StackPanel>
 
                         <StackPanel>
                             <TextBlock Style="{StaticResource Text36pxC0A89A}" 
 							Text="{Binding Site, Source={StaticResource Loc}}"  />
                             <TextBlock Name="Site" 
-							Text="{Binding PodariZhizn, Source={StaticResource Loc}}"
+							Text="{Binding YadonorSite, Source={StaticResource Loc}}"
+							Style="{StaticResource Text24pxDF8D4B}" 
+							Tap="Site_Tap" />
+                            <TextBlock Name="Site2" 
+							Text="{Binding DonorappSite, Source={StaticResource Loc}}"
 							Style="{StaticResource Text24pxDF8D4B}" 
 							Tap="Site_Tap" />
                         </StackPanel>

@@ -1,8 +1,8 @@
-﻿<xapCache source="C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\Bin\Release\Donor.xap" wasSigned="False" certificateThumbprint="" TimeStampUrl="" lastWriteTime="06.03.2013 13:43:49">
+﻿<xapCache source="C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\Bin\Release\Donor.xap" wasSigned="False" certificateThumbprint="" TimeStampUrl="" lastWriteTime="14.03.2013 10:01:41">
   <file source="C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\Bin\Release\WMAppManifest.xml" archivePath="WMAppManifest.xml" lastWriteTime="18.02.2013 17:15:19" />
   <file source="C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\Background.png" archivePath="Background.png" lastWriteTime="13.12.2012 23:22:41" />
   <file source="C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\ApplicationIcon.png" archivePath="ApplicationIcon.png" lastWriteTime="13.12.2012 23:22:41" />
-  <file source="C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\obj\Release\Donor.dll" archivePath="Donor.dll" lastWriteTime="06.03.2013 13:43:46" />
+  <file source="C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\obj\Release\Donor.dll" archivePath="Donor.dll" lastWriteTime="14.03.2013 10:01:39" />
   <file source="C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\packages\BugSense.WP7.0.9.9.1\lib\sl3-wp\BugSense.dll" archivePath="BugSense.dll" lastWriteTime="05.02.2013 11:28:20" />
   <file source="C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\packages\Coding4Fun.Phone.Audio.1.6.1\lib\sl4-windowsphone71\Coding4Fun.Phone.Audio.dll" archivePath="Coding4Fun.Phone.Audio.dll" lastWriteTime="13.12.2012 23:22:43" />
   <file source="C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\packages\Coding4Fun.Phone.Controls.1.6.1\lib\sl4-windowsphone71\Coding4Fun.Phone.Controls.dll" archivePath="Coding4Fun.Phone.Controls.dll" lastWriteTime="13.12.2012 23:22:43" />
@@ -11,11 +11,11 @@
   <file source="C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\packages\Coding4Fun.Phone.Storage.1.6.1\lib\sl4-windowsphone71\Coding4Fun.Phone.Storage.dll" archivePath="Coding4Fun.Phone.Storage.dll" lastWriteTime="13.12.2012 23:22:43" />
   <file source="C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\packages\Facebook.6.1.4\lib\wp71\Facebook.dll" archivePath="Facebook.dll" lastWriteTime="13.12.2012 23:22:43" />
   <file source="C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\packages\Flurry WindowsPhone SDK v2.0.4\FlurryWP7SDK.dll" archivePath="FlurryWP7SDK.dll" lastWriteTime="13.12.2012 23:22:43" />
-  <file source="C:\Program Files\Laurent Bugnion (GalaSoft)\Mvvm Light Toolkit\Binaries\WP71\GalaSoft.MvvmLight.WP71.dll" archivePath="GalaSoft.MvvmLight.WP71.dll" lastWriteTime="18.12.2011 12:06:20" />
+  <file source="C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\Bin\Release\GalaSoft.MvvmLight.WP71.dll" archivePath="GalaSoft.MvvmLight.WP71.dll" lastWriteTime="18.12.2011 12:06:20" />
   <file source="C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\libs\HtmlAgilityPack.dll" archivePath="HtmlAgilityPack.dll" lastWriteTime="13.12.2012 23:22:42" />
-  <file source="C:\Program Files\Microsoft SDKs\Expression\Blend\Windows Phone\v7.1\Libraries\Microsoft.Expression.Interactions.dll" archivePath="Microsoft.Expression.Interactions.dll" lastWriteTime="17.08.2011 2:48:22" />
-  <file source="C:\Program Files\Microsoft SDKs\Windows Phone\v7.1\Libraries\Silverlight\Microsoft.Phone.Controls.dll" archivePath="Microsoft.Phone.Controls.dll" lastWriteTime="19.03.2012 16:29:06" />
-  <file source="C:\Program Files\Microsoft SDKs\Windows Phone\v7.1\Libraries\Silverlight\Microsoft.Phone.Controls.Maps.dll" archivePath="Microsoft.Phone.Controls.Maps.dll" lastWriteTime="29.08.2011 23:49:08" />
+  <file source="C:\Program Files (x86)\Microsoft SDKs\Expression\Blend\Windows Phone\v7.1\Libraries\Microsoft.Expression.Interactions.dll" archivePath="Microsoft.Expression.Interactions.dll" lastWriteTime="17.08.2011 2:48:22" />
+  <file source="C:\Program Files (x86)\Microsoft SDKs\Windows Phone\v7.1\Libraries\Silverlight\Microsoft.Phone.Controls.dll" archivePath="Microsoft.Phone.Controls.dll" lastWriteTime="06.07.2012 1:40:16" />
+  <file source="C:\Program Files (x86)\Microsoft SDKs\Windows Phone\v7.1\Libraries\Silverlight\Microsoft.Phone.Controls.Maps.dll" archivePath="Microsoft.Phone.Controls.Maps.dll" lastWriteTime="06.07.2012 1:40:16" />
   <file source="C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\packages\WPtoolkit.4.2012.10.30\lib\sl4-windowsphone71\Microsoft.Phone.Controls.Toolkit.dll" archivePath="Microsoft.Phone.Controls.Toolkit.dll" lastWriteTime="16.01.2013 19:40:15" />
   <file source="C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\packages\MSPToolkit.1.7.26.1\lib\sl4-wp71\MSPToolkit.dll" archivePath="MSPToolkit.dll" lastWriteTime="13.12.2012 23:22:43" />
   <file source="C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\packages\MyToolkit.1.10.0\lib\sl4-wp71\MyToolkit.dll" archivePath="MyToolkit.dll" lastWriteTime="05.02.2013 11:30:52" />
@@ -24,7 +24,7 @@
   <file source="C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\libs\Phone.Controls.dll" archivePath="Phone.Controls.dll" lastWriteTime="17.01.2013 11:44:34" />
   <file source="C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\packages\RestSharp.104.1\lib\sl4-wp71\RestSharp.WindowsPhone.dll" archivePath="RestSharp.WindowsPhone.dll" lastWriteTime="13.12.2012 23:22:44" />
   <file source="C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\libs\Silverlight_ZXing_Core.dll" archivePath="Silverlight_ZXing_Core.dll" lastWriteTime="13.12.2012 23:22:42" />
-  <file source="C:\Program Files\Microsoft SDKs\Expression\Blend\Windows Phone\v7.1\Libraries\System.Windows.Interactivity.dll" archivePath="System.Windows.Interactivity.dll" lastWriteTime="17.08.2011 2:48:22" />
+  <file source="C:\Program Files (x86)\Microsoft SDKs\Expression\Blend\Windows Phone\v7.1\Libraries\System.Windows.Interactivity.dll" archivePath="System.Windows.Interactivity.dll" lastWriteTime="17.08.2011 2:48:22" />
   <file source="C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\packages\WPExtensions.1.3.7\lib\sl4-wp71\WPExtensions.dll" archivePath="WPExtensions.dll" lastWriteTime="13.12.2012 23:22:44" />
   <file source="C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\icons\Icon_analis_plan.png" archivePath="icons\Icon_analis_plan.png" lastWriteTime="13.12.2012 23:22:42" />
   <file source="C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\icons\Icon_blood.png" archivePath="icons\Icon_blood.png" lastWriteTime="13.12.2012 23:22:42" />

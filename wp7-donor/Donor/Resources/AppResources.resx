@@ -665,4 +665,10 @@ We give users options wherever necessary and practical. Such choices include:&lt
 YOUR CONSENT&lt;br&gt;
 By using this application, you consent to the collection and use of this information by Donor application If we decide to change our privacy policy, we will post those changes on this page so that you are always aware of what information we collect, how we use it, and under what circumstances we disclose it.&lt;/p&gt;</value>
   </data>
+  <data name="DonorappSite" xml:space="preserve">
+    <value>http://donorapp.ru/</value>
+  </data>
+  <data name="YadonorSite" xml:space="preserve">
+    <value>http://yadonor.ru/</value>
+  </data>
 </root>

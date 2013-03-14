@@ -359,6 +359,15 @@ namespace Donor {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to http://donorapp.ru/.
+        /// </summary>
+        public static string DonorappSite {
+            get {
+                return ResourceManager.GetString("DonorappSite", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Доноры.
         /// </summary>
         public static string Donors {
@@ -1492,6 +1501,15 @@ namespace Donor {
         public static string WholeBlood {
             get {
                 return ResourceManager.GetString("WholeBlood", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to http://yadonor.ru/.
+        /// </summary>
+        public static string YadonorSite {
+            get {
+                return ResourceManager.GetString("YadonorSite", resourceCulture);
             }
         }
         
