@@ -76,7 +76,7 @@ namespace Donor.ViewModels
         {
             this.Date = DateTime.Now;
 
-            this.UserId = App.ViewModel.User.objectId;
+            this.UserId = ViewModelLocator.MainStatic.User.objectId;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -681,7 +681,7 @@ namespace Donor.ViewModels
             };
             try
             {
-                jsonitem.UserId = App.ViewModel.User.objectId;
+                jsonitem.UserId = ViewModelLocator.MainStatic.User.objectId;
             }
             catch
             {
@@ -791,13 +791,13 @@ namespace Donor.ViewModels
                 var bw = new BackgroundWorker();
                 bw.DoWork += delegate
                 {
-                if ((App.ViewModel.User != null) && (App.ViewModel.User.objectId != ""))
+                if ((ViewModelLocator.MainStatic.User != null) && (ViewModelLocator.MainStatic.User.objectId != ""))
                 {
                     var clientuser = new RestClient("https://api.parse.com");
                     var requestuser = new RestRequest("1/classes/Events", Method.GET);
 
                     requestuser.Parameters.Clear();
-                    requestuser.AddParameter("where", "{\"$relatedTo\":{\"object\":{\"__type\":\"Pointer\",\"className\":\"_User\",\"objectId\":\"" + App.ViewModel.User.objectId + "\"},\"key\":\"events\"}}");
+                    requestuser.AddParameter("where", "{\"$relatedTo\":{\"object\":{\"__type\":\"Pointer\",\"className\":\"_User\",\"objectId\":\"" + ViewModelLocator.MainStatic.User.objectId + "\"},\"key\":\"events\"}}");
                     requestuser.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
                     requestuser.AddHeader("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
 
@@ -822,17 +822,17 @@ namespace Donor.ViewModels
 
                                     Deployment.Current.Dispatcher.BeginInvoke(() =>
                                     {
-                                        App.ViewModel.Events.UpdateItems();
-                                        App.ViewModel.OnDataFLoaded(EventArgs.Empty);
-                                        App.ViewModel.IsDataLoaded = true;
+                                        ViewModelLocator.MainStatic.Events.UpdateItems();
+                                        ViewModelLocator.MainStatic.OnDataFLoaded(EventArgs.Empty);
+                                        ViewModelLocator.MainStatic.IsDataLoaded = true;
                                     });
                                 }
                                 catch
                                 {
                                     Deployment.Current.Dispatcher.BeginInvoke(() =>
                                     {
-                                        App.ViewModel.OnDataFLoaded(EventArgs.Empty);
-                                        App.ViewModel.IsDataLoaded = true;
+                                        ViewModelLocator.MainStatic.OnDataFLoaded(EventArgs.Empty);
+                                        ViewModelLocator.MainStatic.IsDataLoaded = true;
                                     });                                    
                                 };
                         Deployment.Current.Dispatcher.BeginInvoke(() =>
@@ -875,7 +875,7 @@ namespace Donor.ViewModels
                 Donor.AppResources.Plasma, Donor.AppResources.WholeBlood, Donor.AppResources.Granulocytes };
 
             var _selected_user_items = (from item in this.Items
-                                        where ((item.UserId == App.ViewModel.User.objectId) && (item.Type == "1") && (item.Finished == true))
+                                        where ((item.UserId == ViewModelLocator.MainStatic.User.objectId) && (item.Type == "1") && (item.Finished == true))
                                         orderby item.Date descending
                                         select item);
 
@@ -885,11 +885,11 @@ namespace Donor.ViewModels
 
             foreach (var item in _selected_user_items)
             {
-                int days = App.ViewModel.Events.DaysFromEvent(_selected_user_items.FirstOrDefault().GiveType, GiveType);
+                int days = ViewModelLocator.MainStatic.Events.DaysFromEvent(_selected_user_items.FirstOrDefault().GiveType, GiveType);
                 previtem = item;
                 //if (previtem.Date.AddDays(days) >= DateTime.Today)
                 //{
-                    if (App.ViewModel.Events.EventsInYear(GiveType, OutDate) && App.ViewModel.Events.EventsInYear(GiveType, OutDate.AddYears(-1)))
+                    if (ViewModelLocator.MainStatic.Events.EventsInYear(GiveType, OutDate) && ViewModelLocator.MainStatic.Events.EventsInYear(GiveType, OutDate.AddYears(-1)))
                     {
                         OutDate = previtem.Date.AddDays(days);
                         break;
@@ -912,7 +912,7 @@ namespace Donor.ViewModels
                 Donor.AppResources.Plasma, Donor.AppResources.WholeBlood, Donor.AppResources.Granulocytes };
 
             var _selected_user_items = (from item in this.Items
-                                        where ((item.UserId == App.ViewModel.User.objectId) && (item.Type == "1"))
+                                        where ((item.UserId == ViewModelLocator.MainStatic.User.objectId) && (item.Type == "1"))
                                         orderby item.Date ascending
                                         select item);
 
@@ -920,17 +920,17 @@ namespace Donor.ViewModels
             DateTime Date = DateTime.Now;
             DateTime OutDate = DateTime.Now;
 
-            if (App.ViewModel.Events.EventsInYear(GiveType, OutDate) && App.ViewModel.Events.EventsInYear(GiveType, OutDate.AddYears(-1)))
+            if (ViewModelLocator.MainStatic.Events.EventsInYear(GiveType, OutDate) && ViewModelLocator.MainStatic.Events.EventsInYear(GiveType, OutDate.AddYears(-1)))
             {
 
             };
             foreach (var item in _selected_user_items)
             {
-                int days = App.ViewModel.Events.DaysFromEvent(_selected_user_items.FirstOrDefault().GiveType, GiveType);
+                int days = ViewModelLocator.MainStatic.Events.DaysFromEvent(_selected_user_items.FirstOrDefault().GiveType, GiveType);
                 previtem = item;
                 if (previtem.Date.AddDays(days) >= DateTime.Now)
                 {
-                    if (App.ViewModel.Events.EventsInYear(GiveType, OutDate) && App.ViewModel.Events.EventsInYear(GiveType, OutDate.AddYears(-1)))
+                    if (ViewModelLocator.MainStatic.Events.EventsInYear(GiveType, OutDate) && ViewModelLocator.MainStatic.Events.EventsInYear(GiveType, OutDate.AddYears(-1)))
                     {
                         OutDate = previtem.Date.AddDays(days);
                         break;
@@ -942,14 +942,14 @@ namespace Donor.ViewModels
             };
 
             var _future_items = (from item in this.Items
-                                 where (((item.UserId == App.ViewModel.User.objectId) && (item.Type == "1")) && (item.Date >= DateTime.Now))
+                                 where (((item.UserId == ViewModelLocator.MainStatic.User.objectId) && (item.Type == "1")) && (item.Date >= DateTime.Now))
                                  orderby item.Date ascending
                                  select item);
 
             foreach (var item in _future_items)
             {
-                int daysc1 = App.ViewModel.Events.DaysFromEvent(item.GiveType, GiveType);
-                int daysc2 = App.ViewModel.Events.DaysFromEvent(GiveType, item.GiveType);
+                int daysc1 = ViewModelLocator.MainStatic.Events.DaysFromEvent(item.GiveType, GiveType);
+                int daysc2 = ViewModelLocator.MainStatic.Events.DaysFromEvent(GiveType, item.GiveType);
                 if ((OutDate <= item.Date.AddDays(daysc1)) && (OutDate >= item.Date))
                 {
                     previtem = item;
@@ -975,7 +975,7 @@ namespace Donor.ViewModels
                 Donor.AppResources.Plasma, Donor.AppResources.WholeBlood, Donor.AppResources.Granulocytes };
 
             var _selected_user_items = (from item in this.Items
-                                        where ((item.UserId == App.ViewModel.User.objectId) && (item.Type == "1") && (item.Finished == true))
+                                        where ((item.UserId == ViewModelLocator.MainStatic.User.objectId) && (item.Type == "1") && (item.Finished == true))
                                         orderby item.Date ascending
                                         select item);
 
@@ -985,9 +985,9 @@ namespace Donor.ViewModels
                 // ищем события в периодах отдыха для разных типов кроводачи
                 foreach (var give in TypesGive)
                 {
-                    int daysc1 = App.ViewModel.Events.DaysFromEvent(item.GiveType, give);
+                    int daysc1 = ViewModelLocator.MainStatic.Events.DaysFromEvent(item.GiveType, give);
                     // выбираем события, попадающие в период отдыха, не являющиеся выполненными и являющимися соыбтиями типа кроводачи
-                    var deleteitems = App.ViewModel.Events.UserItems.Where(c => (c.Date <= item.Date.AddDays(daysc1)) && (c.Date >= item.Date) && (c.Finished == false) && (c.Type == "1") && (c.GiveType == give));
+                    var deleteitems = ViewModelLocator.MainStatic.Events.UserItems.Where(c => (c.Date <= item.Date.AddDays(daysc1)) && (c.Date >= item.Date) && (c.Finished == false) && (c.Type == "1") && (c.GiveType == give));
                     foreach (var delitem in deleteitems)
                     {
                         //this.Items.Remove(delitem);
@@ -1051,13 +1051,13 @@ namespace Donor.ViewModels
 
         public bool EventsInYear(string event_give_type, DateTime start)
         {
-            /*var yearitems = from item in App.ViewModel.Events.UserItems
+            /*var yearitems = from item in ViewModelLocator.MainStatic.Events.UserItems
                             where item.Date >= start && item.Date <= start.AddYears(1)
                             select item;*/
             switch (event_give_type)
             {
                 case "Тромбоциты":
-                    var yearitems = from item in App.ViewModel.Events.UserItems
+                    var yearitems = from item in ViewModelLocator.MainStatic.Events.UserItems
                                     where (item.Date >= start && item.Date <= start.AddYears(1) && item.GiveType == "Тромбоциты")
                                     select item;
                     if (yearitems.Count() > 9)
@@ -1069,7 +1069,7 @@ namespace Donor.ViewModels
                         return true;
                     };
                 case "Гранулоциты":
-                    var yearitems2 = from item in App.ViewModel.Events.UserItems
+                    var yearitems2 = from item in ViewModelLocator.MainStatic.Events.UserItems
                                      where (item.GiveType == "Гранулоциты")
                                      select item;
                     if (yearitems2.Count() > 2)
@@ -1081,7 +1081,7 @@ namespace Donor.ViewModels
                         return true;
                     };
                 case "Плазма":
-                    var yearitems3 = from item in App.ViewModel.Events.UserItems
+                    var yearitems3 = from item in ViewModelLocator.MainStatic.Events.UserItems
                                      where (item.Date >= start && item.Date <= start.AddYears(1) && item.GiveType == "Плазма")
                                      select item;
                     if (yearitems3.Count() > 11)
@@ -1093,10 +1093,10 @@ namespace Donor.ViewModels
                         return true;
                     };
                 case "Цельная кровь":
-                    var yearitems4 = from item in App.ViewModel.Events.UserItems
+                    var yearitems4 = from item in ViewModelLocator.MainStatic.Events.UserItems
                                      where (item.Date >= start && item.Date <= start.AddYears(1) && item.GiveType == "Цельная кровь")
                                      select item;
-                    if (((yearitems4.Count() > 4) && (App.ViewModel.User.Sex == 0)) || ((yearitems4.Count() > 3) && (App.ViewModel.User.Sex == 1)))
+                    if (((yearitems4.Count() > 4) && (ViewModelLocator.MainStatic.User.Sex == 0)) || ((yearitems4.Count() > 3) && (ViewModelLocator.MainStatic.User.Sex == 1)))
                     {
                         return false;
                     }
@@ -1211,10 +1211,10 @@ namespace Donor.ViewModels
             get
             {
                 ObservableCollection<EventViewModel> _user_items = new ObservableCollection<EventViewModel>();
-                if (App.ViewModel.User.IsLoggedIn)
+                if (ViewModelLocator.MainStatic.User.IsLoggedIn)
                 {
                     var _selected_user_items = (from item in this.Items
-                                                where (item.UserId == App.ViewModel.User.objectId) || ((item.Type != "0") && (item.Type != "1"))
+                                                where (item.UserId == ViewModelLocator.MainStatic.User.objectId) || ((item.Type != "0") && (item.Type != "1"))
                                                 orderby item.Date descending
                                                 select item);
                     foreach (var item in _selected_user_items)
@@ -1248,9 +1248,9 @@ namespace Donor.ViewModels
         {
             try
             {
-                App.ViewModel.Events.Items.Remove(_currentEvent);
-                App.ViewModel.Events.RemoveItemFromParse(_currentEvent);
-                App.ViewModel.Events.UpdateItems();
+                ViewModelLocator.MainStatic.Events.Items.Remove(_currentEvent);
+                ViewModelLocator.MainStatic.Events.RemoveItemFromParse(_currentEvent);
+                ViewModelLocator.MainStatic.Events.UpdateItems();
 
                 /// Add event to Flurry about vent delete
                 List<FlurryWP7SDK.Models.Parameter> articleParams = new List<FlurryWP7SDK.Models.Parameter> { 
@@ -1271,8 +1271,8 @@ namespace Donor.ViewModels
         {
             try
             {
-                App.ViewModel.Events.Items.Remove(_currentEvent);
-                App.ViewModel.Events.RemoveItemFromParse(_currentEvent);
+                ViewModelLocator.MainStatic.Events.Items.Remove(_currentEvent);
+                ViewModelLocator.MainStatic.Events.RemoveItemFromParse(_currentEvent);
             }
             catch
             {
@@ -1319,15 +1319,15 @@ namespace Donor.ViewModels
 
                         this.DeleteUncorrectEvents();
 
-                        App.ViewModel.OnEventsChangedCalendar(EventArgs.Empty);
-                        App.ViewModel.EventChanging = false;
+                        ViewModelLocator.MainStatic.OnEventsChangedCalendar(EventArgs.Empty);
+                        ViewModelLocator.MainStatic.EventChanging = false;
 
                         // обновляем Tile приложения
-                        App.ViewModel.CreateApplicationTile(App.ViewModel.Events.NearestEvents());
+                        ViewModelLocator.MainStatic.CreateApplicationTile(ViewModelLocator.MainStatic.Events.NearestEvents());
 
-                        App.ViewModel.Events.OnEventsChanged(EventArgs.Empty);
+                        ViewModelLocator.MainStatic.Events.OnEventsChanged(EventArgs.Empty);
 
-                        App.ViewModel.SaveToIsolatedStorage();
+                        ViewModelLocator.MainStatic.SaveToIsolatedStorage();
                     }
                     else
                     {
@@ -1367,14 +1367,14 @@ namespace Donor.ViewModels
                             this.Items.Add(addedItems);
 
                             var clientrel = new RestClient("https://api.parse.com");
-                            var requestrel = new RestRequest("1/users/" + App.ViewModel.User.objectId, Method.PUT);
+                            var requestrel = new RestRequest("1/users/" + ViewModelLocator.MainStatic.User.objectId, Method.PUT);
                             request.AddHeader("Accept", "application/json");
                             request.Parameters.Clear();
                             string strJSONContentrel = "{\"events\":{\"__op\":\"AddRelation\",\"objects\":[{\"__type\":\"Pointer\",\"className\":\"Events\",\"objectId\":\"" + addedItems.Id + "\"}]}}";
 
                             requestrel.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
                             requestrel.AddHeader("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
-                            requestrel.AddHeader("X-Parse-Session-Token", App.ViewModel.User.sessionToken);
+                            requestrel.AddHeader("X-Parse-Session-Token", ViewModelLocator.MainStatic.User.sessionToken);
                             requestrel.AddHeader("Content-Type", "application/json");
 
                             requestrel.AddParameter("application/json", strJSONContentrel, ParameterType.RequestBody);
@@ -1401,15 +1401,15 @@ namespace Donor.ViewModels
 
                             this.DeleteUncorrectEvents();
 
-                            App.ViewModel.OnEventsChangedCalendar(EventArgs.Empty);
-                            App.ViewModel.EventChanging = false;
+                            ViewModelLocator.MainStatic.OnEventsChangedCalendar(EventArgs.Empty);
+                            ViewModelLocator.MainStatic.EventChanging = false;
 
                             // обновляем Tile приложения
-                            App.ViewModel.CreateApplicationTile(App.ViewModel.Events.NearestEvents());
+                            ViewModelLocator.MainStatic.CreateApplicationTile(ViewModelLocator.MainStatic.Events.NearestEvents());
 
-                            App.ViewModel.Events.OnEventsChanged(EventArgs.Empty);
+                            ViewModelLocator.MainStatic.Events.OnEventsChanged(EventArgs.Empty);
 
-                            App.ViewModel.SaveToIsolatedStorage();
+                            ViewModelLocator.MainStatic.SaveToIsolatedStorage();
                         }
                         else
                         {
@@ -1430,8 +1430,8 @@ namespace Donor.ViewModels
         {
             if (addedItems == null)
             {
-                App.ViewModel.CreateApplicationTile(App.ViewModel.Events.NearestEvents());
-                App.ViewModel.SaveToIsolatedStorage();
+                ViewModelLocator.MainStatic.CreateApplicationTile(ViewModelLocator.MainStatic.Events.NearestEvents());
+                ViewModelLocator.MainStatic.SaveToIsolatedStorage();
 
                 NotifyPropertyChanged("Items");
                 NotifyPropertyChanged("UserItems");
@@ -1441,11 +1441,11 @@ namespace Donor.ViewModels
 
                 this.DeleteUncorrectEvents();
 
-                App.ViewModel.Events.OnEventsChanged(EventArgs.Empty);
+                ViewModelLocator.MainStatic.Events.OnEventsChanged(EventArgs.Empty);
             }
             else
             {
-                App.ViewModel.EventChanging = true;
+                ViewModelLocator.MainStatic.EventChanging = true;
 
                 if (addedItems.ParseExists == true)
                 {
@@ -1457,7 +1457,7 @@ namespace Donor.ViewModels
                 };
             };
 
-            App.ViewModel.User.NotifyAll();
+            ViewModelLocator.MainStatic.User.NotifyAll();
         }
 
         /// <summary>
@@ -1466,7 +1466,7 @@ namespace Donor.ViewModels
         public void UpdateNearestEvents()
         {
             var _selected_user_items = (from item in this.Items
-                                        where ((item.UserId == App.ViewModel.User.objectId) && (item.Type == "1") && (item.Finished == true))
+                                        where ((item.UserId == ViewModelLocator.MainStatic.User.objectId) && (item.Type == "1") && (item.Finished == true))
                                         orderby item.Date ascending
                                         select item);
 
@@ -1508,7 +1508,7 @@ namespace Donor.ViewModels
                         possibleItem.Description = "";
                         possibleItem.Place = "";
                         possibleItem.Id = cnt.ToString() + DateTime.Now.Ticks.ToString();
-                        possibleItem.UserId = App.ViewModel.User.objectId;
+                        possibleItem.UserId = ViewModelLocator.MainStatic.User.objectId;
                         possibleItem.ReminderDate = "";
                         possibleItem.ParseExists = false;
 
@@ -1617,10 +1617,10 @@ namespace Donor.ViewModels
         {
             get
             {
-                if (App.ViewModel.User.IsLoggedIn)
+                if (ViewModelLocator.MainStatic.User.IsLoggedIn)
                 {
                     var _selected_user_items = (from item in this.Items
-                                                where (item.UserId == App.ViewModel.User.objectId) || ((item.Type != "1"))
+                                                where (item.UserId == ViewModelLocator.MainStatic.User.objectId) || ((item.Type != "1"))
                                                 orderby item.Date descending
                                                 select item);
                     return _selected_user_items.Count();
@@ -1647,7 +1647,7 @@ namespace Donor.ViewModels
                                 (eventCal.Type != Donor.AppResources.HolidayType)
                                 &&
                                 (new DateTime(eventCal.Date.Year, eventCal.Date.Month, eventCal.Date.Day) >= DateTime.Today)
-                                && (App.ViewModel.User.objectId == eventCal.UserId)
+                                && (ViewModelLocator.MainStatic.User.objectId == eventCal.UserId)
                                 orderby eventCal.Date descending
                                 select eventCal).Take(15);
                 List<EventViewModel> outnews = newitems.ToList();
@@ -1665,7 +1665,7 @@ namespace Donor.ViewModels
                 System.Threading.Thread.Sleep(300);
 
                 var newitems = (from eventCal in this.Items
-                                where ((eventCal.UserId == App.ViewModel.User.objectId) || ((eventCal.Type != "0") || (eventCal.Type != "1"))) &&
+                                where ((eventCal.UserId == ViewModelLocator.MainStatic.User.objectId) || ((eventCal.Type != "0") || (eventCal.Type != "1"))) &&
                                 (eventCal.Date.Month == CurrentMonth.Month) && (eventCal.Date.Year == CurrentMonth.Year)
                                 orderby eventCal.Date descending
                                 select eventCal);
@@ -1699,7 +1699,7 @@ namespace Donor.ViewModels
             get
             {
                 var newitems = (from eventCal in this.Items
-                                where ((eventCal.UserId == App.ViewModel.User.objectId) || ((eventCal.Type != "0") && (eventCal.Type != "1"))) &&
+                                where ((eventCal.UserId == ViewModelLocator.MainStatic.User.objectId) || ((eventCal.Type != "0") && (eventCal.Type != "1"))) &&
                                 (eventCal.Date.Month == CurrentMonth.Month) && (eventCal.Date.Year == CurrentMonth.Year)
                                 orderby eventCal.Date descending
                                 select eventCal);
@@ -1729,7 +1729,7 @@ namespace Donor.ViewModels
             get
             {
                 var newitems = (from eventCal in this.Items
-                                where ((eventCal.UserId == App.ViewModel.User.objectId) || ((eventCal.Type != "0") && (eventCal.Type != "1"))) &&
+                                where ((eventCal.UserId == ViewModelLocator.MainStatic.User.objectId) || ((eventCal.Type != "0") && (eventCal.Type != "1"))) &&
                                 (eventCal.Date.Month == CurrentMonth.Month) && (eventCal.Date.Year == CurrentMonth.Year)
                                 orderby eventCal.Date descending
                                 select eventCal);
@@ -1861,10 +1861,10 @@ CurrentMonth.Month - 1];
         {
             try
             {
-                App.ViewModel.Events.Items.Remove(_currentEvent);
+                ViewModelLocator.MainStatic.Events.Items.Remove(_currentEvent);
                 this.Items.Remove(_currentEvent);
                 this.NotifyPropertyChanged("Items");
-                App.ViewModel.OnEventsChangedCalendar(EventArgs.Empty);
+                ViewModelLocator.MainStatic.OnEventsChangedCalendar(EventArgs.Empty);
 
                 var client = new RestClient("https://api.parse.com");
                 var request = new RestRequest("1/classes/Events/" + _currentEvent.Id, Method.DELETE);
@@ -1882,8 +1882,8 @@ CurrentMonth.Month - 1];
                     JObject o = JObject.Parse(response.Content.ToString());
                     if (o["error"] == null)
                     {
-                        App.ViewModel.OnEventsChangedCalendar(EventArgs.Empty);
-                        App.ViewModel.SaveToIsolatedStorage();
+                        ViewModelLocator.MainStatic.OnEventsChangedCalendar(EventArgs.Empty);
+                        ViewModelLocator.MainStatic.SaveToIsolatedStorage();
                     }
                     else
                     {

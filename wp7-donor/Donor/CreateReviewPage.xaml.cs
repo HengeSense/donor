@@ -12,6 +12,7 @@ using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using Newtonsoft.Json.Linq;
 using RestSharp;
+using Donor.ViewModels;
 
 namespace Donor
 {
@@ -74,9 +75,9 @@ namespace Donor
             };
 
             string user_id = "";
-            if (App.ViewModel.User.IsLoggedIn == true)
+            if (ViewModelLocator.MainStatic.User.IsLoggedIn == true)
             {
-                user_id = App.ViewModel.User.objectId.ToString();
+                user_id = ViewModelLocator.MainStatic.User.objectId.ToString();
             };
 
             string strJSONContent = "{\"username\":\"" + UserName.Text + "\", \"user_id\":\"" + user_id + "\", \"created\":\"" + DateTime.Now.ToString() + "\", \"createdTimestamp\":" + ConvertToTimestamp(DateTime.Now).ToString() + ", \"station_nid\":" + _stationid_current.ToString() + ", \"nid\":" + _stationid_current.ToString() + ", \"body\":\"" + this.Body.Text.ToString() + "\", \"vote\":" + vote.ToString() + ", \"vote_registry\":" + this.vote_registry.Vote.ToString() + ", \"vote_physician\":" + this.vote_physician.Vote.ToString() + ", \"vote_laboratory\":" + this.vote_laboratory.Vote.ToString() + ", \"vote_buffet\":" + this.vote_buffet.Vote.ToString() + ", \"vote_schedule\":" + this.vote_schedule.Vote.ToString() + ", \"vote_organization_donation\":" + this.vote_organization_donation.Vote.ToString() + ", \"vote_room\":" + this.vote_room.Vote.ToString() + "}";
@@ -91,7 +92,7 @@ namespace Donor
                 if (o["error"] == null)
                 {
                     MessageBox.Show("Отзыв добавлен.");
-                    App.ViewModel.Ads.LoadStationAds(_stationid_current.ToString());
+                    ViewModelLocator.MainStatic.Ads.LoadStationAds(_stationid_current.ToString());
                 }
                 else
                 {
@@ -111,7 +112,7 @@ namespace Donor
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
             try {
-            //if (App.ViewModel.User.IsLoggedIn == true)
+            //if (ViewModelLocator.MainStatic.User.IsLoggedIn == true)
             //{
                 if (this.NavigationContext.QueryString.ContainsKey("id"))
                 {

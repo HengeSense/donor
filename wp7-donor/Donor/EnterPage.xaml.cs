@@ -10,6 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
+using Donor.ViewModels;
 
 namespace Donor
 {
@@ -44,7 +45,7 @@ namespace Donor
         {
             try
             {
-                if (App.ViewModel.User.IsLoggedIn == true)
+                if (ViewModelLocator.MainStatic.User.IsLoggedIn == true)
                 {
                     NavigationService.GoBack();
                 };
@@ -52,14 +53,14 @@ namespace Donor
             catch {
             };
 
-            App.ViewModel.UserEnter += new MainViewModel.UserEnterEventHandler(this.UserLoaded);
+            ViewModelLocator.MainStatic.UserEnter += new MainViewModel.UserEnterEventHandler(this.UserLoaded);
         }
 
         private void UserLoaded(object sender, EventArgs e)
         {
             try
             {
-                if (App.ViewModel.User.IsLoggedIn == true)
+                if (ViewModelLocator.MainStatic.User.IsLoggedIn == true)
                 {
                     try
                     {

@@ -19,7 +19,7 @@ namespace Donor
         public AdsList()
         {
             InitializeComponent();
-            DataContext = App.ViewModel;
+            DataContext = ViewModelLocator.MainStatic;
         }
 
         private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)

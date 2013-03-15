@@ -88,7 +88,7 @@ namespace Donor.ViewModels
             }
             get
             {
-                if ((Status == true) && (App.ViewModel.User.IsLoggedIn))
+                if ((Status == true) && (ViewModelLocator.MainStatic.User.IsLoggedIn))
                 {
                     return this.Image;
                 }
@@ -173,16 +173,16 @@ namespace Donor.ViewModels
                 Image = "/images/achieves/Achive-donor_secondBlood_unavailible.png",
                 UnactiveImage = "/images/achieves/Achive-donor_secondBlood_unavailible.png" });
 
-            App.ViewModel.UserEnter += new MainViewModel.UserEnterEventHandler(BadgesViewModel.UserLoaded);
+            ViewModelLocator.MainStatic.UserEnter += new MainViewModel.UserEnterEventHandler(BadgesViewModel.UserLoaded);
         }
 
         private static void UserLoaded(object sender, EventArgs e)
         {
             try
             {
-                if (App.ViewModel.User.IsLoggedIn == true)
+                if (ViewModelLocator.MainStatic.User.IsLoggedIn == true)
                 {
-                    GetPlayerAchieves(App.ViewModel.User.FacebookId);
+                    GetPlayerAchieves(ViewModelLocator.MainStatic.User.FacebookId);
                 };
             }
             catch { };
@@ -326,9 +326,9 @@ namespace Donor.ViewModels
 
                                 Deployment.Current.Dispatcher.BeginInvoke(() =>
                                 {
-                                    App.ViewModel.Settings.AchieveDonor = true;
-                                    App.ViewModel.Settings.AchieveDonorUser = App.ViewModel.User.objectId;
-                                    App.ViewModel.SaveSettingsToStorage();
+                                    ViewModelLocator.MainStatic.Settings.AchieveDonor = true;
+                                    ViewModelLocator.MainStatic.Settings.AchieveDonorUser = ViewModelLocator.MainStatic.User.objectId;
+                                    ViewModelLocator.MainStatic.SaveSettingsToStorage();
 
                                     messagePrompt = new MessagePrompt();
                                     try

@@ -32,18 +32,18 @@ namespace Donor.Controls
         public void UpdateCalendar() {
 
             //this.CalendarDays.ItemsSource = null;
-            this.Items = App.ViewModel.Events.ThisMonthItemsWithoutEmpty;
+            this.Items = ViewModelLocator.MainStatic.Events.ThisMonthItemsWithoutEmpty;
 
             var bw = new BackgroundWorker();
             bw.DoWork += delegate
             {
 
             int dayscount = 0;
-            //this.Items = App.ViewModel.Events.ThisMonthItemsWithoutEmpty;
+            //this.Items = ViewModelLocator.MainStatic.Events.ThisMonthItemsWithoutEmpty;
 
-            /*var newitems = (from eventCal in App.ViewModel.Events.Items
-                            where ((eventCal.UserId == App.ViewModel.User.objectId) || ((eventCal.Type != "0") && (eventCal.Type != "1"))) &&
-                            (eventCal.Date.Month == App.ViewModel.Events.CurrentMonth.Month) && (eventCal.Date.Year == App.ViewModel.Events.CurrentMonth.Year)
+            /*var newitems = (from eventCal in ViewModelLocator.MainStatic.Events.Items
+                            where ((eventCal.UserId == ViewModelLocator.MainStatic.User.objectId) || ((eventCal.Type != "0") && (eventCal.Type != "1"))) &&
+                            (eventCal.Date.Month == ViewModelLocator.MainStatic.Events.CurrentMonth.Month) && (eventCal.Date.Year == ViewModelLocator.MainStatic.Events.CurrentMonth.Year)
                             orderby eventCal.Date descending
                             select eventCal);
             List<EventViewModel> _thisMonthItemsWithoutEmpty = newitems.ToList();
@@ -52,7 +52,7 @@ namespace Donor.Controls
             List<DaysModel> DaysList = new List<DaysModel>();
             DaysList = new List<DaysModel>();
 
-            Date = App.ViewModel.Events.CurrentMonth;
+            Date = ViewModelLocator.MainStatic.Events.CurrentMonth;
 
             DateTime Date2 = Date;
             DateTime FirstDayPrev = new DateTime(Date2.AddMonths(-1).Year, Date2.AddMonths(-1).Month, 1);

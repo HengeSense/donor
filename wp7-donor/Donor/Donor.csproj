@@ -423,7 +423,6 @@
     <Resource Include="images\ic_menu_stantion_normal.png" />
     <Resource Include="images\ic_reminder.png" />
     <Resource Include="images\logo_old_one.png" />
-    <Resource Include="bg.png" />
     <Resource Include="images\bg_04.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>

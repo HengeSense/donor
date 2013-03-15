@@ -27,7 +27,7 @@ namespace Donor
         private void DataFLoaded(object sender, EventArgs e)
         {
             //Uri currentUri = ((App)Application.Current).RootFrame.CurrentSource;
-            if (App.ViewModel.IsDataLoaded == true)
+            if (ViewModelLocator.MainStatic.IsDataLoaded == true)
             {
                 if (this.NavigationContext.QueryString.ContainsKey("id"))
                 {
@@ -35,7 +35,7 @@ namespace Donor
                     {
                         string _eventid = this.NavigationContext.QueryString["id"];
                         _eventid_current = _eventid;
-                        _currentEvent = App.ViewModel.Events.Items.FirstOrDefault(c => c.Id == _eventid.ToString());
+                        _currentEvent = ViewModelLocator.MainStatic.Events.Items.FirstOrDefault(c => c.Id == _eventid.ToString());
 
                         if (_currentEvent == null)
                         {
@@ -185,7 +185,7 @@ namespace Donor
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
             try { 
-                App.ViewModel.DataFLoaded += new MainViewModel.DataFLoadedEventHandler(this.DataFLoaded); 
+                ViewModelLocator.MainStatic.DataFLoaded += new MainViewModel.DataFLoadedEventHandler(this.DataFLoaded); 
             } catch {};
 
             try { 
@@ -197,7 +197,7 @@ namespace Donor
         {
             try
             {
-                App.ViewModel.DataFLoaded += new MainViewModel.DataFLoadedEventHandler(this.DataFLoaded);
+                ViewModelLocator.MainStatic.DataFLoaded += new MainViewModel.DataFLoadedEventHandler(this.DataFLoaded);
             }
             catch
             {
@@ -219,7 +219,7 @@ namespace Donor
 
         private void ShareButton_Click(object sender, EventArgs e)
         {
-            //App.ViewModel.SendToShare(_currentNews.Title, _currentNews.Link, _currentNews.Description, 130);
+            //ViewModelLocator.MainStatic.SendToShare(_currentNews.Title, _currentNews.Link, _currentNews.Description, 130);
         }
 
         private void AdvancedApplicationBarIconButton_Click(object sender, EventArgs e)
@@ -233,7 +233,7 @@ namespace Donor
         {
             try
             {
-                App.ViewModel.Events.DeleteEvent(_currentEvent);
+                ViewModelLocator.MainStatic.Events.DeleteEvent(_currentEvent);
                 NavigationService.GoBack();
             }
             catch
@@ -280,12 +280,12 @@ namespace Donor
                 {
                     if ((_currentEvent.Date <= DateTime.Today) && (_currentEvent.Time.Hour <= DateTime.Now.Hour) && (_currentEvent.Time.Minute <= DateTime.Now.Minute))
                     {
-                        App.ViewModel.Events.Items.Remove(_currentEvent);
+                        ViewModelLocator.MainStatic.Events.Items.Remove(_currentEvent);
                         _currentEvent.Finished = true;
-                        App.ViewModel.Events.Items.Add(_currentEvent);
+                        ViewModelLocator.MainStatic.Events.Items.Add(_currentEvent);
                         _currentEvent.ParseExists = true;
 
-                        App.ViewModel.Events.UpdateItems(_currentEvent);
+                        ViewModelLocator.MainStatic.Events.UpdateItems(_currentEvent);
 
                         this.EditButton.Visibility = Visibility.Collapsed;
                         MessageBox.Show("Вы сдали кровь. Спасибо! Рассчитан интервал до следующей возможной кроводачи");

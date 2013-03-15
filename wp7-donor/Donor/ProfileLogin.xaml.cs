@@ -28,11 +28,11 @@ namespace Donor
         {
             InitializeComponent();
 
-            DataContext = App.ViewModel;
+            DataContext = ViewModelLocator.MainStatic;
 
             AppBarVisibitilty("");
             CurrentTask = "";
-            if (App.ViewModel.User.IsLoggedIn == true)
+            if (ViewModelLocator.MainStatic.User.IsLoggedIn == true)
             {
                 this.RegisterForm.Visibility = Visibility.Collapsed;
                 this.LoginForm.Visibility = Visibility.Collapsed;
@@ -46,7 +46,7 @@ namespace Donor
             };
 
 
-            /*if (App.ViewModel.Settings.Password)
+            /*if (ViewModelLocator.MainStatic.Settings.Password)
             {
                 this.PasswordCheck.IsChecked = true;
             }
@@ -55,7 +55,7 @@ namespace Donor
                 this.PasswordCheck.IsChecked = false;
             };
 
-            if (App.ViewModel.Settings.Push)
+            if (ViewModelLocator.MainStatic.Settings.Push)
             {
                 this.PushCheck.IsChecked = true;
             }
@@ -64,7 +64,7 @@ namespace Donor
                 this.PushCheck.IsChecked = false;
             };
 
-            if (App.ViewModel.Settings.FastSearch)
+            if (ViewModelLocator.MainStatic.Settings.FastSearch)
             {
                 this.SearchCheck.IsChecked = true;
             }
@@ -73,7 +73,7 @@ namespace Donor
                 this.SearchCheck.IsChecked = false;
             };
 
-            if (App.ViewModel.Settings.EventBefore)
+            if (ViewModelLocator.MainStatic.Settings.EventBefore)
             {
                 this.BeforeCheck.IsChecked = true;
             }
@@ -82,7 +82,7 @@ namespace Donor
                 this.BeforeCheck.IsChecked = false;
             };
 
-            if (App.ViewModel.Settings.EventAfter)
+            if (ViewModelLocator.MainStatic.Settings.EventAfter)
             {
                 this.AfterCheck.IsChecked = true;
             }
@@ -95,7 +95,7 @@ namespace Donor
 
         private void UserLoaded(object sender, EventArgs e)
         {
-            DataContext = App.ViewModel;
+            DataContext = ViewModelLocator.MainStatic;
             this.LoadingBar.IsIndeterminate = false;
 
             this.RegisterForm.Visibility = Visibility.Collapsed;
@@ -103,7 +103,7 @@ namespace Donor
             this.UserProfile.Visibility = Visibility.Visible;
 
             AppBarVisibitilty("");
-            if (App.ViewModel.User.IsLoggedIn == true)
+            if (ViewModelLocator.MainStatic.User.IsLoggedIn == true)
             {
                 CurrentTask = "show";
                 AppBarVisibitilty("show");
@@ -114,7 +114,7 @@ namespace Donor
                 this.AppBar.IsVisible = false;
             };
 
-            if ((App.ViewModel.User.FacebookId != "") && (App.ViewModel.User.FacebookId != null))
+            if ((ViewModelLocator.MainStatic.User.FacebookId != "") && (ViewModelLocator.MainStatic.User.FacebookId != null))
             {
                 this.FacebookLinkingButton.Visibility = Visibility.Collapsed;
                 this.FacebookUnLinkingButton.Visibility = Visibility.Visible;
@@ -127,9 +127,9 @@ namespace Donor
 
             try
             {
-                this.Sex = App.ViewModel.User.Sex;
-                this.BloodGroup = App.ViewModel.User.BloodGroup;
-                this.RHEdit = App.ViewModel.User.BloodRh;
+                this.Sex = ViewModelLocator.MainStatic.User.Sex;
+                this.BloodGroup = ViewModelLocator.MainStatic.User.BloodGroup;
+                this.RHEdit = ViewModelLocator.MainStatic.User.BloodRh;
                 this.UserDataSet = true;
             }
             catch { };
@@ -167,33 +167,33 @@ namespace Donor
                         JObject o = JObject.Parse(response.Content.ToString());
                         if (o["error"] == null)
                         {
-                            App.ViewModel.User = JsonConvert.DeserializeObject<DonorUser>(response.Content.ToString());
-                            App.ViewModel.User.IsLoggedIn = true;
-                            App.ViewModel.Events.WeekItemsUpdated();
-                            App.ViewModel.OnUserEnter(EventArgs.Empty);
+                            ViewModelLocator.MainStatic.User = JsonConvert.DeserializeObject<DonorUser>(response.Content.ToString());
+                            ViewModelLocator.MainStatic.User.IsLoggedIn = true;
+                            ViewModelLocator.MainStatic.Events.WeekItemsUpdated();
+                            ViewModelLocator.MainStatic.OnUserEnter(EventArgs.Empty);
 
-                            App.ViewModel.User.Name = this.name1.Text.ToString();
-                            App.ViewModel.User.SecondName = this.SecondNameRegister.Text.ToString();
-                            App.ViewModel.User.Birthday = this.UserBirthdayRegister.Value.Value.ToShortDateString();
-                            App.ViewModel.User.UserName = this.email1.Text.ToString();
+                            ViewModelLocator.MainStatic.User.Name = this.name1.Text.ToString();
+                            ViewModelLocator.MainStatic.User.SecondName = this.SecondNameRegister.Text.ToString();
+                            ViewModelLocator.MainStatic.User.Birthday = this.UserBirthdayRegister.Value.Value.ToShortDateString();
+                            ViewModelLocator.MainStatic.User.UserName = this.email1.Text.ToString();
 
-                            App.ViewModel.User.Sex = reg_sex;
+                            ViewModelLocator.MainStatic.User.Sex = reg_sex;
 
-                            App.ViewModel.User.Password = this.password1.Password.ToString();
+                            ViewModelLocator.MainStatic.User.Password = this.password1.Password.ToString();
 
                             this.RegisterForm.Visibility = Visibility.Collapsed;
                             this.UserProfile.Visibility = Visibility.Visible;
                             this.LoginForm.Visibility = Visibility.Collapsed;
 
-                            //App.ViewModel.OnDataFLoaded(EventArgs.Empty);
-                            App.ViewModel.IsDataLoaded = true;
+                            //ViewModelLocator.MainStatic.OnDataFLoaded(EventArgs.Empty);
+                            ViewModelLocator.MainStatic.IsDataLoaded = true;
 
                             List<FlurryWP7SDK.Models.Parameter> articleParams = new List<FlurryWP7SDK.Models.Parameter> { 
-                            new FlurryWP7SDK.Models.Parameter("objectId", App.ViewModel.User.objectId), 
+                            new FlurryWP7SDK.Models.Parameter("objectId", ViewModelLocator.MainStatic.User.objectId), 
                             new FlurryWP7SDK.Models.Parameter("platform", "wp7") };
                             FlurryWP7SDK.Api.LogEvent("User_register", articleParams);
 
-                            App.ViewModel.SaveUserToStorage();
+                            ViewModelLocator.MainStatic.SaveUserToStorage();
 
                         }
                         else
@@ -212,7 +212,7 @@ namespace Donor
                             } catch {
                                 MessageBox.Show("Не удалось произвести регистрацию."); 
                             };                            
-                            App.ViewModel.User.IsLoggedIn = false;
+                            ViewModelLocator.MainStatic.User.IsLoggedIn = false;
 
                             this.password1.Password = "";
                             this.password2.Password = "";
@@ -227,7 +227,7 @@ namespace Donor
                         this.password1.Password = "";
                         this.password2.Password = "";
 
-                        App.ViewModel.User.IsLoggedIn = false;
+                        ViewModelLocator.MainStatic.User.IsLoggedIn = false;
                         this.RegisterForm.Visibility = Visibility.Visible;
                         this.LoginForm.Visibility = Visibility.Collapsed;
                         this.UserProfile.Visibility = Visibility.Collapsed;
@@ -241,8 +241,8 @@ namespace Donor
                 this.password1.Password = "";
                 this.password2.Password = "";
 
-                App.ViewModel.User.IsLoggedIn = false;
-                App.ViewModel.User.UserLoading = false;
+                ViewModelLocator.MainStatic.User.IsLoggedIn = false;
+                ViewModelLocator.MainStatic.User.UserLoading = false;
                 this.RegisterForm.Visibility = Visibility.Visible;
                 this.LoginForm.Visibility = Visibility.Collapsed;
                 this.UserProfile.Visibility = Visibility.Collapsed;
@@ -286,7 +286,7 @@ namespace Donor
             if (e.PopUpResult == PopUpResult.Ok)
             {
                 string _email = ((messagePrompt.Body as StackPanel).Children.FirstOrDefault(c => (c as FrameworkElement).Name == "RestoreEmail") as TextBox).Text.ToString();
-                App.ViewModel.User.RestoreUserPassword(_email);
+                ViewModelLocator.MainStatic.User.RestoreUserPassword(_email);
             };
         }
 
@@ -321,11 +321,11 @@ namespace Donor
 
         private void Pivot_Loaded(object sender, RoutedEventArgs e)
         {
-            App.ViewModel.UserEnter += new MainViewModel.UserEnterEventHandler(this.UserLoaded);
-            App.ViewModel.User.FacebookLinked += new DonorUser.FacebookLinkedEventHandler(this.FacebookLinkingFinished);
-            App.ViewModel.User.FacebookUnLinked += new DonorUser.FacebookUnLinkedEventHandler(this.FacebookUnLinkingFinished);
+            ViewModelLocator.MainStatic.UserEnter += new MainViewModel.UserEnterEventHandler(this.UserLoaded);
+            ViewModelLocator.MainStatic.User.FacebookLinked += new DonorUser.FacebookLinkedEventHandler(this.FacebookLinkingFinished);
+            ViewModelLocator.MainStatic.User.FacebookUnLinked += new DonorUser.FacebookUnLinkedEventHandler(this.FacebookUnLinkingFinished);
 
-            if (App.ViewModel.User.IsLoggedIn == true)
+            if (ViewModelLocator.MainStatic.User.IsLoggedIn == true)
             {
                 this.RegisterForm.Visibility = Visibility.Collapsed;
                 this.LoginForm.Visibility = Visibility.Collapsed;
@@ -338,7 +338,7 @@ namespace Donor
                 this.UserProfile.Visibility = Visibility.Collapsed;
             };
 
-            this.AppBar.DataContext = App.ViewModel;
+            this.AppBar.DataContext = ViewModelLocator.MainStatic;
             if (this.NavigationContext.QueryString.ContainsKey("task"))
             {
                 try
@@ -354,9 +354,9 @@ namespace Donor
                         case "show":
                             try
                             {
-                                this.Sex = App.ViewModel.User.Sex;
-                                this.BloodGroup = App.ViewModel.User.BloodGroup;
-                                this.RHEdit = App.ViewModel.User.BloodRh;
+                                this.Sex = ViewModelLocator.MainStatic.User.Sex;
+                                this.BloodGroup = ViewModelLocator.MainStatic.User.BloodGroup;
+                                this.RHEdit = ViewModelLocator.MainStatic.User.BloodRh;
                                 this.UserDataSet = true;
                             }
                             catch { };
@@ -385,7 +385,7 @@ namespace Donor
                             break;
                         case "login":
                             AppBarVisibitilty("login");
-                            App.ViewModel.User.UserLoading = false;
+                            ViewModelLocator.MainStatic.User.UserLoading = false;
 
                             if (this.NavigationContext.QueryString.ContainsKey("email"))
                             {
@@ -406,9 +406,9 @@ namespace Donor
                             {
                                 if (this.UserDataSet == false)
                                 {
-                                    this.Sex = App.ViewModel.User.Sex;
-                                    this.BloodGroup = App.ViewModel.User.BloodGroup;
-                                    this.RHEdit = App.ViewModel.User.BloodRh;
+                                    this.Sex = ViewModelLocator.MainStatic.User.Sex;
+                                    this.BloodGroup = ViewModelLocator.MainStatic.User.BloodGroup;
+                                    this.RHEdit = ViewModelLocator.MainStatic.User.BloodRh;
                                     this.UserDataSet = true;
                                 };
                             }
@@ -422,7 +422,7 @@ namespace Donor
                             this.UserProfile.Visibility = Visibility.Collapsed;
                             this.EditProfile.Visibility = Visibility.Visible;
 
-                            if ((App.ViewModel.User.FacebookId != "") && (App.ViewModel.User.FacebookId != null))
+                            if ((ViewModelLocator.MainStatic.User.FacebookId != "") && (ViewModelLocator.MainStatic.User.FacebookId != null))
                             {
                                 this.FacebookLinkingButton.Visibility = Visibility.Collapsed;
                                 this.FacebookUnLinkingButton.Visibility = Visibility.Visible;
@@ -454,7 +454,7 @@ namespace Donor
                 //AppBarVisibitilty("show");   
             };
 
-            /*if (App.ViewModel.User.IsLoggedIn == true)
+            /*if (ViewModelLocator.MainStatic.User.IsLoggedIn == true)
             {
                 this.AppBar.IsVisible = true;
             }
@@ -467,9 +467,9 @@ namespace Donor
 
         private void SetEditFields() {
             /*
-             *              this.Sex = App.ViewModel.User.Sex;
-                            this.BloodGroup = App.ViewModel.User.BloodGroup;
-                            this.RHEdit = App.ViewModel.User.BloodRh;*/
+             *              this.Sex = ViewModelLocator.MainStatic.User.Sex;
+                            this.BloodGroup = ViewModelLocator.MainStatic.User.BloodGroup;
+                            this.RHEdit = ViewModelLocator.MainStatic.User.BloodRh;*/
             try
             {
                 if (this.Sex == 1)
@@ -500,7 +500,7 @@ namespace Donor
         {
             this.EditProfile.Visibility = Visibility.Visible;
 
-            if ((App.ViewModel.User.FacebookId != "") && (App.ViewModel.User.FacebookId != null))
+            if ((ViewModelLocator.MainStatic.User.FacebookId != "") && (ViewModelLocator.MainStatic.User.FacebookId != null))
             {
                 this.FacebookLinkingButton.Visibility = Visibility.Collapsed;
                 this.FacebookUnLinkingButton.Visibility = Visibility.Visible;
@@ -555,32 +555,32 @@ namespace Donor
         {
             try
             {
-                App.ViewModel.User.BloodGroup = this.BloudTypeGroupEdit.SelectedIndex;
+                ViewModelLocator.MainStatic.User.BloodGroup = this.BloudTypeGroupEdit.SelectedIndex;
             }
             catch { };
 
             try
             {
-                App.ViewModel.User.Sex = this.SexEditGroup.SelectedIndex;
+                ViewModelLocator.MainStatic.User.Sex = this.SexEditGroup.SelectedIndex;
             }
             catch { };
 
             try
             {
-                App.ViewModel.User.BloodRh = this.RHedit.SelectedIndex;
+                ViewModelLocator.MainStatic.User.BloodRh = this.RHedit.SelectedIndex;
             }
             catch { };
 
             try
             {
-                App.ViewModel.User.Name = this.EditName.Text;
-                App.ViewModel.User.SecondName = this.EditSecondName.Text;
+                ViewModelLocator.MainStatic.User.Name = this.EditName.Text;
+                ViewModelLocator.MainStatic.User.SecondName = this.EditSecondName.Text;
             }
             catch
             {
             };
 
-            App.ViewModel.User.UpdateAction(null);
+            ViewModelLocator.MainStatic.User.UpdateAction(null);
 
             this.EditProfile.Visibility = Visibility.Collapsed;
 
@@ -598,24 +598,24 @@ namespace Donor
             switch ((sender as ToggleSwitch).Name.ToString())
             {
                 case "PasswordCheck":
-                    App.ViewModel.Settings.Password = true;
+                    ViewModelLocator.MainStatic.Settings.Password = true;
                     break;
                 case "PushCheck":
-                    App.ViewModel.Settings.Push = true;
+                    ViewModelLocator.MainStatic.Settings.Push = true;
                     break;
                 case "SearchCheck":
-                    App.ViewModel.Settings.FastSearch = true;
+                    ViewModelLocator.MainStatic.Settings.FastSearch = true;
                     break;
                 case "BeforeCheck":
-                    App.ViewModel.Settings.EventBefore = true;
+                    ViewModelLocator.MainStatic.Settings.EventBefore = true;
                     break;
                 case "AfterCheck":
-                    App.ViewModel.Settings.EventAfter = true;
+                    ViewModelLocator.MainStatic.Settings.EventAfter = true;
                     break;
                 default:
                 break;
             };
-            App.ViewModel.SaveSettingsToStorage();
+            ViewModelLocator.MainStatic.SaveSettingsToStorage();
         }
 
         private void Check_Unchecked(object sender, RoutedEventArgs e)
@@ -624,24 +624,24 @@ namespace Donor
             switch ((sender as ToggleSwitch).Name.ToString())
             {
                 case "PasswordCheck":
-                    App.ViewModel.Settings.Password = false;
+                    ViewModelLocator.MainStatic.Settings.Password = false;
                     break;
                 case "PushCheck":
-                    App.ViewModel.Settings.Push = false;
+                    ViewModelLocator.MainStatic.Settings.Push = false;
                     break;
                 case "SearchCheck":
-                    App.ViewModel.Settings.FastSearch = false;
+                    ViewModelLocator.MainStatic.Settings.FastSearch = false;
                     break;
                 case "BeforeCheck":
-                    App.ViewModel.Settings.EventBefore = false;
+                    ViewModelLocator.MainStatic.Settings.EventBefore = false;
                     break;
                 case "AfterCheck":
-                    App.ViewModel.Settings.EventAfter = false;
+                    ViewModelLocator.MainStatic.Settings.EventAfter = false;
                     break;
                 default:
                     break;
             };
-            App.ViewModel.SaveSettingsToStorage();
+            ViewModelLocator.MainStatic.SaveSettingsToStorage();
         }
 
         /// <summary>
@@ -674,7 +674,7 @@ namespace Donor
         {
             try
             {
-                App.ViewModel.User.FacebookUnlinking();
+                ViewModelLocator.MainStatic.User.FacebookUnlinking();
             }
             catch
             {
@@ -685,7 +685,7 @@ namespace Donor
         {
             emailsaved = "";
             passwordsaved = "";
-            App.ViewModel.User.LogoutAction(null);
+            ViewModelLocator.MainStatic.User.LogoutAction(null);
         }
 
         private void Login_Click(object sender, RoutedEventArgs e)
@@ -696,10 +696,10 @@ namespace Donor
             this.email.Text = "";
             this.password.Password = "";
 
-            App.ViewModel.User.UserName = username;
-            App.ViewModel.User.Password = password;
+            ViewModelLocator.MainStatic.User.UserName = username;
+            ViewModelLocator.MainStatic.User.Password = password;
 
-            App.ViewModel.User.LoginAction(null);
+            ViewModelLocator.MainStatic.User.LoginAction(null);
         }
 
         /// <summary>
@@ -725,9 +725,9 @@ namespace Donor
         /// <param name="e"></param>
         private void FacebookLinkingButton_Click(object sender, RoutedEventArgs e)
         {
-            if ((App.ViewModel.User.IsLoggedIn) && (App.ViewModel.User.FacebookToken != "") && (App.ViewModel.User.FacebookId != "") && (App.ViewModel.User.FacebookToken != null) && (App.ViewModel.User.FacebookId != null))
+            if ((ViewModelLocator.MainStatic.User.IsLoggedIn) && (ViewModelLocator.MainStatic.User.FacebookToken != "") && (ViewModelLocator.MainStatic.User.FacebookId != "") && (ViewModelLocator.MainStatic.User.FacebookToken != null) && (ViewModelLocator.MainStatic.User.FacebookId != null))
             {
-                App.ViewModel.User.FacebookLinking(App.ViewModel.User.FacebookId, App.ViewModel.User.FacebookToken);
+                ViewModelLocator.MainStatic.User.FacebookLinking(ViewModelLocator.MainStatic.User.FacebookId, ViewModelLocator.MainStatic.User.FacebookToken);
             }
             else
             {
@@ -743,7 +743,7 @@ namespace Donor
 
         private void FacebookUnLinkingButton_Click(object sender, RoutedEventArgs e)
         {
-            App.ViewModel.User.FacebookUnlinking();
+            ViewModelLocator.MainStatic.User.FacebookUnlinking();
         }
 
         private void email1_TextChanged(object sender, TextChangedEventArgs e)

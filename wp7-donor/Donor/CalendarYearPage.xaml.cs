@@ -27,7 +27,7 @@ namespace Donor
         public CalendarPage()
         {
             InitializeComponent();
-            DataContext = App.ViewModel;
+            DataContext = ViewModelLocator.MainStatic;
 
             try
             {
@@ -37,16 +37,16 @@ namespace Donor
 
             try
             {
-                App.ViewModel.EventsChangedCalendar += new MainViewModel.EventsChangedCalendarEventHandler(this.EventsChangedCalendar);
+                ViewModelLocator.MainStatic.EventsChangedCalendar += new MainViewModel.EventsChangedCalendarEventHandler(this.EventsChangedCalendar);
 
                 this.EventsListPrev.ItemsSource = null;
-                this.EventsList.ItemsSource = App.ViewModel.Events.ThisMonthItems;
-                this.EventsList.DataContext = App.ViewModel.Events;
+                this.EventsList.ItemsSource = ViewModelLocator.MainStatic.Events.ThisMonthItems;
+                this.EventsList.DataContext = ViewModelLocator.MainStatic.Events;
                 this.EventsListNext.ItemsSource = null;
 
-                this.NextMonth.Header = App.ViewModel.Events.NextMonthString;
-                this.ThisMonth.Header = App.ViewModel.Events.CurrentMonthString;
-                this.PrevMonth.Header = App.ViewModel.Events.PrevMonthString;
+                this.NextMonth.Header = ViewModelLocator.MainStatic.Events.NextMonthString;
+                this.ThisMonth.Header = ViewModelLocator.MainStatic.Events.CurrentMonthString;
+                this.PrevMonth.Header = ViewModelLocator.MainStatic.Events.PrevMonthString;
             }
             catch { };
 
@@ -69,13 +69,13 @@ namespace Donor
                 else
                 {
                     this.EventsListPrev.ItemsSource = null;
-                    this.EventsList.ItemsSource = App.ViewModel.Events.ThisMonthItems;
-                    this.EventsList.DataContext = App.ViewModel.Events;
+                    this.EventsList.ItemsSource = ViewModelLocator.MainStatic.Events.ThisMonthItems;
+                    this.EventsList.DataContext = ViewModelLocator.MainStatic.Events;
                     this.EventsListNext.ItemsSource = null;
 
-                    this.NextMonth.Header = App.ViewModel.Events.NextMonthString;
-                    this.ThisMonth.Header = App.ViewModel.Events.CurrentMonthString;
-                    this.PrevMonth.Header = App.ViewModel.Events.PrevMonthString;
+                    this.NextMonth.Header = ViewModelLocator.MainStatic.Events.NextMonthString;
+                    this.ThisMonth.Header = ViewModelLocator.MainStatic.Events.CurrentMonthString;
+                    this.PrevMonth.Header = ViewModelLocator.MainStatic.Events.PrevMonthString;
                 };
             }
             catch { };
@@ -83,21 +83,21 @@ namespace Donor
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
-            //DateTime date = App.ViewModel.Events.PossibleGiveBlood("Тромбоциты");
-            this.Monthes.Title = App.ViewModel.Events.CurrentMonth.Year.ToString();
+            //DateTime date = ViewModelLocator.MainStatic.Events.PossibleGiveBlood("Тромбоциты");
+            this.Monthes.Title = ViewModelLocator.MainStatic.Events.CurrentMonth.Year.ToString();
 
             previndex = 2;
             this.Monthes.SelectedIndex = 2;
 
             this.EventsList2Prev.ItemsSource = null;
             this.EventsListPrev.ItemsSource = null;
-            this.EventsList.ItemsSource = App.ViewModel.Events.ThisMonthItems;
+            this.EventsList.ItemsSource = ViewModelLocator.MainStatic.Events.ThisMonthItems;
             this.EventsListNext.ItemsSource = null;
             this.EventsListNext2.ItemsSource = null;
 
-            this.NextMonth.Header = App.ViewModel.Events.NextMonthString;
-            this.ThisMonth.Header = App.ViewModel.Events.CurrentMonthString;
-            this.PrevMonth.Header = App.ViewModel.Events.PrevMonthString;
+            this.NextMonth.Header = ViewModelLocator.MainStatic.Events.NextMonthString;
+            this.ThisMonth.Header = ViewModelLocator.MainStatic.Events.CurrentMonthString;
+            this.PrevMonth.Header = ViewModelLocator.MainStatic.Events.PrevMonthString;
         }
 
 
@@ -140,8 +140,8 @@ namespace Donor
 
         private void Pivot_Loaded(object sender, RoutedEventArgs e)
         {
-            if (App.ViewModel.Events.CurrentMonth == null) {
-                App.ViewModel.Events.CurrentMonth = DateTime.Now;
+            if (ViewModelLocator.MainStatic.Events.CurrentMonth == null) {
+                ViewModelLocator.MainStatic.Events.CurrentMonth = DateTime.Now;
             };
         }
 
@@ -154,9 +154,9 @@ namespace Donor
         {
             previndex = 2;
 
-            App.ViewModel.Events.CurrentMonth = DateTime.Now;
+            ViewModelLocator.MainStatic.Events.CurrentMonth = DateTime.Now;
 
-            this.Monthes.Title = App.ViewModel.Events.CurrentMonth.Year.ToString();
+            this.Monthes.Title = ViewModelLocator.MainStatic.Events.CurrentMonth.Year.ToString();
 
             try
             {
@@ -164,13 +164,13 @@ namespace Donor
             }
             catch { };
 
-            this.EventsListPrev.ItemsSource = App.ViewModel.Events.PrevMonthItems;
-            this.EventsList.ItemsSource = App.ViewModel.Events.ThisMonthItems;
-            this.EventsListNext.ItemsSource = App.ViewModel.Events.NextMonthItems;
+            this.EventsListPrev.ItemsSource = ViewModelLocator.MainStatic.Events.PrevMonthItems;
+            this.EventsList.ItemsSource = ViewModelLocator.MainStatic.Events.ThisMonthItems;
+            this.EventsListNext.ItemsSource = ViewModelLocator.MainStatic.Events.NextMonthItems;
 
-            this.NextMonth.Header = App.ViewModel.Events.NextMonthString;
-            this.ThisMonth.Header = App.ViewModel.Events.CurrentMonthString;
-            this.PrevMonth.Header = App.ViewModel.Events.PrevMonthString;
+            this.NextMonth.Header = ViewModelLocator.MainStatic.Events.NextMonthString;
+            this.ThisMonth.Header = ViewModelLocator.MainStatic.Events.CurrentMonthString;
+            this.PrevMonth.Header = ViewModelLocator.MainStatic.Events.PrevMonthString;
         }
 
         private void EventsListNext2_Tap(object sender, System.Windows.Input.GestureEventArgs e)
@@ -199,7 +199,7 @@ namespace Donor
         {
             try
             {
-                //App.ViewModel.Events.CurrentMonth = App.ViewModel.Events.CurrentMonth.AddMonths(1);
+                //ViewModelLocator.MainStatic.Events.CurrentMonth = ViewModelLocator.MainStatic.Events.CurrentMonth.AddMonths(1);
                 int itemindex = 2;
                 itemindex = (sender as LockablePivot).SelectedIndex;
 
@@ -211,9 +211,9 @@ namespace Donor
                 bool notback = ((previndex != 0) || (itemindex != 4));
                 if (((itemindex > previndex) || ((itemindex == 0) && (previndex == 4))) && notback)
                 {
-                    App.ViewModel.Events.CurrentMonth = App.ViewModel.Events.CurrentMonth.AddMonths(1);
+                    ViewModelLocator.MainStatic.Events.CurrentMonth = ViewModelLocator.MainStatic.Events.CurrentMonth.AddMonths(1);
 
-                    this.Monthes.Title = App.ViewModel.Events.CurrentMonth.Year.ToString();
+                    this.Monthes.Title = ViewModelLocator.MainStatic.Events.CurrentMonth.Year.ToString();
 
                     previndex = itemindex;
                     switch (itemindex)
@@ -223,39 +223,39 @@ namespace Donor
                             this.EventsList.ItemsSource = null;
                             this.EventsListNext.ItemsSource = null;
                             this.EventsListNext2.ItemsSource = null;
-                            this.EventsList2Prev.ItemsSource = App.ViewModel.Events.ThisMonthItems;
+                            this.EventsList2Prev.ItemsSource = ViewModelLocator.MainStatic.Events.ThisMonthItems;
 
-                            this.NextMonth2.Header = App.ViewModel.Events.PrevMonthString;
-                            this.NextMonth.Header = App.ViewModel.Events.PrevMonth2String;
-                            this.ThisMonth.Header = App.ViewModel.Events.NextMonth2String;
-                            this.PrevMonth.Header = App.ViewModel.Events.NextMonthString;
-                            this.PrevMonth2.Header = App.ViewModel.Events.CurrentMonthString;
+                            this.NextMonth2.Header = ViewModelLocator.MainStatic.Events.PrevMonthString;
+                            this.NextMonth.Header = ViewModelLocator.MainStatic.Events.PrevMonth2String;
+                            this.ThisMonth.Header = ViewModelLocator.MainStatic.Events.NextMonth2String;
+                            this.PrevMonth.Header = ViewModelLocator.MainStatic.Events.NextMonthString;
+                            this.PrevMonth2.Header = ViewModelLocator.MainStatic.Events.CurrentMonthString;
                             break;
                         case 1:
                             this.EventsList2Prev.ItemsSource = null;
                             this.EventsList.ItemsSource = null;
                             this.EventsListNext.ItemsSource = null;
                             this.EventsListNext2.ItemsSource = null;
-                            this.EventsListPrev.ItemsSource = App.ViewModel.Events.ThisMonthItems;
+                            this.EventsListPrev.ItemsSource = ViewModelLocator.MainStatic.Events.ThisMonthItems;
 
-                            this.NextMonth2.Header = App.ViewModel.Events.PrevMonth2String;
-                            this.NextMonth.Header = App.ViewModel.Events.NextMonth2String;
-                            this.ThisMonth.Header = App.ViewModel.Events.NextMonthString;
-                            this.PrevMonth.Header = App.ViewModel.Events.CurrentMonthString;
-                            this.PrevMonth2.Header = App.ViewModel.Events.PrevMonthString;
+                            this.NextMonth2.Header = ViewModelLocator.MainStatic.Events.PrevMonth2String;
+                            this.NextMonth.Header = ViewModelLocator.MainStatic.Events.NextMonth2String;
+                            this.ThisMonth.Header = ViewModelLocator.MainStatic.Events.NextMonthString;
+                            this.PrevMonth.Header = ViewModelLocator.MainStatic.Events.CurrentMonthString;
+                            this.PrevMonth2.Header = ViewModelLocator.MainStatic.Events.PrevMonthString;
                             break;
                         case 2:
                             this.EventsList2Prev.ItemsSource = null;
                             this.EventsListPrev.ItemsSource = null;
                             this.EventsListNext.ItemsSource = null;
                             this.EventsListNext2.ItemsSource = null;
-                            this.EventsList.ItemsSource = App.ViewModel.Events.ThisMonthItems;
+                            this.EventsList.ItemsSource = ViewModelLocator.MainStatic.Events.ThisMonthItems;
 
-                            this.NextMonth2.Header = App.ViewModel.Events.NextMonth2String;
-                            this.NextMonth.Header = App.ViewModel.Events.NextMonthString;
-                            this.ThisMonth.Header = App.ViewModel.Events.CurrentMonthString;
-                            this.PrevMonth.Header = App.ViewModel.Events.PrevMonthString;
-                            this.PrevMonth2.Header = App.ViewModel.Events.PrevMonth2String;
+                            this.NextMonth2.Header = ViewModelLocator.MainStatic.Events.NextMonth2String;
+                            this.NextMonth.Header = ViewModelLocator.MainStatic.Events.NextMonthString;
+                            this.ThisMonth.Header = ViewModelLocator.MainStatic.Events.CurrentMonthString;
+                            this.PrevMonth.Header = ViewModelLocator.MainStatic.Events.PrevMonthString;
+                            this.PrevMonth2.Header = ViewModelLocator.MainStatic.Events.PrevMonth2String;
 
                             break;
                         case 3:
@@ -263,26 +263,26 @@ namespace Donor
                             this.EventsList.ItemsSource = null;
                             this.EventsListPrev.ItemsSource = null;
                             this.EventsListNext2.ItemsSource = null;
-                            this.EventsListNext.ItemsSource = App.ViewModel.Events.ThisMonthItems;
+                            this.EventsListNext.ItemsSource = ViewModelLocator.MainStatic.Events.ThisMonthItems;
 
-                            this.NextMonth2.Header = App.ViewModel.Events.NextMonthString;
-                            this.NextMonth.Header = App.ViewModel.Events.CurrentMonthString;
-                            this.ThisMonth.Header = App.ViewModel.Events.PrevMonthString;
-                            this.PrevMonth.Header = App.ViewModel.Events.PrevMonth2String;
-                            this.PrevMonth2.Header = App.ViewModel.Events.NextMonth2String;
+                            this.NextMonth2.Header = ViewModelLocator.MainStatic.Events.NextMonthString;
+                            this.NextMonth.Header = ViewModelLocator.MainStatic.Events.CurrentMonthString;
+                            this.ThisMonth.Header = ViewModelLocator.MainStatic.Events.PrevMonthString;
+                            this.PrevMonth.Header = ViewModelLocator.MainStatic.Events.PrevMonth2String;
+                            this.PrevMonth2.Header = ViewModelLocator.MainStatic.Events.NextMonth2String;
                             break;
                         case 4:
                             this.EventsList2Prev.ItemsSource = null;
                             this.EventsList.ItemsSource = null;
                             this.EventsListPrev.ItemsSource = null;
                             this.EventsListNext.ItemsSource = null;
-                            this.EventsListNext2.ItemsSource = App.ViewModel.Events.ThisMonthItems;
+                            this.EventsListNext2.ItemsSource = ViewModelLocator.MainStatic.Events.ThisMonthItems;
 
-                            this.NextMonth2.Header = App.ViewModel.Events.CurrentMonthString;
-                            this.NextMonth.Header = App.ViewModel.Events.PrevMonthString;
-                            this.ThisMonth.Header = App.ViewModel.Events.PrevMonth2String;
-                            this.PrevMonth.Header = App.ViewModel.Events.NextMonth2String;
-                            this.PrevMonth2.Header = App.ViewModel.Events.NextMonthString;
+                            this.NextMonth2.Header = ViewModelLocator.MainStatic.Events.CurrentMonthString;
+                            this.NextMonth.Header = ViewModelLocator.MainStatic.Events.PrevMonthString;
+                            this.ThisMonth.Header = ViewModelLocator.MainStatic.Events.PrevMonth2String;
+                            this.PrevMonth.Header = ViewModelLocator.MainStatic.Events.NextMonth2String;
+                            this.PrevMonth2.Header = ViewModelLocator.MainStatic.Events.NextMonthString;
                             break;
                         default:
                             break;
@@ -290,9 +290,9 @@ namespace Donor
                 }
                 else
                 {
-                    App.ViewModel.Events.CurrentMonth = App.ViewModel.Events.CurrentMonth.AddMonths(-1);
+                    ViewModelLocator.MainStatic.Events.CurrentMonth = ViewModelLocator.MainStatic.Events.CurrentMonth.AddMonths(-1);
 
-                    this.Monthes.Title = App.ViewModel.Events.CurrentMonth.Year.ToString();
+                    this.Monthes.Title = ViewModelLocator.MainStatic.Events.CurrentMonth.Year.ToString();
 
                     previndex = itemindex;
                     switch (itemindex)
@@ -302,39 +302,39 @@ namespace Donor
                             this.EventsList.ItemsSource = null;
                             this.EventsListPrev.ItemsSource = null;
                             this.EventsListNext.ItemsSource = null;
-                            this.EventsList2Prev.ItemsSource = App.ViewModel.Events.ThisMonthItems;
+                            this.EventsList2Prev.ItemsSource = ViewModelLocator.MainStatic.Events.ThisMonthItems;
 
-                            this.NextMonth2.Header = App.ViewModel.Events.PrevMonthString;
-                            this.NextMonth.Header = App.ViewModel.Events.PrevMonth2String;
-                            this.ThisMonth.Header = App.ViewModel.Events.NextMonth2String;
-                            this.PrevMonth.Header = App.ViewModel.Events.NextMonthString;
-                            this.PrevMonth2.Header = App.ViewModel.Events.CurrentMonthString;
+                            this.NextMonth2.Header = ViewModelLocator.MainStatic.Events.PrevMonthString;
+                            this.NextMonth.Header = ViewModelLocator.MainStatic.Events.PrevMonth2String;
+                            this.ThisMonth.Header = ViewModelLocator.MainStatic.Events.NextMonth2String;
+                            this.PrevMonth.Header = ViewModelLocator.MainStatic.Events.NextMonthString;
+                            this.PrevMonth2.Header = ViewModelLocator.MainStatic.Events.CurrentMonthString;
                             break;
                         case 1:
                             this.EventsListNext2.ItemsSource = null;
                             this.EventsList.ItemsSource = null;
                             this.EventsList2Prev.ItemsSource = null;
                             this.EventsListNext.ItemsSource = null;
-                            this.EventsListPrev.ItemsSource = App.ViewModel.Events.ThisMonthItems;
+                            this.EventsListPrev.ItemsSource = ViewModelLocator.MainStatic.Events.ThisMonthItems;
 
-                            this.NextMonth2.Header = App.ViewModel.Events.PrevMonth2String;
-                            this.NextMonth.Header = App.ViewModel.Events.NextMonth2String;
-                            this.ThisMonth.Header = App.ViewModel.Events.NextMonthString;
-                            this.PrevMonth.Header = App.ViewModel.Events.CurrentMonthString;
-                            this.PrevMonth2.Header = App.ViewModel.Events.PrevMonthString;
+                            this.NextMonth2.Header = ViewModelLocator.MainStatic.Events.PrevMonth2String;
+                            this.NextMonth.Header = ViewModelLocator.MainStatic.Events.NextMonth2String;
+                            this.ThisMonth.Header = ViewModelLocator.MainStatic.Events.NextMonthString;
+                            this.PrevMonth.Header = ViewModelLocator.MainStatic.Events.CurrentMonthString;
+                            this.PrevMonth2.Header = ViewModelLocator.MainStatic.Events.PrevMonthString;
                             break;
                         case 2:
                             this.EventsListNext2.ItemsSource = null;
                             this.EventsListPrev.ItemsSource = null;
                             this.EventsList2Prev.ItemsSource = null;
                             this.EventsListNext.ItemsSource = null;
-                            this.EventsList.ItemsSource = App.ViewModel.Events.ThisMonthItems;
+                            this.EventsList.ItemsSource = ViewModelLocator.MainStatic.Events.ThisMonthItems;
 
-                            this.NextMonth2.Header = App.ViewModel.Events.NextMonth2String;
-                            this.NextMonth.Header = App.ViewModel.Events.NextMonthString;
-                            this.ThisMonth.Header = App.ViewModel.Events.CurrentMonthString;
-                            this.PrevMonth.Header = App.ViewModel.Events.PrevMonthString;
-                            this.PrevMonth2.Header = App.ViewModel.Events.PrevMonth2String;
+                            this.NextMonth2.Header = ViewModelLocator.MainStatic.Events.NextMonth2String;
+                            this.NextMonth.Header = ViewModelLocator.MainStatic.Events.NextMonthString;
+                            this.ThisMonth.Header = ViewModelLocator.MainStatic.Events.CurrentMonthString;
+                            this.PrevMonth.Header = ViewModelLocator.MainStatic.Events.PrevMonthString;
+                            this.PrevMonth2.Header = ViewModelLocator.MainStatic.Events.PrevMonth2String;
 
                             break;
                         case 3:
@@ -342,26 +342,26 @@ namespace Donor
                             this.EventsList.ItemsSource = null;
                             this.EventsList2Prev.ItemsSource = null;
                             this.EventsListNext2.ItemsSource = null;
-                            this.EventsListNext.ItemsSource = App.ViewModel.Events.ThisMonthItems;
+                            this.EventsListNext.ItemsSource = ViewModelLocator.MainStatic.Events.ThisMonthItems;
 
-                            this.NextMonth2.Header = App.ViewModel.Events.NextMonthString;
-                            this.NextMonth.Header = App.ViewModel.Events.CurrentMonthString;
-                            this.ThisMonth.Header = App.ViewModel.Events.PrevMonthString;
-                            this.PrevMonth.Header = App.ViewModel.Events.PrevMonth2String;
-                            this.PrevMonth2.Header = App.ViewModel.Events.NextMonth2String;
+                            this.NextMonth2.Header = ViewModelLocator.MainStatic.Events.NextMonthString;
+                            this.NextMonth.Header = ViewModelLocator.MainStatic.Events.CurrentMonthString;
+                            this.ThisMonth.Header = ViewModelLocator.MainStatic.Events.PrevMonthString;
+                            this.PrevMonth.Header = ViewModelLocator.MainStatic.Events.PrevMonth2String;
+                            this.PrevMonth2.Header = ViewModelLocator.MainStatic.Events.NextMonth2String;
                             break;
                         case 4:
                             this.EventsListNext2.ItemsSource = null;
                             this.EventsList.ItemsSource = null;
                             this.EventsList2Prev.ItemsSource = null;
                             this.EventsListNext.ItemsSource = null;
-                            this.EventsListNext2.ItemsSource = App.ViewModel.Events.ThisMonthItems;
+                            this.EventsListNext2.ItemsSource = ViewModelLocator.MainStatic.Events.ThisMonthItems;
 
-                            this.NextMonth2.Header = App.ViewModel.Events.CurrentMonthString;
-                            this.NextMonth.Header = App.ViewModel.Events.PrevMonthString;
-                            this.ThisMonth.Header = App.ViewModel.Events.PrevMonth2String;
-                            this.PrevMonth.Header = App.ViewModel.Events.NextMonth2String;
-                            this.PrevMonth2.Header = App.ViewModel.Events.NextMonthString;
+                            this.NextMonth2.Header = ViewModelLocator.MainStatic.Events.CurrentMonthString;
+                            this.NextMonth.Header = ViewModelLocator.MainStatic.Events.PrevMonthString;
+                            this.ThisMonth.Header = ViewModelLocator.MainStatic.Events.PrevMonth2String;
+                            this.PrevMonth.Header = ViewModelLocator.MainStatic.Events.NextMonth2String;
+                            this.PrevMonth2.Header = ViewModelLocator.MainStatic.Events.NextMonthString;
                             break;
                         default:
                             break;

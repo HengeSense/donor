@@ -17,7 +17,7 @@
     SupportedOrientations="Portrait"  Orientation="Portrait"
     shell:SystemTray.IsVisible="False" Loaded="PhoneApplicationPage_Loaded" 
     d:DataContext="{d:DesignData SampleData/MainViewModelSampleData.xaml}"
-    DataContext="{Binding Path=App.ViewModel,Source=App.ViewModel}">
+    DataContext="{Binding Path=ViewModelLocator.MainStatic,Source=ViewModelLocator.MainStatic}">
 
     <toolkit:TransitionService.NavigationInTransition>
         <toolkit:NavigationInTransition>

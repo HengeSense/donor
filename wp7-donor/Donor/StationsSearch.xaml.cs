@@ -20,7 +20,7 @@ namespace Donor
         {
             InitializeComponent();
 
-            this.StationsSearchText.ItemsSource = App.ViewModel.Stations.DistanceItems;
+            this.StationsSearchText.ItemsSource = ViewModelLocator.MainStatic.Stations.DistanceItems;
             this.StationsSearchText.FilterMode = AutoCompleteFilterMode.Contains;
             this.StationsSearchText.ItemFilter += SearchBank;
         }
@@ -49,7 +49,7 @@ namespace Donor
                 }
                 else
                 {
-                    App.ViewModel.Stations.SelectedStation = ((sender as ListBox).SelectedItem as StationViewModel).Nid.ToString();
+                    ViewModelLocator.MainStatic.Stations.SelectedStation = ((sender as ListBox).SelectedItem as StationViewModel).Nid.ToString();
                     NavigationService.GoBack();
                 };
             }
@@ -85,47 +85,47 @@ namespace Donor
             }
             catch { };
             //this.AppBar1.IsVisible = true;
-            this.StationsSearchText.Text = App.ViewModel.Stations.FilteredText;
+            this.StationsSearchText.Text = ViewModelLocator.MainStatic.Stations.FilteredText;
 
-            if (App.ViewModel.Stations.IsFilter == true)
+            if (ViewModelLocator.MainStatic.Stations.IsFilter == true)
             {
-                this.CityFilterText.Text = App.ViewModel.Stations.SelectedCity;
+                this.CityFilterText.Text = ViewModelLocator.MainStatic.Stations.SelectedCity;
             }
             else
             {
                 this.CityFilterText.Text = " ";
             };
 
-            this.StationsList.DataContext = App.ViewModel;
-            if (App.ViewModel.Stations.IsFilter == false)
+            this.StationsList.DataContext = ViewModelLocator.MainStatic;
+            if (ViewModelLocator.MainStatic.Stations.IsFilter == false)
             {
-                if (App.ViewModel.Stations.FilteredText == "")
+                if (ViewModelLocator.MainStatic.Stations.FilteredText == "")
                 {
-                    this.StationsList.ItemsSource = App.ViewModel.Stations.DistanceItems;
+                    this.StationsList.ItemsSource = ViewModelLocator.MainStatic.Stations.DistanceItems;
                 }
                 else
                 {
-                    this.StationsList.ItemsSource = from stations in App.ViewModel.Stations.Items
-                                                    where (stations.Title.ToLower().Contains(App.ViewModel.Stations.FilteredText.ToLower()) || stations.Adress.ToLower().Contains(App.ViewModel.Stations.FilteredText.ToLower()))
+                    this.StationsList.ItemsSource = from stations in ViewModelLocator.MainStatic.Stations.Items
+                                                    where (stations.Title.ToLower().Contains(ViewModelLocator.MainStatic.Stations.FilteredText.ToLower()) || stations.Adress.ToLower().Contains(ViewModelLocator.MainStatic.Stations.FilteredText.ToLower()))
                                                     orderby stations.Distance ascending
                                                     select stations;
                 };
             }
             else
             {
-                if (App.ViewModel.Stations.FilteredText == "")
+                if (ViewModelLocator.MainStatic.Stations.FilteredText == "")
                 {
-                    this.StationsList.ItemsSource = from stations in App.ViewModel.Stations.Items
-                                                    where (stations.City == App.ViewModel.Stations.SelectedCity)
-                                                    && (((!App.ViewModel.Stations.IsChildrenDonor) || (stations.DonorsForChildrens == App.ViewModel.Stations.IsChildrenDonor)) && ((!App.ViewModel.Stations.IsRegional) || (stations.RegionalRegistration == App.ViewModel.Stations.IsRegional)) && ((!App.ViewModel.Stations.IsSaturdayWork) || (stations.SaturdayWork == App.ViewModel.Stations.IsSaturdayWork)))
+                    this.StationsList.ItemsSource = from stations in ViewModelLocator.MainStatic.Stations.Items
+                                                    where (stations.City == ViewModelLocator.MainStatic.Stations.SelectedCity)
+                                                    && (((!ViewModelLocator.MainStatic.Stations.IsChildrenDonor) || (stations.DonorsForChildrens == ViewModelLocator.MainStatic.Stations.IsChildrenDonor)) && ((!ViewModelLocator.MainStatic.Stations.IsRegional) || (stations.RegionalRegistration == ViewModelLocator.MainStatic.Stations.IsRegional)) && ((!ViewModelLocator.MainStatic.Stations.IsSaturdayWork) || (stations.SaturdayWork == ViewModelLocator.MainStatic.Stations.IsSaturdayWork)))
                                                     orderby stations.Distance ascending
                                                     select stations;
                 }
                 else
                 {
-                    this.StationsList.ItemsSource = from stations in App.ViewModel.Stations.Items
-                                                    where (stations.City == App.ViewModel.Stations.SelectedCity)
-                                                    && ((stations.DonorsForChildrens == App.ViewModel.Stations.IsChildrenDonor) && (stations.RegionalRegistration == App.ViewModel.Stations.IsRegional) && (stations.SaturdayWork == App.ViewModel.Stations.IsSaturdayWork)) && (stations.Title.ToLower().Contains(App.ViewModel.Stations.FilteredText.ToLower())) && ((stations.Adress.ToLower().Contains(App.ViewModel.Stations.FilteredText.ToLower()) || stations.Adress.ToLower().Contains(App.ViewModel.Stations.FilteredText.ToLower())))
+                    this.StationsList.ItemsSource = from stations in ViewModelLocator.MainStatic.Stations.Items
+                                                    where (stations.City == ViewModelLocator.MainStatic.Stations.SelectedCity)
+                                                    && ((stations.DonorsForChildrens == ViewModelLocator.MainStatic.Stations.IsChildrenDonor) && (stations.RegionalRegistration == ViewModelLocator.MainStatic.Stations.IsRegional) && (stations.SaturdayWork == ViewModelLocator.MainStatic.Stations.IsSaturdayWork)) && (stations.Title.ToLower().Contains(ViewModelLocator.MainStatic.Stations.FilteredText.ToLower())) && ((stations.Adress.ToLower().Contains(ViewModelLocator.MainStatic.Stations.FilteredText.ToLower()) || stations.Adress.ToLower().Contains(ViewModelLocator.MainStatic.Stations.FilteredText.ToLower())))
                                                     orderby stations.Distance ascending
                                                     select stations;
                 };
@@ -136,45 +136,45 @@ namespace Donor
         protected override void OnNavigatedFrom(System.Windows.Navigation.NavigationEventArgs e)
         {
             string searchtext = this.StationsSearchText.Text;
-            App.ViewModel.Stations.FilteredText = searchtext;
+            ViewModelLocator.MainStatic.Stations.FilteredText = searchtext;
             base.OnNavigatedFrom(e);
         }
 
         private void FilterStationsList()
         {
             string searchtext = this.StationsSearchText.Text;
-            App.ViewModel.Stations.FilteredText = searchtext;
+            ViewModelLocator.MainStatic.Stations.FilteredText = searchtext;
 
             if (searchtext != "")
             {
-                if (App.ViewModel.Stations.IsFilter == false)
+                if (ViewModelLocator.MainStatic.Stations.IsFilter == false)
                 {
-                    this.StationsList.ItemsSource = from stations in App.ViewModel.Stations.Items
+                    this.StationsList.ItemsSource = from stations in ViewModelLocator.MainStatic.Stations.Items
                                                     where (stations.Title.ToLower().Contains(searchtext.ToLower()) || stations.Adress.ToLower().Contains(searchtext.ToLower()))
                                                     orderby stations.Distance ascending
                                                     select stations;
                 }
                 else
                 {
-                    this.StationsList.ItemsSource = from stations in App.ViewModel.Stations.Items
-                                                    where (stations.Title.ToLower().Contains(searchtext.ToLower())) && ((stations.City == App.ViewModel.Stations.SelectedCity)
-                                                        && ((stations.DonorsForChildrens == App.ViewModel.Stations.IsChildrenDonor) && (stations.RegionalRegistration == App.ViewModel.Stations.IsRegional) && (stations.SaturdayWork == App.ViewModel.Stations.IsSaturdayWork)) && ((stations.Title.ToLower().Contains(App.ViewModel.Stations.FilteredText.ToLower())) || stations.Adress.ToLower().Contains(searchtext.ToLower())))
+                    this.StationsList.ItemsSource = from stations in ViewModelLocator.MainStatic.Stations.Items
+                                                    where (stations.Title.ToLower().Contains(searchtext.ToLower())) && ((stations.City == ViewModelLocator.MainStatic.Stations.SelectedCity)
+                                                        && ((stations.DonorsForChildrens == ViewModelLocator.MainStatic.Stations.IsChildrenDonor) && (stations.RegionalRegistration == ViewModelLocator.MainStatic.Stations.IsRegional) && (stations.SaturdayWork == ViewModelLocator.MainStatic.Stations.IsSaturdayWork)) && ((stations.Title.ToLower().Contains(ViewModelLocator.MainStatic.Stations.FilteredText.ToLower())) || stations.Adress.ToLower().Contains(searchtext.ToLower())))
                                                     orderby stations.Distance ascending
                                                     select stations;
                 };
             }
             else
             {
-                this.StationsList.DataContext = App.ViewModel;
-                if (App.ViewModel.Stations.IsFilter == false)
+                this.StationsList.DataContext = ViewModelLocator.MainStatic;
+                if (ViewModelLocator.MainStatic.Stations.IsFilter == false)
                 {
-                    this.StationsList.ItemsSource = App.ViewModel.Stations.DistanceItems;
+                    this.StationsList.ItemsSource = ViewModelLocator.MainStatic.Stations.DistanceItems;
                 }
                 else
                 {
-                    this.StationsList.ItemsSource = from stations in App.ViewModel.Stations.Items
-                                                    where ((stations.City == App.ViewModel.Stations.SelectedCity)
-                                                    && ((stations.DonorsForChildrens == App.ViewModel.Stations.IsChildrenDonor) && (stations.RegionalRegistration == App.ViewModel.Stations.IsRegional) && (stations.SaturdayWork == App.ViewModel.Stations.IsSaturdayWork)) && ((stations.Title.ToLower().Contains(App.ViewModel.Stations.FilteredText.ToLower())) || (stations.Adress.ToLower().Contains(App.ViewModel.Stations.FilteredText.ToLower()))))
+                    this.StationsList.ItemsSource = from stations in ViewModelLocator.MainStatic.Stations.Items
+                                                    where ((stations.City == ViewModelLocator.MainStatic.Stations.SelectedCity)
+                                                    && ((stations.DonorsForChildrens == ViewModelLocator.MainStatic.Stations.IsChildrenDonor) && (stations.RegionalRegistration == ViewModelLocator.MainStatic.Stations.IsRegional) && (stations.SaturdayWork == ViewModelLocator.MainStatic.Stations.IsSaturdayWork)) && ((stations.Title.ToLower().Contains(ViewModelLocator.MainStatic.Stations.FilteredText.ToLower())) || (stations.Adress.ToLower().Contains(ViewModelLocator.MainStatic.Stations.FilteredText.ToLower()))))
                                                     orderby stations.Distance ascending
                                                     select stations;
                 };
@@ -224,7 +224,7 @@ namespace Donor
             }
             else
             {
-                if (App.ViewModel.Stations.IsFilter == false)
+                if (ViewModelLocator.MainStatic.Stations.IsFilter == false)
                 {
                 }
                 else

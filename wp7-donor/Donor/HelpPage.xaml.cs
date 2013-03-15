@@ -24,13 +24,13 @@ namespace Donor
         {
             InitializeComponent();
 
-            this.AbsContra.DataContext = App.ViewModel;
-            this.AbsContra.ItemsSource = App.ViewModel.Contras.Items;
+            this.AbsContra.DataContext = ViewModelLocator.MainStatic;
+            this.AbsContra.ItemsSource = ViewModelLocator.MainStatic.Contras.Items;
 
-            this.RelativeContra.DataContext = App.ViewModel;
-            this.RelativeContra.ItemsSource = App.ViewModel.Contras.Items;
+            this.RelativeContra.DataContext = ViewModelLocator.MainStatic;
+            this.RelativeContra.ItemsSource = ViewModelLocator.MainStatic.Contras.Items;
 
-            //this.ContraSearchText.ItemsSource = App.ViewModel.Contras.Items;
+            //this.ContraSearchText.ItemsSource = ViewModelLocator.MainStatic.Contras.Items;
             //this.ContraSearchText.FilterMode = AutoCompleteFilterMode.Contains;
             //this.ContraSearchText.ItemFilter += SearchBank;
         }
@@ -111,7 +111,7 @@ namespace Donor
             }
             else
             {
-                var absitems = (from item in App.ViewModel.Contras.Items
+                var absitems = (from item in ViewModelLocator.MainStatic.Contras.Items
                                 where item.Absolute == true
                                 select item);
                 this.AbsContra.ItemsSource = absitems;
@@ -128,7 +128,7 @@ namespace Donor
             }
             else
             {
-                var relitems = (from item in App.ViewModel.Contras.Items
+                var relitems = (from item in ViewModelLocator.MainStatic.Contras.Items
                                 where (item.Absolute == false) || (item.Absolute != true)
                                 select item);
 
@@ -146,7 +146,7 @@ namespace Donor
                 string searchtext = this.ContraSearchText.Text;
                 if (searchtext != "")
                 {
-                    this.SearchContra.ItemsSource = from item in App.ViewModel.Contras.Items
+                    this.SearchContra.ItemsSource = from item in ViewModelLocator.MainStatic.Contras.Items
                                                     where (item.Title.ToString().ToLower().Contains(searchtext.ToLower()))
                                                     select item;
                 }

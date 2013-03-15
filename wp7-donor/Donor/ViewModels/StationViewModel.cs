@@ -50,7 +50,7 @@ namespace Donor.ViewModels
         private bool _getCoordinates = false;
         void myCoordinateWatcher_PositionChanged(object sender, GeoPositionChangedEventArgs<GeoCoordinate> e)
         {
-            if (App.ViewModel.Settings.Location == true)
+            if (ViewModelLocator.MainStatic.Settings.Location == true)
             {
                 if (((!e.Position.Location.IsUnknown) && (_getCoordinates == false)))
                 {
@@ -101,7 +101,7 @@ namespace Donor.ViewModels
             catch { this.Items = new ObservableCollection<StationViewModel>(); };
 
             // загружаем станции если их нет или дата последнего обновления была более чем одни сутки в прошлом
-            if ((App.ViewModel.Stations.Items.Count() == 0) || (App.ViewModel.Settings.StationsUpdated.AddDays(1) < DateTime.Now)) {
+            if ((ViewModelLocator.MainStatic.Stations.Items.Count() == 0) || (ViewModelLocator.MainStatic.Settings.StationsUpdated.AddDays(1) < DateTime.Now)) {
             
             var bw = new BackgroundWorker();
             bw.DoWork += delegate
@@ -187,8 +187,8 @@ namespace Donor.ViewModels
 
                         Deployment.Current.Dispatcher.BeginInvoke(() =>
                         {
-                            App.ViewModel.Settings.StationsUpdated = DateTime.Now;
-                            App.ViewModel.SaveSettingsToStorage();
+                            ViewModelLocator.MainStatic.Settings.StationsUpdated = DateTime.Now;
+                            ViewModelLocator.MainStatic.SaveSettingsToStorage();
                             this.Items = eventslist1;
 
                             IsolatedStorageHelper.SaveSerializableObject<ObservableCollection<StationViewModel>>(this.Items, "stations.xml");
@@ -339,7 +339,7 @@ namespace Donor.ViewModels
             {
                 double distanceInMeter;
 
-                GeoCoordinate currentLocation = new GeoCoordinate(Convert.ToDouble(App.ViewModel.Stations.Latitued.ToString()), Convert.ToDouble(App.ViewModel.Stations.Longitude.ToString()));
+                GeoCoordinate currentLocation = new GeoCoordinate(Convert.ToDouble(ViewModelLocator.MainStatic.Stations.Latitued.ToString()), Convert.ToDouble(ViewModelLocator.MainStatic.Stations.Longitude.ToString()));
                 GeoCoordinate clientLocation = new GeoCoordinate(Convert.ToDouble(this.Lat.ToString()), Convert.ToDouble(this.Lon.ToString()));
                 distanceInMeter = currentLocation.GetDistanceTo(clientLocation);
 

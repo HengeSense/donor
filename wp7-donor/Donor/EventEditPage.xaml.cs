@@ -20,7 +20,7 @@ namespace Donor
         {
             InitializeComponent();
 
-            App.ViewModel.Events.EditedEvent = null;
+            ViewModelLocator.MainStatic.Events.EditedEvent = null;
             List<string> eventTypes = new List<string>() { Donor.AppResources.BloodGiveTitle2, Donor.AppResources.Analisis };
             CurrentEvent = null;
             List<string> giveTypes = new List<string>() { Donor.AppResources.Platelets, 
@@ -39,7 +39,7 @@ namespace Donor
             this.Date.Value = new DateTime(DateTime.Now.AddDays(1).Year, DateTime.Now.AddDays(1).Month, DateTime.Now.AddDays(1).Day);
 
             this.DataContext = CurrentEvent;
-            App.ViewModel.Stations.SelectedStation = "";
+            ViewModelLocator.MainStatic.Stations.SelectedStation = "";
         }
 
         public int DayNumber;
@@ -57,7 +57,7 @@ namespace Donor
             {
                 if (e.Uri.ToString() != "/EventPage.xaml?id=" + EventId)
                 {
-                    App.ViewModel.Events.EditedEvent = BuildEvent(false);
+                    ViewModelLocator.MainStatic.Events.EditedEvent = BuildEvent(false);
                 };
             }
             catch { };
@@ -69,7 +69,7 @@ namespace Donor
             try
             {
                 EventId = this.NavigationContext.QueryString["id"];
-                CurrentEvent = App.ViewModel.Events.Items.FirstOrDefault(c => c.Id == EventId);
+                CurrentEvent = ViewModelLocator.MainStatic.Events.Items.FirstOrDefault(c => c.Id == EventId);
                 if (CurrentEvent.Type == "PossibleBloodGive")
                 {
                     CurrentEvent.ParseExists = false;
@@ -87,16 +87,16 @@ namespace Donor
             {
             };
 
-            if (App.ViewModel.Events.EditedEvent != null)
+            if (ViewModelLocator.MainStatic.Events.EditedEvent != null)
             {
                 try
                 {
-                    CurrentEvent = App.ViewModel.Events.EditedEvent;
-                    StationViewModel _currentStation = App.ViewModel.Stations.Items.FirstOrDefault(c => c.Nid.ToString() == App.ViewModel.Stations.SelectedStation.ToString());
+                    CurrentEvent = ViewModelLocator.MainStatic.Events.EditedEvent;
+                    StationViewModel _currentStation = ViewModelLocator.MainStatic.Stations.Items.FirstOrDefault(c => c.Nid.ToString() == ViewModelLocator.MainStatic.Stations.SelectedStation.ToString());
                     this.Place.Text = _currentStation.Adress.ToString();
                     CurrentEvent.Place = _currentStation.Adress.ToString();
                     CurrentEvent.Station_nid = _currentStation.Nid;
-                    App.ViewModel.Events.EditedEvent = null;
+                    ViewModelLocator.MainStatic.Events.EditedEvent = null;
                 }
                 catch
                 {
@@ -104,7 +104,7 @@ namespace Donor
             }
             else
             {
-                App.ViewModel.Events.EditedEvent = null;
+                ViewModelLocator.MainStatic.Events.EditedEvent = null;
             };
 
             try
@@ -208,7 +208,7 @@ namespace Donor
         {
             try { DataFLoaded(this, EventArgs.Empty); }
             catch { };
-            try { App.ViewModel.DataFLoaded += new MainViewModel.DataFLoadedEventHandler(this.DataFLoaded);} catch { };
+            try { ViewModelLocator.MainStatic.DataFLoaded += new MainViewModel.DataFLoadedEventHandler(this.DataFLoaded);} catch { };
             
         }
 
@@ -225,7 +225,7 @@ namespace Donor
         }
 
          private EventViewModel BuildEvent(bool save = true) {
-             if (App.ViewModel.User.IsLoggedIn == false)
+             if (ViewModelLocator.MainStatic.User.IsLoggedIn == false)
              {
                  return null;
              };
@@ -263,7 +263,7 @@ namespace Donor
                  try
                  {
                      DateTime curdate = this.Date.Value.Value;
-                     var checkitems = (from item in App.ViewModel.Events.UserItems
+                     var checkitems = (from item in ViewModelLocator.MainStatic.Events.UserItems
                                        where (item.Type == "1") && (item.Finished == true)
                                        orderby item.Date descending
                                        select item);
@@ -271,8 +271,8 @@ namespace Donor
                      {
                          if (CurrentEvent != item)
                          {
-                             int days = App.ViewModel.Events.DaysFromEvent(item.GiveType, give);
-                             int days2 = App.ViewModel.Events.DaysFromEvent(give, item.GiveType);
+                             int days = ViewModelLocator.MainStatic.Events.DaysFromEvent(item.GiveType, give);
+                             int days2 = ViewModelLocator.MainStatic.Events.DaysFromEvent(give, item.GiveType);
                              if ((curdate <= item.Date.AddDays(days)) && (curdate >= item.Date))
                              {
                                  possible = false;
@@ -300,8 +300,8 @@ namespace Donor
                  {
                      if (CurrentEvent != null)
                      {
-                         EventViewModel event1 = App.ViewModel.Events.Items.FirstOrDefault(s => s.Id == CurrentEvent.Id);
-                         App.ViewModel.Events.Items.Remove(event1);
+                         EventViewModel event1 = ViewModelLocator.MainStatic.Events.Items.FirstOrDefault(s => s.Id == CurrentEvent.Id);
+                         ViewModelLocator.MainStatic.Events.Items.Remove(event1);
                      }
                      else
                      {
@@ -373,7 +373,7 @@ namespace Donor
                      //if save and there is no events at this day
                      if (CurrentEvent.Type == "0")
                      {
-                         if ((save) && (App.ViewModel.Events.ThisDayEvents(CurrentEvent.Date) == false))
+                         if ((save) && (ViewModelLocator.MainStatic.Events.ThisDayEvents(CurrentEvent.Date) == false))
                          {
                              try
                              {
@@ -387,7 +387,7 @@ namespace Donor
 
                      if (CurrentEvent.Type == "0")
                      {
-                         if ((save) && (App.ViewModel.Events.ThisDayEvents(CurrentEvent.Date) == false))
+                         if ((save) && (ViewModelLocator.MainStatic.Events.ThisDayEvents(CurrentEvent.Date) == false))
                          {
                              // сохраняем анализ
                              try
@@ -405,19 +405,19 @@ namespace Donor
 
                              if (CurrentEvent.ParseExists == true)
                              {
-                                 App.ViewModel.Events.Items.Add(CurrentEvent);
+                                 ViewModelLocator.MainStatic.Events.Items.Add(CurrentEvent);
                              };
 
-                             App.ViewModel.Events.UpdateItems(CurrentEvent);
-                             App.ViewModel.Events.UpdateItems();
+                             ViewModelLocator.MainStatic.Events.UpdateItems(CurrentEvent);
+                             ViewModelLocator.MainStatic.Events.UpdateItems();
 
-                             App.ViewModel.Events.CurrentMonth = CurrentEvent.Date;
+                             ViewModelLocator.MainStatic.Events.CurrentMonth = CurrentEvent.Date;
 
                              NavigationService.GoBack();
                          }
                          else
                          {
-                             if (App.ViewModel.Events.ThisDayEvents(CurrentEvent.Date) && save)
+                             if (ViewModelLocator.MainStatic.Events.ThisDayEvents(CurrentEvent.Date) && save)
                              {
                                  MessageBox.Show(Donor.AppResources.YouHaveEventAtThisDay);
                              };
@@ -426,10 +426,10 @@ namespace Donor
                      else
                      {
                          CurrentEvent.GiveType = this.GiveType.SelectedItem.ToString();
-                         if (App.ViewModel.Events.EventsInYear(CurrentEvent.GiveType, CurrentEvent.Date) && App.ViewModel.Events.EventsInYear(CurrentEvent.GiveType, CurrentEvent.Date.AddYears(-1)))
+                         if (ViewModelLocator.MainStatic.Events.EventsInYear(CurrentEvent.GiveType, CurrentEvent.Date) && ViewModelLocator.MainStatic.Events.EventsInYear(CurrentEvent.GiveType, CurrentEvent.Date.AddYears(-1)))
                          {
 
-                             if ((save) && (App.ViewModel.Events.ThisDayEvents(CurrentEvent.Date) == false) && (CurrentEvent.Type == "1"))
+                             if ((save) && (ViewModelLocator.MainStatic.Events.ThisDayEvents(CurrentEvent.Date) == false) && (CurrentEvent.Type == "1"))
                                  {
                                      try
                                      {
@@ -442,7 +442,7 @@ namespace Donor
                              if ((CurrentEvent.Date < DateTime.Today) || ((CurrentEvent.Date == DateTime.Today) && (CurrentEvent.Time.Hour <= DateTime.Now.Hour) && (CurrentEvent.Time.Minute <= DateTime.Now.Minute)))
                              {
                                  CurrentEvent.Finished = true;
-                                 if ((save) && (App.ViewModel.Events.ThisDayEvents(CurrentEvent.Date) == false))
+                                 if ((save) && (ViewModelLocator.MainStatic.Events.ThisDayEvents(CurrentEvent.Date) == false))
                                  {
                                      MessageBox.Show(Donor.AppResources.YouGiveBloodThanks);
                                  };
@@ -451,7 +451,7 @@ namespace Donor
                              {
                                  CurrentEvent.Finished = false;
                              };
-                             if ((save) && (App.ViewModel.Events.ThisDayEvents(CurrentEvent.Date)==false))
+                             if ((save) && (ViewModelLocator.MainStatic.Events.ThisDayEvents(CurrentEvent.Date)==false))
                              {
                                  try
                                  {
@@ -467,19 +467,19 @@ namespace Donor
 
                                  if (CurrentEvent.ParseExists == true)
                                  {
-                                     App.ViewModel.Events.Items.Add(CurrentEvent);
+                                     ViewModelLocator.MainStatic.Events.Items.Add(CurrentEvent);
                                  };
 
-                                 App.ViewModel.Events.UpdateItems(CurrentEvent);
-                                 App.ViewModel.Events.UpdateItems();
+                                 ViewModelLocator.MainStatic.Events.UpdateItems(CurrentEvent);
+                                 ViewModelLocator.MainStatic.Events.UpdateItems();
 
-                                 App.ViewModel.Events.CurrentMonth = CurrentEvent.Date;
+                                 ViewModelLocator.MainStatic.Events.CurrentMonth = CurrentEvent.Date;
 
                                  NavigationService.GoBack();
                              }
                              else
                              {
-                                 if (App.ViewModel.Events.ThisDayEvents(CurrentEvent.Date) && save)
+                                 if (ViewModelLocator.MainStatic.Events.ThisDayEvents(CurrentEvent.Date) && save)
                                  {
                                      MessageBox.Show(Donor.AppResources.YouHaveEventAtThisDay);
                                  };
@@ -504,8 +504,8 @@ namespace Donor
                  try
                  {
                      DateTime curdate = this.Date.Value.Value;
-                     int days = App.ViewModel.Events.DaysFromEvent(itemother.GiveType, give);
-                     int days2 = App.ViewModel.Events.DaysFromEvent(give, itemother.GiveType);
+                     int days = ViewModelLocator.MainStatic.Events.DaysFromEvent(itemother.GiveType, give);
+                     int days2 = ViewModelLocator.MainStatic.Events.DaysFromEvent(give, itemother.GiveType);
                      var dif = Math.Abs(days - days2);
 
                      DateTime when = curdate;
@@ -604,7 +604,7 @@ namespace Donor
         /// <param name="e"></param>
         private void Image_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
-            App.ViewModel.Events.EditedEvent = BuildEvent(false);
+            ViewModelLocator.MainStatic.Events.EditedEvent = BuildEvent(false);
             NavigationService.Navigate(new Uri("/StationsSearch.xaml?task=select", UriKind.Relative));
         }
 

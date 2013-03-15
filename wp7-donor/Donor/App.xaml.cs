@@ -15,29 +15,10 @@ using Microsoft.Phone.Shell;
 using System.Resources;
 using System.Reflection;
 using BugSense;
+using Donor.ViewModels;
 
 namespace Donor
 {
-
-    public class LocalizedStrings
-    {
-
-        public LocalizedStrings()
-        {
-        }
-
-        private static Donor.AppResources localizedresources = new Donor.AppResources();
-
-        public Donor.AppResources Localizedresources
-        {
-            get
-            {
-                return localizedresources;
-            }
-        }
-
-    }
-
     public partial class App : Application
     {
         public const string FlurryKey = "BFKZPN5DWWWSDZ9WDMB5";
@@ -48,7 +29,7 @@ namespace Donor
         /// A static ViewModel used by the views to bind against.
         /// </summary>
         /// <returns>The MainViewModel object.</returns>
-        public static MainViewModel ViewModel
+        /*public static MainViewModel ViewModel
         {
             get
             {
@@ -58,7 +39,7 @@ namespace Donor
 
                 return viewModel;
             }
-        }
+        }*/
 
         /// <summary>
         /// Provides easy access to the root frame of the Phone Application.
@@ -117,9 +98,9 @@ namespace Donor
         {
             FlurryWP7SDK.Api.StartSession(FlurryKey);
             // Ensure that application state is restored appropriately
-            if (!App.ViewModel.IsDataStartLoaded)
+            if (!ViewModelLocator.MainStatic.IsDataStartLoaded)
             {
-                App.ViewModel.LoadData();
+                ViewModelLocator.MainStatic.LoadData();
             }
         }
 
@@ -128,14 +109,14 @@ namespace Donor
         private void Application_Deactivated(object sender, DeactivatedEventArgs e)
         {
             // Ensure that required application state is persisted here.
-            // App.ViewModel.SaveToIsolatedStorage();
+            // ViewModelLocator.MainStatic.SaveToIsolatedStorage();
         }
 
         // Code to execute when the application is closing (eg, user hit Back)
         // This code will not execute when the application is deactivated
         private void Application_Closing(object sender, ClosingEventArgs e)
         {
-            //App.ViewModel.SaveToIsolatedStorage();
+            //ViewModelLocator.MainStatic.SaveToIsolatedStorage();
         }
 
         // Code to execute if a navigation fails
@@ -214,4 +195,16 @@ namespace Donor
 
         #endregion
     }
+
+    public class LocalizedStrings
+    {
+        public LocalizedStrings()
+        {
+        }
+
+        private static Donor.AppResources localizedResources = new Donor.AppResources();
+
+        public Donor.AppResources LocalizedResources { get { return localizedResources; } }
+    }
+
 }

@@ -11,6 +11,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using System.Globalization;
+using Donor.ViewModels;
 
 namespace Donor
 {
@@ -19,14 +20,14 @@ namespace Donor
         public CalendarMonthPage()
         {
             InitializeComponent();
-            DataContext = App.ViewModel;
+            DataContext = ViewModelLocator.MainStatic;
 
-            App.ViewModel.EventsChangedCalendar += new MainViewModel.EventsChangedCalendarEventHandler(this.EventsChangedCalendar);
+            ViewModelLocator.MainStatic.EventsChangedCalendar += new MainViewModel.EventsChangedCalendarEventHandler(this.EventsChangedCalendar);
 
             try
             {
-                this.PageTitle.Text = CultureInfo.CurrentCulture.DateTimeFormat.MonthNames[App.ViewModel.Events.CurrentMonth.Month - 1];
-                this.ApplicationTitle.Text = App.ViewModel.Events.CurrentMonth.Year.ToString();
+                this.PageTitle.Text = CultureInfo.CurrentCulture.DateTimeFormat.MonthNames[ViewModelLocator.MainStatic.Events.CurrentMonth.Month - 1];
+                this.ApplicationTitle.Text = ViewModelLocator.MainStatic.Events.CurrentMonth.Year.ToString();
 
                 var gl = GestureService.GetGestureListener(this.Calendar1);
                 gl.Flick += new EventHandler<Microsoft.Phone.Controls.FlickGestureEventArgs>(GestureListener_Flick);
@@ -45,8 +46,8 @@ namespace Donor
 
         private void LayoutRoot_Loaded(object sender, RoutedEventArgs e)
         {
-            this.PageTitle.Text = CultureInfo.CurrentCulture.DateTimeFormat.MonthNames[App.ViewModel.Events.CurrentMonth.Month - 1];
-            this.ApplicationTitle.Text = App.ViewModel.Events.CurrentMonth.Year.ToString();
+            this.PageTitle.Text = CultureInfo.CurrentCulture.DateTimeFormat.MonthNames[ViewModelLocator.MainStatic.Events.CurrentMonth.Month - 1];
+            this.ApplicationTitle.Text = ViewModelLocator.MainStatic.Events.CurrentMonth.Year.ToString();
         }
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
@@ -158,10 +159,10 @@ namespace Donor
                 {
                     try
                     {
-                        /*App.ViewModel.Events.CurrentMonth = App.ViewModel.Events.CurrentMonth.AddMonths(1);
+                        /*ViewModelLocator.MainStatic.Events.CurrentMonth = ViewModelLocator.MainStatic.Events.CurrentMonth.AddMonths(1);
 
-                        this.PageTitle.Text = CultureInfo.CurrentCulture.DateTimeFormat.MonthNames[App.ViewModel.Events.CurrentMonth.Month - 1];
-                        this.ApplicationTitle.Text = App.ViewModel.Events.CurrentMonth.Year.ToString();
+                        this.PageTitle.Text = CultureInfo.CurrentCulture.DateTimeFormat.MonthNames[ViewModelLocator.MainStatic.Events.CurrentMonth.Month - 1];
+                        this.ApplicationTitle.Text = ViewModelLocator.MainStatic.Events.CurrentMonth.Year.ToString();
 
                         this.Calendar1.UpdateCalendar(); */                   
 
@@ -175,10 +176,10 @@ namespace Donor
                 {
                     try
                     {
-                        /*App.ViewModel.Events.CurrentMonth = App.ViewModel.Events.CurrentMonth.AddMonths(-1);
+                        /*ViewModelLocator.MainStatic.Events.CurrentMonth = ViewModelLocator.MainStatic.Events.CurrentMonth.AddMonths(-1);
 
-                        this.PageTitle.Text = CultureInfo.CurrentCulture.DateTimeFormat.MonthNames[App.ViewModel.Events.CurrentMonth.Month - 1];
-                        this.ApplicationTitle.Text = App.ViewModel.Events.CurrentMonth.Year.ToString();*/
+                        this.PageTitle.Text = CultureInfo.CurrentCulture.DateTimeFormat.MonthNames[ViewModelLocator.MainStatic.Events.CurrentMonth.Month - 1];
+                        this.ApplicationTitle.Text = ViewModelLocator.MainStatic.Events.CurrentMonth.Year.ToString();*/
 
                         //this.Calendar1.UpdateCalendar();
 
@@ -210,9 +211,9 @@ namespace Donor
                 {
                     StartAnimationTop2();
 
-                    App.ViewModel.Events.CurrentMonth = App.ViewModel.Events.CurrentMonth.AddMonths(1);
-                    this.PageTitle.Text = CultureInfo.CurrentCulture.DateTimeFormat.MonthNames[App.ViewModel.Events.CurrentMonth.Month - 1];
-                    this.ApplicationTitle.Text = App.ViewModel.Events.CurrentMonth.Year.ToString();
+                    ViewModelLocator.MainStatic.Events.CurrentMonth = ViewModelLocator.MainStatic.Events.CurrentMonth.AddMonths(1);
+                    this.PageTitle.Text = CultureInfo.CurrentCulture.DateTimeFormat.MonthNames[ViewModelLocator.MainStatic.Events.CurrentMonth.Month - 1];
+                    this.ApplicationTitle.Text = ViewModelLocator.MainStatic.Events.CurrentMonth.Year.ToString();
 
                     this.Calendar1.UpdateCalendar();
                 }
@@ -221,9 +222,9 @@ namespace Donor
 
                     StartAnimationTop();
 
-                    App.ViewModel.Events.CurrentMonth = App.ViewModel.Events.CurrentMonth.AddMonths(-1);
-                    this.PageTitle.Text = CultureInfo.CurrentCulture.DateTimeFormat.MonthNames[App.ViewModel.Events.CurrentMonth.Month - 1];
-                    this.ApplicationTitle.Text = App.ViewModel.Events.CurrentMonth.Year.ToString();
+                    ViewModelLocator.MainStatic.Events.CurrentMonth = ViewModelLocator.MainStatic.Events.CurrentMonth.AddMonths(-1);
+                    this.PageTitle.Text = CultureInfo.CurrentCulture.DateTimeFormat.MonthNames[ViewModelLocator.MainStatic.Events.CurrentMonth.Month - 1];
+                    this.ApplicationTitle.Text = ViewModelLocator.MainStatic.Events.CurrentMonth.Year.ToString();
 
                     this.Calendar1.UpdateCalendar();
                 };
@@ -234,10 +235,10 @@ namespace Donor
         {
             try
             {
-                App.ViewModel.Events.CurrentMonth = DateTime.Now;
+                ViewModelLocator.MainStatic.Events.CurrentMonth = DateTime.Now;
 
-                this.PageTitle.Text = CultureInfo.CurrentCulture.DateTimeFormat.MonthNames[App.ViewModel.Events.CurrentMonth.Month - 1];
-                this.ApplicationTitle.Text = App.ViewModel.Events.CurrentMonth.Year.ToString();
+                this.PageTitle.Text = CultureInfo.CurrentCulture.DateTimeFormat.MonthNames[ViewModelLocator.MainStatic.Events.CurrentMonth.Month - 1];
+                this.ApplicationTitle.Text = ViewModelLocator.MainStatic.Events.CurrentMonth.Year.ToString();
 
                 this.Calendar1.UpdateCalendar();                
             }

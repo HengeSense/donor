@@ -125,7 +125,7 @@ namespace Donor
                     standardTile = new StandardTileData
                     {
                         Title = "",
-                        Count = App.ViewModel.Events.UserItems.Where(c => (c.Type=="0") || (c.Type=="1")).Count(),
+                        Count = ViewModelLocator.MainStatic.Events.UserItems.Where(c => (c.Type=="0") || (c.Type=="1")).Count(),
                         BackTitle = eventData.Date.ToShortDateString(),
                         BackContent = eventData.Title
                     };
@@ -135,7 +135,7 @@ namespace Donor
                     standardTile = new StandardTileData
                     {
                         Title = "",
-                        Count = App.ViewModel.Events.UserItems.Where(c => (c.Type == "0") || (c.Type == "1")).Count()
+                        Count = ViewModelLocator.MainStatic.Events.UserItems.Where(c => (c.Type == "0") || (c.Type == "1")).Count()
                     };
                 };
 
@@ -158,21 +158,21 @@ namespace Donor
                 {
                     this.LoadUserFromStorage();
 
-                    App.ViewModel.Events.LoadDonorsSaturdays();
+                    ViewModelLocator.MainStatic.Events.LoadDonorsSaturdays();
                     
-                    App.ViewModel.Stations.LoadStations();
+                    ViewModelLocator.MainStatic.Stations.LoadStations();
 
                     this.NotifyPropertyChanged("Events");
                 });
 
                 Deployment.Current.Dispatcher.BeginInvoke(() =>
                 {
-                    App.ViewModel.News.LoadNews();
-                    App.ViewModel.Ads.LoadAds();
-                    App.ViewModel.Contras.LoadContras();
+                    ViewModelLocator.MainStatic.News.LoadNews();
+                    ViewModelLocator.MainStatic.Ads.LoadAds();
+                    ViewModelLocator.MainStatic.Contras.LoadContras();
                     this.NotifyPropertyChanged("News");
 
-                    CreateApplicationTile(App.ViewModel.Events.NearestEvents());
+                    CreateApplicationTile(ViewModelLocator.MainStatic.Events.NearestEvents());
                 });            
             };
             bw.RunWorkerAsync();  
@@ -215,19 +215,19 @@ namespace Donor
         {
             try
             {
-                IsolatedStorageHelper.SaveSerializableObject<DonorUser>(App.ViewModel.User, "user.xml");
+                IsolatedStorageHelper.SaveSerializableObject<DonorUser>(ViewModelLocator.MainStatic.User, "user.xml");
             }
             catch
             {
             };
-            App.ViewModel.SaveSettingsToStorage();
+            ViewModelLocator.MainStatic.SaveSettingsToStorage();
         }
 
         public void SaveSettingsToStorage()
         {
             try
             {
-                IsolatedStorageHelper.SaveSerializableObject<SettingsViewModel>(App.ViewModel.Settings, "settings.xml");
+                IsolatedStorageHelper.SaveSerializableObject<SettingsViewModel>(ViewModelLocator.MainStatic.Settings, "settings.xml");
             }
             catch { };
         }
@@ -247,7 +247,7 @@ namespace Donor
                     IsolatedStorageHelper.SaveSerializableObject<SettingsViewModel>(this.Settings, "settings.xml");
                 }
                 catch { };
-                //App.ViewModel.SaveSettingsToStorage();
+                //ViewModelLocator.MainStatic.SaveSettingsToStorage();
                 IsSettings = false;                
             };
         }
@@ -258,41 +258,41 @@ namespace Donor
             {
                 try
                 {
-                    App.ViewModel.User = IsolatedStorageHelper.LoadSerializableObject<DonorUser>("user.xml");
+                    ViewModelLocator.MainStatic.User = IsolatedStorageHelper.LoadSerializableObject<DonorUser>("user.xml");
 
                     bool hasNetworkConnection =
   NetworkInterface.NetworkInterfaceType != NetworkInterfaceType.None;
 
-                    if ((App.ViewModel.User.objectId != "") && (!hasNetworkConnection))
+                    if ((ViewModelLocator.MainStatic.User.objectId != "") && (!hasNetworkConnection))
                     {
-                        App.ViewModel.User.IsLoggedIn = true;
-                        App.ViewModel.OnUserEnter(EventArgs.Empty);
+                        ViewModelLocator.MainStatic.User.IsLoggedIn = true;
+                        ViewModelLocator.MainStatic.OnUserEnter(EventArgs.Empty);
                     }
                     else {
-                        App.ViewModel.User.IsLoggedIn = false;
-                        if (App.ViewModel.User.Password != "" && App.ViewModel.User.Password != null)
+                        ViewModelLocator.MainStatic.User.IsLoggedIn = false;
+                        if (ViewModelLocator.MainStatic.User.Password != "" && ViewModelLocator.MainStatic.User.Password != null)
                         {
-                            App.ViewModel.User.LoginAction(null);
+                            ViewModelLocator.MainStatic.User.LoginAction(null);
                         }
                         else
                         {
-                            if ((App.ViewModel.User.FacebookId != "") && (App.ViewModel.User.FacebookToken != "") && (App.ViewModel.User.FacebookToken != null) && (App.ViewModel.User.FacebookId != null))
+                            if ((ViewModelLocator.MainStatic.User.FacebookId != "") && (ViewModelLocator.MainStatic.User.FacebookToken != "") && (ViewModelLocator.MainStatic.User.FacebookToken != null) && (ViewModelLocator.MainStatic.User.FacebookId != null))
                             {
-                                App.ViewModel.User.FacebookLogin(App.ViewModel.User.FacebookId, App.ViewModel.User.FacebookToken);
+                                ViewModelLocator.MainStatic.User.FacebookLogin(ViewModelLocator.MainStatic.User.FacebookId, ViewModelLocator.MainStatic.User.FacebookToken);
                             };
                         };
                 };
                 }
                 catch
                 {
-                    App.ViewModel.User.IsLoggedIn = false;
-                    App.ViewModel.OnUserEnter(EventArgs.Empty);
+                    ViewModelLocator.MainStatic.User.IsLoggedIn = false;
+                    ViewModelLocator.MainStatic.OnUserEnter(EventArgs.Empty);
                 };
             }
             else
             {
-                App.ViewModel.User.IsLoggedIn = false;
-                App.ViewModel.OnUserEnter(EventArgs.Empty);
+                ViewModelLocator.MainStatic.User.IsLoggedIn = false;
+                ViewModelLocator.MainStatic.OnUserEnter(EventArgs.Empty);
             };
         }
 

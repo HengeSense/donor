@@ -27,7 +27,7 @@ namespace Donor
             InitializeComponent();
 
             // Set the data context of the listbox control to the sample data
-            DataContext = App.ViewModel;
+            DataContext = ViewModelLocator.MainStatic;
 
             this.Loaded += new RoutedEventHandler(MainPage_Loaded);
 
@@ -67,12 +67,12 @@ namespace Donor
             this.ApplicationBar.IsVisible = false;
 
             try {
-                if (!App.ViewModel.IsDataStartLoaded)
+                if (!ViewModelLocator.MainStatic.IsDataStartLoaded)
                 {
-                    App.ViewModel.LoadData();
+                    ViewModelLocator.MainStatic.LoadData();
                 }
 
-                if (App.ViewModel.User.IsLoggedIn == true)
+                if (ViewModelLocator.MainStatic.User.IsLoggedIn == true)
                 {
                     this.LoginForm.Visibility = Visibility.Collapsed;
                     this.UserProfile.Visibility = Visibility.Visible;
@@ -90,7 +90,7 @@ namespace Donor
             
             SetUserFIelds();
 
-            App.ViewModel.User.NotifyAll();
+            ViewModelLocator.MainStatic.User.NotifyAll();
         }
 
 
@@ -128,7 +128,7 @@ namespace Donor
 
         private void CalendarMenuText_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
-            if (App.ViewModel.User.IsLoggedIn)
+            if (ViewModelLocator.MainStatic.User.IsLoggedIn)
             {
                 NavigationService.Navigate(new Uri("/CalendarYearPage.xaml", UriKind.Relative));
             }
@@ -145,10 +145,10 @@ namespace Donor
 
 
         private void SetUserFIelds() {
-            this.ProfileName.Text = App.ViewModel.User.Name;
-            this.ProfileSex.Text = App.ViewModel.User.OutSex;
-            this.ProfileBloodGroup.Text = App.ViewModel.User.OutBloodDataString;
-            this.GivedBlood.Text = App.ViewModel.User.GivedBlood.ToString();
+            this.ProfileName.Text = ViewModelLocator.MainStatic.User.Name;
+            this.ProfileSex.Text = ViewModelLocator.MainStatic.User.OutSex;
+            this.ProfileBloodGroup.Text = ViewModelLocator.MainStatic.User.OutBloodDataString;
+            this.GivedBlood.Text = ViewModelLocator.MainStatic.User.GivedBlood.ToString();
         }
 
         private void EventsChanged(object sender, EventArgs e) { }
@@ -160,7 +160,7 @@ namespace Donor
 
             try
             {
-                if (App.ViewModel.User.IsLoggedIn == true)
+                if (ViewModelLocator.MainStatic.User.IsLoggedIn == true)
                 {
                     this.UserProfile.Visibility = Visibility.Visible;
                     this.LoginForm.Visibility = Visibility.Collapsed;
@@ -176,10 +176,10 @@ namespace Donor
             catch
             {
             };
-            DataContext = App.ViewModel;
+            DataContext = ViewModelLocator.MainStatic;
 
-            App.ViewModel.User.NotifyAll();
-            App.ViewModel.Events.UpdateItems();
+            ViewModelLocator.MainStatic.User.NotifyAll();
+            ViewModelLocator.MainStatic.Events.UpdateItems();
 
             _userLoaded = true;
         }
@@ -188,7 +188,7 @@ namespace Donor
         {
             try
             {
-                if (App.ViewModel.User.IsLoggedIn == true)
+                if (ViewModelLocator.MainStatic.User.IsLoggedIn == true)
                 {
                     if (this.NavigationContext.QueryString.ContainsKey("eventid"))
                     {
@@ -196,7 +196,7 @@ namespace Donor
                         {
                             string _eventid = this.NavigationContext.QueryString["eventid"];
                             // проверяем, есть ли это событие среди событие среди событий пользователя
-                            if (App.ViewModel.Events.UserItems.FirstOrDefault(c => c.Id == _eventid) != null)
+                            if (ViewModelLocator.MainStatic.Events.UserItems.FirstOrDefault(c => c.Id == _eventid) != null)
                             {
                                 NavigationService.Navigate(new Uri("/EventPage.xaml?id=" + _eventid, UriKind.Relative));
                             };
@@ -223,9 +223,9 @@ namespace Donor
                     this.progressOverlay.IsEnabled = false;
                 };
 
-                App.ViewModel.Events.UpdateItems();
+                ViewModelLocator.MainStatic.Events.UpdateItems();
 
-                DataContext = App.ViewModel;
+                DataContext = ViewModelLocator.MainStatic;
             }
             catch { };
         }
@@ -234,15 +234,15 @@ namespace Donor
         {
             try
             {
-                App.ViewModel.UserEnter += new MainViewModel.UserEnterEventHandler(this.UserLoaded);
-                App.ViewModel.Events.EventsChanged += new EventsListViewModel.EventsChangedEventHandler(this.EventsChanged);
-                App.ViewModel.DataFLoaded += new MainViewModel.DataFLoadedEventHandler(this.DataFLoaded); 
+                ViewModelLocator.MainStatic.UserEnter += new MainViewModel.UserEnterEventHandler(this.UserLoaded);
+                ViewModelLocator.MainStatic.Events.EventsChanged += new EventsListViewModel.EventsChangedEventHandler(this.EventsChanged);
+                ViewModelLocator.MainStatic.DataFLoaded += new MainViewModel.DataFLoadedEventHandler(this.DataFLoaded); 
             }
             catch { };
 
             try
             {
-                if (App.ViewModel.User.IsLoggedIn == true)
+                if (ViewModelLocator.MainStatic.User.IsLoggedIn == true)
                 {
                     this.UserProfile.Visibility = Visibility.Visible;
                 }
@@ -251,14 +251,14 @@ namespace Donor
             catch { 
             };
 
-            App.ViewModel.Events.UpdateItems();
+            ViewModelLocator.MainStatic.Events.UpdateItems();
         }
 
         private void TextBlock_Tap_1(object sender, System.Windows.Input.GestureEventArgs e)
         {
             try
             {
-                if (App.ViewModel.User.IsLoggedIn == true)
+                if (ViewModelLocator.MainStatic.User.IsLoggedIn == true)
                 {
                     NavigationService.Navigate(new Uri("/ProfileLogin.xaml?task=show", UriKind.Relative));
                 }
@@ -289,7 +289,7 @@ namespace Donor
         {
             try
             {
-                if (App.ViewModel.User.IsLoggedIn)
+                if (ViewModelLocator.MainStatic.User.IsLoggedIn)
                 {
                     NavigationService.Navigate(new Uri("/EventEditPage.xaml", UriKind.Relative));
                 }
@@ -365,10 +365,10 @@ namespace Donor
             this.email.Text = "";
             this.password.Password = "";
 
-            App.ViewModel.User.UserName = username;
-            App.ViewModel.User.Password = password;
+            ViewModelLocator.MainStatic.User.UserName = username;
+            ViewModelLocator.MainStatic.User.Password = password;
 
-            App.ViewModel.User.LoginAction(null);
+            ViewModelLocator.MainStatic.User.LoginAction(null);
         }
 
         /// <summary>

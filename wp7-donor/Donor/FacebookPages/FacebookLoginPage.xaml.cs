@@ -12,6 +12,7 @@ using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using Facebook;
 using Donor;
+using Donor.ViewModels;
 
 namespace facebook_windows_phone_sample.Pages
 {
@@ -98,17 +99,17 @@ namespace facebook_windows_phone_sample.Pages
                 
 
                 Dispatcher.BeginInvoke(() => {
-                    App.ViewModel.User.FacebookId = id;
-                    App.ViewModel.User.FacebookToken = accessToken;
+                    ViewModelLocator.MainStatic.User.FacebookId = id;
+                    ViewModelLocator.MainStatic.User.FacebookToken = accessToken;
 
-                    if (App.ViewModel.User.IsLoggedIn)
+                    if (ViewModelLocator.MainStatic.User.IsLoggedIn)
                     {
-                        App.ViewModel.User.FacebookLinking(id, accessToken);
+                        ViewModelLocator.MainStatic.User.FacebookLinking(id, accessToken);
 
                     } else {
-                        App.ViewModel.User.FacebookLogin(id, accessToken, result);
-                        App.ViewModel.FbId = id;
-                        App.ViewModel.FbToken = accessToken;
+                        ViewModelLocator.MainStatic.User.FacebookLogin(id, accessToken, result);
+                        ViewModelLocator.MainStatic.FbId = id;
+                        ViewModelLocator.MainStatic.FbToken = accessToken;
                     };
 
                     NavigationService.GoBack(); //NavigationService.Navigate(new Uri(url, UriKind.Relative)));

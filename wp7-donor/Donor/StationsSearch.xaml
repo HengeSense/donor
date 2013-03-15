@@ -6,7 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit" 
-     DataContext="{Binding Path=App.ViewModel,Source=App.ViewModel}"
+     DataContext="{Binding Path=ViewModelLocator.MainStatic,Source=ViewModelLocator.MainStatic}"
     x:Class="Donor.StationsSearch"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     xmlns:WPExtensions="clr-namespace:WPExtensions;assembly=WPExtensions"

@@ -20,10 +20,11 @@ using System.Text.RegularExpressions;
 using System.Runtime.Serialization;
 using System.Xml;
 using System.Xml.Linq;
+using GalaSoft.MvvmLight;
 
 namespace Donor.ViewModels
 {
-    public class NewsListViewModel: INotifyPropertyChanged
+    public class NewsListViewModel: ViewModelBase
     {
         public NewsListViewModel()
         {
@@ -32,7 +33,7 @@ namespace Donor.ViewModels
 
         public void LoadNewsParse()
         {
-            if ((App.ViewModel.News.Items.Count() == 0) || (App.ViewModel.Settings.NewsUpdated.AddHours(1) < DateTime.Now))
+            if ((ViewModelLocator.MainStatic.News.Items.Count() == 0) || (ViewModelLocator.MainStatic.Settings.NewsUpdated.AddHours(1) < DateTime.Now))
             {
             var bw = new BackgroundWorker();
             bw.DoWork += delegate
@@ -58,11 +59,11 @@ namespace Donor.ViewModels
 
                                 Deployment.Current.Dispatcher.BeginInvoke(() =>
                                 {
-                                    App.ViewModel.Settings.NewsUpdated = DateTime.Now;
-                                    App.ViewModel.SaveSettingsToStorage();
+                                    ViewModelLocator.MainStatic.Settings.NewsUpdated = DateTime.Now;
+                                    ViewModelLocator.MainStatic.SaveSettingsToStorage();
 
                                     this.Items = new ObservableCollection<NewsViewModel>(newslist1);                                
-                                    IsolatedStorageHelper.SaveSerializableObject<ObservableCollection<NewsViewModel>>(App.ViewModel.News.Items, "news.xml");
+                                    IsolatedStorageHelper.SaveSerializableObject<ObservableCollection<NewsViewModel>>(ViewModelLocator.MainStatic.News.Items, "news.xml");
                                 });
                             }
                             catch { };
@@ -78,9 +79,23 @@ namespace Donor.ViewModels
             };
         }
 
+        private NewsViewModel _currentNews = null;
+        public NewsViewModel CurrentNews
+        {
+            set
+            {
+                _currentNews = value;
+                RaisePropertyChanged("CurrentNews");
+            }
+            get
+            {
+                return _currentNews;
+            }
+        }
+
         public void LoadNews()
         {
-            if ((App.ViewModel.News.Items.Count() == 0) || (App.ViewModel.Settings.NewsUpdated.AddHours(1) < DateTime.Now))
+            if ((ViewModelLocator.MainStatic.News.Items.Count() == 0) || (ViewModelLocator.MainStatic.Settings.NewsUpdated.AddHours(1) < DateTime.Now))
             {
                 var bw = new BackgroundWorker();
                 bw.DoWork += delegate
@@ -88,8 +103,6 @@ namespace Donor.ViewModels
                     var client = new RestClient("http://yadonor.ru");
                     var request = new RestRequest("ru/news_rss/", Method.GET);
                     request.Parameters.Clear();
-                    //request.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
-                    //request.AddHeader("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
 
                     client.ExecuteAsync(request, response =>
                     {
@@ -97,9 +110,7 @@ namespace Donor.ViewModels
                         {
                             try
                             {
-                                ObservableCollection<NewsViewModel> newslist1 = new ObservableCollection<NewsViewModel>();
-                                //JObject o = JObject.Parse(response.Content.ToString());
-                                //newslist1 = JsonConvert.DeserializeObject<ObservableCollection<NewsViewModel>>(o["results"].ToString());
+                                ObservableCollection<NewsViewModel> newslist1 = new ObservableCollection<NewsViewModel>(); 
                                 try
                                 {
                                     var xdoc = XDocument.Parse(response.Content.ToString());
@@ -116,7 +127,6 @@ namespace Donor.ViewModels
                                         DateTime date = DateTime.Parse(item.Element("pubDate").Value.ToString());
                                         TimeSpan diff = date - origin;
                                         itemnews.CreatedTimestamp = (long)Math.Round(Math.Floor(diff.TotalSeconds));
-                                        //itemnews.DateText = (string)item.Element("pubDate").Value.ToString();
                                         newslist1.Add(itemnews);
                                     };
                                 }
@@ -126,11 +136,11 @@ namespace Donor.ViewModels
 
                                 Deployment.Current.Dispatcher.BeginInvoke(() =>
                                 {
-                                    App.ViewModel.Settings.NewsUpdated = DateTime.Now;
-                                    App.ViewModel.SaveSettingsToStorage();
-
+                                    ViewModelLocator.MainStatic.Settings.NewsUpdated = DateTime.Now;
+                                    ViewModelLocator.MainStatic.SaveSettingsToStorage();
                                     this.Items = new ObservableCollection<NewsViewModel>(newslist1);
-                                    IsolatedStorageHelper.SaveSerializableObject<ObservableCollection<NewsViewModel>>(App.ViewModel.News.Items, "news.xml");
+                                    RaisePropertyChanged("Items");
+                                    IsolatedStorageHelper.SaveSerializableObject<ObservableCollection<NewsViewModel>>(ViewModelLocator.MainStatic.News.Items, "news.xml");
                                 });
                             }
                             catch { };
@@ -151,8 +161,8 @@ namespace Donor.ViewModels
             set { 
                 if (_items != value) {
                     _items = value;
-                    NotifyPropertyChanged("Items");
-                    NotifyPropertyChanged("NewItems");
+                    RaisePropertyChanged("Items");
+                    RaisePropertyChanged("NewItems");
                 }; 
             } }
         public List<NewsViewModel> NewItems { 
@@ -165,29 +175,10 @@ namespace Donor.ViewModels
                 return outnews;
             }
             private set { } }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        private void NotifyPropertyChanged(String propertyName)
-        {
-            PropertyChangedEventHandler handler = PropertyChanged;
-            if (null != handler)
-            {
-                handler(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
-
-        public void RaisePropertyChanged(string property)
-        {
-            if (PropertyChanged != null)
-            {
-                  PropertyChanged(this, new PropertyChangedEventArgs(property));
-            }
-        }
     }
 
 
-    [DataContract]
-    public class NewsViewModel
+    public class NewsViewModel: ViewModelBase
     {
         public NewsViewModel()
         {
@@ -197,7 +188,6 @@ namespace Donor.ViewModels
         /// news title
         /// </summary>
         private string _title;
-        [DataMember] 
         public string Title
         {
             get
@@ -207,29 +197,19 @@ namespace Donor.ViewModels
             set 
             {
                 _title = value;
+                RaisePropertyChanged("Title");
             }
         }
 
         public string ObjectId { get; set; }
 
-        /*[DataMember] 
-        public string Description
-        {
-            get
-            {
-                return _body;
-            }
-            set
-            {
-                _body = value;
-            }
-        }*/
 
         private string _body;
         public string Body {
             set
             {
                 _body = value;
+                RaisePropertyChanged("Body");
             }
             get
             {
@@ -286,7 +266,7 @@ namespace Donor.ViewModels
             }
             set {
                 _url = value;
-                //NotifyPropertyChanged("Url");
+                RaisePropertyChanged("Url");
             }
         }
         public int Nid { get; set; }
@@ -373,6 +353,7 @@ namespace Donor.ViewModels
             set
             {
                 _created = value;
+                RaisePropertyChanged("Created");
             }
         }
         private string _created = DateTime.Now.ToString();

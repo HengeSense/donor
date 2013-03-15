@@ -12,6 +12,7 @@ using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using Facebook;
 using Donor;
+using Donor.ViewModels;
 
 namespace facebook_windows_phone_sample.Pages
 {
@@ -41,10 +42,10 @@ namespace facebook_windows_phone_sample.Pages
             //webBrowser1.Navigate(logoutUrl);
 
             string logout_format = "http://www.facebook.com/logout.php?api_key={0}&session_key={1}&next={2}";
-            string access_token = HttpUtility.UrlDecode(App.ViewModel.User.FacebookToken);
+            string access_token = HttpUtility.UrlDecode(ViewModelLocator.MainStatic.User.FacebookToken);
             //char[] tokenSeparator = new char[] { '|' };
             //string session = access_token.Split(tokenSeparator)[1];
-            string session = App.ViewModel.User.FacebookToken;
+            string session = ViewModelLocator.MainStatic.User.FacebookToken;
 
             var parameters = new Dictionary<string, object>();
             webBrowser1.Navigate(_fb.GetLogoutUrl(parameters));
@@ -57,7 +58,7 @@ namespace facebook_windows_phone_sample.Pages
             //parameters["redirect_uri"] = "https://www.facebook.com/logout.php";
             parameters["next"] = "https://www.facebook.com/logout.php";
             //parameters["display"] = "touch";
-            parameters["access_token"] = App.ViewModel.User.FacebookToken;
+            parameters["access_token"] = ViewModelLocator.MainStatic.User.FacebookToken;
 
             return _fb.GetLogoutUrl(parameters);
         }

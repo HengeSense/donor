@@ -48,7 +48,7 @@ namespace Donor
         {
             try
             {
-                //if (App.ViewModel.Qr.CameraFocusSet == false)
+                //if (ViewModelLocator.MainStatic.Qr.CameraFocusSet == false)
                 //{
                     _photoCamera = new PhotoCamera();
                     _photoCamera.Initialized += OnPhotoCameraInitialized;
@@ -59,10 +59,10 @@ namespace Donor
 
             try
             {
-                if (App.ViewModel.Qr.CameraFocusSet == false)
+                if (ViewModelLocator.MainStatic.Qr.CameraFocusSet == false)
                 {
                     CameraButtons.ShutterKeyHalfPressed += (o, arg) => { try { _photoCamera.Focus(); } catch { }; };
-                    App.ViewModel.Qr.CameraFocusSet = true;
+                    ViewModelLocator.MainStatic.Qr.CameraFocusSet = true;
                 };
             }
             catch
@@ -115,7 +115,7 @@ namespace Donor
             try
             {
                 MessageBox.Show("Добавлен QR код c текстом: \n" + text);
-                App.ViewModel.Qr.QRcode = text;
+                ViewModelLocator.MainStatic.Qr.QRcode = text;
                 try
                 {
                     this.NavigationService.GoBack();

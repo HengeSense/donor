@@ -36,7 +36,7 @@ namespace Donor
                 {
                     string _newsid = this.NavigationContext.QueryString["id"];
                     _adsid_current = _newsid;
-                    _currentAds = App.ViewModel.Ads.Items.FirstOrDefault(c => c.ObjectId == _newsid.ToString());
+                    _currentAds = ViewModelLocator.MainStatic.Ads.Items.FirstOrDefault(c => c.ObjectId == _newsid.ToString());
                     DataContext = _currentAds;
                 }
                 catch
@@ -52,7 +52,7 @@ namespace Donor
 
         private void ShareButton_Click(object sender, System.EventArgs e)
         {
-            App.ViewModel.SendToShare(_currentAds.Title, _currentAds.Url, _currentAds.ShortBody, 130);
+            ViewModelLocator.MainStatic.SendToShare(_currentAds.Title, _currentAds.Url, _currentAds.ShortBody, 130);
 
         }
     }

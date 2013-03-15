@@ -24,7 +24,7 @@ namespace Donor.ViewModels
     {
         public QrContent()
         {
-            id = App.ViewModel.User.FacebookId;
+            id = ViewModelLocator.MainStatic.User.FacebookId;
             vol = 0;
             blood = "";
         }
@@ -103,14 +103,14 @@ namespace Donor.ViewModels
 
             request.AddHeader("Accept", "application/json");
             request.AddParameter("json_hash", QrHash);
-            request.AddParameter("name", App.ViewModel.User.Name);
-            request.AddParameter("fbuser", App.ViewModel.User.FacebookId);
+            request.AddParameter("name", ViewModelLocator.MainStatic.User.Name);
+            request.AddParameter("fbuser", ViewModelLocator.MainStatic.User.FacebookId);
 
             /*request.AddParameter("json_hash", "643fd91b03220c12ce7fdd6d09a909a739d3a5f8");
             request.AddParameter("name", "John Amdei");
             request.AddParameter("fbuser", "100004596188232");*/
 
-            string strJSONContent = "{ \"json_hash\": \"" + QrHash + "\", \"fbuser\": \"" + App.ViewModel.User.FacebookId + "\" }";
+            string strJSONContent = "{ \"json_hash\": \"" + QrHash + "\", \"fbuser\": \"" + ViewModelLocator.MainStatic.User.FacebookId + "\" }";
 
             client.ExecuteAsync(request, response =>
             {
@@ -131,7 +131,7 @@ namespace Donor.ViewModels
         private void AddScore(int score)
         {
             var client = new RestClient("https://graph.facebook.com/");
-            var request = new RestRequest(App.ViewModel.User.FacebookId.ToString()+"/scores?score="+score.ToString()+"&access_token="+App.ViewModel.User.FacebookToken, Method.GET);
+            var request = new RestRequest(ViewModelLocator.MainStatic.User.FacebookId.ToString()+"/scores?score="+score.ToString()+"&access_token="+ViewModelLocator.MainStatic.User.FacebookToken, Method.GET);
             request.AddHeader("Accept", "application/json");
             request.Parameters.Clear();
 
@@ -148,7 +148,7 @@ namespace Donor.ViewModels
             request.AddHeader("Accept", "application/json");
             request.Parameters.Clear();
 
-            string strJSONContent = "{\"facebook_user_id\":\"" + "1" + "\", \"level\":" + "1" + ", \"user_id\":\"" + App.ViewModel.User.objectId + "\", \"qr\":\"" + HttpUtility.UrlEncode(this.QRcode).ToString() + "\"}";
+            string strJSONContent = "{\"facebook_user_id\":\"" + "1" + "\", \"level\":" + "1" + ", \"user_id\":\"" + ViewModelLocator.MainStatic.User.objectId + "\", \"qr\":\"" + HttpUtility.UrlEncode(this.QRcode).ToString() + "\"}";
             request.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
             request.AddHeader("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
             request.AddHeader("Content-Type", "application/json");
@@ -163,7 +163,7 @@ namespace Donor.ViewModels
                     AddScore(QrData.vol);
 
                     /*var client2 = new RestClient("https://graph.facebook.com/");
-                    var request2 = new RestRequest("me/feed?name=Donor&caption=Reference%20Documentation&description=Using%20Dialogs%20to%20interact%20with%20users.&access_token="+App.ViewModel.User.FacebookToken, Method.POST);
+                    var request2 = new RestRequest("me/feed?name=Donor&caption=Reference%20Documentation&description=Using%20Dialogs%20to%20interact%20with%20users.&access_token="+ViewModelLocator.MainStatic.User.FacebookToken, Method.POST);
                     request.AddHeader("Accept", "application/json");
                     request.Parameters.Clear();
 
@@ -173,7 +173,7 @@ namespace Donor.ViewModels
                         outstr = outstr;
                     });*/
 
-                    var fb = new FacebookClient(App.ViewModel.User.FacebookToken);
+                    var fb = new FacebookClient(ViewModelLocator.MainStatic.User.FacebookToken);
 
                     ///
                     /// Post message to timeline
@@ -195,7 +195,7 @@ namespace Donor.ViewModels
                     parameters["caption"] = "http://www.donors.ru";
                     fb.PostAsync("me/feed", parameters);
 
-                    fb = new FacebookClient(App.ViewModel.User.FacebookToken);
+                    fb = new FacebookClient(ViewModelLocator.MainStatic.User.FacebookToken);
                     fb.PostCompleted += (o2, args) =>
                     {
                         if (args.Error != null)

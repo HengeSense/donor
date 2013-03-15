@@ -68,25 +68,25 @@ namespace Donor.ViewModels
             this.Password = "";
             this.NotifyAll();
 
-            App.ViewModel.FbId = "";
-            App.ViewModel.FbToken = "";
-            App.ViewModel.User.Name = "";
-            App.ViewModel.User.SecondName = "";
+            ViewModelLocator.MainStatic.FbId = "";
+            ViewModelLocator.MainStatic.FbToken = "";
+            ViewModelLocator.MainStatic.User.Name = "";
+            ViewModelLocator.MainStatic.User.SecondName = "";
 
-            //App.ViewModel.User = new DonorUser();
+            //ViewModelLocator.MainStatic.User = new DonorUser();
 
-            App.ViewModel.User.UserName = "";
-            App.ViewModel.User.Password = "";
+            ViewModelLocator.MainStatic.User.UserName = "";
+            ViewModelLocator.MainStatic.User.Password = "";
             this.NotifyAll();
             BadgesViewModel.ClearStatus();
 
-            App.ViewModel.SaveUserToStorage();
+            ViewModelLocator.MainStatic.SaveUserToStorage();
 
-            App.ViewModel.Events.UpdateItems();
+            ViewModelLocator.MainStatic.Events.UpdateItems();
 
             ///log event to flurry.com
             List<FlurryWP7SDK.Models.Parameter> articleParams = new List<FlurryWP7SDK.Models.Parameter> { 
-                new FlurryWP7SDK.Models.Parameter("objectId", App.ViewModel.User.objectId), 
+                new FlurryWP7SDK.Models.Parameter("objectId", ViewModelLocator.MainStatic.User.objectId), 
                 new FlurryWP7SDK.Models.Parameter("platform", "wp7") };
             FlurryWP7SDK.Api.LogEvent("User_logout", articleParams);
 
@@ -110,7 +110,7 @@ namespace Donor.ViewModels
                 string strJSONContent = "{\"username\":\"" + this.UserName + "\", \"email\":\"" + this.UserName + "\", \"Sex\":" + this.Sex + ", \"Name\":\"" + this.Name + "\", \"secondName\":\"" + this.SecondName + "\", \"birthday\": \"" + this.Birthday + "\", \"BloodGroup\":" + this.BloodGroup + ", \"BloodRh\":" + this.BloodRh + "}";
                 request.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
                 request.AddHeader("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
-                request.AddHeader("X-Parse-Session-Token", App.ViewModel.User.sessionToken);
+                request.AddHeader("X-Parse-Session-Token", ViewModelLocator.MainStatic.User.sessionToken);
                 request.AddHeader("Content-Type", "application/json");
                 request.AddParameter("application/json", strJSONContent, ParameterType.RequestBody);
 
@@ -148,7 +148,7 @@ namespace Donor.ViewModels
                                 };
                                 ///Обновление профиля пользователя - событие для flurry
                                 List<FlurryWP7SDK.Models.Parameter> articleParams = new List<FlurryWP7SDK.Models.Parameter> { 
-                                new FlurryWP7SDK.Models.Parameter("objectId", App.ViewModel.User.objectId), 
+                                new FlurryWP7SDK.Models.Parameter("objectId", ViewModelLocator.MainStatic.User.objectId), 
                                 new FlurryWP7SDK.Models.Parameter("platform", "wp7") };
                                 FlurryWP7SDK.Api.LogEvent("User_updated", articleParams);                        
                             }
@@ -163,7 +163,7 @@ namespace Donor.ViewModels
                     };
                     Deployment.Current.Dispatcher.BeginInvoke(() =>
                         {
-                            App.ViewModel.SaveUserToStorage();
+                            ViewModelLocator.MainStatic.SaveUserToStorage();
                         });
                 });
             };
@@ -179,8 +179,8 @@ namespace Donor.ViewModels
             {
                 Deployment.Current.Dispatcher.BeginInvoke(() =>
                 {
-                    App.ViewModel.User.UserLoading = true;
-                    App.ViewModel.User.IsLoggedIn = false;
+                    ViewModelLocator.MainStatic.User.UserLoading = true;
+                    ViewModelLocator.MainStatic.User.IsLoggedIn = false;
                 });
                 string passwordCurrent = this.Password;
 
@@ -202,42 +202,42 @@ namespace Donor.ViewModels
                             Deployment.Current.Dispatcher.BeginInvoke(() =>
                             {
                                 //auto linking
-                                App.ViewModel.User = JsonConvert.DeserializeObject<DonorUser>(response.Content.ToString());
+                                ViewModelLocator.MainStatic.User = JsonConvert.DeserializeObject<DonorUser>(response.Content.ToString());
                                 ClassToUser();
 
                                 try
                                 {
-                                    App.ViewModel.User.FacebookId = o["authData"]["facebook"]["id"].ToString();
-                                    App.ViewModel.User.FacebookToken = o["authData"]["facebook"]["access_token"].ToString();
+                                    ViewModelLocator.MainStatic.User.FacebookId = o["authData"]["facebook"]["id"].ToString();
+                                    ViewModelLocator.MainStatic.User.FacebookToken = o["authData"]["facebook"]["access_token"].ToString();
                                 }
                                 catch { };
 
-                                App.ViewModel.User.IsLoggedIn = true;
+                                ViewModelLocator.MainStatic.User.IsLoggedIn = true;
                                 this.IsLoggedIn = true;
                                 this.Password = passwordCurrent;
-                                App.ViewModel.User.Password = passwordCurrent;
+                                ViewModelLocator.MainStatic.User.Password = passwordCurrent;
 
-                                App.ViewModel.SaveUserToStorage();
+                                ViewModelLocator.MainStatic.SaveUserToStorage();
 
-                                App.ViewModel.Events.WeekItemsUpdated();
-                                App.ViewModel.Events.LoadEventsParse();
+                                ViewModelLocator.MainStatic.Events.WeekItemsUpdated();
+                                ViewModelLocator.MainStatic.Events.LoadEventsParse();
 
-                                App.ViewModel.SaveUserToStorage();
+                                ViewModelLocator.MainStatic.SaveUserToStorage();
 
-                                App.ViewModel.User.NotifyAll();
+                                ViewModelLocator.MainStatic.User.NotifyAll();
                                 //this.NotifyAll();
                                 //ClassToUser();
 
-                                App.ViewModel.OnUserEnter(EventArgs.Empty);
+                                ViewModelLocator.MainStatic.OnUserEnter(EventArgs.Empty);
                                 FlurryWP7SDK.Api.LogEvent("User_login");
 
-                                if ((App.ViewModel.FbId != "") && (App.ViewModel.FbToken != ""))
+                                if ((ViewModelLocator.MainStatic.FbId != "") && (ViewModelLocator.MainStatic.FbToken != ""))
                                 {
-                                    App.ViewModel.User.FacebookLinking(App.ViewModel.FbId, App.ViewModel.FbToken);
-                                    App.ViewModel.User.FacebookId = App.ViewModel.FbId;
-                                    App.ViewModel.User.FacebookToken = App.ViewModel.FbToken;
-                                    App.ViewModel.FbId = "";
-                                    App.ViewModel.FbToken = "";
+                                    ViewModelLocator.MainStatic.User.FacebookLinking(ViewModelLocator.MainStatic.FbId, ViewModelLocator.MainStatic.FbToken);
+                                    ViewModelLocator.MainStatic.User.FacebookId = ViewModelLocator.MainStatic.FbId;
+                                    ViewModelLocator.MainStatic.User.FacebookToken = ViewModelLocator.MainStatic.FbToken;
+                                    ViewModelLocator.MainStatic.FbId = "";
+                                    ViewModelLocator.MainStatic.FbToken = "";
                                 };
                             });
                         }
@@ -245,23 +245,23 @@ namespace Donor.ViewModels
                         {
                             Deployment.Current.Dispatcher.BeginInvoke(() =>
                             {
-                                App.ViewModel.User.IsLoggedIn = false;
+                                ViewModelLocator.MainStatic.User.IsLoggedIn = false;
                                 MessageBox.Show(Donor.AppResources.UncorrectLoginData);
 
-                                App.ViewModel.User.NotifyAll();
+                                ViewModelLocator.MainStatic.User.NotifyAll();
                                 this.NotifyAll();
                             });
                         };
                         Deployment.Current.Dispatcher.BeginInvoke(() =>
                             {
-                                App.ViewModel.User.UserLoading = false;
+                                ViewModelLocator.MainStatic.User.UserLoading = false;
                             });
                     }
                     catch
                     {
                         Deployment.Current.Dispatcher.BeginInvoke(() =>
                             {
-                                App.ViewModel.User.UserLoading = false;
+                                ViewModelLocator.MainStatic.User.UserLoading = false;
                             });
                     };
                 });
@@ -422,23 +422,23 @@ namespace Donor.ViewModels
         {
             try
             {
-                this.UserLoading = App.ViewModel.User.UserLoading;
-                this.UserName = App.ViewModel.User.UserName;
-                this.Name = App.ViewModel.User.Name;
-                this.SecondName = App.ViewModel.User.SecondName;
-                this.Sex = App.ViewModel.User.Sex;
-                this.sessionToken = App.ViewModel.User.sessionToken;
-                this.objectId = App.ViewModel.User.objectId;
-                this.Birthday = App.ViewModel.User.Birthday;
-                this.BloodGroup = App.ViewModel.User.BloodGroup;
-                this.BloodRh = App.ViewModel.User.BloodRh;
-                this.CreatedAt = App.ViewModel.User.CreatedAt;
-                this.DateBirthday = App.ViewModel.User.DateBirthday;
-                this.FacebookId = App.ViewModel.User.FacebookId;
-                this.GivedBlood = App.ViewModel.User.GivedBlood;
-                this.IsFacebookLoggedIn = App.ViewModel.User.IsFacebookLoggedIn;
-                this.IsLoggedIn = App.ViewModel.User.IsLoggedIn;
-                //this.Password = App.ViewModel.User.Password;
+                this.UserLoading = ViewModelLocator.MainStatic.User.UserLoading;
+                this.UserName = ViewModelLocator.MainStatic.User.UserName;
+                this.Name = ViewModelLocator.MainStatic.User.Name;
+                this.SecondName = ViewModelLocator.MainStatic.User.SecondName;
+                this.Sex = ViewModelLocator.MainStatic.User.Sex;
+                this.sessionToken = ViewModelLocator.MainStatic.User.sessionToken;
+                this.objectId = ViewModelLocator.MainStatic.User.objectId;
+                this.Birthday = ViewModelLocator.MainStatic.User.Birthday;
+                this.BloodGroup = ViewModelLocator.MainStatic.User.BloodGroup;
+                this.BloodRh = ViewModelLocator.MainStatic.User.BloodRh;
+                this.CreatedAt = ViewModelLocator.MainStatic.User.CreatedAt;
+                this.DateBirthday = ViewModelLocator.MainStatic.User.DateBirthday;
+                this.FacebookId = ViewModelLocator.MainStatic.User.FacebookId;
+                this.GivedBlood = ViewModelLocator.MainStatic.User.GivedBlood;
+                this.IsFacebookLoggedIn = ViewModelLocator.MainStatic.User.IsFacebookLoggedIn;
+                this.IsLoggedIn = ViewModelLocator.MainStatic.User.IsLoggedIn;
+                //this.Password = ViewModelLocator.MainStatic.User.Password;
             } catch {};
         }
 
@@ -446,23 +446,23 @@ namespace Donor.ViewModels
         {
             try
             {
-                App.ViewModel.User.UserLoading = this.UserLoading;
-                App.ViewModel.User.UserName = this.UserName;
-                App.ViewModel.User.Name = this.Name;
-                App.ViewModel.User.SecondName = this.SecondName;
-                App.ViewModel.User.Sex = this.Sex;
-                App.ViewModel.User.sessionToken = this.sessionToken;
-                App.ViewModel.User.objectId = this.objectId;
-                App.ViewModel.User.Birthday = this.Birthday;
-                App.ViewModel.User.BloodGroup = this.BloodGroup;
-                App.ViewModel.User.BloodRh = this.BloodRh;
-                App.ViewModel.User.CreatedAt = this.CreatedAt;
-                App.ViewModel.User.DateBirthday = this.DateBirthday;
-                App.ViewModel.User.FacebookId = this.FacebookId;
-                App.ViewModel.User.GivedBlood = this.GivedBlood;
-                App.ViewModel.User.IsFacebookLoggedIn = this.IsFacebookLoggedIn;
-                App.ViewModel.User.IsLoggedIn = this.IsLoggedIn;
-                //App.ViewModel.User.Password = this.Password;
+                ViewModelLocator.MainStatic.User.UserLoading = this.UserLoading;
+                ViewModelLocator.MainStatic.User.UserName = this.UserName;
+                ViewModelLocator.MainStatic.User.Name = this.Name;
+                ViewModelLocator.MainStatic.User.SecondName = this.SecondName;
+                ViewModelLocator.MainStatic.User.Sex = this.Sex;
+                ViewModelLocator.MainStatic.User.sessionToken = this.sessionToken;
+                ViewModelLocator.MainStatic.User.objectId = this.objectId;
+                ViewModelLocator.MainStatic.User.Birthday = this.Birthday;
+                ViewModelLocator.MainStatic.User.BloodGroup = this.BloodGroup;
+                ViewModelLocator.MainStatic.User.BloodRh = this.BloodRh;
+                ViewModelLocator.MainStatic.User.CreatedAt = this.CreatedAt;
+                ViewModelLocator.MainStatic.User.DateBirthday = this.DateBirthday;
+                ViewModelLocator.MainStatic.User.FacebookId = this.FacebookId;
+                ViewModelLocator.MainStatic.User.GivedBlood = this.GivedBlood;
+                ViewModelLocator.MainStatic.User.IsFacebookLoggedIn = this.IsFacebookLoggedIn;
+                ViewModelLocator.MainStatic.User.IsLoggedIn = this.IsLoggedIn;
+                //ViewModelLocator.MainStatic.User.Password = this.Password;
             }
             catch { };
         }
@@ -601,7 +601,7 @@ namespace Donor.ViewModels
             get
             {
                 int gived = 0;
-                gived = (from item in App.ViewModel.Events.UserItems
+                gived = (from item in ViewModelLocator.MainStatic.Events.UserItems
                          where item.Type == "1" && item.Finished==true
                         select item).Count();
                 return gived;
@@ -646,7 +646,7 @@ namespace Donor.ViewModels
             {
                 try
                 {
-                    return App.ViewModel.Events.UserItems.OrderBy(c => c.Date).FirstOrDefault(c=>(c.Type=="1") && (c.Date > DateTime.Now)).ShortDate.ToString();
+                    return ViewModelLocator.MainStatic.Events.UserItems.OrderBy(c => c.Date).FirstOrDefault(c=>(c.Type=="1") && (c.Date > DateTime.Now)).ShortDate.ToString();
                 }
                 catch
                 {
@@ -722,7 +722,7 @@ namespace Donor.ViewModels
         {
             try
             {
-                App.ViewModel.User.UserLoading = true;
+                ViewModelLocator.MainStatic.User.UserLoading = true;
                 //BadgesViewModel.PostAchieve();
 
                 var bw = new BackgroundWorker();
@@ -764,17 +764,17 @@ namespace Donor.ViewModels
                                 string strJSONContent = "{\"authData\": { \"facebook\":{ \"id\": \"" + id + "\", \"access_token\": \"" + accessToken + "\", \"expiration_date\": \"" + DateTime.Now.AddMonths(1).ToString("s") + "\"  }  } }";
                                 request.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
                                 request.AddHeader("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
-                                if (App.ViewModel.User.sessionToken != "" && App.ViewModel.User.sessionToken != null)
+                                if (ViewModelLocator.MainStatic.User.sessionToken != "" && ViewModelLocator.MainStatic.User.sessionToken != null)
                                 {
-                                    request.AddHeader("X-Parse-Session-Token", App.ViewModel.User.sessionToken);
+                                    request.AddHeader("X-Parse-Session-Token", ViewModelLocator.MainStatic.User.sessionToken);
                                 };
                                 request.AddHeader("Content-Type", "application/json");
 
                                 request.AddParameter("application/json", strJSONContent, ParameterType.RequestBody);
 
-                                string oldname = App.ViewModel.User.Name;
-                                string oldsecondname = App.ViewModel.User.SecondName;
-                                int oldsex = App.ViewModel.User.Sex;
+                                string oldname = ViewModelLocator.MainStatic.User.Name;
+                                string oldsecondname = ViewModelLocator.MainStatic.User.SecondName;
+                                int oldsex = ViewModelLocator.MainStatic.User.Sex;
 
                                 client.ExecuteAsync(request, response =>
                                 {
@@ -789,35 +789,35 @@ namespace Donor.ViewModels
 
                                             Deployment.Current.Dispatcher.BeginInvoke(() =>
                                             {
-                                                App.ViewModel.User = JsonConvert.DeserializeObject<DonorUser>(response.Content.ToString());
+                                                ViewModelLocator.MainStatic.User = JsonConvert.DeserializeObject<DonorUser>(response.Content.ToString());
                                                 ClassToUser();
 
                                                 try
                                                 {
                                                     try
                                                     {
-                                                        if ((App.ViewModel.User.Name == "") || (App.ViewModel.User.Name == null) || (response.StatusCode == HttpStatusCode.Created))
+                                                        if ((ViewModelLocator.MainStatic.User.Name == "") || (ViewModelLocator.MainStatic.User.Name == null) || (response.StatusCode == HttpStatusCode.Created))
                                                         {
-                                                            App.ViewModel.User.Name = (string)result["first_name"];
+                                                            ViewModelLocator.MainStatic.User.Name = (string)result["first_name"];
                                                             changed = true;
                                                         };
                                                     }
                                                     catch
                                                     {
-                                                        App.ViewModel.User.Name = oldname;
+                                                        ViewModelLocator.MainStatic.User.Name = oldname;
                                                     };
 
                                                     try
                                                     {
-                                                        if ((App.ViewModel.User.SecondName == "") || (App.ViewModel.User.SecondName == null) || (response.StatusCode == HttpStatusCode.Created))
+                                                        if ((ViewModelLocator.MainStatic.User.SecondName == "") || (ViewModelLocator.MainStatic.User.SecondName == null) || (response.StatusCode == HttpStatusCode.Created))
                                                         {
-                                                            App.ViewModel.User.SecondName = (string)result["last_name"];
+                                                            ViewModelLocator.MainStatic.User.SecondName = (string)result["last_name"];
                                                             changed = true;
                                                         };
                                                     }
                                                     catch
                                                     {
-                                                        App.ViewModel.User.SecondName = oldsecondname;
+                                                        ViewModelLocator.MainStatic.User.SecondName = oldsecondname;
                                                     };
                                                 }
                                                 catch { };
@@ -834,19 +834,19 @@ namespace Donor.ViewModels
                                                     {
                                                         if ((string)result["gender"] == "male")
                                                         {
-                                                            App.ViewModel.User.Sex = 0;
+                                                            ViewModelLocator.MainStatic.User.Sex = 0;
                                                             changed = true;
                                                         };
                                                         if ((string)result["gender"] == "female")
                                                         {
-                                                            App.ViewModel.User.Sex = 1;
+                                                            ViewModelLocator.MainStatic.User.Sex = 1;
                                                             changed = true;
                                                         };
                                                     };
                                                 }
                                                 catch
                                                 {
-                                                    App.ViewModel.User.Sex = oldsex;
+                                                    ViewModelLocator.MainStatic.User.Sex = oldsex;
                                                 };
 
                                                 try
@@ -859,7 +859,7 @@ namespace Donor.ViewModels
                                                     catch { };*/
                                                     if ((response.StatusCode == HttpStatusCode.Created))
                                                     {
-                                                        App.ViewModel.User.UserName = (string)result["email"];
+                                                        ViewModelLocator.MainStatic.User.UserName = (string)result["email"];
                                                         changed = true;
                                                     };
                                                 }
@@ -877,36 +877,36 @@ namespace Donor.ViewModels
                                                     {
                                                         string birthday = (string)result["birthday"];
                                                         CultureInfo provider = CultureInfo.InvariantCulture;
-                                                        App.ViewModel.User.DateBirthday = DateTime.ParseExact(birthday, "d", provider);
+                                                        ViewModelLocator.MainStatic.User.DateBirthday = DateTime.ParseExact(birthday, "d", provider);
                                                         changed = true;
                                                     };
                                                 }
                                                 catch { };
 
-                                                App.ViewModel.User.IsLoggedIn = true;
+                                                ViewModelLocator.MainStatic.User.IsLoggedIn = true;
                                                 this.IsLoggedIn = true;
                                                 ClassToUser();
 
-                                                App.ViewModel.SaveUserToStorage();
+                                                ViewModelLocator.MainStatic.SaveUserToStorage();
 
-                                                App.ViewModel.Events.WeekItemsUpdated();
-                                                App.ViewModel.Events.LoadEventsParse();
+                                                ViewModelLocator.MainStatic.Events.WeekItemsUpdated();
+                                                ViewModelLocator.MainStatic.Events.LoadEventsParse();
 
-                                                App.ViewModel.User.FacebookId = id;
-                                                App.ViewModel.User.FacebookToken = accessToken;
+                                                ViewModelLocator.MainStatic.User.FacebookId = id;
+                                                ViewModelLocator.MainStatic.User.FacebookToken = accessToken;
 
-                                                App.ViewModel.SaveUserToStorage();
+                                                ViewModelLocator.MainStatic.SaveUserToStorage();
 
-                                                App.ViewModel.User.NotifyAll();
+                                                ViewModelLocator.MainStatic.User.NotifyAll();
                                                 this.NotifyAll();
 
-                                                App.ViewModel.OnUserEnter(EventArgs.Empty);
+                                                ViewModelLocator.MainStatic.OnUserEnter(EventArgs.Empty);
 
                                                 if (changed == true)
                                                 {
                                                     this.UpdateAction(1);
                                                 };
-                                                App.ViewModel.User.UserLoading = false;
+                                                ViewModelLocator.MainStatic.User.UserLoading = false;
                                             });
                                         }
                                         else
@@ -929,15 +929,15 @@ namespace Donor.ViewModels
 
                                                 Deployment.Current.Dispatcher.BeginInvoke(() =>
                                                 {
-                                                    App.ViewModel.User.IsLoggedIn = false;
-                                                    App.ViewModel.User.UserLoading = false;
+                                                    ViewModelLocator.MainStatic.User.IsLoggedIn = false;
+                                                    ViewModelLocator.MainStatic.User.UserLoading = false;
                                                     MessageBox.Show("Похоже такой пользователь уже есть. Введите пароль, чтобы привязать профиль.");
                                                     try
                                                     {
                                                         (Application.Current.RootVisual as PhoneApplicationFrame).Navigate(new Uri("/ProfileLogin.xaml?task=login&email=" + result["email"].ToString().ToLower(), UriKind.Relative));
                                                     }
                                                     catch { };
-                                                    App.ViewModel.User.UserLoading = false;
+                                                    ViewModelLocator.MainStatic.User.UserLoading = false;
                                                 });
                                             };
                                         };
@@ -946,11 +946,11 @@ namespace Donor.ViewModels
                                     {
                                         Deployment.Current.Dispatcher.BeginInvoke(() =>
                                         {
-                                            App.ViewModel.User.IsLoggedIn = false;
+                                            ViewModelLocator.MainStatic.User.IsLoggedIn = false;
                                             MessageBox.Show(Donor.AppResources.UncorrectLoginData);
-                                            App.ViewModel.User.NotifyAll();
+                                            ViewModelLocator.MainStatic.User.NotifyAll();
                                             this.NotifyAll();
-                                            App.ViewModel.User.UserLoading = false;
+                                            ViewModelLocator.MainStatic.User.UserLoading = false;
                                         });
                                     };
                                     
@@ -967,7 +967,7 @@ namespace Donor.ViewModels
                         {
                             Deployment.Current.Dispatcher.BeginInvoke(() =>
                                     {
-                                        App.ViewModel.User.UserLoading = false;
+                                        ViewModelLocator.MainStatic.User.UserLoading = false;
                                     });
                         };
                     });
@@ -983,14 +983,14 @@ namespace Donor.ViewModels
             try
             {
                 var client = new RestClient("https://api.parse.com");
-                var request = new RestRequest("1/users/" + App.ViewModel.User.objectId, Method.PUT);
+                var request = new RestRequest("1/users/" + ViewModelLocator.MainStatic.User.objectId, Method.PUT);
                 request.AddHeader("Accept", "application/json");
                 request.Parameters.Clear();
 
                 string strJSONContent = "{\"authData\": { \"facebook\":{ \"id\": \"" + id + "\", \"access_token\": \"" + accessToken + "\", \"expiration_date\": \"" + DateTime.Now.AddMonths(1).ToString("s") + "\"  }  } }";
                 request.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
                 request.AddHeader("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
-                request.AddHeader("X-Parse-Session-Token", App.ViewModel.User.sessionToken);
+                request.AddHeader("X-Parse-Session-Token", ViewModelLocator.MainStatic.User.sessionToken);
                 request.AddHeader("Content-Type", "application/json");
 
                 request.AddParameter("application/json", strJSONContent, ParameterType.RequestBody);
@@ -1005,7 +1005,7 @@ namespace Donor.ViewModels
                             BadgesViewModel.PostAchieve(id, accessToken);
                             MessageBox.Show("Выполнена привязка.");
 
-                            App.ViewModel.SaveUserToStorage();
+                            ViewModelLocator.MainStatic.SaveUserToStorage();
 
                             this.UpdateAction(null);
 
@@ -1025,9 +1025,9 @@ namespace Donor.ViewModels
                                 MessageBox.Show("Не удалось выполнить привязку.");
                             };
 
-                            App.ViewModel.User.FacebookId = "";
-                            App.ViewModel.User.FacebookToken = "";
-                            App.ViewModel.SaveUserToStorage();
+                            ViewModelLocator.MainStatic.User.FacebookId = "";
+                            ViewModelLocator.MainStatic.User.FacebookToken = "";
+                            ViewModelLocator.MainStatic.SaveUserToStorage();
                             //this.UpdateAction(null);
 
                             this.FacebookUnLinked(this, EventArgs.Empty);
@@ -1047,14 +1047,14 @@ namespace Donor.ViewModels
             try
             {
                 var client = new RestClient("https://api.parse.com");
-                var request = new RestRequest("1/users/" + App.ViewModel.User.objectId, Method.PUT);
+                var request = new RestRequest("1/users/" + ViewModelLocator.MainStatic.User.objectId, Method.PUT);
                 request.AddHeader("Accept", "application/json");
                 request.Parameters.Clear();
 
                 string strJSONContent = "{\"authData\": { \"facebook\": null } }";
                 request.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
                 request.AddHeader("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
-                request.AddHeader("X-Parse-Session-Token", App.ViewModel.User.sessionToken);
+                request.AddHeader("X-Parse-Session-Token", ViewModelLocator.MainStatic.User.sessionToken);
                 request.AddHeader("Content-Type", "application/json");
 
                 request.AddParameter("application/json", strJSONContent, ParameterType.RequestBody);
@@ -1069,10 +1069,10 @@ namespace Donor.ViewModels
                         {
                             MessageBox.Show(Donor.AppResources.FacebookUnlinkedMessage);
 
-                            App.ViewModel.User.FacebookId = "";
-                            App.ViewModel.User.FacebookToken = "";
+                            ViewModelLocator.MainStatic.User.FacebookId = "";
+                            ViewModelLocator.MainStatic.User.FacebookToken = "";
 
-                            App.ViewModel.SaveUserToStorage();
+                            ViewModelLocator.MainStatic.SaveUserToStorage();
 
                             FlurryWP7SDK.Api.LogEvent("Facebook_unlinking");
                             this.FacebookUnLinked(this, EventArgs.Empty);

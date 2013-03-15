@@ -61,7 +61,7 @@ namespace Donor.ViewModels
             }
             catch { this.Items = new ObservableCollection<ContraViewModel>(); };
 
-            if ((App.ViewModel.Contras.Items.Count == 0) || (App.ViewModel.Settings.ContrasUpdated.AddDays(7) < DateTime.Now)) {
+            if ((ViewModelLocator.MainStatic.Contras.Items.Count == 0) || (ViewModelLocator.MainStatic.Settings.ContrasUpdated.AddDays(7) < DateTime.Now)) {
 
             var client = new RestClient("https://api.parse.com");
             var request = new RestRequest("1/classes/Contras", Method.GET);
@@ -83,10 +83,10 @@ namespace Donor.ViewModels
                         {
                             this.Items = contraslist1;
 
-                            IsolatedStorageHelper.SaveSerializableObject<ObservableCollection<ContraViewModel>>(App.ViewModel.Contras.Items, "contras.xml");   
+                            IsolatedStorageHelper.SaveSerializableObject<ObservableCollection<ContraViewModel>>(ViewModelLocator.MainStatic.Contras.Items, "contras.xml");   
 
-                            App.ViewModel.Settings.ContrasUpdated = DateTime.Now;
-                            App.ViewModel.SaveSettingsToStorage();
+                            ViewModelLocator.MainStatic.Settings.ContrasUpdated = DateTime.Now;
+                            ViewModelLocator.MainStatic.SaveSettingsToStorage();
 
                             this.NotifyPropertyChanged("Items");
                         });                        

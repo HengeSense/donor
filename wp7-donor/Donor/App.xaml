@@ -7,11 +7,14 @@
 	xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     xmlns:toolkitPrimitives="clr-namespace:Microsoft.Phone.Controls.Primitives;assembly=Microsoft.Phone.Controls.Toolkit"
     xmlns:sys="clr-namespace:System;assembly=mscorlib"
+    xmlns:vm="clr-namespace:Donor.ViewModels"
     xmlns:my="clr-namespace:Donor">
 
 
         <!--Application Resources-->
     <Application.Resources>
+        <vm:ViewModelLocator x:Key="Locator"/>
+        <local:LocalizedStrings xmlns:local="clr-namespace:Donor" x:Key="LocalizedStrings" />
         <!--<vm:ViewModelLocator xmlns:vm="clr-namespace:Donor.ViewModels" x:Key="Locator" />-->
 
         <Style x:Key="ListPickerStyle1" TargetType="toolkit:ListPicker">

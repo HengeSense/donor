@@ -18,7 +18,7 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait"  Orientation="Portrait"    
     shell:SystemTray.IsVisible="False" Loaded="PhoneApplicationPage_Loaded" Tap="PhoneApplicationPage_Tap">
-    <!-- DataContext="{Binding Path=App.ViewModel,Source=App.ViewModel}"
+    <!-- DataContext="{Binding Path=ViewModelLocator.MainStatic,Source=ViewModelLocator.MainStatic}"
      d:DataContext="{d:DesignData SampleData/MainViewModelSampleData.xaml}" -->
     
 	    <phone:PhoneApplicationPage.Resources>

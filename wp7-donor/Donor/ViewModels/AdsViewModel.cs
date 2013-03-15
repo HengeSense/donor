@@ -29,7 +29,7 @@ namespace Donor.ViewModels
 
         public void LoadAds()
         {
-            if ((App.ViewModel.Ads.Items.Count() == 0) || (App.ViewModel.Settings.AdsUpdated.AddHours(1) < DateTime.Now))
+            if ((ViewModelLocator.MainStatic.Ads.Items.Count() == 0) || (ViewModelLocator.MainStatic.Settings.AdsUpdated.AddHours(1) < DateTime.Now))
             {
             var bw = new BackgroundWorker();
             bw.DoWork += delegate
@@ -54,11 +54,11 @@ namespace Donor.ViewModels
 
                         Deployment.Current.Dispatcher.BeginInvoke(() =>
                         {
-                            App.ViewModel.Settings.AdsUpdated = DateTime.Now;
-                            App.ViewModel.SaveSettingsToStorage();
+                            ViewModelLocator.MainStatic.Settings.AdsUpdated = DateTime.Now;
+                            ViewModelLocator.MainStatic.SaveSettingsToStorage();
 
                             this.Items = new ObservableCollection<AdsViewModel>(sortedAds);
-                            IsolatedStorageHelper.SaveSerializableObject<ObservableCollection<AdsViewModel>>(App.ViewModel.Ads.Items, "ads.xml");
+                            IsolatedStorageHelper.SaveSerializableObject<ObservableCollection<AdsViewModel>>(ViewModelLocator.MainStatic.Ads.Items, "ads.xml");
                         });                      
                 }
                 catch

@@ -20,25 +20,7 @@ namespace Donor
         public NewsList()
         {
             InitializeComponent();
-            DataContext = App.ViewModel;
-            this.Loaded += new RoutedEventHandler(NewsList_Loaded);
-        }
-
-        // Load data for the ViewModel Items
-        private void NewsList_Loaded(object sender, RoutedEventArgs e)
-        {
-        }
-
-        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            try
-            {
-                string id = ((sender as ListBox).SelectedItem as NewsViewModel).ObjectId;
-                NavigationService.Navigate(new Uri("/NewsPage.xaml?id=" + id, UriKind.Relative));
-            }
-            catch
-            {
-            }
+            DataContext = ViewModelLocator.MainStatic;
         }
 
         private void ListBox_Tap(object sender, System.Windows.Input.GestureEventArgs e)
@@ -46,7 +28,8 @@ namespace Donor
             try
             {
                 string id = ((sender as ListBox).SelectedItem as NewsViewModel).ObjectId;
-                NavigationService.Navigate(new Uri("/NewsPage.xaml?id=" + id, UriKind.Relative));
+                ViewModelLocator.MainStatic.News.CurrentNews = ViewModelLocator.MainStatic.News.Items.FirstOrDefault(c => c.ObjectId == id);
+                NavigationService.Navigate(new Uri("/NewsPage.xaml", UriKind.Relative));
             }
             catch
             {

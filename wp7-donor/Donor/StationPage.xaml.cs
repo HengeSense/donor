@@ -37,11 +37,11 @@ namespace Donor
                 {
                     string _id = this.NavigationContext.QueryString["id"];
                     _stationid_current = _id;
-                    _currentStation = App.ViewModel.Stations.Items.FirstOrDefault(c => c.Nid.ToString() == _id.ToString());
+                    _currentStation = ViewModelLocator.MainStatic.Stations.Items.FirstOrDefault(c => c.Nid.ToString() == _id.ToString());
                     DataContext = _currentStation;
 
 
-                    List<AdsViewModel> adsItems = App.ViewModel.Ads.LoadStationAds(_currentStation.Nid.ToString());
+                    List<AdsViewModel> adsItems = ViewModelLocator.MainStatic.Ads.LoadStationAds(_currentStation.Nid.ToString());
                     if (adsItems.Count() > 0)
                     {
                         this.StationAds.ItemsSource = adsItems;
@@ -55,7 +55,7 @@ namespace Donor
                     NetworkInterface.NetworkInterfaceType != NetworkInterfaceType.None;
                     if (hasNetworkConnection)
                     {
-                        App.ViewModel.Reviews.LoadReviewsForStation(_currentStation.Nid.ToString());
+                        ViewModelLocator.MainStatic.Reviews.LoadReviewsForStation(_currentStation.Nid.ToString());
                     }
                     else
                     {
@@ -63,7 +63,7 @@ namespace Donor
                         this.progressOverlay.IsEnabled = false;
                     };
 
-                    App.ViewModel.Reviews.ReviewsLoaded += new ReviewsListViewModel.ReviewsLoadedEventHandler(this.ReviewsLoaded);
+                    ViewModelLocator.MainStatic.Reviews.ReviewsLoaded += new ReviewsListViewModel.ReviewsLoadedEventHandler(this.ReviewsLoaded);
                 }
                 catch
                 {
@@ -80,12 +80,12 @@ namespace Donor
         {
             try
             {
-                this.StationReviews.ItemsSource = App.ViewModel.Reviews.Items;
+                this.StationReviews.ItemsSource = ViewModelLocator.MainStatic.Reviews.Items;
                 int votes = 0;
-                foreach (var item in App.ViewModel.Reviews.Items) {
+                foreach (var item in ViewModelLocator.MainStatic.Reviews.Items) {
                     votes = votes + item.Vote;
                 };
-                this.rate.Vote = (int)Math.Round((double)votes / (double)App.ViewModel.Reviews.Items.Count());
+                this.rate.Vote = (int)Math.Round((double)votes / (double)ViewModelLocator.MainStatic.Reviews.Items.Count());
 
                 this.progressOverlay.Visibility = Visibility.Collapsed;
                 this.progressOverlay.IsEnabled = false;
