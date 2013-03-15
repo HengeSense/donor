@@ -69,7 +69,6 @@ C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\Bin\Release\fr\MyToolk
 C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\Bin\Release\FlurryWP7SDK.dll
 C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\Bin\Release\Phone.Controls.dll
 C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\Bin\Release\BugSense.dll
-C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\Bin\Release\GalaSoft.MvvmLight.WP71.xml
 C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\obj\Release\Donor.csprojResolveAssemblyReference.cache
 C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\obj\Release\App.g.cs
 C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\obj\Release\AchievesPage.g.cs
