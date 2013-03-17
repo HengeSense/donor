@@ -14,28 +14,8 @@
     mc:Ignorable="d" d:DesignHeight="696" d:DesignWidth="480"
     xmlns:msp="clr-namespace:MSPToolkit.Controls;assembly=MSPToolkit"
     xmlns:my="clr-namespace:MyToolkit.Controls;assembly=MyToolkit.Extended"
+    DataContext="{Binding Main, Source={StaticResource Locator}}" 
     shell:SystemTray.IsVisible="True" Loaded="PhoneApplicationPage_Loaded">
-
-    <toolkit:TransitionService.NavigationInTransition>
-        <toolkit:NavigationInTransition>
-            <toolkit:NavigationInTransition.Backward>
-                <toolkit:TurnstileTransition Mode="BackwardIn"/>
-            </toolkit:NavigationInTransition.Backward>
-            <toolkit:NavigationInTransition.Forward>
-                <toolkit:TurnstileTransition Mode="ForwardIn"/>
-            </toolkit:NavigationInTransition.Forward>
-        </toolkit:NavigationInTransition>
-    </toolkit:TransitionService.NavigationInTransition>
-    <toolkit:TransitionService.NavigationOutTransition>
-        <toolkit:NavigationOutTransition>
-            <toolkit:NavigationOutTransition.Backward>
-                <toolkit:TurnstileTransition Mode="BackwardOut"/>
-            </toolkit:NavigationOutTransition.Backward>
-            <toolkit:NavigationOutTransition.Forward>
-                <toolkit:TurnstileTransition Mode="ForwardOut"/>
-            </toolkit:NavigationOutTransition.Forward>
-        </toolkit:NavigationOutTransition>
-    </toolkit:TransitionService.NavigationOutTransition>
 
     <phone:PhoneApplicationPage.ApplicationBar>
 		<shell:ApplicationBar  BackgroundColor="#FF211E1D" ForegroundColor="White">
@@ -66,22 +46,19 @@
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
             <ScrollViewer>
                 <StackPanel>              
-                    <TextBlock Margin="10,0,0,0" x:Name="title" Text="{Binding Title}" 
-                           Style="{StaticResource Text36pxB9A194}" 
+                    <TextBlock Margin="10,0,0,0" x:Name="title" 
+                               Text="{Binding Ads.CurrentAd.Title}" 
+                               DataContext="{Binding Main, Source={StaticResource Locator}}" 
+                               Style="{StaticResource Text36pxB9A194}" 
                                TextWrapping="Wrap" />
-                    <!--<TextBlock Text="{Binding Body}" TextWrapping="Wrap"
-                           Style="{StaticResource Text24px847168}"/>-->
                     <msp:HTMLViewer 
                         NavigaionPolitic="Automatic" 
                         x:Name="Description" FontSize="24" 
                         HorizontalContentAlignment="Left"
                         ScrollViewer.VerticalScrollBarVisibility="Disabled" 
-                        Foreground="#FF847168" Html="{Binding Path=Body}" />
-
-                        <!--<my:FixedHtmlTextBlock 
-                        x:Name="Description" FontSize="24" 
-                        HorizontalContentAlignment="Left"
-                        Foreground="#FF847168" Html="{Binding Path=Body}" /> -->
+                        Html="{Binding Path=Ads.CurrentAd.Body}" 
+                        DataContext="{Binding Main, Source={StaticResource Locator}}" 
+                        Foreground="#FF847168"/>
                 </StackPanel>
             </ScrollViewer>
         </Grid>

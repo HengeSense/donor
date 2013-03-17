@@ -16,6 +16,7 @@
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
+    DataContext="{Binding Main, Source={StaticResource Locator}}" 
     SupportedOrientations="Portrait"  Orientation="Portrait"    
     shell:SystemTray.IsVisible="False" Loaded="PhoneApplicationPage_Loaded" Tap="PhoneApplicationPage_Tap">
     <!-- DataContext="{Binding Path=ViewModelLocator.MainStatic,Source=ViewModelLocator.MainStatic}"
@@ -29,27 +30,6 @@
 	<phone:PhoneApplicationPage.ApplicationBar>
 		<shell:ApplicationBar x:Name="AppBar" IsVisible="False" IsMenuEnabled="False" Mode="Minimized"/>
 	</phone:PhoneApplicationPage.ApplicationBar>
-
-    <toolkit:TransitionService.NavigationInTransition>
-        <toolkit:NavigationInTransition>
-            <toolkit:NavigationInTransition.Backward>
-                <toolkit:TurnstileTransition Mode="BackwardIn"/>
-            </toolkit:NavigationInTransition.Backward>
-            <toolkit:NavigationInTransition.Forward>
-                <toolkit:TurnstileTransition Mode="ForwardIn"/>
-            </toolkit:NavigationInTransition.Forward>
-        </toolkit:NavigationInTransition>
-    </toolkit:TransitionService.NavigationInTransition>
-    <toolkit:TransitionService.NavigationOutTransition>
-        <toolkit:NavigationOutTransition>
-            <toolkit:NavigationOutTransition.Backward>
-                <toolkit:TurnstileTransition Mode="BackwardOut"/>
-            </toolkit:NavigationOutTransition.Backward>
-            <toolkit:NavigationOutTransition.Forward>
-                <toolkit:TurnstileTransition Mode="ForwardOut"/>
-            </toolkit:NavigationOutTransition.Forward>
-        </toolkit:NavigationOutTransition>
-    </toolkit:TransitionService.NavigationOutTransition>
 
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot">
@@ -325,9 +305,11 @@
                     <StackPanel>
                         <TextBlock Text="{Binding Name, Source={StaticResource Loc}}"  TextWrapping="Wrap" 
 						Style="{StaticResource Text36pxCBB2A3}"/>
-                            <TextBlock Text="{Binding Path=User.Name}" 
-						Name="ProfileName" TextWrapping="Wrap" Margin="12,-6,12,0" 
-						Style="{StaticResource Text24pxDF8D4B}"/>
+                            <TextBlock 
+                                Text="{Binding User.Name}" 
+                                DataContext="{Binding Main, Source={StaticResource Locator}}" 
+						        Name="ProfileName" TextWrapping="Wrap" Margin="12,-6,12,0" 
+						        Style="{StaticResource Text24pxDF8D4B}"/>
                     </StackPanel>
                     <StackPanel Margin="0,10">
                             <TextBlock Text="{Binding Sex, Source={StaticResource Loc}}" TextWrapping="Wrap" 

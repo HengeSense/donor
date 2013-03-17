@@ -17,14 +17,29 @@ using Newtonsoft.Json;
 using MSPToolkit.Utilities;
 using System.Linq;
 using System.Text.RegularExpressions;
+using GalaSoft.MvvmLight;
 
 namespace Donor.ViewModels
 {
-    public class AdsListViewModel : INotifyPropertyChanged
+    public class AdsListViewModel: ViewModelBase
     {
         public AdsListViewModel()
         {
             _items = new ObservableCollection<AdsViewModel>();
+        }
+
+        private AdsViewModel _currentAd = null;
+        public AdsViewModel CurrentAd
+        {
+            get
+            {
+                return _currentAd;
+            }
+            set
+            {
+                _currentAd = value;
+                RaisePropertyChanged("CurrentAd");
+            }
         }
 
         public void LoadAds()
@@ -66,7 +81,7 @@ namespace Donor.ViewModels
                 };
                 Deployment.Current.Dispatcher.BeginInvoke(() =>
                 {
-                    this.NotifyPropertyChanged("Items");
+                    RaisePropertyChanged("Items");
                 });  
             });
             };
@@ -95,9 +110,9 @@ namespace Donor.ViewModels
                 if (_items != value)
                 {
                     _items = value;
-                    NotifyPropertyChanged("Items");
-                    NotifyPropertyChanged("NewItems");
-                    NotifyPropertyChanged("SortedItems");
+                    RaisePropertyChanged("Items");
+                    RaisePropertyChanged("NewItems");
+                    RaisePropertyChanged("SortedItems");
                 };
             }
         }
@@ -127,26 +142,6 @@ namespace Donor.ViewModels
             }
             private set { }
         }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        private void NotifyPropertyChanged(String propertyName)
-        {
-            PropertyChangedEventHandler handler = PropertyChanged;
-            if (null != handler)
-            {
-                handler(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
-
-        public void RaisePropertyChanged(string property)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(property));
-            }
-        }
-
-
     }
 
     public class AdsViewModel : NewsViewModel

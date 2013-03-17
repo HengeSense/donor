@@ -30,7 +30,8 @@ namespace Donor
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
-            if (this.NavigationContext.QueryString.ContainsKey("id"))
+            if (ViewModelLocator.MainStatic.Ads.CurrentAd!=null) {
+            /*if (this.NavigationContext.QueryString.ContainsKey("id"))
             {
                 try
                 {
@@ -42,7 +43,7 @@ namespace Donor
                 catch
                 {
                     NavigationService.GoBack();
-                };
+                };*/
             }
             else
             {
@@ -52,8 +53,9 @@ namespace Donor
 
         private void ShareButton_Click(object sender, System.EventArgs e)
         {
-            ViewModelLocator.MainStatic.SendToShare(_currentAds.Title, _currentAds.Url, _currentAds.ShortBody, 130);
-
+            ViewModelLocator.MainStatic.SendToShare(ViewModelLocator.MainStatic.Ads.CurrentAd.Title, 
+                ViewModelLocator.MainStatic.Ads.CurrentAd.Url, 
+                ViewModelLocator.MainStatic.Ads.CurrentAd.ShortBody, 130);
         }
     }
 }

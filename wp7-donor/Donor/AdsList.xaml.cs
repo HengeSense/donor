@@ -26,8 +26,10 @@ namespace Donor
         {
             try
             {
-                string id = ((sender as ListBox).SelectedItem as AdsViewModel).ObjectId;
-                NavigationService.Navigate(new Uri("/AdsPage.xaml?id=" + id, UriKind.Relative));
+                //string id = ((sender as ListBox).SelectedItem as AdsViewModel).ObjectId;
+                //NavigationService.Navigate(new Uri("/AdsPage.xaml?id=" + id, UriKind.Relative));
+                ViewModelLocator.MainStatic.Ads.CurrentAd = ((sender as ListBox).SelectedItem as AdsViewModel);
+                NavigationService.Navigate(new Uri("/AdsPage.xaml", UriKind.Relative));
             }
             catch
             {
@@ -38,8 +40,10 @@ namespace Donor
         {
             try
             {
-                string id = ((sender as ListBox).SelectedItem as AdsViewModel).ObjectId;
-                NavigationService.Navigate(new Uri("/AdsPage.xaml?id=" + id, UriKind.Relative));
+                //string id = ((sender as ListBox).SelectedItem as AdsViewModel).ObjectId;
+                //NavigationService.Navigate(new Uri("/AdsPage.xaml?id=" + id, UriKind.Relative));
+                ViewModelLocator.MainStatic.Ads.CurrentAd = ((sender as ListBox).SelectedItem as AdsViewModel);
+                NavigationService.Navigate(new Uri("/AdsPage.xaml", UriKind.Relative));
             }
             catch
             {

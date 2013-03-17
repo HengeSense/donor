@@ -15,6 +15,7 @@ using Microsoft.Phone.Shell;
 using System.Resources;
 using System.Reflection;
 using BugSense;
+using Telerik.Windows.Controls;
 using Donor.ViewModels;
 
 namespace Donor
@@ -23,7 +24,7 @@ namespace Donor
     {
         public const string FlurryKey = "BFKZPN5DWWWSDZ9WDMB5";
 
-        private static MainViewModel viewModel = null;
+        //private static MainViewModel viewModel = null;
 
         /// <summary>
         /// A static ViewModel used by the views to bind against.
@@ -117,6 +118,7 @@ namespace Donor
         private void Application_Closing(object sender, ClosingEventArgs e)
         {
             //ViewModelLocator.MainStatic.SaveToIsolatedStorage();
+            ViewModelLocator.Cleanup();
         }
 
         // Code to execute if a navigation fails
@@ -154,7 +156,9 @@ namespace Donor
 
             // Create the frame but don't set it as RootVisual yet; this allows the splash
             // screen to remain active until the application is ready to render.
-            RootFrame = new TransitionFrame();
+            //RootFrame = new TransitionFrame();
+            RadPhoneApplicationFrame frame = new RadPhoneApplicationFrame();
+            RootFrame = frame;
             RootFrame.Navigated += CompleteInitializePhoneApplication;
 
             // Handle navigation failures

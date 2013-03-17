@@ -16,27 +16,7 @@
     DataContext="{Binding Path=ViewModelLocator.MainStatic,Source=ViewModelLocator.MainStatic}"
     shell:SystemTray.IsVisible="False">
 
-    <toolkit:TransitionService.NavigationInTransition>
-        <toolkit:NavigationInTransition>
-            <toolkit:NavigationInTransition.Backward>
-                <toolkit:TurnstileTransition Mode="BackwardIn"/>
-            </toolkit:NavigationInTransition.Backward>
-            <toolkit:NavigationInTransition.Forward>
-                <toolkit:TurnstileTransition Mode="ForwardIn"/>
-            </toolkit:NavigationInTransition.Forward>
-        </toolkit:NavigationInTransition>
-    </toolkit:TransitionService.NavigationInTransition>
-    <toolkit:TransitionService.NavigationOutTransition>
-        <toolkit:NavigationOutTransition>
-            <toolkit:NavigationOutTransition.Backward>
-                <toolkit:TurnstileTransition Mode="BackwardOut"/>
-            </toolkit:NavigationOutTransition.Backward>
-            <toolkit:NavigationOutTransition.Forward>
-                <toolkit:TurnstileTransition Mode="ForwardOut"/>
-            </toolkit:NavigationOutTransition.Forward>
-        </toolkit:NavigationOutTransition>
-    </toolkit:TransitionService.NavigationOutTransition>
-
+    
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot">
         <Grid.Background>
@@ -54,7 +34,10 @@
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-            <ListBox Margin="0,15,-12,0" ItemsSource="{Binding Ads.SortedItems}" SelectionChanged="ListBox_SelectionChanged" Tap="ListBox_Tap" tilteffect:TiltEffect.IsTiltEnabled="True">
+            <ListBox Margin="0,15,-12,0" ItemsSource="{Binding Ads.SortedItems}" 
+                     DataContext="{Binding Main, Source={StaticResource Locator}}" 
+                     SelectionChanged="ListBox_SelectionChanged" Tap="ListBox_Tap" 
+                     tilteffect:TiltEffect.IsTiltEnabled="True">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Margin="0,20,0,5" Width="432">

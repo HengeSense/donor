@@ -1,8 +1,8 @@
-﻿<xapCache source="C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\Bin\Release\Donor.xap" wasSigned="False" certificateThumbprint="" TimeStampUrl="" lastWriteTime="16.03.2013 2:26:43">
+﻿<xapCache source="C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\Bin\Release\Donor.xap" wasSigned="False" certificateThumbprint="" TimeStampUrl="" lastWriteTime="17.03.2013 12:51:58">
   <file source="C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\Bin\Release\WMAppManifest.xml" archivePath="WMAppManifest.xml" lastWriteTime="18.02.2013 17:15:19" />
   <file source="C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\Background.png" archivePath="Background.png" lastWriteTime="15.03.2013 0:33:55" />
   <file source="C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\ApplicationIcon.png" archivePath="ApplicationIcon.png" lastWriteTime="15.03.2013 0:34:02" />
-  <file source="C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\obj\Release\Donor.dll" archivePath="Donor.dll" lastWriteTime="16.03.2013 2:26:40" />
+  <file source="C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\obj\Release\Donor.dll" archivePath="Donor.dll" lastWriteTime="17.03.2013 12:51:56" />
   <file source="C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\packages\BugSense.WP7.0.9.9.1\lib\sl3-wp\BugSense.dll" archivePath="BugSense.dll" lastWriteTime="05.02.2013 11:28:20" />
   <file source="C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\packages\Coding4Fun.Phone.Audio.1.6.1\lib\sl4-windowsphone71\Coding4Fun.Phone.Audio.dll" archivePath="Coding4Fun.Phone.Audio.dll" lastWriteTime="13.12.2012 23:22:43" />
   <file source="C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\packages\Coding4Fun.Phone.Controls.1.6.1\lib\sl4-windowsphone71\Coding4Fun.Phone.Controls.dll" archivePath="Coding4Fun.Phone.Controls.dll" lastWriteTime="13.12.2012 23:22:43" />
@@ -25,7 +25,11 @@
   <file source="C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\packages\RestSharp.104.1\lib\sl4-wp71\RestSharp.WindowsPhone.dll" archivePath="RestSharp.WindowsPhone.dll" lastWriteTime="13.12.2012 23:22:44" />
   <file source="C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\libs\Silverlight_ZXing_Core.dll" archivePath="Silverlight_ZXing_Core.dll" lastWriteTime="13.12.2012 23:22:42" />
   <file source="C:\Program Files (x86)\Microsoft SDKs\Expression\Blend\Windows Phone\v7.1\Libraries\System.Windows.Interactivity.dll" archivePath="System.Windows.Interactivity.dll" lastWriteTime="17.08.2011 2:48:22" />
+  <file source="C:\Program Files (x86)\Telerik\RadControls for Windows Phone 7 Q1 2013\Binaries\WindowsPhone\Telerik.Windows.Controls.Data.dll" archivePath="Telerik.Windows.Controls.Data.dll" lastWriteTime="19.02.2013 10:10:52" />
+  <file source="C:\Program Files (x86)\Telerik\RadControls for Windows Phone 7 Q1 2013\Binaries\WindowsPhone\Telerik.Windows.Controls.Primitives.dll" archivePath="Telerik.Windows.Controls.Primitives.dll" lastWriteTime="19.02.2013 10:10:18" />
+  <file source="C:\Program Files (x86)\Telerik\RadControls for Windows Phone 7 Q1 2013\Binaries\WindowsPhone\Telerik.Windows.Core.dll" archivePath="Telerik.Windows.Core.dll" lastWriteTime="19.02.2013 10:10:08" />
   <file source="C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\packages\WPExtensions.1.3.7\lib\sl4-wp71\WPExtensions.dll" archivePath="WPExtensions.dll" lastWriteTime="13.12.2012 23:22:44" />
+  <file source="C:\Program Files (x86)\Telerik\RadControls for Windows Phone 7 Q1 2013\Binaries\WindowsPhone\Telerik.Windows.Data.dll" archivePath="Telerik.Windows.Data.dll" lastWriteTime="19.02.2013 10:10:48" />
   <file source="C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\icons\Icon_analis_plan.png" archivePath="icons\Icon_analis_plan.png" lastWriteTime="13.12.2012 23:22:42" />
   <file source="C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\icons\Icon_blood.png" archivePath="icons\Icon_blood.png" lastWriteTime="13.12.2012 23:22:42" />
   <file source="C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\icons\Icon_blood_check.png" archivePath="icons\Icon_blood_check.png" lastWriteTime="13.12.2012 23:22:42" />
@@ -92,7 +96,7 @@
   <file source="C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\libs\HtmlAgilityPack.dll" archivePath="libs\HtmlAgilityPack.dll" lastWriteTime="13.12.2012 23:22:42" />
   <file source="C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\README_FIRST.txt" archivePath="README_FIRST.txt" lastWriteTime="13.12.2012 23:22:42" />
   <file source="C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\SplashScreenImage.jpg" archivePath="SplashScreenImage.jpg" lastWriteTime="16.03.2013 0:44:58" />
-  <file source="C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\Bin\Release\AppManifest.xaml" archivePath="AppManifest.xaml" lastWriteTime="16.03.2013 2:26:42" />
+  <file source="C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\Bin\Release\AppManifest.xaml" archivePath="AppManifest.xaml" lastWriteTime="17.03.2013 12:51:52" />
   <file source="C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\Bin\Release\ApplicationIcon.png" archivePath="ApplicationIcon.png" lastWriteTime="15.03.2013 0:34:02" />
   <file source="C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\Bin\Release\Background.png" archivePath="Background.png" lastWriteTime="15.03.2013 0:33:55" />
   <file source="C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\Bin\Release\icons\appbar.delete.rest.png" archivePath="icons\appbar.delete.rest.png" lastWriteTime="13.12.2012 23:22:42" />

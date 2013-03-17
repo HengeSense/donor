@@ -18,6 +18,7 @@ using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using System.Collections.Generic;
 using System.Globalization;
+using GalaSoft.MvvmLight;
 //using Parse;
 
 namespace Donor.ViewModels
@@ -26,7 +27,7 @@ namespace Donor.ViewModels
     {
     }
 
-    public class DonorUser: INotifyPropertyChanged
+    public class DonorUser: ViewModelBase
     {
         public DonorUser()
         {
@@ -54,7 +55,7 @@ namespace Donor.ViewModels
             set
             {
                 _userLoading = value;
-                NotifyPropertyChanged("UserLoading");
+                RaisePropertyChanged("UserLoading");
             }
         }
 
@@ -73,8 +74,6 @@ namespace Donor.ViewModels
             ViewModelLocator.MainStatic.User.Name = "";
             ViewModelLocator.MainStatic.User.SecondName = "";
 
-            //ViewModelLocator.MainStatic.User = new DonorUser();
-
             ViewModelLocator.MainStatic.User.UserName = "";
             ViewModelLocator.MainStatic.User.Password = "";
             this.NotifyAll();
@@ -89,7 +88,6 @@ namespace Donor.ViewModels
                 new FlurryWP7SDK.Models.Parameter("objectId", ViewModelLocator.MainStatic.User.objectId), 
                 new FlurryWP7SDK.Models.Parameter("platform", "wp7") };
             FlurryWP7SDK.Api.LogEvent("User_logout", articleParams);
-
 
             (Application.Current.RootVisual as PhoneApplicationFrame).GoBack();
         }
@@ -169,7 +167,6 @@ namespace Donor.ViewModels
             };
             bw.RunWorkerAsync();
         }
-
 
         public void LoginAction(object p)
         {
@@ -283,7 +280,6 @@ namespace Donor.ViewModels
                 FacebookLinked(this, e);
         }
 
-
         public delegate void FacebookUnLinkedEventHandler(object sender, EventArgs e);
         public event FacebookUnLinkedEventHandler FacebookUnLinked;
         public virtual void OnFacebookUnLinked(EventArgs e)
@@ -331,7 +327,7 @@ namespace Donor.ViewModels
             set {
                 if (_username != value)
                 {
-                    _username = value; NotifyPropertyChanged("UserName");
+                    _username = value; RaisePropertyChanged("UserName");
                 };
             } 
         }
@@ -341,10 +337,12 @@ namespace Donor.ViewModels
         /// Имя пользователя
         /// </summary>
         public string Name { 
-            get { return _name; } 
+            get { 
+                return _name; 
+            } 
             set { 
                 _name = value; 
-                NotifyPropertyChanged("Name"); 
+                RaisePropertyChanged("Name"); 
             } 
         }
 
@@ -352,7 +350,7 @@ namespace Donor.ViewModels
         /// <summary>
         /// Фамилия пользователя
         /// </summary>
-        public string SecondName { get { return _secondName; } set { _secondName = value; NotifyPropertyChanged("SecondName"); } }
+        public string SecondName { get { return _secondName; } set { _secondName = value; RaisePropertyChanged("SecondName"); } }
 
         private string _birthday;
         public string Birthday
@@ -378,7 +376,7 @@ namespace Donor.ViewModels
 
                 }
                 catch { };
-                NotifyPropertyChanged("Birthday");
+                RaisePropertyChanged("Birthday");
             }
         }
 
@@ -393,8 +391,8 @@ namespace Donor.ViewModels
             {
                 _dateBirthday = value;
                 _birthday = DateBirthday.ToShortDateString();
-                NotifyPropertyChanged("Birthday");
-                NotifyPropertyChanged("DateBirthday");
+                RaisePropertyChanged("Birthday");
+                RaisePropertyChanged("DateBirthday");
             }
         }
 
@@ -404,16 +402,16 @@ namespace Donor.ViewModels
             {
                 ClassToUser();
 
-                NotifyPropertyChanged("Name");
-                NotifyPropertyChanged("UserName");
-                NotifyPropertyChanged("Birthday");
-                NotifyPropertyChanged("DateBirthday");
-                NotifyPropertyChanged("OutBloodGroup");
-                NotifyPropertyChanged("OutBloodRh");
-                NotifyPropertyChanged("NearestBloodGive");
-                NotifyPropertyChanged("OutBloodDataString");
-                NotifyPropertyChanged("OutSex");
-                NotifyPropertyChanged("GivedBlood");
+                RaisePropertyChanged("Name");
+                RaisePropertyChanged("UserName");
+                RaisePropertyChanged("Birthday");
+                RaisePropertyChanged("DateBirthday");
+                RaisePropertyChanged("OutBloodGroup");
+                RaisePropertyChanged("OutBloodRh");
+                RaisePropertyChanged("NearestBloodGive");
+                RaisePropertyChanged("OutBloodDataString");
+                RaisePropertyChanged("OutSex");
+                RaisePropertyChanged("GivedBlood");
             }
             catch { };
         }
@@ -506,7 +504,7 @@ namespace Donor.ViewModels
             set {
                 if (_password!=value)
                 {
-                    _password = value; NotifyPropertyChanged("Password"); 
+                    _password = value; RaisePropertyChanged("Password"); 
                 };
             } 
         }
@@ -520,8 +518,8 @@ namespace Donor.ViewModels
             get { return _facebookId; } 
             set { 
                 _facebookId = value; 
-                NotifyPropertyChanged("FacebookId");
-                NotifyPropertyChanged("IsFacebookLoggedIn"); 
+                RaisePropertyChanged("FacebookId");
+                RaisePropertyChanged("IsFacebookLoggedIn"); 
             } 
         }
 
@@ -532,8 +530,8 @@ namespace Donor.ViewModels
             set
             {
                 _facebookToken = value;
-                NotifyPropertyChanged("FacebookToken");
-                NotifyPropertyChanged("IsFacebookLoggedIn");
+                RaisePropertyChanged("FacebookToken");
+                RaisePropertyChanged("IsFacebookLoggedIn");
             }
         }
 
@@ -560,11 +558,11 @@ namespace Donor.ViewModels
             set {
                 _isLoggedIn = value;
 
-                NotifyPropertyChanged("IsLoggedIn");
-                NotifyPropertyChanged("GivedBlood");
-                NotifyPropertyChanged("Sex");
-                NotifyPropertyChanged("OutSex");
-                NotifyPropertyChanged("OutBloodDataString"); 
+                RaisePropertyChanged("IsLoggedIn");
+                RaisePropertyChanged("GivedBlood");
+                RaisePropertyChanged("Sex");
+                RaisePropertyChanged("OutSex");
+                RaisePropertyChanged("OutBloodDataString"); 
             } 
         }
 
@@ -576,9 +574,9 @@ namespace Donor.ViewModels
             get { return _bloodGroup; } 
             set { 
                 _bloodGroup = value; 
-                NotifyPropertyChanged("BloodGroup");
-                NotifyPropertyChanged("OutBloodGroup");
-                NotifyPropertyChanged("OutBloodDataString"); 
+                RaisePropertyChanged("BloodGroup");
+                RaisePropertyChanged("OutBloodGroup");
+                RaisePropertyChanged("OutBloodDataString"); 
             } 
         }
 
@@ -586,14 +584,14 @@ namespace Donor.ViewModels
         public int BloodRh { get { return _bloodRh; } 
             set { 
                 _bloodRh = value; 
-                NotifyPropertyChanged("BloodRh");
-                NotifyPropertyChanged("OutBloodRh");
-                NotifyPropertyChanged("OutBloodDataString"); 
+                RaisePropertyChanged("BloodRh");
+                RaisePropertyChanged("OutBloodRh");
+                RaisePropertyChanged("OutBloodDataString"); 
             } 
         }
 
         private int _sex = 0;
-        public int Sex { get { return _sex; } set { _sex = value; NotifyPropertyChanged("Sex"); NotifyPropertyChanged("OutSex"); } }
+        public int Sex { get { return _sex; } set { _sex = value; RaisePropertyChanged("Sex"); RaisePropertyChanged("OutSex"); } }
 
         public int GivedBlood
         {
@@ -708,7 +706,7 @@ namespace Donor.ViewModels
 
         public event PropertyChangedEventHandler PropertyChanged;
        
-        private void NotifyPropertyChanged(String propertyName)
+        private void RaisePropertyChanged(String propertyName)
         {
             PropertyChangedEventHandler handler = PropertyChanged;
             if (null != handler)
