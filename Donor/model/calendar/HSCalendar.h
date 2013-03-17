@@ -33,13 +33,13 @@ extern NSString * const kHSCalendarChangedStateKeyPath;
 /// @name Methods to interact with cloud data service - parse.com
 
 /**
- * Unlocks calendar model with specified user. After unlocking client can intercat with user's calendar events.
+ * Unlocks calendar model with specified user. After unlocking client can interact with user's calendar events.
  */
 - (void)unlockModelWithUser:(PFUser *)user;
 
 /**
  * Locks calendar model. After locking calenadr model is unavailable.
- * If client tries to intercation calls trigger exception.
+ * If client tries to interaction calls trigger exception.
  */
 - (void)lockModel;
 

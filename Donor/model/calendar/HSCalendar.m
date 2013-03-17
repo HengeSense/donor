@@ -476,7 +476,7 @@ NSString * const kHSCalendarChangedStateKeyPath = @"kHSCalendarChangedStateKey";
 - (void)checkUnlockedModelPrecondition {
     if ([self isLockedModel]) {
         @throw [NSException exceptionWithName:NSInternalInconsistencyException
-                reason:@"Was made attempt to intercat with calendar model in locked state." userInfo:nil];
+                reason:@"Was made attempt to interact with calendar model in locked state." userInfo:nil];
     }
 }
 
