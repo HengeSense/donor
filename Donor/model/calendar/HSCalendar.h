@@ -7,20 +7,51 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <Parse/Parse.h>
 
 #import "HSModelCommon.h"
 #import "HSEvent.h"
 #import "HSBloodRemoteEvent.h"
 #import "HSCalendarInfo.h"
 
-/// @name HSCalendar protocol declaration
+/// @name Key-Value observing constants
 
+/**
+ * Key path for observing calendar state (lockedModel / unlocked model).
+ */
+extern NSString * const kHSCalendarChangedStateKeyPath;
+
+/// @name HSCalendar protocol declaration
 /**
  * This class provides core application functionality - planing and managing events.
  */
 @interface HSCalendar : NSObject<HSCalendarInfo>
 
+/// @name Singleton
++ (HSCalendar *)sharedInstance;
+
 /// @name Methods to interact with cloud data service - parse.com
+
+/**
+ * Unlocks calendar model with specified user. After unlocking client can intercat with user's calendar events.
+ */
+- (void)unlockModelWithUser:(PFUser *)user;
+
+/**
+ * Locks calendar model. After locking calenadr model is unavailable.
+ * If client tries to intercation calls trigger exception.
+ */
+- (void)lockModel;
+
+/**
+ * Define wheter calendar model is in locked states. See [self unlockModelWithUser:] and [self lockModel] methods.
+ */
+- (BOOL)isLockedModel;
+
+/**
+ * Define wheter calendar model is in unlocked states. See [self unlockModelWithUser:] and [self lockModel] methods.
+ */
+- (BOOL)isUnlockedModel;
 
 /**
  * Pulls all remote events from the server.

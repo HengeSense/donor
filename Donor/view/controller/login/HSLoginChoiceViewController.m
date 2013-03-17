@@ -140,8 +140,8 @@
             return;
         }
         MBProgressHUD *progressHud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
-        HSCalendar *calendarModel = [[HSCalendar alloc] init];
-        self.calendarViewController.calendarModel = calendarModel;
+        HSCalendar *calendarModel = [HSCalendar sharedInstance];
+        [calendarModel unlockModelWithUser:[PFUser currentUser]];
         [calendarModel pullEventsFromServer:^(BOOL success, NSError *error) {
             [progressHud hide:YES];
             if (success) {

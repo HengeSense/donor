@@ -22,6 +22,7 @@
 #import "TutorialViewController.h"
 
 #import "HSCalendar.h"
+#import "HSCalendarEventNotifier.h"
 
 static NSString * const PARSE_APP_ID = @"EIpakVdZblHedhqgxMgiEVnIGCRGvWdy9v8gkKZu";
 static NSString * const PARSE_CLIENT_KEY = @"uNarhakSf1on8lJjrAVs1VWmPlG1D6ZJf9dO5QZY";
@@ -32,6 +33,8 @@ static NSString * const CRITTERCISM_APP_ID = @"50f5e3804f633a256d000003";
 static NSString * const APP_STORE_APP_ID = @"578970724";
 
 @interface AppDelegate ()
+
+@property (nonatomic, strong) HSCalendarEventNotifier *calendarEventNotifier;
 
 - (void)makeTabBarHidden:(BOOL)hide;
 - (void)backButtonPressed:(UIBarButtonItem *)sender;
@@ -171,5 +174,16 @@ static NSString * const APP_STORE_APP_ID = @"578970724";
     return [self handleOpenURL:url];
 }
 
+- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {
+
+}
+
+#pragma mark - Notifications handler
+- (void)handleLocalNotification:(UILocalNotification *)notification {
+    if (self.calendarEventNotifier == nil) {
+        self.calendarEventNotifier = [[HSCalendarEventNotifier alloc] init];
+    }
+    [self.calendarEventNotifier processLocalNotification:notification];
+}
 
 @end

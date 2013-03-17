@@ -27,8 +27,16 @@ static NSString * const kUserEventsRelation = @"events";
 #pragma mark - Remote Events object's field keys
 static NSString * const kEventDate = @"date";
 
+#pragma mark - Key-value codding observation 
+NSString * const kHSCalendarChangedStateKeyPath = @"kHSCalendarChangedStateKey";
+
 #pragma mark - Private interface declaration
 @interface HSCalendar ()
+
+/**
+ * Current authenticated user.
+ */
+@property (nonatomic, weak) PFUser *user;
 
 /**
  * Calendar events. Objects of HSEvent class and it's subclasses.
@@ -44,11 +52,6 @@ static NSString * const kEventDate = @"date";
  * Array of HSBloodRemoteEvent objects.
  */
 @property (nonatomic, strong) NSMutableArray *bloodRemoteEvents;
-
-/**
- * Calendar events observers.
- */
-@property (nonatomic, strong) NSMutableSet *eventObservers;
 
 /**
  * Makes period calculations ans adds depended finish rest events to the calendar.
@@ -72,9 +75,24 @@ static NSString * const kEventDate = @"date";
 - (void)removeUndoneBloodDonationEventsOfType:(HSBloodDonationType)bloodDonationType fromDate:(NSDate *)fromDate
                                        toDate:(NSDate *)toDate;
 
+/**
+ * Throws NSInternalInconsistencyException exception if calendar model is in locked state.
+ */
+- (void)checkUnlockedModelPrecondition;
+
 @end
 
 @implementation HSCalendar
+
+#pragma Singleton
++ (HSCalendar *)sharedInstance {
+    static HSCalendar *_sharedInstance = nil;
+    static dispatch_once_t once;
+    dispatch_once(&once, ^{
+        _sharedInstance = [[self alloc] init];
+    });
+    return _sharedInstance;
+}
 
 #pragma mark - Initialization
 
@@ -83,14 +101,18 @@ static NSString * const kEventDate = @"date";
         self.datePurposeModifierEvents = [[NSMutableArray alloc] init];
         self.finishRestEvents = [[NSMutableArray alloc] init];
         self.bloodRemoteEvents = [[NSMutableArray alloc] init];
-        self.eventObservers = [[NSMutableSet alloc] init];
     }
     return self;
+}
+
+-(void)dealloc {
+    // Should never be called.
 }
 
 #pragma mark - Events accessors
 
 - (NSArray *)allEvents {
+    [self checkUnlockedModelPrecondition];
     NSMutableArray *allArrays = [[NSMutableArray alloc] initWithArray: self.datePurposeModifierEvents];
     [allArrays addObjectsFromArray: self.finishRestEvents];
     [allArrays addObjectsFromArray: self.bloodRemoteEvents];
@@ -98,6 +120,7 @@ static NSString * const kEventDate = @"date";
 }
 
 - (NSArray *)eventsForDay: (NSDate *)dayDate {
+    [self checkUnlockedModelPrecondition];
     THROW_IF_ARGUMENT_NIL(dayDate, @"dayDate is not specified");
     NSArray *allEvents = [self allEvents];
     NSPredicate *eventsBetweenDates =
@@ -109,7 +132,7 @@ static NSString * const kEventDate = @"date";
     return resultEvents;
 }
 
-#pragma mark - HSCalendarInfo protocaol implementation
+#pragma mark - HSCalendarInfo protocol implementation
 - (NSUInteger)numberOfDoneBloodDonationEvents {
     return [[self doneBloodDonationEvents] count];
 }
@@ -132,8 +155,56 @@ static NSString * const kEventDate = @"date";
 }
 
 #pragma mark - Remote events manipulation methods
+- (void)unlockModelWithUser:(PFUser *)user {
+    THROW_IF_ARGUMENT_NIL_2(user);
+    [self willChangeValueForKey:kHSCalendarChangedStateKeyPath];
+    self.user = user;
+    [self didChangeValueForKey:kHSCalendarChangedStateKeyPath];
+}
+
+- (void)lockModel {
+    [self willChangeValueForKey:kHSCalendarChangedStateKeyPath];
+    self.user = nil;
+    [self didChangeValueForKey:kHSCalendarChangedStateKeyPath];
+}
+
+- (BOOL)isLockedModel {
+    return self.user == nil;
+}
+
+- (BOOL)isUnlockedModel {
+    return ![self isLockedModel];
+}
+
+#pragma mark - Methods to interact with cloud data service - parse.com
+- (void)pullEventsFromServer: (CompletionBlockType)completion {
+    THROW_IF_ARGUMENT_NIL_2(completion)
+    [self checkUnlockedModelPrecondition];
+    if (self.user != nil) {
+        PFRelation *eventsRelation = [self.user relationforKey: kUserEventsRelation];
+        PFQuery *eventsQuery = [eventsRelation query];
+        [eventsQuery orderByDescending: kEventDate];
+        
+        [eventsQuery findObjectsInBackgroundWithBlock: ^(NSArray *remoteEvents, NSError *error) {
+            [self.bloodRemoteEvents removeAllObjects];
+            for (PFObject *remoteEvent in remoteEvents) {
+                [self.bloodRemoteEvents addObject: [HSBloodRemoteEvent buildBloodEventWithRemoteEvent: remoteEvent]];
+            }
+            [self updateBloodRemoteLocalNotifications];
+            [self updateFinishRestEvents];
+            BOOL success = error == nil ? YES : NO;
+            completion(success, error);
+        }];
+    } else {
+        @throw [HSCalendarException exceptionWithName: HSCalendarExceptionUserUnauthorized
+                reason: @"User is not authorized yet. Calendar can't be used." userInfo: nil];
+    }
+}
+
+
 - (void)addBloodRemoteEvent: (HSBloodRemoteEvent *)bloodRemoteEvent completion: (CompletionBlockType)completion {
-    THROW_IF_ARGUMENT_NIL(bloodRemoteEvent, @"bloodRemoteEvent is not specified");
+    THROW_IF_ARGUMENT_NIL_2(bloodRemoteEvent);
+    [self checkUnlockedModelPrecondition];
     if ([self.bloodRemoteEvents containsObject:bloodRemoteEvent]) {
         [NSException raise:NSInvalidArgumentException format:@"Can't add already existing event in calendar"];
     }
@@ -165,7 +236,8 @@ static NSString * const kEventDate = @"date";
 }
 
 - (void)removeBloodRemoteEvent:(HSBloodRemoteEvent *)bloodRemoteEvent completion:(CompletionBlockType)completion {
-    THROW_IF_ARGUMENT_NIL(bloodRemoteEvent, @"bloodRemoteEvent is not specified");
+    THROW_IF_ARGUMENT_NIL_2(bloodRemoteEvent);
+    [self checkUnlockedModelPrecondition];
     if (![self.bloodRemoteEvents containsObject:bloodRemoteEvent]) {
         [NSException raise:NSInvalidArgumentException format:@"Can't remove not existing event in calendar"];
     }
@@ -187,8 +259,9 @@ static NSString * const kEventDate = @"date";
 
 - (void)replaceBloodRemoteEvent:(HSBloodRemoteEvent *)oldEvent withEvent:(HSBloodRemoteEvent *)newEvent
                      completion:(CompletionBlockType)completion {
-    THROW_IF_ARGUMENT_NIL(oldEvent, @"oldEvent is not specified");
-    THROW_IF_ARGUMENT_NIL(newEvent, @"newEvent is not specified");
+    THROW_IF_ARGUMENT_NIL_2(oldEvent);
+    THROW_IF_ARGUMENT_NIL_2(newEvent);
+    [self checkUnlockedModelPrecondition];
     if (![self.bloodRemoteEvents containsObject:oldEvent]) {
         [NSException raise:NSInvalidArgumentException format:@"Can't replace not existing event in calendar"];
     }
@@ -250,32 +323,8 @@ static NSString * const kEventDate = @"date";
     }
 }
 
-#pragma mark - Methods to interact with cloud data service - parse.com
-- (void)pullEventsFromServer: (CompletionBlockType)completion {
-    THROW_IF_ARGUMENT_NIL(completion, @"completion block is not specified")
-    PFUser *currentUser = [PFUser currentUser];
-    if (currentUser != nil) {
-        PFRelation *eventsRelation = [currentUser relationforKey: kUserEventsRelation];
-        PFQuery *eventsQuery = [eventsRelation query];
-        [eventsQuery orderByDescending: kEventDate];
-        
-        [eventsQuery findObjectsInBackgroundWithBlock: ^(NSArray *remoteEvents, NSError *error) {
-            [self.bloodRemoteEvents removeAllObjects];
-            for (PFObject *remoteEvent in remoteEvents) {
-                [self.bloodRemoteEvents addObject: [HSBloodRemoteEvent buildBloodEventWithRemoteEvent: remoteEvent]];
-            }
-            [self updateBloodRemoteLocalNotifications];
-            [self updateFinishRestEvents];
-            BOOL success = error == nil ? YES : NO;
-            completion(success, error);
-        }];
-    } else {
-        @throw [HSCalendarException exceptionWithName: HSCalendarExceptionUserUnauthorized
-                reason: @"User is not authorized yet. Calendar can't be used." userInfo: nil];
-    }
-}
-
--(void)addFinishRestEvents {    
+#pragma mark - Utility methods
+-(void)addFinishRestEvents {
     NSArray *orderedDoneBloodDonationEvents = [[self doneBloodDonationEvents]
             sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
         HSBloodDonationEvent *first = obj1;
@@ -325,9 +374,8 @@ static NSString * const kEventDate = @"date";
     [self addFinishRestEvents];
 }
 
-#pragma mark - Utility methods 
 - (BOOL)canAddBloodRemoteEvent: (HSBloodRemoteEvent *)bloodRemoteEvent error: (NSError **)error {
-    THROW_IF_ARGUMENT_NIL(bloodRemoteEvent, @"bloodRemoteEvent is not specified");    
+    THROW_IF_ARGUMENT_NIL_2(bloodRemoteEvent);
     NSArray *eventsInTheSameDay = [self eventsForDay: bloodRemoteEvent.scheduleDate];
     NSArray *remoteEventsInTheSameDay = [eventsInTheSameDay filteredArrayUsingPredicate:
             [NSPredicate predicateWithFormat: @"SELF isKindOfClass: %@", [HSBloodRemoteEvent class]]];
@@ -378,14 +426,14 @@ static NSString * const kEventDate = @"date";
 }
 
 - (NSArray *)bloodRemoteEventsFromEvents: (NSArray *)events {
-    THROW_IF_ARGUMENT_NIL(events, @"events is not specified")
+    THROW_IF_ARGUMENT_NIL_2(events);
     return [events filteredArrayUsingPredicate:
             [NSPredicate predicateWithFormat: @"SELF isKindOfClass: %@", [HSBloodRemoteEvent class]]];
 }
 
 
 - (BOOL)isAfterLastDoneBloodDonationEvent: (HSBloodDonationEvent *)checkedEvent {
-    THROW_IF_ARGUMENT_NIL(checkedEvent, @"bloodDonationEvent is not specified");
+    THROW_IF_ARGUMENT_NIL_2(checkedEvent);
     for (HSBloodDonationEvent *bloodDonationEvent in [self bloodDonationEvents]) {
         if (bloodDonationEvent.isDone && [checkedEvent.scheduleDate isBeforeDay:bloodDonationEvent.scheduleDate]) {
             return NO;
@@ -395,7 +443,7 @@ static NSString * const kEventDate = @"date";
 }
 
 - (BOOL)isBloodDonationEventAfterRestPeriod: (HSBloodDonationEvent *)bloodDonationEvent {
-    THROW_IF_ARGUMENT_NIL(bloodDonationEvent, @"bloodDonationEvent is not specified");
+    THROW_IF_ARGUMENT_NIL_2(bloodDonationEvent);
     for (HSFinishRestEvent *finishRestEvent in self.finishRestEvents) {
         if ((bloodDonationEvent.bloodDonationType == finishRestEvent.bloodDonationType) &&
             [bloodDonationEvent.scheduleDate isBeforeDay: finishRestEvent.scheduleDate]) {
@@ -423,5 +471,14 @@ static NSString * const kEventDate = @"date";
         }
     }
 }
+
+#pragma mark - Precondition check
+- (void)checkUnlockedModelPrecondition {
+    if ([self isLockedModel]) {
+        @throw [NSException exceptionWithName:NSInternalInconsistencyException
+                reason:@"Was made attempt to intercat with calendar model in locked state." userInfo:nil];
+    }
+}
+
 
 @end

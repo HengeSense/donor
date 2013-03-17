@@ -19,6 +19,7 @@
 #import "HSAlertViewController.h"
 #import "HSModelCommon.h"
 #import "NSString+HSUtils.h"
+#import "HSCalendar.h"
 
 static const CGFloat kActionSheetAnimationDuration = 0.2;
 
@@ -151,6 +152,7 @@ static NSString * const kLinkedToFacebookTitle = @"привязан";
 
 - (IBAction)logoutButtonClick:(id)sender {
     [HSFlurryAnalytics userLoggedOut];
+    [[HSCalendar sharedInstance] lockModel];
     [PFUser logOut];
     [Common getInstance].email = nil;
     [Common getInstance].name = nil;

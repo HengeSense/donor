@@ -58,7 +58,7 @@
             if (succeeded) {
                 [Common getInstance].authenticatedWithFacebook = NO;
                 [HSAlertViewController showWithMessage:@"Регистрация завершена."];
-                [self loadCalendarEventsAndGoToProfile];
+                [self loadCalendarEventsAndGoToProfileForUser:[PFUser currentUser]];
             } else {
                 [HSAlertViewController showWithMessage:localizedDescriptionForParseError(error)];
             }
@@ -107,11 +107,11 @@
     [UIView commitAnimations];
 }
 
-- (void)loadCalendarEventsAndGoToProfile
+- (void)loadCalendarEventsAndGoToProfileForUser:(PFUser *)user
 {
     MBProgressHUD *progressHud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
-    HSCalendar *calendarModel = [[HSCalendar alloc] init];
-    self.calendarViewController.calendarModel = calendarModel;
+    HSCalendar *calendarModel = [HSCalendar sharedInstance];
+    [calendarModel unlockModelWithUser:user];
     [calendarModel pullEventsFromServer:^(BOOL success, NSError *error) {
         [progressHud hide:YES];
         if (success) {

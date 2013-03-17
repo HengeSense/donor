@@ -33,8 +33,8 @@
     [Common getInstance].bloodRH = [user objectForKey:@"BloodRh"];
     [Common getInstance].sex = [user objectForKey:@"Sex"];
     
-    HSCalendar *calendarModel = [[HSCalendar alloc] init];
-    self.calendarViewController.calendarModel = calendarModel;
+    HSCalendar *calendarModel = [HSCalendar sharedInstance];
+    [calendarModel unlockModelWithUser:user];
     [calendarModel pullEventsFromServer:^(BOOL success, NSError *error) {
         completion();
         if (success) {

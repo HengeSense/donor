@@ -7,12 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HSCalendarEventNotificationHandler.h"
 
-@class HSCalendar;
-
-@interface HSCalendarViewController : UIViewController
-
-@property (nonatomic, strong) HSCalendar *calendarModel;
+@interface HSCalendarViewController : UIViewController <HSCalendarEventNotificationHandler>
 
 /**
  * Calendar month label.

@@ -9,7 +9,7 @@
 #import "HSNotificationEvent.h"
 #import "NSDate+HSCalendar.h"
 
-NSString * const kNotificationEventAlertActionDefault = @"Open";
+NSString * const kNotificationEventAlertActionDefault = @"Открыть";
 
 NSString * const kLocalNotificationUserInfoKey_ClassName = @"eventClassName";
 NSString * const kLocalNotificationUserInfoKey_ScheduleDate = @"eventScheduleDate";
