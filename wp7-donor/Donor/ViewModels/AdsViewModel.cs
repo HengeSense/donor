@@ -91,11 +91,16 @@ namespace Donor.ViewModels
 
         public List<AdsViewModel> LoadStationAds(string objectid)
         {
-            var aditems = (from ads in Items
-                           where ads.Station_nid == objectid
-                            orderby ads.CreatedAt descending
-                            select ads).Take(10);
-            List<AdsViewModel> outads = aditems.ToList();
+            List<AdsViewModel> outads = new List<AdsViewModel>();
+            try
+            {
+                var aditems = (from ads in Items
+                               where ads.Station_nid.ToString() == objectid.ToString() 
+                               orderby ads.CreatedAt descending
+                               select ads).Take(10);
+                outads = aditems.ToList();
+            }
+            catch { };
             return outads;
         }
 

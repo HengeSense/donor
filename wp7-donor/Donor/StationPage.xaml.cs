@@ -37,7 +37,7 @@ namespace Donor
                 {
                     string _id = this.NavigationContext.QueryString["id"];
                     _stationid_current = _id;
-                    _currentStation = ViewModelLocator.MainStatic.Stations.Items.FirstOrDefault(c => c.Nid.ToString() == _id.ToString());
+                    _currentStation = ViewModelLocator.MainStatic.Stations.Items.FirstOrDefault(c => c.objectId.ToString() == _id.ToString());
                     DataContext = _currentStation;
 
 

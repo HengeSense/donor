@@ -85,7 +85,9 @@
         <ListBox 
 		VerticalAlignment="Top"
 		Margin="0,0,0,0"
-		Name="StationsList" ItemsSource="{Binding Stations.DistanceItems}" 
+		Name="StationsList" 
+        ItemsSource="{Binding Stations.DistanceItems}"
+            
 		SelectionChanged="StationsList_SelectionChanged" Tap="StationsList_Tap">
             <ListBox.ItemTemplate>
                 <DataTemplate>
