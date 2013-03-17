@@ -25,11 +25,12 @@
 }
 
 - (void) testLoadRemoteEvents {
+    [PFUser logOut];
     PFUser *currentUser = [PFUser logInWithUsername: @"serjbazuka@gmail.com" password:@"123"];
     STAssertTrue(currentUser != nil, @"Unable to login");
     
-    HSCalendar *calendar = [[HSCalendar alloc] init];
-    
+    HSCalendar *calendar = [HSCalendar sharedInstance];
+    [calendar unlockModelWithUser:currentUser];
     __block BOOL testDone = NO;
     [calendar pullEventsFromServer:^(BOOL success, NSError *error) {
         STAssertTrue(success, @"Pull remote events should not failed.");
@@ -41,6 +42,9 @@
     while (!testDone) {
         [NSThread sleepForTimeInterval: 0.1];
     }
+    [calendar lockModel];
+    [PFUser logOut];
+
 }
 
 @end

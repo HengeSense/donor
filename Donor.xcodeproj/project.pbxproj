@@ -203,6 +203,7 @@
 		6877928A165266890003D818 /* delete_mark_active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68779286165266890003D818 /* delete_mark_active@2x.png */; };
 		6877928B165266890003D818 /* delete_mark_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 68779287165266890003D818 /* delete_mark_pressed.png */; };
 		6877928C165266890003D818 /* delete_mark_pressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68779288165266890003D818 /* delete_mark_pressed@2x.png */; };
+		687A430216F5CEFC00958347 /* libOCMock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 687A42FA16F5CEFC00958347 /* libOCMock.a */; };
 		687E58F916AD5CE2009D0A8F /* Appirater.m in Sources */ = {isa = PBXBuildFile; fileRef = 687E58DE16AD5CE2009D0A8F /* Appirater.m */; };
 		687E58FA16AD5CE2009D0A8F /* AppiraterLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 687E58E016AD5CE2009D0A8F /* AppiraterLocalizable.strings */; };
 		687EFE271625F6B3005CE7D6 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 687EFE231625F6B3005CE7D6 /* Icon-72.png */; };
@@ -786,6 +787,13 @@
 		68779287165266890003D818 /* delete_mark_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = delete_mark_pressed.png; sourceTree = "<group>"; };
 		68779288165266890003D818 /* delete_mark_pressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "delete_mark_pressed@2x.png"; sourceTree = "<group>"; };
 		687A42F816F51C5300958347 /* HSCalendarEventNotificationHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSCalendarEventNotificationHandler.h; sourceTree = "<group>"; };
+		687A42FA16F5CEFC00958347 /* libOCMock.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libOCMock.a; sourceTree = "<group>"; };
+		687A430516F5CF5800958347 /* NSNotificationCenter+OCMAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNotificationCenter+OCMAdditions.h"; sourceTree = "<group>"; };
+		687A430616F5CF5800958347 /* OCMArg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMArg.h; sourceTree = "<group>"; };
+		687A430716F5CF5800958347 /* OCMConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMConstraint.h; sourceTree = "<group>"; };
+		687A430816F5CF5800958347 /* OCMock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMock.h; sourceTree = "<group>"; };
+		687A430916F5CF5800958347 /* OCMockObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMockObject.h; sourceTree = "<group>"; };
+		687A430A16F5CF5800958347 /* OCMockRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMockRecorder.h; sourceTree = "<group>"; };
 		687E58DD16AD5CE2009D0A8F /* Appirater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Appirater.h; sourceTree = "<group>"; };
 		687E58DE16AD5CE2009D0A8F /* Appirater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Appirater.m; sourceTree = "<group>"; };
 		687E58DF16AD5CE2009D0A8F /* AppiraterDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppiraterDelegate.h; sourceTree = "<group>"; };
@@ -1292,6 +1300,7 @@
 				68BB4053162F0B9400098861 /* SenTestingKit.framework in Frameworks */,
 				68BB4054162F0B9400098861 /* UIKit.framework in Frameworks */,
 				68BB4055162F0B9400098861 /* Foundation.framework in Frameworks */,
+				687A430216F5CEFC00958347 /* libOCMock.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1955,6 +1964,37 @@
 			path = handler;
 			sourceTree = "<group>";
 		};
+		687A42F916F5CEFC00958347 /* OCMock */ = {
+			isa = PBXGroup;
+			children = (
+				687A430416F5CF5800958347 /* headers */,
+				687A42FA16F5CEFC00958347 /* libOCMock.a */,
+			);
+			name = OCMock;
+			path = Libs/OCMock;
+			sourceTree = SOURCE_ROOT;
+		};
+		687A430316F5CF0B00958347 /* Libs */ = {
+			isa = PBXGroup;
+			children = (
+				687A42F916F5CEFC00958347 /* OCMock */,
+			);
+			name = Libs;
+			sourceTree = "<group>";
+		};
+		687A430416F5CF5800958347 /* headers */ = {
+			isa = PBXGroup;
+			children = (
+				687A430516F5CF5800958347 /* NSNotificationCenter+OCMAdditions.h */,
+				687A430616F5CF5800958347 /* OCMArg.h */,
+				687A430716F5CF5800958347 /* OCMConstraint.h */,
+				687A430816F5CF5800958347 /* OCMock.h */,
+				687A430916F5CF5800958347 /* OCMockObject.h */,
+				687A430A16F5CF5800958347 /* OCMockRecorder.h */,
+			);
+			path = headers;
+			sourceTree = "<group>";
+		};
 		687E58DB16AD5CE2009D0A8F /* Appirater */ = {
 			isa = PBXGroup;
 			children = (
@@ -2382,6 +2422,7 @@
 		68BB4056162F0B9400098861 /* DonorTests */ = {
 			isa = PBXGroup;
 			children = (
+				687A430316F5CF0B00958347 /* Libs */,
 				68EB27741630B2470092FDBA /* calendar */,
 				68BB4057162F0B9400098861 /* Supporting Files */,
 			);
@@ -3406,6 +3447,10 @@
 				GCC_WARN_PEDANTIC = NO;
 				INFOPLIST_FILE = "DonorTests/DonorTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Libs/OCMock\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				VALID_ARCHS = "armv7 armv7s";
@@ -3489,6 +3534,10 @@
 				GCC_WARN_PEDANTIC = NO;
 				INFOPLIST_FILE = "DonorTests/DonorTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Libs/OCMock\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				VALID_ARCHS = "armv7 armv7s";
@@ -3514,6 +3563,10 @@
 				GCC_WARN_PEDANTIC = NO;
 				INFOPLIST_FILE = "DonorTests/DonorTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Libs/OCMock\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				VALID_ARCHS = "armv7 armv7s";
@@ -3539,6 +3592,10 @@
 				GCC_WARN_PEDANTIC = NO;
 				INFOPLIST_FILE = "DonorTests/DonorTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Libs/OCMock\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				VALID_ARCHS = "armv7 armv7s";
