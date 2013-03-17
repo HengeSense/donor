@@ -178,27 +178,25 @@ NSString * const kHSCalendarChangedStateKeyPath = @"kHSCalendarChangedStateKey";
 
 #pragma mark - Methods to interact with cloud data service - parse.com
 - (void)pullEventsFromServer: (CompletionBlockType)completion {
-    THROW_IF_ARGUMENT_NIL_2(completion)
     [self checkUnlockedModelPrecondition];
-    if (self.user != nil) {
-        PFRelation *eventsRelation = [self.user relationforKey: kUserEventsRelation];
-        PFQuery *eventsQuery = [eventsRelation query];
-        [eventsQuery orderByDescending: kEventDate];
-        
-        [eventsQuery findObjectsInBackgroundWithBlock: ^(NSArray *remoteEvents, NSError *error) {
-            [self.bloodRemoteEvents removeAllObjects];
-            for (PFObject *remoteEvent in remoteEvents) {
-                [self.bloodRemoteEvents addObject: [HSBloodRemoteEvent buildBloodEventWithRemoteEvent: remoteEvent]];
-            }
-            [self updateBloodRemoteLocalNotifications];
-            [self updateFinishRestEvents];
+    [self checkUnlockedModelPrecondition];
+
+    PFRelation *eventsRelation = [self.user relationforKey: kUserEventsRelation];
+    PFQuery *eventsQuery = [eventsRelation query];
+    [eventsQuery orderByDescending: kEventDate];
+    
+    [eventsQuery findObjectsInBackgroundWithBlock: ^(NSArray *remoteEvents, NSError *error) {
+        [self.bloodRemoteEvents removeAllObjects];
+        for (PFObject *remoteEvent in remoteEvents) {
+            [self.bloodRemoteEvents addObject: [HSBloodRemoteEvent buildBloodEventWithRemoteEvent: remoteEvent]];
+        }
+        [self updateBloodRemoteLocalNotifications];
+        [self updateFinishRestEvents];
+        if (completion != nil) {
             BOOL success = error == nil ? YES : NO;
             completion(success, error);
-        }];
-    } else {
-        @throw [HSCalendarException exceptionWithName: HSCalendarExceptionUserUnauthorized
-                reason: @"User is not authorized yet. Calendar can't be used." userInfo: nil];
-    }
+        }
+    }];
 }
 
 
@@ -214,7 +212,9 @@ NSString * const kHSCalendarChangedStateKeyPath = @"kHSCalendarChangedStateKey";
             if (success) {
                 if (![self.bloodRemoteEvents containsObject: bloodRemoteEvent]) {
                     [bloodRemoteEvent scheduleReminderLocalNotificationAtDate:nil];
-                    [bloodRemoteEvent scheduleConfirmationLocalNotification];
+                    if ([bloodRemoteEvent isKindOfClass:[HSBloodDonationEvent class]]) {
+                        [bloodRemoteEvent scheduleConfirmationLocalNotification];
+                    }
                     [self.bloodRemoteEvents addObject: bloodRemoteEvent];
                 }
             }
@@ -231,7 +231,9 @@ NSString * const kHSCalendarChangedStateKeyPath = @"kHSCalendarChangedStateKey";
             }
         }];
     } else {
-        completion(NO, addError);
+        if (completion != nil) {
+            completion(NO, addError);
+        }
     }
 }
 
@@ -279,7 +281,9 @@ NSString * const kHSCalendarChangedStateKeyPath = @"kHSCalendarChangedStateKey";
                 [newEvent saveWithCompletionBlock:^(BOOL success, NSError *error) {
                     if (success) {
                         [newEvent scheduleReminderLocalNotificationAtDate:nil];
-                        [newEvent scheduleConfirmationLocalNotification];
+                        if ([newEvent isKindOfClass:[HSBloodDonationEvent class]]) {
+                            [newEvent scheduleConfirmationLocalNotification];
+                        }
                         [self.bloodRemoteEvents addObject: newEvent];
                         [self updateFinishRestEvents];
                     } else {

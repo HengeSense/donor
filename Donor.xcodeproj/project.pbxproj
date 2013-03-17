@@ -204,6 +204,9 @@
 		6877928B165266890003D818 /* delete_mark_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 68779287165266890003D818 /* delete_mark_pressed.png */; };
 		6877928C165266890003D818 /* delete_mark_pressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68779288165266890003D818 /* delete_mark_pressed@2x.png */; };
 		687A430216F5CEFC00958347 /* libOCMock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 687A42FA16F5CEFC00958347 /* libOCMock.a */; };
+		687A430B16F5E54500958347 /* libOCMock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 687A42FA16F5CEFC00958347 /* libOCMock.a */; };
+		687A431516F629B900958347 /* Swizzler.m in Sources */ = {isa = PBXBuildFile; fileRef = 687A431416F629B900958347 /* Swizzler.m */; };
+		687A431816F62D2300958347 /* HSBloodRemoteEventMoc.m in Sources */ = {isa = PBXBuildFile; fileRef = 687A431716F62D2300958347 /* HSBloodRemoteEventMoc.m */; };
 		687E58F916AD5CE2009D0A8F /* Appirater.m in Sources */ = {isa = PBXBuildFile; fileRef = 687E58DE16AD5CE2009D0A8F /* Appirater.m */; };
 		687E58FA16AD5CE2009D0A8F /* AppiraterLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 687E58E016AD5CE2009D0A8F /* AppiraterLocalizable.strings */; };
 		687EFE271625F6B3005CE7D6 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 687EFE231625F6B3005CE7D6 /* Icon-72.png */; };
@@ -788,12 +791,16 @@
 		68779288165266890003D818 /* delete_mark_pressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "delete_mark_pressed@2x.png"; sourceTree = "<group>"; };
 		687A42F816F51C5300958347 /* HSCalendarEventNotificationHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSCalendarEventNotificationHandler.h; sourceTree = "<group>"; };
 		687A42FA16F5CEFC00958347 /* libOCMock.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libOCMock.a; sourceTree = "<group>"; };
-		687A430516F5CF5800958347 /* NSNotificationCenter+OCMAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNotificationCenter+OCMAdditions.h"; sourceTree = "<group>"; };
-		687A430616F5CF5800958347 /* OCMArg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMArg.h; sourceTree = "<group>"; };
-		687A430716F5CF5800958347 /* OCMConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMConstraint.h; sourceTree = "<group>"; };
-		687A430816F5CF5800958347 /* OCMock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMock.h; sourceTree = "<group>"; };
-		687A430916F5CF5800958347 /* OCMockObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMockObject.h; sourceTree = "<group>"; };
-		687A430A16F5CF5800958347 /* OCMockRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMockRecorder.h; sourceTree = "<group>"; };
+		687A430C16F5E5F000958347 /* NSNotificationCenter+OCMAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNotificationCenter+OCMAdditions.h"; sourceTree = "<group>"; };
+		687A430D16F5E5F000958347 /* OCMArg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMArg.h; sourceTree = "<group>"; };
+		687A430E16F5E5F000958347 /* OCMConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMConstraint.h; sourceTree = "<group>"; };
+		687A430F16F5E5F000958347 /* OCMock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMock.h; sourceTree = "<group>"; };
+		687A431016F5E5F100958347 /* OCMockObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMockObject.h; sourceTree = "<group>"; };
+		687A431116F5E5F100958347 /* OCMockRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMockRecorder.h; sourceTree = "<group>"; };
+		687A431316F629B900958347 /* Swizzler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Swizzler.h; sourceTree = "<group>"; };
+		687A431416F629B900958347 /* Swizzler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Swizzler.m; sourceTree = "<group>"; };
+		687A431616F62D2300958347 /* HSBloodRemoteEventMoc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSBloodRemoteEventMoc.h; sourceTree = "<group>"; };
+		687A431716F62D2300958347 /* HSBloodRemoteEventMoc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSBloodRemoteEventMoc.m; sourceTree = "<group>"; };
 		687E58DD16AD5CE2009D0A8F /* Appirater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Appirater.h; sourceTree = "<group>"; };
 		687E58DE16AD5CE2009D0A8F /* Appirater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Appirater.m; sourceTree = "<group>"; };
 		687E58DF16AD5CE2009D0A8F /* AppiraterDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppiraterDelegate.h; sourceTree = "<group>"; };
@@ -1265,6 +1272,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				687A430B16F5E54500958347 /* libOCMock.a in Frameworks */,
 				685088CF1666B738004EC3CC /* StoreKit.framework in Frameworks */,
 				685088CD1666B715004EC3CC /* Accounts.framework in Frameworks */,
 				685088D11666B74B004EC3CC /* AdSupport.framework in Frameworks */,
@@ -1967,7 +1975,12 @@
 		687A42F916F5CEFC00958347 /* OCMock */ = {
 			isa = PBXGroup;
 			children = (
-				687A430416F5CF5800958347 /* headers */,
+				687A430C16F5E5F000958347 /* NSNotificationCenter+OCMAdditions.h */,
+				687A430D16F5E5F000958347 /* OCMArg.h */,
+				687A430E16F5E5F000958347 /* OCMConstraint.h */,
+				687A430F16F5E5F000958347 /* OCMock.h */,
+				687A431016F5E5F100958347 /* OCMockObject.h */,
+				687A431116F5E5F100958347 /* OCMockRecorder.h */,
 				687A42FA16F5CEFC00958347 /* libOCMock.a */,
 			);
 			name = OCMock;
@@ -1982,17 +1995,13 @@
 			name = Libs;
 			sourceTree = "<group>";
 		};
-		687A430416F5CF5800958347 /* headers */ = {
+		687A431216F6298800958347 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				687A430516F5CF5800958347 /* NSNotificationCenter+OCMAdditions.h */,
-				687A430616F5CF5800958347 /* OCMArg.h */,
-				687A430716F5CF5800958347 /* OCMConstraint.h */,
-				687A430816F5CF5800958347 /* OCMock.h */,
-				687A430916F5CF5800958347 /* OCMockObject.h */,
-				687A430A16F5CF5800958347 /* OCMockRecorder.h */,
+				687A431316F629B900958347 /* Swizzler.h */,
+				687A431416F629B900958347 /* Swizzler.m */,
 			);
-			path = headers;
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		687E58DB16AD5CE2009D0A8F /* Appirater */ = {
@@ -2422,6 +2431,7 @@
 		68BB4056162F0B9400098861 /* DonorTests */ = {
 			isa = PBXGroup;
 			children = (
+				687A431216F6298800958347 /* Utils */,
 				687A430316F5CF0B00958347 /* Libs */,
 				68EB27741630B2470092FDBA /* calendar */,
 				68BB4057162F0B9400098861 /* Supporting Files */,
@@ -2511,6 +2521,8 @@
 		68EB27741630B2470092FDBA /* calendar */ = {
 			isa = PBXGroup;
 			children = (
+				687A431616F62D2300958347 /* HSBloodRemoteEventMoc.h */,
+				687A431716F62D2300958347 /* HSBloodRemoteEventMoc.m */,
 				686BA628163469C3004D7082 /* HSBloodDonorTests_Calendar.h */,
 				686BA629163469C3004D7082 /* HSBloodDonorTests_Calendar.m */,
 			);
@@ -3185,6 +3197,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				686BA62A163469C3004D7082 /* HSBloodDonorTests_Calendar.m in Sources */,
+				687A431516F629B900958347 /* Swizzler.m in Sources */,
+				687A431816F62D2300958347 /* HSBloodRemoteEventMoc.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3322,6 +3336,7 @@
 					"\"$(SRCROOT)/Libs/Flurry\"",
 					"\"$(SRCROOT)/Libs/TestFlightSDK\"",
 					"\"$(SRCROOT)/Libs/CrittercismSDK\"",
+					"\"$(SRCROOT)/Libs/OCMock\"",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -3356,6 +3371,7 @@
 					"\"$(SRCROOT)/Libs/Flurry\"",
 					"\"$(SRCROOT)/Libs/TestFlightSDK\"",
 					"\"$(SRCROOT)/Libs/CrittercismSDK\"",
+					"\"$(SRCROOT)/Libs/OCMock\"",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -3415,6 +3431,7 @@
 					"\"$(SRCROOT)/Libs/Flurry\"",
 					"\"$(SRCROOT)/Libs/TestFlightSDK\"",
 					"\"$(SRCROOT)/Libs/CrittercismSDK\"",
+					"\"$(SRCROOT)/Libs/OCMock\"",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -3445,6 +3462,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DonorTests/DonorTests-Prefix.pch";
 				GCC_WARN_PEDANTIC = NO;
+				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/Libs/\"";
 				INFOPLIST_FILE = "DonorTests/DonorTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
@@ -3502,6 +3520,7 @@
 					"\"$(SRCROOT)/Libs/Flurry\"",
 					"\"$(SRCROOT)/Libs/TestFlightSDK\"",
 					"\"$(SRCROOT)/Libs/CrittercismSDK\"",
+					"\"$(SRCROOT)/Libs/OCMock\"",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -3532,6 +3551,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DonorTests/DonorTests-Prefix.pch";
 				GCC_WARN_PEDANTIC = NO;
+				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/Libs/\"";
 				INFOPLIST_FILE = "DonorTests/DonorTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
@@ -3561,6 +3581,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DonorTests/DonorTests-Prefix.pch";
 				GCC_WARN_PEDANTIC = NO;
+				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/Libs/\"";
 				INFOPLIST_FILE = "DonorTests/DonorTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
@@ -3590,6 +3611,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DonorTests/DonorTests-Prefix.pch";
 				GCC_WARN_PEDANTIC = NO;
+				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/Libs/\"";
 				INFOPLIST_FILE = "DonorTests/DonorTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (

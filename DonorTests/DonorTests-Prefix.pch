@@ -6,3 +6,9 @@
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
 #endif
+
+#define LOG_MOCKED_METHOD_INVOCATION \
+do {\
+    NSLog(@"Mocked version was invoked: [%@ %@]", NSStringFromClass(self.class), NSStringFromSelector(_cmd));\
+} while (0)
+
