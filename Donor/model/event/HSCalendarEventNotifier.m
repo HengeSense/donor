@@ -77,7 +77,7 @@ static NSString * const kHSCalendarEventNotifierObservingContext = @"kHSCalendar
 - (void)processLocalNotification:(UILocalNotification *)localNotification {
     THROW_IF_ARGUMENT_NIL_2(localNotification);
     @synchronized (self) {
-        if ([self.calendarModel isUnlockedModel]) {
+        if ([self.calendarModel isModelUnlockedState]) {
             [self handleLocalNotification:localNotification];
         } else {
             [self.notificationsQueue addObject:localNotification];
@@ -91,7 +91,7 @@ static NSString * const kHSCalendarEventNotifierObservingContext = @"kHSCalendar
         NSMutableArray *processedLocalNotifications =
                 [[NSMutableArray alloc] initWithCapacity:[self.notificationsQueue count]];
         for (UILocalNotification *localNotification in self.notificationsQueue) {
-            if ([self.calendarModel isUnlockedModel]) {
+            if ([self.calendarModel isModelUnlockedState]) {
                 [self handleLocalNotification:localNotification];
                 [processedLocalNotifications addObject:localNotification];
             } else {
@@ -128,9 +128,9 @@ static NSString * const kHSCalendarEventNotifierObservingContext = @"kHSCalendar
 #pragma mark - Key-value observing
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change
         context:(void *)context {
-    if ([keyPath isEqualToString:kHSCalendarChangedStateKeyPath] &&
+    if ([keyPath isEqualToString:kHSCalendarModelStateChangedKeyPath] &&
             context == &kHSCalendarEventNotifierObservingContext) {
-        if ([self.calendarModel isUnlockedModel]) {
+        if ([self.calendarModel isModelUnlockedState]) {
             [self processNotificationsQueue];
         }
     }
@@ -138,12 +138,12 @@ static NSString * const kHSCalendarEventNotifierObservingContext = @"kHSCalendar
 
 #pragma mark - Key-value observation utility
 - (void)registerCalendarModelObservation {
-    [self.calendarModel addObserver:self forKeyPath:kHSCalendarChangedStateKeyPath options:NSKeyValueObservingOptionNew
+    [self.calendarModel addObserver:self forKeyPath:kHSCalendarModelStateChangedKeyPath options:NSKeyValueObservingOptionNew
                             context:(void *)&kHSCalendarEventNotifierObservingContext];
 }
 
 - (void)unregisterCalendarModelObservation {
-    [self.calendarModel removeObserver:self forKeyPath:kHSCalendarChangedStateKeyPath
+    [self.calendarModel removeObserver:self forKeyPath:kHSCalendarModelStateChangedKeyPath
                                context:(void *)&kHSCalendarEventNotifierObservingContext];
 }
 

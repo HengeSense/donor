@@ -373,7 +373,7 @@
 
 #pragma mark - Private authorization utility methods
 - (BOOL)userAuthorized {
-    return self.calendarModel != nil && [self.calendarModel isUnlockedModel];
+    return self.calendarModel != nil && [self.calendarModel isModelUnlockedState];
 }
 
 - (void)showBlockUI {

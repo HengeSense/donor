@@ -17,9 +17,9 @@
 /// @name Key-Value observing constants
 
 /**
- * Key path for observing calendar state (lockedModel / unlocked model).
+ * Key path for observing calendar state (locked model / unlocked model).
  */
-extern NSString * const kHSCalendarChangedStateKeyPath;
+extern NSString * const kHSCalendarModelStateChangedKeyPath;
 
 /// @name HSCalendar protocol declaration
 /**
@@ -31,7 +31,6 @@ extern NSString * const kHSCalendarChangedStateKeyPath;
 + (HSCalendar *)sharedInstance;
 
 /// @name Methods to interact with cloud data service - parse.com
-
 /**
  * Unlocks calendar model with specified user. After unlocking client can interact with user's calendar events.
  */
@@ -44,14 +43,16 @@ extern NSString * const kHSCalendarChangedStateKeyPath;
 - (void)lockModel;
 
 /**
- * Define wheter calendar model is in locked states. See [self unlockModelWithUser:] and [self lockModel] methods.
+ * Define wheter calendar model is in locked state or not.
+ *     See [self unlockModelWithUser:] and [self lockModel] methods.
  */
-- (BOOL)isLockedModel;
+- (BOOL)isModelLockedState;
 
 /**
- * Define wheter calendar model is in unlocked states. See [self unlockModelWithUser:] and [self lockModel] methods.
+ * Define wheter calendar model is in unlocked state or not.
+ *     See [self unlockModelWithUser:] and [self lockModel] methods.
  */
-- (BOOL)isUnlockedModel;
+- (BOOL)isModelUnlockedState;
 
 /**
  * Pulls all remote events from the server.

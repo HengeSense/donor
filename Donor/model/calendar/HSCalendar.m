@@ -28,7 +28,7 @@ static NSString * const kUserEventsRelation = @"events";
 static NSString * const kEventDate = @"date";
 
 #pragma mark - Key-value codding observation 
-NSString * const kHSCalendarChangedStateKeyPath = @"kHSCalendarChangedStateKey";
+NSString * const kHSCalendarModelStateChangedKeyPath = @"isModelLockedStateInternal";
 
 #pragma mark - Private interface declaration
 @interface HSCalendar ()
@@ -52,6 +52,11 @@ NSString * const kHSCalendarChangedStateKeyPath = @"kHSCalendarChangedStateKey";
  * Array of HSBloodRemoteEvent objects.
  */
 @property (nonatomic, strong) NSMutableArray *bloodRemoteEvents;
+
+/**
+ *
+ */
+@property(nonatomic, assign) BOOL isModelLockedStateInternal;
 
 /**
  * Makes period calculations ans adds depended finish rest events to the calendar.
@@ -98,6 +103,7 @@ NSString * const kHSCalendarChangedStateKeyPath = @"kHSCalendarChangedStateKey";
 
 - (id) init {
     if (self = [super init]) {
+        self.isModelLockedStateInternal = YES;
         self.datePurposeModifierEvents = [[NSMutableArray alloc] init];
         self.finishRestEvents = [[NSMutableArray alloc] init];
         self.bloodRemoteEvents = [[NSMutableArray alloc] init];
@@ -157,23 +163,27 @@ NSString * const kHSCalendarChangedStateKeyPath = @"kHSCalendarChangedStateKey";
 #pragma mark - Remote events manipulation methods
 - (void)unlockModelWithUser:(PFUser *)user {
     THROW_IF_ARGUMENT_NIL_2(user);
-    [self willChangeValueForKey:kHSCalendarChangedStateKeyPath];
     self.user = user;
-    [self didChangeValueForKey:kHSCalendarChangedStateKeyPath];
+    self.isModelLockedStateInternal = NO;
 }
 
 - (void)lockModel {
-    [self willChangeValueForKey:kHSCalendarChangedStateKeyPath];
     self.user = nil;
-    [self didChangeValueForKey:kHSCalendarChangedStateKeyPath];
+    self.isModelLockedStateInternal = YES;
 }
 
-- (BOOL)isLockedModel {
-    return self.user == nil;
+- (BOOL)isModelLockedState {
+    BOOL userExists = self.user != nil;
+    if (userExists && self.isModelLockedStateInternal) {
+        @throw [NSException exceptionWithName:NSInternalInconsistencyException
+                reason:@"Key-value obsering property state (self.isModelLockedStateInternal) "
+                        "does not match based on property (self.user)" userInfo:nil];
+    }
+    return self.isModelLockedStateInternal;
 }
 
-- (BOOL)isUnlockedModel {
-    return ![self isLockedModel];
+- (BOOL)isModelUnlockedState {
+    return ![self isModelLockedState];
 }
 
 #pragma mark - Methods to interact with cloud data service - parse.com
@@ -478,7 +488,7 @@ NSString * const kHSCalendarChangedStateKeyPath = @"kHSCalendarChangedStateKey";
 
 #pragma mark - Precondition check
 - (void)checkUnlockedModelPrecondition {
-    if ([self isLockedModel]) {
+    if ([self isModelLockedState]) {
         @throw [NSException exceptionWithName:NSInternalInconsistencyException
                 reason:@"Was made attempt to interact with calendar model in locked state." userInfo:nil];
     }
