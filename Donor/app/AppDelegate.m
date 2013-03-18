@@ -37,14 +37,80 @@ static NSString * const APP_STORE_APP_ID = @"578970724";
 @property (nonatomic, strong) HSCalendarEventNotifier *calendarEventNotifier;
 
 - (void)makeTabBarHidden:(BOOL)hide;
-- (void)backButtonPressed:(UIBarButtonItem *)sender;
 
 @end
 
 @implementation AppDelegate
 
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+
+    [self configureServices];
+    
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window.rootViewController = [self createRootViewController];    
+    
+    [self makeTabBarHidden:YES];
+    [self.window makeKeyAndVisible];
+    
+    [self handleNotificationsIfExistsInOptions:launchOptions];
+    [self launchServices];
+    return YES;
+}
+
+- (void)applicationWillEnterForeground:(UIApplication *)application {
+    [Appirater appEnteredForeground:YES];
+}
+
+- (void)makeTabBarHidden:(BOOL)hide {
+    // Custom code to hide TabBar
+    if ([self.tabBarController.view.subviews count] < 2) {
+        return;
+    }
+    
+    UIView *contentView = [[self.tabBarController.view.subviews objectAtIndex:0] isKindOfClass:[UITabBar class]] ?
+            [self.tabBarController.view.subviews objectAtIndex:1] :
+            [self.tabBarController.view.subviews objectAtIndex:0];
+    
+    if (hide) {
+        contentView.frame = self.tabBarController.view.bounds;
+    } else {
+        contentView.frame = CGRectMake(self.tabBarController.view.bounds.origin.x,
+                                       self.tabBarController.view.bounds.origin.y,
+                                       self.tabBarController.view.bounds.size.width,
+                                       self.tabBarController.view.bounds.size.height - self.tabBarController.tabBar.frame.size.height);
+    }
+    
+    self.tabBarController.tabBar.hidden = hide;
+    self.tabBarController.moreNavigationController.navigationBar.hidden = YES;
+}
+
+- (BOOL)handleOpenURL:(NSURL*)url {
+    return [PFFacebookUtils handleOpenURL:url];
+}
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication
+        annotation:(id)annotation {
+    return [PFFacebookUtils handleOpenURL:url];
+}
+
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
+    return [self handleOpenURL:url];
+}
+
+- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {
+    [self handleLocalNotification:notification];
+}
+
+#pragma mark  Private
+#pragma mark - Notifications handler
+- (void)handleLocalNotification:(UILocalNotification *)notification {
+    [self.calendarEventNotifier processLocalNotification:notification];
+}
+
+#pragma mark - Configuration helpers
+- (void)configureServices {
     [Parse setApplicationId:PARSE_APP_ID clientKey:PARSE_CLIENT_KEY];
     [PFFacebookUtils initializeWithApplicationId:FACEBOOK_APP_ID];
     [HSFlurryAnalytics initWithAppId:FLURRY_APP_ID];
@@ -52,14 +118,25 @@ static NSString * const APP_STORE_APP_ID = @"578970724";
     [TestFlight takeOff:TEST_FLIGHT_APP_ID];
 #endif
     [Crittercism enableWithAppID: CRITTERCISM_APP_ID];
-
+    
     [Appirater setAppId:APP_STORE_APP_ID];
     [Appirater setDaysUntilPrompt:2];
     [Appirater setUsesUntilPrompt:3];
     [Appirater setTimeBeforeReminding:2];
-    
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    
+}
+
+- (void)launchServices {
+    [Appirater appLaunched:YES];
+}
+
+- (void)handleNotificationsIfExistsInOptions:(NSDictionary *)options {
+    UILocalNotification *localNotification = [options objectForKey:UIApplicationLaunchOptionsLocalNotificationKey];
+    if (localNotification != nil) {
+        [self handleLocalNotification:localNotification];
+    }
+}
+
+- (UIViewController *)createRootViewController {
     UIImage *barImage = [UIImage imageNamed:@"navigationBar"];
     [[UINavigationBar appearance] setBackgroundImage:barImage forBarMetrics:UIBarMetricsDefault];
     [[UINavigationBar appearance] setTitleTextAttributes:
@@ -75,9 +152,13 @@ static NSString * const APP_STORE_APP_ID = @"578970724";
     [[UIBarButtonItem appearance] setBackButtonBackgroundImage:backButtonImageNormal forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
     [[UIBarButtonItem appearance] setBackButtonBackgroundImage:backButtonImagePressed forState:UIControlStateHighlighted barMetrics:UIBarMetricsDefault];
     [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, -1) forBarMetrics:UIBarMetricsDefault];
-
+    
+    self.calendarEventNotifier = [[HSCalendarEventNotifier alloc] init];
+    
     HSCalendarViewController *calendarViewController = [[HSCalendarViewController alloc] initWithNibName:@"HSCalendarViewController" bundle:nil];
     UINavigationController *calendarNavigationController = [[UINavigationController alloc] initWithRootViewController:calendarViewController];
+    
+    [self.calendarEventNotifier addNotificationHandler:calendarViewController];
     
     StationsViewController *stationsViewController = [[StationsViewController alloc] initWithNibName:@"StationsViewController" bundle:nil];
     UINavigationController *stationsNavigationController = [[UINavigationController alloc] initWithRootViewController:stationsViewController];
@@ -102,88 +183,11 @@ static NSString * const APP_STORE_APP_ID = @"578970724";
         [rootNavigationController pushViewController:tutorialViewController animated:NO];
         [defaults setBool:YES forKey:@"isFirstStart"];
     }
-
+    
     self.sTabBarController = [[STabBarController alloc] initWithNativeTabBarController:self.tabBarController];
     self.tabBarController.selectedIndex = 3;
     
-    self.window.rootViewController = rootNavigationController;
-    [self makeTabBarHidden:YES];
-    
-    [self.window makeKeyAndVisible];
-    
-    [Appirater appLaunched:YES];
-    return YES;
-}
-
-- (void)applicationWillEnterForeground:(UIApplication *)application {
-    [Appirater appEnteredForeground:YES];
-}
-
-- (void)backButtonPressed:(UIBarButtonItem *)sender
-{
-    
-}
-
-- (void)makeTabBarHidden:(BOOL)hide
-{
-    // Custom code to hide TabBar
-    if ([self.tabBarController.view.subviews count] < 2)
-    {
-        return;
-    }
-    
-    UIView *contentView;
-    
-    if ([[self.tabBarController.view.subviews objectAtIndex:0] isKindOfClass:[UITabBar class]])
-    {
-        contentView = [self.tabBarController.view.subviews objectAtIndex:1];
-    }
-    else
-    {
-        contentView = [self.tabBarController.view.subviews objectAtIndex:0];
-    }
-    
-    if (hide)
-    {
-        contentView.frame = self.tabBarController.view.bounds;
-    }
-    else
-    {
-        contentView.frame = CGRectMake(self.tabBarController.view.bounds.origin.x,
-                                       self.tabBarController.view.bounds.origin.y,
-                                       self.tabBarController.view.bounds.size.width,
-                                       self.tabBarController.view.bounds.size.height - self.tabBarController.tabBar.frame.size.height);
-    }
-    
-    self.tabBarController.tabBar.hidden = hide;
-    self.tabBarController.moreNavigationController.navigationBar.hidden = YES;
-}
-
-- (BOOL)handleOpenURL:(NSURL*)url
-{
-    return [PFFacebookUtils handleOpenURL:url];
-}
-
-- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
-{
-    return [PFFacebookUtils handleOpenURL:url];
-}
-
-- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
-{
-    return [self handleOpenURL:url];
-}
-
-- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {
-
-}
-
-#pragma mark - Notifications handler
-- (void)handleLocalNotification:(UILocalNotification *)notification {
-    if (self.calendarEventNotifier == nil) {
-        self.calendarEventNotifier = [[HSCalendarEventNotifier alloc] init];
-    }
-    [self.calendarEventNotifier processLocalNotification:notification];
+    return rootNavigationController;
 }
 
 @end
