@@ -97,6 +97,12 @@ extern NSString * const kLocalNotificationUserInfoKey_ClassName;
 - (NSDate *)reminderFireDateDefault;
 
 /**
+ * Provides information about default value of confirmationFireDate.
+ * Should be overriden in subclasses.
+ */
+- (NSDate *)confirmationFireDateDefault;
+
+/**
  * Schedules reminder local notification for delivery at specified date and time.
  * Should be overriden in subclasses.
  */

@@ -10,6 +10,7 @@
 
 #import "MBProgressHUD.h"
 #import "HSBlockUIViewController.h"
+#import "NSDate+HSCalendar.h"
 
 #import "HSCalendar.h"
 #import "HSCalendarDayButton.h"
@@ -160,8 +161,14 @@
 - (void)handleNotificationWithEvent:(HSNotificationEvent *)notificationEvent {
     if ([notificationEvent isKindOfClass:[HSBloodRemoteEvent class]]) {
         NSArray *bloodRemoteEvents = [self.calendarModel eventsForDay:notificationEvent.scheduleDate];
-        if ([bloodRemoteEvents count] > 0) {
-            [self editRemoteBloodEvents:bloodRemoteEvents];
+        if ([bloodRemoteEvents containsObject:notificationEvent]) {
+            [HSAlertViewController showWithTitle:@"" message:@"Вы сдавали сегодня кровь?"
+                    cancelButtonTitle:@"Нет" okButtonTitle:@"Да" resultBlock:^(BOOL isOkButtonPressed)
+            {
+                if (isOkButtonPressed) {
+                    [self markEventAsDone:(HSBloodDonationEvent *)notificationEvent];
+                }
+            }];
         }
     }
 }
@@ -188,7 +195,8 @@
     self.navigationItem.rightBarButtonItem = infoBarButtonItem;
 }
 
-#pragma mark - Private methods for updating UI components
+#pragma mark - Private
+#pragma mark - Uupdating UI components
 - (void)updateCalendarToDate:(NSDate *)date {
     THROW_IF_ARGUMENT_NIL(date, @"date is not specified");
     [self updateMonthLabelToDate:date];
@@ -200,8 +208,8 @@
             [self updateDaysButtonsToDate:date];
             self.currentDate = date;
         } else {
-#warning TODO:Refactor to handle this situation more suitable
             [self clearCalendarView];
+            [HSAlertViewController showWithTitle:@"Ошибка" message:localizedDescriptionForParseError(error)];
             NSLog(@"Unable to load remote events due to error:%@", error);
         }
     }];
@@ -265,7 +273,7 @@
     }
 }
 
-#pragma mark - Private action methods
+#pragma mark - Action handlers
 - (void)showInfo:(id)sender {
     CalendarInfoViewController *calendarInfoViewController = [[CalendarInfoViewController alloc]
             initWithNibName:@"CalendarInfoViewController" bundle:nil];
@@ -329,7 +337,7 @@
     [self.navigationController pushViewController:pushedViewController animated:YES];
 }
 
-#pragma mark - Private utility methods for UI components creation
+#pragma mark - Utility methods for UI components creation
 - (HSCalendarDayButton *)createDayButtonWhithDate:(NSDate *)date frame:(CGRect)frame enabled:(BOOL)enabled {
     HSCalendarDayButton *dayButton = [[HSCalendarDayButton alloc] initWithFrame:frame date:date];
     dayButton.enabled = enabled;
@@ -337,7 +345,7 @@
     return dayButton;
 }
 
-#pragma mark - Private representation conversion methods
+#pragma mark - Representation conversion methods
 - (NSString *)nameForMonth:(size_t)month {
     switch (month)
     {
@@ -371,7 +379,7 @@
     }
 }
 
-#pragma mark - Private authorization utility methods
+#pragma mark - Authorization utility methods
 - (BOOL)userAuthorized {
     return self.calendarModel != nil && [self.calendarModel isModelUnlockedState];
 }
@@ -396,5 +404,25 @@
 
 - (void)navigateToLoginPage {
     self.tabBarController.selectedIndex = 3;
+}
+
+#pragma mark - Event processing
+- (void)markEventAsDone:(HSBloodRemoteEvent *)remoteEvent {
+    THROW_IF_ARGUMENT_NIL_2(remoteEvent);
+    if ([remoteEvent.scheduleDate isAfterDay: [NSDate date]]) {
+        @throw [NSException exceptionWithName: NSInternalInconsistencyException
+                                       reason: @"Was made attempt to mark event from future as done." userInfo: nil];
+    }
+    remoteEvent.isDone = YES;
+    [remoteEvent saveWithCompletionBlock: ^(BOOL success, NSError *error) {
+        if (success) {
+            [HSAlertViewController showWithTitle:@"Спасибо, Вы спасли жизнь!"
+                                         message:@"Рассчитан интервал до следующей возможной кроводачи"
+                               cancelButtonTitle:@"Готово"];
+            [self updateCalendarToDate:self.currentDate];
+        } else {
+            [HSAlertViewController showWithTitle:@"Ошибка" message:localizedDescriptionForError(error)];
+        }
+    }];
 }
 @end

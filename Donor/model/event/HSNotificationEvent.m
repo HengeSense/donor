@@ -157,6 +157,10 @@ static NSString * const kObservingKey_ScheduleDate = @"scheduleDate";
     THROW_UNIMPLEMENTED_EXCEPTION;
 }
 
+- (NSDate *)confirmationFireDateDefault {
+    THROW_UNIMPLEMENTED_EXCEPTION;
+}
+
 - (void)scheduleReminderLocalNotificationAtDate:(NSDate *)fireDate {
     THROW_UNIMPLEMENTED_EXCEPTION;
 }
