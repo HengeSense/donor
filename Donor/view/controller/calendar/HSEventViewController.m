@@ -63,16 +63,16 @@
 #pragma mark - Initialization methods
 - (id)initWithNibName: (NSString *)nibNameOrNil bundle: (NSBundle *)nibBundleOrNil calendar: (HSCalendar *)calendar
         bloodDonationEvent: (HSBloodDonationEvent *)bloodDonationEvent {
-    THROW_IF_ARGUMENT_NIL(calendar, @"calendar is not specified");
-    THROW_IF_ARGUMENT_NIL(bloodDonationEvent, @"bloodDonationEvent is not specified");
+    THROW_IF_ARGUMENT_NIL_2(calendar);
+    THROW_IF_ARGUMENT_NIL_2(bloodDonationEvent);
     return [self initWithNibNameInternal: nibNameOrNil bundle: nibBundleOrNil calendar: calendar
                       bloodDonationEvent: bloodDonationEvent bloodTestsEvent: nil];
 }
 
 - (id)initWithNibName: (NSString *)nibNameOrNil bundle: (NSBundle *)nibBundleOrNil calendar: (HSCalendar *)calendar
         bloodTestsEvent: (HSBloodTestsEvent *)bloodTestsEvent {
-    THROW_IF_ARGUMENT_NIL(calendar, @"calendar is not specified");
-    THROW_IF_ARGUMENT_NIL(bloodTestsEvent, @"bloodTestsEvent is not specified");
+    THROW_IF_ARGUMENT_NIL_2(calendar);
+    THROW_IF_ARGUMENT_NIL_2(bloodTestsEvent);
     return [self initWithNibNameInternal: nibNameOrNil bundle: nibBundleOrNil calendar: calendar
             bloodDonationEvent: nil bloodTestsEvent:bloodTestsEvent];
 }
@@ -107,26 +107,11 @@
 
 #pragma mark - UI action handlers
 - (IBAction)eventDoneButtonClicked:(id)sender {
-    if ([self.currentBloodRemoteEvent.scheduleDate isAfterDay: [NSDate date]]) {
-        @throw [NSException exceptionWithName: NSInternalInconsistencyException
-                                       reason: @"eventButton was triggered fot event in future,"
-                                                " actualy in this case the button should be disabled" userInfo: nil];
-    }
-    self.currentBloodRemoteEvent.isDone = YES;
-    [self.currentBloodRemoteEvent saveWithCompletionBlock: ^(BOOL success, NSError *error) {
-        if (success) {
-            [HSAlertViewController showWithTitle:@"Спасибо, Вы спасли жизнь!"
-                                         message:@"Рассчитан интервал до следующей возможной кроводачи"
-                               cancelButtonTitle:@"Готово"];
-            [self.navigationController popToRootViewControllerAnimated: YES];
-        } else {
-            [HSAlertViewController showWithTitle:@"Ошибка" message:localizedDescriptionForError(error)];
-        }
-    }];
+    [self markEventAsDone:self.currentBloodRemoteEvent];
 }
 
 #pragma mark - Private methods
-#pragma mark - Private initialization method
+#pragma mark -Initialization method
 - (id)initWithNibNameInternal: (NSString *)nibNameOrNil bundle: (NSBundle *)nibBundleOrNil
         calendar: (HSCalendar *)calendar
         bloodDonationEvent: (HSBloodDonationEvent *)bloodDonationEvent
@@ -199,7 +184,7 @@
     self.rootScrollView.contentSize = rootScrollViewContentSize;
 }
 
-#pragma mark - Private UI action handlers
+#pragma mark - UI action handlers
 - (void)editButtonClick: (id)sender {
     HSEventPlanningViewController *eventPlanningViewController = nil;
     if (self.bloodDonationEvent != nil) {
@@ -218,5 +203,26 @@
     eventPlanningViewController.title = @"Изменить";
     [self.navigationController pushViewController: eventPlanningViewController animated: YES];
 }
+
+#pragma mark - Event processing
+- (void)markEventAsDone:(HSBloodRemoteEvent *)remoteEvent {
+    THROW_IF_ARGUMENT_NIL_2(remoteEvent);
+    if ([remoteEvent.scheduleDate isAfterDay: [NSDate date]]) {
+        @throw [NSException exceptionWithName: NSInternalInconsistencyException
+                                       reason: @"Was made attempt to mark event from future as done." userInfo: nil];
+    }
+    remoteEvent.isDone = YES;
+    [remoteEvent saveWithCompletionBlock: ^(BOOL success, NSError *error) {
+        if (success) {
+            [HSAlertViewController showWithTitle:@"Спасибо, Вы спасли жизнь!"
+                                         message:@"Рассчитан интервал до следующей возможной кроводачи"
+                               cancelButtonTitle:@"Готово"];
+            [self.navigationController popToRootViewControllerAnimated: YES];
+        } else {
+            [HSAlertViewController showWithTitle:@"Ошибка" message:localizedDescriptionForError(error)];
+        }
+    }];
+}
+
 
 @end
