@@ -16,7 +16,7 @@
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d" d:DesignHeight="696" d:DesignWidth="480"
     shell:SystemTray.IsVisible="True" Loaded="PhoneApplicationPage_Loaded" 
-    DataContext="{Binding Main, Source={StaticResource Locator}}" 
+    DataContext="{Binding Main.Stations.CurrentStation, Source={StaticResource Locator}}" 
     Background="#FF211E1D">
 
     <phone:PhoneApplicationPage.ApplicationBar>

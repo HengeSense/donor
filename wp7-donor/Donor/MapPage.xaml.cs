@@ -28,7 +28,7 @@ namespace Donor
         }
 
         private string _stationid_current;
-        private StationViewModel _currentStation = null;
+        private YAStationItem _currentStation = null;
 
         private void ChangeGeolocation() {
             if (ViewModelLocator.MainStatic.Settings.Location == true)
@@ -53,7 +53,7 @@ namespace Donor
                 {
                     string _eventid = this.NavigationContext.QueryString["id"];
                     _stationid_current = _eventid;
-                    _currentStation = ViewModelLocator.MainStatic.Stations.Items.FirstOrDefault(c => c.Nid.ToString() == _stationid_current.ToString());
+                    _currentStation = ViewModelLocator.MainStatic.Stations.Items.FirstOrDefault(c => c.ObjectId.ToString() == _stationid_current.ToString());
                     DataContext = _currentStation;
                 }
                 catch { };
@@ -84,7 +84,7 @@ namespace Donor
             ///
             /// Set filtered collection
             ///
-            List<StationViewModel> filteredItems = new List<StationViewModel>();
+            List<YAStationItem> filteredItems = new List<YAStationItem>();
             if (ViewModelLocator.MainStatic.Stations.IsFilter == false)
             {
                 if (ViewModelLocator.MainStatic.Stations.FilteredText == "")
@@ -94,7 +94,7 @@ namespace Donor
                 else
                 {
                     filteredItems = (from stations in ViewModelLocator.MainStatic.Stations.Items
-                                                    where (stations.Title.ToLower().Contains(ViewModelLocator.MainStatic.Stations.FilteredText.ToLower()))
+                                                    where (stations.Name.ToLower().Contains(ViewModelLocator.MainStatic.Stations.FilteredText.ToLower()))
                                                     orderby stations.Distance ascending
                                      select stations).ToList();
                 };
@@ -104,16 +104,16 @@ namespace Donor
                 if (ViewModelLocator.MainStatic.Stations.FilteredText == "")
                 {
                     filteredItems = (from stations in ViewModelLocator.MainStatic.Stations.Items
-                                                    where (stations.City == ViewModelLocator.MainStatic.Stations.SelectedCity)
-                                                    && (((!ViewModelLocator.MainStatic.Stations.IsChildrenDonor) || (stations.DonorsForChildrens == ViewModelLocator.MainStatic.Stations.IsChildrenDonor)) && ((!ViewModelLocator.MainStatic.Stations.IsRegional) || (stations.RegionalRegistration == ViewModelLocator.MainStatic.Stations.IsRegional)) && ((!ViewModelLocator.MainStatic.Stations.IsSaturdayWork) || (stations.SaturdayWork == ViewModelLocator.MainStatic.Stations.IsSaturdayWork)))
+                                                    where (stations.Town == ViewModelLocator.MainStatic.Stations.SelectedCity)
+                                                    && (((!ViewModelLocator.MainStatic.Stations.IsChildrenDonor)) && ((!ViewModelLocator.MainStatic.Stations.IsRegional)) && ((!ViewModelLocator.MainStatic.Stations.IsSaturdayWork)))
                                                     orderby stations.Distance ascending
                                                     select stations).ToList();
                 }
                 else
                 {
                     filteredItems = (from stations in ViewModelLocator.MainStatic.Stations.Items
-                                                    where (stations.City == ViewModelLocator.MainStatic.Stations.SelectedCity)
-                                                    && ((stations.DonorsForChildrens == ViewModelLocator.MainStatic.Stations.IsChildrenDonor) && (stations.RegionalRegistration == ViewModelLocator.MainStatic.Stations.IsRegional) && (stations.SaturdayWork == ViewModelLocator.MainStatic.Stations.IsSaturdayWork)) && (stations.Title.ToLower().Contains(ViewModelLocator.MainStatic.Stations.FilteredText.ToLower())) && (stations.Title.ToLower().Contains(ViewModelLocator.MainStatic.Stations.FilteredText.ToLower()))
+                                                    where (stations.Name == ViewModelLocator.MainStatic.Stations.SelectedCity)
+                                                    && (stations.Name.ToLower().Contains(ViewModelLocator.MainStatic.Stations.FilteredText.ToLower())) && (stations.Name.ToLower().Contains(ViewModelLocator.MainStatic.Stations.FilteredText.ToLower()))
                                                     orderby stations.Distance ascending
                                                     select stations).ToList();
                 };
@@ -132,9 +132,9 @@ namespace Donor
                     Pushpin pushpinItem = new Pushpin()
                     {
                         Location = currentLocation, //mapitem.GeoLocation,
-                        Content = item.Title
+                        Content = item.Name
                     };
-                    pushpinItem.Tag = item.Nid;
+                    pushpinItem.Tag = item.ObjectId;
                     pushpinItem.Tap += this.Pushpin_Tap;
                     map1.Children.Add(pushpinItem);
 
@@ -154,7 +154,7 @@ namespace Donor
                 Pushpin pushpinItem = new Pushpin()
                 {
                     Location = currentLocation, //mapitem.GeoLocation,
-                    Content = _currentStation.Title
+                    Content = _currentStation.Name
                 };
                 //pushpinItem.Tag = _currentStation.Nid;
                 //pushpinItem.Tap += this.Pushpin_Tap;

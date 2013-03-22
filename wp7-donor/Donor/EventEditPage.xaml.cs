@@ -92,10 +92,10 @@ namespace Donor
                 try
                 {
                     CurrentEvent = ViewModelLocator.MainStatic.Events.EditedEvent;
-                    StationViewModel _currentStation = ViewModelLocator.MainStatic.Stations.Items.FirstOrDefault(c => c.Nid.ToString() == ViewModelLocator.MainStatic.Stations.SelectedStation.ToString());
-                    this.Place.Text = _currentStation.Adress.ToString();
-                    CurrentEvent.Place = _currentStation.Adress.ToString();
-                    CurrentEvent.Station_nid = _currentStation.Nid;
+                    YAStationItem _currentStation = ViewModelLocator.MainStatic.Stations.Items.FirstOrDefault(c => c.ObjectId.ToString() == ViewModelLocator.MainStatic.Stations.SelectedStation.ToString());
+                    this.Place.Text = _currentStation.Address.ToString();
+                    CurrentEvent.Place = _currentStation.Address.ToString();
+                    CurrentEvent.Station_nid = _currentStation.ObjectId;
                     ViewModelLocator.MainStatic.Events.EditedEvent = null;
                 }
                 catch
@@ -552,33 +552,6 @@ namespace Donor
             {
             };
         }
-
-        double InputHeight = 0.0;
-
-        /*private void MessageText_GotFocus(object sender, System.Windows.RoutedEventArgs e)
-        {
-            (App.Current as App).RootFrame.RenderTransform = new CompositeTransform();
-        }
-
-        private void inputText_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
-        {
-            Dispatcher.BeginInvoke(() =>
-            {
-                double CurrentInputHeight = Description.ActualHeight;
-
-                if (CurrentInputHeight > InputHeight)
-                {
-                    InputScrollViewer.ScrollToVerticalOffset(InputScrollViewer.VerticalOffset + CurrentInputHeight - InputHeight);
-                }
-
-                InputHeight = CurrentInputHeight;
-            });
-        }*/
-
-        /*public void MessageText_Tap(object sender, System.Windows.Input.GestureEventArgs e)
-        {
-            InputScrollViewer.ScrollToVerticalOffset(e.GetPosition(Description).Y - 80);
-        }*/
 
 
         private void EventType_Loaded(object sender, RoutedEventArgs e)

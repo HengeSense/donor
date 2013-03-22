@@ -163,6 +163,9 @@
     <Compile Include="Controls\VotesControl.xaml.cs">
       <DependentUpon>VotesControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="StationPage.xaml.cs">
+      <DependentUpon>StationPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CreateReviewPage.xaml.cs">
       <DependentUpon>CreateReviewPage.xaml</DependentUpon>
     </Compile>
@@ -212,8 +215,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResources.resx</DependentUpon>
     </Compile>
-    <Compile Include="StationPage.xaml.cs">
-      <DependentUpon>StationPage.xaml</DependentUpon>
+    <Compile Include="StationPageOld.xaml.cs">
+      <DependentUpon>StationPageOld.xaml</DependentUpon>
     </Compile>
     <Compile Include="StationsSearch.xaml.cs">
       <DependentUpon>StationsSearch.xaml</DependentUpon>
@@ -279,6 +282,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="StationPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="CreateReviewPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -339,7 +346,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="StationPage.xaml">
+    <Page Include="StationPageOld.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -413,6 +420,7 @@
     <Content Include="images\ic_donors_act.png" />
     <Resource Include="images\ic_search.png" />
     <Content Include="images\ic_menu_achivement_normal.png" />
+    <Resource Include="images\logo.png" />
     <Content Include="libs\Phone.Controls.dll" />
     <Content Include="libs\Silverlight_ZXing_Core.dll" />
     <Content Include="libs\Silverlight_ZXing_Core.pdb" />
@@ -431,7 +439,6 @@
     <Resource Include="images\ic_menu_profile_normal.png" />
     <Resource Include="images\ic_menu_stantion_normal.png" />
     <Resource Include="images\ic_reminder.png" />
-    <Resource Include="images\logo_old_one.png" />
     <Resource Include="images\bg_04.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
@@ -457,7 +464,7 @@
     <Content Include="icons\appbar.share.rest.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Resource Include="images\logo.png" />
+    <Resource Include="images\logo_old.png" />
     <Resource Include="images\ic_star_act.png" />
     <Resource Include="images\ic_star_pas.png" />
     <Content Include="images\ic_donated_blood.png" />

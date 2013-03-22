@@ -6,7 +6,6 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit" 
-     DataContext="{Binding Path=ViewModelLocator.MainStatic,Source=ViewModelLocator.MainStatic}"
     x:Class="Donor.StationsSearch"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     xmlns:WPExtensions="clr-namespace:WPExtensions;assembly=WPExtensions"
@@ -14,6 +13,7 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480"
+    DataContext="{Binding Main, Source={StaticResource Locator}}" 
     shell:SystemTray.IsVisible="False" Loaded="PhoneApplicationPage_Loaded">
 
     <!--LayoutRoot is the root grid where all page content is placed-->
@@ -49,7 +49,6 @@
 			Populating="StationsSearchText_Populating" 
 			Foreground="#FFE0B390" Background="#FF3C1B00" 
 			BorderBrush="#FF3C1B00" Populated="StationsSearchText_Populated" Margin="0,-8,0,0" LostFocus="StationsSearchText_LostFocus" TextChanged="StationsSearchText_TextChanged">
-
                     <toolkit:AutoCompleteBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
@@ -60,35 +59,29 @@
                     </DataTemplate>
                 </toolkit:AutoCompleteBox.ItemTemplate>
             </toolkit:AutoCompleteBox>
-
                     <Image Height="48"
                            Width="48" 
                            Margin="0,0,20,10"
                            Grid.Row="0" Grid.Column="0"
                            Source="/Donor;component/images/ic_search.png" HorizontalAlignment="Right" />
-
-                </Grid>
-                
+                </Grid>                
             </StackPanel>
-
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" 
 		Background="#FFEEEEEE"
 		Grid.Row="1" Margin="0,0,0,0">
-
             <TextBlock Text="{Binding NoStations, Source={StaticResource Loc}}" 
                        Foreground="#FF847168" Name="Noresults" TextWrapping="Wrap"
-                       Margin="10,5,10,0" Visibility="Collapsed"/>
-            
+                       Margin="10,5,10,0" Visibility="Collapsed"/>            
         <ListBox 
 		VerticalAlignment="Top"
 		Margin="0,0,0,0"
 		Name="StationsList" 
         ItemsSource="{Binding Stations.DistanceItems}"
-            
-		SelectionChanged="StationsList_SelectionChanged" Tap="StationsList_Tap">
+        DataContext="{Binding Main, Source={StaticResource Locator}}" 
+		Tap="StationsList_Tap">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                 		<Border BorderThickness="0,0,0,1" 
@@ -100,11 +93,11 @@
 									<ColumnDefinition Width="110"/>
 								</Grid.ColumnDefinitions>
                         	<StackPanel Grid.Column="0">
-                            <TextBlock Text="{Binding Adress}" 
+                            <TextBlock Text="{Binding Address}" 
 							TextWrapping="Wrap" 
 							FontSize="30"
 							Foreground="#FF645B54"/>
-                            <TextBlock Text="{Binding Title}" 
+                            <TextBlock Text="{Binding Name}" 
 							TextWrapping="Wrap" Margin="0,0,0,0" 
 							FontSize="18"
 							Foreground="#FF847168"
@@ -138,14 +131,5 @@
             <WPExtensions:AdvancedApplicationBarIconButton IconUri="/icons/ic_ApplicationBar_item.png" Name="FilterButton" Text="{Binding Filter, Source={StaticResource Loc}}" Visibility="Visible" Click="ApplicationBarIconButton_Click" />
         </WPExtensions:AdvancedApplicationBar>
     </Grid>
-    
-    <!--<phone:PhoneApplicationPage.ApplicationBar>
-        <shell:ApplicationBar BackgroundColor="#FF211E1D" ForegroundColor="White" IsVisible="True" x:Name="ApplicationBar">
-            <shell:ApplicationBarIconButton x:Name="MapButton" IconUri="/icons/ic_ApplicationBar_map.png" Text="На карте" Click="MapButton_Click" />
-            <shell:ApplicationBarIconButton IconUri="/icons/ic_ApplicationBar_item.png" Text="Фильтр" Click="ApplicationBarIconButton_Click" />
-        </shell:ApplicationBar>
-    </phone:PhoneApplicationPage.ApplicationBar>-->
-
-
 
 </phone:PhoneApplicationPage>

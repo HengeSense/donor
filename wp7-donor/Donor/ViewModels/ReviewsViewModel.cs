@@ -14,10 +14,11 @@ using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
 using System.ComponentModel;
 using System.Linq;
+using GalaSoft.MvvmLight;
 
 namespace Donor.ViewModels
 {
-    public class ReviewsListViewModel : INotifyPropertyChanged
+    public class ReviewsListViewModel: ViewModelBase
     {
         public ReviewsListViewModel()
         {
@@ -50,7 +51,6 @@ namespace Donor.ViewModels
             request.Parameters.Clear();
             request.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
             request.AddHeader("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
-            //request.AddBody("where={\"station_nid\":" + StationId.ToString() + "}\norder=-createdTimestamp");
 
             client.ExecuteAsync(request, response =>
             {
@@ -66,8 +66,8 @@ namespace Donor.ViewModels
                     reviewslist1 = new ObservableCollection<ReviewsViewModel>();
                     Deployment.Current.Dispatcher.BeginInvoke(() =>
                     {
-                        this.Items = new ObservableCollection<ReviewsViewModel>(reviewslist2);
-                        this.NotifyPropertyChanged("Items");
+                        Items = new ObservableCollection<ReviewsViewModel>(reviewslist2);
+                        RaisePropertyChanged("Items");
                         
                         this.OnReviewsLoaded(EventArgs.Empty);
                     });
@@ -79,37 +79,30 @@ namespace Donor.ViewModels
             });
             Deployment.Current.Dispatcher.BeginInvoke(() =>
             {
-                this.NotifyPropertyChanged("Items");
+                RaisePropertyChanged("Items");
             });
             };
             bw.RunWorkerAsync();              
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-        private void NotifyPropertyChanged(String propertyName)
-        {
-            PropertyChangedEventHandler handler = PropertyChanged;
-            if (null != handler)
+        private ObservableCollection<ReviewsViewModel> _items = new ObservableCollection<ReviewsViewModel>();
+        public ObservableCollection<ReviewsViewModel> Items {
+            get
             {
-                handler(this, new PropertyChangedEventArgs(propertyName));
+                return _items;
+            }
+            set
+            {
+                _items = value;
+                RaisePropertyChanged("Items");
             }
         }
-
-        public void RaisePropertyChanged(string property)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(property));
-            }
-        }
-
-        public ObservableCollection<ReviewsViewModel> Items;
     }
 
     /// <summary>
     /// Единичный отзыв пользователя на станцию переливания
     /// </summary>
-    public class ReviewsViewModel
+    public class ReviewsViewModel: ViewModelBase
     {
         public ReviewsViewModel()
         {

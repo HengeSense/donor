@@ -111,3 +111,4 @@ C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\Bin\Release\Telerik.Wi
 C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\Bin\Release\de-DE\Telerik.Windows.Controls.Primitives.resources.dll
 C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\Bin\Release\fr-FR\Telerik.Windows.Controls.Primitives.resources.dll
 C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\Bin\Release\it-IT\Telerik.Windows.Controls.Primitives.resources.dll
+C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\obj\Release\StationPageOld.g.cs

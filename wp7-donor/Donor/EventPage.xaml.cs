@@ -56,7 +56,7 @@ namespace Donor
 
                         DataContext = _currentEvent;
 
-                        if ((_currentEvent.Station_nid != null) && (_currentEvent.Station_nid != 0))
+                        if ((_currentEvent != null) && (_currentEvent.Station_nid != ""))
                         {
                             this.MapButton.Visibility = Visibility.Visible;
                         };

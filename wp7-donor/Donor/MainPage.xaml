@@ -46,8 +46,7 @@
                 <StackPanel Height="800">
                 	<StackPanel.Background>
                 		<ImageBrush Stretch="Fill" ImageSource="/SplashScreenImage.jpg"/>
-                	</StackPanel.Background>
-                    
+                	</StackPanel.Background>                    
                     <toolkit:PerformanceProgressBar Name="Loading" IsIndeterminate="True" Height="10" Background="#FFD40505" Foreground="#FFD40505" Visibility="Visible" VerticalAlignment="Center" Margin="0,540,0,0" />
                 </StackPanel>
             </Controls:ProgressOverlay.Content>
@@ -56,7 +55,7 @@
         <!--Panorama control-->
         <controls:Panorama Grid.Row="1">
             <controls:Panorama.Title>
-                <Image Source="/Donor;component/images/logo.png" Margin="-39,65,0,0"/>
+                <Image Source="/Donor;component/images/logo.png" Margin="-19,95,0,30"/>
             </controls:Panorama.Title>
 
             <controls:Panorama.Background>

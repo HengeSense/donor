@@ -38,13 +38,7 @@ namespace facebook_windows_phone_sample.Pages
 
         private void webBrowser1_Loaded(object sender, RoutedEventArgs e)
         {
-            //var logoutUrl = GetFacebookLogoutUrl(AppId, ExtendedPermissions);
-            //webBrowser1.Navigate(logoutUrl);
-
-            string logout_format = "http://www.facebook.com/logout.php?api_key={0}&session_key={1}&next={2}";
             string access_token = HttpUtility.UrlDecode(ViewModelLocator.MainStatic.User.FacebookToken);
-            //char[] tokenSeparator = new char[] { '|' };
-            //string session = access_token.Split(tokenSeparator)[1];
             string session = ViewModelLocator.MainStatic.User.FacebookToken;
 
             var parameters = new Dictionary<string, object>();
@@ -54,10 +48,7 @@ namespace facebook_windows_phone_sample.Pages
         private Uri GetFacebookLogoutUrl(string appId, string extendedPermissions)
         {
             var parameters = new Dictionary<string, object>();
-            //parameters["client_id"] = appId;
-            //parameters["redirect_uri"] = "https://www.facebook.com/logout.php";
             parameters["next"] = "https://www.facebook.com/logout.php";
-            //parameters["display"] = "touch";
             parameters["access_token"] = ViewModelLocator.MainStatic.User.FacebookToken;
 
             return _fb.GetLogoutUrl(parameters);
@@ -66,22 +57,6 @@ namespace facebook_windows_phone_sample.Pages
         private void webBrowser1_Navigated(object sender, System.Windows.Navigation.NavigationEventArgs e)
         {
             this.NavigationService.GoBack();
-            /*FacebookOAuthResult oauthResult;
-            if (!_fb.TryParseOAuthCallbackUrl(e.Uri, out oauthResult))
-            {
-                return;
-            }
-
-            if (oauthResult.IsSuccess)
-            {
-                var accessToken = oauthResult.AccessToken;
-                LoginSucceded(accessToken);
-            }
-            else
-            {
-                // user cancelled
-                MessageBox.Show(oauthResult.ErrorDescription);
-            }*/
         }
     }
 }

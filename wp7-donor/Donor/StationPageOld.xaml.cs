@@ -18,32 +18,81 @@ using Donor.Controls;
 
 namespace Donor
 {
-    public partial class StationPage : PhoneApplicationPage
+    public partial class StationPageOld : PhoneApplicationPage
     {
-        public StationPage()
+        public StationPageOld()
         {
             InitializeComponent();
             this.MainPanorama.DefaultItem = this.MainPanorama.Items[0];
         }
 
+        //private string _stationid_current;
+        //private StationViewModel _currentStation;
+
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
+            //if (this.NavigationContext.QueryString.ContainsKey("id"))
+            //{
                 try
                 {
+                    //string _id = this.NavigationContext.QueryString["id"];
+                    //_stationid_current = _id;
+                    //_currentStation = ViewModelLocator.MainStatic.Stations.Items.FirstOrDefault(c => c.objectId.ToString() == _id.ToString());
+                    //DataContext = _currentStation;
+
+                    List<AdsViewModel> adsItems = ViewModelLocator.MainStatic.Ads.LoadStationAds(ViewModelLocator.MainStatic.Stations.CurrentStation.ObjectId.ToString());
+                    if (adsItems.Count() > 0)
+                    {
+                        //this.StationAds.ItemsSource = adsItems;
+                    }
+                    else
+                    {
+                        //this.PanaramaAdsItem.Visibility = Visibility.Collapsed;
+                    };
+
+                    bool hasNetworkConnection =
+                    NetworkInterface.NetworkInterfaceType != NetworkInterfaceType.None;
+                    if (hasNetworkConnection)
+                    {
+                        ViewModelLocator.MainStatic.Reviews.LoadReviewsForStation(ViewModelLocator.MainStatic.Stations.CurrentStation.ObjectId.ToString());
+                    }
+                    else
+                    {
+                        this.progressOverlay.Visibility = Visibility.Collapsed;
+                        this.progressOverlay.IsEnabled = false;
+                    };
+
+                    ViewModelLocator.MainStatic.Reviews.ReviewsLoaded += new ReviewsListViewModel.ReviewsLoadedEventHandler(this.ReviewsLoaded);
                 }
                 catch
                 {
                     NavigationService.GoBack();
                 };
+            /*}
+            else
+            {
+                NavigationService.GoBack();
+            };*/
         }
 
         private void ReviewsLoaded(object sender, EventArgs e)
         {
             try
             {
+                //this.StationReviews.ItemsSource = ViewModelLocator.MainStatic.Reviews.Items;
+                int votes = 0;
+                foreach (var item in ViewModelLocator.MainStatic.Reviews.Items) {
+                    votes = votes + item.Vote;
+                };
+                this.rate.Vote = (int)Math.Round((double)votes / (double)ViewModelLocator.MainStatic.Reviews.Items.Count());
+
+                this.progressOverlay.Visibility = Visibility.Collapsed;
+                this.progressOverlay.IsEnabled = false;
             }
             catch
             {
+                this.progressOverlay.Visibility = Visibility.Collapsed;
+                this.progressOverlay.IsEnabled = false;
             };
         }
 
@@ -97,6 +146,17 @@ namespace Donor
             try
             {
                 NavigationService.Navigate(new Uri("/MapPage.xaml?id=" + ViewModelLocator.MainStatic.Stations.CurrentStation.ObjectId, UriKind.Relative));
+            }
+            catch
+            {
+            };
+        }
+
+        private void VotesControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                (sender as VotesControl).Vote = Int32.Parse((sender as VotesControl).Tag.ToString());
             }
             catch
             {

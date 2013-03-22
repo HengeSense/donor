@@ -29,10 +29,6 @@ namespace Donor
 
             this.RelativeContra.DataContext = ViewModelLocator.MainStatic;
             this.RelativeContra.ItemsSource = ViewModelLocator.MainStatic.Contras.Items;
-
-            //this.ContraSearchText.ItemsSource = ViewModelLocator.MainStatic.Contras.Items;
-            //this.ContraSearchText.FilterMode = AutoCompleteFilterMode.Contains;
-            //this.ContraSearchText.ItemFilter += SearchBank;
         }
 
         bool CustomFilter(string search, string value)
@@ -46,7 +42,6 @@ namespace Donor
                 if ((value as ContraViewModel).Title.ToString().ToLower().Contains(search))
                     return true;
             }
-            // If no match, return false.
             return false;
         }
 
@@ -158,7 +153,6 @@ namespace Donor
             catch
             {
             };
-            //this.SearchContra.ItemsSource = relitems;
         }
 
         private void ContraSearchText_Populated(object sender, PopulatedEventArgs e)

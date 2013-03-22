@@ -704,18 +704,6 @@ namespace Donor.ViewModels
             }
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-       
-        private void RaisePropertyChanged(String propertyName)
-        {
-            PropertyChangedEventHandler handler = PropertyChanged;
-            if (null != handler)
-            {
-                handler(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
-
-
         public void FacebookLogin(string id, string accessToken, IDictionary<string, object> result = null)
         {
             try

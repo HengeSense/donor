@@ -592,7 +592,7 @@ namespace Donor.ViewModels
         /// <summary>
         /// Идентификатор станции, к  которой привязано событие (в случае, если место проведения события было выбрано из списка стандции)
         /// </summary>
-        public long Station_nid { get; set; }
+        public string Station_nid { get; set; }
 
         public string Delivery
         {
@@ -776,7 +776,7 @@ namespace Donor.ViewModels
 
             try
             {
-                jsonitem.Station_nid = Int32.Parse(item["station_nid"].ToString());
+                jsonitem.Station_nid = item["station_nid"].ToString();
             }
             catch
             {

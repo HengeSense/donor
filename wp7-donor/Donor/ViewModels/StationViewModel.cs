@@ -18,12 +18,13 @@ using MSPToolkit.Utilities;
 using System.Device.Location;
 //using GART.Data;
 using System.Collections.Generic;
+using GalaSoft.MvvmLight;
 
 namespace Donor.ViewModels
 {
-    public class StationsLitViewModel : INotifyPropertyChanged
+    public class StationsListViewModel: ViewModelBase
     {
-        public StationsLitViewModel()
+        public StationsListViewModel()
         {
             this.FilteredText = "";
             this.IsChildrenDonor = false;
@@ -31,8 +32,9 @@ namespace Donor.ViewModels
             this.IsSaturdayWork = false;
             this.IsRegional = false;
 
-            this.Items = new ObservableCollection<StationViewModel>();
+            this.Items = new ObservableCollection<YAStationItem>();
         }
+
 
         public void UpdateCoordinatesWatcher()
         {
@@ -48,6 +50,11 @@ namespace Donor.ViewModels
 
         public GeoCoordinateWatcher myCoordinateWatcher;
         private bool _getCoordinates = false;
+        /// <summary>
+        /// Обновилось положение устройства
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         void myCoordinateWatcher_PositionChanged(object sender, GeoPositionChangedEventArgs<GeoCoordinate> e)
         {
             if (ViewModelLocator.MainStatic.Settings.Location == true)
@@ -69,15 +76,25 @@ namespace Donor.ViewModels
 
         public double Latitued, Longitude; 
 
-        //выбранный город
+        /// <summary>
+        /// выбранный город
+        /// </summary>
         public string SelectedCity { get; set; }
-        //требуется прописка
+        /// <summary>
+        /// требуется прописка
+        /// </summary>
         public bool IsRegional { get; set; }
-        //работает по субботам
+        /// <summary>
+        /// работает по субботам
+        /// </summary>
         public bool IsSaturdayWork { get; set; }
-        //участвует в доноры-детям
+        /// <summary>
+        /// участвует в доноры-детям
+        /// </summary>
         public bool IsChildrenDonor { get; set; }
-
+        /// <summary>
+        /// Есть ил фильтрация
+        /// </summary>
         public bool IsFilter { get; set; }
 
         //selected station for edit
@@ -87,6 +104,69 @@ namespace Donor.ViewModels
         /// Загрузка станций с parse.com
         /// </summary>
         public void LoadStations()
+        {
+            myCoordinateWatcher = new GeoCoordinateWatcher(GeoPositionAccuracy.Default);
+            myCoordinateWatcher.PositionChanged += new EventHandler<GeoPositionChangedEventArgs<GeoCoordinate>>(myCoordinateWatcher_PositionChanged);
+            myCoordinateWatcher.Start();
+
+            try
+            {
+                ObservableCollection<YAStationItem> stationslist1 = new ObservableCollection<YAStationItem>();
+                stationslist1 = IsolatedStorageHelper.LoadSerializableObject<ObservableCollection<YAStationItem>>("yastations.xml");
+                this.Items = stationslist1;
+            }
+            catch { 
+                this.Items = new ObservableCollection<YAStationItem>(); 
+            };
+
+            // загружаем станции если их нет или дата последнего обновления была более чем одни сутки в прошлом
+            //(ViewModelLocator.MainStatic.Settings.StationsUpdated.AddDays(1) < DateTime.Now)
+            if ((ViewModelLocator.MainStatic.Stations.Items.Count() == 0)) {
+            
+            var bw = new BackgroundWorker();
+            bw.DoWork += delegate
+            {
+            var client = new RestClient("https://api.parse.com");
+            var request = new RestRequest("1/classes/YAStations", Method.GET);
+            request.Parameters.Clear();
+
+            request.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
+            request.AddHeader("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
+
+            client.ExecuteAsync(request, response =>
+            {
+                //try
+                //{
+                    ObservableCollection<YAStationItem> eventslist1 = new ObservableCollection<YAStationItem>();
+                    JObject o = JObject.Parse(response.Content.ToString());
+                    eventslist1 = JsonConvert.DeserializeObject<ObservableCollection<YAStationItem>>(o["results"].ToString());
+
+                        Deployment.Current.Dispatcher.BeginInvoke(() =>
+                        {
+                            ViewModelLocator.MainStatic.Settings.StationsUpdated = DateTime.Now;
+                            ViewModelLocator.MainStatic.SaveSettingsToStorage();
+                            this.Items = eventslist1;
+
+                            IsolatedStorageHelper.SaveSerializableObject<ObservableCollection<YAStationItem>>(this.Items, "yastations.xml");
+
+                            RaisePropertyChanged("Items");
+                        });                       
+                    
+                //}
+                //catch
+                //{
+                //};
+                
+            });
+            };
+            bw.RunWorkerAsync();
+            } else {};
+        }
+
+        /// <summary>
+        /// Загрузка станций с parse.com
+        /// </summary>
+        /*public void LoadStations()
         {
             myCoordinateWatcher = new GeoCoordinateWatcher(GeoPositionAccuracy.Default);
             myCoordinateWatcher.PositionChanged += new EventHandler<GeoPositionChangedEventArgs<GeoCoordinate>>(myCoordinateWatcher_PositionChanged);
@@ -193,7 +273,7 @@ namespace Donor.ViewModels
 
                             IsolatedStorageHelper.SaveSerializableObject<ObservableCollection<StationViewModel>>(this.Items, "stations.xml");
 
-                            this.NotifyPropertyChanged("Items");
+                            RaisePropertyChanged("Items");
                         });                       
                     
                 }
@@ -205,20 +285,10 @@ namespace Donor.ViewModels
             };
             bw.RunWorkerAsync();
             } else {};
-        }
+        }*/
 
-        public event PropertyChangedEventHandler PropertyChanged;
-        private void NotifyPropertyChanged(String propertyName)
-        {
-            PropertyChangedEventHandler handler = PropertyChanged;
-            if (null != handler)
-            {
-                handler(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
-
-        private ObservableCollection<StationViewModel> _items;
-        public ObservableCollection<StationViewModel> Items
+        private ObservableCollection<YAStationItem> _items;
+        public ObservableCollection<YAStationItem> Items
         {
             get
             {
@@ -227,16 +297,16 @@ namespace Donor.ViewModels
             set
             {
                 _items = value;
-                NotifyPropertyChanged("DistanceItems");
-                NotifyPropertyChanged("Items");
+                RaisePropertyChanged("DistanceItems");
+                RaisePropertyChanged("Items");
             }
         }
 
-        public List<StationViewModel> DistanceItems
+        public List<YAStationItem> DistanceItems
         {
             get
             {
-                List<StationViewModel> distance = (from station in this.Items
+                List<YAStationItem> distance = (from station in this.Items
                         orderby station.Distance ascending
                         select station).ToList();
                 return distance;
@@ -245,6 +315,18 @@ namespace Donor.ViewModels
         }
 
         public string FilteredText { get; set; }
+
+        private YAStationItem _currentStation = null;
+        public YAStationItem CurrentStation
+        {
+            get {
+                return _currentStation;
+            }
+            set {
+                _currentStation = value;
+                RaisePropertyChanged("CurrentStation");
+            }
+        }
     }
 
     public class LatLonItem
@@ -258,7 +340,274 @@ namespace Donor.ViewModels
         public string longitude { get; set; }
     }
 
-    public class StationViewModel
+    public class YAStationItem : ViewModelBase
+    {
+        public YAStationItem()
+        {
+        }
+
+        /// <summary>
+        /// Название станции
+        /// </summary>
+        private string _name = "";
+        public string Name {
+            get
+            {
+                return _name;
+            }
+            set
+            {
+                _name = value;
+                RaisePropertyChanged("Name");
+            }
+        }
+        
+        private string _region_name = "";
+        /// <summary>
+        /// название региона
+        /// </summary>
+        public string Region_name {
+            get
+            {
+                return _region_name;
+            }
+            set
+            {
+                _region_name = value;
+                RaisePropertyChanged("Region_name");
+            }
+        }
+
+        private string _phone = "";
+        /// <summary>
+        /// телефон станции
+        /// </summary>
+        public string Phone {
+            get
+            {
+                return _phone;
+            }
+            set
+            {
+                _phone = value;
+                RaisePropertyChanged("Phone");
+            }
+        }
+
+        private string _district_name = "";
+        /// <summary>
+        /// название района
+        /// </summary>
+        public string District_name {
+            get
+            {
+                return _district_name;
+            }
+            set
+            {
+                _district_name = value;
+                RaisePropertyChanged("District_name");
+            }
+        }
+
+        private string _site = "";
+        /// <summary>
+        /// сайт станции
+        /// </summary>
+        public string Site {
+            get
+            {
+                return _site;
+            }
+            set
+            {
+                _site = value;
+                RaisePropertyChanged("Site");
+            }
+        }
+
+        private int _region_id = 0;
+        /// <summary>
+        /// идентификатор региона
+        /// </summary>
+        public int Region_id
+        {
+            get
+            {
+                return _region_id;
+            }
+            set
+            {
+                _region_id = value;
+                RaisePropertyChanged("Region_id");
+            }
+        }
+
+        private int _district_id = 0;
+        /// <summary>
+        /// идентификатор района
+        /// </summary>
+        public int District_id
+        {
+            get
+            {
+                return _district_id;
+            }
+            set
+            {
+                _district_id = value;
+                RaisePropertyChanged("District_id");
+            }
+        }
+
+        private string _address = "";
+        /// <summary>
+        /// Адрес станции переливания
+        /// </summary>
+        public string Address
+        {
+            get
+            {
+                return _address;
+            }
+            set
+            {
+                _address = value;
+                RaisePropertyChanged("Address");
+            }
+        }
+
+        private string _objectId = "";
+        /// <summary>
+        /// Идентификатор объекта станции
+        /// </summary>
+        public string ObjectId
+        {
+            get
+            {
+                return _objectId;
+            }
+            set
+            {
+                _objectId = value;
+                RaisePropertyChanged("ObjectId");
+            }
+        }
+
+        private string _email = "";
+        /// <summary>
+        /// Email станции переливания крови
+        /// </summary>
+        public string Email
+        {
+            get
+            {
+                return _email;
+            }
+            set
+            {
+                _email = value;
+                RaisePropertyChanged("Email");
+            }
+        }
+
+        private string _chief = "";
+        /// <summary>
+        /// руководитель станции переливания
+        /// </summary>
+        public string Chief
+        {
+            get
+            {
+                return _chief;
+            }
+            set
+            {
+                _chief = value;
+                RaisePropertyChanged("Chief");
+            }
+        }
+
+        private string _work_time = "";
+        /// <summary>
+        /// время работы станции
+        /// </summary>
+        public string Work_time
+        {
+            get
+            {
+                return _work_time;
+            }
+            set
+            {
+                _work_time = value;
+                RaisePropertyChanged("Work_time");
+            }
+        }
+
+        private string _town = "";
+        /// <summary>
+        /// город, в котором находится станция
+        /// </summary>
+        public string Town
+        {
+            get
+            {
+                return _town;
+            }
+            set
+            {
+                _town = value;
+                RaisePropertyChanged("Town");
+            }
+        }
+
+        private string _lat = "33";
+        public string Lat
+        {
+            get
+            {
+                return _lat;
+            }
+            set
+            {
+                _lat = value;
+                RaisePropertyChanged("Lat");
+            }
+        }
+
+        private string _lon = "30";
+        public string Lon
+        {
+            get
+            {
+                return _lon;
+            }
+            set
+            {
+                _lon = value;
+                RaisePropertyChanged("Lon");
+            }
+        }
+
+        public string Distance
+        {
+            get
+            {
+                double distanceInMeter;
+
+                GeoCoordinate currentLocation = new GeoCoordinate(Convert.ToDouble(ViewModelLocator.MainStatic.Stations.Latitued.ToString()), Convert.ToDouble(ViewModelLocator.MainStatic.Stations.Longitude.ToString()));
+                GeoCoordinate clientLocation = new GeoCoordinate(Convert.ToDouble(this.Lat.ToString()), Convert.ToDouble(this.Lon.ToString()));
+                distanceInMeter = currentLocation.GetDistanceTo(clientLocation);
+
+                return (Math.Round(distanceInMeter / 1000)).ToString();
+            }
+
+            private set { }
+        }
+    }
+
+    public class StationViewModel: ViewModelBase
     {
         public StationViewModel() {
         }
@@ -273,7 +622,7 @@ namespace Donor.ViewModels
                 return Char.ToLowerInvariant(_title[0]) + _title.Substring(1);
                 //return _title; 
             }
-            set { _title = value; }
+            set { _title = value; RaisePropertyChanged("Title"); }
         }
 
         //public ReviewsListViewModel Reviews { get; set; }
@@ -284,7 +633,7 @@ namespace Donor.ViewModels
         private string _city;
         public string City {
             get { return _city; }
-            set { _city = value; }
+            set { _city = value; RaisePropertyChanged("City"); }
         }
 
         /// <summary>
@@ -294,7 +643,7 @@ namespace Donor.ViewModels
         public string Adress
         {
             get { return _adress; }
-            set { _adress = value; }
+            set { _adress = value; RaisePropertyChanged("Adress"); }
         }
 
         private string _lat;
@@ -306,12 +655,8 @@ namespace Donor.ViewModels
             }
             set
             {
-                try
-                {
-                    
-                }
-                catch { };
                 _lat = value;
+                RaisePropertyChanged("Lat");
             }
         }
 
@@ -324,12 +669,8 @@ namespace Donor.ViewModels
             }
             set
             {
-                try
-                {
-                    
-                }
-                catch { };
                 _lon = value;
+                RaisePropertyChanged("Lon");
             }
         }
 
@@ -362,7 +703,7 @@ namespace Donor.ViewModels
         public string Url
         {
             get { return _url; }
-            set { _url = value; }
+            set { _url = value; RaisePropertyChanged("Url");  }
         }
 
         public string NidUrl
@@ -378,7 +719,7 @@ namespace Donor.ViewModels
         public string Description
         {
             get { return _description; }
-            set { _description = value; }
+            set { _description = value; RaisePropertyChanged("Description"); }
         }
 
         /// <summary>
@@ -388,7 +729,7 @@ namespace Donor.ViewModels
         public string Phone
         {
             get { return _phone; }
-            set { _phone = value; }
+            set { _phone = value; RaisePropertyChanged("Phone"); }
         }
 
         /// <summary>
@@ -408,7 +749,7 @@ namespace Donor.ViewModels
                 };
                 
             }
-            set { _bloodFor = value; }
+            set { _bloodFor = value; RaisePropertyChanged("BloodFor"); }
         }        
 
         /// <summary>
@@ -427,7 +768,7 @@ namespace Donor.ViewModels
                     return _receiptTime;
                 };
             }
-            set { _receiptTime = value; }
+            set { _receiptTime = value; RaisePropertyChanged("ReceiptTime"); }
         }
 
         /// <summary>
@@ -446,7 +787,7 @@ namespace Donor.ViewModels
                         return _transportation;
                     };
                 }
-            set { _transportation = value; }
+            set { _transportation = value; RaisePropertyChanged("Transportaion"); }
         }
 
         private string _objectId;
@@ -477,7 +818,7 @@ namespace Donor.ViewModels
         public bool RegionalRegistration
         {
             get { return _regionalRegistration; }
-            set { _regionalRegistration = value; }
+            set { _regionalRegistration = value; RaisePropertyChanged("RegionalRegistration"); }
         }
 
         public string RegionalRegistrationString
@@ -503,9 +844,7 @@ namespace Donor.ViewModels
     {
         public ARStation()
         {
-
         }
-
         public string Title { get; set; }
         public string Adress { get; set; }        
     }

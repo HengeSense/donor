@@ -21,34 +21,11 @@ namespace Donor
         public AdsPage()
         {
             InitializeComponent();
-
-            //FixedHtmlTextBlock item;
         }
-
-        private string _adsid_current;
-        private AdsViewModel _currentAds;
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
-            if (ViewModelLocator.MainStatic.Ads.CurrentAd!=null) {
-            /*if (this.NavigationContext.QueryString.ContainsKey("id"))
-            {
-                try
-                {
-                    string _newsid = this.NavigationContext.QueryString["id"];
-                    _adsid_current = _newsid;
-                    _currentAds = ViewModelLocator.MainStatic.Ads.Items.FirstOrDefault(c => c.ObjectId == _newsid.ToString());
-                    DataContext = _currentAds;
-                }
-                catch
-                {
-                    NavigationService.GoBack();
-                };*/
-            }
-            else
-            {
-                NavigationService.GoBack();
-            };
+            if (ViewModelLocator.MainStatic.Ads.CurrentAd!=null) {} else{NavigationService.GoBack();};
         }
 
         private void ShareButton_Click(object sender, System.EventArgs e)

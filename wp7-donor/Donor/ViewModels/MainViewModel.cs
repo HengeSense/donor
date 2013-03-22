@@ -47,7 +47,7 @@ namespace Donor
         {            
             News = new NewsListViewModel();
             Events = new EventsListViewModel();
-            Stations = new StationsLitViewModel();
+            Stations = new StationsListViewModel();
             Ads = new AdsListViewModel();
             User = new DonorUser();
             Reviews = new ReviewsListViewModel();
@@ -79,7 +79,7 @@ namespace Donor
             set
             {
                 _eventChanging = value;
-                NotifyPropertyChanged("EventChanging");
+                RaisePropertyChanged("EventChanging");
             }
         }
 
@@ -87,7 +87,7 @@ namespace Donor
         public NewsListViewModel News { get; set; }
         public AdsListViewModel Ads { get; set; }
         public EventsListViewModel Events { get; set; }
-        public StationsLitViewModel Stations { get; set; }
+        public StationsListViewModel Stations { get; set; }
         public DonorUser User { get; set; }
         public ContraListViewModel Contras { get; set; }
         public SettingsViewModel Settings { get; set; }
@@ -162,7 +162,7 @@ namespace Donor
                     
                     ViewModelLocator.MainStatic.Stations.LoadStations();
 
-                    this.NotifyPropertyChanged("Events");
+                    RaisePropertyChanged("Events");
                 });
 
                 Deployment.Current.Dispatcher.BeginInvoke(() =>
@@ -170,7 +170,7 @@ namespace Donor
                     ViewModelLocator.MainStatic.News.LoadNews();
                     ViewModelLocator.MainStatic.Ads.LoadAds();
                     ViewModelLocator.MainStatic.Contras.LoadContras();
-                    this.NotifyPropertyChanged("News");
+                    RaisePropertyChanged("News");
 
                     CreateApplicationTile(ViewModelLocator.MainStatic.Events.NearestEvents());
                 });            
@@ -353,7 +353,7 @@ namespace Donor
                     Deployment.Current.Dispatcher.BeginInvoke(() =>
                     {
                         this.Events.Items = eventslist1;
-                        this.NotifyPropertyChanged("Events");
+                        RaisePropertyChanged("Events");
 
                         this.Events.UpdateItems();
                     });
@@ -372,8 +372,8 @@ namespace Donor
                         eventslist1 = JsonConvert.DeserializeObject<ObservableCollection<EventViewModel>>(json);
 
                             this.Events.Items = eventslist1;
-                        
-                        this.NotifyPropertyChanged("Events");
+
+                            RaisePropertyChanged("Events");
 
                         this.Events.UpdateItems();
                     });
@@ -385,7 +385,7 @@ namespace Donor
                     Deployment.Current.Dispatcher.BeginInvoke(() =>
                     {
                         this.News.Items = newslist1;
-                        this.NotifyPropertyChanged("News");
+                        RaisePropertyChanged("News");
                     });
                 }
                 catch //(System.IO.FileNotFoundException)
@@ -393,7 +393,7 @@ namespace Donor
                     Deployment.Current.Dispatcher.BeginInvoke(() =>
                     {
                         this.News.Items = new ObservableCollection<NewsViewModel>();
-                        this.NotifyPropertyChanged("News");
+                        RaisePropertyChanged("News");
                     });
                 };
 
@@ -404,7 +404,7 @@ namespace Donor
                     Deployment.Current.Dispatcher.BeginInvoke(() =>
                     {
                         this.Ads.Items = adslist1;
-                        this.NotifyPropertyChanged("Ads");
+                        RaisePropertyChanged("Ads");
                     });
                 }
                 catch //(System.IO.FileNotFoundException)
@@ -412,7 +412,7 @@ namespace Donor
                     Deployment.Current.Dispatcher.BeginInvoke(() =>
                     {
                         this.Ads.Items = new ObservableCollection<AdsViewModel>();
-                        this.NotifyPropertyChanged("Ads");
+                        RaisePropertyChanged("Ads");
                     });
                 };
 
@@ -467,17 +467,6 @@ namespace Donor
                 shareLinkTask.LinkUri = new Uri(link, UriKind.Absolute);
                 shareLinkTask.Show();
             };
-        }
-
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        private void NotifyPropertyChanged(String propertyName)
-        {
-            PropertyChangedEventHandler handler = PropertyChanged;
-            if (null != handler)
-            {
-                handler(this, new PropertyChangedEventArgs(propertyName));
-            }
         }
     }
 }

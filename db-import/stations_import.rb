@@ -1,52 +1,96 @@
-# encoding: utf-8
-require 'parse-ruby-client'
-require 'mysql2'
+#!/usr/bin/ruby
+#encoding: utf-8
+
 require 'uri'
-require 'json'
+require 'net/http'
+require 'parse-ruby-client'
+require 'nokogiri'
+require 'mechanize'
+require 'open-uri'
 
-HOST ='localhost'
-USERNAME ='root'
-PASSWORD ='56608366oz'
-DATABASE ='donor'
+begin
+	Parse.init :application_id => "EIpakVdZblHedhqgxMgiEVnIGCRGvWdy9v8gkKZu",
+            	:api_key        => "wPvwRKxX2b2vyrRprFwIbaE5t3kyDQq11APZ0qXf"
 
+	#station.save
 
-Parse.init :application_id => "EIpakVdZblHedhqgxMgiEVnIGCRGvWdy9v8gkKZu",:api_key => "wPvwRKxX2b2vyrRprFwIbaE5t3kyDQq11APZ0qXf"
-                  
-con = Mysql2::Client.new(:host=>HOST, :username=>USERNAME, 
-      :password=>PASSWORD, :database=>DATABASE)
- 
-  station_items = con.query("SELECT n.*, nr.*, a.field_address_value, e.field_email_email, m.field_metro_value, reg.field_attention_value, p.field_phone_value, geo.field_place_openlayers_wkt, web.field_website_url 
-  FROM node as n
-  LEFT JOIN node_revisions as nr ON (nr.nid=n.nid AND n.vid=nr.vid)
-  LEFT JOIN content_field_address as a ON (a.nid=n.nid AND n.vid=a.vid)
-  LEFT JOIN content_field_email as e ON (e.nid=n.nid AND n.vid=e.vid)
-  LEFT JOIN content_field_metro as m ON (m.nid=n.nid AND n.vid=m.vid)
-  LEFT JOIN content_field_phone as p ON (p.nid=n.nid AND n.vid=p.vid) 
-  LEFT JOIN content_field_website as web ON (web.nid=n.nid AND n.vid=web.vid)   
-  LEFT JOIN content_field_place as geo ON (geo.nid=n.nid AND n.vid=geo.vid)    
-  LEFT JOIN content_type_hemotransfusion_station as reg ON (reg.nid=n.nid AND n.vid=reg.vid)
-  WHERE n.type='hemotransfusion_station' OR n.type='clinic'");    
-   
-  station_items.each do |row|     
-      station = Parse::Object.new "Stations"
-      station["title"]                      = row["title"].to_s
-      station["description"]                = row["body"].to_s
-      station["adress"]                     = row["field_address_value"].to_s
-      station["email"]                      = row["field_email_email"].to_s
-      station["transportation"]             = row["field_metro_value"].to_s
-      station["regionalRegistrationText"]   = row["field_attention_value"].to_s      
-      station["phone"]                      = row["field_phone_value"].to_s
-      
-      latlonstr = row["field_place_openlayers_wkt"].to_s.gsub("GEOMETRYCOLLECTION(POINT(","").gsub("))","")      
-      latlon = latlonstr.split
-      
-      station["latlon"] = JSON.parse("{\"__type\": \"GeoPoint\", \"latitude\": "+latlon[1]+",       \"longitude\": "+latlon[0]+" }")
-      
-      station["city"] = 'Москва'
-      station["created"]                    = Time.at(row["timestamp"]).iso8601
-      station["nid"]                        = row["nid"]
+	agent = Mechanize.new
+	page = agent.get "http://yadonor.ru/ru/service/where"
+	#get list of all regions and links to pages with stations data
+	page.search('div.main_block_map_full_list_regions a').each do |link|
+  		#puts link.content
+  		current_region_name = link.content
+  		current_region_link = "http://yadonor.ru"+link['href'].to_s
+  		region_page = agent.get current_region_link
+  		current_region_id = region_page.search("select[@name=\"id_region\"] option[@selected=\"selected\"]").first["value"].to_s
+  		#puts current_region_id
+  		region_page.search('.section div.list td').each do |station_html|
+  			#doc = Nokogiri::HTML.parse(station_html.to_s)
+  			#puts station_html.to_s
+  			count = region_page.search('.section div.list td a').count
+  			puts count
+  			for i in 0..(count-1)
+  				begin
+  					station = Parse::Object.new "YAStations"
+  					next_class = station_html.search('a')[i].next.next["class"].to_s
+  					if (next_class=="div_a1")
+						station["name"] = station_html.search('a')[i].content.to_s
+						other_content = station_html.search('a')[i].next.next.children
+						#puts station_html.search('a')[i].content.to_s
+						district_next = false
+						town_next = false
+						other_content.each do |item|
+							#puts item.to_s
+							if district_next
+								district_next = false
+								station["district_name"] = item.content.to_s.strip
+								region_page.search("select[@name=\"id_district\"] option").each do |district_item|
+									if district_item.content.strip==station["district_name"]
+										station["district_id"] = district_item["value"].to_i
+									end
+								end
+							end
+							if town_next
+								town_next = false
+								station["town"] = item.content.to_s.strip
+							end
 
-      puts row["nid"].to_s+" "
-      station.save
-  end
+							if (item.to_s.strip.include? "Район:") 
+								district_next = true
+							end
+							if (item.to_s.strip.include? "Город:") 
+								town_next = true
+							end
 
+							if (item.to_s.strip.include? "Адрес:") 
+								station["address"] = item.to_s.strip.gsub("Адрес:","").strip
+							end
+							if (item.to_s.strip.include? "Телефон:") 
+								station["phone"] = item.to_s.strip.gsub("Телефон:","").strip
+							end
+							if (item.to_s.strip.include? "Время работы:") 
+								station["work_time"] = item.to_s.strip.gsub("Время работы:","").strip
+							end
+							if (item.to_s.strip.include? "Руководитель:") 
+								station["chief"] = item.to_s.strip.gsub("Руководитель:","").strip
+							end
+							if (item.to_s.strip.include? "Email:") 
+								station["email"] = item.to_s.strip.gsub("Email:","").strip
+							end
+							if (item.to_s.strip.include? "Сайт:") 
+								station["site"] = item.to_s.strip.gsub("Сайт:","").strip
+							end
+						end
+						station["region_name"] = current_region_name
+						station["region_id"] = current_region_id.to_i
+						#puts station.to_s
+						puts station.save
+					end
+				rescue
+				end
+  			end
+  			break
+  		end
+  		#break
+	end
+end
