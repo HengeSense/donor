@@ -14,6 +14,8 @@
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480"
     DataContext="{Binding Main, Source={StaticResource Locator}}" 
+    xmlns:telerikData="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Data"
+    xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives"
     shell:SystemTray.IsVisible="False" Loaded="PhoneApplicationPage_Loaded">
 
     <!--LayoutRoot is the root grid where all page content is placed-->
@@ -74,15 +76,16 @@
 		Grid.Row="1" Margin="0,0,0,0">
             <TextBlock Text="{Binding NoStations, Source={StaticResource Loc}}" 
                        Foreground="#FF847168" Name="Noresults" TextWrapping="Wrap"
-                       Margin="10,5,10,0" Visibility="Collapsed"/>            
-        <ListBox 
+                       Margin="10,5,10,0" Visibility="Collapsed"/>
+            
+        <telerikData:RadJumpList 
 		VerticalAlignment="Top"
 		Margin="0,0,0,0"
 		Name="StationsList" 
         ItemsSource="{Binding Stations.DistanceItems}"
         DataContext="{Binding Main, Source={StaticResource Locator}}" 
-		Tap="StationsList_Tap">
-            <ListBox.ItemTemplate>
+		Tap="StationsList_Tap" ItemTap="StationsList_ItemTap">
+            <telerikData:RadJumpList.ItemTemplate>
                 <DataTemplate>
                 		<Border BorderThickness="0,0,0,1" 
 						BorderBrush="#FF0A6066">
@@ -121,14 +124,14 @@
                         </StackPanel>
 						</Border>
                 </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
+                </telerikData:RadJumpList.ItemTemplate>
+            </telerikData:RadJumpList>
         </Grid>
 
         <WPExtensions:AdvancedApplicationBar Name="AppBar" Background="#FF211E1D" BackgroundColor="#FF211E1D" Foreground="White" BorderBrush="#FF211E1D" ForegroundColor="White" OpacityMask="White"
 		IsVisible="True" IsMenuEnabled="True">
-            <WPExtensions:AdvancedApplicationBarIconButton IconUri="/icons/ic_ApplicationBar_map.png" Name="MapButton" Text="{Binding OnMap, Source={StaticResource Loc}}" Visibility="Visible" Click="MapButton_Click" />
-            <WPExtensions:AdvancedApplicationBarIconButton IconUri="/icons/ic_ApplicationBar_item.png" Name="FilterButton" Text="{Binding Filter, Source={StaticResource Loc}}" Visibility="Visible" Click="ApplicationBarIconButton_Click" />
+            <!--<WPExtensions:AdvancedApplicationBarIconButton IconUri="/icons/ic_ApplicationBar_map.png" Name="MapButton" Text="{Binding OnMap, Source={StaticResource Loc}}" Visibility="Visible" Click="MapButton_Click" />
+            <WPExtensions:AdvancedApplicationBarIconButton IconUri="/icons/ic_ApplicationBar_item.png" Name="FilterButton" Text="{Binding Filter, Source={StaticResource Loc}}" Visibility="Visible" Click="ApplicationBarIconButton_Click" />-->
         </WPExtensions:AdvancedApplicationBar>
     </Grid>
 

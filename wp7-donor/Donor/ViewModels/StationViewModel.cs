@@ -127,7 +127,7 @@ namespace Donor.ViewModels
             bw.DoWork += delegate
             {
             var client = new RestClient("https://api.parse.com");
-            var request = new RestRequest("1/classes/YAStations", Method.GET);
+            var request = new RestRequest("1/classes/YAStations?limit=1000", Method.GET);
             request.Parameters.Clear();
 
             request.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);

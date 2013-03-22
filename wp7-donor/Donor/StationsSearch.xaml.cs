@@ -11,6 +11,9 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using Donor.ViewModels;
+using Telerik.Windows.Data;
+using Microsoft.Phone.Net.NetworkInformation;
+using Telerik.Windows.Controls;
 
 namespace Donor
 {
@@ -23,7 +26,15 @@ namespace Donor
             this.StationsSearchText.ItemsSource = ViewModelLocator.MainStatic.Stations.DistanceItems;
             this.StationsSearchText.FilterMode = AutoCompleteFilterMode.Contains;
             this.StationsSearchText.ItemFilter += SearchBank;
+
+            this.StationsList.GroupDescriptors.Add(GroupedBadgesList);
+            //Sort.SortMode 
+            this.StationsList.SortDescriptors.Add(Sort);
         }
+
+        public GenericGroupDescriptor<YAStationItem, string> GroupedBadgesList = new GenericGroupDescriptor<YAStationItem, string>(item => item.Region_name);
+        public GenericSortDescriptor<YAStationItem, String> Sort = new GenericSortDescriptor<YAStationItem, String>(item => item.Name);
+
         //custom filter
         bool CustomFilter(string search, string value)
         {
@@ -60,14 +71,14 @@ namespace Donor
 
         private void ShowNoResults()
         {
-            if (this.StationsList.Items.Count() > 0)
+            /*if (this.StationsList.Items.Count() > 0)
             {
                 this.Noresults.Visibility = Visibility.Collapsed;
             }
             else
             {
                 this.Noresults.Visibility = Visibility.Visible;
-            };
+            };*/
         }
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
@@ -235,6 +246,18 @@ namespace Donor
         private void StationsSearchText_TextChanged(object sender, RoutedEventArgs e)
         {
             FilterStationsList();
+        }
+
+        private void StationsList_ItemTap(object sender, Telerik.Windows.Controls.ListBoxItemTapEventArgs e)
+        {
+            try
+            {
+                ViewModelLocator.MainStatic.Stations.CurrentStation = ((sender as RadJumpList).SelectedItem as YAStationItem);
+                NavigationService.Navigate(new Uri("/StationPage.xaml", UriKind.Relative));
+            }
+            catch
+            {
+            }
         }
 
     }
