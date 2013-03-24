@@ -65,13 +65,43 @@ namespace Donor.ViewModels
                     Longitude = e.Position.Location.Longitude;
 
                     _getCoordinates = true;
+                    GetPlaceInfo(Latitued, Longitude);
                 };
             }
             else
             {
                 Latitued = 55.45;
-                Longitude = 37.36;
+                Longitude = 37.36;                
             };
+            
+        }
+
+        public string CurrentState = "";
+
+        /// <summary>
+        /// Получаем информацию по координатам о местонахождении пользователя
+        /// </summary>
+        /// <param name="lat"></param>
+        /// <param name="lon"></param>
+        public void GetPlaceInfo(double lat, double lon)
+        {
+            ///reverse?format=json&lat=58.17&lon=38.6&zoom=18&addressdetails=1
+            var client = new RestClient("http://nominatim.openstreetmap.org");
+            var request = new RestRequest("reverse?format=json&zoom=18&addressdetails=1&lat=" + lat.ToString() + "&lon=38.6" + lon.ToString(), Method.GET);
+            request.Parameters.Clear();
+            client.ExecuteAsync(request, response =>
+            {
+                try
+                {                    
+                    JObject o = JObject.Parse(response.Content.ToString());
+                    string state = o["address"]["state"].ToString();
+                    CurrentState = state;
+                }
+                catch
+                {
+                };
+
+            });
         }
 
         public double Latitued, Longitude; 
@@ -135,8 +165,8 @@ namespace Donor.ViewModels
 
             client.ExecuteAsync(request, response =>
             {
-                //try
-                //{
+                try
+                {
                     ObservableCollection<YAStationItem> eventslist1 = new ObservableCollection<YAStationItem>();
                     JObject o = JObject.Parse(response.Content.ToString());
                     eventslist1 = JsonConvert.DeserializeObject<ObservableCollection<YAStationItem>>(o["results"].ToString());
@@ -152,10 +182,10 @@ namespace Donor.ViewModels
                             RaisePropertyChanged("Items");
                         });                       
                     
-                //}
-                //catch
-                //{
-                //};
+                }
+                catch
+                {
+                };
                 
             });
             };
@@ -306,9 +336,18 @@ namespace Donor.ViewModels
         {
             get
             {
-                List<YAStationItem> distance = (from station in this.Items
+                List<YAStationItem> distance = (from station in Items
+                        where station.Region_name.ToLower() == CurrentState.ToLower()
                         orderby station.Distance ascending
                         select station).ToList();
+                List<YAStationItem> distance2 = new List<YAStationItem>();
+                /*foreach (var station in distance)
+                {
+                    if (station.Region_name == CurrentState)
+                    {
+                        distance2.Add(station);
+                    };
+                };*/
                 return distance;
             }
             private set { }
@@ -369,7 +408,7 @@ namespace Donor.ViewModels
         public string Region_name {
             get
             {
-                return _region_name;
+                return _region_name.Trim();
             }
             set
             {
