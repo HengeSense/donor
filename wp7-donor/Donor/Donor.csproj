@@ -71,7 +71,7 @@
       <HintPath>..\packages\Coding4Fun.Phone.Storage.1.6.1\lib\sl4-windowsphone71\Coding4Fun.Phone.Storage.dll</HintPath>
     </Reference>
     <Reference Include="Facebook, Version=6.0.10.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Facebook.6.1.4\lib\wp71\Facebook.dll</HintPath>
+      <HintPath>..\packages\Facebook.6.4.0\lib\wp71\Facebook.dll</HintPath>
     </Reference>
     <Reference Include="FlurryWP7SDK">
       <HintPath>..\packages\Flurry WindowsPhone SDK v2.0.4\FlurryWP7SDK.dll</HintPath>
@@ -92,16 +92,17 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\MSPToolkit.1.7.26.1\lib\sl4-wp71\MSPToolkit.dll</HintPath>
     </Reference>
-    <Reference Include="MyToolkit, Version=1.10.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\MyToolkit.1.10.0\lib\sl4-wp71\MyToolkit.dll</HintPath>
+    <Reference Include="MyToolkit">
+      <HintPath>..\packages\MyToolkit.1.13.0\lib\sl4-wp71\MyToolkit.dll</HintPath>
     </Reference>
-    <Reference Include="MyToolkit.Extended, Version=1.10.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\MyToolkit.Extended.1.10.0\lib\sl4-wp71\MyToolkit.Extended.dll</HintPath>
+    <Reference Include="MyToolkit.Extended">
+      <HintPath>..\packages\MyToolkit.Extended.1.13.0\lib\sl4-wp71\MyToolkit.Extended.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+    <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\sl4-windowsphone71\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Parse">
+      <HintPath>..\packages\parse.0.4.2\lib\Parse.dll</HintPath>
     </Reference>
     <Reference Include="Phone.Controls, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="RestSharp.WindowsPhone, Version=104.1.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -167,6 +168,7 @@
       <DependentUpon>VotesControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="GenericSortDescriptor.cs" />
+    <Compile Include="libs\Converters.cs" />
     <Compile Include="StationPage.xaml.cs">
       <DependentUpon>StationPage.xaml</DependentUpon>
     </Compile>

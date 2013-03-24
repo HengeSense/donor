@@ -13,6 +13,7 @@
 
         <!--Application Resources-->
     <Application.Resources>
+        <my:StringConverter x:Key="StringConverter"/>
         <vm:ViewModelLocator x:Key="Locator"/>
         <local:LocalizedStrings xmlns:local="clr-namespace:Donor" x:Key="LocalizedStrings" />
         <!--<vm:ViewModelLocator xmlns:vm="clr-namespace:Donor.ViewModels" x:Key="Locator" />-->
