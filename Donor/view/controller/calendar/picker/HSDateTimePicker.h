@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 Hint Solutions. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "HSPickerCommon.h"
 #import "HSModalViewController.h"
 
 /**
@@ -30,15 +30,15 @@
  * @param completion block of code, invoked before view will completely disapeared
  */
 - (void)showWithStartDate: (NSDate *)startDate endDate: (NSDate *)endDate currentDate: (NSDate *) currentDate
-               completion: (void(^)(BOOL isDone))completion;
+               completion: (HSPickerCompletion)completion;
 
 /**
- * If user taps button "Готово", bloodDonationType property will change it's value.
+ * If user taps button "Готово", selectedDate property will change it's value.
  */
 - (IBAction)doneButtonClicked: (id)sender;
 
 /**
- * If user taps button "Отмена", bloodDonationType property will not change it's value.
+ * If user taps button "Отмена", selectedDate property will not change it's value.
  */
 - (IBAction)cancelButtonClicked: (id)sender;
 

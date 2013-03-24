@@ -23,9 +23,15 @@ extern NSString * const kLocalNotificationUserInfoKey_ClassName;
  * Defines a date when user will be notified.
  * This property is used in [self scheduleReminderLocalNotificationAtDate:] in case
  *     if localNotificationFireDate parameter is nil.
- * This property can also be nil. In this case correspond methods use default values for fireDate.
+ * This property can also be nil. In this case local notification won't be scheduled.
  */
 @property (nonatomic, strong) NSDate *reminderFireDate;
+
+/**
+ * Defines time interval between [self scheduleDate] and [self reminderFireDate].
+ */
+@property (nonatomic, assign, readonly) NSTimeInterval reminderTimeShift;
+
 
 /// @name Public methods.
 

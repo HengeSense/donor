@@ -159,7 +159,9 @@
 
 #pragma mark - HSCalendarEventNotificationHandler protocol implementation
 - (void)handleNotificationWithEvent:(HSNotificationEvent *)notificationEvent {
-    if ([notificationEvent isKindOfClass:[HSBloodRemoteEvent class]]) {
+    NSDate *now = [NSDate date];
+    if ([notificationEvent isKindOfClass:[HSBloodRemoteEvent class]] &&
+        [notificationEvent.scheduleDate.timeIntervalSince1970 > now.timeIntervalSince1970) {
         NSArray *bloodRemoteEvents = [self.calendarModel eventsForDay:notificationEvent.scheduleDate];
         if ([bloodRemoteEvents containsObject:notificationEvent]) {
             [HSAlertViewController showWithTitle:@"" message:@"Вы сдавали сегодня кровь?"

@@ -11,6 +11,7 @@
 #import "HSDateTimePicker.h"
 #import "HSAddressPicker.h"
 #import "HSAlertViewController.h"
+#import "HSRemindDatePicker.h"
 
 #import "NSDate+HSCalendar.h"
 #import "UIView+HSLayoutManager.h"
@@ -75,7 +76,6 @@ static const NSUInteger kCommentsTextViewSymbolsMax = 260;
  */
 @property (nonatomic, weak) HSBloodRemoteEvent *currentOriginalEvent;
 
-
 /**
  * Handles initial date, used for creating new event.
  */
@@ -116,6 +116,10 @@ static const NSUInteger kCommentsTextViewSymbolsMax = 260;
  */
 @property (nonatomic, strong) HSAddressPicker *addressPicker;
 
+/**
+ * View controller for selecting reminder date interval.
+ */
+@property (nonatomic, strong) HSRemindDatePicker *reminderDatePicker;
 
 /**
  * Initialises HSEventPlanningViewController to edit existing blood donation event and blood test event.
@@ -288,6 +292,8 @@ static const NSUInteger kCommentsTextViewSymbolsMax = 260;
                                                                                bundle: nil];
     self.dateTimePicker = [[HSDateTimePicker alloc] initWithNibName: @"HSDateTimePicker" bundle: nil];
     self.addressPicker = [[HSAddressPicker alloc] initWithNibName: @"HSAddressPicker" bundle: nil];
+    self.reminderDatePicker = [[HSRemindDatePicker alloc] initWithNibName:NSStringFromClass([HSRemindDatePicker class])
+                                                                   bundle:nil];
     
     [self.removeRemoteEventButton setBackgroundImage: [UIImage imageNamed: @"delete_mark_active.png"]
                                             forState: UIControlStateNormal];
@@ -304,9 +310,6 @@ static const NSUInteger kCommentsTextViewSymbolsMax = 260;
             self.bloodTestsEvent = [[HSBloodTestsEvent alloc] init];
             self.bloodTestsEvent.scheduleDate = [self.initialDate dateMovedToHour: kEventDefaultTimeHour
                                                                             minute: kEventDefaultTimeMinute];
-            self.bloodTestsEvent.reminderFireDate =
-                    [[self.initialDate dayBefore] dateMovedToHour:kEventLocalNotificationReminderTimeDefault_Hour
-                                                           minute:kEventLocalNotificationReminderTimeDefault_Minute];
         }
     } else if (self.bloodTestsEvent != nil) {
         [self configureViewForEditingBloodTestEvent];
@@ -318,17 +321,11 @@ static const NSUInteger kCommentsTextViewSymbolsMax = 260;
         self.bloodDonationEvent = [[HSBloodDonationEvent alloc] init];
         self.bloodDonationEvent.scheduleDate = [self.initialDate dateMovedToHour: kEventDefaultTimeHour
                                                                            minute: kEventDefaultTimeMinute];
-        self.bloodDonationEvent.reminderFireDate =
-                [[self.initialDate dayBefore] dateMovedToHour:kEventLocalNotificationReminderTimeDefault_Hour
-                                                       minute:kEventLocalNotificationReminderTimeDefault_Minute];
 
         self.bloodDonationEvent.bloodDonationType = HSBloodDonationType_Blood;
         self.bloodTestsEvent = [[HSBloodTestsEvent alloc] init];
         self.bloodTestsEvent.scheduleDate = [self.initialDate dateMovedToHour: kEventDefaultTimeHour
                                                                         minute: kEventDefaultTimeMinute];
-        self.bloodTestsEvent.reminderFireDate =
-                [[self.initialDate dayBefore] dateMovedToHour:kEventLocalNotificationReminderTimeDefault_Hour
-                                                       minute:kEventLocalNotificationReminderTimeDefault_Minute];
 
         [self configureViewForEditingBloodDonationEvent];
     }
@@ -414,8 +411,8 @@ static const NSUInteger kCommentsTextViewSymbolsMax = 260;
     self.addressPicker.selectedAddress = self.currentEditedEvent.labAddress;
     [self.addressPicker showWithCompletion: ^(BOOL isDone) {
         if (isDone) {
-            self.bloodDonationCenterAddressLabel.text = self.addressPicker.selectedAddress;
             self.currentEditedEvent.labAddress = self.addressPicker.selectedAddress;
+            [self updateUIComponents];
         }
     }];
 }
@@ -428,23 +425,22 @@ static const NSUInteger kCommentsTextViewSymbolsMax = 260;
     {
         if (isDone) {
             self.currentEditedEvent.scheduleDate = self.dateTimePicker.selectedDate;
-            [self updateReminderFireDate];
-            self.bloodDonationEventDateLabel.text = [self.currentEditedEvent formatedScheduleDate];
+            [self updateUIComponents];
         }
     }];
 }
 
 - (IBAction)selectBloodDonationReminderDate:(id)sender {
-    NSDate *startDate = [[self.currentEditedEvent.scheduleDate dayBefore] dateMovedToHour:00 minute:00];
-    NSDate *endDate = [startDate dateMovedToHour:23 minute:59];
-    [self.dateTimePicker showWithStartDate: startDate endDate: endDate
-                               currentDate: self.currentEditedEvent.reminderFireDate completion: ^(BOOL isDone)
-     {
-         if (isDone) {
-             self.currentEditedEvent.reminderFireDate = self.dateTimePicker.selectedDate;
-             self.bloodDonationEventReminderDateLabel.text = [self.currentEditedEvent formattedReminderFireDate];
-         }
-     }];
+    [self.reminderDatePicker showWithInitialReminderTimeInterval:[self.currentEditedEvent reminderTimeShift]
+            completion: ^(BOOL isDone)
+    {
+        if (isDone) {
+            NSTimeInterval reminderTimeShift = self.reminderDatePicker.reminderTimeShift;
+            self.currentEditedEvent.reminderFireDate = reminderTimeShift > 0 ?
+                    [self.currentEditedEvent.scheduleDate dateByAddingTimeInterval:-reminderTimeShift] : nil;
+            [self updateUIComponents];
+        }
+    }];
 }
 
 #pragma mark - UI delegation protocols implementation
@@ -468,9 +464,10 @@ static const NSUInteger kCommentsTextViewSymbolsMax = 260;
         [NSException exceptionWithName: NSInternalInconsistencyException
                 reason: @"bloodDonationEvent property is not defined" userInfo: nil];
     }
+    self.currentEditedEvent = self.bloodDonationEvent;
+    self.currentOriginalEvent = self.originalBloodDonationEvent;
+    
     self.bloodDonationEventTypeLabel.text = kBloodDonationEventTypeLabel_Donation;
-    self.bloodDonationEventDateLabel.text = [self.bloodDonationEvent formatedScheduleDate];
-    self.bloodDonationEventReminderDateLabel.text = [self.bloodDonationEvent formattedReminderFireDate];
     self.bloodDonationTypeLabel.text = bloodDonationTypeToString(self.bloodDonationEvent.bloodDonationType);
     if (self.bloodDonationTypeView.isHidden || self.bloodDonationTypeView.alpha <= 0.0f) {
         [UIView animateWithDuration: kViewMovementDuration animations:^{
@@ -479,10 +476,7 @@ static const NSUInteger kCommentsTextViewSymbolsMax = 260;
         }];
         self.currentViewMode = HSEventPlanningViewControllerMode_BloodDonation;
     }
-    self.currentEditedEvent = self.bloodDonationEvent;
-    self.currentOriginalEvent = self.originalBloodDonationEvent;
-    self.commentsTextView.text = self.currentEditedEvent.comments;
-    self.bloodDonationCenterAddressLabel.text = self.currentEditedEvent.labAddress;
+    [self updateUIComponents];
 }
 
 - (void)configureViewForEditingBloodTestEvent {
@@ -490,9 +484,10 @@ static const NSUInteger kCommentsTextViewSymbolsMax = 260;
         [NSException exceptionWithName: NSInternalInconsistencyException
                                 reason: @"bloodTestEvent property is not defined" userInfo: nil];
     }
+    self.currentEditedEvent = self.bloodTestsEvent;
+    self.currentOriginalEvent = self.originalBloodTestsEvent;
+
     self.bloodDonationEventTypeLabel.text = kBloodDonationEventTypeLabel_Test;
-    self.bloodDonationEventDateLabel.text = [self.bloodTestsEvent formatedScheduleDate];
-    self.bloodDonationEventReminderDateLabel.text = [self.bloodTestsEvent formattedReminderFireDate];
     if (!self.bloodDonationTypeView.isHidden || self.bloodDonationTypeView.alpha >= 1.0) {
         [UIView animateWithDuration: kViewMovementDuration animations:^{
             CGRect currentBloodDonationTypeFrame = self.bloodDonationTypeView.frame;
@@ -506,10 +501,8 @@ static const NSUInteger kCommentsTextViewSymbolsMax = 260;
         }];
         self.currentViewMode = HSEventPlanningViewControllerMode_BloodTest;
     }
-    self.currentEditedEvent = self.bloodTestsEvent;
-    self.currentOriginalEvent = self.originalBloodTestsEvent;
-    self.commentsTextView.text = self.currentEditedEvent.comments;
-    self.bloodDonationCenterAddressLabel.text = self.currentEditedEvent.labAddress;
+    [self updateUIComponents];
+
 }
 
 #pragma mark - Private UI utility methods
@@ -555,8 +548,13 @@ static const NSUInteger kCommentsTextViewSymbolsMax = 260;
     }];
 }
 
-- (void)updateReminderFireDate {
-    self.bloodDonationEventReminderDateLabel.text = [self.currentEditedEvent formattedReminderFireDate];
+- (void)updateUIComponents {
+    self.commentsTextView.text = self.currentEditedEvent.comments;
+    self.bloodDonationCenterAddressLabel.text = self.currentEditedEvent.labAddress;
+    self.bloodDonationEventDateLabel.text = [self.currentEditedEvent formatedScheduleDate];
+
+    self.bloodDonationEventReminderDateLabel.text =
+            [HSRemindDatePicker stringFromReminderTimeShift:self.currentEditedEvent.reminderTimeShift];
 }
 
 

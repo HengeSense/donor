@@ -20,6 +20,12 @@ static NSString * const kLocalNotificationUserInfoKey_IsConfirmation = @"isConfi
 #pragma mark - KVC constatnts
 static NSString * const kObservingKey_ScheduleDate = @"scheduleDate";
 
+@interface HSNotificationEvent ()
+
+@property (nonatomic, assign) NSTimeInterval reminderTimeShift;
+
+@end
+
 @implementation HSNotificationEvent
 
 @synthesize reminderFireDate = _reminderFireDate;
@@ -42,6 +48,12 @@ static NSString * const kObservingKey_ScheduleDate = @"scheduleDate";
         self.reminderFireDate = [self defineReminderFireDate];
     }
     return _reminderFireDate;
+}
+
+- (void)setReminderFireDate:(NSDate *)reminderFireDate {
+    _reminderFireDate = reminderFireDate;
+     self.reminderTimeShift = reminderFireDate != nil ?
+            self.reminderTimeShift = [self.scheduleDate timeIntervalSinceDate:reminderFireDate] : -DBL_MAX;
 }
 
 
@@ -145,8 +157,7 @@ static NSString * const kObservingKey_ScheduleDate = @"scheduleDate";
 
 - (void)updateReminderFireDate {
     if (self.reminderFireDate != nil) {
-        self.reminderFireDate = [[self.scheduleDate dayBefore] dateMovedToHour:[self.reminderFireDate hour]
-                                                                        minute:[self.reminderFireDate minute]];
+        self.reminderFireDate = [self.scheduleDate dateByAddingTimeInterval:-self.reminderTimeShift];
     } else {
         self.reminderFireDate = [self reminderFireDateDefault];
     }

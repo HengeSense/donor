@@ -207,6 +207,8 @@
 		687A430B16F5E54500958347 /* libOCMock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 687A42FA16F5CEFC00958347 /* libOCMock.a */; };
 		687A431516F629B900958347 /* Swizzler.m in Sources */ = {isa = PBXBuildFile; fileRef = 687A431416F629B900958347 /* Swizzler.m */; };
 		687A431816F62D2300958347 /* HSBloodRemoteEventMoc.m in Sources */ = {isa = PBXBuildFile; fileRef = 687A431716F62D2300958347 /* HSBloodRemoteEventMoc.m */; };
+		687A437416F97EEA00958347 /* HSRemindDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 687A437216F97EE900958347 /* HSRemindDatePicker.m */; };
+		687A437516F97EEA00958347 /* HSRemindDatePicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 687A437316F97EEA00958347 /* HSRemindDatePicker.xib */; };
 		687E58F916AD5CE2009D0A8F /* Appirater.m in Sources */ = {isa = PBXBuildFile; fileRef = 687E58DE16AD5CE2009D0A8F /* Appirater.m */; };
 		687E58FA16AD5CE2009D0A8F /* AppiraterLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 687E58E016AD5CE2009D0A8F /* AppiraterLocalizable.strings */; };
 		687EFE271625F6B3005CE7D6 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 687EFE231625F6B3005CE7D6 /* Icon-72.png */; };
@@ -801,6 +803,9 @@
 		687A431416F629B900958347 /* Swizzler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Swizzler.m; sourceTree = "<group>"; };
 		687A431616F62D2300958347 /* HSBloodRemoteEventMoc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSBloodRemoteEventMoc.h; sourceTree = "<group>"; };
 		687A431716F62D2300958347 /* HSBloodRemoteEventMoc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSBloodRemoteEventMoc.m; sourceTree = "<group>"; };
+		687A437116F97EE900958347 /* HSRemindDatePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSRemindDatePicker.h; sourceTree = "<group>"; };
+		687A437216F97EE900958347 /* HSRemindDatePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSRemindDatePicker.m; sourceTree = "<group>"; };
+		687A437316F97EEA00958347 /* HSRemindDatePicker.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HSRemindDatePicker.xib; sourceTree = "<group>"; };
 		687E58DD16AD5CE2009D0A8F /* Appirater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Appirater.h; sourceTree = "<group>"; };
 		687E58DE16AD5CE2009D0A8F /* Appirater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Appirater.m; sourceTree = "<group>"; };
 		687E58DF16AD5CE2009D0A8F /* AppiraterDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppiraterDelegate.h; sourceTree = "<group>"; };
@@ -1046,6 +1051,7 @@
 		68D6CD9316DD351800972D41 /* HSContactView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HSContactView.xib; sourceTree = "<group>"; };
 		68D6CD9516E22A8600972D41 /* HSBloodRemoteEvent+LocalNotification_Protected.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "HSBloodRemoteEvent+LocalNotification_Protected.h"; sourceTree = "<group>"; };
 		68D6CD9616E22A8800972D41 /* HSBloodRemoteEvent+LocalNotification_Protected.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "HSBloodRemoteEvent+LocalNotification_Protected.m"; sourceTree = "<group>"; };
+		68D8F0A516FF7FEA002CCEE2 /* HSPickerCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSPickerCommon.h; sourceTree = "<group>"; };
 		68EB2756163090B90092FDBA /* HSCalendar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSCalendar.h; sourceTree = "<group>"; };
 		68EB2757163090B90092FDBA /* HSCalendar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSCalendar.m; sourceTree = "<group>"; };
 		68EB275A163091190092FDBA /* HSEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSEvent.h; sourceTree = "<group>"; };
@@ -2152,6 +2158,7 @@
 		68B82F4416D1113A00533701 /* picker */ = {
 			isa = PBXGroup;
 			children = (
+				68D8F0A516FF7FEA002CCEE2 /* HSPickerCommon.h */,
 				68B82F4516D1113A00533701 /* HSAddressPicker.h */,
 				68B82F4616D1113A00533701 /* HSAddressPicker.m */,
 				68B82F4716D1113A00533701 /* HSAddressPicker.xib */,
@@ -2161,6 +2168,9 @@
 				68B82F4B16D1113A00533701 /* HSDateTimePicker.h */,
 				68B82F4C16D1113A00533701 /* HSDateTimePicker.m */,
 				68B82F4D16D1113A00533701 /* HSDateTimePicker.xib */,
+				687A437116F97EE900958347 /* HSRemindDatePicker.h */,
+				687A437216F97EE900958347 /* HSRemindDatePicker.m */,
+				687A437316F97EEA00958347 /* HSRemindDatePicker.xib */,
 			);
 			path = picker;
 			sourceTree = "<group>";
@@ -3067,6 +3077,7 @@
 				68B8302916D1113B00533701 /* StationsViewController.xib in Resources */,
 				68B8302E16D1803200533701 /* HSSocailShareViewController.xib in Resources */,
 				68D6CD9416DD351800972D41 /* HSContactView.xib in Resources */,
+				687A437516F97EEA00958347 /* HSRemindDatePicker.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3189,6 +3200,7 @@
 				68D6CD9216DD34EF00972D41 /* HSContactView.m in Sources */,
 				68D6CD9716E22A8900972D41 /* HSBloodRemoteEvent+LocalNotification_Protected.m in Sources */,
 				687704BB16EE62A700DF332F /* HSCalendarEventNotifier.m in Sources */,
+				687A437416F97EEA00958347 /* HSRemindDatePicker.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

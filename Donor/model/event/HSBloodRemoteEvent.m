@@ -194,7 +194,8 @@ static NSString * const kRemoteEventField_Type = @"type";
 
 #pragma mark - HSNotificationEvent protected interface implementation
 - (NSDate *)reminderFireDateDefault {
-    return [[self.scheduleDate dayBefore] dateMovedToHour:12 minute:00];
+    // As default behaviour no remider notification should be scheduled for this event.
+    return nil;
 }
 
 - (NSDate *)confirmationFireDateDefault {
@@ -215,6 +216,9 @@ static NSString * const kRemoteEventField_Type = @"type";
 }
 
 - (void)scheduleReminderLocalNotificationAtDate:(NSDate *)fireDate {
+    if ([self hasScheduledReminderLocalNotification]) {
+        return;
+    }
     
     // Set default value
     NSDate *correctedFireDate = [self reminderFireDateDefault];
@@ -225,9 +229,11 @@ static NSString * const kRemoteEventField_Type = @"type";
     }
     self.reminderFireDate = correctedFireDate;
     
-    [super scheduleLocalNotificationAtDate:correctedFireDate withAlertAction:kNotificationEventAlertActionDefault
-            alertBody:[self alertBodyForReminderLocalNotification]
-            userInfo:[self reminderLocalNotificationBaseUserInfo]];
+    if (self.reminderFireDate != nil) {
+        [super scheduleLocalNotificationAtDate:correctedFireDate withAlertAction:kNotificationEventAlertActionDefault
+                alertBody:[self alertBodyForReminderLocalNotification]
+                userInfo:[self reminderLocalNotificationBaseUserInfo]];
+    }
 }
 
 #pragma mark - HSUIDProvider protocol implementation
