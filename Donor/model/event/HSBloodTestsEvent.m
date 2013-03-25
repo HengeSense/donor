@@ -12,8 +12,13 @@
 @implementation HSBloodTestsEvent
 
 #pragma mark - Protected interface implementation
-- (NSString *)alertBodyForReminderLocalNotification {
-    return @"Завтра у Вас запланирован анализ.";
+- (NSString *)alertBodyForReminderLocalNotificationWithMinutesLeft:(NSUInteger)minutesLeft {
+    if (minutesLeft < 60) {
+        return [NSString stringWithFormat:@"Через %u мин. у Вас запланирован анализ.", minutesLeft];
+    } else {
+        return [NSString stringWithFormat:@"Через %u ч. %u мин. у Вас запланирован анализ.",
+                (NSUInteger)(minutesLeft / 60), minutesLeft % 60];
+    }
 }
 
 - (NSString *)alertBodyForConfirmationLocalNotification {

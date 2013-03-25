@@ -230,8 +230,10 @@ static NSString * const kRemoteEventField_Type = @"type";
     self.reminderFireDate = correctedFireDate;
     
     if (self.reminderFireDate != nil) {
+        NSUInteger minutesLeft =
+                (self.scheduleDate.timeIntervalSince1970 - self.reminderFireDate.timeIntervalSince1970) / 60;
         [super scheduleLocalNotificationAtDate:correctedFireDate withAlertAction:kNotificationEventAlertActionDefault
-                alertBody:[self alertBodyForReminderLocalNotification]
+                alertBody:[self alertBodyForReminderLocalNotificationWithMinutesLeft:minutesLeft]
                 userInfo:[self reminderLocalNotificationBaseUserInfo]];
     }
 }

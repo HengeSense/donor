@@ -116,9 +116,15 @@ static const size_t REST_PERIODS_TABLE[4][4] =
 }
 
 #pragma mark - Protected interface implementation
-- (NSString *)alertBodyForReminderLocalNotification {
-    return [NSString stringWithFormat:@"Завтра у Вас запланирована кроводача: %@.",
-            [bloodDonationTypeToString(self.bloodDonationType) lowercaseString]];
+- (NSString *)alertBodyForReminderLocalNotificationWithMinutesLeft:(NSUInteger)minutesLeft {
+    if (minutesLeft < 60) {
+        return [NSString stringWithFormat:@"Через %u мин. у Вас запланирована кроводача: %@.", minutesLeft,
+                [bloodDonationTypeToString(self.bloodDonationType) lowercaseString]];
+    } else {
+        return [NSString stringWithFormat:@"Через %u ч. %u мин. у Вас запланирована кроводача: %@.",
+                (NSUInteger)(minutesLeft / 60), minutesLeft % 60,
+                [bloodDonationTypeToString(self.bloodDonationType) lowercaseString]];
+    }
 }
 
 - (NSString *)alertBodyForConfirmationLocalNotification {

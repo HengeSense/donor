@@ -10,7 +10,7 @@
 
 @implementation HSBloodRemoteEvent (LocalNotification_Protected)
 
-- (NSString *)alertBodyForReminderLocalNotification {
+- (NSString *)alertBodyForReminderLocalNotificationWithMinutesLeft:(NSUInteger)minutesLeft {
     THROW_UNIMPLEMENTED_EXCEPTION;
 }
 

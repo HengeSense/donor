@@ -13,7 +13,7 @@
 /**
  * Subclass should implement this method to provide event specific alert body for reminder local notification.
  */
-- (NSString *)alertBodyForReminderLocalNotification;
+- (NSString *)alertBodyForReminderLocalNotificationWithMinutesLeft:(NSUInteger)minutesLeft;
 
 /**
  * Subclass should implement this method to provide event specific alert body for confirmation local notification.
