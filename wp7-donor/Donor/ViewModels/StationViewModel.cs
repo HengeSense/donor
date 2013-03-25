@@ -340,14 +340,6 @@ namespace Donor.ViewModels
                         where station.Region_name.ToLower() == CurrentState.ToLower()
                         orderby station.Distance ascending
                         select station).ToList();
-                List<YAStationItem> distance2 = new List<YAStationItem>();
-                /*foreach (var station in distance)
-                {
-                    if (station.Region_name == CurrentState)
-                    {
-                        distance2.Add(station);
-                    };
-                };*/
                 return distance;
             }
             private set { }
@@ -636,7 +628,7 @@ namespace Donor.ViewModels
                 double distanceInMeter;
 
                 GeoCoordinate currentLocation = new GeoCoordinate(Convert.ToDouble(ViewModelLocator.MainStatic.Stations.Latitued.ToString()), Convert.ToDouble(ViewModelLocator.MainStatic.Stations.Longitude.ToString()));
-                GeoCoordinate clientLocation = new GeoCoordinate(Convert.ToDouble(this.Lat.ToString()), Convert.ToDouble(this.Lon.ToString()));
+                GeoCoordinate clientLocation = new GeoCoordinate(Convert.ToDouble(this.Lat.ToString().Replace(".", ",")), Convert.ToDouble(this.Lon.ToString().Replace(".", ",")));
                 distanceInMeter = currentLocation.GetDistanceTo(clientLocation);
 
                 return (Math.Round(distanceInMeter / 1000)).ToString();

@@ -33,7 +33,7 @@ namespace Donor
         }
 
         public GenericGroupDescriptor<YAStationItem, string> GroupedBadgesList = new GenericGroupDescriptor<YAStationItem, string>(item => item.Region_name);
-        public GenericSortDescriptor<YAStationItem, String> Sort = new GenericSortDescriptor<YAStationItem, String>(item => item.Name);
+        public GenericSortDescriptor<YAStationItem, Int32> Sort = new GenericSortDescriptor<YAStationItem, Int32>(item => Convert.ToInt32(item.Distance));
 
         //custom filter
         bool CustomFilter(string search, string value)

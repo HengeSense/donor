@@ -7,6 +7,7 @@ require 'parse-ruby-client'
 require 'nokogiri'
 require 'mechanize'
 require 'open-uri'
+require 'json'
 
 begin
 	Parse.init :application_id => "EIpakVdZblHedhqgxMgiEVnIGCRGvWdy9v8gkKZu",
@@ -36,31 +37,31 @@ begin
   					if (next_class=="div_a1")
 						station["name"] = station_html.search('a')[i].content.to_s
 						other_content = station_html.search('a')[i].next.next.children
-						script_content = station_html.search('a')[i].parent.next.next.children
+						#script_content = station_html.search('a')[i].parent.next.next.children
 						#puts "\n"
 						district_next = false
 						town_next = false
 
-						script_line = 0
-						begin
-						script_content.to_s.each_line do |item|
-							if script_line==5
-								coordinates_string = item.to_s
-								#puts coordinates_string
-								method_string = coordinates_string.match(/onclick=".*"/)
-								method_params = method_string.to_s.scan(/'[^']*'/i)
-								#puts method_params.inspect
-								#puts "\n"
-								station["station_id"] = method_params[0].to_s.gsub("'","").gsub("\\","")
-								station["lat"] = method_params[1].to_s.gsub("'","").gsub("\\","")
-								station["lon"] = method_params[2].to_s.gsub("'","").gsub("\\","")
-								station["latlon"] = JSON.parse("{\"type\": \"GeoPoint\", \"latitude\":"+station["lat"]+", \"longitude\": "+station["lon"]+" }")
-								#puts station["station_id"].to_s
-							end
-							script_line=script_line+1
-						end
-						rescue
-						end
+						#script_line = 0
+						#begin
+						#script_content.to_s.each_line do |item|
+						#	if script_line==5
+						#		coordinates_string = item.to_s
+						#		#puts coordinates_string
+						#		method_string = coordinates_string.match(/onclick=".*"/)
+						#		method_params = method_string.to_s.scan(/'[^']*'/i)
+						#		#puts method_params.inspect
+						#		#puts "\n"
+						#		station["station_id"] = method_params[0].to_s.gsub("'","").gsub("\\","")
+						#		station["lat"] = method_params[1].to_s.gsub("'","").gsub("\\","")
+						#		station["lon"] = method_params[2].to_s.gsub("'","").gsub("\\","")
+						#		station["latlon"] = JSON.parse("{\"type\": \"GeoPoint\", \"latitude\":"+station["lat"]+", \"longitude\": "+station["lon"]+" }")
+						#		#puts station["station_id"].to_s
+						#	end
+						#	script_line=script_line+1
+						#end
+						#rescue
+						#end
 
 
 						other_content.each do |item|
@@ -104,9 +105,26 @@ begin
 								station["site"] = item.to_s.strip.gsub("Сайт:","").strip
 							end
 						end
+
+						begin
+							latlon_page = agent.get "http://maps.google.com/maps/api/geocode/xml?address="+station["address"]+"&sensor=false"
+							doc_latlon = Nokogiri::XML(latlon_page.content)
+							puts doc_latlon.search("status").first.content
+							if (doc_latlon.search("status").first.content=="ZERO_RESULTS")
+								latlon_page = agent.get "http://maps.google.com/maps/api/geocode/xml?address="+station["town"]+"&sensor=false"
+								doc_latlon = Nokogiri::XML(latlon_page.content)
+
+							end
+							station["lat"] = doc_latlon.search("location lat").first.content.to_f
+							station["lon"] = doc_latlon.search("location lng").first.content.to_f
+							station["latlon"] = JSON.parse("{\"type\": \"GeoPoint\", \"latitude\":"+station["lat"].to_s+", \"longitude\": "+station["lon"].to_s+" }")
+						rescue=> exception
+							#puts exception.inspect
+						end
+
 						station["region_name"] = current_region_name
 						station["region_id"] = current_region_id.to_i
-						#puts station.to_s
+						puts station["name"]
 						puts station.save
 					end
 				rescue
