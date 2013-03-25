@@ -36,11 +36,34 @@ begin
   					if (next_class=="div_a1")
 						station["name"] = station_html.search('a')[i].content.to_s
 						other_content = station_html.search('a')[i].next.next.children
-						#puts station_html.search('a')[i].content.to_s
+						script_content = station_html.search('a')[i].parent.next.next.children
+						#puts "\n"
 						district_next = false
 						town_next = false
+
+						script_line = 0
+						begin
+						script_content.to_s.each_line do |item|
+							if script_line==5
+								coordinates_string = item.to_s
+								#puts coordinates_string
+								method_string = coordinates_string.match(/onclick=".*"/)
+								method_params = method_string.to_s.scan(/'[^']*'/i)
+								#puts method_params.inspect
+								#puts "\n"
+								station["station_id"] = method_params[0].to_s.gsub("'","").gsub("\\","")
+								station["lat"] = method_params[1].to_s.gsub("'","").gsub("\\","")
+								station["lon"] = method_params[2].to_s.gsub("'","").gsub("\\","")
+								station["latlon"] = JSON.parse("{\"type\": \"GeoPoint\", \"latitude\":"+station["lat"]+", \"longitude\": "+station["lon"]+" }")
+								#puts station["station_id"].to_s
+							end
+							script_line=script_line+1
+						end
+						rescue
+						end
+
+
 						other_content.each do |item|
-							#puts item.to_s
 							if district_next
 								district_next = false
 								station["district_name"] = item.content.to_s.strip
