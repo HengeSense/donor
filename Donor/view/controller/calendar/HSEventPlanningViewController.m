@@ -436,7 +436,7 @@ static const NSUInteger kCommentsTextViewSymbolsMax = 260;
     {
         if (isDone) {
             NSTimeInterval reminderTimeShift = self.reminderDatePicker.reminderTimeShift;
-            self.currentEditedEvent.reminderFireDate = reminderTimeShift > 0 ?
+            self.currentEditedEvent.reminderFireDate = reminderTimeShift >= 0 ?
                     [self.currentEditedEvent.scheduleDate dateByAddingTimeInterval:-reminderTimeShift] : nil;
             [self updateUIComponents];
         }

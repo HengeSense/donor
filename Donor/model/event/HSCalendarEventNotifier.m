@@ -8,6 +8,7 @@
 
 #import "HSCalendarEventNotifier.h"
 #import "HSCalendar.h"
+#import "HSNotification.h"
 
 #pragma mark - Observing context constants
 static NSString * const kHSCalendarEventNotifierObservingContext = @"kHSCalendarEventNotifierObservingContext";
@@ -110,18 +111,29 @@ static NSString * const kHSCalendarEventNotifierObservingContext = @"kHSCalendar
 
     for (HSNotificationEvent *notificationEvent in notificationEvents) {
         if ([notificationEvent isSelfLocalNotification:localNotification]) {
-            [self fireCalendarNotificationEvent:notificationEvent];
+            if ([notificationEvent isReminderLocalNotification:localNotification]) {
+                [self fireCalendarNotificationWithEvent:notificationEvent nature:HSNotificationNatureType_Reminder
+                                                 source:HSNotificationSourceType_Local];
+            } else if ([notificationEvent isConfirmationLocalNotification:localNotification]) {
+                [self fireCalendarNotificationWithEvent:notificationEvent nature:HSNotificationNatureType_Confirmation
+                                                 source:HSNotificationSourceType_Local];
+            } else {
+                NSLog(@"Undefined local notification nature type, will be ignored");
+            }
             break;
         }
     }
 }
 
-- (void)fireCalendarNotificationEvent:(HSNotificationEvent *)notificationEvent {
+- (void)fireCalendarNotificationWithEvent:(HSNotificationEvent *)notificationEvent
+        nature:(HSNotificationNatureType)nature source:(HSNotificationSourceType)source {
+    HSNotification *notification = [HSNotification notificationWithEvent:notificationEvent
+            nature:nature source:source];
     for (id<HSCalendarEventNotificationHandler> handler in self.notificationHandlers) {
-        [handler handleNotificationWithEvent:notificationEvent];
+        [handler handleNotification:notification];
     }
     for (HSCalendarEventNotificationHandlerBlock handlerBlock in self.notificationHandlerBlocks) {
-        handlerBlock(notificationEvent);
+        handlerBlock(notification);
     }
 }
 

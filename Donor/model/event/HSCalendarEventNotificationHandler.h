@@ -7,11 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "HSNotificationEvent.h"
+#import "HSNotification.h"
 /**
  * This protocol should be implemented by classes, which can handle local and remote notifications.
  */
 @protocol HSCalendarEventNotificationHandler <NSObject>
-- (void)handleNotificationWithEvent:(HSNotificationEvent *)notificationEvent;
+- (void)handleNotification:(HSNotification *)notificationEvent;
 @end
 

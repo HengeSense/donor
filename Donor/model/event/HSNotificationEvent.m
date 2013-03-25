@@ -93,7 +93,6 @@ static NSString * const kObservingKey_ScheduleDate = @"scheduleDate";
     [[UIApplication sharedApplication] cancelAllLocalNotifications];
 }
 
-#pragma mark - Protected helpers
 - (BOOL)isSelfLocalNotification:(UILocalNotification *)localNotification {
     THROW_IF_ARGUMENT_NIL_2(localNotification);
     NSString *className = [localNotification.userInfo objectForKey:kLocalNotificationUserInfoKey_ClassName];
@@ -101,6 +100,17 @@ static NSString * const kObservingKey_ScheduleDate = @"scheduleDate";
     return [className isEqualToString:NSStringFromClass(self.class)] && [self uid] == uid.unsignedIntegerValue;
 }
 
+- (BOOL)isReminderLocalNotification:(UILocalNotification *)localNotification {
+    THROW_IF_ARGUMENT_NIL_2(localNotification);
+    return [localNotification.userInfo objectForKey:kLocalNotificationUserInfoKey_IsReminder] != nil;
+}
+
+- (BOOL)isConfirmationLocalNotification:(UILocalNotification *)localNotification {
+    THROW_IF_ARGUMENT_NIL_2(localNotification);
+    return [localNotification.userInfo objectForKey:kLocalNotificationUserInfoKey_IsConfirmation] != nil;
+}
+
+#pragma mark - Protected helpers
 - (NSDictionary *)localNotificationBaseUserInfo {
     return @{kLocalNotificationUserInfoKey_ClassName : NSStringFromClass(self.class),
              kLocalNotificationUserInfoKey_UID : [NSNumber numberWithUnsignedInteger:[self uid]],

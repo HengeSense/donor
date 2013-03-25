@@ -9,13 +9,13 @@
 #import <Foundation/Foundation.h>
 #import "HSCalendarEventNotificationHandler.h"
 
-@class HSNotificationEvent;
+@class HSNotification;
 
 /**
  * Block type, that can handle HSNotificationEvent object.
  *    It's alternative usage of HSCalendarEventNotificationHandler protocol.
  */
-typedef void(^HSCalendarEventNotificationHandlerBlock)(HSNotificationEvent *notificationEvent);
+typedef void(^HSCalendarEventNotificationHandlerBlock)(HSNotification *notification);
 
 /**
  * Manages notification events' handlers, and make transformation from UILocalNotification objects to

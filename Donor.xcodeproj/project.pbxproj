@@ -247,6 +247,7 @@
 		689B00CE16A7783400B5CA4C /* vkontakteButtonPressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 689B00C216A7783400B5CA4C /* vkontakteButtonPressed@2x.png */; };
 		689B00FD16AC37CC00B5CA4C /* recommendations.json in Resources */ = {isa = PBXBuildFile; fileRef = 689B00FC16AC37CC00B5CA4C /* recommendations.json */; };
 		689B010F16ACA69A00B5CA4C /* UIView+HSLayoutManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 689B010E16ACA69A00B5CA4C /* UIView+HSLayoutManager.m */; };
+		68B413281700140000BB32FF /* HSNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B413271700140000BB32FF /* HSNotification.m */; };
 		68B455B81635BC5100811A0F /* HSEventRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B455B71635BC5100811A0F /* HSEventRenderer.m */; };
 		68B455BC1635C0B500811A0F /* HSBloodDonationEventRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B455BB1635C0B500811A0F /* HSBloodDonationEventRenderer.m */; };
 		68B455BF1635C3D300811A0F /* HSFinishRestEventRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B455BE1635C3D300811A0F /* HSFinishRestEventRenderer.m */; };
@@ -873,6 +874,8 @@
 		689B00FC16AC37CC00B5CA4C /* recommendations.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = recommendations.json; sourceTree = "<group>"; };
 		689B010D16ACA69A00B5CA4C /* UIView+HSLayoutManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+HSLayoutManager.h"; sourceTree = "<group>"; };
 		689B010E16ACA69A00B5CA4C /* UIView+HSLayoutManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+HSLayoutManager.m"; sourceTree = "<group>"; };
+		68B413261700140000BB32FF /* HSNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSNotification.h; sourceTree = "<group>"; };
+		68B413271700140000BB32FF /* HSNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSNotification.m; sourceTree = "<group>"; };
 		68B455B61635BC5100811A0F /* HSEventRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HSEventRenderer.h; path = event/HSEventRenderer.h; sourceTree = "<group>"; };
 		68B455B71635BC5100811A0F /* HSEventRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HSEventRenderer.m; path = event/HSEventRenderer.m; sourceTree = "<group>"; };
 		68B455BA1635C0B500811A0F /* HSBloodDonationEventRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HSBloodDonationEventRenderer.h; path = event/HSBloodDonationEventRenderer.h; sourceTree = "<group>"; };
@@ -2522,6 +2525,8 @@
 				683F8A9B1648C0E80066C47A /* HSDayHolidayEvent.h */,
 				683F8A9C1648C0E90066C47A /* HSDayHolidayEvent.m */,
 				687A42F816F51C5300958347 /* HSCalendarEventNotificationHandler.h */,
+				68B413261700140000BB32FF /* HSNotification.h */,
+				68B413271700140000BB32FF /* HSNotification.m */,
 				687704B916EE62A700DF332F /* HSCalendarEventNotifier.h */,
 				687704BA16EE62A700DF332F /* HSCalendarEventNotifier.m */,
 			);
@@ -3201,6 +3206,7 @@
 				68D6CD9716E22A8900972D41 /* HSBloodRemoteEvent+LocalNotification_Protected.m in Sources */,
 				687704BB16EE62A700DF332F /* HSCalendarEventNotifier.m in Sources */,
 				687A437416F97EEA00958347 /* HSRemindDatePicker.m in Sources */,
+				68B413281700140000BB32FF /* HSNotification.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

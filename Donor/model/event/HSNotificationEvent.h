@@ -57,13 +57,23 @@ extern NSString * const kLocalNotificationUserInfoKey_ClassName;
  */
 + (void)cancelAllLocalNotifications;
 
-/// @name Protected helpers.
 /**
  * Returns YES if local notification belongs to this object.
  * Base implementation checks only class belongings.
  */
 - (BOOL)isSelfLocalNotification:(UILocalNotification *)localNotification;
 
+/**
+ * Returns whether specified local notification is marked as 'reminder'.
+ */
+- (BOOL)isReminderLocalNotification:(UILocalNotification *)localNotification;
+
+/**
+ * Returns whether specified local notification is marked as 'confirmation'.
+ */
+- (BOOL)isConfirmationLocalNotification:(UILocalNotification *)localNotification;
+
+/// @name Protected helpers.
 /**
  * Returns base userInfo dictionary for local notification.
  */
