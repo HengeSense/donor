@@ -30,6 +30,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *bloodDonationTypeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *bloodDonationDateLabel;
 @property (weak, nonatomic) IBOutlet UITextView *bloodDonationCommentTextView;
+@property (weak, nonatomic) IBOutlet UILabel *bloodDonationReminderLabel;
 - (IBAction)eventDoneButtonClicked:(id)sender;
 
 /// @name Blood tests view and it's components
@@ -37,6 +38,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *bloodTestsDateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *bloodTestsLabAddressLabel;
 @property (weak, nonatomic) IBOutlet UITextView *bloodTestsCommentsTextView;
+@property (weak, nonatomic) IBOutlet UILabel *bloodTestsReminderLabel;
 
 /// @name Initialization methods
 

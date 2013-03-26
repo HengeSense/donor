@@ -56,6 +56,13 @@ static NSString * const kObservingKey_ScheduleDate = @"scheduleDate";
             self.reminderTimeShift = [self.scheduleDate timeIntervalSinceDate:reminderFireDate] : -DBL_MAX;
 }
 
+- (NSTimeInterval)reminderTimeShift {
+    if (_reminderFireDate == nil) {
+        self.reminderFireDate = [self defineReminderFireDate];
+    }
+    return _reminderTimeShift;
+}
+
 
 #pragma mark - KVC Observing
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change

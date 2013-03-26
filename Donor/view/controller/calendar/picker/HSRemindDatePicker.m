@@ -33,7 +33,7 @@ static NSTimeInterval gReminderTimeShifts[kReminderTimeShiftsCount] =
 
 #pragma mark - Static
 + (void)initialize {
-    gReminderTitles = @[@"Нет", @"В момент события", @"За 5 мин", @"За 15 мин", @"За 30 мин", @"За 1 час",
+    gReminderTitles = @[@"Нет", @"В момент события", @"За 5 мин.", @"За 15 мин.", @"За 30 мин.", @"За 1 час",
                                 @"За 2 час.", @"За 1 день", @"За 2 дн."];
     if ([gReminderTitles count] != kReminderTimeShiftsCount) {
         @throw [NSException exceptionWithName:NSInternalInconsistencyException
