@@ -54,7 +54,7 @@
                 <Grid Margin="0,10,0,0">
                     <ScrollViewer>
                         <StackPanel>
-                            <StackPanel Visibility="{Binding Address,
+                            <StackPanel Margin="0,4" Visibility="{Binding Address,
                                 Converter={StaticResource StringConverter}}">
                                     <StackPanel Orientation="Horizontal">
                                         <TextBlock TextWrapping="Wrap" Text="Адрес" 
@@ -65,67 +65,67 @@
                                                    Tap="Image_Tap"/>
                                         </Border>-->
                                     </StackPanel>
-                                    <TextBlock TextWrapping="Wrap" Text="{Binding Address, Source={StaticResource Loc}}" 
-                                    Style="{StaticResource Text36pxB9A194}" Margin="0,10,0,0"/>
-                                    <TextBlock TextWrapping="Wrap" 
+                                    <!--<TextBlock TextWrapping="Wrap" Text="{Binding Address, Source={StaticResource Loc}}" 
+                                    Style="{StaticResource Text36pxB9A194}" Margin="0,10,0,0"/>-->
+                                    <TextBlock TextWrapping="Wrap" Margin="0,-4,0,0"
                                     Text="{Binding Address}" Style="{StaticResource Text24pxDF8D4B}"/>
                             </StackPanel>
 
-                            <StackPanel Visibility="{Binding Phone, Converter={StaticResource StringConverter}}">
+                            <StackPanel Margin="0,4" Visibility="{Binding Phone, Converter={StaticResource StringConverter}}">
                                 <TextBlock TextWrapping="Wrap" Text="{Binding Phone, Source={StaticResource Loc}}" 
                                 Style="{StaticResource Text36pxB9A194}" Margin="0,10,0,0"/>
                                 <TextBlock TextWrapping="Wrap" 
-						        Text="{Binding Phone}"
+						        Text="{Binding Phone}" Margin="0,-4,0,0"
 						        Style="{StaticResource Text24pxDF8D4B}"/>
                             </StackPanel>
 
-                            <StackPanel Visibility="{Binding Email, Converter={StaticResource StringConverter}}">
+                            <StackPanel Margin="0,4" Visibility="{Binding Email, Converter={StaticResource StringConverter}}">
                                 <TextBlock TextWrapping="Wrap" Text="Почта" 
                                 Style="{StaticResource Text36pxB9A194}" Margin="0,10,0,0"/>
                                 <TextBlock TextWrapping="Wrap" 
-						        Text="{Binding Email}"
+						        Text="{Binding Email}" Margin="0,-4,0,0"
 						        Style="{StaticResource Text24pxDF8D4B}"/>
                             </StackPanel>
 
-                            <StackPanel Visibility="{Binding Chief, Converter={StaticResource StringConverter}}">
+                            <StackPanel Margin="0,4" Visibility="{Binding Chief, Converter={StaticResource StringConverter}}">
                                 <TextBlock TextWrapping="Wrap" Text="Руководитель" 
                                 Style="{StaticResource Text36pxB9A194}" Margin="0,10,0,0"/>
                                 <TextBlock TextWrapping="Wrap" 
-						        Text="{Binding Chief}"
+						        Text="{Binding Chief}" Margin="0,-4,0,0"
 						        Style="{StaticResource Text24pxDF8D4B}"/>
                             </StackPanel>
 
-                            <StackPanel Visibility="{Binding Region_name, Converter={StaticResource StringConverter}}">
+                            <StackPanel Margin="0,4" Visibility="{Binding Region_name, Converter={StaticResource StringConverter}}">
                                 <TextBlock TextWrapping="Wrap" Text="Регион" 
                                 Style="{StaticResource Text36pxB9A194}" Margin="0,10,0,0"/>
                                 <TextBlock TextWrapping="Wrap" 
-						        Text="{Binding Region_name}"
+						        Text="{Binding Region_name}" Margin="0,-4,0,0"
 						        Style="{StaticResource Text24pxDF8D4B}"/>
                             </StackPanel>
 
-                            <StackPanel Visibility="{Binding District_name, Converter={StaticResource StringConverter}}">
+                            <StackPanel Margin="0,4" Visibility="{Binding District_name, Converter={StaticResource StringConverter}}">
                                 <TextBlock TextWrapping="Wrap" Text="Район" 
                                 Style="{StaticResource Text36pxB9A194}" Margin="0,10,0,0"/>
                                 <TextBlock TextWrapping="Wrap" 
-						        Text="{Binding District_name}"
+						        Text="{Binding District_name}" Margin="0,-4,0,0"
 						        Style="{StaticResource Text24pxDF8D4B}"/>
                             </StackPanel>
 
-                            <StackPanel Visibility="{Binding Town, Converter={StaticResource StringConverter}}">
+                            <StackPanel Margin="0,4" Visibility="{Binding Town, Converter={StaticResource StringConverter}}">
                                 <TextBlock TextWrapping="Wrap" Text="Город" 
                                 Style="{StaticResource Text36pxB9A194}" Margin="0,10,0,0"/>
                                 <TextBlock TextWrapping="Wrap" 
-						        Text="{Binding Town}"
+						        Text="{Binding Town}" Margin="0,-4,0,0"
 						        Style="{StaticResource Text24pxDF8D4B}"/>
                             </StackPanel>
 
-                            <StackPanel Visibility="{Binding Site, 
+                            <StackPanel Margin="0,4" Visibility="{Binding Site, 
                                 Converter={StaticResource StringConverter}}">
                                 <TextBlock Text="{Binding Site, Source={StaticResource Loc}}"   Margin="0,10,0,0"
 						        Style="{StaticResource Text36pxB9A194}" 
 						        TextWrapping="Wrap"/>
                                 <TextBlock TextWrapping="Wrap" 
-						        Text="{Binding Site}"
+						        Text="{Binding Site}" Margin="0,-4,0,0"
 						        Style="{StaticResource Text24pxDF8D4B}" Tap="TextBlock_Tap" />
                             </StackPanel>
                         </StackPanel>

@@ -35,7 +35,6 @@ namespace Donor.ViewModels
             this.Items = new ObservableCollection<YAStationItem>();
         }
 
-
         public void UpdateCoordinatesWatcher()
         {
             try
@@ -104,7 +103,8 @@ namespace Donor.ViewModels
             });
         }
 
-        public double Latitued, Longitude; 
+        public double Latitued =  55.45;
+        public double Longitude = 37.36; 
 
         /// <summary>
         /// выбранный город
@@ -180,6 +180,7 @@ namespace Donor.ViewModels
                             IsolatedStorageHelper.SaveSerializableObject<ObservableCollection<YAStationItem>>(this.Items, "yastations.xml");
 
                             RaisePropertyChanged("Items");
+                            RaisePropertyChanged("DistanceItems");                            
                         });                       
                     
                 }
@@ -336,10 +337,20 @@ namespace Donor.ViewModels
         {
             get
             {
-                List<YAStationItem> distance = (from station in Items
-                        where station.Region_name.ToLower() == CurrentState.ToLower()
-                        orderby station.Distance ascending
-                        select station).ToList();
+                List<YAStationItem> distance = new List<YAStationItem>();
+                if (CurrentState == "")
+                {
+                    distance = Items.ToList();
+                }
+                else
+                {
+                    distance = (from station in Items
+                               where station.Region_name.ToLower() == CurrentState.ToLower()
+                               select station).ToList();
+                    if (distance.Count()==0) {
+                        distance = Items.ToList();
+                    };
+                };
                 return distance;
             }
             private set { }
@@ -627,8 +638,32 @@ namespace Donor.ViewModels
             {
                 double distanceInMeter;
 
-                GeoCoordinate currentLocation = new GeoCoordinate(Convert.ToDouble(ViewModelLocator.MainStatic.Stations.Latitued.ToString()), Convert.ToDouble(ViewModelLocator.MainStatic.Stations.Longitude.ToString()));
-                GeoCoordinate clientLocation = new GeoCoordinate(Convert.ToDouble(this.Lat.ToString().Replace(".", ",")), Convert.ToDouble(this.Lon.ToString().Replace(".", ",")));
+                double curLat = 0.0;
+                double curLon = 0.0;
+
+                try {
+                    curLat = Convert.ToDouble(ViewModelLocator.MainStatic.Stations.Latitued.ToString());
+                } catch {};
+                try
+                {
+                    curLon = Convert.ToDouble(ViewModelLocator.MainStatic.Stations.Longitude.ToString());
+                }
+                catch { };
+
+                double itemLat = 0.0;
+                double itemLon = 0.0;
+                try
+                {
+                    itemLat = Convert.ToDouble(Lat.ToString());
+                }
+                catch { };
+                try
+                {
+                     itemLon = Convert.ToDouble(Lon.ToString());
+                }catch { };
+
+                GeoCoordinate currentLocation = new GeoCoordinate(curLat, curLon);
+                GeoCoordinate clientLocation = new GeoCoordinate(itemLat, itemLon);
                 distanceInMeter = currentLocation.GetDistanceTo(clientLocation);
 
                 return (Math.Round(distanceInMeter / 1000)).ToString();

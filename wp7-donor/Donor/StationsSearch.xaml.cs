@@ -100,11 +100,11 @@ namespace Donor
 
             if (ViewModelLocator.MainStatic.Stations.IsFilter == true)
             {
-                this.CityFilterText.Text = ViewModelLocator.MainStatic.Stations.SelectedCity;
+                //this.CityFilterText.Text = ViewModelLocator.MainStatic.Stations.SelectedCity;
             }
             else
             {
-                this.CityFilterText.Text = " ";
+                //this.CityFilterText.Text = " ";
             };
 
             this.StationsList.DataContext = ViewModelLocator.MainStatic;
@@ -190,7 +190,6 @@ namespace Donor
                                                     select stations;
                 };
             };
-            ShowNoResults();
         }
 
         private void StationsSearchText_Populating(object sender, PopulatingEventArgs e)

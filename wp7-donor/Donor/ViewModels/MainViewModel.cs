@@ -125,7 +125,7 @@ namespace Donor
                     standardTile = new StandardTileData
                     {
                         Title = "",
-                        Count = ViewModelLocator.MainStatic.Events.UserItems.Where(c => (c.Type=="0") || (c.Type=="1")).Count(),
+                        Count = ViewModelLocator.MainStatic.Events.UserItems.Where(c => ((c.Type=="0") || (c.Type=="1")) && (c.Date>DateTime.Now)).Count(),
                         BackTitle = eventData.Date.ToShortDateString(),
                         BackContent = eventData.Title
                     };

@@ -17,6 +17,18 @@
     xmlns:telerikData="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Data"
     xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives"
     shell:SystemTray.IsVisible="False" Loaded="PhoneApplicationPage_Loaded">
+	<phone:PhoneApplicationPage.Resources>
+		<DataTemplate x:Key="EmptyStationsTemplate">
+			<TextBlock Text="{Binding NoStations, Source={StaticResource Loc}}" 
+                       Foreground="#FF847168" Name="Noresults" TextWrapping="Wrap"
+                       Margin="10,5,10,0"/>
+		</DataTemplate>
+        <DataTemplate x:Key="GroupPickerTemplate">
+                <Border Background="#FF006168" Margin="5">
+                    <TextBlock Foreground="#FFDFB08B" FontWeight="Bold" Margin="5,10" FontSize="30" Text="{Binding}"/>
+                </Border>
+        </DataTemplate>
+    </phone:PhoneApplicationPage.Resources>
 
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Loaded="LayoutRoot_Loaded">
@@ -36,13 +48,12 @@
 			Style="{StaticResource Text30pxWhite}"/>
 			
 			<StackPanel Background="#FF632C00"
-			Height="116">
-			<TextBlock Text=" " Name="CityFilterText"
+			Height="60">
+			<!--<TextBlock Text=" " Name="CityFilterText"
 			Foreground="#FFCBB2A3"
-			FontSize="34" Margin="10,8,0,0"/>
+			FontSize="34" Margin="10,8,0,0"/>-->
 
                 <Grid>
-
                     <toolkit:AutoCompleteBox 
 			Name="StationsSearchText" 
             Grid.Row="0" Grid.Column="0"
@@ -50,7 +61,7 @@
 			FilterMode="Contains" ValueMemberPath="Title" 
 			Populating="StationsSearchText_Populating" 
 			Foreground="#FFE0B390" Background="#FF3C1B00" 
-			BorderBrush="#FF3C1B00" Populated="StationsSearchText_Populated" Margin="0,-8,0,0" LostFocus="StationsSearchText_LostFocus" TextChanged="StationsSearchText_TextChanged">
+			BorderBrush="#FF3C1B00" Populated="StationsSearchText_Populated" Margin="0,-5,0,0" LostFocus="StationsSearchText_LostFocus" TextChanged="StationsSearchText_TextChanged">
                     <toolkit:AutoCompleteBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
@@ -74,21 +85,32 @@
         <Grid x:Name="ContentPanel" 
 		Background="#FFEEEEEE"
 		Grid.Row="1" Margin="0,0,0,0">
-            <TextBlock Text="{Binding NoStations, Source={StaticResource Loc}}" 
+            <!--<TextBlock Text="{Binding NoStations, Source={StaticResource Loc}}" 
                        Foreground="#FF847168" Name="Noresults" TextWrapping="Wrap"
-                       Margin="10,5,10,0" Visibility="Collapsed"/>
-            
+                       Margin="10,5,10,0" Visibility="Collapsed"/>-->
+
+        <!--EmptyContentTemplate="{StaticResource EmptyStationsTemplate}"-->
         <telerikData:RadJumpList 
 		VerticalAlignment="Top"
 		Margin="0,0,0,0"
 		Name="StationsList" 
         ItemsSource="{Binding Stations.DistanceItems}"
         DataContext="{Binding Main, Source={StaticResource Locator}}" 
-		Tap="StationsList_Tap" ItemTap="StationsList_ItemTap">
-            <telerikData:RadJumpList.ItemTemplate>
+		Tap="StationsList_Tap" ItemTap="StationsList_ItemTap"              
+            GroupPickerItemTemplate="{StaticResource GroupPickerTemplate}">
+                <telerikData:RadJumpList.GroupHeaderTemplate>
+                    <DataTemplate>
+                        <Border Background="#FF006168" Margin="0">
+                            <TextBlock Foreground="#FFDFB08B" Margin="5,10" 
+                                       FontWeight="Bold"
+                                       FontSize="30" Text="{Binding}"/>
+                        </Border>
+                    </DataTemplate>
+                </telerikData:RadJumpList.GroupHeaderTemplate>
+                <telerikData:RadJumpList.ItemTemplate>
                 <DataTemplate>
                 		<Border BorderThickness="0,0,0,1" 
-						BorderBrush="#FF0A6066">
+						BorderBrush="#FFafafaf">
                         <StackPanel Margin="6,10,10,6">
                                 <Grid HorizontalAlignment="Stretch">
                         		<Grid.ColumnDefinitions>
@@ -101,7 +123,7 @@
 							FontSize="30"
 							Foreground="#FF645B54"/>
                             <TextBlock Text="{Binding Name}" 
-							TextWrapping="Wrap" Margin="0,0,0,0" 
+							TextWrapping="Wrap" Margin="0,4,0,0" 
 							FontSize="18"
 							Foreground="#FF847168"
 							Style="{StaticResource PhoneTextSubtleStyle}"/>

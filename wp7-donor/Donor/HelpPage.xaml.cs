@@ -193,5 +193,17 @@ namespace Donor
             messagePrompt.Show();
         }
 
+        private void RateButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var marketplaceReviewTask = new MarketplaceReviewTask();
+                marketplaceReviewTask.Show();
+            }
+            catch
+            {
+            };
+        }
+
     }
 }

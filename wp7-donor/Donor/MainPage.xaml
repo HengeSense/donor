@@ -55,7 +55,7 @@
         <!--Panorama control-->
         <controls:Panorama Grid.Row="1">
             <controls:Panorama.Title>
-                <Image Source="/Donor;component/images/logo.png" Margin="-19,95,0,30"/>
+                <Image Source="/Donor;component/images/logo.png" Margin="-19,70,0,5" Height="190"/>
             </controls:Panorama.Title>
 
             <controls:Panorama.Background>
@@ -222,7 +222,7 @@
                          SelectionChanged="ListBox_SelectionChanged" Tap="NewsList_Tap">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
-                            <StackPanel Margin="0,0,0,17" Width="432">
+                            <StackPanel Margin="0,0,0,21" Width="432">
                                 <StackPanel Orientation="Horizontal" Width="430">
                                     <TextBlock Text="{Binding CreatedAtText}" 
 									TextWrapping="NoWrap" Style="{StaticResource Text36pxCBB2A3}"/>

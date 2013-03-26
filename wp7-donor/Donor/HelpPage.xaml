@@ -107,8 +107,12 @@ FontSize="24" FontFamily="Segoe WP Semibold" />
                         </StackPanel>
 						
 						<StackPanel>
-                            <TextBlock Margin="0,20,0,0" Style="{StaticResource Text36pxC0A89A}" 
-							Text="Оценить приложение" Name="Rate" Tap="Rate_Tap" />
+                            <Button Content="Оценить приложение" FontSize="24"
+					Background="#FF4186A3" Name="RateButton"
+					BorderBrush="#FF4186A3" 
+                    Margin="-12,14,-12,0"
+					Foreground="#FFFFFFFF"
+					FontFamily="Segoe WP Regular" BorderThickness="3" Click="RateButton_Click"/>
                             
                         </StackPanel>
 
