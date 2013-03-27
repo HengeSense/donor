@@ -58,40 +58,40 @@ static NSString * const kSingleCancelButtonTitleDefault = @"Ok";
 
 #pragma mark - Public static interface
 + (void)showWithMessage:(NSString *)message {
-    THROW_IF_ARGUMENT_NIL(message, @"message is not specified");
+    THROW_IF_ARGUMENT_NIL(message);
     [self _showWithTitle:@"" message:message cancelButtonTitle:kSingleCancelButtonTitleDefault okButtonTitle:@""
              resultBlock:nil];
 }
 
 + (void)showWithMessage:(NSString *)message resultBlock:(HSAlertViewControllerResultBlock)resultBlock {
-    THROW_IF_ARGUMENT_NIL(message, @"message is not specified");
-    THROW_IF_ARGUMENT_NIL(resultBlock, @"resultBlock is not specified");
+    THROW_IF_ARGUMENT_NIL(message);
+    THROW_IF_ARGUMENT_NIL(resultBlock);
 
     [self _showWithTitle:@"" message:message cancelButtonTitle:kSingleCancelButtonTitleDefault okButtonTitle:@""
              resultBlock:resultBlock];
 }
 
 + (void)showWithTitle:(NSString *)title message:(NSString *)message {
-    THROW_IF_ARGUMENT_NIL(title, @"title is not specified");
-    THROW_IF_ARGUMENT_NIL(message, @"message is not specified");
+    THROW_IF_ARGUMENT_NIL(title);
+    THROW_IF_ARGUMENT_NIL(message);
     [self _showWithTitle:title message:message cancelButtonTitle:kSingleCancelButtonTitleDefault okButtonTitle:@""
              resultBlock:nil];
 }
 
 + (void)showWithTitle:(NSString *)title message:(NSString *)message
           resultBlock:(HSAlertViewControllerResultBlock)resultBlock {
-    THROW_IF_ARGUMENT_NIL(title, @"title is not specified");
-    THROW_IF_ARGUMENT_NIL(message, @"message is not specified");
-    THROW_IF_ARGUMENT_NIL(resultBlock, @"resultBlock is not specified");
+    THROW_IF_ARGUMENT_NIL(title);
+    THROW_IF_ARGUMENT_NIL(message);
+    THROW_IF_ARGUMENT_NIL(resultBlock);
 
     [self _showWithTitle:title message:message cancelButtonTitle:kSingleCancelButtonTitleDefault okButtonTitle:@""
              resultBlock:resultBlock];
 }
 
 + (void)showWithTitle:(NSString *)title message:(NSString *)message cancelButtonTitle:(NSString *)cancelButtonTitle {
-    THROW_IF_ARGUMENT_NIL(title, @"title is not specified");
-    THROW_IF_ARGUMENT_NIL(message, @"message is not specified");
-    THROW_IF_ARGUMENT_NIL(cancelButtonTitle, @"cancelButtonTitle is not specified");
+    THROW_IF_ARGUMENT_NIL(title);
+    THROW_IF_ARGUMENT_NIL(message);
+    THROW_IF_ARGUMENT_NIL(cancelButtonTitle);
 
     [self _showWithTitle:title message:message cancelButtonTitle:cancelButtonTitle okButtonTitle:@""
              resultBlock:nil];
@@ -99,10 +99,10 @@ static NSString * const kSingleCancelButtonTitleDefault = @"Ok";
 
 + (void)showWithTitle:(NSString *)title message:(NSString *)message cancelButtonTitle:(NSString *)cancelButtonTitle
         okButtonTitle:(NSString  *)okButtonTitle {
-    THROW_IF_ARGUMENT_NIL(title, @"title is not specified");
-    THROW_IF_ARGUMENT_NIL(message, @"message is not specified");
-    THROW_IF_ARGUMENT_NIL(cancelButtonTitle, @"cancelButtonTitle is not specified");
-    THROW_IF_ARGUMENT_NIL(okButtonTitle, @"okButtonTitle is not specified");
+    THROW_IF_ARGUMENT_NIL(title);
+    THROW_IF_ARGUMENT_NIL(message);
+    THROW_IF_ARGUMENT_NIL(cancelButtonTitle);
+    THROW_IF_ARGUMENT_NIL(okButtonTitle);
 
     [self _showWithTitle:@"" message:message cancelButtonTitle:cancelButtonTitle okButtonTitle:okButtonTitle
              resultBlock:nil];
@@ -110,11 +110,11 @@ static NSString * const kSingleCancelButtonTitleDefault = @"Ok";
 
 + (void)showWithTitle:(NSString *)title message:(NSString *)message cancelButtonTitle:(NSString *)cancelButtonTitle
         okButtonTitle:(NSString  *)okButtonTitle resultBlock:(HSAlertViewControllerResultBlock)resultBlock {
-    THROW_IF_ARGUMENT_NIL(title, @"title is not specified");
-    THROW_IF_ARGUMENT_NIL(message, @"message is not specified");
-    THROW_IF_ARGUMENT_NIL(cancelButtonTitle, @"cancelButtonTitle is not specified");
-    THROW_IF_ARGUMENT_NIL(okButtonTitle, @"okButtonTitle is not specified");
-    THROW_IF_ARGUMENT_NIL(resultBlock, @"resultBlock is not specified");
+    THROW_IF_ARGUMENT_NIL(title);
+    THROW_IF_ARGUMENT_NIL(message);
+    THROW_IF_ARGUMENT_NIL(cancelButtonTitle);
+    THROW_IF_ARGUMENT_NIL(okButtonTitle);
+    THROW_IF_ARGUMENT_NIL(resultBlock);
 
     [self _showWithTitle:title message:message cancelButtonTitle:cancelButtonTitle okButtonTitle:okButtonTitle
              resultBlock:resultBlock];

@@ -20,7 +20,7 @@
 @implementation HSEventRenderer
 
 + (HSEventRenderer *)createEventRendererForEvent: (HSEvent *)event {
-    THROW_IF_ARGUMENT_NIL(event, @"event is not specified");
+    THROW_IF_ARGUMENT_NIL(event);
     HSEventRenderer *resultEventRenderer = nil;
     if ([event isKindOfClass: [HSBloodDonationEvent class]]) {
         resultEventRenderer = [[HSBloodDonationEventRenderer alloc] init];

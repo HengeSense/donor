@@ -40,7 +40,7 @@
 
 #pragma mark - Initialization
 - (id)initWithFrame: (CGRect)frame date:(NSDate *)date {
-    THROW_IF_ARGUMENT_NIL(date, @"date is not specified");
+    THROW_IF_ARGUMENT_NIL(date);
     if (self = [super initWithFrame: frame]) {
         self.date = date;
         self.events = [[NSMutableSet alloc] init];
@@ -70,7 +70,7 @@
 
 #pragma mark -  HSEvent objects management methods
 - (void)addEvent: (HSEvent *)event {
-    THROW_IF_ARGUMENT_NIL(event, @"event is not specified");
+    THROW_IF_ARGUMENT_NIL(event);
     if (![self.events containsObject: event]) {
         [self.events addObject: event];
         [self updateUI];
@@ -78,7 +78,7 @@
 }
 
 - (void)removeEvent: (HSEvent *)event {
-    THROW_IF_ARGUMENT_NIL(event, @"event is not specified");
+    THROW_IF_ARGUMENT_NIL(event);
     if (![self.events containsObject: event]) {
         [self.events addObject: event];
         [self updateUI];

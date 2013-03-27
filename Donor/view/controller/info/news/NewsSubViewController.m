@@ -79,7 +79,8 @@
             self.contentArray = objects;
             [(UITableView *)self.view reloadData];
         } else {
-            [HSAlertViewController showWithTitle:@"Ошибка" message:localizedDescriptionForParseError(error)];
+            [HSAlertViewController showWithTitle:@"Ошибка"
+                                         message:[HSModelCommon localizedDescriptionForParseError:error]];
         }
         self.view.userInteractionEnabled = YES;
     }];

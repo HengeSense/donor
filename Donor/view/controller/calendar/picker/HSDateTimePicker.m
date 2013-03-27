@@ -68,9 +68,9 @@ static const NSUInteger kDateTimePickerComponentsNumber = 3;
 #pragma mark - Public interface implementation
 - (void)showWithStartDate: (NSDate *)startDate endDate: (NSDate *)endDate currentDate:(NSDate *)currentDate
                completion: (HSPickerCompletion)completion {
-    THROW_IF_ARGUMENT_NIL(startDate, @"startDate is not specified");
-    THROW_IF_ARGUMENT_NIL(currentDate, @"currentDate is not specified");
-    THROW_IF_ARGUMENT_NIL(endDate, @"endDate is not specified");
+    THROW_IF_ARGUMENT_NIL(startDate);
+    THROW_IF_ARGUMENT_NIL(currentDate);
+    THROW_IF_ARGUMENT_NIL(endDate);
     
     self.startDate = startDate;
     self.endDate = endDate;

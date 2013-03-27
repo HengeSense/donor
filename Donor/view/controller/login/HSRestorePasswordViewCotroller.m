@@ -54,7 +54,8 @@
                         [self.navigationController popViewControllerAnimated:YES];
                     }];
                } else {
-                   [HSAlertViewController showWithTitle:@"Ошибка" message:localizedDescriptionForParseError(error)];
+                   [HSAlertViewController showWithTitle:@"Ошибка"
+                                                message:[HSModelCommon localizedDescriptionForParseError:error]];
                }
         }];
     }

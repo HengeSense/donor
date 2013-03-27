@@ -198,7 +198,7 @@
 #pragma mark - Private
 #pragma mark - Uupdating UI components
 - (void)updateCalendarToDate:(NSDate *)date {
-    THROW_IF_ARGUMENT_NIL(date, @"date is not specified");
+    THROW_IF_ARGUMENT_NIL(date);
     [self updateMonthLabelToDate:date];
 
     MBProgressHUD *progressHud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
@@ -209,7 +209,8 @@
             self.currentDate = date;
         } else {
             [self clearCalendarView];
-            [HSAlertViewController showWithTitle:@"Ошибка" message:localizedDescriptionForParseError(error)];
+            [HSAlertViewController showWithTitle:@"Ошибка"
+                                         message:[HSModelCommon localizedDescriptionForParseError:error]];
             NSLog(@"Unable to load remote events due to error:%@", error);
         }
     }];
@@ -294,7 +295,7 @@
 }
 
 - (void)editRemoteBloodEvents:(NSArray *)remoteBloodEvents {
-    THROW_IF_ARGUMENT_NIL_2(remoteBloodEvents);
+    THROW_IF_ARGUMENT_NIL(remoteBloodEvents);
     const size_t BLOOD_REMOTE_EVENTS_PER_DAY_MAX = 1;
     if (remoteBloodEvents.count == 0) {
         @throw [NSException exceptionWithName:NSInternalInconsistencyException
@@ -330,7 +331,7 @@
 }
 
 - (void)createRemoteBloodEventsOnDate:(NSDate *)date {
-    THROW_IF_ARGUMENT_NIL_2(date);
+    THROW_IF_ARGUMENT_NIL(date);
     UIViewController *pushedViewController =
             [[HSEventPlanningViewController alloc] initWithNibName:@"HSEventPlanningViewController"
             bundle:nil calendar:self.calendarModel date:date];
@@ -408,7 +409,7 @@
 
 #pragma mark - Event processing
 - (void)markEventAsDone:(HSBloodRemoteEvent *)remoteEvent {
-    THROW_IF_ARGUMENT_NIL_2(remoteEvent);
+    THROW_IF_ARGUMENT_NIL(remoteEvent);
     if ([remoteEvent.scheduleDate isAfterDay: [NSDate date]]) {
         @throw [NSException exceptionWithName: NSInternalInconsistencyException
                                        reason: @"Was made attempt to mark event from future as done." userInfo: nil];
@@ -421,7 +422,7 @@
                                cancelButtonTitle:@"Готово"];
             [self updateCalendarToDate:self.currentDate];
         } else {
-            [HSAlertViewController showWithTitle:@"Ошибка" message:localizedDescriptionForError(error)];
+            [HSAlertViewController showWithTitle:@"Ошибка" message:[HSModelCommon localizedDescriptionForError:error]];
         }
     }];
 }

@@ -17,15 +17,11 @@
 #define NSLog TFLog
 #define NEW_CALENDAR_FUNCTIONALITY_DEVELOPEMENT
 
-#define THROW_IF_ARGUMENT_NIL(argument,message)\
+#define THROW_IF_ARGUMENT_NIL(argument)\
     if (argument == nil) {\
-        @throw [NSException exceptionWithName: NSInvalidArgumentException reason: message userInfo: nil];\
-    }
-
-#define THROW_IF_ARGUMENT_NIL_2(argument)\
-    if (argument == nil) {\
-        @throw [NSException exceptionWithName: NSInvalidArgumentException reason: @"##argument is not specified"\
-                userInfo: @{@"Method name" : NSStringFromSelector(_cmd)}];\
+        NSString *reason = [NSString stringWithFormat:@"[%@ %@] -> argument: "#argument" is not specified.",\
+                NSStringFromClass(self.class), NSStringFromSelector(_cmd)];\
+        @throw [NSException exceptionWithName: NSInvalidArgumentException reason:reason userInfo: nil];\
     }
 
 #define THROW_UNIMPLEMENTED_EXCEPTION\

@@ -47,28 +47,28 @@ static NSString * const kHSCalendarEventNotifierObservingContext = @"kHSCalendar
 
 #pragma mark - Notification events management
 - (void)addNotificationHandler:(id<HSCalendarEventNotificationHandler>)notificationHandler {
-    THROW_IF_ARGUMENT_NIL_2(notificationHandler);
+    THROW_IF_ARGUMENT_NIL(notificationHandler);
     if (![self.notificationHandlers containsObject:notificationHandler]) {
         [self.notificationHandlers addObject:notificationHandler];
     }
 }
 
 - (void)removeNotificationHandler:(id<HSCalendarEventNotificationHandler>)notificationHandler {
-    THROW_IF_ARGUMENT_NIL_2(notificationHandler);
+    THROW_IF_ARGUMENT_NIL(notificationHandler);
     if ([self.notificationHandlers containsObject:notificationHandler]) {
         [self.notificationHandlers removeObject:notificationHandler];
     }
 }
 
 - (void)addNotificationHandlerBlock:(HSCalendarEventNotificationHandlerBlock)notificationHandlerBlock {
-    THROW_IF_ARGUMENT_NIL_2(notificationHandlerBlock);
+    THROW_IF_ARGUMENT_NIL(notificationHandlerBlock);
     if (![self.notificationHandlerBlocks containsObject:notificationHandlerBlock]) {
         [self.notificationHandlerBlocks addObject:[notificationHandlerBlock copy]];
     }
 }
 
 - (void)removeNotificationHandlerBlock:(HSCalendarEventNotificationHandlerBlock)notificationHandlerBlock {
-    THROW_IF_ARGUMENT_NIL_2(notificationHandlerBlock);
+    THROW_IF_ARGUMENT_NIL(notificationHandlerBlock);
     if ([self.notificationHandlerBlocks containsObject:notificationHandlerBlock]) {
         [self.notificationHandlerBlocks removeObject:notificationHandlerBlock];
     }
@@ -76,7 +76,7 @@ static NSString * const kHSCalendarEventNotifierObservingContext = @"kHSCalendar
 
 #pragma mark - Notification events processing
 - (void)processLocalNotification:(UILocalNotification *)localNotification {
-    THROW_IF_ARGUMENT_NIL_2(localNotification);
+    THROW_IF_ARGUMENT_NIL(localNotification);
     @synchronized (self) {
         if ([self.calendarModel isModelUnlockedState]) {
             [self handleLocalNotification:localNotification];

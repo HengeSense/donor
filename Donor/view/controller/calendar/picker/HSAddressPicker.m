@@ -36,7 +36,7 @@
 
 - (void)showWithCompletion: (void (^)(BOOL))completion {
 
-    THROW_IF_ARGUMENT_NIL(completion, @"completion is not specified");
+    THROW_IF_ARGUMENT_NIL(completion);
     self.completion = completion;
     [self showModal];
 }

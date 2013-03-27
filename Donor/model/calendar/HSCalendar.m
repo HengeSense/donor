@@ -127,7 +127,7 @@ NSString * const kHSCalendarModelStateChangedKeyPath = @"isModelLockedStateInter
 
 - (NSArray *)eventsForDay: (NSDate *)dayDate {
     [self checkUnlockedModelPrecondition];
-    THROW_IF_ARGUMENT_NIL(dayDate, @"dayDate is not specified");
+    THROW_IF_ARGUMENT_NIL(dayDate);
     NSArray *allEvents = [self allEvents];
     NSPredicate *eventsBetweenDates =
         [NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
@@ -162,7 +162,7 @@ NSString * const kHSCalendarModelStateChangedKeyPath = @"isModelLockedStateInter
 
 #pragma mark - Remote events manipulation methods
 - (void)unlockModelWithUser:(PFUser *)user {
-    THROW_IF_ARGUMENT_NIL_2(user);
+    THROW_IF_ARGUMENT_NIL(user);
     self.user = user;
     self.isModelLockedStateInternal = NO;
 }
@@ -211,7 +211,7 @@ NSString * const kHSCalendarModelStateChangedKeyPath = @"isModelLockedStateInter
 
 
 - (void)addBloodRemoteEvent: (HSBloodRemoteEvent *)bloodRemoteEvent completion: (CompletionBlockType)completion {
-    THROW_IF_ARGUMENT_NIL_2(bloodRemoteEvent);
+    THROW_IF_ARGUMENT_NIL(bloodRemoteEvent);
     [self checkUnlockedModelPrecondition];
     if ([self.bloodRemoteEvents containsObject:bloodRemoteEvent]) {
         [NSException raise:NSInvalidArgumentException format:@"Can't add already existing event in calendar"];
@@ -248,7 +248,7 @@ NSString * const kHSCalendarModelStateChangedKeyPath = @"isModelLockedStateInter
 }
 
 - (void)removeBloodRemoteEvent:(HSBloodRemoteEvent *)bloodRemoteEvent completion:(CompletionBlockType)completion {
-    THROW_IF_ARGUMENT_NIL_2(bloodRemoteEvent);
+    THROW_IF_ARGUMENT_NIL(bloodRemoteEvent);
     [self checkUnlockedModelPrecondition];
     if (![self.bloodRemoteEvents containsObject:bloodRemoteEvent]) {
         [NSException raise:NSInvalidArgumentException format:@"Can't remove not existing event in calendar"];
@@ -271,8 +271,8 @@ NSString * const kHSCalendarModelStateChangedKeyPath = @"isModelLockedStateInter
 
 - (void)replaceBloodRemoteEvent:(HSBloodRemoteEvent *)oldEvent withEvent:(HSBloodRemoteEvent *)newEvent
                      completion:(CompletionBlockType)completion {
-    THROW_IF_ARGUMENT_NIL_2(oldEvent);
-    THROW_IF_ARGUMENT_NIL_2(newEvent);
+    THROW_IF_ARGUMENT_NIL(oldEvent);
+    THROW_IF_ARGUMENT_NIL(newEvent);
     [self checkUnlockedModelPrecondition];
     if (![self.bloodRemoteEvents containsObject:oldEvent]) {
         [NSException raise:NSInvalidArgumentException format:@"Can't replace not existing event in calendar"];
@@ -389,7 +389,7 @@ NSString * const kHSCalendarModelStateChangedKeyPath = @"isModelLockedStateInter
 }
 
 - (BOOL)canAddBloodRemoteEvent: (HSBloodRemoteEvent *)bloodRemoteEvent error: (NSError **)error {
-    THROW_IF_ARGUMENT_NIL_2(bloodRemoteEvent);
+    THROW_IF_ARGUMENT_NIL(bloodRemoteEvent);
     NSArray *eventsInTheSameDay = [self eventsForDay: bloodRemoteEvent.scheduleDate];
     NSArray *remoteEventsInTheSameDay = [eventsInTheSameDay filteredArrayUsingPredicate:
             [NSPredicate predicateWithFormat: @"SELF isKindOfClass: %@", [HSBloodRemoteEvent class]]];
@@ -440,14 +440,14 @@ NSString * const kHSCalendarModelStateChangedKeyPath = @"isModelLockedStateInter
 }
 
 - (NSArray *)bloodRemoteEventsFromEvents: (NSArray *)events {
-    THROW_IF_ARGUMENT_NIL_2(events);
+    THROW_IF_ARGUMENT_NIL(events);
     return [events filteredArrayUsingPredicate:
             [NSPredicate predicateWithFormat: @"SELF isKindOfClass: %@", [HSBloodRemoteEvent class]]];
 }
 
 
 - (BOOL)isAfterLastDoneBloodDonationEvent: (HSBloodDonationEvent *)checkedEvent {
-    THROW_IF_ARGUMENT_NIL_2(checkedEvent);
+    THROW_IF_ARGUMENT_NIL(checkedEvent);
     for (HSBloodDonationEvent *bloodDonationEvent in [self bloodDonationEvents]) {
         if (bloodDonationEvent.isDone && [checkedEvent.scheduleDate isBeforeDay:bloodDonationEvent.scheduleDate]) {
             return NO;
@@ -457,7 +457,7 @@ NSString * const kHSCalendarModelStateChangedKeyPath = @"isModelLockedStateInter
 }
 
 - (BOOL)isBloodDonationEventAfterRestPeriod: (HSBloodDonationEvent *)bloodDonationEvent {
-    THROW_IF_ARGUMENT_NIL_2(bloodDonationEvent);
+    THROW_IF_ARGUMENT_NIL(bloodDonationEvent);
     for (HSFinishRestEvent *finishRestEvent in self.finishRestEvents) {
         if ((bloodDonationEvent.bloodDonationType == finishRestEvent.bloodDonationType) &&
             [bloodDonationEvent.scheduleDate isBeforeDay: finishRestEvent.scheduleDate]) {

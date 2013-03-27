@@ -64,16 +64,16 @@
 #pragma mark - Initialization methods
 - (id)initWithNibName: (NSString *)nibNameOrNil bundle: (NSBundle *)nibBundleOrNil calendar: (HSCalendar *)calendar
         bloodDonationEvent: (HSBloodDonationEvent *)bloodDonationEvent {
-    THROW_IF_ARGUMENT_NIL_2(calendar);
-    THROW_IF_ARGUMENT_NIL_2(bloodDonationEvent);
+    THROW_IF_ARGUMENT_NIL(calendar);
+    THROW_IF_ARGUMENT_NIL(bloodDonationEvent);
     return [self initWithNibNameInternal: nibNameOrNil bundle: nibBundleOrNil calendar: calendar
                       bloodDonationEvent: bloodDonationEvent bloodTestsEvent: nil];
 }
 
 - (id)initWithNibName: (NSString *)nibNameOrNil bundle: (NSBundle *)nibBundleOrNil calendar: (HSCalendar *)calendar
         bloodTestsEvent: (HSBloodTestsEvent *)bloodTestsEvent {
-    THROW_IF_ARGUMENT_NIL_2(calendar);
-    THROW_IF_ARGUMENT_NIL_2(bloodTestsEvent);
+    THROW_IF_ARGUMENT_NIL(calendar);
+    THROW_IF_ARGUMENT_NIL(bloodTestsEvent);
     return [self initWithNibNameInternal: nibNameOrNil bundle: nibBundleOrNil calendar: calendar
             bloodDonationEvent: nil bloodTestsEvent:bloodTestsEvent];
 }
@@ -213,7 +213,7 @@
 
 #pragma mark - Event processing
 - (void)markEventAsDone:(HSBloodRemoteEvent *)remoteEvent {
-    THROW_IF_ARGUMENT_NIL_2(remoteEvent);
+    THROW_IF_ARGUMENT_NIL(remoteEvent);
     if ([remoteEvent.scheduleDate isAfterDay: [NSDate date]]) {
         @throw [NSException exceptionWithName: NSInternalInconsistencyException
                                        reason: @"Was made attempt to mark event from future as done." userInfo: nil];
@@ -226,7 +226,7 @@
                                cancelButtonTitle:@"Готово"];
             [self.navigationController popToRootViewControllerAnimated: YES];
         } else {
-            [HSAlertViewController showWithTitle:@"Ошибка" message:localizedDescriptionForError(error)];
+            [HSAlertViewController showWithTitle:@"Ошибка" message:[HSModelCommon localizedDescriptionForError:error]];
         }
     }];
 }

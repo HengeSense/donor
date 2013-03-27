@@ -20,7 +20,7 @@ extern NSString * const kRemoteEvent_BaseClassName;
 extern NSString * const HSRemoteServerResponseErrorDomain;
 
 /**
- * This domain errors may occur during add avant to the calendar
+ * This domain errors may occur during add event to the calendar.
  */
 extern NSString * const HSCalendarAddEventErrorDomain;
 
@@ -30,6 +30,7 @@ typedef enum {
     HSCalendarAddEventErrorDomainCode_BeforeFirstDonation
 } HSCalendarAddEventErrorDomainCode;
 
-NSString* localizedDescriptionForError (NSError *error);
-NSString* localizedDescriptionForParseError (NSError *error);
-    
+@interface HSModelCommon : NSObject
++ (NSString *)localizedDescriptionForError:(NSError *)error;
++ (NSString *)localizedDescriptionForParseError:(NSError *)error;
+@end

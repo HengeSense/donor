@@ -60,7 +60,7 @@
                 [HSAlertViewController showWithMessage:@"Регистрация завершена."];
                 [self loadCalendarEventsAndGoToProfileForUser:[PFUser currentUser]];
             } else {
-                [HSAlertViewController showWithMessage:localizedDescriptionForParseError(error)];
+                [HSAlertViewController showWithMessage:[HSModelCommon localizedDescriptionForParseError:error]];
             }
         }];
     } else {
