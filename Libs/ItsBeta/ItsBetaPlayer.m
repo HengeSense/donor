@@ -31,6 +31,14 @@
 
 @implementation ItsBetaPlayer
 
+- (NSArray*) objects {
+    __block NSArray* result = nil;
+    dispatch_sync(_queue, ^{
+        result = _objects;
+    });
+    return result;
+}
+
 + (ItsBetaPlayer*) userWithType:(ItsBetaPlayerType)type {
     return NS_SAFE_AUTORELEASE([[self alloc] initWithType:type]);
 }
@@ -50,6 +58,7 @@
 - (void) dealloc {
     NS_SAFE_RELEASE(_Id);
     NS_SAFE_RELEASE(_facebookId);
+    NS_SAFE_RELEASE(_facebookToken);
     
     dispatch_release(_queue);
     
@@ -100,16 +109,20 @@
     }
 }
 
-- (void) loginWithFacebookId:(NSString*)facebookId callback:(ItsBetaCallbackLogin)callback {
+- (void) loginWithFacebookId:(NSString*)facebookId facebookToken:(NSString*)facebookToken callback:(ItsBetaCallbackLogin)callback {
     [ItsBeta itsBetaPlayerIdByFacebookId:facebookId
                                 callback:^(NSString *playerId, NSError *error) {
                                     if(_Id != playerId) {
                                         NS_SAFE_RELEASE(_Id);
                                         _Id = NS_SAFE_RETAIN(playerId);
                                     }
-                                    if(_facebookId != playerId) {
+                                    if(_facebookId != facebookId) {
                                         NS_SAFE_RELEASE(_facebookId);
                                         _facebookId = NS_SAFE_RETAIN(facebookId);
+                                    }
+                                    if(_facebookToken != facebookToken) {
+                                        NS_SAFE_RELEASE(_facebookToken);
+                                        _facebookToken = NS_SAFE_RETAIN(facebookToken);
                                     }
                                     callback(self, error);
                                 }];

@@ -104,7 +104,8 @@ typedef void (^ItsBetaCallbackImage)(ItsBetaImage* image, NSError* error);
 
 @property(nonatomic, readonly) ItsBetaPlayerType type; // Тип пользователя
 @property(nonatomic, readonly) NSString* Id; // Уникальный Id пользователя
-@property(nonatomic, readonly) NSString* facebookId; //Id в facebook
+@property(nonatomic, readonly) NSString* facebookId; // Id в facebook
+@property(nonatomic, readonly) NSString* facebookToken; // facebook access token
 
 @property(nonatomic, readonly) NSArray* objects;
 
@@ -116,7 +117,7 @@ typedef void (^ItsBetaCallbackImage)(ItsBetaImage* image, NSError* error);
 
 - (BOOL) isLogin;
 - (void) login:(ItsBetaCallbackLogin)callback;
-- (void) loginWithFacebookId:(NSString*)facebookId callback:(ItsBetaCallbackLogin)callback;
+- (void) loginWithFacebookId:(NSString*)facebookId facebookToken:(NSString*)facebookToken callback:(ItsBetaCallbackLogin)callback;
 - (void) logout:(ItsBetaCallbackLogout)callback;
 
 + (NSString*) stringWithPlayerType:(ItsBetaPlayerType)playerType;
