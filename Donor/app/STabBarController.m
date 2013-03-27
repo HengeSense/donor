@@ -27,7 +27,7 @@ static const NSUInteger kTabBarButtonHeight = 52;
 @synthesize tabBarController = _tabBarController;
 
 - (id)initWithNativeTabBarController:(UITabBarController *)tabBarController {
-    THROW_IF_ARGUMENT_NIL(tabBarController, @"tabBarController is not defined");
+    THROW_IF_ARGUMENT_NIL(tabBarController);
     if (self = [super init]) {
         NSUInteger screenWidth = [UIScreen mainScreen].bounds.size.width;
         NSUInteger screenHeight = [UIScreen mainScreen].bounds.size.height;

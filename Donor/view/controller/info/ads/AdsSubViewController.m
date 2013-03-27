@@ -104,7 +104,8 @@
                     }
                     [(UITableView *)self.view reloadData];
                 } else {
-                    [HSAlertViewController showWithTitle:@"Ошибка" message:localizedDescriptionForParseError(error)];
+                    [HSAlertViewController showWithTitle:@"Ошибка"
+                                                 message:[HSModelCommon localizedDescriptionForParseError:error]];
                 }
                 [progressHud hide:YES];
                 self.view.userInteractionEnabled = YES;
@@ -112,7 +113,8 @@
         } else {
             [progressHud hide:YES];
             self.view.userInteractionEnabled = YES;
-            [HSAlertViewController showWithTitle:@"Ошибка" message:localizedDescriptionForParseError(error)];
+            [HSAlertViewController showWithTitle:@"Ошибка"
+                                         message:[HSModelCommon localizedDescriptionForParseError:error]];
         }
     }];
 }

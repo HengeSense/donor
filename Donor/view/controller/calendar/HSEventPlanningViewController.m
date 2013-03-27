@@ -204,14 +204,14 @@ static const NSUInteger kCommentsTextViewSymbolsMax = 260;
 
 - (id)initWithNibName: (NSString *)nibNameOrNil bundle: (NSBundle *)nibBundleOrNil calendar: (HSCalendar *)calendar
                  date: (NSDate *)date bloodDonationEvent: (HSBloodDonationEvent *)bloodDonationEvent {
-    THROW_IF_ARGUMENT_NIL(bloodDonationEvent, @"bloodDonationEvent is not specified")
+    THROW_IF_ARGUMENT_NIL(bloodDonationEvent)
     return [self initWithNibNameInternal: nibNameOrNil bundle: nibBundleOrNil calendar: calendar date: date
             bloodDonationEvent: bloodDonationEvent bloodTestEvent: nil];
 }
 
 - (id)initWithNibName: (NSString *)nibNameOrNil bundle: (NSBundle *)nibBundleOrNil calendar: (HSCalendar *)calendar
                  date: (NSDate *)date bloodTestsEvent: (HSBloodTestsEvent *)bloodTestsEvent {
-    THROW_IF_ARGUMENT_NIL(bloodTestsEvent, @"bloodDonationEvent is not specified")
+    THROW_IF_ARGUMENT_NIL(bloodTestsEvent)
     return [self initWithNibNameInternal: nibNameOrNil bundle: nibBundleOrNil calendar: calendar date: date
             bloodDonationEvent: nil bloodTestEvent: bloodTestsEvent];
 }
@@ -221,8 +221,8 @@ static const NSUInteger kCommentsTextViewSymbolsMax = 260;
                          date: (NSDate *)date bloodDonationEvent: (HSBloodDonationEvent *)bloodDonationEvent
                bloodTestEvent: (HSBloodTestsEvent *)bloodTestsEvent {
     
-    THROW_IF_ARGUMENT_NIL(calendar, @"calendar is not specified");
-    THROW_IF_ARGUMENT_NIL(date, @"date is note specified");
+    THROW_IF_ARGUMENT_NIL(calendar);
+    THROW_IF_ARGUMENT_NIL(date);
     self = [super initWithNibName: nibNameOrNil bundle: nibBundleOrNil];
     if (self) {
         // UI
@@ -376,7 +376,7 @@ static const NSUInteger kCommentsTextViewSymbolsMax = 260;
             [HSFlurryAnalytics userDeletedCalendarEvent:self.currentEditedEvent];
             [self.navigationController popToRootViewControllerAnimated: YES];
         } else {
-            [HSAlertViewController showWithTitle:@"Ошибка" message:localizedDescriptionForError(error)];
+            [HSAlertViewController showWithTitle:@"Ошибка" message:[HSModelCommon localizedDescriptionForError:error]];
         }
     }];
 }
@@ -525,7 +525,7 @@ static const NSUInteger kCommentsTextViewSymbolsMax = 260;
             [self.navigationController popToRootViewControllerAnimated: YES];
             [HSFlurryAnalytics userCreatedCalendarEvent:newEvent];
         } else {
-            [HSAlertViewController showWithTitle:@"Ошибка" message:localizedDescriptionForError(error)];
+            [HSAlertViewController showWithTitle:@"Ошибка" message:[HSModelCommon localizedDescriptionForError:error]];
         }
     }];
 }
@@ -543,7 +543,7 @@ static const NSUInteger kCommentsTextViewSymbolsMax = 260;
             [strongSelf.navigationController popToRootViewControllerAnimated: YES];
             [HSFlurryAnalytics userCreatedCalendarEvent:event];
         } else {
-            [HSAlertViewController showWithTitle:@"Ошибка" message:localizedDescriptionForError(error)];
+            [HSAlertViewController showWithTitle:@"Ошибка" message:[HSModelCommon localizedDescriptionForError:error]];
         }
     }];
 }

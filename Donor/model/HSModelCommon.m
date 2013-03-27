@@ -15,8 +15,10 @@ NSString * const HSCalendarAddEventErrorDomain = @"HSCalendarAddEventErrorDomain
 
 static NSString * const kFacebookSDKErrorDomain = @"com.facebook.sdk";
 
-NSString* localizedDescriptionForParseError (NSError *error) {
-    THROW_IF_ARGUMENT_NIL(error, @"error is not specified");
+@implementation HSModelCommon
+
++ (NSString *)localizedDescriptionForParseError:(NSError *)error {
+    THROW_IF_ARGUMENT_NIL(error);
     if ([error.domain isEqualToString:kFacebookSDKErrorDomain]) {
         return @"Ошибка авторизации через Facebook.";
     } else if (error.code == kPFErrorConnectionFailed) {
@@ -38,8 +40,8 @@ NSString* localizedDescriptionForParseError (NSError *error) {
     }
 }
 
-NSString* localizedDescriptionForError (NSError *error) {
-    THROW_IF_ARGUMENT_NIL(error, @"erro is not specified");
++ (NSString *)localizedDescriptionForError:(NSError *)error {
+    THROW_IF_ARGUMENT_NIL(error);
     NSLog(@"Trying to make localization for error: %@", error);
     if ([error.domain isEqualToString: HSCalendarAddEventErrorDomain]) {
         switch (error.code) {
@@ -56,10 +58,12 @@ NSString* localizedDescriptionForError (NSError *error) {
     } else if ([error.domain isEqualToString: HSRemoteServerResponseErrorDomain]) {
         NSError *parseError = [error.userInfo objectForKey:NSUnderlyingErrorKey];
         if (parseError != nil) {
-            return localizedDescriptionForParseError(parseError);
+            return [self localizedDescriptionForParseError:parseError];
         } else {
             return @"Невозможно сохранить данные на сервере, возможно нет подключения.";
         }
     }
     return @"Ошибка неизвестна.";
 }
+
+@end

@@ -80,18 +80,18 @@
 
 #pragma mark - HTML wrappers
 - (NSString *)htmlFromPhone:(NSString *)phone {
-    THROW_IF_ARGUMENT_NIL(phone, @"phone is not specified");
+    THROW_IF_ARGUMENT_NIL(phone);
     
    return [NSString stringWithFormat:@"<html><head><style type='text/css'>* { margin:1; padding:1; } p { color:#DF8D4B; font-family:Helvetica; font-size:12px; font-weight:bold; text-align:right; text-decoration:none; } a { color:#DF8D4B; text-decoration:none; } </style></head><body><p>%@</p></body></html>", phone];
 }
 #pragma mark UI configuration
 - (NSString *)htmlFromSiteLink:(NSString *)siteLink {
-    THROW_IF_ARGUMENT_NIL(siteLink, @"siteLink is not specified");
+    THROW_IF_ARGUMENT_NIL(siteLink);
     return [NSString stringWithFormat:@"<html><head><style type='text/css'>* { margin:1; padding:1; } p { color:black; font-family:Helvetica; font-size:12px; font-weight:bold; text-align:right; text-decoration:underline; } a { color:#0B8B99; text-decoration:none; }</style></head><body><p><a href='%@'>%@</a></p></body></html>", siteLink, siteLink];
 }
 
 - (NSString *)htmlFromEmail:(NSString *)email {
-    THROW_IF_ARGUMENT_NIL(email, @"email is not specified");
+    THROW_IF_ARGUMENT_NIL(email);
     
     return [NSString stringWithFormat:@"<html><head><style type='text/css'>* { margin:1; padding:1; } p { color:#DF8D4B; font-family:Helvetica; font-size:12px; font-weight:bold; text-align:right; text-decoration:none; } a { color:#DF8D4B; text-decoration:none; } </style></head><body><p><a href='mailto:%@'>%@</a></p></body></html>", email, email];
 }

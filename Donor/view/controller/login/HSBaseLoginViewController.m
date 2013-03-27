@@ -109,8 +109,8 @@
 
 #pragma mark - Private interface
 - (void)linkFacebookAccountForUser:(PFUser *)user hideProgressHud:(MBProgressHUD *)progressHud {
-    THROW_IF_ARGUMENT_NIL(user, @"user is not specified");
-    THROW_IF_ARGUMENT_NIL(progressHud, @"progressHud is not specified");
+    THROW_IF_ARGUMENT_NIL(user);
+    THROW_IF_ARGUMENT_NIL(progressHud);
     NSArray *permissions = @[@"user_about_me", @"email"];
     [PFFacebookUtils linkUser:user permissions:permissions block:^(BOOL succeeded, NSError *error) {
         if (succeeded) {

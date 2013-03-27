@@ -79,7 +79,7 @@ static NSString * const kObservingKey_ScheduleDate = @"scheduleDate";
 
 - (void)scheduleLocalNotificationAtDate:(NSDate *)date withAlertAction:(NSString *)alertAction
         alertBody:(NSString *)alertBody userInfo:(NSDictionary *)userInfo {
-    THROW_IF_ARGUMENT_NIL_2(date);
+    THROW_IF_ARGUMENT_NIL(date);
 
     if (date.timeIntervalSinceNow < 0) {
         return;
@@ -101,19 +101,19 @@ static NSString * const kObservingKey_ScheduleDate = @"scheduleDate";
 }
 
 - (BOOL)isSelfLocalNotification:(UILocalNotification *)localNotification {
-    THROW_IF_ARGUMENT_NIL_2(localNotification);
+    THROW_IF_ARGUMENT_NIL(localNotification);
     NSString *className = [localNotification.userInfo objectForKey:kLocalNotificationUserInfoKey_ClassName];
     NSNumber *uid = [localNotification.userInfo objectForKey:kLocalNotificationUserInfoKey_UID];
     return [className isEqualToString:NSStringFromClass(self.class)] && [self uid] == uid.unsignedIntegerValue;
 }
 
 - (BOOL)isReminderLocalNotification:(UILocalNotification *)localNotification {
-    THROW_IF_ARGUMENT_NIL_2(localNotification);
+    THROW_IF_ARGUMENT_NIL(localNotification);
     return [localNotification.userInfo objectForKey:kLocalNotificationUserInfoKey_IsReminder] != nil;
 }
 
 - (BOOL)isConfirmationLocalNotification:(UILocalNotification *)localNotification {
-    THROW_IF_ARGUMENT_NIL_2(localNotification);
+    THROW_IF_ARGUMENT_NIL(localNotification);
     return [localNotification.userInfo objectForKey:kLocalNotificationUserInfoKey_IsConfirmation] != nil;
 }
 

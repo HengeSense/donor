@@ -50,7 +50,7 @@
 }
 
 - (void)processAuthorizationWithError: (NSError *)error {
-    [HSAlertViewController showWithMessage:localizedDescriptionForParseError(error)];
+    [HSAlertViewController showWithMessage:[HSModelCommon localizedDescriptionForParseError:error]];
 }
 
 - (void)specifyPlatformInfoForUser:(PFUser *)user {

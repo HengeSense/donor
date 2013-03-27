@@ -68,7 +68,7 @@
 
 #pragma mark - Utility
 - (void)showOverlayByShift:(UIView *)overlay {
-    THROW_IF_ARGUMENT_NIL(overlay, @"overlay view is not specified");
+    THROW_IF_ARGUMENT_NIL(overlay);
     switch (self.animationDirection) {
         case HSModalAnimationDirection_Top:
             [overlay shiftToScreenFromTop];
@@ -82,7 +82,7 @@
 }
 
 - (void)hideOverlayByShift:(UIView *)overlay {
-    THROW_IF_ARGUMENT_NIL(overlay, @"overlay view is not specified");
+    THROW_IF_ARGUMENT_NIL(overlay);
     switch (self.animationDirection) {
         case HSModalAnimationDirection_Top:
             [overlay shiftFromScreenToTop];

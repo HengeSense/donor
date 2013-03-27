@@ -15,7 +15,7 @@
 #pragma mark - Creation helpers
 + (HSNotification *)notificationWithEvent:(HSNotificationEvent *)event nature:(HSNotificationNatureType)nature
         source:(HSNotificationSourceType)source {
-    THROW_IF_ARGUMENT_NIL_2(event);
+    THROW_IF_ARGUMENT_NIL(event);
     HSNotification *notification = [[HSNotification alloc] init];
     notification.event = event;
     notification.nature = nature;

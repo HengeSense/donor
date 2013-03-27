@@ -74,7 +74,7 @@
 }
 
 - (void)loginWithBaseAuthForFacebookUser:(PFUser *)facebookUser {
-    THROW_IF_ARGUMENT_NIL(facebookUser, @"facebookUser is not specified");
+    THROW_IF_ARGUMENT_NIL(facebookUser);
     HSBaseLoginViewController *profileViewController =
             [[HSBaseLoginViewController alloc] initWithNibName:@"HSBaseLoginViewController" bundle:nil];
     profileViewController.facebookUser = facebookUser;

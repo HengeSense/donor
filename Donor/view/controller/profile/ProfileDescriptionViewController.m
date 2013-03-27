@@ -98,7 +98,8 @@ static NSString * const kLinkedToFacebookTitle = @"привязан";
             if (succeeded) {
                 [HSFlurryAnalytics userUpdatedProfile];
             } else {
-                [HSAlertViewController showWithTitle:@"Ошибка" message:localizedDescriptionForParseError(error)];
+                [HSAlertViewController showWithTitle:@"Ошибка"
+                                             message:[HSModelCommon localizedDescriptionForParseError:error]];
             }
         }];
     }
@@ -172,7 +173,8 @@ static NSString * const kLinkedToFacebookTitle = @"привязан";
         if (succeeded) {
             [self.proposeFacebookLinkUnlinkButton setTitle:kNotLinkedToFacebookTitle forState:UIControlStateNormal];
         } else {
-            [HSAlertViewController showWithTitle:@"Ошибка" message:localizedDescriptionForParseError(error)];
+            [HSAlertViewController showWithTitle:@"Ошибка"
+                                         message:[HSModelCommon localizedDescriptionForParseError:error]];
             NSLog(@"Facebook unlink failed due to error: %@", error);
         }
     }];
@@ -186,7 +188,8 @@ static NSString * const kLinkedToFacebookTitle = @"привязан";
         if (succeeded) {
             [self.proposeFacebookLinkUnlinkButton setTitle:kLinkedToFacebookTitle forState:UIControlStateNormal];
         } else {
-            [HSAlertViewController showWithTitle:@"Ошибка" message:localizedDescriptionForParseError(error)];
+            [HSAlertViewController showWithTitle:@"Ошибка"
+                                         message:[HSModelCommon localizedDescriptionForParseError:error]];
             NSLog(@"Facebook link failed due to error: %@", error);
         }
     }];

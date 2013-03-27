@@ -47,7 +47,7 @@ static NSString * const kRemoteEventField_Type = @"type";
 
 #pragma mark - Creation methods 
 + (HSBloodRemoteEvent *)buildBloodEventWithRemoteEvent:(PFObject *)remoteEvent {
-    THROW_IF_ARGUMENT_NIL(remoteEvent, @"remote event is not specified");
+    THROW_IF_ARGUMENT_NIL(remoteEvent);
     int bloodEventType = [[remoteEvent objectForKey: kRemoteEventField_Type] intValue];
     switch (bloodEventType) {
         case HSRemoteEventChildType_BloodTestsType:
@@ -131,7 +131,7 @@ static NSString * const kRemoteEventField_Type = @"type";
 }
 
 - (id)initWithRemoteEvent:(PFObject *)remoteEvent {
-    THROW_IF_ARGUMENT_NIL(remoteEvent, @"remote event is not specified");
+    THROW_IF_ARGUMENT_NIL(remoteEvent);
     if (self = [super init]) {
         self.remoteEvent = remoteEvent;
     }
@@ -140,7 +140,7 @@ static NSString * const kRemoteEventField_Type = @"type";
 
 #pragma mark - Interaction with server side.
 - (void)saveWithCompletionBlock: (CompletionBlockType)completion {
-    THROW_IF_ARGUMENT_NIL(completion, @"completion block is not defined");
+    THROW_IF_ARGUMENT_NIL(completion);
 
     [self.remoteEvent saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (succeeded) {
@@ -158,7 +158,7 @@ static NSString * const kRemoteEventField_Type = @"type";
  }
 
 - (void)removeWithCompletionBlock: (CompletionBlockType)completion {
-    THROW_IF_ARGUMENT_NIL(completion, @"completion block is not defined");
+    THROW_IF_ARGUMENT_NIL(completion);
     // Sync deletion is used because async deletion crashes the application.
     NSError *deleteError = nil;
     BOOL succeed = [self.remoteEvent delete: &deleteError];

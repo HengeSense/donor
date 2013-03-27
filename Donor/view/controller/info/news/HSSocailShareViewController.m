@@ -42,7 +42,7 @@ static NSString * PODARI_ZHIZN_NEWS_URL = @"http://www.podari-zhizn.ru/main/node
 
 #pragma mark - Utility
 - (void)goToURL:(NSURL *)url {
-    THROW_IF_ARGUMENT_NIL(url, @"url is new specified");
+    THROW_IF_ARGUMENT_NIL(url);
     [self hideModal];
     [[UIApplication sharedApplication] openURL:url];
 }

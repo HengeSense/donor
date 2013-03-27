@@ -11,7 +11,7 @@
 @implementation NSDate (HSCalendar)
 
 - (BOOL)isTheSameDay: (NSDate *)date {
-    THROW_IF_ARGUMENT_NIL(date, @"date is not specified");
+    THROW_IF_ARGUMENT_NIL(date);
 
     NSCalendar *systemCalendar = [NSCalendar currentCalendar];
     int dateComponentsUnits = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit;
@@ -26,7 +26,7 @@
 }
 
 - (BOOL)isBeforeDay: (NSDate *)date {
-    THROW_IF_ARGUMENT_NIL(date, @"date is not specified");
+    THROW_IF_ARGUMENT_NIL(date);
     
     NSCalendar *systemCalendar = [NSCalendar currentCalendar];
     int dateComponentsUnits = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit;
@@ -39,7 +39,7 @@
 }
 
 - (BOOL)isAfterDay:(NSDate *)date {
-    THROW_IF_ARGUMENT_NIL(date, @"date is not specified");
+    THROW_IF_ARGUMENT_NIL(date);
     
     NSCalendar *systemCalendar = [NSCalendar currentCalendar];
     int dateComponentsUnits = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit;
