@@ -31,9 +31,10 @@
 
 #pragma mark - UI configuration
 - (void)configureContacts {
-    NSArray *phones = @[@"8-800-250-5222", @"+7 (499) 245-58-26", @"+7 (499) 246-22-39", @"+7 (495) 410-01-12"];
-    NSArray *emails = @[@"info@podari-zhizn.ru", @"info@donors.ru"];
-    NSString *site = @"http://www.podari-zhizn.ru";
+    NSArray *phones = @[@"8 800 333 33 30"];
+    NSArray *emails = @[@"info@yadonor.ru"];
+    NSString *site = @"http://yadonor.ru/";
+    NSString *siteProject = @"www.donorapp.ru";
     
     CGFloat contentOffsetY = 0.0f;
     for (NSString *phone in phones) {
@@ -57,13 +58,23 @@
     {
         HSContactView *contactView = [[HSContactView alloc] initWithContact:[self htmlFromSiteLink:site]
                                                                contactTitle:@"Сайт"];
-        contactView.showFooterLine = YES;
+        contactView.showFooterLine = NO;
         [contactView moveFrameY:contentOffsetY];
         [self.contactsScrollView addSubview:contactView];
         
         contentOffsetY += contactView.frame.size.height;
     }
     
+    {
+        HSContactView *contactView = [[HSContactView alloc] initWithContact:[self htmlFromSiteLink:siteProject]
+                                                               contactTitle:@"Сайт проекта"];
+        contactView.showFooterLine = YES;
+        [contactView moveFrameY:contentOffsetY];
+        [self.contactsScrollView addSubview:contactView];
+        
+        contentOffsetY += contactView.frame.size.height;
+    }
+
     self.contactsScrollView.contentSize = CGSizeMake(self.contactsScrollView.bounds.size.width, contentOffsetY);
 }
 

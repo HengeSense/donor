@@ -10,6 +10,7 @@
 #import "HSEventViewController.h"
 #import "HSEventPlanningViewController.h"
 #import "HSAlertViewController.h"
+#import "HSRemindDatePicker.h"
 
 #import "NSDate+HSCalendar.h"
 #import "UIView+HSLayoutManager.h"
@@ -97,6 +98,8 @@
     [self setBloodTestsCommentsTextView:nil];
     [self setBloodTestsView:nil];
     [self setDoneButton:nil];
+    [self setBloodDonationReminderLabel:nil];
+    [self setBloodTestsReminderLabel:nil];
     [super viewDidUnload];
 }
 
@@ -161,6 +164,8 @@
         self.bloodDonationDateLabel.text = [self.bloodDonationEvent formatedScheduleDate];
         self.bloodDonationLabAddressLabel.text = self.bloodDonationEvent.labAddress;
         self.bloodDonationCommentTextView.text = self.bloodDonationEvent.comments;
+        self.bloodDonationReminderLabel.text =
+                [HSRemindDatePicker stringFromReminderTimeShift:[self.bloodDonationEvent reminderTimeShift]];
         [self.rootScrollView addSubview: self.bloodDonationView];
         rootScrollViewContentSize.height += bloodDonationSize.height;
         
@@ -171,13 +176,15 @@
         }
 
     } else if (self.bloodTestsEvent != nil) {
-        self.currentBloodRemoteEvent = self.bloodTestsEvent;
         // Display view for blood tests event.
+        self.currentBloodRemoteEvent = self.bloodTestsEvent;
         CGSize bloodTestsSize = self.bloodTestsView.bounds.size;
         self.bloodTestsView.frame = CGRectMake(0.0f, 0.0f, bloodTestsSize.width, bloodTestsSize.height);
         self.bloodTestsDateLabel.text = [self.bloodTestsEvent formatedScheduleDate];
         self.bloodTestsCommentsTextView.text = self.bloodTestsEvent.comments;
         self.bloodTestsLabAddressLabel.text = self.bloodTestsEvent.labAddress;
+        self.bloodTestsReminderLabel.text =
+                [HSRemindDatePicker stringFromReminderTimeShift:self.bloodTestsEvent.reminderTimeShift];
         [self.rootScrollView addSubview: self.bloodTestsView];
         rootScrollViewContentSize.height += bloodTestsSize.height;
     }    
