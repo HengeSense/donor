@@ -98,5 +98,23 @@ namespace Donor
             {
             };
         }
+
+        private void TextBlock_Tap_2(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            try
+            {
+                PhoneCallTask callTask = new PhoneCallTask();
+                string phone = "+7" + (sender as TextBlock).Text.Replace(" ", "").Replace("(", "").Replace(")", "").Replace("-", "");
+                int index = phone.IndexOf(",");
+                if (index > 0)
+                    phone = phone.Substring(0, index);
+                callTask.PhoneNumber = phone; //"88002505222";
+                callTask.DisplayName = phone;
+                callTask.Show();
+            }
+            catch
+            {
+            };
+        }
     }
 }

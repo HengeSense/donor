@@ -79,7 +79,7 @@
                                 Style="{StaticResource Text36pxB9A194}" Margin="0,10,0,0"/>
                                 <TextBlock TextWrapping="Wrap" 
 						        Text="{Binding Phone}" Margin="0,-4,0,0"
-						        Style="{StaticResource Text24pxDF8D4B}"/>
+						        Style="{StaticResource Text24pxDF8D4B}" Tap="TextBlock_Tap_2"/>
                             </StackPanel>
 
                             <StackPanel Margin="0,4" Visibility="{Binding Email, Converter={StaticResource StringConverter}}">
@@ -140,7 +140,7 @@
             <controls:PanoramaItem>
             	<controls:PanoramaItem.Header>
                     <TextBlock Style="{StaticResource Text70pxWhite}" 
-					Text="{Binding ForDonorsStation, Source={StaticResource Loc}}" Margin="-10,30,0,0"/>
+					Text="На карте" Margin="-10,30,0,0"/>
                 </controls:PanoramaItem.Header>
                 <Grid>
                     <StackPanel>
