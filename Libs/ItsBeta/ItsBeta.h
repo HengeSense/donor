@@ -1,7 +1,12 @@
 /*--------------------------------------------------*/
 
 #import <Foundation/Foundation.h>
-#import <FacebookSDK/FacebookSDK.h>
+
+/*--------------------------------------------------*/
+
+#if defined(TARGET_OS_IPHONE)
+#   import <UIKit/UIKit.h>
+#endif
 
 /*--------------------------------------------------*/
 
@@ -12,11 +17,12 @@
 #else
 #   define NS_SAFE_AUTORELEASE(object)              [object autorelease]
 #   define NS_SAFE_RETAIN(object)                   [object retain]
-#   define NS_SAFE_RELEASE(object)                  [object release]
+#   define NS_SAFE_RELEASE(object)                  [object release]; object = nil
 #endif
 
 /*--------------------------------------------------*/
 
+char* const ItsBetaDispatchQueue;
 NSString* const ItsBetaErrorDomain;
 
 /*--------------------------------------------------*/
@@ -32,354 +38,215 @@ typedef NSUInteger ItsBetaError;
 /*--------------------------------------------------*/
 
 enum {
-    ItsBetaUserTypeFacebook
+    ItsBetaPlayerTypeFacebook
 };
-typedef NSUInteger ItsBetaUserType;
+typedef NSUInteger ItsBetaPlayerType;
 
 /*--------------------------------------------------*/
 
-@class ItsBetaUser;
-@class ItsBetaImage;
+@class ItsBetaPlayer;
 @class ItsBetaCategory;
-@class ItsBetaCategories;
 @class ItsBetaProject;
-@class ItsBetaProjects;
 @class ItsBetaParams;
-@class ItsBetaBadge;
-@class ItsBetaBadges;
-@class ItsBetaAchievement;
-@class ItsBetaAchievements;
+@class ItsBetaType;
+@class ItsBetaTemplate;
+@class ItsBetaObject;
+@class ItsBetaImage;
 
 /*--------------------------------------------------*/
 
-typedef void (^ItsBetaCallbackLogin)(NSError* error);
-typedef void (^ItsBetaCallbackLogout)(NSError* error);
-typedef void (^ItsBetaCallbackCategories)(ItsBetaCategories* categories, NSError* error);
-typedef void (^ItsBetaCallbackProjects)(ItsBetaProjects* projects, NSError* error);
-typedef void (^ItsBetaCallbackParams)(ItsBetaParams* params, NSError* error);
-typedef void (^ItsBetaCallbackBadges)(ItsBetaBadges* badges, NSError* error);
-typedef void (^ItsBetaCallbackAchievements)(ItsBetaAchievements* achievements, NSError* error);
-typedef void (^ItsBetaCallbackCreateAchievement)(NSString* achieveInternalID, NSString* achieveFBID, NSError* error);
-typedef void (^ItsBetaCallbackActivateAchievement)(ItsBetaAchievement* achievement, NSError* error);
-typedef void (^ItsBetaCallbackLoadImage)(ItsBetaImage* image, NSError* error);
-typedef void (^ItsBetaCallbackInternalID)(NSString* internalUserID, NSError* error);
-typedef void (^ItsBetaCallbackAchievementAviability)(BOOL availability, NSError* error);
-typedef void (^ItsBetaCallbackAchievementURL)(NSString* achievementURL, NSError* error);
-typedef void (^ItsBetaCallBackBadge)(ItsBetaBadge* badge, NSError* error);
+typedef void (^ItsBetaCallbackLogin)(ItsBetaPlayer* user, NSError* error);
+typedef void (^ItsBetaCallbackLogout)(ItsBetaPlayer* user, NSError* error);
+typedef void (^ItsBetaCallbackPlayerIdWithUserId)(NSString* playerId, NSError* error);
+typedef void (^ItsBetaCallbackCollection)(NSArray* array, NSError* error);
+typedef void (^ItsBetaCallbackImage)(ItsBetaImage* image, NSError* error);
 
 /*--------------------------------------------------*/
 
-@interface ItsBeta : NSObject {
-}
+@interface ItsBeta : NSObject
 
 @property(nonatomic, readwrite, retain) NSString* serviceURL; // Базовый URL сервиса
 @property(nonatomic, readwrite, retain) NSString* accessToken; // Уникальный ключ доступа
 @property(nonatomic, readwrite, retain) NSString* locale; // Язык
 
+@property(nonatomic, readonly) NSArray* categories;
+@property(nonatomic, readonly) NSArray* projects;
+@property(nonatomic, readonly) NSArray* types;
+@property(nonatomic, readonly) NSArray* templates;
+
+@property(nonatomic, readonly) ItsBetaCategory* currentCategory;
+@property(nonatomic, readonly) ItsBetaProject* currentProject;
+@property(nonatomic, readonly) ItsBetaPlayer* currentPlayer;
+
 + (ItsBeta*) sharedItsBeta;
 
-- (void) requestCategories:(ItsBetaCallbackCategories)callback;
-- (void) requestProjectsByCategory:(ItsBetaCategory*)byCategory callback:(ItsBetaCallbackProjects)callback;
-- (void) requestParamsByProject:(ItsBetaProject*)byProject callback:(ItsBetaCallbackParams)callback;
-- (void) requestBadgesByProject:(ItsBetaProject*)byProject callback:(ItsBetaCallbackBadges)callback;
-- (void) requestAchievementsByUser:(ItsBetaUser*)byUser byCategory:(ItsBetaCategory*)byCategory byProject:(ItsBetaProject*)byProject byBadges:(ItsBetaBadges*)byBadges callback:(ItsBetaCallbackAchievements)callback;
-- (void) requestAchievementsByUser:(ItsBetaUser*)byUser byCategory:(ItsBetaCategory*)byCategory byProjects:(ItsBetaProjects*)byProjects byBadges:(ItsBetaBadges*)byBadges callback:(ItsBetaCallbackAchievements)callback;
-- (void) requestAchievementsByUser:(ItsBetaUser*)byUser byCategories:(ItsBetaCategories*)byCategories byProjects:(ItsBetaProjects*)byProjects byBadges:(ItsBetaBadges*)byBadges callback:(ItsBetaCallbackAchievements)callback;
-- (void) requestCreateAchievementByBadge:(ItsBetaBadge*)byBadge byParams:(NSDictionary*)byParams byExternalCode:(NSString*)byExternalCode callback:(ItsBetaCallbackCreateAchievement)callback;
-- (void) requestInternalUserIDByUser:(ItsBetaUser*)byUser callback:(ItsBetaCallbackInternalID)callback;
-- (void) requestAchievementAvailabilityByUser:(ItsBetaUser *)byUser byObjectTemplateId:(NSString*)byObjectTemplateId callback:(ItsBetaCallbackAchievementAviability)callback;
-- (void) requestAchievementsAvailabilityByUser:(ItsBetaUser *)byUser byObjectTemplates:(ItsBetaBadges*)byObjectTemplates;
-- (void) requestAchievementURLByAchievement:(NSString *)byAchievemntFBID byType:(NSString *)byType callback:(ItsBetaCallbackAchievementURL)callback;
-- (void) requestBadgeTemplateByTypeID:(NSString*)byTypeID byProjectID:(NSString*)byProjectID callback:(ItsBetaCallBackBadge)callback;
+- (void) synchronize;
+
+- (void) loginWithType:(ItsBetaPlayerType)type callback:(ItsBetaCallbackLogin)callback;
+- (void) logout:(ItsBetaCallbackLogout)callback;
+
++ (void) itsBetaCategories:(ItsBetaCallbackCollection)callback;
++ (void) itsBetaProjectsByCategory:(ItsBetaCategory*)byCategory callback:(ItsBetaCallbackCollection)callback;
++ (void) itsBetaTypesByProject:(ItsBetaProject*)byProject callback:(ItsBetaCallbackCollection)callback;
++ (void) itsBetaTypesByProject:(ItsBetaProject*)byProject byParent:(ItsBetaType*)byParent callback:(ItsBetaCallbackCollection)callback;
++ (void) itsBetaTemplatesByType:(ItsBetaType*)byType callback:(ItsBetaCallbackCollection)callback;
++ (void) itsBetaTemplatesByType:(ItsBetaType*)byType byProject:(ItsBetaProject*)byProject callback:(ItsBetaCallbackCollection)callback;
++ (void) itsBetaObjectByPlayer:(ItsBetaPlayer*)byPlayer byTemplate:(ItsBetaTemplate*)byTemplate callback:(ItsBetaCallbackCollection)callback;
+
++ (void) itsBetaPlayerIdByFacebookId:(NSString*)byUserId callback:(ItsBetaCallbackPlayerIdWithUserId)callback;
++ (void) itsBetaPlayerIdByUserType:(ItsBetaPlayerType)userType byUserId:(NSString*)byUserId callback:(ItsBetaCallbackPlayerIdWithUserId)callback;
 
 @end
 
 /*--------------------------------------------------*/
 
-@interface ItsBetaUser : NSObject
-{
-@protected
-    ItsBetaUserType mType; // Тип пользователя
-    NSString* mID; // Уникальный ID пользователя
-    NSString* mFaceBookID;  //ID в facebook
-    NSDictionary< FBGraphUser >* mUserFB;
-    BOOL mAchievementActivated;
-}
+@interface ItsBetaPlayer : NSObject
 
-@property(nonatomic, readonly) ItsBetaUserType type;
-@property(nonatomic, readonly) NSString* typeAsString;
-@property(nonatomic, retain) NSString* ID;
-@property(nonatomic, readonly) NSString* faceBookID;
-@property(nonatomic, retain) NSDictionary< FBGraphUser >* userFB;
-@property(nonatomic) BOOL achievementActivated;
+@property(nonatomic, readonly) ItsBetaPlayerType type; // Тип пользователя
+@property(nonatomic, readonly) NSString* Id; // Уникальный Id пользователя
+@property(nonatomic, readonly) NSString* facebookId; //Id в facebook
 
-+ (ItsBetaUser*) userWithType:(ItsBetaUserType)type;
+@property(nonatomic, readonly) NSArray* objects;
 
-+ (ItsBetaUser*) sharedItsBetaUser;
++ (ItsBetaPlayer*) userWithType:(ItsBetaPlayerType)type;
 
-- (id) initWithType:(ItsBetaUserType)type;
+- (id) initWithType:(ItsBetaPlayerType)type;
+
+- (void) synchronize;
 
 - (BOOL) isLogin;
 - (void) login:(ItsBetaCallbackLogin)callback;
+- (void) loginWithFacebookId:(NSString*)facebookId callback:(ItsBetaCallbackLogin)callback;
 - (void) logout:(ItsBetaCallbackLogout)callback;
 
-+ (BOOL) handleOpenURL:(NSURL*)url;
++ (NSString*) stringWithPlayerType:(ItsBetaPlayerType)playerType;
 
 @end
 
 /*--------------------------------------------------*/
 
-@interface ItsBetaImage : NSObject {
-@protected
-    NSString* mFileName; // Удаленный путь до изображения
-    NSString* mFileKey; // Локальный ключ изображения
-#if TARGET_OS_IPHONE
-    UIImage* mImageData;
-#else
-    NSImage* mImageData;
-#endif
-}
-
-@property(nonatomic, readonly) NSString* fileName;
-#if TARGET_OS_IPHONE
-@property(nonatomic, readonly) UIImage* imageData;
-#else
-@property(nonatomic, readonly) NSImage* imageData;
-#endif
-
-+ (ItsBetaImage*) imageWithFileName:(NSString*)fileName;
-
-- (id) initWithFileName:(NSString*)fileName;
-
-- (void) loadWithOriginal:(ItsBetaCallbackLoadImage)callback;
-
-@end
-
-/*--------------------------------------------------*/
-
-@interface ItsBetaCategory : NSObject {
-}
+@interface ItsBetaCategory : NSObject
 
 @property(nonatomic, readonly) NSString* name; // Имя категории
 @property(nonatomic, readonly) NSString* title; // Внешнее название категории
+@property(nonatomic, readonly) NSString* locale; // Язык
 
 + (ItsBetaCategory*) categoryWithDictionary:(NSDictionary*)dictionary;
-+ (ItsBetaCategory*) categoryWithName:(NSString*)name title:(NSString*)title;
 
-- (id) initWithName:(NSString*)name title:(NSString*)title;
-
-@end
-
-/*--------------------------------------------------*/
-
-@interface ItsBetaCategories : NSObject {
-}
-
-@property(nonatomic, readonly) NSArray* list; // Массив категорий
-
-+ (ItsBetaCategories*) categories;
-+ (ItsBetaCategories*) categoriesWithCategory:(ItsBetaCategory*)category;
-
-- (id) initWithCategory:(ItsBetaCategory*)category;
-
-- (void) addCategory:(ItsBetaCategory*)category;
-- (void) removeCategory:(ItsBetaCategory*)category;
-- (void) removeCategoryByName:(NSString*)categoryName;
-- (ItsBetaCategory*) categoryAtName:(NSString*)categoryName;
-- (ItsBetaCategory*) categoryAt:(NSUInteger)index;
+- (id) initWithDictionary:(NSDictionary*)dictionary;
 
 @end
 
 /*--------------------------------------------------*/
 
-@interface ItsBetaProject : NSObject {
-}
+@interface ItsBetaProject : NSObject
 
-@property(nonatomic, readonly) NSString* ID; // Уникальный ID проекта
+@property(nonatomic, readonly) NSString* Id; // Уникальный Id проекта
 @property(nonatomic, readonly) NSString* name; // Имя проекта
-@property(nonatomic, readonly) NSString* title; // заголовок проекта
+@property(nonatomic, readonly) NSString* categoryName; // Имя категории
+@property(nonatomic, readonly) NSString* title; // Заголовок проекта
+#if TARGET_OS_IPHONE
+@property(nonatomic, readonly) UIColor* color; // Цвет проекта
+#else
+@property(nonatomic, readonly) CLColor* color; // Цвет проекта
+#endif
 
-@property(nonatomic, readonly) ItsBetaCategory* category; // Указатель на категорию
++ (ItsBetaProject*) projectWithDictionary:(NSDictionary*)dictionary;
 
-+ (ItsBetaProject*) projectWithID:(NSString*)ID name:(NSString*)name title:(NSString*)title category:(ItsBetaCategory*)category;
-
-- (id) initWithID:(NSString*)ID name:(NSString*)name title:(NSString*)title category:(ItsBetaCategory*)category;
-
-@end
-
-/*--------------------------------------------------*/
-
-@interface ItsBetaProjects : NSObject {
-}
-
-@property(nonatomic, readonly) NSArray* list; // Массив проектов
-
-+ (ItsBetaProjects*) projects;
-+ (ItsBetaProjects*) projectsWithProject:(ItsBetaProject*)project;
-
-- (id) initWithProject:(ItsBetaProject*)project;
-
-- (void) addProject:(ItsBetaProject*)project;
-- (void) removeProject:(ItsBetaProject*)project;
-- (void) removeProjectByID:(NSString*)projectID;
-- (ItsBetaProject*) projectAtID:(NSString*)projectID;
-- (ItsBetaProject*) projectAt:(NSUInteger)index;
+- (id) initWithDictionary:(NSDictionary*)dictionary;
 
 @end
 
 /*--------------------------------------------------*/
 
-typedef NSString ItsBetaParam;
+@interface ItsBetaParams : NSObject
 
-/*--------------------------------------------------*/
+@property(nonatomic, readonly) NSDictionary* dictionary;
 
-@interface ItsBetaParams : NSObject {
-}
++ (ItsBetaParams*) paramsWithArray:(NSArray*)array;
 
-@property(nonatomic, readonly) NSString* ID; // Уникальный ID спика параметров
-@property(nonatomic, readonly) NSArray* keys; // Массив параметров
-
-+ (ItsBetaParams*) paramsWithID:(NSString*)ID
-                           keys:(NSArray*)keys;
-
-- (id) initWithID:(NSString*)ID
-             keys:(NSArray*)keys;
+- (id) initWithArray:(NSArray*)array;
 
 @end
 
 /*--------------------------------------------------*/
 
-@interface ItsBetaBadge : NSObject
-{
-@protected
-    NSString* mID; // ID бейджа
-    NSString* mName; // имя бейджа
-    NSString* mTitle; // название бейджа
-    NSString* mDescription; // описание бейджа
-    NSString* mImageURL; // URL картинки бейджа
-    
-@protected
-    ItsBetaProject* mProject; // Указатель на проект
-    ItsBetaImage* mImage; // Указатель на изображение
-}
+@interface ItsBetaType : NSObject
 
-@property(nonatomic, readonly) NSString* ID;
-@property(nonatomic, readonly) NSString* name;
-@property(nonatomic, readonly) NSString* title;
-@property(nonatomic, readonly) NSString* description;
-@property(nonatomic, readonly) NSString* imageURL;
+@property(nonatomic, readonly) NSString* Id; // Id типа
+@property(nonatomic, readonly) NSString* name; // имя типа
+@property(nonatomic, readonly) NSString* projectId; // Id проекта
+@property(nonatomic, readonly) NSString* parentId; // Id родительского типа
+@property(nonatomic, readonly) ItsBetaParams* internal; // Внутриние параметры
+@property(nonatomic, readonly) ItsBetaParams* external; // Внешние параметры
+@property(nonatomic, readonly) ItsBetaParams* shared; // Общие параметры
 
-@property(nonatomic, readonly) ItsBetaProject* project;
+@property(nonatomic, readonly) NSNumber* templateCount; // Кол-во шаблонов в типе
+
++ (ItsBetaType*) typeWithDictionary:(NSDictionary*)dictionary;
+
+- (id) initWithDictionary:(NSDictionary*)dictionary;
+
+@end
+
+/*--------------------------------------------------*/
+
+@interface ItsBetaTemplate : NSObject
+
+@property(nonatomic, readonly) NSString* Id; // Id шаблона
+@property(nonatomic, readonly) NSString* name; // имя шаблона
+@property(nonatomic, readonly) NSString* projectId; // Id проекта
+@property(nonatomic, readonly) NSString* typeId; //  Id типа
+@property(nonatomic, readonly) NSString* imageURL; // URL изображения
+@property(nonatomic, readonly) ItsBetaParams* internal; // Внутриние параметры
+@property(nonatomic, readonly) ItsBetaParams* shared; // Общие параметры
+
+@property(nonatomic, readonly) NSNumber* objectCount; // Кол-во объектов в шаблоне
+
 @property(nonatomic, readonly) ItsBetaImage* image;
-@property(nonatomic) BOOL aviability;
 
-+ (ItsBetaBadge*) badgeWithID:(NSString*)ID
-                         name:(NSString*)name
-                        title:(NSString*)title
-                  description:(NSString*)description
-                     imageURL:(NSString*)imageURL
-                      project:(ItsBetaProject*)project;
++ (ItsBetaTemplate*) templateWithDictionary:(NSDictionary*)dictionary;
 
-- (id) initWithID:(NSString*)ID
-             name:(NSString*)name
-            title:(NSString*)title
-      description:(NSString*)description
-         imageURL:(NSString*)imageURL
-          project:(ItsBetaProject*)project;
+- (id) initWithDictionary:(NSDictionary*)dictionary;
 
 @end
 
 /*--------------------------------------------------*/
 
-@interface ItsBetaBadges : NSObject
-{
-@protected
-    NSMutableArray* mList; // Массив бейджей
-}
+@interface ItsBetaObject : NSObject
 
-@property(nonatomic, readonly) NSArray* list;
+@property(nonatomic, readonly) NSString* Id; // Id обьекта
+@property(nonatomic, readonly) NSString* name; // имя обьекта
+@property(nonatomic, readonly) ItsBetaParams* external; // Внешние параметры
 
-+ (ItsBetaBadges*) sharedBadges;
++ (ItsBetaObject*) objectWithDictionary:(NSDictionary*)dictionary;
 
-- (void) addBadge:(ItsBetaBadge*)badge;
-- (void) addBadge:(ItsBetaBadge*)newBadge replaceIfExist:(BOOL)replaceIfExist;
-- (void) removeBadge:(ItsBetaBadge*)badge;
-- (void) removeBadgeByID:(NSString*)badgeID;
-- (ItsBetaBadge*) badgeAtID:(NSString*)badgeID;
-- (ItsBetaBadge*) badgeAt:(NSUInteger)index;
+- (id) initWithDictionary:(NSDictionary*)dictionary;
 
 @end
 
 /*--------------------------------------------------*/
 
-@interface ItsBetaAchievement : NSObject
-{
-@protected
-    NSString* mID; // ID достижения
-    NSString* mFaceBookID; // ID достижения на facebook
-    NSString* mBadgeID; // ID бейджа
-    NSString* mDetails; // Полное описание достижения (c учетом вставки параметров)
-    BOOL mActivated; // Статус достижения
-    
-@protected
-    ItsBetaUser* mUser; // Указатель на пользователя
-    ItsBetaBadge* mBadge; // Указатель на бейдж
-}
+@interface ItsBetaImage : NSObject
 
-@property(nonatomic, readonly) NSString* ID;
-@property(nonatomic, readonly) NSString* faceBookID;
-@property(nonatomic, readonly) NSString* badgeID;
-@property(nonatomic, readonly) NSString* details;
-@property(nonatomic, readonly) BOOL activated;
+@property(nonatomic, readonly) NSString* URL; // Удаленный путь до изображения
+@property(nonatomic, readonly) NSString* key; // Локальный ключ изображения
+#if TARGET_OS_IPHONE
+@property(nonatomic, readonly) UIImage* data; // Изображение
+#else
+@property(nonatomic, readonly) NSImage* data; // Изображение
+#endif
 
-@property(nonatomic, readonly) ItsBetaUser* user;
-@property(nonatomic, readonly) ItsBetaBadge* badge;
++ (ItsBetaImage*) imageWithImageURL:(NSString*)imageURL;
 
-+ (ItsBetaAchievement*) achievementWithID:(NSString*)ID
-                               faceBookID:(NSString*)faceBookID
-                                  badgeID:(NSString*)badgeID
-                                  details:(NSString*)details
-                                activated:(BOOL)activated
-                                     user:(ItsBetaUser*)user
-                                    badge:(ItsBetaBadge*)badge;
+- (id) initWithImageURL:(NSString*)imageURL;
 
-- (id) initWithID:(NSString*)ID
-       faceBookID:(NSString*)faceBookID
-          badgeID:(NSString*)badgeID
-          details:(NSString*)details
-        activated:(BOOL)activated
-             user:(ItsBetaUser*)user
-            badge:(ItsBetaBadge*)badge;
-
-@end
-
-/*--------------------------------------------------*/
-
-@interface ItsBetaAchievements : NSObject
-{
-@protected
-    NSMutableArray* mList; // Массив достидений
-}
-
-@property(nonatomic, readonly) NSArray* list;
-
-+ (ItsBetaAchievements*) sharedItsBetaAchievements;
-+ (ItsBetaAchievements*) achievements;
-
-- (void) addAchievement:(ItsBetaAchievement*)achievement;
-- (void) removeAchievement:(ItsBetaAchievement*)achievement;
-- (void) removeAchievementByID:(NSString*)achievementID;
-- (ItsBetaAchievement*) achievementAtID:(NSString*)achievementID;
-- (ItsBetaAchievement*) achievementAt:(NSUInteger)index;
+- (void) synchronize:(ItsBetaCallbackImage)callback;
 
 @end
 
 /*--------------------------------------------------*/
 
 extern ItsBeta* sharedItsBeta;
-extern ItsBetaUser* sharedItsBetaUser;
-extern ItsBetaBadges* sharedBadges;
-extern NSArray* sharedBadgeTypeIDs;
-extern ItsBetaAchievements* sharedItsBetaAchievements;
 
 /*--------------------------------------------------*/

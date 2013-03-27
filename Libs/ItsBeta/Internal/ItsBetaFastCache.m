@@ -1,6 +1,6 @@
 /*--------------------------------------------------*/
 
-#import "FastCache.h"
+#import "ItsBetaFastCache.h"
 
 /*--------------------------------------------------*/
 
@@ -10,20 +10,20 @@ static inline NSString* cachePathForKey(NSString* directory, NSString* key) {
 
 /*--------------------------------------------------*/
 
-@implementation FastCache
+@implementation ItsBetaFastCache
 
 @synthesize defaultTimeout = mDefaultTimeout;
 @synthesize frozenCacheInfo = mFrozenCacheInfo;
 
-+ (FastCache*) sharedFastCache {
-    if(sharedFastCache == nil) {
++ (ItsBetaFastCache*) sharedItsBetaFastCache {
+    if(sharedItsBetaFastCache == nil) {
         @synchronized(self) {
-            if(sharedFastCache == nil) {
-                sharedFastCache = [[self alloc] init];
+            if(sharedItsBetaFastCache == nil) {
+                sharedItsBetaFastCache = [[self alloc] init];
             }
         }
     }
-    return sharedFastCache;
+    return sharedItsBetaFastCache;
 }
 
 - (id) init {
@@ -207,6 +207,11 @@ static inline NSString* cachePathForKey(NSString* directory, NSString* key) {
     return [[NSString alloc] initWithData:[self dataForKey:key] encoding:NSUTF8StringEncoding];
 }
 
+
+- (NSString*) keyWithFilename:(NSString*)filename {
+    return [NSString stringWithFormat:@"%X.%@", [filename hash], [[filename pathExtension] stringByDeletingPathExtension]];
+}
+
 #if TARGET_OS_IPHONE
 
 - (void) setImage:(UIImage*)anImage forKey:(NSString*)key {
@@ -280,6 +285,6 @@ static inline NSString* cachePathForKey(NSString* directory, NSString* key) {
 
 /*--------------------------------------------------*/
 
-FastCache * sharedFastCache = nil;
+ItsBetaFastCache* sharedItsBetaFastCache = nil;
 
 /*--------------------------------------------------*/

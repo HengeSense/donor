@@ -1,32 +1,41 @@
 /*--------------------------------------------------*/
 
 #import "ItsBeta.h"
-#import "RestAPI.h"
+#import "ItsBetaRestAPI.h"
 
 /*--------------------------------------------------*/
 
+char* const ItsBetaDispatchQueue = "itsbeta";
 NSString* const ItsBetaErrorDomain = @"ItsBetaErrorDomain";
 
 /*--------------------------------------------------*/
 
-@interface ItsBeta (Private)
-
-- (NSError*) errorByStatus:(NSString*)byStatus byDescription:(NSString*)byDescription byAdditionalInfo:(NSString*)byAdditionalInfo;
-- (NSError*) errorByDescription:(NSString*)byDescription;
-
-@end
-
-/*--------------------------------------------------*/
-
-@implementation ItsBeta (Private)
-
-- (NSError*) errorByStatus:(NSString*)byStatus byDescription:(NSString*)byDescription byAdditionalInfo:(NSString*)byAdditionalInfo {
-    return [NSError errorWithDomain:ItsBetaErrorDomain code:ItsBetaErrorResponse userInfo:[NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"%@ - %@ '%@'", byStatus, byDescription, byAdditionalInfo] forKey:NSLocalizedDescriptionKey]];
+@interface ItsBeta () {
+    dispatch_queue_t _queue;
+    NSMutableArray* _categories;
+    NSMutableArray* _projects;
+    NSMutableArray* _types;
+    NSMutableArray* _templates;
 }
 
-- (NSError*) errorByDescription:(NSString*)byDescription {
-    return [NSError errorWithDomain:ItsBetaErrorDomain code:ItsBetaErrorInternal userInfo:[NSDictionary dictionaryWithObjectsAndKeys:byDescription, NSLocalizedDescriptionKey, nil]];
-}
+- (void) synchronizeCategories;
+- (void) synchronizeProjects;
+- (void) synchronizeTypes;
+- (void) synchronizeTemplates;
+- (void) synchronizeObjects;
+
+- (NSError*) errorWithDictionary:(NSDictionary*)dictionary;
+
+- (void) requestCategories:(ItsBetaCallbackCollection)callback;
+- (void) requestProjectsByCategory:(ItsBetaCategory*)byCategory callback:(ItsBetaCallbackCollection)callback;
+- (void) requestTypesByProject:(ItsBetaProject*)byProject callback:(ItsBetaCallbackCollection)callback;
+- (void) requestTypesByProject:(ItsBetaProject*)byProject byParent:(ItsBetaType*)byParent callback:(ItsBetaCallbackCollection)callback;
+- (void) requestTemplatesByType:(ItsBetaType*)byType callback:(ItsBetaCallbackCollection)callback;
+- (void) requestTemplatesByType:(ItsBetaType*)byType byProject:(ItsBetaProject*)byProject callback:(ItsBetaCallbackCollection)callback;
+- (void) requestObjectByPlayer:(ItsBetaPlayer*)byPlayer byTemplate:(ItsBetaTemplate*)byTemplate callback:(ItsBetaCallbackCollection)callback;
+
+- (void) requestPlayerIdByFacebookId:(NSString*)byUserId callback:(ItsBetaCallbackPlayerIdWithUserId)callback;
+- (void) requestPlayerIdByUserType:(ItsBetaPlayerType)userType byUserId:(NSString*)byUserId callback:(ItsBetaCallbackPlayerIdWithUserId)callback;
 
 @end
 
@@ -34,8 +43,37 @@ NSString* const ItsBetaErrorDomain = @"ItsBetaErrorDomain";
 
 @implementation ItsBeta
 
-@synthesize serviceURL = mServiceURL;
-@synthesize accessToken = mAccessToken;
+- (NSArray*) categories {
+    __block NSArray* result = nil;
+    dispatch_sync(_queue, ^{
+        result = _categories;
+    });
+    return result;
+}
+
+- (NSArray*) projects {
+    __block NSArray* result = nil;
+    dispatch_sync(_queue, ^{
+        result = _projects;
+    });
+    return result;
+}
+
+- (NSArray*) types {
+    __block NSArray* result = nil;
+    dispatch_sync(_queue, ^{
+        result = _types;
+    });
+    return result;
+}
+
+- (NSArray*) templates {
+    __block NSArray* result = nil;
+    dispatch_sync(_queue, ^{
+        result = _templates;
+    });
+    return result;
+}
 
 + (ItsBeta*) sharedItsBeta {
     if(sharedItsBeta == nil) {
@@ -51,46 +89,147 @@ NSString* const ItsBetaErrorDomain = @"ItsBetaErrorDomain";
 - (id) init {
     self = [super init];
     if(self != nil) {
+        _queue = dispatch_queue_create(ItsBetaDispatchQueue, nil);
+        
+        _serviceURL = @"http://www.itsbeta.com/s/";
+        
+        _categories = NS_SAFE_RETAIN([NSMutableArray array]);
+        _projects = NS_SAFE_RETAIN([NSMutableArray array]);
+        _types = NS_SAFE_RETAIN([NSMutableArray array]);
+        _templates = NS_SAFE_RETAIN([NSMutableArray array]);
     }
     return self;
 }
 
 - (void) dealloc {
-    [mAccessToken release];
-    [mServiceURL release];
+    NS_SAFE_RELEASE(_accessToken);
+    NS_SAFE_RELEASE(_serviceURL);
+    
+    dispatch_release(_queue);
+    
+    NS_SAFE_RELEASE(_categories);
+    NS_SAFE_RELEASE(_projects);
+    NS_SAFE_RELEASE(_types);
+    NS_SAFE_RELEASE(_templates);
+    
+#if !__has_feature(objc_arc)
     [super dealloc];
+#endif
 }
 
-- (void) requestCategoriesWithLocale:(NSString*)locale callback:(ItsBetaCallbackCategories)callback {
-    NSMutableDictionary* query = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                  mAccessToken, @"access_token",
-                                  nil];
-    if(locale != nil) {
-        [query setObject:locale forKey:@"locale"];
+- (void) loginWithType:(ItsBetaPlayerType)type callback:(ItsBetaCallbackLogin)callback {
+}
+
+- (void) logout:(ItsBetaCallbackLogout)callback {
+}
+
+- (void) synchronize {
+    if(_accessToken == nil) {
+        return;
+    }
+    [self synchronizeCategories];
+}
+
+- (void) synchronizeCategories {
+    dispatch_sync(_queue, ^{
+        [_categories removeAllObjects];
+    });
+    [self requestCategories:^(NSArray* categories, NSError* error) {
+        dispatch_sync(_queue, ^{
+            [_categories addObjectsFromArray:categories];
+        });
+        [self synchronizeProjects];
+    }];
+}
+
+- (void) synchronizeProjects {
+    dispatch_sync(_queue, ^{
+        [_projects removeAllObjects];
+    });
+    for(ItsBetaCategory* category in _categories) {
+        [self requestProjectsByCategory:category
+                               callback:^(NSArray* projects, NSError* error) {
+                                   dispatch_sync(_queue, ^{
+                                       [_projects addObjectsFromArray:projects];
+                                   });
+                                   [self synchronizeTypes];
+                               }];
+    }
+}
+
+- (void) synchronizeTypes {
+    dispatch_sync(_queue, ^{
+        [_types removeAllObjects];
+    });
+    for(ItsBetaProject* project in _projects) {
+        [self requestTypesByProject:project
+                           callback:^(NSArray* types, NSError* error) {
+                               dispatch_sync(_queue, ^{
+                                   [_types addObjectsFromArray:types];
+                               });
+                               [self synchronizeTemplates];
+                           }];
+    }
+}
+
+- (void) synchronizeTemplates {
+    dispatch_sync(_queue, ^{
+        [_templates removeAllObjects];
+    });
+    for(ItsBetaType* type in _types) {
+        [self requestTemplatesByType:type
+                            callback:^(NSArray* templates, NSError* error) {
+                                dispatch_sync(_queue, ^{
+                                    [_templates addObjectsFromArray:templates];
+                                });
+                                [self synchronizeObjects];
+                            }];
+    }
+}
+
+- (void) synchronizeObjects {
+    if(_currentPlayer == nil) {
+        return;
+    }
+    [_currentPlayer synchronize];
+}
+
+- (NSError*) errorWithDictionary:(NSDictionary*)dictionary {
+    NSString* status = [dictionary objectForKey:@"status"];
+    NSString* description = [dictionary objectForKey:@"description"];
+    NSString* additionalInfo = [dictionary objectForKey:@"additional_info"];
+    return [NSError errorWithDomain:ItsBetaErrorDomain
+                               code:ItsBetaErrorResponse
+                           userInfo:[NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"%@ - %@ '%@'", status, description, additionalInfo] forKey:NSLocalizedDescriptionKey]];
+}
+
++ (void) itsBetaCategories:(ItsBetaCallbackCollection)callback {
+    [[ItsBeta sharedItsBeta] requestCategories:callback];
+}
+
+- (void) requestCategories:(ItsBetaCallbackCollection)callback {
+    NSMutableDictionary* query = [NSMutableDictionary dictionary];
+    if(_accessToken != nil) {
+        [query setObject:_accessToken forKey:@"access_token"];
+    }
+    if(_locale != nil) {
+        [query setObject:_locale forKey:@"locale"];
     }
     [RestAPIConnection connectionWithMethod:@"POST"
-                                        url:[NSString stringWithFormat:@"%@/info/categories.json", mServiceURL]
+                                        url:[NSString stringWithFormat:@"%@/info/categories.json", _serviceURL]
                                       query:query
                                     success:^(RestAPIConnection *connection) {
                                         NSError* responseError = nil;
                                         id responseJSON = [NSJSONSerialization JSONObjectWithData:[connection receivedData] options:0 error:&responseError];
                                         if(responseError == nil) {
                                             if([responseJSON isKindOfClass:[NSArray class]] == YES) {
-                                                ItsBetaCategories* result = [ItsBetaCategories categories];
-                                                if(result != nil) {
-                                                    NSArray* categories = (NSArray*)responseJSON;
-                                                    for(NSDictionary* itemCategory in categories) {
-                                                        ItsBetaCategory* resultCategory = [ItsBetaCategory categoryWithID:[itemCategory objectForKey:@"api_name"] name:[itemCategory objectForKey:@"display_name"] title:[itemCategory objectForKey:@"display_name"]];
-                                                        if(resultCategory != nil) {
-                                                            [result addCategory:resultCategory];
-                                                        }
-                                                    }
-                                                    callback(result, nil);
-                                                } else {
-                                                    responseError = [self errorByDescription:@"Out of memory"];
+                                                NSMutableArray* result = [NSMutableArray array];
+                                                for(NSDictionary* item in responseJSON) {
+                                                    [result addObject:[ItsBetaCategory categoryWithDictionary:item]];
                                                 }
+                                                callback(result, nil);
                                             } else if([responseJSON isKindOfClass:[NSDictionary class]] == YES) {
-                                                responseError = [self errorByStatus:[responseJSON objectForKey:@"error"] byDescription:[responseJSON objectForKey:@"description"] byAdditionalInfo:[responseJSON objectForKey:@"additional_info"]];
+                                                responseError = [self errorWithDictionary:responseJSON];
                                             }
                                         }
                                         if(responseError != nil) {
@@ -102,665 +241,225 @@ NSString* const ItsBetaErrorDomain = @"ItsBetaErrorDomain";
                                     }];
 }
 
-- (void) requestProjectsByCategory:(ItsBetaCategory*)byCategory
-                          callback:(ItsBetaCallbackProjects)callback
-{
-    [RestAPIConnection connectionWithMethod:@"POST"
-                                        url:[NSString stringWithFormat:@"%@/info/projects.json", mServiceURL]
-                                      query:[NSDictionary dictionaryWithObjectsAndKeys:
-                                             mAccessToken, @"access_token",
-                                             [byCategory ID], @"category_name",
-                                             nil]
-                                    success:^(RestAPIConnection *connection) {
-                                        NSError* responseError = nil;
-                                        id responseJSON = [NSJSONSerialization JSONObjectWithData:[connection receivedData] options:0 error:&responseError];
-                                        if(responseError == nil)
-                                        {
-                                            if([responseJSON isKindOfClass:[NSArray class]] == YES)
-                                            {
-                                                ItsBetaProjects* result = [ItsBetaProjects projects];
-                                                if(result != nil)
-                                                {
-                                                    NSArray* projects = (NSArray*)responseJSON;
-                                                    for(NSDictionary* itemProject in projects)
-                                                    {
-                                                        ItsBetaProject* resultProject = [ItsBetaProject projectWithID:[itemProject objectForKey:@"id"]
-                                                                                                           name:[itemProject objectForKey:@"api_name"]
-                                                                                                          title:[itemProject objectForKey:@"display_name"]
-                                                                                                       category:byCategory];
-                                                        if(resultProject != nil)
-                                                        {
-                                                            [result addProject:resultProject];
-                                                        }
-                                                    }
-                                                    callback(result, nil);
-                                                }
-                                                else
-                                                {
-                                                    responseError = [self errorByDescription:@"Out of memory"];
-                                                }
-                                            }
-                                            else if([responseJSON isKindOfClass:[NSDictionary class]] == YES)
-                                            {
-                                                responseError = [self errorByStatus:[responseJSON objectForKey:@"error"]
-                                                                      byDescription:[responseJSON objectForKey:@"description"]
-                                                                   byAdditionalInfo:[responseJSON objectForKey:@"additional_info"]];
-                                            }
-                                        }
-                                        if(responseError != nil)
-                                        {
-                                            callback(nil, responseError);
-                                        }
-                                    }
-                                    failure:^(RestAPIConnection *connection, NSError *error) {
-                                        callback(nil, error);
-                                    }];
++ (void) itsBetaProjectsByCategory:(ItsBetaCategory*)byCategory callback:(ItsBetaCallbackCollection)callback {
+    [[ItsBeta sharedItsBeta] requestProjectsByCategory:byCategory callback:callback];
 }
 
-- (void) requestParamsByProject:(ItsBetaProject*)byProject
-                       callback:(ItsBetaCallbackParams)callback
-{
-    [RestAPIConnection connectionWithMethod:@"GET"
-                                        url:[NSString stringWithFormat:@"%@/info/apidef.json", mServiceURL]
-                                      query:[NSDictionary dictionaryWithObjectsAndKeys:
-                                             mAccessToken, @"access_token",
-                                             [byProject ID], @"project_id",
-                                             nil]
-                                    success:^(RestAPIConnection *connection) {
-                                        NSError* responseError = nil;
-                                        id responseJSON = [NSJSONSerialization JSONObjectWithData:[connection receivedData] options:0 error:&responseError];
-                                        if(responseError == nil)
-                                        {
-                                            NSString* error = [responseJSON objectForKey:@"error"];
-                                            if(error == nil)
-                                            {
-                                                ItsBetaParams* result = [ItsBetaParams paramsWithID:[responseJSON objectForKey:@"id"]
-                                                                                               keys:[responseJSON objectForKey:@"params"]];
-                                                if(result != nil)
-                                                {
-                                                    callback(result, nil);
-                                                }
-                                                else
-                                                {
-                                                    responseError = [self errorByDescription:@"Out of memory"];
-                                                }
-                                            }
-                                            else
-                                            {
-                                                responseError = [self errorByStatus:error
-                                                                      byDescription:[responseJSON objectForKey:@"description"]
-                                                                   byAdditionalInfo:[responseJSON objectForKey:@"additional_info"]];
-                                            }
-                                        }
-                                        if(responseError != nil)
-                                        {
-                                            callback(nil, responseError);
-                                        }
-                                    }
-                                    failure:^(RestAPIConnection *connection, NSError *error) {
-                                        callback(nil, error);
-                                    }];
-}
-
-- (void) requestBadgesByProject:(ItsBetaProject*)byProject
-                       callback:(ItsBetaCallbackBadges)callback
-{
-    [RestAPIConnection connectionWithMethod:@"GET"
-                                        url:[NSString stringWithFormat:@"%@/info/badges.json", mServiceURL]
-                                      query:[NSDictionary dictionaryWithObjectsAndKeys:
-                                             mAccessToken, @"access_token",
-                                             [byProject ID], @"project_id",
-                                             nil]
-                                    success:^(RestAPIConnection *connection) {
-                                        NSError* responseError = nil;
-                                        id responseJSON = [NSJSONSerialization JSONObjectWithData:[connection receivedData] options:0 error:&responseError];
-                                        if(responseError == nil)
-                                        {
-                                            if([responseJSON isKindOfClass:[NSArray class]] == YES)
-                                            {
-                                                ItsBetaBadges* result = [ItsBetaBadges sharedBadges];
-                                                if(result != nil)
-                                                {
-                                                    NSArray* badges = (NSArray*)responseJSON;
-                                                    for(NSDictionary* itemBadge in badges)
-                                                    {
-                                                        ItsBetaBadge* resultBadge = [ItsBetaBadge badgeWithID:[itemBadge objectForKey:@"id"]
-                                                                                                         name:[itemBadge objectForKey:@"name"]
-                                                                                                        title:[itemBadge objectForKey:@"title"]
-                                                                                                  description:[itemBadge objectForKey:@"description"]
-                                                                                                     imageURL:[itemBadge objectForKey:@"image"]
-                                                                                                      project:byProject];
-                                                        if(resultBadge != nil)
-                                                        {
-                                                            [result addBadge:resultBadge];
-                                                        }
-                                                    }
-                                                    callback(result, nil);
-                                                }
-                                                else
-                                                {
-                                                    responseError = [self errorByDescription:@"Out of memory"];
-                                                }
-                                            }
-                                            else if([responseJSON isKindOfClass:[NSDictionary class]] == YES)
-                                            {
-                                                responseError = [self errorByStatus:[responseJSON objectForKey:@"error"]
-                                                                      byDescription:[responseJSON objectForKey:@"description"]
-                                                                   byAdditionalInfo:[responseJSON objectForKey:@"additional_info"]];
-                                            }
-                                        }
-                                        if(responseError != nil)
-                                        {
-                                            callback(nil, responseError);
-                                        }
-                                    }
-                                    failure:^(RestAPIConnection *connection, NSError *error) {
-                                        callback(nil, error);
-                                    }];
-}
-
-- (void) requestAchievementsByUser:(ItsBetaUser*)byUser
-                        byCategory:(ItsBetaCategory*)byCategory
-                         byProject:(ItsBetaProject*)byProject
-                          byBadges:(ItsBetaBadges*)byBadges
-                          callback:(ItsBetaCallbackAchievements)callback
-{
-    [self requestAchievementsByUser:byUser
-                       byCategories:[ItsBetaCategories categoriesWithCategory:byCategory]
-                         byProjects:[ItsBetaProjects projectsWithProject:byProject]
-                           byBadges:byBadges
-                           callback:callback];
-}
-
-- (void) requestAchievementsByUser:(ItsBetaUser*)byUser
-                        byCategory:(ItsBetaCategory*)byCategory
-                        byProjects:(ItsBetaProjects*)byProjects
-                          byBadges:(ItsBetaBadges*)byBadges
-                          callback:(ItsBetaCallbackAchievements)callback
-{
-    [self requestAchievementsByUser:byUser
-                       byCategories:[ItsBetaCategories categoriesWithCategory:byCategory]
-                         byProjects:byProjects
-                           byBadges:byBadges
-                           callback:callback];
-}
-
-- (void) requestAchievementsByUser:(ItsBetaUser*)byUser
-                      byCategories:(ItsBetaCategories*)byCategories
-                        byProjects:(ItsBetaProjects*)byProjects
-                          byBadges:(ItsBetaBadges*)byBadges
-                          callback:(ItsBetaCallbackAchievements)callback
-{
-    NSMutableDictionary* query = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                  mAccessToken, @"access_token",
-                                  [byUser typeAsString], @"user_type",
-                                  [byUser ID], @"user_id",
-                                  nil];
-    NSMutableArray* categoriesID = [NSMutableArray arrayWithCapacity:32];
-    if(categoriesID != nil)
-    {
-        for(ItsBetaCategory* category in [byCategories list])
-        {
-            [categoriesID addObject:[category ID]];
-        }
-        NSString* categories = [categoriesID componentsJoinedByString:@","];
-        if(categories != nil)
-        {
-            [query setObject:categories
-                      forKey:@"categories"];
-        }
+- (void) requestProjectsByCategory:(ItsBetaCategory*)byCategory callback:(ItsBetaCallbackCollection)callback {
+    NSMutableDictionary* query = [NSMutableDictionary dictionary];
+    if(_accessToken != nil) {
+        [query setObject:_accessToken forKey:@"access_token"];
     }
-    NSMutableArray* projectsID = [NSMutableArray arrayWithCapacity:32];
-    if(projectsID != nil)
-    {
-        for(ItsBetaProject* project in [byProjects list])
-        {
-            [projectsID addObject:[project ID]];
-        }
-        NSString* projects = [projectsID componentsJoinedByString:@","];
-        if(projects != nil)
-        {
-            [query setObject:projects
-                      forKey:@"projects"];
-        }
-    }
-    [RestAPIConnection connectionWithMethod:@"GET"
-                                        url:[NSString stringWithFormat:@"%@/players/retrieve.json", mServiceURL]
-                                      query:query
-                                    success:^(RestAPIConnection *connection) {
-                                        NSError* responseError = nil;
-                                        NSDictionary* responseJSON = [NSJSONSerialization JSONObjectWithData:[connection receivedData] options:0 error:&responseError];
-                                        if(responseError == nil)
-                                        {
-                                            if([responseJSON isKindOfClass:[NSArray class]] == YES)
-                                            {
-                                                ItsBetaAchievements* result = [ItsBetaAchievements achievements];
-                                                if(result != nil)
-                                                {
-                                                    NSArray* categories = (NSArray*)responseJSON;
-                                                    for(NSDictionary* itemCategory in categories)
-                                                    {
-                                                        NSArray* projects = [itemCategory objectForKey:@"projects"];
-                                                        for(NSDictionary* itemProject in projects)
-                                                        {
-                                                            NSArray* achievements = [itemProject objectForKey:@"achievements"];
-                                                            for(NSDictionary* itemAchievement in achievements)
-                                                            {
-                                                                NSString* badgeID = [itemAchievement objectForKey:@"badge_id"];
-                                                                ItsBetaBadge* resultBadge = [byBadges badgeAtID:badgeID];
-                                                                
-                                                                ItsBetaAchievement* resultAchievement = [ItsBetaAchievement achievementWithID:[itemAchievement objectForKey:@"id"]
-                                                                                                                                    faceBookID:[itemAchievement objectForKey:@"ololo"]
-                                                                                                                                            badgeID:badgeID
-                                                                                                                                      details:[itemAchievement objectForKey:@"details"]
-                                                                                                                                    activated:[[itemAchievement objectForKey:@"activated"] boolValue]
-                                                                                                                                         user:byUser
-                                                                                                                                        badge:resultBadge];
-                                                                if(resultAchievement != nil)
-                                                                {
-                                                                    [result addAchievement:resultAchievement];
-                                                                }
-                                                            }
-                                                        }
-                                                    }
-                                                    callback(result, nil);
-                                                }
-                                                else
-                                                {
-                                                    responseError = [self errorByDescription:@"Out of memory"];
-                                                }
-                                            }
-                                            else if([responseJSON isKindOfClass:[NSDictionary class]] == YES)
-                                            {
-                                                responseError = [self errorByStatus:[responseJSON objectForKey:@"error"]
-                                                                      byDescription:[responseJSON objectForKey:@"description"]
-                                                                   byAdditionalInfo:[responseJSON objectForKey:@"additional_info"]];
-                                            }
-                                        }
-                                        if(responseError != nil)
-                                        {
-                                            callback(nil, responseError);
-                                        }
-                                    }
-                                    failure:^(RestAPIConnection *connection, NSError *error) {
-                                        callback(nil, error);
-                                    }];
-}
-
-- (void) requestAchievementAvailabilityByUser:(ItsBetaUser *)byUser
-                           byObjectTemplateId:(NSString*)byObjectTemplateId
-                          callback:(ItsBetaCallbackAchievementAviability)callback
-{
-    NSMutableDictionary* query = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                  mAccessToken, @"access_token",
-                                  byObjectTemplateId, @"objtemplate_id",
-                                  [byUser ID], @"player_id",
-                                  nil];
-    
-    [RestAPIConnection connectionWithMethod:@"POST"
-                                        url:[NSString stringWithFormat:@"%@/info/objs.json", mServiceURL]
-                                      query:query
-                                    success:^(RestAPIConnection *connection)
-                                    {
-                                        NSError* responseError = nil;
-                                        NSDictionary* responseJSON = [NSJSONSerialization JSONObjectWithData:[connection receivedData] options:0 error:&responseError];
-                                        if(responseError == nil)
-                                        {
-                                            if([responseJSON isKindOfClass:[NSArray class]] == YES)
-                                            {
-                                                if ([responseJSON count] > 0)
-                                                {
-                                                    callback(YES, nil);
-                                                }
-                                                else
-                                                {
-                                                    callback(NO, nil);
-                                                }
-                                            }
-                                            else if([responseJSON isKindOfClass:[NSDictionary class]] == YES)
-                                            {
-                                                NSString* status = [responseJSON objectForKey:@"error"];
-                                                if(status != nil)
-                                                {
-                                                    if([status isEqualToString:@"304"] == YES)
-                                                    {
-                                                        callback(NO, nil);
-                                                    }
-                                                    else
-                                                    {
-                                                        responseError = [self errorByStatus:[responseJSON objectForKey:@"error"]
-                                                                              byDescription:[responseJSON objectForKey:@"description"]
-                                                                           byAdditionalInfo:[responseJSON objectForKey:@"additional_info"]];
-                                                    }
-                                                }
-                                                else
-                                                {
-                                                    callback(YES, nil);
-                                                }
-                                            }
-                                        }
-                                        if(responseError != nil)
-                                        {
-                                            callback(NO, responseError);
-                                        }
-                                    }
-                                    failure:^(RestAPIConnection *connection, NSError *error) {
-                                        callback(NO, error);
-                                    }];
-}
-
-- (void) requestAchievementsAvailabilityByUser:(ItsBetaUser *)byUser
-                            byObjectTemplates:(ItsBetaBadges*)byObjectTemplates
-{
-    NSMutableArray* templatesCopy = [[byObjectTemplates list] copy];
-    for(ItsBetaBadge* badge in templatesCopy)
-    {
-        if(badge != nil)
-        {
-            [self requestAchievementAvailabilityByUser:byUser
-                                    byObjectTemplateId:[badge ID]
-                                              callback:^(BOOL availability, NSError *error)
-            {
-                if(error == nil)
-                {
-                    if(availability != [badge aviability])
-                    {
-                        [badge setAviability:availability];
-                        [byObjectTemplates addBadge:badge replaceIfExist:YES];
-                        [[NSNotificationCenter defaultCenter] postNotificationName:@"badgeStateChanged" object:self];
-                    }
-                    // Создаём ачивку за установку приложения, если она ещё не получена
-                    if([[badge name] isEqualToString:@"rospil_installed"] == YES && [badge aviability] == NO)
-                    {
-                        [self requestCreateAchievementByBadge:badge
-                                                     byParams:[NSDictionary dictionaryWithObjectsAndKeys:@"", @"unique", nil]
-                                               byExternalCode:[[ItsBetaUser sharedItsBetaUser] faceBookID]
-                                                     callback:^(NSString *achieveInternalID, NSString *achieveFBID, NSError *error)
-                        {
-                            if (error == nil)
-                            {
-                                ItsBetaAchievement* achievementForInstall = [ItsBetaAchievement achievementWithID:achieveInternalID
-                                                                                                       faceBookID:achieveFBID
-                                                                                                          badgeID:[badge ID]
-                                                                                                          details:@""
-                                                                                                        activated:YES
-                                                                                                             user:byUser
-                                                                                                            badge:badge];
-                                [[ItsBetaAchievements sharedItsBetaAchievements] addAchievement:achievementForInstall];
-                                [badge setAviability:YES];
-                                [byObjectTemplates addBadge:badge replaceIfExist:YES];
-                                [[NSNotificationCenter defaultCenter] postNotificationName:@"badgeStateChanged" object:self];
-                            }
-                        }];
-                    }
-                    // Создаём ачивку за комментарий, если комментарий был оставлен, а ачивка ещё не получена
-                    else if([[badge name] isEqualToString:@"rospil_comment"] == YES && [badge aviability] == NO && [g_RP commentPosted] == YES)
-                    {
-                        [self requestCreateAchievementByBadge:badge
-                                                     byParams:[NSDictionary dictionaryWithObjectsAndKeys:@"", @"unique", nil]
-                                               byExternalCode:[[ItsBetaUser sharedItsBetaUser] faceBookID]
-                                                     callback:^(NSString *achieveInternalID, NSString *achieveFBID, NSError *error)
-                         {
-                             if (error == nil)
-                             {
-                                 ItsBetaAchievement* achievementForComment = [ItsBetaAchievement achievementWithID:achieveInternalID
-                                                                                                        faceBookID:achieveFBID
-                                                                                                           badgeID:[badge ID]
-                                                                                                           details:@""
-                                                                                                         activated:YES
-                                                                                                              user:byUser
-                                                                                                             badge:badge];
-                                 [[ItsBetaAchievements sharedItsBetaAchievements] addAchievement:achievementForComment];
-                                 [badge setAviability:YES];
-                                 [byObjectTemplates addBadge:badge replaceIfExist:YES];
-                                 [[NSNotificationCenter defaultCenter] postNotificationName:@"badgeStateChanged" object:self];
-                             }
-                         }];
-                    }
-                    else if([[badge name] isEqualToString:@"rospil_comment"] == YES && [badge aviability] == YES)
-                    {
-                        [g_RP setCommentPosted:YES];
-                    }
-                }
-            }];
-        }
-    }
-    
-}
-
-- (void) requestCreateAchievementByBadge:(ItsBetaBadge*)byBadge
-                                byParams:(NSDictionary*)byParams
-                          byExternalCode:(NSString*)byExternalCode
-                                callback:(ItsBetaCallbackCreateAchievement)callback
-{
-    NSMutableDictionary* query = [NSMutableDictionary dictionaryWithObject:mAccessToken forKey:@"access_token"];
-    if(byExternalCode != nil)
-    {
-        [query setObject:byExternalCode
-                  forKey:@"user_id"];
-    }
-    [byParams enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop)
-     {
-         [query setObject:obj
-                   forKey:key];
-         *stop = NO;
-     }];
-    [query setObject:[byBadge name] forKey:@"badge_name"];
-    [query setObject:[[[FBSession activeSession] accessTokenData] accessToken] forKey:@"user_token"];
-    [RestAPIConnection connectionWithMethod:@"POST"
-                                        url:[NSString stringWithFormat:@"%@/%@/%@/achieves/posttofbonce.json", mServiceURL, [[[byBadge project] category] ID], [[byBadge project] name]]
-                                      query:query
-                                    success:^(RestAPIConnection *connection) {
-                                        NSError* responseError = nil;
-                                        NSDictionary* responseJSON = [NSJSONSerialization JSONObjectWithData:[connection receivedData] options:0 error:&responseError];
-                                        if(responseError == nil)
-                                        {
-                                            NSString* error = [responseJSON objectForKey:@"error"];
-                                            if(error == nil)
-                                            {
-                                                if([[[ItsBetaUser sharedItsBetaUser] ID] isEqualToString:@""] == YES)
-                                                {
-                                                    [[ItsBeta sharedItsBeta] requestInternalUserIDByUser:[ItsBetaUser sharedItsBetaUser]
-                                                                                                callback:^(NSString *internalUserID, NSError *error)
-                                                     {
-                                                         if(error == nil)
-                                                         {
-                                                             [[ItsBetaUser sharedItsBetaUser] setID:internalUserID];
-                                                         }
-                                                         else
-                                                         {
-                                                             if([[[[error userInfo] objectForKey:@"status"] stringValue] isEqualToString:@"305"] == YES)
-                                                             {
-                                                                 [[ItsBetaUser sharedItsBetaUser] setID:NULL];
-                                                             }
-                                                         }
-                                                     }];
-                                                }
-                                                callback([responseJSON objectForKey:@"id"], [responseJSON objectForKey:@"fb_id"], nil);
-                                            }
-                                            else
-                                            {
-                                                responseError = [self errorByStatus:error
-                                                                      byDescription:[responseJSON objectForKey:@"description"]
-                                                                   byAdditionalInfo:[responseJSON objectForKey:@"additional_info"]];
-                                            }
-                                        }
-                                        if(responseError != nil)
-                                        {
-                                            callback(nil, nil, responseError);
-                                        }
-                                    }
-                                    failure:^(RestAPIConnection *connection, NSError *error) {
-                                        callback(nil, nil, error);
-                                    }];
-}
-
-- (void) requestAchievementURLByAchievement:(NSString *)byAchievemntFBID
-                                     byType:(NSString *)byType
-                                   callback:(ItsBetaCallbackAchievementURL)callback
-{
-    NSMutableDictionary* query = [NSMutableDictionary dictionaryWithObject:mAccessToken forKey:@"access_token"];
-    if(byAchievemntFBID != nil)
-    {
-        [query setObject:byAchievemntFBID
-                  forKey:@"id"];
-    }
-    else
-    {
-        [query setObject:@""
-                  forKey:@"id"];
-    }
-    if(byType != nil)
-    {
-        [query setObject:byType forKey:@"type"];
-    }
-    else
-    {
-        [query setObject:@"fb" forKey:@"type"];
+    if(byCategory != nil) {
+        [query setObject:[byCategory name] forKey:@"category_name"];
     }
     [RestAPIConnection connectionWithMethod:@"POST"
-                                        url:[NSString stringWithFormat:@"%@/info/achievement_url.json", mServiceURL]
-                                      query:query
-                                    success:^(RestAPIConnection *connection) {
-                                        NSError* responseError = nil;
-                                        NSDictionary* responseJSON = [NSJSONSerialization JSONObjectWithData:[connection receivedData] options:0 error:&responseError];
-                                        if(responseError == nil)
-                                        {
-                                            NSString* error = [responseJSON objectForKey:@"error"];
-                                            if(error == nil)
-                                            {
-                                                callback([responseJSON objectForKey:@"url"], nil);
-                                            }
-                                            else
-                                            {
-                                                responseError = [self errorByStatus:error
-                                                                      byDescription:[responseJSON objectForKey:@"description"]
-                                                                   byAdditionalInfo:[responseJSON objectForKey:@"additional_info"]];
-                                            }
-                                        }
-                                        if(responseError != nil)
-                                        {
-                                            callback(nil, responseError);
-                                        }
-                                    }
-                                    failure:^(RestAPIConnection *connection, NSError *error) {
-                                        callback(nil, error);
-                                    }];
-}
-
-
-
-- (void) requestInternalUserIDByUser:(ItsBetaUser *)byUser
-                            callback:(ItsBetaCallbackInternalID)callback
-{
-    NSString* url = nil;
-    NSMutableDictionary* query = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                  mAccessToken, @"access_token",
-                                  @"fb_user_id", @"type",
-                                  [byUser faceBookID], @"id",
-                                  nil];
-    
-    url = [NSString stringWithFormat:@"%@/info/playerid.json", mServiceURL];
-    [RestAPIConnection connectionWithMethod:@"POST"
-                                        url:url
-                                      query:query
-                                    success:^(RestAPIConnection *connection) {
-                                        NSError* responseError = nil;
-                                        NSDictionary* responseJSON = [NSJSONSerialization JSONObjectWithData:[connection receivedData] options:0 error:&responseError];
-                                        if(responseError == nil)
-                                        {
-                                            NSString* error = [responseJSON objectForKey:@"error"];
-                                            if(error == nil)
-                                            {
-                                                NSString* result = [responseJSON objectForKey:@"player_id"];
-                                                if(result != nil)
-                                                {
-                                                    callback(result, nil);
-                                                }
-                                                else
-                                                {
-                                                    responseError = [self errorByDescription:@"Out of memory"];
-                                                }
-                                            }
-                                            else if([error isEqualToString:@"305"] == YES )
-                                            {
-                                                responseError = [NSError errorWithDomain:ItsBetaErrorDomain
-                                                                                    code:ItsBetaErrorResponse
-                                                                                userInfo:[NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"%@", error] forKey:@"status"]];
-                                            }
-                                            else
-                                            {
-                                                responseError = [self errorByStatus:error
-                                                                      byDescription:[responseJSON objectForKey:@"description"]
-                                                                   byAdditionalInfo:[responseJSON objectForKey:@"additional_info"]];
-                                            }
-                                        }
-                                        if(responseError != nil)
-                                        {
-                                            callback(nil, responseError);
-                                        }
-                                    } failure:^(RestAPIConnection *connection, NSError *error) {
-                                        callback(nil, error);
-                                    }];
-}
-
-- (void) requestBadgeTemplateByTypeID:(NSString *)byTypeID
-                            byProjectID:(NSString *)byProjectID
-                             callback:(ItsBetaCallBackBadge)callback
-{
-    NSString* url = nil;
-    NSMutableDictionary* query = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                  mAccessToken, @"access_token",
-                                  byTypeID, @"objtype_id",
-                                  byProjectID, @"project_id",
-                                  nil];
-    
-    url = [NSString stringWithFormat:@"%@/info/objtemplates.json", mServiceURL];
-    [RestAPIConnection connectionWithMethod:@"POST"
-                                        url:url
+                                        url:[NSString stringWithFormat:@"%@/info/projects.json", _serviceURL]
                                       query:query
                                     success:^(RestAPIConnection *connection) {
                                         NSError* responseError = nil;
                                         id responseJSON = [NSJSONSerialization JSONObjectWithData:[connection receivedData] options:0 error:&responseError];
-                                        if(responseError == nil)
-                                        {
-                                            if([responseJSON isKindOfClass:[NSArray class]] == YES)
-                                            {
-                                                for(NSDictionary* template in responseJSON)
-                                                {
-                                                    NSString* error = [template objectForKey:@"error"];
-                                                    if(error == nil)
-                                                    {
-                                                        ItsBetaBadge* badge = [ItsBetaBadge badgeWithID:[template objectForKey:@"id"]
-                                                                                                   name:[template objectForKey:@"api_name"]
-                                                                                                  title:[template objectForKey:@"api_name"]
-                                                                                            description:[template objectForKey:@"api_name"]
-                                                                                               imageURL:[template objectForKey:@"pic"]
-                                                                                                project:[ItsBetaProject projectWithID:byProjectID name:@"rospil" title:@"rospil" category:[ItsBetaCategory categoryWithID:@"social" name:@"social" title:@"Social"]]];
-                                                        if(badge != nil)
-                                                        {
-                                                            callback(badge, nil);
-                                                        }
-                                                        else
-                                                        {
-                                                            responseError = [self errorByDescription:@"Out of memory"];
-                                                        }
-                                                    }
-                                                    else
-                                                    {
-                                                        responseError = [self errorByStatus:error
-                                                                              byDescription:[template objectForKey:@"description"]
-                                                                           byAdditionalInfo:[template objectForKey:@"additional_info"]];
-                                                    }
+                                        if(responseError == nil) {
+                                            if([responseJSON isKindOfClass:[NSArray class]] == YES) {
+                                                NSMutableArray* result = [NSMutableArray array];
+                                                for(NSDictionary* item in responseJSON) {
+                                                    [result addObject:[ItsBetaProject projectWithDictionary:item]];
                                                 }
+                                                callback(result, nil);
+                                            } else if([responseJSON isKindOfClass:[NSDictionary class]] == YES) {
+                                                responseError = [self errorWithDictionary:responseJSON];
                                             }
-                                            
                                         }
-                                        if(responseError != nil)
-                                        {
+                                        if(responseError != nil) {
                                             callback(nil, responseError);
                                         }
-                                    } failure:^(RestAPIConnection *connection, NSError *error) {
+                                    }
+                                    failure:^(RestAPIConnection *connection, NSError *error) {
+                                        callback(nil, error);
+                                    }];
+}
+
++ (void) itsBetaTypesByProject:(ItsBetaProject*)byProject callback:(ItsBetaCallbackCollection)callback {
+    [[ItsBeta sharedItsBeta] requestTypesByProject:byProject callback:callback];
+}
+
+- (void) requestTypesByProject:(ItsBetaProject*)byProject callback:(ItsBetaCallbackCollection)callback {
+    [self requestTypesByProject:byProject byParent:nil callback:callback];
+}
+
++ (void) itsBetaTypesByProject:(ItsBetaProject*)byProject byParent:(ItsBetaType*)byParent callback:(ItsBetaCallbackCollection)callback {
+    [[ItsBeta sharedItsBeta] requestTypesByProject:byProject byParent:byParent callback:callback];
+}
+
+- (void) requestTypesByProject:(ItsBetaProject*)byProject byParent:(ItsBetaType*)byParent callback:(ItsBetaCallbackCollection)callback {
+    NSMutableDictionary* query = [NSMutableDictionary dictionary];
+    if(_accessToken != nil) {
+        [query setObject:_accessToken forKey:@"access_token"];
+    }
+    if(byProject != nil) {
+        [query setObject:[byProject Id] forKey:@"project_id"];
+    }
+    if(byParent != nil) {
+        [query setObject:[byParent Id] forKey:@"parent_id"];
+    }
+    [RestAPIConnection connectionWithMethod:@"POST"
+                                        url:[NSString stringWithFormat:@"%@/info/objtypes.json", _serviceURL]
+                                      query:query
+                                    success:^(RestAPIConnection *connection) {
+                                        NSError* responseError = nil;
+                                        id responseJSON = [NSJSONSerialization JSONObjectWithData:[connection receivedData] options:0 error:&responseError];
+                                        if(responseError == nil) {
+                                            if([responseJSON isKindOfClass:[NSArray class]] == YES) {
+                                                NSMutableArray* result = [NSMutableArray array];
+                                                for(NSDictionary* item in responseJSON) {
+                                                    [result addObject:[ItsBetaType typeWithDictionary:item]];
+                                                }
+                                                callback(result, nil);
+                                            } else if([responseJSON isKindOfClass:[NSDictionary class]] == YES) {
+                                                responseError = [self errorWithDictionary:responseJSON];
+                                            }
+                                        }
+                                        if(responseError != nil) {
+                                            callback(nil, responseError);
+                                        }
+                                    }
+                                    failure:^(RestAPIConnection *connection, NSError *error) {
+                                        callback(nil, error);
+                                    }];
+}
+
++ (void) itsBetaTemplatesByType:(ItsBetaType*)byType callback:(ItsBetaCallbackCollection)callback {
+    [[ItsBeta sharedItsBeta] requestTemplatesByType:byType callback:callback];
+}
+
+- (void) requestTemplatesByType:(ItsBetaType*)byType callback:(ItsBetaCallbackCollection)callback {
+    [self requestTemplatesByType:byType byProject:nil callback:callback];
+}
+
++ (void) itsBetaTemplatesByType:(ItsBetaType*)byType byProject:(ItsBetaProject*)byProject callback:(ItsBetaCallbackCollection)callback {
+    [[ItsBeta sharedItsBeta] requestTemplatesByType:byType byProject:byProject callback:callback];
+}
+
+- (void) requestTemplatesByType:(ItsBetaType*)byType byProject:(ItsBetaProject*)byProject callback:(ItsBetaCallbackCollection)callback {
+    NSMutableDictionary* query = [NSMutableDictionary dictionary];
+    if(_accessToken != nil) {
+        [query setObject:_accessToken forKey:@"access_token"];
+    }
+    if(byType != nil) {
+        [query setObject:[byType Id] forKey:@"objtype_id"];
+    }
+    if(byProject != nil) {
+        [query setObject:[byProject Id] forKey:@"project_id"];
+    }
+    [RestAPIConnection connectionWithMethod:@"POST"
+                                        url:[NSString stringWithFormat:@"%@/info/objtemplates.json", _serviceURL]
+                                      query:query
+                                    success:^(RestAPIConnection *connection) {
+                                        NSError* responseError = nil;
+                                        id responseJSON = [NSJSONSerialization JSONObjectWithData:[connection receivedData] options:0 error:&responseError];
+                                        if(responseError == nil) {
+                                            if([responseJSON isKindOfClass:[NSArray class]] == YES) {
+                                                NSMutableArray* result = [NSMutableArray array];
+                                                for(NSDictionary* item in responseJSON) {
+                                                    [result addObject:[ItsBetaTemplate templateWithDictionary:item]];
+                                                }
+                                                callback(result, nil);
+                                            } else if([responseJSON isKindOfClass:[NSDictionary class]] == YES) {
+                                                responseError = [self errorWithDictionary:responseJSON];
+                                            }
+                                        }
+                                        if(responseError != nil) {
+                                            callback(nil, responseError);
+                                        }
+                                    }
+                                    failure:^(RestAPIConnection *connection, NSError *error) {
+                                        callback(nil, error);
+                                    }];
+}
+
++ (void) itsBetaObjectByPlayer:(ItsBetaPlayer*)byPlayer byTemplate:(ItsBetaTemplate*)byTemplate callback:(ItsBetaCallbackCollection)callback {
+    [[ItsBeta sharedItsBeta] requestObjectByPlayer:byPlayer byTemplate:byTemplate callback:callback];
+}
+
+- (void) requestObjectByPlayer:(ItsBetaPlayer*)byPlayer byTemplate:(ItsBetaTemplate*)byTemplate callback:(ItsBetaCallbackCollection)callback {
+    NSMutableDictionary* query = [NSMutableDictionary dictionary];
+    if(_accessToken != nil) {
+        [query setObject:_accessToken forKey:@"access_token"];
+    }
+    if(byPlayer != nil) {
+        [query setObject:[byPlayer Id] forKey:@"player_id"];
+    }
+    if(byTemplate != nil) {
+        [query setObject:[byTemplate Id] forKey:@"objtemplate_id"];
+    }
+    [RestAPIConnection connectionWithMethod:@"POST"
+                                        url:[NSString stringWithFormat:@"%@/info/objs.json", _serviceURL]
+                                      query:query
+                                    success:^(RestAPIConnection *connection) {
+                                        NSError* responseError = nil;
+                                        id responseJSON = [NSJSONSerialization JSONObjectWithData:[connection receivedData] options:0 error:&responseError];
+                                        if(responseError == nil) {
+                                            if([responseJSON isKindOfClass:[NSArray class]] == YES) {
+                                                NSMutableArray* result = [NSMutableArray array];
+                                                for(NSDictionary* item in responseJSON) {
+                                                    [result addObject:[ItsBetaObject objectWithDictionary:item]];
+                                                }
+                                                callback(result, nil);
+                                            } else if([responseJSON isKindOfClass:[NSDictionary class]] == YES) {
+                                                responseError = [self errorWithDictionary:responseJSON];
+                                            }
+                                        }
+                                        if(responseError != nil) {
+                                            callback(nil, responseError);
+                                        }
+                                    }
+                                    failure:^(RestAPIConnection *connection, NSError *error) {
+                                        callback(nil, error);
+                                    }];
+}
+
++ (void) itsBetaPlayerIdByFacebookId:(NSString*)byUserId callback:(ItsBetaCallbackPlayerIdWithUserId)callback {
+    [[ItsBeta sharedItsBeta] requestPlayerIdByFacebookId:byUserId callback:callback];
+}
+
+- (void) requestPlayerIdByFacebookId:(NSString*)byUserId callback:(ItsBetaCallbackPlayerIdWithUserId)callback {
+    [self requestPlayerIdByUserType:ItsBetaPlayerTypeFacebook byUserId:byUserId callback:callback];
+}
+
++ (void) itsBetaPlayerIdByUserType:(ItsBetaPlayerType)userType byUserId:(NSString*)byUserId callback:(ItsBetaCallbackPlayerIdWithUserId)callback {
+    [[ItsBeta sharedItsBeta] requestPlayerIdByUserType:userType byUserId:byUserId callback:callback];
+}
+
+- (void) requestPlayerIdByUserType:(ItsBetaPlayerType)userType byUserId:(NSString*)byUserId callback:(ItsBetaCallbackPlayerIdWithUserId)callback {
+    NSMutableDictionary* query = [NSMutableDictionary dictionary];
+    if(_accessToken != nil) {
+        [query setObject:_accessToken forKey:@"access_token"];
+    }
+    [query setObject:[ItsBetaPlayer stringWithPlayerType:userType] forKey:@"type"];
+    if(byUserId != nil) {
+        [query setObject:byUserId forKey:@"id"];
+    }
+    [RestAPIConnection connectionWithMethod:@"POST"
+                                        url:[NSString stringWithFormat:@"%@/info/playerid.json", _serviceURL]
+                                      query:query
+                                    success:^(RestAPIConnection *connection) {
+                                        NSError* responseError = nil;
+                                        id responseJSON = [NSJSONSerialization JSONObjectWithData:[connection receivedData] options:0 error:&responseError];
+                                        if(responseError == nil) {
+                                            if([responseJSON isKindOfClass:[NSDictionary class]] == YES) {
+                                                NSString* player_id = [responseJSON objectForKey:@"player_id"];
+                                                if(player_id != nil) {
+                                                    callback([responseJSON objectForKey:@"player_id"], nil);
+                                                } else {
+                                                    responseError = [self errorWithDictionary:responseJSON];
+                                                }
+                                            }
+                                        }
+                                        if(responseError != nil) {
+                                            callback(nil, responseError);
+                                        }
+                                    }
+                                    failure:^(RestAPIConnection *connection, NSError *error) {
                                         callback(nil, error);
                                     }];
 }
@@ -770,6 +469,5 @@ NSString* const ItsBetaErrorDomain = @"ItsBetaErrorDomain";
 /*--------------------------------------------------*/
 
 ItsBeta * sharedItsBeta = nil;
-NSArray* sharedBadgeTypeIDs = nil;
 
 /*--------------------------------------------------*/

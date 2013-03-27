@@ -1,66 +1,63 @@
 /*--------------------------------------------------*/
 
 #import "ItsBeta.h"
-#import "FastCache.h"
-#import "RestAPI.h"
+
+/*--------------------------------------------------*/
+
+#import "ItsBetaFastCache.h"
+#import "ItsBetaRestAPI.h"
 
 /*--------------------------------------------------*/
 
 @implementation ItsBetaImage
 
-@synthesize fileName = mFileName;
-@synthesize imageData = mImageData;
-
-+ (ItsBetaImage*) imageWithFileName:(NSString*)fileName
-{
-    return [[[self alloc] initWithFileName:fileName] autorelease];
++ (ItsBetaImage*) imageWithImageURL:(NSString*)imageURL {
+    return NS_SAFE_RETAIN([[self alloc] initWithImageURL:imageURL]);
 }
 
-- (id) initWithFileName:(NSString*)fileName
-{
+- (id) initWithImageURL:(NSString*)imageURL {
     self = [super init];
-    if(self != nil)
-    {
-        mFileName = [fileName retain];
-        mFileKey = [[NSString stringWithFormat:@"%X.%@", [fileName hash], [[mFileName pathExtension] stringByDeletingPathExtension]] retain];
-        if([[FastCache sharedFastCache] hasCacheForKey:mFileKey] == YES)
-        {
-            mImageData = [[[FastCache sharedFastCache] imageForKey:mFileKey] retain];
-        }
+    if(self != nil) {
+        _URL = NS_SAFE_RETAIN(imageURL);
+        _key = NS_SAFE_RETAIN([[ItsBetaFastCache sharedItsBetaFastCache] keyWithFilename:imageURL]);
     }
     return self;
 }
 
-- (void) dealloc
-{
-    [mImageData release];
-    [mFileKey release];
-    [mFileName release];
+- (void) dealloc {
+    NS_SAFE_RELEASE(_URL);
+    NS_SAFE_RELEASE(_key);
+    NS_SAFE_RELEASE(_data);
+    
+#if !__has_feature(objc_arc)
     [super dealloc];
+#endif
 }
 
-- (void) loadWithOriginal:(ItsBetaCallbackLoadImage)callback
-{
-    if(mImageData == nil)
-    {
-        [RestAPIConnection connectionWithMethod:@"GET"
-                                            url:mFileName
-                                        success:^(RestAPIConnection *connection) {
+- (void) synchronize:(ItsBetaCallbackImage)callback {
+    if(_data == nil) {
+        if([[ItsBetaFastCache sharedItsBetaFastCache] hasCacheForKey:_key] == YES) {
+            _data = NS_SAFE_RETAIN([[ItsBetaFastCache sharedItsBetaFastCache] imageForKey:_key]);
+        }
+        if(_data == nil) {
+            [RestAPIConnection connectionWithMethod:@"GET"
+                                                url:_URL
+                                            success:^(RestAPIConnection *connection) {
 #if TARGET_OS_IPHONE
-                                            mImageData = [[UIImage imageWithData:[connection receivedData]] retain];
+                                                _data = NS_SAFE_RETAIN([UIImage imageWithData:[connection receivedData]]);
 #else
-                                            mImageData = [[NSImage imageWithData:[connection receivedData]] retain];
+                                                _data = NS_SAFE_RETAIN([NSImage imageWithData:[connection receivedData]]);
 #endif
-                                            [[FastCache sharedFastCache] setImage:mImageData
-                                                                           forKey:mFileKey];
-                                            callback(self, nil);
-                                        }
-                                        failure:^(RestAPIConnection *connection, NSError *error) {
-                                            callback(self, error);
-                                        }];
-    }
-    else
-    {
+                                                [[ItsBetaFastCache sharedItsBetaFastCache] setImage:_data forKey:_key];
+                                                callback(self, nil);
+                                            }
+                                            failure:^(RestAPIConnection *connection, NSError *error) {
+                                                callback(self, error);
+                                            }];
+        } else {
+            callback(self, nil);
+        }
+    } else {
         callback(self, nil);
     }
 }

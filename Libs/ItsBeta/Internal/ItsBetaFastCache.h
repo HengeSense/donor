@@ -1,28 +1,10 @@
 /*--------------------------------------------------*/
 
-#import <Foundation/Foundation.h>
+#import "ItsBeta.h"
 
 /*--------------------------------------------------*/
 
-#if TARGET_OS_IPHONE
-#   import <UIKit/UIKit.h>
-#endif
-
-/*--------------------------------------------------*/
-
-#if __has_feature(objc_arc)
-#   define NS_SAFE_AUTORELEASE(object)              object
-#   define NS_SAFE_RETAIN(object)                   object
-#   define NS_SAFE_RELEASE(object)                  object = nil
-#else
-#   define NS_SAFE_AUTORELEASE(object)              [object autorelease]
-#   define NS_SAFE_RETAIN(object)                   [object retain]
-#   define NS_SAFE_RELEASE(object)                  [object release]
-#endif
-
-/*--------------------------------------------------*/
-
-@interface FastCache : NSObject {
+@interface ItsBetaFastCache : NSObject {
 @protected
 	NSString* mDirectory;
     NSTimeInterval mDefaultTimeout;
@@ -43,7 +25,7 @@
 @property(nonatomic, assign) NSTimeInterval defaultTimeout;
 @property(nonatomic, copy) NSDictionary* frozenCacheInfo;
 
-+ (instancetype) sharedFastCache;
++ (instancetype) sharedItsBetaFastCache;
 
 - (id) initWithCacheDirectory:(NSString*)cacheDirectory;
 
@@ -62,6 +44,8 @@
 - (void) setString:(NSString*)aString forKey:(NSString*)key;
 - (void) setString:(NSString*)aString forKey:(NSString*)key withTimeout:(NSTimeInterval)timeout;
 - (NSString*) stringForKey:(NSString*)key;
+
+- (NSString*) keyWithFilename:(NSString*)filename;
 
 #if TARGET_OS_IPHONE
 
@@ -89,6 +73,6 @@
 
 /*--------------------------------------------------*/
 
-extern FastCache * sharedFastCache;
+extern ItsBetaFastCache * sharedItsBetaFastCache;
 
 /*--------------------------------------------------*/

@@ -1,18 +1,6 @@
 /*--------------------------------------------------*/
 
-#import <Foundation/Foundation.h>
-
-/*--------------------------------------------------*/
-
-#if __has_feature(objc_arc)
-#   define NS_SAFE_AUTORELEASE(object)              object
-#   define NS_SAFE_RETAIN(object)                   object
-#   define NS_SAFE_RELEASE(object)                  object = nil
-#else
-#   define NS_SAFE_AUTORELEASE(object)              [object autorelease]
-#   define NS_SAFE_RETAIN(object)                   [object retain]
-#   define NS_SAFE_RELEASE(object)                  [object release]
-#endif
+#import "ItsBeta.h"
 
 /*--------------------------------------------------*/
 
@@ -38,12 +26,12 @@ typedef void (^RestAPIConnectionFailure)(RestAPIConnection* connection, NSError*
 
 @interface RestAPIConnection : NSURLConnection< NSURLConnectionDelegate, NSURLConnectionDataDelegate > {
 @protected
-    NSMutableData* mReceivedData;
-    RestAPIConnectionSuccess mSuccess;
-    RestAPIConnectionFailure mFailure;
+    NSMutableData* _receivedData;
 }
 
 @property (nonatomic, readonly) NSData* receivedData;
+@property (nonatomic, readwrite, copy) RestAPIConnectionSuccess success;
+@property (nonatomic, readwrite, copy) RestAPIConnectionFailure failure;
 
 + (RestAPIConnection*) connectionWithMethod:(NSString*)method url:(NSString*)url success:(RestAPIConnectionSuccess)success failure:(RestAPIConnectionFailure)failure;
 + (RestAPIConnection*) connectionWithMethod:(NSString*)method url:(NSString*)url headers:(NSDictionary*)headers success:(RestAPIConnectionSuccess)success failure:(RestAPIConnectionFailure)failure;

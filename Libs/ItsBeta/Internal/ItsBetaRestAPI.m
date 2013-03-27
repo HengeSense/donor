@@ -1,6 +1,6 @@
 /*--------------------------------------------------*/
 
-#import "RestAPI.h"
+#import "ItsBetaRestAPI.h"
 
 /*--------------------------------------------------*/
 
@@ -83,18 +83,17 @@
     RestAPIRequest* request = [RestAPIRequest requestWithMethod:method url:url headers:headers query:query];
     self = [super initWithRequest:request delegate:self];
     if(self != nil) {
-        mReceivedData = NS_SAFE_RETAIN([NSMutableData data]);
-        mSuccess = Block_copy(success);
-        mFailure = Block_copy(failure);
+        _receivedData = NS_SAFE_RETAIN([NSMutableData data]);
+        [self setSuccess:success];
+        [self setFailure:failure];
     }
     return self;
 }
 
-- (void) dealloc
-{
-    NS_SAFE_RELEASE(mReceivedData);
-    Block_release(mSuccess);
-    Block_release(mFailure);
+- (void) dealloc {
+    NS_SAFE_RELEASE(_receivedData);
+    NS_SAFE_RELEASE(_success);
+    NS_SAFE_RELEASE(_failure);
     
 #if !__has_feature(objc_arc)
     [super dealloc];
@@ -103,23 +102,23 @@
 
 - (void) connection:(NSURLConnection*)connection didReceiveResponse:(NSURLResponse*)response {
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
-    [mReceivedData setLength:0];
+    [_receivedData setLength:0];
 }
 
 - (void) connection:(NSURLConnection*)connection didReceiveData:(NSData*)data {
-    [mReceivedData appendData:data];
+    [_receivedData appendData:data];
 }
 
 - (void) connectionDidFinishLoading:(NSURLConnection*)connection {
-    if(mSuccess != nil) {
-        mSuccess(self);
+    if(_success != nil) {
+        _success(self);
     }
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
 }
 
 - (void) connection:(NSURLConnection*)connection didFailWithError:(NSError*)error {
-    if(mFailure != nil) {
-        mFailure(self, error);
+    if(_failure != nil) {
+        _failure(self, error);
     }
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
 }
