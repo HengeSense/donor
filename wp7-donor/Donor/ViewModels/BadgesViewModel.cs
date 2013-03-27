@@ -16,10 +16,12 @@ using Microsoft.Phone.Tasks;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using GalaSoft.MvvmLight;
+
 
 namespace Donor.ViewModels
 {
-    public class AchieveItem : INotifyPropertyChanged
+    public class AchieveItem: ViewModelBase
     {
         public AchieveItem()
         {
@@ -34,7 +36,7 @@ namespace Donor.ViewModels
             set
             {
                 _title = value;
-                NotifyPropertyChanged("Title");
+                RaisePropertyChanged("Title");
             }
         }
 
@@ -48,7 +50,7 @@ namespace Donor.ViewModels
             set
             {
                 _api_name = value;
-                NotifyPropertyChanged("Api_name");
+                RaisePropertyChanged("Api_name");
             }
         }
 
@@ -62,8 +64,8 @@ namespace Donor.ViewModels
             set
             {
                 _image = value;
-                NotifyPropertyChanged("Image");
-                NotifyPropertyChanged("CurrentImage");
+                RaisePropertyChanged("Image");
+                RaisePropertyChanged("CurrentImage");
             }
         }
 
@@ -77,8 +79,8 @@ namespace Donor.ViewModels
             set
             {
                 _unactiveImage = value;
-                NotifyPropertyChanged("UnactiveImage");
-                NotifyPropertyChanged("CurrentImage");
+                RaisePropertyChanged("UnactiveImage");
+                RaisePropertyChanged("CurrentImage");
             }
         }
 
@@ -110,8 +112,8 @@ namespace Donor.ViewModels
             set
             {
                 _status = value;
-                NotifyPropertyChanged("Status");
-                NotifyPropertyChanged("CurrentImage");
+                RaisePropertyChanged("Status");
+                RaisePropertyChanged("CurrentImage");
             }
         }
 
@@ -125,25 +127,7 @@ namespace Donor.ViewModels
             set
             {
                 _image = value;
-                NotifyPropertyChanged("Description");
-            }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        private void NotifyPropertyChanged(String propertyName)
-        {
-            PropertyChangedEventHandler handler = PropertyChanged;
-            if (null != handler)
-            {
-                handler(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
-
-        public void RaisePropertyChanged(string property)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(property));
+                RaisePropertyChanged("Description");
             }
         }
     }
@@ -227,7 +211,11 @@ namespace Donor.ViewModels
                                         activated = item["activated"].ToString();
                                         if (activated == "True")
                                         {
-                                            BadgesViewModel.AvailableAchieves.FirstOrDefault(c=>c.Api_name==item["api_name"].ToString()).Status=true;
+                                            try
+                                            {
+                                                BadgesViewModel.AvailableAchieves.FirstOrDefault(c => c.Api_name == item["api_name"].ToString()).Status = true;
+                                            }
+                                            catch { };
                                         };
 
                                     };

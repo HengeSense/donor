@@ -48,14 +48,14 @@
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                     </ListBox>
-                    <TextBlock Text="Скоро" Margin="0,20,0,20" Foreground="Gray" FontSize="36"/>
-                    <ListBox Margin="0,15,-12,0" Name="SoonBadges"
+                    <TextBlock Text="Скоро" Margin="0,20,0,20" Style="{StaticResource Text36pxB9A194}" FontSize="36"/>
+                    <ListBox Margin="0,-15,-12,0" Name="SoonBadges"
                      ScrollViewer.VerticalScrollBarVisibility="Disabled"
                      tilteffect:TiltEffect.IsTiltEnabled="True" Loaded="ListBox_Loaded">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Margin="0,20,0,5" Width="432" Orientation="Horizontal">
-                                    <Image Source="{Binding CurrentImage}" Width="90"/>
+                                    <Image Source="{Binding UnactiveImage}" Width="90"/>
                                     <TextBlock Text="{Binding Title}" TextWrapping="Wrap" Margin="20,0,0,0" Style="{StaticResource Text24pxB9A194}"  VerticalAlignment="Center"/>
                                 </StackPanel>
                             </DataTemplate>
