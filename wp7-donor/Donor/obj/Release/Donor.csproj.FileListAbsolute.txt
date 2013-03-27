@@ -45,15 +45,6 @@ C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\Bin\Release\ja\Microso
 C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\Bin\Release\ko\Microsoft.Expression.Interactions.resources.dll
 C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\Bin\Release\zh-Hans\Microsoft.Expression.Interactions.resources.dll
 C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\Bin\Release\zh-Hant\Microsoft.Expression.Interactions.resources.dll
-C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\Bin\Release\de\System.Windows.Interactivity.resources.dll
-C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\Bin\Release\en\System.Windows.Interactivity.resources.dll
-C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\Bin\Release\es\System.Windows.Interactivity.resources.dll
-C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\Bin\Release\fr\System.Windows.Interactivity.resources.dll
-C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\Bin\Release\it\System.Windows.Interactivity.resources.dll
-C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\Bin\Release\ja\System.Windows.Interactivity.resources.dll
-C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\Bin\Release\ko\System.Windows.Interactivity.resources.dll
-C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\Bin\Release\zh-Hans\System.Windows.Interactivity.resources.dll
-C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\Bin\Release\zh-Hant\System.Windows.Interactivity.resources.dll
 C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\obj\Release\Donor.g.resources
 C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\obj\Release\Donor.Resources.AppResources.resources
 C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\obj\Release\Donor.csproj.GenerateResource.Cache
@@ -113,3 +104,11 @@ C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\Bin\Release\fr-FR\Tele
 C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\Bin\Release\it-IT\Telerik.Windows.Controls.Primitives.resources.dll
 C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\obj\Release\StationPageOld.g.cs
 C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\Bin\Release\Parse.dll
+C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\Bin\Release\GalaSoft.MvvmLight.Extras.WP71.dll
+C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\Bin\Release\GalaSoft.MvvmLight.WP71.dll
+C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\Bin\Release\Microsoft.Practices.ServiceLocation.dll
+C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\Bin\Release\GalaSoft.MvvmLight.Extras.WP71.pdb
+C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\Bin\Release\GalaSoft.MvvmLight.Extras.WP71.xml
+C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\Bin\Release\GalaSoft.MvvmLight.WP71.pdb
+C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\Bin\Release\GalaSoft.MvvmLight.WP71.xml
+C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\Bin\Release\Microsoft.Practices.ServiceLocation.xml

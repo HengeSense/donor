@@ -320,6 +320,18 @@ namespace Donor.ViewModels
                         try
                         {
                             JObject o = JObject.Parse(response.Content.ToString());
+
+                            try
+                            {
+                                if (o["error"].ToString() == "404")
+                                {
+                                    ViewModelLocator.MainStatic.Settings.AchieveDonor = true;
+                                    ViewModelLocator.MainStatic.Settings.AchieveDonorUser = ViewModelLocator.MainStatic.User.objectId;
+                                    ViewModelLocator.MainStatic.SaveSettingsToStorage();
+                                };
+                            }
+                            catch { };
+
                             if (o["id"].ToString() != "")
                             {
                                 facebook_id = o["fb_id"].ToString();

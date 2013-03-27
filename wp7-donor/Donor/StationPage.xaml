@@ -16,12 +16,15 @@
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait"  Orientation="Portrait"
+    xmlns:maps="clr-namespace:Microsoft.Phone.Controls.Maps;assembly=Microsoft.Phone.Controls.Maps"
     xmlns:WPExtensions="clr-namespace:WPExtensions;assembly=WPExtensions"
     DataContext="{Binding Main.Stations.CurrentStation, Source={StaticResource Locator}}" 
     shell:SystemTray.IsVisible="False" Loaded="PhoneApplicationPage_Loaded">
 
-        
-    
+    <phone:PhoneApplicationPage.Resources>
+        <maps:ApplicationIdCredentialsProvider x:Key="BingCredentials" ApplicationId="AleF-exBAWd-gM9i3JJ0yWTEBsTGK2cHob09pmgpnHc5MCl3XjMhWToUK6MlmgFx" />
+    </phone:PhoneApplicationPage.Resources>
+
     <!--LayoutRoot contains the root grid where all other page content is placed-->
     <Grid x:Name="LayoutRoot" Background="#FF271B16">
     	<!--<Grid.Background>
@@ -134,7 +137,7 @@
             </controls:PanoramaItem>
 
             <!--Panorama item two-->
-            <!--<controls:PanoramaItem>
+            <controls:PanoramaItem>
             	<controls:PanoramaItem.Header>
                     <TextBlock Style="{StaticResource Text70pxWhite}" 
 					Text="{Binding ForDonorsStation, Source={StaticResource Loc}}" Margin="-10,30,0,0"/>
@@ -142,8 +145,9 @@
                 <Grid>
                     <StackPanel>
                     </StackPanel>
+                    <maps:Map Name="map1" Margin="0,10,0,0" CredentialsProvider="{StaticResource BingCredentials}" />
                 </Grid>
-            </controls:PanoramaItem>-->
+            </controls:PanoramaItem>
 
 
         </controls:Panorama>

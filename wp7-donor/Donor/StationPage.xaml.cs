@@ -15,6 +15,8 @@ using System.Collections.ObjectModel;
 using Microsoft.Phone.Tasks;
 using Microsoft.Phone.Net.NetworkInformation;
 using Donor.Controls;
+using System.Device.Location;
+using Microsoft.Phone.Controls.Maps;
 
 namespace Donor
 {
@@ -28,23 +30,17 @@ namespace Donor
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
-                try
-                {
-                }
-                catch
-                {
-                    NavigationService.GoBack();
-                };
+
+            GeoCoordinate currentLocation = new GeoCoordinate(Convert.ToDouble(ViewModelLocator.MainStatic.Stations.Latitued.ToString()), Convert.ToDouble(ViewModelLocator.MainStatic.Stations.Longitude.ToString()));
+            map1.Children.Add(new Pushpin() { Location = currentLocation, Content = "Я" });
+            GeoCoordinate stationLocation = new GeoCoordinate(ViewModelLocator.MainStatic.Stations.CurrentStation.Lat, ViewModelLocator.MainStatic.Stations.CurrentStation.Lon);
+            map1.Children.Add(new Pushpin() { Location = stationLocation, Content = ViewModelLocator.MainStatic.Stations.CurrentStation.Name });
+            map1.ZoomLevel = 14;
+            map1.Center = stationLocation;
         }
 
         private void ReviewsLoaded(object sender, EventArgs e)
         {
-            try
-            {
-            }
-            catch
-            {
-            };
         }
 
         private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)

@@ -604,8 +604,8 @@ namespace Donor.ViewModels
             }
         }
 
-        private string _lat = "33";
-        public string Lat
+        private double _lat = 0;//"33";
+        public double Lat
         {
             get
             {
@@ -617,9 +617,25 @@ namespace Donor.ViewModels
                 RaisePropertyChanged("Lat");
             }
         }
+        public double LatDouble
+        {
+            private set
+            {
+            }
+            get
+            {
+                double itemLat = 0.0;
+                try
+                {
+                    itemLat = Convert.ToDouble(Lat.ToString().Replace(".", ","));
+                }
+                catch { };
+                return itemLat;
+            }
+        }
 
-        private string _lon = "30";
-        public string Lon
+        private double _lon = 0;//"30";
+        public double Lon
         {
             get
             {
@@ -629,6 +645,22 @@ namespace Donor.ViewModels
             {
                 _lon = value;
                 RaisePropertyChanged("Lon");
+            }
+        }
+        public double LonDouble
+        {
+            private set
+            {
+            }
+            get
+            {
+                double itemLon = 0.0;
+                try
+                {
+                    itemLon = Convert.ToDouble(Lon.ToString().Replace(".", ","));
+                }
+                catch { };
+                return itemLon;
             }
         }
 
@@ -650,20 +682,8 @@ namespace Donor.ViewModels
                 }
                 catch { };
 
-                double itemLat = 0.0;
-                double itemLon = 0.0;
-                try
-                {
-                    itemLat = Convert.ToDouble(Lat.ToString());
-                }
-                catch { };
-                try
-                {
-                     itemLon = Convert.ToDouble(Lon.ToString());
-                }catch { };
-
                 GeoCoordinate currentLocation = new GeoCoordinate(curLat, curLon);
-                GeoCoordinate clientLocation = new GeoCoordinate(itemLat, itemLon);
+                GeoCoordinate clientLocation = new GeoCoordinate(Lat, Lon);
                 distanceInMeter = currentLocation.GetDistanceTo(clientLocation);
 
                 return (Math.Round(distanceInMeter / 1000)).ToString();
