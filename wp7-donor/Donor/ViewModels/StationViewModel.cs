@@ -94,6 +94,15 @@ namespace Donor.ViewModels
                 {                    
                     JObject o = JObject.Parse(response.Content.ToString());
                     string state = o["address"]["state"].ToString();
+                    try
+                    {
+                        string town = "";
+                        town = o["address"]["city"].ToString();
+                        if (town=="Москва") {
+                            state = town;
+                        };
+                    }
+                    catch { };
                     CurrentState = state;
                 }
                 catch
