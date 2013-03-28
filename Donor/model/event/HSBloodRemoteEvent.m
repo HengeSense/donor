@@ -29,7 +29,6 @@ static NSString * const kRemoteEventField_Date = @"date";
 static NSString * const kRemoteEventField_Finished = @"finished";
 static NSString * const kRemoteEventFields_Notice = @"notice";
 static NSString * const kRemoteEventField_ReminderDate = @"reminderDate";
-static NSString * const kRemoteEventField_ReminderMessage = @"reminderMessage";
 static NSString * const kRemoteEventField_Station = @"station";
 static NSString * const kRemoteEventField_Title = @"title";
 static NSString * const kRemoteEventField_Type = @"type";
@@ -85,28 +84,24 @@ static NSString * const kRemoteEventField_Type = @"type";
     [self.remoteEvent setObject: labAddress forKey: kRemoteEventField_Address];
 }
 
-- (NSDate *)notificationDate {
-    return [self.remoteEvent objectForKey: kRemoteEventField_ReminderDate];
-}
-
-- (void)setNotificationDate: (NSDate *)notificationDate {
-    [self.remoteEvent setObject: notificationDate forKey: kRemoteEventField_ReminderDate];
-}
-
-- (NSString *)notificationMessage {
-    return [self.remoteEvent objectForKey: kRemoteEventField_ReminderMessage];
-}
-
-- (void)setNotificationMessage:(NSString *)notificationMessage {
-    [self.remoteEvent setObject: notificationMessage forKey: kRemoteEventField_ReminderMessage];
-}
-
 - (void)setComments: (NSString *)comments {
     [self.remoteEvent setObject: comments forKey: kRemoteEventField_Comment];
 }
 
 - (NSString *)comments {
     return [self.remoteEvent objectForKey: kRemoteEventField_Comment];
+}
+
+- (NSDate *)reminderFireDate {
+    NSDate *date = [self.remoteEvent objectForKey:kRemoteEventField_ReminderDate];
+    return date != nil ? date : [super reminderFireDate];
+}
+
+- (void)setReminderFireDate:(NSDate *)reminderFireDate {
+    if (reminderFireDate != nil) {
+        [self.remoteEvent setObject:reminderFireDate forKey:kRemoteEventField_ReminderDate];
+    }
+    [super setReminderFireDate:reminderFireDate];
 }
 
 
@@ -174,12 +169,6 @@ static NSString * const kRemoteEventField_Type = @"type";
     }
     if (self.labAddress != nil) {
         event.labAddress = self.labAddress;
-    }
-    if (self.notificationDate != nil) {
-        event.notificationDate = self.notificationDate;
-    }
-    if (self.notificationMessage != nil) {
-        event.notificationMessage = self.notificationMessage;
     }
     if (self.comments != nil) {
         event.comments = self.comments;
