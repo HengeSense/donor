@@ -12,6 +12,7 @@ using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using Donor.ViewModels;
 using System.Collections.ObjectModel;
+using Microsoft.Phone.Tasks;
 
 namespace Donor
 {
@@ -38,6 +39,18 @@ namespace Donor
                 };
             }
             catch { };            
+        }
+
+        private void ItsbetaAppButton_Click(object sender, RoutedEventArgs e)
+        {
+            
+            try
+            {
+                WebBrowserTask webTask = new WebBrowserTask();
+                webTask.Uri = new Uri("http://www.windowsphone.com/ru-RU/store/app/itsbeta/609b66dc-4d84-4ba1-9b6c-bcc2ca1c03c6");
+                webTask.Show();
+            }
+            catch { };
         }
     }
 }

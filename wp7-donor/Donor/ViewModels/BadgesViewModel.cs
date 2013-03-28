@@ -372,10 +372,14 @@ namespace Donor.ViewModels
         }
 
         static void moreButton_Click(object sender, RoutedEventArgs e)
-        {            
-            WebBrowserTask webTask = new WebBrowserTask();
-            webTask.Uri = new Uri("http://www.itsbeta.com/s/healthcare/donor/achieves/fb?locale=ru&name=donorfriend&fb_action_ids="+facebook_id);
-            webTask.Show();
+        {
+            try
+            {
+                WebBrowserTask webTask = new WebBrowserTask();
+                webTask.Uri = new Uri("http://www.itsbeta.com/s/healthcare/donor/achieves/fb?locale=ru&name=donorfriend&fb_action_ids=" + facebook_id);
+                webTask.Show();
+            }
+            catch { };
         }
 
     }

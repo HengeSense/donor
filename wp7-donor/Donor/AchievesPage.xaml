@@ -61,6 +61,15 @@
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                     </ListBox>
+                    <Button Name="ItsbetaAppButton" 
+                            FontSize="24"
+					        Background="#FF4186A3" 
+					        BorderBrush="#FF4186A3" 
+					        Foreground="#FFFFFFFF"
+					        FontFamily="Segoe WP Regular" 
+                            BorderThickness="3"
+                            Content="Itsbeta"
+                            Click="ItsbetaAppButton_Click"/>
                 </StackPanel>
             </ScrollViewer>
         </Grid>
