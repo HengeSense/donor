@@ -24,6 +24,8 @@
 #import "HSCalendar.h"
 #import "HSCalendarEventNotifier.h"
 
+#import "ItsBeta.h"
+
 static NSString * const PARSE_APP_ID = @"EIpakVdZblHedhqgxMgiEVnIGCRGvWdy9v8gkKZu";
 static NSString * const PARSE_CLIENT_KEY = @"uNarhakSf1on8lJjrAVs1VWmPlG1D6ZJf9dO5QZY";
 static NSString * const FACEBOOK_APP_ID = @"438918122827407";
@@ -123,6 +125,9 @@ static NSString * const APP_STORE_APP_ID = @"578970724";
     [Appirater setDaysUntilPrompt:2];
     [Appirater setUsesUntilPrompt:3];
     [Appirater setTimeBeforeReminding:2];
+    
+    [[ItsBeta sharedItsBeta] setAccessToken:@"059db4f010c5f40bf4a73a28222dd3e3"];
+    [[ItsBeta sharedItsBeta] synchronize];
 }
 
 - (void)launchServices {

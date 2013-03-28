@@ -46,6 +46,10 @@
 #endif
 }
 
+- (NSString*) description {
+    return [NSString stringWithFormat:@"<ItsBetaType> api_name = '%@', project_id = '%@', objtype_id = '%@'", _name, _projectId, _typeId];
+}
+
 @end
 
 /*--------------------------------------------------*/

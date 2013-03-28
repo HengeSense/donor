@@ -71,12 +71,9 @@ typedef void (^ItsBetaCallbackImage)(ItsBetaImage* image, NSError* error);
 
 @property(nonatomic, readonly) NSArray* categories;
 @property(nonatomic, readonly) NSArray* projects;
-@property(nonatomic, readonly) NSArray* types;
-@property(nonatomic, readonly) NSArray* templates;
 
 @property(nonatomic, readonly) ItsBetaCategory* currentCategory;
 @property(nonatomic, readonly) ItsBetaProject* currentProject;
-@property(nonatomic, readonly) ItsBetaPlayer* currentPlayer;
 
 + (ItsBeta*) sharedItsBeta;
 
@@ -113,7 +110,7 @@ typedef void (^ItsBetaCallbackImage)(ItsBetaImage* image, NSError* error);
 
 - (id) initWithType:(ItsBetaPlayerType)type;
 
-- (void) synchronize;
+- (void) synchronizeWithProject:(ItsBetaProject*)project;
 
 - (BOOL) isLogin;
 - (void) login:(ItsBetaCallbackLogin)callback;
@@ -152,9 +149,16 @@ typedef void (^ItsBetaCallbackImage)(ItsBetaImage* image, NSError* error);
 @property(nonatomic, readonly) CLColor* color; // Цвет проекта
 #endif
 
+@property(nonatomic, readonly) NSArray* types;
+@property(nonatomic, readonly) NSArray* templates;
+
+@property(nonatomic, readonly) ItsBetaPlayer* currentPlayer;
+
 + (ItsBetaProject*) projectWithDictionary:(NSDictionary*)dictionary;
 
 - (id) initWithDictionary:(NSDictionary*)dictionary;
+
+- (void) synchronize;
 
 @end
 
