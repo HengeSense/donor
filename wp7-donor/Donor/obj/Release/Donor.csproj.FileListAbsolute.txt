@@ -112,4 +112,9 @@ C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\Bin\Release\GalaSoft.M
 C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\Bin\Release\GalaSoft.MvvmLight.WP71.pdb
 C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\Bin\Release\GalaSoft.MvvmLight.WP71.xml
 C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\Bin\Release\Microsoft.Practices.ServiceLocation.xml
-C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\obj\Release\Donor.csprojResolveAssemblyReference.cache
+C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\Bin\Release\Telerik.Windows.Controls.Input.dll
+C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\Bin\Release\Telerik.Windows.Controls.Input.pdb
+C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\Bin\Release\Telerik.Windows.Controls.Input.xml
+C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\Bin\Release\de-DE\Telerik.Windows.Controls.Input.resources.dll
+C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\Bin\Release\fr-FR\Telerik.Windows.Controls.Input.resources.dll
+C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\Bin\Release\it-IT\Telerik.Windows.Controls.Input.resources.dll

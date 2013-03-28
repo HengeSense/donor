@@ -1347,7 +1347,7 @@ namespace Donor.ViewModels
                 var request = new RestRequest("1/classes/Events", Method.POST);
                 request.AddHeader("Accept", "application/json");
                 request.Parameters.Clear();
-                string strJSONContent = "{\"analysisResult\":" + addedItems.ReminderMessage.ToString().ToLower() + ", \"notice\": " + addedItems.Notice.ToString() + ", \"station_nid\": " + addedItems.Station_nid + ", \"date\": {\"__type\": \"Date\", \"iso\": \"" + addedItems.DateAndTime.ToString("s") + "\"}, \"finished\":" + addedItems.Finished.ToString().ToLower() + ", \"adress\":\"" + addedItems.Place + "\", \"comment\":\"" + addedItems.Description.Replace("\r", "\n") + "\", \"type\":" + addedItems.Type + ", \"delivery\":" + addedItems.Delivery + ", \"type\":" + addedItems.Type + "}";
+                string strJSONContent = "{\"analysisResult\":" + addedItems.ReminderMessage.ToString().ToLower() + ", \"notice\": " + addedItems.Notice.ToString() + ", \"date\": {\"__type\": \"Date\", \"iso\": \"" + addedItems.DateAndTime.ToString("s") + "\"}, \"finished\":" + addedItems.Finished.ToString().ToLower() + ", \"adress\":\"" + addedItems.Place + "\", \"comment\":\"" + addedItems.Description.Replace("\r", "\n") + "\", \"type\":" + addedItems.Type + ", \"delivery\":" + addedItems.Delivery + ", \"type\":" + addedItems.Type + "}";
 
 
                 request.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
