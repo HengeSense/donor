@@ -27,5 +27,17 @@ namespace Donor
             this.AvailableBadges.ItemsSource = BadgesViewModel.AvailableAchieves;
             this.SoonBadges.ItemsSource = BadgesViewModel.SoonAchieves;
         }
+
+        private void AvailableBadges_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            try
+            {
+                if ((this.AvailableBadges.SelectedItem as AchieveItem).Status == true)
+                {
+                    BadgesViewModel.ShowBadgeMessage();
+                };
+            }
+            catch { };            
+        }
     }
 }

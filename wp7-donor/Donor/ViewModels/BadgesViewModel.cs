@@ -330,26 +330,7 @@ namespace Donor.ViewModels
                                     ViewModelLocator.MainStatic.Settings.AchieveDonorUser = ViewModelLocator.MainStatic.User.objectId;
                                     ViewModelLocator.MainStatic.SaveSettingsToStorage();
 
-                                    messagePrompt = new MessagePrompt();
-                                    try
-                                    {
-                                        messagePrompt.Body = new BadgeControl();
-
-                                        Button closeButton = new Button() { Content = "Закрыть" };
-                                        Button moreButton = new Button() { Content = "Подробнее" };
-
-                                        closeButton.Click += new RoutedEventHandler(closeButton_Click);
-                                        moreButton.Click += new RoutedEventHandler(moreButton_Click);
-
-                                        messagePrompt.ActionPopUpButtons.Clear();
-                                        messagePrompt.ActionPopUpButtons.Add(closeButton);
-                                        messagePrompt.ActionPopUpButtons.Add(moreButton);
-                                    }
-                                    catch
-                                    {
-                                    };
-
-                                    messagePrompt.Show();
+                                    BadgesViewModel.ShowBadgeMessage();
                                 });
                             };
                         }
@@ -357,6 +338,32 @@ namespace Donor.ViewModels
                     });
             };
             bw.RunWorkerAsync();
+        }
+
+        public static void ShowBadgeMessage()
+        {
+            messagePrompt = new MessagePrompt();
+            try
+            {
+                messagePrompt.Body = new BadgeControl();
+
+                Button closeButton = new Button() { Content = "Закрыть" };
+                Button moreButton = new Button() { Content = "Подробнее" };
+
+                closeButton.Click += new RoutedEventHandler(closeButton_Click);
+                moreButton.Click += new RoutedEventHandler(moreButton_Click);
+
+                messagePrompt.ActionPopUpButtons.Clear();
+                messagePrompt.ActionPopUpButtons.Add(closeButton);
+                if (facebook_id!="") {
+                    messagePrompt.ActionPopUpButtons.Add(moreButton);
+                };
+                
+            }
+            catch
+            {
+            };
+            messagePrompt.Show();
         }
 
         static void closeButton_Click(object sender, RoutedEventArgs e)
