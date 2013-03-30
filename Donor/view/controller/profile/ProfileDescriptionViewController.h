@@ -42,7 +42,6 @@
 @property (nonatomic, retain) SelectBloodGroupViewController *selectBloodGroupViewController;
 @property (nonatomic, retain) ProfileSexSelectViewController *sexSelectViewController;
 
-- (IBAction)settingsButtonClick:(id)sender;
 - (IBAction)editButtonClick:(id)sender;
 
 - (IBAction)sexButtonClick:(id)sender;

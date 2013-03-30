@@ -14,7 +14,6 @@
 
 #import "ProfileDescriptionViewController.h"
 #import "ProfileRegistrationViewController.h"
-#import "ProfileSettingsViewController.h"
 #import "HSRestorePasswordViewCotroller.h"
 #import "HSAlertViewController.h"
 

@@ -326,8 +326,6 @@
 		68B8300716D1113B00533701 /* ProfileDescriptionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68B82F9A16D1113B00533701 /* ProfileDescriptionViewController.xib */; };
 		68B8300816D1113B00533701 /* ProfileRegistrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B82F9C16D1113B00533701 /* ProfileRegistrationViewController.m */; };
 		68B8300916D1113B00533701 /* ProfileRegistrationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68B82F9D16D1113B00533701 /* ProfileRegistrationViewController.xib */; };
-		68B8300A16D1113B00533701 /* ProfileSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B82F9F16D1113B00533701 /* ProfileSettingsViewController.m */; };
-		68B8300B16D1113B00533701 /* ProfileSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68B82FA016D1113B00533701 /* ProfileSettingsViewController.xib */; };
 		68B8300C16D1113B00533701 /* ProfileSexSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B82FA216D1113B00533701 /* ProfileSexSelectViewController.m */; };
 		68B8300D16D1113B00533701 /* ProfileSexSelectViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68B82FA316D1113B00533701 /* ProfileSexSelectViewController.xib */; };
 		68B8300E16D1113B00533701 /* SelectBloodGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B82FA516D1113B00533701 /* SelectBloodGroupViewController.m */; };
@@ -1012,9 +1010,6 @@
 		68B82F9B16D1113B00533701 /* ProfileRegistrationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileRegistrationViewController.h; sourceTree = "<group>"; };
 		68B82F9C16D1113B00533701 /* ProfileRegistrationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileRegistrationViewController.m; sourceTree = "<group>"; };
 		68B82F9D16D1113B00533701 /* ProfileRegistrationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileRegistrationViewController.xib; sourceTree = "<group>"; };
-		68B82F9E16D1113B00533701 /* ProfileSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileSettingsViewController.h; sourceTree = "<group>"; };
-		68B82F9F16D1113B00533701 /* ProfileSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileSettingsViewController.m; sourceTree = "<group>"; };
-		68B82FA016D1113B00533701 /* ProfileSettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileSettingsViewController.xib; sourceTree = "<group>"; };
 		68B82FA116D1113B00533701 /* ProfileSexSelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileSexSelectViewController.h; sourceTree = "<group>"; };
 		68B82FA216D1113B00533701 /* ProfileSexSelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileSexSelectViewController.m; sourceTree = "<group>"; };
 		68B82FA316D1113B00533701 /* ProfileSexSelectViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileSexSelectViewController.xib; sourceTree = "<group>"; };
@@ -2421,9 +2416,6 @@
 				68B82F9B16D1113B00533701 /* ProfileRegistrationViewController.h */,
 				68B82F9C16D1113B00533701 /* ProfileRegistrationViewController.m */,
 				68B82F9D16D1113B00533701 /* ProfileRegistrationViewController.xib */,
-				68B82F9E16D1113B00533701 /* ProfileSettingsViewController.h */,
-				68B82F9F16D1113B00533701 /* ProfileSettingsViewController.m */,
-				68B82FA016D1113B00533701 /* ProfileSettingsViewController.xib */,
 				68B82FA116D1113B00533701 /* ProfileSexSelectViewController.h */,
 				68B82FA216D1113B00533701 /* ProfileSexSelectViewController.m */,
 				68B82FA316D1113B00533701 /* ProfileSexSelectViewController.xib */,
@@ -3141,7 +3133,6 @@
 				68B8300516D1113B00533701 /* HSRestorePasswordViewCotroller.xib in Resources */,
 				68B8300716D1113B00533701 /* ProfileDescriptionViewController.xib in Resources */,
 				68B8300916D1113B00533701 /* ProfileRegistrationViewController.xib in Resources */,
-				68B8300B16D1113B00533701 /* ProfileSettingsViewController.xib in Resources */,
 				68B8300D16D1113B00533701 /* ProfileSexSelectViewController.xib in Resources */,
 				68B8300F16D1113B00533701 /* SelectBloodGroupViewController.xib in Resources */,
 				68B8301116D1113B00533701 /* SelectSexViewController.xib in Resources */,
@@ -3251,7 +3242,6 @@
 				68B8300416D1113B00533701 /* HSRestorePasswordViewCotroller.m in Sources */,
 				68B8300616D1113B00533701 /* ProfileDescriptionViewController.m in Sources */,
 				68B8300816D1113B00533701 /* ProfileRegistrationViewController.m in Sources */,
-				68B8300A16D1113B00533701 /* ProfileSettingsViewController.m in Sources */,
 				68B8300C16D1113B00533701 /* ProfileSexSelectViewController.m in Sources */,
 				68B8300E16D1113B00533701 /* SelectBloodGroupViewController.m in Sources */,
 				68B8301016D1113B00533701 /* SelectSexViewController.m in Sources */,

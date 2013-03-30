@@ -13,7 +13,6 @@
 #import "HSFlurryAnalytics.h"
 #import "MBProgressHUD.h"
 
-#import "ProfileSettingsViewController.h"
 #import "AppDelegate.h"
 #import "Common.h"
 #import "HSAlertViewController.h"
@@ -33,13 +32,6 @@ static NSString * const kLinkedToFacebookTitle = @"привязан";
 @implementation ProfileDescriptionViewController
 
 #pragma mark Actions
-
-- (IBAction)settingsButtonClick:(id)sender {
-    ProfileSettingsViewController *controller = [[ProfileSettingsViewController alloc]
-            initWithNibName:@"ProfileSettingsViewController" bundle:nil];
-    [self.navigationController pushViewController:controller animated:YES];
-}
-
 - (void)cancelEditPressed {
     [self hideCurrentActionSheetView];
 
