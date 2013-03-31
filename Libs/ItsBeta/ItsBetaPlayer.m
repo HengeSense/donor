@@ -75,11 +75,11 @@
     }
 }
 
-- (void) synchronizeObjects {
+- (void) synchronizeWithProject:(ItsBetaProject*)project {
     dispatch_sync(_queue, ^{
         [_objects removeAllObjects];
     });
-    for(ItsBetaTemplate* template in [[ItsBeta sharedItsBeta] templates]) {
+    for(ItsBetaTemplate* template in [project templates]) {
         [ItsBeta itsBetaObjectByPlayer:self
                             byTemplate:template
                               callback:^(NSArray* objects, NSError* error) {

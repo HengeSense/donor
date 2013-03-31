@@ -5,7 +5,7 @@
 /*--------------------------------------------------*/
 
 #import "ItsBetaFastCache.h"
-#import "ItsBetaRestAPI.h"
+#import "ItsBetaRest.h"
 
 /*--------------------------------------------------*/
 
@@ -40,25 +40,31 @@
             _data = NS_SAFE_RETAIN([[ItsBetaFastCache sharedItsBetaFastCache] imageForKey:_key]);
         }
         if(_data == nil) {
-            [RestAPIConnection connectionWithMethod:@"GET"
-                                                url:_URL
-                                            success:^(RestAPIConnection *connection) {
+            ItsBetaRest* rest = [ItsBetaRest restWithMethod:@"GET" url:_URL];
+            [rest sendSuccess:^(ItsBetaRest* rest) {
 #if TARGET_OS_IPHONE
-                                                _data = NS_SAFE_RETAIN([UIImage imageWithData:[connection receivedData]]);
+                _data = NS_SAFE_RETAIN([UIImage imageWithData:[rest receivedData]]);
 #else
-                                                _data = NS_SAFE_RETAIN([NSImage imageWithData:[connection receivedData]]);
+                _data = NS_SAFE_RETAIN([NSImage imageWithData:[rest receivedData]]);
 #endif
-                                                [[ItsBetaFastCache sharedItsBetaFastCache] setImage:_data forKey:_key];
-                                                callback(self, nil);
-                                            }
-                                            failure:^(RestAPIConnection *connection, NSError *error) {
-                                                callback(self, error);
-                                            }];
+                [[ItsBetaFastCache sharedItsBetaFastCache] setImage:_data forKey:_key];
+                if(callback != nil) {
+                    callback(self, nil);
+                }
+            } sendFailure:^(ItsBetaRest* rest, NSError *error) {
+                if(callback != nil) {
+                    callback(self, error);
+                }
+            }];
         } else {
-            callback(self, nil);
+            if(callback != nil) {
+                callback(self, nil);
+            }
         }
     } else {
-        callback(self, nil);
+        if(callback != nil) {
+            callback(self, nil);
+        }
     }
 }
 

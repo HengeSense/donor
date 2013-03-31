@@ -28,6 +28,10 @@
 #endif
 }
 
+- (NSString*) description {
+    return [NSString stringWithFormat:@"<ItsBetaCategory> api_name = '%@', display_name = '%@'", _name, _title];
+}
+
 @end
 
 /*--------------------------------------------------*/
