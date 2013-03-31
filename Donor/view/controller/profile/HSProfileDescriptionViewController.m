@@ -9,8 +9,9 @@
 #import "HSProfileDescriptionViewController.h"
 
 #import <Parse/Parse.h>
-#import "HSFlurryAnalytics.h"
 #import "MBProgressHUD.h"
+#import "HSFlurryAnalytics.h"
+#import "HSMailChimp.h"
 
 #import "AppDelegate.h"
 #import "Common.h"
@@ -96,6 +97,7 @@ static NSString * const kLinkedToFacebookTitle = @"привязан";
             [progressHud hide:YES];
             if (succeeded) {
                 [HSFlurryAnalytics userUpdatedProfile];
+                [[HSMailChimp sharedInstance] subscribeOrUpdateUser:self.editUserInfo.user];
             } else {
                 [HSAlertViewController showWithTitle:@"Ошибка"
                                              message:[HSModelCommon localizedDescriptionForParseError:error]];

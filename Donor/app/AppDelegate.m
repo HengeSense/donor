@@ -8,10 +8,12 @@
 
 #import "AppDelegate.h"
 #import <Parse/Parse.h>
-#import "HSFlurryAnalytics.h"
 #import "Crittercism.h"
 #import "TestFlight.h"
 #import "Appirater.h"
+#import "ItsBeta.h"
+#import "HSFlurryAnalytics.h"
+#include "HSMailChimp.h"
 
 #import "HSCalendarViewController.h"
 
@@ -24,8 +26,6 @@
 #import "HSCalendar.h"
 #import "HSCalendarEventNotifier.h"
 
-#import "ItsBeta.h"
-
 static NSString * const PARSE_APP_ID = @"EIpakVdZblHedhqgxMgiEVnIGCRGvWdy9v8gkKZu";
 static NSString * const PARSE_CLIENT_KEY = @"uNarhakSf1on8lJjrAVs1VWmPlG1D6ZJf9dO5QZY";
 static NSString * const FACEBOOK_APP_ID = @"438918122827407";
@@ -33,6 +33,9 @@ static NSString * const FLURRY_APP_ID = @"2WRYH35MS5SW4ZY2TNPB";
 static NSString * const TEST_FLIGHT_APP_ID = @"43651a8fd308e9fd491a1c8aa068f158_MTQxMjA0MjAxMi0xMC0wOSAwOTozMToyMS4zNzU1ODc";
 static NSString * const CRITTERCISM_APP_ID = @"50f5e3804f633a256d000003";
 static NSString * const APP_STORE_APP_ID = @"578970724";
+static NSString * const ITSBETA_ACCESS_TOKEN = @"059db4f010c5f40bf4a73a28222dd3e3";
+static NSString * const MAILCHIMP_API_KEY = @"9392e150a6a0a5e66d42d2cd56d5d219-us4";
+static NSString * const MAILCHIMP_DONOR_LIST_ID = @"63b23fc742";
 
 @interface AppDelegate ()
 
@@ -126,8 +129,10 @@ static NSString * const APP_STORE_APP_ID = @"578970724";
     [Appirater setUsesUntilPrompt:3];
     [Appirater setTimeBeforeReminding:2];
     
-    [[ItsBeta sharedItsBeta] setAccessToken:@"059db4f010c5f40bf4a73a28222dd3e3"];
+    [[ItsBeta sharedItsBeta] setAccessToken:ITSBETA_ACCESS_TOKEN];
     [[ItsBeta sharedItsBeta] synchronize];
+    
+    [[HSMailChimp sharedInstance] configureWithApiKey:MAILCHIMP_API_KEY listId:MAILCHIMP_DONOR_LIST_ID];
 }
 
 - (void)launchServices {

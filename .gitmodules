@@ -7,3 +7,6 @@
 [submodule "Libs/Appirater"]
 	path = Libs/Appirater
 	url = https://github.com/arashpayan/appirater.git
+[submodule "Libs/ChimpKit"]
+	path = Libs/ChimpKit
+	url = https://github.com/mailchimp/ChimpKit2.git

@@ -14,6 +14,7 @@
 #import "Common.h"
 #import "HSCalendar.h"
 #import "HSUserInfo.h"
+#import "HSMailChimp.h"
 
 #import "HSSexPicker.h"
 #import "HSBloodTypePicker.h"
@@ -74,6 +75,7 @@
             [progressHud hide:YES];
             if (succeeded) {
                 [Common getInstance].authenticatedWithFacebook = NO;
+                [[HSMailChimp sharedInstance] subscribeOrUpdateUser:user];
                 [HSAlertViewController showWithMessage:@"Регистрация завершена."];
                 [self loadCalendarEventsAndGoToProfileForUser:[PFUser currentUser]];
             } else {

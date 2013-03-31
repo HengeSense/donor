@@ -55,7 +55,7 @@
 
 - (void)hideModal {
     [UIView animateWithDuration:self.animationDuration animations:^{
-    [self hideOverlayByShift:self.overlayWindow];
+            [self hideOverlayByShift:self.overlayWindow];
     } completion:^(BOOL finished) {
         if (!finished) {
             return;

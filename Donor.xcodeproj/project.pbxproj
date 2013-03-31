@@ -231,6 +231,7 @@
 		6864D6231708B3C400F150F9 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6864D61C1708B3C400F150F9 /* Default-568h@2x.png */; };
 		6864D6241708B3C400F150F9 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 6864D61D1708B3C400F150F9 /* Default.png */; };
 		6864D6251708B3C400F150F9 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6864D61E1708B3C400F150F9 /* Default@2x.png */; };
+		6864D6291708CB4900F150F9 /* HSMailChimp.m in Sources */ = {isa = PBXBuildFile; fileRef = 6864D6281708CB4900F150F9 /* HSMailChimp.m */; };
 		686BA62216344DE2004D7082 /* HSCalendarDayButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 686BA62116344DE2004D7082 /* HSCalendarDayButton.m */; };
 		686BA62716345D0E004D7082 /* NSCalendar+HSCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 686BA62616345D0E004D7082 /* NSCalendar+HSCalendar.m */; };
 		686BA62A163469C3004D7082 /* HSBloodDonorTests_Calendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 686BA629163469C3004D7082 /* HSBloodDonorTests_Calendar.m */; };
@@ -244,6 +245,10 @@
 		687A430B16F5E54500958347 /* libOCMock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 687A42FA16F5CEFC00958347 /* libOCMock.a */; };
 		687A431516F629B900958347 /* Swizzler.m in Sources */ = {isa = PBXBuildFile; fileRef = 687A431416F629B900958347 /* Swizzler.m */; };
 		687A431816F62D2300958347 /* HSBloodRemoteEventMoc.m in Sources */ = {isa = PBXBuildFile; fileRef = 687A431716F62D2300958347 /* HSBloodRemoteEventMoc.m */; };
+		687A436916F7C19400958347 /* ChimpKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 687A436216F7C19400958347 /* ChimpKit.m */; };
+		687A436A16F7C19400958347 /* CKAuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 687A436416F7C19400958347 /* CKAuthViewController.m */; };
+		687A436B16F7C19400958347 /* SubscribeAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 687A436616F7C19400958347 /* SubscribeAlertView.m */; };
+		687A436C16F7C19400958347 /* CKAuthViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 687A436816F7C19400958347 /* CKAuthViewController.xib */; };
 		687E58F916AD5CE2009D0A8F /* Appirater.m in Sources */ = {isa = PBXBuildFile; fileRef = 687E58DE16AD5CE2009D0A8F /* Appirater.m */; };
 		687E58FA16AD5CE2009D0A8F /* AppiraterLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 687E58E016AD5CE2009D0A8F /* AppiraterLocalizable.strings */; };
 		68893A3F16518CA800955990 /* BloodDonor_tutorial_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 68893A3316518CA800955990 /* BloodDonor_tutorial_1.png */; };
@@ -844,6 +849,8 @@
 		6864D61C1708B3C400F150F9 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		6864D61D1708B3C400F150F9 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		6864D61E1708B3C400F150F9 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		6864D6271708CB4900F150F9 /* HSMailChimp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSMailChimp.h; sourceTree = "<group>"; };
+		6864D6281708CB4900F150F9 /* HSMailChimp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSMailChimp.m; sourceTree = "<group>"; };
 		686BA62016344DE2004D7082 /* HSCalendarDayButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSCalendarDayButton.h; sourceTree = "<group>"; };
 		686BA62116344DE2004D7082 /* HSCalendarDayButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSCalendarDayButton.m; sourceTree = "<group>"; };
 		686BA62516345D0E004D7082 /* NSCalendar+HSCalendar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSCalendar+HSCalendar.h"; sourceTree = "<group>"; };
@@ -871,6 +878,13 @@
 		687A431416F629B900958347 /* Swizzler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Swizzler.m; sourceTree = "<group>"; };
 		687A431616F62D2300958347 /* HSBloodRemoteEventMoc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSBloodRemoteEventMoc.h; sourceTree = "<group>"; };
 		687A431716F62D2300958347 /* HSBloodRemoteEventMoc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSBloodRemoteEventMoc.m; sourceTree = "<group>"; };
+		687A436116F7C19400958347 /* ChimpKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChimpKit.h; sourceTree = "<group>"; };
+		687A436216F7C19400958347 /* ChimpKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChimpKit.m; sourceTree = "<group>"; };
+		687A436316F7C19400958347 /* CKAuthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKAuthViewController.h; sourceTree = "<group>"; };
+		687A436416F7C19400958347 /* CKAuthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKAuthViewController.m; sourceTree = "<group>"; };
+		687A436516F7C19400958347 /* SubscribeAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubscribeAlertView.h; sourceTree = "<group>"; };
+		687A436616F7C19400958347 /* SubscribeAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubscribeAlertView.m; sourceTree = "<group>"; };
+		687A436816F7C19400958347 /* CKAuthViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CKAuthViewController.xib; sourceTree = "<group>"; };
 		687E58DD16AD5CE2009D0A8F /* Appirater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Appirater.h; sourceTree = "<group>"; };
 		687E58DE16AD5CE2009D0A8F /* Appirater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Appirater.m; sourceTree = "<group>"; };
 		687E58DF16AD5CE2009D0A8F /* AppiraterDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppiraterDelegate.h; sourceTree = "<group>"; };
@@ -1893,6 +1907,7 @@
 		685CB2F9163F2016004FF9AC /* Libs */ = {
 			isa = PBXGroup;
 			children = (
+				687A434816F7B60200958347 /* ChimpKit */,
 				68B8304416D186CF00533701 /* FTCoreText */,
 				68B8304916D186CF00533701 /* TTTAttributedLabel */,
 				687E58DB16AD5CE2009D0A8F /* Appirater */,
@@ -2067,6 +2082,15 @@
 			path = splash;
 			sourceTree = "<group>";
 		};
+		6864D6261708CB2800F150F9 /* MailChimp */ = {
+			isa = PBXGroup;
+			children = (
+				6864D6271708CB4900F150F9 /* HSMailChimp.h */,
+				6864D6281708CB4900F150F9 /* HSMailChimp.m */,
+			);
+			path = MailChimp;
+			sourceTree = "<group>";
+		};
 		686BA61816332CB3004D7082 /* view */ = {
 			isa = PBXGroup;
 			children = (
@@ -2145,6 +2169,38 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
+		687A434816F7B60200958347 /* ChimpKit */ = {
+			isa = PBXGroup;
+			children = (
+				687A436016F7C19400958347 /* Classes */,
+				687A436716F7C19400958347 /* Nibs */,
+			);
+			name = ChimpKit;
+			sourceTree = "<group>";
+		};
+		687A436016F7C19400958347 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				687A436116F7C19400958347 /* ChimpKit.h */,
+				687A436216F7C19400958347 /* ChimpKit.m */,
+				687A436316F7C19400958347 /* CKAuthViewController.h */,
+				687A436416F7C19400958347 /* CKAuthViewController.m */,
+				687A436516F7C19400958347 /* SubscribeAlertView.h */,
+				687A436616F7C19400958347 /* SubscribeAlertView.m */,
+			);
+			name = Classes;
+			path = Libs/ChimpKit/Core/Classes;
+			sourceTree = "<group>";
+		};
+		687A436716F7C19400958347 /* Nibs */ = {
+			isa = PBXGroup;
+			children = (
+				687A436816F7C19400958347 /* CKAuthViewController.xib */,
+			);
+			name = Nibs;
+			path = Libs/ChimpKit/Core/Nibs;
+			sourceTree = "<group>";
+		};
 		687E58DB16AD5CE2009D0A8F /* Appirater */ = {
 			isa = PBXGroup;
 			children = (
@@ -2180,6 +2236,7 @@
 			isa = PBXGroup;
 			children = (
 				688F7F8316A012FD008581D4 /* FlurryAnalytics */,
+				6864D6261708CB2800F150F9 /* MailChimp */,
 				688F7F8616A012FD008581D4 /* string */,
 			);
 			path = utils;
@@ -3178,6 +3235,7 @@
 				6864D6231708B3C400F150F9 /* Default-568h@2x.png in Resources */,
 				6864D6241708B3C400F150F9 /* Default.png in Resources */,
 				6864D6251708B3C400F150F9 /* Default@2x.png in Resources */,
+				687A436C16F7C19400958347 /* CKAuthViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3318,6 +3376,10 @@
 				6864D6111708995E00F150F9 /* HSPicker.m in Sources */,
 				6864D6121708995E00F150F9 /* HSRemindDatePicker.m in Sources */,
 				6864D6141708995E00F150F9 /* HSSexPicker.m in Sources */,
+				687A436916F7C19400958347 /* ChimpKit.m in Sources */,
+				687A436A16F7C19400958347 /* CKAuthViewController.m in Sources */,
+				687A436B16F7C19400958347 /* SubscribeAlertView.m in Sources */,
+				6864D6291708CB4900F150F9 /* HSMailChimp.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3412,6 +3474,7 @@
 				GCC_WARN_PEDANTIC = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/Libs/\"";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
@@ -3435,6 +3498,7 @@
 				GCC_WARN_PEDANTIC = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/Libs/\"";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PROVISIONING_PROFILE = "";
@@ -3530,6 +3594,7 @@
 				GCC_WARN_PEDANTIC = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/Libs/\"";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PROVISIONING_PROFILE = "";
@@ -3620,6 +3685,7 @@
 				GCC_WARN_PEDANTIC = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/Libs/\"";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PROVISIONING_PROFILE = "E72880D5-35E7-4605-90E5-5A4B4353BFA9";

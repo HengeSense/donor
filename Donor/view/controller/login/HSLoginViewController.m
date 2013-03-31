@@ -8,6 +8,7 @@
 
 #import "HSLoginViewController.h"
 #import "HSFlurryAnalytics.h"
+#import "HSMailChimp.h"
 
 #import "HSUserInfo.h"
 #import "HSCalendar.h"
@@ -26,6 +27,7 @@
         [HSFlurryAnalytics userRegistered];
     }
     [HSFlurryAnalytics userLoggedIn];
+    [[HSMailChimp sharedInstance] subscribeOrUpdateUser:user];
     
     HSCalendar *calendarModel = [HSCalendar sharedInstance];
     [calendarModel unlockModelWithUser:user];
