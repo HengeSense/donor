@@ -372,7 +372,9 @@ NSString * const kHSCalendarModelStateChangedKeyPath = @"isModelLockedStateInter
 - (void)updateBloodRemoteLocalNotifications {
     for (HSNotificationEvent *notificationEvent in self.bloodRemoteEvents) {
         if (![notificationEvent hasScheduledConfirmationLocalNotification]) {
-            [notificationEvent scheduleConfirmationLocalNotification];
+            if ([notificationEvent isKindOfClass:[HSBloodDonationEvent class]]) {
+                [notificationEvent scheduleConfirmationLocalNotification];
+            }
         }
         if (![notificationEvent hasScheduledReminderLocalNotification]) {
             [notificationEvent scheduleReminderLocalNotificationAtDate:nil];
