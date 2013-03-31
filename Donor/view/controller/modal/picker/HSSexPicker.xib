@@ -209,7 +209,6 @@
 						<reference key="NSNextKeyView" ref="143491220"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
-						<int key="IBUITag">1</int>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<bool key="IBUISelected">YES</bool>
 						<int key="IBUIContentVerticalAlignment">0</int>
@@ -239,7 +238,7 @@
 						<reference key="NSNextKeyView" ref="464509597"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
-						<int key="IBUITag">2</int>
+						<int key="IBUITag">1</int>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentVerticalAlignment">0</int>
 						<reference key="IBUIHighlightedTitleColor" ref="856434906"/>
@@ -300,14 +299,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">femaleLabel</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="464509597"/>
-					</object>
-					<int key="connectionID">16</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">maleButton</string>
 						<reference key="source" ref="372490531"/>
 						<reference key="destination" ref="429144254"/>
@@ -320,43 +311,51 @@
 						<reference key="source" ref="372490531"/>
 						<reference key="destination" ref="143491220"/>
 					</object>
-					<int key="connectionID">18</int>
+					<int key="connectionID">29</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">femaleLabel</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="464509597"/>
+					</object>
+					<int key="connectionID">30</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">doneClick:</string>
+						<string key="label">doneButtonClicked:</string>
 						<reference key="source" ref="935115240"/>
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">7</int>
 					</object>
-					<int key="connectionID">19</int>
+					<int key="connectionID">27</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">cancelClick:</string>
+						<string key="label">cancelButtonClicked:</string>
 						<reference key="source" ref="450155937"/>
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">7</int>
 					</object>
-					<int key="connectionID">20</int>
+					<int key="connectionID">26</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">sexSelected:</string>
+						<string key="label">sexButtonClicked:</string>
 						<reference key="source" ref="429144254"/>
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">7</int>
 					</object>
-					<int key="connectionID">21</int>
+					<int key="connectionID">24</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">sexSelected:</string>
+						<string key="label">sexButtonClicked:</string>
 						<reference key="source" ref="728332133"/>
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">7</int>
 					</object>
-					<int key="connectionID">22</int>
+					<int key="connectionID">25</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -448,7 +447,7 @@
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
-				<string key="-1.CustomClassName">ProfileSexSelectViewController</string>
+				<string key="-1.CustomClassName">HSSexPicker</string>
 				<string key="-1.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="-2.CustomClassName">UIResponder</string>
 				<string key="-2.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -473,29 +472,45 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">23</int>
+			<int key="maxID">30</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
 				<object class="IBPartialClassDescription">
-					<string key="className">ProfileSexSelectViewController</string>
+					<string key="className">HSModalViewController</string>
 					<string key="superclassName">UIViewController</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/HSModalViewController.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">HSPicker</string>
+					<string key="superclassName">HSModalViewController</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/HSPicker.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">HSSexPicker</string>
+					<string key="superclassName">HSPicker</string>
 					<dictionary class="NSMutableDictionary" key="actions">
-						<string key="cancelClick:">id</string>
-						<string key="doneClick:">id</string>
-						<string key="sexSelected:">id</string>
+						<string key="cancelButtonClicked:">id</string>
+						<string key="doneButtonClicked:">id</string>
+						<string key="sexButtonClicked:">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
-						<object class="IBActionInfo" key="cancelClick:">
-							<string key="name">cancelClick:</string>
+						<object class="IBActionInfo" key="cancelButtonClicked:">
+							<string key="name">cancelButtonClicked:</string>
 							<string key="candidateClassName">id</string>
 						</object>
-						<object class="IBActionInfo" key="doneClick:">
-							<string key="name">doneClick:</string>
+						<object class="IBActionInfo" key="doneButtonClicked:">
+							<string key="name">doneButtonClicked:</string>
 							<string key="candidateClassName">id</string>
 						</object>
-						<object class="IBActionInfo" key="sexSelected:">
-							<string key="name">sexSelected:</string>
+						<object class="IBActionInfo" key="sexButtonClicked:">
+							<string key="name">sexButtonClicked:</string>
 							<string key="candidateClassName">id</string>
 						</object>
 					</dictionary>
@@ -525,7 +540,7 @@
 					</dictionary>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/ProfileSexSelectViewController.h</string>
+						<string key="minorKey">./Classes/HSSexPicker.h</string>
 					</object>
 				</object>
 			</array>

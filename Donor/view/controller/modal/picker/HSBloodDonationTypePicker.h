@@ -9,22 +9,19 @@
 #import <UIKit/UIKit.h>
 
 #import "HSBloodDonationType.h"
-#import "HSModalViewController.h"
+#import "HSPicker.h"
 
-@interface HSBloodDonationTypePicker : HSModalViewController
+@interface HSBloodDonationTypePicker : HSPicker
 
 /**
  * Contains picked value.
  */
-@property (nonatomic, assign) HSBloodDonationType bloodDonationType;
+@property (nonatomic, assign, readonly) HSBloodDonationType bloodDonationType;
 
 /**
- * Show HSBloodDonationTypePicker view over the specified view.
- *     And hides it when user taps "Готово" or "Отмена" button.
- *
- * @param completion block of code, invoked before view will completely disapeared
+ * Show picker with specified initial blood donatio type.
  */
-- (void)showWithCompletion: (void(^)(BOOL isDone))completion;
+- (void)showWithBloodDonationType:(HSBloodDonationType)bloodDonationType completion:(HSPickerCompletion)completion;
 
 /**
  * If user taps button "Готово", bloodDonationType property will change it's value.

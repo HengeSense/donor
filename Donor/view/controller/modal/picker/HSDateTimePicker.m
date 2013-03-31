@@ -47,16 +47,6 @@ static const NSUInteger kDateTimePickerComponentsNumber = 3;
 @property (nonatomic, strong) NSDate *selectedDate;
 
 /**
- * Copy of user defined completion block.
- */
-@property (nonatomic, copy) void(^completion)(BOOL isDone);
-
-/**
- * Hides view, invokes completion block with specified result.
- */
-- (void)hideViewWithResult: (BOOL)isDone;
-
-/**
  * Configures date and time picker view with specified restrictions.
  */
 - (void)configureDateTimePickerView;
@@ -66,29 +56,28 @@ static const NSUInteger kDateTimePickerComponentsNumber = 3;
 @implementation HSDateTimePicker
 
 #pragma mark - Public interface implementation
-- (void)showWithStartDate: (NSDate *)startDate endDate: (NSDate *)endDate currentDate:(NSDate *)currentDate
-               completion: (HSPickerCompletion)completion {
+- (void)showWithStartDate:(NSDate *)startDate endDate:(NSDate *)endDate currentDate:(NSDate *)currentDate
+               completion:(HSPickerCompletion)completion {
     THROW_IF_ARGUMENT_NIL(startDate);
     THROW_IF_ARGUMENT_NIL(currentDate);
     THROW_IF_ARGUMENT_NIL(endDate);
     
     self.startDate = startDate;
     self.endDate = endDate;
-    self.completion = completion;
     self.selectedDate = currentDate;
 
-    [self showModal];
+    [self showWithCompletion:completion];
 }
 
 
 #pragma mark - Public actions implemntations
-- (IBAction)doneButtonClicked: (id)sender {
+- (IBAction)doneButtonClicked:(id)sender {
     self.selectedDate = self.dateTimePicker.date;
-    [self hideViewWithResult: YES];
+    [self hideWithDone:YES];
 }
 
 - (IBAction)cancelButtonClicked: (id)sender {
-    [self hideViewWithResult: NO];
+    [self hideWithDone:NO];
 }
 
 #pragma mark - UI life cycle
@@ -104,13 +93,6 @@ static const NSUInteger kDateTimePickerComponentsNumber = 3;
 }
 
 #pragma mark - Private interface implementation
-- (void)hideViewWithResult: (BOOL)isDone {
-    [self hideModal];
-    if (self.completion != nil) {
-        self.completion(isDone);
-    }
-}
-
 - (void)configureDateTimePickerView {
     self.dateTimePicker.minimumDate = self.startDate;
     self.dateTimePicker.maximumDate = self.endDate;

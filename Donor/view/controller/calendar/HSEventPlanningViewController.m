@@ -397,8 +397,9 @@ static const NSUInteger kCommentsTextViewSymbolsMax = 260;
 }
 
 - (IBAction)selectBloodDonationType: (id)sender {
-    self.bloodDonationTypePicker.bloodDonationType = self.bloodDonationEvent.bloodDonationType;
-    [self.bloodDonationTypePicker showWithCompletion:^(BOOL isDone) {
+    [self.bloodDonationTypePicker showWithBloodDonationType:self.bloodDonationEvent.bloodDonationType
+            completion:^(BOOL isDone)
+    {
         if (isDone) {
             self.bloodDonationTypeLabel.text =
                     bloodDonationTypeToString(self.bloodDonationTypePicker.bloodDonationType);

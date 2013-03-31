@@ -25,7 +25,6 @@ static NSTimeInterval gReminderTimeShifts[kReminderTimeShiftsCount] =
 
 @property (nonatomic, assign) NSTimeInterval reminderTimeShift;
 @property (nonatomic, strong) NSString *reminderTimeShiftString;
-@property (nonatomic, copy) HSPickerCompletion completion;
 
 @end
 
@@ -74,8 +73,7 @@ static NSTimeInterval gReminderTimeShifts[kReminderTimeShiftsCount] =
 - (void)showWithInitialReminderTimeInterval:(NSTimeInterval)initialTimeInterval
         completion:(HSPickerCompletion)completion {
     self.reminderTimeShift = [self correctInitialTimeInterval:initialTimeInterval];
-    self.completion = completion;
-    [self showModal];
+    [self showWithCompletion:completion];
 }
 
 #pragma mark - Action handlers
@@ -87,11 +85,11 @@ static NSTimeInterval gReminderTimeShifts[kReminderTimeShiftsCount] =
     } else {
         NSLog(@"Selected position in %@ is out of bounds of data source.", NSStringFromClass(self.class));
     }
-    [self finishWithDone:YES];
+    [self hideWithDone:YES];
 }
 
 - (void)cancelButtonClicked:(id)sender {
-    [self finishWithDone:NO];
+    [self hideWithDone:NO];
 }
 #pragma mark - UI life cycle
 - (void)viewWillAppear:(BOOL)animated {
@@ -124,13 +122,6 @@ static NSTimeInterval gReminderTimeShifts[kReminderTimeShiftsCount] =
 #pragma mark - Utility
 - (NSTimeInterval)correctInitialTimeInterval:(NSTimeInterval)initialTimeInerval {
     return MIN(initialTimeInerval, kRemindTimeIntervalMax);
-}
-
-- (void)finishWithDone:(BOOL)done {
-    [self hideModal];
-    if (self.completion != nil) {
-        self.completion(done);
-    }
 }
 
 @end

@@ -6,13 +6,12 @@
 //  Copyright (c) 2012 Hint Solutions. All rights reserved.
 //
 
-#import "HSPickerCommon.h"
-#import "HSModalViewController.h"
+#import "HSPicker.h"
 
 /**
  * Provides view of date and time picker and handles it's show and hide process.
  */
-@interface HSDateTimePicker : HSModalViewController
+@interface HSDateTimePicker : HSPicker
 
 /// @name Properties
 

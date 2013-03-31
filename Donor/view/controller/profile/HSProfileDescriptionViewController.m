@@ -1,13 +1,12 @@
 //
-//  ProfileDescriptionViewController.m
+//  HSProfileDescriptionViewController.m
 //  BloodDonor
 //
-//  Created by Andrey Rebrik on 12.07.12.
-//  Updated be Sergey Seroshtan on 29.11.12.
-//  Copyright (c) 2012 HintSolutions. All rights reserved.
+//  Created by Sergey Seroshtan on 30.03.13.
+//  Copyright (c) 2012 Hint Solutions. All rights reserved.
 //
 
-#import "ProfileDescriptionViewController.h"
+#import "HSProfileDescriptionViewController.h"
 
 #import <Parse/Parse.h>
 #import "HSFlurryAnalytics.h"
@@ -20,16 +19,41 @@
 #import "NSString+HSUtils.h"
 #import "HSCalendar.h"
 
+#import "HSSexType.h"
+#import "HSBloodType.h"
+#import "HSUserInfo.h"
+
 static const CGFloat kActionSheetAnimationDuration = 0.2;
 
 static NSString * const kNotLinkedToFacebookTitle = @"не привязан";
 static NSString * const kLinkedToFacebookTitle = @"привязан";
 
-@interface ProfileDescriptionViewController ()
+@interface HSProfileDescriptionViewController ()
+
 @property (nonatomic, weak) UIView *currentActionSheet;
+@property (nonatomic, retain) HSBloodTypePicker *bloodTypePicker;
+@property (nonatomic, retain) HSSexPicker *sexPicker;
+@property (nonatomic, strong) HSUserInfo *editUserInfo;
+
 @end
 
-@implementation ProfileDescriptionViewController
+@implementation HSProfileDescriptionViewController
+
+#pragma mark - Lifecycle
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    self.bloodTypePicker = [[HSBloodTypePicker alloc] init];
+    self.sexPicker = [[HSSexPicker alloc] init];
+
+    [self configureUI];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self updateUIComponents];
+}
 
 #pragma mark Actions
 - (void)cancelEditPressed {
@@ -56,9 +80,7 @@ static NSString * const kLinkedToFacebookTitle = @"привязан";
             [self.nameTextField resignFirstResponder];
         }
         
-        if ([self.nameTextField.text isNotEmpty]) {
-            [Common getInstance].name = self.nameTextField.text;
-        } else {
+        if (![self.editUserInfo.name isNotEmpty]) {
             [HSAlertViewController showWithMessage:@"Имя пользователя не задано."
                 resultBlock:^(BOOL isOkButtonPressed) {
                    [self.nameTextField becomeFirstResponder];
@@ -67,25 +89,10 @@ static NSString * const kLinkedToFacebookTitle = @"привязан";
         }
         [self cancelEditPressed];
 
-        PFUser *user = [PFUser currentUser];
-        
-        if ([Common getInstance].sex != nil) {
-            [user setObject:[Common getInstance].sex forKey:@"Sex"];
-        }
-        
-        if ([Common getInstance].bloodGroup != nil) {
-            [user setObject:[Common getInstance].bloodGroup forKey:@"BloodGroup"];
-        }
-        
-        if ([Common getInstance].bloodRH != nil) {
-            [user setObject:[Common getInstance].bloodRH forKey:@"BloodRh"];
-        }
-        
-        if ([Common getInstance].name != nil) {
-            [user setObject:[Common getInstance].name forKey:@"Name"];
-        }
         MBProgressHUD *progressHud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
-        [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        [self.editUserInfo applyChanges];
+        // TODO: Possible saveEventualy is more applicable method. 
+        [self.editUserInfo.user saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             [progressHud hide:YES];
             if (succeeded) {
                 [HSFlurryAnalytics userUpdatedProfile];
@@ -106,9 +113,8 @@ static NSString * const kLinkedToFacebookTitle = @"привязан";
         //Private property setting
         [self.nameTextField setValue:[UIColor colorWithRed:223.0f/255.0f green:141.0f/255.0f blue:75.0f/255.0f alpha:1] forKeyPath:@"_placeholderLabel.textColor"];
         self.bloodGroupButton.enabled = YES;
-        [Common getInstance].sex = [[PFUser currentUser] valueForKey:@"Sex"];
-        [Common getInstance].bloodGroup = [[PFUser currentUser] valueForKey:@"BloodGroup"];
-        [Common getInstance].bloodRH = [[PFUser currentUser] valueForKey:@"BloodRh"];
+
+        self.editUserInfo = [[HSUserInfo alloc] initWithUser:[PFUser currentUser]];
         
         UIImage *barImageNormal = [UIImage imageNamed:@"barButtonNormal"];
         UIImage *barImagePressed = [UIImage imageNamed:@"barButtonPressed"];
@@ -135,26 +141,31 @@ static NSString * const kLinkedToFacebookTitle = @"привязан";
 
 - (IBAction)sexButtonClick:(id)sender {
     [self.nameTextField resignFirstResponder];
-    [self.sexSelectViewController showModal];
+    [self.sexPicker showWithSex:self.editUserInfo.sex completion:^(BOOL isDone) {
+        if (isDone) {
+            self.editUserInfo.sex = self.sexPicker.sex;
+            [self updateSexButtonWithSex:self.editUserInfo.sex];
+        }
+    }];
 }
 
 - (IBAction)bloodGroupButtonClick:(id)sender {
     [self.nameTextField resignFirstResponder];
-    [self.selectBloodGroupViewController showModal];
+    [self.bloodTypePicker showWithBloodGroup:self.editUserInfo.bloodGroup bloodRh:self.editUserInfo.bloodRh
+            completion:^(BOOL isDone)
+    {
+        if (isDone) {
+            self.editUserInfo.bloodGroup = self.bloodTypePicker.bloodGroup;
+            self.editUserInfo.bloodRh = self.bloodTypePicker.bloodRh;
+            [self updateBloodTypeButtonWithBloodGroup:self.editUserInfo.bloodGroup bloodRh:self.editUserInfo.bloodRh];
+        }
+    }];
 }
 
 - (IBAction)logoutButtonClick:(id)sender {
     [HSFlurryAnalytics userLoggedOut];
     [[HSCalendar sharedInstance] lockModel];
     [PFUser logOut];
-    [Common getInstance].email = nil;
-    [Common getInstance].name = nil;
-    [Common getInstance].password = nil;
-    [Common getInstance].events = nil;
-    [Common getInstance].bloodGroup = 0;
-    [Common getInstance].bloodRH = 0;
-    [Common getInstance].sex = 0;
-    
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
@@ -258,45 +269,28 @@ static NSString * const kLinkedToFacebookTitle = @"привязан";
     }
 }
 
-#pragma mark SelectBloodGroupDelegate
-
-- (void) bloodGroupChanged:(NSString *)bloodGroup
-{
-    if (bloodGroup) 
-    {
-        [self.bloodGroupButton setTitle:bloodGroup forState:UIControlStateNormal];
-        [self.bloodGroupButton setTitle:bloodGroup forState:UIControlStateHighlighted];
-    }
-}
-
-#pragma mark ProfileSexSelectDelegate
-
-- (void) sexChanged:(NSString *)selectedSex
-{
-    if (selectedSex) 
-    {
-        if ([selectedSex isEqualToString:@"Мужской"])
-        {
-            [self.sexButton setTitle:@"муж" forState:UIControlStateNormal];
-            [self.sexButton setTitle:@"муж" forState:UIControlStateHighlighted];
-        }
-        else
-        {
-            [self.sexButton setTitle:@"жен" forState:UIControlStateNormal];
-            [self.sexButton setTitle:@"жен" forState:UIControlStateHighlighted];
-        }
-    }
-}
-
-#pragma mark TextEditDelegate
-
+#pragma mark UITextFieldDelegate
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [textField resignFirstResponder];
     return YES;
 }
 
-#pragma mark Lifecycle
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    if (textField == self.nameTextField) {
+        self.editUserInfo.name = self.nameTextField.text;
+    }
+}
+
+#pragma mark - Private
+#pragma mark - UI configuration
+- (void)configureUI {
+    self.title = @"Профиль";
+    [self configureNavigationBar];
+    [self configureFacebookUI];
+    [self configureNameTextField];
+}
+
 - (void)configureFacebookUI {
     // Configure facebook link/unlink container view controller.
     self.facebookLinkUnlinkContainerView.hidden = YES;
@@ -312,14 +306,14 @@ static NSString * const kLinkedToFacebookTitle = @"привязан";
     
     // Configure link/unlink buttons
     [self.linkUnlinkFacebookButton setBackgroundImage:[UIImage imageNamed:@"profile_facebook_link_button_normal"]
-                                             forState:UIControlStateNormal];
+            forState:UIControlStateNormal];
     [self.linkUnlinkFacebookButton setBackgroundImage:[UIImage imageNamed:@"profile_facebook_link_button_pressed"]
-                                             forState:UIControlStateHighlighted];
+            forState:UIControlStateHighlighted];
 
     [self.cancelFacebookLinkProposeButton setBackgroundImage:[UIImage imageNamed:@"profile_facebook_link_button_normal"]
-                                                    forState:UIControlStateNormal];
+            forState:UIControlStateNormal];
     [self.cancelFacebookLinkProposeButton setBackgroundImage:[UIImage imageNamed:@"profile_facebook_link_button_pressed"]
-                                                    forState:UIControlStateHighlighted];
+            forState:UIControlStateHighlighted];
 }
 
 - (void)configureNavigationBar {
@@ -343,94 +337,48 @@ static NSString * const kLinkedToFacebookTitle = @"привязан";
     self.navigationItem.rightBarButtonItem = editBarButtonItem;
 }
 
-- (void)configureUI {
-    self.title = @"Профиль";
-    [self configureNavigationBar];
-    [self configureFacebookUI];
-}
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    [self configureUI];
-
-    self.selectBloodGroupViewController = [[SelectBloodGroupViewController alloc] init];
-    self.selectBloodGroupViewController.delegate = self;
-    self.sexSelectViewController = [[ProfileSexSelectViewController alloc] init];
-    self.sexSelectViewController.delegate = self;
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    
-    PFUser *user = [PFUser currentUser];
-    NSString *buttonTite;
-    switch ([[user objectForKey:@"BloodGroup"] intValue])
-    {
-        case 0:
-            buttonTite = @"O(I)";
-            break;
-        case 1:
-            buttonTite = @"A(II)";
-            break;
-        case 2:
-            buttonTite = @"B(III)";
-            break;
-        case 3:
-            buttonTite = @"AB(IV)";
-            break;
-        default:
-            buttonTite = @"O(I)";
-            break;
-    }
-    
-    if ([[user objectForKey:@"BloodRh"] intValue] == 0)
-        buttonTite = [NSString stringWithFormat:@"%@RH+", buttonTite];
-    else
-        buttonTite = [NSString stringWithFormat:@"%@RH-", buttonTite];
-    
-    [self.bloodGroupButton setTitle:buttonTite forState:UIControlStateNormal];
-    [self.bloodGroupButton setTitle:buttonTite forState:UIControlStateHighlighted];
-    
-    if ([[user objectForKey:@"Sex"] intValue] == 0)
-    {
-        [self.sexButton setTitle:@"муж" forState:UIControlStateNormal];
-        [self.sexButton setTitle:@"муж" forState:UIControlStateHighlighted];
-    }
-    else
-    {
-        [self.sexButton setTitle:@"жен" forState:UIControlStateNormal];
-        [self.sexButton setTitle:@"жен" forState:UIControlStateHighlighted];
-    }
-    
-    self.nameTextField.text = [user objectForKey:@"Name"];
+- (void)configureNameTextField {
     self.nameTextField.textColor = [UIColor colorWithRed:132.0f/255.0f green:113.0f/255.0f blue:104.0f/255.0f alpha:1];
     //Private property setting
-    [self.nameTextField setValue:[UIColor colorWithRed:132.0f/255.0f green:113.0f/255.0f blue:104.0f/255.0f alpha:1] forKeyPath:@"_placeholderLabel.textColor"];
+    [self.nameTextField setValue:[UIColor colorWithRed:132.0f/255.0f green:113.0f/255.0f blue:104.0f/255.0f alpha:1]
+            forKeyPath:@"_placeholderLabel.textColor"];
+}
+
+#pragma mark - UI updating
+- (void)updateUIComponents {
+    HSUserInfo *userInfo = [[HSUserInfo alloc] initWithUser:[PFUser currentUser]];
     
-    
+    self.nameTextField.text = userInfo.name;
+    [self updateBloodTypeButtonWithBloodGroup:userInfo.bloodGroup bloodRh:userInfo.bloodRh];
+    [self updateSexButtonWithSex:userInfo.sex];
+    [self updateBloodDonationInfo];
+}
+
+#pragma mark - UI updating
+- (void)updateBloodTypeButtonWithBloodGroup:(HSBloodGroupType)bloodGroup bloodRh:(HSBloodRhType)bloodRh {
+    NSString *bloodGroupButtonTitle = [bloodGroupToString(bloodGroup) stringByAppendingString:bloodRhToString(bloodRh)];
+    [self.bloodGroupButton setTitle:bloodGroupButtonTitle forState:UIControlStateNormal];
+    [self.bloodGroupButton setTitle:bloodGroupButtonTitle forState:UIControlStateHighlighted];
+}
+
+- (void)updateSexButtonWithSex:(HSSexType)sex {
+    NSString *sexButtonTitle = sexToShortString(sex);
+    [self.sexButton setTitle:sexButtonTitle forState:UIControlStateNormal];
+    [self.sexButton setTitle:sexButtonTitle forState:UIControlStateHighlighted];
+}
+
+- (void)updateBloodDonationInfo {
     if (self.calendarInfoDelegate != nil) {
         NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
         [dateFormat setDateFormat:@"dd.MM.yyyy"];
         
         NSDate *nextBloodDonationDate = [self.calendarInfoDelegate nextBloodDonationDate];
         self.nextBloodDonateDateLabel.text = nextBloodDonationDate != nil ?
-                [dateFormat stringFromDate:nextBloodDonationDate] : @"-";
+        [dateFormat stringFromDate:nextBloodDonationDate] : @"-";
         
         self.bloodDonationCountLabel.text = [NSString stringWithFormat:@"%d",
                 [self.calendarInfoDelegate numberOfDoneBloodDonationEvents]];
     }
-
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-
-- (void)viewDidUnload {
-    [self setLinkUnlinkFacebookButton:nil];
-    [self setCancelFacebookLinkProposeButton:nil];
-    [super viewDidUnload];
-}
 @end

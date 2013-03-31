@@ -172,7 +172,6 @@ static NSString * const APP_STORE_APP_ID = @"578970724";
     UINavigationController *infoNavigationController = [[UINavigationController alloc] initWithRootViewController:infoViewController];
     
     HSLoginChoiceViewController *loginChoiceViewController = [[HSLoginChoiceViewController alloc] initWithNibName:@"HSLoginChoiceViewController" bundle:nil];
-    loginChoiceViewController.calendarViewController = calendarViewController;
     UINavigationController *profileNavigationController = [[UINavigationController alloc] initWithRootViewController:loginChoiceViewController];
     
     self.tabBarController = [[UITabBarController alloc] init];

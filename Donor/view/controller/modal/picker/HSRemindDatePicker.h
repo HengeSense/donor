@@ -6,10 +6,9 @@
 //  Copyright (c) 2013 Hint Solutions. All rights reserved.
 //
 
-#import "HSPickerCommon.h"
-#import "HSModalViewController.h"
+#import "HSPicker.h"
 
-@interface HSRemindDatePicker : HSModalViewController
+@interface HSRemindDatePicker : HSPicker
 
 /// @name Default values accessors.
 /**

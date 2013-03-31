@@ -15,67 +15,68 @@ static const NSUInteger kNumberOfSupportedBloodDonationTypes = 4;
 @interface HSBloodDonationTypePicker () <UIPickerViewDataSource, UIPickerViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIPickerView *bloodDonatioTypePickerView;
-
-@property (nonatomic, copy) void(^completion)(BOOL isDone);
-
-/**
- * Hides view, invokes completion block with specified result.
- */
-- (void)hideViewWithResult: (BOOL)isDone;
+@property (nonatomic, assign, readwrite) HSBloodDonationType bloodDonationType;
 
 @end
 
 @implementation HSBloodDonationTypePicker
 
-- (void)showWithCompletion: (void (^)(BOOL))completion {
-    self.completion = completion;
-    [self showModal];
+#pragma mark - UI lifecycle
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self configureUI];
 }
 
+#pragma mark - UI presentation
+- (void)showWithBloodDonationType:(HSBloodDonationType)bloodDonationType completion:(HSPickerCompletion)completion {
+    self.bloodDonationType = bloodDonationType;
+    [self showWithCompletion:completion];
+}
+
+#pragma mark - Action handlers
 - (IBAction)doneButtonClicked:(id)sender {
-    [self hideViewWithResult: YES];
+    [self hideWithDone:YES];
 }
 
 - (IBAction)cancelButtonClicked:(id)sender {
-    [self hideViewWithResult: NO];
+    [self hideWithDone:NO];
 }
 
 #pragma mark - UIPickerViewDataSource protocol implementation
--(NSInteger)numberOfComponentsInPickerView: (UIPickerView *)pickerView {
+-(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
     (void)pickerView;
     return 1;
 }
 
-- (NSInteger)pickerView: (UIPickerView *)pickerView numberOfRowsInComponent: (NSInteger)component {
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
     (void)pickerView;
     (void)component;
     return kNumberOfSupportedBloodDonationTypes;
 }
 
 #pragma mark - UIPickerViewDelegate implementation
--(NSString *)pickerView: (UIPickerView *)pickerView titleForRow: (NSInteger)row forComponent:(NSInteger)component {
+-(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
     (void)pickerView;
     (void)component;
-    HSBloodDonationType bloodDonationType = [self bloodDonationTypeForPickerRow: row];
+    HSBloodDonationType bloodDonationType = [self bloodDonationTypeForPickerRow:row];
     return bloodDonationTypeToString(bloodDonationType);
 };
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
     (void)pickerView;
     (void)component;
-    self.bloodDonationType = [self bloodDonationTypeForPickerRow: row];
+    self.bloodDonationType = [self bloodDonationTypeForPickerRow:row];
 }
 
-#pragma mark - Private interface implementation
-- (void)hideViewWithResult: (BOOL)isDone {
-    [self hideModal];
-    if (self.completion != nil) {
-        self.completion(isDone);
-    }
+#pragma mark - Private
+#pragma mark - UI configuration
+- (void)configureUI {
+    [self.bloodDonatioTypePickerView selectRow:[self pickerRowForBloodDonationType:self.bloodDonationType]
+            inComponent:0 animated:NO];
 }
 
-#pragma mark - Private utility metods
-- (HSBloodDonationType)bloodDonationTypeForPickerRow: (NSUInteger)row {
+#pragma mark - Row to Blood donation type converters
+- (HSBloodDonationType)bloodDonationTypeForPickerRow:(NSUInteger)row {
     if (row >= kNumberOfSupportedBloodDonationTypes) {
         @throw [NSException exceptionWithName: NSInternalInconsistencyException
                                        reason: @"Specified row for unsupported blood donation type." userInfo: nil];
@@ -94,7 +95,7 @@ static const NSUInteger kNumberOfSupportedBloodDonationTypes = 4;
                                            reason: @"Unknown blood donation type for the specified row." userInfo: nil];
     }
 }
-- (NSUInteger)pickerRowForBloodDonationType: (HSBloodDonationType)bloofDonationType {
+- (NSUInteger)pickerRowForBloodDonationType:(HSBloodDonationType)bloofDonationType {
     switch (bloofDonationType) {
         case HSBloodDonationType_Blood:
             return 0;
@@ -109,8 +110,4 @@ static const NSUInteger kNumberOfSupportedBloodDonationTypes = 4;
     }
 }
 
-- (void)viewDidUnload {
-    [self setBloodDonatioTypePickerView:nil];
-    [super viewDidUnload];
-}
 @end

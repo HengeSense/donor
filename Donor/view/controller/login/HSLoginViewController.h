@@ -16,12 +16,6 @@
  */
 @interface HSLoginViewController : UIViewController
 
-/// @name Configuration properties
-/**
- * This refrence is used to configure HSCalendarViewController object, after successfull login operation.
- */
-@property (nonatomic, retain) HSCalendarViewController *calendarViewController;
-
 /// @name Protected methods
 /**
  * This method is used be subclasses to handle successfull user authorization and load his calendar events.

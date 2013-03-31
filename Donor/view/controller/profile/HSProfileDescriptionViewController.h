@@ -1,20 +1,19 @@
 //
-//  ProfileDescriptionViewController.h
+//  HSProfileDescriptionViewController.h
 //  BloodDonor
 //
-//  Created by Andrey Rebrik on 12.07.12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//  Created by Sergey Seroshtan on 30.03.13.
+//  Copyright (c) 2012 Hint Solutions. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
-#import "SelectBloodGroupViewController.h"
-#import "ProfileSexSelectViewController.h"
+
+#import "HSSexPicker.h"
+#import "HSBloodTypePicker.h"
 
 #import "HSCalendarInfo.h"
 
-@interface ProfileDescriptionViewController : UIViewController <UITextFieldDelegate, IBloodGroupListener, ISexListener>
-{
-}
+@interface HSProfileDescriptionViewController : UIViewController <UITextFieldDelegate>
 
 /// @name Common UI properties
 @property (weak, nonatomic) UIButton *editButton;
@@ -38,9 +37,6 @@
 
 ///  @name Model properties
 @property (nonatomic, assign) id<HSCalendarInfo> calendarInfoDelegate;
-
-@property (nonatomic, retain) SelectBloodGroupViewController *selectBloodGroupViewController;
-@property (nonatomic, retain) ProfileSexSelectViewController *sexSelectViewController;
 
 - (IBAction)editButtonClick:(id)sender;
 
