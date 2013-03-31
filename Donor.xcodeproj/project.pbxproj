@@ -283,8 +283,8 @@
 		68B455C51635CDD500811A0F /* HSBloodTestsEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B455C41635CDD500811A0F /* HSBloodTestsEvent.m */; };
 		68B455C81635CE7A00811A0F /* HSBloodTestsEventRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B455C71635CE7A00811A0F /* HSBloodTestsEventRenderer.m */; };
 		68B455CE163739E900811A0F /* HSBloodRemoteEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B455CD163739E900811A0F /* HSBloodRemoteEvent.m */; };
-		68B82FD016D1113B00533701 /* CalendarInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B82F3616D1113A00533701 /* CalendarInfoViewController.m */; };
-		68B82FD116D1113B00533701 /* CalendarInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68B82F3716D1113A00533701 /* CalendarInfoViewController.xib */; };
+		68B82FD016D1113B00533701 /* HSCalendarInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B82F3616D1113A00533701 /* HSCalendarInfoViewController.m */; };
+		68B82FD116D1113B00533701 /* HSCalendarInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68B82F3716D1113A00533701 /* HSCalendarInfoViewController.xib */; };
 		68B82FD216D1113B00533701 /* HSBlockUIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B82F3916D1113A00533701 /* HSBlockUIViewController.m */; };
 		68B82FD316D1113B00533701 /* HSBlockUIViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68B82F3A16D1113A00533701 /* HSBlockUIViewController.xib */; };
 		68B82FD416D1113B00533701 /* HSCalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B82F3C16D1113A00533701 /* HSCalendarViewController.m */; };
@@ -947,9 +947,9 @@
 		68B455C71635CE7A00811A0F /* HSBloodTestsEventRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HSBloodTestsEventRenderer.m; path = event/HSBloodTestsEventRenderer.m; sourceTree = "<group>"; };
 		68B455CC163739E800811A0F /* HSBloodRemoteEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSBloodRemoteEvent.h; sourceTree = "<group>"; };
 		68B455CD163739E900811A0F /* HSBloodRemoteEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSBloodRemoteEvent.m; sourceTree = "<group>"; };
-		68B82F3516D1113A00533701 /* CalendarInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarInfoViewController.h; sourceTree = "<group>"; };
-		68B82F3616D1113A00533701 /* CalendarInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarInfoViewController.m; sourceTree = "<group>"; };
-		68B82F3716D1113A00533701 /* CalendarInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CalendarInfoViewController.xib; sourceTree = "<group>"; };
+		68B82F3516D1113A00533701 /* HSCalendarInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSCalendarInfoViewController.h; sourceTree = "<group>"; };
+		68B82F3616D1113A00533701 /* HSCalendarInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSCalendarInfoViewController.m; sourceTree = "<group>"; };
+		68B82F3716D1113A00533701 /* HSCalendarInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HSCalendarInfoViewController.xib; sourceTree = "<group>"; };
 		68B82F3816D1113A00533701 /* HSBlockUIViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSBlockUIViewController.h; sourceTree = "<group>"; };
 		68B82F3916D1113A00533701 /* HSBlockUIViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSBlockUIViewController.m; sourceTree = "<group>"; };
 		68B82F3A16D1113A00533701 /* HSBlockUIViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HSBlockUIViewController.xib; sourceTree = "<group>"; };
@@ -2258,9 +2258,9 @@
 		68B82F3416D1113A00533701 /* calendar */ = {
 			isa = PBXGroup;
 			children = (
-				68B82F3516D1113A00533701 /* CalendarInfoViewController.h */,
-				68B82F3616D1113A00533701 /* CalendarInfoViewController.m */,
-				68B82F3716D1113A00533701 /* CalendarInfoViewController.xib */,
+				68B82F3516D1113A00533701 /* HSCalendarInfoViewController.h */,
+				68B82F3616D1113A00533701 /* HSCalendarInfoViewController.m */,
+				68B82F3716D1113A00533701 /* HSCalendarInfoViewController.xib */,
 				68B82F3816D1113A00533701 /* HSBlockUIViewController.h */,
 				68B82F3916D1113A00533701 /* HSBlockUIViewController.m */,
 				68B82F3A16D1113A00533701 /* HSBlockUIViewController.xib */,
@@ -3131,7 +3131,7 @@
 				687E58FA16AD5CE2009D0A8F /* AppiraterLocalizable.strings in Resources */,
 				689B00AF16A7537C00B5CA4C /* Default-568h@2x.png in Resources */,
 				689B00FD16AC37CC00B5CA4C /* recommendations.json in Resources */,
-				68B82FD116D1113B00533701 /* CalendarInfoViewController.xib in Resources */,
+				68B82FD116D1113B00533701 /* HSCalendarInfoViewController.xib in Resources */,
 				68B82FD316D1113B00533701 /* HSBlockUIViewController.xib in Resources */,
 				68B82FD516D1113B00533701 /* HSCalendarViewController.xib in Resources */,
 				68B82FD716D1113B00533701 /* HSEventPlanningViewController.xib in Resources */,
@@ -3230,7 +3230,7 @@
 				688F7FCA16A308A5008581D4 /* NSUnderlinedButton.m in Sources */,
 				687E58F916AD5CE2009D0A8F /* Appirater.m in Sources */,
 				689B010F16ACA69A00B5CA4C /* UIView+HSLayoutManager.m in Sources */,
-				68B82FD016D1113B00533701 /* CalendarInfoViewController.m in Sources */,
+				68B82FD016D1113B00533701 /* HSCalendarInfoViewController.m in Sources */,
 				68B82FD216D1113B00533701 /* HSBlockUIViewController.m in Sources */,
 				68B82FD416D1113B00533701 /* HSCalendarViewController.m in Sources */,
 				68B82FD616D1113B00533701 /* HSEventPlanningViewController.m in Sources */,

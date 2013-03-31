@@ -22,7 +22,7 @@
 
 #import "HSEventViewController.h"
 #import "HSEventPlanningViewController.h"
-#import "CalendarInfoViewController.h"
+#import "HSCalendarInfoViewController.h"
 #import "HSBaseLoginViewController.h"
 #import "HSAlertViewController.h"
 
@@ -276,8 +276,8 @@
 
 #pragma mark - Action handlers
 - (void)showInfo:(id)sender {
-    CalendarInfoViewController *calendarInfoViewController = [[CalendarInfoViewController alloc]
-            initWithNibName:@"CalendarInfoViewController" bundle:nil];
+    HSCalendarInfoViewController *calendarInfoViewController = [[HSCalendarInfoViewController alloc]
+            initWithNibName:@"HSCalendarInfoViewController" bundle:nil];
     [self.navigationController pushViewController:calendarInfoViewController animated:YES];
 }
 
