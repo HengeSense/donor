@@ -160,7 +160,8 @@ namespace Donor.ViewModels
 
             // загружаем станции если их нет или дата последнего обновления была более чем одни сутки в прошлом
             //(ViewModelLocator.MainStatic.Settings.StationsUpdated.AddDays(1) < DateTime.Now)
-            if ((ViewModelLocator.MainStatic.Stations.Items.Count() == 0)) {
+            if ((ViewModelLocator.MainStatic.Stations.Items.Count() == 0) && (ViewModelLocator.MainStatic.Settings.StationsUpdated.AddDays(1) < DateTime.Now))
+            {
             
             var bw = new BackgroundWorker();
             bw.DoWork += delegate
@@ -203,129 +204,6 @@ namespace Donor.ViewModels
             } else {};
         }
 
-        /// <summary>
-        /// Загрузка станций с parse.com
-        /// </summary>
-        /*public void LoadStations()
-        {
-            myCoordinateWatcher = new GeoCoordinateWatcher(GeoPositionAccuracy.Default);
-            myCoordinateWatcher.PositionChanged += new EventHandler<GeoPositionChangedEventArgs<GeoCoordinate>>(myCoordinateWatcher_PositionChanged);
-            myCoordinateWatcher.Start();
-
-            try
-            {
-                ObservableCollection<StationViewModel> stationslist1 = new ObservableCollection<StationViewModel>();
-                stationslist1 = IsolatedStorageHelper.LoadSerializableObject<ObservableCollection<StationViewModel>>("stations.xml");
-                this.Items = stationslist1;
-            }
-            catch { this.Items = new ObservableCollection<StationViewModel>(); };
-
-            // загружаем станции если их нет или дата последнего обновления была более чем одни сутки в прошлом
-            if ((ViewModelLocator.MainStatic.Stations.Items.Count() == 0) || (ViewModelLocator.MainStatic.Settings.StationsUpdated.AddDays(1) < DateTime.Now)) {
-            
-            var bw = new BackgroundWorker();
-            bw.DoWork += delegate
-            {
-            var client = new RestClient("https://api.parse.com");
-            var request = new RestRequest("1/classes/Stations", Method.GET);
-            request.Parameters.Clear();
-
-            request.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
-            request.AddHeader("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
-
-            client.ExecuteAsync(request, response =>
-            {
-                try
-                {
-                        ObservableCollection<StationViewModel> eventslist1 = new ObservableCollection<StationViewModel>();
-                        JObject o = JObject.Parse(response.Content.ToString());
-                        foreach (var item in o["results"])
-                        {
-                            StationViewModel station = new StationViewModel();
-                            station.Adress = item["adress"].ToString();
-                            try
-                            {
-                                station.BloodFor = item["bloodFor"].ToString();
-                            }
-                            catch
-                            {
-                                station.BloodFor = "";
-                            };
-                            station.City = item["city"].ToString();
-                            station.Description = item["description"].ToString();
-                            try
-                            {
-                                station.DonorsForChildrens = bool.Parse(item["donorsForChildrens"].ToString());
-                            }
-                            catch
-                            {
-                                station.DonorsForChildrens = false;
-                            };
-
-                            station.Nid = Int64.Parse(item["nid"].ToString());
-
-                            station.Lat = item["latlon"]["latitude"].ToString();
-                            station.Lon = item["latlon"]["longitude"].ToString();
-                            station.objectId = item["objectId"].ToString();
-                            station.Phone = item["phone"].ToString();
-                            try
-                            {
-                                station.ReceiptTime = item["receiptTime"].ToString();
-                            }
-                            catch
-                            {
-                                station.ReceiptTime = "";
-                            };
-                            try
-                            {
-                                station.RegionalRegistration = bool.Parse(item["regionalRegistration"].ToString());
-                            }
-                            catch
-                            {
-                                station.RegionalRegistration = false;
-                            };
-                            try
-                            {
-                                station.SaturdayWork = bool.Parse(item["saturdayWork"].ToString());
-                            }
-                            catch
-                            {
-                                station.SaturdayWork = false;
-                            };
-                            station.Title = item["title"].ToString();
-                            station.Transportaion = item["transportation"].ToString();
-                            try
-                            {
-                                station.Url = item["url"].ToString();
-                            }
-                            catch
-                            {
-                                station.Url = "http://www.podari-zhizn.ru/main";
-                            };
-                            eventslist1.Add(station);
-                        };
-
-                        Deployment.Current.Dispatcher.BeginInvoke(() =>
-                        {
-                            ViewModelLocator.MainStatic.Settings.StationsUpdated = DateTime.Now;
-                            ViewModelLocator.MainStatic.SaveSettingsToStorage();
-                            this.Items = eventslist1;
-
-                            IsolatedStorageHelper.SaveSerializableObject<ObservableCollection<StationViewModel>>(this.Items, "stations.xml");
-
-                            RaisePropertyChanged("Items");
-                        });                       
-                    
-                }
-                catch
-                {
-                };
-                
-            });
-            };
-            bw.RunWorkerAsync();
-            } else {};
-        }*/
 
         private ObservableCollection<YAStationItem> _items;
         public ObservableCollection<YAStationItem> Items
@@ -378,6 +256,18 @@ namespace Donor.ViewModels
                 RaisePropertyChanged("CurrentStation");
             }
         }
+    }
+
+
+    public class TownItem : ViewModelBase
+    {
+        public TownItem()
+        {
+        }
+
+        public string TownName = "";
+        public string DistrictName = "";
+        public string RegionName = "";
     }
 
     public class LatLonItem

@@ -593,6 +593,7 @@ namespace Donor.ViewModels
         /// Идентификатор станции, к  которой привязано событие (в случае, если место проведения события было выбрано из списка стандции)
         /// </summary>
         public string Station_nid { get; set; }
+        public string YAStation_objectid { get; set; }
 
         public string Delivery
         {
@@ -777,6 +778,14 @@ namespace Donor.ViewModels
             try
             {
                 jsonitem.Station_nid = item["station_nid"].ToString();
+            }
+            catch
+            {
+            };
+
+            try
+            {
+                jsonitem.YAStation_objectid = item["yastation_objectid"].ToString();
             }
             catch
             {
@@ -1288,7 +1297,7 @@ namespace Donor.ViewModels
                 var request = new RestRequest("1/classes/Events/" + addedItems.Id.ToString(), Method.PUT);
                 request.AddHeader("Accept", "application/json");
                 request.Parameters.Clear();
-                string strJSONContent = "{\"analysisResult\":" + addedItems.ReminderMessage.ToString().ToLower() + ", \"notice\": " + addedItems.Notice.ToString() + ", \"station_nid\": " + addedItems.Station_nid + ", \"date\": {\"__type\": \"Date\", \"iso\": \"" + addedItems.DateAndTime.ToString("s") + "\"}, \"finished\":" + addedItems.Finished.ToString().ToLower() + ", \"adress\":\"" + addedItems.Place + "\", \"comment\":\"" + addedItems.Description.Replace("\r", "\n") + "\", \"type\":" + addedItems.Type + ", \"delivery\":" + addedItems.Delivery + ", \"type\":" + addedItems.Type + "}";
+                string strJSONContent = "{\"analysisResult\":" + addedItems.ReminderMessage.ToString().ToLower() + ", \"notice\": " + addedItems.Notice.ToString() + ", \"yastation_objectid\": \"" + addedItems.YAStation_objectid + "\", \"date\": {\"__type\": \"Date\", \"iso\": \"" + addedItems.DateAndTime.ToString("s") + "\"}, \"finished\":" + addedItems.Finished.ToString().ToLower() + ", \"adress\":\"" + addedItems.Place + "\", \"comment\":\"" + addedItems.Description.Replace("\r", "\n") + "\", \"type\":" + addedItems.Type + ", \"delivery\":" + addedItems.Delivery + ", \"type\":" + addedItems.Type + "}";
 
 
                 request.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
@@ -1347,7 +1356,7 @@ namespace Donor.ViewModels
                 var request = new RestRequest("1/classes/Events", Method.POST);
                 request.AddHeader("Accept", "application/json");
                 request.Parameters.Clear();
-                string strJSONContent = "{\"analysisResult\":" + addedItems.ReminderMessage.ToString().ToLower() + ", \"notice\": " + addedItems.Notice.ToString() + ", \"date\": {\"__type\": \"Date\", \"iso\": \"" + addedItems.DateAndTime.ToString("s") + "\"}, \"finished\":" + addedItems.Finished.ToString().ToLower() + ", \"adress\":\"" + addedItems.Place + "\", \"comment\":\"" + addedItems.Description.Replace("\r", "\n") + "\", \"type\":" + addedItems.Type + ", \"delivery\":" + addedItems.Delivery + ", \"type\":" + addedItems.Type + "}";
+                string strJSONContent = "{\"analysisResult\":" + addedItems.ReminderMessage.ToString().ToLower() + ", \"notice\": " + addedItems.Notice.ToString() + ", \"yastation_objectid\": \"" + addedItems.YAStation_objectid.ToString() + "\", \"date\": {\"__type\": \"Date\", \"iso\": \"" + addedItems.DateAndTime.ToString("s") + "\"}, \"finished\":" + addedItems.Finished.ToString().ToLower() + ", \"adress\":\"" + addedItems.Place + "\", \"comment\":\"" + addedItems.Description.Replace("\r", "\n") + "\", \"type\":" + addedItems.Type + ", \"delivery\":" + addedItems.Delivery + ", \"type\":" + addedItems.Type + "}";
 
 
                 request.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);

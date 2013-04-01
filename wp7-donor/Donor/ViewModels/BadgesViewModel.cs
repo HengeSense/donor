@@ -142,22 +142,44 @@ namespace Donor.ViewModels
         static BadgesViewModel()
         {
             AvailableAchieves = new ObservableCollection<AchieveItem>();
+
             AvailableAchieves.Add(new AchieveItem() { Title = "Друг донора",
                 Api_name = "donorfriend",
                 UnactiveImage = "/images/achieves/Achive-donor_unavailible.png",
+                Status = false,
                 Image = "/images/achieves/Achive-donor.png" });
 
+            AvailableAchieves.Add(new AchieveItem()
+            {
+                Title = "Первая сдача крови",
+                Api_name = "first_blood",
+                UnactiveImage = "/images/achieves/Achive-donor_unavailible.png",
+                Status = false,
+                Image = "/images/achieves/Achive-donor.png"
+            });            
+
             SoonAchieves = new ObservableCollection<AchieveItem>();
-            SoonAchieves.Add(new AchieveItem() { Title = "Первая помощь",
+
+            SoonAchieves.Add(new AchieveItem()
+            {
+                Title = "Два подряд",
                 Api_name = "secondblood",
-                Image = "/images/achieves/Achive-donor_firstBlood_unavailible.png",
-                UnactiveImage = "/images/achieves/Achive-donor_firstBlood_unavailible.png" });
-            SoonAchieves.Add(new AchieveItem() { Title = "Два подряд",
-                Api_name = "thirdblood",
                 Image = "/images/achieves/Achive-donor_secondBlood_unavailible.png",
+                Status = false,
                 UnactiveImage = "/images/achieves/Achive-donor_secondBlood_unavailible.png" });
 
             ViewModelLocator.MainStatic.UserEnter += new MainViewModel.UserEnterEventHandler(BadgesViewModel.UserLoaded);
+        }
+
+        public static void DisableFirstBlood()
+        {
+            try
+            {
+                AvailableAchieves.FirstOrDefault(c => c.Api_name == "first_blood").Status = false;
+            }
+            catch
+            {
+            };
         }
 
         private static void UserLoaded(object sender, EventArgs e)
@@ -172,6 +194,78 @@ namespace Donor.ViewModels
             catch { };
         }
 
+        //public static string ActivateCode = "";
+        /*www.itsbeta.com/s/activate.json?activation_code=.....&user_id=....&user_token=......*/
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="activation_code"></param>
+        public static void ActivateAchieve(string activation_code)
+        {
+            var bw = new BackgroundWorker();
+            bw.DoWork += delegate
+            {
+                var client = new RestClient("http://www.itsbeta.com");
+                var request = new RestRequest("s/activate.json", Method.GET);
+                request.Parameters.Clear();
+                request.AddParameter("access_token", App.ACCESS_TOKEN);
+                request.AddParameter("user_id", ViewModelLocator.MainStatic.User.FacebookId);
+                request.AddParameter("user_token", ViewModelLocator.MainStatic.User.FacebookToken);
+                request.AddParameter("activation_code", activation_code);
+                request.AddParameter("unique", "f");
+                client.ExecuteAsync(request, response =>
+                {
+                    try
+                    {
+                        JObject o = JObject.Parse(response.Content.ToString());
+                        if (o["id"].ToString() != "")
+                        {
+                            Deployment.Current.Dispatcher.BeginInvoke(() =>
+                            {
+                                //ViewModelLocator.MainStatic.LoadAchievements(o["api_name"].ToString());
+                                GetPlayerAchieves(ViewModelLocator.MainStatic.User.FacebookId);
+                            });
+                        }
+                        else
+                        {
+                            Deployment.Current.Dispatcher.BeginInvoke(() =>
+                            {
+                            });
+                        };
+                    }
+                    catch
+                    {
+                        try
+                        {
+                            JObject o = JObject.Parse(response.Content.ToString());
+                            if (o["error"].ToString() == "406")
+                            {
+                                Deployment.Current.Dispatcher.BeginInvoke(() =>
+                                {
+                                    //ViewModelLocator.UserStatic.AchievedEarnedMessage(AppResources.Error406activated);
+                                });
+                            }
+                            else
+                            {
+                                Deployment.Current.Dispatcher.BeginInvoke(() =>
+                                {
+                                    //ViewModelLocator.UserStatic.AchievedEarnedMessage(AppResources.ErrorCantActivate);
+                                });
+                            };
+                        }
+                        catch
+                        {
+                            Deployment.Current.Dispatcher.BeginInvoke(() =>
+                            {
+                            });
+                        };
+
+                    };
+                });
+            };
+            bw.RunWorkerAsync();
+        }
+
         static private void GetPlayerAchieves(string fb_id = "")
         {
             var bw = new BackgroundWorker();
@@ -182,7 +276,7 @@ namespace Donor.ViewModels
                     var client_player = new RestClient("http://www.itsbeta.com");
                     var request_player = new RestRequest("s/info/playerid.json", Method.GET);
                     request_player.Parameters.Clear();
-                    request_player.AddParameter("access_token", "059db4f010c5f40bf4a73a28222dd3e3");
+                    request_player.AddParameter("access_token", App.ACCESS_TOKEN);
                     request_player.AddParameter("type", "fb_user_id");
                     request_player.AddParameter("id", fb_id);
 

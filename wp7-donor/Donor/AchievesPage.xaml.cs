@@ -52,5 +52,23 @@ namespace Donor
             }
             catch { };
         }
+
+        private void qtButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                NavigationService.Navigate(new Uri("/QRread.xaml", UriKind.Relative));
+            }
+            catch { };
+        }
+
+        private void ApplicationBarIconButton_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+                BadgesViewModel.DisableFirstBlood();
+            }
+            catch { };
+        }
     }
 }

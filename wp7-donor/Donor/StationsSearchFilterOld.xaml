@@ -6,7 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit" 
-    x:Class="Donor.StationsSearchFilter"
+    x:Class="Donor.StationsSearchFilterOld"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
@@ -45,7 +45,36 @@
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="0,0,0,0">
             <StackPanel>  
-
+            	<Border Background="#FF632C00">
+                    <toolkit:ListPicker x:Name="CitySelect" Header="{Binding Moscow, Source={StaticResource Loc}}" FontSize="24" Margin="10,6,10,20" SelectionChanged="CitySelect_SelectionChanged" Foreground="#FF271B16" Loaded="CitySelect_Loaded" Tap="CitySelect_Tap">
+<ListBoxItem Content="{Binding Moscow, Source={StaticResource Loc}}" Foreground="#DE271B16"/>
+<ListBoxItem Content="{Binding StPetersburg, Source={StaticResource Loc}}" Foreground="#DE271B16"/>
+<toolkit:ListPicker.ItemTemplate>
+<DataTemplate>
+<StackPanel Orientation="Horizontal" Background="#FFD7CABF" Margin="0">
+<TextBlock Foreground="#FF271B16" Text="{Binding}" />
+</StackPanel>
+</DataTemplate>
+</toolkit:ListPicker.ItemTemplate>
+</toolkit:ListPicker>
+				</Border>
+				<StackPanel Margin="12,0,12,0">
+                    <CheckBox Content="{Binding RegionalCheck, Source={StaticResource Loc}}" 
+				FontSize="24"
+				Foreground="#FFCBB2A3"
+				Name="regional" Unchecked="regional_Unchecked" 
+				Checked="regional_Checked"/>                
+				<CheckBox Name="saturdays" 
+				FontSize="24"
+				Foreground="#FFCBB2A3"
+				Content="{Binding SaturdayWork, Source={StaticResource Loc}}" Checked="saturdays_Checked" 
+				Unchecked="saturdays_Unchecked" />  
+				<CheckBox Name="childrens" 
+				FontSize="24"
+				Foreground="#FFCBB2A3"
+				Content="{Binding DonorsForChildren, Source={StaticResource Loc}}" Unchecked="childrens_Unchecked" 
+				Checked="childrens_Checked" />  
+				</StackPanel>
             </StackPanel>
         </Grid>
     </Grid>

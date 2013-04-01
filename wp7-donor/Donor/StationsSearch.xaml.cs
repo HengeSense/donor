@@ -251,8 +251,14 @@ namespace Donor
         {
             try
             {
-                ViewModelLocator.MainStatic.Stations.CurrentStation = ((sender as RadJumpList).SelectedItem as YAStationItem);
-                NavigationService.Navigate(new Uri("/StationPage.xaml", UriKind.Relative));
+                if (task=="select") {
+                    //ViewModelLocator.MainStatic.Stations.SelectedStation = ((sender as ListBox).SelectedItem as StationViewModel).Nid.ToString();
+                    ViewModelLocator.MainStatic.Stations.CurrentStation = ((sender as RadJumpList).SelectedItem as YAStationItem);
+                    NavigationService.GoBack();
+                } else {
+                    ViewModelLocator.MainStatic.Stations.CurrentStation = ((sender as RadJumpList).SelectedItem as YAStationItem);
+                    NavigationService.Navigate(new Uri("/StationPage.xaml", UriKind.Relative));
+                };
             }
             catch
             {

@@ -44,31 +44,43 @@ namespace Donor
             _timer.Tick += (o, arg) => ScanPreviewBuffer();
         }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
             try
             {
-                //if (ViewModelLocator.MainStatic.Qr.CameraFocusSet == false)
+                _timer.Stop();
+                _photoCamera.Dispose();
+
+            }
+            catch { };
+            base.OnNavigatedFrom(e);
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            _timer.Start();
+            try
+            {
+                //if (App.ViewModel.Qr.CameraFocusSet == false)
                 //{
-                    _photoCamera = new PhotoCamera();
-                    _photoCamera.Initialized += OnPhotoCameraInitialized;
-                    _previewVideo.SetSource(_photoCamera);
+                _photoCamera = new PhotoCamera();
+                _photoCamera.Initialized += OnPhotoCameraInitialized;
+                _previewVideo.SetSource(_photoCamera);
                 //}
             }
             catch { };
 
             try
             {
-                if (ViewModelLocator.MainStatic.Qr.CameraFocusSet == false)
-                {
-                    CameraButtons.ShutterKeyHalfPressed += (o, arg) => { try { _photoCamera.Focus(); } catch { }; };
-                    ViewModelLocator.MainStatic.Qr.CameraFocusSet = true;
-                };
+                //if (App.ViewModel.Qr.CameraFocusSet == false)
+                //{
+                CameraButtons.ShutterKeyHalfPressed += (o, arg) => { try { _photoCamera.Focus(); } catch { }; };
+                //App.ViewModel.Qr.CameraFocusSet = true;
+                //};
             }
             catch
             {
             };
-
             base.OnNavigatedTo(e);
         }
 
@@ -114,8 +126,17 @@ namespace Donor
             //_photoCamera.Dispose();
             try
             {
-                MessageBox.Show("Добавлен QR код c текстом: \n" + text);
+                //MessageBox.Show("Добавлен QR код c текстом: \n" + text);
                 ViewModelLocator.MainStatic.Qr.QRcode = text;
+
+                Uri qrUrl = new Uri(text);
+                string code = qrUrl.Query.Replace("?activation_code=", "");                
+                this.Focus();
+                if (ViewModelLocator.MainStatic.User.IsLoggedIn == true)
+                {
+                    BadgesViewModel.ActivateAchieve(code);
+                };
+
                 try
                 {
                     this.NavigationService.GoBack();

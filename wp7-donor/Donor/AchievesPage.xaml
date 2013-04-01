@@ -14,6 +14,12 @@
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d" d:DesignHeight="768" d:DesignWidth="480"
     shell:SystemTray.IsVisible="True">
+	<phone:PhoneApplicationPage.ApplicationBar>
+		<shell:ApplicationBar>
+			<shell:ApplicationBarIconButton x:Name="qtButton" IconUri="/Assets/AppBar/appbar.feature.camera.rest.png" Text="QR" Click="qtButton_Click"/>
+			<shell:ApplicationBarIconButton IconUri="/icons/appbar.cancel.png" Text="Выключить первую кровь" Click="ApplicationBarIconButton_Click_1"/>
+		</shell:ApplicationBar>
+	</phone:PhoneApplicationPage.ApplicationBar>
 
     <Grid x:Name="LayoutRoot">
         <Grid.Background>
@@ -36,7 +42,7 @@
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
             <ScrollViewer>
             <StackPanel>
-                    <ListBox Margin="0,15,-12,0" Name="AvailableBadges"
+                    <ListBox Margin="0,-5,-12,0" Name="AvailableBadges"
                              ScrollViewer.VerticalScrollBarVisibility="Disabled"
                              tilteffect:TiltEffect.IsTiltEnabled="True" Loaded="ListBox_Loaded" Tap="AvailableBadges_Tap">
                         <ListBox.ItemTemplate>

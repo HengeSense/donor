@@ -61,98 +61,32 @@ namespace Donor
 
         private void SaveButton1_Click(object sender, System.EventArgs e)
         {
-            ViewModelLocator.MainStatic.Stations.IsFilter = true;
-
-            if (this.childrens.IsChecked == true)
+            try
             {
-                ViewModelLocator.MainStatic.Stations.IsChildrenDonor = true;
+                ViewModelLocator.MainStatic.Stations.IsFilter = true;
+                NavigationService.GoBack();
             }
-            else { ViewModelLocator.MainStatic.Stations.IsChildrenDonor = false; };
-
-            if (this.saturdays.IsChecked == true)
-            {
-                ViewModelLocator.MainStatic.Stations.IsSaturdayWork = true;
-            }
-            else { ViewModelLocator.MainStatic.Stations.IsSaturdayWork = false; };
-
-            if (this.regional.IsChecked == true)
-            {
-                ViewModelLocator.MainStatic.Stations.IsRegional = true;
-            }
-            else { ViewModelLocator.MainStatic.Stations.IsRegional = false; };
-
-            if (LoadedCity)
-            {
-                try
-                {
-                    ViewModelLocator.MainStatic.Stations.SelectedCity = (this.CitySelect.SelectedItem as ListBoxItem).Content.ToString();
-                }
-                catch { 
-                };
-            };
-
-            NavigationService.GoBack();
+            catch { };
         }
 
         private void cancelButton_Click(object sender, System.EventArgs e)
         {
-        	// TODO: Add event handler implementation here.
-            ViewModelLocator.MainStatic.Stations.IsFilter = false;
-            NavigationService.GoBack();
+            try
+            {
+                ViewModelLocator.MainStatic.Stations.IsFilter = false;
+                NavigationService.GoBack();
+            }
+            catch { };
         }
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
-            if (ViewModelLocator.MainStatic.Stations.IsChildrenDonor == true)
-            {
-                this.childrens.IsChecked = true;
-            }
-            else { this.childrens.IsChecked = false; };
-
-            if (ViewModelLocator.MainStatic.Stations.IsSaturdayWork == true)
-            {
-              this.saturdays.IsChecked  = true;
-            }
-            else { this.saturdays.IsChecked = false; };
-
-            if (ViewModelLocator.MainStatic.Stations.IsRegional == true)
-            {
-                this.regional.IsChecked = true;
-            }
-            else { this.regional.IsChecked = false; };
         }
 
         private bool LoadedCity = false;
 
         private void CitySelect_Loaded(object sender, RoutedEventArgs e)
         {
-            try
-            {
-            if (ViewModelLocator.MainStatic.Stations.IsFilter == true)
-            {
-                switch (ViewModelLocator.MainStatic.Stations.SelectedCity)
-                {
-                    case "Москва": this.CitySelect.SelectedIndex = 0; break;
-                    case "Санкт-Петербург": this.CitySelect.SelectedIndex = 1; break;
-                };
-            }
-            else
-            {
-            };
-            }
-            catch
-            {
-            };
-
-            LoadedCity = true;
-        }
-
-        private void CitySelect_Tap(object sender, System.Windows.Input.GestureEventArgs e)
-        {
-            if (LoadedCity)
-            {
-                ViewModelLocator.MainStatic.Stations.SelectedCity = ((sender as ListPicker).SelectedItem as ListBoxItem).Content.ToString();
-            };
         }
 
     }

@@ -92,10 +92,10 @@ namespace Donor
                 try
                 {
                     CurrentEvent = ViewModelLocator.MainStatic.Events.EditedEvent;
-                    YAStationItem _currentStation = ViewModelLocator.MainStatic.Stations.Items.FirstOrDefault(c => c.ObjectId.ToString() == ViewModelLocator.MainStatic.Stations.SelectedStation.ToString());
+                    YAStationItem _currentStation = ViewModelLocator.MainStatic.Stations.Items.FirstOrDefault(c => c.ObjectId.ToString() == ViewModelLocator.MainStatic.Stations.CurrentStation.ObjectId.ToString());
                     this.Place.Text = _currentStation.Address.ToString();
                     CurrentEvent.Place = _currentStation.Address.ToString();
-                    CurrentEvent.Station_nid = _currentStation.ObjectId;
+                    CurrentEvent.YAStation_objectid = _currentStation.ObjectId;
                     ViewModelLocator.MainStatic.Events.EditedEvent = null;
                 }
                 catch

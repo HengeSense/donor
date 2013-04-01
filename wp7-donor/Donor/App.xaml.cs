@@ -23,6 +23,7 @@ namespace Donor
     public partial class App : Application
     {
         public const string FlurryKey = "BFKZPN5DWWWSDZ9WDMB5";
+        public const string ACCESS_TOKEN = "059db4f010c5f40bf4a73a28222dd3e3";
 
         //private static MainViewModel viewModel = null;
 
