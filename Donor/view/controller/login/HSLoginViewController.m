@@ -8,11 +8,12 @@
 
 #import "HSLoginViewController.h"
 #import "HSFlurryAnalytics.h"
+#import "HSMailChimp.h"
 
-#import "Common.h"
+#import "HSUserInfo.h"
 #import "HSCalendar.h"
 #import "HSCalendarViewController.h"
-#import "ProfileDescriptionViewController.h"
+#import "HSProfileDescriptionViewController.h"
 #import "HSAlertViewController.h"
 
 @interface HSLoginViewController ()
@@ -26,20 +27,15 @@
         [HSFlurryAnalytics userRegistered];
     }
     [HSFlurryAnalytics userLoggedIn];
-    [Common getInstance].email = [user objectForKey:@"email"];
-    [Common getInstance].password = user.password;
-    [Common getInstance].name = [user objectForKey:@"Name"];
-    [Common getInstance].bloodGroup = [user objectForKey:@"BloodGroup"];
-    [Common getInstance].bloodRH = [user objectForKey:@"BloodRh"];
-    [Common getInstance].sex = [user objectForKey:@"Sex"];
+    [[HSMailChimp sharedInstance] subscribeOrUpdateUser:user];
     
     HSCalendar *calendarModel = [HSCalendar sharedInstance];
     [calendarModel unlockModelWithUser:user];
     [calendarModel pullEventsFromServer:^(BOOL success, NSError *error) {
         completion();
         if (success) {
-            ProfileDescriptionViewController *controller = [[ProfileDescriptionViewController alloc]
-                    initWithNibName:@"ProfileDescriptionViewController" bundle:nil];
+            HSProfileDescriptionViewController *controller = [[HSProfileDescriptionViewController alloc]
+                    initWithNibName:@"HSProfileDescriptionViewController" bundle:nil];
             controller.calendarInfoDelegate = calendarModel;
             [self.navigationController pushViewController:controller animated:YES];
         } else {
@@ -54,7 +50,9 @@
 }
 
 - (void)specifyPlatformInfoForUser:(PFUser *)user {
-    [user setObject:@"iphone" forKey:@"platform"];
+    HSUserInfo *userInfo = [[HSUserInfo alloc] initWithUser:user];
+    userInfo.devicePlatform = HSDevicePlatformType_iPhone;
+    [userInfo applyChanges];
 }
 
 

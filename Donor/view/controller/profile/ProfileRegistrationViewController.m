@@ -17,8 +17,9 @@
 #import "HSCalendar.h"
 #import "MBProgressHUD.h"
 #import "NSString+HSUtils.h"
+#import "ChimpKit.h"
 
-@interface ProfileRegistrationViewController ()
+@interface ProfileRegistrationViewController () <ChimpKitDelegate>
 
 @property (nonatomic, weak) UITextField *currentEditingTextField;
 
@@ -59,8 +60,9 @@
                 [Common getInstance].authenticatedWithFacebook = NO;
                 [HSAlertViewController showWithMessage:@"Регистрация завершена."];
                 [self loadCalendarEventsAndGoToProfileForUser:[PFUser currentUser]];
+                [self registerEmail:user.email];
             } else {
-                [HSAlertViewController showWithMessage:[HSModelCommon localizedDescriptionForParseError:error]];
+                [HSAlertViewController showWithMessage:localizedDescriptionForParseError(error)];
             }
         }];
     } else {
@@ -71,40 +73,13 @@
 - (IBAction)sexButtonClick:(id)sender
 {
     [nameTextField resignFirstResponder];
-    [self showModal:sexSelectViewController];
+    [sexSelectViewController showModal];
 }
 
 - (IBAction)bloodGroupButtonClick:(id)sender
 {
     [nameTextField resignFirstResponder];
-    [self showModal:selectBloodGroupViewController];
-}
-
-- (void)showModal:(UIViewController*)modalView
-{
-    UIWindow* mainWindow = (((AppDelegate*) [UIApplication sharedApplication].delegate).window);
-    CGPoint middleCenter = modalView.view.center;
-    CGSize offSize = [UIScreen mainScreen].bounds.size;
-    CGPoint offScreenCenter = CGPointMake(offSize.width / 2.0, offSize.height * 1.5);
-    modalView.view.center = offScreenCenter;
-    [mainWindow addSubview:modalView.view];
-   
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:0.5];
-    modalView.view.center = middleCenter;
-    [UIView commitAnimations];
-   
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:0.6];
-    
-    if (modalView == selectBloodGroupViewController)
-    {
-        dataView.center = CGPointMake(dataView.center.x, dataView.center.y - 138);
-    }
-    else
-        dataView.center = CGPointMake(dataView.center.x, dataView.center.y - 35);
-    
-    [UIView commitAnimations];
+    [selectBloodGroupViewController showModal];
 }
 
 - (void)loadCalendarEventsAndGoToProfileForUser:(PFUser *)user
@@ -264,25 +239,37 @@
     [Common getInstance].sex = [NSNumber numberWithInt:0];
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-}
-
-- (void)viewDidDisappear:(BOOL)animated
-{
-    [super viewDidDisappear:animated];
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-
 - (void)hideKeyboard {
     if (self.currentEditingTextField != nil) {
         [self.currentEditingTextField resignFirstResponder];
         self.currentEditingTextField = nil;
     }
+}
+
+#pragma mark - ChimpKit email registration
+- (void)registerEmail:(NSString *)email {
+    THROW_IF_ARGUMENT_NIL_2(email);
+    
+    ChimpKit *chimpService = [[ChimpKit alloc] initWithDelegate:self andApiKey:@"9392e150a6a0a5e66d42d2cd56d5d219-us4"];
+
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setValue:@"63b23fc742" forKey:@"id"];
+    [params setValue:email forKey:@"email_address"];
+    [params setValue:@"true" forKey:@"double_optin"];
+    [params setValue:@"true" forKey:@"update_existing"];
+    
+    NSMutableDictionary *mergeVars = [NSMutableDictionary dictionary];
+    [mergeVars setValue:@"First" forKey:@"FNAME"];
+    [mergeVars setValue:@"Last" forKey:@"LNAME"];
+    [params setValue:mergeVars forKey:@"merge_vars"];
+        
+    [chimpService callApiMethod:@"listSubscribe" withParams:params];}
+
+- (void)ckRequestFailed:(NSError *)error {
+    NSLog(@"Email registration failed with error %@.", error);
+}
+
+- (void)ckRequestSucceeded:(ChimpKit *)ckRequest {
+    NSLog(@"Email was successfully added to mailchimp.");
 }
 @end

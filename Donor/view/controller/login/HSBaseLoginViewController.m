@@ -12,9 +12,8 @@
 #import "HSFlurryAnalytics.h"
 #import "MBProgressHUD.h"
 
-#import "ProfileDescriptionViewController.h"
-#import "ProfileRegistrationViewController.h"
-#import "ProfileSettingsViewController.h"
+#import "HSProfileDescriptionViewController.h"
+#import "HSProfileRegistrationViewController.h"
 #import "HSRestorePasswordViewCotroller.h"
 #import "HSAlertViewController.h"
 

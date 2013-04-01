@@ -11,9 +11,6 @@
 
 @interface Common : NSObject
 {
-    NSNumber *sex;
-    NSNumber *bloodGroup;
-    NSNumber *bloodRH;
     NSMutableArray *events;
     
     NSUserDefaults *defaults;
@@ -32,13 +29,6 @@
 @property (nonatomic, retain) NSDateComponents *availablePlasmaDateComponents;
 @property (nonatomic, retain) NSDateComponents *availableWholeBloodDateComponents;
 
-@property (nonatomic, retain) NSString *email;
-@property (nonatomic, retain) NSString *password;
-@property (nonatomic, retain) NSString *userObjectId;
-@property (nonatomic, retain) NSString *name;
-@property (nonatomic, retain) NSNumber *sex;
-@property (nonatomic, retain) NSNumber *bloodGroup;
-@property (nonatomic, retain) NSNumber *bloodRH;
 @property (nonatomic, retain) NSMutableArray *events;
 @property (nonatomic, assign) BOOL authenticatedWithFacebook;
 

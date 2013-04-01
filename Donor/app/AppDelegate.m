@@ -8,10 +8,11 @@
 
 #import "AppDelegate.h"
 #import <Parse/Parse.h>
-#import "HSFlurryAnalytics.h"
 #import "Crittercism.h"
 #import "TestFlight.h"
 #import "Appirater.h"
+#import "HSFlurryAnalytics.h"
+#include "HSMailChimp.h"
 
 #import "HSCalendarViewController.h"
 
@@ -31,6 +32,9 @@ static NSString * const FLURRY_APP_ID = @"2WRYH35MS5SW4ZY2TNPB";
 static NSString * const TEST_FLIGHT_APP_ID = @"43651a8fd308e9fd491a1c8aa068f158_MTQxMjA0MjAxMi0xMC0wOSAwOTozMToyMS4zNzU1ODc";
 static NSString * const CRITTERCISM_APP_ID = @"50f5e3804f633a256d000003";
 static NSString * const APP_STORE_APP_ID = @"578970724";
+static NSString * const ITSBETA_ACCESS_TOKEN = @"059db4f010c5f40bf4a73a28222dd3e3";
+static NSString * const MAILCHIMP_API_KEY = @"9392e150a6a0a5e66d42d2cd56d5d219-us4";
+static NSString * const MAILCHIMP_DONOR_LIST_ID = @"63b23fc742";
 
 @interface AppDelegate ()
 
@@ -124,7 +128,9 @@ static NSString * const APP_STORE_APP_ID = @"578970724";
     [Appirater setUsesUntilPrompt:3];
     [Appirater setTimeBeforeReminding:2];
     
-    [ItsBeta setApplicationAccessToken:@"059db4f010c5f40bf4a73a28222dd3e3"];
+    [[HSMailChimp sharedInstance] configureWithApiKey:MAILCHIMP_API_KEY listId:MAILCHIMP_DONOR_LIST_ID];
+    
+    [ItsBeta setApplicationAccessToken:ITSBETA_ACCESS_TOKEN];
     [ItsBeta setApplicationDelegate:self];
     [ItsBeta synchronizeApplication];
 }
@@ -171,7 +177,6 @@ static NSString * const APP_STORE_APP_ID = @"578970724";
     UINavigationController *infoNavigationController = [[UINavigationController alloc] initWithRootViewController:infoViewController];
     
     HSLoginChoiceViewController *loginChoiceViewController = [[HSLoginChoiceViewController alloc] initWithNibName:@"HSLoginChoiceViewController" bundle:nil];
-    loginChoiceViewController.calendarViewController = calendarViewController;
     UINavigationController *profileNavigationController = [[UINavigationController alloc] initWithRootViewController:loginChoiceViewController];
     
     self.tabBarController = [[UITabBarController alloc] init];

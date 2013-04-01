@@ -12,7 +12,7 @@
 
 @synthesize lastWholeBloodDate;
 
-@synthesize email, name, password, userObjectId, sex, bloodGroup, bloodRH, events, eventTimeReminderIndex, availablePlasmaDateComponents, availablePlateletsDateComponents, availableWholeBloodDateComponents, eventStationAddress;
+@synthesize events, eventTimeReminderIndex, availablePlasmaDateComponents, availablePlateletsDateComponents, availableWholeBloodDateComponents, eventStationAddress;
 @synthesize isNeedClosingEvent, isNeedExpressSearch, isNeedPassword, isNeedPlasmaPush, isNeedPlateletsPush, isNeedPushAnnotations, isNeedReminders, isNeedWholeBloodPush;
 @synthesize lastStations;
 @synthesize isMoscow, isPeterburg, isDonorsForChildren, isRegionalRegistration, isWorkAtSaturday;
@@ -40,10 +40,6 @@ static void singleton_remover()
     instance = self;
     
     defaults = [NSUserDefaults standardUserDefaults];
-    
-    sex = [NSNumber new];
-    bloodRH = [[[NSNumber alloc] initWithInt:0] retain];
-    bloodGroup = [[[NSNumber new] initWithInt:0] retain];
     
     events = [NSMutableArray new];
     
@@ -202,9 +198,6 @@ static void singleton_remover()
 - (void)dealloc
 {
     [lastStations release];
-    [bloodGroup release];
-    [bloodRH release];
-    [sex release];
     [events release];
     [super dealloc];
 }

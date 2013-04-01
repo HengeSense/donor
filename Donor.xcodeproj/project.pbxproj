@@ -212,6 +212,31 @@
 		685CB3311640EED7004FF9AC /* icon_granulocytes_plan@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 685CB3301640EED7004FF9AC /* icon_granulocytes_plan@2x.png */; };
 		685CB3331640EEF4004FF9AC /* icon_plasma_plan@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 685CB3321640EEF4004FF9AC /* icon_plasma_plan@2x.png */; };
 		685CB3351640EF0F004FF9AC /* icon_plateletes_plan@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 685CB3341640EF0F004FF9AC /* icon_plateletes_plan@2x.png */; };
+		6864D5E9170865F900F150F9 /* HSSexType.m in Sources */ = {isa = PBXBuildFile; fileRef = 6864D5E8170865F900F150F9 /* HSSexType.m */; };
+		6864D5EC1708683A00F150F9 /* HSBloodType.m in Sources */ = {isa = PBXBuildFile; fileRef = 6864D5EB1708683A00F150F9 /* HSBloodType.m */; };
+		6864D5EF1708699C00F150F9 /* HSDevicePlatformType.m in Sources */ = {isa = PBXBuildFile; fileRef = 6864D5EE1708699C00F150F9 /* HSDevicePlatformType.m */; };
+		6864D6081708995E00F150F9 /* HSModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6864D5F21708995E00F150F9 /* HSModalViewController.m */; };
+		6864D6091708995E00F150F9 /* HSAddressPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 6864D5F51708995E00F150F9 /* HSAddressPicker.m */; };
+		6864D60A1708995E00F150F9 /* HSAddressPicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6864D5F61708995E00F150F9 /* HSAddressPicker.xib */; };
+		6864D60B1708995E00F150F9 /* HSBloodDonationTypePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 6864D5F81708995E00F150F9 /* HSBloodDonationTypePicker.m */; };
+		6864D60C1708995E00F150F9 /* HSBloodDonationTypePicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6864D5F91708995E00F150F9 /* HSBloodDonationTypePicker.xib */; };
+		6864D60D1708995E00F150F9 /* HSBloodTypePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 6864D5FB1708995E00F150F9 /* HSBloodTypePicker.m */; };
+		6864D60E1708995E00F150F9 /* HSBloodTypePicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6864D5FC1708995E00F150F9 /* HSBloodTypePicker.xib */; };
+		6864D60F1708995E00F150F9 /* HSDateTimePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 6864D5FE1708995E00F150F9 /* HSDateTimePicker.m */; };
+		6864D6101708995E00F150F9 /* HSDateTimePicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6864D5FF1708995E00F150F9 /* HSDateTimePicker.xib */; };
+		6864D6111708995E00F150F9 /* HSPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 6864D6011708995E00F150F9 /* HSPicker.m */; };
+		6864D6121708995E00F150F9 /* HSRemindDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 6864D6031708995E00F150F9 /* HSRemindDatePicker.m */; };
+		6864D6131708995E00F150F9 /* HSRemindDatePicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6864D6041708995E00F150F9 /* HSRemindDatePicker.xib */; };
+		6864D6141708995E00F150F9 /* HSSexPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 6864D6061708995E00F150F9 /* HSSexPicker.m */; };
+		6864D6151708995E00F150F9 /* HSSexPicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6864D6071708995E00F150F9 /* HSSexPicker.xib */; };
+		6864D61F1708B3C400F150F9 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 6864D6171708B3C400F150F9 /* Icon-72.png */; };
+		6864D6201708B3C400F150F9 /* Icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6864D6181708B3C400F150F9 /* Icon-72@2x.png */; };
+		6864D6211708B3C400F150F9 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6864D6191708B3C400F150F9 /* Icon.png */; };
+		6864D6221708B3C400F150F9 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6864D61A1708B3C400F150F9 /* Icon@2x.png */; };
+		6864D6231708B3C400F150F9 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6864D61C1708B3C400F150F9 /* Default-568h@2x.png */; };
+		6864D6241708B3C400F150F9 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 6864D61D1708B3C400F150F9 /* Default.png */; };
+		6864D6251708B3C400F150F9 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6864D61E1708B3C400F150F9 /* Default@2x.png */; };
+		6864D6291708CB4900F150F9 /* HSMailChimp.m in Sources */ = {isa = PBXBuildFile; fileRef = 6864D6281708CB4900F150F9 /* HSMailChimp.m */; };
 		686BA62216344DE2004D7082 /* HSCalendarDayButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 686BA62116344DE2004D7082 /* HSCalendarDayButton.m */; };
 		686BA62716345D0E004D7082 /* NSCalendar+HSCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 686BA62616345D0E004D7082 /* NSCalendar+HSCalendar.m */; };
 		686BA62A163469C3004D7082 /* HSBloodDonorTests_Calendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 686BA629163469C3004D7082 /* HSBloodDonorTests_Calendar.m */; };
@@ -225,14 +250,12 @@
 		687A430B16F5E54500958347 /* libOCMock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 687A42FA16F5CEFC00958347 /* libOCMock.a */; };
 		687A431516F629B900958347 /* Swizzler.m in Sources */ = {isa = PBXBuildFile; fileRef = 687A431416F629B900958347 /* Swizzler.m */; };
 		687A431816F62D2300958347 /* HSBloodRemoteEventMoc.m in Sources */ = {isa = PBXBuildFile; fileRef = 687A431716F62D2300958347 /* HSBloodRemoteEventMoc.m */; };
-		687A437416F97EEA00958347 /* HSRemindDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 687A437216F97EE900958347 /* HSRemindDatePicker.m */; };
-		687A437516F97EEA00958347 /* HSRemindDatePicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 687A437316F97EEA00958347 /* HSRemindDatePicker.xib */; };
+		687A436916F7C19400958347 /* ChimpKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 687A436216F7C19400958347 /* ChimpKit.m */; };
+		687A436A16F7C19400958347 /* CKAuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 687A436416F7C19400958347 /* CKAuthViewController.m */; };
+		687A436B16F7C19400958347 /* SubscribeAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 687A436616F7C19400958347 /* SubscribeAlertView.m */; };
+		687A436C16F7C19400958347 /* CKAuthViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 687A436816F7C19400958347 /* CKAuthViewController.xib */; };
 		687E58F916AD5CE2009D0A8F /* Appirater.m in Sources */ = {isa = PBXBuildFile; fileRef = 687E58DE16AD5CE2009D0A8F /* Appirater.m */; };
 		687E58FA16AD5CE2009D0A8F /* AppiraterLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 687E58E016AD5CE2009D0A8F /* AppiraterLocalizable.strings */; };
-		687EFE271625F6B3005CE7D6 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 687EFE231625F6B3005CE7D6 /* Icon-72.png */; };
-		687EFE281625F6B3005CE7D6 /* Icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 687EFE241625F6B3005CE7D6 /* Icon-72@2x.png */; };
-		687EFE291625F6B3005CE7D6 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 687EFE251625F6B3005CE7D6 /* Icon.png */; };
-		687EFE2A1625F6B3005CE7D6 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 687EFE261625F6B3005CE7D6 /* Icon@2x.png */; };
 		68893A3F16518CA800955990 /* BloodDonor_tutorial_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 68893A3316518CA800955990 /* BloodDonor_tutorial_1.png */; };
 		68893A4016518CA800955990 /* BloodDonor_tutorial_1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68893A3416518CA800955990 /* BloodDonor_tutorial_1@2x.png */; };
 		68893A4116518CA800955990 /* BloodDonor_tutorial_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 68893A3516518CA800955990 /* BloodDonor_tutorial_2.png */; };
@@ -250,7 +273,6 @@
 		688F7F8716A012FD008581D4 /* HSFlurryAnalytics.m in Sources */ = {isa = PBXBuildFile; fileRef = 688F7F8516A012FD008581D4 /* HSFlurryAnalytics.m */; };
 		688F7F8A16A01343008581D4 /* NSString+HSUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 688F7F8916A01343008581D4 /* NSString+HSUtils.m */; };
 		688F7FCA16A308A5008581D4 /* NSUnderlinedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 688F7FC916A308A5008581D4 /* NSUnderlinedButton.m */; };
-		689B00AF16A7537C00B5CA4C /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 689B00AE16A7537C00B5CA4C /* Default-568h@2x.png */; };
 		689B00C316A7783400B5CA4C /* facebookButtonNormal.png in Resources */ = {isa = PBXBuildFile; fileRef = 689B00B716A7783400B5CA4C /* facebookButtonNormal.png */; };
 		689B00C416A7783400B5CA4C /* facebookButtonNormal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 689B00B816A7783400B5CA4C /* facebookButtonNormal@2x.png */; };
 		689B00C516A7783400B5CA4C /* facebookButtonPressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 689B00B916A7783400B5CA4C /* facebookButtonPressed.png */; };
@@ -265,6 +287,7 @@
 		689B00CE16A7783400B5CA4C /* vkontakteButtonPressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 689B00C216A7783400B5CA4C /* vkontakteButtonPressed@2x.png */; };
 		689B00FD16AC37CC00B5CA4C /* recommendations.json in Resources */ = {isa = PBXBuildFile; fileRef = 689B00FC16AC37CC00B5CA4C /* recommendations.json */; };
 		689B010F16ACA69A00B5CA4C /* UIView+HSLayoutManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 689B010E16ACA69A00B5CA4C /* UIView+HSLayoutManager.m */; };
+		68B28E3317071DE3009FE0F8 /* HSUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B28E3217071DE3009FE0F8 /* HSUserInfo.m */; };
 		68B413281700140000BB32FF /* HSNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B413271700140000BB32FF /* HSNotification.m */; };
 		68B455B81635BC5100811A0F /* HSEventRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B455B71635BC5100811A0F /* HSEventRenderer.m */; };
 		68B455BC1635C0B500811A0F /* HSBloodDonationEventRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B455BB1635C0B500811A0F /* HSBloodDonationEventRenderer.m */; };
@@ -272,9 +295,8 @@
 		68B455C51635CDD500811A0F /* HSBloodTestsEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B455C41635CDD500811A0F /* HSBloodTestsEvent.m */; };
 		68B455C81635CE7A00811A0F /* HSBloodTestsEventRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B455C71635CE7A00811A0F /* HSBloodTestsEventRenderer.m */; };
 		68B455CE163739E900811A0F /* HSBloodRemoteEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B455CD163739E900811A0F /* HSBloodRemoteEvent.m */; };
-		68B82F2D16D0F8ED00533701 /* HSModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B82F2C16D0F8ED00533701 /* HSModalViewController.m */; };
-		68B82FD016D1113B00533701 /* CalendarInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B82F3616D1113A00533701 /* CalendarInfoViewController.m */; };
-		68B82FD116D1113B00533701 /* CalendarInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68B82F3716D1113A00533701 /* CalendarInfoViewController.xib */; };
+		68B82FD016D1113B00533701 /* HSCalendarInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B82F3616D1113A00533701 /* HSCalendarInfoViewController.m */; };
+		68B82FD116D1113B00533701 /* HSCalendarInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68B82F3716D1113A00533701 /* HSCalendarInfoViewController.xib */; };
 		68B82FD216D1113B00533701 /* HSBlockUIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B82F3916D1113A00533701 /* HSBlockUIViewController.m */; };
 		68B82FD316D1113B00533701 /* HSBlockUIViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68B82F3A16D1113A00533701 /* HSBlockUIViewController.xib */; };
 		68B82FD416D1113B00533701 /* HSCalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B82F3C16D1113A00533701 /* HSCalendarViewController.m */; };
@@ -283,12 +305,6 @@
 		68B82FD716D1113B00533701 /* HSEventPlanningViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68B82F4016D1113A00533701 /* HSEventPlanningViewController.xib */; };
 		68B82FD816D1113B00533701 /* HSEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B82F4216D1113A00533701 /* HSEventViewController.m */; };
 		68B82FD916D1113B00533701 /* HSEventViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68B82F4316D1113A00533701 /* HSEventViewController.xib */; };
-		68B82FDA16D1113B00533701 /* HSAddressPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B82F4616D1113A00533701 /* HSAddressPicker.m */; };
-		68B82FDB16D1113B00533701 /* HSAddressPicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68B82F4716D1113A00533701 /* HSAddressPicker.xib */; };
-		68B82FDC16D1113B00533701 /* HSBloodDonationTypePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B82F4916D1113A00533701 /* HSBloodDonationTypePicker.m */; };
-		68B82FDD16D1113B00533701 /* HSBloodDonationTypePicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68B82F4A16D1113A00533701 /* HSBloodDonationTypePicker.xib */; };
-		68B82FDE16D1113B00533701 /* HSDateTimePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B82F4C16D1113A00533701 /* HSDateTimePicker.m */; };
-		68B82FDF16D1113B00533701 /* HSDateTimePicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68B82F4D16D1113A00533701 /* HSDateTimePicker.xib */; };
 		68B82FE016D1113B00533701 /* AdsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B82F5116D1113A00533701 /* AdsCell.m */; };
 		68B82FE116D1113B00533701 /* AdsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68B82F5216D1113A00533701 /* AdsCell.xib */; };
 		68B82FE216D1113B00533701 /* AdsSubViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B82F5416D1113A00533701 /* AdsSubViewController.m */; };
@@ -327,18 +343,10 @@
 		68B8300316D1113B00533701 /* HSLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B82F9316D1113B00533701 /* HSLoginViewController.m */; };
 		68B8300416D1113B00533701 /* HSRestorePasswordViewCotroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B82F9516D1113B00533701 /* HSRestorePasswordViewCotroller.m */; };
 		68B8300516D1113B00533701 /* HSRestorePasswordViewCotroller.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68B82F9616D1113B00533701 /* HSRestorePasswordViewCotroller.xib */; };
-		68B8300616D1113B00533701 /* ProfileDescriptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B82F9916D1113B00533701 /* ProfileDescriptionViewController.m */; };
-		68B8300716D1113B00533701 /* ProfileDescriptionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68B82F9A16D1113B00533701 /* ProfileDescriptionViewController.xib */; };
-		68B8300816D1113B00533701 /* ProfileRegistrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B82F9C16D1113B00533701 /* ProfileRegistrationViewController.m */; };
-		68B8300916D1113B00533701 /* ProfileRegistrationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68B82F9D16D1113B00533701 /* ProfileRegistrationViewController.xib */; };
-		68B8300A16D1113B00533701 /* ProfileSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B82F9F16D1113B00533701 /* ProfileSettingsViewController.m */; };
-		68B8300B16D1113B00533701 /* ProfileSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68B82FA016D1113B00533701 /* ProfileSettingsViewController.xib */; };
-		68B8300C16D1113B00533701 /* ProfileSexSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B82FA216D1113B00533701 /* ProfileSexSelectViewController.m */; };
-		68B8300D16D1113B00533701 /* ProfileSexSelectViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68B82FA316D1113B00533701 /* ProfileSexSelectViewController.xib */; };
-		68B8300E16D1113B00533701 /* SelectBloodGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B82FA516D1113B00533701 /* SelectBloodGroupViewController.m */; };
-		68B8300F16D1113B00533701 /* SelectBloodGroupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68B82FA616D1113B00533701 /* SelectBloodGroupViewController.xib */; };
-		68B8301016D1113B00533701 /* SelectSexViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B82FA816D1113B00533701 /* SelectSexViewController.m */; };
-		68B8301116D1113B00533701 /* SelectSexViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68B82FA916D1113B00533701 /* SelectSexViewController.xib */; };
+		68B8300616D1113B00533701 /* HSProfileDescriptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B82F9916D1113B00533701 /* HSProfileDescriptionViewController.m */; };
+		68B8300716D1113B00533701 /* HSProfileDescriptionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68B82F9A16D1113B00533701 /* HSProfileDescriptionViewController.xib */; };
+		68B8300816D1113B00533701 /* HSProfileRegistrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B82F9C16D1113B00533701 /* HSProfileRegistrationViewController.m */; };
+		68B8300916D1113B00533701 /* HSProfileRegistrationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68B82F9D16D1113B00533701 /* HSProfileRegistrationViewController.xib */; };
 		68B8301216D1113B00533701 /* CoreLocationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B82FAC16D1113B00533701 /* CoreLocationController.m */; };
 		68B8301316D1113B00533701 /* FilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B82FAE16D1113B00533701 /* FilterViewController.m */; };
 		68B8301416D1113B00533701 /* FilterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68B82FAF16D1113B00533701 /* FilterViewController.xib */; };
@@ -421,8 +429,6 @@
 		851245921603443B00752AE1 /* tutorialDotNormal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 851245801603443B00752AE1 /* tutorialDotNormal@2x.png */; };
 		856B398415CEDEE100F0DEA7 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 856B398315CEDEE100F0DEA7 /* MessageUI.framework */; };
 		856B398A15CEDF2A00F0DEA7 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 856B398915CEDF2A00F0DEA7 /* CoreFoundation.framework */; };
-		8580F64515ECB26600376079 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8580F64415ECB26600376079 /* Default@2x.png */; };
-		8580F64815ECB29200376079 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 8580F64715ECB29200376079 /* Default.png */; };
 		8585E172161A991E00275AE7 /* userLocation@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8585E170161A991E00275AE7 /* userLocation@2x.png */; };
 		8585E17D161AB04C00275AE7 /* check.png in Resources */ = {isa = PBXBuildFile; fileRef = 8585E179161AB04C00275AE7 /* check.png */; };
 		8585E17E161AB04C00275AE7 /* check@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8585E17A161AB04C00275AE7 /* check@2x.png */; };
@@ -831,6 +837,43 @@
 		685CB3301640EED7004FF9AC /* icon_granulocytes_plan@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_granulocytes_plan@2x.png"; sourceTree = "<group>"; };
 		685CB3321640EEF4004FF9AC /* icon_plasma_plan@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_plasma_plan@2x.png"; sourceTree = "<group>"; };
 		685CB3341640EF0F004FF9AC /* icon_plateletes_plan@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_plateletes_plan@2x.png"; sourceTree = "<group>"; };
+		6864D5E7170865F900F150F9 /* HSSexType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSSexType.h; sourceTree = "<group>"; };
+		6864D5E8170865F900F150F9 /* HSSexType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSSexType.m; sourceTree = "<group>"; };
+		6864D5EA1708683A00F150F9 /* HSBloodType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSBloodType.h; sourceTree = "<group>"; };
+		6864D5EB1708683A00F150F9 /* HSBloodType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSBloodType.m; sourceTree = "<group>"; };
+		6864D5ED1708699C00F150F9 /* HSDevicePlatformType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSDevicePlatformType.h; sourceTree = "<group>"; };
+		6864D5EE1708699C00F150F9 /* HSDevicePlatformType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSDevicePlatformType.m; sourceTree = "<group>"; };
+		6864D5F11708995E00F150F9 /* HSModalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSModalViewController.h; sourceTree = "<group>"; };
+		6864D5F21708995E00F150F9 /* HSModalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSModalViewController.m; sourceTree = "<group>"; };
+		6864D5F41708995E00F150F9 /* HSAddressPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSAddressPicker.h; sourceTree = "<group>"; };
+		6864D5F51708995E00F150F9 /* HSAddressPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSAddressPicker.m; sourceTree = "<group>"; };
+		6864D5F61708995E00F150F9 /* HSAddressPicker.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HSAddressPicker.xib; sourceTree = "<group>"; };
+		6864D5F71708995E00F150F9 /* HSBloodDonationTypePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSBloodDonationTypePicker.h; sourceTree = "<group>"; };
+		6864D5F81708995E00F150F9 /* HSBloodDonationTypePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSBloodDonationTypePicker.m; sourceTree = "<group>"; };
+		6864D5F91708995E00F150F9 /* HSBloodDonationTypePicker.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HSBloodDonationTypePicker.xib; sourceTree = "<group>"; };
+		6864D5FA1708995E00F150F9 /* HSBloodTypePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSBloodTypePicker.h; sourceTree = "<group>"; };
+		6864D5FB1708995E00F150F9 /* HSBloodTypePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSBloodTypePicker.m; sourceTree = "<group>"; };
+		6864D5FC1708995E00F150F9 /* HSBloodTypePicker.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HSBloodTypePicker.xib; sourceTree = "<group>"; };
+		6864D5FD1708995E00F150F9 /* HSDateTimePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSDateTimePicker.h; sourceTree = "<group>"; };
+		6864D5FE1708995E00F150F9 /* HSDateTimePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSDateTimePicker.m; sourceTree = "<group>"; };
+		6864D5FF1708995E00F150F9 /* HSDateTimePicker.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HSDateTimePicker.xib; sourceTree = "<group>"; };
+		6864D6001708995E00F150F9 /* HSPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSPicker.h; sourceTree = "<group>"; };
+		6864D6011708995E00F150F9 /* HSPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSPicker.m; sourceTree = "<group>"; };
+		6864D6021708995E00F150F9 /* HSRemindDatePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSRemindDatePicker.h; sourceTree = "<group>"; };
+		6864D6031708995E00F150F9 /* HSRemindDatePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSRemindDatePicker.m; sourceTree = "<group>"; };
+		6864D6041708995E00F150F9 /* HSRemindDatePicker.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HSRemindDatePicker.xib; sourceTree = "<group>"; };
+		6864D6051708995E00F150F9 /* HSSexPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSSexPicker.h; sourceTree = "<group>"; };
+		6864D6061708995E00F150F9 /* HSSexPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSSexPicker.m; sourceTree = "<group>"; };
+		6864D6071708995E00F150F9 /* HSSexPicker.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HSSexPicker.xib; sourceTree = "<group>"; };
+		6864D6171708B3C400F150F9 /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
+		6864D6181708B3C400F150F9 /* Icon-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72@2x.png"; sourceTree = "<group>"; };
+		6864D6191708B3C400F150F9 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		6864D61A1708B3C400F150F9 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
+		6864D61C1708B3C400F150F9 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		6864D61D1708B3C400F150F9 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		6864D61E1708B3C400F150F9 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		6864D6271708CB4900F150F9 /* HSMailChimp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSMailChimp.h; sourceTree = "<group>"; };
+		6864D6281708CB4900F150F9 /* HSMailChimp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSMailChimp.m; sourceTree = "<group>"; };
 		686BA62016344DE2004D7082 /* HSCalendarDayButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSCalendarDayButton.h; sourceTree = "<group>"; };
 		686BA62116344DE2004D7082 /* HSCalendarDayButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSCalendarDayButton.m; sourceTree = "<group>"; };
 		686BA62516345D0E004D7082 /* NSCalendar+HSCalendar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSCalendar+HSCalendar.h"; sourceTree = "<group>"; };
@@ -858,9 +901,13 @@
 		687A431416F629B900958347 /* Swizzler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Swizzler.m; sourceTree = "<group>"; };
 		687A431616F62D2300958347 /* HSBloodRemoteEventMoc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSBloodRemoteEventMoc.h; sourceTree = "<group>"; };
 		687A431716F62D2300958347 /* HSBloodRemoteEventMoc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSBloodRemoteEventMoc.m; sourceTree = "<group>"; };
-		687A437116F97EE900958347 /* HSRemindDatePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSRemindDatePicker.h; sourceTree = "<group>"; };
-		687A437216F97EE900958347 /* HSRemindDatePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSRemindDatePicker.m; sourceTree = "<group>"; };
-		687A437316F97EEA00958347 /* HSRemindDatePicker.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HSRemindDatePicker.xib; sourceTree = "<group>"; };
+		687A436116F7C19400958347 /* ChimpKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChimpKit.h; sourceTree = "<group>"; };
+		687A436216F7C19400958347 /* ChimpKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChimpKit.m; sourceTree = "<group>"; };
+		687A436316F7C19400958347 /* CKAuthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKAuthViewController.h; sourceTree = "<group>"; };
+		687A436416F7C19400958347 /* CKAuthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKAuthViewController.m; sourceTree = "<group>"; };
+		687A436516F7C19400958347 /* SubscribeAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubscribeAlertView.h; sourceTree = "<group>"; };
+		687A436616F7C19400958347 /* SubscribeAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubscribeAlertView.m; sourceTree = "<group>"; };
+		687A436816F7C19400958347 /* CKAuthViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CKAuthViewController.xib; sourceTree = "<group>"; };
 		687E58DD16AD5CE2009D0A8F /* Appirater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Appirater.h; sourceTree = "<group>"; };
 		687E58DE16AD5CE2009D0A8F /* Appirater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Appirater.m; sourceTree = "<group>"; };
 		687E58DF16AD5CE2009D0A8F /* AppiraterDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppiraterDelegate.h; sourceTree = "<group>"; };
@@ -886,10 +933,6 @@
 		687E58F516AD5CE2009D0A8F /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/AppiraterLocalizable.strings; sourceTree = "<group>"; };
 		687E58F616AD5CE2009D0A8F /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/AppiraterLocalizable.strings"; sourceTree = "<group>"; };
 		687E58F716AD5CE2009D0A8F /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/AppiraterLocalizable.strings"; sourceTree = "<group>"; };
-		687EFE231625F6B3005CE7D6 /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-72.png"; path = "../Icon-72.png"; sourceTree = "<group>"; };
-		687EFE241625F6B3005CE7D6 /* Icon-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-72@2x.png"; path = "../Icon-72@2x.png"; sourceTree = "<group>"; };
-		687EFE251625F6B3005CE7D6 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = ../Icon.png; sourceTree = "<group>"; };
-		687EFE261625F6B3005CE7D6 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "../Icon@2x.png"; sourceTree = "<group>"; };
 		68893A16164FA04200955990 /* HSCalendarInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSCalendarInfo.h; sourceTree = "<group>"; };
 		68893A3316518CA800955990 /* BloodDonor_tutorial_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BloodDonor_tutorial_1.png; sourceTree = "<group>"; };
 		68893A3416518CA800955990 /* BloodDonor_tutorial_1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BloodDonor_tutorial_1@2x.png"; sourceTree = "<group>"; };
@@ -912,7 +955,6 @@
 		688F7F8916A01343008581D4 /* NSString+HSUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+HSUtils.m"; sourceTree = "<group>"; };
 		688F7FC816A308A5008581D4 /* NSUnderlinedButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSUnderlinedButton.h; sourceTree = "<group>"; };
 		688F7FC916A308A5008581D4 /* NSUnderlinedButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSUnderlinedButton.m; sourceTree = "<group>"; };
-		689B00AE16A7537C00B5CA4C /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		689B00B716A7783400B5CA4C /* facebookButtonNormal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = facebookButtonNormal.png; sourceTree = "<group>"; };
 		689B00B816A7783400B5CA4C /* facebookButtonNormal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "facebookButtonNormal@2x.png"; sourceTree = "<group>"; };
 		689B00B916A7783400B5CA4C /* facebookButtonPressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = facebookButtonPressed.png; sourceTree = "<group>"; };
@@ -928,6 +970,8 @@
 		689B00FC16AC37CC00B5CA4C /* recommendations.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = recommendations.json; sourceTree = "<group>"; };
 		689B010D16ACA69A00B5CA4C /* UIView+HSLayoutManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+HSLayoutManager.h"; sourceTree = "<group>"; };
 		689B010E16ACA69A00B5CA4C /* UIView+HSLayoutManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+HSLayoutManager.m"; sourceTree = "<group>"; };
+		68B28E3117071DE3009FE0F8 /* HSUserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSUserInfo.h; sourceTree = "<group>"; };
+		68B28E3217071DE3009FE0F8 /* HSUserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSUserInfo.m; sourceTree = "<group>"; };
 		68B413261700140000BB32FF /* HSNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSNotification.h; sourceTree = "<group>"; };
 		68B413271700140000BB32FF /* HSNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSNotification.m; sourceTree = "<group>"; };
 		68B455B61635BC5100811A0F /* HSEventRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HSEventRenderer.h; path = event/HSEventRenderer.h; sourceTree = "<group>"; };
@@ -942,11 +986,9 @@
 		68B455C71635CE7A00811A0F /* HSBloodTestsEventRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HSBloodTestsEventRenderer.m; path = event/HSBloodTestsEventRenderer.m; sourceTree = "<group>"; };
 		68B455CC163739E800811A0F /* HSBloodRemoteEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSBloodRemoteEvent.h; sourceTree = "<group>"; };
 		68B455CD163739E900811A0F /* HSBloodRemoteEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSBloodRemoteEvent.m; sourceTree = "<group>"; };
-		68B82F2B16D0F8ED00533701 /* HSModalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSModalViewController.h; sourceTree = "<group>"; };
-		68B82F2C16D0F8ED00533701 /* HSModalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSModalViewController.m; sourceTree = "<group>"; };
-		68B82F3516D1113A00533701 /* CalendarInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarInfoViewController.h; sourceTree = "<group>"; };
-		68B82F3616D1113A00533701 /* CalendarInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarInfoViewController.m; sourceTree = "<group>"; };
-		68B82F3716D1113A00533701 /* CalendarInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CalendarInfoViewController.xib; sourceTree = "<group>"; };
+		68B82F3516D1113A00533701 /* HSCalendarInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSCalendarInfoViewController.h; sourceTree = "<group>"; };
+		68B82F3616D1113A00533701 /* HSCalendarInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSCalendarInfoViewController.m; sourceTree = "<group>"; };
+		68B82F3716D1113A00533701 /* HSCalendarInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HSCalendarInfoViewController.xib; sourceTree = "<group>"; };
 		68B82F3816D1113A00533701 /* HSBlockUIViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSBlockUIViewController.h; sourceTree = "<group>"; };
 		68B82F3916D1113A00533701 /* HSBlockUIViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSBlockUIViewController.m; sourceTree = "<group>"; };
 		68B82F3A16D1113A00533701 /* HSBlockUIViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HSBlockUIViewController.xib; sourceTree = "<group>"; };
@@ -959,15 +1001,6 @@
 		68B82F4116D1113A00533701 /* HSEventViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSEventViewController.h; sourceTree = "<group>"; };
 		68B82F4216D1113A00533701 /* HSEventViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSEventViewController.m; sourceTree = "<group>"; };
 		68B82F4316D1113A00533701 /* HSEventViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HSEventViewController.xib; sourceTree = "<group>"; };
-		68B82F4516D1113A00533701 /* HSAddressPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSAddressPicker.h; sourceTree = "<group>"; };
-		68B82F4616D1113A00533701 /* HSAddressPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSAddressPicker.m; sourceTree = "<group>"; };
-		68B82F4716D1113A00533701 /* HSAddressPicker.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HSAddressPicker.xib; sourceTree = "<group>"; };
-		68B82F4816D1113A00533701 /* HSBloodDonationTypePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSBloodDonationTypePicker.h; sourceTree = "<group>"; };
-		68B82F4916D1113A00533701 /* HSBloodDonationTypePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSBloodDonationTypePicker.m; sourceTree = "<group>"; };
-		68B82F4A16D1113A00533701 /* HSBloodDonationTypePicker.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HSBloodDonationTypePicker.xib; sourceTree = "<group>"; };
-		68B82F4B16D1113A00533701 /* HSDateTimePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSDateTimePicker.h; sourceTree = "<group>"; };
-		68B82F4C16D1113A00533701 /* HSDateTimePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSDateTimePicker.m; sourceTree = "<group>"; };
-		68B82F4D16D1113A00533701 /* HSDateTimePicker.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HSDateTimePicker.xib; sourceTree = "<group>"; };
 		68B82F5016D1113A00533701 /* AdsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdsCell.h; sourceTree = "<group>"; };
 		68B82F5116D1113A00533701 /* AdsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdsCell.m; sourceTree = "<group>"; };
 		68B82F5216D1113A00533701 /* AdsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AdsCell.xib; sourceTree = "<group>"; };
@@ -1029,24 +1062,12 @@
 		68B82F9416D1113B00533701 /* HSRestorePasswordViewCotroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSRestorePasswordViewCotroller.h; sourceTree = "<group>"; };
 		68B82F9516D1113B00533701 /* HSRestorePasswordViewCotroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSRestorePasswordViewCotroller.m; sourceTree = "<group>"; };
 		68B82F9616D1113B00533701 /* HSRestorePasswordViewCotroller.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HSRestorePasswordViewCotroller.xib; sourceTree = "<group>"; };
-		68B82F9816D1113B00533701 /* ProfileDescriptionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileDescriptionViewController.h; sourceTree = "<group>"; };
-		68B82F9916D1113B00533701 /* ProfileDescriptionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileDescriptionViewController.m; sourceTree = "<group>"; };
-		68B82F9A16D1113B00533701 /* ProfileDescriptionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileDescriptionViewController.xib; sourceTree = "<group>"; };
-		68B82F9B16D1113B00533701 /* ProfileRegistrationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileRegistrationViewController.h; sourceTree = "<group>"; };
-		68B82F9C16D1113B00533701 /* ProfileRegistrationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileRegistrationViewController.m; sourceTree = "<group>"; };
-		68B82F9D16D1113B00533701 /* ProfileRegistrationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileRegistrationViewController.xib; sourceTree = "<group>"; };
-		68B82F9E16D1113B00533701 /* ProfileSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileSettingsViewController.h; sourceTree = "<group>"; };
-		68B82F9F16D1113B00533701 /* ProfileSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileSettingsViewController.m; sourceTree = "<group>"; };
-		68B82FA016D1113B00533701 /* ProfileSettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileSettingsViewController.xib; sourceTree = "<group>"; };
-		68B82FA116D1113B00533701 /* ProfileSexSelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileSexSelectViewController.h; sourceTree = "<group>"; };
-		68B82FA216D1113B00533701 /* ProfileSexSelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileSexSelectViewController.m; sourceTree = "<group>"; };
-		68B82FA316D1113B00533701 /* ProfileSexSelectViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileSexSelectViewController.xib; sourceTree = "<group>"; };
-		68B82FA416D1113B00533701 /* SelectBloodGroupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectBloodGroupViewController.h; sourceTree = "<group>"; };
-		68B82FA516D1113B00533701 /* SelectBloodGroupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectBloodGroupViewController.m; sourceTree = "<group>"; };
-		68B82FA616D1113B00533701 /* SelectBloodGroupViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectBloodGroupViewController.xib; sourceTree = "<group>"; };
-		68B82FA716D1113B00533701 /* SelectSexViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectSexViewController.h; sourceTree = "<group>"; };
-		68B82FA816D1113B00533701 /* SelectSexViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectSexViewController.m; sourceTree = "<group>"; };
-		68B82FA916D1113B00533701 /* SelectSexViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectSexViewController.xib; sourceTree = "<group>"; };
+		68B82F9816D1113B00533701 /* HSProfileDescriptionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSProfileDescriptionViewController.h; sourceTree = "<group>"; };
+		68B82F9916D1113B00533701 /* HSProfileDescriptionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSProfileDescriptionViewController.m; sourceTree = "<group>"; };
+		68B82F9A16D1113B00533701 /* HSProfileDescriptionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HSProfileDescriptionViewController.xib; sourceTree = "<group>"; };
+		68B82F9B16D1113B00533701 /* HSProfileRegistrationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSProfileRegistrationViewController.h; sourceTree = "<group>"; };
+		68B82F9C16D1113B00533701 /* HSProfileRegistrationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSProfileRegistrationViewController.m; sourceTree = "<group>"; };
+		68B82F9D16D1113B00533701 /* HSProfileRegistrationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HSProfileRegistrationViewController.xib; sourceTree = "<group>"; };
 		68B82FAB16D1113B00533701 /* CoreLocationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreLocationController.h; sourceTree = "<group>"; };
 		68B82FAC16D1113B00533701 /* CoreLocationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreLocationController.m; sourceTree = "<group>"; };
 		68B82FAD16D1113B00533701 /* FilterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterViewController.h; sourceTree = "<group>"; };
@@ -1108,7 +1129,6 @@
 		68D6CD9316DD351800972D41 /* HSContactView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HSContactView.xib; sourceTree = "<group>"; };
 		68D6CD9516E22A8600972D41 /* HSBloodRemoteEvent+LocalNotification_Protected.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "HSBloodRemoteEvent+LocalNotification_Protected.h"; sourceTree = "<group>"; };
 		68D6CD9616E22A8800972D41 /* HSBloodRemoteEvent+LocalNotification_Protected.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "HSBloodRemoteEvent+LocalNotification_Protected.m"; sourceTree = "<group>"; };
-		68D8F0A516FF7FEA002CCEE2 /* HSPickerCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSPickerCommon.h; sourceTree = "<group>"; };
 		68EB2756163090B90092FDBA /* HSCalendar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSCalendar.h; sourceTree = "<group>"; };
 		68EB2757163090B90092FDBA /* HSCalendar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSCalendar.m; sourceTree = "<group>"; };
 		68EB275A163091190092FDBA /* HSEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSEvent.h; sourceTree = "<group>"; };
@@ -1164,8 +1184,6 @@
 		856B398315CEDEE100F0DEA7 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		856B398515CEDEF600F0DEA7 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		856B398915CEDF2A00F0DEA7 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
-		8580F64415ECB26600376079 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "../Default@2x.png"; sourceTree = "<group>"; };
-		8580F64715ECB29200376079 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../Default.png; sourceTree = "<group>"; };
 		8585E170161A991E00275AE7 /* userLocation@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "userLocation@2x.png"; sourceTree = "<group>"; };
 		8585E179161AB04C00275AE7 /* check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = check.png; sourceTree = "<group>"; };
 		8585E17A161AB04C00275AE7 /* check@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "check@2x.png"; sourceTree = "<group>"; };
@@ -1381,7 +1399,6 @@
 		37153E9015AEBA3400C985C1 = {
 			isa = PBXGroup;
 			children = (
-				689B00AE16A7537C00B5CA4C /* Default-568h@2x.png */,
 				685CB2F9163F2016004FF9AC /* Libs */,
 				37153EA515AEBA3400C985C1 /* Donor */,
 				68BB4056162F0B9400098861 /* DonorTests */,
@@ -1455,10 +1472,11 @@
 		3758525915AEE959006DF7E1 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				6864D6161708B3C400F150F9 /* icons */,
+				6864D61B1708B3C400F150F9 /* splash */,
 				689B00B516A7783400B5CA4C /* info */,
 				685088E01667638A004EC3CC /* profile */,
 				685CB2FB1640E87A004FF9AC /* Calendar */,
-				68EB2752163090060092FDBA /* device */,
 				68893A3216518CA800955990 /* tutorial */,
 				858EE0AA161D38D000A09858 /* userLocation.png */,
 				8585E179161AB04C00275AE7 /* check.png */,
@@ -1930,6 +1948,7 @@
 		685CB2F9163F2016004FF9AC /* Libs */ = {
 			isa = PBXGroup;
 			children = (
+				687A434816F7B60200958347 /* ChimpKit */,
 				68B8304416D186CF00533701 /* FTCoreText */,
 				68B8304916D186CF00533701 /* TTTAttributedLabel */,
 				687E58DB16AD5CE2009D0A8F /* Appirater */,
@@ -2033,6 +2052,86 @@
 			path = test;
 			sourceTree = "<group>";
 		};
+		6864D5E6170865C000F150F9 /* types */ = {
+			isa = PBXGroup;
+			children = (
+				6864D5E7170865F900F150F9 /* HSSexType.h */,
+				6864D5E8170865F900F150F9 /* HSSexType.m */,
+				6864D5EA1708683A00F150F9 /* HSBloodType.h */,
+				6864D5EB1708683A00F150F9 /* HSBloodType.m */,
+				6864D5ED1708699C00F150F9 /* HSDevicePlatformType.h */,
+				6864D5EE1708699C00F150F9 /* HSDevicePlatformType.m */,
+			);
+			path = types;
+			sourceTree = "<group>";
+		};
+		6864D5F01708995E00F150F9 /* modal */ = {
+			isa = PBXGroup;
+			children = (
+				6864D5F11708995E00F150F9 /* HSModalViewController.h */,
+				6864D5F21708995E00F150F9 /* HSModalViewController.m */,
+				6864D5F31708995E00F150F9 /* picker */,
+			);
+			path = modal;
+			sourceTree = "<group>";
+		};
+		6864D5F31708995E00F150F9 /* picker */ = {
+			isa = PBXGroup;
+			children = (
+				6864D5F41708995E00F150F9 /* HSAddressPicker.h */,
+				6864D5F51708995E00F150F9 /* HSAddressPicker.m */,
+				6864D5F61708995E00F150F9 /* HSAddressPicker.xib */,
+				6864D5F71708995E00F150F9 /* HSBloodDonationTypePicker.h */,
+				6864D5F81708995E00F150F9 /* HSBloodDonationTypePicker.m */,
+				6864D5F91708995E00F150F9 /* HSBloodDonationTypePicker.xib */,
+				6864D5FA1708995E00F150F9 /* HSBloodTypePicker.h */,
+				6864D5FB1708995E00F150F9 /* HSBloodTypePicker.m */,
+				6864D5FC1708995E00F150F9 /* HSBloodTypePicker.xib */,
+				6864D5FD1708995E00F150F9 /* HSDateTimePicker.h */,
+				6864D5FE1708995E00F150F9 /* HSDateTimePicker.m */,
+				6864D5FF1708995E00F150F9 /* HSDateTimePicker.xib */,
+				6864D6001708995E00F150F9 /* HSPicker.h */,
+				6864D6011708995E00F150F9 /* HSPicker.m */,
+				6864D6021708995E00F150F9 /* HSRemindDatePicker.h */,
+				6864D6031708995E00F150F9 /* HSRemindDatePicker.m */,
+				6864D6041708995E00F150F9 /* HSRemindDatePicker.xib */,
+				6864D6051708995E00F150F9 /* HSSexPicker.h */,
+				6864D6061708995E00F150F9 /* HSSexPicker.m */,
+				6864D6071708995E00F150F9 /* HSSexPicker.xib */,
+			);
+			path = picker;
+			sourceTree = "<group>";
+		};
+		6864D6161708B3C400F150F9 /* icons */ = {
+			isa = PBXGroup;
+			children = (
+				6864D6171708B3C400F150F9 /* Icon-72.png */,
+				6864D6181708B3C400F150F9 /* Icon-72@2x.png */,
+				6864D6191708B3C400F150F9 /* Icon.png */,
+				6864D61A1708B3C400F150F9 /* Icon@2x.png */,
+			);
+			path = icons;
+			sourceTree = "<group>";
+		};
+		6864D61B1708B3C400F150F9 /* splash */ = {
+			isa = PBXGroup;
+			children = (
+				6864D61C1708B3C400F150F9 /* Default-568h@2x.png */,
+				6864D61D1708B3C400F150F9 /* Default.png */,
+				6864D61E1708B3C400F150F9 /* Default@2x.png */,
+			);
+			path = splash;
+			sourceTree = "<group>";
+		};
+		6864D6261708CB2800F150F9 /* MailChimp */ = {
+			isa = PBXGroup;
+			children = (
+				6864D6271708CB4900F150F9 /* HSMailChimp.h */,
+				6864D6281708CB4900F150F9 /* HSMailChimp.m */,
+			);
+			path = MailChimp;
+			sourceTree = "<group>";
+		};
 		686BA61816332CB3004D7082 /* view */ = {
 			isa = PBXGroup;
 			children = (
@@ -2052,8 +2151,6 @@
 				686BA62116344DE2004D7082 /* HSCalendarDayButton.m */,
 				688F7FC816A308A5008581D4 /* NSUnderlinedButton.h */,
 				688F7FC916A308A5008581D4 /* NSUnderlinedButton.m */,
-				68B82F2B16D0F8ED00533701 /* HSModalViewController.h */,
-				68B82F2C16D0F8ED00533701 /* HSModalViewController.m */,
 			);
 			path = component;
 			sourceTree = "<group>";
@@ -2079,21 +2176,6 @@
 			);
 			name = TestFlightSDK;
 			path = Libs/TestFlightSDK;
-			sourceTree = "<group>";
-		};
-		687704B416EE609800DF332F /* event */ = {
-			isa = PBXGroup;
-			children = (
-				687704B516EE609800DF332F /* handler */,
-			);
-			path = event;
-			sourceTree = "<group>";
-		};
-		687704B516EE609800DF332F /* handler */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = handler;
 			sourceTree = "<group>";
 		};
 		687A42F916F5CEFC00958347 /* OCMock */ = {
@@ -2126,6 +2208,38 @@
 				687A431416F629B900958347 /* Swizzler.m */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		687A434816F7B60200958347 /* ChimpKit */ = {
+			isa = PBXGroup;
+			children = (
+				687A436016F7C19400958347 /* Classes */,
+				687A436716F7C19400958347 /* Nibs */,
+			);
+			name = ChimpKit;
+			sourceTree = "<group>";
+		};
+		687A436016F7C19400958347 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				687A436116F7C19400958347 /* ChimpKit.h */,
+				687A436216F7C19400958347 /* ChimpKit.m */,
+				687A436316F7C19400958347 /* CKAuthViewController.h */,
+				687A436416F7C19400958347 /* CKAuthViewController.m */,
+				687A436516F7C19400958347 /* SubscribeAlertView.h */,
+				687A436616F7C19400958347 /* SubscribeAlertView.m */,
+			);
+			name = Classes;
+			path = Libs/ChimpKit/Core/Classes;
+			sourceTree = "<group>";
+		};
+		687A436716F7C19400958347 /* Nibs */ = {
+			isa = PBXGroup;
+			children = (
+				687A436816F7C19400958347 /* CKAuthViewController.xib */,
+			);
+			name = Nibs;
+			path = Libs/ChimpKit/Core/Nibs;
 			sourceTree = "<group>";
 		};
 		687E58DB16AD5CE2009D0A8F /* Appirater */ = {
@@ -2163,6 +2277,7 @@
 			isa = PBXGroup;
 			children = (
 				688F7F8316A012FD008581D4 /* FlurryAnalytics */,
+				6864D6261708CB2800F150F9 /* MailChimp */,
 				688F7F8616A012FD008581D4 /* string */,
 			);
 			path = utils;
@@ -2213,6 +2328,15 @@
 			path = news;
 			sourceTree = "<group>";
 		};
+		68B28E3017071DBB009FE0F8 /* remote */ = {
+			isa = PBXGroup;
+			children = (
+				68B28E3117071DE3009FE0F8 /* HSUserInfo.h */,
+				68B28E3217071DE3009FE0F8 /* HSUserInfo.m */,
+			);
+			path = remote;
+			sourceTree = "<group>";
+		};
 		68B455B41635BC0700811A0F /* renderer */ = {
 			isa = PBXGroup;
 			children = (
@@ -2239,7 +2363,7 @@
 		68B82F3316D1113A00533701 /* controller */ = {
 			isa = PBXGroup;
 			children = (
-				687704B416EE609800DF332F /* event */,
+				6864D5F01708995E00F150F9 /* modal */,
 				68B82F3416D1113A00533701 /* calendar */,
 				68B82F4E16D1113A00533701 /* info */,
 				68B82F8716D1113B00533701 /* intro */,
@@ -2253,9 +2377,9 @@
 		68B82F3416D1113A00533701 /* calendar */ = {
 			isa = PBXGroup;
 			children = (
-				68B82F3516D1113A00533701 /* CalendarInfoViewController.h */,
-				68B82F3616D1113A00533701 /* CalendarInfoViewController.m */,
-				68B82F3716D1113A00533701 /* CalendarInfoViewController.xib */,
+				68B82F3516D1113A00533701 /* HSCalendarInfoViewController.h */,
+				68B82F3616D1113A00533701 /* HSCalendarInfoViewController.m */,
+				68B82F3716D1113A00533701 /* HSCalendarInfoViewController.xib */,
 				68B82F3816D1113A00533701 /* HSBlockUIViewController.h */,
 				68B82F3916D1113A00533701 /* HSBlockUIViewController.m */,
 				68B82F3A16D1113A00533701 /* HSBlockUIViewController.xib */,
@@ -2268,29 +2392,8 @@
 				68B82F4116D1113A00533701 /* HSEventViewController.h */,
 				68B82F4216D1113A00533701 /* HSEventViewController.m */,
 				68B82F4316D1113A00533701 /* HSEventViewController.xib */,
-				68B82F4416D1113A00533701 /* picker */,
 			);
 			path = calendar;
-			sourceTree = "<group>";
-		};
-		68B82F4416D1113A00533701 /* picker */ = {
-			isa = PBXGroup;
-			children = (
-				68D8F0A516FF7FEA002CCEE2 /* HSPickerCommon.h */,
-				68B82F4516D1113A00533701 /* HSAddressPicker.h */,
-				68B82F4616D1113A00533701 /* HSAddressPicker.m */,
-				68B82F4716D1113A00533701 /* HSAddressPicker.xib */,
-				68B82F4816D1113A00533701 /* HSBloodDonationTypePicker.h */,
-				68B82F4916D1113A00533701 /* HSBloodDonationTypePicker.m */,
-				68B82F4A16D1113A00533701 /* HSBloodDonationTypePicker.xib */,
-				68B82F4B16D1113A00533701 /* HSDateTimePicker.h */,
-				68B82F4C16D1113A00533701 /* HSDateTimePicker.m */,
-				68B82F4D16D1113A00533701 /* HSDateTimePicker.xib */,
-				687A437116F97EE900958347 /* HSRemindDatePicker.h */,
-				687A437216F97EE900958347 /* HSRemindDatePicker.m */,
-				687A437316F97EEA00958347 /* HSRemindDatePicker.xib */,
-			);
-			path = picker;
 			sourceTree = "<group>";
 		};
 		68B82F4E16D1113A00533701 /* info */ = {
@@ -2456,24 +2559,12 @@
 		68B82F9716D1113B00533701 /* profile */ = {
 			isa = PBXGroup;
 			children = (
-				68B82F9816D1113B00533701 /* ProfileDescriptionViewController.h */,
-				68B82F9916D1113B00533701 /* ProfileDescriptionViewController.m */,
-				68B82F9A16D1113B00533701 /* ProfileDescriptionViewController.xib */,
-				68B82F9B16D1113B00533701 /* ProfileRegistrationViewController.h */,
-				68B82F9C16D1113B00533701 /* ProfileRegistrationViewController.m */,
-				68B82F9D16D1113B00533701 /* ProfileRegistrationViewController.xib */,
-				68B82F9E16D1113B00533701 /* ProfileSettingsViewController.h */,
-				68B82F9F16D1113B00533701 /* ProfileSettingsViewController.m */,
-				68B82FA016D1113B00533701 /* ProfileSettingsViewController.xib */,
-				68B82FA116D1113B00533701 /* ProfileSexSelectViewController.h */,
-				68B82FA216D1113B00533701 /* ProfileSexSelectViewController.m */,
-				68B82FA316D1113B00533701 /* ProfileSexSelectViewController.xib */,
-				68B82FA416D1113B00533701 /* SelectBloodGroupViewController.h */,
-				68B82FA516D1113B00533701 /* SelectBloodGroupViewController.m */,
-				68B82FA616D1113B00533701 /* SelectBloodGroupViewController.xib */,
-				68B82FA716D1113B00533701 /* SelectSexViewController.h */,
-				68B82FA816D1113B00533701 /* SelectSexViewController.m */,
-				68B82FA916D1113B00533701 /* SelectSexViewController.xib */,
+				68B82F9816D1113B00533701 /* HSProfileDescriptionViewController.h */,
+				68B82F9916D1113B00533701 /* HSProfileDescriptionViewController.m */,
+				68B82F9A16D1113B00533701 /* HSProfileDescriptionViewController.xib */,
+				68B82F9B16D1113B00533701 /* HSProfileRegistrationViewController.h */,
+				68B82F9C16D1113B00533701 /* HSProfileRegistrationViewController.m */,
+				68B82F9D16D1113B00533701 /* HSProfileRegistrationViewController.xib */,
 			);
 			path = profile;
 			sourceTree = "<group>";
@@ -2577,24 +2668,13 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		68EB2752163090060092FDBA /* device */ = {
-			isa = PBXGroup;
-			children = (
-				687EFE231625F6B3005CE7D6 /* Icon-72.png */,
-				687EFE241625F6B3005CE7D6 /* Icon-72@2x.png */,
-				687EFE251625F6B3005CE7D6 /* Icon.png */,
-				687EFE261625F6B3005CE7D6 /* Icon@2x.png */,
-				8580F64715ECB29200376079 /* Default.png */,
-				8580F64415ECB26600376079 /* Default@2x.png */,
-			);
-			name = device;
-			sourceTree = "<group>";
-		};
 		68EB27531630906A0092FDBA /* model */ = {
 			isa = PBXGroup;
 			children = (
 				68F7F3EF1638878800740CCF /* HSModelCommon.h */,
 				68F7F3F01638878800740CCF /* HSModelCommon.m */,
+				6864D5E6170865C000F150F9 /* types */,
+				68B28E3017071DBB009FE0F8 /* remote */,
 				68EB27541630906A0092FDBA /* calendar */,
 				68EB27551630906A0092FDBA /* event */,
 			);
@@ -3052,8 +3132,6 @@
 				85ADBCC015E8DFF9006E6CB7 /* sharingCancelButtonNormal.png in Resources */,
 				85ADBCC315E8E071006E6CB7 /* sharingBackground@2x.png in Resources */,
 				85ADBCC415E8E071006E6CB7 /* sharingBackground.png in Resources */,
-				8580F64515ECB26600376079 /* Default@2x.png in Resources */,
-				8580F64815ECB29200376079 /* Default.png in Resources */,
 				8512458F1603443B00752AE1 /* tutorialDotActive.png in Resources */,
 				851245901603443B00752AE1 /* tutorialDotActive@2x.png in Resources */,
 				851245911603443B00752AE1 /* tutorialDotNormal.png in Resources */,
@@ -3064,10 +3142,6 @@
 				8585E17F161AB04C00275AE7 /* clearButton.png in Resources */,
 				8585E180161AB04C00275AE7 /* clearButton@2x.png in Resources */,
 				858EE0AB161D38D000A09858 /* userLocation.png in Resources */,
-				687EFE271625F6B3005CE7D6 /* Icon-72.png in Resources */,
-				687EFE281625F6B3005CE7D6 /* Icon-72@2x.png in Resources */,
-				687EFE291625F6B3005CE7D6 /* Icon.png in Resources */,
-				687EFE2A1625F6B3005CE7D6 /* Icon@2x.png in Resources */,
 				685CB3131640E87F004FF9AC /* icon_blood.png in Resources */,
 				685CB3141640E87F004FF9AC /* icon_blood@2x.png in Resources */,
 				685CB3151640E87F004FF9AC /* icon_blood_check.png in Resources */,
@@ -3155,16 +3229,12 @@
 				689B00CD16A7783400B5CA4C /* vkontakteButtonPressed.png in Resources */,
 				689B00CE16A7783400B5CA4C /* vkontakteButtonPressed@2x.png in Resources */,
 				687E58FA16AD5CE2009D0A8F /* AppiraterLocalizable.strings in Resources */,
-				689B00AF16A7537C00B5CA4C /* Default-568h@2x.png in Resources */,
 				689B00FD16AC37CC00B5CA4C /* recommendations.json in Resources */,
-				68B82FD116D1113B00533701 /* CalendarInfoViewController.xib in Resources */,
+				68B82FD116D1113B00533701 /* HSCalendarInfoViewController.xib in Resources */,
 				68B82FD316D1113B00533701 /* HSBlockUIViewController.xib in Resources */,
 				68B82FD516D1113B00533701 /* HSCalendarViewController.xib in Resources */,
 				68B82FD716D1113B00533701 /* HSEventPlanningViewController.xib in Resources */,
 				68B82FD916D1113B00533701 /* HSEventViewController.xib in Resources */,
-				68B82FDB16D1113B00533701 /* HSAddressPicker.xib in Resources */,
-				68B82FDD16D1113B00533701 /* HSBloodDonationTypePicker.xib in Resources */,
-				68B82FDF16D1113B00533701 /* HSDateTimePicker.xib in Resources */,
 				68B82FE116D1113B00533701 /* AdsCell.xib in Resources */,
 				68B82FE316D1113B00533701 /* AdsSubViewController.xib in Resources */,
 				68B82FE516D1113B00533701 /* AdsViewController.xib in Resources */,
@@ -3180,12 +3250,8 @@
 				68B8300016D1113B00533701 /* HSBaseLoginViewController.xib in Resources */,
 				68B8300216D1113B00533701 /* HSLoginChoiceViewController.xib in Resources */,
 				68B8300516D1113B00533701 /* HSRestorePasswordViewCotroller.xib in Resources */,
-				68B8300716D1113B00533701 /* ProfileDescriptionViewController.xib in Resources */,
-				68B8300916D1113B00533701 /* ProfileRegistrationViewController.xib in Resources */,
-				68B8300B16D1113B00533701 /* ProfileSettingsViewController.xib in Resources */,
-				68B8300D16D1113B00533701 /* ProfileSexSelectViewController.xib in Resources */,
-				68B8300F16D1113B00533701 /* SelectBloodGroupViewController.xib in Resources */,
-				68B8301116D1113B00533701 /* SelectSexViewController.xib in Resources */,
+				68B8300716D1113B00533701 /* HSProfileDescriptionViewController.xib in Resources */,
+				68B8300916D1113B00533701 /* HSProfileRegistrationViewController.xib in Resources */,
 				68B8301416D1113B00533701 /* FilterViewController.xib in Resources */,
 				68B8301616D1113B00533701 /* ForDonorsCell.xib in Resources */,
 				68B8301816D1113B00533701 /* ReviewsCell.xib in Resources */,
@@ -3197,7 +3263,20 @@
 				68B8302916D1113B00533701 /* StationsViewController.xib in Resources */,
 				68B8302E16D1803200533701 /* HSSocailShareViewController.xib in Resources */,
 				68D6CD9416DD351800972D41 /* HSContactView.xib in Resources */,
-				687A437516F97EEA00958347 /* HSRemindDatePicker.xib in Resources */,
+				6864D60A1708995E00F150F9 /* HSAddressPicker.xib in Resources */,
+				6864D60C1708995E00F150F9 /* HSBloodDonationTypePicker.xib in Resources */,
+				6864D60E1708995E00F150F9 /* HSBloodTypePicker.xib in Resources */,
+				6864D6101708995E00F150F9 /* HSDateTimePicker.xib in Resources */,
+				6864D6131708995E00F150F9 /* HSRemindDatePicker.xib in Resources */,
+				6864D6151708995E00F150F9 /* HSSexPicker.xib in Resources */,
+				6864D61F1708B3C400F150F9 /* Icon-72.png in Resources */,
+				6864D6201708B3C400F150F9 /* Icon-72@2x.png in Resources */,
+				6864D6211708B3C400F150F9 /* Icon.png in Resources */,
+				6864D6221708B3C400F150F9 /* Icon@2x.png in Resources */,
+				6864D6231708B3C400F150F9 /* Default-568h@2x.png in Resources */,
+				6864D6241708B3C400F150F9 /* Default.png in Resources */,
+				6864D6251708B3C400F150F9 /* Default@2x.png in Resources */,
+				687A436C16F7C19400958347 /* CKAuthViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3258,15 +3337,11 @@
 				688F7FCA16A308A5008581D4 /* NSUnderlinedButton.m in Sources */,
 				687E58F916AD5CE2009D0A8F /* Appirater.m in Sources */,
 				689B010F16ACA69A00B5CA4C /* UIView+HSLayoutManager.m in Sources */,
-				68B82F2D16D0F8ED00533701 /* HSModalViewController.m in Sources */,
-				68B82FD016D1113B00533701 /* CalendarInfoViewController.m in Sources */,
+				68B82FD016D1113B00533701 /* HSCalendarInfoViewController.m in Sources */,
 				68B82FD216D1113B00533701 /* HSBlockUIViewController.m in Sources */,
 				68B82FD416D1113B00533701 /* HSCalendarViewController.m in Sources */,
 				68B82FD616D1113B00533701 /* HSEventPlanningViewController.m in Sources */,
 				68B82FD816D1113B00533701 /* HSEventViewController.m in Sources */,
-				68B82FDA16D1113B00533701 /* HSAddressPicker.m in Sources */,
-				68B82FDC16D1113B00533701 /* HSBloodDonationTypePicker.m in Sources */,
-				68B82FDE16D1113B00533701 /* HSDateTimePicker.m in Sources */,
 				68B82FE016D1113B00533701 /* AdsCell.m in Sources */,
 				68B82FE216D1113B00533701 /* AdsSubViewController.m in Sources */,
 				68B82FE416D1113B00533701 /* AdsViewController.m in Sources */,
@@ -3290,12 +3365,8 @@
 				68B8300116D1113B00533701 /* HSLoginChoiceViewController.m in Sources */,
 				68B8300316D1113B00533701 /* HSLoginViewController.m in Sources */,
 				68B8300416D1113B00533701 /* HSRestorePasswordViewCotroller.m in Sources */,
-				68B8300616D1113B00533701 /* ProfileDescriptionViewController.m in Sources */,
-				68B8300816D1113B00533701 /* ProfileRegistrationViewController.m in Sources */,
-				68B8300A16D1113B00533701 /* ProfileSettingsViewController.m in Sources */,
-				68B8300C16D1113B00533701 /* ProfileSexSelectViewController.m in Sources */,
-				68B8300E16D1113B00533701 /* SelectBloodGroupViewController.m in Sources */,
-				68B8301016D1113B00533701 /* SelectSexViewController.m in Sources */,
+				68B8300616D1113B00533701 /* HSProfileDescriptionViewController.m in Sources */,
+				68B8300816D1113B00533701 /* HSProfileRegistrationViewController.m in Sources */,
 				68B8301216D1113B00533701 /* CoreLocationController.m in Sources */,
 				68B8301316D1113B00533701 /* FilterViewController.m in Sources */,
 				68B8301516D1113B00533701 /* ForDonorsCell.m in Sources */,
@@ -3320,26 +3391,34 @@
 				68D6CD9216DD34EF00972D41 /* HSContactView.m in Sources */,
 				68D6CD9716E22A8900972D41 /* HSBloodRemoteEvent+LocalNotification_Protected.m in Sources */,
 				687704BB16EE62A700DF332F /* HSCalendarEventNotifier.m in Sources */,
-				687A437416F97EEA00958347 /* HSRemindDatePicker.m in Sources */,
 				68B413281700140000BB32FF /* HSNotification.m in Sources */,
 				406344F81702F97100C7C5A4 /* ItsBetaFastCache.m in Sources */,
 				406344F91702F97100C7C5A4 /* ItsBetaRest.m in Sources */,
 				406344FA1702F97100C7C5A4 /* ItsBeta.m in Sources */,
 				40B57E611703508800B5BB41 /* UIColor+ItsBeta.m in Sources */,
 				40B57E641703527400B5BB41 /* CIColor+ItsBeta.m in Sources */,
-				40B57E8417044DC900B5BB41 /* NSDate+ItsBeta.m in Sources */,
-				407C53F81706E362009CE03D /* ItsBetaQueue.m in Sources */,
-				407C54021706EB1E009CE03D /* ItsBetaCore.m in Sources */,
-				407C54051706EB87009CE03D /* ItsBetaImage.m in Sources */,
-				407C54081706EF02009CE03D /* ItsBetaPlayer.m in Sources */,
-				407C540E1706FB0A009CE03D /* ItsBetaCategory.m in Sources */,
-				407C54111706FB3C009CE03D /* ItsBetaProject.m in Sources */,
-				407C54141706FD29009CE03D /* ItsBetaObjectType.m in Sources */,
-				407C54181706FE16009CE03D /* ItsBetaObjectTemplate.m in Sources */,
-				407C541A1706FE60009CE03D /* ItsBetaObject.m in Sources */,
-				407C541D1706FE9A009CE03D /* ItsBetaParams.m in Sources */,
-				407C54201706FF43009CE03D /* ItsBetaApplication.m in Sources */,
-				409788DD17096E0D0054042A /* ItsBetaApi.m in Sources */,
+				40B57E66170352EE00B5BB41 /* ItsBetaPlayer.m in Sources */,
+				40B57E6817036A9A00B5BB41 /* ItsBetaType.m in Sources */,
+				40B57E6A17036C1500B5BB41 /* ItsBetaTemplate.m in Sources */,
+				40B57E6C17036CE700B5BB41 /* ItsBetaObject.m in Sources */,
+				40B57E6E17036D3800B5BB41 /* ItsBetaParams.m in Sources */,
+				40B57E7017036EB200B5BB41 /* ItsBetaImage.m in Sources */,
+				68B28E3317071DE3009FE0F8 /* HSUserInfo.m in Sources */,
+				6864D5E9170865F900F150F9 /* HSSexType.m in Sources */,
+				6864D5EC1708683A00F150F9 /* HSBloodType.m in Sources */,
+				6864D5EF1708699C00F150F9 /* HSDevicePlatformType.m in Sources */,
+				6864D6081708995E00F150F9 /* HSModalViewController.m in Sources */,
+				6864D6091708995E00F150F9 /* HSAddressPicker.m in Sources */,
+				6864D60B1708995E00F150F9 /* HSBloodDonationTypePicker.m in Sources */,
+				6864D60D1708995E00F150F9 /* HSBloodTypePicker.m in Sources */,
+				6864D60F1708995E00F150F9 /* HSDateTimePicker.m in Sources */,
+				6864D6111708995E00F150F9 /* HSPicker.m in Sources */,
+				6864D6121708995E00F150F9 /* HSRemindDatePicker.m in Sources */,
+				6864D6141708995E00F150F9 /* HSSexPicker.m in Sources */,
+				687A436916F7C19400958347 /* ChimpKit.m in Sources */,
+				687A436A16F7C19400958347 /* CKAuthViewController.m in Sources */,
+				687A436B16F7C19400958347 /* SubscribeAlertView.m in Sources */,
+				6864D6291708CB4900F150F9 /* HSMailChimp.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3434,6 +3513,7 @@
 				GCC_WARN_PEDANTIC = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/Libs/\"";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
@@ -3457,6 +3537,7 @@
 				GCC_WARN_PEDANTIC = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/Libs/\"";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PROVISIONING_PROFILE = "";
@@ -3552,6 +3633,7 @@
 				GCC_WARN_PEDANTIC = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/Libs/\"";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PROVISIONING_PROFILE = "";
@@ -3642,6 +3724,7 @@
 				GCC_WARN_PEDANTIC = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/Libs/\"";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PROVISIONING_PROFILE = "E72880D5-35E7-4605-90E5-5A4B4353BFA9";

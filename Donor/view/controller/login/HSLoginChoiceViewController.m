@@ -11,9 +11,10 @@
 #import <Parse/Parse.h>
 #import "MBProgressHUD.h"
 
+#import "HSUserInfo.h"
 #import "Common.h"
-#import "ProfileRegistrationViewController.h"
-#import "ProfileDescriptionViewController.h"
+#import "HSProfileRegistrationViewController.h"
+#import "HSProfileDescriptionViewController.h"
 #import "HSBaseLoginViewController.h"
 #import "HSCalendar.h"
 #import "HSAlertViewController.h"
@@ -69,7 +70,6 @@
 - (IBAction)baseAuthorizationSelected:(id)sender {
     HSBaseLoginViewController *profileViewController =
             [[HSBaseLoginViewController alloc] initWithNibName:@"HSBaseLoginViewController" bundle:nil];
-    profileViewController.calendarViewController = self.calendarViewController;
     [self.navigationController pushViewController:profileViewController animated:YES];
 }
 
@@ -78,7 +78,6 @@
     HSBaseLoginViewController *profileViewController =
             [[HSBaseLoginViewController alloc] initWithNibName:@"HSBaseLoginViewController" bundle:nil];
     profileViewController.facebookUser = facebookUser;
-    profileViewController.calendarViewController = self.calendarViewController;
     [self.navigationController pushViewController:profileViewController animated:YES];
 }
 
@@ -126,9 +125,8 @@
 }
 
 - (IBAction)registrationSelected:(id)sender {
-    ProfileRegistrationViewController *controller =
-            [[ProfileRegistrationViewController alloc] initWithNibName:@"ProfileRegistrationViewController" bundle:nil];
-    controller.calendarViewController = self.calendarViewController;
+    HSProfileRegistrationViewController *controller = [[HSProfileRegistrationViewController alloc]
+            initWithNibName:@"HSProfileRegistrationViewController" bundle:nil];
     [self.navigationController pushViewController:controller animated:YES];
 }
 
@@ -145,8 +143,8 @@
         [calendarModel pullEventsFromServer:^(BOOL success, NSError *error) {
             [progressHud hide:YES];
             if (success) {
-                ProfileDescriptionViewController *controller = [[ProfileDescriptionViewController alloc]
-                        initWithNibName:@"ProfileDescriptionViewController" bundle:nil];
+                HSProfileDescriptionViewController *controller = [[HSProfileDescriptionViewController alloc]
+                        initWithNibName:@"HSProfileDescriptionViewController" bundle:nil];
                 controller.calendarInfoDelegate = calendarModel;
                 [self.navigationController pushViewController:controller animated:YES];
             } else {
@@ -172,10 +170,12 @@
             NSString *gender = userData[@"gender"];
             BOOL isMale = [gender isEqualToString:@"male"];
             
-            [user setObject:email forKey:@"email"];
-            [user setObject:firstName forKey:@"Name"];
-            [user setObject:secondName forKey:@"secondName"];
-            [user setObject:[NSNumber numberWithInteger: isMale ? 0 : 1]  forKey:@"Sex"];
+            HSUserInfo *userInfo = [[HSUserInfo alloc] initWithUser:user];
+            userInfo.email = email;
+            userInfo.name = firstName;
+            userInfo.secondName = secondName;
+            userInfo.sex = isMale ? HSSexType_Mail : HSSexType_Femail;
+            [userInfo applyChanges];
             [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                 completion(succeeded, error);
             }];
