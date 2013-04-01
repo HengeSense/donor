@@ -265,5 +265,14 @@ namespace Donor
             }
         }
 
+        private void StationsList_GroupHeaderItemTap(object sender, GroupHeaderItemTapEventArgs e)
+        {
+            try
+            {
+                NavigationService.Navigate(new Uri("/StationsSearchFilter.xaml", UriKind.Relative));
+            }
+            catch { };
+        }
+
     }
 }

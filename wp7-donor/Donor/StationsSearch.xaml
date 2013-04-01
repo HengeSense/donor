@@ -91,13 +91,14 @@
 
         <!--EmptyContentTemplate="{StaticResource EmptyStationsTemplate}"-->
         <telerikData:RadJumpList 
-		VerticalAlignment="Top"
-		Margin="0,0,0,0"
-		Name="StationsList" 
-        ItemsSource="{Binding Stations.DistanceItems}"
-        DataContext="{Binding Main, Source={StaticResource Locator}}" 
-		Tap="StationsList_Tap" ItemTap="StationsList_ItemTap"              
-            GroupPickerItemTemplate="{StaticResource GroupPickerTemplate}">
+		    VerticalAlignment="Top"
+		    Margin="0,0,0,0"
+		    Name="StationsList" 
+            ItemsSource="{Binding Stations.DistanceItems}"
+            DataContext="{Binding Main, Source={StaticResource Locator}}" 
+		    Tap="StationsList_Tap" ItemTap="StationsList_ItemTap"              
+            GroupPickerItemTemplate="{StaticResource GroupPickerTemplate}" 
+            GroupHeaderItemTap="StationsList_GroupHeaderItemTap">
                 <telerikData:RadJumpList.GroupHeaderTemplate>
                     <DataTemplate>
                         <Border Background="#FF006168" Margin="0">

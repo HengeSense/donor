@@ -190,7 +190,8 @@ namespace Donor.ViewModels
                             IsolatedStorageHelper.SaveSerializableObject<ObservableCollection<YAStationItem>>(this.Items, "yastations.xml");
 
                             RaisePropertyChanged("Items");
-                            RaisePropertyChanged("DistanceItems");                            
+                            RaisePropertyChanged("DistanceItems");
+                            RaisePropertyChanged("DistrictItems");  
                         });                       
                     
                 }
@@ -204,6 +205,28 @@ namespace Donor.ViewModels
             } else {};
         }
 
+        public ObservableCollection<TownItem> DistrictItems
+        {
+            private set
+            {
+            }
+            get
+            {
+                ObservableCollection<TownItem> districtItems = new ObservableCollection<TownItem>();
+                foreach (var item in Items)
+                {
+                    if (districtItems.FirstOrDefault(c=>c.TownName==item.Town)==null)
+                    {
+                        districtItems.Add(new TownItem() { 
+                            TownName = item.Town, 
+                            DistrictName=item.District_name, 
+                            RegionName=item.Region_name
+                        });
+                    };
+                };
+                return districtItems;
+            }
+        }
 
         private ObservableCollection<YAStationItem> _items;
         public ObservableCollection<YAStationItem> Items
@@ -265,7 +288,18 @@ namespace Donor.ViewModels
         {
         }
 
-        public string TownName = "";
+        private string _townName = "";
+        public string TownName {
+            get
+            {
+                return _townName;
+            }
+            set
+            {
+                _townName = value;
+                RaisePropertyChanged("TownName");
+            }
+        }
         public string DistrictName = "";
         public string RegionName = "";
     }

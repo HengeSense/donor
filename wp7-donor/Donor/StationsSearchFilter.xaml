@@ -10,17 +10,24 @@
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
+    xmlns:telerikData="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Data"
+    xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives"
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d" d:DesignHeight="728" d:DesignWidth="480"
-    shell:SystemTray.IsVisible="False" Loaded="PhoneApplicationPage_Loaded">
-    
-	<phone:PhoneApplicationPage.ApplicationBar>
-		<shell:ApplicationBar x:Name="SaveButton" BackgroundColor="#FF211E1D" ForegroundColor="White">
-            <shell:ApplicationBarIconButton x:Name="SaveButton1" IconUri="/icons/ic_ApplicationBar_done.png" Text="Применить" Click="SaveButton1_Click"/>
-            <shell:ApplicationBarIconButton x:Name="cancelButton" IconUri="/Toolkit.Content/ApplicationBar.Cancel.png" Text="Отменить" Click="cancelButton_Click" />
-		</shell:ApplicationBar>
-	</phone:PhoneApplicationPage.ApplicationBar>
+    shell:SystemTray.IsVisible="False">
 
+    <phone:PhoneApplicationPage.Resources>
+        <DataTemplate x:Key="EmptyStationsTemplate">
+            <TextBlock Text="{Binding NoStations, Source={StaticResource Loc}}" 
+                       Foreground="#FF847168" Name="Noresults" TextWrapping="Wrap"
+                       Margin="10,5,10,0"/>
+        </DataTemplate>
+        <DataTemplate x:Key="GroupPickerTemplate">
+            <Border Background="#FF006168" Margin="5">
+                <TextBlock Foreground="#FFDFB08B" FontWeight="Bold" Margin="5,10" FontSize="30" Text="{Binding}"/>
+            </Border>
+        </DataTemplate>
+    </phone:PhoneApplicationPage.Resources>
 
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot">
@@ -44,9 +51,49 @@
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="0,0,0,0">
-            <StackPanel>  
-
-            </StackPanel>
+            <telerikData:RadJumpList 
+		        VerticalAlignment="Top"
+		        Margin="0,39,0,0"
+		        Name="DistrictsList" 
+                ItemsSource="{Binding Stations.DistrictItems}"
+                DataContext="{Binding Main, Source={StaticResource Locator}}" 
+		        ItemTap="StationsList_ItemTap"              
+                GroupPickerItemTemplate="{StaticResource GroupPickerTemplate}" 
+                GroupPickerItemTap="StationsList_GroupPickerItemTap" Height="597">
+                <telerikData:RadJumpList.GroupHeaderTemplate>
+                    <DataTemplate>
+                        <Border Background="#FF006168" Margin="0">
+                            <TextBlock Foreground="#FFDFB08B" Margin="5,10" 
+                                       FontWeight="Bold"
+                                       FontSize="30" Text="{Binding}"/>
+                        </Border>
+                    </DataTemplate>
+                </telerikData:RadJumpList.GroupHeaderTemplate>
+                <telerikData:RadJumpList.ItemTemplate>
+                    <DataTemplate>
+                        <Border BorderThickness="0,0,0,1" 
+						BorderBrush="#FFafafaf" Height="Auto">
+                            <StackPanel Margin="6,10,10,6">
+                                <Grid HorizontalAlignment="Stretch">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="460"/>
+                                    </Grid.ColumnDefinitions>
+                                    <StackPanel Grid.Column="0">
+                                        <TextBlock Text="{Binding TownName}" 
+							                TextWrapping="Wrap" 
+							                FontSize="30"
+							                Foreground="#FF645B54"/>
+                                        <TextBlock Text="{Binding}" 
+							                TextWrapping="Wrap" 
+							                FontSize="30"
+							                Foreground="#FF645B54"/>
+                                    </StackPanel>                                    
+                                </Grid>
+                            </StackPanel>
+                        </Border>
+                    </DataTemplate>
+                </telerikData:RadJumpList.ItemTemplate>
+            </telerikData:RadJumpList>
         </Grid>
     </Grid>
 

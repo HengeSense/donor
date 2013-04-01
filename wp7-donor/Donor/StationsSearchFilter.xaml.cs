@@ -11,6 +11,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using Donor.ViewModels;
+using Telerik.Windows.Data;
 
 namespace Donor
 {
@@ -19,75 +20,33 @@ namespace Donor
         public StationsSearchFilter()
         {
             InitializeComponent();
+
+            this.DistrictsList.GroupDescriptors.Add(GroupedBadgesList);
+            this.DistrictsList.SortDescriptors.Add(Sort);
+            //this.DistrictsList.ItemsSource = ViewModelLocator.MainStatic.Stations.DistrictItems;
         }
 
-        private void CitySelect_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (LoadedCity)
-            {
-                ViewModelLocator.MainStatic.Stations.SelectedCity = ((sender as ListPicker).SelectedItem as ListBoxItem).Content.ToString();
-            };
-        }
+        public GenericGroupDescriptor<TownItem, string> GroupedBadgesList = new GenericGroupDescriptor<TownItem, string>(item => item.RegionName);
+        public GenericSortDescriptor<TownItem, string> Sort = new GenericSortDescriptor<TownItem, string>(item => item.TownName);
 
-        private void regional_Unchecked(object sender, RoutedEventArgs e)
-        {
-            ViewModelLocator.MainStatic.Stations.IsRegional = false;
-        }
-
-        private void regional_Checked(object sender, RoutedEventArgs e)
-        {
-            ViewModelLocator.MainStatic.Stations.IsRegional = true;
-        }
-
-        private void saturdays_Checked(object sender, RoutedEventArgs e)
-        {
-            ViewModelLocator.MainStatic.Stations.IsSaturdayWork = true;
-        }
-
-        private void saturdays_Unchecked(object sender, RoutedEventArgs e)
-        {
-            ViewModelLocator.MainStatic.Stations.IsSaturdayWork = false;
-        }
-
-        private void childrens_Unchecked(object sender, RoutedEventArgs e)
-        {
-            ViewModelLocator.MainStatic.Stations.IsChildrenDonor = false;
-        }
-
-        private void childrens_Checked(object sender, RoutedEventArgs e)
-        {
-            ViewModelLocator.MainStatic.Stations.IsChildrenDonor = true;
-        }
-
-        private void SaveButton1_Click(object sender, System.EventArgs e)
+        private void StationsList_GroupPickerItemTap(object sender, Telerik.Windows.Controls.GroupPickerItemTapEventArgs e)
         {
             try
             {
-                ViewModelLocator.MainStatic.Stations.IsFilter = true;
                 NavigationService.GoBack();
             }
             catch { };
         }
 
-        private void cancelButton_Click(object sender, System.EventArgs e)
+        private void StationsList_ItemTap(object sender, Telerik.Windows.Controls.ListBoxItemTapEventArgs e)
         {
             try
             {
-                ViewModelLocator.MainStatic.Stations.IsFilter = false;
                 NavigationService.GoBack();
             }
             catch { };
         }
 
-        private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
-        {
-        }
-
-        private bool LoadedCity = false;
-
-        private void CitySelect_Loaded(object sender, RoutedEventArgs e)
-        {
-        }
 
     }
 }
