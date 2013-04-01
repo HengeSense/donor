@@ -37,10 +37,10 @@
         _categoryName = NS_SAFE_RETAIN([coder decodeObjectForKey:@"category_name"]);
         _title = NS_SAFE_RETAIN([coder decodeObjectForKey:@"title"]);
         _color = NS_SAFE_RETAIN([coder decodeObjectForKey:@"color"]);
-        _lastUpdateTypes = NS_SAFE_RETAIN([coder decodeObjectForKey:@"last_update_types"]);
-        _types = NS_SAFE_RETAIN([coder decodeObjectForKey:@"types"]);
-        _lastUpdateTemplates = NS_SAFE_RETAIN([coder decodeObjectForKey:@"last_update_templates"]);
-        _templates = NS_SAFE_RETAIN([coder decodeObjectForKey:@"templates"]);
+        _lastUpdateTypes = NS_SAFE_RETAIN([coder decodeObjectForKey:@"last_update_object_types"]);
+        _objectTypes = NS_SAFE_RETAIN([coder decodeObjectForKey:@"object_types"]);
+        _lastUpdateTemplates = NS_SAFE_RETAIN([coder decodeObjectForKey:@"last_update_object_templates"]);
+        _objectTemplates = NS_SAFE_RETAIN([coder decodeObjectForKey:@"object_templates"]);
     }
     return self;
 }
@@ -57,8 +57,8 @@
 #else
         _color = NS_SAFE_RETAIN([CIColor colorWithHexString:[dictionary objectForKey:@"color"]]);
 #endif
-        _types = NS_SAFE_RETAIN([ItsBetaObjectTypeCollection collection]);
-        _templates = NS_SAFE_RETAIN([ItsBetaObjectTemplateCollection collection]);
+        _objectTypes = NS_SAFE_RETAIN([ItsBetaObjectTypeCollection collection]);
+        _objectTemplates = NS_SAFE_RETAIN([ItsBetaObjectTemplateCollection collection]);
     }
     return self;
 }
@@ -69,8 +69,8 @@
     NS_SAFE_RELEASE(_name);
     NS_SAFE_RELEASE(_title);
     NS_SAFE_RELEASE(_color);
-    NS_SAFE_RELEASE(_types);
-    NS_SAFE_RELEASE(_templates);
+    NS_SAFE_RELEASE(_objectTypes);
+    NS_SAFE_RELEASE(_objectTemplates);
     
 #if !__has_feature(objc_arc)
     [super dealloc];
@@ -83,10 +83,10 @@
     [coder encodeObject:_categoryName forKey:@"category_name"];
     [coder encodeObject:_title forKey:@"title"];
     [coder encodeObject:_color forKey:@"color"];
-    [coder encodeObject:_lastUpdateTypes forKey:@"last_update_types"];
-    [coder encodeObject:_types forKey:@"types"];
-    [coder encodeObject:_lastUpdateTemplates forKey:@"last_update_templates"];
-    [coder encodeObject:_templates forKey:@"templates"];
+    [coder encodeObject:_lastUpdateTypes forKey:@"last_update_object_types"];
+    [coder encodeObject:_objectTypes forKey:@"object_types"];
+    [coder encodeObject:_lastUpdateTemplates forKey:@"last_update_object_templates"];
+    [coder encodeObject:_objectTemplates forKey:@"object_templates"];
 }
 
 
@@ -104,7 +104,7 @@
                        lastUpdate:_lastUpdateTypes
                           project:self
                       objectTypes:^(ItsBetaObjectTypeCollection *collection, NSError *error) {
-                          [_types setObjectTypes:collection];
+                          [_objectTypes setObjectTypes:collection];
                       }];
     NS_SAFE_SETTER(_lastUpdateTypes, lastUpdateTypes);
 
@@ -114,11 +114,11 @@
                        lastUpdate:_lastUpdateTemplates
                           project:self
                   objectTemplates:^(ItsBetaObjectTemplateCollection *collection, NSError *error) {
-                      [_templates setObjectTemplates:collection];
+                      [_objectTemplates setObjectTemplates:collection];
                   }];
     NS_SAFE_SETTER(_lastUpdateTemplates, lastUpdateTemplates);
 
-    for(ItsBetaObjectTemplate* objectTemplate in _templates) {
+    for(ItsBetaObjectTemplate* objectTemplate in _objectTemplates) {
         [[objectTemplate image] synchronizeSync];
     }
 }
@@ -212,6 +212,15 @@
 
 - (ItsBetaProject*) projectAtId:(NSString*)Id {
     return [_items objectForKey:Id];
+}
+
+- (ItsBetaProject*) projectAtName:(NSString*)name {
+    for(ItsBetaProject* project in _items) {
+        if([[project name] isEqualToString:name] == YES) {
+            return project;
+        }
+    }
+    return nil;
 }
 
 @end

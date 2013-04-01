@@ -16,8 +16,8 @@
 @property(nonatomic, readonly) CIColor* color; // Цвет проекта
 #endif
 
-@property(nonatomic, readonly) ItsBetaObjectTypeCollection* types;
-@property(nonatomic, readonly) ItsBetaObjectTemplateCollection* templates;
+@property(nonatomic, readonly) ItsBetaObjectTypeCollection* objectTypes;
+@property(nonatomic, readonly) ItsBetaObjectTemplateCollection* objectTemplates;
 
 + (ItsBetaProject*) projectWithDictionary:(NSDictionary*)dictionary;
 
@@ -44,6 +44,7 @@
 - (void) setProjects:(ItsBetaProjectCollection*)projects;
 - (ItsBetaProject*) projectAtIndex:(NSUInteger)index;
 - (ItsBetaProject*) projectAtId:(NSString*)Id;
+- (ItsBetaProject*) projectAtName:(NSString*)name;
 
 @end
 

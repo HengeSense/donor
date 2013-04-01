@@ -80,6 +80,30 @@
     return [[[ItsBeta sharedItsBeta] application] delegate];
 }
 
++ (ItsBetaCategory*) categoryByName:(NSString*)name {
+    return [[[[ItsBeta sharedItsBeta] application] categories] categoryAtName:name];
+}
+
++ (ItsBetaProject*) projectById:(NSString*)Id {
+    return [[[[ItsBeta sharedItsBeta] application] projects] projectAtId:Id];
+}
+
++ (ItsBetaProject*) projectByName:(NSString*)name {
+    return [[[[ItsBeta sharedItsBeta] application] projects] projectAtName:name];
+}
+
++ (ItsBetaObjectType*) objectTypeById:(NSString*)Id byProject:(ItsBetaProject*)project {
+    return [[project objectTypes] objectTypeAtId:Id];
+}
+
++ (ItsBetaObjectTemplate*) objectTemplateById:(NSString*)Id byProject:(ItsBetaProject*)project {
+    return [[project objectTemplates] objectTemplateAtId:Id];
+}
+
++ (ItsBetaObject*) objectById:(NSString*)Id byProject:(ItsBetaProject*)project byPlayer:(ItsBetaPlayer*)player {
+    return [[player objects] objectAtId:Id];
+}
+
 + (void) synchronizeApplication {
     NSLog(@"%@", [NSDate date]);
     [ItsBetaQueue runASync:^{

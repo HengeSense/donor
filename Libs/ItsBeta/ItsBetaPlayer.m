@@ -87,7 +87,7 @@
 
 - (void) synchronizeWithProject:(ItsBetaProject*)project {
     [ItsBetaQueue runSync:^{
-        for(ItsBetaObjectTemplate* template in [project templates]) {
+        for(ItsBetaObjectTemplate* template in [project objectTemplates]) {
             [ItsBetaApi requestServiceURL:[ItsBeta applicationServiceURL]
                               accessToken:[ItsBeta applicationAccessToken]
                                lastUpdate:nil

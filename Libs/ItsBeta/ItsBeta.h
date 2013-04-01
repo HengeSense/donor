@@ -32,6 +32,13 @@
 + (void) setApplicationDelegate:(id< ItsBetaApplicationDelegate >)delegate;
 + (id< ItsBetaApplicationDelegate >) applicationDelegate;
 
++ (ItsBetaCategory*) categoryByName:(NSString*)name;
++ (ItsBetaProject*) projectById:(NSString*)Id;
++ (ItsBetaProject*) projectByName:(NSString*)name;
++ (ItsBetaObjectType*) objectTypeById:(NSString*)Id byProject:(ItsBetaProject*)project;
++ (ItsBetaObjectTemplate*) objectTemplateById:(NSString*)Id byProject:(ItsBetaProject*)project;
++ (ItsBetaObject*) objectById:(NSString*)Id byProject:(ItsBetaProject*)project byPlayer:(ItsBetaPlayer*)player;
+
 + (void) synchronizeApplication;
 
 @end
