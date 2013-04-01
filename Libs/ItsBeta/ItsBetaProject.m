@@ -89,7 +89,15 @@
     [coder encodeObject:_templates forKey:@"templates"];
 }
 
-- (void) synchronize {
+
+
+- (void) synchronizeASync {
+    [ItsBetaQueue runASync:^{
+        [self synchronizeSync];
+    }];
+}
+
+- (void) synchronizeSync {
     NSDate* lastUpdateTypes = [NSDate date];
     [ItsBetaApi requestServiceURL:[ItsBeta applicationServiceURL]
                       accessToken:[ItsBeta applicationAccessToken]
@@ -111,7 +119,7 @@
     NS_SAFE_SETTER(_lastUpdateTemplates, lastUpdateTemplates);
 
     for(ItsBetaObjectTemplate* objectTemplate in _templates) {
-        [[objectTemplate image] synchronize];
+        [[objectTemplate image] synchronizeSync];
     }
 }
 

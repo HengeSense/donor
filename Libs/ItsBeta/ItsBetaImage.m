@@ -48,7 +48,7 @@
     [coder encodeObject:_key forKey:@"key"];
 }
 
-- (BOOL) synchronize {
+- (BOOL) synchronizeSync {
     __block BOOL result = YES;
     if(_data == nil) {
         if([[ItsBetaFastCache sharedItsBetaFastCache] hasCacheForKey:_key] == YES) {

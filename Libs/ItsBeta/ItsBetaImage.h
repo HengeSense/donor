@@ -18,7 +18,7 @@
 
 - (id) initWithImageURL:(NSString*)imageURL;
 
-- (BOOL) synchronize;
+- (BOOL) synchronizeSync;
 
 @end
 

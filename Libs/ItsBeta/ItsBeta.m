@@ -83,7 +83,7 @@
 + (void) synchronizeApplication {
     NSLog(@"%@", [NSDate date]);
     [ItsBetaQueue runASync:^{
-        if([[[ItsBeta sharedItsBeta] application] synchronize] == YES) {
+        if([[[ItsBeta sharedItsBeta] application] synchronizeSync] == YES) {
             NSData* data = [NSKeyedArchiver archivedDataWithRootObject:[ItsBeta sharedItsBeta]];
             if([data isKindOfClass:[NSData class]] == YES) {
                 [[NSUserDefaults standardUserDefaults] setObject:data forKey:@"itsbeta"];

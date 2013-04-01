@@ -23,7 +23,8 @@
 
 - (id) initWithDictionary:(NSDictionary*)dictionary;
 
-- (void) synchronize;
+- (void) synchronizeASync;
+- (void) synchronizeSync;
 
 @end
 

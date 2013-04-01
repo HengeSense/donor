@@ -20,7 +20,8 @@ typedef void (^ItsBetaApplicationSynchronized)();
 
 + (ItsBetaApplication*) application;
 
-- (BOOL) synchronize;
+- (BOOL) synchronizeASync;
+- (BOOL) synchronizeSync;
 
 @end
 

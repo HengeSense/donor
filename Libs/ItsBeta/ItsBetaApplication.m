@@ -14,6 +14,8 @@
     NSDate* _lastUpdateProjects;
 }
 
+- (void) synchronize;
+
 @end
 
 /*--------------------------------------------------*/
@@ -67,11 +69,27 @@
     [coder encodeObject:_projects forKey:@"projects"];
 }
 
-- (BOOL) synchronize {
+- (BOOL) synchronizeASync {
     if(_accessToken == nil) {
         // ERROR
         return NO;
     }
+    [ItsBetaQueue runASync:^{
+        [self synchronize];
+    }];
+    return YES;
+}
+
+- (BOOL) synchronizeSync {
+    if(_accessToken == nil) {
+        // ERROR
+        return NO;
+    }
+    [self synchronize];
+    return YES;
+}
+
+- (void) synchronize {
     NSDate* lastUpdateCategories = [NSDate date];
     [ItsBetaApi requestServiceURL:[ItsBeta applicationServiceURL]
                       accessToken:[ItsBeta applicationAccessToken]
@@ -94,13 +112,12 @@
     for(ItsBetaProject* project in _projects) {
         if([_delegate respondsToSelector:@selector(itsbetaApplication:synchronizeProject:)] == YES) {
             if([_delegate itsbetaApplication:self synchronizeProject:project] == YES) {
-                [project synchronize];
+                [project synchronizeSync];
             }
         } else {
-            [project synchronize];
+            [project synchronizeSync];
         }
     }
-    return YES;
 }
 
 @end
