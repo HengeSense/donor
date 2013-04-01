@@ -1,11 +1,11 @@
 /*--------------------------------------------------*/
 
-#import "ItsBeta.h"
-
-/*--------------------------------------------------*/
-
+#import "ItsBetaImage.h"
 #import "ItsBetaFastCache.h"
 #import "ItsBetaRest.h"
+#import "ItsBetaQueue.h"
+#import "ItsBetaApi.h"
+#import "ItsBeta.h"
 
 /*--------------------------------------------------*/
 
@@ -13,6 +13,15 @@
 
 + (ItsBetaImage*) imageWithImageURL:(NSString*)imageURL {
     return NS_SAFE_RETAIN([[self alloc] initWithImageURL:imageURL]);
+}
+
+- (id) initWithCoder:(NSCoder*)coder {
+    self = [super init];
+    if(self != nil) {
+        _URL = NS_SAFE_RETAIN([coder decodeObjectForKey:@"url"]);
+        _key = NS_SAFE_RETAIN([coder decodeObjectForKey:@"key"]);
+    }
+    return self;
 }
 
 - (id) initWithImageURL:(NSString*)imageURL {
@@ -34,7 +43,13 @@
 #endif
 }
 
-- (void) synchronize:(ItsBetaCallbackImage)callback {
+- (void) encodeWithCoder:(NSCoder*)coder {
+    [coder encodeObject:_URL forKey:@"url"];
+    [coder encodeObject:_key forKey:@"key"];
+}
+
+- (BOOL) synchronize {
+    __block BOOL result = YES;
     if(_data == nil) {
         if([[ItsBetaFastCache sharedItsBetaFastCache] hasCacheForKey:_key] == YES) {
             _data = NS_SAFE_RETAIN([[ItsBetaFastCache sharedItsBetaFastCache] imageForKey:_key]);
@@ -48,24 +63,12 @@
                 _data = NS_SAFE_RETAIN([NSImage imageWithData:[rest receivedData]]);
 #endif
                 [[ItsBetaFastCache sharedItsBetaFastCache] setImage:_data forKey:_key];
-                if(callback != nil) {
-                    callback(self, nil);
-                }
-            } sendFailure:^(ItsBetaRest* rest, NSError *error) {
-                if(callback != nil) {
-                    callback(self, error);
-                }
+            } sendFailure:^(ItsBetaRest* rest, NSError* error) {
+                result = NO;
             }];
-        } else {
-            if(callback != nil) {
-                callback(self, nil);
-            }
-        }
-    } else {
-        if(callback != nil) {
-            callback(self, nil);
         }
     }
+    return result;
 }
 
 @end

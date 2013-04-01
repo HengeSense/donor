@@ -8,37 +8,36 @@
 
 @implementation UIColor (ItsBeta)
 
-+ (UIColor*) colorWithHexString:(NSString *)hexString {
-    NSString* colorString = [[hexString stringByReplacingOccurrencesOfString:@"#" withString:@""] uppercaseString];
-    CGFloat alpha, red, blue, green;
-    switch([colorString length]) {
-        case 3:
-            red = [self colorComponentFrom:colorString start:0 length:1];
-            green = [self colorComponentFrom:colorString start:1 length:1];
-            blue = [self colorComponentFrom:colorString start:2 length:1];
-            alpha = 1.0f;
-            break;
-        case 4:
-            red = [self colorComponentFrom:colorString start:1 length:1];
-            green = [self colorComponentFrom:colorString start:2 length:1];
-            blue = [self colorComponentFrom:colorString start:3 length:1];
-            alpha = [self colorComponentFrom:colorString start:0 length:1];
-            break;
-        case 6:
-            red = [self colorComponentFrom:colorString start:0 length:2];
-            green = [self colorComponentFrom:colorString start:2 length:2];
-            blue = [self colorComponentFrom:colorString start:4 length:2];
-            alpha = 1.0f;
-            break;
-        case 8:
-            red = [self colorComponentFrom:colorString start:2 length:2];
-            green = [self colorComponentFrom:colorString start:4 length:2];
-            blue = [self colorComponentFrom:colorString start:6 length:2];
-            alpha = [self colorComponentFrom:colorString start:0 length:2];
-            break;
-        default:
-            [NSException raise:@"Invalid color value" format:@"Color value %@ is invalid.  It should be a hex value of the form #RBG, #ARGB, #RRGGBB, or #AARRGGBB", hexString];
-            break;
++ (UIColor*) colorWithHexString:(NSString*)hexString {
+    CGFloat alpha = 0.0f, red = 0.0f, blue = 0.0f, green = 0.0f;
+    if([hexString isKindOfClass:[NSString class]] == YES) {
+        NSString* colorString = [[hexString stringByReplacingOccurrencesOfString:@"#" withString:@""] uppercaseString];
+        switch([colorString length]) {
+            case 3:
+                red = [self colorComponentFrom:colorString start:0 length:1];
+                green = [self colorComponentFrom:colorString start:1 length:1];
+                blue = [self colorComponentFrom:colorString start:2 length:1];
+                alpha = 1.0f;
+                break;
+            case 4:
+                red = [self colorComponentFrom:colorString start:1 length:1];
+                green = [self colorComponentFrom:colorString start:2 length:1];
+                blue = [self colorComponentFrom:colorString start:3 length:1];
+                alpha = [self colorComponentFrom:colorString start:0 length:1];
+                break;
+            case 6:
+                red = [self colorComponentFrom:colorString start:0 length:2];
+                green = [self colorComponentFrom:colorString start:2 length:2];
+                blue = [self colorComponentFrom:colorString start:4 length:2];
+                alpha = 1.0f;
+                break;
+            case 8:
+                red = [self colorComponentFrom:colorString start:2 length:2];
+                green = [self colorComponentFrom:colorString start:4 length:2];
+                blue = [self colorComponentFrom:colorString start:6 length:2];
+                alpha = [self colorComponentFrom:colorString start:0 length:2];
+                break;
+        }
     }
     return [UIColor colorWithRed:red green:green blue:blue alpha:alpha];
 }

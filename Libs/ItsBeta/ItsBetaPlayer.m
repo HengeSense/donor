@@ -1,5 +1,10 @@
 /*--------------------------------------------------*/
 
+#import "ItsBetaPlayer.h"
+#import "ItsBetaFastCache.h"
+#import "ItsBetaRest.h"
+#import "ItsBetaQueue.h"
+#import "ItsBetaApi.h"
 #import "ItsBeta.h"
 
 /*--------------------------------------------------*/
@@ -11,11 +16,8 @@
 /*--------------------------------------------------*/
 
 @interface ItsBetaPlayer () {
-    dispatch_queue_t _queue;
-    NSMutableArray* _objects;
+    ItsBetaObjectCollection* _objects;
 }
-
-- (void) synchronizeObjects;
 
 #if defined(ITSBETA_USE_FACEBOOK_OFFICIAL_SDK)
 
@@ -31,26 +33,35 @@
 
 @implementation ItsBetaPlayer
 
-- (NSArray*) objects {
-    __block NSArray* result = nil;
-    dispatch_sync(_queue, ^{
+- (ItsBetaObjectCollection*) objects {
+    __block ItsBetaObjectCollection* result = nil;
+    [ItsBetaQueue runSync:^{
         result = _objects;
-    });
+    }];
     return result;
 }
 
-+ (ItsBetaPlayer*) userWithType:(ItsBetaPlayerType)type {
++ (ItsBetaPlayer*) playerWithType:(ItsBetaPlayerType)type {
     return NS_SAFE_AUTORELEASE([[self alloc] initWithType:type]);
+}
+
+- (id) initWithCoder:(NSCoder*)coder {
+    self = [super init];
+    if(self != nil) {
+        _type = [coder decodeIntForKey:@"type"];
+        _objects = NS_SAFE_RETAIN([coder decodeObjectForKey:@"objects"]);
+        _Id = NS_SAFE_RETAIN([coder decodeObjectForKey:@"player_id"]);
+        _facebookId = NS_SAFE_RETAIN([coder decodeObjectForKey:@"facebook_id"]);
+        _facebookToken = NS_SAFE_RETAIN([coder decodeObjectForKey:@"facebook_token"]);
+    }
+    return self;
 }
 
 - (id) initWithType:(ItsBetaPlayerType)type {
     self = [super init];
     if(self != nil) {
-        _queue = dispatch_queue_create(ItsBetaDispatchQueue, nil);
-        
         _type = type;
-        
-        _objects = NS_SAFE_RETAIN([NSMutableArray array]);
+        _objects = NS_SAFE_RETAIN([ItsBetaObjectCollection collection]);
     }
     return self;
 }
@@ -59,9 +70,6 @@
     NS_SAFE_RELEASE(_Id);
     NS_SAFE_RELEASE(_facebookId);
     NS_SAFE_RELEASE(_facebookToken);
-    
-    dispatch_release(_queue);
-    
     NS_SAFE_RELEASE(_objects);
     
 #if !__has_feature(objc_arc)
@@ -69,32 +77,35 @@
 #endif
 }
 
-- (void) synchronize {
-    if(_Id == nil) {
-        return;
-    }
+- (void) encodeWithCoder:(NSCoder*)coder {
+    [coder encodeInt:_type forKey:@"type"];
+    [coder encodeObject:_objects forKey:@"objects"];
+    [coder encodeObject:_Id forKey:@"player_id"];
+    [coder encodeObject:_facebookId forKey:@"facebook_id"];
+    [coder encodeObject:_facebookToken forKey:@"facebook_token"];
 }
 
 - (void) synchronizeWithProject:(ItsBetaProject*)project {
-    dispatch_sync(_queue, ^{
-        [_objects removeAllObjects];
-    });
-    for(ItsBetaTemplate* template in [project templates]) {
-        [ItsBeta itsBetaObjectByPlayer:self
-                            byTemplate:template
-                              callback:^(NSArray* objects, NSError* error) {
-                                  dispatch_sync(_queue, ^{
-                                      [_objects addObjectsFromArray:objects];
-                                  });
-                              }];
-    }
+    [ItsBetaQueue runSync:^{
+        for(ItsBetaObjectTemplate* template in [project templates]) {
+            [ItsBetaApi requestServiceURL:[ItsBeta applicationServiceURL]
+                              accessToken:[ItsBeta applicationAccessToken]
+                               lastUpdate:nil
+                                   player:self
+                                  project:project
+                           objectTemplate:template
+                                  objects:^(ItsBetaObjectCollection* collection, NSError *error) {
+                                      [_objects setObjects:collection];
+                                  }];
+        }
+    }];
 }
 
 - (BOOL) isLogin {
     return (_Id != nil);
 }
 
-- (void) login:(ItsBetaCallbackLogin)callback {
+- (void) login:(ItsBetaPlayerLogin)callback {
     switch(_type) {
         case ItsBetaPlayerTypeFacebook:
 #if defined(ITSBETA_USE_FACEBOOK_OFFICIAL_SDK)
@@ -103,32 +114,34 @@
         break;
         default:
             if(callback != nil) {
-                callback(self, nil);
+                callback(nil);
             }
         break;
     }
 }
 
-- (void) loginWithFacebookId:(NSString*)facebookId facebookToken:(NSString*)facebookToken callback:(ItsBetaCallbackLogin)callback {
-    [ItsBeta itsBetaPlayerIdByFacebookId:facebookId
-                                callback:^(NSString *playerId, NSError *error) {
-                                    if(_Id != playerId) {
-                                        NS_SAFE_RELEASE(_Id);
-                                        _Id = NS_SAFE_RETAIN(playerId);
-                                    }
-                                    if(_facebookId != facebookId) {
-                                        NS_SAFE_RELEASE(_facebookId);
-                                        _facebookId = NS_SAFE_RETAIN(facebookId);
-                                    }
-                                    if(_facebookToken != facebookToken) {
-                                        NS_SAFE_RELEASE(_facebookToken);
-                                        _facebookToken = NS_SAFE_RETAIN(facebookToken);
-                                    }
-                                    callback(self, error);
-                                }];
+- (void) loginWithFacebookId:(NSString*)facebookId facebookToken:(NSString*)facebookToken callback:(ItsBetaPlayerLogin)callback {
+    [ItsBetaApi requestServiceURL:[ItsBeta applicationServiceURL]
+                      accessToken:[ItsBeta applicationAccessToken]
+                       facebookId:facebookId
+                         playerId:^(NSString* playerId, NSError* error) {
+                             if(_Id != playerId) {
+                                 NS_SAFE_RELEASE(_Id);
+                                 _Id = NS_SAFE_RETAIN(playerId);
+                             }
+                             if(_facebookId != facebookId) {
+                                 NS_SAFE_RELEASE(_facebookId);
+                                 _facebookId = NS_SAFE_RETAIN(facebookId);
+                             }
+                             if(_facebookToken != facebookToken) {
+                                 NS_SAFE_RELEASE(_facebookToken);
+                                 _facebookToken = NS_SAFE_RETAIN(facebookToken);
+                             }
+                             callback(error);
+                         }];
 }
 
-- (void) logout:(ItsBetaCallbackLogout)callback {
+- (void) logout:(ItsBetaPlayerLogout)callback {
     switch(_type) {
         case ItsBetaPlayerTypeFacebook:
 #if defined(ITSBETA_USE_FACEBOOK_OFFICIAL_SDK)
@@ -137,7 +150,7 @@
         break;
         default:
             if(callback != nil) {
-                callback(self, nil);
+                callback(nil);
             }
         break;
     }
@@ -145,7 +158,7 @@
 
 #if defined(ITSBETA_USE_FACEBOOK_OFFICIAL_SDK)
 
-- (void) loginWithFacebook:(ItsBetaCallbackLogin)callback {
+- (void) loginWithFacebook:(ItsBetaPlayerLogin)callback {
     [FBSession openActiveSessionWithPublishPermissions:[NSArray arrayWithObjects:@"publish_stream", @"publish_actions", nil]
                                        defaultAudience:FBSessionDefaultAudienceOnlyMe
                                           allowLoginUI:YES
@@ -157,7 +170,7 @@
                                                      if(error == nil) {
                                                          [self loginWithFacebookId:[user id] callback:callback];
                                                      } else {
-                                                         callback(self, [[error userInfo] objectForKey:@"com.facebook.sdk:ErrorInnerErrorKey"]);
+                                                         callback([[error userInfo] objectForKey:@"com.facebook.sdk:ErrorInnerErrorKey"]);
                                                      }
                                                  }];
                                                  break;
@@ -180,19 +193,19 @@
                                                  break;
                                          }
                                          if(error != nil) {
-                                             callback(self, error);
+                                             callback(error);
                                          }
                                      }];
 }
 
-- (void) logoutWithFacebook:(ItsBetaCallbackLogout)callback {
+- (void) logoutWithFacebook:(ItsBetaPlayerLogout)callback {
     if([FBSession activeSession] != nil) {
         [[FBSession activeSession] closeAndClearTokenInformation];
     }
     NS_SAFE_RELEASE(_Id);
     NS_SAFE_RELEASE(_facebookId);
     if(callback != nil) {
-        callback(self, nil);
+        callback(nil);
     }
 }
 
@@ -201,13 +214,6 @@
 }
 
 #endif
-
-+ (NSString*) stringWithPlayerType:(ItsBetaPlayerType)playerType {
-    switch(playerType) {
-        case ItsBetaPlayerTypeFacebook: return @"fb";
-    }
-    return @"";
-}
 
 @end
 
