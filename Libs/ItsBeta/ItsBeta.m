@@ -121,22 +121,22 @@
 }
 
 + (void) synchronizeApplication {
-    NSLog(@"%@", [NSDate date]);
+    NSLog(@"[ItsBeta::synchronizeApplication] %@", [NSDate date]);
     [ItsBetaQueue runASync:^{
         if([[[ItsBeta sharedItsBeta] application] synchronizeSync] == YES) {
             [[ItsBeta sharedItsBeta] saveToLocalStorage];
         }
-        NSLog(@"%@", [NSDate date]);
+        NSLog(@"[ItsBeta::synchronizeApplication] %@", [NSDate date]);
     }];
 }
 
 - (void) synchronizePlayerWithProject:(ItsBetaProject*)project {
-    NSLog(@"%@", [NSDate date]);
+    NSLog(@"[ItsBeta::synchronizePlayerWithProject] %@", [NSDate date]);
     [ItsBetaQueue runASync:^{
         if([[[ItsBeta sharedItsBeta] player] synchronizeWithProject:project] == YES) {
             [[ItsBeta sharedItsBeta] saveToLocalStorage];
         }
-        NSLog(@"%@", [NSDate date]);
+        NSLog(@"[ItsBeta::synchronizePlayerWithProject] %@", [NSDate date]);
     }];
 }
 
