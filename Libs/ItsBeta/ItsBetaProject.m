@@ -89,8 +89,6 @@
     [coder encodeObject:_objectTemplates forKey:@"object_templates"];
 }
 
-
-
 - (void) synchronizeASync {
     [ItsBetaQueue runASync:^{
         [self synchronizeSync];

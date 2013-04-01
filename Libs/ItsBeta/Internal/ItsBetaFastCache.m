@@ -209,7 +209,11 @@ static inline NSString* cachePathForKey(NSString* directory, NSString* key) {
 
 
 - (NSString*) keyWithFilename:(NSString*)filename {
-    return [NSString stringWithFormat:@"%X.%@", [filename hash], [[filename pathExtension] stringByDeletingPathExtension]];
+    NSString* ext = [[filename pathExtension] stringByDeletingPathExtension];
+    if([ext length] > 0) {
+        return [NSString stringWithFormat:@"%X.%@", [filename hash], ext];
+    }
+    return [NSString stringWithFormat:@"%X", [filename hash]];
 }
 
 #if TARGET_OS_IPHONE

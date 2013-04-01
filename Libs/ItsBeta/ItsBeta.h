@@ -40,6 +40,7 @@
 + (ItsBetaObject*) objectById:(NSString*)Id byProject:(ItsBetaProject*)project byPlayer:(ItsBetaPlayer*)player;
 
 + (void) synchronizeApplication;
+- (void) synchronizePlayerWithProject:(ItsBetaProject*)project;
 
 @end
 

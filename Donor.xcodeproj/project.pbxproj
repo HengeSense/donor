@@ -144,6 +144,15 @@
 		4097891917097B8E0054042A /* ItsBetaParams.m in Sources */ = {isa = PBXBuildFile; fileRef = 4097890517097B8E0054042A /* ItsBetaParams.m */; };
 		4097891A17097B8E0054042A /* ItsBetaPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4097890717097B8E0054042A /* ItsBetaPlayer.m */; };
 		4097891B17097B8E0054042A /* ItsBetaProject.m in Sources */ = {isa = PBXBuildFile; fileRef = 4097890917097B8E0054042A /* ItsBetaProject.m */; };
+		4097892F170990F60054042A /* ItsBetaFacebook.m in Sources */ = {isa = PBXBuildFile; fileRef = 40978926170990F60054042A /* ItsBetaFacebook.m */; };
+		40978930170990F60054042A /* ItsBetaFacebookIPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 40978928170990F60054042A /* ItsBetaFacebookIPad.m */; };
+		40978931170990F60054042A /* ItsBetaFacebookIPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40978929170990F60054042A /* ItsBetaFacebookIPad.xib */; };
+		40978932170990F60054042A /* ItsBetaFacebookIPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 4097892B170990F60054042A /* ItsBetaFacebookIPhone.m */; };
+		40978933170990F60054042A /* ItsBetaFacebookIPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4097892C170990F60054042A /* ItsBetaFacebookIPhone.xib */; };
+		40978934170990F60054042A /* ItsBetaGraphUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4097892E170990F60054042A /* ItsBetaGraphUser.m */; };
+		4097893817099DFC0054042A /* NSURL+ItsBeta.m in Sources */ = {isa = PBXBuildFile; fileRef = 4097893717099DFC0054042A /* NSURL+ItsBeta.m */; };
+		4097893B17099E640054042A /* NSString+ItsBeta.m in Sources */ = {isa = PBXBuildFile; fileRef = 4097893A17099E640054042A /* NSString+ItsBeta.m */; };
+		4097893E17099F1B0054042A /* NSDictionary+ItsBeta.m in Sources */ = {isa = PBXBuildFile; fileRef = 4097893D17099F1A0054042A /* NSDictionary+ItsBeta.m */; };
 		6802A1671665D4FD0034B124 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 371CBA5215AFD452008CA154 /* Parse.framework */; };
 		683F8A81164573860066C47A /* HSBloodDonationType.m in Sources */ = {isa = PBXBuildFile; fileRef = 683F8A80164573860066C47A /* HSBloodDonationType.m */; };
 		683F8A9716468E300066C47A /* event_done_button_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 683F8A9316468E300066C47A /* event_done_button_normal.png */; };
@@ -764,6 +773,22 @@
 		4097890717097B8E0054042A /* ItsBetaPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItsBetaPlayer.m; sourceTree = "<group>"; };
 		4097890817097B8E0054042A /* ItsBetaProject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItsBetaProject.h; sourceTree = "<group>"; };
 		4097890917097B8E0054042A /* ItsBetaProject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItsBetaProject.m; sourceTree = "<group>"; };
+		40978925170990F60054042A /* ItsBetaFacebook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItsBetaFacebook.h; sourceTree = "<group>"; };
+		40978926170990F60054042A /* ItsBetaFacebook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItsBetaFacebook.m; sourceTree = "<group>"; };
+		40978927170990F60054042A /* ItsBetaFacebookIPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItsBetaFacebookIPad.h; sourceTree = "<group>"; };
+		40978928170990F60054042A /* ItsBetaFacebookIPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItsBetaFacebookIPad.m; sourceTree = "<group>"; };
+		40978929170990F60054042A /* ItsBetaFacebookIPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ItsBetaFacebookIPad.xib; sourceTree = "<group>"; };
+		4097892A170990F60054042A /* ItsBetaFacebookIPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItsBetaFacebookIPhone.h; sourceTree = "<group>"; };
+		4097892B170990F60054042A /* ItsBetaFacebookIPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItsBetaFacebookIPhone.m; sourceTree = "<group>"; };
+		4097892C170990F60054042A /* ItsBetaFacebookIPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ItsBetaFacebookIPhone.xib; sourceTree = "<group>"; };
+		4097892D170990F60054042A /* ItsBetaGraphUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItsBetaGraphUser.h; sourceTree = "<group>"; };
+		4097892E170990F60054042A /* ItsBetaGraphUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItsBetaGraphUser.m; sourceTree = "<group>"; };
+		4097893617099DFC0054042A /* NSURL+ItsBeta.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+ItsBeta.h"; sourceTree = "<group>"; };
+		4097893717099DFC0054042A /* NSURL+ItsBeta.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+ItsBeta.m"; sourceTree = "<group>"; };
+		4097893917099E630054042A /* NSString+ItsBeta.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+ItsBeta.h"; sourceTree = "<group>"; };
+		4097893A17099E640054042A /* NSString+ItsBeta.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+ItsBeta.m"; sourceTree = "<group>"; };
+		4097893C17099F1A0054042A /* NSDictionary+ItsBeta.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+ItsBeta.h"; sourceTree = "<group>"; };
+		4097893D17099F1A0054042A /* NSDictionary+ItsBeta.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+ItsBeta.m"; sourceTree = "<group>"; };
 		683F8A80164573860066C47A /* HSBloodDonationType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSBloodDonationType.m; sourceTree = "<group>"; };
 		683F8A9316468E300066C47A /* event_done_button_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = event_done_button_normal.png; sourceTree = "<group>"; };
 		683F8A9416468E300066C47A /* event_done_button_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "event_done_button_normal@2x.png"; sourceTree = "<group>"; };
@@ -1817,6 +1842,7 @@
 			isa = PBXGroup;
 			children = (
 				409788E517097B8E0054042A /* Extension */,
+				40978924170990F60054042A /* Facebook */,
 				409788EC17097B8E0054042A /* ItsBetaApi.h */,
 				409788ED17097B8E0054042A /* ItsBetaApi.m */,
 				409788EE17097B8E0054042A /* ItsBetaFastCache.h */,
@@ -1832,14 +1858,37 @@
 		409788E517097B8E0054042A /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				409788E617097B8E0054042A /* CIColor+ItsBeta.h */,
-				409788E717097B8E0054042A /* CIColor+ItsBeta.m */,
 				409788E817097B8E0054042A /* NSDate+ItsBeta.h */,
 				409788E917097B8E0054042A /* NSDate+ItsBeta.m */,
+				4097893617099DFC0054042A /* NSURL+ItsBeta.h */,
+				4097893717099DFC0054042A /* NSURL+ItsBeta.m */,
+				4097893917099E630054042A /* NSString+ItsBeta.h */,
+				4097893A17099E640054042A /* NSString+ItsBeta.m */,
+				4097893C17099F1A0054042A /* NSDictionary+ItsBeta.h */,
+				4097893D17099F1A0054042A /* NSDictionary+ItsBeta.m */,
+				409788E617097B8E0054042A /* CIColor+ItsBeta.h */,
+				409788E717097B8E0054042A /* CIColor+ItsBeta.m */,
 				409788EA17097B8E0054042A /* UIColor+ItsBeta.h */,
 				409788EB17097B8E0054042A /* UIColor+ItsBeta.m */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		40978924170990F60054042A /* Facebook */ = {
+			isa = PBXGroup;
+			children = (
+				40978925170990F60054042A /* ItsBetaFacebook.h */,
+				40978926170990F60054042A /* ItsBetaFacebook.m */,
+				40978927170990F60054042A /* ItsBetaFacebookIPad.h */,
+				40978928170990F60054042A /* ItsBetaFacebookIPad.m */,
+				40978929170990F60054042A /* ItsBetaFacebookIPad.xib */,
+				4097892A170990F60054042A /* ItsBetaFacebookIPhone.h */,
+				4097892B170990F60054042A /* ItsBetaFacebookIPhone.m */,
+				4097892C170990F60054042A /* ItsBetaFacebookIPhone.xib */,
+				4097892D170990F60054042A /* ItsBetaGraphUser.h */,
+				4097892E170990F60054042A /* ItsBetaGraphUser.m */,
+			);
+			path = Facebook;
 			sourceTree = "<group>";
 		};
 		683F8A9216468E300066C47A /* Buttons */ = {
@@ -3277,6 +3326,8 @@
 				6864D6241708B3C400F150F9 /* Default.png in Resources */,
 				6864D6251708B3C400F150F9 /* Default@2x.png in Resources */,
 				687A436C16F7C19400958347 /* CKAuthViewController.xib in Resources */,
+				40978931170990F60054042A /* ItsBetaFacebookIPad.xib in Resources */,
+				40978933170990F60054042A /* ItsBetaFacebookIPhone.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3426,6 +3477,13 @@
 				4097891917097B8E0054042A /* ItsBetaParams.m in Sources */,
 				4097891A17097B8E0054042A /* ItsBetaPlayer.m in Sources */,
 				4097891B17097B8E0054042A /* ItsBetaProject.m in Sources */,
+				4097892F170990F60054042A /* ItsBetaFacebook.m in Sources */,
+				40978930170990F60054042A /* ItsBetaFacebookIPad.m in Sources */,
+				40978932170990F60054042A /* ItsBetaFacebookIPhone.m in Sources */,
+				40978934170990F60054042A /* ItsBetaGraphUser.m in Sources */,
+				4097893817099DFC0054042A /* NSURL+ItsBeta.m in Sources */,
+				4097893B17099E640054042A /* NSString+ItsBeta.m in Sources */,
+				4097893E17099F1B0054042A /* NSDictionary+ItsBeta.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

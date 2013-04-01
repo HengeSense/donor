@@ -341,6 +341,109 @@
 
 + (void) requestServiceURL:(NSString*)serviceURL
                accessToken:(NSString*)accessToken
+                lastUpdate:(NSDate*)lastUpdate
+                    player:(ItsBetaPlayer*)player
+                   project:(ItsBetaProject*)project
+              countObjects:(ItsBetaApiResponseCountObject)countObjects {
+    NSMutableDictionary* query = [NSMutableDictionary dictionary];
+    if(accessToken != nil) {
+        [query setObject:accessToken forKey:@"access_token"];
+    }
+    if(player != nil) {
+        [query setObject:[player Id] forKey:@"player_id"];
+    }
+    if(project != nil) {
+        [query setObject:[project Id] forKey:@"project_id"];
+    }
+    if(lastUpdate != nil) {
+        [query setObject:[NSDate iso8601FromDate:lastUpdate] forKey:@"updated_at"];
+    }
+    ItsBetaRest* rest = [ItsBetaRest restWithMethod:@"POST" url:[NSString stringWithFormat:@"%@/info/projectobjs.json", serviceURL] query:query];
+    [rest sendSuccess:^(ItsBetaRest* rest) {
+        NSError* error = nil;
+        id json = [NSJSONSerialization JSONObjectWithData:[rest receivedData] options:0 error:&error];
+        if(error == nil) {
+            if([json isKindOfClass:[NSDictionary class]] == YES) {
+                NSNumber* count = [json objectForKey:@"count"];
+                if(count != nil) {
+                    if(countObjects != nil) {
+                        countObjects([count unsignedIntegerValue], nil);
+                    }
+                } else {
+                    error = [self errorWithDictionary:json];
+                }
+            }
+        }
+        if(error != nil) {
+            if(countObjects != nil) {
+                countObjects(0, error);
+            }
+            NSLog(@"%@", error);
+        }
+    } sendFailure:^(ItsBetaRest* rest, NSError* error) {
+        if(countObjects != nil) {
+            countObjects(0, error);
+        }
+        NSLog(@"%@", error);
+    }];
+}
+
++ (void) requestServiceURL:(NSString*)serviceURL
+               accessToken:(NSString*)accessToken
+                lastUpdate:(NSDate*)lastUpdate
+                    player:(ItsBetaPlayer*)player
+                   project:(ItsBetaProject*)project
+                      page:(NSUInteger)page
+                   prePage:(NSUInteger)prePage
+                   objects:(ItsBetaApiResponseObjectCollection)objects {
+    NSMutableDictionary* query = [NSMutableDictionary dictionary];
+    if(accessToken != nil) {
+        [query setObject:accessToken forKey:@"access_token"];
+    }
+    if(player != nil) {
+        [query setObject:[player Id] forKey:@"player_id"];
+    }
+    if(project != nil) {
+        [query setObject:[project Id] forKey:@"project_id"];
+    }
+    if(page != NSNotFound) {
+        [query setObject:[NSNumber numberWithUnsignedInteger:page] forKey:@"page"];
+    }
+    if(prePage != NSNotFound) {
+        [query setObject:[NSNumber numberWithUnsignedInteger:prePage] forKey:@"pre_page"];
+    }
+    if(lastUpdate != nil) {
+        [query setObject:[NSDate iso8601FromDate:lastUpdate] forKey:@"updated_at"];
+    }
+    ItsBetaRest* rest = [ItsBetaRest restWithMethod:@"POST" url:[NSString stringWithFormat:@"%@/info/projectobjs.json", serviceURL] query:query];
+    [rest sendSuccess:^(ItsBetaRest* rest) {
+        NSError* error = nil;
+        id json = [NSJSONSerialization JSONObjectWithData:[rest receivedData] options:0 error:&error];
+        if(error == nil) {
+            if([json isKindOfClass:[NSArray class]] == YES) {
+                if(objects != nil) {
+                    objects([ItsBetaObjectCollection collectionWithArray:json], nil);
+                }
+            } else if([json isKindOfClass:[NSDictionary class]] == YES) {
+                error = [self errorWithDictionary:json];
+            }
+        }
+        if(error != nil) {
+            if(objects != nil) {
+                objects(nil, error);
+            }
+            NSLog(@"%@", error);
+        }
+    } sendFailure:^(ItsBetaRest* rest, NSError* error) {
+        if(objects != nil) {
+            objects(nil, error);
+        }
+        NSLog(@"%@", error);
+    }];
+}
+
++ (void) requestServiceURL:(NSString*)serviceURL
+               accessToken:(NSString*)accessToken
                 facebookId:(NSString*)facebookId
                   playerId:(ItsBetaApiResponsePlayerId)playerId {
     [self requestServiceURL:serviceURL

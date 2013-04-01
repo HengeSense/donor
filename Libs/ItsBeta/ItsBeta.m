@@ -6,6 +6,14 @@
 
 /*--------------------------------------------------*/
 
+@interface ItsBeta ()
+
+- (void) saveToLocalStorage;
+
+@end
+
+/*--------------------------------------------------*/
+
 @implementation ItsBeta
 
 + (ItsBeta*) sharedItsBeta {
@@ -54,6 +62,14 @@
 - (void) encodeWithCoder:(NSCoder*)coder {
     [coder encodeObject:_application forKey:@"application"];
     [coder encodeObject:_player forKey:@"player"];
+}
+
+- (void) saveToLocalStorage {
+    NSData* data = [NSKeyedArchiver archivedDataWithRootObject:self];
+    if([data isKindOfClass:[NSData class]] == YES) {
+        [[NSUserDefaults standardUserDefaults] setObject:data forKey:@"itsbeta"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
 }
 
 + (void) setApplicationServiceURL:(NSString*)serviceURL {
@@ -108,11 +124,17 @@
     NSLog(@"%@", [NSDate date]);
     [ItsBetaQueue runASync:^{
         if([[[ItsBeta sharedItsBeta] application] synchronizeSync] == YES) {
-            NSData* data = [NSKeyedArchiver archivedDataWithRootObject:[ItsBeta sharedItsBeta]];
-            if([data isKindOfClass:[NSData class]] == YES) {
-                [[NSUserDefaults standardUserDefaults] setObject:data forKey:@"itsbeta"];
-                [[NSUserDefaults standardUserDefaults] synchronize];
-            }
+            [[ItsBeta sharedItsBeta] saveToLocalStorage];
+        }
+        NSLog(@"%@", [NSDate date]);
+    }];
+}
+
+- (void) synchronizePlayerWithProject:(ItsBetaProject*)project {
+    NSLog(@"%@", [NSDate date]);
+    [ItsBetaQueue runASync:^{
+        if([[[ItsBeta sharedItsBeta] player] synchronizeWithProject:project] == YES) {
+            [[ItsBeta sharedItsBeta] saveToLocalStorage];
         }
         NSLog(@"%@", [NSDate date]);
     }];

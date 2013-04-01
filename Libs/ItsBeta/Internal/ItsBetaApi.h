@@ -9,6 +9,7 @@ typedef void (^ItsBetaApiResponseProjectCollection)(ItsBetaProjectCollection* co
 typedef void (^ItsBetaApiResponseObjectTypeCollection)(ItsBetaObjectTypeCollection* collection, NSError* error);
 typedef void (^ItsBetaApiResponseObjectTemplateCollection)(ItsBetaObjectTemplateCollection* collection, NSError* error);
 typedef void (^ItsBetaApiResponseObjectCollection)(ItsBetaObjectCollection* collection, NSError* error);
+typedef void (^ItsBetaApiResponseCountObject)(NSUInteger count, NSError* error);
 typedef void (^ItsBetaApiResponsePlayerId)(NSString* playerId, NSError* error);
 
 /*--------------------------------------------------*/
@@ -79,7 +80,23 @@ typedef void (^ItsBetaApiResponsePlayerId)(NSString* playerId, NSError* error);
                     player:(ItsBetaPlayer*)player
                    project:(ItsBetaProject*)project
            objectTemplate:(ItsBetaObjectTemplate*)objectTemplate
-                  objects:(ItsBetaApiResponseObjectCollection)objects;
+                   objects:(ItsBetaApiResponseObjectCollection)objects;
+
++ (void) requestServiceURL:(NSString*)serviceURL
+               accessToken:(NSString*)accessToken
+                lastUpdate:(NSDate*)lastUpdate
+                    player:(ItsBetaPlayer*)player
+                   project:(ItsBetaProject*)project
+              countObjects:(ItsBetaApiResponseCountObject)countObjects;
+
++ (void) requestServiceURL:(NSString*)serviceURL
+               accessToken:(NSString*)accessToken
+                lastUpdate:(NSDate*)lastUpdate
+                    player:(ItsBetaPlayer*)player
+                   project:(ItsBetaProject*)project
+                      page:(NSUInteger)page
+                   prePage:(NSUInteger)prePage
+                   objects:(ItsBetaApiResponseObjectCollection)objects;
 
 + (void) requestServiceURL:(NSString*)serviceURL
                accessToken:(NSString*)accessToken

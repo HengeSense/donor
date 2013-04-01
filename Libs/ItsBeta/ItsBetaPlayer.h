@@ -22,11 +22,15 @@ typedef void (^ItsBetaPlayerLogout)(NSError* error);
 
 - (id) initWithType:(ItsBetaPlayerType)type;
 
-- (void) synchronizeWithProject:(ItsBetaProject*)project;
+- (BOOL) synchronizeWithProject:(ItsBetaProject*)project;
 
 - (BOOL) isLogin;
 
-- (void) login:(ItsBetaPlayerLogin)callback;
+#if defined(TARGET_OS_IPHONE)
+- (void) login:(ItsBetaPlayerLogin)callback parentViewController:(UIViewController*)parentViewController;
+#else
+- (void) login:(ItsBetaPlayerLogin)callback parentViewController:(NSViewController*)parentViewController;
+#endif
 - (void) loginWithFacebookId:(NSString*)facebookId facebookToken:(NSString*)facebookToken callback:(ItsBetaPlayerLogin)callback;
 
 - (void) logout:(ItsBetaPlayerLogout)callback;
