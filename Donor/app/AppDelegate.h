@@ -9,9 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "STabBarController.h"
 
-#import "ItsBeta.h"
-
-@interface AppDelegate : UIResponder < UIApplicationDelegate, UITabBarControllerDelegate, ItsBetaApplicationDelegate >
+@interface AppDelegate : UIResponder <UIApplicationDelegate, UITabBarControllerDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 

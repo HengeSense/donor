@@ -14,6 +14,8 @@
 #import "HSFlurryAnalytics.h"
 #include "HSMailChimp.h"
 
+#import "ItsBeta.h"
+
 #import "HSCalendarViewController.h"
 
 #import "StationsViewController.h"
@@ -36,7 +38,7 @@ static NSString * const ITSBETA_ACCESS_TOKEN = @"059db4f010c5f40bf4a73a28222dd3e
 static NSString * const MAILCHIMP_API_KEY = @"9392e150a6a0a5e66d42d2cd56d5d219-us4";
 static NSString * const MAILCHIMP_DONOR_LIST_ID = @"63b23fc742";
 
-@interface AppDelegate ()
+@interface AppDelegate () <ItsBetaApplicationDelegate>
 
 @property (nonatomic, strong) HSCalendarEventNotifier *calendarEventNotifier;
 
