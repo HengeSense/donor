@@ -134,7 +134,7 @@ namespace Donor
                 this.Focus();
                 if (ViewModelLocator.MainStatic.User.IsLoggedIn == true)
                 {
-                    BadgesViewModel.ActivateAchieve(code);
+                    ViewModelLocator.BadgesStatic.ActivateAchieve(code);
                 };
 
                 try

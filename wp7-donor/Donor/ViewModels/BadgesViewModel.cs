@@ -132,14 +132,14 @@ namespace Donor.ViewModels
         }
     }
 
-    static public class BadgesViewModel
+    public class BadgesViewModel: ViewModelBase
     {
 
         static public string activation_code = "";
         static MessagePrompt messagePrompt;
         static string facebook_id = "";
 
-        static BadgesViewModel()
+        public BadgesViewModel()
         {
             AvailableAchieves = new ObservableCollection<AchieveItem>();
 
@@ -168,10 +168,10 @@ namespace Donor.ViewModels
                 Status = false,
                 UnactiveImage = "/images/achieves/Achive-donor_secondBlood_unavailible.png" });
 
-            ViewModelLocator.MainStatic.UserEnter += new MainViewModel.UserEnterEventHandler(BadgesViewModel.UserLoaded);
+            //ViewModelLocator.MainStatic.UserEnter += new MainViewModel.UserEnterEventHandler(ViewModelLocator.BadgesStatic.UserLoaded);
         }
 
-        public static void DisableFirstBlood()
+        public void DisableFirstBlood()
         {
             try
             {
@@ -182,7 +182,7 @@ namespace Donor.ViewModels
             };
         }
 
-        private static void UserLoaded(object sender, EventArgs e)
+        public void UserLoaded(object sender, EventArgs e)
         {
             try
             {
@@ -200,7 +200,7 @@ namespace Donor.ViewModels
         /// 
         /// </summary>
         /// <param name="activation_code"></param>
-        public static void ActivateAchieve(string activation_code)
+        public void ActivateAchieve(string activation_code)
         {
             var bw = new BackgroundWorker();
             bw.DoWork += delegate
@@ -266,7 +266,7 @@ namespace Donor.ViewModels
             bw.RunWorkerAsync();
         }
 
-        static private void GetPlayerAchieves(string fb_id = "")
+        private void GetPlayerAchieves(string fb_id = "")
         {
             var bw = new BackgroundWorker();
             bw.DoWork += delegate
@@ -305,14 +305,20 @@ namespace Donor.ViewModels
                                         activated = item["activated"].ToString();
                                         if (activated == "True")
                                         {
-                                            try
+                                            Deployment.Current.Dispatcher.BeginInvoke(() =>
                                             {
-                                                BadgesViewModel.AvailableAchieves.FirstOrDefault(c => c.Api_name == item["api_name"].ToString()).Status = true;
-                                            }
-                                            catch { };
+                                                try
+                                                {
+                                                    AvailableAchieves.FirstOrDefault(c => c.Api_name == item["api_name"].ToString()).Status = true;
+                                                }
+                                                catch (Exception ex)
+                                                {
+                                                    //MessageBox.Show(ex.Message.ToString());
+                                                };
+                                            });
                                         };
-
                                     };
+                                    RaisePropertyChanged("AvailableAchieves");
                                 }
                                 catch { };
                             });
@@ -325,16 +331,16 @@ namespace Donor.ViewModels
             bw.RunWorkerAsync();
         }
 
-        static public void ClearStatus()
+        public void ClearStatus()
         {
-            foreach (var item in BadgesViewModel.AvailableAchieves)
+            foreach (var item in AvailableAchieves)
             {
                 item.Status = false;
             };
         }
 
-        static private ObservableCollection<AchieveItem> _availableAchieves = new ObservableCollection<AchieveItem>();
-        static public ObservableCollection<AchieveItem> AvailableAchieves
+        private ObservableCollection<AchieveItem> _availableAchieves = new ObservableCollection<AchieveItem>();
+        public ObservableCollection<AchieveItem> AvailableAchieves
         {
             get
             {
@@ -349,13 +355,14 @@ namespace Donor.ViewModels
                 try
                 {
                     _availableAchieves = value;
+                    RaisePropertyChanged("AvailableAchieves");
                 }
                 catch { };
             }
         }
 
-        static private ObservableCollection<AchieveItem> _soonAchieves = new ObservableCollection<AchieveItem>();
-        static public ObservableCollection<AchieveItem> SoonAchieves
+        private ObservableCollection<AchieveItem> _soonAchieves = new ObservableCollection<AchieveItem>();
+        public ObservableCollection<AchieveItem> SoonAchieves
         {
             get
             {
@@ -370,6 +377,7 @@ namespace Donor.ViewModels
                 try
                 {
                     _soonAchieves = value;
+                    RaisePropertyChanged("SoonAchieves");
                 }
                 catch { };
             }
@@ -382,7 +390,7 @@ namespace Donor.ViewModels
         /// ● access_token: String = токен доступа
         /// ● badge_name: String = шаблон достижения
         /// </summary>
-        static public void PostAchieve(string user_id = "", string user_token="")
+        public void PostAchieve(string user_id = "", string user_token="")
         {
             var bw = new BackgroundWorker();
             bw.DoWork += delegate
@@ -424,7 +432,7 @@ namespace Donor.ViewModels
                                     ViewModelLocator.MainStatic.Settings.AchieveDonorUser = ViewModelLocator.MainStatic.User.objectId;
                                     ViewModelLocator.MainStatic.SaveSettingsToStorage();
 
-                                    BadgesViewModel.ShowBadgeMessage();
+                                    ViewModelLocator.BadgesStatic.ShowBadgeMessage();
                                 });
                             };
                         }
@@ -434,7 +442,7 @@ namespace Donor.ViewModels
             bw.RunWorkerAsync();
         }
 
-        public static void ShowBadgeMessage()
+        public void ShowBadgeMessage()
         {
             messagePrompt = new MessagePrompt();
             try
@@ -460,12 +468,12 @@ namespace Donor.ViewModels
             messagePrompt.Show();
         }
 
-        static void closeButton_Click(object sender, RoutedEventArgs e)
+        void closeButton_Click(object sender, RoutedEventArgs e)
         {
             messagePrompt.Hide();
         }
 
-        static void moreButton_Click(object sender, RoutedEventArgs e)
+        void moreButton_Click(object sender, RoutedEventArgs e)
         {
             try
             {

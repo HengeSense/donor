@@ -43,6 +43,7 @@ namespace Donor.ViewModels
     public class ViewModelLocator
     {
         private static MainViewModel _main;
+        private static BadgesViewModel _badges;
         /// <summary>
         /// Initializes a new instance of the ViewModelLocator class.
         /// </summary>
@@ -67,6 +68,15 @@ namespace Donor.ViewModels
             }
         }
 
+        public static void CreateBadges()
+        {
+            if (_badges == null)
+            {
+                _badges = new BadgesViewModel();
+                ViewModelLocator.MainStatic.UserEnter += new MainViewModel.UserEnterEventHandler(ViewModelLocator.BadgesStatic.UserLoaded);
+            }
+        }
+
         public static MainViewModel MainStatic
         {
             get
@@ -77,6 +87,19 @@ namespace Donor.ViewModels
                 }
 
                 return _main;
+            }
+        }
+
+        public static BadgesViewModel BadgesStatic
+        {
+            get
+            {
+                if (_badges == null)
+                {
+                    CreateBadges();
+                }
+
+                return _badges;
             }
         }
 
@@ -94,6 +117,17 @@ namespace Donor.ViewModels
             }
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance",
+            "CA1822:MarkMembersAsStatic",
+            Justification = "This non-static member is needed for data binding purposes.")]
+        public BadgesViewModel Badges
+        {
+            get
+            {
+                return BadgesStatic;
+            }
+        }
+
         /// <summary>
         /// Provides a deterministic way to delete the Main property.
         /// </summary>
@@ -101,6 +135,12 @@ namespace Donor.ViewModels
         {
             _main.Cleanup();
             _main = null;
+        }
+
+        public static void ClearBadges()
+        {
+            _badges.Cleanup();
+            _badges = null;
         }
 
         public static void Cleanup()

@@ -77,7 +77,7 @@ namespace Donor.ViewModels
             ViewModelLocator.MainStatic.User.UserName = "";
             ViewModelLocator.MainStatic.User.Password = "";
             this.NotifyAll();
-            BadgesViewModel.ClearStatus();
+            ViewModelLocator.BadgesStatic.ClearStatus();
 
             ViewModelLocator.MainStatic.SaveUserToStorage();
 
@@ -771,7 +771,7 @@ namespace Donor.ViewModels
                                     {
                                         if ((response.StatusCode!=HttpStatusCode.Created) || (userscount==0)) //((userscount == 0)) // || (o["username"].ToString().ToLower() == result["email"].ToString().ToLower())
                                         {
-                                            BadgesViewModel.PostAchieve(id, accessToken);
+                                            ViewModelLocator.BadgesStatic.PostAchieve(id, accessToken);
 
                                             Deployment.Current.Dispatcher.BeginInvoke(() =>
                                             {
@@ -988,7 +988,7 @@ namespace Donor.ViewModels
                         JObject o = JObject.Parse(response.Content.ToString());
                         if (o["error"] == null)
                         {
-                            BadgesViewModel.PostAchieve(id, accessToken);
+                            ViewModelLocator.BadgesStatic.PostAchieve(id, accessToken);
                             MessageBox.Show("Выполнена привязка.");
 
                             ViewModelLocator.MainStatic.SaveUserToStorage();

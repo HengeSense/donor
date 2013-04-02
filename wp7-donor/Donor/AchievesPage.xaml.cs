@@ -25,8 +25,8 @@ namespace Donor
 
         private void ListBox_Loaded(object sender, RoutedEventArgs e)
         {
-            this.AvailableBadges.ItemsSource = BadgesViewModel.AvailableAchieves;
-            this.SoonBadges.ItemsSource = BadgesViewModel.SoonAchieves;
+            //this.AvailableBadges.ItemsSource = ViewModelLocator.BadgesStatic.AvailableAchieves;
+            this.SoonBadges.ItemsSource = ViewModelLocator.BadgesStatic.SoonAchieves;
         }
 
         private void AvailableBadges_Tap(object sender, System.Windows.Input.GestureEventArgs e)
@@ -35,7 +35,7 @@ namespace Donor
             {
                 if ((this.AvailableBadges.SelectedItem as AchieveItem).Status == true)
                 {
-                    BadgesViewModel.ShowBadgeMessage();
+                    ViewModelLocator.BadgesStatic.ShowBadgeMessage();
                 };
             }
             catch { };            
@@ -66,7 +66,7 @@ namespace Donor
         {
             try
             {
-                BadgesViewModel.DisableFirstBlood();
+                ViewModelLocator.BadgesStatic.DisableFirstBlood();
             }
             catch { };
         }
