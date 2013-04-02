@@ -11,6 +11,10 @@
     return [[self query] dictionaryFromQueryComponents];
 }
 
+- (NSMutableDictionary*) fragmentComponents {
+    return [[self fragment] dictionaryFromQueryComponents];
+}
+
 @end
 
 /*--------------------------------------------------*/

@@ -24,6 +24,8 @@
 #import "HSBloodType.h"
 #import "HSUserInfo.h"
 
+#import "ItsBeta.h"
+
 static const CGFloat kActionSheetAnimationDuration = 0.2;
 
 static NSString * const kNotLinkedToFacebookTitle = @"не привязан";

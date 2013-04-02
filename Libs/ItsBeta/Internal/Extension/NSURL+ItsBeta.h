@@ -7,6 +7,7 @@
 @interface NSURL (ItsBeta)
 
 - (NSMutableDictionary*) queryComponents;
+- (NSMutableDictionary*) fragmentComponents;
 
 @end
 

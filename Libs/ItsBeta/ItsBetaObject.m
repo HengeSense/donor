@@ -155,6 +155,10 @@
     return collection;
 }
 
+- (void) removeAllObjects {
+    [_items removeAllObjects];
+}
+
 @end
 
 /*--------------------------------------------------*/

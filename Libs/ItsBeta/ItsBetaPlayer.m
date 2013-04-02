@@ -186,18 +186,19 @@
                        facebookId:facebookId
                          playerId:^(NSString* playerId, NSError* error) {
                              if(_Id != playerId) {
-                                 NS_SAFE_RELEASE(_Id);
-                                 _Id = NS_SAFE_RETAIN(playerId);
+                                 NS_SAFE_SETTER(_Id, playerId);
                              }
                              if(_facebookId != facebookId) {
-                                 NS_SAFE_RELEASE(_facebookId);
-                                 _facebookId = NS_SAFE_RETAIN(facebookId);
+                                 NS_SAFE_SETTER(_facebookId, facebookId);
                              }
                              if(_facebookToken != facebookToken) {
-                                 NS_SAFE_RELEASE(_facebookToken);
-                                 _facebookToken = NS_SAFE_RETAIN(facebookToken);
+                                 NS_SAFE_SETTER(_facebookToken, facebookToken);
                              }
-                             callback(error);
+                             if((_Id != nil) && (error != nil)) {
+                                 callback(error);
+                             } else {
+                                 callback(nil);
+                             }
                          }];
 }
 
@@ -271,8 +272,11 @@
     if([FBSession activeSession] != nil) {
         [[FBSession activeSession] closeAndClearTokenInformation];
     }
+    
     NS_SAFE_RELEASE(_Id);
     NS_SAFE_RELEASE(_facebookId);
+    [_objects removeAllObjects];
+    
     if(callback != nil) {
         callback(nil);
     }
@@ -322,11 +326,12 @@
                 [storage deleteCookie:cookie];
             }
         }
-        // [[NSUserDefaults standardUserDefaults] synchronize];
+        [[NSUserDefaults standardUserDefaults] synchronize];
     }
     
     NS_SAFE_RELEASE(_Id);
     NS_SAFE_RELEASE(_facebookId);
+    [_objects removeAllObjects];
     
     if(callback != nil) {
         callback(nil);

@@ -139,8 +139,8 @@
         return NO;
     }
     if([[[request URL] absoluteString] hasPrefix:_redirectURL] == YES) {
-        NSDictionary* queryComponents = [[request URL] queryComponents];
-        _accessToken = [queryComponents objectForKey:@"access_token"];
+        NSDictionary* components = [[request URL] fragmentComponents];
+        _accessToken = [[components objectForKey:@"access_token"] objectAtIndex:0];
         if(_accessToken != nil) {
             [_activityIndicator startAnimating];
             NSURLRequest* graphRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://graph.facebook.com/me?access_token=%@", _accessToken]]];

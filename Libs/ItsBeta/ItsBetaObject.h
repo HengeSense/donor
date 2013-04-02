@@ -34,6 +34,7 @@
 - (ItsBetaObject*) objectAtIndex:(NSUInteger)index;
 - (ItsBetaObject*) objectAtId:(NSString*)Id;
 - (ItsBetaObjectCollection*) objectsWithObjectTemplate:(ItsBetaObjectTemplate*)objectTemplate;
+- (void) removeAllObjects;
 
 @end
 
