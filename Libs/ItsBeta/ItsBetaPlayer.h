@@ -24,7 +24,7 @@ typedef void (^ItsBetaPlayerLogout)(NSError* error);
 
 - (BOOL) synchronizeWithProject:(ItsBetaProject*)project;
 
-- (BOOL) isLogin;
+- (BOOL) isLogined;
 
 #if defined(TARGET_OS_IPHONE)
 - (void) loginWithViewController:(UIViewController*)viewController callback:(ItsBetaPlayerLogin)callback;

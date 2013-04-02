@@ -50,6 +50,7 @@ typedef void (^ItsBetaLogout)(ItsBetaPlayer* player, NSError* error);
 + (ItsBetaObject*) objectById:(NSString*)Id byPlayer:(ItsBetaPlayer*)player;
 + (ItsBetaObjectCollection*) objectsWithObjectTemplate:(ItsBetaObjectTemplate*)objectTemplate byPlayer:(ItsBetaPlayer*)player;
 
++ (BOOL) playerLogined;
 #if defined(TARGET_OS_IPHONE)
 + (void) facebookLoginWithViewController:(UIViewController*)viewController callback:(ItsBetaLogin)callback;
 #else

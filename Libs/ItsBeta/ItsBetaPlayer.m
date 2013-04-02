@@ -153,8 +153,8 @@
     return YES;
 }
 
-- (BOOL) isLogin {
-    return (_Id != nil);
+- (BOOL) isLogined {
+    return ((_facebookId != nil) && (_facebookToken != nil));
 }
 
 #if defined(TARGET_OS_IPHONE)

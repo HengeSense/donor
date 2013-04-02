@@ -140,6 +140,10 @@
     return [[player objects] objectsWithObjectTemplate:objectTemplate];
 }
 
++ (BOOL) playerLogined {
+    return [[[ItsBeta sharedItsBeta] player] isLogined];
+}
+
 #if defined(TARGET_OS_IPHONE)
 + (void) facebookLoginWithViewController:(UIViewController*)viewController callback:(ItsBetaLogin)callback {
 #else
