@@ -601,6 +601,7 @@
 		85BE8D3615C1601E00CF5606 /* tabbar_calendar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85BE8D1815C1601E00CF5606 /* tabbar_calendar@2x.png */; };
 		85BE8D3715C1601E00CF5606 /* tabbar.png in Resources */ = {isa = PBXBuildFile; fileRef = 85BE8D1915C1601E00CF5606 /* tabbar.png */; };
 		85BE8D3815C1601E00CF5606 /* tabbar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85BE8D1A15C1601E00CF5606 /* tabbar@2x.png */; };
+		CE8609CB170B7A0E00E4497A /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE8609CA170B7A0E00E4497A /* Crashlytics.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1371,6 +1372,7 @@
 		85BE8D1815C1601E00CF5606 /* tabbar_calendar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar_calendar@2x.png"; sourceTree = "<group>"; };
 		85BE8D1915C1601E00CF5606 /* tabbar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tabbar.png; sourceTree = "<group>"; };
 		85BE8D1A15C1601E00CF5606 /* tabbar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar@2x.png"; sourceTree = "<group>"; };
+		CE8609CA170B7A0E00E4497A /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = Libs/Crashlytics.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1403,6 +1405,7 @@
 				37153EA215AEBA3400C985C1 /* Foundation.framework in Frameworks */,
 				6871DF641681184B004E5EBB /* libTestFlight.a in Frameworks */,
 				6846117116A61B7B00EE9030 /* libCrittercism_v3_4_5.a in Frameworks */,
+				CE8609CB170B7A0E00E4497A /* Crashlytics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1446,6 +1449,7 @@
 		37153E9E15AEBA3400C985C1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CE8609CA170B7A0E00E4497A /* Crashlytics.framework */,
 				685088D01666B74B004EC3CC /* AdSupport.framework */,
 				685088CE1666B738004EC3CC /* StoreKit.framework */,
 				685088CC1666B715004EC3CC /* Accounts.framework */,
@@ -2807,6 +2811,7 @@
 				37153E9715AEBA3400C985C1 /* Sources */,
 				37153E9815AEBA3400C985C1 /* Frameworks */,
 				37153E9915AEBA3400C985C1 /* Resources */,
+				CE8609C9170B79CE00E4497A /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -3355,6 +3360,19 @@
 			shellPath = /bin/sh;
 			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
 		};
+		CE8609C9170B79CE00E4497A /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Libs/Crashlytics.framework/run 9d515447ae8b641e682dacd6b67757ba2762308f";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -3621,6 +3639,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/Libs\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Donor/Donor-Prefix.pch";
@@ -3656,6 +3675,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/Libs\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Donor/Donor-Prefix.pch";
@@ -3717,6 +3737,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/Libs\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Donor/Donor-Prefix.pch";
@@ -3807,6 +3828,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/Libs\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Donor/Donor-Prefix.pch";
