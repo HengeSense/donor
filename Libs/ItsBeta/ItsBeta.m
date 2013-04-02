@@ -141,13 +141,13 @@
 }
 
 #if defined(TARGET_OS_IPHONE)
-+ (void) playerFacebookLogin:(ItsBetaLogin)callback parentViewController:(UIViewController*)parentViewController {
++ (void) facebookLoginWithViewController:(UIViewController*)viewController callback:(ItsBetaLogin)callback {
 #else
-+ (void) playerFacebookLogin:(ItsBetaLogin)callback parentViewController:(NSViewController*)parentViewController {
++ (void) facebookLoginWithViewController:(NSViewController*)viewController callback:(ItsBetaLogin)callback {
 #endif
     ItsBetaPlayer* player = [[ItsBeta sharedItsBeta] player];
     [player setType:ItsBetaPlayerTypeFacebook];
-    [player loginWithViewController:parentViewController callback:^(NSError* error) {
+    [player loginWithViewController:viewController callback:^(NSError* error) {
         if(callback != nil) {
             callback(player, error);
         }

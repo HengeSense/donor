@@ -51,9 +51,9 @@ typedef void (^ItsBetaLogout)(ItsBetaPlayer* player, NSError* error);
 + (ItsBetaObjectCollection*) objectsWithObjectTemplate:(ItsBetaObjectTemplate*)objectTemplate byPlayer:(ItsBetaPlayer*)player;
 
 #if defined(TARGET_OS_IPHONE)
-+ (void) playerFacebookLogin:(ItsBetaLogin)callback parentViewController:(UIViewController*)parentViewController;
++ (void) facebookLoginWithViewController:(UIViewController*)viewController callback:(ItsBetaLogin)callback;
 #else
-+ (void) playerFacebookLogin:(ItsBetaLogin)callback parentViewController:(NSViewController*)parentViewController;
++ (void) facebookLoginWithViewController:(NSViewController*)viewController callback:(ItsBetaLogin)callback;
 #endif
 + (void) playerLogout:(ItsBetaLogout)callback;
 
