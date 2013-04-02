@@ -16,6 +16,11 @@
 
 /*--------------------------------------------------*/
 
+typedef void (^ItsBetaLogin)(ItsBetaPlayer* player, NSError* error);
+typedef void (^ItsBetaLogout)(ItsBetaPlayer* player, NSError* error);
+
+/*--------------------------------------------------*/
+
 @interface ItsBeta : NSObject< NSCoding >
 
 @property(nonatomic, readonly) ItsBetaApplication* application;
@@ -29,18 +34,33 @@
 + (void) setApplicationAccessToken:(NSString*)accessToken;
 + (NSString*) applicationAccessToken;
 
-+ (void) setApplicationDelegate:(id< ItsBetaApplicationDelegate >)delegate;
-+ (id< ItsBetaApplicationDelegate >) applicationDelegate;
++ (void) setApplicationProjectWhiteList:(NSArray*)projectWhiteList;
++ (NSArray*) applicationProjectWhiteList;
+
++ (void) setApplicationProjectBlackList:(NSArray*)projectBlackList;
++ (NSArray*) applicationProjectBlackList;
 
 + (ItsBetaCategory*) categoryByName:(NSString*)name;
 + (ItsBetaProject*) projectById:(NSString*)Id;
 + (ItsBetaProject*) projectByName:(NSString*)name;
 + (ItsBetaObjectType*) objectTypeById:(NSString*)Id byProject:(ItsBetaProject*)project;
++ (ItsBetaObjectType*) objectTypeByName:(NSString*)name byProject:(ItsBetaProject*)project;
 + (ItsBetaObjectTemplate*) objectTemplateById:(NSString*)Id byProject:(ItsBetaProject*)project;
-+ (ItsBetaObject*) objectById:(NSString*)Id byProject:(ItsBetaProject*)project byPlayer:(ItsBetaPlayer*)player;
++ (ItsBetaObjectTemplate*) objectTemplateByName:(NSString*)name byProject:(ItsBetaProject*)project;
++ (ItsBetaObject*) objectById:(NSString*)Id byPlayer:(ItsBetaPlayer*)player;
++ (ItsBetaObjectCollection*) objectsWithObjectTemplate:(ItsBetaObjectTemplate*)objectTemplate byPlayer:(ItsBetaPlayer*)player;
+
+#if defined(TARGET_OS_IPHONE)
++ (void) playerFacebookLogin:(ItsBetaLogin)callback parentViewController:(UIViewController*)parentViewController;
+#else
++ (void) playerFacebookLogin:(ItsBetaLogin)callback parentViewController:(NSViewController*)parentViewController;
+#endif
++ (void) playerLogout:(ItsBetaLogout)callback;
 
 + (void) synchronizeApplication;
-- (void) synchronizePlayerWithProject:(ItsBetaProject*)project;
++ (void) synchronizePlayerWithProject:(ItsBetaProject*)project;
+
++ (BOOL) handleOpenURL:(NSURL*)url;
 
 @end
 

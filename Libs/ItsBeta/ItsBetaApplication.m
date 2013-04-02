@@ -110,11 +110,28 @@
     NS_SAFE_SETTER(_lastUpdateProjects, lastUpdateProjects);
     
     for(ItsBetaProject* project in _projects) {
-        if([_delegate respondsToSelector:@selector(itsbetaApplication:synchronizeProject:)] == YES) {
-            if([_delegate itsbetaApplication:self synchronizeProject:project] == YES) {
-                [project synchronizeSync];
+        NSString* projectName = [project name];
+        
+        BOOL insideProjectBlackList = NO;
+        if([_projectBlackList count] > 0) {
+            for(NSString* name in _projectBlackList) {
+                if([projectName compare:name options:NSCaseInsensitiveSearch] == NSOrderedSame) {
+                    insideProjectBlackList = YES;
+                    break;
+                }
+            }
+        }
+        BOOL insideProjectWhiteList = NO;
+        if([_projectWhiteList count] > 0) {
+            for(NSString* name in _projectWhiteList) {
+                if([projectName compare:name options:NSCaseInsensitiveSearch] == NSOrderedSame) {
+                    insideProjectWhiteList = YES;
+                }
             }
         } else {
+            insideProjectWhiteList = YES;
+        }
+        if((insideProjectBlackList == NO) && (insideProjectWhiteList == YES)) {
             [project synchronizeSync];
         }
     }

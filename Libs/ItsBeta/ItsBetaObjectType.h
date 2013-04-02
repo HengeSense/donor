@@ -38,6 +38,7 @@
 - (void) setObjectTypes:(ItsBetaObjectTypeCollection*)objectTypes;
 - (ItsBetaObjectType*) objectTypeAtIndex:(NSUInteger)index;
 - (ItsBetaObjectType*) objectTypeAtId:(NSString*)Id;
+- (ItsBetaObjectType*) objectTypeAtName:(NSString*)name;
 
 @end
 

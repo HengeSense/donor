@@ -29,6 +29,17 @@ NSString* const ItsBetaErrorDomain;
 
 /*--------------------------------------------------*/
 
+NSString* const ItsBetaWillApplicationSynchronize;
+NSString* const ItsBetaDidApplicationSynchronize;
+NSString* const ItsBetaWillPlayerSynchronize;
+NSString* const ItsBetaDidPlayerSynchronize;
+NSString* const ItsBetaWillPlayerLogin;
+NSString* const ItsBetaDidPlayerLogin;
+NSString* const ItsBetaWillPlayerLogout;
+NSString* const ItsBetaDidPlayerLogout;
+
+/*--------------------------------------------------*/
+
 typedef enum {
     ItsBetaErrorInternal,
     ItsBetaErrorResponse,

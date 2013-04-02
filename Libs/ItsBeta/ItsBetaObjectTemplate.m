@@ -168,6 +168,15 @@
     return [_items objectForKey:Id];
 }
 
+- (ItsBetaObjectTemplate*) objectTemplateAtName:(NSString*)name {
+    for(ItsBetaObjectTemplate* objectTemplate in _items) {
+        if([[objectTemplate name] isEqualToString:name] == YES) {
+            return objectTemplate;
+        }
+    }
+    return nil;
+}
+
 @end
 
 /*--------------------------------------------------*/

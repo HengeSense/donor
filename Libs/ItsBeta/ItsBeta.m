@@ -88,12 +88,20 @@
     return [[[ItsBeta sharedItsBeta] application] accessToken];
 }
 
-+ (void) setApplicationDelegate:(id< ItsBetaApplicationDelegate >)delegate {
-    [[[ItsBeta sharedItsBeta] application] setDelegate:delegate];
++ (void) setApplicationProjectWhiteList:(NSArray*)projectWhiteList {
+    [[[ItsBeta sharedItsBeta] application] setProjectWhiteList:projectWhiteList];
 }
 
-+ (id< ItsBetaApplicationDelegate >) applicationDelegate {
-    return [[[ItsBeta sharedItsBeta] application] delegate];
++ (NSArray*) applicationProjectWhiteList {
+    return [[[ItsBeta sharedItsBeta] application] projectWhiteList];
+}
+
++ (void) setApplicationProjectBlackList:(NSArray*)projectBlackList {
+    [[[ItsBeta sharedItsBeta] application] setProjectBlackList:projectBlackList];
+}
+
++ (NSArray*) applicationProjectBlackList {
+    return [[[ItsBeta sharedItsBeta] application] projectBlackList];
 }
 
 + (ItsBetaCategory*) categoryByName:(NSString*)name {
@@ -112,34 +120,83 @@
     return [[project objectTypes] objectTypeAtId:Id];
 }
 
++ (ItsBetaObjectType*) objectTypeByName:(NSString*)name byProject:(ItsBetaProject*)project {
+    return [[project objectTypes] objectTypeAtName:name];
+}
+
 + (ItsBetaObjectTemplate*) objectTemplateById:(NSString*)Id byProject:(ItsBetaProject*)project {
     return [[project objectTemplates] objectTemplateAtId:Id];
 }
 
-+ (ItsBetaObject*) objectById:(NSString*)Id byProject:(ItsBetaProject*)project byPlayer:(ItsBetaPlayer*)player {
++ (ItsBetaObjectTemplate*) objectTemplateByName:(NSString*)name byProject:(ItsBetaProject*)project {
+    return [[project objectTemplates] objectTemplateAtName:name];
+}
+
++ (ItsBetaObject*) objectById:(NSString*)Id byPlayer:(ItsBetaPlayer*)player {
     return [[player objects] objectAtId:Id];
 }
 
-+ (void) synchronizeApplication {
-    NSLog(@"[ItsBeta::synchronizeApplication] %@", [NSDate date]);
-    [ItsBetaQueue runASync:^{
-        if([[[ItsBeta sharedItsBeta] application] synchronizeSync] == YES) {
-            [[ItsBeta sharedItsBeta] saveToLocalStorage];
++ (ItsBetaObjectCollection*) objectsWithObjectTemplate:(ItsBetaObjectTemplate*)objectTemplate byPlayer:(ItsBetaPlayer*)player {
+    return [[player objects] objectsWithObjectTemplate:objectTemplate];
+}
+
+#if defined(TARGET_OS_IPHONE)
++ (void) playerFacebookLogin:(ItsBetaLogin)callback parentViewController:(UIViewController*)parentViewController {
+#else
++ (void) playerFacebookLogin:(ItsBetaLogin)callback parentViewController:(NSViewController*)parentViewController {
+#endif
+    ItsBetaPlayer* player = [[ItsBeta sharedItsBeta] player];
+    [player setType:ItsBetaPlayerTypeFacebook];
+    [player loginWithViewController:parentViewController callback:^(NSError* error) {
+        if(callback != nil) {
+            callback(player, error);
         }
+    }];
+}
+
++ (void) playerLogout:(ItsBetaLogout)callback {
+    ItsBetaPlayer* player = [[ItsBeta sharedItsBeta] player];
+    [player logout:^(NSError* error) {
+        if(callback != nil) {
+            callback(player, error);
+        }
+    }];
+}
+
++ (void) synchronizeApplication {
+    ItsBeta* itsbeta = [ItsBeta sharedItsBeta];
+    [ItsBetaQueue runASync:^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:ItsBetaWillApplicationSynchronize object:self];
+        NSLog(@"[ItsBeta::synchronizeApplication] %@", [NSDate date]);
+        
+        if([[itsbeta application] synchronizeSync] == YES) {
+            [itsbeta saveToLocalStorage];
+        }
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:ItsBetaDidApplicationSynchronize object:self];
         NSLog(@"[ItsBeta::synchronizeApplication] %@", [NSDate date]);
     }];
 }
 
-- (void) synchronizePlayerWithProject:(ItsBetaProject*)project {
-    NSLog(@"[ItsBeta::synchronizePlayerWithProject] %@", [NSDate date]);
++ (void) synchronizePlayerWithProject:(ItsBetaProject*)project {
+    ItsBeta* itsbeta = [ItsBeta sharedItsBeta];
     [ItsBetaQueue runASync:^{
-        if([[[ItsBeta sharedItsBeta] player] synchronizeWithProject:project] == YES) {
-            [[ItsBeta sharedItsBeta] saveToLocalStorage];
+        [[NSNotificationCenter defaultCenter] postNotificationName:ItsBetaWillPlayerSynchronize object:self];
+        NSLog(@"[ItsBeta::synchronizePlayerWithProject] %@", [NSDate date]);
+        
+        if([[itsbeta player] synchronizeWithProject:project] == YES) {
+            [itsbeta saveToLocalStorage];
         }
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:ItsBetaDidPlayerSynchronize object:self];
         NSLog(@"[ItsBeta::synchronizePlayerWithProject] %@", [NSDate date]);
     }];
 }
-
+    
++ (BOOL) handleOpenURL:(NSURL*)url {
+    return [ItsBetaPlayer handleOpenURL:url];
+}
+    
 @end
 
 /*--------------------------------------------------*/

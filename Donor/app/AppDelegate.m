@@ -38,7 +38,7 @@ static NSString * const ITSBETA_ACCESS_TOKEN = @"059db4f010c5f40bf4a73a28222dd3e
 static NSString * const MAILCHIMP_API_KEY = @"9392e150a6a0a5e66d42d2cd56d5d219-us4";
 static NSString * const MAILCHIMP_DONOR_LIST_ID = @"63b23fc742";
 
-@interface AppDelegate () <ItsBetaApplicationDelegate>
+@interface AppDelegate ()
 
 @property (nonatomic, strong) HSCalendarEventNotifier *calendarEventNotifier;
 
@@ -93,7 +93,11 @@ static NSString * const MAILCHIMP_DONOR_LIST_ID = @"63b23fc742";
 }
 
 - (BOOL)handleOpenURL:(NSURL*)url {
-    return [PFFacebookUtils handleOpenURL:url];
+    BOOL handled = [PFFacebookUtils handleOpenURL:url];
+    if(handled == NO) {
+        handled = [ItsBeta handleOpenURL:url];
+    }
+    return handled;
 }
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication
@@ -133,7 +137,7 @@ static NSString * const MAILCHIMP_DONOR_LIST_ID = @"63b23fc742";
     [[HSMailChimp sharedInstance] configureWithApiKey:MAILCHIMP_API_KEY listId:MAILCHIMP_DONOR_LIST_ID];
     
     [ItsBeta setApplicationAccessToken:ITSBETA_ACCESS_TOKEN];
-    [ItsBeta setApplicationDelegate:self];
+    [ItsBeta setApplicationProjectWhiteList:[NSArray arrayWithObjects:@"donor", nil]];
     [ItsBeta synchronizeApplication];
 }
 
@@ -199,15 +203,6 @@ static NSString * const MAILCHIMP_DONOR_LIST_ID = @"63b23fc742";
     self.tabBarController.selectedIndex = 3;
     
     return rootNavigationController;
-}
-
-#pragma mark - ItsBetaApplicationDelegate
-
-- (BOOL) itsbetaApplication:(ItsBetaApplication*)application synchronizeProject:(ItsBetaProject*)project {
-    if([[project name] compare:@"donor" options:NSCaseInsensitiveSearch] == NSOrderedSame) {
-        return YES;
-    }
-    return NO;
 }
 
 @end

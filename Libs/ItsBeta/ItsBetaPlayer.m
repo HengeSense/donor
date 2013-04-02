@@ -25,7 +25,6 @@
 
 @interface ItsBetaPlayer () {
     NSDate* _lastUpdateObjects;
-    ItsBetaObjectCollection* _objects;
     
 #if defined(ITSBETA_USE_FACEBOOK_OFFICIAL_SDK)
 #else
@@ -34,16 +33,19 @@
 }
 
 #if defined(ITSBETA_USE_FACEBOOK_OFFICIAL_SDK)
+
 - (void) loginWithFacebookOfficialSDK:(ItsBetaPlayerLogin)callback;
 - (void) logoutWithFacebookOfficialSDK:(ItsBetaPlayerLogout)callback;
-+ (BOOL) handleOpenURL:(NSURL*)url;
+
 #else
+
 #if defined(TARGET_OS_IPHONE)
-- (void) loginWithFacebook:(ItsBetaPlayerLogin)callback parentViewController:(UIViewController*)parentViewController;
+- (void) loginFacebookWithViewController:(UIViewController*)viewController callback:(ItsBetaPlayerLogin)callback;
 #else
-- (void) loginWithFacebook:(ItsBetaPlayerLogin)callback parentViewController:(NSViewController*)parentViewController;
+- (void) loginFacebookWithViewController:(NSViewController*)viewController callback:(ItsBetaPlayerLogin)callback;
 #endif
 - (void) logoutWithFacebook:(ItsBetaPlayerLogout)callback;
+
 #endif
 
 @end
@@ -52,12 +54,12 @@
 
 @implementation ItsBetaPlayer
 
-- (ItsBetaObjectCollection*) objects {
-    __block ItsBetaObjectCollection* result = nil;
-    [ItsBetaQueue runSync:^{
-        result = _objects;
-    }];
-    return result;
+- (void) setType:(ItsBetaPlayerType)type {
+    if(_type != type) {
+        [self logout:nil];
+        
+        _type = type;
+    }
 }
 
 + (ItsBetaPlayer*) playerWithType:(ItsBetaPlayerType)type {
@@ -156,16 +158,17 @@
 }
 
 #if defined(TARGET_OS_IPHONE)
-- (void) login:(ItsBetaPlayerLogin)callback parentViewController:(UIViewController*)parentViewController {
+- (void) loginWithViewController:(UIViewController*)viewController callback:(ItsBetaPlayerLogin)callback {
 #else
-- (void) login:(ItsBetaPlayerLogin)callback parentViewController:(NSViewController*)parentViewController {
+- (void) loginWithViewController:(NSViewController*)viewController callback:(ItsBetaPlayerLogin)callback {
 #endif
+    [[NSNotificationCenter defaultCenter] postNotificationName:ItsBetaWillPlayerLogin object:self];
     switch(_type) {
         case ItsBetaPlayerTypeFacebook:
 #if defined(ITSBETA_USE_FACEBOOK_OFFICIAL_SDK)
             [self loginWithFacebookOfficialSDK:callback];
 #else
-            [self loginWithFacebook:callback parentViewController:parentViewController];
+            [self loginFacebookWithViewController:viewController callback:callback];
 #endif
         break;
         default:
@@ -174,6 +177,7 @@
             }
         break;
     }
+    [[NSNotificationCenter defaultCenter] postNotificationName:ItsBetaDidPlayerLogin object:self];
 }
 
 - (void) loginWithFacebookId:(NSString*)facebookId facebookToken:(NSString*)facebookToken callback:(ItsBetaPlayerLogin)callback {
@@ -198,6 +202,7 @@
 }
 
 - (void) logout:(ItsBetaPlayerLogout)callback {
+    [[NSNotificationCenter defaultCenter] postNotificationName:ItsBetaWillPlayerLogout object:self];
     switch(_type) {
         case ItsBetaPlayerTypeFacebook:
 #if defined(ITSBETA_USE_FACEBOOK_OFFICIAL_SDK)
@@ -212,6 +217,7 @@
             }
         break;
     }
+    [[NSNotificationCenter defaultCenter] postNotificationName:ItsBetaDidPlayerLogout object:self];
 }
 
 #if defined(ITSBETA_USE_FACEBOOK_OFFICIAL_SDK)
@@ -272,14 +278,10 @@
     }
 }
 
-+ (BOOL) handleOpenURL:(NSURL*)url {
-    return [[FBSession activeSession] handleOpenURL:url];
-}
-
 #else
 
 #if defined(TARGET_OS_IPHONE)
-- (void) loginWithFacebook:(ItsBetaPlayerLogin)callback parentViewController:(UIViewController*)parentViewController {
+- (void) loginFacebookWithViewController:(UIViewController*)viewController callback:(ItsBetaPlayerLogin)callback {
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         if(_facebookController == nil) {
             _facebookController = [ItsBetaFacebookIPad new];
@@ -289,8 +291,11 @@
             _facebookController = [ItsBetaFacebookIPhone new];
         }
     }
+    if(_facebookController != nil) {
+        [_facebookController setParentController:viewController];
+    }
 #else
-- (void) loginWithFacebook:(ItsBetaPlayerLogin)callback parentViewController:(NSViewController*)parentViewController {
+- (void) loginFacebookWithViewController:(NSViewController*)viewController callback:(ItsBetaPlayerLogin)callback {
 #endif
     if(_facebookController != nil) {
 #if __has_feature(objc_arc)
@@ -298,7 +303,6 @@
 #else
         id safeSelf = self;
 #endif
-        [_facebookController setParentController:parentViewController];
         [_facebookController setSuccessCallback:^(NSString* accessToken, NSDictionary< ItsBetaGraphUser >* user) {
             [safeSelf loginWithFacebookId:[user id] facebookToken:accessToken callback:callback];
         }];
@@ -313,7 +317,8 @@
     NSHTTPCookieStorage* storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
     if(storage != nil) {
         for(NSHTTPCookie* cookie in [storage cookies]) {
-            if([[cookie domain] rangeOfString:@"facebook"].length > 0) {
+            NSRange range = [[cookie domain] rangeOfString:@"facebook"];
+            if(range.length > 0) {
                 [storage deleteCookie:cookie];
             }
         }
@@ -329,6 +334,14 @@
 }
 
 #endif
+    
++ (BOOL) handleOpenURL:(NSURL*)url {
+#if defined(ITSBETA_USE_FACEBOOK_OFFICIAL_SDK)
+    return [[FBSession activeSession] handleOpenURL:url];
+#else
+    return NO;
+#endif
+}
 
 @end
 

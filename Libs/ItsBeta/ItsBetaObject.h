@@ -8,6 +8,7 @@
 
 @property(nonatomic, readonly) NSString* Id; // Id обьекта
 @property(nonatomic, readonly) NSString* name; // имя обьекта
+@property(nonatomic, readonly) NSString* objectTemplateId; // ID родительского шаблона
 @property(nonatomic, readonly) ItsBetaParams* external; // Внешние параметры
 
 + (ItsBetaObject*) objectWithDictionary:(NSDictionary*)dictionary;
@@ -32,6 +33,7 @@
 - (void) setObjects:(ItsBetaObjectCollection*)objects;
 - (ItsBetaObject*) objectAtIndex:(NSUInteger)index;
 - (ItsBetaObject*) objectAtId:(NSString*)Id;
+- (ItsBetaObjectCollection*) objectsWithObjectTemplate:(ItsBetaObjectTemplate*)objectTemplate;
 
 @end
 

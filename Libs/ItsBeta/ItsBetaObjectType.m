@@ -164,6 +164,15 @@
     return [_items objectForKey:Id];
 }
 
+- (ItsBetaObjectType*) objectTypeAtName:(NSString*)name {
+    for(ItsBetaObjectType* objectType in _items) {
+        if([[objectType name] isEqualToString:name] == YES) {
+            return objectType;
+        }
+    }
+    return nil;
+}
+
 @end
 
 /*--------------------------------------------------*/

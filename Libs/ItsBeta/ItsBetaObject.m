@@ -20,6 +20,7 @@
     if(self != nil) {
         _Id = NS_SAFE_RETAIN([coder decodeObjectForKey:@"id"]);
         _name = NS_SAFE_RETAIN([coder decodeObjectForKey:@"name"]);
+        _objectTemplateId = NS_SAFE_RETAIN([coder decodeObjectForKey:@"_object_template_id"]);
         _external = NS_SAFE_RETAIN([coder decodeObjectForKey:@"external"]);
     }
     return self;
@@ -30,6 +31,7 @@
     if(self != nil) {
         _Id = NS_SAFE_RETAIN([dictionary objectForKey:@"id"]);
         _name = NS_SAFE_RETAIN([dictionary objectForKey:@"api_name"]);
+        _objectTemplateId = NS_SAFE_RETAIN([dictionary objectForKey:@"objtemplate_id"]);
         _external = NS_SAFE_RETAIN([ItsBetaParams paramsWithArray:[dictionary objectForKey:@"int_params"]]);
     }
     return self;
@@ -48,6 +50,7 @@
 - (void) encodeWithCoder:(NSCoder*)coder {
     [coder encodeObject:_Id forKey:@"id"];
     [coder encodeObject:_name forKey:@"name"];
+    [coder encodeObject:_objectTemplateId forKey:@"_object_template_id"];
     [coder encodeObject:_external forKey:@"external"];
 }
 
@@ -140,6 +143,16 @@
 
 - (ItsBetaObject*) objectAtId:(NSString*)Id {
     return [_items objectForKey:Id];
+}
+
+- (ItsBetaObjectCollection*) objectsWithObjectTemplate:(ItsBetaObjectTemplate*)objectTemplate {
+    ItsBetaObjectCollection* collection = [ItsBetaObjectCollection collection];
+    for(ItsBetaObject* object in _items) {
+        if([[object objectTemplateId] isEqualToString:[objectTemplate Id]] == YES) {
+            [collection addObject:object];
+        }
+    }
+    return collection;
 }
 
 @end

@@ -40,6 +40,7 @@
 - (void) setObjectTemplates:(ItsBetaObjectTemplateCollection*)objectTemplates;
 - (ItsBetaObjectTemplate*) objectTemplateAtIndex:(NSUInteger)index;
 - (ItsBetaObjectTemplate*) objectTemplateAtId:(NSString*)Id;
+- (ItsBetaObjectTemplate*) objectTemplateAtName:(NSString*)name;
 
 @end
 

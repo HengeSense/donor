@@ -11,7 +11,7 @@ typedef void (^ItsBetaPlayerLogout)(NSError* error);
 
 @interface ItsBetaPlayer : NSObject< NSCoding >
 
-@property(nonatomic, readonly) ItsBetaPlayerType type; // Тип пользователя
+@property(nonatomic, readwrite) ItsBetaPlayerType type; // Тип пользователя
 @property(nonatomic, readonly) NSString* Id; // Уникальный Id пользователя
 @property(nonatomic, readonly) NSString* facebookId; // Id в facebook
 @property(nonatomic, readonly) NSString* facebookToken; // facebook access token
@@ -27,13 +27,15 @@ typedef void (^ItsBetaPlayerLogout)(NSError* error);
 - (BOOL) isLogin;
 
 #if defined(TARGET_OS_IPHONE)
-- (void) login:(ItsBetaPlayerLogin)callback parentViewController:(UIViewController*)parentViewController;
+- (void) loginWithViewController:(UIViewController*)viewController callback:(ItsBetaPlayerLogin)callback;
 #else
-- (void) login:(ItsBetaPlayerLogin)callback parentViewController:(NSViewController*)parentViewController;
+- (void) loginWithViewController:(NSViewController*)viewController callback:(ItsBetaPlayerLogin)callback;
 #endif
 - (void) loginWithFacebookId:(NSString*)facebookId facebookToken:(NSString*)facebookToken callback:(ItsBetaPlayerLogin)callback;
 
 - (void) logout:(ItsBetaPlayerLogout)callback;
+
++ (BOOL) handleOpenURL:(NSURL*)url;
 
 @end
 
