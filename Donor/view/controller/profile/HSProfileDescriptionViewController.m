@@ -292,6 +292,7 @@ static NSString * const kLinkedToFacebookTitle = @"привязан";
 
 #pragma mark - Private
 #pragma mark - UI configuration
+
 - (void)configureUI {
     self.title = @"Профиль";
     

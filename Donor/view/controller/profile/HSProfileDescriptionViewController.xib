@@ -764,7 +764,6 @@
 						<int key="NSvFlags">274</int>
 						<string key="NSFrameSize">{320, 134}</string>
 						<reference key="NSSuperview" ref="227944980"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="442520765"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -779,7 +778,6 @@
 						<int key="NSvFlags">290</int>
 						<string key="NSFrame">{{20, 20}, {290, 40}}</string>
 						<reference key="NSSuperview" ref="227944980"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="1009404282"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
@@ -802,7 +800,6 @@
 						<int key="NSvFlags">290</int>
 						<string key="NSFrame">{{20, 74}, {290, 40}}</string>
 						<reference key="NSSuperview" ref="227944980"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
@@ -820,7 +817,6 @@
 				</array>
 				<string key="NSFrameSize">{320, 134}</string>
 				<reference key="NSSuperview"/>
-				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="582927547"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<object class="NSColor" key="IBUIBackgroundColor">
@@ -1364,7 +1360,6 @@
 						<string key="logoutButtonClick:">id</string>
 						<string key="proposeLinkUnlinkFacebook:">id</string>
 						<string key="sexButtonClick:">id</string>
-						<string key="showAchievements:">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
 						<object class="IBActionInfo" key="bloodGroupButtonClick:">
@@ -1393,10 +1388,6 @@
 						</object>
 						<object class="IBActionInfo" key="sexButtonClick:">
 							<string key="name">sexButtonClick:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="showAchievements:">
-							<string key="name">showAchievements:</string>
 							<string key="candidateClassName">id</string>
 						</object>
 					</dictionary>
