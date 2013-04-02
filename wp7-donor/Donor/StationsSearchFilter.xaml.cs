@@ -22,6 +22,9 @@ namespace Donor
         {
             InitializeComponent();
 
+            this.StationsSearchText.ItemsSource = ViewModelLocator.MainStatic.Stations.DistrictItems;
+            this.StationsSearchText.FilterMode = AutoCompleteFilterMode.Contains;
+
             this.DistrictsList.GroupDescriptors.Add(GroupedBadgesList);
             this.DistrictsList.SortDescriptors.Add(Sort);
             //this.DistrictsList.ItemsSource = ViewModelLocator.MainStatic.Stations.DistrictItems;
@@ -51,7 +54,7 @@ namespace Donor
             {
                 ViewModelLocator.MainStatic.Stations.CurrentState = e.Item.Content.ToString();
                 ViewModelLocator.MainStatic.Stations.CurrentDistrict = "";
-                NavigationService.GoBack();
+                //NavigationService.GoBack();
             }
             catch { };
         }

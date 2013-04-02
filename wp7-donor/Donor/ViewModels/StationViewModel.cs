@@ -77,6 +77,20 @@ namespace Donor.ViewModels
 
         public string CurrentState = "";
         public string CurrentDistrict = "";
+        private string _filterText = "";
+        public string FilterText
+        {
+            get
+            {
+                return _filterText;
+            }
+            set
+            {
+                _filterText = value;
+                RaisePropertyChanged("FilterText");
+                RaisePropertyChanged("DistrictItems");
+            }
+        }
 
         /// <summary>
         /// Получаем информацию по координатам о местонахождении пользователя
@@ -225,6 +239,19 @@ namespace Donor.ViewModels
                         });
                     };
                 };
+                if (FilterText!="")
+                {
+                    ObservableCollection<TownItem> districtItems2 = districtItems;
+                    districtItems = new ObservableCollection<TownItem>();
+                    var itemsFilter = from townItem in districtItems2
+                                      where townItem.DistrictName.ToLower().Contains(FilterText.ToLower())
+                                      select townItem;
+                    foreach (var item in itemsFilter)
+                    {
+                        districtItems.Add(item);
+                    };
+
+                };
                 return districtItems;
             }
         }
@@ -317,7 +344,20 @@ namespace Donor.ViewModels
                 RaisePropertyChanged("TownName");
             }
         }
-        public string DistrictName = "";
+
+        private string _districtName = "";
+        public string DistrictName
+        {
+            get
+            {
+                return _districtName;
+            }
+            set
+            {
+                _districtName = value;
+                RaisePropertyChanged("DistrictName");
+            }
+        }
         public string RegionName = "";
     }
 

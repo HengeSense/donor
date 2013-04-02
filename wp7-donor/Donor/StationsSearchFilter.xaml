@@ -29,9 +29,8 @@
         </DataTemplate>
     </phone:PhoneApplicationPage.Resources>
 
-    <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot">
-    	<Grid.Background>
+        <Grid.Background>
             <ImageBrush ImageSource="images/bg_04.png"/>
         </Grid.Background>
         <Grid.RowDefinitions>
@@ -40,26 +39,64 @@
         </Grid.RowDefinitions>
 
         <!--TitlePanel contains the name of the application and page title-->
-        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
+        <StackPanel x:Name="TitlePanel" Grid.Row="0">
             <TextBlock x:Name="ApplicationTitle" 
-			Text="{Binding StationSearch, Source={StaticResource Loc}}" 			
-			FontSize="24" Foreground="White"/>
-            <TextBlock x:Name="PageTitle" 
-			Text="{Binding Filter, Source={StaticResource Loc}}"  Margin="9,-7,0,0" 
-			FontSize="70" Foreground="White"/>
+			Text="Фильтр станций"
+			 Margin="12,24,0,22"
+			Style="{StaticResource Text30pxWhite}"/>
+
+            <StackPanel Background="#FF632C00"
+			Height="60">
+                <!--<TextBlock Text=" " Name="CityFilterText"
+			Foreground="#FFCBB2A3"
+			FontSize="34" Margin="10,8,0,0"/>-->
+
+                <Grid>
+                    <toolkit:AutoCompleteBox 
+			Name="StationsSearchText" 
+            Grid.Row="0" Grid.Column="0"
+			FontSize="24"
+            Text="{Binding Stations.FilterText, Mode=TwoWay}"
+            ItemsSource="{Binding Stations.DistrictItems}"
+            DataContext="{Binding Main, 
+                        Source={StaticResource Locator}}" 
+			FilterMode="Contains" 
+                        ValueMemberPath="DistrictName" 
+			Foreground="#FFE0B390" Background="#FF3C1B00" 
+			BorderBrush="#FF3C1B00" Margin="0,-5,0,0">
+                        <toolkit:AutoCompleteBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock 
+							FontSize="24"
+							Text="{Binding DistrictName}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </toolkit:AutoCompleteBox.ItemTemplate>
+                    </toolkit:AutoCompleteBox>
+                    <Image Height="48"
+                           Width="48" 
+                           Margin="0,0,20,10"
+                           Grid.Row="0" Grid.Column="0"
+                           Source="/Donor;component/images/ic_search.png" HorizontalAlignment="Right" />
+                </Grid>
+            </StackPanel>
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
-        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="0,0,0,0" Background="#FFEEEEEE">
+        <Grid x:Name="ContentPanel" 
+		Background="#FFEEEEEE"
+		Grid.Row="1" Margin="0,0,0,0">
+
             <telerikData:RadJumpList 
 		        VerticalAlignment="Top"
-		        Margin="0,39,0,0"
+		        Margin="0,0,0,0"
 		        Name="DistrictsList" 
                 ItemsSource="{Binding Stations.DistrictItems}"
                 DataContext="{Binding Main, Source={StaticResource Locator}}" 
 		        ItemTap="StationsList_ItemTap"              
                 GroupPickerItemTemplate="{StaticResource GroupPickerTemplate}" 
-                GroupPickerItemTap="StationsList_GroupPickerItemTap" Height="597" GroupHeaderItemTap="DistrictsList_GroupHeaderItemTap">
+                GroupPickerItemTap="StationsList_GroupPickerItemTap" Height="658" GroupHeaderItemTap="DistrictsList_GroupHeaderItemTap">
                 <telerikData:RadJumpList.GroupHeaderTemplate>
                     <DataTemplate>
                         <Border Background="#FF006168" Margin="0">
@@ -79,7 +116,7 @@
                                         <ColumnDefinition Width="460"/>
                                     </Grid.ColumnDefinitions>
                                     <StackPanel Grid.Column="0">
-                                        <TextBlock Text="{Binding TownName}" 
+                                        <TextBlock Text="{Binding DistrictName}" 
 							                TextWrapping="Wrap" 
 							                FontSize="30"
 							                Foreground="#FF645B54"/>
