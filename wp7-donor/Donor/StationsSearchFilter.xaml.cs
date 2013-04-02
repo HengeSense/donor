@@ -12,6 +12,7 @@ using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using Donor.ViewModels;
 using Telerik.Windows.Data;
+using Telerik.Windows.Controls;
 
 namespace Donor
 {
@@ -31,17 +32,25 @@ namespace Donor
 
         private void StationsList_GroupPickerItemTap(object sender, Telerik.Windows.Controls.GroupPickerItemTapEventArgs e)
         {
-            try
-            {
-                NavigationService.GoBack();
-            }
-            catch { };
         }
 
         private void StationsList_ItemTap(object sender, Telerik.Windows.Controls.ListBoxItemTapEventArgs e)
         {
             try
             {
+                ViewModelLocator.MainStatic.Stations.CurrentState = "";
+                ViewModelLocator.MainStatic.Stations.CurrentDistrict = ((sender as RadJumpList).SelectedItem as TownItem).DistrictName;
+                NavigationService.GoBack();
+            }
+            catch { };
+        }
+
+        private void DistrictsList_GroupHeaderItemTap(object sender, GroupHeaderItemTapEventArgs e)
+        {
+            try
+            {
+                ViewModelLocator.MainStatic.Stations.CurrentState = e.Item.Content.ToString();
+                ViewModelLocator.MainStatic.Stations.CurrentDistrict = "";
                 NavigationService.GoBack();
             }
             catch { };

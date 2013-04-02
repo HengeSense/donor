@@ -76,6 +76,7 @@ namespace Donor.ViewModels
         }
 
         public string CurrentState = "";
+        public string CurrentDistrict = "";
 
         /// <summary>
         /// Получаем информацию по координатам о местонахождении пользователя
@@ -248,15 +249,31 @@ namespace Donor.ViewModels
             get
             {
                 List<YAStationItem> distance = new List<YAStationItem>();
-                if (CurrentState == "")
+                if ((CurrentState == "") && (CurrentDistrict==""))
                 {
                     distance = Items.ToList();
                 }
                 else
                 {
-                    distance = (from station in Items
-                               where station.Region_name.ToLower() == CurrentState.ToLower()
-                               select station).ToList();
+                    if (CurrentDistrict == "")
+                    {
+                        distance = (from station in Items
+                                    where station.Region_name.ToLower() == CurrentState.ToLower()
+                                    select station).ToList();
+                    };
+                    if (CurrentState == "")
+                    {
+                        distance = (from station in Items
+                                    where station.District_name.ToLower() == CurrentDistrict.ToLower()
+                                    select station).ToList();
+                    };
+                    if ((CurrentState != "") && (CurrentDistrict != ""))
+                    {
+                        distance = (from station in Items
+                                    where ((station.District_name.ToLower() == CurrentDistrict.ToLower())
+                                    && (station.Region_name.ToLower() == CurrentState.ToLower()))
+                                    select station).ToList();
+                    };
                     if (distance.Count()==0) {
                         distance = Items.ToList();
                     };

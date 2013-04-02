@@ -50,7 +50,7 @@
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
-        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="0,0,0,0">
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="0,0,0,0" Background="#FFEEEEEE">
             <telerikData:RadJumpList 
 		        VerticalAlignment="Top"
 		        Margin="0,39,0,0"
@@ -59,7 +59,7 @@
                 DataContext="{Binding Main, Source={StaticResource Locator}}" 
 		        ItemTap="StationsList_ItemTap"              
                 GroupPickerItemTemplate="{StaticResource GroupPickerTemplate}" 
-                GroupPickerItemTap="StationsList_GroupPickerItemTap" Height="597">
+                GroupPickerItemTap="StationsList_GroupPickerItemTap" Height="597" GroupHeaderItemTap="DistrictsList_GroupHeaderItemTap">
                 <telerikData:RadJumpList.GroupHeaderTemplate>
                     <DataTemplate>
                         <Border Background="#FF006168" Margin="0">
@@ -80,10 +80,6 @@
                                     </Grid.ColumnDefinitions>
                                     <StackPanel Grid.Column="0">
                                         <TextBlock Text="{Binding TownName}" 
-							                TextWrapping="Wrap" 
-							                FontSize="30"
-							                Foreground="#FF645B54"/>
-                                        <TextBlock Text="{Binding}" 
 							                TextWrapping="Wrap" 
 							                FontSize="30"
 							                Foreground="#FF645B54"/>
