@@ -7,6 +7,7 @@
 //
 
 #import "HSProfileDescriptionViewController.h"
+#import "HSItsBetaAchievementsViewController.h"
 
 #import <Parse/Parse.h>
 #import "MBProgressHUD.h"
@@ -169,6 +170,7 @@ static NSString * const kLinkedToFacebookTitle = @"привязан";
 - (IBAction)logoutButtonClick:(id)sender {
     [HSFlurryAnalytics userLoggedOut];
     [[HSCalendar sharedInstance] lockModel];
+    [ItsBeta playerLogout:nil];
     [PFUser logOut];
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
@@ -274,7 +276,10 @@ static NSString * const kLinkedToFacebookTitle = @"привязан";
 }
 
 - (IBAction)showAchievements:(id)sender {
-    // TODO SHOW ACHIEVEMENTS
+    HSItsBetaAchievementsViewController* cont = [HSItsBetaAchievementsViewController new];
+    if(cont != nil) {
+        [[self navigationController] pushViewController:cont animated:YES];
+    }
 }
 
 #pragma mark UITextFieldDelegate
@@ -307,8 +312,19 @@ static NSString * const kLinkedToFacebookTitle = @"привязан";
     [self.scrollView setContentSize:CGSizeMake(scrollViewWidth, scrollViewHeight)];
     
     [self configureNavigationBar];
+    [self configureItsBetaUI];
     [self configureFacebookUI];
     [self configureNameTextField];
+}
+
+- (void)configureItsBetaUI {
+    if ([ItsBeta playerLogined] == YES) {
+        [self.itsbetaStatusLabel setText:kLinkedToFacebookTitle];
+        self.itsbetaShowAchievementsButton.enabled = YES;
+    } else {
+        [self.itsbetaStatusLabel setText:kNotLinkedToFacebookTitle];
+        self.itsbetaShowAchievementsButton.enabled = NO;
+    }
 }
 
 - (void)configureFacebookUI {
@@ -320,9 +336,6 @@ static NSString * const kLinkedToFacebookTitle = @"привязан";
     } else {
         [self.proposeFacebookLinkUnlinkButton setTitle:kNotLinkedToFacebookTitle forState:UIControlStateNormal];
     }
-    
-    // Configure facebook container view controller.
-    // self.facebookContainerView.hidden = YES;
     
     // Configure link/unlink buttons
     [self.linkUnlinkFacebookButton setBackgroundImage:[UIImage imageNamed:@"profile_facebook_link_button_normal"]
@@ -401,8 +414,4 @@ static NSString * const kLinkedToFacebookTitle = @"привязан";
     }
 }
 
-- (void)viewDidUnload {
-    [self setScrollView:nil];
-    [super viewDidUnload];
-}
 @end

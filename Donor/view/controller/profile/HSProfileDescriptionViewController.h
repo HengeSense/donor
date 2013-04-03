@@ -16,7 +16,7 @@
 @interface HSProfileDescriptionViewController : UIViewController <UITextFieldDelegate>
 
 /// @name Common UI properties
-@property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) UIButton *editButton;
 @property (weak, nonatomic) IBOutlet UIButton *sexButton;
 @property (weak, nonatomic) IBOutlet UIButton *bloodGroupButton;
@@ -26,13 +26,15 @@
 @property (weak, nonatomic) IBOutlet UILabel *bloodDonationCountLabel;
 @property (weak, nonatomic) IBOutlet UILabel *nextBloodDonateDateLabel;
 
+/// @name ItsBeta UI properties
+@property (weak, nonatomic) IBOutlet UIView *itsbetaContainerView;
+@property (weak, nonatomic) IBOutlet UILabel *itsbetaStatusLabel;
+@property (weak, nonatomic) IBOutlet UIButton *itsbetaShowAchievementsButton;
 
 /// @name Facebook UI properties
-@property (weak, nonatomic) IBOutlet UIView *facebookContainerView;
-@property (weak, nonatomic) IBOutlet UILabel *facebookUserNameTextField;
 @property (weak, nonatomic) IBOutlet UIButton *proposeFacebookLinkUnlinkButton;
 @property (weak, nonatomic) IBOutlet UIView *facebookLinkUnlinkContainerView;
-@property (strong, nonatomic) IBOutlet UIView *linkUnlinkFacebookView;
+@property (weak, nonatomic) IBOutlet UIView *linkUnlinkFacebookView;
 @property (weak, nonatomic) IBOutlet UIButton *linkUnlinkFacebookButton;
 @property (weak, nonatomic) IBOutlet UIButton *cancelFacebookLinkProposeButton;
 

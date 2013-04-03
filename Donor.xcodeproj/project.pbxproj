@@ -126,6 +126,8 @@
 		37B1367A15B598820022B8D8 /* calendarSliderSectionBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37B1367615B598820022B8D8 /* calendarSliderSectionBackground@2x.png */; };
 		37B1367B15B598820022B8D8 /* calendarSliderSectionShadowBottom.png in Resources */ = {isa = PBXBuildFile; fileRef = 37B1367715B598820022B8D8 /* calendarSliderSectionShadowBottom.png */; };
 		37B1367C15B598820022B8D8 /* calendarSliderSectionShadowBottom@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37B1367815B598820022B8D8 /* calendarSliderSectionShadowBottom@2x.png */; };
+		40595AF4170C4086007B2C61 /* HSItsBetaAchievementsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40595AF2170C4086007B2C61 /* HSItsBetaAchievementsViewController.m */; };
+		40595AF5170C4086007B2C61 /* HSItsBetaAchievementsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40595AF3170C4086007B2C61 /* HSItsBetaAchievementsViewController.xib */; };
 		4097890A17097B8E0054042A /* CIColor+ItsBeta.m in Sources */ = {isa = PBXBuildFile; fileRef = 409788E717097B8E0054042A /* CIColor+ItsBeta.m */; };
 		4097890B17097B8E0054042A /* NSDate+ItsBeta.m in Sources */ = {isa = PBXBuildFile; fileRef = 409788E917097B8E0054042A /* NSDate+ItsBeta.m */; };
 		4097890C17097B8E0054042A /* UIColor+ItsBeta.m in Sources */ = {isa = PBXBuildFile; fileRef = 409788EB17097B8E0054042A /* UIColor+ItsBeta.m */; };
@@ -737,6 +739,9 @@
 		37B1367615B598820022B8D8 /* calendarSliderSectionBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "calendarSliderSectionBackground@2x.png"; sourceTree = "<group>"; };
 		37B1367715B598820022B8D8 /* calendarSliderSectionShadowBottom.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calendarSliderSectionShadowBottom.png; sourceTree = "<group>"; };
 		37B1367815B598820022B8D8 /* calendarSliderSectionShadowBottom@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "calendarSliderSectionShadowBottom@2x.png"; sourceTree = "<group>"; };
+		40595AF1170C4086007B2C61 /* HSItsBetaAchievementsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSItsBetaAchievementsViewController.h; sourceTree = "<group>"; };
+		40595AF2170C4086007B2C61 /* HSItsBetaAchievementsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSItsBetaAchievementsViewController.m; sourceTree = "<group>"; };
+		40595AF3170C4086007B2C61 /* HSItsBetaAchievementsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HSItsBetaAchievementsViewController.xib; sourceTree = "<group>"; };
 		409788E617097B8E0054042A /* CIColor+ItsBeta.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CIColor+ItsBeta.h"; sourceTree = "<group>"; };
 		409788E717097B8E0054042A /* CIColor+ItsBeta.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CIColor+ItsBeta.m"; sourceTree = "<group>"; };
 		409788E817097B8E0054042A /* NSDate+ItsBeta.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+ItsBeta.h"; sourceTree = "<group>"; };
@@ -2614,6 +2619,9 @@
 				68B82F9B16D1113B00533701 /* HSProfileRegistrationViewController.h */,
 				68B82F9C16D1113B00533701 /* HSProfileRegistrationViewController.m */,
 				68B82F9D16D1113B00533701 /* HSProfileRegistrationViewController.xib */,
+				40595AF1170C4086007B2C61 /* HSItsBetaAchievementsViewController.h */,
+				40595AF2170C4086007B2C61 /* HSItsBetaAchievementsViewController.m */,
+				40595AF3170C4086007B2C61 /* HSItsBetaAchievementsViewController.xib */,
 			);
 			path = profile;
 			sourceTree = "<group>";
@@ -3328,6 +3336,7 @@
 				687A436C16F7C19400958347 /* CKAuthViewController.xib in Resources */,
 				40978931170990F60054042A /* ItsBetaFacebookIPad.xib in Resources */,
 				40978933170990F60054042A /* ItsBetaFacebookIPhone.xib in Resources */,
+				40595AF5170C4086007B2C61 /* HSItsBetaAchievementsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3484,6 +3493,7 @@
 				4097893817099DFC0054042A /* NSURL+ItsBeta.m in Sources */,
 				4097893B17099E640054042A /* NSString+ItsBeta.m in Sources */,
 				4097893E17099F1B0054042A /* NSDictionary+ItsBeta.m in Sources */,
+				40595AF4170C4086007B2C61 /* HSItsBetaAchievementsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

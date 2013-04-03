@@ -149,21 +149,29 @@
 #else
 + (void) facebookLoginWithViewController:(NSViewController*)viewController callback:(ItsBetaLogin)callback {
 #endif
-    ItsBetaPlayer* player = [[ItsBeta sharedItsBeta] player];
+    ItsBeta* itsbeta = [ItsBeta sharedItsBeta];
+    ItsBetaPlayer* player = [itsbeta player];
     [player setType:ItsBetaPlayerTypeFacebook];
     [player loginWithViewController:viewController callback:^(NSError* error) {
         if(callback != nil) {
             callback(player, error);
         }
+        [ItsBetaQueue runASync:^{
+            [itsbeta saveToLocalStorage];
+        }];
     }];
 }
 
 + (void) playerLogout:(ItsBetaLogout)callback {
-    ItsBetaPlayer* player = [[ItsBeta sharedItsBeta] player];
+    ItsBeta* itsbeta = [ItsBeta sharedItsBeta];
+    ItsBetaPlayer* player = [itsbeta player];
     [player logout:^(NSError* error) {
         if(callback != nil) {
             callback(player, error);
         }
+        [ItsBetaQueue runASync:^{
+            [itsbeta saveToLocalStorage];
+        }];
     }];
 }
 

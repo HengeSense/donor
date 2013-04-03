@@ -169,7 +169,7 @@
 }
 
 - (ItsBetaObjectTemplate*) objectTemplateAtName:(NSString*)name {
-    for(ItsBetaObjectTemplate* objectTemplate in _items) {
+    for(ItsBetaObjectTemplate* objectTemplate in self) {
         if([[objectTemplate name] isEqualToString:name] == YES) {
             return objectTemplate;
         }

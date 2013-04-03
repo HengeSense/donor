@@ -165,7 +165,7 @@
 }
 
 - (ItsBetaObjectType*) objectTypeAtName:(NSString*)name {
-    for(ItsBetaObjectType* objectType in _items) {
+    for(ItsBetaObjectType* objectType in self) {
         if([[objectType name] isEqualToString:name] == YES) {
             return objectType;
         }

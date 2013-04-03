@@ -213,7 +213,7 @@
 }
 
 - (ItsBetaProject*) projectAtName:(NSString*)name {
-    for(ItsBetaProject* project in _items) {
+    for(ItsBetaProject* project in self) {
         if([[project name] isEqualToString:name] == YES) {
             return project;
         }

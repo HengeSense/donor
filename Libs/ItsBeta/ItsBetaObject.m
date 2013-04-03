@@ -147,7 +147,7 @@
 
 - (ItsBetaObjectCollection*) objectsWithObjectTemplate:(ItsBetaObjectTemplate*)objectTemplate {
     ItsBetaObjectCollection* collection = [ItsBetaObjectCollection collection];
-    for(ItsBetaObject* object in _items) {
+    for(ItsBetaObject* object in self) {
         if([[object objectTemplateId] isEqualToString:[objectTemplate Id]] == YES) {
             [collection addObject:object];
         }
