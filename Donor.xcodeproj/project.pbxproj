@@ -126,19 +126,33 @@
 		37B1367A15B598820022B8D8 /* calendarSliderSectionBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37B1367615B598820022B8D8 /* calendarSliderSectionBackground@2x.png */; };
 		37B1367B15B598820022B8D8 /* calendarSliderSectionShadowBottom.png in Resources */ = {isa = PBXBuildFile; fileRef = 37B1367715B598820022B8D8 /* calendarSliderSectionShadowBottom.png */; };
 		37B1367C15B598820022B8D8 /* calendarSliderSectionShadowBottom@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37B1367815B598820022B8D8 /* calendarSliderSectionShadowBottom@2x.png */; };
-		406344F81702F97100C7C5A4 /* ItsBetaFastCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 406344EC1702F97100C7C5A4 /* ItsBetaFastCache.m */; };
-		406344F91702F97100C7C5A4 /* ItsBetaRest.m in Sources */ = {isa = PBXBuildFile; fileRef = 406344EE1702F97100C7C5A4 /* ItsBetaRest.m */; };
-		406344FA1702F97100C7C5A4 /* ItsBeta.m in Sources */ = {isa = PBXBuildFile; fileRef = 406344F01702F97100C7C5A4 /* ItsBeta.m */; };
-		40B57E5017033A7C00B5BB41 /* ItsBetaCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 40B57E4F17033A7C00B5BB41 /* ItsBetaCategory.m */; };
-		40B57E5D17034ECA00B5BB41 /* ItsBetaProject.m in Sources */ = {isa = PBXBuildFile; fileRef = 40B57E5C17034ECA00B5BB41 /* ItsBetaProject.m */; };
-		40B57E611703508800B5BB41 /* UIColor+ItsBeta.m in Sources */ = {isa = PBXBuildFile; fileRef = 40B57E601703508800B5BB41 /* UIColor+ItsBeta.m */; };
-		40B57E641703527400B5BB41 /* CIColor+ItsBeta.m in Sources */ = {isa = PBXBuildFile; fileRef = 40B57E631703527400B5BB41 /* CIColor+ItsBeta.m */; };
-		40B57E66170352EE00B5BB41 /* ItsBetaPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 40B57E65170352EE00B5BB41 /* ItsBetaPlayer.m */; };
-		40B57E6817036A9A00B5BB41 /* ItsBetaType.m in Sources */ = {isa = PBXBuildFile; fileRef = 40B57E6717036A9A00B5BB41 /* ItsBetaType.m */; };
-		40B57E6A17036C1500B5BB41 /* ItsBetaTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = 40B57E6917036C1500B5BB41 /* ItsBetaTemplate.m */; };
-		40B57E6C17036CE700B5BB41 /* ItsBetaObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 40B57E6B17036CE600B5BB41 /* ItsBetaObject.m */; };
-		40B57E6E17036D3800B5BB41 /* ItsBetaParams.m in Sources */ = {isa = PBXBuildFile; fileRef = 40B57E6D17036D3800B5BB41 /* ItsBetaParams.m */; };
-		40B57E7017036EB200B5BB41 /* ItsBetaImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 40B57E6F17036EB200B5BB41 /* ItsBetaImage.m */; };
+		4097890A17097B8E0054042A /* CIColor+ItsBeta.m in Sources */ = {isa = PBXBuildFile; fileRef = 409788E717097B8E0054042A /* CIColor+ItsBeta.m */; };
+		4097890B17097B8E0054042A /* NSDate+ItsBeta.m in Sources */ = {isa = PBXBuildFile; fileRef = 409788E917097B8E0054042A /* NSDate+ItsBeta.m */; };
+		4097890C17097B8E0054042A /* UIColor+ItsBeta.m in Sources */ = {isa = PBXBuildFile; fileRef = 409788EB17097B8E0054042A /* UIColor+ItsBeta.m */; };
+		4097890D17097B8E0054042A /* ItsBetaApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 409788ED17097B8E0054042A /* ItsBetaApi.m */; };
+		4097890E17097B8E0054042A /* ItsBetaFastCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 409788EF17097B8E0054042A /* ItsBetaFastCache.m */; };
+		4097890F17097B8E0054042A /* ItsBetaQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 409788F117097B8E0054042A /* ItsBetaQueue.m */; };
+		4097891017097B8E0054042A /* ItsBetaRest.m in Sources */ = {isa = PBXBuildFile; fileRef = 409788F317097B8E0054042A /* ItsBetaRest.m */; };
+		4097891117097B8E0054042A /* ItsBeta.m in Sources */ = {isa = PBXBuildFile; fileRef = 409788F517097B8E0054042A /* ItsBeta.m */; };
+		4097891217097B8E0054042A /* ItsBetaApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 409788F717097B8E0054042A /* ItsBetaApplication.m */; };
+		4097891317097B8E0054042A /* ItsBetaCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 409788F917097B8E0054042A /* ItsBetaCategory.m */; };
+		4097891417097B8E0054042A /* ItsBetaCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 409788FB17097B8E0054042A /* ItsBetaCore.m */; };
+		4097891517097B8E0054042A /* ItsBetaImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 409788FD17097B8E0054042A /* ItsBetaImage.m */; };
+		4097891617097B8E0054042A /* ItsBetaObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 409788FF17097B8E0054042A /* ItsBetaObject.m */; };
+		4097891717097B8E0054042A /* ItsBetaObjectTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4097890117097B8E0054042A /* ItsBetaObjectTemplate.m */; };
+		4097891817097B8E0054042A /* ItsBetaObjectType.m in Sources */ = {isa = PBXBuildFile; fileRef = 4097890317097B8E0054042A /* ItsBetaObjectType.m */; };
+		4097891917097B8E0054042A /* ItsBetaParams.m in Sources */ = {isa = PBXBuildFile; fileRef = 4097890517097B8E0054042A /* ItsBetaParams.m */; };
+		4097891A17097B8E0054042A /* ItsBetaPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4097890717097B8E0054042A /* ItsBetaPlayer.m */; };
+		4097891B17097B8E0054042A /* ItsBetaProject.m in Sources */ = {isa = PBXBuildFile; fileRef = 4097890917097B8E0054042A /* ItsBetaProject.m */; };
+		4097892F170990F60054042A /* ItsBetaFacebook.m in Sources */ = {isa = PBXBuildFile; fileRef = 40978926170990F60054042A /* ItsBetaFacebook.m */; };
+		40978930170990F60054042A /* ItsBetaFacebookIPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 40978928170990F60054042A /* ItsBetaFacebookIPad.m */; };
+		40978931170990F60054042A /* ItsBetaFacebookIPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40978929170990F60054042A /* ItsBetaFacebookIPad.xib */; };
+		40978932170990F60054042A /* ItsBetaFacebookIPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 4097892B170990F60054042A /* ItsBetaFacebookIPhone.m */; };
+		40978933170990F60054042A /* ItsBetaFacebookIPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4097892C170990F60054042A /* ItsBetaFacebookIPhone.xib */; };
+		40978934170990F60054042A /* ItsBetaGraphUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4097892E170990F60054042A /* ItsBetaGraphUser.m */; };
+		4097893817099DFC0054042A /* NSURL+ItsBeta.m in Sources */ = {isa = PBXBuildFile; fileRef = 4097893717099DFC0054042A /* NSURL+ItsBeta.m */; };
+		4097893B17099E640054042A /* NSString+ItsBeta.m in Sources */ = {isa = PBXBuildFile; fileRef = 4097893A17099E640054042A /* NSString+ItsBeta.m */; };
+		4097893E17099F1B0054042A /* NSDictionary+ItsBeta.m in Sources */ = {isa = PBXBuildFile; fileRef = 4097893D17099F1A0054042A /* NSDictionary+ItsBeta.m */; };
 		6802A1671665D4FD0034B124 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 371CBA5215AFD452008CA154 /* Parse.framework */; };
 		683F8A81164573860066C47A /* HSBloodDonationType.m in Sources */ = {isa = PBXBuildFile; fileRef = 683F8A80164573860066C47A /* HSBloodDonationType.m */; };
 		683F8A9716468E300066C47A /* event_done_button_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 683F8A9316468E300066C47A /* event_done_button_normal.png */; };
@@ -587,6 +601,7 @@
 		85BE8D3615C1601E00CF5606 /* tabbar_calendar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85BE8D1815C1601E00CF5606 /* tabbar_calendar@2x.png */; };
 		85BE8D3715C1601E00CF5606 /* tabbar.png in Resources */ = {isa = PBXBuildFile; fileRef = 85BE8D1915C1601E00CF5606 /* tabbar.png */; };
 		85BE8D3815C1601E00CF5606 /* tabbar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85BE8D1A15C1601E00CF5606 /* tabbar@2x.png */; };
+		CE8609CB170B7A0E00E4497A /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE8609CA170B7A0E00E4497A /* Crashlytics.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -723,24 +738,58 @@
 		37B1367615B598820022B8D8 /* calendarSliderSectionBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "calendarSliderSectionBackground@2x.png"; sourceTree = "<group>"; };
 		37B1367715B598820022B8D8 /* calendarSliderSectionShadowBottom.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calendarSliderSectionShadowBottom.png; sourceTree = "<group>"; };
 		37B1367815B598820022B8D8 /* calendarSliderSectionShadowBottom@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "calendarSliderSectionShadowBottom@2x.png"; sourceTree = "<group>"; };
-		406344EB1702F97100C7C5A4 /* ItsBetaFastCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItsBetaFastCache.h; sourceTree = "<group>"; };
-		406344EC1702F97100C7C5A4 /* ItsBetaFastCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItsBetaFastCache.m; sourceTree = "<group>"; };
-		406344ED1702F97100C7C5A4 /* ItsBetaRest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItsBetaRest.h; sourceTree = "<group>"; };
-		406344EE1702F97100C7C5A4 /* ItsBetaRest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItsBetaRest.m; sourceTree = "<group>"; };
-		406344EF1702F97100C7C5A4 /* ItsBeta.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItsBeta.h; sourceTree = "<group>"; };
-		406344F01702F97100C7C5A4 /* ItsBeta.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItsBeta.m; sourceTree = "<group>"; };
-		40B57E4F17033A7C00B5BB41 /* ItsBetaCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItsBetaCategory.m; sourceTree = "<group>"; };
-		40B57E5C17034ECA00B5BB41 /* ItsBetaProject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItsBetaProject.m; sourceTree = "<group>"; };
-		40B57E5F1703508800B5BB41 /* UIColor+ItsBeta.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+ItsBeta.h"; sourceTree = "<group>"; };
-		40B57E601703508800B5BB41 /* UIColor+ItsBeta.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+ItsBeta.m"; sourceTree = "<group>"; };
-		40B57E621703527400B5BB41 /* CIColor+ItsBeta.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CIColor+ItsBeta.h"; sourceTree = "<group>"; };
-		40B57E631703527400B5BB41 /* CIColor+ItsBeta.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CIColor+ItsBeta.m"; sourceTree = "<group>"; };
-		40B57E65170352EE00B5BB41 /* ItsBetaPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItsBetaPlayer.m; sourceTree = "<group>"; };
-		40B57E6717036A9A00B5BB41 /* ItsBetaType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItsBetaType.m; sourceTree = "<group>"; };
-		40B57E6917036C1500B5BB41 /* ItsBetaTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItsBetaTemplate.m; sourceTree = "<group>"; };
-		40B57E6B17036CE600B5BB41 /* ItsBetaObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItsBetaObject.m; sourceTree = "<group>"; };
-		40B57E6D17036D3800B5BB41 /* ItsBetaParams.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItsBetaParams.m; sourceTree = "<group>"; };
-		40B57E6F17036EB200B5BB41 /* ItsBetaImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItsBetaImage.m; sourceTree = "<group>"; };
+		409788E617097B8E0054042A /* CIColor+ItsBeta.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CIColor+ItsBeta.h"; sourceTree = "<group>"; };
+		409788E717097B8E0054042A /* CIColor+ItsBeta.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CIColor+ItsBeta.m"; sourceTree = "<group>"; };
+		409788E817097B8E0054042A /* NSDate+ItsBeta.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+ItsBeta.h"; sourceTree = "<group>"; };
+		409788E917097B8E0054042A /* NSDate+ItsBeta.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+ItsBeta.m"; sourceTree = "<group>"; };
+		409788EA17097B8E0054042A /* UIColor+ItsBeta.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+ItsBeta.h"; sourceTree = "<group>"; };
+		409788EB17097B8E0054042A /* UIColor+ItsBeta.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+ItsBeta.m"; sourceTree = "<group>"; };
+		409788EC17097B8E0054042A /* ItsBetaApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItsBetaApi.h; sourceTree = "<group>"; };
+		409788ED17097B8E0054042A /* ItsBetaApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItsBetaApi.m; sourceTree = "<group>"; };
+		409788EE17097B8E0054042A /* ItsBetaFastCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItsBetaFastCache.h; sourceTree = "<group>"; };
+		409788EF17097B8E0054042A /* ItsBetaFastCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItsBetaFastCache.m; sourceTree = "<group>"; };
+		409788F017097B8E0054042A /* ItsBetaQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItsBetaQueue.h; sourceTree = "<group>"; };
+		409788F117097B8E0054042A /* ItsBetaQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItsBetaQueue.m; sourceTree = "<group>"; };
+		409788F217097B8E0054042A /* ItsBetaRest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItsBetaRest.h; sourceTree = "<group>"; };
+		409788F317097B8E0054042A /* ItsBetaRest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItsBetaRest.m; sourceTree = "<group>"; };
+		409788F417097B8E0054042A /* ItsBeta.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItsBeta.h; sourceTree = "<group>"; };
+		409788F517097B8E0054042A /* ItsBeta.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItsBeta.m; sourceTree = "<group>"; };
+		409788F617097B8E0054042A /* ItsBetaApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItsBetaApplication.h; sourceTree = "<group>"; };
+		409788F717097B8E0054042A /* ItsBetaApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItsBetaApplication.m; sourceTree = "<group>"; };
+		409788F817097B8E0054042A /* ItsBetaCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItsBetaCategory.h; sourceTree = "<group>"; };
+		409788F917097B8E0054042A /* ItsBetaCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItsBetaCategory.m; sourceTree = "<group>"; };
+		409788FA17097B8E0054042A /* ItsBetaCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItsBetaCore.h; sourceTree = "<group>"; };
+		409788FB17097B8E0054042A /* ItsBetaCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItsBetaCore.m; sourceTree = "<group>"; };
+		409788FC17097B8E0054042A /* ItsBetaImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItsBetaImage.h; sourceTree = "<group>"; };
+		409788FD17097B8E0054042A /* ItsBetaImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItsBetaImage.m; sourceTree = "<group>"; };
+		409788FE17097B8E0054042A /* ItsBetaObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItsBetaObject.h; sourceTree = "<group>"; };
+		409788FF17097B8E0054042A /* ItsBetaObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItsBetaObject.m; sourceTree = "<group>"; };
+		4097890017097B8E0054042A /* ItsBetaObjectTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItsBetaObjectTemplate.h; sourceTree = "<group>"; };
+		4097890117097B8E0054042A /* ItsBetaObjectTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItsBetaObjectTemplate.m; sourceTree = "<group>"; };
+		4097890217097B8E0054042A /* ItsBetaObjectType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItsBetaObjectType.h; sourceTree = "<group>"; };
+		4097890317097B8E0054042A /* ItsBetaObjectType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItsBetaObjectType.m; sourceTree = "<group>"; };
+		4097890417097B8E0054042A /* ItsBetaParams.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItsBetaParams.h; sourceTree = "<group>"; };
+		4097890517097B8E0054042A /* ItsBetaParams.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItsBetaParams.m; sourceTree = "<group>"; };
+		4097890617097B8E0054042A /* ItsBetaPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItsBetaPlayer.h; sourceTree = "<group>"; };
+		4097890717097B8E0054042A /* ItsBetaPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItsBetaPlayer.m; sourceTree = "<group>"; };
+		4097890817097B8E0054042A /* ItsBetaProject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItsBetaProject.h; sourceTree = "<group>"; };
+		4097890917097B8E0054042A /* ItsBetaProject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItsBetaProject.m; sourceTree = "<group>"; };
+		40978925170990F60054042A /* ItsBetaFacebook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItsBetaFacebook.h; sourceTree = "<group>"; };
+		40978926170990F60054042A /* ItsBetaFacebook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItsBetaFacebook.m; sourceTree = "<group>"; };
+		40978927170990F60054042A /* ItsBetaFacebookIPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItsBetaFacebookIPad.h; sourceTree = "<group>"; };
+		40978928170990F60054042A /* ItsBetaFacebookIPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItsBetaFacebookIPad.m; sourceTree = "<group>"; };
+		40978929170990F60054042A /* ItsBetaFacebookIPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ItsBetaFacebookIPad.xib; sourceTree = "<group>"; };
+		4097892A170990F60054042A /* ItsBetaFacebookIPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItsBetaFacebookIPhone.h; sourceTree = "<group>"; };
+		4097892B170990F60054042A /* ItsBetaFacebookIPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItsBetaFacebookIPhone.m; sourceTree = "<group>"; };
+		4097892C170990F60054042A /* ItsBetaFacebookIPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ItsBetaFacebookIPhone.xib; sourceTree = "<group>"; };
+		4097892D170990F60054042A /* ItsBetaGraphUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItsBetaGraphUser.h; sourceTree = "<group>"; };
+		4097892E170990F60054042A /* ItsBetaGraphUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItsBetaGraphUser.m; sourceTree = "<group>"; };
+		4097893617099DFC0054042A /* NSURL+ItsBeta.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+ItsBeta.h"; sourceTree = "<group>"; };
+		4097893717099DFC0054042A /* NSURL+ItsBeta.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+ItsBeta.m"; sourceTree = "<group>"; };
+		4097893917099E630054042A /* NSString+ItsBeta.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+ItsBeta.h"; sourceTree = "<group>"; };
+		4097893A17099E640054042A /* NSString+ItsBeta.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+ItsBeta.m"; sourceTree = "<group>"; };
+		4097893C17099F1A0054042A /* NSDictionary+ItsBeta.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+ItsBeta.h"; sourceTree = "<group>"; };
+		4097893D17099F1A0054042A /* NSDictionary+ItsBeta.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+ItsBeta.m"; sourceTree = "<group>"; };
 		683F8A80164573860066C47A /* HSBloodDonationType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSBloodDonationType.m; sourceTree = "<group>"; };
 		683F8A9316468E300066C47A /* event_done_button_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = event_done_button_normal.png; sourceTree = "<group>"; };
 		683F8A9416468E300066C47A /* event_done_button_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "event_done_button_normal@2x.png"; sourceTree = "<group>"; };
@@ -1323,6 +1372,7 @@
 		85BE8D1815C1601E00CF5606 /* tabbar_calendar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar_calendar@2x.png"; sourceTree = "<group>"; };
 		85BE8D1915C1601E00CF5606 /* tabbar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tabbar.png; sourceTree = "<group>"; };
 		85BE8D1A15C1601E00CF5606 /* tabbar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar@2x.png"; sourceTree = "<group>"; };
+		CE8609CA170B7A0E00E4497A /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = Libs/Crashlytics.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1355,6 +1405,7 @@
 				37153EA215AEBA3400C985C1 /* Foundation.framework in Frameworks */,
 				6871DF641681184B004E5EBB /* libTestFlight.a in Frameworks */,
 				6846117116A61B7B00EE9030 /* libCrittercism_v3_4_5.a in Frameworks */,
+				CE8609CB170B7A0E00E4497A /* Crashlytics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1398,6 +1449,7 @@
 		37153E9E15AEBA3400C985C1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CE8609CA170B7A0E00E4497A /* Crashlytics.framework */,
 				685088D01666B74B004EC3CC /* AdSupport.framework */,
 				685088CE1666B738004EC3CC /* StoreKit.framework */,
 				685088CC1666B715004EC3CC /* Accounts.framework */,
@@ -1759,46 +1811,88 @@
 			path = Images;
 			sourceTree = "<group>";
 		};
-		406344E91702F97100C7C5A4 /* ItsBeta */ = {
+		409788E317097B8E0054042A /* ItsBeta */ = {
 			isa = PBXGroup;
 			children = (
-				406344EA1702F97100C7C5A4 /* Internal */,
-				406344EF1702F97100C7C5A4 /* ItsBeta.h */,
-				406344F01702F97100C7C5A4 /* ItsBeta.m */,
-				40B57E65170352EE00B5BB41 /* ItsBetaPlayer.m */,
-				40B57E4F17033A7C00B5BB41 /* ItsBetaCategory.m */,
-				40B57E5C17034ECA00B5BB41 /* ItsBetaProject.m */,
-				40B57E6D17036D3800B5BB41 /* ItsBetaParams.m */,
-				40B57E6717036A9A00B5BB41 /* ItsBetaType.m */,
-				40B57E6917036C1500B5BB41 /* ItsBetaTemplate.m */,
-				40B57E6B17036CE600B5BB41 /* ItsBetaObject.m */,
-				40B57E6F17036EB200B5BB41 /* ItsBetaImage.m */,
+				409788E417097B8E0054042A /* Internal */,
+				409788F417097B8E0054042A /* ItsBeta.h */,
+				409788F517097B8E0054042A /* ItsBeta.m */,
+				409788F617097B8E0054042A /* ItsBetaApplication.h */,
+				409788F717097B8E0054042A /* ItsBetaApplication.m */,
+				409788F817097B8E0054042A /* ItsBetaCategory.h */,
+				409788F917097B8E0054042A /* ItsBetaCategory.m */,
+				409788FA17097B8E0054042A /* ItsBetaCore.h */,
+				409788FB17097B8E0054042A /* ItsBetaCore.m */,
+				409788FC17097B8E0054042A /* ItsBetaImage.h */,
+				409788FD17097B8E0054042A /* ItsBetaImage.m */,
+				409788FE17097B8E0054042A /* ItsBetaObject.h */,
+				409788FF17097B8E0054042A /* ItsBetaObject.m */,
+				4097890017097B8E0054042A /* ItsBetaObjectTemplate.h */,
+				4097890117097B8E0054042A /* ItsBetaObjectTemplate.m */,
+				4097890217097B8E0054042A /* ItsBetaObjectType.h */,
+				4097890317097B8E0054042A /* ItsBetaObjectType.m */,
+				4097890417097B8E0054042A /* ItsBetaParams.h */,
+				4097890517097B8E0054042A /* ItsBetaParams.m */,
+				4097890617097B8E0054042A /* ItsBetaPlayer.h */,
+				4097890717097B8E0054042A /* ItsBetaPlayer.m */,
+				4097890817097B8E0054042A /* ItsBetaProject.h */,
+				4097890917097B8E0054042A /* ItsBetaProject.m */,
 			);
 			name = ItsBeta;
 			path = Libs/ItsBeta;
 			sourceTree = "<group>";
 		};
-		406344EA1702F97100C7C5A4 /* Internal */ = {
+		409788E417097B8E0054042A /* Internal */ = {
 			isa = PBXGroup;
 			children = (
-				40B57E5E1703508800B5BB41 /* Extension */,
-				406344EB1702F97100C7C5A4 /* ItsBetaFastCache.h */,
-				406344EC1702F97100C7C5A4 /* ItsBetaFastCache.m */,
-				406344ED1702F97100C7C5A4 /* ItsBetaRest.h */,
-				406344EE1702F97100C7C5A4 /* ItsBetaRest.m */,
+				409788E517097B8E0054042A /* Extension */,
+				40978924170990F60054042A /* Facebook */,
+				409788EC17097B8E0054042A /* ItsBetaApi.h */,
+				409788ED17097B8E0054042A /* ItsBetaApi.m */,
+				409788EE17097B8E0054042A /* ItsBetaFastCache.h */,
+				409788EF17097B8E0054042A /* ItsBetaFastCache.m */,
+				409788F017097B8E0054042A /* ItsBetaQueue.h */,
+				409788F117097B8E0054042A /* ItsBetaQueue.m */,
+				409788F217097B8E0054042A /* ItsBetaRest.h */,
+				409788F317097B8E0054042A /* ItsBetaRest.m */,
 			);
 			path = Internal;
 			sourceTree = "<group>";
 		};
-		40B57E5E1703508800B5BB41 /* Extension */ = {
+		409788E517097B8E0054042A /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				40B57E5F1703508800B5BB41 /* UIColor+ItsBeta.h */,
-				40B57E601703508800B5BB41 /* UIColor+ItsBeta.m */,
-				40B57E621703527400B5BB41 /* CIColor+ItsBeta.h */,
-				40B57E631703527400B5BB41 /* CIColor+ItsBeta.m */,
+				409788E817097B8E0054042A /* NSDate+ItsBeta.h */,
+				409788E917097B8E0054042A /* NSDate+ItsBeta.m */,
+				4097893617099DFC0054042A /* NSURL+ItsBeta.h */,
+				4097893717099DFC0054042A /* NSURL+ItsBeta.m */,
+				4097893917099E630054042A /* NSString+ItsBeta.h */,
+				4097893A17099E640054042A /* NSString+ItsBeta.m */,
+				4097893C17099F1A0054042A /* NSDictionary+ItsBeta.h */,
+				4097893D17099F1A0054042A /* NSDictionary+ItsBeta.m */,
+				409788E617097B8E0054042A /* CIColor+ItsBeta.h */,
+				409788E717097B8E0054042A /* CIColor+ItsBeta.m */,
+				409788EA17097B8E0054042A /* UIColor+ItsBeta.h */,
+				409788EB17097B8E0054042A /* UIColor+ItsBeta.m */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		40978924170990F60054042A /* Facebook */ = {
+			isa = PBXGroup;
+			children = (
+				40978925170990F60054042A /* ItsBetaFacebook.h */,
+				40978926170990F60054042A /* ItsBetaFacebook.m */,
+				40978927170990F60054042A /* ItsBetaFacebookIPad.h */,
+				40978928170990F60054042A /* ItsBetaFacebookIPad.m */,
+				40978929170990F60054042A /* ItsBetaFacebookIPad.xib */,
+				4097892A170990F60054042A /* ItsBetaFacebookIPhone.h */,
+				4097892B170990F60054042A /* ItsBetaFacebookIPhone.m */,
+				4097892C170990F60054042A /* ItsBetaFacebookIPhone.xib */,
+				4097892D170990F60054042A /* ItsBetaGraphUser.h */,
+				4097892E170990F60054042A /* ItsBetaGraphUser.m */,
+			);
+			path = Facebook;
 			sourceTree = "<group>";
 		};
 		683F8A9216468E300066C47A /* Buttons */ = {
@@ -1915,7 +2009,7 @@
 				6871DF611681184B004E5EBB /* TestFlightSDK */,
 				685088EB1667F6D3004EC3CC /* Flurry */,
 				685CB2FA163F202C004FF9AC /* MBProgressHUD */,
-				406344E91702F97100C7C5A4 /* ItsBeta */,
+				409788E317097B8E0054042A /* ItsBeta */,
 			);
 			name = Libs;
 			sourceTree = "<group>";
@@ -2717,6 +2811,7 @@
 				37153E9715AEBA3400C985C1 /* Sources */,
 				37153E9815AEBA3400C985C1 /* Frameworks */,
 				37153E9915AEBA3400C985C1 /* Resources */,
+				CE8609C9170B79CE00E4497A /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -3236,6 +3331,8 @@
 				6864D6241708B3C400F150F9 /* Default.png in Resources */,
 				6864D6251708B3C400F150F9 /* Default@2x.png in Resources */,
 				687A436C16F7C19400958347 /* CKAuthViewController.xib in Resources */,
+				40978931170990F60054042A /* ItsBetaFacebookIPad.xib in Resources */,
+				40978933170990F60054042A /* ItsBetaFacebookIPhone.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3262,6 +3359,19 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+		CE8609C9170B79CE00E4497A /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Libs/Crashlytics.framework/run 9d515447ae8b641e682dacd6b67757ba2762308f";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -3351,19 +3461,6 @@
 				68D6CD9716E22A8900972D41 /* HSBloodRemoteEvent+LocalNotification_Protected.m in Sources */,
 				687704BB16EE62A700DF332F /* HSCalendarEventNotifier.m in Sources */,
 				68B413281700140000BB32FF /* HSNotification.m in Sources */,
-				406344F81702F97100C7C5A4 /* ItsBetaFastCache.m in Sources */,
-				406344F91702F97100C7C5A4 /* ItsBetaRest.m in Sources */,
-				406344FA1702F97100C7C5A4 /* ItsBeta.m in Sources */,
-				40B57E5017033A7C00B5BB41 /* ItsBetaCategory.m in Sources */,
-				40B57E5D17034ECA00B5BB41 /* ItsBetaProject.m in Sources */,
-				40B57E611703508800B5BB41 /* UIColor+ItsBeta.m in Sources */,
-				40B57E641703527400B5BB41 /* CIColor+ItsBeta.m in Sources */,
-				40B57E66170352EE00B5BB41 /* ItsBetaPlayer.m in Sources */,
-				40B57E6817036A9A00B5BB41 /* ItsBetaType.m in Sources */,
-				40B57E6A17036C1500B5BB41 /* ItsBetaTemplate.m in Sources */,
-				40B57E6C17036CE700B5BB41 /* ItsBetaObject.m in Sources */,
-				40B57E6E17036D3800B5BB41 /* ItsBetaParams.m in Sources */,
-				40B57E7017036EB200B5BB41 /* ItsBetaImage.m in Sources */,
 				68B28E3317071DE3009FE0F8 /* HSUserInfo.m in Sources */,
 				6864D5E9170865F900F150F9 /* HSSexType.m in Sources */,
 				6864D5EC1708683A00F150F9 /* HSBloodType.m in Sources */,
@@ -3380,6 +3477,31 @@
 				687A436A16F7C19400958347 /* CKAuthViewController.m in Sources */,
 				687A436B16F7C19400958347 /* SubscribeAlertView.m in Sources */,
 				6864D6291708CB4900F150F9 /* HSMailChimp.m in Sources */,
+				4097890A17097B8E0054042A /* CIColor+ItsBeta.m in Sources */,
+				4097890B17097B8E0054042A /* NSDate+ItsBeta.m in Sources */,
+				4097890C17097B8E0054042A /* UIColor+ItsBeta.m in Sources */,
+				4097890D17097B8E0054042A /* ItsBetaApi.m in Sources */,
+				4097890E17097B8E0054042A /* ItsBetaFastCache.m in Sources */,
+				4097890F17097B8E0054042A /* ItsBetaQueue.m in Sources */,
+				4097891017097B8E0054042A /* ItsBetaRest.m in Sources */,
+				4097891117097B8E0054042A /* ItsBeta.m in Sources */,
+				4097891217097B8E0054042A /* ItsBetaApplication.m in Sources */,
+				4097891317097B8E0054042A /* ItsBetaCategory.m in Sources */,
+				4097891417097B8E0054042A /* ItsBetaCore.m in Sources */,
+				4097891517097B8E0054042A /* ItsBetaImage.m in Sources */,
+				4097891617097B8E0054042A /* ItsBetaObject.m in Sources */,
+				4097891717097B8E0054042A /* ItsBetaObjectTemplate.m in Sources */,
+				4097891817097B8E0054042A /* ItsBetaObjectType.m in Sources */,
+				4097891917097B8E0054042A /* ItsBetaParams.m in Sources */,
+				4097891A17097B8E0054042A /* ItsBetaPlayer.m in Sources */,
+				4097891B17097B8E0054042A /* ItsBetaProject.m in Sources */,
+				4097892F170990F60054042A /* ItsBetaFacebook.m in Sources */,
+				40978930170990F60054042A /* ItsBetaFacebookIPad.m in Sources */,
+				40978932170990F60054042A /* ItsBetaFacebookIPhone.m in Sources */,
+				40978934170990F60054042A /* ItsBetaGraphUser.m in Sources */,
+				4097893817099DFC0054042A /* NSURL+ItsBeta.m in Sources */,
+				4097893B17099E640054042A /* NSString+ItsBeta.m in Sources */,
+				4097893E17099F1B0054042A /* NSDictionary+ItsBeta.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3517,6 +3639,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/Libs\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Donor/Donor-Prefix.pch";
@@ -3552,6 +3675,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/Libs\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Donor/Donor-Prefix.pch";
@@ -3613,6 +3737,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/Libs\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Donor/Donor-Prefix.pch";
@@ -3703,6 +3828,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/Libs\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Donor/Donor-Prefix.pch";

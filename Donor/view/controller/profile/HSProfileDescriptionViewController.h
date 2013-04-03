@@ -16,6 +16,7 @@
 @interface HSProfileDescriptionViewController : UIViewController <UITextFieldDelegate>
 
 /// @name Common UI properties
+@property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) UIButton *editButton;
 @property (weak, nonatomic) IBOutlet UIButton *sexButton;
 @property (weak, nonatomic) IBOutlet UIButton *bloodGroupButton;

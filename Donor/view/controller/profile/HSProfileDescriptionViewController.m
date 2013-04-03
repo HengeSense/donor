@@ -24,6 +24,8 @@
 #import "HSBloodType.h"
 #import "HSUserInfo.h"
 
+#import "ItsBeta.h"
+
 static const CGFloat kActionSheetAnimationDuration = 0.2;
 
 static NSString * const kNotLinkedToFacebookTitle = @"не привязан";
@@ -271,6 +273,10 @@ static NSString * const kLinkedToFacebookTitle = @"привязан";
     }
 }
 
+- (IBAction)showAchievements:(id)sender {
+    // TODO SHOW ACHIEVEMENTS
+}
+
 #pragma mark UITextFieldDelegate
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
@@ -286,8 +292,20 @@ static NSString * const kLinkedToFacebookTitle = @"привязан";
 
 #pragma mark - Private
 #pragma mark - UI configuration
+
 - (void)configureUI {
     self.title = @"Профиль";
+    
+    CGFloat scrollViewWidth = 0.0f;
+    CGFloat scrollViewHeight = 0.0f;
+    for(UIView* view in [self.scrollView subviews]) {
+        CGFloat maxX = CGRectGetMaxX([view frame]);
+        CGFloat maxY = CGRectGetMaxY([view frame]);
+        scrollViewWidth = MAX(scrollViewWidth, maxX);
+        scrollViewHeight = MAX(scrollViewHeight, maxY);
+    }
+    [self.scrollView setContentSize:CGSizeMake(scrollViewWidth, scrollViewHeight)];
+    
     [self configureNavigationBar];
     [self configureFacebookUI];
     [self configureNameTextField];
@@ -304,7 +322,7 @@ static NSString * const kLinkedToFacebookTitle = @"привязан";
     }
     
     // Configure facebook container view controller.
-    self.facebookContainerView.hidden = YES;
+    // self.facebookContainerView.hidden = YES;
     
     // Configure link/unlink buttons
     [self.linkUnlinkFacebookButton setBackgroundImage:[UIImage imageNamed:@"profile_facebook_link_button_normal"]
@@ -383,4 +401,8 @@ static NSString * const kLinkedToFacebookTitle = @"привязан";
     }
 }
 
+- (void)viewDidUnload {
+    [self setScrollView:nil];
+    [super viewDidUnload];
+}
 @end

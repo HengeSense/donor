@@ -9,11 +9,13 @@
 #import "AppDelegate.h"
 #import <Parse/Parse.h>
 #import "Crittercism.h"
+#import <Crashlytics/Crashlytics.h>
 #import "TestFlight.h"
 #import "Appirater.h"
-#import "ItsBeta.h"
 #import "HSFlurryAnalytics.h"
 #include "HSMailChimp.h"
+
+#import "ItsBeta.h"
 
 #import "HSCalendarViewController.h"
 
@@ -36,6 +38,7 @@ static NSString * const APP_STORE_APP_ID = @"578970724";
 static NSString * const ITSBETA_ACCESS_TOKEN = @"059db4f010c5f40bf4a73a28222dd3e3";
 static NSString * const MAILCHIMP_API_KEY = @"9392e150a6a0a5e66d42d2cd56d5d219-us4";
 static NSString * const MAILCHIMP_DONOR_LIST_ID = @"63b23fc742";
+static NSString * const CRASHLYTICS_ID = @"9d515447ae8b641e682dacd6b67757ba2762308f";
 
 @interface AppDelegate ()
 
@@ -92,7 +95,11 @@ static NSString * const MAILCHIMP_DONOR_LIST_ID = @"63b23fc742";
 }
 
 - (BOOL)handleOpenURL:(NSURL*)url {
-    return [PFFacebookUtils handleOpenURL:url];
+    BOOL handled = [PFFacebookUtils handleOpenURL:url];
+    if(handled == NO) {
+        handled = [ItsBeta handleOpenURL:url];
+    }
+    return handled;
 }
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication
@@ -121,18 +128,20 @@ static NSString * const MAILCHIMP_DONOR_LIST_ID = @"63b23fc742";
     [HSFlurryAnalytics initWithAppId:FLURRY_APP_ID];
 #ifndef DEBUG
     [TestFlight takeOff:TEST_FLIGHT_APP_ID];
+    [Crashlytics startWithAPIKey:CRASHLYTICS_ID];
 #endif
-    [Crittercism enableWithAppID: CRITTERCISM_APP_ID];
+    //[Crittercism enableWithAppID: CRITTERCISM_APP_ID];
     
     [Appirater setAppId:APP_STORE_APP_ID];
     [Appirater setDaysUntilPrompt:2];
     [Appirater setUsesUntilPrompt:3];
     [Appirater setTimeBeforeReminding:2];
     
-    [[ItsBeta sharedItsBeta] setAccessToken:ITSBETA_ACCESS_TOKEN];
-    [[ItsBeta sharedItsBeta] synchronize];
-    
     [[HSMailChimp sharedInstance] configureWithApiKey:MAILCHIMP_API_KEY listId:MAILCHIMP_DONOR_LIST_ID];
+    
+    [ItsBeta setApplicationAccessToken:ITSBETA_ACCESS_TOKEN];
+    [ItsBeta setApplicationProjectWhiteList:[NSArray arrayWithObjects:@"donor", nil]];
+    [ItsBeta synchronizeApplication];
 }
 
 - (void)launchServices {
