@@ -202,6 +202,7 @@
                         <Button Name="AddEvent" Content="{Binding AddEvent, Source={StaticResource Loc}}"					
 					FontSize="24"
 					Background="#FF4186A3" 
+                    Style="{StaticResource ButtonMargin}"
 					BorderBrush="#FF4186A3" 
 					Foreground="#FFFFFFFF"
 					FontFamily="Segoe WP Regular" BorderThickness="3" Click="AddEvent_Click" />
@@ -270,6 +271,7 @@
 
                     <Button 
 					FontSize="24"
+                        Style="{StaticResource ButtonMargin}"
 					Background="#FF4F3B34" 
 					BorderBrush="#FF4F3B34" 
 					FontFamily="Segoe WP Regular"
@@ -278,6 +280,7 @@
 
 
                     <Button 
+                        Style="{StaticResource ButtonMargin}"
 					FontSize="24"
 					Background="#FF4F3B34" 
 					BorderBrush="#FF4F3B34" 
@@ -288,6 +291,7 @@
 
                     <Button 
 					FontSize="24"
+                        Style="{StaticResource ButtonMargin}"
 					Background="#FF4186A3" 
 					BorderBrush="#FF4186A3" 
 					FontFamily="Segoe WP Regular"
@@ -329,6 +333,7 @@
                     </StackPanel>
 					<Button 
 					FontSize="24"
+                    Style="{StaticResource ButtonMargin}"
 					Background="#FF4186A3" 
 					BorderBrush="#FF4186A3" 
 					FontFamily="Segoe WP Regular"

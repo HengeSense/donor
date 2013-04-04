@@ -165,11 +165,12 @@
                                     </StackPanel>
 
                                     <Button Name="RegisterButton" 
-						FontSize="24"
-						Background="#FF4186A3" 
-						BorderBrush="#FF4186A3" 
-						FontFamily="Segoe WP Regular"
-						Content="{Binding Registration, Source={StaticResource Loc}}" Click="RegisterButton_Click" Foreground="White" Visibility="Collapsed" />
+						                FontSize="24"
+                                        Style="{StaticResource ButtonMargin}"
+						                Background="#FF4186A3" 
+						                BorderBrush="#FF4186A3" 
+						                FontFamily="Segoe WP Regular"
+						                Content="{Binding Registration, Source={StaticResource Loc}}" Click="RegisterButton_Click" Foreground="White" Visibility="Collapsed" />
                                 </StackPanel>
                             </ScrollViewer>
                         </StackPanel>
@@ -190,6 +191,7 @@ BorderBrush="#FF4F3B34" Foreground="#FFCBB2A3" x:Name="email"
 
 
                             <Button Name="Login" 
+                            Style="{StaticResource ButtonMargin}"
 						    Content="{Binding Login, Source={StaticResource Loc}}" 						
 						    FontSize="24"
 					        Background="#FF4186A3" 
@@ -372,6 +374,7 @@ Visibility="Collapsed" Name="SaveEditProfileButton" Click="SaveEditProfileButton
 
                             <Button 
                                 Margin="0,-5,0,10"
+                                Style="{StaticResource ButtonMargin}"
 					            FontSize="24"
 					            Background="#FF261B17" 
 					            BorderBrush="#FF4F3B34" 
@@ -383,6 +386,7 @@ Visibility="Collapsed" Name="SaveEditProfileButton" Click="SaveEditProfileButton
                             <Button 
                                 Margin="0,-5,0,10"
 					            FontSize="24"
+                                Style="{StaticResource ButtonMargin}"
 					            Background="#FF4F3B34" 
 					            BorderBrush="#FF4F3B34" 
 					            FontFamily="Segoe WP Regular"

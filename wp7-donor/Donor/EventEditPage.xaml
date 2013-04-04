@@ -12,40 +12,41 @@
     xmlns:telerik="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Core" 
 	xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives" 
     xmlns:telerikPickerBox="clr-namespace:Telerik.Windows.Controls.PickerBox;assembly=Telerik.Windows.Controls.Primitives"
+    xmlns:Globalization="clr-namespace:System.Globalization;assembly=mscorlib"
     x:Class="Donor.EventEditPage"
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d" d:DesignHeight="768" d:DesignWidth="480"
     shell:SystemTray.IsVisible="True" Loaded="PhoneApplicationPage_Loaded">
     <!--xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"-->
     <phone:PhoneApplicationPage.Resources>
-    	<telerik:RadPlaneProjectionAnimation x:Key="CloseAnimation" Axes="X" StartAngleX="0" EndAngleX="90" Duration="0:0:.2">
-    		<telerik:RadPlaneProjectionAnimation.Easing>
-    			<ExponentialEase Exponent="4" EasingMode="EaseIn"/>
-    		</telerik:RadPlaneProjectionAnimation.Easing>
-    	</telerik:RadPlaneProjectionAnimation>
-    	<telerik:RadPlaneProjectionAnimation x:Key="OpenAnimation" Axes="X" StartAngleX="-90" EndAngleX="0" Duration="0:0:.2">
-    		<telerik:RadPlaneProjectionAnimation.Easing>
-    			<ExponentialEase Exponent="4" EasingMode="EaseOut"/>
-    		</telerik:RadPlaneProjectionAnimation.Easing>
-    	</telerik:RadPlaneProjectionAnimation>
-    	<ItemsPanelTemplate x:Key="ItemsPanelTemplate">
+        <telerik:RadPlaneProjectionAnimation x:Key="CloseAnimation" Axes="X" StartAngleX="0" EndAngleX="90" Duration="0:0:.2">
+            <telerik:RadPlaneProjectionAnimation.Easing>
+                <ExponentialEase Exponent="4" EasingMode="EaseIn"/>
+            </telerik:RadPlaneProjectionAnimation.Easing>
+        </telerik:RadPlaneProjectionAnimation>
+        <telerik:RadPlaneProjectionAnimation x:Key="OpenAnimation" Axes="X" StartAngleX="-90" EndAngleX="0" Duration="0:0:.2">
+            <telerik:RadPlaneProjectionAnimation.Easing>
+                <ExponentialEase Exponent="4" EasingMode="EaseOut"/>
+            </telerik:RadPlaneProjectionAnimation.Easing>
+        </telerik:RadPlaneProjectionAnimation>
+        <ItemsPanelTemplate x:Key="ItemsPanelTemplate">
             <StackPanel Background="#FF4F3B34"/>
-    	</ItemsPanelTemplate>
-	</phone:PhoneApplicationPage.Resources>
+        </ItemsPanelTemplate>
+    </phone:PhoneApplicationPage.Resources>
 
-	<phone:PhoneApplicationPage.FontFamily>
-		<StaticResource ResourceKey="PhoneFontFamilyNormal"/>
-	</phone:PhoneApplicationPage.FontFamily>
-	<phone:PhoneApplicationPage.FontSize>
-		<StaticResource ResourceKey="PhoneFontSizeNormal"/>
-	</phone:PhoneApplicationPage.FontSize>
-	<phone:PhoneApplicationPage.Foreground>
-		<StaticResource ResourceKey="PhoneForegroundBrush"/>
-	</phone:PhoneApplicationPage.Foreground>
+    <phone:PhoneApplicationPage.FontFamily>
+        <StaticResource ResourceKey="PhoneFontFamilyNormal"/>
+    </phone:PhoneApplicationPage.FontFamily>
+    <phone:PhoneApplicationPage.FontSize>
+        <StaticResource ResourceKey="PhoneFontSizeNormal"/>
+    </phone:PhoneApplicationPage.FontSize>
+    <phone:PhoneApplicationPage.Foreground>
+        <StaticResource ResourceKey="PhoneForegroundBrush"/>
+    </phone:PhoneApplicationPage.Foreground>
 
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot">
-    	<Grid.Background>
+        <Grid.Background>
             <ImageBrush ImageSource="images/back_02.png"/>
         </Grid.Background>
         <Grid.RowDefinitions>
@@ -78,7 +79,7 @@
 					Foreground="#FF847168"/>
                         </toolkit:ListPicker.Header>
 
-                            <toolkit:ListPicker.ItemTemplate>
+                        <toolkit:ListPicker.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal" Background="#FF4F3B34" Margin="0">
                                     <TextBlock Foreground="#FFDF8D4B" Text="{Binding}" />
@@ -110,16 +111,17 @@
 			Style="{StaticResource Text24px847168}" Margin="12,0,0,0"/>
                     <StackPanel Orientation="Horizontal">
                         <!--<toolkit:DatePicker Width="250" Name="Date" 
-					Background="#FF4F3B34" Foreground="#FFDF8D4B"/>-->
-                        <!--Template="{StaticResource RadDatePickerControlTemplate}" 
-                        PickerButtonStyle="{StaticResource ToggleButtonDarkRedStyle}"-->
+					Background="#FF4F3B34" Foreground="#FFDF8D4B"/> -->
                         <telerikInput:RadDatePicker 
-                            Width="250" 
-                            x:Name="Date" 
-					        Background="#FF4F3B34" 
-                            Foreground="#FFDF8D4B" 
-                            EmptyContent="Выберите дату" 
-							Margin="0,-8,0,0">
+                    		Width="250" 
+                    		x:Name="Date" 
+                    		Background="#FF4F3B34" 
+                    		Foreground="#FFDF8D4B" 
+                    		EmptyContent="Выберите дату" 
+                    		PickerButtonStyle="{StaticResource PickerBoxToggle}"
+                    		Margin="0,-8,0,0" PopupHeader="УКАЖИТЕ ДАТУ" 
+                            OkButtonIconUri="/Toolkit.Content/ApplicationBar.Check.png" 
+                            CancelButtonIconUri="/icons/appbar.cancel.png">
                             <telerikInput:RadDatePicker.EmptyContentTemplate>
                                 <DataTemplate>
                                     <Grid Background="#FF4F3B34" Width="250" Height="50" Margin="-9">
@@ -128,59 +130,59 @@
                                 </DataTemplate>
                             </telerikInput:RadDatePicker.EmptyContentTemplate>
                         </telerikInput:RadDatePicker>
-                        <!-- Background="#FF4F3B34" 
-                        Foreground="#FFDF8D4B" 
-                        -->
                         <telerikInput:RadTimePicker x:Name="Time"
-                            Width="200" Margin="0,-8,0,0"                            
-                            Value="2013-01-01" 
-                            PickerButtonStyle="{StaticResource PickerBoxToggle}">
+                    		Width="200" Margin="0,-8,0,0"                            
+                    		Value="2013-01-01" 
+                    		PickerButtonStyle="{StaticResource PickerBoxToggle}" 
+                            EmptyContent="Время" PopupHeader="УКАЖИТЕ ВРЕМЯ"
+                            OkButtonIconUri="/Toolkit.Content/ApplicationBar.Check.png" 
+                            CancelButtonIconUri="/icons/appbar.cancel.png">
                         </telerikInput:RadTimePicker>
                         <!--<toolkit:TimePicker x:Name="Time"  
                             Width="200" 
                             Background="#FF4F3B34" 
-                            Foreground="#FFDF8D4B"/> -->
+                            Foreground="#FFDF8D4B"/>-->
                         <!--Value="{Binding Time, Mode=TwoWay}" -->
-                    </StackPanel>                   
-                    
-                    
+                    </StackPanel>
+
+
                     <TextBlock Text="{Binding Place, Source={StaticResource Loc}}"
 			 Style="{StaticResource Text24px847168}" Margin="12,0,0,0"/>
-                    
-                <StackPanel Orientation="Horizontal">
-                    <TextBox x:Name="Place" Text="{Binding Place, Mode=TwoWay}"
+
+                    <StackPanel Orientation="Horizontal">
+                        <TextBox x:Name="Place" Text="{Binding Place, Mode=TwoWay}"
 			Style="{StaticResource TextBoxStyle1}" Width="400"/>
                         <Border>
                             <Image Height="50" Source="images/ic_map.png" 
 					Stretch="Fill" Width="50" Tap="Image_Tap"/>
                         </Border>
                     </StackPanel>
-                    
-                <StackPanel x:Name="Reminder" Visibility="Collapsed">
+
+                    <StackPanel x:Name="Reminder" Visibility="Collapsed">
                         <TextBlock Text="{Binding Reminder, Source={StaticResource Loc}}" Style="{StaticResource Text24px847168}" Visibility="Collapsed"/>
                         <!--Header="{Binding Reminder, Source={StaticResource Loc}}" 
                     Style="{StaticResource ListPickerStyle1}"
                     -->
-                    <toolkit:ListPicker  x:Name="ReminderPeriod" 
+                        <toolkit:ListPicker  x:Name="ReminderPeriod" 
 					Foreground="#FFDF8D4B" BorderBrush="#FF4F3B34" 
                     Style="{StaticResource ListPickerStyle1}"
 					Background="#FF4F3B34">
-                    <toolkit:ListPicker.Header>
+                            <toolkit:ListPicker.Header>
                                 <TextBlock Text="{Binding ReminderBeforeEdit, Source={StaticResource Loc}}" FontSize="24" 
 						Foreground="#FF847168"/>
                             </toolkit:ListPicker.Header>
                             <toolkit:ListPicker.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Horizontal" Background="#FF4F3B34" Margin="0">
-                                    <TextBlock Foreground="#FFDF8D4B" Text="{Binding}" />
-                                </StackPanel>
-                            </DataTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal" Background="#FF4F3B34" Margin="0">
+                                        <TextBlock Foreground="#FFDF8D4B" Text="{Binding}" />
+                                    </StackPanel>
+                                </DataTemplate>
                             </toolkit:ListPicker.ItemTemplate>
                         </toolkit:ListPicker>
-                    <CheckBox x:Name="KnowAboutResults" Visibility="Collapsed" 
+                        <CheckBox x:Name="KnowAboutResults" Visibility="Collapsed" 
 					FontSize="24"
 					Content="{Binding KnowResult, Source={StaticResource Loc}}" IsChecked="{Binding ReminderMessage, Mode=TwoWay}" Foreground="#FF847168"/>
-                </StackPanel>
+                    </StackPanel>
                     <TextBlock Text="{Binding CommentLabelEdit, Source={StaticResource Loc}}"
 					Style="{StaticResource Text24px847168}"
 					Margin="12,0,0,0"/>
@@ -209,5 +211,5 @@
             <WPExtensions:AdvancedApplicationBarIconButton IconUri="/icons/appbar.cancel.png" x:Name="CancelButton" Text="{Binding Cancel, Source={StaticResource Loc}}" Visibility="Visible" Click="CancelButton_Click" />
         </WPExtensions:AdvancedApplicationBar>
     </Grid>
-    
+
 </phone:PhoneApplicationPage>

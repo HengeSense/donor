@@ -413,7 +413,7 @@ mc:Ignorable="d">
       <Setter Property="BorderBrush" Value="#FF4F3B34" />
       <Setter Property="Foreground" Value="#FFCBB2A3" />
     </Style>
-    <Style TargetType="Button">
+    <Style TargetType="Button" x:Key="ButtonMargin">
       <Setter Property="Background" Value="Transparent" />
       <Setter Property="BorderBrush" Value="{StaticResource PhoneForegroundBrush}" />
       <Setter Property="Foreground" Value="{StaticResource PhoneForegroundBrush}" />
@@ -457,8 +457,11 @@ mc:Ignorable="d">
                   </VisualState>
                 </VisualStateGroup>
               </VisualStateManager.VisualStateGroups>
-              <Border x:Name="ButtonBackground" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" CornerRadius="0" Margin="{StaticResource PhoneTouchTargetOverhang}">
-                <ContentControl x:Name="ContentContainer" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" Foreground="{TemplateBinding Foreground}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Padding="{TemplateBinding Padding}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" Margin="0,9" />
+              <Border x:Name="ButtonBackground" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" 
+			  Background="{TemplateBinding Background}" CornerRadius="0" Margin="{StaticResource PhoneTouchTargetOverhang}">
+                <ContentControl x:Name="ContentContainer" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" 
+				Foreground="{TemplateBinding Foreground}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" 
+				Padding="{TemplateBinding Padding}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" Margin="0,6" />
               </Border>
             </Grid>
           </ControlTemplate>
@@ -484,13 +487,13 @@ mc:Ignorable="d">
                                     <VisualState x:Name="Normal">
                                         <Storyboard>
                                             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="EnabledBackground" Storyboard.TargetProperty="Background">
-                                                <DiscreteObjectKeyFrame KeyTime="0" Value="Blue"/>
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="#FF4F3B34"/>
                                             </ObjectAnimationUsingKeyFrames>
                                             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="EnabledBackground" Storyboard.TargetProperty="BorderBrush">
-                                                <DiscreteObjectKeyFrame KeyTime="0" Value="Red"/>
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="#FF4F3B34"/>
                                             </ObjectAnimationUsingKeyFrames>
                                             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="EnabledContent" Storyboard.TargetProperty="Foreground">
-                                                <DiscreteObjectKeyFrame KeyTime="0" Value="Red"/>
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="#FFDF8D4B"/>
                                             </ObjectAnimationUsingKeyFrames>
                                         </Storyboard>
                                     </VisualState>
@@ -515,13 +518,13 @@ mc:Ignorable="d">
                                     <VisualState x:Name="Pressed">
                                         <Storyboard>
                                             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="EnabledBackground" Storyboard.TargetProperty="Background">
-                                                <DiscreteObjectKeyFrame KeyTime="0" Value="Black"/>
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="#FFDF8D4B"/>
                                             </ObjectAnimationUsingKeyFrames>
                                             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="EnabledBackground" Storyboard.TargetProperty="BorderBrush">
-                                                <DiscreteObjectKeyFrame KeyTime="0" Value="Yellow"/>
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="#FFDF8D4B"/>
                                             </ObjectAnimationUsingKeyFrames>
                                             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="EnabledContent" Storyboard.TargetProperty="Foreground">
-                                                <DiscreteObjectKeyFrame KeyTime="0" Value="White"/>
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="#FF4F3B34"/>
                                             </ObjectAnimationUsingKeyFrames>
                                         </Storyboard>
                                     </VisualState>
@@ -541,6 +544,25 @@ mc:Ignorable="d">
                 </Setter.Value>
             </Setter>
         </Style>
+        <ControlTemplate x:Key="DatePickerControlTemplate" TargetType="toolkit:DatePicker">
+        	<StackPanel>
+        		<ContentControl
+        			Content="{TemplateBinding Header}"
+        			ContentTemplate="{TemplateBinding HeaderTemplate}"
+        			Foreground="{StaticResource PhoneSubtleBrush}"
+        			HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+        			Margin="12,0,12,-4"/>
+        		<Button
+        			x:Name="DateTimeButton"
+        			Content="{TemplateBinding ValueString}"
+        			Background="{TemplateBinding Background}"
+        			BorderThickness="{TemplateBinding BorderThickness}"
+        			FontFamily="{TemplateBinding FontFamily}"
+        			Foreground="{TemplateBinding Foreground}"
+        			Height="72"
+        			HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"/>
+        	</StackPanel>
+        </ControlTemplate>
 
 
 

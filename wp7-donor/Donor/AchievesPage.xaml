@@ -73,6 +73,7 @@
                     </ListBox>
                     <Button Name="ItsbetaAppButton" 
                             FontSize="24"
+                            Style="{StaticResource ButtonMargin}"
 					        Background="#FF4186A3" 
 					        BorderBrush="#FF4186A3" 
 					        Foreground="#FFFFFFFF"
