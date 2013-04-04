@@ -604,6 +604,8 @@
 		85BE8D3715C1601E00CF5606 /* tabbar.png in Resources */ = {isa = PBXBuildFile; fileRef = 85BE8D1915C1601E00CF5606 /* tabbar.png */; };
 		85BE8D3815C1601E00CF5606 /* tabbar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85BE8D1A15C1601E00CF5606 /* tabbar@2x.png */; };
 		CE8609CB170B7A0E00E4497A /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE8609CA170B7A0E00E4497A /* Crashlytics.framework */; };
+		CE8609DC170DD62100E4497A /* HSStationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8609DA170DD62100E4497A /* HSStationsViewController.m */; };
+		CE8609DD170DD62100E4497A /* HSStationsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE8609DB170DD62100E4497A /* HSStationsViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1378,6 +1380,9 @@
 		85BE8D1915C1601E00CF5606 /* tabbar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tabbar.png; sourceTree = "<group>"; };
 		85BE8D1A15C1601E00CF5606 /* tabbar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar@2x.png"; sourceTree = "<group>"; };
 		CE8609CA170B7A0E00E4497A /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = Libs/Crashlytics.framework; sourceTree = "<group>"; };
+		CE8609D9170DD62100E4497A /* HSStationsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSStationsViewController.h; sourceTree = "<group>"; };
+		CE8609DA170DD62100E4497A /* HSStationsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSStationsViewController.m; sourceTree = "<group>"; };
+		CE8609DB170DD62100E4497A /* HSStationsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HSStationsViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2428,6 +2433,7 @@
 				68B82F8B16D1113B00533701 /* login */,
 				68B82F9716D1113B00533701 /* profile */,
 				68B82FAA16D1113B00533701 /* stations */,
+				CE8609D8170DD62100E4497A /* stations2 */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -2807,6 +2813,16 @@
 				689B00FC16AC37CC00B5CA4C /* recommendations.json */,
 			);
 			path = Data;
+			sourceTree = "<group>";
+		};
+		CE8609D8170DD62100E4497A /* stations2 */ = {
+			isa = PBXGroup;
+			children = (
+				CE8609D9170DD62100E4497A /* HSStationsViewController.h */,
+				CE8609DA170DD62100E4497A /* HSStationsViewController.m */,
+				CE8609DB170DD62100E4497A /* HSStationsViewController.xib */,
+			);
+			path = stations2;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -3342,6 +3358,7 @@
 				40978931170990F60054042A /* ItsBetaFacebookIPad.xib in Resources */,
 				40978933170990F60054042A /* ItsBetaFacebookIPhone.xib in Resources */,
 				40595AF5170C4086007B2C61 /* HSItsBetaAchievementsViewController.xib in Resources */,
+				CE8609DD170DD62100E4497A /* HSStationsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3512,6 +3529,7 @@
 				4097893B17099E640054042A /* NSString+ItsBeta.m in Sources */,
 				4097893E17099F1B0054042A /* NSDictionary+ItsBeta.m in Sources */,
 				40595AF4170C4086007B2C61 /* HSItsBetaAchievementsViewController.m in Sources */,
+				CE8609DC170DD62100E4497A /* HSStationsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

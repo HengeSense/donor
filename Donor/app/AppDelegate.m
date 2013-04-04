@@ -40,6 +40,8 @@ static NSString * const MAILCHIMP_API_KEY = @"9392e150a6a0a5e66d42d2cd56d5d219-u
 static NSString * const MAILCHIMP_DONOR_LIST_ID = @"63b23fc742";
 static NSString * const CRASHLYTICS_ID = @"9d515447ae8b641e682dacd6b67757ba2762308f";
 
+#define IS_NEW_STATIONS NO
+
 @interface AppDelegate ()
 
 @property (nonatomic, strong) HSCalendarEventNotifier *calendarEventNotifier;
@@ -179,7 +181,8 @@ static NSString * const CRASHLYTICS_ID = @"9d515447ae8b641e682dacd6b67757ba27623
     
     [self.calendarEventNotifier addNotificationHandler:calendarViewController];
     
-    StationsViewController *stationsViewController = [[StationsViewController alloc] initWithNibName:@"StationsViewController" bundle:nil];
+    NSString *stationsControllerName = IS_NEW_STATIONS ? @"HSStationsViewController" : @"StationsViewController";
+    StationsViewController *stationsViewController = [[StationsViewController alloc] initWithNibName:stationsControllerName bundle:nil];
     UINavigationController *stationsNavigationController = [[UINavigationController alloc] initWithRootViewController:stationsViewController];
     
     InfoViewController *infoViewController = [[InfoViewController alloc] initWithNibName:@"InfoViewController" bundle:nil];
