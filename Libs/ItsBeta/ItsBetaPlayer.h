@@ -6,6 +6,9 @@
 
 typedef void (^ItsBetaPlayerLogin)(NSError* error);
 typedef void (^ItsBetaPlayerLogout)(NSError* error);
+typedef void (^ItsBetaPlayerCreateAchievement)(NSString* activateCode, NSError* error);
+typedef void (^ItsBetaPlayerActivateAchievement)(NSString* object_id, NSError* error);
+typedef void (^ItsBetaPlayerGiveAchievement)(NSString* object_id, NSError* error);
 
 /*--------------------------------------------------*/
 
@@ -32,8 +35,11 @@ typedef void (^ItsBetaPlayerLogout)(NSError* error);
 - (void) loginWithViewController:(NSViewController*)viewController callback:(ItsBetaPlayerLogin)callback;
 #endif
 - (void) loginWithFacebookId:(NSString*)facebookId facebookToken:(NSString*)facebookToken callback:(ItsBetaPlayerLogin)callback;
-
 - (void) logout:(ItsBetaPlayerLogout)callback;
+
+- (void) createAchievementWithProject:(ItsBetaProject*)project objectTemplate:(ItsBetaObjectTemplate*)objectTemplate params:(NSDictionary*)params callback:(ItsBetaPlayerCreateAchievement)callback;
+- (void) activateAchievementWithProject:(ItsBetaProject*)project activateCode:(NSString*)activateCode callback:(ItsBetaPlayerActivateAchievement)callback;
+- (void) giveAchievementWithProject:(ItsBetaProject*)project objectTemplate:(ItsBetaObjectTemplate*)objectTemplate params:(NSDictionary*)params callback:(ItsBetaPlayerGiveAchievement)callback;
 
 + (BOOL) handleOpenURL:(NSURL*)url;
 

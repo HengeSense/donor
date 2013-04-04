@@ -145,9 +145,9 @@
 }
 
 #if defined(TARGET_OS_IPHONE)
-+ (void) facebookLoginWithViewController:(UIViewController*)viewController callback:(ItsBetaLogin)callback {
++ (void) playerLoginFacebookWithViewController:(UIViewController*)viewController callback:(ItsBetaLogin)callback {
 #else
-+ (void) facebookLoginWithViewController:(NSViewController*)viewController callback:(ItsBetaLogin)callback {
++ (void) playerLoginFacebookWithViewController:(NSViewController*)viewController callback:(ItsBetaLogin)callback {
 #endif
     ItsBeta* itsbeta = [ItsBeta sharedItsBeta];
     ItsBetaPlayer* player = [itsbeta player];
@@ -173,6 +173,41 @@
             [itsbeta saveToLocalStorage];
         }];
     }];
+}
+    
++ (void) playerCreateAchievementWithProject:(ItsBetaProject*)project objectTemplate:(ItsBetaObjectTemplate*)objectTemplate params:(NSDictionary*)params callback:(ItsBetaCreateAchievement)callback {
+    ItsBetaPlayer* player = [[ItsBeta sharedItsBeta] player];
+    [player createAchievementWithProject:project
+                          objectTemplate:objectTemplate
+                                  params:params
+                                callback:^(NSString* activateCode, NSError* error) {
+                                    if(callback != nil) {
+                                        callback(player, activateCode, error);
+                                    }
+                                }];
+}
+
++ (void) playerActivateAchievementWithProject:(ItsBetaProject*)project activateCode:(NSString*)activateCode callback:(ItsBetaActivateAchievement)callback {
+    ItsBetaPlayer* player = [[ItsBeta sharedItsBeta] player];
+    [player activateAchievementWithProject:project
+                              activateCode:activateCode
+                                  callback:^(NSString* object_id, NSError* error) {
+                                      if(callback != nil) {
+                                          callback(player, object_id, error);
+                                      }
+                                  }];
+}
+
++ (void) playerGiveAchievementWithProject:(ItsBetaProject*)project objectTemplate:(ItsBetaObjectTemplate*)objectTemplate params:(NSDictionary*)params callback:(ItsBetaGiveAchievement)callback {
+    ItsBetaPlayer* player = [[ItsBeta sharedItsBeta] player];
+    [player giveAchievementWithProject:project
+                        objectTemplate:objectTemplate
+                                params:params
+                              callback:^(NSString* object_id, NSError* error) {
+                                  if(callback != nil) {
+                                      callback(player, object_id, error);
+                                  }
+                              }];
 }
 
 + (void) synchronizeApplication {

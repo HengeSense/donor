@@ -18,6 +18,9 @@
 
 typedef void (^ItsBetaLogin)(ItsBetaPlayer* player, NSError* error);
 typedef void (^ItsBetaLogout)(ItsBetaPlayer* player, NSError* error);
+typedef void (^ItsBetaCreateAchievement)(ItsBetaPlayer* player, NSString* activateCode, NSError* error);
+typedef void (^ItsBetaActivateAchievement)(ItsBetaPlayer* player, NSString* object_id, NSError* error);
+typedef void (^ItsBetaGiveAchievement)(ItsBetaPlayer* player, NSString* object_id, NSError* error);
 
 /*--------------------------------------------------*/
 
@@ -52,11 +55,15 @@ typedef void (^ItsBetaLogout)(ItsBetaPlayer* player, NSError* error);
 
 + (BOOL) playerLogined;
 #if defined(TARGET_OS_IPHONE)
-+ (void) facebookLoginWithViewController:(UIViewController*)viewController callback:(ItsBetaLogin)callback;
++ (void) playerLoginFacebookWithViewController:(UIViewController*)viewController callback:(ItsBetaLogin)callback;
 #else
-+ (void) facebookLoginWithViewController:(NSViewController*)viewController callback:(ItsBetaLogin)callback;
++ (void) playerLoginFacebookWithViewController:(NSViewController*)viewController callback:(ItsBetaLogin)callback;
 #endif
 + (void) playerLogout:(ItsBetaLogout)callback;
+
++ (void) playerCreateAchievementWithProject:(ItsBetaProject*)project objectTemplate:(ItsBetaObjectTemplate*)objectTemplate params:(NSDictionary*)params callback:(ItsBetaCreateAchievement)callback;
++ (void) playerActivateAchievementWithProject:(ItsBetaProject*)project activateCode:(NSString*)activateCode callback:(ItsBetaActivateAchievement)callback;
++ (void) playerGiveAchievementWithProject:(ItsBetaProject*)project objectTemplate:(ItsBetaObjectTemplate*)objectTemplate params:(NSDictionary*)params callback:(ItsBetaGiveAchievement)callback;
 
 + (void) synchronizeApplication;
 + (void) synchronizePlayerWithProject:(ItsBetaProject*)project;

@@ -28,8 +28,15 @@
 }
 
 - (void)viewDidLoad {
-    
     [super viewDidLoad];
+    
+    [ItsBeta synchronizePlayerWithProject:_project];
+}
+
+#pragma mark Outlets
+
+- (IBAction)openItsBetaWebSite:(id)sender {
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://itsbeta.com"]];
 }
 
 #pragma mark - UITableViewDataSource

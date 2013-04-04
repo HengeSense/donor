@@ -475,7 +475,7 @@
                 NSString* player_id = [json objectForKey:@"player_id"];
                 if(player_id != nil) {
                     if(playerId != nil) {
-                        playerId([json objectForKey:@"player_id"], nil);
+                        playerId(player_id, nil);
                     }
                 } else {
                     error = [self errorWithDictionary:json];
@@ -491,6 +491,156 @@
     } sendFailure:^(ItsBetaRest* rest, NSError* error) {
         if(playerId != nil) {
             playerId(nil, error);
+        }
+        NSLog(@"%@", error);
+    }];
+}
+
++ (void) requestServiceURL:(NSString*)serviceURL
+               accessToken:(NSString*)accessToken
+                   project:(ItsBetaProject*)project
+            objectTemplate:(ItsBetaObjectTemplate*)objectTemplate
+                    params:(NSDictionary*)params
+              activateCode:(ItsBetaApiResponseCreateAchievement)activateCode {
+    NSMutableDictionary* query = [NSMutableDictionary dictionary];
+    if(accessToken != nil) {
+        [query setObject:accessToken forKey:@"access_token"];
+    }
+    if(objectTemplate != nil) {
+        [query setObject:[objectTemplate name] forKey:@"badge_name"];
+    }
+    if(params != nil) {
+        [params enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL* stop) {
+            [query setObject:obj forKey:key];
+            stop = NO;
+        }];
+    }
+    ItsBetaRest* rest = [ItsBetaRest restWithMethod:@"POST" url:[NSString stringWithFormat:@"%@/%@/%@/achieves/postachieve.json", serviceURL, [project categoryName], [project name]] query:query];
+    [rest sendSuccess:^(ItsBetaRest* rest) {
+        NSError* error = nil;
+        id json = [NSJSONSerialization JSONObjectWithData:[rest receivedData] options:0 error:&error];
+        if(error == nil) {
+            if([json isKindOfClass:[NSDictionary class]] == YES) {
+                NSString* activate_code = [json objectForKey:@"activate_code"];
+                if(activate_code != nil) {
+                    if(activateCode != nil) {
+                        activateCode(activate_code, nil);
+                    }
+                } else {
+                    error = [self errorWithDictionary:json];
+                }
+            }
+        }
+        if(error != nil) {
+            if(activateCode != nil) {
+                activateCode(nil, error);
+            }
+            NSLog(@"%@", error);
+        }
+    } sendFailure:^(ItsBetaRest* rest, NSError* error) {
+        if(activateCode != nil) {
+            activateCode(nil, error);
+        }
+        NSLog(@"%@", error);
+    }];
+}
+
++ (void) requestServiceURL:(NSString*)serviceURL
+               accessToken:(NSString*)accessToken
+                   project:(ItsBetaProject*)project
+                    player:(ItsBetaPlayer*)player
+              activateCode:(NSString*)activateCode
+                    object:(ItsBetaApiResponseActivateAchievement)object {
+    NSMutableDictionary* query = [NSMutableDictionary dictionary];
+    if(accessToken != nil) {
+        [query setObject:accessToken forKey:@"access_token"];
+    }
+    if(player != nil) {
+        [query setObject:[player facebookId] forKey:@"user_id"];
+        [query setObject:[player facebookToken] forKey:@"user_token"];
+    }
+    if(activateCode != nil) {
+        [query setObject:activateCode forKey:@"activate_code"];
+    }
+    ItsBetaRest* rest = [ItsBetaRest restWithMethod:@"POST" url:[NSString stringWithFormat:@"%@/%@/%@/achieves/posttofb.json", serviceURL, [project categoryName], [project name]] query:query];
+    [rest sendSuccess:^(ItsBetaRest* rest) {
+        NSError* error = nil;
+        id json = [NSJSONSerialization JSONObjectWithData:[rest receivedData] options:0 error:&error];
+        if(error == nil) {
+            if([json isKindOfClass:[NSDictionary class]] == YES) {
+                NSString* object_id = [json objectForKey:@"id"];
+                if(object_id != nil) {
+                    if(object != nil) {
+                        object(object_id, nil);
+                    }
+                } else {
+                    error = [self errorWithDictionary:json];
+                }
+            }
+        }
+        if(error != nil) {
+            if(object != nil) {
+                object(nil, error);
+            }
+            NSLog(@"%@", error);
+        }
+    } sendFailure:^(ItsBetaRest* rest, NSError* error) {
+        if(object != nil) {
+            object(nil, error);
+        }
+        NSLog(@"%@", error);
+    }];
+}
+
++ (void) requestServiceURL:(NSString*)serviceURL
+               accessToken:(NSString*)accessToken
+                   project:(ItsBetaProject*)project
+            objectTemplate:(ItsBetaObjectTemplate*)objectTemplate
+                    params:(NSDictionary*)params
+                    player:(ItsBetaPlayer*)player
+                    object:(ItsBetaApiResponseGiveAchievement)object {
+    NSMutableDictionary* query = [NSMutableDictionary dictionary];
+    if(accessToken != nil) {
+        [query setObject:accessToken forKey:@"access_token"];
+    }
+    if(objectTemplate != nil) {
+        [query setObject:[objectTemplate name] forKey:@"badge_name"];
+    }
+    if(params != nil) {
+        [params enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL* stop) {
+            [query setObject:obj forKey:key];
+            stop = NO;
+        }];
+    }
+    if(player != nil) {
+        [query setObject:[player facebookId] forKey:@"user_id"];
+        [query setObject:[player facebookToken] forKey:@"user_token"];
+    }
+    ItsBetaRest* rest = [ItsBetaRest restWithMethod:@"POST" url:[NSString stringWithFormat:@"%@/%@/%@/achieves/posttofbonce.json", serviceURL, [project categoryName], [project name]] query:query];
+    [rest sendSuccess:^(ItsBetaRest* rest) {
+        NSError* error = nil;
+        id json = [NSJSONSerialization JSONObjectWithData:[rest receivedData] options:0 error:&error];
+        if(error == nil) {
+            if([json isKindOfClass:[NSDictionary class]] == YES) {
+                NSString* object_id = [json objectForKey:@"id"];
+                if(object_id != nil) {
+                    if(object != nil) {
+                        object(object_id, nil);
+                    }
+                } else {
+                    error = [self errorWithDictionary:json];
+                }
+            }
+        }
+        if(error != nil) {
+            if(object != nil) {
+                object(nil, error);
+            }
+            NSLog(@"%@", error);
+        }
+    } sendFailure:^(ItsBetaRest* rest, NSError* error) {
+        if(object != nil) {
+            object(nil, error);
         }
         NSLog(@"%@", error);
     }];

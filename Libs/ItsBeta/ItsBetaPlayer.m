@@ -114,42 +114,44 @@
 }
 
 - (BOOL) synchronizeWithProject:(ItsBetaProject*)project {
-    if([ItsBeta applicationAccessToken] != nil) {
+    if([ItsBeta applicationAccessToken] == nil) {
         // ERROR
         return NO;
     }
-    __block NSUInteger countObjects = 0;
-    NSDate* lastUpdateObjects = [NSDate date];
-    [ItsBetaApi requestServiceURL:[ItsBeta applicationServiceURL]
-                      accessToken:[ItsBeta applicationAccessToken]
-                       lastUpdate:lastUpdateObjects
-                           player:self
-                          project:project
-                     countObjects:^(NSUInteger count, NSError *error) {
-                         countObjects = count;
-                     }];
-    if(countObjects > 0) {
-        NSUInteger countPage = 1;
-        if(countObjects > ITSBETA_PLAYER_OBJECT_DEFAULT_PAGE_SIZE) {
-            countPage = countObjects / ITSBETA_PLAYER_OBJECT_DEFAULT_PAGE_SIZE;
-            if((countObjects % ITSBETA_PLAYER_OBJECT_DEFAULT_PAGE_SIZE) != 0) {
-                countPage++;
+    if(_Id != nil) {
+        __block NSUInteger countObjects = 0;
+        NSDate* lastUpdateObjects = [NSDate date];
+        [ItsBetaApi requestServiceURL:[ItsBeta applicationServiceURL]
+                          accessToken:[ItsBeta applicationAccessToken]
+                           lastUpdate:lastUpdateObjects
+                               player:self
+                              project:project
+                         countObjects:^(NSUInteger count, NSError *error) {
+                             countObjects = count;
+                         }];
+        if(countObjects > 0) {
+            NSUInteger countPage = 1;
+            if(countObjects > ITSBETA_PLAYER_OBJECT_DEFAULT_PAGE_SIZE) {
+                countPage = countObjects / ITSBETA_PLAYER_OBJECT_DEFAULT_PAGE_SIZE;
+                if((countObjects % ITSBETA_PLAYER_OBJECT_DEFAULT_PAGE_SIZE) != 0) {
+                    countPage++;
+                }
+            }
+            for(NSUInteger page = 0; page < countPage; page++) {
+                [ItsBetaApi requestServiceURL:[ItsBeta applicationServiceURL]
+                                  accessToken:[ItsBeta applicationAccessToken]
+                                   lastUpdate:lastUpdateObjects
+                                       player:self
+                                      project:project
+                                         page:page
+                                      prePage:ITSBETA_PLAYER_OBJECT_DEFAULT_PAGE_SIZE
+                                      objects:^(ItsBetaObjectCollection* collection, NSError *error) {
+                                          [_objects setObjects:collection];
+                                      }];
             }
         }
-        for(NSUInteger page = 0; page < countPage; page++) {
-            [ItsBetaApi requestServiceURL:[ItsBeta applicationServiceURL]
-                              accessToken:[ItsBeta applicationAccessToken]
-                               lastUpdate:lastUpdateObjects
-                                   player:self
-                                  project:project
-                                     page:page
-                                  prePage:ITSBETA_PLAYER_OBJECT_DEFAULT_PAGE_SIZE
-                                  objects:^(ItsBetaObjectCollection* collection, NSError *error) {
-                                      [_objects setObjects:collection];
-                                  }];
-        }
+        NS_SAFE_SETTER(_lastUpdateObjects, lastUpdateObjects);
     }
-    NS_SAFE_SETTER(_lastUpdateObjects, lastUpdateObjects);
     return YES;
 }
 
@@ -219,6 +221,46 @@
         break;
     }
     [[NSNotificationCenter defaultCenter] postNotificationName:ItsBetaDidPlayerLogout object:self];
+}
+    
+- (void) createAchievementWithProject:(ItsBetaProject*)project ObjectTemplate:(ItsBetaObjectTemplate*)objectTemplate params:(NSDictionary*)params callback:(ItsBetaPlayerCreateAchievement)callback {
+    [ItsBetaApi requestServiceURL:[ItsBeta applicationServiceURL]
+                      accessToken:[ItsBeta applicationAccessToken]
+                          project:project
+                   objectTemplate:objectTemplate
+                           params:params
+                     activateCode:^(NSString* activateCode, NSError* error) {
+                         if(callback != nil) {
+                             callback(activateCode, error);
+                         }
+                     }];
+}
+
+- (void) activateAchievementWithProject:(ItsBetaProject*)project activateCode:(NSString*)activateCode callback:(ItsBetaPlayerActivateAchievement)callback {
+    [ItsBetaApi requestServiceURL:[ItsBeta applicationServiceURL]
+                      accessToken:[ItsBeta applicationAccessToken]
+                          project:project
+                           player:self
+                     activateCode:activateCode
+                           object:^(NSString* object_id, NSError* error) {
+                               if(callback != nil) {
+                                   callback(object_id, error);
+                               }
+                           }];
+}
+
+- (void) giveAchievementWithProject:(ItsBetaProject*)project objectTemplate:(ItsBetaObjectTemplate*)objectTemplate params:(NSDictionary*)params callback:(ItsBetaPlayerGiveAchievement)callback {
+    [ItsBetaApi requestServiceURL:[ItsBeta applicationServiceURL]
+                      accessToken:[ItsBeta applicationAccessToken]
+                          project:project
+                   objectTemplate:objectTemplate
+                           params:params
+                           player:self
+                           object:^(NSString* object_id, NSError *error) {
+                               if(callback != nil) {
+                                   callback(object_id, error);
+                               }
+                           }];
 }
 
 #if defined(ITSBETA_USE_FACEBOOK_OFFICIAL_SDK)

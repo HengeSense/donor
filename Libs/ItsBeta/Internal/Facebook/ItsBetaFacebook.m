@@ -179,6 +179,13 @@
     [_activityIndicator stopAnimating];
 }
 
+- (void)webView:(UIWebView*)webView didFailLoadWithError:(NSError*)error {
+    if(error != nil) {
+        _lastError = NS_SAFE_RETAIN(error);
+    }
+    [self close];
+}
+
 @end
 
 /*--------------------------------------------------*/

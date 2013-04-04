@@ -11,6 +11,9 @@ typedef void (^ItsBetaApiResponseObjectTemplateCollection)(ItsBetaObjectTemplate
 typedef void (^ItsBetaApiResponseObjectCollection)(ItsBetaObjectCollection* collection, NSError* error);
 typedef void (^ItsBetaApiResponseCountObject)(NSUInteger count, NSError* error);
 typedef void (^ItsBetaApiResponsePlayerId)(NSString* playerId, NSError* error);
+typedef void (^ItsBetaApiResponseCreateAchievement)(NSString* activateCode, NSError* error);
+typedef void (^ItsBetaApiResponseActivateAchievement)(NSString* object_id, NSError* error);
+typedef void (^ItsBetaApiResponseGiveAchievement)(NSString* object, NSError* error);
 
 /*--------------------------------------------------*/
 
@@ -108,6 +111,28 @@ typedef void (^ItsBetaApiResponsePlayerId)(NSString* playerId, NSError* error);
                 playerType:(ItsBetaPlayerType)playerType
                     userId:(NSString*)userId
                   playerId:(ItsBetaApiResponsePlayerId)playerId;
+
++ (void) requestServiceURL:(NSString*)serviceURL
+               accessToken:(NSString*)accessToken
+                   project:(ItsBetaProject*)project
+            objectTemplate:(ItsBetaObjectTemplate*)objectTemplate
+                    params:(NSDictionary*)params
+              activateCode:(ItsBetaApiResponseCreateAchievement)activateCode;
+
++ (void) requestServiceURL:(NSString*)serviceURL
+               accessToken:(NSString*)accessToken
+                   project:(ItsBetaProject*)project
+                    player:(ItsBetaPlayer*)player
+              activateCode:(NSString*)activateCode
+                    object:(ItsBetaApiResponseActivateAchievement)object;
+
++ (void) requestServiceURL:(NSString*)serviceURL
+               accessToken:(NSString*)accessToken
+                   project:(ItsBetaProject*)project
+            objectTemplate:(ItsBetaObjectTemplate*)objectTemplate
+                    params:(NSDictionary*)params
+                    player:(ItsBetaPlayer*)player
+                    object:(ItsBetaApiResponseGiveAchievement)object;
 
 @end
 
