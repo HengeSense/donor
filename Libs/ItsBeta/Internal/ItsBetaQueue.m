@@ -73,6 +73,14 @@ char* const ItsBetaDispatchQueue = "com.itsbeta";
     [[ItsBetaQueue sharedItsBetaQueue] runQueueASyncCount:count block:block];
 }
 
++ (void) runMainSync:(ItsBetaQueueBlock)block {
+    dispatch_sync(dispatch_get_main_queue(), block);
+}
+
++ (void) runMainASync:(ItsBetaQueueBlock)block {
+    dispatch_async(dispatch_get_main_queue(), block);
+}
+
 @end
 
 /*--------------------------------------------------*/

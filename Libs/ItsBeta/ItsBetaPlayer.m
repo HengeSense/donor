@@ -123,7 +123,7 @@
         NSDate* lastUpdateObjects = [NSDate date];
         [ItsBetaApi requestServiceURL:[ItsBeta applicationServiceURL]
                           accessToken:[ItsBeta applicationAccessToken]
-                           lastUpdate:lastUpdateObjects
+                           lastUpdate:_lastUpdateObjects
                                player:self
                               project:project
                          countObjects:^(NSUInteger count, NSError *error) {
@@ -140,10 +140,10 @@
             for(NSUInteger page = 0; page < countPage; page++) {
                 [ItsBetaApi requestServiceURL:[ItsBeta applicationServiceURL]
                                   accessToken:[ItsBeta applicationAccessToken]
-                                   lastUpdate:lastUpdateObjects
+                                   lastUpdate:_lastUpdateObjects
                                        player:self
                                       project:project
-                                         page:page
+                                         page:page + 1
                                       prePage:ITSBETA_PLAYER_OBJECT_DEFAULT_PAGE_SIZE
                                       objects:^(ItsBetaObjectCollection* collection, NSError *error) {
                                           [_objects setObjects:collection];

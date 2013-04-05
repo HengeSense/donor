@@ -42,7 +42,7 @@
 
 + (NSString*) playerTypeToString:(ItsBetaPlayerType)playerType {
     switch(playerType) {
-        case ItsBetaPlayerTypeFacebook: return @"fb";
+        case ItsBetaPlayerTypeFacebook: return @"fb_user_id";
         default: break;
     }
     return @"";
@@ -410,7 +410,7 @@
         [query setObject:[NSNumber numberWithUnsignedInteger:page] forKey:@"page"];
     }
     if(prePage != NSNotFound) {
-        [query setObject:[NSNumber numberWithUnsignedInteger:prePage] forKey:@"pre_page"];
+        [query setObject:[NSNumber numberWithUnsignedInteger:prePage] forKey:@"per_page"];
     }
     if(lastUpdate != nil) {
         [query setObject:[NSDate iso8601FromDate:lastUpdate] forKey:@"updated_at"];

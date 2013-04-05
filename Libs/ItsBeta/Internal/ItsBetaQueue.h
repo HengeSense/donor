@@ -21,6 +21,8 @@ typedef void (^ItsBetaQueueBlockAt)(NSUInteger index);
 + (void) runSync:(ItsBetaQueueBlock)block;
 + (void) runASync:(ItsBetaQueueBlock)block;
 + (void) runASyncCount:(NSUInteger)count block:(ItsBetaQueueBlockAt)block;
++ (void) runMainSync:(ItsBetaQueueBlock)block;
++ (void) runMainASync:(ItsBetaQueueBlock)block;
 
 @end
 

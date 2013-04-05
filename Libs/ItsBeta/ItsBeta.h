@@ -50,7 +50,9 @@ typedef void (^ItsBetaGiveAchievement)(ItsBetaPlayer* player, NSString* object_i
 + (ItsBetaObjectType*) objectTypeByName:(NSString*)name byProject:(ItsBetaProject*)project;
 + (ItsBetaObjectTemplate*) objectTemplateById:(NSString*)Id byProject:(ItsBetaProject*)project;
 + (ItsBetaObjectTemplate*) objectTemplateByName:(NSString*)name byProject:(ItsBetaProject*)project;
++ (ItsBetaObject*) objectById:(NSString*)Id;
 + (ItsBetaObject*) objectById:(NSString*)Id byPlayer:(ItsBetaPlayer*)player;
++ (ItsBetaObjectCollection*) objectsWithObjectTemplate:(ItsBetaObjectTemplate*)objectTemplate;
 + (ItsBetaObjectCollection*) objectsWithObjectTemplate:(ItsBetaObjectTemplate*)objectTemplate byPlayer:(ItsBetaPlayer*)player;
 
 + (BOOL) playerLogined;
