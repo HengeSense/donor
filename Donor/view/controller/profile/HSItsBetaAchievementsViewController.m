@@ -7,6 +7,7 @@
 //
 
 #import "HSItsBetaAchievementsViewController.h"
+#import "HSItsBetaAchievementsCell.h"
 
 #import "MBProgressHUD.h"
 
@@ -23,6 +24,9 @@
     NSMutableArray* _contentExists;
     NSMutableArray* _contentAvailable;
 }
+
+- (void)refresh;
++ (UITableViewCell*)createTableViewCellWithNibName:(NSString*)nibName withClass:(Class)class;
 
 @end
 
@@ -55,12 +59,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    _progressHud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
-    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willPlayerSynchronize:) name:ItsBetaWillPlayerSynchronize object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didPlayerSynchronize:) name:ItsBetaDidPlayerSynchronize object:nil];
     
     [ItsBeta synchronizePlayerWithProject:_project];
+
+    [self refresh];
 }
 
 - (void)viewDidUnload {
@@ -78,16 +82,18 @@
     if(_progressHud == nil) {
         _progressHud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
     }
-
-    [_contentExists removeAllObjects];
-    [_contentAvailable removeAllObjects];
-    [_contentAvailable addObject:_objectTemplateInstall];
-    [_contentAvailable addObject:_objectTemplateFirstBlood];
-    [_contentAvailable addObject:_objectTemplateSecondBlood];
-    [_tableView reloadData];
 }
 
 - (void) didPlayerSynchronize:(NSNotification*)notification {
+    [self refresh];
+    if(_progressHud != nil) {
+        [_progressHud hide:YES];
+        _progressHud = nil;
+    }
+}
+
+- (void)refresh {
+    [_contentExists removeAllObjects];
     [_contentAvailable removeAllObjects];
     if([[ItsBeta objectsWithObjectTemplate:_objectTemplateInstall] count] > 0) {
         [_contentExists addObject:_objectTemplateInstall];
@@ -104,13 +110,20 @@
     } else {
         [_contentAvailable addObject:_objectTemplateSecondBlood];
     }
-    
     [_tableView reloadData];
-    
-    if(_progressHud != nil) {
-        [_progressHud hide:YES];
-        _progressHud = nil;
+}
+
++ (UITableViewCell*)createTableViewCellWithNibName:(NSString*)nibName withClass:(Class)class {
+    UINib* nib = [UINib nibWithNibName:nibName bundle:nil];
+    if(nib != nil) {
+        NSArray* content = [nib instantiateWithOwner:nil options:nil];
+        for(id item in content) {
+            if([item isKindOfClass:class] == YES) {
+                return item;
+            }
+        }
     }
+    return nil;
 }
 
 #pragma mark - Outlets
@@ -129,11 +142,21 @@
 }
 
 - (NSInteger)tableView:(UITableView*)tableView numberOfRowsInSection:(NSInteger)section {
-    return 0; // [[_content objectAtIndex:section] count];
+    return [[_content objectAtIndex:section] count];
 }
 
 - (UITableViewCell*) tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath*)indexPath {
-    return nil;
+    static NSString* CellIdentifier = @"ItsBetaAchievementsCell";
+    HSItsBetaAchievementsCell* cell = (HSItsBetaAchievementsCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if(cell == nil) {
+        cell = (HSItsBetaAchievementsCell*)[self createTableViewCellWithNibName:@"ItsBetaAchievementsCell" withClass:[HSItsBetaAchievementsCell class]];
+    }
+    NSArray* section = [_content objectAtIndex:[indexPath section]];
+    if(section != nil) {
+        [cell setObjectTemplate:[section objectAtIndex:[indexPath row]]];
+        [cell setIsExists:(section == _contentExists)];
+    }
+    return cell;
 }
 
 @end

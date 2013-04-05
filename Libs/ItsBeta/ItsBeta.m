@@ -223,14 +223,14 @@
     [ItsBetaQueue runASync:^{
         [ItsBetaQueue runMainSync:^{
             [[NSNotificationCenter defaultCenter] postNotificationName:ItsBetaWillApplicationSynchronize object:self];
-            NSLog(@"[ItsBeta::synchronizeApplication] %@", [NSDate date]);
+            NSLog(@"[ItsBeta] Will synchronize application in %@", [NSDate date]);
         }];
         if([[itsbeta application] synchronizeSync] == YES) {
             [itsbeta saveToLocalStorage];
         }
         [ItsBetaQueue runMainSync:^{
             [[NSNotificationCenter defaultCenter] postNotificationName:ItsBetaDidApplicationSynchronize object:self];
-            NSLog(@"[ItsBeta::synchronizeApplication] %@", [NSDate date]);
+            NSLog(@"[ItsBeta] Did synchronize application in %@", [NSDate date]);
         }];
     }];
 }
@@ -240,14 +240,14 @@
     [ItsBetaQueue runASync:^{
         [ItsBetaQueue runMainSync:^{
             [[NSNotificationCenter defaultCenter] postNotificationName:ItsBetaWillPlayerSynchronize object:self];
-            NSLog(@"[ItsBeta::synchronizePlayerWithProject] %@", [NSDate date]);
+            NSLog(@"[ItsBeta] Will synchronize player in %@", [NSDate date]);
         }];
         if([[itsbeta player] synchronizeWithProject:project] == YES) {
             [itsbeta saveToLocalStorage];
         }
         [ItsBetaQueue runMainSync:^{
             [[NSNotificationCenter defaultCenter] postNotificationName:ItsBetaDidPlayerSynchronize object:self];
-            NSLog(@"[ItsBeta::synchronizePlayerWithProject] %@", [NSDate date]);
+            NSLog(@"[ItsBeta] Did synchronize player in %@", [NSDate date]);
         }];
     }];
 }
