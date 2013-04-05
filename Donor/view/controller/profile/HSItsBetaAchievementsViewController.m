@@ -141,11 +141,22 @@
     return 1;
 }
 
+- (NSString*)tableView:(UITableView*)tableView titleForHeaderInSection:(NSInteger)section {
+    if(section == 1) {
+        return @"Скоро";
+    }
+    return nil;
+}
+
+- (NSString*)tableView:(UITableView*)tableView titleForFooterInSection:(NSInteger)section {
+    return nil;
+}
+
 - (NSInteger)tableView:(UITableView*)tableView numberOfRowsInSection:(NSInteger)section {
     return [[_content objectAtIndex:section] count];
 }
 
-- (UITableViewCell*) tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath*)indexPath {
+- (UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath*)indexPath {
     static NSString* CellIdentifier = @"ItsBetaAchievementsCell";
     HSItsBetaAchievementsCell* cell = (HSItsBetaAchievementsCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if(cell == nil) {
@@ -161,8 +172,19 @@
 
 #pragma mark - UITableViewDelegate
 
+- (CGFloat)tableView:(UITableView*)tableView heightForHeaderInSection:(NSInteger)section {
+    if(section == 1) {
+        return 21.0f;
+    }
+    return 0.0f;
+}
+
+- (CGFloat)tableView:(UITableView*)tableView heightForFooterInSection:(NSInteger)section {
+    return 0.0f;
+}
+
 - (CGFloat) tableView:(UITableView*)tableView heightForRowAtIndexPath:(NSIndexPath*)indexPath {
-    return 120;
+    return 80.0f;
 }
 
 @end
