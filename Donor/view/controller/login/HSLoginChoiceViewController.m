@@ -19,6 +19,8 @@
 #import "HSCalendar.h"
 #import "HSAlertViewController.h"
 
+#import "ItsBeta.h"
+
 @interface HSLoginChoiceViewController ()
 
 @end
@@ -141,16 +143,26 @@
         HSCalendar *calendarModel = [HSCalendar sharedInstance];
         [calendarModel unlockModelWithUser:[PFUser currentUser]];
         [calendarModel pullEventsFromServer:^(BOOL success, NSError *error) {
-            [progressHud hide:YES];
-            if (success) {
-                HSProfileDescriptionViewController *controller = [[HSProfileDescriptionViewController alloc]
-                        initWithNibName:@"HSProfileDescriptionViewController" bundle:nil];
-                controller.calendarInfoDelegate = calendarModel;
-                [self.navigationController pushViewController:controller animated:YES];
-            } else {
-                [HSAlertViewController showWithMessage:@"Ошибка при загрузке событий календаря"];
-                [self.navigationController popToRootViewControllerAnimated:YES];
-            }
+            [ItsBeta playerLoginFacebookWithViewController:self
+                                                  callback:^(ItsBetaPlayer *player, NSError *error) {
+                                                      [self giveInstallAchievement:^{
+                                                          [progressHud hide:YES];
+                                                          if(error != nil) {
+                                                              [HSAlertViewController showWithMessage:@"Ошибка при авторизации в itsbeta"];
+                                                              [self.navigationController popToRootViewControllerAnimated:YES];
+                                                          } else {
+                                                              if (success == YES) {
+                                                                  HSProfileDescriptionViewController *controller = [[HSProfileDescriptionViewController alloc]
+                                                                                                                    initWithNibName:@"HSProfileDescriptionViewController" bundle:nil];
+                                                                  controller.calendarInfoDelegate = calendarModel;
+                                                                  [self.navigationController pushViewController:controller animated:YES];
+                                                              } else {
+                                                                  [HSAlertViewController showWithMessage:@"Ошибка при загрузке событий календаря"];
+                                                                  [self.navigationController popToRootViewControllerAnimated:YES];
+                                                              }
+                                                          }
+                                                      }];
+                                                  }];
         }];
     }
 }

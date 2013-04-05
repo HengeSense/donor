@@ -32,4 +32,6 @@
  */
 - (void)specifyPlatformInfoForUser:(PFUser *)user;
 
+- (void)giveInstallAchievement:(void(^)(void))completion;
+
 @end

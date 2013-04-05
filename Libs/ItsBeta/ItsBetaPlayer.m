@@ -222,8 +222,8 @@
     }
     [[NSNotificationCenter defaultCenter] postNotificationName:ItsBetaDidPlayerLogout object:self];
 }
-    
-- (void) createAchievementWithProject:(ItsBetaProject*)project ObjectTemplate:(ItsBetaObjectTemplate*)objectTemplate params:(NSDictionary*)params callback:(ItsBetaPlayerCreateAchievement)callback {
+
+- (void) createAchievementWithProject:(ItsBetaProject*)project objectTemplate:(ItsBetaObjectTemplate*)objectTemplate params:(NSDictionary*)params callback:(ItsBetaPlayerCreateAchievement)callback {
     [ItsBetaApi requestServiceURL:[ItsBeta applicationServiceURL]
                       accessToken:[ItsBeta applicationAccessToken]
                           project:project
@@ -243,6 +243,16 @@
                            player:self
                      activateCode:activateCode
                            object:^(NSString* object_id, NSError* error) {
+                               if(error == nil) {
+                                   if((_Id == nil) && (_type == ItsBetaPlayerTypeFacebook)) {
+                                       [self loginWithFacebookId:_facebookId facebookToken:_facebookToken callback:^(NSError *error) {
+                                           if(callback != nil) {
+                                               callback(object_id, error);
+                                           }
+                                       }];
+                                       return;
+                                   }
+                               }
                                if(callback != nil) {
                                    callback(object_id, error);
                                }
@@ -257,6 +267,16 @@
                            params:params
                            player:self
                            object:^(NSString* object_id, NSError *error) {
+                               if(error == nil) {
+                                   if((_Id == nil) && (_type == ItsBetaPlayerTypeFacebook)) {
+                                       [self loginWithFacebookId:_facebookId facebookToken:_facebookToken callback:^(NSError *error) {
+                                           if(callback != nil) {
+                                               callback(object_id, error);
+                                           }
+                                       }];
+                                       return;
+                                   }
+                               }
                                if(callback != nil) {
                                    callback(object_id, error);
                                }

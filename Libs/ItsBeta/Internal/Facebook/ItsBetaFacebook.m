@@ -53,7 +53,9 @@
     NS_SAFE_RELEASE(_redirectURL);
     NS_SAFE_RELEASE(_scope);
     
+    NS_SAFE_RELEASE(_accessToken);
     NS_SAFE_RELEASE(_user);
+    NS_SAFE_RELEASE(_lastError);
         
 #if !__has_feature(objc_arc)
     [super dealloc];
@@ -122,6 +124,8 @@
             _failureCallback(_lastError);
         }
     }
+    NS_SAFE_RELEASE(_accessToken);
+    NS_SAFE_RELEASE(_lastError);
     [self dismissModalViewControllerAnimated:YES];
 }
 
@@ -140,7 +144,7 @@
     }
     if([[[request URL] absoluteString] hasPrefix:_redirectURL] == YES) {
         NSDictionary* components = [[request URL] fragmentComponents];
-        _accessToken = [[components objectForKey:@"access_token"] objectAtIndex:0];
+        NS_SAFE_SETTER(_accessToken, [[components objectForKey:@"access_token"] objectAtIndex:0]);
         if(_accessToken != nil) {
             [_activityIndicator startAnimating];
             NSURLRequest* graphRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://graph.facebook.com/me?access_token=%@", _accessToken]]];
@@ -154,7 +158,7 @@
                                            }
                                        }
                                        if(error != nil) {
-                                           _lastError = NS_SAFE_RETAIN(error);
+                                           NS_SAFE_SETTER(_lastError, error);
                                        }
                                        [_activityIndicator stopAnimating];
                                        [self close];
@@ -181,7 +185,7 @@
 
 - (void)webView:(UIWebView*)webView didFailLoadWithError:(NSError*)error {
     if(error != nil) {
-        _lastError = NS_SAFE_RETAIN(error);
+        NS_SAFE_SETTER(_lastError, error);
     }
     [self close];
 }

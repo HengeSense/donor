@@ -83,18 +83,10 @@
                 if (self.facebookUser != nil) {
                     [self linkFacebookAccountForUser:user hideProgressHud:progressHud];
                 } else {
-                    [ItsBeta playerLoginFacebookWithViewController:self
-                                                          callback:^(ItsBetaPlayer *player, NSError *error) {
-                                                              if(error == nil) {
-                                                                  [self processAuthorizationSuccessWithUser:user completion:^ {
-                                                                      [Common getInstance].authenticatedWithFacebook = NO;
-                                                                      [progressHud hide:YES];
-                                                                  }];
-                                                              } else {
-                                                                  [progressHud hide:YES];
-                                                                  [self processAuthorizationWithError:error];
-                                                              }
-                                                          }];
+                    [self processAuthorizationSuccessWithUser:user completion:^ {
+                        [Common getInstance].authenticatedWithFacebook = NO;
+                        [progressHud hide:YES];
+                    }];
                 }
             } else {
                 [progressHud hide:YES];
@@ -123,18 +115,8 @@
     NSArray *permissions = @[@"user_about_me", @"email"];
     [PFFacebookUtils linkUser:user permissions:permissions block:^(BOOL succeeded, NSError *error) {
         if (succeeded) {
-            [ItsBeta playerLoginFacebookWithViewController:self
-                                                  callback:^(ItsBetaPlayer *player, NSError *error) {
-                                                      if(error == nil) {
-                                                          [self processAuthorizationSuccessWithUser:user completion:^ {
-                                                              [Common getInstance].authenticatedWithFacebook = NO;
-                                                              [progressHud hide:YES];
-                                                          }];
-                                                      } else {
-                                                          [progressHud hide:YES];
-                                                          [self processAuthorizationWithError:error];
-                                                      }
-                                                  }];
+            [self processAuthorizationSuccessWithUser:user completion:^ {
+            }];
         } else {
             [progressHud hide:YES];
             [self processAuthorizationWithError:error];
