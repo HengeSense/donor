@@ -27,12 +27,22 @@ namespace Donor
             this.StationsSearchText.FilterMode = AutoCompleteFilterMode.Contains;
             this.StationsSearchText.ItemFilter += SearchBank;
 
-            this.StationsList.GroupDescriptors.Add(GroupedBadgesList);
+            //this.StationsList.GroupDescriptors.Add(GroupedBadgesList);
+            this.StationsList.GroupDescriptors.Clear();
+            if (ViewModelLocator.MainStatic.Stations.CurrentDistrict != "")
+            {
+                this.StationsList.GroupDescriptors.Add(GroupedDistrictBadgesList);
+            }
+            else
+            {
+                this.StationsList.GroupDescriptors.Add(GroupedBadgesList);
+            };
             //Sort.SortMode 
             this.StationsList.SortDescriptors.Add(Sort);
         }
 
         public GenericGroupDescriptor<YAStationItem, string> GroupedBadgesList = new GenericGroupDescriptor<YAStationItem, string>(item => item.Region_name);
+        public GenericGroupDescriptor<YAStationItem, string> GroupedDistrictBadgesList = new GenericGroupDescriptor<YAStationItem, string>(item => item.District_name);
         public GenericSortDescriptor<YAStationItem, Int32> Sort = new GenericSortDescriptor<YAStationItem, Int32>(item => Convert.ToInt32(item.Distance));
 
         //custom filter
@@ -83,6 +93,16 @@ namespace Donor
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
+            this.StationsList.GroupDescriptors.Clear();
+            if (ViewModelLocator.MainStatic.Stations.CurrentDistrict != "")
+            {
+                this.StationsList.GroupDescriptors.Add(GroupedDistrictBadgesList);
+            }
+            else
+            {
+                this.StationsList.GroupDescriptors.Add(GroupedBadgesList);
+            };
+
             try
             {
                 if (task == "select")

@@ -24,13 +24,12 @@ namespace Donor
 
             //this.StationsSearchText.ItemsSource = ViewModelLocator.MainStatic.Stations.DistrictItems;
             //this.StationsSearchText.FilterMode = AutoCompleteFilterMode.Contains;
-
-            this.DistrictsList.GroupDescriptors.Add(GroupedBadgesList);
-            this.DistrictsList.SortDescriptors.Add(Sort);
-            //this.DistrictsList.ItemsSource = ViewModelLocator.MainStatic.Stations.DistrictItems;
+            this.DistrictsList.GroupDescriptors.Add(GroupedBadgesList);           
+            this.DistrictsList.SortDescriptors.Add(Sort);            
         }
 
         public GenericGroupDescriptor<TownItem, string> GroupedBadgesList = new GenericGroupDescriptor<TownItem, string>(item => item.RegionName);
+        //public GenericGroupDescriptor<TownItem, string> GroupedDistrictBadgesList = new GenericGroupDescriptor<TownItem, string>(item => item.DistrictName);
         public GenericSortDescriptor<TownItem, string> Sort = new GenericSortDescriptor<TownItem, string>(item => item.TownName);
 
         private void StationsList_GroupPickerItemTap(object sender, Telerik.Windows.Controls.GroupPickerItemTapEventArgs e)
@@ -64,6 +63,10 @@ namespace Donor
                 NavigationService.GoBack();
             }
             catch { };
+        }
+
+        private void PhoneApplicationPage_Loaded_1(object sender, RoutedEventArgs e)
+        {
         }
 
 

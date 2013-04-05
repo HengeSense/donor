@@ -101,7 +101,7 @@ namespace Donor.ViewModels
         {
             ///reverse?format=json&lat=58.17&lon=38.6&zoom=18&addressdetails=1
             var client = new RestClient("http://nominatim.openstreetmap.org");
-            var request = new RestRequest("reverse?format=json&zoom=18&addressdetails=1&lat=" + lat.ToString() + "&lon=" + lon.ToString(), Method.GET);
+            var request = new RestRequest("reverse?format=json&zoom=18&addressdetails=1&lat=" + lat.ToString().Replace(",", ".") + "&lon=" + lon.ToString().Replace(",", "."), Method.GET);
             request.Parameters.Clear();
             client.ExecuteAsync(request, response =>
             {
@@ -120,7 +120,7 @@ namespace Donor.ViewModels
                     catch (Exception ex) {
                         MessageBox.Show(ex.Message.ToString());
                     };
-                    MessageBox.Show("Регион - " + state + "\nгород - " + town + "\nlat=" + lat.ToString()+"\nlon="+lon.ToString());
+                    MessageBox.Show("Регион - " + state + "\nгород - " + town + "\nlat=" + lat.ToString().Replace(",", ".") + "\nlon=" + lon.ToString().Replace(",", "."));
                     CurrentState = state;
                 }
                 catch
