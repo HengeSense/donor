@@ -39,7 +39,7 @@
         _projectId = NS_SAFE_RETAIN([dictionary objectForKey:@"project_id"]);
         _typeId = NS_SAFE_RETAIN([dictionary objectForKey:@"objtype_id"]);
         _imageURL = NS_SAFE_RETAIN([dictionary objectForKey:@"pic"]);
-        _internal = NS_SAFE_RETAIN([ItsBetaParams paramsWithArray:[dictionary objectForKey:@"ext_params"]]);
+        _internal = NS_SAFE_RETAIN([ItsBetaParams paramsWithArray:[dictionary objectForKey:@"int_params"]]);
         _shared = NS_SAFE_RETAIN([ItsBetaParams paramsWithArray:[dictionary objectForKey:@"shr_params"]]);
         _objectCount = NS_SAFE_RETAIN([dictionary objectForKey:@"objs_counts"]);
         _image = NS_SAFE_RETAIN([ItsBetaImage imageWithImageURL:_imageURL]);

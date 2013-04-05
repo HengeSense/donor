@@ -26,7 +26,7 @@
 }
 
 - (void)refresh;
-+ (UITableViewCell*)createTableViewCellWithNibName:(NSString*)nibName withClass:(Class)class;
+- (UITableViewCell*)createTableViewCellWithNibName:(NSString*)nibName withClass:(Class)class;
 
 @end
 
@@ -39,7 +39,7 @@
         
         _project = [ItsBeta projectByName:@"donor"];
         _objectTemplateInstall = [ItsBeta objectTemplateByName:@"donorfriend" byProject:_project];
-        _objectTemplateFirstBlood = [ItsBeta objectTemplateByName:@"firstblood" byProject:_project];
+        _objectTemplateFirstBlood = [ItsBeta objectTemplateByName:@"first_blood" byProject:_project];
         _objectTemplateSecondBlood = [ItsBeta objectTemplateByName:@"secondblood" byProject:_project];
         _content = [NSMutableArray array];
         _contentExists = [NSMutableArray array];
@@ -113,7 +113,7 @@
     [_tableView reloadData];
 }
 
-+ (UITableViewCell*)createTableViewCellWithNibName:(NSString*)nibName withClass:(Class)class {
+- (UITableViewCell*)createTableViewCellWithNibName:(NSString*)nibName withClass:(Class)class {
     UINib* nib = [UINib nibWithNibName:nibName bundle:nil];
     if(nib != nil) {
         NSArray* content = [nib instantiateWithOwner:nil options:nil];
@@ -149,7 +149,7 @@
     static NSString* CellIdentifier = @"ItsBetaAchievementsCell";
     HSItsBetaAchievementsCell* cell = (HSItsBetaAchievementsCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if(cell == nil) {
-        cell = (HSItsBetaAchievementsCell*)[self createTableViewCellWithNibName:@"ItsBetaAchievementsCell" withClass:[HSItsBetaAchievementsCell class]];
+        cell = (HSItsBetaAchievementsCell*)[self createTableViewCellWithNibName:@"HSItsBetaAchievementsCell" withClass:[HSItsBetaAchievementsCell class]];
     }
     NSArray* section = [_content objectAtIndex:[indexPath section]];
     if(section != nil) {
@@ -157,6 +157,12 @@
         [cell setIsExists:(section == _contentExists)];
     }
     return cell;
+}
+
+#pragma mark - UITableViewDelegate
+
+- (CGFloat) tableView:(UITableView*)tableView heightForRowAtIndexPath:(NSIndexPath*)indexPath {
+    return 120;
 }
 
 @end

@@ -350,11 +350,11 @@
 - (void) loginFacebookWithViewController:(UIViewController*)viewController callback:(ItsBetaPlayerLogin)callback {
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         if(_facebookController == nil) {
-            _facebookController = [ItsBetaFacebookIPad new];
+            _facebookController = NS_SAFE_RETAIN([ItsBetaFacebookIPad new]);
         }
     } else {
         if(_facebookController == nil) {
-            _facebookController = [ItsBetaFacebookIPhone new];
+            _facebookController = NS_SAFE_RETAIN([ItsBetaFacebookIPhone new]);
         }
     }
     if(_facebookController != nil) {

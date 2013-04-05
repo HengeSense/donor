@@ -37,8 +37,8 @@
         _name = NS_SAFE_RETAIN([dictionary objectForKey:@"api_name"]);
         _projectId = NS_SAFE_RETAIN([dictionary objectForKey:@"project_id"]);
         _parentId = NS_SAFE_RETAIN([dictionary objectForKey:@"parent_id"]);
-        _internal = NS_SAFE_RETAIN([ItsBetaParams paramsWithArray:[dictionary objectForKey:@"my_ext_params"]]);
-        _external = NS_SAFE_RETAIN([ItsBetaParams paramsWithArray:[dictionary objectForKey:@"my_int_params"]]);
+        _internal = NS_SAFE_RETAIN([ItsBetaParams paramsWithArray:[dictionary objectForKey:@"my_int_params"]]);
+        _external = NS_SAFE_RETAIN([ItsBetaParams paramsWithArray:[dictionary objectForKey:@"my_ext_params"]]);
         _shared = NS_SAFE_RETAIN([ItsBetaParams paramsWithArray:[dictionary objectForKey:@"my_shr_params"]]);
         
         _templateCount = NS_SAFE_RETAIN([dictionary objectForKey:@"templates_count"]);

@@ -21,6 +21,10 @@
 
 @implementation ItsBetaParams
 
+- (NSDictionary*) items {
+    return _items;
+}
+
 + (ItsBetaParams*) paramsWithArray:(NSArray*)array {
     return NS_SAFE_RETAIN([[self alloc] initWithArray:array]);
 }
@@ -70,6 +74,10 @@
 
 - (void) encodeWithCoder:(NSCoder*)coder {
     [coder encodeObject:_items forKey:@"items"];
+}
+
+- (NSString*) valueAtName:(NSString*)name {
+    return [_items objectForKey:name];
 }
 
 @end
