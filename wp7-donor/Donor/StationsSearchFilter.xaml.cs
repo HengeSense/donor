@@ -22,8 +22,8 @@ namespace Donor
         {
             InitializeComponent();
 
-            this.StationsSearchText.ItemsSource = ViewModelLocator.MainStatic.Stations.DistrictItems;
-            this.StationsSearchText.FilterMode = AutoCompleteFilterMode.Contains;
+            //this.StationsSearchText.ItemsSource = ViewModelLocator.MainStatic.Stations.DistrictItems;
+            //this.StationsSearchText.FilterMode = AutoCompleteFilterMode.Contains;
 
             this.DistrictsList.GroupDescriptors.Add(GroupedBadgesList);
             this.DistrictsList.SortDescriptors.Add(Sort);
@@ -35,6 +35,13 @@ namespace Donor
 
         private void StationsList_GroupPickerItemTap(object sender, Telerik.Windows.Controls.GroupPickerItemTapEventArgs e)
         {
+            try
+            {
+                ViewModelLocator.MainStatic.Stations.CurrentState = e.Item.Content.ToString();
+                ViewModelLocator.MainStatic.Stations.CurrentDistrict = "";
+                NavigationService.GoBack();
+            }
+            catch { };
         }
 
         private void StationsList_ItemTap(object sender, Telerik.Windows.Controls.ListBoxItemTapEventArgs e)
@@ -54,7 +61,7 @@ namespace Donor
             {
                 ViewModelLocator.MainStatic.Stations.CurrentState = e.Item.Content.ToString();
                 ViewModelLocator.MainStatic.Stations.CurrentDistrict = "";
-                //NavigationService.GoBack();
+                NavigationService.GoBack();
             }
             catch { };
         }

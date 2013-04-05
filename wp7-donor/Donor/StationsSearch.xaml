@@ -115,11 +115,27 @@
                         <StackPanel Margin="6,10,10,6">
                                 <Grid HorizontalAlignment="Stretch">
                         		<Grid.ColumnDefinitions>
-                        			<ColumnDefinition Width="350"/>
-									<ColumnDefinition Width="110"/>
+                                        <!--<ColumnDefinition Width="350"/> -->
+                                        <!--<ColumnDefinition Width="110"/>-->
 								</Grid.ColumnDefinitions>
                         	<StackPanel Grid.Column="0">
-                            <TextBlock Text="{Binding Address}" 
+
+                                <StackPanel
+							        HorizontalAlignment="Left"
+							        Orientation="Horizontal">
+                                    <TextBlock 
+								    Text="{Binding Distance}" 
+								    TextWrapping="NoWrap" 
+								    Foreground="#FF0A6066"
+								    HorizontalAlignment="Right"
+								    FontSize="30"/>
+                                     <TextBlock Text=" км"
+								    HorizontalAlignment="Right"
+								    Foreground="#FF0A6066"
+								    FontSize="30"/>
+                                </StackPanel>
+
+                                        <TextBlock Text="{Binding Address}" 
 							TextWrapping="Wrap" 
 							FontSize="30"
 							Foreground="#FF645B54"/>
@@ -129,7 +145,7 @@
 							Foreground="#FF847168"
 							Style="{StaticResource PhoneTextSubtleStyle}"/>
 							</StackPanel>
-                            <StackPanel
+                            <!--<StackPanel
 							HorizontalAlignment="Right"
 							Orientation="Horizontal" Grid.Column="1">                                
                                 <TextBlock 
@@ -142,7 +158,7 @@
 								HorizontalAlignment="Right"
 								Foreground="#FF0A6066"
 								FontSize="30"/>
-                            </StackPanel>
+                            </StackPanel>-->
 							</Grid>
                         </StackPanel>
 						</Border>

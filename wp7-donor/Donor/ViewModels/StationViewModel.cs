@@ -101,7 +101,7 @@ namespace Donor.ViewModels
         {
             ///reverse?format=json&lat=58.17&lon=38.6&zoom=18&addressdetails=1
             var client = new RestClient("http://nominatim.openstreetmap.org");
-            var request = new RestRequest("reverse?format=json&zoom=18&addressdetails=1&lat=" + lat.ToString() + "&lon=38.6" + lon.ToString(), Method.GET);
+            var request = new RestRequest("reverse?format=json&zoom=18&addressdetails=1&lat=" + lat.ToString() + "&lon=" + lon.ToString(), Method.GET);
             request.Parameters.Clear();
             client.ExecuteAsync(request, response =>
             {
@@ -109,15 +109,18 @@ namespace Donor.ViewModels
                 {                    
                     JObject o = JObject.Parse(response.Content.ToString());
                     string state = o["address"]["state"].ToString();
+                    string town = "";
                     try
-                    {
-                        string town = "";
+                    {                        
                         town = o["address"]["city"].ToString();
                         if (town=="Москва") {
                             state = town;
-                        };
+                        };                        
                     }
-                    catch { };
+                    catch (Exception ex) {
+                        MessageBox.Show(ex.Message.ToString());
+                    };
+                    MessageBox.Show("Регион - " + state + "\nгород - " + town + "\nlat=" + lat.ToString()+"\nlon="+lon.ToString());
                     CurrentState = state;
                 }
                 catch
@@ -175,7 +178,7 @@ namespace Donor.ViewModels
 
             // загружаем станции если их нет или дата последнего обновления была более чем одни сутки в прошлом
             //(ViewModelLocator.MainStatic.Settings.StationsUpdated.AddDays(1) < DateTime.Now)
-            if ((ViewModelLocator.MainStatic.Stations.Items.Count() == 0) && (ViewModelLocator.MainStatic.Settings.StationsUpdated.AddDays(1) < DateTime.Now))
+            if ((ViewModelLocator.MainStatic.Stations.Items.Count() == 0) && (ViewModelLocator.MainStatic.Settings.StationsUpdated.AddDays(7) < DateTime.Now))
             {
             
             var bw = new BackgroundWorker();

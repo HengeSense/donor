@@ -102,7 +102,7 @@ namespace Donor
             // Ensure that application state is restored appropriately
             if (!ViewModelLocator.MainStatic.IsDataStartLoaded)
             {
-                ViewModelLocator.MainStatic.LoadData();
+                //ViewModelLocator.MainStatic.LoadData();
             }
         }
 

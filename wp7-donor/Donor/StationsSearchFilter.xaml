@@ -52,16 +52,24 @@
 			FontSize="34" Margin="10,8,0,0"/>-->
 
                 <Grid>
-                    <toolkit:AutoCompleteBox 
+                    <!--<TextBox Name="StationsSearchText" 
+                    Grid.Row="0" Grid.Column="0"
+			        FontSize="24"
+                    Text="{Binding Stations.FilterText, Mode=TwoWay}"  
+                    DataContext="{Binding Main, 
+                    Source={StaticResource Locator}}" 
+                    Foreground="#FFE0B390" Background="#FF3C1B00" 
+			        BorderBrush="#FF3C1B00" Margin="0,-5,0,0"/>-->
+                    <!--  ItemsSource="{Binding Stations.DistrictItems}" -->
+            <toolkit:AutoCompleteBox 
 			Name="StationsSearchText" 
             Grid.Row="0" Grid.Column="0"
 			FontSize="24"
-            Text="{Binding Stations.FilterText, Mode=TwoWay}"
-            ItemsSource="{Binding Stations.DistrictItems}"
+            Text="{Binding Stations.FilterText, Mode=TwoWay}"         
             DataContext="{Binding Main, 
-                        Source={StaticResource Locator}}" 
-			FilterMode="Contains" 
-                        ValueMemberPath="DistrictName" 
+            Source={StaticResource Locator}}" 
+			FilterMode="Contains"
+            ValueMemberPath="DistrictName" 
 			Foreground="#FFE0B390" Background="#FF3C1B00" 
 			BorderBrush="#FF3C1B00" Margin="0,-5,0,0">
                         <toolkit:AutoCompleteBox.ItemTemplate>
@@ -110,7 +118,7 @@
                     <DataTemplate>
                         <Border BorderThickness="0,0,0,1" 
 						BorderBrush="#FFafafaf" Height="Auto">
-                            <StackPanel Margin="6,10,10,6">
+                            <StackPanel Margin="6,15,15,6">
                                 <Grid HorizontalAlignment="Stretch">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="460"/>
