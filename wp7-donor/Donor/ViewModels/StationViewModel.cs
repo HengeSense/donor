@@ -119,9 +119,9 @@ namespace Donor.ViewModels
                         };                        
                     }
                     catch (Exception ex) {
-                        MessageBox.Show(ex.Message.ToString());
+                        //MessageBox.Show(ex.Message.ToString());
                     };
-                    MessageBox.Show("Регион - " + state + "\nгород - " + town + "\nlat=" + lat.ToString().Replace(",", ".") + "\nlon=" + lon.ToString().Replace(",", "."));
+                    //MessageBox.Show("Регион - " + state + "\nгород - " + town + "\nlat=" + lat.ToString().Replace(",", ".") + "\nlon=" + lon.ToString().Replace(",", "."));
                     CurrentState = state;
                 }
                 catch
@@ -237,7 +237,7 @@ namespace Donor.ViewModels
                 {                    
                     foreach (var item in Items)
                     {
-                        if (districtItems.FirstOrDefault(c => c.TownName == item.Town) == null)
+                        if (districtItems.FirstOrDefault(c => c.DistrictName == item.District_name) == null)
                         {
                             districtItems.Add(new TownItem()
                             {
@@ -274,7 +274,10 @@ namespace Donor.ViewModels
                         {
                             districtItems.Add(item);
                         };
-
+                    }
+                    else
+                    {
+                        _districtItems = districtItems;
                     };
                 };
                 return districtItems;
