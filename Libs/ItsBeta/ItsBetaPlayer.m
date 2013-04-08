@@ -9,16 +9,6 @@
 
 /*--------------------------------------------------*/
 
-#if defined(ITSBETA_USE_FACEBOOK_OFFICIAL_SDK)
-#   import <FacebookSDK/FacebookSDK.h>
-#else
-#   import "ItsBetaGraphUser.h"
-#   import "ItsBetaFacebookIPhone.h"
-#   import "ItsBetaFacebookIPad.h"
-#endif
-
-/*--------------------------------------------------*/
-
 #define ITSBETA_PLAYER_OBJECT_DEFAULT_PAGE_SIZE     100
 
 /*--------------------------------------------------*/
@@ -75,6 +65,7 @@
         _Id = NS_SAFE_RETAIN([coder decodeObjectForKey:@"player_id"]);
         _facebookId = NS_SAFE_RETAIN([coder decodeObjectForKey:@"facebook_id"]);
         _facebookToken = NS_SAFE_RETAIN([coder decodeObjectForKey:@"facebook_token"]);
+        _graphUser = NS_SAFE_RETAIN([coder decodeObjectForKey:@"facebook_graph_user"]);
     }
     return self;
 }
@@ -93,6 +84,7 @@
     NS_SAFE_RELEASE(_facebookId);
     NS_SAFE_RELEASE(_facebookToken);
     NS_SAFE_RELEASE(_objects);
+    NS_SAFE_RELEASE(_graphUser);
     
 #if defined(ITSBETA_USE_FACEBOOK_OFFICIAL_SDK)
 #else
@@ -111,6 +103,7 @@
     [coder encodeObject:_Id forKey:@"player_id"];
     [coder encodeObject:_facebookId forKey:@"facebook_id"];
     [coder encodeObject:_facebookToken forKey:@"facebook_token"];
+    [coder encodeObject:_graphUser forKey:@"facebook_graph_user"];
 }
 
 - (BOOL) synchronizeWithProject:(ItsBetaProject*)project {
@@ -182,7 +175,7 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:ItsBetaDidPlayerLogin object:self];
 }
 
-- (void) loginWithFacebookId:(NSString*)facebookId facebookToken:(NSString*)facebookToken callback:(ItsBetaPlayerLogin)callback {
+- (void) loginWithFacebookId:(NSString*)facebookId facebookToken:(NSString*)facebookToken graphUser:(NSDictionary<ItsBetaGraphUser>*)graphUser callback:(ItsBetaPlayerLogin)callback {
     [ItsBetaApi requestServiceURL:[ItsBeta applicationServiceURL]
                       accessToken:[ItsBeta applicationAccessToken]
                        facebookId:facebookId
@@ -195,6 +188,9 @@
                              }
                              if(_facebookToken != facebookToken) {
                                  NS_SAFE_SETTER(_facebookToken, facebookToken);
+                             }
+                             if(_graphUser != graphUser) {
+                                 NS_SAFE_SETTER(_graphUser, graphUser);
                              }
                              if((_Id != nil) && (error != nil)) {
                                  callback(error);
@@ -245,7 +241,7 @@
                            object:^(NSString* object_id, NSError* error) {
                                if(error == nil) {
                                    if((_Id == nil) && (_type == ItsBetaPlayerTypeFacebook)) {
-                                       [self loginWithFacebookId:_facebookId facebookToken:_facebookToken callback:^(NSError *error) {
+                                       [self loginWithFacebookId:_facebookId facebookToken:_facebookToken graphUser:_graphUser callback:^(NSError *error) {
                                            if(callback != nil) {
                                                callback(object_id, error);
                                            }
@@ -269,7 +265,7 @@
                            object:^(NSString* object_id, NSError *error) {
                                if(error == nil) {
                                    if((_Id == nil) && (_type == ItsBetaPlayerTypeFacebook)) {
-                                       [self loginWithFacebookId:_facebookId facebookToken:_facebookToken callback:^(NSError *error) {
+                                       [self loginWithFacebookId:_facebookId facebookToken:_facebookToken graphUser:_graphUser callback:^(NSError *error) {
                                            if(callback != nil) {
                                                callback(object_id, error);
                                            }
@@ -300,7 +296,7 @@
                                              case FBSessionStateOpenTokenExtended:
                                                  [[FBRequest requestForMe] startWithCompletionHandler:^(FBRequestConnection *connection, NSDictionary< FBGraphUser > *user, NSError *error) {
                                                      if(error == nil) {
-                                                         [safeSelf loginWithFacebookId:[user id] facebookToken:[session accessToken] callback:callback];
+                                                         [safeSelf loginWithFacebookId:[user id] facebookToken:[session accessToken] graphUser:user callback:callback];
                                                      } else {
                                                          callback([[error userInfo] objectForKey:@"com.facebook.sdk:ErrorInnerErrorKey"]);
                                                      }
@@ -337,6 +333,8 @@
     
     NS_SAFE_RELEASE(_Id);
     NS_SAFE_RELEASE(_facebookId);
+    NS_SAFE_RELEASE(_graphUser);
+    NS_SAFE_RELEASE(_lastUpdateObjects);
     [_objects removeAllObjects];
     
     if(callback != nil) {
@@ -370,7 +368,7 @@
         id safeSelf = self;
 #endif
         [_facebookController setSuccessCallback:^(NSString* accessToken, NSDictionary< ItsBetaGraphUser >* user) {
-            [safeSelf loginWithFacebookId:[user id] facebookToken:accessToken callback:callback];
+            [safeSelf loginWithFacebookId:[user id] facebookToken:accessToken graphUser:user callback:callback];
         }];
         [_facebookController setFailureCallback:^(NSError* error) {
             callback(error);
@@ -393,6 +391,8 @@
     
     NS_SAFE_RELEASE(_Id);
     NS_SAFE_RELEASE(_facebookId);
+    NS_SAFE_RELEASE(_graphUser);
+    NS_SAFE_RELEASE(_lastUpdateObjects);
     [_objects removeAllObjects];
     
     if(callback != nil) {

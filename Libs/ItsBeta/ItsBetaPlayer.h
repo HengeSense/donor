@@ -4,6 +4,16 @@
 
 /*--------------------------------------------------*/
 
+#if defined(ITSBETA_USE_FACEBOOK_OFFICIAL_SDK)
+#   import <FacebookSDK/FacebookSDK.h>
+#else
+#   import "ItsBetaGraphUser.h"
+#   import "ItsBetaFacebookIPhone.h"
+#   import "ItsBetaFacebookIPad.h"
+#endif
+
+/*--------------------------------------------------*/
+
 typedef void (^ItsBetaPlayerLogin)(NSError* error);
 typedef void (^ItsBetaPlayerLogout)(NSError* error);
 typedef void (^ItsBetaPlayerCreateAchievement)(NSString* activateCode, NSError* error);
@@ -18,6 +28,7 @@ typedef void (^ItsBetaPlayerGiveAchievement)(NSString* object_id, NSError* error
 @property(nonatomic, readonly) NSString* Id; // Уникальный Id пользователя
 @property(nonatomic, readonly) NSString* facebookId; // Id в facebook
 @property(nonatomic, readonly) NSString* facebookToken; // facebook access token
+@property(nonatomic, readonly) NSDictionary <ItsBetaGraphUser>* graphUser; // Объект 
 
 @property(nonatomic, readonly) ItsBetaObjectCollection* objects;
 
@@ -34,7 +45,7 @@ typedef void (^ItsBetaPlayerGiveAchievement)(NSString* object_id, NSError* error
 #else
 - (void) loginWithViewController:(NSViewController*)viewController callback:(ItsBetaPlayerLogin)callback;
 #endif
-- (void) loginWithFacebookId:(NSString*)facebookId facebookToken:(NSString*)facebookToken callback:(ItsBetaPlayerLogin)callback;
+- (void) loginWithFacebookId:(NSString*)facebookId facebookToken:(NSString*)facebookToken graphUser:(NSDictionary<ItsBetaGraphUser>*)graphUser callback:(ItsBetaPlayerLogin)callback;
 - (void) logout:(ItsBetaPlayerLogout)callback;
 
 - (void) createAchievementWithProject:(ItsBetaProject*)project objectTemplate:(ItsBetaObjectTemplate*)objectTemplate params:(NSDictionary*)params callback:(ItsBetaPlayerCreateAchievement)callback;
