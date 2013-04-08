@@ -136,7 +136,7 @@ namespace Donor
                 }
                 else
                 {
-                    this.StationsList.ItemsSource = from stations in ViewModelLocator.MainStatic.Stations.Items
+                    this.StationsList.ItemsSource = from stations in ViewModelLocator.MainStatic.Stations.DistanceItems
                                                     where (stations.Name.ToLower().Contains(ViewModelLocator.MainStatic.Stations.FilteredText.ToLower()) || stations.Address.ToLower().Contains(ViewModelLocator.MainStatic.Stations.FilteredText.ToLower()))
                                                     orderby stations.Distance ascending
                                                     select stations;
@@ -146,7 +146,7 @@ namespace Donor
             {
                 if (ViewModelLocator.MainStatic.Stations.FilteredText == "")
                 {
-                    this.StationsList.ItemsSource = from stations in ViewModelLocator.MainStatic.Stations.Items
+                    this.StationsList.ItemsSource = from stations in ViewModelLocator.MainStatic.Stations.DistanceItems
                                                     where (stations.Town == ViewModelLocator.MainStatic.Stations.SelectedCity)
                                                     && (((!ViewModelLocator.MainStatic.Stations.IsChildrenDonor)) && ((!ViewModelLocator.MainStatic.Stations.IsRegional)) && ((!ViewModelLocator.MainStatic.Stations.IsSaturdayWork)))
                                                     orderby stations.Distance ascending
@@ -154,7 +154,7 @@ namespace Donor
                 }
                 else
                 {
-                    this.StationsList.ItemsSource = from stations in ViewModelLocator.MainStatic.Stations.Items
+                    this.StationsList.ItemsSource = from stations in ViewModelLocator.MainStatic.Stations.DistanceItems
                                                     where (stations.Name == ViewModelLocator.MainStatic.Stations.SelectedCity)
                                                     && (stations.Name.ToLower().Contains(ViewModelLocator.MainStatic.Stations.FilteredText.ToLower())) && ((stations.Address.ToLower().Contains(ViewModelLocator.MainStatic.Stations.FilteredText.ToLower()) || stations.Address.ToLower().Contains(ViewModelLocator.MainStatic.Stations.FilteredText.ToLower())))
                                                     orderby stations.Distance ascending
@@ -180,14 +180,14 @@ namespace Donor
             {
                 if (ViewModelLocator.MainStatic.Stations.IsFilter == false)
                 {
-                    this.StationsList.ItemsSource = from stations in ViewModelLocator.MainStatic.Stations.Items
+                    this.StationsList.ItemsSource = from stations in ViewModelLocator.MainStatic.Stations.DistanceItems
                                                     where (stations.Name.ToLower().Contains(searchtext.ToLower()) || stations.Address.ToLower().Contains(searchtext.ToLower()))
                                                     orderby stations.Distance ascending
                                                     select stations;
                 }
                 else
                 {
-                    this.StationsList.ItemsSource = from stations in ViewModelLocator.MainStatic.Stations.Items
+                    this.StationsList.ItemsSource = from stations in ViewModelLocator.MainStatic.Stations.DistanceItems
                                                     where (stations.Name.ToLower().Contains(searchtext.ToLower())) && ((stations.Town == ViewModelLocator.MainStatic.Stations.SelectedCity)
                                                         && ((stations.Name.ToLower().Contains(ViewModelLocator.MainStatic.Stations.FilteredText.ToLower())) || stations.Address.ToLower().Contains(searchtext.ToLower())))
                                                     orderby stations.Distance ascending
@@ -203,7 +203,7 @@ namespace Donor
                 }
                 else
                 {
-                    this.StationsList.ItemsSource = from stations in ViewModelLocator.MainStatic.Stations.Items
+                    this.StationsList.ItemsSource = from stations in ViewModelLocator.MainStatic.Stations.DistanceItems
                                                     where ((stations.Name == ViewModelLocator.MainStatic.Stations.SelectedCity)
                                                     && ((stations.Name.ToLower().Contains(ViewModelLocator.MainStatic.Stations.FilteredText.ToLower())) || (stations.Address.ToLower().Contains(ViewModelLocator.MainStatic.Stations.FilteredText.ToLower()))))
                                                     orderby stations.Distance ascending
