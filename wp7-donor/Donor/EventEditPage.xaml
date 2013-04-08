@@ -13,6 +13,7 @@
 	xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives" 
     xmlns:telerikPickerBox="clr-namespace:Telerik.Windows.Controls.PickerBox;assembly=Telerik.Windows.Controls.Primitives"
     xmlns:Globalization="clr-namespace:System.Globalization;assembly=mscorlib"
+    xmlns:telerikCore="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Core"
     x:Class="Donor.EventEditPage"
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d" d:DesignHeight="768" d:DesignWidth="480"

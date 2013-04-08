@@ -39,6 +39,14 @@ namespace Donor
             };
             //Sort.SortMode 
             this.StationsList.SortDescriptors.Add(Sort);
+
+            InteractionEffectManager.AllowedTypes.Add(typeof(Grid));
+            //InteractionEffectManager.AllowedTypes.Add(typeof(Button));
+            InteractionEffectManager.AllowedTypes.Add(typeof(StackPanel));
+            InteractionEffectManager.AllowedTypes.Add(typeof(Border));
+            //InteractionEffectManager.AllowedTypes.Add(typeof(Image));
+            InteractionEffectManager.AllowedTypes.Add(typeof(RadJumpList));
+            InteractionEffectManager.AllowedTypes.Add(typeof(RadDataBoundListBoxItem));
         }
 
         public GenericGroupDescriptor<YAStationItem, string> GroupedBadgesList = new GenericGroupDescriptor<YAStationItem, string>(item => item.Region_name);

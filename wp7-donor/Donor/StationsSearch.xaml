@@ -14,6 +14,8 @@
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480"
     DataContext="{Binding Main, Source={StaticResource Locator}}" 
+    xmlns:tilteffect="clr-namespace:ControlTiltEffect"   
+    xmlns:telerikCore="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Core"
     xmlns:telerikData="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Data"
     xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives"
     shell:SystemTray.IsVisible="False" Loaded="PhoneApplicationPage_Loaded">
@@ -94,6 +96,8 @@
 		    VerticalAlignment="Top"
 		    Margin="0,0,0,0"
 		    Name="StationsList" 
+            tilteffect:TiltEffect.IsTiltEnabled="True"
+            telerikCore:InteractionEffectManager.IsInteractionEnabled="True"
             ItemsSource="{Binding Stations.DistanceItems}"
             DataContext="{Binding Main, Source={StaticResource Locator}}" 
 		    Tap="StationsList_Tap" ItemTap="StationsList_ItemTap"              
@@ -101,7 +105,8 @@
             GroupHeaderItemTap="StationsList_GroupHeaderItemTap">
                 <telerikData:RadJumpList.GroupHeaderTemplate>
                     <DataTemplate>
-                        <Border Background="#FF006168" Margin="0">
+                        <Border Background="#FF006168" Margin="0" 
+                            telerikCore:InteractionEffectManager.IsInteractionEnabled="True">
                             <TextBlock Foreground="#FFDFB08B" Margin="5,10" 
                                        FontWeight="Bold"
                                        FontSize="30" Text="{Binding}"/>
@@ -109,58 +114,35 @@
                     </DataTemplate>
                 </telerikData:RadJumpList.GroupHeaderTemplate>
                 <telerikData:RadJumpList.ItemTemplate>
-                <DataTemplate>
-                		<Border BorderThickness="0,0,0,1" 
-						BorderBrush="#FFafafaf">
-                        <StackPanel Margin="6,10,10,6">
-                                <Grid HorizontalAlignment="Stretch">
-                        		<Grid.ColumnDefinitions>
-                                        <!--<ColumnDefinition Width="350"/> -->
-                                        <!--<ColumnDefinition Width="110"/>-->
-								</Grid.ColumnDefinitions>
-                        	<StackPanel Grid.Column="0">
-
+                    <DataTemplate telerikCore:InteractionEffectManager.IsInteractionEnabled="True">
+                		<Border BorderThickness="0,0,0,1"
+                                telerikCore:InteractionEffectManager.IsInteractionEnabled="True"
+						        BorderBrush="#FFafafaf">
+                            <StackPanel Margin="6,10,10,6">
                                 <StackPanel
-							        HorizontalAlignment="Left"
-							        Orientation="Horizontal">
-                                    <TextBlock 
-								    Text="{Binding Distance}" 
-								    TextWrapping="NoWrap" 
-								    Foreground="#FF0A6066"
-								    HorizontalAlignment="Right"
-								    FontSize="30"/>
-                                     <TextBlock Text=" км"
-								    HorizontalAlignment="Right"
-								    Foreground="#FF0A6066"
-								    FontSize="30"/>
+							            HorizontalAlignment="Left"
+							            Orientation="Horizontal">
+                                    <TextBlock
+								        Text="{Binding Distance}" 
+								        TextWrapping="NoWrap" 
+								        Foreground="#FF0A6066"
+								        HorizontalAlignment="Right"
+								        FontSize="30"/>
+                                    <TextBlock Text=" км"
+								        HorizontalAlignment="Right"
+								        Foreground="#FF0A6066"
+								        FontSize="30"/>
                                 </StackPanel>
-
-                                        <TextBlock Text="{Binding Address}" 
-							TextWrapping="Wrap" 
-							FontSize="30"
-							Foreground="#FF645B54"/>
-                            <TextBlock Text="{Binding Name}" 
-							TextWrapping="Wrap" Margin="0,4,0,0" 
-							FontSize="18"
-							Foreground="#FF847168"
-							Style="{StaticResource PhoneTextSubtleStyle}"/>
+                                <TextBlock Text="{Binding Address}"
+							        TextWrapping="Wrap" 
+							        FontSize="30"
+							        Foreground="#FF645B54"/>
+                                <TextBlock Text="{Binding Name}" 
+							        TextWrapping="Wrap" Margin="0,4,0,0" 
+							        FontSize="18"
+							        Foreground="#FF847168"
+							        Style="{StaticResource PhoneTextSubtleStyle}"/>
 							</StackPanel>
-                            <!--<StackPanel
-							HorizontalAlignment="Right"
-							Orientation="Horizontal" Grid.Column="1">                                
-                                <TextBlock 
-								Text="{Binding Distance}" 
-								TextWrapping="NoWrap" 
-								Foreground="#FF0A6066"
-								HorizontalAlignment="Right"
-								FontSize="30"/>
-                                <TextBlock Text=" км"
-								HorizontalAlignment="Right"
-								Foreground="#FF0A6066"
-								FontSize="30"/>
-                            </StackPanel>-->
-							</Grid>
-                        </StackPanel>
 						</Border>
                 </DataTemplate>
                 </telerikData:RadJumpList.ItemTemplate>
