@@ -19,6 +19,7 @@ using System.Device.Location;
 //using GART.Data;
 using System.Collections.Generic;
 using GalaSoft.MvvmLight;
+using System.Text.RegularExpressions;
 
 namespace Donor.ViewModels
 {
@@ -223,6 +224,7 @@ namespace Donor.ViewModels
             } else {};
         }
 
+        private ObservableCollection<TownItem> _districtItems = new ObservableCollection<TownItem>();
         public ObservableCollection<TownItem> DistrictItems
         {
             private set
@@ -231,29 +233,49 @@ namespace Donor.ViewModels
             get
             {
                 ObservableCollection<TownItem> districtItems = new ObservableCollection<TownItem>();
-                foreach (var item in Items)
-                {
-                    if (districtItems.FirstOrDefault(c=>c.TownName==item.Town)==null)
+                if (_districtItems.Count() == 0)
+                {                    
+                    foreach (var item in Items)
                     {
-                        districtItems.Add(new TownItem() { 
-                            TownName = item.Town, 
-                            DistrictName=item.District_name, 
-                            RegionName=item.Region_name
-                        });
+                        if (districtItems.FirstOrDefault(c => c.TownName == item.Town) == null)
+                        {
+                            districtItems.Add(new TownItem()
+                            {
+                                TownName = item.Town,
+                                DistrictName = item.District_name,
+                                RegionName = item.Region_name
+                            });
+                        };
                     };
-                };
-                if (FilterText!="")
-                {
-                    ObservableCollection<TownItem> districtItems2 = districtItems;
-                    districtItems = new ObservableCollection<TownItem>();
-                    var itemsFilter = from townItem in districtItems2
-                                      where townItem.DistrictName.ToLower().Contains(FilterText.ToLower())
-                                      select townItem;
-                    foreach (var item in itemsFilter)
+                    if (FilterText != "")
                     {
-                        districtItems.Add(item);
+                        ObservableCollection<TownItem> districtItems2 = districtItems;
+                        districtItems = new ObservableCollection<TownItem>();
+                        var itemsFilter = from townItem in districtItems2
+                                          where townItem.DistrictName.ToLower().Contains(FilterText.ToLower())
+                                          select townItem;
+                        foreach (var item in itemsFilter)
+                        {
+                            districtItems.Add(item);
+                        };
                     };
+                    _districtItems = districtItems;
+                }
+                else
+                {
+                    if (FilterText != "")
+                    {
+                        ObservableCollection<TownItem> districtItems2 = districtItems;
+                        districtItems = new ObservableCollection<TownItem>();
+                        var itemsFilter = from townItem in _districtItems
+                                          where townItem.DistrictName.ToLower().Contains(FilterText.ToLower())
+                                          select townItem;
+                        foreach (var item in itemsFilter)
+                        {
+                            districtItems.Add(item);
+                        };
 
+                    };
                 };
                 return districtItems;
             }
@@ -508,6 +530,14 @@ namespace Donor.ViewModels
             set
             {
                 _address = value;
+                /// пытаемся очистить индекс из строки адреса станции переливания
+                try
+                {
+                    _address = Regex.Replace(_address, "^\\d{6}[,]", "");
+                    _address = Regex.Replace(_address, "^\\d{5}[,]", "");
+                }
+                catch { };
+                _address = _address.Trim();
                 RaisePropertyChanged("Address");
             }
         }
