@@ -25,7 +25,13 @@ namespace Donor
             //this.StationsSearchText.ItemsSource = ViewModelLocator.MainStatic.Stations.DistrictItems;
             //this.StationsSearchText.FilterMode = AutoCompleteFilterMode.Contains;
             this.DistrictsList.GroupDescriptors.Add(GroupedBadgesList);           
-            this.DistrictsList.SortDescriptors.Add(Sort);            
+            this.DistrictsList.SortDescriptors.Add(Sort);
+
+            InteractionEffectManager.AllowedTypes.Add(typeof(Grid));
+            InteractionEffectManager.AllowedTypes.Add(typeof(StackPanel));
+            InteractionEffectManager.AllowedTypes.Add(typeof(Border));
+            InteractionEffectManager.AllowedTypes.Add(typeof(RadJumpList));
+            InteractionEffectManager.AllowedTypes.Add(typeof(RadDataBoundListBoxItem));
         }
 
         public GenericGroupDescriptor<TownItem, string> GroupedBadgesList = new GenericGroupDescriptor<TownItem, string>(item => item.RegionName);
