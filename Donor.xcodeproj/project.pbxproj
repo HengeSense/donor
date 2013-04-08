@@ -126,6 +126,8 @@
 		37B1367A15B598820022B8D8 /* calendarSliderSectionBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37B1367615B598820022B8D8 /* calendarSliderSectionBackground@2x.png */; };
 		37B1367B15B598820022B8D8 /* calendarSliderSectionShadowBottom.png in Resources */ = {isa = PBXBuildFile; fileRef = 37B1367715B598820022B8D8 /* calendarSliderSectionShadowBottom.png */; };
 		37B1367C15B598820022B8D8 /* calendarSliderSectionShadowBottom@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37B1367815B598820022B8D8 /* calendarSliderSectionShadowBottom@2x.png */; };
+		404470111712AF1000DF0561 /* HSItsBetaAchievementsHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 404470101712AF0F00DF0561 /* HSItsBetaAchievementsHeader.m */; };
+		404470131712AF2300DF0561 /* HSItsBetaAchievementsHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 404470121712AF2300DF0561 /* HSItsBetaAchievementsHeader.xib */; };
 		40595AF4170C4086007B2C61 /* HSItsBetaAchievementsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40595AF2170C4086007B2C61 /* HSItsBetaAchievementsViewController.m */; };
 		40595AF5170C4086007B2C61 /* HSItsBetaAchievementsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40595AF3170C4086007B2C61 /* HSItsBetaAchievementsViewController.xib */; };
 		4097890A17097B8E0054042A /* CIColor+ItsBeta.m in Sources */ = {isa = PBXBuildFile; fileRef = 409788E717097B8E0054042A /* CIColor+ItsBeta.m */; };
@@ -744,6 +746,9 @@
 		37B1367615B598820022B8D8 /* calendarSliderSectionBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "calendarSliderSectionBackground@2x.png"; sourceTree = "<group>"; };
 		37B1367715B598820022B8D8 /* calendarSliderSectionShadowBottom.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calendarSliderSectionShadowBottom.png; sourceTree = "<group>"; };
 		37B1367815B598820022B8D8 /* calendarSliderSectionShadowBottom@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "calendarSliderSectionShadowBottom@2x.png"; sourceTree = "<group>"; };
+		4044700F1712AF0F00DF0561 /* HSItsBetaAchievementsHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSItsBetaAchievementsHeader.h; sourceTree = "<group>"; };
+		404470101712AF0F00DF0561 /* HSItsBetaAchievementsHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSItsBetaAchievementsHeader.m; sourceTree = "<group>"; };
+		404470121712AF2300DF0561 /* HSItsBetaAchievementsHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HSItsBetaAchievementsHeader.xib; sourceTree = "<group>"; };
 		40595AF1170C4086007B2C61 /* HSItsBetaAchievementsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSItsBetaAchievementsViewController.h; sourceTree = "<group>"; };
 		40595AF2170C4086007B2C61 /* HSItsBetaAchievementsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSItsBetaAchievementsViewController.m; sourceTree = "<group>"; };
 		40595AF3170C4086007B2C61 /* HSItsBetaAchievementsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HSItsBetaAchievementsViewController.xib; sourceTree = "<group>"; };
@@ -2640,6 +2645,9 @@
 				409F0D1C170F039800E0AF77 /* HSItsBetaAchievementsCell.h */,
 				409F0D1D170F039800E0AF77 /* HSItsBetaAchievementsCell.m */,
 				409F0D25170F082400E0AF77 /* HSItsBetaAchievementsCell.xib */,
+				4044700F1712AF0F00DF0561 /* HSItsBetaAchievementsHeader.h */,
+				404470101712AF0F00DF0561 /* HSItsBetaAchievementsHeader.m */,
+				404470121712AF2300DF0561 /* HSItsBetaAchievementsHeader.xib */,
 			);
 			path = profile;
 			sourceTree = "<group>";
@@ -3368,6 +3376,7 @@
 				40595AF5170C4086007B2C61 /* HSItsBetaAchievementsViewController.xib in Resources */,
 				CE8609DD170DD62100E4497A /* HSStationsViewController.xib in Resources */,
 				409F0D26170F082500E0AF77 /* HSItsBetaAchievementsCell.xib in Resources */,
+				404470131712AF2300DF0561 /* HSItsBetaAchievementsHeader.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3540,6 +3549,7 @@
 				40595AF4170C4086007B2C61 /* HSItsBetaAchievementsViewController.m in Sources */,
 				CE8609DC170DD62100E4497A /* HSStationsViewController.m in Sources */,
 				409F0D1E170F039800E0AF77 /* HSItsBetaAchievementsCell.m in Sources */,
+				404470111712AF1000DF0561 /* HSItsBetaAchievementsHeader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

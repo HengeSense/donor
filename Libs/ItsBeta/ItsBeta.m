@@ -22,7 +22,7 @@
             if(sharedItsBeta == nil) {
                 NSData* data = [[NSUserDefaults standardUserDefaults] objectForKey:@"itsbeta"];
                 if([data isKindOfClass:[NSData class]] == YES) {
-                    sharedItsBeta = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+                    sharedItsBeta = NS_SAFE_RETAIN([NSKeyedUnarchiver unarchiveObjectWithData:data]);
                 } else {
                     sharedItsBeta = [[self alloc] init];
                 } 
