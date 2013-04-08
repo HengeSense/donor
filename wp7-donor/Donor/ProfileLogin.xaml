@@ -10,6 +10,11 @@
     xmlns:WPExtensions="clr-namespace:WPExtensions;assembly=WPExtensions"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit" 
     xmlns:ControlsConv="clr-namespace:Coding4Fun.Phone.Controls.Converters;assembly=Coding4Fun.Phone.Controls"
+    xmlns:telerikInput="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Input"
+    xmlns:interactionEffects="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Core"
+    xmlns:telerik="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Core" 
+	xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives" 
+    xmlns:telerikPickerBox="clr-namespace:Telerik.Windows.Controls.PickerBox;assembly=Telerik.Windows.Controls.Primitives"
     x:Class="Donor.ProfileLogin" 
     mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="800"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
@@ -150,8 +155,26 @@
                                     
                                     <TextBlock Text="{Binding UserBirthday, Source={StaticResource Loc}}" Margin="10,5,10,0"
 					Style="{StaticResource Text24pxCBB2A3}"/>
-                                    <toolkit:DatePicker Name="UserBirthdayRegister" 
-					Background="#FF4F3B34" Foreground="#FFDF8D4B"/>
+                                    <!--<toolkit:DatePicker Name="UserBirthdayRegister" 
+					Background="#FF4F3B34" Foreground="#FFDF8D4B"/>-->
+                                    <telerikInput:RadDatePicker 
+                    		            Width="250" 
+                    		            x:Name="UserBirthdayRegister" 
+                    		            Background="#FF4F3B34" 
+                    		            Foreground="#FFDF8D4B" 
+                    		            EmptyContent="Выберите дату" 
+                    		            PickerButtonStyle="{StaticResource PickerBoxToggle}"
+                    		            Margin="0,-8,0,0" PopupHeader="УКАЖИТЕ ДАТУ" 
+                                        OkButtonIconUri="/Toolkit.Content/ApplicationBar.Check.png" 
+                                        CancelButtonIconUri="/icons/appbar.cancel.png">
+                                        <telerikInput:RadDatePicker.EmptyContentTemplate>
+                                            <DataTemplate>
+                                                <Grid Background="#FF4F3B34" Width="250" Height="50" Margin="-9">
+                                                    <TextBlock Text="{Binding}" Foreground="#FFDF8D4B" Margin="5" />
+                                                </Grid>
+                                            </DataTemplate>
+                                        </telerikInput:RadDatePicker.EmptyContentTemplate>
+                                    </telerikInput:RadDatePicker>
 
                                     <StackPanel Orientation="Horizontal" 
 						Name="SexEditGroupCreate">
@@ -303,9 +326,26 @@ Visibility="Collapsed" Name="SaveEditProfileButton" Click="SaveEditProfileButton
 
                             <TextBlock Text="{Binding UserBirthday, Source={StaticResource Loc}}" Margin="10,0,10,0"
 					Style="{StaticResource Text24pxCBB2A3}"/>
-                            <toolkit:DatePicker Name="EditUserBirthday" 
-                                                Value="{Binding Path=User.DateBirthday, Mode=TwoWay}"
-                            Background="#FF4F3B34" Foreground="#FFDF8D4B"/>
+                            <!--<toolkit:DatePicker Name="EditUserBirthday"                                                 
+                            Background="#FF4F3B34" Foreground="#FFDF8D4B"/>-->
+                            <telerikInput:RadDatePicker 
+                    		x:Name="EditUserBirthday" 
+                    		Background="#FF4F3B34" 
+                    		Foreground="#FFDF8D4B" 
+                            Value="{Binding Path=User.DateBirthday, Mode=TwoWay}"
+                    		EmptyContent="Выберите дату" 
+                    		PickerButtonStyle="{StaticResource PickerBoxToggle}"
+                    		Margin="0,-8,0,0" PopupHeader="УКАЖИТЕ ДАТУ" 
+                            OkButtonIconUri="/Toolkit.Content/ApplicationBar.Check.png" 
+                            CancelButtonIconUri="/icons/appbar.cancel.png">
+                                <telerikInput:RadDatePicker.EmptyContentTemplate>
+                                    <DataTemplate>
+                                        <Grid Background="#FF4F3B34" Width="250" Height="50" Margin="-9">
+                                            <TextBlock Text="{Binding}" Foreground="#FFDF8D4B" Margin="5" />
+                                        </Grid>
+                                    </DataTemplate>
+                                </telerikInput:RadDatePicker.EmptyContentTemplate>
+                            </telerikInput:RadDatePicker>
 
                             <TextBlock Text="Группа крови и резус-фактор" Margin="10,0,10,0"
 					Style="{StaticResource Text24pxCBB2A3}"/>
