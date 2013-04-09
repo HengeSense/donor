@@ -14,6 +14,7 @@ typedef void (^ItsBetaApiResponsePlayerId)(NSString* playerId, NSError* error);
 typedef void (^ItsBetaApiResponseCreateAchievement)(NSString* activateCode, NSError* error);
 typedef void (^ItsBetaApiResponseActivateAchievement)(NSString* object_id, NSError* error);
 typedef void (^ItsBetaApiResponseGiveAchievement)(NSString* object, NSError* error);
+typedef void (^ItsBetaApiResponseAchievementURL)(NSString* object_url, NSError* error);
 
 /*--------------------------------------------------*/
 
@@ -134,6 +135,12 @@ typedef void (^ItsBetaApiResponseGiveAchievement)(NSString* object, NSError* err
                     player:(ItsBetaPlayer*)player
                     object:(ItsBetaApiResponseGiveAchievement)object;
 
++ (void) requestServiceURL:(NSString*)serviceURL
+               accessToken:(NSString*)accessToken
+                  objectId:(NSString*)objectId
+              objectIdType:(NSString*)objectIdType
+                    params:(NSDictionary*)params
+                    object:(ItsBetaApiResponseAchievementURL)object;
 @end
 
 /*--------------------------------------------------*/

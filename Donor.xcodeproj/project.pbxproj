@@ -159,6 +159,8 @@
 		4097893E17099F1B0054042A /* NSDictionary+ItsBeta.m in Sources */ = {isa = PBXBuildFile; fileRef = 4097893D17099F1A0054042A /* NSDictionary+ItsBeta.m */; };
 		409F0D1E170F039800E0AF77 /* HSItsBetaAchievementsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 409F0D1D170F039800E0AF77 /* HSItsBetaAchievementsCell.m */; };
 		409F0D26170F082500E0AF77 /* HSItsBetaAchievementsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 409F0D25170F082400E0AF77 /* HSItsBetaAchievementsCell.xib */; };
+		40D5FF631714409A00821B01 /* HSItsBetaAchievementDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40D5FF611714409900821B01 /* HSItsBetaAchievementDetailViewController.m */; };
+		40D5FF641714409A00821B01 /* HSItsBetaAchievementDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40D5FF621714409900821B01 /* HSItsBetaAchievementDetailViewController.xib */; };
 		6802A1671665D4FD0034B124 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 371CBA5215AFD452008CA154 /* Parse.framework */; };
 		683F8A81164573860066C47A /* HSBloodDonationType.m in Sources */ = {isa = PBXBuildFile; fileRef = 683F8A80164573860066C47A /* HSBloodDonationType.m */; };
 		683F8A9716468E300066C47A /* event_done_button_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 683F8A9316468E300066C47A /* event_done_button_normal.png */; };
@@ -807,6 +809,9 @@
 		409F0D1C170F039800E0AF77 /* HSItsBetaAchievementsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSItsBetaAchievementsCell.h; sourceTree = "<group>"; };
 		409F0D1D170F039800E0AF77 /* HSItsBetaAchievementsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSItsBetaAchievementsCell.m; sourceTree = "<group>"; };
 		409F0D25170F082400E0AF77 /* HSItsBetaAchievementsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HSItsBetaAchievementsCell.xib; sourceTree = "<group>"; };
+		40D5FF601714409900821B01 /* HSItsBetaAchievementDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSItsBetaAchievementDetailViewController.h; sourceTree = "<group>"; };
+		40D5FF611714409900821B01 /* HSItsBetaAchievementDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSItsBetaAchievementDetailViewController.m; sourceTree = "<group>"; };
+		40D5FF621714409900821B01 /* HSItsBetaAchievementDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HSItsBetaAchievementDetailViewController.xib; sourceTree = "<group>"; };
 		683F8A80164573860066C47A /* HSBloodDonationType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSBloodDonationType.m; sourceTree = "<group>"; };
 		683F8A9316468E300066C47A /* event_done_button_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = event_done_button_normal.png; sourceTree = "<group>"; };
 		683F8A9416468E300066C47A /* event_done_button_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "event_done_button_normal@2x.png"; sourceTree = "<group>"; };
@@ -2648,6 +2653,9 @@
 				4044700F1712AF0F00DF0561 /* HSItsBetaAchievementsHeader.h */,
 				404470101712AF0F00DF0561 /* HSItsBetaAchievementsHeader.m */,
 				404470121712AF2300DF0561 /* HSItsBetaAchievementsHeader.xib */,
+				40D5FF601714409900821B01 /* HSItsBetaAchievementDetailViewController.h */,
+				40D5FF611714409900821B01 /* HSItsBetaAchievementDetailViewController.m */,
+				40D5FF621714409900821B01 /* HSItsBetaAchievementDetailViewController.xib */,
 			);
 			path = profile;
 			sourceTree = "<group>";
@@ -3377,6 +3385,7 @@
 				CE8609DD170DD62100E4497A /* HSStationsViewController.xib in Resources */,
 				409F0D26170F082500E0AF77 /* HSItsBetaAchievementsCell.xib in Resources */,
 				404470131712AF2300DF0561 /* HSItsBetaAchievementsHeader.xib in Resources */,
+				40D5FF641714409A00821B01 /* HSItsBetaAchievementDetailViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3550,6 +3559,7 @@
 				CE8609DC170DD62100E4497A /* HSStationsViewController.m in Sources */,
 				409F0D1E170F039800E0AF77 /* HSItsBetaAchievementsCell.m in Sources */,
 				404470111712AF1000DF0561 /* HSItsBetaAchievementsHeader.m in Sources */,
+				40D5FF631714409A00821B01 /* HSItsBetaAchievementDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

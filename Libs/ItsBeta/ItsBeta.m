@@ -3,6 +3,7 @@
 #import "ItsBeta.h"
 #import "ItsBetaQueue.h"
 #import "ItsBetaRest.h"
+#import "ItsBetaApi.h"
 
 /*--------------------------------------------------*/
 
@@ -216,6 +217,20 @@
                                       callback(player, object_id, error);
                                   }
                               }];
+}
+
++ (void) objectUrlForId:(NSString*)Id type:(NSString*)type params:(NSDictionary*)params callback:(ItsBetaObjectUrl)callback
+{
+    [ItsBetaApi requestServiceURL:[ItsBeta applicationServiceURL]
+                      accessToken:[ItsBeta applicationAccessToken]
+                         objectId:Id
+                     objectIdType:type
+                           params:params
+                           object:^(NSString* object_url, NSError* error){
+                               if(callback != nil) {
+                                   callback(object_url, error);
+                               }
+                           }];
 }
 
 + (void) synchronizeApplication {

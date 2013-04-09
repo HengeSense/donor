@@ -167,12 +167,12 @@
 #endif
         break;
         default:
+            [[NSNotificationCenter defaultCenter] postNotificationName:ItsBetaDidPlayerLogin object:self];
             if(callback != nil) {
                 callback(nil);
             }
         break;
     }
-    [[NSNotificationCenter defaultCenter] postNotificationName:ItsBetaDidPlayerLogin object:self];
 }
 
 - (void) loginWithFacebookId:(NSString*)facebookId facebookToken:(NSString*)facebookToken graphUser:(NSDictionary<ItsBetaGraphUser>*)graphUser callback:(ItsBetaPlayerLogin)callback {
@@ -197,6 +197,7 @@
                              } else {
                                  callback(nil);
                              }
+                             [[NSNotificationCenter defaultCenter] postNotificationName:ItsBetaDidPlayerLogin object:self];
                          }];
 }
 
@@ -333,6 +334,7 @@
     
     NS_SAFE_RELEASE(_Id);
     NS_SAFE_RELEASE(_facebookId);
+    NS_SAFE_RELEASE(_facebookToken);
     NS_SAFE_RELEASE(_graphUser);
     NS_SAFE_RELEASE(_lastUpdateObjects);
     [_objects removeAllObjects];
@@ -391,6 +393,7 @@
     
     NS_SAFE_RELEASE(_Id);
     NS_SAFE_RELEASE(_facebookId);
+    NS_SAFE_RELEASE(_facebookToken);
     NS_SAFE_RELEASE(_graphUser);
     NS_SAFE_RELEASE(_lastUpdateObjects);
     [_objects removeAllObjects];

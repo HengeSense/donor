@@ -34,25 +34,15 @@
     HSCalendar *calendarModel = [HSCalendar sharedInstance];
     [calendarModel unlockModelWithUser:user];
     [calendarModel pullEventsFromServer:^(BOOL success, NSError *error) {
-        [ItsBeta playerLoginFacebookWithViewController:self
-                                              callback:^(ItsBetaPlayer *player, NSError *error) {
-                                                  if(error != nil) {
-                                                      [HSAlertViewController showWithMessage:@"Ошибка при авторизации в itsbeta"];
-                                                      [self.navigationController popToRootViewControllerAnimated:YES];
-                                                      return;
-                                                  }
-                                                  [self giveInstallAchievement:^{
-                                                      completion();
-                                                      if (success == YES) {
-                                                          HSProfileDescriptionViewController *controller = [[HSProfileDescriptionViewController alloc] initWithNibName:@"HSProfileDescriptionViewController" bundle:nil];
-                                                          controller.calendarInfoDelegate = calendarModel;
-                                                          [self.navigationController pushViewController:controller animated:YES];
-                                                      } else {
-                                                          [HSAlertViewController showWithMessage:@"Ошибка при загрузке событий календаря"];
-                                                          [self.navigationController popToRootViewControllerAnimated:YES];
-                                                      }
-                                                  }];
-                                              }];
+        completion();
+        if (success == YES) {
+            HSProfileDescriptionViewController *controller = [[HSProfileDescriptionViewController alloc] initWithNibName:@"HSProfileDescriptionViewController" bundle:nil];
+            controller.calendarInfoDelegate = calendarModel;
+            [self.navigationController pushViewController:controller animated:YES];
+        } else {
+            [HSAlertViewController showWithMessage:@"Ошибка при загрузке событий календаря"];
+            [self.navigationController popToRootViewControllerAnimated:YES];
+        }
     }];
 }
 
@@ -64,18 +54,6 @@
     HSUserInfo *userInfo = [[HSUserInfo alloc] initWithUser:user];
     userInfo.devicePlatform = HSDevicePlatformType_iPhone;
     [userInfo applyChanges];
-}
-
-- (void)giveInstallAchievement:(void(^)(void))completion {
-    ItsBetaProject* project = [ItsBeta projectByName:@"donor"];
-    ItsBetaObjectTemplate* objectTemplate = [ItsBeta objectTemplateByName:@"donorfriend" byProject:project];
-    [ItsBeta playerGiveAchievementWithProject:project
-                               objectTemplate:objectTemplate
-                                       params:nil
-                                     callback:^(ItsBetaPlayer *player, NSString *object_id, NSError *error) {
-                                         [ItsBeta synchronizePlayerWithProject:project];
-                                         completion();
-                                     }];
 }
 
 @end
