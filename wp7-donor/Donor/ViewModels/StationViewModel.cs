@@ -87,9 +87,13 @@ namespace Donor.ViewModels
             }
             set
             {
+                if (_filterText!=value)
+                {
                 _filterText = value;
                 RaisePropertyChanged("FilterText");
                 RaisePropertyChanged("DistrictItems");
+                UpdateDistanceItems();
+                };
             }
         }
 
@@ -123,6 +127,7 @@ namespace Donor.ViewModels
                     };
                     //MessageBox.Show("Регион - " + state + "\nгород - " + town + "\nlat=" + lat.ToString().Replace(",", ".") + "\nlon=" + lon.ToString().Replace(",", "."));
                     CurrentState = state;
+                    UpdateDistanceItems();
                 }
                 catch
                 {
@@ -209,7 +214,7 @@ namespace Donor.ViewModels
                             IsolatedStorageHelper.SaveSerializableObject<ObservableCollection<YAStationItem>>(this.Items, "yastations.xml");
 
                             RaisePropertyChanged("Items");
-                            RaisePropertyChanged("DistanceItems");
+                            UpdateDistanceItems();
                             RaisePropertyChanged("DistrictItems");  
                         });                       
                     
@@ -294,46 +299,60 @@ namespace Donor.ViewModels
             set
             {
                 _items = value;
-                RaisePropertyChanged("DistanceItems");
+                UpdateDistanceItems();
                 RaisePropertyChanged("Items");
             }
         }
 
+        /// <summary>
+        /// Обновляем список станций в связи с изменением списка фильтров
+        /// </summary>
+        private void UpdateDistanceItems()
+        {
+            List<YAStationItem> distance = new List<YAStationItem>();
+            if ((CurrentState == "") && (CurrentDistrict == ""))
+            {
+                distance = Items.ToList();
+            }
+            else
+            {
+                if (CurrentDistrict == "")
+                {
+                    distance = (from station in Items
+                                where station.Region_name.ToLower() == CurrentState.ToLower()
+                                select station).ToList();
+                };
+                if (CurrentState == "")
+                {
+                    distance = (from station in Items
+                                where station.District_name.ToLower() == CurrentDistrict.ToLower()
+                                select station).ToList();
+                };
+                if ((CurrentState != "") && (CurrentDistrict != ""))
+                {
+                    distance = (from station in Items
+                                where ((station.District_name.ToLower() == CurrentDistrict.ToLower())
+                                && (station.Region_name.ToLower() == CurrentState.ToLower()))
+                                select station).ToList();
+                };
+                if (distance.Count() == 0)
+                {
+                    distance = Items.ToList();
+                };
+            };
+            _distanceItems = distance;
+            RaisePropertyChanged("DistanceItems");
+        }
+
+        private List<YAStationItem> _distanceItems = new List<YAStationItem>();
+        /// <summary>
+        /// Список отфильтрованных станций (по удаленности)
+        /// </summary>
         public List<YAStationItem> DistanceItems
         {
             get
             {
-                List<YAStationItem> distance = new List<YAStationItem>();
-                if ((CurrentState == "") && (CurrentDistrict==""))
-                {
-                    distance = Items.ToList();
-                }
-                else
-                {
-                    if (CurrentDistrict == "")
-                    {
-                        distance = (from station in Items
-                                    where station.Region_name.ToLower() == CurrentState.ToLower()
-                                    select station).ToList();
-                    };
-                    if (CurrentState == "")
-                    {
-                        distance = (from station in Items
-                                    where station.District_name.ToLower() == CurrentDistrict.ToLower()
-                                    select station).ToList();
-                    };
-                    if ((CurrentState != "") && (CurrentDistrict != ""))
-                    {
-                        distance = (from station in Items
-                                    where ((station.District_name.ToLower() == CurrentDistrict.ToLower())
-                                    && (station.Region_name.ToLower() == CurrentState.ToLower()))
-                                    select station).ToList();
-                    };
-                    if (distance.Count()==0) {
-                        distance = Items.ToList();
-                    };
-                };
-                return distance;
+                return _distanceItems;
             }
             private set { }
         }
