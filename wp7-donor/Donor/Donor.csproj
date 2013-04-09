@@ -173,6 +173,9 @@
     <Compile Include="Controls\BadgeControl.xaml.cs">
       <DependentUpon>BadgeControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\AllBadgeControl.xaml.cs">
+      <DependentUpon>AllBadgeControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\DayInCalendarControl.xaml.cs">
       <DependentUpon>DayInCalendarControl.xaml</DependentUpon>
     </Compile>
@@ -295,6 +298,10 @@
     <Page Include="Controls\BadgeControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\AllBadgeControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Controls\DayInCalendarControl.xaml">
       <SubType>Designer</SubType>

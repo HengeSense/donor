@@ -122,11 +122,11 @@ namespace Donor.ViewModels
         {
             get
             {
-                return _image;
+                return _description;
             }
             set
             {
-                _image = value;
+                _description = value;
                 RaisePropertyChanged("Description");
             }
         }
@@ -147,6 +147,7 @@ namespace Donor.ViewModels
                 Api_name = "donorfriend",
                 UnactiveImage = "/images/achieves/Achive-donor_unavailible.png",
                 Status = false,
+                Description = "Помочь спасти жизнь",
                 Image = "/images/achieves/Achive-donor.png" });
 
             AvailableAchieves.Add(new AchieveItem()
@@ -155,7 +156,8 @@ namespace Donor.ViewModels
                 Api_name = "first_blood",
                 UnactiveImage = "/images/achieves/Achive-donor_unavailible.png",
                 Status = false,
-                Image = "/images/achieves/Achive-donor.png"
+                Image = "/images/achieves/Achive-donor.png",
+                Description = "Сдал кровь первый раз"
             });            
 
             SoonAchieves = new ObservableCollection<AchieveItem>();
@@ -264,6 +266,23 @@ namespace Donor.ViewModels
                 });
             };
             bw.RunWorkerAsync();
+        }
+
+        private AchieveItem _currentBadge = new AchieveItem();
+        public AchieveItem CurrentBadge
+        {
+            set
+            {
+                if (_currentBadge != value)
+                {
+                    _currentBadge = value;
+                    RaisePropertyChanged("CurrentBadge");
+                }
+            }
+            get
+            {
+                return _currentBadge;
+            }
         }
 
         private void GetPlayerAchieves(string fb_id = "")
@@ -447,7 +466,7 @@ namespace Donor.ViewModels
             messagePrompt = new MessagePrompt();
             try
             {
-                messagePrompt.Body = new BadgeControl();
+                messagePrompt.Body = new AllBadgeControl();
 
                 Button closeButton = new Button() { Content = "Закрыть" };
                 Button moreButton = new Button() { Content = "Подробнее" };

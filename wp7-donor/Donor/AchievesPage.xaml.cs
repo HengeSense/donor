@@ -33,10 +33,11 @@ namespace Donor
         {
             try
             {
-                if ((this.AvailableBadges.SelectedItem as AchieveItem).Status == true)
-                {
+                //if ((this.AvailableBadges.SelectedItem as AchieveItem).Status == true)
+                //{
+                    ViewModelLocator.BadgesStatic.CurrentBadge = (this.AvailableBadges.SelectedItem as AchieveItem);
                     ViewModelLocator.BadgesStatic.ShowBadgeMessage();
-                };
+                //};
             }
             catch { };            
         }
