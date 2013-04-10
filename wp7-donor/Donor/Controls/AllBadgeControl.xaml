@@ -17,14 +17,17 @@
                 Text="{Binding CurrentBadge.Title}" 
                 DataContext="{Binding Badges, Source={StaticResource Locator}}" 
                 HorizontalAlignment="Center" 
+                Margin="0,15,0,20"
                 Style="{StaticResource PhoneTextTitle2Style}" />
             <Image Width="160" Margin="20" 
                 Source="{Binding CurrentBadge.Image}" 
                 DataContext="{Binding Badges, Source={StaticResource Locator}}"/>
             <TextBlock 
+                HorizontalAlignment="Center" 
+                TextWrapping="Wrap"
                 Text="{Binding CurrentBadge.Description}" 
                 DataContext="{Binding Badges, Source={StaticResource Locator}}" 
-                Margin="20"/>
+                Margin="20,5,20,20"/>
             
         </StackPanel>
     </Grid>

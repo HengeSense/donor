@@ -76,8 +76,37 @@ namespace Donor.ViewModels
             
         }
 
-        public string CurrentState = "";
-        public string CurrentDistrict = "";
+        private string _currentState = "";
+        public string CurrentState {
+            get
+            {
+                return _currentState;
+            }
+            set
+            {
+                if (_currentState != value)
+                {
+                    _currentState = value;
+                    UpdateDistanceItems();
+                };
+            }
+        }
+        private string _currentDistrict = "";
+        public string CurrentDistrict
+        {
+            get
+            {
+                return _currentDistrict;
+            }
+            set
+            {
+                if (_currentDistrict != value)
+                {
+                    _currentDistrict = value;
+                    UpdateDistanceItems();
+                };
+            }
+        }
         private string _filterText = "";
         public string FilterText
         {
