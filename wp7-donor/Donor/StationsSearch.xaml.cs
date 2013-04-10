@@ -23,9 +23,9 @@ namespace Donor
         {
             InitializeComponent();
 
-            this.StationsSearchText.ItemsSource = ViewModelLocator.MainStatic.Stations.DistanceItems;
-            this.StationsSearchText.FilterMode = AutoCompleteFilterMode.Contains;
-            this.StationsSearchText.ItemFilter += SearchBank;
+            //this.StationsSearchText.ItemsSource = ViewModelLocator.MainStatic.Stations.DistanceItems;
+            //this.StationsSearchText.FilterMode = AutoCompleteFilterMode.Contains;
+            //this.StationsSearchText.ItemFilter += SearchBank;
 
             //this.StationsList.GroupDescriptors.Add(GroupedBadgesList);
             this.StationsList.GroupDescriptors.Clear();
@@ -123,19 +123,9 @@ namespace Donor
                 };
             }
             catch { };
-            //this.AppBar1.IsVisible = true;
             this.StationsSearchText.Text = ViewModelLocator.MainStatic.Stations.FilteredText;
 
-            if (ViewModelLocator.MainStatic.Stations.IsFilter == true)
-            {
-                //this.CityFilterText.Text = ViewModelLocator.MainStatic.Stations.SelectedCity;
-            }
-            else
-            {
-                //this.CityFilterText.Text = " ";
-            };
-
-            this.StationsList.DataContext = ViewModelLocator.MainStatic;
+            //this.StationsList.DataContext = ViewModelLocator.MainStatic;
             if (ViewModelLocator.MainStatic.Stations.IsFilter == false)
             {
                 if (ViewModelLocator.MainStatic.Stations.FilteredText == "")
@@ -179,44 +169,49 @@ namespace Donor
             base.OnNavigatedFrom(e);
         }
 
+        private string PastSearchString = "";
         private void FilterStationsList()
         {
             string searchtext = this.StationsSearchText.Text;
             ViewModelLocator.MainStatic.Stations.FilteredText = searchtext;
 
-            if (searchtext != "")
+            if (((PastSearchString != searchtext) && (searchtext.Length > 2)) || (searchtext == "" && PastSearchString!=""))
             {
-                if (ViewModelLocator.MainStatic.Stations.IsFilter == false)
+                if (searchtext != "")
                 {
-                    this.StationsList.ItemsSource = from stations in ViewModelLocator.MainStatic.Stations.DistanceItems
-                                                    where (stations.Name.ToLower().Contains(searchtext.ToLower()) || stations.Address.ToLower().Contains(searchtext.ToLower()))
-                                                    orderby stations.Distance ascending
-                                                    select stations;
+                    if (ViewModelLocator.MainStatic.Stations.IsFilter == false)
+                    {
+                        this.StationsList.ItemsSource = from stations in ViewModelLocator.MainStatic.Stations.DistanceItems
+                                                        where (stations.Name.ToLower().Contains(searchtext.ToLower()) || stations.Address.ToLower().Contains(searchtext.ToLower()))
+                                                        orderby stations.Distance ascending
+                                                        select stations;
+                    }
+                    else
+                    {
+                        this.StationsList.ItemsSource = from stations in ViewModelLocator.MainStatic.Stations.DistanceItems
+                                                        where (stations.Name.ToLower().Contains(searchtext.ToLower())) && ((stations.Town == ViewModelLocator.MainStatic.Stations.SelectedCity)
+                                                            && ((stations.Name.ToLower().Contains(ViewModelLocator.MainStatic.Stations.FilteredText.ToLower())) || stations.Address.ToLower().Contains(searchtext.ToLower())))
+                                                        orderby stations.Distance ascending
+                                                        select stations;
+                    };
                 }
                 else
                 {
-                    this.StationsList.ItemsSource = from stations in ViewModelLocator.MainStatic.Stations.DistanceItems
-                                                    where (stations.Name.ToLower().Contains(searchtext.ToLower())) && ((stations.Town == ViewModelLocator.MainStatic.Stations.SelectedCity)
-                                                        && ((stations.Name.ToLower().Contains(ViewModelLocator.MainStatic.Stations.FilteredText.ToLower())) || stations.Address.ToLower().Contains(searchtext.ToLower())))
-                                                    orderby stations.Distance ascending
-                                                    select stations;
+                    this.StationsList.DataContext = ViewModelLocator.MainStatic;
+                    if (ViewModelLocator.MainStatic.Stations.IsFilter == false)
+                    {
+                        this.StationsList.ItemsSource = ViewModelLocator.MainStatic.Stations.DistanceItems;
+                    }
+                    else
+                    {
+                        this.StationsList.ItemsSource = from stations in ViewModelLocator.MainStatic.Stations.DistanceItems
+                                                        where ((stations.Name == ViewModelLocator.MainStatic.Stations.SelectedCity)
+                                                        && ((stations.Name.ToLower().Contains(ViewModelLocator.MainStatic.Stations.FilteredText.ToLower())) || (stations.Address.ToLower().Contains(ViewModelLocator.MainStatic.Stations.FilteredText.ToLower()))))
+                                                        orderby stations.Distance ascending
+                                                        select stations;
+                    };
                 };
-            }
-            else
-            {
-                this.StationsList.DataContext = ViewModelLocator.MainStatic;
-                if (ViewModelLocator.MainStatic.Stations.IsFilter == false)
-                {
-                    this.StationsList.ItemsSource = ViewModelLocator.MainStatic.Stations.DistanceItems;
-                }
-                else
-                {
-                    this.StationsList.ItemsSource = from stations in ViewModelLocator.MainStatic.Stations.DistanceItems
-                                                    where ((stations.Name == ViewModelLocator.MainStatic.Stations.SelectedCity)
-                                                    && ((stations.Name.ToLower().Contains(ViewModelLocator.MainStatic.Stations.FilteredText.ToLower())) || (stations.Address.ToLower().Contains(ViewModelLocator.MainStatic.Stations.FilteredText.ToLower()))))
-                                                    orderby stations.Distance ascending
-                                                    select stations;
-                };
+                PastSearchString = searchtext;
             };
         }
 

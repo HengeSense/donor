@@ -151,7 +151,7 @@ namespace Donor.ViewModels
                             state = town;
                         };                        
                     }
-                    catch (Exception ex) {
+                    catch {
                         //MessageBox.Show(ex.Message.ToString());
                     };
                     //MessageBox.Show("Регион - " + state + "\nгород - " + town + "\nlat=" + lat.ToString().Replace(",", ".") + "\nlon=" + lon.ToString().Replace(",", "."));

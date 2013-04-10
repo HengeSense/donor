@@ -330,7 +330,7 @@ namespace Donor.ViewModels
                                                 {
                                                     AvailableAchieves.FirstOrDefault(c => c.Api_name == item["api_name"].ToString()).Status = true;
                                                 }
-                                                catch (Exception ex)
+                                                catch
                                                 {
                                                     //MessageBox.Show(ex.Message.ToString());
                                                 };

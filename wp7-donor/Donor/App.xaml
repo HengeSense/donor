@@ -277,7 +277,7 @@ mc:Ignorable="d">
                 </Grid.RowDefinitions>
                 <ContentControl x:Name="Header" Margin="-1,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Bottom" Content="{TemplateBinding Header}" ContentTemplate="{TemplateBinding HeaderTemplate}" FontFamily="{StaticResource PhoneFontFamilyNormal}" FontSize="{StaticResource PhoneFontSizeNormal}" Foreground="{StaticResource PhoneBorderBrush}" IsTabStop="False" Opacity="{TemplateBinding Opacity}" />
                 <ContentControl x:Name="Content" Grid.Row="1" Margin="-1,1,0,-7" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" IsTabStop="False" Opacity="{TemplateBinding Opacity}" />
-                <toolkitPrimitives:ToggleSwitchButton x:Name="Switch" Grid.RowSpan="2" Grid.Column="1" Margin="-22,-29,-24,-28" VerticalAlignment="Bottom" Background="#FF727D83" Opacity="{TemplateBinding Opacity}" Style="{StaticResource ToggleSwitchButtonStyle}" SwitchForeground="{TemplateBinding SwitchForeground}" />
+                <toolkitPrimitives:ToggleSwitchButton x:Name="Switch" Grid.RowSpan="2" Grid.Column="1" Margin="-22,-29,-24,-28" VerticalAlignment="Bottom" Background="#FF727D83" Opacity="{TemplateBinding Opacity}" SwitchForeground="{TemplateBinding SwitchForeground}" />
               </Grid>
             </Border>
           </ControlTemplate>
