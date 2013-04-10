@@ -22,6 +22,11 @@
 @property (weak, nonatomic) IBOutlet UIImageView *calendarImageView;
 
 /**
+ * View for displaying event planned for today.
+ */
+@property (weak, nonatomic) IBOutlet UIScrollView *todayEventsScrollView;
+
+/**
  * Moves calendar view to the next month.
  */
 - (IBAction)moveToNextMonth:(id)sender;

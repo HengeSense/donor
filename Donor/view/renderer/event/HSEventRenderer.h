@@ -29,6 +29,16 @@
  * Create rendered view in the specified bounds. Only part of the frame is used for rendering.
  *     This method should be overriden in subclasses, by default implementation empty view is returned.
  */
-- (UIView *) renderViewInBounds: (CGRect) bounds;
+- (UIView *)renderViewInBounds: (CGRect)bounds;
+
+/**
+ * Returns image that represents underlying event. Can be nil.
+ */
+- (UIImage *)eventImage;
+
+/**
+ * Returns short description for underlying event. Can be nil.
+ */
+- (NSString *)eventShortDescription;
 
 @end

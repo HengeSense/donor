@@ -250,6 +250,9 @@
 		6864D6241708B3C400F150F9 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 6864D61D1708B3C400F150F9 /* Default.png */; };
 		6864D6251708B3C400F150F9 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6864D61E1708B3C400F150F9 /* Default@2x.png */; };
 		6864D6291708CB4900F150F9 /* HSMailChimp.m in Sources */ = {isa = PBXBuildFile; fileRef = 6864D6281708CB4900F150F9 /* HSMailChimp.m */; };
+		6864D66F17127A0600F150F9 /* HSEventShortInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6864D66E17127A0600F150F9 /* HSEventShortInfoView.m */; };
+		6864D67117127A3700F150F9 /* HSEventShortInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6864D67017127A3700F150F9 /* HSEventShortInfoView.xib */; };
+		6864D67417128FAC00F150F9 /* UIView+HSSubviewManagement.m in Sources */ = {isa = PBXBuildFile; fileRef = 6864D67317128FAC00F150F9 /* UIView+HSSubviewManagement.m */; };
 		686BA62216344DE2004D7082 /* HSCalendarDayButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 686BA62116344DE2004D7082 /* HSCalendarDayButton.m */; };
 		686BA62716345D0E004D7082 /* NSCalendar+HSCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 686BA62616345D0E004D7082 /* NSCalendar+HSCalendar.m */; };
 		686BA62A163469C3004D7082 /* HSBloodDonorTests_Calendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 686BA629163469C3004D7082 /* HSBloodDonorTests_Calendar.m */; };
@@ -912,6 +915,11 @@
 		6864D61E1708B3C400F150F9 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		6864D6271708CB4900F150F9 /* HSMailChimp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSMailChimp.h; sourceTree = "<group>"; };
 		6864D6281708CB4900F150F9 /* HSMailChimp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSMailChimp.m; sourceTree = "<group>"; };
+		6864D66D17127A0500F150F9 /* HSEventShortInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSEventShortInfoView.h; sourceTree = "<group>"; };
+		6864D66E17127A0600F150F9 /* HSEventShortInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSEventShortInfoView.m; sourceTree = "<group>"; };
+		6864D67017127A3700F150F9 /* HSEventShortInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HSEventShortInfoView.xib; sourceTree = "<group>"; };
+		6864D67217128FAC00F150F9 /* UIView+HSSubviewManagement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+HSSubviewManagement.h"; sourceTree = "<group>"; };
+		6864D67317128FAC00F150F9 /* UIView+HSSubviewManagement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+HSSubviewManagement.m"; sourceTree = "<group>"; };
 		686BA62016344DE2004D7082 /* HSCalendarDayButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSCalendarDayButton.h; sourceTree = "<group>"; };
 		686BA62116344DE2004D7082 /* HSCalendarDayButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSCalendarDayButton.m; sourceTree = "<group>"; };
 		686BA62516345D0E004D7082 /* NSCalendar+HSCalendar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSCalendar+HSCalendar.h"; sourceTree = "<group>"; };
@@ -2232,6 +2240,8 @@
 				683F8A9F1649B8C10066C47A /* NSDate+HSCalendar.m */,
 				689B010D16ACA69A00B5CA4C /* UIView+HSLayoutManager.h */,
 				689B010E16ACA69A00B5CA4C /* UIView+HSLayoutManager.m */,
+				6864D67217128FAC00F150F9 /* UIView+HSSubviewManagement.h */,
+				6864D67317128FAC00F150F9 /* UIView+HSSubviewManagement.m */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -2461,6 +2471,9 @@
 				68B82F4116D1113A00533701 /* HSEventViewController.h */,
 				68B82F4216D1113A00533701 /* HSEventViewController.m */,
 				68B82F4316D1113A00533701 /* HSEventViewController.xib */,
+				6864D66D17127A0500F150F9 /* HSEventShortInfoView.h */,
+				6864D66E17127A0600F150F9 /* HSEventShortInfoView.m */,
+				6864D67017127A3700F150F9 /* HSEventShortInfoView.xib */,
 			);
 			path = calendar;
 			sourceTree = "<group>";
@@ -3368,6 +3381,7 @@
 				40595AF5170C4086007B2C61 /* HSItsBetaAchievementsViewController.xib in Resources */,
 				CE8609DD170DD62100E4497A /* HSStationsViewController.xib in Resources */,
 				409F0D26170F082500E0AF77 /* HSItsBetaAchievementsCell.xib in Resources */,
+				6864D67117127A3700F150F9 /* HSEventShortInfoView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3540,6 +3554,8 @@
 				40595AF4170C4086007B2C61 /* HSItsBetaAchievementsViewController.m in Sources */,
 				CE8609DC170DD62100E4497A /* HSStationsViewController.m in Sources */,
 				409F0D1E170F039800E0AF77 /* HSItsBetaAchievementsCell.m in Sources */,
+				6864D66F17127A0600F150F9 /* HSEventShortInfoView.m in Sources */,
+				6864D67417128FAC00F150F9 /* UIView+HSSubviewManagement.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
