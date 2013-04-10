@@ -185,8 +185,7 @@ namespace Donor.ViewModels
             // загружаем станции если их нет или дата последнего обновления была более чем одни сутки в прошлом
             //(ViewModelLocator.MainStatic.Settings.StationsUpdated.AddDays(1) < DateTime.Now)
             if ((ViewModelLocator.MainStatic.Stations.Items.Count() == 0) && (ViewModelLocator.MainStatic.Settings.StationsUpdated.AddDays(7) < DateTime.Now))
-            {
-            
+            {            
             var bw = new BackgroundWorker();
             bw.DoWork += delegate
             {
@@ -226,7 +225,62 @@ namespace Donor.ViewModels
             });
             };
             bw.RunWorkerAsync();
-            } else {};
+            } else {
+                var bw = new BackgroundWorker();
+                bw.DoWork += delegate
+                {
+                    var client = new RestClient("https://api.parse.com");
+                    var request = new RestRequest("1/classes/YAStations?limit=1000&where={\"updatedAt\":{\"$gte\":{\"__type\":\"Date\",\"iso\":\"" + ViewModelLocator.MainStatic.Settings.StationsUpdated.ToString("s") + "\"}}}", Method.GET);
+                    request.Parameters.Clear();
+
+                    request.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
+                    request.AddHeader("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
+
+                    client.ExecuteAsync(request, response =>
+                    {
+                        try
+                        {
+                            ObservableCollection<YAStationItem> eventslist1 = new ObservableCollection<YAStationItem>();
+                            JObject o = JObject.Parse(response.Content.ToString());
+                            eventslist1 = JsonConvert.DeserializeObject<ObservableCollection<YAStationItem>>(o["results"].ToString());
+
+                            Deployment.Current.Dispatcher.BeginInvoke(() =>
+                            {
+                                ViewModelLocator.MainStatic.Settings.StationsUpdated = DateTime.Now;
+                                ViewModelLocator.MainStatic.SaveSettingsToStorage();
+                                foreach (var item in eventslist1)
+                                {
+                                    try
+                                    {
+                                        if (this.Items.FirstOrDefault(c => c.ObjectId == item.ObjectId) != null)
+                                        {
+                                            this.Items.Remove(this.Items.FirstOrDefault(c => c.ObjectId == item.ObjectId));
+                                            this.Items.Add(item);
+                                        }
+                                        else
+                                        {
+                                            this.Items.Add(item);
+                                        };
+                                    }
+                                    catch { };
+                                };
+
+                                IsolatedStorageHelper.SaveSerializableObject<ObservableCollection<YAStationItem>>(this.Items, "yastations.xml");
+
+                                RaisePropertyChanged("Items");
+                                UpdateDistanceItems();
+                                RaisePropertyChanged("DistrictItems");
+                            });
+
+                        }
+                        catch
+                        {
+                        };
+
+                    });
+                };
+                bw.RunWorkerAsync();
+            };
         }
 
         private ObservableCollection<TownItem> _districtItems = new ObservableCollection<TownItem>();
