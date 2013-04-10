@@ -7,6 +7,7 @@
 //
 
 #import "HSItsBetaAchievementsViewController.h"
+#import "HSItsBetaAchievementsHeader.h"
 #import "HSItsBetaAchievementsCell.h"
 
 #import "MBProgressHUD.h"
@@ -26,7 +27,7 @@
 }
 
 - (void)refresh;
-- (UITableViewCell*)createTableViewCellWithNibName:(NSString*)nibName withClass:(Class)class;
+- (id)createViewWithNibName:(NSString*)nibName withClass:(Class)class;
 
 @end
 
@@ -113,7 +114,7 @@
     [_tableView reloadData];
 }
 
-- (UITableViewCell*)createTableViewCellWithNibName:(NSString*)nibName withClass:(Class)class {
+- (id)createViewWithNibName:(NSString*)nibName withClass:(Class)class {
     UINib* nib = [UINib nibWithNibName:nibName bundle:nil];
     if(nib != nil) {
         NSArray* content = [nib instantiateWithOwner:nil options:nil];
@@ -156,11 +157,23 @@
     return [[_content objectAtIndex:section] count];
 }
 
+- (UIView*)tableView:(UITableView*)tableView viewForHeaderInSection:(NSInteger)section {
+    NSString* title = [self tableView:tableView titleForHeaderInSection:section];
+    if(title == nil) {
+        return nil;
+    }
+    HSItsBetaAchievementsHeader* header = [self createViewWithNibName:@"HSItsBetaAchievementsHeader" withClass:[HSItsBetaAchievementsHeader class]];
+    if(header != nil) {
+        header.title = title;
+    }
+    return header;
+}
+
 - (UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath*)indexPath {
     static NSString* CellIdentifier = @"ItsBetaAchievementsCell";
     HSItsBetaAchievementsCell* cell = (HSItsBetaAchievementsCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if(cell == nil) {
-        cell = (HSItsBetaAchievementsCell*)[self createTableViewCellWithNibName:@"HSItsBetaAchievementsCell" withClass:[HSItsBetaAchievementsCell class]];
+        cell = [self createViewWithNibName:@"HSItsBetaAchievementsCell" withClass:[HSItsBetaAchievementsCell class]];
     }
     NSArray* section = [_content objectAtIndex:[indexPath section]];
     if(section != nil) {
@@ -174,7 +187,7 @@
 
 - (CGFloat)tableView:(UITableView*)tableView heightForHeaderInSection:(NSInteger)section {
     if(section == 1) {
-        return 21.0f;
+        return 51.0f;
     }
     return 0.0f;
 }

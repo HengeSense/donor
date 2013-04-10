@@ -16,11 +16,17 @@
 
 /*--------------------------------------------------*/
 
+#define ITS_BETA_OBJECT_ID_TYPE_DEFAULT @"itsbeta"
+#define ITS_BETA_OBJECT_ID_TYPE_FACEBOOK @"fb"
+
+/*--------------------------------------------------*/
+
 typedef void (^ItsBetaLogin)(ItsBetaPlayer* player, NSError* error);
 typedef void (^ItsBetaLogout)(ItsBetaPlayer* player, NSError* error);
 typedef void (^ItsBetaCreateAchievement)(ItsBetaPlayer* player, NSString* activateCode, NSError* error);
 typedef void (^ItsBetaActivateAchievement)(ItsBetaPlayer* player, NSString* object_id, NSError* error);
 typedef void (^ItsBetaGiveAchievement)(ItsBetaPlayer* player, NSString* object_id, NSError* error);
+typedef void (^ItsBetaObjectUrl)(NSString* object_url, NSError* error);
 
 /*--------------------------------------------------*/
 
@@ -66,6 +72,8 @@ typedef void (^ItsBetaGiveAchievement)(ItsBetaPlayer* player, NSString* object_i
 + (void) playerCreateAchievementWithProject:(ItsBetaProject*)project objectTemplate:(ItsBetaObjectTemplate*)objectTemplate params:(NSDictionary*)params callback:(ItsBetaCreateAchievement)callback;
 + (void) playerActivateAchievementWithProject:(ItsBetaProject*)project activateCode:(NSString*)activateCode callback:(ItsBetaActivateAchievement)callback;
 + (void) playerGiveAchievementWithProject:(ItsBetaProject*)project objectTemplate:(ItsBetaObjectTemplate*)objectTemplate params:(NSDictionary*)params callback:(ItsBetaGiveAchievement)callback;
+
++ (void) objectUrlForId:(NSString*)Id type:(NSString*)type params:(NSDictionary*)params callback:(ItsBetaObjectUrl)callback;
 
 + (void) synchronizeApplication;
 + (void) synchronizePlayerWithProject:(ItsBetaProject*)project;

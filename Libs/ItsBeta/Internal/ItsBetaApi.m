@@ -646,6 +646,58 @@
     }];
 }
 
++ (void) requestServiceURL:(NSString*)serviceURL
+               accessToken:(NSString*)accessToken
+                   objectId:(NSString*)objectId
+            objectIdType:(NSString*)objectIdType
+                    params:(NSDictionary*)params
+                    object:(ItsBetaApiResponseAchievementURL)object {
+    NSMutableDictionary* query = [NSMutableDictionary dictionary];
+    if(accessToken != nil) {
+        [query setObject:accessToken forKey:@"access_token"];
+    }
+    if(objectId != nil) {
+        [query setObject:objectId forKey:@"id"];
+    }
+    if(objectIdType != nil) {
+        [query setObject:objectIdType forKey:@"type"];
+    }
+    if(params != nil) {
+        [params enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL* stop) {
+            [query setObject:obj forKey:key];
+            stop = NO;
+        }];
+    }
+    ItsBetaRest* rest = [ItsBetaRest restWithMethod:@"POST" url:[NSString stringWithFormat:@"%@/info/achievement_url.json", serviceURL] query:query];
+    [rest sendSuccess:^(ItsBetaRest* rest) {
+        NSError* error = nil;
+        id json = [NSJSONSerialization JSONObjectWithData:[rest receivedData] options:0 error:&error];
+        if(error == nil) {
+            if([json isKindOfClass:[NSDictionary class]] == YES) {
+                NSString* object_url = [json objectForKey:@"url"];
+                if(object_url != nil) {
+                    if(object != nil) {
+                        object(object_url, nil);
+                    }
+                } else {
+                    error = [self errorWithDictionary:json];
+                }
+            }
+        }
+        if(error != nil) {
+            if(object != nil) {
+                object(nil, error);
+            }
+            NSLog(@"%@", error);
+        }
+    } sendFailure:^(ItsBetaRest* rest, NSError* error) {
+        if(object != nil) {
+            object(nil, error);
+        }
+        NSLog(@"%@", error);
+    }];
+}
+
 @end
 
 /*--------------------------------------------------*/

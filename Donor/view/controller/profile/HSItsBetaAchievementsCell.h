@@ -12,10 +12,10 @@
 
 @interface HSItsBetaAchievementsCell : UITableViewCell
 
-@property(nonatomic, readwrite, strong) ItsBetaObjectTemplate* objectTemplate;
-@property(nonatomic, readwrite) BOOL isExists;
-
 @property (nonatomic, weak) IBOutlet UIImageView *imageView;
 @property (nonatomic, weak) IBOutlet UILabel *nameLable;
+
+@property(nonatomic, readwrite, strong) ItsBetaObjectTemplate* objectTemplate;
+@property(nonatomic, readwrite) BOOL isExists;
 
 @end

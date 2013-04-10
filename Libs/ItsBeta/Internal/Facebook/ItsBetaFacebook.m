@@ -121,12 +121,25 @@
         }
     } else {
         if(_failureCallback != nil) {
+            if(_lastError == nil)
+            {
+                NSError* error = [NSError errorWithDomain:ItsBetaErrorDomain
+                                            code:ItsBetaErrorFacebookAuth
+                                        userInfo:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                  NSLocalizedString(@"Facebook.Fail.Session", @""), NSLocalizedDescriptionKey,
+                                                  nil]];
+                NS_SAFE_SETTER(_lastError, error);
+            }
             _failureCallback(_lastError);
         }
     }
     NS_SAFE_RELEASE(_accessToken);
     NS_SAFE_RELEASE(_lastError);
-    [self dismissModalViewControllerAnimated:YES];
+    if([_parentController presentedViewController] == self)
+    {
+        [_parentController dismissModalViewControllerAnimated:YES];
+    }
+    NS_SAFE_RELEASE(_parentController);
 }
 
 #pragma mark - IBActions

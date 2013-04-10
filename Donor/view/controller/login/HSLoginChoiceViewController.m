@@ -20,6 +20,7 @@
 #import "HSAlertViewController.h"
 
 #import "ItsBeta.h"
+#import "HSItsBetaAchievementDetailViewController.h"
 
 @interface HSLoginChoiceViewController ()
 
@@ -77,8 +78,7 @@
 
 - (void)loginWithBaseAuthForFacebookUser:(PFUser *)facebookUser {
     THROW_IF_ARGUMENT_NIL(facebookUser);
-    HSBaseLoginViewController *profileViewController =
-            [[HSBaseLoginViewController alloc] initWithNibName:@"HSBaseLoginViewController" bundle:nil];
+    HSBaseLoginViewController *profileViewController = [[HSBaseLoginViewController alloc] initWithNibName:@"HSBaseLoginViewController" bundle:nil];
     profileViewController.facebookUser = facebookUser;
     [self.navigationController pushViewController:profileViewController animated:YES];
 }
@@ -115,8 +115,28 @@
                 }];
             } else {
                 [self processAuthorizationSuccessWithUser:user completion: ^ {
-                    [Common getInstance].authenticatedWithFacebook = YES;
-                    [progressHud hide:YES];
+                    [ItsBeta playerLoginFacebookWithViewController:self
+                                                          callback:^(ItsBetaPlayer *player, NSError *error) {
+                                                              if(error == nil) {
+                                                                  ItsBetaProject* project = [ItsBeta projectByName:@"donor"];
+                                                                  ItsBetaObjectTemplate* objectTemplate = [ItsBeta objectTemplateByName:@"donorfriend" byProject:project];
+                                                                  [ItsBeta playerGiveAchievementWithProject:project
+                                                                                             objectTemplate:objectTemplate
+                                                                                                     params:nil
+                                                                                                   callback:^(ItsBetaPlayer *player, NSString *object_id, NSError *error) {
+                                                                                                       if(error == nil) {
+                                                                                                           HSItsBetaAchievementDetailViewController *controller = [[HSItsBetaAchievementDetailViewController alloc] initWithNibName:@"HSItsBetaAchievementDetailViewController" bundle:nil];
+                                                                                                           controller.objectID = object_id;
+                                                                                                           [self.navigationController pushViewController:controller animated:YES];
+                                                                                                       }
+                                                                                                       [Common getInstance].authenticatedWithFacebook = YES;
+                                                                                                       [progressHud hide:YES];
+                                                                                                   }];
+                                                              } else {
+                                                                  [Common getInstance].authenticatedWithFacebook = YES;
+                                                                  [progressHud hide:YES];
+                                                              }
+                                                          }];
                 }];
             }
         } else {
@@ -127,8 +147,7 @@
 }
 
 - (IBAction)registrationSelected:(id)sender {
-    HSProfileRegistrationViewController *controller = [[HSProfileRegistrationViewController alloc]
-            initWithNibName:@"HSProfileRegistrationViewController" bundle:nil];
+    HSProfileRegistrationViewController *controller = [[HSProfileRegistrationViewController alloc] initWithNibName:@"HSProfileRegistrationViewController" bundle:nil];
     [self.navigationController pushViewController:controller animated:YES];
 }
 
@@ -143,26 +162,18 @@
         HSCalendar *calendarModel = [HSCalendar sharedInstance];
         [calendarModel unlockModelWithUser:[PFUser currentUser]];
         [calendarModel pullEventsFromServer:^(BOOL success, NSError *error) {
-            [ItsBeta playerLoginFacebookWithViewController:self
-                                                  callback:^(ItsBetaPlayer *player, NSError *error) {
-                                                      [self giveInstallAchievement:^{
-                                                          [progressHud hide:YES];
-                                                          if(error != nil) {
-                                                              [HSAlertViewController showWithMessage:@"Ошибка при авторизации в itsbeta"];
-                                                              [self.navigationController popToRootViewControllerAnimated:YES];
-                                                          } else {
-                                                              if (success == YES) {
-                                                                  HSProfileDescriptionViewController *controller = [[HSProfileDescriptionViewController alloc]
-                                                                                                                    initWithNibName:@"HSProfileDescriptionViewController" bundle:nil];
-                                                                  controller.calendarInfoDelegate = calendarModel;
-                                                                  [self.navigationController pushViewController:controller animated:YES];
-                                                              } else {
-                                                                  [HSAlertViewController showWithMessage:@"Ошибка при загрузке событий календаря"];
-                                                                  [self.navigationController popToRootViewControllerAnimated:YES];
-                                                              }
-                                                          }
+            [progressHud hide:YES];
+            if (success == YES) {
+                [ItsBeta playerLoginFacebookWithViewController:self
+                                                      callback:^(ItsBetaPlayer *player, NSError *error) {
+                                                          HSProfileDescriptionViewController *controller = [[HSProfileDescriptionViewController alloc] initWithNibName:@"HSProfileDescriptionViewController" bundle:nil];
+                                                          controller.calendarInfoDelegate = calendarModel;
+                                                          [self.navigationController pushViewController:controller animated:YES];
                                                       }];
-                                                  }];
+            } else {
+                [HSAlertViewController showWithMessage:@"Ошибка при загрузке событий календаря"];
+                [self.navigationController popToRootViewControllerAnimated:YES];
+            }
         }];
     }
 }

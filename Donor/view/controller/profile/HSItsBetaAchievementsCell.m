@@ -7,6 +7,7 @@
 //
 
 #import "HSItsBetaAchievementsCell.h"
+#import  <QuartzCore/CALayer.h>
 
 #import "ItsBeta.h"
 
@@ -28,13 +29,22 @@ UIImage* convertImageToGrayScale(UIImage* image) {
     return grayScaleImage;
 }
 
+UIImage* createImageThumbnail(UIImage* image, CGSize size) {
+    UIGraphicsBeginImageContext(size);
+    [image drawInRect:CGRectMake(0.0, 0.0, size.width, size.height)];
+    UIImage* thumbnail = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return thumbnail;
+}
+
 @implementation HSItsBetaAchievementsCell
 
 - (void) setObjectTemplate:(ItsBetaObjectTemplate*)objectTemplate {
     if(_objectTemplate != objectTemplate) {
         _objectTemplate = objectTemplate;
         
-        [[self imageView] setImage:[[_objectTemplate image] data]];
+        CGRect bound = [[self imageView] bounds];
+        [[self imageView] setImage:createImageThumbnail([[_objectTemplate image] data], bound.size)];
         [[self nameLable] setText:[[_objectTemplate internal] valueAtName:@"display_name"]];
     }
 }

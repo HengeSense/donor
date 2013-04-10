@@ -51,7 +51,16 @@ static NSString * const kLinkedToFacebookTitle = @"привязан";
     self.bloodTypePicker = [[HSBloodTypePicker alloc] init];
     self.sexPicker = [[HSSexPicker alloc] init];
 
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didPlayerLogin:) name:ItsBetaDidPlayerLogin object:nil];
+    
     [self configureUI];
+}
+
+- (void) viewDidUnload
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self forKeyPath:ItsBetaDidPlayerLogin];
+    
+    [super viewDidUnload];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -60,6 +69,11 @@ static NSString * const kLinkedToFacebookTitle = @"привязан";
 }
 
 #pragma mark Actions
+
+- (void) didPlayerLogin:(NSNotification*)notification {
+    [self configureItsBetaUI];
+}
+
 - (void)cancelEditPressed {
     [self hideCurrentActionSheetView];
 
@@ -140,7 +154,7 @@ static NSString * const kLinkedToFacebookTitle = @"привязан";
         
         if (![Common getInstance].authenticatedWithFacebook) {
             self.facebookLinkUnlinkContainerView.hidden = NO;
-        } 
+        }
     }
 }
 
@@ -157,14 +171,13 @@ static NSString * const kLinkedToFacebookTitle = @"привязан";
 - (IBAction)bloodGroupButtonClick:(id)sender {
     [self.nameTextField resignFirstResponder];
     [self.bloodTypePicker showWithBloodGroup:self.editUserInfo.bloodGroup bloodRh:self.editUserInfo.bloodRh
-            completion:^(BOOL isDone)
-    {
-        if (isDone) {
-            self.editUserInfo.bloodGroup = self.bloodTypePicker.bloodGroup;
-            self.editUserInfo.bloodRh = self.bloodTypePicker.bloodRh;
-            [self updateBloodTypeButtonWithBloodGroup:self.editUserInfo.bloodGroup bloodRh:self.editUserInfo.bloodRh];
-        }
-    }];
+                                  completion:^(BOOL isDone) {
+                                      if (isDone) {
+                                          self.editUserInfo.bloodGroup = self.bloodTypePicker.bloodGroup;
+                                          self.editUserInfo.bloodRh = self.bloodTypePicker.bloodRh;
+                                          [self updateBloodTypeButtonWithBloodGroup:self.editUserInfo.bloodGroup bloodRh:self.editUserInfo.bloodRh];
+                                      }
+                                  }];
 }
 
 - (IBAction)logoutButtonClick:(id)sender {
@@ -193,10 +206,25 @@ static NSString * const kLinkedToFacebookTitle = @"привязан";
     MBProgressHUD *progressHud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
     NSArray *permissions = @[@"user_about_me", @"email"];
     [PFFacebookUtils linkUser:[PFUser currentUser] permissions:permissions block:^(BOOL succeeded, NSError *error) {
-        [progressHud hide:YES];
         if (succeeded) {
             [self.proposeFacebookLinkUnlinkButton setTitle:kLinkedToFacebookTitle forState:UIControlStateNormal];
+            [ItsBeta playerLoginFacebookWithViewController:self
+                                                  callback:^(ItsBetaPlayer *player, NSError *error) {
+                                                      if(error == nil) {
+                                                          ItsBetaProject* project = [ItsBeta projectByName:@"donor"];
+                                                          ItsBetaObjectTemplate* objectTemplate = [ItsBeta objectTemplateByName:@"donorfriend" byProject:project];
+                                                          [ItsBeta playerGiveAchievementWithProject:project
+                                                                                     objectTemplate:objectTemplate
+                                                                                             params:nil
+                                                                                           callback:^(ItsBetaPlayer *player, NSString *object_id, NSError *error) {
+                                                                                               [progressHud hide:YES];
+                                                                                           }];
+                                                      } else {
+                                                          [progressHud hide:YES];
+                                                      }
+                                                  }];
         } else {
+            [progressHud hide:YES];
             [HSAlertViewController showWithTitle:@"Ошибка"
                                          message:[HSModelCommon localizedDescriptionForParseError:error]];
             NSLog(@"Facebook link failed due to error: %@", error);
@@ -318,11 +346,14 @@ static NSString * const kLinkedToFacebookTitle = @"привязан";
 }
 
 - (void)configureItsBetaUI {
-    if ([ItsBeta playerLogined] == YES) {
+    if ([PFFacebookUtils isLinkedWithUser:[PFUser currentUser]]) {
         [self.itsbetaStatusLabel setText:kLinkedToFacebookTitle];
-        self.itsbetaShowAchievementsButton.enabled = YES;
     } else {
         [self.itsbetaStatusLabel setText:kNotLinkedToFacebookTitle];
+    }
+    if ([ItsBeta playerLogined] == YES) {
+        self.itsbetaShowAchievementsButton.enabled = YES;
+    } else {
         self.itsbetaShowAchievementsButton.enabled = NO;
     }
 }
