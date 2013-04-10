@@ -36,6 +36,8 @@ typedef void (^ItsBetaPlayerGiveAchievement)(NSString* object_id, NSError* error
 
 - (id) initWithType:(ItsBetaPlayerType)type;
 
+- (NSString*) typeToString;
+
 - (BOOL) synchronizeWithProject:(ItsBetaProject*)project;
 
 - (BOOL) isLogined;

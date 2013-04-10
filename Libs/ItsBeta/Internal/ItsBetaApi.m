@@ -40,6 +40,13 @@
     return [NSError errorWithDomain:ItsBetaErrorDomain code:ItsBetaErrorResponse userInfo:userInfo];
 }
 
++ (ItsBetaPlayerType) playerTypeFromString:(NSString*)playerType {
+    if([playerType isEqualToString:@"fb_user_id"] == YES) {
+        return ItsBetaPlayerTypeFacebook;
+    }
+    return ItsBetaPlayerTypeUnknown;
+}
+
 + (NSString*) playerTypeToString:(ItsBetaPlayerType)playerType {
     switch(playerType) {
         case ItsBetaPlayerTypeFacebook: return @"fb_user_id";

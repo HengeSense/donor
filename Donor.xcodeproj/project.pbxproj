@@ -161,6 +161,7 @@
 		409F0D26170F082500E0AF77 /* HSItsBetaAchievementsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 409F0D25170F082400E0AF77 /* HSItsBetaAchievementsCell.xib */; };
 		40D5FF631714409A00821B01 /* HSItsBetaAchievementDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40D5FF611714409900821B01 /* HSItsBetaAchievementDetailViewController.m */; };
 		40D5FF641714409A00821B01 /* HSItsBetaAchievementDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40D5FF621714409900821B01 /* HSItsBetaAchievementDetailViewController.xib */; };
+		40D5FF77171579D100821B01 /* HSItsBeta.m in Sources */ = {isa = PBXBuildFile; fileRef = 40D5FF76171579D100821B01 /* HSItsBeta.m */; };
 		6802A1671665D4FD0034B124 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 371CBA5215AFD452008CA154 /* Parse.framework */; };
 		683F8A81164573860066C47A /* HSBloodDonationType.m in Sources */ = {isa = PBXBuildFile; fileRef = 683F8A80164573860066C47A /* HSBloodDonationType.m */; };
 		683F8A9716468E300066C47A /* event_done_button_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 683F8A9316468E300066C47A /* event_done_button_normal.png */; };
@@ -812,6 +813,8 @@
 		40D5FF601714409900821B01 /* HSItsBetaAchievementDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSItsBetaAchievementDetailViewController.h; sourceTree = "<group>"; };
 		40D5FF611714409900821B01 /* HSItsBetaAchievementDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSItsBetaAchievementDetailViewController.m; sourceTree = "<group>"; };
 		40D5FF621714409900821B01 /* HSItsBetaAchievementDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HSItsBetaAchievementDetailViewController.xib; sourceTree = "<group>"; };
+		40D5FF75171579D100821B01 /* HSItsBeta.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSItsBeta.h; sourceTree = "<group>"; };
+		40D5FF76171579D100821B01 /* HSItsBeta.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSItsBeta.m; sourceTree = "<group>"; };
 		683F8A80164573860066C47A /* HSBloodDonationType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSBloodDonationType.m; sourceTree = "<group>"; };
 		683F8A9316468E300066C47A /* event_done_button_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = event_done_button_normal.png; sourceTree = "<group>"; };
 		683F8A9416468E300066C47A /* event_done_button_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "event_done_button_normal@2x.png"; sourceTree = "<group>"; };
@@ -1920,6 +1923,15 @@
 			path = Facebook;
 			sourceTree = "<group>";
 		};
+		40D5FF74171579D100821B01 /* ItsBeta */ = {
+			isa = PBXGroup;
+			children = (
+				40D5FF75171579D100821B01 /* HSItsBeta.h */,
+				40D5FF76171579D100821B01 /* HSItsBeta.m */,
+			);
+			path = ItsBeta;
+			sourceTree = "<group>";
+		};
 		683F8A9216468E300066C47A /* Buttons */ = {
 			isa = PBXGroup;
 			children = (
@@ -2357,6 +2369,7 @@
 				688F7F8316A012FD008581D4 /* FlurryAnalytics */,
 				6864D6261708CB2800F150F9 /* MailChimp */,
 				688F7F8616A012FD008581D4 /* string */,
+				40D5FF74171579D100821B01 /* ItsBeta */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -3560,6 +3573,7 @@
 				409F0D1E170F039800E0AF77 /* HSItsBetaAchievementsCell.m in Sources */,
 				404470111712AF1000DF0561 /* HSItsBetaAchievementsHeader.m in Sources */,
 				40D5FF631714409A00821B01 /* HSItsBetaAchievementDetailViewController.m in Sources */,
+				40D5FF77171579D100821B01 /* HSItsBeta.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

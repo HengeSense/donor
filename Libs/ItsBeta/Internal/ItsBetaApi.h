@@ -20,6 +20,7 @@ typedef void (^ItsBetaApiResponseAchievementURL)(NSString* object_url, NSError* 
 
 @interface ItsBetaApi : NSObject
 
++ (ItsBetaPlayerType) playerTypeFromString:(NSString*)playerType;
 + (NSString*) playerTypeToString:(ItsBetaPlayerType)playerType;
 
 + (void) requestServiceURL:(NSString*)serviceURL

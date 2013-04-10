@@ -106,6 +106,10 @@
     [coder encodeObject:_graphUser forKey:@"facebook_graph_user"];
 }
 
+- (NSString*) typeToString {
+    return [ItsBetaApi playerTypeToString:_type];
+}
+
 - (BOOL) synchronizeWithProject:(ItsBetaProject*)project {
     if([ItsBeta applicationAccessToken] == nil) {
         // ERROR
