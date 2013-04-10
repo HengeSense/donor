@@ -22,6 +22,11 @@
 - (void)adjustAsContentViewIncludeAdditionalNavigationBar:(UIView *)additionalNavBar;
 
 /**
+ * Adjusts view frame to locate in parent view from specified origin bar and tab bar.
+ */
+- (void)adjustViewWithOrigin:(CGPoint)origin;
+
+/**
  * Moves view's frame under the screen bottom line.
  */
 - (void)shiftFromScreenToBottom;

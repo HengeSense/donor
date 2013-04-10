@@ -25,6 +25,10 @@
 #import "HSCalendarInfoViewController.h"
 #import "HSBaseLoginViewController.h"
 #import "HSAlertViewController.h"
+#import "HSEventShortInfoView.h"
+
+#import "UIView+HSLayoutManager.h"
+#import "UIView+HSSubviewManagement.h"
 
 @interface HSCalendarViewController ()
 
@@ -121,7 +125,8 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
+    [super viewWillAppear:animated];
+    [self.todayEventsScrollView adjustViewWithOrigin:self.todayEventsScrollView.frame.origin];
     if ([self userAuthorized]) {
         [self hideBlockUI];
         [self updateCalendarToDate:self.currentDate];
@@ -139,6 +144,7 @@
     [self setCalendarImageView:nil];
     [self setMonthLabel:nil];
     [self setBlockUIViewController:nil];
+    [self setTodayEventsScrollView:nil];
     [super viewDidUnload];
 }
 
@@ -206,6 +212,7 @@
         [progressHud hide:YES];
         if (success) {
             [self updateDaysButtonsToDate:date];
+            [self updateTodaysEventsView];
             self.currentDate = date;
         } else {
             [self clearCalendarView];
@@ -272,6 +279,23 @@
         [self.calendarImageView addSubview:dayButton];
         dayButtonFrame.origin.x += DAY_BUTTON_WIDTH;
     }
+}
+
+- (void)updateTodaysEventsView {
+    [self.todayEventsScrollView removeSubviews];
+    
+    NSArray *todaysEvents = [self.calendarModel eventsForDay:[NSDate date]];
+    CGFloat contentOffsetY = 0.0f;
+    for (HSEvent *event in todaysEvents) {
+        HSEventShortInfoView *eventShortView = [[HSEventShortInfoView alloc] initWithEvent:event];
+        eventShortView.frame = CGRectMake(0, contentOffsetY, self.todayEventsScrollView.bounds.size.width, eventShortView.bounds.size.height);
+        eventShortView.showHeaderLine = NO;
+        eventShortView.showFooterLine = event != [todaysEvents lastObject];
+        [self.todayEventsScrollView addSubview:eventShortView];
+        contentOffsetY += eventShortView.frame.size.height;
+    }
+    
+    self.todayEventsScrollView.contentSize = CGSizeMake(self.todayEventsScrollView.bounds.size.width, contentOffsetY);
 }
 
 #pragma mark - Action handlers

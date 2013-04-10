@@ -39,4 +39,12 @@
     return [[UIView alloc] initWithFrame: bounds];
 }
 
+- (UIImage *)eventImage {
+    return nil;
+}
+
+- (NSString *)eventShortDescription {
+    return nil;
+}
+
 @end

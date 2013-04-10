@@ -21,6 +21,17 @@ static const NSUInteger kBottomTabBarHeight = 55;
     self.frame = [self defineContentFrameWithAdditionalTopHeight:additionalNavBar.bounds.size.height];
 }
 
+- (void)adjustViewWithOrigin:(CGPoint)origin {
+    NSUInteger screenHeight = [UIScreen mainScreen].bounds.size.height;
+    NSUInteger screenWidth = [UIScreen mainScreen].bounds.size.width;
+    
+    CGRect contentViewFrame = CGRectZero;
+    contentViewFrame.origin = origin;
+    contentViewFrame.size.height = screenHeight - kNavigationBarHeight - origin.y - kBottomTabBarHeight;
+    contentViewFrame.size.width = screenWidth - origin.x;
+    self.frame = contentViewFrame;
+}
+
 - (CGRect)defineContentFrameWithAdditionalTopHeight:(NSUInteger)additionalHeight {
     NSUInteger screenHeight = [UIScreen mainScreen].bounds.size.height;
     NSUInteger screenWidth = [UIScreen mainScreen].bounds.size.width;
