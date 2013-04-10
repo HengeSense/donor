@@ -33,11 +33,8 @@ namespace Donor
         {
             try
             {
-                //if ((this.AvailableBadges.SelectedItem as AchieveItem).Status == true)
-                //{
-                    ViewModelLocator.BadgesStatic.CurrentBadge = (this.AvailableBadges.SelectedItem as AchieveItem);
+                    ViewModelLocator.BadgesStatic.CurrentBadge = ((sender as ListBox).SelectedItem as AchieveItem);
                     ViewModelLocator.BadgesStatic.ShowBadgeMessage();
-                //};
             }
             catch { };            
         }
@@ -71,5 +68,7 @@ namespace Donor
             }
             catch { };
         }
+
+
     }
 }

@@ -168,6 +168,7 @@ namespace Donor.ViewModels
                 Api_name = "secondblood",
                 Image = "/images/achieves/Achive-donor_secondBlood_unavailible.png",
                 Status = false,
+                Description = "Сдал кровь второй раз",
                 UnactiveImage = "/images/achieves/Achive-donor_secondBlood_unavailible.png" });
 
             //ViewModelLocator.MainStatic.UserEnter += new MainViewModel.UserEnterEventHandler(ViewModelLocator.BadgesStatic.UserLoaded);

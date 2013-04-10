@@ -103,7 +103,7 @@
 		    Tap="StationsList_Tap" ItemTap="StationsList_ItemTap"              
             GroupPickerItemTemplate="{StaticResource GroupPickerTemplate}" 
             GroupHeaderItemTap="StationsList_GroupHeaderItemTap" 
-            EmptyContent="По данному фильтру не найдено станций. Измените параметры поиска" 
+            EmptyContent="Данных нет." 
             EmptyContentTemplate="{StaticResource EmptyStationsTemplate}">
                 <telerikData:RadJumpList.GroupHeaderTemplate>
                     <DataTemplate>
