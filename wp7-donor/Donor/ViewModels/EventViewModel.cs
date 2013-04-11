@@ -17,6 +17,7 @@ using RestSharp;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Microsoft.Phone.Scheduler;
+using GalaSoft.MvvmLight;
 
 
 ///
@@ -70,7 +71,7 @@ namespace Donor.ViewModels
     }
 
 
-    public class EventViewModel : INotifyPropertyChanged
+    public class EventViewModel: ViewModelBase
     {
         public EventViewModel()
         {
@@ -292,8 +293,8 @@ namespace Donor.ViewModels
             set
             {
                 _finished = value;
-                NotifyPropertyChanged("Finished");
-                NotifyPropertyChanged("FinishedString");
+                RaisePropertyChanged("Finished");
+                RaisePropertyChanged("FinishedString");
             }
         }
 
@@ -440,8 +441,8 @@ namespace Donor.ViewModels
             set
             {
                 _time = value;
-                NotifyPropertyChanged("Time");
-                NotifyPropertyChanged("ShortTime");
+                RaisePropertyChanged("Time");
+                RaisePropertyChanged("ShortTime");
             }
         }
 
@@ -593,7 +594,23 @@ namespace Donor.ViewModels
         /// Идентификатор станции, к  которой привязано событие (в случае, если место проведения события было выбрано из списка стандции)
         /// </summary>
         public string Station_nid { get; set; }
-        public string YAStation_objectid { get; set; }
+
+        private string _yastation_objectid = "";
+        public string YAStation_objectid
+        {
+            get
+            {
+                return _yastation_objectid;
+            }
+            set
+            {
+                if (_yastation_objectid!=value)
+                {
+                    _yastation_objectid = value;
+                    RaisePropertyChanged("YAStation_objectid");
+                };
+            }
+        }
 
         public string Delivery
         {
@@ -1356,7 +1373,7 @@ namespace Donor.ViewModels
                 var request = new RestRequest("1/classes/Events", Method.POST);
                 request.AddHeader("Accept", "application/json");
                 request.Parameters.Clear();
-                string strJSONContent = "{\"analysisResult\":" + addedItems.ReminderMessage.ToString().ToLower() + ", \"notice\": " + addedItems.Notice.ToString() + ", \"yastation_objectid\": \"" + addedItems.YAStation_objectid.ToString() + "\", \"date\": {\"__type\": \"Date\", \"iso\": \"" + addedItems.DateAndTime.ToString("s") + "\"}, \"finished\":" + addedItems.Finished.ToString().ToLower() + ", \"adress\":\"" + addedItems.Place + "\", \"comment\":\"" + addedItems.Description.Replace("\r", "\n") + "\", \"type\":" + addedItems.Type + ", \"delivery\":" + addedItems.Delivery + ", \"type\":" + addedItems.Type + "}";
+                string strJSONContent = "{\"analysisResult\":" + addedItems.ReminderMessage.ToString().ToLower() + ", \"notice\": " + addedItems.Notice.ToString() + ", \"yastation_objectid\": \"" + addedItems.YAStation_objectid.ToString() + "\", \"date\": {\"__type\": \"Date\", \"iso\": \"" + addedItems.DateAndTime.ToString("s") + "\"}, \"finished\":" + addedItems.Finished.ToString().ToLower() + ", \"adress\":\"" + addedItems.Place + "\", \"comment\":\"" + addedItems.Description.Replace("\r", "\n").ToString() + "\", \"type\":" + addedItems.Type.ToString() + ", \"delivery\":" + addedItems.Delivery.ToString() + ", \"type\":" + addedItems.Type.ToString() + "}";
 
 
                 request.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);

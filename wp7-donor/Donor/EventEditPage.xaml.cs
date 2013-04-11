@@ -494,7 +494,7 @@ namespace Donor
                          };
                      };
                  }
-                 catch
+                 catch(Exception ex)
                  {
                      NavigationService.GoBack();
                  };
