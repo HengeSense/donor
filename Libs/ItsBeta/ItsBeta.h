@@ -67,6 +67,7 @@ typedef void (^ItsBetaObjectUrl)(NSString* object_url, NSError* error);
 #else
 + (void) playerLoginFacebookWithViewController:(NSViewController*)viewController callback:(ItsBetaLogin)callback;
 #endif
++ (void) playerLoginWithFacebookId:(NSString*)facebookId facebookToken:(NSString*)facebookToken callback:(ItsBetaLogin)callback;
 + (void) playerLogout:(ItsBetaLogout)callback;
 
 + (void) playerCreateAchievementWithProject:(ItsBetaProject*)project objectTemplate:(ItsBetaObjectTemplate*)objectTemplate params:(NSDictionary*)params callback:(ItsBetaCreateAchievement)callback;

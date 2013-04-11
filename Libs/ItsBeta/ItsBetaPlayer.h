@@ -25,6 +25,7 @@ typedef void (^ItsBetaPlayerGiveAchievement)(NSString* object_id, NSError* error
 @interface ItsBetaPlayer : NSObject< NSCoding >
 
 @property(nonatomic, readwrite) ItsBetaPlayerType type; // Тип пользователя
+@property(nonatomic, readwrite) NSString* typeString; // Тип пользователя в виде строки
 @property(nonatomic, readonly) NSString* Id; // Уникальный Id пользователя
 @property(nonatomic, readonly) NSString* facebookId; // Id в facebook
 @property(nonatomic, readonly) NSString* facebookToken; // facebook access token
@@ -35,8 +36,6 @@ typedef void (^ItsBetaPlayerGiveAchievement)(NSString* object_id, NSError* error
 + (ItsBetaPlayer*) playerWithType:(ItsBetaPlayerType)type;
 
 - (id) initWithType:(ItsBetaPlayerType)type;
-
-- (NSString*) typeToString;
 
 - (BOOL) synchronizeWithProject:(ItsBetaProject*)project;
 

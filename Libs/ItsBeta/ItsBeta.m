@@ -170,6 +170,20 @@
         }];
     }];
 }
+    
++ (void) playerLoginWithFacebookId:(NSString*)facebookId facebookToken:(NSString*)facebookToken callback:(ItsBetaLogin)callback {
+    ItsBeta* itsbeta = [ItsBeta sharedItsBeta];
+    ItsBetaPlayer* player = [itsbeta player];
+    [player setType:ItsBetaPlayerTypeFacebook];
+    [player loginWithFacebookId:facebookId facebookToken:facebookToken graphUser:nil callback:^(NSError *error) {
+        if(callback != nil) {
+            callback(player, error);
+        }
+        [ItsBetaQueue runASync:^{
+            [itsbeta saveToLocalStorage];
+        }];
+    }];
+}
 
 + (void) playerLogout:(ItsBetaLogout)callback {
     ItsBeta* itsbeta = [ItsBeta sharedItsBeta];

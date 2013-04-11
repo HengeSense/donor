@@ -52,6 +52,14 @@
     }
 }
 
+- (void) setTypeString:(NSString*)typeString {
+    [self setType:[ItsBetaApi playerTypeFromString:typeString]];
+}
+
+- (NSString*) typeString {
+    return [ItsBetaApi playerTypeToString:_type];
+}
+
 + (ItsBetaPlayer*) playerWithType:(ItsBetaPlayerType)type {
     return NS_SAFE_AUTORELEASE([[self alloc] initWithType:type]);
 }
@@ -104,10 +112,6 @@
     [coder encodeObject:_facebookId forKey:@"facebook_id"];
     [coder encodeObject:_facebookToken forKey:@"facebook_token"];
     [coder encodeObject:_graphUser forKey:@"facebook_graph_user"];
-}
-
-- (NSString*) typeToString {
-    return [ItsBetaApi playerTypeToString:_type];
 }
 
 - (BOOL) synchronizeWithProject:(ItsBetaProject*)project {

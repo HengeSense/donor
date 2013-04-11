@@ -114,10 +114,9 @@
                     }
                 }];
             } else {
-                [HSItsBeta restoreItsBeta:self user:user completion:^{
-                    [self processAuthorizationSuccessWithUser:user completion: ^ {
-                        [progressHud hide:YES];
-                    }];
+                [HSItsBeta restoreItsBeta:self user:user completion:nil];
+                [self processAuthorizationSuccessWithUser:user completion: ^ {
+                    [progressHud hide:YES];
                 }];
             }
         } else {
