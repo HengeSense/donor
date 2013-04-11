@@ -6,11 +6,13 @@
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:tilteffect="clr-namespace:ControlTiltEffect"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit" 
     Foreground="{StaticResource PhoneForegroundBrush}"
+    xmlns:tilteffect="clr-namespace:ControlTiltEffect"   
+    xmlns:telerikCore="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Core"
+    xmlns:telerikData="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Data"
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480"
     DataContext="{Binding Path=ViewModelLocator.MainStatic,Source=ViewModelLocator.MainStatic}"
@@ -34,19 +36,19 @@
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-            <ListBox Margin="0,15,-12,0" ItemsSource="{Binding Ads.SortedItems}" 
+            <telerikData:RadJumpList  Margin="0,15,-12,0" ItemsSource="{Binding Ads.SortedItems}" 
                      DataContext="{Binding Main, Source={StaticResource Locator}}" 
-                     SelectionChanged="ListBox_SelectionChanged" Tap="ListBox_Tap" 
-                     tilteffect:TiltEffect.IsTiltEnabled="True">
-                <ListBox.ItemTemplate>
+                     EmptyContent=""
+                     tilteffect:TiltEffect.IsTiltEnabled="True" ItemTap="RadJumpList_ItemTap_1">
+                <telerikData:RadJumpList.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Margin="0,20,0,5" Width="432">
                             <TextBlock Text="{Binding CreatedAtText}" TextWrapping="Wrap" Style="{StaticResource Text40pxB9A194}"/>
                             <TextBlock Text="{Binding Title}" TextWrapping="Wrap" Style="{StaticResource Text24pxB9A194}"/>
                         </StackPanel>
                     </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
+                    </telerikData:RadJumpList.ItemTemplate>
+            </telerikData:RadJumpList>
         </Grid>
     </Grid>
 

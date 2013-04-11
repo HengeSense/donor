@@ -424,7 +424,6 @@ namespace Donor.ViewModels
                     request.AddParameter("badge_name", "donorfriend");
                     //for test
                     //request.AddParameter("unique", "f");
-
                     client.ExecuteAsync(request, response =>
                     {
                         try
