@@ -109,7 +109,7 @@
                     <DataTemplate>
                         <Border Background="#FF006168" Margin="0" 
                             telerikCore:InteractionEffectManager.IsInteractionEnabled="True">
-                            <TextBlock Foreground="#FFDFB08B" Margin="5,10" 
+                            <TextBlock Foreground="#FFDFB08B" Margin="10,10,5,10" 
                                        FontWeight="Bold"
                                        FontSize="30" Text="{Binding}"/>
                         </Border>
@@ -120,7 +120,7 @@
                 		<Border BorderThickness="0,0,0,1"
                                 telerikCore:InteractionEffectManager.IsInteractionEnabled="True"
 						        BorderBrush="#FFafafaf">
-                            <StackPanel Margin="6,10,10,6">
+                            <StackPanel Margin="10,10,10,6">
                                 <StackPanel
 							            HorizontalAlignment="Left"
 							            Orientation="Horizontal">
@@ -135,7 +135,7 @@
 								        Foreground="#FF0A6066"
 								        FontSize="30"/>
                                 </StackPanel>
-                                <TextBlock Text="{Binding Address}"
+                                <TextBlock Text="{Binding ShowAddress}"
 							        TextWrapping="Wrap" 
 							        FontSize="30"
 							        Foreground="#FF645B54"/>

@@ -37,7 +37,7 @@ namespace Donor
 {
 
 
-    public class MainViewModel : ViewModelBase, INotifyPropertyChanged
+    public class MainViewModel : ViewModelBase
     {
         public const string XParseApplicationId = "EIpakVdZblHedhqgxMgiEVnIGCRGvWdy9v8gkKZu";
         public const string XParseRESTAPIKey = "wPvwRKxX2b2vyrRprFwIbaE5t3kyDQq11APZ0qXf";
@@ -80,6 +80,20 @@ namespace Donor
             {
                 _eventChanging = value;
                 RaisePropertyChanged("EventChanging");
+            }
+        }
+
+        private bool _loading = false;
+        public bool Loading
+        {
+            get
+            {
+                return _loading;
+            }
+            set
+            {
+                _loading = value;
+                RaisePropertyChanged("Loading");
             }
         }
 

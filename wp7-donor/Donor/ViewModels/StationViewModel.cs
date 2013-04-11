@@ -213,6 +213,7 @@ namespace Donor.ViewModels
 
             // загружаем станции если их нет или дата последнего обновления была более чем одни сутки в прошлом
             //(ViewModelLocator.MainStatic.Settings.StationsUpdated.AddDays(1) < DateTime.Now)
+            //ViewModelLocator.MainStatic.Loadin
             if ((ViewModelLocator.MainStatic.Stations.Items.Count() == 0) && (ViewModelLocator.MainStatic.Settings.StationsUpdated.AddDays(7) < DateTime.Now))
             {            
             var bw = new BackgroundWorker();
@@ -259,7 +260,7 @@ namespace Donor.ViewModels
                 bw.DoWork += delegate
                 {
                     var client = new RestClient("https://api.parse.com");
-                    var request = new RestRequest("1/classes/YAStations?limit=1000&where={\"updatedAt\":{\"$gte\":{\"__type\":\"Date\",\"iso\":\"" + ViewModelLocator.MainStatic.Settings.StationsUpdated.ToString("s") + "\"}}}", Method.GET);
+                    var request = new RestRequest("1/classes/YAStations?limit=1000&where={\"updatedAt\":{\"$gte\":{\"__type\":\"Date\",\"iso\":\"" + ViewModelLocator.MainStatic.Settings.StationsUpdated.ToUniversalTime().ToString("s") + "\"}}}", Method.GET);
                     request.Parameters.Clear();
 
                     request.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
@@ -644,6 +645,41 @@ namespace Donor.ViewModels
                 catch { };
                 _address = _address.Trim();
                 RaisePropertyChanged("Address");
+            }
+        }
+
+        public string ShowAddress
+        {
+            private set
+            {
+            }
+            get
+            {
+                if (Shortaddress == "")
+                {
+                    return Address;
+                }
+                else
+                {
+                    return Town+", "+Shortaddress;
+                };
+            }
+        }
+
+        private string _shortaddress = "";
+        /// <summary>
+        /// Короткий адрес
+        /// </summary>
+        public string Shortaddress
+        {
+            get
+            {
+                return _shortaddress;
+            }
+            set
+            {
+                _shortaddress = value;
+                RaisePropertyChanged("Shortaddress");
             }
         }
 

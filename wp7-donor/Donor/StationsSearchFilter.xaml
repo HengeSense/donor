@@ -26,7 +26,7 @@
         </DataTemplate>
         <DataTemplate x:Key="GroupPickerTemplate">
             <Border Background="#FF006168" Margin="5">
-                <TextBlock Foreground="#FFDFB08B" FontWeight="Bold" Margin="5,10" FontSize="30" Text="{Binding}"/>
+                <TextBlock Foreground="#FFDFB08B" FontWeight="Bold" Margin="10,10,5,10" FontSize="30" Text="{Binding}"/>
             </Border>
         </DataTemplate>
     </phone:PhoneApplicationPage.Resources>
@@ -111,7 +111,7 @@
                 <telerikData:RadJumpList.GroupHeaderTemplate>
                     <DataTemplate telerikCore:InteractionEffectManager.IsInteractionEnabled="True">
                         <Border Background="#FF006168" Margin="0">
-                            <TextBlock Foreground="#FFDFB08B" Margin="5,10" 
+                            <TextBlock Foreground="#FFDFB08B" Margin="8,10,5,10" 
                                        FontWeight="Bold"
                                        FontSize="30" Text="{Binding}"/>
                         </Border>
@@ -121,7 +121,7 @@
                     <DataTemplate>
                         <Border BorderThickness="0,0,0,1" 
 						BorderBrush="#FFafafaf" Height="Auto">
-                            <StackPanel Margin="6,15,15,6">
+                            <StackPanel Margin="10,15,15,6">
                                 <Grid HorizontalAlignment="Stretch">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="460"/>
