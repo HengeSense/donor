@@ -16,7 +16,14 @@ mc:Ignorable="d">
     <vm:ViewModelLocator x:Key="Locator" />
     <local:LocalizedStrings xmlns:local="clr-namespace:Donor" x:Key="LocalizedStrings" />
     <!--<vm:ViewModelLocator xmlns:vm="clr-namespace:Donor.ViewModels" x:Key="Locator" />-->
-    <Style x:Key="ListPickerStyle1" TargetType="toolkit:ListPicker">
+
+      <DataTemplate x:Key="EmptyStationsTemplate">
+            <TextBlock Text="{Binding}" HorizontalAlignment="Center"
+                       Foreground="#FF847168" Name="Noresults" TextWrapping="Wrap"
+                       Margin="10,5,10,0"/>
+      </DataTemplate>
+
+      <Style x:Key="ListPickerStyle1" TargetType="toolkit:ListPicker">
       <Setter Property="Background" Value="{StaticResource PhoneTextBoxBrush}" />
       <Setter Property="Foreground" Value="{StaticResource PhoneTextBoxForegroundBrush}" />
       <Setter Property="BorderBrush" Value="{StaticResource PhoneTextBoxBrush}" />

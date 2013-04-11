@@ -661,7 +661,14 @@ namespace Donor.ViewModels
                 }
                 else
                 {
-                    return Town+", "+Shortaddress;
+                    if (ViewModelLocator.MainStatic.Stations.CurrentDistrict == "")
+                    {
+                        return Town + ", " + Shortaddress;
+                    }
+                    else
+                    {
+                        return Shortaddress;
+                    };                    
                 };
             }
         }

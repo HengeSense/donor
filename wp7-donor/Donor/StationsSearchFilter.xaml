@@ -19,11 +19,6 @@
     shell:SystemTray.IsVisible="False" Loaded="PhoneApplicationPage_Loaded_1">
 
     <phone:PhoneApplicationPage.Resources>
-        <DataTemplate x:Key="EmptyStationsTemplate">
-            <TextBlock Text="{Binding NoStations, Source={StaticResource Loc}}" 
-                       Foreground="#FF847168" Name="Noresults" TextWrapping="Wrap"
-                       Margin="10,5,10,0"/>
-        </DataTemplate>
         <DataTemplate x:Key="GroupPickerTemplate">
             <Border Background="#FF006168" Margin="5">
                 <TextBlock Foreground="#FFDFB08B" FontWeight="Bold" Margin="10,10,5,10" FontSize="30" Text="{Binding}"/>
@@ -105,9 +100,12 @@
                 telerikCore:InteractionEffectManager.IsInteractionEnabled="True"
                 ItemsSource="{Binding Stations.DistrictItems}"
                 DataContext="{Binding Main, Source={StaticResource Locator}}" 
-		        ItemTap="StationsList_ItemTap"              
+		        ItemTap="StationsList_ItemTap"            
+                EmptyContent="Данных нет"
+                EmptyContentTemplate="{StaticResource EmptyStationsTemplate}"
                 GroupPickerItemTemplate="{StaticResource GroupPickerTemplate}" 
-                GroupPickerItemTap="StationsList_GroupPickerItemTap" Height="658" GroupHeaderItemTap="DistrictsList_GroupHeaderItemTap">
+                GroupPickerItemTap="StationsList_GroupPickerItemTap" Height="658" 
+                GroupHeaderItemTap="DistrictsList_GroupHeaderItemTap">
                 <telerikData:RadJumpList.GroupHeaderTemplate>
                     <DataTemplate telerikCore:InteractionEffectManager.IsInteractionEnabled="True">
                         <Border Background="#FF006168" Margin="0">

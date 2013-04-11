@@ -20,11 +20,6 @@
     xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives"
     shell:SystemTray.IsVisible="False" Loaded="PhoneApplicationPage_Loaded">
 	<phone:PhoneApplicationPage.Resources>
-		<DataTemplate x:Key="EmptyStationsTemplate">
-			<TextBlock Text="{Binding}" 
-                       Foreground="#FF847168" Name="Noresults" TextWrapping="Wrap"
-                       Margin="10,5,10,0"/>
-		</DataTemplate>
         <DataTemplate x:Key="GroupPickerTemplate">
                 <Border Background="#FF006168" Margin="5">
                     <TextBlock Foreground="#FFDFB08B" FontWeight="Bold" Margin="5,10" FontSize="30" Text="{Binding}"/>

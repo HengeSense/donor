@@ -423,7 +423,7 @@ namespace Donor.ViewModels
                     request.AddParameter("user_token", user_token);
                     request.AddParameter("badge_name", "donorfriend");
                     //for test
-                    //request.AddParameter("unique", "f");
+                    request.AddParameter("unique", "f");
 
                     client.ExecuteAsync(request, response =>
                     {
@@ -452,6 +452,7 @@ namespace Donor.ViewModels
                                     ViewModelLocator.MainStatic.Settings.AchieveDonorUser = ViewModelLocator.MainStatic.User.objectId;
                                     ViewModelLocator.MainStatic.SaveSettingsToStorage();
 
+                                    ViewModelLocator.BadgesStatic.CurrentBadge = ViewModelLocator.BadgesStatic.AvailableAchieves.FirstOrDefault(c=>c.Api_name=="donorfriend");
                                     ViewModelLocator.BadgesStatic.ShowBadgeMessage();
                                 });
                             };

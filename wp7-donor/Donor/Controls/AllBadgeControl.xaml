@@ -20,7 +20,7 @@
                 Margin="0,15,0,20"
                 Style="{StaticResource PhoneTextTitle2Style}" />
             <Image Width="160" Margin="20" 
-                Source="{Binding CurrentBadge.Image}" 
+                Source="{Binding CurrentBadge.CurrentImage}" 
                 DataContext="{Binding Badges, Source={StaticResource Locator}}"/>
             <TextBlock 
                 HorizontalAlignment="Center" 
