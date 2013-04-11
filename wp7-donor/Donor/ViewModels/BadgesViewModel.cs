@@ -423,7 +423,7 @@ namespace Donor.ViewModels
                     request.AddParameter("user_token", user_token);
                     request.AddParameter("badge_name", "donorfriend");
                     //for test
-                    request.AddParameter("unique", "f");
+                    //request.AddParameter("unique", "f");
 
                     client.ExecuteAsync(request, response =>
                     {
