@@ -89,12 +89,13 @@
     [PFFacebookUtils logInWithPermissions:permissionsArray block:^(PFUser *user, NSError *error) {
         if (user) {
             if (user.isNew) {
-                [HSItsBeta assignItsBeta:self user:user completion:nil];
                 [self specifyFacebookInfoInfoForUser:user completion:^(BOOL success, NSError *error) {
                     if (success) {
-                        [self processAuthorizationSuccessWithUser:user completion: ^ {
-                            [Common getInstance].authenticatedWithFacebook = YES;
-                            [progressHud hide:YES];
+                        [self processAuthorizationSuccessWithUser:user completion:^{
+                            [HSItsBeta assignItsBeta:self user:user completion:^{
+                                [Common getInstance].authenticatedWithFacebook = YES;
+                                [progressHud hide:YES];
+                            }];
                         }];
                     } else {
                         [user deleteEventually];
@@ -114,9 +115,10 @@
                     }
                 }];
             } else {
-                [HSItsBeta restoreItsBeta:self user:user completion:nil];
                 [self processAuthorizationSuccessWithUser:user completion: ^ {
-                    [progressHud hide:YES];
+                    [HSItsBeta restoreItsBeta:self user:user completion:^{
+                        [progressHud hide:YES];
+                    }];
                 }];
             }
         } else {

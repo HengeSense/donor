@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @class PFUser;
+@class ItsBetaPlayer;
 
 @interface HSItsBeta: NSObject
 
