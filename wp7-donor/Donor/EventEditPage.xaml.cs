@@ -496,6 +496,7 @@ namespace Donor
                  }
                  catch(Exception ex)
                  {
+                     MessageBox.Show(ex.Message.ToString());
                      NavigationService.GoBack();
                  };
              }

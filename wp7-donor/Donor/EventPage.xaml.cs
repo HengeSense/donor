@@ -20,6 +20,7 @@ namespace Donor
         public EventPage()
         {
             InitializeComponent();
+            ViewModelLocator.MainStatic.Events.EventsChanged += new EventsListViewModel.EventsChangedEventHandler(this.DataFLoaded); 
         }
         private string _eventid_current;
         private EventViewModel _currentEvent;

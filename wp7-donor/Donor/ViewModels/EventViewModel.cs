@@ -76,18 +76,7 @@ namespace Donor.ViewModels
         public EventViewModel()
         {
             this.Date = DateTime.Now;
-
             this.UserId = ViewModelLocator.MainStatic.User.objectId;
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        private void NotifyPropertyChanged(String propertyName)
-        {
-            PropertyChangedEventHandler handler = PropertyChanged;
-            if (null != handler)
-            {
-                handler(this, new PropertyChangedEventArgs(propertyName));
-            }
         }
 
         /// <summary>
@@ -125,14 +114,30 @@ namespace Donor.ViewModels
             }
             set
             {
-                _title = value; 
+                _title = value;
+                RaisePropertyChanged("Title");
             }
         }
 
+        public string _description = "";
         /// <summary>
         /// Комментарий к событию
         /// </summary>
-        public string Description { get; set; }
+        public string Description
+        {
+            get
+            {
+                return _description;
+            }
+            set
+            {
+                if (_description != value)
+                {
+                    _description = value;
+                    RaisePropertyChanged("Description");
+                };
+            }
+        }
 
         private string _notice = "0";
         // Тип уведомнения (0 – 3 мин, 1 – 5 мин, 2 – 10 мин, 3 – 15 мин)
@@ -165,6 +170,7 @@ namespace Donor.ViewModels
                     case "7": this.ReminderDate = Donor.AppResources.Reminder1Week; break;
                     default: break;
                 };
+                RaisePropertyChanged("Notice");
             }
         }
 
@@ -190,9 +196,9 @@ namespace Donor.ViewModels
             set
             {
                 _date = value;
-                NotifyPropertyChanged("Date");
-                NotifyPropertyChanged("DateAndTime");
-                NotifyPropertyChanged("ShortDate");
+                RaisePropertyChanged("Date");
+                RaisePropertyChanged("DateAndTime");
+                RaisePropertyChanged("ShortDate");
             }
         }
 
@@ -208,6 +214,7 @@ namespace Donor.ViewModels
                 //TimeZoneInfo.ConvertTime(new DateTime(value.Year, value.Month, value.Day, value.Hour, value.Minute, 0), TimeZoneInfo.Local);
                 _date = new DateTime(getdate.Year, getdate.Month, getdate.Day);
                 _time = getdate;
+                RaisePropertyChanged("DateAndTime");
             }
         }
 
@@ -264,7 +271,30 @@ namespace Donor.ViewModels
         /// Тип кроводачи (тромбоциты, плазма, цельная кровь, гранулоциты
         /// </summary>
         public string GiveType { get; set; }
-        public string Place { get; set; }
+
+        private string _place = "";
+        public string Place
+        {
+            get
+            {
+                if (_place == "")
+                {
+                    return "Не указано";
+                }
+                else
+                {
+                    return _place;
+                };                
+            }
+            set
+            {
+                if (_place != "")
+                {
+                    _place = value;
+                    RaisePropertyChanged("Place");
+                }
+            }
+        }
 
         public string ReminderDate { get; set; }
 
@@ -1314,7 +1344,7 @@ namespace Donor.ViewModels
                 var request = new RestRequest("1/classes/Events/" + addedItems.Id.ToString(), Method.PUT);
                 request.AddHeader("Accept", "application/json");
                 request.Parameters.Clear();
-                string strJSONContent = "{\"analysisResult\":" + addedItems.ReminderMessage.ToString().ToLower() + ", \"notice\": " + addedItems.Notice.ToString() + ", \"yastation_objectid\": \"" + addedItems.YAStation_objectid + "\", \"date\": {\"__type\": \"Date\", \"iso\": \"" + addedItems.DateAndTime.ToString("s") + "\"}, \"finished\":" + addedItems.Finished.ToString().ToLower() + ", \"adress\":\"" + addedItems.Place + "\", \"comment\":\"" + addedItems.Description.Replace("\r", "\n") + "\", \"type\":" + addedItems.Type + ", \"delivery\":" + addedItems.Delivery + ", \"type\":" + addedItems.Type + "}";
+                string strJSONContent = "{\"analysisResult\":" + addedItems.ReminderMessage.ToString().ToLower() + ", \"notice\": " + addedItems.Notice.ToString() + ", \"yastation_objectid\": \"" + addedItems.YAStation_objectid.ToString() + "\", \"date\": {\"__type\": \"Date\", \"iso\": \"" + addedItems.DateAndTime.ToString("s") + "\"}, \"finished\":" + addedItems.Finished.ToString().ToLower() + ", \"adress\":\"" + addedItems.Place + "\", \"comment\":\"" + addedItems.Description.Replace("\r", "\n") + "\", \"type\":" + addedItems.Type + ", \"delivery\":" + addedItems.Delivery + ", \"type\":" + addedItems.Type + "}";
 
 
                 request.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
