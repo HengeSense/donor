@@ -16,26 +16,33 @@
 
 @interface HSItsBeta ()
 
-+ (void) linkItsBeta:(UIViewController*)viewController player:(ItsBetaPlayer*)player user:(PFUser*)user objects:(NSArray*)objects completion:(void(^)(void))completion;
-+ (void) giveGiveInstallAchievementItsBeta:(UIViewController*)viewController player:(ItsBetaPlayer*)player completion:(void(^)(void))completion;
++ (void) linkItsBeta:(UIViewController*)viewController player:(ItsBetaPlayer*)player user:(PFUser*)user objects:(NSArray*)objects completion:(void(^)(NSError *error))completion;
++ (void) giveGiveInstallAchievementItsBeta:(UIViewController*)viewController player:(ItsBetaPlayer*)player completion:(void(^)(NSError *error))completion;
 
 @end
 
 @implementation HSItsBeta
 
-+ (void) assignItsBeta:(UIViewController*)viewController user:(PFUser*)user completion:(void(^)(void))completion {
++ (void) assignItsBeta:(UIViewController*)viewController user:(PFUser*)user completion:(void(^)(NSError *error))completion {
     [ItsBeta playerLoginFacebookWithViewController:viewController
                                           callback:^(ItsBetaPlayer *player, NSError *error) {
-                                              PFRelation* relation = [user relationforKey:@"ItsBeta"];
-                                              [[relation query] findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-                                                  if(error == nil) {
-                                                      [self linkItsBeta:viewController player:player user:user objects:objects completion:completion];
+                                              if(error != nil) {
+                                                  if([error code] != ItsBetaErrorFacebookAuth) {
+                                                      [HSAlertViewController showWithMessage:@"Возникла ошибка при подключении itsbeta. Попробуйте позже"];
                                                   }
-                                              }];
+                                                  if(completion != nil) {
+                                                      completion(error);
+                                                  }
+                                              } else {
+                                                  PFRelation* relation = [user relationforKey:@"ItsBeta"];
+                                                  [[relation query] findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+                                                      [self linkItsBeta:viewController player:player user:user objects:objects completion:completion];
+                                                  }];
+                                              }
                                           }];
 }
 
-+ (void) linkItsBeta:(UIViewController*)viewController player:(ItsBetaPlayer*)player user:(PFUser*)user objects:(NSArray*)objects completion:(void(^)(void))completion {
++ (void) linkItsBeta:(UIViewController*)viewController player:(ItsBetaPlayer*)player user:(PFUser*)user objects:(NSArray*)objects completion:(void(^)(NSError *error))completion {
     BOOL created = NO;
     PFObject* itsbeta = nil;
     if([objects count] > 0) {
@@ -71,7 +78,7 @@
     }];
 }
 
-+ (void) giveGiveInstallAchievementItsBeta:(UIViewController*)viewController player:(ItsBetaPlayer*)player completion:(void(^)(void))completion {
++ (void) giveGiveInstallAchievementItsBeta:(UIViewController*)viewController player:(ItsBetaPlayer*)player completion:(void(^)(NSError *error))completion {
     if([player isLogined] == YES) {
         ItsBetaProject* project = [ItsBeta projectByName:@"donor"];
         ItsBetaObjectTemplate* objectTemplate = [ItsBeta objectTemplateByName:@"donorfriend" byProject:project];
@@ -80,24 +87,26 @@
                                            params:nil
                                          callback:^(ItsBetaPlayer *player, NSString *object_id, NSError *error) {
                                              if(completion != nil) {
-                                                 completion();
+                                                 completion(error);
                                              }
                                              if(error == nil) {
-                                                 HSItsBetaAchievementDetailViewController *controller = [HSItsBetaAchievementDetailViewController new];
-                                                 if(controller != nil) {
-                                                     controller.objectID = object_id;
-                                                     [viewController.navigationController pushViewController:controller animated:YES];
-                                                 }
+                                                 dispatch_async(dispatch_get_main_queue(), ^{
+                                                     HSItsBetaAchievementDetailViewController *controller = [HSItsBetaAchievementDetailViewController new];
+                                                     if(controller != nil) {
+                                                         controller.objectID = object_id;
+                                                         [viewController presentModalViewController:controller animated:YES];
+                                                     }
+                                                 });
                                              }
                                          }];
     } else {
         if(completion != nil) {
-            completion();
+            completion(nil);
         }
     }
 }
 
-+ (void) restoreItsBeta:(UIViewController*)viewController user:(PFUser*)user completion:(void(^)(void))completion {
++ (void) restoreItsBeta:(UIViewController*)viewController user:(PFUser*)user completion:(void(^)(NSError *error))completion {
     PFRelation* relation = [user relationforKey:@"ItsBeta"];
     [[relation query] findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if(error == nil) {
@@ -111,16 +120,14 @@
                                              facebookToken:[object objectForKey:@"facebookAccessToken"]
                                                   callback:^(ItsBetaPlayer *player, NSError *error) {
                                                       if(error == nil) {
-                                                          if(completion != nil) {
-                                                              completion();
-                                                          }
+                                                          [self giveGiveInstallAchievementItsBeta:viewController player:player completion:completion];
                                                       }
                                                   }];
                     }
                     break;
                     default:
                         if(completion != nil) {
-                            completion();
+                            completion(error);
                         }
                     break;
                 }

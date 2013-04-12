@@ -92,7 +92,7 @@
                 [self specifyFacebookInfoInfoForUser:user completion:^(BOOL success, NSError *error) {
                     if (success) {
                         [self processAuthorizationSuccessWithUser:user completion:^{
-                            [HSItsBeta assignItsBeta:self user:user completion:^{
+                            [HSItsBeta assignItsBeta:self user:user completion:^(NSError *error) {
                                 [Common getInstance].authenticatedWithFacebook = YES;
                                 [progressHud hide:YES];
                             }];
@@ -116,7 +116,7 @@
                 }];
             } else {
                 [self processAuthorizationSuccessWithUser:user completion: ^ {
-                    [HSItsBeta restoreItsBeta:self user:user completion:^{
+                    [HSItsBeta restoreItsBeta:self user:user completion:^(NSError *error) {
                         [progressHud hide:YES];
                     }];
                 }];

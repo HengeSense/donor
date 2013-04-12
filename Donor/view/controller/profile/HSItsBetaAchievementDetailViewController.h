@@ -12,6 +12,8 @@
 
 @property (nonatomic, strong) NSString *objectID;
 
+@property (weak, nonatomic) IBOutlet UINavigationBar *navigationBar;
+@property (weak, nonatomic) IBOutlet UINavigationItem *navigationBarItem;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *badgeView;
 

@@ -13,7 +13,7 @@
 
 @interface HSItsBeta: NSObject
 
-+ (void) assignItsBeta:(UIViewController*)viewController user:(PFUser*)user completion:(void(^)(void))completion;
-+ (void) restoreItsBeta:(UIViewController*)viewController user:(PFUser*)user completion:(void(^)(void))completion;
++ (void) assignItsBeta:(UIViewController*)viewController user:(PFUser*)user completion:(void(^)(NSError *error))completion;
++ (void) restoreItsBeta:(UIViewController*)viewController user:(PFUser*)user completion:(void(^)(NSError *error))completion;
 
 @end

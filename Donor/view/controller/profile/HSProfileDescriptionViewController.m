@@ -213,7 +213,7 @@ static NSString * const kLinkedToFacebookTitle = @"привязан";
             [self.itsbetaStatusLabel setText:kLinkedToFacebookTitle];
             [HSItsBeta restoreItsBeta:self
                                  user:[PFUser currentUser]
-                           completion:^{
+                           completion:^(NSError *error) {
                                [progressHud hide:YES];
                            }];
         } else {
@@ -297,16 +297,19 @@ static NSString * const kLinkedToFacebookTitle = @"привязан";
 }
 
 - (IBAction)showAchievements:(id)sender {
+    self.itsbetaShowAchievementsButton.enabled = NO;
     if ([ItsBeta playerLogined] == NO) {
         [HSItsBeta assignItsBeta:self
                             user:[PFUser currentUser]
-                      completion:^{
-                          if ([ItsBeta playerLogined] == YES) {
+                      completion:^(NSError *error) {
+                          if(error == nil) {
                               [[self navigationController] pushViewController:[HSItsBetaAchievementsViewController new] animated:YES];
                           }
+                          self.itsbetaShowAchievementsButton.enabled = YES;
                       }];
     } else {
         [[self navigationController] pushViewController:[HSItsBetaAchievementsViewController new] animated:YES];
+        self.itsbetaShowAchievementsButton.enabled = YES;
     }
 }
 
