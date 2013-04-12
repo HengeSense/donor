@@ -195,6 +195,7 @@ static NSString * const kLinkedToFacebookTitle = @"привязан";
         [progressHud hide:YES];
         if (succeeded) {
             [self.proposeFacebookLinkUnlinkButton setTitle:kNotLinkedToFacebookTitle forState:UIControlStateNormal];
+            [self.itsbetaStatusLabel setText:kNotLinkedToFacebookTitle];
         } else {
             [HSAlertViewController showWithTitle:@"Ошибка"
                                          message:[HSModelCommon localizedDescriptionForParseError:error]];
@@ -209,11 +210,12 @@ static NSString * const kLinkedToFacebookTitle = @"привязан";
     [PFFacebookUtils linkUser:[PFUser currentUser] permissions:permissions block:^(BOOL succeeded, NSError *error) {
         if (succeeded) {
             [self.proposeFacebookLinkUnlinkButton setTitle:kLinkedToFacebookTitle forState:UIControlStateNormal];
-            [HSItsBeta assignItsBeta:self
-                                user:[PFUser currentUser]
-                          completion:^{
-                              [progressHud hide:YES];
-                          }];
+            [self.itsbetaStatusLabel setText:kLinkedToFacebookTitle];
+            [HSItsBeta restoreItsBeta:self
+                                 user:[PFUser currentUser]
+                           completion:^{
+                               [progressHud hide:YES];
+                           }];
         } else {
             [progressHud hide:YES];
             [HSAlertViewController showWithTitle:@"Ошибка"

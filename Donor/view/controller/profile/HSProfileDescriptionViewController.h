@@ -34,7 +34,7 @@
 /// @name Facebook UI properties
 @property (weak, nonatomic) IBOutlet UIButton *proposeFacebookLinkUnlinkButton;
 @property (weak, nonatomic) IBOutlet UIView *facebookLinkUnlinkContainerView;
-@property (weak, nonatomic) IBOutlet UIView *linkUnlinkFacebookView;
+@property (strong, nonatomic) IBOutlet UIView *linkUnlinkFacebookView;
 @property (weak, nonatomic) IBOutlet UIButton *linkUnlinkFacebookButton;
 @property (weak, nonatomic) IBOutlet UIButton *cancelFacebookLinkProposeButton;
 
