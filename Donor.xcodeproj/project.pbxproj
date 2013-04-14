@@ -337,8 +337,6 @@
 		68B82FE116D1113B00533701 /* AdsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68B82F5216D1113A00533701 /* AdsCell.xib */; };
 		68B82FE216D1113B00533701 /* AdsSubViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B82F5416D1113A00533701 /* AdsSubViewController.m */; };
 		68B82FE316D1113B00533701 /* AdsSubViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68B82F5516D1113A00533701 /* AdsSubViewController.xib */; };
-		68B82FE416D1113B00533701 /* AdsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B82F5716D1113A00533701 /* AdsViewController.m */; };
-		68B82FE516D1113B00533701 /* AdsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68B82F5816D1113A00533701 /* AdsViewController.xib */; };
 		68B82FE616D1113B00533701 /* HSContraindicationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B82F5D16D1113A00533701 /* HSContraindicationCell.m */; };
 		68B82FE716D1113B00533701 /* HSContraindicationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68B82F5E16D1113A00533701 /* HSContraindicationCell.xib */; };
 		68B82FE816D1113B00533701 /* HSAbsoluteContraindicationsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B82F6116D1113A00533701 /* HSAbsoluteContraindicationsDataSource.m */; };
@@ -421,6 +419,8 @@
 		68EB276C1630AA840092FDBA /* HSFinishRestEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 68EB276B1630AA840092FDBA /* HSFinishRestEvent.m */; };
 		68EB27711630AD930092FDBA /* HSDayPurposeModifierEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 68EB27701630AD930092FDBA /* HSDayPurposeModifierEvent.m */; };
 		68F3B30C16754A85003E8376 /* contraindications.json in Resources */ = {isa = PBXBuildFile; fileRef = 68F3B30B16754A85003E8376 /* contraindications.json */; };
+		68F788E0171AE4E100BBF59A /* AdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68F788DE171AE4E100BBF59A /* AdViewController.m */; };
+		68F788E1171AE4E100BBF59A /* AdViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68F788DF171AE4E100BBF59A /* AdViewController.xib */; };
 		68F7F3F11638878800740CCF /* HSModelCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 68F7F3F01638878800740CCF /* HSModelCommon.m */; };
 		68F7F3F216388D1600740CCF /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 371CBA5215AFD452008CA154 /* Parse.framework */; };
 		85040C0F15CEAE7F00CD3A16 /* absoluteSegmentButtonSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 85040C0715CEAE7F00CD3A16 /* absoluteSegmentButtonSelected.png */; };
@@ -1087,9 +1087,6 @@
 		68B82F5316D1113A00533701 /* AdsSubViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdsSubViewController.h; sourceTree = "<group>"; };
 		68B82F5416D1113A00533701 /* AdsSubViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdsSubViewController.m; sourceTree = "<group>"; };
 		68B82F5516D1113A00533701 /* AdsSubViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AdsSubViewController.xib; sourceTree = "<group>"; };
-		68B82F5616D1113A00533701 /* AdsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdsViewController.h; sourceTree = "<group>"; };
-		68B82F5716D1113A00533701 /* AdsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdsViewController.m; sourceTree = "<group>"; };
-		68B82F5816D1113A00533701 /* AdsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AdsViewController.xib; sourceTree = "<group>"; };
 		68B82F5C16D1113A00533701 /* HSContraindicationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSContraindicationCell.h; sourceTree = "<group>"; };
 		68B82F5D16D1113A00533701 /* HSContraindicationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSContraindicationCell.m; sourceTree = "<group>"; };
 		68B82F5E16D1113A00533701 /* HSContraindicationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HSContraindicationCell.xib; sourceTree = "<group>"; };
@@ -1226,6 +1223,9 @@
 		68EB27701630AD930092FDBA /* HSDayPurposeModifierEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSDayPurposeModifierEvent.m; sourceTree = "<group>"; };
 		68EB27731630B02F0092FDBA /* HSCalendarTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSCalendarTypes.h; sourceTree = "<group>"; };
 		68F3B30B16754A85003E8376 /* contraindications.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = contraindications.json; sourceTree = "<group>"; };
+		68F788DD171AE4E100BBF59A /* AdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdViewController.h; sourceTree = "<group>"; };
+		68F788DE171AE4E100BBF59A /* AdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdViewController.m; sourceTree = "<group>"; };
+		68F788DF171AE4E100BBF59A /* AdViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AdViewController.xib; sourceTree = "<group>"; };
 		68F7F3ED16387A0300740CCF /* HSBloodRemoteEvent_Protected.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSBloodRemoteEvent_Protected.h; sourceTree = "<group>"; };
 		68F7F3EF1638878800740CCF /* HSModelCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSModelCommon.h; sourceTree = "<group>"; };
 		68F7F3F01638878800740CCF /* HSModelCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSModelCommon.m; sourceTree = "<group>"; };
@@ -2560,15 +2560,15 @@
 		68B82F4F16D1113A00533701 /* ads */ = {
 			isa = PBXGroup;
 			children = (
+				68F788DD171AE4E100BBF59A /* AdViewController.h */,
+				68F788DE171AE4E100BBF59A /* AdViewController.m */,
+				68F788DF171AE4E100BBF59A /* AdViewController.xib */,
 				68B82F5016D1113A00533701 /* AdsCell.h */,
 				68B82F5116D1113A00533701 /* AdsCell.m */,
 				68B82F5216D1113A00533701 /* AdsCell.xib */,
 				68B82F5316D1113A00533701 /* AdsSubViewController.h */,
 				68B82F5416D1113A00533701 /* AdsSubViewController.m */,
 				68B82F5516D1113A00533701 /* AdsSubViewController.xib */,
-				68B82F5616D1113A00533701 /* AdsViewController.h */,
-				68B82F5716D1113A00533701 /* AdsViewController.m */,
-				68B82F5816D1113A00533701 /* AdsViewController.xib */,
 			);
 			path = ads;
 			sourceTree = "<group>";
@@ -3409,7 +3409,6 @@
 				68B82FD916D1113B00533701 /* HSEventViewController.xib in Resources */,
 				68B82FE116D1113B00533701 /* AdsCell.xib in Resources */,
 				68B82FE316D1113B00533701 /* AdsSubViewController.xib in Resources */,
-				68B82FE516D1113B00533701 /* AdsViewController.xib in Resources */,
 				68B82FE716D1113B00533701 /* HSContraindicationCell.xib in Resources */,
 				68B82FEE16D1113B00533701 /* HSContraindicationsViewController.xib in Resources */,
 				68B82FF016D1113B00533701 /* InfoSubViewController.xib in Resources */,
@@ -3458,6 +3457,7 @@
 				40D5FF641714409A00821B01 /* HSItsBetaAchievementDetailViewController.xib in Resources */,
 				6864D67117127A3700F150F9 /* HSEventShortInfoView.xib in Resources */,
 				6864D6C0171ACE8A00F150F9 /* news_template.html in Resources */,
+				68F788E1171AE4E100BBF59A /* AdViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3538,7 +3538,6 @@
 				68B82FD816D1113B00533701 /* HSEventViewController.m in Sources */,
 				68B82FE016D1113B00533701 /* AdsCell.m in Sources */,
 				68B82FE216D1113B00533701 /* AdsSubViewController.m in Sources */,
-				68B82FE416D1113B00533701 /* AdsViewController.m in Sources */,
 				68B82FE616D1113B00533701 /* HSContraindicationCell.m in Sources */,
 				68B82FE816D1113B00533701 /* HSAbsoluteContraindicationsDataSource.m in Sources */,
 				68B82FE916D1113B00533701 /* HSContraindication.m in Sources */,
@@ -3641,6 +3640,7 @@
 				6864D6B817174CA200F150F9 /* NSString+HTML.m in Sources */,
 				6864D6BB17174CCE00F150F9 /* GTMNSString+HTML.m in Sources */,
 				6864D6BE17174D0000F150F9 /* NSDate+InternetDateTime.m in Sources */,
+				68F788E0171AE4E100BBF59A /* AdViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

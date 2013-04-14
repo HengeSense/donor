@@ -15,6 +15,7 @@
 #import "AdsSubViewController.h"
 #import "InfoSubViewController.h"
 
+#import "AdViewController.h"
 #import "HSNewsViewController.h"
 #import "HSRecommendationsViewController.h"
 #import "HSContraindicationsViewController.h"
@@ -98,9 +99,9 @@
 
 #pragma mark NewsSubViewControllerDelegate
 - (void)adSelected:(PFObject *)selectedAd {
-//    NewsViewController *controller = [[NewsViewController alloc] initWithNibName:@"NewsViewController" bundle:nil
-//                                                                     selectedNew:selectedAd];
-//    [self.navigationController pushViewController:controller animated:YES];
+    AdViewController *controller = [[AdViewController alloc] initWithNibName:@"AdViewController" bundle:nil
+            selectedNew:selectedAd];
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 #pragma mark NewsSubViewControllerDelegate
