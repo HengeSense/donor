@@ -75,14 +75,6 @@
     self.navigationBarItem.rightBarButtonItem = cancelBarButtonItem;
 }
 
-- (void)viewDidUnload {
-    [self setNameLabel:nil];
-    [self setBadgeView:nil];
-    [self setNavigationBar:nil];
-    [self setNavigationBarItem:nil];
-    [super viewDidUnload];
-}
-
 - (void) closePressed:(id)sender {
     [self dismissModalViewControllerAnimated:YES];
 }

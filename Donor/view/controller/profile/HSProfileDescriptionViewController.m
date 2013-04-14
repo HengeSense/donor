@@ -45,8 +45,7 @@ static NSString * const kLinkedToFacebookTitle = @"привязан";
 @implementation HSProfileDescriptionViewController
 
 #pragma mark - Lifecycle
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     
     self.bloodTypePicker = [[HSBloodTypePicker alloc] init];
@@ -57,11 +56,8 @@ static NSString * const kLinkedToFacebookTitle = @"привязан";
     [self configureUI]; 
 }
 
-- (void) viewDidUnload
-{
+- (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self forKeyPath:ItsBetaDidPlayerLogin];
-    
-    [super viewDidUnload];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

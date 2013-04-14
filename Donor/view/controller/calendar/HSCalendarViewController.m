@@ -140,14 +140,6 @@
     [super didReceiveMemoryWarning];
 }
 
-- (void)viewDidUnload {
-    [self setCalendarImageView:nil];
-    [self setMonthLabel:nil];
-    [self setBlockUIViewController:nil];
-    [self setTodayEventsScrollView:nil];
-    [super viewDidUnload];
-}
-
 #pragma mark - Actions handlers
 - (IBAction)moveToNextMonth:(id)sender {
     NSDateComponents *dateComponents = [self.systemCalendar

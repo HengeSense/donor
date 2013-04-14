@@ -126,10 +126,4 @@
     self.currentContentViewController = contentViewController;
 }
 
-
-
-- (void)viewDidUnload {
-    [self setTopTabBarView:nil];
-    [super viewDidUnload];
-}
 @end

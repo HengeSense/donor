@@ -63,8 +63,5 @@
         [HSAlertViewController showWithTitle:@"Ошибка" message:@"Не указан email"];
     }
 }
-- (void)viewDidUnload {
-    [self setRestorePasswordButton:nil];
-    [super viewDidUnload];
-}
+
 @end

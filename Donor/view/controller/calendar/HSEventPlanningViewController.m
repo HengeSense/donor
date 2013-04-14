@@ -339,23 +339,6 @@ static const NSUInteger kCommentsTextViewSymbolsMax = 260;
     [self registerKeyboardEventsObserver];
 }
 
-- (void)viewDidUnload {
-    [self unregisterKeyboardEventListener];
-    [self setDataAndPlaceView:nil];
-    [self setBloodDonationTypeView:nil];
-    [self setCommentsTextView:nil];
-    [self setBloodDonationEventTypeLabel:nil];
-    [self setBloodDonationTypeLabel:nil];
-    [self setBloodDonationEventDateLabel:nil];
-    [self setBloodDonationCenterAddressLabel:nil];
-    [self setRootScrollView:nil];
-    [self setContentView:nil];
-    [self setBloodDonationTypePicker: nil];
-    [self setRemoveRemoteEventButton:nil];
-    [self setBloodDonationEventReminderDateLabel:nil];
-    [super viewDidUnload];
-}
-
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.rootScrollView adjustAsContentView];

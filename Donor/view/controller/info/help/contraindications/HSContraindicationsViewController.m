@@ -78,8 +78,4 @@
     [self.contraindicationsTableView reloadData];
 }
 
-- (void)viewDidUnload {
-    [self setTopTabBarView:nil];
-    [super viewDidUnload];
-}
 @end
