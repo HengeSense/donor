@@ -25,6 +25,7 @@
 #import "HSBloodType.h"
 #import "HSUserInfo.h"
 
+#import "HSItsBeta.h"
 #import "ItsBeta.h"
 
 static const CGFloat kActionSheetAnimationDuration = 0.2;
@@ -53,7 +54,7 @@ static NSString * const kLinkedToFacebookTitle = @"привязан";
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didPlayerLogin:) name:ItsBetaDidPlayerLogin object:nil];
     
-    [self configureUI];
+    [self configureUI]; 
 }
 
 - (void) viewDidUnload
@@ -194,6 +195,7 @@ static NSString * const kLinkedToFacebookTitle = @"привязан";
         [progressHud hide:YES];
         if (succeeded) {
             [self.proposeFacebookLinkUnlinkButton setTitle:kNotLinkedToFacebookTitle forState:UIControlStateNormal];
+            [self.itsbetaStatusLabel setText:kNotLinkedToFacebookTitle];
         } else {
             [HSAlertViewController showWithTitle:@"Ошибка"
                                          message:[HSModelCommon localizedDescriptionForParseError:error]];
@@ -208,21 +210,12 @@ static NSString * const kLinkedToFacebookTitle = @"привязан";
     [PFFacebookUtils linkUser:[PFUser currentUser] permissions:permissions block:^(BOOL succeeded, NSError *error) {
         if (succeeded) {
             [self.proposeFacebookLinkUnlinkButton setTitle:kLinkedToFacebookTitle forState:UIControlStateNormal];
-            [ItsBeta playerLoginFacebookWithViewController:self
-                                                  callback:^(ItsBetaPlayer *player, NSError *error) {
-                                                      if(error == nil) {
-                                                          ItsBetaProject* project = [ItsBeta projectByName:@"donor"];
-                                                          ItsBetaObjectTemplate* objectTemplate = [ItsBeta objectTemplateByName:@"donorfriend" byProject:project];
-                                                          [ItsBeta playerGiveAchievementWithProject:project
-                                                                                     objectTemplate:objectTemplate
-                                                                                             params:nil
-                                                                                           callback:^(ItsBetaPlayer *player, NSString *object_id, NSError *error) {
-                                                                                               [progressHud hide:YES];
-                                                                                           }];
-                                                      } else {
-                                                          [progressHud hide:YES];
-                                                      }
-                                                  }];
+            [self.itsbetaStatusLabel setText:kLinkedToFacebookTitle];
+            [HSItsBeta restoreItsBeta:self
+                                 user:[PFUser currentUser]
+                           completion:^(NSError *error) {
+                               [progressHud hide:YES];
+                           }];
         } else {
             [progressHud hide:YES];
             [HSAlertViewController showWithTitle:@"Ошибка"
@@ -304,9 +297,19 @@ static NSString * const kLinkedToFacebookTitle = @"привязан";
 }
 
 - (IBAction)showAchievements:(id)sender {
-    HSItsBetaAchievementsViewController* cont = [HSItsBetaAchievementsViewController new];
-    if(cont != nil) {
-        [[self navigationController] pushViewController:cont animated:YES];
+    self.itsbetaShowAchievementsButton.enabled = NO;
+    if ([ItsBeta playerLogined] == NO) {
+        [HSItsBeta assignItsBeta:self
+                            user:[PFUser currentUser]
+                      completion:^(NSError *error) {
+                          if(error == nil) {
+                              [[self navigationController] pushViewController:[HSItsBetaAchievementsViewController new] animated:YES];
+                          }
+                          self.itsbetaShowAchievementsButton.enabled = YES;
+                      }];
+    } else {
+        [[self navigationController] pushViewController:[HSItsBetaAchievementsViewController new] animated:YES];
+        self.itsbetaShowAchievementsButton.enabled = YES;
     }
 }
 
@@ -350,11 +353,6 @@ static NSString * const kLinkedToFacebookTitle = @"привязан";
         [self.itsbetaStatusLabel setText:kLinkedToFacebookTitle];
     } else {
         [self.itsbetaStatusLabel setText:kNotLinkedToFacebookTitle];
-    }
-    if ([ItsBeta playerLogined] == YES) {
-        self.itsbetaShowAchievementsButton.enabled = YES;
-    } else {
-        self.itsbetaShowAchievementsButton.enabled = NO;
     }
 }
 

@@ -37,7 +37,7 @@
     if(self != nil) {
         _user = NS_SAFE_RETAIN([NSMutableDictionary graphUser]);
         _clientId = NS_SAFE_RETAIN(@"264918200296425");
-        _redirectURL = NS_SAFE_RETAIN(@"fbconnect://success");
+        _redirectURL = NS_SAFE_RETAIN(@"http://www.itsbeta.com");
         _scope = [NSArray arrayWithObjects:@"publish_stream", @"publish_actions", nil];
         _scope = NS_SAFE_RETAIN(_scope);
     }
@@ -124,10 +124,10 @@
             if(_lastError == nil)
             {
                 NSError* error = [NSError errorWithDomain:ItsBetaErrorDomain
-                                            code:ItsBetaErrorFacebookAuth
-                                        userInfo:[NSDictionary dictionaryWithObjectsAndKeys:
-                                                  NSLocalizedString(@"Facebook.Fail.Session", @""), NSLocalizedDescriptionKey,
-                                                  nil]];
+                                                     code:ItsBetaErrorFacebookAuth
+                                                 userInfo:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                           NSLocalizedString(@"Facebook.Fail.Session", @""), NSLocalizedDescriptionKey,
+                                                           nil]];
                 NS_SAFE_SETTER(_lastError, error);
             }
             _failureCallback(_lastError);
@@ -200,7 +200,7 @@
     if(error != nil) {
         NS_SAFE_SETTER(_lastError, error);
     }
-    [self close];
+    // [self close];
 }
 
 @end
