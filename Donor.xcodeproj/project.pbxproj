@@ -258,6 +258,13 @@
 		6864D66F17127A0600F150F9 /* HSEventShortInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6864D66E17127A0600F150F9 /* HSEventShortInfoView.m */; };
 		6864D67117127A3700F150F9 /* HSEventShortInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6864D67017127A3700F150F9 /* HSEventShortInfoView.xib */; };
 		6864D67417128FAC00F150F9 /* UIView+HSSubviewManagement.m in Sources */ = {isa = PBXBuildFile; fileRef = 6864D67317128FAC00F150F9 /* UIView+HSSubviewManagement.m */; };
+		6864D6B317174B8400F150F9 /* MWFeedInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6864D6AD17174B8400F150F9 /* MWFeedInfo.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		6864D6B417174B8400F150F9 /* MWFeedItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 6864D6AF17174B8400F150F9 /* MWFeedItem.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		6864D6B517174B8400F150F9 /* MWFeedParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6864D6B117174B8400F150F9 /* MWFeedParser.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		6864D6B817174CA200F150F9 /* NSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 6864D6B717174CA200F150F9 /* NSString+HTML.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		6864D6BB17174CCE00F150F9 /* GTMNSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 6864D6BA17174CCE00F150F9 /* GTMNSString+HTML.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		6864D6BE17174D0000F150F9 /* NSDate+InternetDateTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 6864D6BD17174D0000F150F9 /* NSDate+InternetDateTime.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		6864D6C0171ACE8A00F150F9 /* news_template.html in Resources */ = {isa = PBXBuildFile; fileRef = 6864D6BF171ACE8A00F150F9 /* news_template.html */; };
 		686BA62216344DE2004D7082 /* HSCalendarDayButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 686BA62116344DE2004D7082 /* HSCalendarDayButton.m */; };
 		686BA62716345D0E004D7082 /* NSCalendar+HSCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 686BA62616345D0E004D7082 /* NSCalendar+HSCalendar.m */; };
 		686BA62A163469C3004D7082 /* HSBloodDonorTests_Calendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 686BA629163469C3004D7082 /* HSBloodDonorTests_Calendar.m */; };
@@ -353,8 +360,8 @@
 		68B82FF816D1113B00533701 /* NewsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68B82F8016D1113B00533701 /* NewsCell.xib */; };
 		68B82FF916D1113B00533701 /* NewsSubViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B82F8216D1113B00533701 /* NewsSubViewController.m */; };
 		68B82FFA16D1113B00533701 /* NewsSubViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68B82F8316D1113B00533701 /* NewsSubViewController.xib */; };
-		68B82FFB16D1113B00533701 /* NewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B82F8516D1113B00533701 /* NewsViewController.m */; };
-		68B82FFC16D1113B00533701 /* NewsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68B82F8616D1113B00533701 /* NewsViewController.xib */; };
+		68B82FFB16D1113B00533701 /* HSNewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B82F8516D1113B00533701 /* HSNewsViewController.m */; };
+		68B82FFC16D1113B00533701 /* HSNewsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68B82F8616D1113B00533701 /* HSNewsViewController.xib */; };
 		68B82FFD16D1113B00533701 /* TutorialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B82F8916D1113B00533701 /* TutorialViewController.m */; };
 		68B82FFE16D1113B00533701 /* TutorialViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68B82F8A16D1113B00533701 /* TutorialViewController.xib */; };
 		68B82FFF16D1113B00533701 /* HSBaseLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B82F8D16D1113B00533701 /* HSBaseLoginViewController.m */; };
@@ -933,6 +940,20 @@
 		6864D67017127A3700F150F9 /* HSEventShortInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HSEventShortInfoView.xib; sourceTree = "<group>"; };
 		6864D67217128FAC00F150F9 /* UIView+HSSubviewManagement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+HSSubviewManagement.h"; sourceTree = "<group>"; };
 		6864D67317128FAC00F150F9 /* UIView+HSSubviewManagement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+HSSubviewManagement.m"; sourceTree = "<group>"; };
+		6864D6AC17174B8400F150F9 /* MWFeedInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWFeedInfo.h; sourceTree = "<group>"; };
+		6864D6AD17174B8400F150F9 /* MWFeedInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWFeedInfo.m; sourceTree = "<group>"; };
+		6864D6AE17174B8400F150F9 /* MWFeedItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWFeedItem.h; sourceTree = "<group>"; };
+		6864D6AF17174B8400F150F9 /* MWFeedItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWFeedItem.m; sourceTree = "<group>"; };
+		6864D6B017174B8400F150F9 /* MWFeedParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWFeedParser.h; sourceTree = "<group>"; };
+		6864D6B117174B8400F150F9 /* MWFeedParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWFeedParser.m; sourceTree = "<group>"; };
+		6864D6B217174B8400F150F9 /* MWFeedParser_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWFeedParser_Private.h; sourceTree = "<group>"; };
+		6864D6B617174CA100F150F9 /* NSString+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+HTML.h"; sourceTree = "<group>"; };
+		6864D6B717174CA200F150F9 /* NSString+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+HTML.m"; sourceTree = "<group>"; };
+		6864D6B917174CCE00F150F9 /* GTMNSString+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GTMNSString+HTML.h"; sourceTree = "<group>"; };
+		6864D6BA17174CCE00F150F9 /* GTMNSString+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GTMNSString+HTML.m"; sourceTree = "<group>"; };
+		6864D6BC17174CFF00F150F9 /* NSDate+InternetDateTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+InternetDateTime.h"; sourceTree = "<group>"; };
+		6864D6BD17174D0000F150F9 /* NSDate+InternetDateTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+InternetDateTime.m"; sourceTree = "<group>"; };
+		6864D6BF171ACE8A00F150F9 /* news_template.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = news_template.html; sourceTree = "<group>"; };
 		686BA62016344DE2004D7082 /* HSCalendarDayButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSCalendarDayButton.h; sourceTree = "<group>"; };
 		686BA62116344DE2004D7082 /* HSCalendarDayButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSCalendarDayButton.m; sourceTree = "<group>"; };
 		686BA62516345D0E004D7082 /* NSCalendar+HSCalendar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSCalendar+HSCalendar.h"; sourceTree = "<group>"; };
@@ -1104,9 +1125,9 @@
 		68B82F8116D1113B00533701 /* NewsSubViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsSubViewController.h; sourceTree = "<group>"; };
 		68B82F8216D1113B00533701 /* NewsSubViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsSubViewController.m; sourceTree = "<group>"; };
 		68B82F8316D1113B00533701 /* NewsSubViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewsSubViewController.xib; sourceTree = "<group>"; };
-		68B82F8416D1113B00533701 /* NewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsViewController.h; sourceTree = "<group>"; };
-		68B82F8516D1113B00533701 /* NewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsViewController.m; sourceTree = "<group>"; };
-		68B82F8616D1113B00533701 /* NewsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewsViewController.xib; sourceTree = "<group>"; };
+		68B82F8416D1113B00533701 /* HSNewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSNewsViewController.h; sourceTree = "<group>"; };
+		68B82F8516D1113B00533701 /* HSNewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSNewsViewController.m; sourceTree = "<group>"; };
+		68B82F8616D1113B00533701 /* HSNewsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HSNewsViewController.xib; sourceTree = "<group>"; };
 		68B82F8816D1113B00533701 /* TutorialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutorialViewController.h; sourceTree = "<group>"; };
 		68B82F8916D1113B00533701 /* TutorialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TutorialViewController.m; sourceTree = "<group>"; };
 		68B82F8A16D1113B00533701 /* TutorialViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TutorialViewController.xib; sourceTree = "<group>"; };
@@ -2046,6 +2067,7 @@
 		685CB2F9163F2016004FF9AC /* Libs */ = {
 			isa = PBXGroup;
 			children = (
+				6864D6AB17174B8400F150F9 /* MWFeedParser */,
 				687A434816F7B60200958347 /* ChimpKit */,
 				68B8304416D186CF00533701 /* FTCoreText */,
 				68B8304916D186CF00533701 /* TTTAttributedLabel */,
@@ -2228,6 +2250,27 @@
 				6864D6281708CB4900F150F9 /* HSMailChimp.m */,
 			);
 			path = MailChimp;
+			sourceTree = "<group>";
+		};
+		6864D6AB17174B8400F150F9 /* MWFeedParser */ = {
+			isa = PBXGroup;
+			children = (
+				6864D6BC17174CFF00F150F9 /* NSDate+InternetDateTime.h */,
+				6864D6BD17174D0000F150F9 /* NSDate+InternetDateTime.m */,
+				6864D6B917174CCE00F150F9 /* GTMNSString+HTML.h */,
+				6864D6BA17174CCE00F150F9 /* GTMNSString+HTML.m */,
+				6864D6B617174CA100F150F9 /* NSString+HTML.h */,
+				6864D6B717174CA200F150F9 /* NSString+HTML.m */,
+				6864D6AC17174B8400F150F9 /* MWFeedInfo.h */,
+				6864D6AD17174B8400F150F9 /* MWFeedInfo.m */,
+				6864D6AE17174B8400F150F9 /* MWFeedItem.h */,
+				6864D6AF17174B8400F150F9 /* MWFeedItem.m */,
+				6864D6B017174B8400F150F9 /* MWFeedParser.h */,
+				6864D6B117174B8400F150F9 /* MWFeedParser.m */,
+				6864D6B217174B8400F150F9 /* MWFeedParser_Private.h */,
+			);
+			name = MWFeedParser;
+			path = Libs/MWFeedParser;
 			sourceTree = "<group>";
 		};
 		686BA61816332CB3004D7082 /* view */ = {
@@ -2623,9 +2666,9 @@
 				68B82F8116D1113B00533701 /* NewsSubViewController.h */,
 				68B82F8216D1113B00533701 /* NewsSubViewController.m */,
 				68B82F8316D1113B00533701 /* NewsSubViewController.xib */,
-				68B82F8416D1113B00533701 /* NewsViewController.h */,
-				68B82F8516D1113B00533701 /* NewsViewController.m */,
-				68B82F8616D1113B00533701 /* NewsViewController.xib */,
+				68B82F8416D1113B00533701 /* HSNewsViewController.h */,
+				68B82F8516D1113B00533701 /* HSNewsViewController.m */,
+				68B82F8616D1113B00533701 /* HSNewsViewController.xib */,
 				68B8302A16D1803200533701 /* HSSocailShareViewController.h */,
 				68B8302B16D1803200533701 /* HSSocailShareViewController.m */,
 				68B8302C16D1803200533701 /* HSSocailShareViewController.xib */,
@@ -2859,6 +2902,7 @@
 		68F3B30A16754A85003E8376 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				6864D6BF171ACE8A00F150F9 /* news_template.html */,
 				68F3B30B16754A85003E8376 /* contraindications.json */,
 				689B00FC16AC37CC00B5CA4C /* recommendations.json */,
 			);
@@ -3373,7 +3417,7 @@
 				68B82FF616D1113B00533701 /* InfoViewController.xib in Resources */,
 				68B82FF816D1113B00533701 /* NewsCell.xib in Resources */,
 				68B82FFA16D1113B00533701 /* NewsSubViewController.xib in Resources */,
-				68B82FFC16D1113B00533701 /* NewsViewController.xib in Resources */,
+				68B82FFC16D1113B00533701 /* HSNewsViewController.xib in Resources */,
 				68B82FFE16D1113B00533701 /* TutorialViewController.xib in Resources */,
 				68B8300016D1113B00533701 /* HSBaseLoginViewController.xib in Resources */,
 				68B8300216D1113B00533701 /* HSLoginChoiceViewController.xib in Resources */,
@@ -3413,6 +3457,7 @@
 				404470131712AF2300DF0561 /* HSItsBetaAchievementsHeader.xib in Resources */,
 				40D5FF641714409A00821B01 /* HSItsBetaAchievementDetailViewController.xib in Resources */,
 				6864D67117127A3700F150F9 /* HSEventShortInfoView.xib in Resources */,
+				6864D6C0171ACE8A00F150F9 /* news_template.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3508,7 +3553,7 @@
 				68B82FF516D1113B00533701 /* InfoViewController.m in Sources */,
 				68B82FF716D1113B00533701 /* NewsCell.m in Sources */,
 				68B82FF916D1113B00533701 /* NewsSubViewController.m in Sources */,
-				68B82FFB16D1113B00533701 /* NewsViewController.m in Sources */,
+				68B82FFB16D1113B00533701 /* HSNewsViewController.m in Sources */,
 				68B82FFD16D1113B00533701 /* TutorialViewController.m in Sources */,
 				68B82FFF16D1113B00533701 /* HSBaseLoginViewController.m in Sources */,
 				68B8300116D1113B00533701 /* HSLoginChoiceViewController.m in Sources */,
@@ -3590,6 +3635,12 @@
 				40D5FF77171579D100821B01 /* HSItsBeta.m in Sources */,
 				6864D66F17127A0600F150F9 /* HSEventShortInfoView.m in Sources */,
 				6864D67417128FAC00F150F9 /* UIView+HSSubviewManagement.m in Sources */,
+				6864D6B317174B8400F150F9 /* MWFeedInfo.m in Sources */,
+				6864D6B417174B8400F150F9 /* MWFeedItem.m in Sources */,
+				6864D6B517174B8400F150F9 /* MWFeedParser.m in Sources */,
+				6864D6B817174CA200F150F9 /* NSString+HTML.m in Sources */,
+				6864D6BB17174CCE00F150F9 /* GTMNSString+HTML.m in Sources */,
+				6864D6BE17174D0000F150F9 /* NSDate+InternetDateTime.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

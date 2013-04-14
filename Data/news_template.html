@@ -1,0 +1,45 @@
+<html>
+    <head>
+        <style type='text/css'>
+            .common {
+                text-align:left;
+                font-family:Helvetica;
+                font-size:12px;
+            }
+            .header {
+                margin:0;
+                padding:0;
+                font-weight:bold;
+            }
+            .header.title {
+                color:#CBB2A3;
+
+            }
+            .header.date {
+                color:#847168;
+            }
+            .main {
+                margin:0;
+                padding:0;
+                padding-left:6;
+                padding-right:6;
+                color:#847168;
+                font-weight:bold;
+            }
+            .main a { color:#0B8B99; text-decoration:underline; }
+        </style>
+    </head>
+    <body>
+        <div class="common">
+            <div class="header">
+                <span class="header date">{HEADER_DATE_PLACEHOLDER}</span>
+                <span class="header title">{HEADER_TITLE_PLACEHOLDER}</span>
+            </div>
+            <br/>
+            <div class="main">{BODY_PACEHOLDER}
+            <br/>
+            <a href="{FUTHER_READING_LINK_PLACEHOLDER}">{FUTHER_READING_TEXT_PLACEHOLDER}</a>
+            </div>
+        </div>
+    </body>
+</html>

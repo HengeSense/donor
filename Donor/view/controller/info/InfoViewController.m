@@ -15,7 +15,7 @@
 #import "AdsSubViewController.h"
 #import "InfoSubViewController.h"
 
-#import "NewsViewController.h"
+#import "HSNewsViewController.h"
 #import "HSRecommendationsViewController.h"
 #import "HSContraindicationsViewController.h"
 #import "StationDescriptionViewController.h"
@@ -91,17 +91,16 @@
 }
 
 #pragma mark NewsSubViewControllerDelegate
-- (void)newSelected:(PFObject *)selectedNew {
-    NewsViewController *controller = [[NewsViewController alloc] initWithNibName:@"NewsViewController" bundle:nil
-                                                                     selectedNew:selectedNew];
+- (void)newSelected:(MWFeedItem *)selectedNews {
+    HSNewsViewController *controller = [[HSNewsViewController alloc] initWithNewsFeedItem:selectedNews];
     [self.navigationController pushViewController:controller animated:YES];
 }
 
 #pragma mark NewsSubViewControllerDelegate
 - (void)adSelected:(PFObject *)selectedAd {
-    NewsViewController *controller = [[NewsViewController alloc] initWithNibName:@"NewsViewController" bundle:nil
-                                                                     selectedNew:selectedAd];
-    [self.navigationController pushViewController:controller animated:YES];
+//    NewsViewController *controller = [[NewsViewController alloc] initWithNibName:@"NewsViewController" bundle:nil
+//                                                                     selectedNew:selectedAd];
+//    [self.navigationController pushViewController:controller animated:YES];
 }
 
 #pragma mark NewsSubViewControllerDelegate
