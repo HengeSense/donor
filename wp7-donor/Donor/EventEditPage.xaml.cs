@@ -40,6 +40,9 @@ namespace Donor
 
             this.DataContext = CurrentEvent;
             ViewModelLocator.MainStatic.Stations.SelectedStation = "";
+
+            try { ViewModelLocator.MainStatic.DataFLoaded += new MainViewModel.DataFLoadedEventHandler(this.DataFLoaded); }
+            catch { };
         }
 
         public int DayNumber;
@@ -208,8 +211,6 @@ namespace Donor
         {
             try { DataFLoaded(this, EventArgs.Empty); }
             catch { };
-            try { ViewModelLocator.MainStatic.DataFLoaded += new MainViewModel.DataFLoadedEventHandler(this.DataFLoaded);} catch { };
-            
         }
 
         private void CancelButton_Click(object sender, EventArgs e)
@@ -472,7 +473,6 @@ namespace Donor
 
                                  ViewModelLocator.MainStatic.Events.UpdateItems(CurrentEvent);
                                  ViewModelLocator.MainStatic.Events.UpdateItems();
-
                                  ViewModelLocator.MainStatic.Events.CurrentMonth = CurrentEvent.Date;
 
                                  NavigationService.GoBack();

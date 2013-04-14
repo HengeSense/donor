@@ -78,7 +78,7 @@ namespace Donor
                 }
                 else
                 {
-                    ViewModelLocator.MainStatic.Stations.SelectedStation = ((sender as ListBox).SelectedItem as StationViewModel).Nid.ToString();
+                    ViewModelLocator.MainStatic.Stations.SelectedStation = ((sender as ListBox).SelectedItem as StationViewModel).objectId.ToString();
                     NavigationService.GoBack();
                 };
             }

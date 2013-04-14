@@ -288,7 +288,7 @@ namespace Donor.ViewModels
             }
             set
             {
-                if (_place != "")
+                if (_place != value)
                 {
                     _place = value;
                     RaisePropertyChanged("Place");
@@ -1484,36 +1484,39 @@ namespace Donor.ViewModels
         /// <param name="addedItems"></param>
         public void UpdateItems(EventViewModel addedItems = null)
         {
-            if (addedItems == null)
+            try
             {
-                ViewModelLocator.MainStatic.CreateApplicationTile(ViewModelLocator.MainStatic.Events.NearestEvents());
-                ViewModelLocator.MainStatic.SaveToIsolatedStorage();
-
-                NotifyPropertyChanged("Items");
-                NotifyPropertyChanged("UserItems");
-                NotifyPropertyChanged("WeekItems");
-                NotifyPropertyChanged("ThisMonthItems");
-                UpdateNearestEvents();
-
-                this.DeleteUncorrectEvents();
-
-                ViewModelLocator.MainStatic.Events.OnEventsChanged(EventArgs.Empty);
-            }
-            else
-            {
-                ViewModelLocator.MainStatic.EventChanging = true;
-
-                if (addedItems.ParseExists == true)
+                if (addedItems == null)
                 {
-                    UpdateEventParse(addedItems);
+                    ViewModelLocator.MainStatic.CreateApplicationTile(ViewModelLocator.MainStatic.Events.NearestEvents());
+                    ViewModelLocator.MainStatic.SaveToIsolatedStorage();
+
+                    NotifyPropertyChanged("Items");
+                    NotifyPropertyChanged("UserItems");
+                    NotifyPropertyChanged("WeekItems");
+                    NotifyPropertyChanged("ThisMonthItems");
+                    UpdateNearestEvents();
+
+                    this.DeleteUncorrectEvents();
+
+                    ViewModelLocator.MainStatic.Events.OnEventsChanged(EventArgs.Empty);
                 }
                 else
                 {
-                    AddEventParse(addedItems);
-                };
-            };
+                    ViewModelLocator.MainStatic.EventChanging = true;
 
-            ViewModelLocator.MainStatic.User.NotifyAll();
+                    if (addedItems.ParseExists == true)
+                    {
+                        UpdateEventParse(addedItems);
+                    }
+                    else
+                    {
+                        AddEventParse(addedItems);
+                    };
+                };
+                ViewModelLocator.MainStatic.User.NotifyAll();
+            }
+            catch { };
         }
 
         /// <summary>

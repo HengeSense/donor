@@ -323,6 +323,18 @@ namespace Donor.ViewModels
                                     foreach (var item in o) {
                                         string activated = "";
                                         activated = item["activated"].ToString();
+                                        Deployment.Current.Dispatcher.BeginInvoke(() =>
+                                        {
+                                            try
+                                            {
+                                                AvailableAchieves.FirstOrDefault(c => c.Api_name == item["api_name"].ToString()).Title = item["display_name"].ToString();
+                                            }
+                                            catch { };
+                                        });
+                                        Deployment.Current.Dispatcher.BeginInvoke(() =>
+                                        {
+                                            try {SoonAchieves.FirstOrDefault(c => c.Api_name == item["api_name"].ToString()).Title = item["display_name"].ToString();} catch { };
+                                        });
                                         if (activated == "True")
                                         {
                                             Deployment.Current.Dispatcher.BeginInvoke(() =>
@@ -331,10 +343,7 @@ namespace Donor.ViewModels
                                                 {
                                                     AvailableAchieves.FirstOrDefault(c => c.Api_name == item["api_name"].ToString()).Status = true;
                                                 }
-                                                catch
-                                                {
-                                                    //MessageBox.Show(ex.Message.ToString());
-                                                };
+                                                catch {};
                                             });
                                         };
                                     };

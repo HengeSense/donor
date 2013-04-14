@@ -58,7 +58,7 @@ namespace Donor
 
         protected override void OnNavigatedFrom(System.Windows.Navigation.NavigationEventArgs e)
         {
-            base.OnNavigatedTo(e);
+            base.OnNavigatedFrom(e);
         }
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
