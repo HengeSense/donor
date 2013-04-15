@@ -277,12 +277,26 @@
     [self.todayEventsScrollView removeSubviews];
     
     NSArray *todaysEvents = [self.calendarModel eventsForDay:[NSDate date]];
+    NSArray *eventsByPriorityDescending = [todaysEvents sortedArrayUsingComparator:
+        ^NSComparisonResult(HSEvent *firstEvent, HSEvent *secondEvent) {
+            if (firstEvent.class == secondEvent.class) {
+                return NSOrderedSame;
+            }
+            if ([firstEvent isKindOfClass:[HSBloodRemoteEvent class]]) {
+                if ([secondEvent isKindOfClass:[HSBloodRemoteEvent class]]) {
+                    return NSOrderedSame;
+                } else {
+                    return NSOrderedAscending;
+                }
+            }
+            return NSOrderedDescending;
+    }];
     CGFloat contentOffsetY = 0.0f;
-    for (HSEvent *event in todaysEvents) {
+    for (HSEvent *event in eventsByPriorityDescending) {
         HSEventShortInfoView *eventShortView = [[HSEventShortInfoView alloc] initWithEvent:event];
         eventShortView.frame = CGRectMake(0, contentOffsetY, self.todayEventsScrollView.bounds.size.width, eventShortView.bounds.size.height);
         eventShortView.showHeaderLine = NO;
-        eventShortView.showFooterLine = event != [todaysEvents lastObject];
+        eventShortView.showFooterLine = event != [eventsByPriorityDescending lastObject];
         [self.todayEventsScrollView addSubview:eventShortView];
         contentOffsetY += eventShortView.frame.size.height;
     }
