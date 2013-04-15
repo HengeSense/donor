@@ -43,6 +43,7 @@ NSString* const ItsBetaDidPlayerLogout;
 typedef enum {
     ItsBetaErrorInternal,
     ItsBetaErrorResponse,
+    ItsBetaErrorExpiredToken,
     ItsBetaErrorFacebookAuth
 } ItsBetaError;
 

@@ -57,7 +57,7 @@ static NSString * const kLinkedToFacebookTitle = @"привязан";
 }
 
 - (void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self forKeyPath:ItsBetaDidPlayerLogin];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

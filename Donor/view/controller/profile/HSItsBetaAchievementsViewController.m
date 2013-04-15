@@ -52,8 +52,7 @@
 }
 
 - (void) dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self forKeyPath:ItsBetaDidPlayerSynchronize];
-    [[NSNotificationCenter defaultCenter] removeObserver:self forKeyPath:ItsBetaWillPlayerSynchronize];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 
     _contentAvailable = nil;
     _contentExists = nil;

@@ -17,7 +17,7 @@
 @interface HSItsBeta ()
 
 + (void) linkItsBeta:(UIViewController*)viewController player:(ItsBetaPlayer*)player user:(PFUser*)user objects:(NSArray*)objects completion:(void(^)(NSError *error))completion;
-+ (void) giveGiveInstallAchievementItsBeta:(UIViewController*)viewController player:(ItsBetaPlayer*)player completion:(void(^)(NSError *error))completion;
++ (void) giveGiveInstallAchievementItsBeta:(UIViewController*)viewController player:(ItsBetaPlayer*)player user:(PFUser*)user completion:(void(^)(NSError *error))completion;
 
 @end
 
@@ -64,13 +64,13 @@
                 [[user relationforKey:@"ItsBeta"] addObject:itsbeta];
                 [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                     if(succeeded == YES) {
-                        [self giveGiveInstallAchievementItsBeta:viewController player:player completion:completion];
+                        [self giveGiveInstallAchievementItsBeta:viewController player:player user:user completion:completion];
                     } else {
                         [HSAlertViewController showWithMessage:@"Ошибка привязки itsbeta"];
                     }
                 }];
             } else {
-                [self giveGiveInstallAchievementItsBeta:viewController player:player completion:completion];
+                [self giveGiveInstallAchievementItsBeta:viewController player:player user:user completion:completion];
             }
         } else {
             [HSAlertViewController showWithMessage:@"Ошибка привязки itsbeta"];
@@ -78,7 +78,7 @@
     }];
 }
 
-+ (void) giveGiveInstallAchievementItsBeta:(UIViewController*)viewController player:(ItsBetaPlayer*)player completion:(void(^)(NSError *error))completion {
++ (void) giveGiveInstallAchievementItsBeta:(UIViewController*)viewController player:(ItsBetaPlayer*)player user:(PFUser*)user completion:(void(^)(NSError *error))completion {
     if([player isLogined] == YES) {
         ItsBetaProject* project = [ItsBeta projectByName:@"donor"];
         ItsBetaObjectTemplate* objectTemplate = [ItsBeta objectTemplateByName:@"donorfriend" byProject:project];
@@ -86,10 +86,10 @@
                                    objectTemplate:objectTemplate
                                            params:nil
                                          callback:^(ItsBetaPlayer *player, NSString *object_id, NSError *error) {
-                                             if(completion != nil) {
-                                                 completion(error);
-                                             }
                                              if(error == nil) {
+                                                 if(completion != nil) {
+                                                     completion(error);
+                                                 }
                                                  dispatch_async(dispatch_get_main_queue(), ^{
                                                      HSItsBetaAchievementDetailViewController *controller = [HSItsBetaAchievementDetailViewController new];
                                                      if(controller != nil) {
@@ -97,6 +97,14 @@
                                                          [viewController presentModalViewController:controller animated:YES];
                                                      }
                                                  });
+                                             } else {
+                                                 if([error code] == ItsBetaErrorExpiredToken) {
+                                                     [self assignItsBeta:viewController user:user completion:completion];
+                                                 } else {
+                                                     if(completion != nil) {
+                                                         completion(error);
+                                                     }
+                                                 }
                                              }
                                          }];
     } else {
@@ -120,7 +128,7 @@
                                              facebookToken:[object objectForKey:@"facebookAccessToken"]
                                                   callback:^(ItsBetaPlayer *player, NSError *error) {
                                                       if(error == nil) {
-                                                          [self giveGiveInstallAchievementItsBeta:viewController player:player completion:completion];
+                                                          [self giveGiveInstallAchievementItsBeta:viewController player:player user:user completion:completion];
                                                       }
                                                   }];
                     }

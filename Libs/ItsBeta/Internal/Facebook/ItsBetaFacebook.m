@@ -197,10 +197,16 @@
 }
 
 - (void)webView:(UIWebView*)webView didFailLoadWithError:(NSError*)error {
+    if([error code] == NSURLErrorCancelled) {
+        if([_parentController presentedViewController] != self) {
+            [_parentController presentModalViewController:self animated:YES];
+        }
+        return;
+    }
     if(error != nil) {
         NS_SAFE_SETTER(_lastError, error);
     }
-    // [self close];
+    [self close];
 }
 
 @end
