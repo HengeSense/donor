@@ -31,6 +31,7 @@
 @property (nonatomic) NSInteger district_id;
 
 - (void)saveLastChoice;
+- (void)requestCurrentRegionAreaWithRegionName:(NSString *)regionName;
 
 
 @end
