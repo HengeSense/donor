@@ -8,6 +8,7 @@
 
 #import "HSStationCardViewController.h"
 #import "HSStationsMapViewController.h"
+#import "StationsDefs.h"
 
 @interface HSStationCardViewController ()
 
@@ -21,6 +22,7 @@
     if (self) {
         // Custom initialization
         _isShowAllInfoForced = NO;
+        _isMapButtonInitiallyHidden = NO;
     }
     return self;
 }
@@ -59,11 +61,30 @@
         BOOL isSiteHidden = NO;
         if(![_stationDictionary objectForKey:@"site"] || ![[_stationDictionary objectForKey:@"site"] isKindOfClass:[NSString class]] || [[_stationDictionary objectForKey:@"site"] isEqualToString:@""]){
             isSiteHidden = YES;
-        }
+        };
+        
+        float tmpFontSize = 14.5f;
+        _phoneLabel.font = BOLD_FONT_WITH_SIZE(tmpFontSize);
+        while([_phoneLabel.text sizeWithFont:_phoneLabel.font constrainedToSize:CGSizeMake(_phoneLabel.bounds.size.width, 100500) lineBreakMode:_phoneLabel.lineBreakMode].height > _phoneLabel.bounds.size.height){
+            tmpFontSize -= 0.5f;
+            if(tmpFontSize<12.0f) break;
+            _phoneLabel.font = BOLD_FONT_WITH_SIZE(tmpFontSize);
+        };
+        
+        tmpFontSize = 14.5f;
+        _workhoursLabel.font = BOLD_FONT_WITH_SIZE(tmpFontSize);
+        while([_workhoursLabel.text sizeWithFont:_workhoursLabel.font constrainedToSize:CGSizeMake(_workhoursLabel.bounds.size.width, 100500) lineBreakMode:_workhoursLabel.lineBreakMode].height > _workhoursLabel.bounds.size.height){
+            tmpFontSize -= 0.5f;
+            if(tmpFontSize<12.0f) break;
+            _workhoursLabel.font = BOLD_FONT_WITH_SIZE(tmpFontSize);
+        };
+            
         
         [_citeTitle setHidden:isSiteHidden];
         [_citeLabel setHidden:isSiteHidden];
     };
+    
+    [_showOnMapButton setHidden:_isMapButtonInitiallyHidden];
 };
 
 - (void)didReceiveMemoryWarning

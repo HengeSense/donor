@@ -15,6 +15,7 @@
 @property (nonatomic, strong) NSDictionary *stationDictionary;
 
 @property (nonatomic) BOOL isShowAllInfoForced;
+@property (nonatomic) BOOL isMapButtonInitiallyHidden;
 
 @property (nonatomic, strong) IBOutlet UILabel *nameLabel;
 

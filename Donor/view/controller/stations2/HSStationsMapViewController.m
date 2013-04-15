@@ -21,6 +21,8 @@
     if (self) {
         // Custom initialization
         annotations = [[NSMutableArray alloc] init];
+        _center = CLLocationCoordinate2DMake(0, 0);
+        _span = MKCoordinateSpanMake(0, 0);
     }
     return self;
 }
@@ -45,10 +47,18 @@
         showedRegion.span = MKCoordinateSpanMake(0.01, 0.01);
         [_stationsMap setRegion:showedRegion animated:YES];
     }else{
-        _stationsMap.showsUserLocation = YES;
-        showedRegion.center = _center;
-        showedRegion.span = MKCoordinateSpanMake(0.05, 0.05);
-        [_stationsMap setRegion:showedRegion animated:YES];
+        if(fabs(_center.latitude<0.0001) && fabs(_center.longitude<0.0001)){
+            _stationsMap.showsUserLocation = YES;
+        }else{
+            _stationsMap.showsUserLocation = YES;
+            showedRegion.center = _center;
+            if(fabs(_span.latitudeDelta<0.0001) && fabs(_span.longitudeDelta<0.0001)){
+                showedRegion.span = MKCoordinateSpanMake(0.1, 0.1);
+            }else{
+                showedRegion.span = _span;
+            };
+            [_stationsMap setRegion:showedRegion animated:YES];
+        };
     };
     
 }
@@ -78,6 +88,7 @@
         HSStationCardViewController *cardViewController = [[HSStationCardViewController alloc] initWithNibName:@"HSStationCardViewController" bundle:nil];
         cardViewController.stationDictionary = stationDict;
         cardViewController.isShowAllInfoForced = YES;
+        cardViewController.isMapButtonInitiallyHidden = YES;
         [self.navigationController pushViewController:cardViewController animated:YES];
     };
 };

@@ -16,6 +16,8 @@
 
 @property (nonatomic, strong) NSIndexPath *lastSelectedIndexPath;
 
+@property (nonatomic, strong) NSString *selectedRegion;
+
 @end
 
 @implementation HSStationsSelectCityViewController
@@ -27,6 +29,7 @@
         // Custom initialization
         _regionsArray = nil;
         _filteredArray = nil;
+        _selectedRegion = nil;
         
         _lastSelectedIndexPath = nil;
     }
@@ -168,6 +171,8 @@
 - (IBAction)onPressOk:(id)sender{
     _delegate.region_id = _regionId;
     _delegate.district_id = _districtId;
+    
+    [_delegate requestCurrentRegionAreaWithRegionName:_selectedRegion];
     [_delegate saveLastChoice];
     
     [self dismissModalViewControllerAnimated:YES];
@@ -303,6 +308,8 @@
         _districtId = [[curObj objectForKey:@"district_id"] integerValue];
     };
     
+    _selectedRegion = [curObj objectForKey:@"name"];
+    
     [tableView deselectRowAtIndexPath:_lastSelectedIndexPath animated:YES];
     _lastSelectedIndexPath = indexPath;
     [tableView reloadData];
@@ -318,19 +325,42 @@
 
 #pragma mark - UISearchDisplayController Delegate Methods
 
+- (void) searchDisplayControllerWillBeginSearch:(UISearchDisplayController *)controller{
+    [self.searchDisplayController.searchBar setShowsCancelButton:YES animated:YES];
+    for(UIView *oneView in self.searchDisplayController.searchBar.subviews){
+        if([oneView isKindOfClass:[UIButton class]]){
+            [(UIButton *)oneView setTitle:@"Отменить" forState:UIControlStateNormal];
+        };
+    };
+};
+
+
 - (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString{
     if(!_filteredArray) _filteredArray = [[NSMutableArray alloc] init];
     [_filteredArray removeAllObjects]; // First clear the filtered array.
 	
+    BOOL isResults = NO;
 	for (NSDictionary *oneRegion in _regionsArray){
         NSString *str = [oneRegion objectForKey:@"name"];
         NSRange substringRange = [str rangeOfString:searchString options:(NSCaseInsensitiveSearch|NSDiacriticInsensitiveSearch) range:NSMakeRange(0, [str length])];
         if(substringRange.location != NSNotFound){
             [_filteredArray addObject:oneRegion];
+            isResults = YES;
             continue;
         };
 	};
     
+    if(!isResults){
+        double delayInSeconds = 0.001;
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+            for(UIView *oneView in self.searchDisplayController.searchResultsTableView.subviews){
+                if([oneView isKindOfClass:[UILabel class]]){
+                    [(UILabel *)oneView setText:@"Не найдено"];
+                };
+            };
+        });
+    };
     
     // Return YES to cause the search result table view to be reloaded.
     return YES;
