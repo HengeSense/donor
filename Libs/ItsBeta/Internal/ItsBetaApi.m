@@ -33,10 +33,21 @@
 @implementation ItsBetaApi
 
 + (NSError*) errorWithDictionary:(NSDictionary*)dictionary {
+    NSNumber* code = [dictionary objectForKey:@"error"];
     NSString* status = [dictionary objectForKey:@"status"];
     NSString* description = [dictionary objectForKey:@"description"];
     NSString* additionalInfo = [dictionary objectForKey:@"additional_info"];
     NSDictionary* userInfo = [NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"%@ - %@ '%@'", status, description, additionalInfo] forKey:NSLocalizedDescriptionKey];
+    if([code integerValue] == 402) {
+        NSError* error = nil;
+        id json = [NSJSONSerialization JSONObjectWithData:[additionalInfo dataUsingEncoding:NSUTF8StringEncoding] options:0 error:&error];
+        if(error == nil) {
+            NSNumber* errorCode = [[json objectForKey:@"error"] objectForKey:@"code"];
+            if([errorCode integerValue] == 240) {
+                return [NSError errorWithDomain:ItsBetaErrorDomain code:ItsBetaErrorExpiredToken userInfo:userInfo];
+            }
+        }
+    }
     return [NSError errorWithDomain:ItsBetaErrorDomain code:ItsBetaErrorResponse userInfo:userInfo];
 }
 
