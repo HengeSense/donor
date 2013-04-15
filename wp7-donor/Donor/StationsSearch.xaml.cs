@@ -222,7 +222,17 @@ namespace Donor
 
         private void MapButton_Click(object sender, EventArgs e)
         {
-            try { NavigationService.Navigate(new Uri("/MapPage.xaml", UriKind.Relative)); } catch { };
+            try {
+                if ((ViewModelLocator.MainStatic.Stations.CurrentDistrict != "") ||
+                    (ViewModelLocator.MainStatic.Stations.CurrentState != ""))
+                {
+                    NavigationService.Navigate(new Uri("/MapPage.xaml", UriKind.Relative));
+                }
+                else
+                {
+                    MessageBox.Show("Не выбран район или регион.");
+                };
+            } catch { };
         }
 
         private void ApplicationBarIconButton_Click(object sender, EventArgs e)

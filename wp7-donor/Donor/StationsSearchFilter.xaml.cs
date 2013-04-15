@@ -22,7 +22,7 @@ namespace Donor
         {
             InitializeComponent();
 
-            //this.StationsSearchText.ItemsSource = ViewModelLocator.MainStatic.Stations.DistrictItems;
+            this.DistrictsList.ItemsSource = ViewModelLocator.MainStatic.Stations.DistrictItems;
             //this.StationsSearchText.FilterMode = AutoCompleteFilterMode.Contains;
             this.DistrictsList.GroupDescriptors.Add(GroupedBadgesList);           
             this.DistrictsList.SortDescriptors.Add(Sort);

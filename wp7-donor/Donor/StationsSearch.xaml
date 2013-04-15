@@ -148,8 +148,8 @@
 
         <WPExtensions:AdvancedApplicationBar Name="AppBar" Background="#FF211E1D" BackgroundColor="#FF211E1D" Foreground="White" BorderBrush="#FF211E1D" ForegroundColor="White" OpacityMask="White"
 		IsVisible="True" IsMenuEnabled="True">
-            <!--<WPExtensions:AdvancedApplicationBarIconButton IconUri="/icons/ic_ApplicationBar_map.png" Name="MapButton" Text="{Binding OnMap, Source={StaticResource Loc}}" Visibility="Visible" Click="MapButton_Click" />
-            <WPExtensions:AdvancedApplicationBarIconButton IconUri="/icons/ic_ApplicationBar_item.png" Name="FilterButton" Text="{Binding Filter, Source={StaticResource Loc}}" Visibility="Visible" Click="ApplicationBarIconButton_Click" />-->
+            <WPExtensions:AdvancedApplicationBarIconButton IconUri="/icons/ic_ApplicationBar_map.png" Name="MapButton" Text="{Binding OnMap, Source={StaticResource Loc}}" Visibility="Visible" Click="MapButton_Click" />
+            <!--<WPExtensions:AdvancedApplicationBarIconButton IconUri="/icons/ic_ApplicationBar_item.png" Name="FilterButton" Text="{Binding Filter, Source={StaticResource Loc}}" Visibility="Visible" Click="ApplicationBarIconButton_Click" />-->
         </WPExtensions:AdvancedApplicationBar>
     </Grid>
 

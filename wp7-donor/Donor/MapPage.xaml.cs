@@ -93,7 +93,7 @@ namespace Donor
                 }
                 else
                 {
-                    filteredItems = (from stations in ViewModelLocator.MainStatic.Stations.Items
+                    filteredItems = (from stations in ViewModelLocator.MainStatic.Stations.DistanceItems
                                                     where (stations.Name.ToLower().Contains(ViewModelLocator.MainStatic.Stations.FilteredText.ToLower()))
                                                     orderby stations.Distance ascending
                                      select stations).ToList();
@@ -103,7 +103,7 @@ namespace Donor
             {
                 if (ViewModelLocator.MainStatic.Stations.FilteredText == "")
                 {
-                    filteredItems = (from stations in ViewModelLocator.MainStatic.Stations.Items
+                    filteredItems = (from stations in ViewModelLocator.MainStatic.Stations.DistanceItems
                                                     where (stations.Town == ViewModelLocator.MainStatic.Stations.SelectedCity)
                                                     && (((!ViewModelLocator.MainStatic.Stations.IsChildrenDonor)) && ((!ViewModelLocator.MainStatic.Stations.IsRegional)) && ((!ViewModelLocator.MainStatic.Stations.IsSaturdayWork)))
                                                     orderby stations.Distance ascending
@@ -111,7 +111,7 @@ namespace Donor
                 }
                 else
                 {
-                    filteredItems = (from stations in ViewModelLocator.MainStatic.Stations.Items
+                    filteredItems = (from stations in ViewModelLocator.MainStatic.Stations.DistanceItems
                                                     where (stations.Name == ViewModelLocator.MainStatic.Stations.SelectedCity)
                                                     && (stations.Name.ToLower().Contains(ViewModelLocator.MainStatic.Stations.FilteredText.ToLower())) && (stations.Name.ToLower().Contains(ViewModelLocator.MainStatic.Stations.FilteredText.ToLower()))
                                                     orderby stations.Distance ascending
