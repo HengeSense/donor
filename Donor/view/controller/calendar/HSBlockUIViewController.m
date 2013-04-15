@@ -24,10 +24,4 @@
     self.blockMessageLabel.text = self.blockMessage;
 }
 
-- (void)viewDidUnload {
-    [self setBlockMessage:nil];
-    [self setBlockMessageLabel:nil];
-    [super viewDidUnload];
-}
-
 @end

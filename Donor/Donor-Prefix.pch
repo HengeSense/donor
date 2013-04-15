@@ -27,4 +27,10 @@
 #define THROW_UNIMPLEMENTED_EXCEPTION\
     @throw [NSException exceptionWithName:NSInternalInconsistencyException\
             reason:[NSString stringWithFormat:@"%@ should be implemented in subclasses", NSStringFromSelector(_cmd)]\
-            userInfo:nil];
+            userInfo:nil]
+
+#define THROW_REQUIRED_RESOURCE_NOT_FOUND(fileName,error)\
+    @throw [NSException exceptionWithName:NSInternalInconsistencyException\
+            reason:[NSString stringWithFormat:@"File (resource) with name \"%@\" not found."\
+                                               " Met reading error:%@", fileName, error]\
+            userInfo:nil]

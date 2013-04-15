@@ -187,9 +187,4 @@
     }];
 }
 
-- (void)viewDidUnload {
-    [self setBaseAuthorizationButton:nil];
-    [self setRegistrationButton:nil];
-    [super viewDidUnload];
-}
 @end

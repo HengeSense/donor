@@ -52,6 +52,9 @@
 }
 
 - (void) dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self forKeyPath:ItsBetaDidPlayerSynchronize];
+    [[NSNotificationCenter defaultCenter] removeObserver:self forKeyPath:ItsBetaWillPlayerSynchronize];
+
     _contentAvailable = nil;
     _contentExists = nil;
     _content = nil;
@@ -66,15 +69,6 @@
     [ItsBeta synchronizePlayerWithProject:_project];
 
     [self refresh];
-}
-
-- (void)viewDidUnload {
-    [[NSNotificationCenter defaultCenter] removeObserver:self forKeyPath:ItsBetaDidPlayerSynchronize];
-    [[NSNotificationCenter defaultCenter] removeObserver:self forKeyPath:ItsBetaWillPlayerSynchronize];
-    
-    [self setTableView:nil];
-    
-    [super viewDidUnload];
 }
 
 #pragma mark - Notification

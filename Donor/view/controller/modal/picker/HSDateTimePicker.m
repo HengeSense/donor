@@ -86,12 +86,6 @@ static const NSUInteger kDateTimePickerComponentsNumber = 3;
     [self configureDateTimePickerView];
 }
 
-- (void)viewDidUnload {
-    [self setDateTimePicker:nil];
-    [self setDateTimePicker:nil];
-    [super viewDidUnload];
-}
-
 #pragma mark - Private interface implementation
 - (void)configureDateTimePickerView {
     self.dateTimePicker.minimumDate = self.startDate;

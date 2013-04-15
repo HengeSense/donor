@@ -1,25 +1,25 @@
 //
-//  NewsViewController.m
+//  AdViewController.m
 //  BloodDonor
 //
 //  Created by Владимир Носков on 01.08.12.
 //
 //
 
-#import "NewsViewController.h"
+#import "AdViewController.h"
 #import <Foundation/Foundation.h>
 #import "StationsViewController.h"
 #import "MBProgressHUD.h"
 #import "UIView+HSLayoutManager.h"
 #import "HSSocailShareViewController.h"
 
-@interface NewsViewController ()
+@interface AdViewController ()
 
 @property (nonatomic, strong) HSSocailShareViewController *socailShareViewController;
 
 @end
 
-@implementation NewsViewController
+@implementation AdViewController
 
 #pragma mare Actions
 
@@ -120,7 +120,7 @@
 {
     [super viewDidLoad];
     
-    self.title = @"Новости";
+    self.title = @"Объявление";
     
     UIButton *shareButton = [UIButton buttonWithType:UIButtonTypeCustom];
     UIImage *shareImageNormal = [UIImage imageNamed:@"shareButtonNormal"];

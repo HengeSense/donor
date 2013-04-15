@@ -1,5 +1,5 @@
 //
-//  NewsViewController.h
+//  AdViewController.h
 //  BloodDonor
 //
 //  Created by Владимир Носков on 01.08.12.
@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
 
-@interface NewsViewController : UIViewController <UIWebViewDelegate>
+@interface AdViewController : UIViewController <UIWebViewDelegate>
 
 /// @name UI properties
 @property (nonatomic, weak) IBOutlet UILabel *titleLabel;

@@ -14,7 +14,7 @@
 #import <Parse/Parse.h>
 #import "Common.h"
 #import "StationsAnnotation.h"
-#import "NewsViewController.h"
+#import "HSNewsViewController.h"
 #import "MBProgressHUD.h"
 
 @interface StationsViewController ()

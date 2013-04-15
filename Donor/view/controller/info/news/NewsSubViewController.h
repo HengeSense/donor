@@ -8,16 +8,17 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <Parse/Parse.h>
+
+@class MWFeedItem;
 
 @protocol INewsSelectListener <NSObject>
 
-- (void) newSelected:(PFObject *)selectedNew;
+- (void) newSelected:(MWFeedItem *)selectedNews;
 
 @end
 
 @interface NewsSubViewController : UIViewController
 
-@property (nonatomic, weak) id delegate;
+@property (nonatomic, weak) id<INewsSelectListener> delegate;
 
 @end

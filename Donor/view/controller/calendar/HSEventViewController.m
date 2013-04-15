@@ -85,24 +85,6 @@
     [self configureViews];
 }
 
-- (void)viewDidUnload {
-    [self setRootView:nil];
-    [self setRootScrollView:nil];
-    [self setBloodDonationView:nil];
-    [self setBloodDonationLabAddressLabel:nil];
-    [self setBloodDonationTypeLabel:nil];
-    [self setBloodDonationDateLabel:nil];
-    [self setBloodDonationCommentTextView:nil];
-    [self setBloodTestsDateLabel:nil];
-    [self setBloodTestsLabAddressLabel:nil];
-    [self setBloodTestsCommentsTextView:nil];
-    [self setBloodTestsView:nil];
-    [self setDoneButton:nil];
-    [self setBloodDonationReminderLabel:nil];
-    [self setBloodTestsReminderLabel:nil];
-    [super viewDidUnload];
-}
-
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.rootScrollView adjustAsContentView];
