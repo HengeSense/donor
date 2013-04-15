@@ -8,9 +8,12 @@
 
 #import "HSNewsViewController.h"
 
-#import "UIView+HSLayoutManager.h"
-
 #import "MWFeedItem.h"
+
+#import "UIView+HSLayoutManager.h"
+#import "NSString+HSUtils.h"
+
+#import "HSSocailShareViewController.h"
 
 #pragma mark - Html content constants
 static NSString * const kNewsHtml_FileName = @"news_template";
@@ -24,6 +27,7 @@ static NSString * const kNewsHtmlContentPlaceholder_FutherReadingText = @"{FUTHE
 @interface HSNewsViewController ()
 
 @property (nonatomic, strong) MWFeedItem *newsFeedItem;
+@property (nonatomic, strong) HSSocailShareViewController *socailShareViewController;
 
 @end
 
@@ -65,10 +69,37 @@ static NSString * const kNewsHtmlContentPlaceholder_FutherReadingText = @"{FUTHE
     [self.newsBodyWebView adjustAsContentView];
 }
 
+#pragma mark - Actions
+- (IBAction)shareButtonPressed:(id)sender
+{
+    if (self.socailShareViewController == nil) {
+        self.socailShareViewController =
+        [[HSSocailShareViewController alloc] initWithNibName:@"HSSocailShareViewController" bundle:nil];
+    }
+    self.socailShareViewController.shareUrl = self.newsFeedItem.link;
+    [self.socailShareViewController showModal];
+}
+
 #pragma mark - Private
-#pragma mark - UI cnfiguration
+#pragma mark - UI configuration
 - (void)configureNavigationBar {
+    // Title
     self.title = @"Новости";
+    
+    if ([self.newsFeedItem.link isNotEmpty]) {
+        // Right button (Share)
+        UIButton *shareButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        UIImage *shareImageNormal = [UIImage imageNamed:@"shareButtonNormal"];
+        UIImage *shareImagePressed = [UIImage imageNamed:@"shareButtonPressed"];
+        CGRect shareButtonFrame = CGRectMake(0, 0, shareImageNormal.size.width, shareImageNormal.size.height);
+        [shareButton setImage:shareImageNormal forState:UIControlStateNormal];
+        [shareButton setImage:shareImagePressed forState:UIControlStateHighlighted];
+        shareButton.frame = shareButtonFrame;
+        [shareButton addTarget:self action:@selector(shareButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+        
+        UIBarButtonItem *shareBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:shareButton];
+        self.navigationItem.rightBarButtonItem = shareBarButtonItem;
+    }
 }
 
 #pragma mark - Content management

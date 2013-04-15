@@ -13,6 +13,8 @@
 #import "UIView+HSLayoutManager.h"
 #import "HSSocailShareViewController.h"
 
+static NSString * kShareBaseUrl_PodariZhizn = @"http://www.podari-zhizn.ru/main/node/";
+
 @interface AdViewController ()
 
 @property (nonatomic, strong) HSSocailShareViewController *socailShareViewController;
@@ -37,7 +39,8 @@
     NSInteger newsId = [self.content valueForKey:@"station_nid"] ?
             [[self.content objectForKey:@"station_nid"] integerValue] :
             [[self.content objectForKey:@"nid"] integerValue];
-    self.socailShareViewController.newsId = newsId;
+    NSString *shareUrl = [NSString stringWithFormat:@"%@%d", kShareBaseUrl_PodariZhizn, newsId];
+    self.socailShareViewController.shareUrl = shareUrl;
     [self.socailShareViewController showModal];
 }
 
