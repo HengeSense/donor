@@ -303,12 +303,24 @@
     if([curObj objectForKey:@"region_id"]){
         _regionId = [[curObj objectForKey:@"region_id"] integerValue];
         _districtId = -1;
+        _selectedRegion = [curObj objectForKey:@"name"];
     }else{
         _regionId = -1;
         _districtId = [[curObj objectForKey:@"district_id"] integerValue];
+        
+        int startIndex = [indexPath row];
+        while(startIndex>=0 && [[curArray objectAtIndex:startIndex] objectForKey:@"region_id"]==nil){
+            startIndex--;
+        };
+        if(startIndex>=0 && [[curArray objectAtIndex:startIndex] objectForKey:@"name"]){
+            _selectedRegion = [NSString stringWithFormat:@"%@, %@ район", [[curArray objectAtIndex:startIndex] objectForKey:@"name"], [curObj objectForKey:@"name"]];
+        }else{
+            _selectedRegion = @"";
+        };
     };
     
-    _selectedRegion = [curObj objectForKey:@"name"];
+    NSLog(@"Select region: %@", _selectedRegion);
+    
     
     [tableView deselectRowAtIndexPath:_lastSelectedIndexPath animated:YES];
     _lastSelectedIndexPath = indexPath;
