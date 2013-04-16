@@ -28,6 +28,18 @@ namespace Donor
 
         private void DataFLoaded(object sender, EventArgs e)
         {
+            string _eventid_check = "";
+            if (this.NavigationContext.QueryString.ContainsKey("id"))
+            {
+                try
+                {
+                    _eventid_check = this.NavigationContext.QueryString["id"];
+                }
+                catch { };
+            };
+
+            if (NavigationService.CurrentSource.ToString() == ("/EventPage.xaml?id=" + _eventid_check))
+            {
             //Uri currentUri = ((App)Application.Current).RootFrame.CurrentSource;
             if (ViewModelLocator.MainStatic.IsDataLoaded == true)
             {
@@ -39,7 +51,7 @@ namespace Donor
                         _eventid_current = _eventid;
                         _currentEvent = ViewModelLocator.MainStatic.Events.Items.FirstOrDefault(c => c.Id == _eventid.ToString());
 
-                        if (_currentEvent == null)
+                        if ((_currentEvent == null))
                         {
                             try
                             {
@@ -182,17 +194,11 @@ namespace Donor
                 }
                 catch { };
             };
+            };
         }
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
-            try { 
-                ViewModelLocator.MainStatic.DataFLoaded += new MainViewModel.DataFLoadedEventHandler(this.DataFLoaded); 
-            } catch {};
-
-            try { 
-                DataFLoaded(this, EventArgs.Empty); 
-            } catch { };
         }
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
@@ -217,7 +223,17 @@ namespace Donor
         }
         //DataFLoaded(this, EventArgs.Empty); 
 
-
+        protected override void OnNavigatingFrom(System.Windows.Navigation.NavigatingCancelEventArgs e)
+        {
+            try
+            {
+                ViewModelLocator.MainStatic.DataFLoaded -= new MainViewModel.DataFLoadedEventHandler(this.DataFLoaded);
+            }
+            catch
+            {
+            };
+            base.OnNavigatingFrom(e);
+        }
 
         private void ShareButton_Click(object sender, EventArgs e)
         {
