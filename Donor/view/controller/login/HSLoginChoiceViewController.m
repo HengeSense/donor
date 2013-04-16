@@ -11,6 +11,8 @@
 #import <Parse/Parse.h>
 #import "MBProgressHUD.h"
 
+#import "AppDelegate.h"
+
 #import "HSUserInfo.h"
 #import "Common.h"
 #import "HSProfileRegistrationViewController.h"
@@ -56,17 +58,15 @@
     [self.facebookAuthorizationButton addSubview:facebookLogoView];
 }
 
-- (void)configureUI {
-    self.title = @"Донор";
-    [self configureFacebookAuthButton];
-    [self configureBaseAuthButton];
-    [self configureRegistrationButton];
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self configureUI];
     [self loginStoredUserIfPossible];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self setTabBarHidden:[PFUser currentUser] == nil animated:animated];
 }
 
 - (IBAction)baseAuthorizationSelected:(id)sender {
@@ -133,7 +133,17 @@
     [self.navigationController pushViewController:controller animated:YES];
 }
 
-#pragma mark - Private utility methods
+#pragma mark - Private
+#pragma mark - UI configuration
+- (void)configureUI {
+    self.title = @"Донор";
+    [self configureFacebookAuthButton];
+    [self configureBaseAuthButton];
+    [self configureRegistrationButton];
+    [self setTabBarHidden:YES animated:NO];
+}
+
+#pragma mark - Utility
 - (void)loginStoredUserIfPossible {
     if ([PFUser currentUser]) {
         if ([Common getInstance].authenticatedWithFacebook  &&
@@ -185,6 +195,13 @@
             completion(NO, error);
         }
     }];
+}
+
+#pragma mark - Private
+#pragma mark - UI configuration
+- (void)setTabBarHidden:(BOOL)hidden animated:(BOOL)animated {
+    AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    [appDelegate setTabBarHidden:hidden animated:animated];
 }
 
 @end

@@ -46,22 +46,18 @@ static NSString * const CRASHLYTICS_ID = @"9d515447ae8b641e682dacd6b67757ba27623
 
 @property (nonatomic, strong) HSCalendarEventNotifier *calendarEventNotifier;
 
-- (void)makeTabBarHidden:(BOOL)hide;
-
 @end
 
 @implementation AppDelegate
 
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
     [self configureServices];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.rootViewController = [self createRootViewController];    
     
-    [self makeTabBarHidden:YES];
     [self.window makeKeyAndVisible];
     
     [self handleNotificationsIfExistsInOptions:launchOptions];
@@ -73,27 +69,8 @@ static NSString * const CRASHLYTICS_ID = @"9d515447ae8b641e682dacd6b67757ba27623
     [Appirater appEnteredForeground:YES];
 }
 
-- (void)makeTabBarHidden:(BOOL)hide {
-    // Custom code to hide TabBar
-    if ([self.tabBarController.view.subviews count] < 2) {
-        return;
-    }
-    
-    UIView *contentView = [[self.tabBarController.view.subviews objectAtIndex:0] isKindOfClass:[UITabBar class]] ?
-            [self.tabBarController.view.subviews objectAtIndex:1] :
-            [self.tabBarController.view.subviews objectAtIndex:0];
-    
-    if (hide) {
-        contentView.frame = self.tabBarController.view.bounds;
-    } else {
-        contentView.frame = CGRectMake(self.tabBarController.view.bounds.origin.x,
-                                       self.tabBarController.view.bounds.origin.y,
-                                       self.tabBarController.view.bounds.size.width,
-                                       self.tabBarController.view.bounds.size.height - self.tabBarController.tabBar.frame.size.height);
-    }
-    
-    self.tabBarController.tabBar.hidden = hide;
-    self.tabBarController.moreNavigationController.navigationBar.hidden = YES;
+- (void)setTabBarHidden:(BOOL)hidden animated:(BOOL)animated {
+    [self.sTabBarController setTabBarHidden:hidden animated:animated];
 }
 
 - (BOOL)handleOpenURL:(NSURL*)url {
