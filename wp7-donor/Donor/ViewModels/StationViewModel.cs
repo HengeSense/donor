@@ -661,7 +661,7 @@ namespace Donor.ViewModels
                 }
                 else
                 {
-                    if (ViewModelLocator.MainStatic.Stations.CurrentDistrict == "")
+                    if ((ViewModelLocator.MainStatic.Stations.CurrentDistrict == "") && (ViewModelLocator.MainStatic.Stations.CurrentState != "Москва") && (ViewModelLocator.MainStatic.Stations.CurrentState != "Санкт-Петербург"))
                     {
                         return Town + ", " + Shortaddress;
                     }

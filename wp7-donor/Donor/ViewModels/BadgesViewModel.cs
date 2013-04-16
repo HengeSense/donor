@@ -350,6 +350,7 @@ namespace Donor.ViewModels
                                     RaisePropertyChanged("AvailableAchieves");
                                 }
                                 catch { };
+                                RaisePropertyChanged("AvailableAchieves");
                             });
                         }
                         catch { };
