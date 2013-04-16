@@ -9,6 +9,9 @@
 #ifndef Donor_StationsDefs_h
 #define Donor_StationsDefs_h
 
+#define PRINT_FRAME(str, frame) NSLog(@"%@: %.0f, %.0f, %.0f, %.0f", str, frame.origin.x, frame.origin.y, frame.size.width, frame.size.height)
+#define PRINT_SIZE(str, size)   NSLog(@"%@: %.0fx%.0f", str, size.width, size.height)
+
 #define RGBA_COLOR(r, g, b, a) [UIColor colorWithRed:((float)r)/255.0 green:((float)g)/255.0 blue:((float)b)/255.0 alpha:(float)a]
 #define DONOR_RED_COLOR RGBA_COLOR(173, 31, 2, 1.0)
 #define DONOR_GREEN_COLOR RGBA_COLOR(10, 97, 103, 1.0)

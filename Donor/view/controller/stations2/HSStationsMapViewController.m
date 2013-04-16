@@ -37,9 +37,8 @@
     [self reloadMapPoints];
     
     MKCoordinateRegion showedRegion;
+    _stationsMap.showsUserLocation = YES;
     if([self isSinglePoint]){
-        _stationsMap.showsUserLocation = NO;
-        
         NSNumber *lan, *lon;
         lan = [[_stationsArray objectAtIndex:0] objectForKey:@"lat"];
         lon = [[_stationsArray objectAtIndex:0] objectForKey:@"lon"];
@@ -48,9 +47,8 @@
         [_stationsMap setRegion:showedRegion animated:YES];
     }else{
         if(fabs(_center.latitude<0.0001) && fabs(_center.longitude<0.0001)){
-            _stationsMap.showsUserLocation = YES;
+            
         }else{
-            _stationsMap.showsUserLocation = YES;
             showedRegion.center = _center;
             if(fabs(_span.latitudeDelta<0.0001) && fabs(_span.longitudeDelta<0.0001)){
                 showedRegion.span = MKCoordinateSpanMake(0.1, 0.1);

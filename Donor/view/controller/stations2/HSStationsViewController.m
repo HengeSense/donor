@@ -206,7 +206,7 @@
     userDefsObj = [userDefs objectForKey:USER_DEFAULTS_LAST_SELECTED_DISTRICT_ID];
     _district_id = userDefsObj ? [userDefsObj integerValue] : -1;
     
-    NSLog(@"Loading last choice: region = %d, district = %d", _region_id, _district_id);
+    //NSLog(@"Loading last choice: region = %d, district = %d", _region_id, _district_id);
 }
 
 - (void)updateStations{
@@ -798,7 +798,7 @@
     if(curDict==nil) return 0.0;
     
     NSString *nameStr = [curDict objectForKey:@"name"];
-    NSString *addressStr = [curDict objectForKey:@"address"];
+    NSString *addressStr = [curDict objectForKey:@"shortaddress"] ? [curDict objectForKey:@"shortaddress"] : [curDict objectForKey:@"address"];
     NSString *labelStr = [NSString stringWithFormat:@"%@\n%@", (nameStr ? nameStr : @""), (addressStr ? addressStr : @"")];
     CGSize labelSize = [labelStr sizeWithFont:[UIFont fontWithName:@"Helvetica" size:14] constrainedToSize:CGSizeMake(300, 100500) lineBreakMode:NSLineBreakByWordWrapping];
     
@@ -889,7 +889,7 @@
     regionLabel = (UILabel *)[cell viewWithTag:10];
     NSDictionary *curDict = [self dictionaryForTable:tableView forStationKeyPath:indexPath];
     NSString *nameStr = [curDict objectForKey:@"name"];
-    NSString *addressStr = [curDict objectForKey:@"address"];
+    NSString *addressStr = [curDict objectForKey:@"shortaddress"] ? [curDict objectForKey:@"shortaddress"] : [curDict objectForKey:@"address"];
     regionLabel.text = [NSString stringWithFormat:@"%@\n%@", (nameStr ? nameStr : @""), (addressStr ? addressStr : @"")];
     if([[[UIDevice currentDevice] systemVersion] floatValue]>=6.0){
         NSMutableAttributedString *attributedStr = [[NSMutableAttributedString alloc] initWithString:regionLabel.text];
