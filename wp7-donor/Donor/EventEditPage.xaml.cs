@@ -40,9 +40,6 @@ namespace Donor
 
             this.DataContext = CurrentEvent;
             ViewModelLocator.MainStatic.Stations.SelectedStation = "";
-
-            try { ViewModelLocator.MainStatic.DataFLoaded += new MainViewModel.DataFLoadedEventHandler(this.DataFLoaded); }
-            catch { };
         }
 
         public int DayNumber;
@@ -56,11 +53,16 @@ namespace Donor
 
         protected override void OnNavigatedFrom(System.Windows.Navigation.NavigationEventArgs e)
         {
+            try { ViewModelLocator.MainStatic.DataFLoaded -= new MainViewModel.DataFLoadedEventHandler(this.DataFLoaded); }
+            catch { };
             try
             {
-                if (e.Uri.ToString() != "/EventPage.xaml?id=" + EventId)
+                if (e.Uri.ToString() != "/EventPage.xaml") 
                 {
+                    if (saveItem == false)
+                    {
                     ViewModelLocator.MainStatic.Events.EditedEvent = BuildEvent(false);
+                    };
                 };
             }
             catch { };
@@ -69,6 +71,7 @@ namespace Donor
 
         private void DataFLoaded(object sender, EventArgs e)
         {
+            saveItem = false;
             try
             {
                 EventId = this.NavigationContext.QueryString["id"];
@@ -209,6 +212,9 @@ namespace Donor
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
+            try { ViewModelLocator.MainStatic.DataFLoaded += new MainViewModel.DataFLoadedEventHandler(this.DataFLoaded); }
+            catch { };
+
             try { DataFLoaded(this, EventArgs.Empty); }
             catch { };
         }
@@ -223,7 +229,10 @@ namespace Donor
         private void SaveButton_Click(object sender, EventArgs e)
         {
             BuildEvent(true);
+            saveItem = true;
         }
+        private bool saveItem = false;
+
 
          private EventViewModel BuildEvent(bool save = true) {
              if (ViewModelLocator.MainStatic.User.IsLoggedIn == false)

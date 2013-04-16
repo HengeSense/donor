@@ -366,7 +366,7 @@ namespace Donor.ViewModels
                     }
                     else
                     {
-                        _districtItems = districtItems;
+                        districtItems = _districtItems;
                     };
                 };
                 return districtItems;

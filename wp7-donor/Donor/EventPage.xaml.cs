@@ -12,6 +12,7 @@ using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using Donor.ViewModels;
 using Microsoft.Phone.Tasks;
+using Coding4Fun.Phone.Controls;
 
 namespace Donor
 {
@@ -230,16 +231,36 @@ namespace Donor
             webTask.Show();
         }
 
-        private void DeleteButton_Click(object sender, EventArgs e)
+        void DeleteButton_Click(object sender, EventArgs e)
         {
             try
             {
-                ViewModelLocator.MainStatic.Events.DeleteEvent(_currentEvent);
-                NavigationService.GoBack();
+                var messagePrompt = new MessagePrompt
+                {
+                    Title = "Удаление",
+                    Message = "Вы действительно хотите удалить событие?",
+                    IsCancelVisible = true
+                };
+
+                messagePrompt.Completed += messagePrompt_Completed;
+                messagePrompt.Show();
             }
-            catch
+            catch { };
+        }
+
+        private void messagePrompt_Completed(object sender, PopUpEventArgs<string, PopUpResult> e)
+        {
+            if (e.PopUpResult == PopUpResult.Ok)
             {
-                NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
+                try
+                {
+                    ViewModelLocator.MainStatic.Events.DeleteEvent(_currentEvent);
+                    NavigationService.GoBack();
+                }
+                catch
+                {
+                    NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
+                };
             };
         }
 
