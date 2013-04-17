@@ -7,6 +7,9 @@
 //
 
 #import "HSLoginViewController.h"
+
+#import "AppDelegate.h"
+
 #import "HSFlurryAnalytics.h"
 #import "HSMailChimp.h"
 
@@ -24,7 +27,8 @@
 
 @implementation HSLoginViewController
 
-- (void)processAuthorizationSuccessWithUser:(PFUser *)user completion: (void(^)(void))completion {
+- (void)processAuthorizationSuccessWithUser:(PFUser *)user completion:(void(^)(void))completion {
+    [self showTabBar];
     if (user.isNew) {
         [HSFlurryAnalytics userRegistered];
     }
@@ -46,7 +50,7 @@
     }];
 }
 
-- (void)processAuthorizationWithError: (NSError *)error {
+- (void)processAuthorizationWithError:(NSError *)error {
     [HSAlertViewController showWithMessage:[HSModelCommon localizedDescriptionForParseError:error]];
 }
 
@@ -56,4 +60,10 @@
     [userInfo applyChanges];
 }
 
+#pragma mark - Private
+#pragma mark - UI configuration
+- (void)showTabBar {
+    AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    [appDelegate setTabBarHidden:NO animated:YES];
+}
 @end

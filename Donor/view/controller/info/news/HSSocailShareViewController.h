@@ -11,7 +11,7 @@
 @interface HSSocailShareViewController : HSModalViewController
 
 /// @name Configuration properties
-@property (nonatomic, assign) NSInteger newsId;
+@property (nonatomic, strong) NSString *shareUrl;
 
 /// @name Actions
 - (IBAction)shareVkontakte:(id)sender;

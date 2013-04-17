@@ -18,7 +18,7 @@
 #define USER_DEFAULTS_LAST_SYNC_DATE_ID @"latestStationsChangedDate"
 #define USER_DEFAULTS_LAST_SELECTED_REGION_ID @"lastSelectedRegion"
 #define USER_DEFAULTS_LAST_SELECTED_DISTRICT_ID @"lastSelectedDistrict"
-#define STATION_ROW_HEIGHT 48
+//#define STATION_ROW_HEIGHT 48
 
 
 
@@ -27,6 +27,9 @@
 
 @property (nonatomic, strong) CLLocationManager *locationManager;
 @property (nonatomic) BOOL blockDidScrollDelegateCall;
+
+@property (nonatomic) CLLocationCoordinate2D regionCenter;
+@property (nonatomic) MKCoordinateSpan regionSpan;
 
 @property (nonatomic, strong) NSMutableDictionary *filteredDictionary;
 
@@ -101,6 +104,9 @@
         curLocation = CLLocationCoordinate2DMake(0, 0);
         isSearchBarShowed = NO;
         
+        _regionCenter = CLLocationCoordinate2DMake(0, 0);
+        _regionSpan = MKCoordinateSpanMake(0, 0);
+        
         _blockDidScrollDelegateCall = NO;
     };
     return self;
@@ -134,6 +140,8 @@
         };
     };
     
+    
+    
 };
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -153,9 +161,6 @@
     if(self.locationManager){
         [self.locationManager startUpdatingLocation];
     }else{
-        //#warning App is no allowed to geolocate...
-        //Вывод списка без учета геолокации
-        //[MBProgressHUD showHUDAddedTo:self.view animated:YES];
         [self updateStations];
     }
 };
@@ -201,7 +206,7 @@
     userDefsObj = [userDefs objectForKey:USER_DEFAULTS_LAST_SELECTED_DISTRICT_ID];
     _district_id = userDefsObj ? [userDefsObj integerValue] : -1;
     
-    NSLog(@"Loading last choice: region = %d, district = %d", _region_id, _district_id);
+    //NSLog(@"Loading last choice: region = %d, district = %d", _region_id, _district_id);
 }
 
 - (void)updateStations{
@@ -327,7 +332,8 @@
 - (void)onShowMap:(id)sender{
     HSStationsMapViewController *mapController = [[HSStationsMapViewController alloc] initWithNibName:@"HSStationsMapViewController" bundle:nil];
     mapController.stationsArray = _stationsArray;
-    mapController.center = curLocation;
+    mapController.center = _regionCenter;
+    mapController.span = _regionSpan;
     [self.navigationController pushViewController:mapController animated:YES];
 };
 
@@ -408,6 +414,22 @@
     // Saving to local file
     [self saveDatabase];
     
+    if((_region_id==-1 && _district_id==-1) || [_curCityLabel.text isEqualToString:@"Неизвестный регион"]){
+        if([CLLocationManager locationServicesEnabled] == YES) {
+            self.locationManager = [[CLLocationManager alloc] init];
+            self.locationManager.delegate = self;
+            self.locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
+            self.locationManager.distanceFilter = 100;
+        }else{
+            self.locationManager = nil;
+        };
+    
+        if(self.locationManager){
+            [self.locationManager startUpdatingLocation];
+        };
+    };
+    
+    
     [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:USER_DEFAULTS_LAST_SYNC_DATE_ID];
 };
 
@@ -452,6 +474,7 @@
     CLLocation *location = [locations lastObject];
     curLocation = location.coordinate;
     
+    NSLog(@"Location determined (IOS 6): %.7f, %.7f", curLocation.latitude, curLocation.longitude);
     [self selectCityByLocation:location];
     [manager stopUpdatingLocation];
 };
@@ -460,6 +483,7 @@
     curLocation  = newLocation.coordinate;
     
     
+    NSLog(@"Location determined (IOS 5): %.7f, %.7f", curLocation.latitude, curLocation.longitude);
     [self selectCityByLocation:newLocation];
     [manager stopUpdatingLocation];
 };
@@ -472,10 +496,8 @@
         return;
     };
     
-    isCitySelectedByGeolocationOnceAtThisSession = YES;
-    
     CLLocationCoordinate2D coord = [location coordinate];
-    NSString* url = [NSString stringWithFormat:@"http://maps.googleapis.com/maps/api/geocode/json?latlng=%@&language=ru&sensor=false", [NSString stringWithFormat:@"%f,%f", coord.latitude, coord.longitude]];
+    NSString* url = [NSString stringWithFormat:@"http://maps.googleapis.com/maps/api/geocode/json?latlng=%@&language=ru&sensor=true", [NSString stringWithFormat:@"%f,%f", coord.latitude, coord.longitude]];
     HSSingleReqest *request = [[HSSingleReqest alloc] initWithURL:url andDelegate:self andCallbackFunction:@selector(regionWasDetermined:data:) andErrorCallBackFunction:@selector(regionCannotBeDetermined:data:)];
     request.method = HSHTTPMethodGET;
     request.url = url;
@@ -495,6 +517,7 @@
     BOOL isFoundedRegion = NO;
     BOOL noLocality = NO, noArea1 = NO, noArea2 = NO;
     NSDictionary* json = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+    NSString* name;
     if([json isKindOfClass:[NSDictionary class]]){
         NSString* status = [json objectForKey:@"status"];
         if([status isEqualToString:@"OK"] == YES) {
@@ -506,7 +529,7 @@
                     
                     NSString* type = [[item objectForKey:@"types"] objectAtIndex:0];
                     if(!noLocality && !noArea1 && !noArea2 && [type isEqualToString:@"locality"] == YES) {
-                        NSString* name = [item objectForKey:@"long_name"];
+                        name = [item objectForKey:@"long_name"];
                         if([name isKindOfClass:[NSString class]] == YES) {
                             if([self tryToSetRegionWithStr:name]){
                                 isFoundedRegion = YES;
@@ -516,7 +539,7 @@
                         };
                     };
                     if(noLocality && !noArea1 && !noArea2 && [type isEqualToString:@"administrative_area_level_1"] == YES) {
-                        NSString* name = [item objectForKey:@"long_name"];
+                        name = [item objectForKey:@"long_name"];
                         if([name isKindOfClass:[NSString class]] == YES) {
                             if([self tryToSetRegionWithStr:name]){
                                 isFoundedRegion = YES;
@@ -526,7 +549,7 @@
                         };
                     };
                     if(noLocality && noArea1 && !noArea2 && [type isEqualToString:@"administrative_area_level_1"] == YES) {
-                        NSString* name = [item objectForKey:@"long_name"];
+                        name = [item objectForKey:@"long_name"];
                         if([name isKindOfClass:[NSString class]] == YES) {
                             if([self tryToSetRegionWithStr:name]){
                                 isFoundedRegion = YES;
@@ -540,19 +563,68 @@
         };
     };
     
+    
+    
     if(!isFoundedRegion){
+        NSString* resultStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        NSLog(@"Cannot determine current region! Reply from geocoder: %@", resultStr);
         [self loadLastChoice];
+    }else{
+        //perform geocoding for current region area
+        [self requestCurrentRegionAreaWithRegionName:name];
+        isCitySelectedByGeolocationOnceAtThisSession = YES;
     }
     
     [self updateStations];
 };
 
+
 - (void)regionCannotBeDetermined:(HSSingleReqest*)request data:(NSError *)error{
     NSLog(@"Cannot determine region name throught google! Message: %@", [error localizedDescription]);
 
     [self loadLastChoice];
-    
     [self updateStations];
+};
+
+- (void)requestCurrentRegionAreaWithRegionName:(NSString *)regionName{
+    if(regionName){
+        NSString* url = [NSString stringWithFormat:@"http://maps.googleapis.com/maps/api/geocode/json?address=%@&language=ru&sensor=true", regionName];
+        HSSingleReqest *request = [[HSSingleReqest alloc] initWithURL:url andDelegate:self andCallbackFunction:@selector(regionAreaWasDetermined:data:) andErrorCallBackFunction:@selector(regionAreaCannotBeDetermined:data:)];
+        request.method = HSHTTPMethodGET;
+        request.url = url;
+        [request sendRequest];
+    };
+};
+
+- (void)regionAreaWasDetermined:(HSSingleReqest*)request data:(NSData*)data{
+    _regionCenter = CLLocationCoordinate2DMake(0, 0);
+    _regionSpan = MKCoordinateSpanMake(0, 0);
+    
+    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+    if([json isKindOfClass:[NSDictionary class]]){
+        NSString *status = [json objectForKey:@"status"];
+        if([status isEqualToString:@"OK"] == YES) {
+            NSArray *results = [json objectForKey:@"results"];
+            if([results count] > 0) {
+                NSDictionary *first = [results objectAtIndex:0];
+                NSDictionary *geometry = [first objectForKey:@"geometry"];
+                if(geometry){
+                    _regionCenter.latitude = [[[geometry objectForKey:@"location"] objectForKey:@"lat"] doubleValue];
+                    _regionCenter.longitude = [[[geometry objectForKey:@"location"] objectForKey:@"lng"] doubleValue];
+                    NSDictionary *southWest = [[geometry objectForKey:@"viewport"] objectForKey:@"southwest"];
+                    NSDictionary *northEast = [[geometry objectForKey:@"viewport"] objectForKey:@"northeast"];
+                    if(southWest && northEast){
+                        _regionSpan.latitudeDelta = fabs([[southWest objectForKey:@"lat"] doubleValue] - [[northEast objectForKey:@"lat"] doubleValue])/2.0;
+                        _regionSpan.longitudeDelta = fabs([[southWest objectForKey:@"lng"] doubleValue] - [[northEast objectForKey:@"lng"] doubleValue])/2.0;
+                    };
+                };
+            };
+        };
+    };
+};
+
+- (void)regionAreaCannotBeDetermined:(HSSingleReqest*)request data:(NSError *)error{
+    NSLog(@"Cannot determine region area throught google! Message: %@", [error localizedDescription]);
 };
 
 - (BOOL)isRegion:(NSString *)region1 equalToRegion:(NSString *)region2{
@@ -644,6 +716,10 @@
             curSectionArray = [currentStationsDictionary objectForKey:@"moreThan15"];
             break;
     };
+    if(curSectionArray==nil || [curSectionArray count]<=[indexPath row]){
+        return nil;
+    };
+    
     curDict = [curSectionArray objectAtIndex:[indexPath row]];
     
     return curDict;
@@ -717,7 +793,17 @@
 };
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return STATION_ROW_HEIGHT;
+    //return STATION_ROW_HEIGHT;
+    NSDictionary *curDict = [self dictionaryForTable:tableView forStationKeyPath:indexPath];
+    if(curDict==nil) return 0.0;
+    
+    NSString *nameStr = [curDict objectForKey:@"name"];
+    NSString *addressStr = [curDict objectForKey:@"shortaddress"] ? [curDict objectForKey:@"shortaddress"] : [curDict objectForKey:@"address"];
+    NSString *labelStr = [NSString stringWithFormat:@"%@\n%@", (nameStr ? nameStr : @""), (addressStr ? addressStr : @"")];
+    CGSize labelSize = [labelStr sizeWithFont:[UIFont fontWithName:@"Helvetica" size:14] constrainedToSize:CGSizeMake(300, 100500) lineBreakMode:NSLineBreakByWordWrapping];
+    
+    //NSLog(@"Height for index path (%d, %d) = %.1f", indexPath.section, indexPath.row, labelSize.height+10.0);
+    return labelSize.height+10.0;
  };
 
 
@@ -771,42 +857,40 @@
     NSString *cellID;
     cellID = @"InvitroOnlineRootHistoryCellID";
     
+    float cellHeight = [self tableView:tableView heightForRowAtIndexPath:indexPath];
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
     UILabel *regionLabel;
+    UIImageView *separator = nil;
     if(cell==nil){
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellID];
         cell.backgroundColor = [UIColor clearColor];
         
-        regionLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 4, 300, STATION_ROW_HEIGHT-10)];
+        regionLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, 300, cellHeight-10)];
         regionLabel.tag = 10;
         regionLabel.font = [UIFont fontWithName:@"Helvetica" size:14];
         regionLabel.textColor = DONOR_TEXT_COLOR;
         regionLabel.highlightedTextColor = DONOR_RED_COLOR;
         regionLabel.backgroundColor = [UIColor clearColor];
         regionLabel.textAlignment = NSTextAlignmentLeft;
-        regionLabel.numberOfLines = 2;
+        regionLabel.numberOfLines = 100500;
         [cell addSubview:regionLabel];
         
-        CGRect backgroundSelectedFrame = CGRectMake(10, 10, 10, STATION_ROW_HEIGHT);
+        CGRect backgroundSelectedFrame = CGRectMake(10, 10, 10, cellHeight);
         cell.selectedBackgroundView = [[UIView alloc] initWithFrame:backgroundSelectedFrame];
         cell.selectedBackgroundView.clipsToBounds = YES;
         cell.selectedBackgroundView.alpha = 1.0;
         cell.selectedBackgroundView.backgroundColor = RGBA_COLOR(0, 0, 0, 0.1);
         
-        UIImageView *sepatator = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"DonorStations_tableCellSeparator"]];
-        CGRect separatorFrame = sepatator.frame;
-        separatorFrame.origin = CGPointMake(12, STATION_ROW_HEIGHT-3);
-        sepatator.frame = separatorFrame;
-        [cell addSubview:sepatator];
+        separator = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"DonorStations_tableCellSeparator"]];
+        separator.tag = 11;
+        [cell addSubview:separator];
     };
     
     regionLabel = (UILabel *)[cell viewWithTag:10];
-    
-    
     NSDictionary *curDict = [self dictionaryForTable:tableView forStationKeyPath:indexPath];
     NSString *nameStr = [curDict objectForKey:@"name"];
-    NSString *addressStr = [curDict objectForKey:@"address"];
-    regionLabel.text = [NSString stringWithFormat:@"%@ %@", (nameStr ? nameStr : @""), (addressStr ? addressStr : @"")];
+    NSString *addressStr = [curDict objectForKey:@"shortaddress"] ? [curDict objectForKey:@"shortaddress"] : [curDict objectForKey:@"address"];
+    regionLabel.text = [NSString stringWithFormat:@"%@\n%@", (nameStr ? nameStr : @""), (addressStr ? addressStr : @"")];
     if([[[UIDevice currentDevice] systemVersion] floatValue]>=6.0){
         NSMutableAttributedString *attributedStr = [[NSMutableAttributedString alloc] initWithString:regionLabel.text];
         [attributedStr addAttribute:NSForegroundColorAttributeName value:DONOR_TEXT_COLOR range:NSMakeRange(0, [nameStr length])];
@@ -814,7 +898,14 @@
         regionLabel.attributedText = attributedStr;
         regionLabel.highlightedTextColor = DONOR_RED_COLOR;
     };
+    CGRect regionLabelFrame = regionLabel.frame;
+    regionLabelFrame.size.height = cellHeight-10;
+    regionLabel.frame = regionLabelFrame;
     
+    separator = (UIImageView *)[cell viewWithTag:11];
+    CGRect separatorFrame = separator.frame;
+    separatorFrame.origin = CGPointMake(12, cellHeight-3);
+    separator.frame = separatorFrame;
     
     return cell;
     
@@ -896,21 +987,28 @@
 #pragma mark - UISearchDisplayController Delegate Methods
 
 - (void) searchDisplayControllerWillBeginSearch:(UISearchDisplayController *)controller{
-    NSLog(@"searchDisplayControllerWillBeginSearch");
-}
+    [self.searchDisplayController.searchBar setShowsCancelButton:YES animated:YES];
+    for(UIView *oneView in self.searchDisplayController.searchBar.subviews){
+        if([oneView isKindOfClass:[UIButton class]]){
+            [(UIButton *)oneView setTitle:@"Отменить" forState:UIControlStateNormal];
+        };
+    };
+};
+
 - (void) searchDisplayControllerDidBeginSearch:(UISearchDisplayController *)controller{
-    NSLog(@"searchDisplayControllerDidBeginSearch");
+    
 };
 - (void) searchDisplayControllerWillEndSearch:(UISearchDisplayController *)controller{
-    NSLog(@"searchDisplayControllerDidBeginSearch");
+    
 };
 - (void) searchDisplayControllerDidEndSearch:(UISearchDisplayController *)controller{
-    NSLog(@"searchDisplayControllerDidBeginSearch");
+    
 };
 
 - (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString{
 	NSString *str;
     NSRange substringRange;
+    BOOL isResults = NO;
     
 	for (NSString *oneKey in [[_stationsByDistance keyEnumerator] allObjects]){
         NSMutableArray *curDistArray = [_stationsByDistance objectForKey:oneKey];
@@ -922,17 +1020,31 @@
             substringRange = [str rangeOfString:searchString options:(NSCaseInsensitiveSearch|NSDiacriticInsensitiveSearch) range:NSMakeRange(0, [str length])];
             if(substringRange.location != NSNotFound){
                 [curDistArrayFiltered addObject:oneStation];
+                isResults = YES;
                 continue;
             }else{
                 str = [oneStation objectForKey:@"address"];
                 substringRange = [str rangeOfString:searchString options:(NSCaseInsensitiveSearch|NSDiacriticInsensitiveSearch) range:NSMakeRange(0, [str length])];
                 if(substringRange.location != NSNotFound){
                     [curDistArrayFiltered addObject:oneStation];
+                    isResults = YES;
                     continue;
                 };
             };
         };
 	};
+    
+    if(!isResults){
+        double delayInSeconds = 0.001;
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+            for(UIView *oneView in self.searchDisplayController.searchResultsTableView.subviews){
+                if([oneView isKindOfClass:[UILabel class]]){
+                    [(UILabel *)oneView setText:@"Не найдено"];
+                };
+            };
+        });
+    };
     
     
     // Return YES to cause the search result table view to be reloaded.

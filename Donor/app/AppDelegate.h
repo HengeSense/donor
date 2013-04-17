@@ -16,4 +16,6 @@
 @property (strong, nonatomic) UITabBarController *tabBarController;
 @property (strong, nonatomic) STabBarController *sTabBarController;
 
+- (void)setTabBarHidden:(BOOL)hidden animated:(BOOL)animated;
+
 @end

@@ -13,4 +13,6 @@
 
 - (id)initWithNativeTabBarController: (UITabBarController *)tabBarController;
 
+- (void)setTabBarHidden:(BOOL)hidden animated:(BOOL)animated;
+
 @end

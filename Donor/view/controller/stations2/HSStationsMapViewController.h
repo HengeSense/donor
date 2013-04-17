@@ -16,6 +16,7 @@
 
 @property (nonatomic, strong) NSArray *stationsArray;
 @property (nonatomic) CLLocationCoordinate2D center;
+@property (nonatomic) MKCoordinateSpan span;
 @property (nonatomic, strong) IBOutlet MKMapView *stationsMap;
 
 - (void)reloadMapPoints;

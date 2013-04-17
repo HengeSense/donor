@@ -421,6 +421,7 @@
 		68F3B30C16754A85003E8376 /* contraindications.json in Resources */ = {isa = PBXBuildFile; fileRef = 68F3B30B16754A85003E8376 /* contraindications.json */; };
 		68F788E0171AE4E100BBF59A /* AdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68F788DE171AE4E100BBF59A /* AdViewController.m */; };
 		68F788E1171AE4E100BBF59A /* AdViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68F788DF171AE4E100BBF59A /* AdViewController.xib */; };
+		68F788E4171CA57D00BBF59A /* HSTabBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 68F788E3171CA57D00BBF59A /* HSTabBarView.m */; };
 		68F7F3F11638878800740CCF /* HSModelCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 68F7F3F01638878800740CCF /* HSModelCommon.m */; };
 		68F7F3F216388D1600740CCF /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 371CBA5215AFD452008CA154 /* Parse.framework */; };
 		85040C0F15CEAE7F00CD3A16 /* absoluteSegmentButtonSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 85040C0715CEAE7F00CD3A16 /* absoluteSegmentButtonSelected.png */; };
@@ -1259,6 +1260,8 @@
 		68F788DD171AE4E100BBF59A /* AdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdViewController.h; sourceTree = "<group>"; };
 		68F788DE171AE4E100BBF59A /* AdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdViewController.m; sourceTree = "<group>"; };
 		68F788DF171AE4E100BBF59A /* AdViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AdViewController.xib; sourceTree = "<group>"; };
+		68F788E2171CA57D00BBF59A /* HSTabBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSTabBarView.h; sourceTree = "<group>"; };
+		68F788E3171CA57D00BBF59A /* HSTabBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSTabBarView.m; sourceTree = "<group>"; };
 		68F7F3ED16387A0300740CCF /* HSBloodRemoteEvent_Protected.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSBloodRemoteEvent_Protected.h; sourceTree = "<group>"; };
 		68F7F3EF1638878800740CCF /* HSModelCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSModelCommon.h; sourceTree = "<group>"; };
 		68F7F3F01638878800740CCF /* HSModelCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSModelCommon.m; sourceTree = "<group>"; };
@@ -2850,6 +2853,8 @@
 				68B8303816D186B600533701 /* SNavigationBar.m */,
 				68B8303916D186B600533701 /* SNavigationController.h */,
 				68B8303A16D186B600533701 /* SNavigationController.m */,
+				68F788E2171CA57D00BBF59A /* HSTabBarView.h */,
+				68F788E3171CA57D00BBF59A /* HSTabBarView.m */,
 				68B8303B16D186B600533701 /* STabBarController.h */,
 				68B8303C16D186B600533701 /* STabBarController.m */,
 			);
@@ -3792,6 +3797,7 @@
 				6864D6BB17174CCE00F150F9 /* GTMNSString+HTML.m in Sources */,
 				6864D6BE17174D0000F150F9 /* NSDate+InternetDateTime.m in Sources */,
 				68F788E0171AE4E100BBF59A /* AdViewController.m in Sources */,
+				68F788E4171CA57D00BBF59A /* HSTabBarView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3925,7 +3931,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Igor Barinov (QFA37WAHDF)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -3950,7 +3956,7 @@
 					"-fobjc-arc",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "741B130E-282E-41C3-A3FC-07AC6ABC21FC";
+				PROVISIONING_PROFILE = "";
 				USER_HEADER_SEARCH_PATHS = "Submodules/**";
 				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = app;
