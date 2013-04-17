@@ -36,30 +36,10 @@
     
     [self reloadMapPoints];
     
-    MKCoordinateRegion showedRegion;
     _stationsMap.showsUserLocation = YES;
-    if([self isSinglePoint]){
-        NSNumber *lan, *lon;
-        lan = [[_stationsArray objectAtIndex:0] objectForKey:@"lat"];
-        lon = [[_stationsArray objectAtIndex:0] objectForKey:@"lon"];
-        showedRegion.center = CLLocationCoordinate2DMake([lan doubleValue], [lon doubleValue]);
-        showedRegion.span = MKCoordinateSpanMake(0.01, 0.01);
-        [_stationsMap setRegion:showedRegion animated:YES];
-    }else{
-        if(fabs(_center.latitude<0.0001) && fabs(_center.longitude<0.0001)){
-            
-        }else{
-            showedRegion.center = _center;
-            if(fabs(_span.latitudeDelta<0.0001) && fabs(_span.longitudeDelta<0.0001)){
-                showedRegion.span = MKCoordinateSpanMake(0.1, 0.1);
-            }else{
-                showedRegion.span = _span;
-            };
-            [_stationsMap setRegion:showedRegion animated:YES];
-        };
-    };
+    [self updateMapPosition];
     
-}
+};
 
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
@@ -95,6 +75,33 @@
     if(_stationsArray && [_stationsArray count]==1) return YES;
     
     return NO;
+};
+
+- (void)updateMapPosition{
+    
+    MKCoordinateRegion showedRegion;
+    if([self isSinglePoint]){
+        NSNumber *lan, *lon;
+        lan = [[_stationsArray objectAtIndex:0] objectForKey:@"lat"];
+        lon = [[_stationsArray objectAtIndex:0] objectForKey:@"lon"];
+        showedRegion.center = CLLocationCoordinate2DMake([lan doubleValue], [lon doubleValue]);
+        showedRegion.span = MKCoordinateSpanMake(0.01, 0.01);
+        [_stationsMap setRegion:showedRegion animated:YES];
+    }else{
+        if(fabs(_center.latitude<0.0001) && fabs(_center.longitude<0.0001)){
+            
+        }else{
+            MKCoordinateRegion showedRegion;
+            
+            showedRegion.center = _center;
+            if(fabs(_span.latitudeDelta<0.0001) && fabs(_span.longitudeDelta<0.0001)){
+                showedRegion.span = MKCoordinateSpanMake(0.2, 0.2);
+            }else{
+                showedRegion.span = _span;
+            };
+            [_stationsMap setRegion:showedRegion animated:YES];
+        };
+    };
 };
 
 #pragma mark - Map Kit delegate routines
