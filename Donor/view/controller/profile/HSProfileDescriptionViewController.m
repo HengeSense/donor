@@ -295,14 +295,14 @@ static NSString * const kLinkedToFacebookTitle = @"привязан";
 - (IBAction)showAchievements:(id)sender {
     self.itsbetaShowAchievementsButton.enabled = NO;
     if ([ItsBeta playerLogined] == NO) {
-        [HSItsBeta assignItsBeta:self
-                            user:[PFUser currentUser]
-                      completion:^(NSError *error) {
-                          if(error == nil) {
-                              [[self navigationController] pushViewController:[HSItsBetaAchievementsViewController new] animated:YES];
-                          }
-                          self.itsbetaShowAchievementsButton.enabled = YES;
-                      }];
+        [HSItsBeta restoreItsBeta:self
+                             user:[PFUser currentUser]
+                       completion:^(NSError *error) {
+                           if(error == nil) {
+                               [[self navigationController] pushViewController:[HSItsBetaAchievementsViewController new] animated:YES];
+                           }
+                           self.itsbetaShowAchievementsButton.enabled = YES;
+                       }];
     } else {
         [[self navigationController] pushViewController:[HSItsBetaAchievementsViewController new] animated:YES];
         self.itsbetaShowAchievementsButton.enabled = YES;
