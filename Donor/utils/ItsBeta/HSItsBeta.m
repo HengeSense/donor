@@ -43,39 +43,41 @@
 }
 
 + (void) linkItsBeta:(UIViewController*)viewController player:(ItsBetaPlayer*)player user:(PFUser*)user objects:(NSArray*)objects completion:(void(^)(NSError *error))completion {
-    BOOL created = NO;
-    PFObject* itsbeta = nil;
-    if([objects count] > 0) {
-        itsbeta = [objects lastObject];
-    } else {
-        itsbeta = [PFObject objectWithClassName:@"ItsBeta"];
-        created = YES;
-    }
     if([player isLogined] == YES) {
+        BOOL created = NO;
+        PFObject* itsbeta = nil;
+        if([objects count] > 0) {
+            itsbeta = [objects lastObject];
+        } else {
+            itsbeta = [PFObject objectWithClassName:@"ItsBeta"];
+            created = YES;
+        }
         [itsbeta setObject:[player typeString] forKey:@"type"];
         [itsbeta setObject:[player facebookId] forKey:@"facebookUserId"];
         [itsbeta setObject:[player facebookToken] forKey:@"facebookAccessToken"];
-    } else {
-        [itsbeta setObject:@"" forKey:@"type"];
-    }
-    [itsbeta saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        if(succeeded == YES) {
-            if(created == YES) {
-                [[user relationforKey:@"ItsBeta"] addObject:itsbeta];
-                [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                    if(succeeded == YES) {
-                        [self giveGiveInstallAchievementItsBeta:viewController player:player user:user completion:completion];
-                    } else {
-                        [HSAlertViewController showWithMessage:@"Ошибка привязки itsbeta"];
-                    }
-                }];
+        [itsbeta saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            if(succeeded == YES) {
+                if(created == YES) {
+                    [[user relationforKey:@"ItsBeta"] addObject:itsbeta];
+                    [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                        if(succeeded == YES) {
+                            [self giveGiveInstallAchievementItsBeta:viewController player:player user:user completion:completion];
+                        } else {
+                            [HSAlertViewController showWithMessage:@"Ошибка привязки itsbeta"];
+                        }
+                    }];
+                } else {
+                    [self giveGiveInstallAchievementItsBeta:viewController player:player user:user completion:completion];
+                }
             } else {
-                [self giveGiveInstallAchievementItsBeta:viewController player:player user:user completion:completion];
+                [HSAlertViewController showWithMessage:@"Ошибка привязки itsbeta"];
             }
-        } else {
-            [HSAlertViewController showWithMessage:@"Ошибка привязки itsbeta"];
+        }];
+    } else {
+        if(completion != nil) {
+            completion(nil);
         }
-    }];
+    }
 }
 
 + (void) giveGiveInstallAchievementItsBeta:(UIViewController*)viewController player:(ItsBetaPlayer*)player user:(PFUser*)user completion:(void(^)(NSError *error))completion {
@@ -134,9 +136,7 @@
                     }
                     break;
                     default:
-                        if(completion != nil) {
-                            completion(error);
-                        }
+                        [HSAlertViewController showWithMessage:@"Ошибка привязки itsbeta"];
                     break;
                 }
             } else {

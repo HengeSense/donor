@@ -293,6 +293,8 @@ static NSString * const kLinkedToFacebookTitle = @"привязан";
 }
 
 - (IBAction)showAchievements:(id)sender {
+    [[self navigationController] pushViewController:[HSItsBetaAchievementsViewController new] animated:YES];
+    /*
     self.itsbetaShowAchievementsButton.enabled = NO;
     if ([ItsBeta playerLogined] == NO) {
         [HSItsBeta restoreItsBeta:self
@@ -304,9 +306,9 @@ static NSString * const kLinkedToFacebookTitle = @"привязан";
                            self.itsbetaShowAchievementsButton.enabled = YES;
                        }];
     } else {
-        [[self navigationController] pushViewController:[HSItsBetaAchievementsViewController new] animated:YES];
         self.itsbetaShowAchievementsButton.enabled = YES;
     }
+    */
 }
 
 #pragma mark UITextFieldDelegate
