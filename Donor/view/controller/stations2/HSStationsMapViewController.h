@@ -20,6 +20,7 @@
 @property (nonatomic, strong) IBOutlet MKMapView *stationsMap;
 
 - (void)reloadMapPoints;
+- (void)updateMapPosition;
 - (void)openStationForDictionary:(NSDictionary *)stationDict;
 
 @end

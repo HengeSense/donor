@@ -28,8 +28,7 @@
 @property (nonatomic, strong) CLLocationManager *locationManager;
 @property (nonatomic) BOOL blockDidScrollDelegateCall;
 
-@property (nonatomic) CLLocationCoordinate2D regionCenter;
-@property (nonatomic) MKCoordinateSpan regionSpan;
+@property (nonatomic, strong) HSStationsMapViewController *mapController;
 
 @property (nonatomic, strong) NSMutableDictionary *filteredDictionary;
 
@@ -103,9 +102,10 @@
         selectedCity = 0;
         curLocation = CLLocationCoordinate2DMake(0, 0);
         isSearchBarShowed = NO;
-        
-        _regionCenter = CLLocationCoordinate2DMake(0, 0);
-        _regionSpan = MKCoordinateSpanMake(0, 0);
+
+        _mapController = [[HSStationsMapViewController alloc] initWithNibName:@"HSStationsMapViewController" bundle:nil];
+        _mapController.stationsArray = _stationsArray;
+        [_mapController reloadMapPoints];
         
         _blockDidScrollDelegateCall = NO;
     };
@@ -147,22 +147,8 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
-    if([CLLocationManager locationServicesEnabled] == YES) {
-        self.locationManager = [[CLLocationManager alloc] init];
-        self.locationManager.delegate = self;
-        self.locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
-        self.locationManager.distanceFilter = 100;
-    }else{
-        self.locationManager = nil;
-    };
-
-    
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    if(self.locationManager){
-        [self.locationManager startUpdatingLocation];
-    }else{
-        [self updateStations];
-    }
+    [self requestUserLocation];
 };
 
 - (void)viewDidAppear:(BOOL)animated{
@@ -330,11 +316,15 @@
 };
 
 - (void)onShowMap:(id)sender{
-    HSStationsMapViewController *mapController = [[HSStationsMapViewController alloc] initWithNibName:@"HSStationsMapViewController" bundle:nil];
-    mapController.stationsArray = _stationsArray;
-    mapController.center = _regionCenter;
-    mapController.span = _regionSpan;
-    [self.navigationController pushViewController:mapController animated:YES];
+    if(_mapController==nil){
+        _mapController = [[HSStationsMapViewController alloc] initWithNibName:@"HSStationsMapViewController" bundle:nil];
+        _mapController.stationsArray = _stationsArray;
+        [_mapController reloadMapPoints];
+    };
+    _mapController.center = curLocation;
+    _mapController.span = MKCoordinateSpanMake(0.2, 0.2);
+    [_mapController updateMapPosition];
+    [self.navigationController pushViewController:_mapController animated:YES];
 };
 
 #pragma mark - Synchronization with Parse
@@ -414,19 +404,13 @@
     // Saving to local file
     [self saveDatabase];
     
-    if((_region_id==-1 && _district_id==-1) || [_curCityLabel.text isEqualToString:@"Неизвестный регион"]){
-        if([CLLocationManager locationServicesEnabled] == YES) {
-            self.locationManager = [[CLLocationManager alloc] init];
-            self.locationManager.delegate = self;
-            self.locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
-            self.locationManager.distanceFilter = 100;
-        }else{
-            self.locationManager = nil;
-        };
+    if(_mapController){
+        _mapController.stationsArray = _stationsArray;
+        [_mapController reloadMapPoints];
+    };
     
-        if(self.locationManager){
-            [self.locationManager startUpdatingLocation];
-        };
+    if((_region_id==-1 && _district_id==-1) || [_curCityLabel.text isEqualToString:@"Неизвестный регион"]){
+        [self requestUserLocation];
     };
     
     
@@ -457,6 +441,23 @@
 
 #pragma mark - Current location determine method
 
+- (void)requestUserLocation{
+    if([CLLocationManager locationServicesEnabled] == YES) {
+        self.locationManager = [[CLLocationManager alloc] init];
+        self.locationManager.delegate = self;
+        self.locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
+        self.locationManager.distanceFilter = 100;
+    }else{
+        self.locationManager = nil;
+    };
+    
+    if(self.locationManager){
+        [self.locationManager startUpdatingLocation];
+    }else{
+        [self updateStations];
+    };
+};
+
 - (CLLocationDistance)distanceBetweenPoint:(CLLocationCoordinate2D)from toPoint:(CLLocationCoordinate2D)to{
     CLLocation *locationFrom = [[CLLocation alloc] initWithLatitude:from.latitude longitude:from.longitude];
     CLLocation *locationTo = [[CLLocation alloc] initWithLatitude:to.latitude longitude:to.longitude];
@@ -473,6 +474,8 @@
 - (void)locationManager:(CLLocationManager*)manager didUpdateLocations:(NSArray*)locations {
     CLLocation *location = [locations lastObject];
     curLocation = location.coordinate;
+    if(_mapController) _mapController.center = curLocation;
+    
     
     NSLog(@"Location determined (IOS 6): %.7f, %.7f", curLocation.latitude, curLocation.longitude);
     [self selectCityByLocation:location];
@@ -481,7 +484,7 @@
 
 - (void)locationManager:(CLLocationManager*)manager didUpdateToLocation:(CLLocation*)newLocation fromLocation:(CLLocation*)oldLocation {
     curLocation  = newLocation.coordinate;
-    
+    if(_mapController) _mapController.center = curLocation;
     
     NSLog(@"Location determined (IOS 5): %.7f, %.7f", curLocation.latitude, curLocation.longitude);
     [self selectCityByLocation:newLocation];
@@ -571,7 +574,7 @@
         [self loadLastChoice];
     }else{
         //perform geocoding for current region area
-        [self requestCurrentRegionAreaWithRegionName:name];
+        //[self requestCurrentRegionAreaWithRegionName:name];
         isCitySelectedByGeolocationOnceAtThisSession = YES;
     }
     
@@ -597,8 +600,8 @@
 };
 
 - (void)regionAreaWasDetermined:(HSSingleReqest*)request data:(NSData*)data{
-    _regionCenter = CLLocationCoordinate2DMake(0, 0);
-    _regionSpan = MKCoordinateSpanMake(0, 0);
+    _mapController.center = CLLocationCoordinate2DMake(0, 0);
+    _mapController.span = MKCoordinateSpanMake(0, 0);
     
     NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
     if([json isKindOfClass:[NSDictionary class]]){
@@ -609,13 +612,17 @@
                 NSDictionary *first = [results objectAtIndex:0];
                 NSDictionary *geometry = [first objectForKey:@"geometry"];
                 if(geometry){
-                    _regionCenter.latitude = [[[geometry objectForKey:@"location"] objectForKey:@"lat"] doubleValue];
-                    _regionCenter.longitude = [[[geometry objectForKey:@"location"] objectForKey:@"lng"] doubleValue];
+                    CLLocationCoordinate2D curCardCenter;
+                    curCardCenter.latitude = [[[geometry objectForKey:@"location"] objectForKey:@"lat"] doubleValue];
+                    curCardCenter.longitude = [[[geometry objectForKey:@"location"] objectForKey:@"lng"] doubleValue];
+                    _mapController.center = curCardCenter;
                     NSDictionary *southWest = [[geometry objectForKey:@"viewport"] objectForKey:@"southwest"];
                     NSDictionary *northEast = [[geometry objectForKey:@"viewport"] objectForKey:@"northeast"];
                     if(southWest && northEast){
-                        _regionSpan.latitudeDelta = fabs([[southWest objectForKey:@"lat"] doubleValue] - [[northEast objectForKey:@"lat"] doubleValue])/2.0;
-                        _regionSpan.longitudeDelta = fabs([[southWest objectForKey:@"lng"] doubleValue] - [[northEast objectForKey:@"lng"] doubleValue])/2.0;
+                        MKCoordinateSpan curRegionSpan;
+                        curRegionSpan.latitudeDelta = fabs([[southWest objectForKey:@"lat"] doubleValue] - [[northEast objectForKey:@"lat"] doubleValue])/2.0;
+                        curRegionSpan.longitudeDelta = fabs([[southWest objectForKey:@"lng"] doubleValue] - [[northEast objectForKey:@"lng"] doubleValue])/2.0;
+                        _mapController.span = curRegionSpan;
                     };
                 };
             };
