@@ -197,6 +197,9 @@
 }
 
 - (void)webView:(UIWebView*)webView didFailLoadWithError:(NSError*)error {
+    if([error code] == 102) {
+        return;
+    }
     if([error code] == NSURLErrorCancelled) {
         if([_parentController presentedViewController] != self) {
             [_parentController presentModalViewController:self animated:YES];
