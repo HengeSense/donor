@@ -116,7 +116,7 @@
                 }];
             } else {
                 [self processAuthorizationSuccessWithUser:user completion: ^ {
-                    [HSItsBeta restoreItsBeta:self user:user completion:^(NSError *error) {
+                    [HSItsBeta restoreItsBeta:self user:user assign:YES completion:^(NSError *error) {
                         [progressHud hide:YES];
                     }];
                 }];

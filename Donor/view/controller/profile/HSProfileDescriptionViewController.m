@@ -207,9 +207,7 @@ static NSString * const kLinkedToFacebookTitle = @"привязан";
         if (succeeded) {
             [self.proposeFacebookLinkUnlinkButton setTitle:kLinkedToFacebookTitle forState:UIControlStateNormal];
             [self.itsbetaStatusLabel setText:kLinkedToFacebookTitle];
-            [HSItsBeta restoreItsBeta:self
-                                 user:[PFUser currentUser]
-                           completion:^(NSError *error) {
+            [HSItsBeta restoreItsBeta:self user:[PFUser currentUser] assign:YES completion:^(NSError *error) {
                                [progressHud hide:YES];
                            }];
         } else {

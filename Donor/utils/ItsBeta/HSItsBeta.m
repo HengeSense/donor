@@ -116,7 +116,7 @@
     }
 }
 
-+ (void) restoreItsBeta:(UIViewController*)viewController user:(PFUser*)user completion:(void(^)(NSError *error))completion {
++ (void) restoreItsBeta:(UIViewController*)viewController user:(PFUser*)user assign:(BOOL)assign completion:(void(^)(NSError *error))completion {
     PFRelation* relation = [user relationforKey:@"ItsBeta"];
     [[relation query] findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if(error == nil) {
@@ -140,7 +140,13 @@
                     break;
                 }
             } else {
-                [self assignItsBeta:viewController user:user completion:completion];
+                if(assign == YES) {
+                    [self assignItsBeta:viewController user:user completion:completion];
+                } else {
+                    if(completion != nil) {
+                        completion(error);
+                    }
+                }
             }
         }
     }];

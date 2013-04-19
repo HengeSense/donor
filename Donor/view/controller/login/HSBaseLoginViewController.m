@@ -21,6 +21,7 @@
 #import "HSCalendar.h"
 
 #import "ItsBeta.h"
+#import "HSItsBeta.h"
 
 @implementation HSBaseLoginViewController
 
@@ -84,8 +85,10 @@
                     [self linkFacebookAccountForUser:user hideProgressHud:progressHud];
                 } else {
                     [self processAuthorizationSuccessWithUser:user completion:^ {
-                        [Common getInstance].authenticatedWithFacebook = NO;
-                        [progressHud hide:YES];
+                        [HSItsBeta restoreItsBeta:self user:user assign:NO completion:^(NSError *error) {
+                            [Common getInstance].authenticatedWithFacebook = NO;
+                            [progressHud hide:YES];
+                        }];
                     }];
                 }
             } else {
@@ -116,6 +119,9 @@
     [PFFacebookUtils linkUser:user permissions:permissions block:^(BOOL succeeded, NSError *error) {
         if (succeeded) {
             [self processAuthorizationSuccessWithUser:user completion:^ {
+                [HSItsBeta restoreItsBeta:self user:user assign:YES completion:^(NSError *error) {
+                    [progressHud hide:YES];
+                }];
             }];
         } else {
             [progressHud hide:YES];
