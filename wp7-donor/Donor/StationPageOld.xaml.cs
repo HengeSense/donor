@@ -82,7 +82,7 @@ namespace Donor
                 //this.StationReviews.ItemsSource = ViewModelLocator.MainStatic.Reviews.Items;
                 int votes = 0;
                 foreach (var item in ViewModelLocator.MainStatic.Reviews.Items) {
-                    votes = votes + item.Vote;
+                    votes = votes + item.Rate;
                 };
                 this.rate.Vote = (int)Math.Round((double)votes / (double)ViewModelLocator.MainStatic.Reviews.Items.Count());
 

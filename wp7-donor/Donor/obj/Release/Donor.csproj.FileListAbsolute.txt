@@ -118,7 +118,6 @@ C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\Bin\Release\Telerik.Wi
 C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\Bin\Release\de-DE\Telerik.Windows.Controls.Input.resources.dll
 C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\Bin\Release\fr-FR\Telerik.Windows.Controls.Input.resources.dll
 C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\Bin\Release\it-IT\Telerik.Windows.Controls.Input.resources.dll
-C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\obj\Release\StationsSearchFilterOld.g.cs
 C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\Bin\Release\Assets\AppBar\appbar.feature.camera.rest.png
 C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\obj\Release\Controls\AllBadgeControl.g.cs
 C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\obj\Release\Donor.csprojResolveAssemblyReference.cache

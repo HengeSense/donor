@@ -188,7 +188,7 @@
     <Compile Include="StationsSearchFilter.xaml.cs">
       <DependentUpon>StationsSearchFilter.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GenericSortDescriptor.cs" />
+    <Compile Include="libs\GenericSortDescriptor.cs" />
     <Compile Include="libs\Converters.cs" />
     <Compile Include="StationPage.xaml.cs">
       <DependentUpon>StationPage.xaml</DependentUpon>
@@ -247,9 +247,6 @@
     </Compile>
     <Compile Include="StationsSearch.xaml.cs">
       <DependentUpon>StationsSearch.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="StationsSearchFilterOld.xaml.cs">
-      <DependentUpon>StationsSearchFilterOld.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\AdsViewModel.cs" />
     <Compile Include="ViewModels\BadgesViewModel.cs" />
@@ -391,10 +388,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="StationsSearchFilterOld.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <ItemGroup>
     <None Include="GeoARToolkit.licenseheader" />
@@ -464,8 +457,6 @@
     <Content Include="libs\Phone.Controls.dll" />
     <Content Include="libs\Silverlight_ZXing_Core.dll" />
     <Content Include="libs\Silverlight_ZXing_Core.pdb" />
-    <Content Include="MS-LPL License.txt" />
-    <Content Include="MVVMLight.Nuget.Readme.txt" />
     <Content Include="Toolkit.Content\ApplicationBar.Cancel.png" />
     <Content Include="Toolkit.Content\ApplicationBar.Check.png" />
     <Content Include="Toolkit.Content\ApplicationBar.Delete.png" />
@@ -515,7 +506,6 @@
     <Resource Include="holidays.json" />
     <Content Include="libs\HtmlAgilityPack.dll" />
     <Resource Include="PanoramaBackground.png" />
-    <Content Include="README_FIRST.txt" />
     <Content Include="SplashScreenImage.jpg" />
   </ItemGroup>
   <ItemGroup>
