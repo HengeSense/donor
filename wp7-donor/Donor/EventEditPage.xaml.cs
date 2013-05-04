@@ -11,6 +11,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using Donor.ViewModels;
+using Coding4Fun.Phone.Controls;
 
 namespace Donor
 {
@@ -264,6 +265,7 @@ namespace Donor
                  curan = CurrentEvent.Type != "0";
              } catch {
              };
+
              if ((this.EventType.SelectedItem.ToString() == Donor.AppResources.Analisis) || (this.EventType.SelectedItem.ToString()=="0"))
              {
                  checkit = false;
@@ -304,6 +306,14 @@ namespace Donor
                  };
              };
 
+             //если возможно сохранение кроводчаи\анализа
+             SaveEvent(possible, save, give);
+
+             return CurrentEvent;
+         }
+
+         private void SaveEvent(bool possible = false, bool save = false, string give="")
+         {
              if (possible == true)
              {
                  try
@@ -339,7 +349,7 @@ namespace Donor
                              break;
                          case "PossibleBloodGive":
                              CurrentEvent.Title = this.GiveType.SelectedItem.ToString(); //"Кроводача - " + 
-                             break;                             
+                             break;
                          default:
                              break;
                      };
@@ -407,7 +417,7 @@ namespace Donor
                                  {
                                      CurrentEvent.Id = EventId;
                                  };
-                                 
+
                              }
                              catch
                              {
@@ -440,14 +450,14 @@ namespace Donor
                          {
 
                              if ((save) && (ViewModelLocator.MainStatic.Events.ThisDayEvents(CurrentEvent.Date) == false) && (CurrentEvent.Type == "1"))
+                             {
+                                 try
                                  {
-                                     try
-                                     {
-                                         InitialCurrentEvent.RemoveReminders();
-                                     }
-                                     catch { };
-                                 };
-                                 
+                                     InitialCurrentEvent.RemoveReminders();
+                                 }
+                                 catch { };
+                             };
+
                              /// Помечаем событие как выполненное, если его дата меньше текущей
                              if ((CurrentEvent.Date < DateTime.Today) || ((CurrentEvent.Date == DateTime.Today) && (CurrentEvent.Time.Hour <= DateTime.Now.Hour) && (CurrentEvent.Time.Minute <= DateTime.Now.Minute)))
                              {
@@ -461,7 +471,7 @@ namespace Donor
                              {
                                  CurrentEvent.Finished = false;
                              };
-                             if ((save) && (ViewModelLocator.MainStatic.Events.ThisDayEvents(CurrentEvent.Date)==false))
+                             if ((save) && (ViewModelLocator.MainStatic.Events.ThisDayEvents(CurrentEvent.Date) == false))
                              {
                                  try
                                  {
@@ -498,12 +508,20 @@ namespace Donor
                          {
                              if (save)
                              {
-                                 MessageBox.Show(Donor.AppResources.YouCantPlanBloodGiveThisDay);
+                                 //MessageBox.Show(Donor.AppResources.YouCantPlanBloodGiveThisDay);
+                                 var messagePrompt = new MessagePrompt
+                                 {
+                                     Title = "Предупреждение",
+                                     Message = "Период отдыха еще не закончился. Вы уверены, что хотите создать событие?"
+                                 };
+                                 messagePrompt.Completed += messagePrompt_Completed;
+                                 messagePrompt.IsCancelVisible = true;
+                                 messagePrompt.Show();
                              };
                          };
                      };
                  }
-                 catch(Exception ex)
+                 catch (Exception ex)
                  {
                      MessageBox.Show(ex.Message.ToString());
                      NavigationService.GoBack();
@@ -529,18 +547,42 @@ namespace Donor
                      };
                      if (save)
                      {
-                         MessageBox.Show(Donor.AppResources.NotTooMuchDaysFromLastBloodGive + this.GiveType.SelectedItem.ToString() + Donor.AppResources.PossibleGiveBloodStartingFrom + when.ToShortDateString());
+                         //MessageBox.Show(Donor.AppResources.NotTooMuchDaysFromLastBloodGive + this.GiveType.SelectedItem.ToString() + Donor.AppResources.PossibleGiveBloodStartingFrom + when.ToShortDateString());
+                         var messagePrompt = new MessagePrompt
+                         {
+                             Title = "Предупреждение",
+                             Message = "Период отдыха еще не закончился. Вы уверены, что хотите создать событие?"
+                         };
+                         messagePrompt.Completed += messagePrompt_Completed;
+                         messagePrompt.IsCancelVisible = true;
+                         messagePrompt.Show();
                      };
                  }
-                 catch {
+                 catch
+                 {
                      if (save)
                      {
-                         MessageBox.Show(Donor.AppResources.NotTooMuchDaysFromLastBloodGive);
+                         //MessageBox.Show(Donor.AppResources.NotTooMuchDaysFromLastBloodGive);
+                         var messagePrompt = new MessagePrompt
+                         {
+                             Title = "Предупреждение",
+                             Message = "Период отдыха еще не закончился. Вы уверены, что хотите создать событие?"
+                         };
+                         messagePrompt.Completed += messagePrompt_Completed;
+                         messagePrompt.IsCancelVisible = true;
+                         messagePrompt.Show();
                      };
                  };
              };
+         }
 
-             return CurrentEvent;
+         private void messagePrompt_Completed(object sender, PopUpEventArgs<string, PopUpResult> e)
+         {
+             if (e.PopUpResult == PopUpResult.Ok)
+             {
+                 SaveEvent(true, true, this.GiveType.SelectedItem.ToString());
+             };
+             //throw new NotImplementedException();
          }
 
         private void EventType_SelectionChanged(object sender, SelectionChangedEventArgs e)

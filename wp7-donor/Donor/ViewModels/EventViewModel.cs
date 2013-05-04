@@ -1027,6 +1027,8 @@ namespace Donor.ViewModels
         /// </summary>
         private void DeleteUncorrectEvents()
         {
+            //не удаляем
+            return;
             List<string> TypesGive = new List<string>() { Donor.AppResources.Platelets, 
                 Donor.AppResources.Plasma, Donor.AppResources.WholeBlood, Donor.AppResources.Granulocytes };
 

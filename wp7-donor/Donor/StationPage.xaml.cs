@@ -17,6 +17,9 @@ using Microsoft.Phone.Net.NetworkInformation;
 using Donor.Controls;
 using System.Device.Location;
 using Microsoft.Phone.Controls.Maps;
+using AsyncOAuth;
+using System.Security.Cryptography;
+using System.Net.Http;
 
 namespace Donor
 {
@@ -111,6 +114,20 @@ namespace Donor
                 callTask.PhoneNumber = phone; //"88002505222";
                 callTask.DisplayName = phone;
                 callTask.Show();
+            }
+            catch
+            {
+            };
+        }
+
+        private void ReviewButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OAuthUtility.ComputeHash = (key, buffer) => { using (var hmac = new HMACSHA1(key)) { return hmac.ComputeHash(buffer); } };
+                var client = new HttpClient(new OAuthMessageHandler(App.Foursquare_client_id, App.Foursquare_secret ));
+                //new AccessToken("accessToken", "accessTokenSecret")
+                //NavigationService.Navigate(new Uri("/ReviewPage.xaml?id=" + ViewModelLocator.MainStatic.Stations.CurrentStation.ObjectId, UriKind.Relative));
             }
             catch
             {

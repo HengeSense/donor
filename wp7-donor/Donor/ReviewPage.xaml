@@ -1,0 +1,86 @@
+﻿<phone:PhoneApplicationPage 
+    xmlns:my="clr-namespace:Donor.Controls"  
+    x:Class="Donor.ReviewPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:WPExtensions="clr-namespace:WPExtensions;assembly=WPExtensions"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit" 
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d" d:DesignHeight="768" d:DesignWidth="480"
+    shell:SystemTray.IsVisible="True" Loaded="PhoneApplicationPage_Loaded">
+
+    <toolkit:TransitionService.NavigationInTransition>
+        <toolkit:NavigationInTransition>
+            <toolkit:NavigationInTransition.Backward>
+                <toolkit:TurnstileTransition Mode="BackwardIn"/>
+            </toolkit:NavigationInTransition.Backward>
+            <toolkit:NavigationInTransition.Forward>
+                <toolkit:TurnstileTransition Mode="ForwardIn"/>
+            </toolkit:NavigationInTransition.Forward>
+        </toolkit:NavigationInTransition>
+    </toolkit:TransitionService.NavigationInTransition>
+    <toolkit:TransitionService.NavigationOutTransition>
+        <toolkit:NavigationOutTransition>
+            <toolkit:NavigationOutTransition.Backward>
+                <toolkit:TurnstileTransition Mode="BackwardOut"/>
+            </toolkit:NavigationOutTransition.Backward>
+            <toolkit:NavigationOutTransition.Forward>
+                <toolkit:TurnstileTransition Mode="ForwardOut"/>
+            </toolkit:NavigationOutTransition.Forward>
+        </toolkit:NavigationOutTransition>
+    </toolkit:TransitionService.NavigationOutTransition>
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot">
+        <Grid.Background>
+            <ImageBrush ImageSource="images/bg_04.png"/>
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="203"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--TitlePanel contains the name of the application and page title-->
+        <StackPanel x:Name="TitlePanel" 
+                    Grid.Row="0" 
+                    Margin="20,10,0,20">
+            <TextBlock 
+                x:Name="ApplicationTitle" 
+                Text="{Binding AddReview, Source={StaticResource Loc}}" 
+                Style="{StaticResource 
+                Text24pxWhite}"/>
+            <TextBlock 
+                x:Name="PageTitle" Text="{Binding Vote, Source={StaticResource Loc}}" 
+                Margin="10,30,0,0" 
+                
+                
+      Style="{StaticResource Text70pxWhite}"/>
+        </StackPanel>
+
+        <!--ContentPanel - place additional content here-->
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+            <ScrollViewer>
+                <StackPanel Margin="12,0,0,0">
+                    <TextBlock Margin="0,15,0,-5"  Text="{Binding CommentLabel, Source={StaticResource Loc}}" Style="{StaticResource Text24pxCBB2A3}"/>
+                    <TextBox Height="200" Style="{StaticResource TextBox1}" Name="Body" />
+                <TextBlock Visibility="Collapsed" Height="30" Name="VoteText" Text="Ваш рейтинг:" />
+                <TextBox Visibility="Collapsed" Name="Vote" InputScope="Digits"/>
+            </StackPanel>
+            </ScrollViewer>
+        </Grid>
+
+        <WPExtensions:AdvancedApplicationBar Name="AppBar" IsVisible="True" IsMenuEnabled="False">
+            <WPExtensions:AdvancedApplicationBarIconButton IconUri="/icons/ic_ApplicationBar_done.png" Text="{Binding Save, Source={StaticResource Loc}}" Name="SaveButton" Click="SaveButton_Click" />
+            <WPExtensions:AdvancedApplicationBarIconButton IconUri="/icons/appbar.cancel.png" Text="{Binding Cancel, Source={StaticResource Loc}}" Name="CancelButton" Click="CancelButton_Click" />
+        </WPExtensions:AdvancedApplicationBar>
+
+    </Grid>
+
+</phone:PhoneApplicationPage>

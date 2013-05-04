@@ -156,6 +156,11 @@
 
 
         </controls:Panorama>
+
+        <WPExtensions:AdvancedApplicationBar Name="AppBar" IsVisible="True" IsMenuEnabled="False">
+            <WPExtensions:AdvancedApplicationBarIconButton IconUri="/icons/ic_ApplicationBar_done.png" Text="Добавить отзыв" Name="ReviewButton" Click="ReviewButton_Click"/>
+        </WPExtensions:AdvancedApplicationBar>
+
     </Grid>
 
     <!--Panorama-based applications should not show an ApplicationBar-->
