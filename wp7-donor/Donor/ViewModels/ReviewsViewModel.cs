@@ -125,6 +125,9 @@ namespace Donor.ViewModels
                             {
                                 ReviewsViewModel review = new ReviewsViewModel();
                                 review.Foursquare_user_id = tip["user"]["id"].ToString();
+                                string createdAtStr = tip["createdAt"].ToString();
+                                review.CreatedAt = tip["createdAt"].Value<Double>();
+                                    //Double.Parse("0");
                                 review.Foursquare_username = tip["user"]["firstName"].ToString() + " "+ tip["user"]["lastName"].ToString();
                                 review.Comment = tip["text"].ToString();
                                 Items.Add(review);
@@ -182,7 +185,7 @@ namespace Donor.ViewModels
             {
                 if (_foursquare_user_id != value)
                 {
-                    _user_id = value;
+                    _foursquare_user_id = value;
                     RaisePropertyChanged("Foursquare_user_id");
                 };
             }
@@ -199,7 +202,7 @@ namespace Donor.ViewModels
             {
                 if (_foursquare_username != value)
                 {
-                    _user_id = value;
+                    _foursquare_username = value;
                     RaisePropertyChanged("Foursquare_username");
                 };
             }
@@ -280,8 +283,30 @@ namespace Donor.ViewModels
         }*/
 
 
-        public string UpdatedAt { get; set; }
-        public string CreatedAt { get; set; }
+        public double UpdatedAt { get; set; }
+        public double CreatedAt { get; set; }
+
+        public DateTime CreatedDate {
+            get
+            {
+                DateTime origin = new DateTime(1970, 1, 1, 0, 0, 0, 0);
+                return origin.AddSeconds(CreatedAt);
+            }
+            private set
+            {
+            }
+        }
+
+        public string CreatedDateString
+        {
+            get
+            {
+                return CreatedDate.ToShortDateString();
+            }
+            private set
+            {
+            }
+        }
 
         /*public DateTime Date { get; set; }
         public string Created { get; set; }

@@ -154,7 +154,10 @@
                 <Grid>
                     <StackPanel>
                     </StackPanel>
-                    <maps:Map Name="map1" Margin="0,10,0,0" CredentialsProvider="{StaticResource BingCredentials}" />
+                    <maps:Map Name="map1" Margin="0,10,0,0" 
+                              CredentialsProvider="{StaticResource BingCredentials}" 
+                              MapPan="map1_MapPan" MapZoom="map1_MapZoom" ManipulationStarted="map1_ManipulationStarted" 
+                              />
                 </Grid>
             </controls:PanoramaItem>
 
@@ -179,12 +182,17 @@
                         <telerikData:RadJumpList.ItemTemplate>
                             <DataTemplate telerikCore:InteractionEffectManager.IsInteractionEnabled="True">
                                     <StackPanel Margin="10,10,10,6">
-                                        <TextBlock Text="{Binding User_id}"
+                                        <TextBlock Text="{Binding CreatedDateString}"
+							                TextWrapping="Wrap" 
+							                Style="{StaticResource Text36pxB9A194}"/>
+                                        <TextBlock Text="{Binding Foursquare_username}"
 							                TextWrapping="Wrap" 
 							                Style="{StaticResource Text24pxDF8D4B}"/>
                                         <TextBlock Text="{Binding Comment}" 
+                                            FontSize="24"          
+                                            Foreground="#FF847168" 
 							                TextWrapping="Wrap" Margin="0,4,0,0" 
-							                Style="{StaticResource Text24pxDF8D4B}"/>
+							                Style="{StaticResource Text24px847168}"/>
                                     </StackPanel>
                             </DataTemplate>
                         </telerikData:RadJumpList.ItemTemplate>

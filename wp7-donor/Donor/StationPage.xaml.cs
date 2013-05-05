@@ -140,5 +140,20 @@ namespace Donor
             {
             };
         }
+
+        private void map1_MapPan(object sender, MapDragEventArgs e)
+        {
+            e.Handled = true;
+        }
+
+        private void map1_MapZoom(object sender, MapZoomEventArgs e)
+        {
+            e.Handled = true;
+        }
+
+        private void map1_ManipulationStarted(object sender, ManipulationStartedEventArgs e)
+        {
+            e.Handled = true;
+        }
     }
 }
