@@ -31,6 +31,11 @@ namespace Donor
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
+            try
+            {
+                NavigationService.Navigate(new Uri("/Foursquare/FoursquareLogin.xaml", UriKind.Relative));
+            }
+            catch { };
         }
 
         private void CancelButton_Click(object sender, EventArgs e)

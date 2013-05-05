@@ -212,6 +212,9 @@
     <Compile Include="Controls\VotesControl.xaml.cs">
       <DependentUpon>VotesControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Foursquare\FoursquareLogin.xaml.cs">
+      <DependentUpon>FoursquareLogin.xaml</DependentUpon>
+    </Compile>
     <Compile Include="StationsSearchFilter.xaml.cs">
       <DependentUpon>StationsSearchFilter.xaml</DependentUpon>
     </Compile>
@@ -220,8 +223,8 @@
     <Compile Include="StationPage.xaml.cs">
       <DependentUpon>StationPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CreateReviewPage.xaml.cs">
-      <DependentUpon>CreateReviewPage.xaml</DependentUpon>
+    <Compile Include="OldCreateReviewPage.xaml.cs">
+      <DependentUpon>OldCreateReviewPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="EnterPage.xaml.cs">
       <DependentUpon>EnterPage.xaml</DependentUpon>
@@ -342,6 +345,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Foursquare\FoursquareLogin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="StationsSearchFilter.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -350,7 +357,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="CreateReviewPage.xaml">
+    <Page Include="OldCreateReviewPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

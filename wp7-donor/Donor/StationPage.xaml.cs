@@ -124,10 +124,15 @@ namespace Donor
         {
             try
             {
-                OAuthUtility.ComputeHash = (key, buffer) => { using (var hmac = new HMACSHA1(key)) { return hmac.ComputeHash(buffer); } };
-                var client = new HttpClient(new OAuthMessageHandler(App.Foursquare_client_id, App.Foursquare_secret ));
+                //OAuthUtility.ComputeHash = (key, buffer) => { using (var hmac = new HMACSHA1(key)) { return hmac.ComputeHash(buffer); } };
+                //var client = new HttpClient(new OAuthMessageHandler(App.Foursquare_client_id, App.Foursquare_secret ));
                 //new AccessToken("accessToken", "accessTokenSecret")
                 //NavigationService.Navigate(new Uri("/ReviewPage.xaml?id=" + ViewModelLocator.MainStatic.Stations.CurrentStation.ObjectId, UriKind.Relative));
+                try
+                {
+                    NavigationService.Navigate(new Uri("/ReviewPage.xaml", UriKind.Relative));
+                }
+                catch { };
             }
             catch
             {
