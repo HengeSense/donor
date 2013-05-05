@@ -40,6 +40,8 @@ namespace Donor
             map1.Children.Add(new Pushpin() { Location = stationLocation, Content = ViewModelLocator.MainStatic.Stations.CurrentStation.Name });
             map1.ZoomLevel = 14;
             map1.Center = stationLocation;
+
+            ViewModelLocator.MainStatic.Reviews.LoadTipsFromFoursquareForStation();
         }
 
         private void ReviewsLoaded(object sender, EventArgs e)

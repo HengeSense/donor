@@ -15,6 +15,10 @@
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
+    xmlns:tilteffect="clr-namespace:ControlTiltEffect"   
+    xmlns:telerikCore="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Core"
+    xmlns:telerikData="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Data"
+    xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives"
     xmlns:telerikInput="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Input"
     SupportedOrientations="Portrait"  Orientation="Portrait"
     xmlns:maps="clr-namespace:Microsoft.Phone.Controls.Maps;assembly=Microsoft.Phone.Controls.Maps"
@@ -151,6 +155,40 @@
                     <StackPanel>
                     </StackPanel>
                     <maps:Map Name="map1" Margin="0,10,0,0" CredentialsProvider="{StaticResource BingCredentials}" />
+                </Grid>
+            </controls:PanoramaItem>
+
+            
+            
+            <controls:PanoramaItem>
+                <controls:PanoramaItem.Header>
+                    <TextBlock Style="{StaticResource Text70pxWhite}" 
+					Text="Отзывы" Margin="-10,30,0,0"/>
+                </controls:PanoramaItem.Header>
+                <Grid>
+                    <telerikData:RadJumpList 
+		                VerticalAlignment="Top"
+		                Margin="0,0,0,0"
+		                Name="StationsList" 
+                        tilteffect:TiltEffect.IsTiltEnabled="True"
+                        telerikCore:InteractionEffectManager.IsInteractionEnabled="True"
+                        ItemsSource="{Binding Reviews.Items}"
+                        DataContext="{Binding Main, Source={StaticResource Locator}}" 
+                        EmptyContent="Данных нет." 
+                        EmptyContentTemplate="{StaticResource EmptyStationsTemplate}">
+                        <telerikData:RadJumpList.ItemTemplate>
+                            <DataTemplate telerikCore:InteractionEffectManager.IsInteractionEnabled="True">
+                                    <StackPanel Margin="10,10,10,6">
+                                        <TextBlock Text="{Binding User_id}"
+							                TextWrapping="Wrap" 
+							                Style="{StaticResource Text24pxDF8D4B}"/>
+                                        <TextBlock Text="{Binding Comment}" 
+							                TextWrapping="Wrap" Margin="0,4,0,0" 
+							                Style="{StaticResource Text24pxDF8D4B}"/>
+                                    </StackPanel>
+                            </DataTemplate>
+                        </telerikData:RadJumpList.ItemTemplate>
+                    </telerikData:RadJumpList>
                 </Grid>
             </controls:PanoramaItem>
 

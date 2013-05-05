@@ -212,7 +212,7 @@
     <Compile Include="Controls\VotesControl.xaml.cs">
       <DependentUpon>VotesControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Foursquare\FoursquareLogin.xaml.cs">
+    <Compile Include="Pages\Foursquare\FoursquareLogin.xaml.cs">
       <DependentUpon>FoursquareLogin.xaml</DependentUpon>
     </Compile>
     <Compile Include="StationsSearchFilter.xaml.cs">
@@ -223,7 +223,7 @@
     <Compile Include="StationPage.xaml.cs">
       <DependentUpon>StationPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="OldCreateReviewPage.xaml.cs">
+    <Compile Include="Pages\OldCreateReviewPage.xaml.cs">
       <DependentUpon>OldCreateReviewPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="EnterPage.xaml.cs">
@@ -272,7 +272,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResources.resx</DependentUpon>
     </Compile>
-    <Compile Include="StationPageOld.xaml.cs">
+    <Compile Include="Pages\StationPageOld.xaml.cs">
       <DependentUpon>StationPageOld.xaml</DependentUpon>
     </Compile>
     <Compile Include="StationsSearch.xaml.cs">
@@ -294,8 +294,6 @@
     <Compile Include="ViewModels\UserViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="ViewModels\ViewModelLocator.cs" />
-    <Compile Include="ViewModel\MainViewModel.cs" />
-    <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="ReviewPage.xaml.cs">
       <DependentUpon>ReviewPage.xaml</DependentUpon>
     </Compile>
@@ -345,7 +343,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Foursquare\FoursquareLogin.xaml">
+    <Page Include="Pages\Foursquare\FoursquareLogin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -357,7 +355,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="OldCreateReviewPage.xaml">
+    <Page Include="Pages\OldCreateReviewPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -417,7 +415,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="StationPageOld.xaml">
+    <Page Include="Pages\StationPageOld.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

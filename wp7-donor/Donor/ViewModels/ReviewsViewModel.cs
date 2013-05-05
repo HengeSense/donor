@@ -15,6 +15,8 @@ using Newtonsoft.Json;
 using System.ComponentModel;
 using System.Linq;
 using GalaSoft.MvvmLight;
+using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace Donor.ViewModels
 {
@@ -97,6 +99,46 @@ namespace Donor.ViewModels
                 RaisePropertyChanged("Items");
             }
         }
+
+        public async Task<string> MakeWebRequest(string url = "")
+        {
+            HttpClient http = new System.Net.Http.HttpClient();
+            HttpResponseMessage response = await http.GetAsync(url);
+            return await response.Content.ReadAsStringAsync();
+        }
+
+        public async void LoadTipsFromFoursquareForStation()
+        {
+            Items = new ObservableCollection<ReviewsViewModel>();
+            string tipsjson = await MakeWebRequest("https://api.foursquare.com/v2/venues/explore?ll=" + ViewModelLocator.MainStatic.Stations.CurrentStation.Lat.ToString().Replace(",", ".") + "," + ViewModelLocator.MainStatic.Stations.CurrentStation.Lon.ToString().Replace(",", ".") + "&radius=2000&client_id=" + App.Foursquare_client_id + "&client_secret=" + App.Foursquare_secret + "&v=20130505");
+            JObject o = JObject.Parse(tipsjson);
+            try
+            {
+                string items = o["response"]["groups"][0]["items"].ToString();
+                foreach (var venuedata in o["response"]["groups"][0]["items"])
+                {
+                    try
+                    {
+                        foreach (var tip in venuedata["tips"])
+                        {
+                            try
+                            {
+                                ReviewsViewModel review = new ReviewsViewModel();
+                                review.Foursquare_user_id = tip["user"]["id"].ToString();
+                                review.Foursquare_username = tip["user"]["firstName"].ToString() + " "+ tip["user"]["lastName"].ToString();
+                                review.Comment = tip["text"].ToString();
+                                Items.Add(review);
+                            }
+                            catch { };
+                        };
+                    }
+                    catch { };
+                };
+            }
+            catch { };
+            RaisePropertyChanged("Items");
+        }
+
     }
 
     /// <summary>
@@ -124,6 +166,41 @@ namespace Donor.ViewModels
                 {
                     _user_id = value;
                     RaisePropertyChanged("User_id");
+                };
+            }
+        }
+
+
+        private string _foursquare_user_id = "";
+        public string Foursquare_user_id
+        {
+            get
+            {
+                return _foursquare_user_id;
+            }
+            set
+            {
+                if (_foursquare_user_id != value)
+                {
+                    _user_id = value;
+                    RaisePropertyChanged("Foursquare_user_id");
+                };
+            }
+        }
+
+        private string _foursquare_username = "";
+        public string Foursquare_username
+        {
+            get
+            {
+                return _foursquare_username;
+            }
+            set
+            {
+                if (_foursquare_username != value)
+                {
+                    _user_id = value;
+                    RaisePropertyChanged("Foursquare_username");
                 };
             }
         }

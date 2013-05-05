@@ -130,7 +130,6 @@ C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\obj\Release\MainPage.g
 C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\obj\Release\NewsPage.g.cs
 C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\obj\Release\ProfileLogin.g.cs
 C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\obj\Release\QRread.g.cs
-C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\obj\Release\StationPageOld.g.cs
 C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\obj\Release\StationsSearch.g.cs
 C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\obj\Release\ReviewPage.g.cs
 C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\obj\Release\Donor.g.resources
@@ -139,6 +138,6 @@ C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\obj\Release\Donor.cspr
 C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\obj\Release\Donor.dll
 C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\obj\Release\Donor.pdb
 C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\obj\Release\XapCacheFile.xml
-C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\obj\Release\Donor.csprojResolveAssemblyReference.cache
-C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\obj\Release\Foursquare\FoursquareLogin.g.cs
-C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\obj\Release\OldCreateReviewPage.g.cs
+C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\obj\Release\Pages\Foursquare\FoursquareLogin.g.cs
+C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\obj\Release\Pages\OldCreateReviewPage.g.cs
+C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\obj\Release\Pages\StationPageOld.g.cs

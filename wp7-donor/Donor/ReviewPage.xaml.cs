@@ -33,7 +33,7 @@ namespace Donor
         {
             try
             {
-                NavigationService.Navigate(new Uri("/Foursquare/FoursquareLogin.xaml", UriKind.Relative));
+                NavigationService.Navigate(new Uri("/Pages/Foursquare/FoursquareLogin.xaml", UriKind.Relative));
             }
             catch { };
         }

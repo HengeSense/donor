@@ -523,6 +523,17 @@ namespace Donor.ViewModels
             } 
         }
 
+        private string _foursquareToken;
+        public string FoursquareToken
+        {
+            get { return _foursquareToken; }
+            set
+            {
+                _foursquareToken = value;
+                RaisePropertyChanged("FoursquareToken");
+            }
+        }
+
         private string _facebookToken;
         public string FacebookToken
         {
