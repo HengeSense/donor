@@ -509,10 +509,10 @@ namespace Donor.ViewModels
         {
         }
 
+        private string _name = "";
         /// <summary>
         /// Название станции
         /// </summary>
-        private string _name = "";
         public string Name {
             get
             {
@@ -522,6 +522,40 @@ namespace Donor.ViewModels
             {
                 _name = value;
                 RaisePropertyChanged("Name");
+            }
+        }
+
+        private bool _foursquareExists = false;
+        /// <summary>
+        /// Существует ли станция переливания на foursquare (для оставления отзыва к ней)
+        /// </summary>
+        public bool FoursquareExists
+        {
+            get
+            {
+                return _foursquareExists;
+            }
+            set
+            {
+                _foursquareExists = value;
+                RaisePropertyChanged("FoursquareExists");
+            }
+        }
+
+        private string _foursquareId = "";
+        /// <summary>
+        /// Идентификатор станции на foursquare
+        /// </summary>
+        public string FoursquareId
+        {
+            get
+            {
+                return _foursquareId;
+            }
+            set
+            {
+                _foursquareId = value;
+                RaisePropertyChanged("FoursquareId");
             }
         }
         

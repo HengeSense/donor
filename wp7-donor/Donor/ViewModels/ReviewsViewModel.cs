@@ -17,6 +17,7 @@ using System.Linq;
 using GalaSoft.MvvmLight;
 using System.Net.Http;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace Donor.ViewModels
 {
@@ -107,10 +108,65 @@ namespace Donor.ViewModels
             return await response.Content.ReadAsStringAsync();
         }
 
+        public async Task<string> AddStationToFoursquare()
+        {            
+            HttpClient http = new System.Net.Http.HttpClient();
+
+            var postData = new List<KeyValuePair<string, string>>();
+            postData.Add(new KeyValuePair<string, string>("name", ViewModelLocator.MainStatic.Stations.CurrentStation.Name));
+            postData.Add(new KeyValuePair<string, string>("address", ViewModelLocator.MainStatic.Stations.CurrentStation.Address));
+            postData.Add(new KeyValuePair<string, string>("city", ViewModelLocator.MainStatic.Stations.CurrentStation.Town));
+            postData.Add(new KeyValuePair<string, string>("state", ViewModelLocator.MainStatic.Stations.CurrentStation.Region_name));
+            postData.Add(new KeyValuePair<string, string>("phone", ViewModelLocator.MainStatic.Stations.CurrentStation.Phone));
+            postData.Add(new KeyValuePair<string, string>("primaryCategoryId", "4bf58dd8d48988d196941735"));
+            postData.Add(new KeyValuePair<string, string>("ll", ViewModelLocator.MainStatic.Stations.CurrentStation.Lat.ToString().Replace(",", ".") + "," + ViewModelLocator.MainStatic.Stations.CurrentStation.Lon.ToString().Replace(",", ".")));
+            postData.Add(new KeyValuePair<string, string>("url", ViewModelLocator.MainStatic.Stations.CurrentStation.Site));
+            HttpContent content = new FormUrlEncodedContent(postData); 
+
+            HttpResponseMessage response = await http.PostAsync("https://api.foursquare.com/v2/venues/add?oauth_token=" + ViewModelLocator.MainStatic.User.FoursquareToken+"&v=20130506", content);
+            string result = await response.Content.ReadAsStringAsync();
+            string venueId = "";
+            try
+            {
+                JObject o = JObject.Parse(result);
+                venueId = o["response"]["venue"]["id"].ToString();
+            }
+            catch { };
+            return venueId;
+            //MessageBox.Show(result);
+        }
+
+        public async Task<bool> AddReview(string description="", int rate=4)
+        {
+            HttpClient http = new System.Net.Http.HttpClient();
+
+            var postData = new List<KeyValuePair<string, string>>();
+            postData.Add(new KeyValuePair<string, string>("venueId", ViewModelLocator.MainStatic.Stations.CurrentStation.FoursquareId));
+            postData.Add(new KeyValuePair<string, string>("text", description));
+            HttpContent content = new FormUrlEncodedContent(postData);
+
+            HttpResponseMessage response = await http.PostAsync("https://api.foursquare.com/v2/tips/add?oauth_token=" + ViewModelLocator.MainStatic.User.FoursquareToken + "&v=20130506", content);
+            string result = await response.Content.ReadAsStringAsync();
+
+            try
+            {
+                JObject o = JObject.Parse(result);
+            }
+            catch { };
+            return true;
+            //MessageBox.Show(result);
+        }
+
         public async void LoadTipsFromFoursquareForStation()
         {
             Items = new ObservableCollection<ReviewsViewModel>();
-            string tipsjson = await MakeWebRequest("https://api.foursquare.com/v2/venues/explore?ll=" + ViewModelLocator.MainStatic.Stations.CurrentStation.Lat.ToString().Replace(",", ".") + "," + ViewModelLocator.MainStatic.Stations.CurrentStation.Lon.ToString().Replace(",", ".") + "&radius=2000&client_id=" + App.Foursquare_client_id + "&client_secret=" + App.Foursquare_secret + "&v=20130505");
+            string requeststr = "https://api.foursquare.com/v2/venues/explore?ll=" + 
+                ViewModelLocator.MainStatic.Stations.CurrentStation.Lat.ToString().Replace(",", ".") + 
+                "," + ViewModelLocator.MainStatic.Stations.CurrentStation.Lon.ToString().Replace(",", ".") + 
+                "&radius=400&client_id=" + App.Foursquare_client_id + "&client_secret=" + App.Foursquare_secret + 
+                "&v=20130505" +
+                "&query=" + ViewModelLocator.MainStatic.Stations.CurrentStation.Name;
+            string tipsjson = await MakeWebRequest(requeststr);
             JObject o = JObject.Parse(tipsjson);
             try
             {
@@ -119,21 +175,27 @@ namespace Donor.ViewModels
                 {
                     try
                     {
-                        foreach (var tip in venuedata["tips"])
+                        if (venuedata["venue"]["name"].Value<String>()==ViewModelLocator.MainStatic.Stations.CurrentStation.Name)
                         {
-                            try
-                            {
-                                ReviewsViewModel review = new ReviewsViewModel();
-                                review.Foursquare_user_id = tip["user"]["id"].ToString();
-                                string createdAtStr = tip["createdAt"].ToString();
-                                review.CreatedAt = tip["createdAt"].Value<Double>();
-                                    //Double.Parse("0");
-                                review.Foursquare_username = tip["user"]["firstName"].ToString() + " "+ tip["user"]["lastName"].ToString();
-                                review.Comment = tip["text"].ToString();
-                                Items.Add(review);
-                            }
-                            catch { };
+                            ViewModelLocator.MainStatic.Stations.CurrentStation.FoursquareExists = true;
+                            ViewModelLocator.MainStatic.Stations.CurrentStation.FoursquareId = venuedata["venue"]["id"].Value<String>();
                         };
+                            foreach (var tip in venuedata["tips"])
+                            {
+                                try
+                                {
+                                    ReviewsViewModel review = new ReviewsViewModel();
+                                    review.Foursquare_user_id = tip["user"]["id"].ToString();
+                                    string createdAtStr = tip["createdAt"].ToString();
+                                    review.CreatedAt = tip["createdAt"].Value<Double>();
+                                        //Double.Parse("0");
+                                    review.Foursquare_username = tip["user"]["firstName"].ToString() + " "+ tip["user"]["lastName"].ToString();
+                                    review.Comment = tip["text"].ToString();
+                                    Items.Add(review);
+                                }
+                                catch { };
+                            };
+                        //};
                     }
                     catch { };
                 };

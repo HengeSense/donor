@@ -69,7 +69,7 @@
             <ScrollViewer>
                 <StackPanel Margin="12,0,0,0">
                     <TextBlock Margin="0,15,0,-5"  Text="{Binding CommentLabel, Source={StaticResource Loc}}" Style="{StaticResource Text24pxCBB2A3}"/>
-                    <TextBox Height="200" Style="{StaticResource TextBox1}" Name="Body" />
+                    <TextBox Height="200" Style="{StaticResource TextBox1}" Name="Comment" />
                 <TextBlock Visibility="Collapsed" Height="30" Name="VoteText" Text="Ваш рейтинг:" />
                 <TextBox Visibility="Collapsed" Name="Vote" InputScope="Digits"/>
             </StackPanel>

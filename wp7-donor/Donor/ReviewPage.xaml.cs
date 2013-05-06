@@ -29,13 +29,25 @@ namespace Donor
             return (double)Math.Round(span.TotalSeconds);
         } 
 
-        private void SaveButton_Click(object sender, EventArgs e)
+        private async void SaveButton_Click(object sender, EventArgs e)
         {
-            try
+            if (ViewModelLocator.MainStatic.User.FoursquareToken == "")
             {
-                NavigationService.Navigate(new Uri("/Pages/Foursquare/FoursquareLogin.xaml", UriKind.Relative));
+                try
+                {
+                    NavigationService.Navigate(new Uri("/Pages/Foursquare/FoursquareLogin.xaml", UriKind.Relative));
+                }
+                catch { };
             }
-            catch { };
+            else
+            {
+                if (!ViewModelLocator.MainStatic.Stations.CurrentStation.FoursquareExists)
+                {
+                    ViewModelLocator.MainStatic.Stations.CurrentStation.FoursquareId = await ViewModelLocator.MainStatic.Reviews.AddStationToFoursquare();
+                };
+                await ViewModelLocator.MainStatic.Reviews.AddReview(this.Comment.Text);
+                MessageBox.Show("Отзыв отправлен");
+            };
         }
 
         private void CancelButton_Click(object sender, EventArgs e)

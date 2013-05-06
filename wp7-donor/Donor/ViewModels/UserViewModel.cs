@@ -523,7 +523,7 @@ namespace Donor.ViewModels
             } 
         }
 
-        private string _foursquareToken;
+        private string _foursquareToken = "";
         public string FoursquareToken
         {
             get { return _foursquareToken; }
