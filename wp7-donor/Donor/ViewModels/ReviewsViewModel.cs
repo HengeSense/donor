@@ -71,6 +71,28 @@ namespace Donor.ViewModels
             }
         }
 
+        private double reviewsum = 0;
+        private double reviewcount = 0;
+        private double _stationReview = 0;
+        public double StationReview
+        {
+            get
+            {
+                if (reviewcount == 0)
+                {
+                    return 0;
+                }
+                else
+                {
+                    return reviewsum / reviewcount;
+                };
+                
+            }
+            private set
+            {
+            }
+        }
+
         public async Task<bool> SendReview()
         {
             ViewModelLocator.MainStatic.Loading = true;
@@ -190,7 +212,7 @@ namespace Donor.ViewModels
 
             var postData = new List<KeyValuePair<string, string>>();
             postData.Add(new KeyValuePair<string, string>("venueId", ViewModelLocator.MainStatic.Stations.CurrentStation.FoursquareId));
-            postData.Add(new KeyValuePair<string, string>("text", description + Environment.NewLine + "[Оценка станции - " + rate.ToString() + "]"));
+            postData.Add(new KeyValuePair<string, string>("text", description + Environment.NewLine + " [Оценка станции - " + rate.ToString() + "]"));
             HttpContent content = new FormUrlEncodedContent(postData);
 
             HttpResponseMessage response = await http.PostAsync("https://api.foursquare.com/v2/tips/add?oauth_token=" + ViewModelLocator.MainStatic.User.FoursquareToken + "&v=20130506", content);
@@ -236,8 +258,10 @@ namespace Donor.ViewModels
                             try
                             {
                                 string rateStr = mat.Value.Trim().Replace("Оценка станции - ", "").Replace("]", "");
-                                //Console.WriteLine("Значение найденного обьекта {0}", mat.Value);
                                 review.Rate = Int32.Parse(rateStr);
+
+                                reviewsum += review.Rate;
+                                reviewcount++;
                             }
                             catch {                                
                             };
@@ -249,11 +273,16 @@ namespace Donor.ViewModels
                 };
             }
             catch { };
+            RaisePropertyChanged("StationReview");
         }
 
         public async void LoadTipsFromFoursquareForStation()
         {
+            ViewModelLocator.MainStatic.Loading = true;
             Items = new ObservableCollection<ReviewsViewModel>();
+            reviewsum = 0;
+            reviewcount = 0;
+
             string requeststr = "https://api.foursquare.com/v2/venues/explore?ll=" + 
                 ViewModelLocator.MainStatic.Stations.CurrentStation.Lat.ToString().Replace(",", ".") + 
                 "," + ViewModelLocator.MainStatic.Stations.CurrentStation.Lon.ToString().Replace(",", ".") + 
@@ -284,7 +313,6 @@ namespace Donor.ViewModels
                                     review.Foursquare_user_id = tip["user"]["id"].ToString();
                                     string createdAtStr = tip["createdAt"].ToString();
                                     review.CreatedAt = tip["createdAt"].Value<Double>();
-                                        //Double.Parse("0");
                                     review.Foursquare_username = tip["user"]["firstName"].ToString() + " "+ tip["user"]["lastName"].ToString();
                                     review.Comment = tip["text"].ToString();
                                     Items.Add(review);
@@ -298,6 +326,7 @@ namespace Donor.ViewModels
                 };
             }
             catch { };
+            ViewModelLocator.MainStatic.Loading = false;
             RaisePropertyChanged("Items");
         }
 
@@ -422,7 +451,7 @@ namespace Donor.ViewModels
             }
         }
 
-        private int _rate = 5;
+        private int _rate = 0;
         /// <summary>
         /// Оценка станции, от 1 до 5
         /// </summary>
