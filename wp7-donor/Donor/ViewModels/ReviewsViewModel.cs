@@ -18,6 +18,7 @@ using GalaSoft.MvvmLight;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 namespace Donor.ViewModels
 {
@@ -34,6 +35,53 @@ namespace Donor.ViewModels
         {
             if (ReviewsLoaded != null)
                 ReviewsLoaded(this, e);
+        }
+
+        private string _reviewText = "";
+        public string ReviewText
+        {
+            get
+            {
+                return _reviewText;
+            }
+            set
+            {
+                if (_reviewText != value)
+                {
+                    _reviewText = value;
+                    RaisePropertyChanged("ReviewText");
+                };
+            }
+        }
+
+        private double _reviewRate = 4;
+        public double ReviewRate
+        {
+            get
+            {
+                return _reviewRate;
+            }
+            set
+            {
+                if (_reviewRate != value)
+                {
+                    _reviewRate = value;
+                    RaisePropertyChanged("ReviewRate");
+                };
+            }
+        }
+
+        public async Task<bool> SendReview()
+        {
+            ViewModelLocator.MainStatic.Loading = true;
+            if (!ViewModelLocator.MainStatic.Stations.CurrentStation.FoursquareExists)
+            {
+                ViewModelLocator.MainStatic.Stations.CurrentStation.FoursquareId = await ViewModelLocator.MainStatic.Reviews.AddStationToFoursquare();
+            };
+            await ViewModelLocator.MainStatic.Reviews.AddReview(ReviewText, ReviewRate);
+            ViewModelLocator.MainStatic.Loading = false;
+            MessageBox.Show("Отзыв отправлен");
+            return true;
         }
 
         /// <summary>
@@ -136,13 +184,13 @@ namespace Donor.ViewModels
             //MessageBox.Show(result);
         }
 
-        public async Task<bool> AddReview(string description="", int rate=4)
+        public async Task<bool> AddReview(string description="", double rate=4)
         {
             HttpClient http = new System.Net.Http.HttpClient();
 
             var postData = new List<KeyValuePair<string, string>>();
             postData.Add(new KeyValuePair<string, string>("venueId", ViewModelLocator.MainStatic.Stations.CurrentStation.FoursquareId));
-            postData.Add(new KeyValuePair<string, string>("text", description));
+            postData.Add(new KeyValuePair<string, string>("text", description + Environment.NewLine + "[Оценка станции - " + rate.ToString() + "]"));
             HttpContent content = new FormUrlEncodedContent(postData);
 
             HttpResponseMessage response = await http.PostAsync("https://api.foursquare.com/v2/tips/add?oauth_token=" + ViewModelLocator.MainStatic.User.FoursquareToken + "&v=20130506", content);
@@ -155,6 +203,52 @@ namespace Donor.ViewModels
             catch { };
             return true;
             //MessageBox.Show(result);
+        }
+
+        public async void LoadTipsForVenue(string VenueId="")
+        {
+            string requeststr = "https://api.foursquare.com/v2/venues/" + VenueId + 
+                "?client_id=" + 
+                App.Foursquare_client_id + "&client_secret=" + App.Foursquare_secret +
+                "&v=20130505";
+            string tipsjson = await MakeWebRequest(requeststr);
+            JObject o = JObject.Parse(tipsjson);
+            try
+            {
+                foreach (var tip in o["response"]["venue"]["tips"]["groups"][0]["items"])
+                {
+                    try
+                    {
+                        ReviewsViewModel review = new ReviewsViewModel();
+                        review.Id = tip["user"]["id"].ToString();
+                        review.Foursquare_user_id = tip["user"]["id"].ToString();
+                        string createdAtStr = tip["createdAt"].ToString();
+                        review.CreatedAt = tip["createdAt"].Value<Double>();
+                        //Double.Parse("0");
+                        review.Foursquare_username = tip["user"]["firstName"].ToString() + " " + tip["user"]["lastName"].ToString();
+                        review.Comment = tip["text"].ToString();
+
+                        string pattern = @"[^\[]*$";
+                        Regex newReg = new Regex(pattern);
+                        MatchCollection matches = newReg.Matches(review.Comment);
+                        foreach (Match mat in matches)
+                        {
+                            try
+                            {
+                                string rateStr = mat.Value.Trim().Replace("Оценка станции - ", "").Replace("]", "");
+                                //Console.WriteLine("Значение найденного обьекта {0}", mat.Value);
+                                review.Rate = Int32.Parse(rateStr);
+                            }
+                            catch {                                
+                            };
+                        }
+
+                        Items.Add(review);
+                    }
+                    catch { };
+                };
+            }
+            catch { };
         }
 
         public async void LoadTipsFromFoursquareForStation()
@@ -179,12 +273,14 @@ namespace Donor.ViewModels
                         {
                             ViewModelLocator.MainStatic.Stations.CurrentStation.FoursquareExists = true;
                             ViewModelLocator.MainStatic.Stations.CurrentStation.FoursquareId = venuedata["venue"]["id"].Value<String>();
-                        };
+                            LoadTipsForVenue(ViewModelLocator.MainStatic.Stations.CurrentStation.FoursquareId);
+                        } else {
                             foreach (var tip in venuedata["tips"])
                             {
                                 try
                                 {
                                     ReviewsViewModel review = new ReviewsViewModel();
+                                    review.Id = tip["user"]["id"].ToString();
                                     review.Foursquare_user_id = tip["user"]["id"].ToString();
                                     string createdAtStr = tip["createdAt"].ToString();
                                     review.CreatedAt = tip["createdAt"].Value<Double>();
@@ -195,6 +291,7 @@ namespace Donor.ViewModels
                                 }
                                 catch { };
                             };
+                        };
                         //};
                     }
                     catch { };
@@ -235,6 +332,22 @@ namespace Donor.ViewModels
             }
         }
 
+        private string _id = "";
+        public string Id
+        {
+            get
+            {
+                return _id;
+            }
+            set
+            {
+                if (_id != value)
+                {
+                    _id = value;
+                    RaisePropertyChanged("Id");
+                };
+            }
+        }
 
         private string _foursquare_user_id = "";
         public string Foursquare_user_id
@@ -309,7 +422,7 @@ namespace Donor.ViewModels
             }
         }
 
-        private int _rate = 3;
+        private int _rate = 5;
         /// <summary>
         /// Оценка станции, от 1 до 5
         /// </summary>
@@ -343,7 +456,6 @@ namespace Donor.ViewModels
                 };
             }
         }*/
-
 
         public double UpdatedAt { get; set; }
         public double CreatedAt { get; set; }

@@ -41,12 +41,8 @@ namespace Donor
             }
             else
             {
-                if (!ViewModelLocator.MainStatic.Stations.CurrentStation.FoursquareExists)
-                {
-                    ViewModelLocator.MainStatic.Stations.CurrentStation.FoursquareId = await ViewModelLocator.MainStatic.Reviews.AddStationToFoursquare();
-                };
-                await ViewModelLocator.MainStatic.Reviews.AddReview(this.Comment.Text);
-                MessageBox.Show("Отзыв отправлен");
+                ViewModelLocator.MainStatic.Reviews.SendReview();
+                NavigationService.GoBack();
             };
         }
 

@@ -24,7 +24,7 @@ namespace Donor.Foursquare
             webBrowser1.Navigate(loginUrl);
         }
         private bool navigatedToken = false;
-        private void webBrowser1_Navigated(object sender, System.Windows.Navigation.NavigationEventArgs e)
+        private async void webBrowser1_Navigated(object sender, System.Windows.Navigation.NavigationEventArgs e)
         {
             try
             {
@@ -33,7 +33,18 @@ namespace Donor.Foursquare
                 {
                     ViewModelLocator.MainStatic.User.FoursquareToken = backurl.Replace("http://donorapp.ru/#access_token=", "");
                     navigatedToken = true;
-                    NavigationService.GoBack();
+                    await ViewModelLocator.MainStatic.Reviews.SendReview();
+                    //RootFrame.RemoveBackEntry();
+                    try
+                    {
+                        NavigationService.RemoveBackEntry();
+                    }
+                    catch { };
+                    try
+                    {
+                        NavigationService.GoBack();
+                    }
+                    catch { };
                 };
                 return;
             }
