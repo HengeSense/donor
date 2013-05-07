@@ -258,10 +258,15 @@ namespace Donor.ViewModels
                             try
                             {
                                 string rateStr = mat.Value.Trim().Replace("Оценка станции - ", "").Replace("]", "");
-                                review.Rate = Int32.Parse(rateStr);
+                                int rating = Int32.Parse(rateStr);
+                                if (rating > 0 && rating < 6)
+                                {
+                                    review.Rate = rating;
+                                    reviewsum += review.Rate;
+                                    reviewcount++;
 
-                                reviewsum += review.Rate;
-                                reviewcount++;
+                                    review.Comment = review.Comment.Replace(mat.Value, "").TrimEnd('[').Trim();
+                                };
                             }
                             catch {                                
                             };
