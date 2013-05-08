@@ -291,7 +291,7 @@ namespace Donor.ViewModels
             string requeststr = "https://api.foursquare.com/v2/venues/explore?ll=" + 
                 ViewModelLocator.MainStatic.Stations.CurrentStation.Lat.ToString().Replace(",", ".") + 
                 "," + ViewModelLocator.MainStatic.Stations.CurrentStation.Lon.ToString().Replace(",", ".") + 
-                "&radius=400&client_id=" + App.Foursquare_client_id + "&client_secret=" + App.Foursquare_secret + 
+                "&radius=250&client_id=" + App.Foursquare_client_id + "&client_secret=" + App.Foursquare_secret + 
                 "&v=20130505" +
                 "&query=" + ViewModelLocator.MainStatic.Stations.CurrentStation.Name;
             string tipsjson = await MakeWebRequest(requeststr);
