@@ -114,7 +114,10 @@
             </ScrollViewer>
         </Grid>
 
-        <WPExtensions:AdvancedApplicationBar Name="AppBar" IsVisible="True" IsMenuEnabled="False">
+        <WPExtensions:AdvancedApplicationBar 
+            Background="#FF211E1D" BackgroundColor="#FF211E1D" Foreground="White" BorderBrush="#FF211E1D" 
+            ForegroundColor="White" OpacityMask="White"
+            Name="AppBar" IsVisible="True" IsMenuEnabled="False">
             <WPExtensions:AdvancedApplicationBarIconButton IconUri="/icons/ic_ApplicationBar_done.png" Text="{Binding Save, Source={StaticResource Loc}}" Name="SaveButton" Click="SaveButton_Click" />
             <WPExtensions:AdvancedApplicationBarIconButton IconUri="/icons/appbar.cancel.png" Text="{Binding Cancel, Source={StaticResource Loc}}" Name="CancelButton" Click="CancelButton_Click" />
         </WPExtensions:AdvancedApplicationBar>
