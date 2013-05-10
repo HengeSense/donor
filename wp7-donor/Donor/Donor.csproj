@@ -182,10 +182,10 @@
     <Compile Include="AchievesPage.xaml.cs">
       <DependentUpon>AchievesPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="AdsList.xaml.cs">
+    <Compile Include="Pages\Ads\AdsList.xaml.cs">
       <DependentUpon>AdsList.xaml</DependentUpon>
     </Compile>
-    <Compile Include="AdsPage.xaml.cs">
+    <Compile Include="Pages\Ads\AdsPage.xaml.cs">
       <DependentUpon>AdsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="App.xaml.cs">
@@ -223,32 +223,29 @@
     <Compile Include="StationPage.xaml.cs">
       <DependentUpon>StationPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\OldCreateReviewPage.xaml.cs">
-      <DependentUpon>OldCreateReviewPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="EnterPage.xaml.cs">
       <DependentUpon>EnterPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="EventPage.xaml.cs">
       <DependentUpon>EventPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="FacebookPages\FacebookInfoPage.xaml.cs">
+    <Compile Include="Pages\FacebookPages\FacebookInfoPage.xaml.cs">
       <DependentUpon>FacebookInfoPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="FacebookPages\FacebookLoginPage.xaml.cs">
+    <Compile Include="Pages\FacebookPages\FacebookLoginPage.xaml.cs">
       <DependentUpon>FacebookLoginPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="FacebookPages\FacebookLogoutPage.xaml.cs">
+    <Compile Include="Pages\FacebookPages\FacebookLogoutPage.xaml.cs">
       <DependentUpon>FacebookLogoutPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="HelpPage.xaml.cs">
+    <Compile Include="Pages\HelpPage.xaml.cs">
       <DependentUpon>HelpPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="libs\TiltEffect.cs" />
     <Compile Include="MapPage.xaml.cs">
       <DependentUpon>MapPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="NewsList.xaml.cs">
+    <Compile Include="Pages\News\NewsList.xaml.cs">
       <DependentUpon>NewsList.xaml</DependentUpon>
     </Compile>
     <Compile Include="EventEditPage.xaml.cs">
@@ -257,7 +254,7 @@
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="NewsPage.xaml.cs">
+    <Compile Include="Pages\News\NewsPage.xaml.cs">
       <DependentUpon>NewsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="ProfileLogin.xaml.cs">
@@ -288,11 +285,9 @@
     <Compile Include="ViewModels\EventViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\NewsViewModel.cs" />
-    <Compile Include="ViewModels\NotifyPropertyChanged.cs" />
     <Compile Include="ViewModels\SettingsViewModel.cs" />
     <Compile Include="ViewModels\StationViewModel.cs" />
     <Compile Include="ViewModels\UserViewModel.cs" />
-    <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="ViewModels\ViewModelLocator.cs" />
     <Compile Include="ReviewPage.xaml.cs">
       <DependentUpon>ReviewPage.xaml</DependentUpon>
@@ -307,11 +302,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="AdsList.xaml">
+    <Page Include="Pages\Ads\AdsList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="AdsPage.xaml">
+    <Page Include="Pages\Ads\AdsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -355,10 +350,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Pages\OldCreateReviewPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="EnterPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -367,19 +358,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="FacebookPages\FacebookInfoPage.xaml">
+    <Page Include="Pages\FacebookPages\FacebookInfoPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="FacebookPages\FacebookLoginPage.xaml">
+    <Page Include="Pages\FacebookPages\FacebookLoginPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="FacebookPages\FacebookLogoutPage.xaml">
+    <Page Include="Pages\FacebookPages\FacebookLogoutPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="HelpPage.xaml">
+    <Page Include="Pages\HelpPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -387,7 +378,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="NewsList.xaml">
+    <Page Include="Pages\News\NewsList.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -399,11 +390,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <DesignData Include="SampleData\MainViewModelSampleData.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </DesignData>
-    <Page Include="NewsPage.xaml">
+    <Page Include="Pages\News\NewsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -554,6 +541,10 @@
       <CustomToolNamespace>Donor</CustomToolNamespace>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Pages\Events\" />
+    <Folder Include="Pages\Stations\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.CSharp.targets" />

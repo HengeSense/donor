@@ -34,7 +34,7 @@ namespace Donor
         {
             try
             {
-                NavigationService.Navigate(new Uri("/FacebookPages/FacebookLoginPage.xaml", UriKind.Relative));
+                NavigationService.Navigate(new Uri("/Pages/FacebookPages/FacebookLoginPage.xaml", UriKind.Relative));
             }
             catch
             {

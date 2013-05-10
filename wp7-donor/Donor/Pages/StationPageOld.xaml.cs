@@ -101,7 +101,7 @@ namespace Donor
             try
             {
                 ViewModelLocator.MainStatic.Ads.CurrentAd = ((sender as ListBox).SelectedItem as AdsViewModel);
-                NavigationService.Navigate(new Uri("/AdsPage.xaml", UriKind.Relative));
+                NavigationService.Navigate(new Uri("/Pages/Ads/AdsPage.xaml", UriKind.Relative));
             }
             catch
             {

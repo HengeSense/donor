@@ -95,7 +95,7 @@ namespace facebook_windows_phone_sample.Pages
                 var result = (IDictionary<string, object>)e.GetResultData();
                 var id = (string)result["id"];
 
-                var url = string.Format("/FacebookPages/FacebookInfoPage.xaml?access_token={0}&id={1}", accessToken, id);
+                var url = string.Format("/Pages/FacebookPages/FacebookInfoPage.xaml?access_token={0}&id={1}", accessToken, id);
                 
 
                 Dispatcher.BeginInvoke(() => {

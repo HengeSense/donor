@@ -109,7 +109,7 @@ namespace Donor
             try
             {
                 string id = ((sender as ListBox).SelectedItem as NewsViewModel).ObjectId;
-                NavigationService.Navigate(new Uri("/NewsPage.xaml?id=" + id, UriKind.Relative));
+                NavigationService.Navigate(new Uri("/Pages/News/NewsPage.xaml?id=" + id, UriKind.Relative));
             }
             catch
             {
@@ -118,7 +118,7 @@ namespace Donor
 
         private void NewMenuItem_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
-            NavigationService.Navigate(new Uri("/NewsList.xaml", UriKind.Relative));
+            NavigationService.Navigate(new Uri("/Pages/News/NewsList.xaml", UriKind.Relative));
         }
 
         private void EventsList_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -272,12 +272,12 @@ namespace Donor
 
         private void adsMenuText_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
-            NavigationService.Navigate(new Uri("/AdsList.xaml", UriKind.Relative));
+            NavigationService.Navigate(new Uri("/Pages/Ads/AdsList.xaml", UriKind.Relative));
         }
 
         private void HelpMenuText_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
-            NavigationService.Navigate(new Uri("/HelpPage.xaml", UriKind.Relative));
+            NavigationService.Navigate(new Uri("/Pages/HelpPage.xaml", UriKind.Relative));
         }
 
         private void EditProfile_Click(object sender, System.Windows.RoutedEventArgs e)
@@ -334,7 +334,8 @@ namespace Donor
             try
             {
                 string id = ((sender as ListBox).SelectedItem as NewsViewModel).ObjectId;
-                NavigationService.Navigate(new Uri("/NewsPage.xaml?id=" + id, UriKind.Relative));
+                ViewModelLocator.MainStatic.News.CurrentNews = ((sender as ListBox).SelectedItem as NewsViewModel);
+                NavigationService.Navigate(new Uri("/Pages/News/NewsPage.xaml?id=" + id, UriKind.Relative));
             }
             catch
             {
@@ -396,7 +397,7 @@ namespace Donor
         {
             try
             {
-                NavigationService.Navigate(new Uri("/FacebookPages/FacebookLoginPage.xaml", UriKind.Relative));
+                NavigationService.Navigate(new Uri("/Pages/FacebookPages/FacebookLoginPage.xaml", UriKind.Relative));
             }
             catch
             {

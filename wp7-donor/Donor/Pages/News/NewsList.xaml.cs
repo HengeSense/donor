@@ -29,7 +29,7 @@ namespace Donor
             {
                 string id = ((sender as ListBox).SelectedItem as NewsViewModel).ObjectId;
                 ViewModelLocator.MainStatic.News.CurrentNews = ViewModelLocator.MainStatic.News.Items.FirstOrDefault(c => c.ObjectId == id);
-                NavigationService.Navigate(new Uri("/NewsPage.xaml", UriKind.Relative));
+                NavigationService.Navigate(new Uri("/Pages/News/NewsPage.xaml", UriKind.Relative));
             }
             catch
             {

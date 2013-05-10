@@ -54,7 +54,7 @@ namespace Donor
             try
             {
                 ViewModelLocator.MainStatic.Ads.CurrentAd = (e.Item.Content as AdsViewModel);
-                NavigationService.Navigate(new Uri("/AdsPage.xaml", UriKind.Relative));
+                NavigationService.Navigate(new Uri("/Pages/Ads/AdsPage.xaml", UriKind.Relative));
             }
             catch
             {
