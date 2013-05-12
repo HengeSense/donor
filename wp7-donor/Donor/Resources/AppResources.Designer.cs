@@ -29,7 +29,7 @@ namespace Donor {
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal AppResources() {
+        public AppResources() {
         }
         
         /// <summary>
@@ -138,6 +138,26 @@ namespace Donor {
         public static string AdsTitle {
             get {
                 return ResourceManager.GetString("AdsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to После сдачи крови.
+        /// </summary>
+        public static string AfterBloodDonation {
+            get {
+                return ResourceManager.GetString("AfterBloodDonation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to • 10–15 минут посидите спокойно и, если вы хорошо себя чувствуете (не испытываете слабости или головокружения), пройдите в буфет и выпейте сладкий чай.&lt;br/&gt;
+        ///• Если вы почувствовали головокружение, обратитесь к медперсоналу. Самый простой способ помочь себе – лечь и поднять ноги выше головы или сесть и опустить голову между колен. Ни в коем случае не пытайтесь идти или вести машину, если у вас кружится голова!&lt;br/&gt;
+        ///• В течение 3–4 часов не снимайте повязку и старайтесь ее не мочить. Это убережет вас от воз [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string AfterBloodDonationDescription {
+            get {
+                return ResourceManager.GetString("AfterBloodDonationDescription", resourceCulture);
             }
         }
         
@@ -372,6 +392,24 @@ namespace Donor {
         public static string DonorappSite {
             get {
                 return ResourceManager.GetString("DonorappSite", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Помочь спасти жизнь.
+        /// </summary>
+        public static string donorfriendDescription {
+            get {
+                return ResourceManager.GetString("donorfriendDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Друг донора.
+        /// </summary>
+        public static string donorfriendTitle {
+            get {
+                return ResourceManager.GetString("donorfriendTitle", resourceCulture);
             }
         }
         
@@ -619,6 +657,24 @@ namespace Donor {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Сдал кровь первый раз.
+        /// </summary>
+        public static string first_bloodDescription {
+            get {
+                return ResourceManager.GetString("first_bloodDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Первая сдача крови.
+        /// </summary>
+        public static string first_bloodTitle {
+            get {
+                return ResourceManager.GetString("first_bloodTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to O(I).
         /// </summary>
         public static string FirstBloodGroup {
@@ -642,6 +698,15 @@ namespace Donor {
         public static string ForthBloodGroup {
             get {
                 return ResourceManager.GetString("ForthBloodGroup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to (звонок из регионов бесплатный).
+        /// </summary>
+        public static string FreeCallFromRegions {
+            get {
+                return ResourceManager.GetString("FreeCallFromRegions", resourceCulture);
             }
         }
         
@@ -682,6 +747,19 @@ namespace Donor {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to • Не приходите сдавать кровь, если вы чувствуете недомогание (озноб, головокружение, головную боль, слабость).&lt;br/&gt;
+        ///                                    • Не курите за час до донации.&lt;br/&gt;
+        ///                                    • Не принимайте алкоголь за 48 часов до донации.&lt;br/&gt;
+        ///                                    • Обязательно выспитесь и съешьте легкий завтрак (сладкий чай, сухое печенье, каша на воде).&lt;br/&gt;
+        ///                                    • Старайтесь ограничить прием жирной и жареной пищи накануне [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string HelpRecomendations {
+            get {
+                return ResourceManager.GetString("HelpRecomendations", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to памятка.
         /// </summary>
         public static string HelpRules {
@@ -705,6 +783,15 @@ namespace Donor {
         public static string InfoDonorsEmail {
             get {
                 return ResourceManager.GetString("InfoDonorsEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Itsbeta.
+        /// </summary>
+        public static string Itsbeta {
+            get {
+                return ResourceManager.GetString("Itsbeta", resourceCulture);
             }
         }
         
@@ -988,13 +1075,22 @@ namespace Donor {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;p&gt;Donor application PRIVACY POLICY&lt;/p&gt;
-        ///&lt;p&gt;This application is owned and operated by Hintsolutions. Your privacy on the Internet is of the utmost importance to us. At Donor application, we want to make your experience online satisfying and safe.&lt;br&gt;
-        ///Because we gather certain types of information about our users, we feel you should fully understand our policy and the terms and conditions surrounding the capture and use of that information. This privacy statement discloses what information we gather and how [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to Политика конфиденциальности.
         /// </summary>
         public static string PrivacyPolicy {
             get {
                 return ResourceManager.GetString("PrivacyPolicy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;p&gt;Donor application PRIVACY POLICY&lt;/p&gt;
+        ///&lt;p&gt;This application is owned and operated by Hintsolutions. Your privacy on the Internet is of the utmost importance to us. At Donor application, we want to make your experience online satisfying and safe.&lt;br&gt;
+        ///Because we gather certain types of information about our users, we feel you should fully understand our policy and the terms and conditions surrounding the capture and use of that information. This privacy statement discloses what information we gather and how [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string PrivacyPolicyDescription {
+            get {
+                return ResourceManager.GetString("PrivacyPolicyDescription", resourceCulture);
             }
         }
         
@@ -1013,6 +1109,24 @@ namespace Donor {
         public static string ProfileHeader {
             get {
                 return ResourceManager.GetString("ProfileHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Оценить приложение.
+        /// </summary>
+        public static string RateAppButton {
+            get {
+                return ResourceManager.GetString("RateAppButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Читатать дальше.
+        /// </summary>
+        public static string ReadMore {
+            get {
+                return ResourceManager.GetString("ReadMore", resourceCulture);
             }
         }
         
@@ -1216,6 +1330,15 @@ namespace Donor {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Сдал кровь второй раз.
+        /// </summary>
+        public static string secondbloodDescription {
+            get {
+                return ResourceManager.GetString("secondbloodDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to A(II).
         /// </summary>
         public static string SecondBloodGroup {
@@ -1225,11 +1348,47 @@ namespace Donor {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Два подряд.
+        /// </summary>
+        public static string secondbloodTitle {
+            get {
+                return ResourceManager.GetString("secondbloodTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Фамилия.
         /// </summary>
         public static string SecondName {
             get {
                 return ResourceManager.GetString("SecondName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Выберите дату.
+        /// </summary>
+        public static string SelectDate {
+            get {
+                return ResourceManager.GetString("SelectDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to УКАЖИТЕ ДАТУ.
+        /// </summary>
+        public static string SelectDatePopup {
+            get {
+                return ResourceManager.GetString("SelectDatePopup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to УКАЖИТЕ ВРЕМЯ.
+        /// </summary>
+        public static string SelectTimePopup {
+            get {
+                return ResourceManager.GetString("SelectTimePopup", resourceCulture);
             }
         }
         
@@ -1257,6 +1416,15 @@ namespace Donor {
         public static string Site {
             get {
                 return ResourceManager.GetString("Site", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Скоро.
+        /// </summary>
+        public static string Soon {
+            get {
+                return ResourceManager.GetString("Soon", resourceCulture);
             }
         }
         
@@ -1599,6 +1767,21 @@ namespace Donor {
         public static string YouCanGiveBloodIf {
             get {
                 return ResourceManager.GetString("YouCanGiveBloodIf", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to • вы не употребляли алкоголь за последние 48 часов;&lt;br/&gt;
+        ///• вы не принимали анальгетики за последние 72 часа;&lt;br/&gt;
+        ///• для женщин: после окончания менструации прошло 5 дней;&lt;br/&gt;
+        ///• вам не удаляли зуб за последние 10 дней;&lt;br/&gt;
+        ///• вы не принимали антибиотики за последние 2 недели;&lt;br/&gt;
+        ///• вы не болели ангиной, гриппом, ОРВИ за последний месяц;&lt;br/&gt;
+        ///• у вас не было обострения аллергии за последние 2 месяца.&lt;br/&gt;.
+        /// </summary>
+        public static string YouCanGiveBloodIfDescription {
+            get {
+                return ResourceManager.GetString("YouCanGiveBloodIfDescription", resourceCulture);
             }
         }
         

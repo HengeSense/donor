@@ -29,7 +29,7 @@ namespace Donor
             return (double)Math.Round(span.TotalSeconds);
         } 
 
-        private async void SaveButton_Click(object sender, EventArgs e)
+        private void SaveButton_Click(object sender, EventArgs e)
         {
             if (ViewModelLocator.MainStatic.User.FoursquareToken == "")
             {
@@ -51,7 +51,6 @@ namespace Donor
             NavigationService.GoBack();
         }
 
-        private string _stationid_current;
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
             try {

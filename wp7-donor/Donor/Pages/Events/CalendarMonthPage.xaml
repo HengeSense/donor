@@ -80,12 +80,9 @@
             <StackPanel>
                 <my:MonthCalendar x:Name="Calendar1" Margin="0,-15,0,0">
                 </my:MonthCalendar>
-
-                <!--<Button Content="FadeOut" Click="Button_Click" />
-                <Button Content="FadeIn" Click="Button_Click_1" />-->
             </StackPanel>
 
-            <WPExtensions:AdvancedApplicationBar x:Name="AppBar" IsVisible="True" IsMenuEnabled="False" Background="#FF211E1D" BackgroundColor="#FF211E1D" Foreground="White" BorderBrush="#FF211E1D" ForegroundColor="White" OpacityMask="White">
+            <WPExtensions:AdvancedApplicationBar x:Name="AppBar" IsVisible="True" IsMenuEnabled="False" Background="#FF211E1D" BackgroundColor="#FF211E1D" Foreground="White" BorderBrush="#FF211E1D" ForegroundColor="White" OpacityMask="White" VerticalAlignment="Bottom">
                 <WPExtensions:AdvancedApplicationBarIconButton IconUri="/icons/ic_ApplicationBar_undo.png" Text="{Binding Today, Source={StaticResource Loc}}" x:Name="TodayButton" Click="TodayButton_Click"/>
                 <WPExtensions:AdvancedApplicationBarIconButton IconUri="/icons/ic_ApplicationBar_add.png" Text="{Binding AddEvent, Source={StaticResource Loc}}" Visibility="Visible" x:Name="AddEventButton" Click="AddEventButton_Click" />
 

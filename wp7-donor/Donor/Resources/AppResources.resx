@@ -619,7 +619,7 @@
   <data name="AchievesMenu" xml:space="preserve">
     <value>Достижения</value>
   </data>
-  <data name="PrivacyPolicy" xml:space="preserve">
+  <data name="PrivacyPolicyDescription" xml:space="preserve">
     <value>&lt;p&gt;Donor application PRIVACY POLICY&lt;/p&gt;
 &lt;p&gt;This application is owned and operated by Hintsolutions. Your privacy on the Internet is of the utmost importance to us. At Donor application, we want to make your experience online satisfying and safe.&lt;br&gt;
 Because we gather certain types of information about our users, we feel you should fully understand our policy and the terms and conditions surrounding the capture and use of that information. This privacy statement discloses what information we gather and how we use it.&lt;br&gt;
@@ -671,14 +671,78 @@ By using this application, you consent to the collection and use of this informa
   <data name="YadonorSite" xml:space="preserve">
     <value>http://yadonor.ru/</value>
   </data>
+  <data name="AfterBloodDonation" xml:space="preserve">
+    <value>После сдачи крови</value>
+  </data>
+  <data name="AfterBloodDonationDescription" xml:space="preserve">
+    <value>• 10–15 минут посидите спокойно и, если вы хорошо себя чувствуете (не испытываете слабости или головокружения), пройдите в буфет и выпейте сладкий чай.&lt;br/&gt;
+• Если вы почувствовали головокружение, обратитесь к медперсоналу. Самый простой способ помочь себе – лечь и поднять ноги выше головы или сесть и опустить голову между колен. Ни в коем случае не пытайтесь идти или вести машину, если у вас кружится голова!&lt;br/&gt;
+• В течение 3–4 часов не снимайте повязку и старайтесь ее не мочить. Это убережет вас от возникновения синяка (если синяк появился, на ночь сделайте повязку с гепариновой мазью и/или троксевазином).&lt;br/&gt;                          
+• Избегайте в этот день тяжелых физических и спортивных нагрузок, подъема тяжестей, в том числе и сумок с покупками.&lt;br/&gt;
+• Полноценно и регулярно питайтесь в течение 2 суток после донации и выпивайте не менее 2 литров жидкости в день: соки, воду, некрепкий чай (алкоголь не рекомендуется).&lt;br/&gt;</value>
+  </data>
   <data name="DisableGeolocation" xml:space="preserve">
     <value>Отключить геолокацию</value>
+  </data>
+  <data name="donorfriendDescription" xml:space="preserve">
+    <value>Помочь спасти жизнь</value>
+  </data>
+  <data name="donorfriendTitle" xml:space="preserve">
+    <value>Друг донора</value>
   </data>
   <data name="EnableGeolocation" xml:space="preserve">
     <value>Включить геолокацию</value>
   </data>
+  <data name="first_bloodDescription" xml:space="preserve">
+    <value>Сдал кровь первый раз</value>
+  </data>
+  <data name="first_bloodTitle" xml:space="preserve">
+    <value>Первая сдача крови</value>
+  </data>
+  <data name="FreeCallFromRegions" xml:space="preserve">
+    <value>(звонок из регионов бесплатный)</value>
+  </data>
+  <data name="HelpRecomendations" xml:space="preserve">
+    <value>• Не приходите сдавать кровь, если вы чувствуете недомогание (озноб, головокружение, головную боль, слабость).&lt;br/&gt;
+                                    • Не курите за час до донации.&lt;br/&gt;
+                                    • Не принимайте алкоголь за 48 часов до донации.&lt;br/&gt;
+                                    • Обязательно выспитесь и съешьте легкий завтрак (сладкий чай, сухое печенье, каша на воде).&lt;br/&gt;
+                                    • Старайтесь ограничить прием жирной и жареной пищи накануне сдачи крови.&lt;br/&gt;
+                                    • За три дня до донации откажитесь от приема анальгетиков и аспирина, а также содержащих их лекарств (эти вещества ухудшают свертываемость крови).&lt;br/&gt;
+                                    • Во время осмотра врачом перед донацией откровенно отвечайте на его вопросы и не скрывайте информацию о принятых лекарствах и перенесенных заболеваниях.&lt;br/&gt;</value>
+  </data>
+  <data name="Itsbeta" xml:space="preserve">
+    <value>Itsbeta</value>
+  </data>
   <data name="NoData" xml:space="preserve">
     <value>Данных нет.</value>
+  </data>
+  <data name="PrivacyPolicy" xml:space="preserve">
+    <value>Политика конфиденциальности</value>
+  </data>
+  <data name="RateAppButton" xml:space="preserve">
+    <value>Оценить приложение</value>
+  </data>
+  <data name="ReadMore" xml:space="preserve">
+    <value>Читатать дальше</value>
+  </data>
+  <data name="secondbloodDescription" xml:space="preserve">
+    <value>Сдал кровь второй раз</value>
+  </data>
+  <data name="secondbloodTitle" xml:space="preserve">
+    <value>Два подряд</value>
+  </data>
+  <data name="SelectDate" xml:space="preserve">
+    <value>Выберите дату</value>
+  </data>
+  <data name="SelectDatePopup" xml:space="preserve">
+    <value>УКАЖИТЕ ДАТУ</value>
+  </data>
+  <data name="SelectTimePopup" xml:space="preserve">
+    <value>УКАЖИТЕ ВРЕМЯ</value>
+  </data>
+  <data name="Soon" xml:space="preserve">
+    <value>Скоро</value>
   </data>
   <data name="StationAddress" xml:space="preserve">
     <value>Адрес</value>
@@ -697,6 +761,15 @@ By using this application, you consent to the collection and use of this informa
   </data>
   <data name="StationRegion" xml:space="preserve">
     <value>Регион</value>
+  </data>
+  <data name="YouCanGiveBloodIfDescription" xml:space="preserve">
+    <value>• вы не употребляли алкоголь за последние 48 часов;&lt;br/&gt;
+• вы не принимали анальгетики за последние 72 часа;&lt;br/&gt;
+• для женщин: после окончания менструации прошло 5 дней;&lt;br/&gt;
+• вам не удаляли зуб за последние 10 дней;&lt;br/&gt;
+• вы не принимали антибиотики за последние 2 недели;&lt;br/&gt;
+• вы не болели ангиной, гриппом, ОРВИ за последний месяц;&lt;br/&gt;
+• у вас не было обострения аллергии за последние 2 месяца.&lt;br/&gt;</value>
   </data>
   <data name="YourRate" xml:space="preserve">
     <value>Ваша оценка</value>

@@ -16,7 +16,6 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait"  Orientation="Portrait"
     shell:SystemTray.IsVisible="False" Loaded="PhoneApplicationPage_Loaded" 
-    d:DataContext="{d:DesignData SampleData/MainViewModelSampleData.xaml}"
     DataContext="{Binding Path=ViewModelLocator.MainStatic,Source=ViewModelLocator.MainStatic}">
 
     <phone:PhoneApplicationPage.Resources>
@@ -50,13 +49,8 @@
                 </Border>
             </Grid>
         </DataTemplate>
-
     </phone:PhoneApplicationPage.Resources>
-	<!--<phone:PhoneApplicationPage.ApplicationBar>
-		<shell:ApplicationBar>
-			<shell:ApplicationBarIconButton x:Name="button1" IconUri="appbar_button.png" Text="button"/>
-		</shell:ApplicationBar>
-	</phone:PhoneApplicationPage.ApplicationBar>-->
+
 	<phone:PhoneApplicationPage.Background>
 		<ImageBrush Stretch="Fill" ImageSource="/Donor;component/images/bg_04_white.png"/>
 	</phone:PhoneApplicationPage.Background>
@@ -66,13 +60,7 @@
     	<Grid.Background>
             <ImageBrush ImageSource="/Donor;component/images/bg_04_white.png"/>
         </Grid.Background>
-        <!--<Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <Image Name="Test" Width="43" Source="/Donor;component/images/ic_comment.png" Margin="218,104,218,178" />-->
-        
-        <!--Pivot Control-->
+
         <toolkit:LockablePivot Name="Monthes" Grid.Row="1"
 		Title="{Binding Path=Events.CurrentDateYear}" 
 		Loaded="Pivot_Loaded" SelectionChanged="Monthes_SelectionChanged" LoadedPivotItem="Monthes_LoadedPivotItem">
@@ -143,7 +131,7 @@
             </controls:PivotItem>
 
         </toolkit:LockablePivot>
-        <WPExtensions:AdvancedApplicationBar Name="AppBar" IsVisible="True" IsMenuEnabled="False" Background="#FF211E1D" BackgroundColor="#FF211E1D" Foreground="White" BorderBrush="#FF211E1D" ForegroundColor="White" OpacityMask="White">
+        <WPExtensions:AdvancedApplicationBar Name="AppBar" IsVisible="True" IsMenuEnabled="False" Background="#FF211E1D" BackgroundColor="#FF211E1D" Foreground="White" BorderBrush="#FF211E1D" ForegroundColor="White" OpacityMask="White" VerticalAlignment="Bottom">
             <WPExtensions:AdvancedApplicationBarIconButton IconUri="/icons/ic_ApplicationBar_undo.png" Text="{Binding Today, Source={StaticResource Loc}}" Name="TodayButton" Click="TodayButton_Click">
         </WPExtensions:AdvancedApplicationBarIconButton>
             <WPExtensions:AdvancedApplicationBarIconButton IconUri="/icons/ic_ApplicationBar_add.png" Text="{Binding AddEvent, Source={StaticResource Loc}}" Visibility="Visible" Name="AddEventButton" Click="AddEventButton_Click" />

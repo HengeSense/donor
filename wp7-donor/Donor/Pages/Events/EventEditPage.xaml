@@ -88,7 +88,6 @@
                             </DataTemplate>
                         </toolkit:ListPicker.ItemTemplate>
                     </toolkit:ListPicker>
-                    <!--Style="{StaticResource ListPickerStyle1}"-->
                     <toolkit:ListPicker x:Name="GiveType" 
                                         Style="{StaticResource ListPickerStyle1}"
                                         Margin="12,-2,12,10"
@@ -111,16 +110,14 @@
                     <TextBlock Text="{Binding DateAndTime, Source={StaticResource Loc}}"
 			Style="{StaticResource Text24px847168}" Margin="12,0,0,0"/>
                     <StackPanel Orientation="Horizontal">
-                        <!--<toolkit:DatePicker Width="250" Name="Date" 
-					Background="#FF4F3B34" Foreground="#FFDF8D4B"/> -->
                         <telerikInput:RadDatePicker 
                     		Width="250" 
                     		x:Name="Date" 
                     		Background="#FF4F3B34" 
                     		Foreground="#FFDF8D4B" 
-                    		EmptyContent="Выберите дату" 
+                    		EmptyContent="{Binding SelectDate, Source={StaticResource Loc}}" 
                     		PickerButtonStyle="{StaticResource PickerBoxToggle}"
-                    		Margin="0,-8,0,0" PopupHeader="УКАЖИТЕ ДАТУ" 
+                    		Margin="0,-8,0,0" PopupHeader="{Binding SelectDatePopup, Source={StaticResource Loc}}" 
                             OkButtonIconUri="/Toolkit.Content/ApplicationBar.Check.png" 
                             CancelButtonIconUri="/icons/appbar.cancel.png">
                             <telerikInput:RadDatePicker.EmptyContentTemplate>
@@ -135,15 +132,10 @@
                     		Width="200" Margin="0,-8,0,0"                            
                     		Value="2013-01-01" 
                     		PickerButtonStyle="{StaticResource PickerBoxToggle}" 
-                            EmptyContent="Время" PopupHeader="УКАЖИТЕ ВРЕМЯ"
+                            EmptyContent="Время" PopupHeader="{Binding SelectTimePopup, Source={StaticResource Loc}}"
                             OkButtonIconUri="/Toolkit.Content/ApplicationBar.Check.png" 
                             CancelButtonIconUri="/icons/appbar.cancel.png">
                         </telerikInput:RadTimePicker>
-                        <!--<toolkit:TimePicker x:Name="Time"  
-                            Width="200" 
-                            Background="#FF4F3B34" 
-                            Foreground="#FFDF8D4B"/>-->
-                        <!--Value="{Binding Time, Mode=TwoWay}" -->
                     </StackPanel>
 
 
@@ -187,10 +179,6 @@
                     <TextBlock Text="{Binding CommentLabelEdit, Source={StaticResource Loc}}"
 					Style="{StaticResource Text24px847168}"
 					Margin="12,0,0,0"/>
-                    <!--<TextBox AcceptsReturn="True" Height="260" 
-                    Text="{Binding Description, Mode=TwoWay}" 
-			Style="{StaticResource TextBoxStyle1}"
-			Name="Description" />-->
                     <ScrollViewer x:Name="InputScrollViewer"/>
                     <TextBox Style="{StaticResource TextBoxStyle1}" 
                                  TextWrapping="Wrap" 
@@ -199,15 +187,12 @@
                                  x:Name="Description"
                                  Height="Auto"
                                  MinHeight="200" TextChanged="Description_TextChanged" KeyDown="Description_KeyDown"/>
-                    <!--TextChanged="inputText_TextChanged" 
-                                 GotFocus="MessageText_GotFocus" 
-                                 Tap="MessageText_Tap" -->
                 </StackPanel>
             </ScrollViewer>
         </Grid>
 
         <WPExtensions:AdvancedApplicationBar x:Name="AppBar" Background="#FF211E1D" BackgroundColor="#FF211E1D" Foreground="White" BorderBrush="#FF211E1D" ForegroundColor="White" OpacityMask="White"
-		IsVisible="True" IsMenuEnabled="True">
+		IsVisible="True" IsMenuEnabled="True" VerticalAlignment="Bottom">
             <WPExtensions:AdvancedApplicationBarIconButton IconUri="/icons/ic_ApplicationBar_done.png" x:Name="SaveButton" Text="{Binding Save, Source={StaticResource Loc}}" Visibility="Visible" Click="SaveButton_Click" />
             <WPExtensions:AdvancedApplicationBarIconButton IconUri="/icons/appbar.cancel.png" x:Name="CancelButton" Text="{Binding Cancel, Source={StaticResource Loc}}" Visibility="Visible" Click="CancelButton_Click" />
         </WPExtensions:AdvancedApplicationBar>

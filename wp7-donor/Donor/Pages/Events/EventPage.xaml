@@ -137,7 +137,7 @@
         <WPExtensions:AdvancedApplicationBar Name="AppBar" 
 		Background="#FF211E1D"	
 		BackgroundColor="#FF211E1D" Foreground="White"	
-		IsVisible="True" IsMenuEnabled="True">
+		IsVisible="True" IsMenuEnabled="True" VerticalAlignment="Bottom">
             <WPExtensions:AdvancedApplicationBarIconButton IconUri="/icons/appbar.edit.rest.png" Name="EditButton" Text="{Binding Change, Source={StaticResource Loc}}" Visibility="Visible" Click="EditButton_Click" />
             <WPExtensions:AdvancedApplicationBarIconButton IconUri="/icons/appbar.delete.rest.png" Name="DeleteButton" Text="{Binding Delete, Source={StaticResource Loc}}" Visibility="Visible" Click="DeleteButton_Click" />
 

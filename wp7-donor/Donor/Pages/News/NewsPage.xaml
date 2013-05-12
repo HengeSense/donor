@@ -58,7 +58,7 @@
                                 Html="{Binding Path=News.CurrentNews.MediumBody}" 
                                 DataContext="{Binding Main, Source={StaticResource Locator}}" 
                                 HorizontalContentAlignment="Left" />
-                    <TextBlock Text="Читатать дальше" 
+                    <TextBlock Text="{Binding ReadMore, Source={StaticResource Loc}}" 
 					Name="ReadMore" Margin="10,20,0,0"
 					Style="{StaticResource Text36pxB9A194}" 
 					TextWrapping="Wrap" Tap="ReadMore_Tap" />

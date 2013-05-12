@@ -398,6 +398,7 @@ namespace Donor.ViewModels
         {
             //не удаляем
             return;
+
             List<string> TypesGive = new List<string>() { Donor.AppResources.Platelets, 
                 Donor.AppResources.Plasma, Donor.AppResources.WholeBlood, Donor.AppResources.Granulocytes };
 
@@ -1153,7 +1154,6 @@ namespace Donor.ViewModels
             private set { }
         }
 
-        private List<EventViewModel> _thisMonthItemsWithoutEmpty;
         public List<EventViewModel> ThisMonthItemsWithoutEmpty
         {
             get

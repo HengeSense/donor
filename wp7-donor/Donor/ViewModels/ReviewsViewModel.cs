@@ -73,7 +73,6 @@ namespace Donor.ViewModels
 
         private double reviewsum = 0;
         private double reviewcount = 0;
-        private double _stationReview = 0;
         public double StationReview
         {
             get

@@ -143,35 +143,35 @@ namespace Donor.ViewModels
         {
             AvailableAchieves = new ObservableCollection<AchieveItem>();
 
-            AvailableAchieves.Add(new AchieveItem() { Title = "Друг донора",
+            AvailableAchieves.Add(new AchieveItem()
+            {
+                Title = AppResources.donorfriendTitle,
                 Api_name = "donorfriend",
                 UnactiveImage = "/Donor;component/images/achieves/Achive-donor_unavailible.png",
                 Status = false,
-                Description = "Помочь спасти жизнь",
+                Description = AppResources.donorfriendDescription,
                 Image = "/Donor;component/images/achieves/Achive-donor.png" });
 
             AvailableAchieves.Add(new AchieveItem()
             {
-                Title = "Первая сдача крови",
+                Title = AppResources.first_bloodTitle,
                 Api_name = "first_blood",
                 UnactiveImage = "/Donor;component/images/achieves/Achive-donor_unavailible.png",
                 Status = false,
                 Image = "/Donor;component/images/achieves/Achive-donor.png",
-                Description = "Сдал кровь первый раз"
+                Description = AppResources.first_bloodDescription
             });            
 
             SoonAchieves = new ObservableCollection<AchieveItem>();
 
             SoonAchieves.Add(new AchieveItem()
             {
-                Title = "Два подряд",
+                Title = AppResources.secondbloodTitle,
                 Api_name = "secondblood",
                 Image = "/Donor;component/images/achieves/Achive-donor_secondBlood_unavailible.png",
                 Status = false,
-                Description = "Сдал кровь второй раз",
+                Description = AppResources.secondbloodDescription,
                 UnactiveImage = "/Donor;component/images/achieves/Achive-donor_secondBlood_unavailible.png" });
-
-            //ViewModelLocator.MainStatic.UserEnter += new MainViewModel.UserEnterEventHandler(ViewModelLocator.BadgesStatic.UserLoaded);
         }
 
         public void DisableFirstBlood()
@@ -225,7 +225,6 @@ namespace Donor.ViewModels
                         {
                             Deployment.Current.Dispatcher.BeginInvoke(() =>
                             {
-                                //ViewModelLocator.MainStatic.LoadAchievements(o["api_name"].ToString());
                                 GetPlayerAchieves(ViewModelLocator.MainStatic.User.FacebookId);
                             });
                         }
@@ -245,7 +244,6 @@ namespace Donor.ViewModels
                             {
                                 Deployment.Current.Dispatcher.BeginInvoke(() =>
                                 {
-                                    //ViewModelLocator.UserStatic.AchievedEarnedMessage(AppResources.Error406activated);
                                 });
                             }
                             else
@@ -286,6 +284,10 @@ namespace Donor.ViewModels
             }
         }
 
+        /// <summary>
+        /// Получаем бейджи пользователя
+        /// </summary>
+        /// <param name="fb_id"></param>
         private void GetPlayerAchieves(string fb_id = "")
         {
             var bw = new BackgroundWorker();
