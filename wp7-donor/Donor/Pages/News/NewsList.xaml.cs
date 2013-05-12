@@ -23,11 +23,11 @@ namespace Donor
             DataContext = ViewModelLocator.MainStatic;
         }
 
-        private void ListBox_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        private void RadJumpList_ItemTap(object sender, Telerik.Windows.Controls.ListBoxItemTapEventArgs e)
         {
             try
             {
-                string id = ((sender as ListBox).SelectedItem as NewsViewModel).ObjectId;
+                string id = ((NewsViewModel)e.Item.Content).ObjectId;
                 ViewModelLocator.MainStatic.News.CurrentNews = ViewModelLocator.MainStatic.News.Items.FirstOrDefault(c => c.ObjectId == id);
                 NavigationService.Navigate(new Uri("/Pages/News/NewsPage.xaml", UriKind.Relative));
             }

@@ -101,7 +101,7 @@ namespace Donor
 
         private void Stations_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
-            NavigationService.Navigate(new Uri("/StationsSearch.xaml?task=edit", UriKind.Relative));
+            NavigationService.Navigate(new Uri("/Pages/Stations/StationsSearch.xaml?task=edit", UriKind.Relative));
         }
 
         private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -130,7 +130,7 @@ namespace Donor
         {
             if (ViewModelLocator.MainStatic.User.IsLoggedIn)
             {
-                NavigationService.Navigate(new Uri("/CalendarYearPage.xaml", UriKind.Relative));
+                NavigationService.Navigate(new Uri("/Pages/Events/CalendarYearPage.xaml", UriKind.Relative));
             }
             else
             {
@@ -198,7 +198,7 @@ namespace Donor
                             // проверяем, есть ли это событие среди событие среди событий пользователя
                             if (ViewModelLocator.MainStatic.Events.UserItems.FirstOrDefault(c => c.Id == _eventid) != null)
                             {
-                                NavigationService.Navigate(new Uri("/EventPage.xaml?id=" + _eventid, UriKind.Relative));
+                                NavigationService.Navigate(new Uri("/Pages/Events/EventPage.xaml?id=" + _eventid, UriKind.Relative));
                             };
                         }
                         catch
@@ -291,7 +291,7 @@ namespace Donor
             {
                 if (ViewModelLocator.MainStatic.User.IsLoggedIn)
                 {
-                    NavigationService.Navigate(new Uri("/EventEditPage.xaml", UriKind.Relative));
+                    NavigationService.Navigate(new Uri("/Pages/Events/EventEditPage.xaml", UriKind.Relative));
                 }
                 else
                 {
@@ -317,11 +317,11 @@ namespace Donor
                 string id = ((sender as ListBox).SelectedItem as EventViewModel).Id;
                 if (((sender as ListBox).SelectedItem as EventViewModel).Type == "PossibleBloodGive")
                 {
-                    NavigationService.Navigate(new Uri("/EventEditPage.xaml?id=" + id, UriKind.Relative));
+                    NavigationService.Navigate(new Uri("/Pages/Events/EventEditPage.xaml?id=" + id, UriKind.Relative));
                 }
                 else
                 {
-                    NavigationService.Navigate(new Uri("/EventPage.xaml?id=" + id, UriKind.Relative));
+                    NavigationService.Navigate(new Uri("/Pages/Events/EventPage.xaml?id=" + id, UriKind.Relative));
                 };
             }
             catch

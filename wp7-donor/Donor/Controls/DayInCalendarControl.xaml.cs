@@ -52,24 +52,24 @@ namespace Donor.Controls
                 {
                     if (PossibleBloodGive == 1)
                     {
-                        (Application.Current.RootVisual as PhoneApplicationFrame).Navigate(new Uri("/EventEditPage.xaml?id=" + this.EventDay.Id, UriKind.Relative));
+                        (Application.Current.RootVisual as PhoneApplicationFrame).Navigate(new Uri("/Pages/Events/EventEditPage.xaml?id=" + this.EventDay.Id, UriKind.Relative));
                      }
                     else
                     {
                         if (PossibleBloodGive > 1)
                         {
-                            (Application.Current.RootVisual as PhoneApplicationFrame).Navigate(new Uri("/EventEditPage.xaml?month=" + this.MonthNumber.ToString() + "&day=" + this.DayNumber.ToString() + "&year=" + this.YearNumber.ToString(), UriKind.Relative));
+                            (Application.Current.RootVisual as PhoneApplicationFrame).Navigate(new Uri("/Pages/Events/EventEditPage.xaml?month=" + this.MonthNumber.ToString() + "&day=" + this.DayNumber.ToString() + "&year=" + this.YearNumber.ToString(), UriKind.Relative));
                         };
                     };
 
                     if (PossibleBloodGive == 0)
                     {
-                        (Application.Current.RootVisual as PhoneApplicationFrame).Navigate(new Uri("/EventPage.xaml?id=" + this.EventDay.Id, UriKind.Relative));
+                        (Application.Current.RootVisual as PhoneApplicationFrame).Navigate(new Uri("/Pages/Events/EventPage.xaml?id=" + this.EventDay.Id, UriKind.Relative));
                     };
                 }
                 else
                 {
-                    (Application.Current.RootVisual as PhoneApplicationFrame).Navigate(new Uri("/EventEditPage.xaml?month=" + this.MonthNumber.ToString() + "&day=" + this.DayNumber.ToString() + "&year=" + this.YearNumber.ToString(), UriKind.Relative));
+                    (Application.Current.RootVisual as PhoneApplicationFrame).Navigate(new Uri("/Pages/Events/EventEditPage.xaml?month=" + this.MonthNumber.ToString() + "&day=" + this.DayNumber.ToString() + "&year=" + this.YearNumber.ToString(), UriKind.Relative));
                 };
                 checkedEvent = false;
             }
@@ -259,7 +259,7 @@ namespace Donor.Controls
             {
                 if (EventDay == null)
                 {
-                    //(Application.Current.RootVisual as PhoneApplicationFrame).Navigate(new Uri("/EventEditPage.xaml?month=" + this.MonthNumber + "&day=" + this.DayNumber + "&year=" + this.YearNumber, UriKind.Relative));
+                    //(Application.Current.RootVisual as PhoneApplicationFrame).Navigate(new Uri("/Pages/Events/EventEditPage.xaml?month=" + this.MonthNumber + "&day=" + this.DayNumber + "&year=" + this.YearNumber, UriKind.Relative));
                 };
             }
             catch { };
@@ -271,7 +271,7 @@ namespace Donor.Controls
             {
                 if (EventDay != null)
                 {
-                    (Application.Current.RootVisual as PhoneApplicationFrame).Navigate(new Uri("/EventPage.xaml?id=" + this.EventDay.Id, UriKind.Relative));
+                    (Application.Current.RootVisual as PhoneApplicationFrame).Navigate(new Uri("/Pages/Events/EventPage.xaml?id=" + this.EventDay.Id, UriKind.Relative));
                 };
             }
             catch

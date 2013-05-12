@@ -23,7 +23,7 @@
     <!--LayoutRoot contains the root grid where all other page content is placed-->
     <Grid x:Name="LayoutRoot" Background="#FF271B16">
     	<!--<Grid.Background>
-            <ImageBrush ImageSource="images/bg_04.png"/>
+            <ImageBrush ImageSource="/Donor;component/images/bg_04.png"/>
         </Grid.Background>-->
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -41,7 +41,7 @@
 
         <controls:Panorama Grid.Row="1" Name="MainPanorama">
         	<controls:Panorama.Background>
-            <ImageBrush ImageSource="images/bg_04.png"/>
+            <ImageBrush ImageSource="/Donor;component/images/bg_04.png"/>
         	</controls:Panorama.Background>
             <controls:Panorama.Title>
 				<StackPanel Margin="0,90,0,0" >
@@ -72,7 +72,7 @@
                                 <Border.Background>
                                     <SolidColorBrush />
                                 </Border.Background>
-                                <Image Height="50" Source="images/ic_map.png" Stretch="None" Width="50" 
+                                <Image Height="50" Source="/Donor;component/images/ic_map.png" Stretch="None" Width="50" 
                                        Tap="Image_Tap"/>
                             </Border>
                         </StackPanel>              

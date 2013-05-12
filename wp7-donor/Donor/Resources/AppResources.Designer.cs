@@ -29,8 +29,7 @@ namespace Donor {
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        public AppResources()
-        {
+        internal AppResources() {
         }
         
         /// <summary>
@@ -359,6 +358,15 @@ namespace Donor {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Отключить геолокацию.
+        /// </summary>
+        public static string DisableGeolocation {
+            get {
+                return ResourceManager.GetString("DisableGeolocation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to http://donorapp.ru/.
         /// </summary>
         public static string DonorappSite {
@@ -454,6 +462,15 @@ namespace Donor {
         public static string EmptyType {
             get {
                 return ResourceManager.GetString("EmptyType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Включить геолокацию.
+        /// </summary>
+        public static string EnableGeolocation {
+            get {
+                return ResourceManager.GetString("EnableGeolocation", resourceCulture);
             }
         }
         
@@ -823,6 +840,15 @@ namespace Donor {
         public static string NextBloodGive {
             get {
                 return ResourceManager.GetString("NextBloodGive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Данных нет..
+        /// </summary>
+        public static string NoData {
+            get {
+                return ResourceManager.GetString("NoData", resourceCulture);
             }
         }
         
@@ -1235,11 +1261,65 @@ namespace Donor {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Адрес.
+        /// </summary>
+        public static string StationAddress {
+            get {
+                return ResourceManager.GetString("StationAddress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to объявления.
         /// </summary>
         public static string StationAds {
             get {
                 return ResourceManager.GetString("StationAds", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Руководитель.
+        /// </summary>
+        public static string StationChief {
+            get {
+                return ResourceManager.GetString("StationChief", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Район.
+        /// </summary>
+        public static string StationDistrict {
+            get {
+                return ResourceManager.GetString("StationDistrict", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Почта.
+        /// </summary>
+        public static string StationEmail {
+            get {
+                return ResourceManager.GetString("StationEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Фильтр станций.
+        /// </summary>
+        public static string StationFilter {
+            get {
+                return ResourceManager.GetString("StationFilter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Регион.
+        /// </summary>
+        public static string StationRegion {
+            get {
+                return ResourceManager.GetString("StationRegion", resourceCulture);
             }
         }
         
@@ -1591,6 +1671,24 @@ namespace Donor {
         public static string YourName {
             get {
                 return ResourceManager.GetString("YourName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ваша оценка.
+        /// </summary>
+        public static string YourRate {
+            get {
+                return ResourceManager.GetString("YourRate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ваш отзыв.
+        /// </summary>
+        public static string YourReviewDescription {
+            get {
+                return ResourceManager.GetString("YourReviewDescription", resourceCulture);
             }
         }
     }

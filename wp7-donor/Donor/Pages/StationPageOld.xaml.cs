@@ -134,7 +134,7 @@ namespace Donor
         {
             try
             {
-                NavigationService.Navigate(new Uri("/MapPage.xaml?id=" + ViewModelLocator.MainStatic.Stations.CurrentStation.ObjectId, UriKind.Relative));
+                NavigationService.Navigate(new Uri("/Pages/Stations/MapPage.xaml?id=" + ViewModelLocator.MainStatic.Stations.CurrentStation.ObjectId, UriKind.Relative));
             }
             catch
             {
@@ -145,7 +145,7 @@ namespace Donor
         {
             try
             {
-                NavigationService.Navigate(new Uri("/MapPage.xaml?id=" + ViewModelLocator.MainStatic.Stations.CurrentStation.ObjectId, UriKind.Relative));
+                NavigationService.Navigate(new Uri("/Pages/Stations/MapPage.xaml?id=" + ViewModelLocator.MainStatic.Stations.CurrentStation.ObjectId, UriKind.Relative));
             }
             catch
             {

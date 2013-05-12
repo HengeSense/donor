@@ -671,4 +671,37 @@ By using this application, you consent to the collection and use of this informa
   <data name="YadonorSite" xml:space="preserve">
     <value>http://yadonor.ru/</value>
   </data>
+  <data name="DisableGeolocation" xml:space="preserve">
+    <value>Отключить геолокацию</value>
+  </data>
+  <data name="EnableGeolocation" xml:space="preserve">
+    <value>Включить геолокацию</value>
+  </data>
+  <data name="NoData" xml:space="preserve">
+    <value>Данных нет.</value>
+  </data>
+  <data name="StationAddress" xml:space="preserve">
+    <value>Адрес</value>
+  </data>
+  <data name="StationChief" xml:space="preserve">
+    <value>Руководитель</value>
+  </data>
+  <data name="StationDistrict" xml:space="preserve">
+    <value>Район</value>
+  </data>
+  <data name="StationEmail" xml:space="preserve">
+    <value>Почта</value>
+  </data>
+  <data name="StationFilter" xml:space="preserve">
+    <value>Фильтр станций</value>
+  </data>
+  <data name="StationRegion" xml:space="preserve">
+    <value>Регион</value>
+  </data>
+  <data name="YourRate" xml:space="preserve">
+    <value>Ваша оценка</value>
+  </data>
+  <data name="YourReviewDescription" xml:space="preserve">
+    <value>Ваш отзыв</value>
+  </data>
 </root>

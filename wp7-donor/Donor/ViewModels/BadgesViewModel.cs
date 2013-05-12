@@ -145,18 +145,18 @@ namespace Donor.ViewModels
 
             AvailableAchieves.Add(new AchieveItem() { Title = "Друг донора",
                 Api_name = "donorfriend",
-                UnactiveImage = "/images/achieves/Achive-donor_unavailible.png",
+                UnactiveImage = "/Donor;component/images/achieves/Achive-donor_unavailible.png",
                 Status = false,
                 Description = "Помочь спасти жизнь",
-                Image = "/images/achieves/Achive-donor.png" });
+                Image = "/Donor;component/images/achieves/Achive-donor.png" });
 
             AvailableAchieves.Add(new AchieveItem()
             {
                 Title = "Первая сдача крови",
                 Api_name = "first_blood",
-                UnactiveImage = "/images/achieves/Achive-donor_unavailible.png",
+                UnactiveImage = "/Donor;component/images/achieves/Achive-donor_unavailible.png",
                 Status = false,
-                Image = "/images/achieves/Achive-donor.png",
+                Image = "/Donor;component/images/achieves/Achive-donor.png",
                 Description = "Сдал кровь первый раз"
             });            
 
@@ -166,10 +166,10 @@ namespace Donor.ViewModels
             {
                 Title = "Два подряд",
                 Api_name = "secondblood",
-                Image = "/images/achieves/Achive-donor_secondBlood_unavailible.png",
+                Image = "/Donor;component/images/achieves/Achive-donor_secondBlood_unavailible.png",
                 Status = false,
                 Description = "Сдал кровь второй раз",
-                UnactiveImage = "/images/achieves/Achive-donor_secondBlood_unavailible.png" });
+                UnactiveImage = "/Donor;component/images/achieves/Achive-donor_secondBlood_unavailible.png" });
 
             //ViewModelLocator.MainStatic.UserEnter += new MainViewModel.UserEnterEventHandler(ViewModelLocator.BadgesStatic.UserLoaded);
         }

@@ -1,0 +1,151 @@
+﻿<phone:PhoneApplicationPage 
+    x:Class="Donor.EventPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:WPExtensions="clr-namespace:WPExtensions;assembly=WPExtensions"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d" d:DesignHeight="768" d:DesignWidth="480"
+    shell:SystemTray.IsVisible="True" Loaded="PhoneApplicationPage_Loaded">
+
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot">
+    	<Grid.Background>
+            <ImageBrush ImageSource="/Donor;component/images/bg_04.png"/>
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--TitlePanel contains the name of the application and page title-->
+        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,20">
+            <TextBlock x:Name="ApplicationTitle" 
+			Text="{Binding BloodGiveTitle, Source={StaticResource Loc}}" 
+			Style="{StaticResource Text24pxWhite}"/>
+            <TextBlock Text="{Binding BloodGiveMore, Source={StaticResource Loc}}" 
+			Style="{StaticResource Text70pxWhite}" Margin="0,20,0,0" 
+			TextWrapping="Wrap"/>
+        </StackPanel>
+
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+            <ScrollViewer>
+            <StackPanel>
+            		<StackPanel 
+					Orientation="Horizontal" 
+					Margin="0,5">
+                    <TextBlock Text="{Binding Path=Title}" 
+					Name="TitleNews" 
+					Style="{StaticResource Text36pxB9A194}"
+					TextWrapping="Wrap"/>
+                    <Image Height="50" 
+					Name="ic_be_tested" Visibility="Collapsed"
+					Source="/Donor;component/images/ic_be_tested.png"
+					 Stretch="Fill" Width="50"/>
+					
+					</StackPanel>
+					
+                    <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="{Binding Path=ShortDate}" 
+					Name="Date" 
+					Style="{StaticResource Text24pxDF8D4B}" 
+					TextWrapping="Wrap" Margin="0,0,10,0"/>
+                    <TextBlock Text="{Binding Path=ShortTime}" 
+					Style="{StaticResource Text24pxDF8D4B}"
+					Name="Time" TextWrapping="Wrap"/>
+                    </StackPanel>
+                    
+                    <TextBlock Visibility="Collapsed" 
+					Text="{Binding Path=GiveType}" 
+					Style="{StaticResource Text36pxB9A194}"
+					Name="GiveType" TextWrapping="Wrap"/>
+					
+                        <Grid Margin="0,5" HorizontalAlignment="Stretch">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="70"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Grid.Column="0" Text="{Binding Path=Place}" 
+					Style="{StaticResource Text24pxDF8D4B}"
+					Name="Place" TextWrapping="Wrap"/>
+
+                            <Image Grid.Column="1" Height="50" Source="/Donor;component/images/ic_map.png" 
+					Stretch="Fill" Name="MapButton"  Width="50" Tap="Image_Tap" Visibility="Collapsed" />
+
+                        </Grid>                        
+
+                    <StackPanel Name="ReminderStackPanel">
+					<StackPanel Orientation="Horizontal" Margin="0,10,0,0"
+					>
+                            <TextBlock Text="{Binding ReminderBeforeEdit, Source={StaticResource Loc}}" 
+                    Foreground="#FFDF8D4B"
+					Style="{StaticResource Text36pxB9A194}"
+					TextWrapping="Wrap"/>
+                    
+                    <Image Height="50" Source="/Donor;component/images/ic_reminder.png" 
+					Stretch="Fill" Width="50"/>	
+					</StackPanel>
+
+                        <Grid>
+                            <!--<Grid.ColumnDefinitions>     
+                                <ColumnDefinition Width="200"/>     
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+                            <TextBlock Style="{StaticResource Text24pxDF8D4B}" Text="{Binding BeforeTime, Source={StaticResource Loc}}" Grid.Column="0" Grid.Row="0" /> -->
+                            <TextBlock 
+					Style="{StaticResource Text24pxC0A89A}" Grid.Column="1" Grid.Row="0"
+					Text="{Binding Path=Reminder}" 
+					Name="Reminder" TextWrapping="Wrap"/>
+
+                        </Grid>
+                            
+                    </StackPanel>
+                
+                    <TextBlock Text="{Binding Path=FinishedString}"
+					Style="{StaticResource Text24pxDF8D4B}"
+					Name="Finished" TextWrapping="Wrap"/>
+					
+					<StackPanel Orientation="Horizontal" Margin="0,20,0,15">
+                        <TextBlock Text="{Binding CommentLabel, Source={StaticResource Loc}}" 
+					Style="{StaticResource Text36pxB9A194}"
+					TextWrapping="Wrap"/>
+                    <Image Height="50" 
+					Source="/Donor;component/images/ic_comment.png" 
+					Stretch="Fill" Width="50"/>					
+					</StackPanel>
+					
+                    <TextBlock Text="{Binding Path=Description}" 
+					Style="{StaticResource Text24pxDF8D4B}"
+					Name="Description" TextWrapping="Wrap"/>                    
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+        <WPExtensions:AdvancedApplicationBar Name="AppBar" 
+		Background="#FF211E1D"	
+		BackgroundColor="#FF211E1D" Foreground="White"	
+		IsVisible="True" IsMenuEnabled="True">
+            <WPExtensions:AdvancedApplicationBarIconButton IconUri="/icons/appbar.edit.rest.png" Name="EditButton" Text="{Binding Change, Source={StaticResource Loc}}" Visibility="Visible" Click="EditButton_Click" />
+            <WPExtensions:AdvancedApplicationBarIconButton IconUri="/icons/appbar.delete.rest.png" Name="DeleteButton" Text="{Binding Delete, Source={StaticResource Loc}}" Visibility="Visible" Click="DeleteButton_Click" />
+
+            <WPExtensions:AdvancedApplicationBarMenuItem Text="{Binding WasFinished, Source={StaticResource Loc}}" Visibility="Collapsed" Name="FinishedMenu" Click="AdvancedApplicationBarMenuItem_Click_1" />
+
+        </WPExtensions:AdvancedApplicationBar>
+    </Grid>
+
+
+
+</phone:PhoneApplicationPage>

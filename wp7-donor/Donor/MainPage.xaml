@@ -59,7 +59,7 @@
             </controls:Panorama.Title>
 
             <controls:Panorama.Background>
-                <ImageBrush ImageSource="images/back_01.png"/>
+                <ImageBrush ImageSource="/Donor;component/images/back_01.png"/>
             </controls:Panorama.Background>
 
             <!--Panorama item one-->
@@ -153,7 +153,7 @@
                             <ListBoxItem Visibility="Collapsed" Name="QrButtonMenu" Tap="QrButtonMenu_Tap">
                                 <StackPanel Orientation="Horizontal">
                                     <Image Height="64" Width="64" 
-						 Source="images/ic_menu_profile_normal.png"/>
+						 Source="/Donor;component/images/ic_menu_profile_normal.png"/>
                                     <TextBlock Margin="0,15,0,0" 
 						 Text="{Binding ReadQrCode, Source={StaticResource Loc}}"
 						 TextWrapping="Wrap" 

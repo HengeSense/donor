@@ -1,0 +1,156 @@
+﻿<phone:PhoneApplicationPage
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit" 
+    x:Class="Donor.StationsSearch"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    xmlns:WPExtensions="clr-namespace:WPExtensions;assembly=WPExtensions"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="480"
+    DataContext="{Binding Main, Source={StaticResource Locator}}" 
+    xmlns:tilteffect="clr-namespace:ControlTiltEffect"   
+    xmlns:telerikCore="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Core"
+    xmlns:telerikData="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Data"
+    xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives"
+    shell:SystemTray.IsVisible="False" Loaded="PhoneApplicationPage_Loaded">
+	<phone:PhoneApplicationPage.Resources>
+        <DataTemplate x:Key="GroupPickerTemplate">
+                <Border Background="#FF006168" Margin="5">
+                    <TextBlock Foreground="#FFDFB08B" FontWeight="Bold" Margin="5,10" FontSize="30" Text="{Binding}"/>
+                </Border>
+        </DataTemplate>
+    </phone:PhoneApplicationPage.Resources>
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Loaded="LayoutRoot_Loaded">
+    	<Grid.Background>
+            <ImageBrush ImageSource="/Donor;component/images/bg_04.png"/>
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--TitlePanel contains the name of the application and page title-->
+        <StackPanel x:Name="TitlePanel" Grid.Row="0">
+            <TextBlock x:Name="ApplicationTitle" 
+			Text="{Binding BloodStations, Source={StaticResource Loc}}"
+			 Margin="12,24,0,22"
+			Style="{StaticResource Text30pxWhite}"/>
+			
+			<StackPanel Background="#FF632C00"
+			Height="60">
+			<!--<TextBlock Text=" " Name="CityFilterText"
+			Foreground="#FFCBB2A3"
+			FontSize="34" Margin="10,8,0,0"/>-->
+
+                <Grid>
+                    <toolkit:AutoCompleteBox 
+			Name="StationsSearchText" 
+            Grid.Row="0" Grid.Column="0"
+			FontSize="24"			
+			FilterMode="Contains" ValueMemberPath="Title" 
+			Populating="StationsSearchText_Populating" 
+			Foreground="#FFE0B390" Background="#FF3C1B00" 
+			BorderBrush="#FF3C1B00" Populated="StationsSearchText_Populated" Margin="0,-5,0,0" LostFocus="StationsSearchText_LostFocus" TextChanged="StationsSearchText_TextChanged">
+                    <toolkit:AutoCompleteBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock 
+							FontSize="24"
+							Text="{Binding Title}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </toolkit:AutoCompleteBox.ItemTemplate>
+            </toolkit:AutoCompleteBox>
+                    <Image Height="48"
+                           Width="48" 
+                           Margin="0,0,20,10"
+                           Grid.Row="0" Grid.Column="0"
+                           Source="/Donor;component/images/ic_search.png" HorizontalAlignment="Right" />
+                </Grid>                
+            </StackPanel>
+        </StackPanel>
+
+        <!--ContentPanel - place additional content here-->
+        <Grid x:Name="ContentPanel" 
+		Background="#FFEEEEEE"
+		Grid.Row="1" Margin="0,0,0,0">
+            <!--<TextBlock Text="{Binding NoStations, Source={StaticResource Loc}}" 
+                       Foreground="#FF847168" Name="Noresults" TextWrapping="Wrap"
+                       Margin="10,5,10,0" Visibility="Collapsed"/>-->
+
+        <!--EmptyContentTemplate="{StaticResource EmptyStationsTemplate}"-->
+        <telerikData:RadJumpList 
+		    VerticalAlignment="Top"
+		    Margin="0,0,0,0"
+		    Name="StationsList" 
+            tilteffect:TiltEffect.IsTiltEnabled="True"
+            telerikCore:InteractionEffectManager.IsInteractionEnabled="True"
+            ItemsSource="{Binding Stations.DistanceItems}"
+            DataContext="{Binding Main, Source={StaticResource Locator}}" 
+		    Tap="StationsList_Tap" ItemTap="StationsList_ItemTap"              
+            GroupPickerItemTemplate="{StaticResource GroupPickerTemplate}" 
+            GroupHeaderItemTap="StationsList_GroupHeaderItemTap" 
+            EmptyContent="{Binding NoData, Source={StaticResource Loc}}" 
+            EmptyContentTemplate="{StaticResource EmptyStationsTemplate}">
+                <telerikData:RadJumpList.GroupHeaderTemplate>
+                    <DataTemplate>
+                        <Border Background="#FF006168" Margin="0" 
+                            telerikCore:InteractionEffectManager.IsInteractionEnabled="True">
+                            <TextBlock Foreground="#FFDFB08B" Margin="10,10,5,10" 
+                                       FontWeight="Bold"
+                                       FontSize="30" Text="{Binding}"/>
+                        </Border>
+                    </DataTemplate>
+                </telerikData:RadJumpList.GroupHeaderTemplate>
+                <telerikData:RadJumpList.ItemTemplate>
+                    <DataTemplate telerikCore:InteractionEffectManager.IsInteractionEnabled="True">
+                		<Border BorderThickness="0,0,0,1"
+                                telerikCore:InteractionEffectManager.IsInteractionEnabled="True"
+						        BorderBrush="#FFafafaf">
+                            <StackPanel Margin="10,10,10,6">
+                                <StackPanel
+							            HorizontalAlignment="Left"
+							            Orientation="Horizontal">
+                                    <TextBlock
+								        Text="{Binding Distance}" 
+								        TextWrapping="NoWrap" 
+								        Foreground="#FF0A6066"
+								        HorizontalAlignment="Right"
+								        FontSize="30"/>
+                                    <TextBlock Text=" км"
+								        HorizontalAlignment="Right"
+								        Foreground="#FF0A6066"
+								        FontSize="30"/>
+                                </StackPanel>
+                                <TextBlock Text="{Binding ShowAddress}"
+							        TextWrapping="Wrap" 
+							        FontSize="30"
+							        Foreground="#FF645B54"/>
+                                <TextBlock Text="{Binding Name}" 
+							        TextWrapping="Wrap" Margin="0,4,0,0" 
+							        FontSize="18"
+							        Foreground="#FF847168"
+							        Style="{StaticResource PhoneTextSubtleStyle}"/>
+							</StackPanel>
+						</Border>
+                </DataTemplate>
+                </telerikData:RadJumpList.ItemTemplate>
+            </telerikData:RadJumpList>
+        </Grid>
+
+        <WPExtensions:AdvancedApplicationBar Name="AppBar" Background="#FF211E1D" BackgroundColor="#FF211E1D" Foreground="White" BorderBrush="#FF211E1D" ForegroundColor="White" OpacityMask="White"
+		IsVisible="True" IsMenuEnabled="True" VerticalAlignment="Bottom">
+            <WPExtensions:AdvancedApplicationBarIconButton IconUri="/icons/ic_ApplicationBar_map.png" Name="MapButton" Text="{Binding OnMap, Source={StaticResource Loc}}" Visibility="Visible" Click="MapButton_Click" />
+            <!--<WPExtensions:AdvancedApplicationBarIconButton IconUri="/icons/ic_ApplicationBar_item.png" Name="FilterButton" Text="{Binding Filter, Source={StaticResource Loc}}" Visibility="Visible" Click="ApplicationBarIconButton_Click" />-->
+        </WPExtensions:AdvancedApplicationBar>
+    </Grid>
+
+</phone:PhoneApplicationPage>

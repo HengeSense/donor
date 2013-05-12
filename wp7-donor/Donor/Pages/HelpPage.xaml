@@ -34,7 +34,7 @@ FontSize="24" FontFamily="Segoe WP Semibold" />
 </controls:Panorama.Title>
             
 <controls:Panorama.Background>
-<ImageBrush ImageSource="images/bg_04.png"/>
+<ImageBrush ImageSource="/Donor;component/images/bg_04.png"/>
 </controls:Panorama.Background>
 
             <!--Panorama item one-->

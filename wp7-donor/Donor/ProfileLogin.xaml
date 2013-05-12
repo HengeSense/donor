@@ -31,7 +31,7 @@
 
     <Grid x:Name="LayoutRoot">
         <Grid.Background>
-            <ImageBrush ImageSource="images/bg_04.png"/>
+            <ImageBrush ImageSource="/Donor;component/images/bg_04.png"/>
         </Grid.Background>
         <!--Pivot Control-->
         <controls:Pivot Loaded="Pivot_Loaded">

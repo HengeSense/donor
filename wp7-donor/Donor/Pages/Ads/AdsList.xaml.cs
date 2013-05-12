@@ -22,33 +22,6 @@ namespace Donor
             DataContext = ViewModelLocator.MainStatic;
         }
 
-        /*private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            try
-            {
-                //string id = ((sender as ListBox).SelectedItem as AdsViewModel).ObjectId;
-                //NavigationService.Navigate(new Uri("/AdsPage.xaml?id=" + id, UriKind.Relative));
-                ViewModelLocator.MainStatic.Ads.CurrentAd = ((sender as ListBox).SelectedItem as AdsViewModel);
-                NavigationService.Navigate(new Uri("/AdsPage.xaml", UriKind.Relative));
-            }
-            catch
-            {
-            }
-        }
-        private void ListBox_Tap(object sender, System.Windows.Input.GestureEventArgs e)
-        {
-            try
-            {
-                //string id = ((sender as ListBox).SelectedItem as AdsViewModel).ObjectId;
-                //NavigationService.Navigate(new Uri("/AdsPage.xaml?id=" + id, UriKind.Relative));
-                ViewModelLocator.MainStatic.Ads.CurrentAd = ((sender as ListBox).SelectedItem as AdsViewModel);
-                NavigationService.Navigate(new Uri("/AdsPage.xaml", UriKind.Relative));
-            }
-            catch
-            {
-            }
-        }*/
-
         private void RadJumpList_ItemTap_1(object sender, Telerik.Windows.Controls.ListBoxItemTapEventArgs e)
         {
             try
