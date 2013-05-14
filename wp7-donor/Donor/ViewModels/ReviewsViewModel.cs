@@ -95,13 +95,19 @@ namespace Donor.ViewModels
         public async Task<bool> SendReview()
         {
             ViewModelLocator.MainStatic.Loading = true;
-            if (!ViewModelLocator.MainStatic.Stations.CurrentStation.FoursquareExists)
+            try
             {
-                ViewModelLocator.MainStatic.Stations.CurrentStation.FoursquareId = await ViewModelLocator.MainStatic.Reviews.AddStationToFoursquare();
-            };
-            await ViewModelLocator.MainStatic.Reviews.AddReview(ReviewText, ReviewRate);
-            ViewModelLocator.MainStatic.Loading = false;
-            MessageBox.Show("Отзыв отправлен");
+                if (!ViewModelLocator.MainStatic.Stations.CurrentStation.FoursquareExists)
+                {
+                    ViewModelLocator.MainStatic.Stations.CurrentStation.FoursquareId = await ViewModelLocator.MainStatic.Reviews.AddStationToFoursquare();
+                };
+                await ViewModelLocator.MainStatic.Reviews.AddReview(ReviewText, ReviewRate);
+                MessageBox.Show("Отзыв отправлен");
+                ReviewText = "";
+                ReviewRate = 4;
+            }
+            catch { };
+            ViewModelLocator.MainStatic.Loading = false;            
             return true;
         }
 

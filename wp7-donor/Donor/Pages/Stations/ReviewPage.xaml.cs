@@ -41,7 +41,11 @@ namespace Donor
             }
             else
             {
-                ViewModelLocator.MainStatic.Reviews.SendReview();
+                try
+                {
+                    ViewModelLocator.MainStatic.Reviews.SendReview();
+                }
+                catch { };
                 NavigationService.GoBack();
             };
         }
