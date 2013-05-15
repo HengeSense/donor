@@ -431,7 +431,7 @@ namespace Donor
         {
             try
             {
-                NavigationService.Navigate(new Uri("/AchievesPage.xaml", UriKind.Relative));
+                NavigationService.Navigate(new Uri("/Pages/Achieves/AchievesPage.xaml", UriKind.Relative));
             }
             catch
             {

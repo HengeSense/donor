@@ -147,18 +147,19 @@ namespace Donor.ViewModels
             {
                 Title = AppResources.donorfriendTitle,
                 Api_name = "donorfriend",
-                UnactiveImage = "/Donor;component/images/achieves/Achive-donor_unavailible.png",
+                UnactiveImage = "/images/achieves/Achive-donor_unavailible.png", ///Donor;component
                 Status = false,
                 Description = AppResources.donorfriendDescription,
-                Image = "/Donor;component/images/achieves/Achive-donor.png" });
+                Image = "/images/achieves/Achive-donor.png"
+            }); ///Donor;component
 
             AvailableAchieves.Add(new AchieveItem()
             {
                 Title = AppResources.first_bloodTitle,
                 Api_name = "first_blood",
-                UnactiveImage = "/Donor;component/images/achieves/Achive-donor_unavailible.png",
+                UnactiveImage = "/images/achieves/Achive-donor_unavailible.png", ///Donor;component
                 Status = false,
-                Image = "/Donor;component/images/achieves/Achive-donor.png",
+                Image = "/images/achieves/Achive-donor.png", ///Donor;component
                 Description = AppResources.first_bloodDescription
             });            
 
@@ -168,10 +169,11 @@ namespace Donor.ViewModels
             {
                 Title = AppResources.secondbloodTitle,
                 Api_name = "secondblood",
-                Image = "/Donor;component/images/achieves/Achive-donor_secondBlood_unavailible.png",
+                Image = "/images/achieves/Achive-donor_secondBlood_unavailible.png", ///Donor;component
                 Status = false,
                 Description = AppResources.secondbloodDescription,
-                UnactiveImage = "/Donor;component/images/achieves/Achive-donor_secondBlood_unavailible.png" });
+                UnactiveImage = "/images/achieves/Achive-donor_secondBlood_unavailible.png"
+            }); ///Donor;component
         }
 
         public void DisableFirstBlood()
