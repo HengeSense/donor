@@ -50,3 +50,4 @@ C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\obj\Release\Callis
 C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\obj\Release\GalaSoft.MvvmLight.Extras.Win8.pri.xml
 C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\obj\Release\GalaSoft.MvvmLight.Win8.pri.xml
 C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\obj\Release\Microsoft.Practices.ServiceLocation.pri.xml
+C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\obj\Release\DonorAppW8.csprojResolveAssemblyReference.cache

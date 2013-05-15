@@ -1,0 +1,4 @@
+C:\Users\m0rg0_000\Documents\GitHub\donor\common-donor\CommonDonor\bin\Release\CommonDonor.dll
+C:\Users\m0rg0_000\Documents\GitHub\donor\common-donor\CommonDonor\bin\Release\CommonDonor.pdb
+C:\Users\m0rg0_000\Documents\GitHub\donor\common-donor\CommonDonor\obj\Release\CommonDonor.dll
+C:\Users\m0rg0_000\Documents\GitHub\donor\common-donor\CommonDonor\obj\Release\CommonDonor.pdb

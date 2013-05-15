@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Donor", "Donor\Donor.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DonorAppW8", "..\w8-donor\DonorAppW8\DonorAppW8.csproj", "{D0EC7028-3A47-47AE-8816-A3714AD7AFD6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonDonor", "..\common-donor\CommonDonor\CommonDonor.csproj", "{B7CE8946-66D8-4480-ADED-3827AD118202}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +55,16 @@ Global
 		{D0EC7028-3A47-47AE-8816-A3714AD7AFD6}.Release|x86.ActiveCfg = Release|x86
 		{D0EC7028-3A47-47AE-8816-A3714AD7AFD6}.Release|x86.Build.0 = Release|x86
 		{D0EC7028-3A47-47AE-8816-A3714AD7AFD6}.Release|x86.Deploy.0 = Release|x86
+		{B7CE8946-66D8-4480-ADED-3827AD118202}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7CE8946-66D8-4480-ADED-3827AD118202}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7CE8946-66D8-4480-ADED-3827AD118202}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{B7CE8946-66D8-4480-ADED-3827AD118202}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{B7CE8946-66D8-4480-ADED-3827AD118202}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{B7CE8946-66D8-4480-ADED-3827AD118202}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7CE8946-66D8-4480-ADED-3827AD118202}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B7CE8946-66D8-4480-ADED-3827AD118202}.Release|ARM.ActiveCfg = Release|Any CPU
+		{B7CE8946-66D8-4480-ADED-3827AD118202}.Release|x64.ActiveCfg = Release|Any CPU
+		{B7CE8946-66D8-4480-ADED-3827AD118202}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
