@@ -151,9 +151,11 @@ namespace Donor.ViewModels
                 Status = false,
                 Description = AppResources.donorfriendDescription,
                 Image = "/images/achieves/Achive-donor.png"
-            }); ///Donor;component
+            }); ///Donor;component         
 
-            AvailableAchieves.Add(new AchieveItem()
+            SoonAchieves = new ObservableCollection<AchieveItem>();
+
+            SoonAchieves.Add(new AchieveItem()
             {
                 Title = AppResources.first_bloodTitle,
                 Api_name = "first_blood",
@@ -161,9 +163,7 @@ namespace Donor.ViewModels
                 Status = false,
                 Image = "/images/achieves/Achive-donor.png", ///Donor;component
                 Description = AppResources.first_bloodDescription
-            });            
-
-            SoonAchieves = new ObservableCollection<AchieveItem>();
+            });   
 
             SoonAchieves.Add(new AchieveItem()
             {
