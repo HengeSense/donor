@@ -102,7 +102,6 @@ namespace Donor.ViewModels
                     ViewModelLocator.MainStatic.Stations.CurrentStation.FoursquareId = await ViewModelLocator.MainStatic.Reviews.AddStationToFoursquare();
                 };
                 await ViewModelLocator.MainStatic.Reviews.AddReview(ReviewText, ReviewRate);
-                MessageBox.Show("Отзыв отправлен");
                 ReviewText = "";
                 ReviewRate = 4;
             }
@@ -226,8 +225,14 @@ namespace Donor.ViewModels
             try
             {
                 JObject o = JObject.Parse(result);
+                if (o["response"]["tip"]["id"].ToString() != "")
+                {
+                    MessageBox.Show("Спасибо за отзыв!");
+                };                
             }
-            catch { };
+            catch {
+                MessageBox.Show("К сожалению, добавление отзывов сейчас недоступно. Попробуйте оставить отзыв позднее");
+            };
             return true;
             //MessageBox.Show(result);
         }
