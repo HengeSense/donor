@@ -16,4 +16,6 @@ typedef enum {
     HSBloodDonationType_Granulocytes
 } HSBloodDonationType;
 
-NSString* bloodDonationTypeToString(HSBloodDonationType bloodDonationType);
+NSString *bloodDonationTypeToString(HSBloodDonationType bloodDonationType);
+
+NSString *bloodDonationTypeToFinishRestEventMessage(HSBloodDonationType bloodDobationType);

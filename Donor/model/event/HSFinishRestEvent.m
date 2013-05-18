@@ -36,9 +36,8 @@
     }
     self.reminderFireDate = correctedFireDate;
             
-    NSString *bloodDonationTypeString = [bloodDonationTypeToString(self.bloodDonationType) lowercaseString];
     [super scheduleLocalNotificationAtDate:correctedFireDate withAlertAction:nil
-            alertBody:[NSString stringWithFormat:@"Можно сдать %@.", bloodDonationTypeString]
+            alertBody:bloodDonationTypeToFinishRestEventMessage(self.bloodDonationType)
             userInfo:[self localNotificationBaseUserInfo]];
 }
 
@@ -51,6 +50,5 @@
     
     return result;
 }
-
 
 @end
