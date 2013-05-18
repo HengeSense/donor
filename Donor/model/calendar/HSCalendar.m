@@ -210,14 +210,16 @@ NSString * const kHSCalendarModelStateChangedKeyPath = @"isModelLockedStateInter
 }
 
 
-- (void)addBloodRemoteEvent: (HSBloodRemoteEvent *)bloodRemoteEvent completion: (CompletionBlockType)completion {
+- (void)addBloodRemoteEvent: (HSBloodRemoteEvent *)bloodRemoteEvent ignoreRestPeriod:(BOOL)ignoreRestPeriod
+                 completion:(CompletionBlockType)completion {
     THROW_IF_ARGUMENT_NIL(bloodRemoteEvent);
     [self checkUnlockedModelPrecondition];
     if ([self.bloodRemoteEvents containsObject:bloodRemoteEvent]) {
         [NSException raise:NSInvalidArgumentException format:@"Can't add already existing event in calendar"];
     }
     NSError *addError = nil;
-    if([self canAddBloodRemoteEvent: bloodRemoteEvent error: &addError]) {
+    BOOL canAdd = [self canAddBloodRemoteEvent: bloodRemoteEvent error: &addError];
+    if(canAdd || (ignoreRestPeriod && addError.code == HSCalendarAddEventErrorDomainCode_RestPeriodNotFinished)) {
         [bloodRemoteEvent saveWithCompletionBlock:^(BOOL success, NSError *error) {
             if (success) {
                 if (![self.bloodRemoteEvents containsObject: bloodRemoteEvent]) {
@@ -270,7 +272,7 @@ NSString * const kHSCalendarModelStateChangedKeyPath = @"isModelLockedStateInter
 }
 
 - (void)replaceBloodRemoteEvent:(HSBloodRemoteEvent *)oldEvent withEvent:(HSBloodRemoteEvent *)newEvent
-                     completion:(CompletionBlockType)completion {
+               ignoreRestPeriod:(BOOL)ignoreRestPeriod completion:(CompletionBlockType)completion {
     THROW_IF_ARGUMENT_NIL(oldEvent);
     THROW_IF_ARGUMENT_NIL(newEvent);
     [self checkUnlockedModelPrecondition];
@@ -284,7 +286,8 @@ NSString * const kHSCalendarModelStateChangedKeyPath = @"isModelLockedStateInter
     [self.bloodRemoteEvents removeObject:oldEvent];
     [self updateFinishRestEvents];
     NSError *replaceError = nil;
-    if ([self canAddBloodRemoteEvent:newEvent error:&replaceError]) {
+    BOOL canAdd = [self canAddBloodRemoteEvent: newEvent error: &replaceError];
+    if(canAdd || (ignoreRestPeriod && replaceError.code == HSCalendarAddEventErrorDomainCode_RestPeriodNotFinished)) {
         [oldEvent removeWithCompletionBlock:^(BOOL success, NSError *error) {
             if (success) {
                 [oldEvent cancelScheduledLocalNotifications];
@@ -356,11 +359,14 @@ NSString * const kHSCalendarModelStateChangedKeyPath = @"isModelLockedStateInter
         HSBloodDonationEvent *lastDoneBloodDonationEvent = [orderedDoneBloodDonationEvents lastObject];
         NSArray *finishRestEvents = [lastDoneBloodDonationEvent getFinishRestEvents];
 
-        for (HSFinishRestEvent *finishRestEvent in finishRestEvents) {
+        // Uncomment next block of code if requirements described in [JIRA: DOI-195] will be discarded.
+        /*
+         for (HSFinishRestEvent *finishRestEvent in finishRestEvents) {
             [self removeUndoneBloodDonationEventsOfType:finishRestEvent.bloodDonationType
                                                fromDate:lastDoneBloodDonationEvent.scheduleDate
                                                  toDate:finishRestEvent.scheduleDate];
         }
+         */
         
         for (HSFinishRestEvent *finishRestEvent in finishRestEvents) {
             [finishRestEvent scheduleReminderLocalNotificationAtDate:nil];

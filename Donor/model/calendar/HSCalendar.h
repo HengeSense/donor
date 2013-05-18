@@ -66,8 +66,10 @@ extern NSString * const kHSCalendarModelStateChangedKeyPath;
  * Adds blood remote event. Server synchronized.
  * @param remoteBloodEvent - remote planning blood event
  * @param completion - completion block of code
+ * @param ignoreRestPeriod - if YES, blood remote event is added even rest period is not finished yet
  */
-- (void) addBloodRemoteEvent: (HSBloodRemoteEvent *)bloodRemoteEvent completion: (CompletionBlockType)completion;
+- (void) addBloodRemoteEvent: (HSBloodRemoteEvent *)bloodRemoteEvent ignoreRestPeriod:(BOOL)ignoreRestPeriod
+                  completion: (CompletionBlockType)completion;
 
 /**
  * Removes blood remote event. Server synchronized.
@@ -80,9 +82,10 @@ extern NSString * const kHSCalendarModelStateChangedKeyPath;
  * Replace blood remote event. Server synchronized.
  * @param remoteBloodEvent - remote planning blood event
  * @param completion - completion block of code
+ * @param ignoreRestPeriod - if YES, blood remote event is added even rest period is not finished yet
  */
 - (void) replaceBloodRemoteEvent: (HSBloodRemoteEvent *)oldEvent withEvent:(HSBloodRemoteEvent *)newEvent
-                      completion: (CompletionBlockType)completion;
+                ignoreRestPeriod:(BOOL)ignoreRestPeriod completion: (CompletionBlockType)completion;
 
 /**
  * Returns all events in the calendar.

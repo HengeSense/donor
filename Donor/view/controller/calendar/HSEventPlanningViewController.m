@@ -496,10 +496,12 @@ static const NSUInteger kCommentsTextViewSymbolsMax = 260;
                        cancelButtonTitle:@"Готово"];
 }
 
-- (void)replaceBloodRemoteEvent:(HSBloodRemoteEvent *)oldEvent withEvent:(HSBloodRemoteEvent *)newEvent {
+- (void)replaceBloodRemoteEvent:(HSBloodRemoteEvent *)oldEvent withEvent:(HSBloodRemoteEvent *)newEvent
+               ignoreRestPeriod:(BOOL)ignoreRestPeriod {
     MBProgressHUD *progressHud = [MBProgressHUD showHUDAddedTo: self.navigationController.view animated: YES];
     __weak HSEventPlanningViewController *weakSelf = self;
-    [self.calendar replaceBloodRemoteEvent:oldEvent withEvent:newEvent completion: ^(BOOL success, NSError *error) {
+    [self.calendar replaceBloodRemoteEvent:oldEvent withEvent:newEvent ignoreRestPeriod:ignoreRestPeriod
+                                completion:^(BOOL success, NSError *error) {
         __strong HSEventPlanningViewController *strongSelf = weakSelf;
         [progressHud hide: YES];
         if (success) {
@@ -509,15 +511,30 @@ static const NSUInteger kCommentsTextViewSymbolsMax = 260;
             [self.navigationController popToRootViewControllerAnimated: YES];
             [HSFlurryAnalytics userCreatedCalendarEvent:newEvent];
         } else {
-            [HSAlertViewController showWithTitle:@"Ошибка" message:[HSModelCommon localizedDescriptionForError:error]];
+            NSString *message = [HSModelCommon localizedDescriptionForError:error];
+            if ([error.domain isEqualToString:HSCalendarAddEventErrorDomain] &&
+                error.code == HSCalendarAddEventErrorDomainCode_RestPeriodNotFinished) {
+                // Ask user to add blood donation event during rest period
+                [HSAlertViewController showWithTitle:@"Предупреждение" message:message cancelButtonTitle:@"Отмена"
+                    okButtonTitle:@"Продолжить" resultBlock:^(BOOL isOkButtonPressed) {
+                       if (isOkButtonPressed) {
+                           dispatch_async(dispatch_get_main_queue(), ^{
+                               [strongSelf replaceBloodRemoteEvent:oldEvent withEvent:newEvent ignoreRestPeriod:YES];
+                           });
+                       }
+                    }];
+            } else {
+                [HSAlertViewController showWithTitle:@"Ошибка" message:message];
+            }
         }
     }];
 }
 
-- (void)addBloodRemoteEvent:(HSBloodRemoteEvent *)event {
+- (void)addBloodRemoteEvent:(HSBloodRemoteEvent *)event ignoreRestPeriod:(BOOL)ignoreRestPeriod {
     MBProgressHUD *progressHud = [MBProgressHUD showHUDAddedTo: self.navigationController.view animated: YES];
     __weak HSEventPlanningViewController *weakSelf = self;
-    [self.calendar addBloodRemoteEvent: event completion: ^(BOOL success, NSError *error) {
+    [self.calendar addBloodRemoteEvent: event ignoreRestPeriod:ignoreRestPeriod
+                            completion: ^(BOOL success, NSError *error) {
         __strong HSEventPlanningViewController *strongSelf = weakSelf;
         [progressHud hide: YES];
         if (success) {
@@ -527,7 +544,21 @@ static const NSUInteger kCommentsTextViewSymbolsMax = 260;
             [strongSelf.navigationController popToRootViewControllerAnimated: YES];
             [HSFlurryAnalytics userCreatedCalendarEvent:event];
         } else {
-            [HSAlertViewController showWithTitle:@"Ошибка" message:[HSModelCommon localizedDescriptionForError:error]];
+            NSString *message = [HSModelCommon localizedDescriptionForError:error];
+            if ([error.domain isEqualToString:HSCalendarAddEventErrorDomain] &&
+                error.code == HSCalendarAddEventErrorDomainCode_RestPeriodNotFinished) {
+                // Ask user to add blood donation event during rest period
+                [HSAlertViewController showWithTitle:@"Предупреждение" message:message cancelButtonTitle:@"Отмена"
+                    okButtonTitle:@"Продолжить" resultBlock:^(BOOL isOkButtonPressed) {
+                        if (isOkButtonPressed) {
+                            dispatch_async(dispatch_get_main_queue(), ^{
+                               [strongSelf addBloodRemoteEvent:event ignoreRestPeriod:YES];
+                            });
+                        }
+                    }];
+            } else {
+                [HSAlertViewController showWithTitle:@"Ошибка" message:message];
+            }
         }
     }];
 }
@@ -557,9 +588,9 @@ static const NSUInteger kCommentsTextViewSymbolsMax = 260;
     HSBloodRemoteEvent *eventToBeReplaced = self.originalBloodDonationEvent != nil ?
             self.originalBloodDonationEvent : self.originalBloodTestsEvent;
     if (eventToBeReplaced != nil) {
-        [self replaceBloodRemoteEvent:eventToBeReplaced withEvent:self.currentEditedEvent];
+        [self replaceBloodRemoteEvent:eventToBeReplaced withEvent:self.currentEditedEvent ignoreRestPeriod:NO];
     } else {
-        [self addBloodRemoteEvent: self.currentEditedEvent];
+        [self addBloodRemoteEvent: self.currentEditedEvent ignoreRestPeriod:NO];
     }
 }
 

@@ -46,7 +46,7 @@ static NSString * const kFacebookSDKErrorDomain = @"com.facebook.sdk";
     if ([error.domain isEqualToString: HSCalendarAddEventErrorDomain]) {
         switch (error.code) {
             case HSCalendarAddEventErrorDomainCode_RestPeriodNotFinished:
-                return @"Период отдыха еще не закончился.";
+                return @"Период отдыха еще не закончился. Вы уверены, что хотите создать событие?";
             case HSCalendarAddEventErrorDomainCode_BeforeFirstDonation:
                 return @"Нельзя добавить событие перед первой кроводачей.";
             case HSCalendarAddEventErrorDomainCode_DayIsBusy:
