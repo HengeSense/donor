@@ -66,8 +66,6 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didPlayerSynchronize:) name:ItsBetaDidPlayerSynchronize object:nil];
     
     [ItsBeta synchronizePlayerWithProject:_project];
-
-    [self refresh];
 }
 
 #pragma mark - Notification
