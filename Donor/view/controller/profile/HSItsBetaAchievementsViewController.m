@@ -24,6 +24,7 @@
     NSMutableArray* _content;
     NSMutableArray* _contentExists;
     NSMutableArray* _contentAvailable;
+    BOOL _observersIsRegistered;
 }
 
 - (void)refresh;
@@ -52,8 +53,7 @@
 }
 
 - (void) dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-
+    [self unregisterObservers];
     _contentAvailable = nil;
     _contentExists = nil;
     _content = nil;
@@ -61,15 +61,30 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willPlayerSynchronize:) name:ItsBetaWillPlayerSynchronize object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didPlayerSynchronize:) name:ItsBetaDidPlayerSynchronize object:nil];
-    
+    [self registerObservers];
     [ItsBeta synchronizePlayerWithProject:_project];
 }
 
-#pragma mark - Notification
+#pragma mark - Observers management
+- (void)registerObservers {
+    if (_observersIsRegistered) {
+        return;
+    }
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willPlayerSynchronize:) name:ItsBetaWillPlayerSynchronize object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didPlayerSynchronize:) name:ItsBetaDidPlayerSynchronize object:nil];
+    _observersIsRegistered = YES;
+}
 
+- (void)unregisterObservers {
+    if (!_observersIsRegistered) {
+        return;
+    }
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:ItsBetaWillPlayerSynchronize object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:ItsBetaDidPlayerSynchronize object:nil];
+    _observersIsRegistered = NO;
+}
+
+#pragma mark - Notification
 - (void) willPlayerSynchronize:(NSNotification*)notification {
     if(_progressHud == nil) {
         _progressHud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
