@@ -44,6 +44,7 @@
     self.sexPicker = [[HSSexPicker alloc] init];
     self.userInfo = [[HSUserInfo alloc] initWithUser:[PFUser user]];
     
+    [self configureUserInfoDefaults];
     [self configureNavigationBar];
     [self configureContentView];
 }
@@ -158,6 +159,13 @@
 }
 
 #pragma mark - Private
+#pragma mark - User info configuration
+- (void)configureUserInfoDefaults {
+    self.userInfo.bloodGroup = HSBloodGroupType_Unknown;
+    self.userInfo.bloodRh = HSBloodRhType_Unknown;
+    self.userInfo.sex = HSSexType_Mail;
+}
+
 #pragma mark - UI configuration
 - (void)configureNavigationBar {
     self.title = @"Регистрация";
@@ -208,7 +216,7 @@
 
 #pragma mark - UI updating
 - (void)updateUIComponents {
-    [self updateBloodTypeButtonWithBloodGroup:HSBloodGroupType_O bloodRh:HSBloodRhType_Positive];
+    [self updateBloodTypeButtonWithBloodGroup:self.userInfo.bloodGroup bloodRh:self.userInfo.bloodRh];
     [self updateSexButtonWithSex:HSSexType_Mail];
 }
 

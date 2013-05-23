@@ -12,18 +12,20 @@
  * Blood groups definition.
  */
 typedef enum {
+    HSBloodGroupType_Unknown = -1,
     HSBloodGroupType_O = 0,
-    HSBloodGroupType_A,
-    HSBloodGroupType_B,
-    HSBloodGroupType_AB
+    HSBloodGroupType_A = 1,
+    HSBloodGroupType_B = 2,
+    HSBloodGroupType_AB = 3
 } HSBloodGroupType;
 
 /**
  * Blood Rh definition.
  */
 typedef enum {
+    HSBloodRhType_Unknown = -1,
     HSBloodRhType_Positive = 0,
-    HSBloodRhType_Negative
+    HSBloodRhType_Negative = 1
 } HSBloodRhType;
 
 /**

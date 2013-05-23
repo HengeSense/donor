@@ -16,15 +16,23 @@
 @property (nonatomic, weak) IBOutlet UIButton *buttonBloodGroupA;
 @property (nonatomic, weak) IBOutlet UIButton *buttonBloodGroupB;
 @property (nonatomic, weak) IBOutlet UIButton *buttonBloodGroupAB;
+@property (weak, nonatomic) IBOutlet UIButton *buttonBloodGroupUnknown;
+
 @property (nonatomic, weak) IBOutlet UIButton *buttonBloodRhN;
 @property (nonatomic, weak) IBOutlet UIButton *buttonBloodRhP;
+@property (weak, nonatomic) IBOutlet UIButton *buttonBloodRhUnknown;
 
-@property (nonatomic, weak) IBOutlet UILabel *labelBloodBloodGroupO;
+@property (weak, nonatomic) IBOutlet UILabel *labelBloodGroup;
+@property (nonatomic, weak) IBOutlet UILabel *labelBloodGroupO;
 @property (nonatomic, weak) IBOutlet UILabel *labelBloodGroupA;
 @property (nonatomic, weak) IBOutlet UILabel *labelBloodGroupB;
 @property (nonatomic, weak) IBOutlet UILabel *labelBloodGroupAB;
+@property (weak, nonatomic) IBOutlet UILabel *labelBloodGroupUnknown;
+
+@property (nonatomic, weak) IBOutlet UILabel *labelBloodRh;
 @property (nonatomic, weak) IBOutlet UILabel *labelBloodRhN;
 @property (nonatomic, weak) IBOutlet UILabel *labelBloodRhP;
+@property (weak, nonatomic) IBOutlet UILabel *labelBloodRhUnknown;
 
 /// @name Selection properties
 @property (nonatomic, assign, readonly) HSBloodGroupType bloodGroup;
