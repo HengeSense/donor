@@ -530,7 +530,8 @@
                 NSArray* addressComponents = [first objectForKey:@"address_components"];
                 for(NSDictionary * item in addressComponents) {
                     
-                    NSString* type = [[item objectForKey:@"types"] objectAtIndex:0];
+                    NSArray *types = [item objectForKey:@"types"];
+                    NSString* type = types.count > 0 ? [types objectAtIndex:0] : nil;
                     if(!noLocality && !noArea1 && !noArea2 && [type isEqualToString:@"locality"] == YES) {
                         name = [item objectForKey:@"long_name"];
                         if([name isKindOfClass:[NSString class]] == YES) {
