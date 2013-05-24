@@ -9,9 +9,9 @@
 #import <UIKit/UIKit.h>
 
 #import "HSBloodDonationType.h"
-#import "HSPicker.h"
+#import "HSPickerModal.h"
 
-@interface HSBloodDonationTypePicker : HSPicker
+@interface HSBloodDonationTypePicker : HSPickerModal
 
 /**
  * Contains picked value.

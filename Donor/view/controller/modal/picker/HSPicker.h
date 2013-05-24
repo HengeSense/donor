@@ -2,19 +2,19 @@
 //  HSPicker.h
 //  Donor
 //
-//  Created by Sergey Seroshtan on 30.03.13.
+//  Created by Sergey Seroshtan on 18.05.13.
 //  Copyright (c) 2013 Hint Solutions. All rights reserved.
 //
 
-#import "HSModalViewController.h"
+#import <Foundation/Foundation.h>
 
 /// @name Types definition
 typedef void(^HSPickerCompletion)(BOOL isDone);
 
 /**
- * This class provides basic functionality to all pickers.
+ * This protocol specifies functionality for all pickers.
  */
-@interface HSPicker : HSModalViewController
+@protocol HSPicker <NSObject>
 
 /// @name UI presenter
 /**
@@ -22,6 +22,8 @@ typedef void(^HSPickerCompletion)(BOOL isDone);
  */
 - (void)showWithCompletion:(HSPickerCompletion)completion;
 
+@optional
+/// @name Private usage only
 /**
  * Hides picker view end invokes completion block, if it was specified in [HSPicker showWithCompletion:] method.
  */

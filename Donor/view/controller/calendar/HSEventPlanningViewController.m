@@ -9,7 +9,7 @@
 #import "HSEventPlanningViewController.h"
 #import "HSBloodDonationTypePicker.h"
 #import "HSDateTimePicker.h"
-#import "HSAddressPicker.h"
+#import "HSStationsPickerViewController.h"
 #import "HSAlertViewController.h"
 #import "HSRemindDatePicker.h"
 
@@ -114,7 +114,7 @@ static const NSUInteger kCommentsTextViewSymbolsMax = 260;
 /**
  * View controller for selecting blood donation laboratory address.
  */
-@property (nonatomic, strong) HSAddressPicker *addressPicker;
+@property (nonatomic, strong) HSStationsPickerViewController *addressPicker;
 
 /**
  * View controller for selecting reminder date interval.
@@ -291,10 +291,14 @@ static const NSUInteger kCommentsTextViewSymbolsMax = 260;
     self.bloodDonationTypePicker = [[HSBloodDonationTypePicker alloc] initWithNibName: @"HSBloodDonationTypePicker"
                                                                                bundle: nil];
     self.dateTimePicker = [[HSDateTimePicker alloc] initWithNibName: @"HSDateTimePicker" bundle: nil];
-    self.addressPicker = [[HSAddressPicker alloc] initWithNibName: @"HSAddressPicker" bundle: nil];
+    self.addressPicker =
+            [[HSStationsPickerViewController alloc] initWithNibName: @"HSStationsViewController" bundle: nil];
+    self.addressPicker.rootNavigationController = self.navigationController;
     self.reminderDatePicker = [[HSRemindDatePicker alloc] initWithNibName:NSStringFromClass([HSRemindDatePicker class])
                                                                    bundle:nil];
     
+    [self.removeRemoteEventButton setTitle:@"" forState:UIControlStateHighlighted];
+    [self.removeRemoteEventButton setTitle:@"" forState:UIControlStateNormal];
     [self.removeRemoteEventButton setBackgroundImage: [UIImage imageNamed: @"delete_mark_active.png"]
                                             forState: UIControlStateNormal];
     [self.removeRemoteEventButton setBackgroundImage: [UIImage imageNamed: @"delete_mark_pressed.png"]
@@ -392,10 +396,10 @@ static const NSUInteger kCommentsTextViewSymbolsMax = 260;
 }
 
 - (IBAction)selectBloodDonationCenterAddress: (id)sender {
-    self.addressPicker.selectedAddress = self.currentEditedEvent.labAddress;
+    self.addressPicker.selectedStationInfo = self.currentEditedEvent.labAddress;
     [self.addressPicker showWithCompletion: ^(BOOL isDone) {
         if (isDone) {
-            self.currentEditedEvent.labAddress = self.addressPicker.selectedAddress;
+            self.currentEditedEvent.labAddress = self.addressPicker.selectedStationInfo.address;
             [self updateUIComponents];
         }
     }];

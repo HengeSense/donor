@@ -15,6 +15,8 @@
 #import "HSFlurryAnalytics.h"
 #include "HSMailChimp.h"
 
+#import "HSStationInfo.h"
+
 #import "ItsBeta.h"
 
 #import "HSCalendarViewController.h"
@@ -30,7 +32,7 @@
 
 static NSString * const PARSE_APP_ID = @"EIpakVdZblHedhqgxMgiEVnIGCRGvWdy9v8gkKZu";
 static NSString * const PARSE_CLIENT_KEY = @"uNarhakSf1on8lJjrAVs1VWmPlG1D6ZJf9dO5QZY";
-static NSString * const FACEBOOK_APP_ID = @"438918122827407";
+//static NSString * const FACEBOOK_APP_ID = @"438918122827407";
 static NSString * const FLURRY_APP_ID = @"2WRYH35MS5SW4ZY2TNPB";
 static NSString * const TEST_FLIGHT_APP_ID = @"43651a8fd308e9fd491a1c8aa068f158_MTQxMjA0MjAxMi0xMC0wOSAwOTozMToyMS4zNzU1ODc";
 static NSString * const CRITTERCISM_APP_ID = @"50f5e3804f633a256d000003";
@@ -103,7 +105,7 @@ static NSString * const CRASHLYTICS_ID = @"9d515447ae8b641e682dacd6b67757ba27623
 #pragma mark - Configuration helpers
 - (void)configureServices {
     [Parse setApplicationId:PARSE_APP_ID clientKey:PARSE_CLIENT_KEY];
-    [PFFacebookUtils initializeWithApplicationId:FACEBOOK_APP_ID];
+    [PFFacebookUtils initializeFacebook];
     [HSFlurryAnalytics initWithAppId:FLURRY_APP_ID];
 #ifndef DEBUG
     [TestFlight takeOff:TEST_FLIGHT_APP_ID];

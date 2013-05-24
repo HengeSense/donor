@@ -163,6 +163,9 @@
 		40D5FF641714409A00821B01 /* HSItsBetaAchievementDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40D5FF621714409900821B01 /* HSItsBetaAchievementDetailViewController.xib */; };
 		40D5FF77171579D100821B01 /* HSItsBeta.m in Sources */ = {isa = PBXBuildFile; fileRef = 40D5FF76171579D100821B01 /* HSItsBeta.m */; };
 		6802A1671665D4FD0034B124 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 371CBA5215AFD452008CA154 /* Parse.framework */; };
+		6823C11C1747C1FA0085B13F /* HSStationsPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6823C11B1747C1FA0085B13F /* HSStationsPickerViewController.m */; };
+		6823C120174926310085B13F /* HSStationInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6823C11F174926310085B13F /* HSStationInfo.m */; };
+		6830C1CD174A940900015255 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6830C1CC174A940900015255 /* FacebookSDK.framework */; };
 		683F8A81164573860066C47A /* HSBloodDonationType.m in Sources */ = {isa = PBXBuildFile; fileRef = 683F8A80164573860066C47A /* HSBloodDonationType.m */; };
 		683F8A9716468E300066C47A /* event_done_button_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 683F8A9316468E300066C47A /* event_done_button_normal.png */; };
 		683F8A9816468E300066C47A /* event_done_button_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 683F8A9416468E300066C47A /* event_done_button_normal@2x.png */; };
@@ -242,7 +245,7 @@
 		6864D60E1708995E00F150F9 /* HSBloodTypePicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6864D5FC1708995E00F150F9 /* HSBloodTypePicker.xib */; };
 		6864D60F1708995E00F150F9 /* HSDateTimePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 6864D5FE1708995E00F150F9 /* HSDateTimePicker.m */; };
 		6864D6101708995E00F150F9 /* HSDateTimePicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6864D5FF1708995E00F150F9 /* HSDateTimePicker.xib */; };
-		6864D6111708995E00F150F9 /* HSPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 6864D6011708995E00F150F9 /* HSPicker.m */; };
+		6864D6111708995E00F150F9 /* HSPickerModal.m in Sources */ = {isa = PBXBuildFile; fileRef = 6864D6011708995E00F150F9 /* HSPickerModal.m */; };
 		6864D6121708995E00F150F9 /* HSRemindDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 6864D6031708995E00F150F9 /* HSRemindDatePicker.m */; };
 		6864D6131708995E00F150F9 /* HSRemindDatePicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6864D6041708995E00F150F9 /* HSRemindDatePicker.xib */; };
 		6864D6141708995E00F150F9 /* HSSexPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 6864D6061708995E00F150F9 /* HSSexPicker.m */; };
@@ -408,9 +411,13 @@
 		68BB4054162F0B9400098861 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37153E9F15AEBA3400C985C1 /* UIKit.framework */; };
 		68BB4055162F0B9400098861 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37153EA115AEBA3400C985C1 /* Foundation.framework */; };
 		68BB405B162F0B9500098861 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 68BB4059162F0B9500098861 /* InfoPlist.strings */; };
+		68C4277B174F408500D477B2 /* HSStationInfoTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 68C4277A174F408500D477B2 /* HSStationInfoTest.m */; };
+		68C42782174FB15900D477B2 /* NSObject+NSCodingSupportForProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 68C42781174FB15900D477B2 /* NSObject+NSCodingSupportForProperties.m */; };
 		68D6CD9216DD34EF00972D41 /* HSContactView.m in Sources */ = {isa = PBXBuildFile; fileRef = 68D6CD9116DD34EF00972D41 /* HSContactView.m */; };
 		68D6CD9416DD351800972D41 /* HSContactView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68D6CD9316DD351800972D41 /* HSContactView.xib */; };
 		68D6CD9716E22A8900972D41 /* HSBloodRemoteEvent+LocalNotification_Protected.m in Sources */ = {isa = PBXBuildFile; fileRef = 68D6CD9616E22A8800972D41 /* HSBloodRemoteEvent+LocalNotification_Protected.m */; };
+		68E535061747BB43008E44E6 /* map.png in Resources */ = {isa = PBXBuildFile; fileRef = 68E535041747BB43008E44E6 /* map.png */; };
+		68E535071747BB43008E44E6 /* map@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68E535051747BB43008E44E6 /* map@2x.png */; };
 		68EB2758163090B90092FDBA /* HSCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 68EB2757163090B90092FDBA /* HSCalendar.m */; };
 		68EB275C163091190092FDBA /* HSEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 68EB275B163091190092FDBA /* HSEvent.m */; };
 		68EB27601630952A0092FDBA /* HSCalendarException.m in Sources */ = {isa = PBXBuildFile; fileRef = 68EB275F1630952A0092FDBA /* HSCalendarException.m */; };
@@ -859,6 +866,12 @@
 		40D5FF621714409900821B01 /* HSItsBetaAchievementDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HSItsBetaAchievementDetailViewController.xib; sourceTree = "<group>"; };
 		40D5FF75171579D100821B01 /* HSItsBeta.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSItsBeta.h; sourceTree = "<group>"; };
 		40D5FF76171579D100821B01 /* HSItsBeta.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSItsBeta.m; sourceTree = "<group>"; };
+		6823C11A1747C1FA0085B13F /* HSStationsPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSStationsPickerViewController.h; sourceTree = "<group>"; };
+		6823C11B1747C1FA0085B13F /* HSStationsPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSStationsPickerViewController.m; sourceTree = "<group>"; };
+		6823C11D1747C4080085B13F /* HSPicker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HSPicker.h; sourceTree = "<group>"; };
+		6823C11E174926300085B13F /* HSStationInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSStationInfo.h; sourceTree = "<group>"; };
+		6823C11F174926310085B13F /* HSStationInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSStationInfo.m; sourceTree = "<group>"; };
+		6830C1CC174A940900015255 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = Libs/FacebookSDK.framework; sourceTree = "<group>"; };
 		683F8A80164573860066C47A /* HSBloodDonationType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSBloodDonationType.m; sourceTree = "<group>"; };
 		683F8A9316468E300066C47A /* event_done_button_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = event_done_button_normal.png; sourceTree = "<group>"; };
 		683F8A9416468E300066C47A /* event_done_button_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "event_done_button_normal@2x.png"; sourceTree = "<group>"; };
@@ -952,8 +965,8 @@
 		6864D5FD1708995E00F150F9 /* HSDateTimePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSDateTimePicker.h; sourceTree = "<group>"; };
 		6864D5FE1708995E00F150F9 /* HSDateTimePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSDateTimePicker.m; sourceTree = "<group>"; };
 		6864D5FF1708995E00F150F9 /* HSDateTimePicker.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HSDateTimePicker.xib; sourceTree = "<group>"; };
-		6864D6001708995E00F150F9 /* HSPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSPicker.h; sourceTree = "<group>"; };
-		6864D6011708995E00F150F9 /* HSPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSPicker.m; sourceTree = "<group>"; };
+		6864D6001708995E00F150F9 /* HSPickerModal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSPickerModal.h; sourceTree = "<group>"; };
+		6864D6011708995E00F150F9 /* HSPickerModal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSPickerModal.m; sourceTree = "<group>"; };
 		6864D6021708995E00F150F9 /* HSRemindDatePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSRemindDatePicker.h; sourceTree = "<group>"; };
 		6864D6031708995E00F150F9 /* HSRemindDatePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSRemindDatePicker.m; sourceTree = "<group>"; };
 		6864D6041708995E00F150F9 /* HSRemindDatePicker.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HSRemindDatePicker.xib; sourceTree = "<group>"; };
@@ -1235,11 +1248,17 @@
 		68BB4058162F0B9500098861 /* DonorTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DonorTests-Info.plist"; sourceTree = "<group>"; };
 		68BB405A162F0B9500098861 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		68BB405F162F0B9500098861 /* DonorTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DonorTests-Prefix.pch"; sourceTree = "<group>"; };
+		68C42779174F408500D477B2 /* HSStationInfoTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSStationInfoTest.h; sourceTree = "<group>"; };
+		68C4277A174F408500D477B2 /* HSStationInfoTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSStationInfoTest.m; sourceTree = "<group>"; };
+		68C42780174FB15900D477B2 /* NSObject+NSCodingSupportForProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+NSCodingSupportForProperties.h"; sourceTree = "<group>"; };
+		68C42781174FB15900D477B2 /* NSObject+NSCodingSupportForProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+NSCodingSupportForProperties.m"; sourceTree = "<group>"; };
 		68D6CD9016DD34EF00972D41 /* HSContactView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSContactView.h; sourceTree = "<group>"; };
 		68D6CD9116DD34EF00972D41 /* HSContactView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSContactView.m; sourceTree = "<group>"; };
 		68D6CD9316DD351800972D41 /* HSContactView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HSContactView.xib; sourceTree = "<group>"; };
 		68D6CD9516E22A8600972D41 /* HSBloodRemoteEvent+LocalNotification_Protected.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "HSBloodRemoteEvent+LocalNotification_Protected.h"; sourceTree = "<group>"; };
 		68D6CD9616E22A8800972D41 /* HSBloodRemoteEvent+LocalNotification_Protected.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "HSBloodRemoteEvent+LocalNotification_Protected.m"; sourceTree = "<group>"; };
+		68E535041747BB43008E44E6 /* map.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map.png; sourceTree = "<group>"; };
+		68E535051747BB43008E44E6 /* map@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map@2x.png"; sourceTree = "<group>"; };
 		68EB2756163090B90092FDBA /* HSCalendar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSCalendar.h; sourceTree = "<group>"; };
 		68EB2757163090B90092FDBA /* HSCalendar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSCalendar.m; sourceTree = "<group>"; };
 		68EB275A163091190092FDBA /* HSEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSEvent.h; sourceTree = "<group>"; };
@@ -1511,6 +1530,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6830C1CD174A940900015255 /* FacebookSDK.framework in Frameworks */,
 				687A430B16F5E54500958347 /* libOCMock.a in Frameworks */,
 				685088CF1666B738004EC3CC /* StoreKit.framework in Frameworks */,
 				685088CD1666B715004EC3CC /* Accounts.framework in Frameworks */,
@@ -1580,6 +1600,7 @@
 		37153E9E15AEBA3400C985C1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6830C1CC174A940900015255 /* FacebookSDK.framework */,
 				CE8609CA170B7A0E00E4497A /* Crashlytics.framework */,
 				685088D01666B74B004EC3CC /* AdSupport.framework */,
 				685088CE1666B738004EC3CC /* StoreKit.framework */,
@@ -2169,6 +2190,7 @@
 			children = (
 				683F8A9216468E300066C47A /* Buttons */,
 				685CB2FC1640E87E004FF9AC /* Events */,
+				68E535031747BB43008E44E6 /* Views */,
 			);
 			path = Calendar;
 			sourceTree = "<group>";
@@ -2272,6 +2294,9 @@
 		6864D5F31708995E00F150F9 /* picker */ = {
 			isa = PBXGroup;
 			children = (
+				6823C11D1747C4080085B13F /* HSPicker.h */,
+				6864D6001708995E00F150F9 /* HSPickerModal.h */,
+				6864D6011708995E00F150F9 /* HSPickerModal.m */,
 				6864D5F41708995E00F150F9 /* HSAddressPicker.h */,
 				6864D5F51708995E00F150F9 /* HSAddressPicker.m */,
 				6864D5F61708995E00F150F9 /* HSAddressPicker.xib */,
@@ -2284,8 +2309,6 @@
 				6864D5FD1708995E00F150F9 /* HSDateTimePicker.h */,
 				6864D5FE1708995E00F150F9 /* HSDateTimePicker.m */,
 				6864D5FF1708995E00F150F9 /* HSDateTimePicker.xib */,
-				6864D6001708995E00F150F9 /* HSPicker.h */,
-				6864D6011708995E00F150F9 /* HSPicker.m */,
 				6864D6021708995E00F150F9 /* HSRemindDatePicker.h */,
 				6864D6031708995E00F150F9 /* HSRemindDatePicker.m */,
 				6864D6041708995E00F150F9 /* HSRemindDatePicker.xib */,
@@ -2493,6 +2516,7 @@
 		688F7F8216A012FC008581D4 /* utils */ = {
 			isa = PBXGroup;
 			children = (
+				68C4277F174FB11C00D477B2 /* persistence */,
 				688F7F8316A012FD008581D4 /* FlurryAnalytics */,
 				6864D6261708CB2800F150F9 /* MailChimp */,
 				688F7F8616A012FD008581D4 /* string */,
@@ -2551,6 +2575,8 @@
 			children = (
 				68B28E3117071DE3009FE0F8 /* HSUserInfo.h */,
 				68B28E3217071DE3009FE0F8 /* HSUserInfo.m */,
+				6823C11E174926300085B13F /* HSStationInfo.h */,
+				6823C11F174926310085B13F /* HSStationInfo.m */,
 			);
 			path = remote;
 			sourceTree = "<group>";
@@ -2614,6 +2640,8 @@
 				6864D66D17127A0500F150F9 /* HSEventShortInfoView.h */,
 				6864D66E17127A0600F150F9 /* HSEventShortInfoView.m */,
 				6864D67017127A3700F150F9 /* HSEventShortInfoView.xib */,
+				6823C11A1747C1FA0085B13F /* HSStationsPickerViewController.h */,
+				6823C11B1747C1FA0085B13F /* HSStationsPickerViewController.m */,
 			);
 			path = calendar;
 			sourceTree = "<group>";
@@ -2886,6 +2914,7 @@
 		68BB4056162F0B9400098861 /* DonorTests */ = {
 			isa = PBXGroup;
 			children = (
+				68C42777174F406600D477B2 /* model */,
 				687A431216F6298800958347 /* Utils */,
 				687A430316F5CF0B00958347 /* Libs */,
 				68EB27741630B2470092FDBA /* calendar */,
@@ -2902,6 +2931,41 @@
 				68BB405F162F0B9500098861 /* DonorTests-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		68C42777174F406600D477B2 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				68C42778174F406600D477B2 /* remote */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		68C42778174F406600D477B2 /* remote */ = {
+			isa = PBXGroup;
+			children = (
+				68C42779174F408500D477B2 /* HSStationInfoTest.h */,
+				68C4277A174F408500D477B2 /* HSStationInfoTest.m */,
+			);
+			path = remote;
+			sourceTree = "<group>";
+		};
+		68C4277F174FB11C00D477B2 /* persistence */ = {
+			isa = PBXGroup;
+			children = (
+				68C42780174FB15900D477B2 /* NSObject+NSCodingSupportForProperties.h */,
+				68C42781174FB15900D477B2 /* NSObject+NSCodingSupportForProperties.m */,
+			);
+			path = persistence;
+			sourceTree = "<group>";
+		};
+		68E535031747BB43008E44E6 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				68E535041747BB43008E44E6 /* map.png */,
+				68E535051747BB43008E44E6 /* map@2x.png */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		68EB27531630906A0092FDBA /* model */ = {
@@ -3610,6 +3674,8 @@
 				CEE388C81718B90C001B6F0A /* DonorStations_tableHeaderBackground@2x.png in Resources */,
 				6864D6C0171ACE8A00F150F9 /* news_template.html in Resources */,
 				68F788E1171AE4E100BBF59A /* AdViewController.xib in Resources */,
+				68E535061747BB43008E44E6 /* map.png in Resources */,
+				68E535071747BB43008E44E6 /* map@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3746,7 +3812,7 @@
 				6864D60B1708995E00F150F9 /* HSBloodDonationTypePicker.m in Sources */,
 				6864D60D1708995E00F150F9 /* HSBloodTypePicker.m in Sources */,
 				6864D60F1708995E00F150F9 /* HSDateTimePicker.m in Sources */,
-				6864D6111708995E00F150F9 /* HSPicker.m in Sources */,
+				6864D6111708995E00F150F9 /* HSPickerModal.m in Sources */,
 				6864D6121708995E00F150F9 /* HSRemindDatePicker.m in Sources */,
 				6864D6141708995E00F150F9 /* HSSexPicker.m in Sources */,
 				687A436916F7C19400958347 /* ChimpKit.m in Sources */,
@@ -3798,6 +3864,9 @@
 				6864D6BE17174D0000F150F9 /* NSDate+InternetDateTime.m in Sources */,
 				68F788E0171AE4E100BBF59A /* AdViewController.m in Sources */,
 				68F788E4171CA57D00BBF59A /* HSTabBarView.m in Sources */,
+				6823C11C1747C1FA0085B13F /* HSStationsPickerViewController.m in Sources */,
+				6823C120174926310085B13F /* HSStationInfo.m in Sources */,
+				68C42782174FB15900D477B2 /* NSObject+NSCodingSupportForProperties.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3808,6 +3877,7 @@
 				686BA62A163469C3004D7082 /* HSBloodDonorTests_Calendar.m in Sources */,
 				687A431516F629B900958347 /* Swizzler.m in Sources */,
 				687A431816F62D2300958347 /* HSBloodRemoteEventMoc.m in Sources */,
+				68C4277B174F408500D477B2 /* HSStationInfoTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

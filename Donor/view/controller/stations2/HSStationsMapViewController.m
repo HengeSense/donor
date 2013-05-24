@@ -3,6 +3,7 @@
 //  Donor
 //
 //  Created by Eugine Korobovsky on 09.04.13.
+//  Updated by Sergey Seroshtan on 24.05.13.
 //  Copyright (c) 2013 Hint Solutions. All rights reserved.
 //
 
@@ -10,158 +11,152 @@
 #import "HSStationCardViewController.h"
 
 @interface HSStationsMapViewController ()
+/// @name Properties
+/// @name Map
+@property (nonatomic, strong) NSMutableArray *annotations;
+
+/// @name Private methods
+- (void)openStation:(HSStationInfo *)stationInfo;
 
 @end
 
 @implementation HSStationsMapViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+- (id)init {
+    return [self initWithStations:nil];
+}
+
+- (id)initWithStations:(NSArray *)stations {
+    self = [self initWithNibName:NSStringFromClass(self.class) bundle:nil];
     if (self) {
         // Custom initialization
-        annotations = [[NSMutableArray alloc] init];
-        _center = CLLocationCoordinate2DMake(0, 0);
-        _span = MKCoordinateSpanMake(0, 0);
+        self.annotations = [[NSMutableArray alloc] init];
+        self.center = CLLocationCoordinate2DMake(0, 0);
+        self.span = MKCoordinateSpanMake(0, 0);
+        self.stations = stations;
     }
     return self;
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-    
+
     self.title = @"Карта";
     
     [self reloadMapPoints];
     
-    _stationsMap.showsUserLocation = YES;
+    self.stationsMap.showsUserLocation = YES;
     [self updateMapPosition];
-    
-};
-
-- (void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
-};
-
-- (void)reloadMapPoints{
-    [_stationsMap removeAnnotations:annotations];
-    [annotations removeAllObjects];
-    for(NSDictionary *oneStation in _stationsArray){
-        HSStationsMapAnnotation *oneAnnotation = [[HSStationsMapAnnotation alloc] initWithStation:oneStation andDelegate:self];
-        [annotations addObject:oneAnnotation];
-    };
-    [_stationsMap addAnnotations:annotations];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+#pragma mark - Private
+- (void)reloadMapPoints {
+    [self.stationsMap removeAnnotations:self.annotations];
+    [self.annotations removeAllObjects];
+    for(HSStationInfo *stationInfo in self.stations){
+        HSStationsMapAnnotation *stationAnnotation =
+                [[HSStationsMapAnnotation alloc] initWithStation:stationInfo andDelegate:self];
+        [self.annotations addObject:stationAnnotation];
+    }
+    [self.stationsMap addAnnotations:self.annotations];
 }
 
-- (void)openStationForDictionary:(NSDictionary *)stationDict{
-    if(stationDict){
-        HSStationCardViewController *cardViewController = [[HSStationCardViewController alloc] initWithNibName:@"HSStationCardViewController" bundle:nil];
-        cardViewController.stationDictionary = stationDict;
-        cardViewController.isShowAllInfoForced = YES;
-        cardViewController.isMapButtonInitiallyHidden = YES;
-        [self.navigationController pushViewController:cardViewController animated:YES];
-    };
-};
+- (void)openStation:(HSStationInfo *)stationInfo {
+    THROW_IF_ARGUMENT_NIL(stationInfo);
+    HSStationCardViewController *cardViewController =
+            [[HSStationCardViewController alloc] initWithStationInfo:stationInfo];
+    cardViewController.isShowAllInfoForced = YES;
+    cardViewController.isMapButtonInitiallyHidden = YES;
+    [self.navigationController pushViewController:cardViewController animated:YES];
+}
 
-- (BOOL)isSinglePoint{
-    if(_stationsArray && [_stationsArray count]==1) return YES;
-    
-    return NO;
-};
+- (BOOL)isSinglePoint {
+    return self.stations != nil && [self.stations count] == 1;
+}
 
-- (void)updateMapPosition{
+- (void)updateMapPosition {
     
-    MKCoordinateRegion showedRegion;
     if([self isSinglePoint]){
-        NSNumber *lan, *lon;
-        lan = [[_stationsArray objectAtIndex:0] objectForKey:@"lat"];
-        lon = [[_stationsArray objectAtIndex:0] objectForKey:@"lon"];
-        showedRegion.center = CLLocationCoordinate2DMake([lan doubleValue], [lon doubleValue]);
+        HSStationInfo *stationInfo = (HSStationInfo *)self.stations[0];
+        MKCoordinateRegion showedRegion = {};
+        showedRegion.center = CLLocationCoordinate2DMake([stationInfo.lat doubleValue], [stationInfo.lon doubleValue]);
         showedRegion.span = MKCoordinateSpanMake(0.01, 0.01);
-        [_stationsMap setRegion:showedRegion animated:YES];
-    }else{
-        if(fabs(_center.latitude<0.0001) && fabs(_center.longitude<0.0001)){
-            
-        }else{
-            MKCoordinateRegion showedRegion;
-            
-            showedRegion.center = _center;
-            if(fabs(_span.latitudeDelta<0.0001) && fabs(_span.longitudeDelta<0.0001)){
-                showedRegion.span = MKCoordinateSpanMake(0.2, 0.2);
-            }else{
-                showedRegion.span = _span;
-            };
-            [_stationsMap setRegion:showedRegion animated:YES];
-        };
-    };
-};
+        [self.stationsMap setRegion:showedRegion animated:YES];
+    } else if (!(fabs(self.center.latitude < 0.0001) && fabs(self.center.longitude < 0.0001))) {
+        MKCoordinateRegion showedRegion = {};
+        showedRegion.center = self.center;
+        if(fabs(self.span.latitudeDelta < 0.0001) && fabs(self.span.longitudeDelta < 0.0001)){
+            showedRegion.span = MKCoordinateSpanMake(0.2, 0.2);
+        } else {
+            showedRegion.span = self.span;
+        }
+        [self.stationsMap setRegion:showedRegion animated:YES];
+    }
+}
 
 #pragma mark - Map Kit delegate routines
-
-
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id)annotation {
     if([annotation isKindOfClass:[HSStationsMapAnnotation class]]) {
-        MKAnnotationView *annView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"annID"];
-        if(annView!=nil) {
-            [annView setImage:[UIImage imageNamed:@"DonorStations_mapAnnotationIcon"]];
-            [annView setCalloutOffset:CGPointMake(0, 0)];
-            [annView setCanShowCallout:YES];
-            if(![self isSinglePoint]){
-                [annView setRightCalloutAccessoryView:[UIButton buttonWithType:UIButtonTypeDetailDisclosure]];
-            };
-        };
-        
-        return annView;
+        MKAnnotationView *annotationView =
+                [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"annID"];
+        [annotationView setImage:[UIImage imageNamed:@"mapAnnotationIcon"]];
+        [annotationView setCalloutOffset:CGPointMake(0, 0)];
+        [annotationView setCanShowCallout:YES];
+        if(![self isSinglePoint]){
+            [annotationView setRightCalloutAccessoryView:[UIButton buttonWithType:UIButtonTypeDetailDisclosure]];
+        }
+        return annotationView;
     }
     return nil;
-};
+}
 
-- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
+- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view
+        calloutAccessoryControlTapped:(UIControl *)control {
     if([[view annotation] isKindOfClass:[HSStationsMapAnnotation class]] && ![self isSinglePoint]) {
         [((HSStationsMapAnnotation *)[view annotation]) showStation:nil];
-    };
-};
+    }
+}
 
+
+@end
+
+#pragma mark - HSStationsMapAnnotation implementation
+@interface HSStationsMapAnnotation ()
+
+@property (nonatomic, strong, readwrite) HSStationInfo *stationInfo;
+@property (nonatomic, weak, readwrite) HSStationsMapViewController *delegate;
 
 @end
 
 @implementation HSStationsMapAnnotation
 
-- (id)initWithStation:(NSDictionary *)station andDelegate:(HSStationsMapViewController *)_del{
+- (id)initWithStation:(HSStationInfo *)stationInfo andDelegate:(HSStationsMapViewController *)delegate {
+    THROW_IF_ARGUMENT_NIL(stationInfo);
     self = [super init];
     if(self){
-        curStation = station;
-        _delegate = _del;
-    };
+        self.stationInfo = stationInfo;
+        self.delegate = self.delegate;
+    }
     
     return self;
-};
+}
 
 - (CLLocationCoordinate2D)coordinate{
-    NSNumber *lan, *lon;
-    lan = [curStation objectForKey:@"lat"];
-    lon = [curStation objectForKey:@"lon"];
-    return CLLocationCoordinate2DMake([lan doubleValue], [lon doubleValue]);
+    return CLLocationCoordinate2DMake([self.stationInfo.lat doubleValue], [self.stationInfo.lon doubleValue]);
 }
 
 - (NSString *)title{
-    return [curStation objectForKey:@"name"];
+    return self.stationInfo.name;
 }
 
 - (NSString *)subtitle{
     return @"";
-};
+}
 
-- (void)showStation:(id)sender{
-    [_delegate openStationForDictionary:curStation];
-};
+- (void)showStation:(id)sender {
+    if (self.delegate) {
+        [self.delegate openStation:self.stationInfo];
+    }
+}
 
 @end

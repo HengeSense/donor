@@ -3,6 +3,7 @@
 //  Donor
 //
 //  Created by Eugine Korobovsky on 03.04.13.
+//  Updated by Sergey Seroshtan on 24.05.13.
 //  Copyright (c) 2013 Hint Solutions. All rights reserved.
 //
 
@@ -15,18 +16,38 @@
 #import "HSHTTPControl.h"
 #import "StationsDefs.h"
 
-#define USER_DEFAULTS_LAST_SYNC_DATE_ID @"latestStationsChangedDate"
-#define USER_DEFAULTS_LAST_SELECTED_REGION_ID @"lastSelectedRegion"
-#define USER_DEFAULTS_LAST_SELECTED_DISTRICT_ID @"lastSelectedDistrict"
-//#define STATION_ROW_HEIGHT 48
+#pragma mark - UI labels
+static NSString * const kLabelTitle_UnknownRegion = @"Неизвестный регион";
 
+#pragma mark - User defaults keys
+static NSString * const kUserDefaultsKey_LastSyncDate = @"latestStationsChangedDate";
+static NSString * const kUserDefaultsKey_LastSelectedRegion = @"lastSelectedRegion";
+static NSString * const kUserDefaultsKey_LastSelectedDistrict = @"lastSelectedDistrict";
 
+#pragma mark - Stations filtering by distance keys
+static NSString * const kStationsFilteringByDistanceKey_LessThan1 = @"lessThan1";
+static NSString * const kStationsFilteringByDistanceKey_LessThan3 = @"lessThan3";
+static NSString * const kStationsFilteringByDistanceKey_LessThan5 = @"lessThan5";
+static NSString * const kStationsFilteringByDistanceKey_LessThan10 = @"lessThan10";
+static NSString * const kStationsFilteringByDistanceKey_LessThan15 = @"lessThan15";
+static NSString * const kStationsFilteringByDistanceKey_MoreThan15 = @"moreThan15";
 
+#pragma mark - Region constants
+static const NSUInteger kRegions_UndefinedId = -1;
 
-@interface HSStationsViewController ()
+#pragma mark - District constants
+static const NSUInteger kDistrict_UndefinedId = -1;
+
+@interface HSStationsViewController () <CLLocationManagerDelegate, MKMapViewDelegate, UISearchDisplayDelegate>
+
+@property (nonatomic, assign) NSUInteger selectedCity;
+@property (nonatomic, assign) BOOL isSyncInProgress;
+@property (nonatomic, assign) BOOL isSearchBarShown;
+@property (nonatomic, assign) CLLocationCoordinate2D curLocation;
+@property (nonatomic, assign) BOOL isCitySelectedByGeolocationOnceAtThisSession;
 
 @property (nonatomic, strong) CLLocationManager *locationManager;
-@property (nonatomic) BOOL blockDidScrollDelegateCall;
+@property (nonatomic, assign) BOOL blockDidScrollDelegateCall;
 
 @property (nonatomic, strong) HSStationsMapViewController *mapController;
 
@@ -39,37 +60,21 @@
 
 #pragma mark - View's lifecycle
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
-        isSyncInProgress = NO;
-        NSFileManager *fileMan = [NSFileManager defaultManager];
-        NSUserDefaults *userDefs = [NSUserDefaults standardUserDefaults];
-        NSString *baseDir = [[NSHomeDirectory() stringByAppendingPathComponent:@"Library"] stringByAppendingPathComponent:@"Caches"];
-        NSString *stationsFilePath = [NSString stringWithFormat:@"%@/%@", baseDir, @"stations.dat"];
-        if([fileMan fileExistsAtPath:stationsFilePath]){
-            NSData *stationsData = [[NSData alloc] initWithContentsOfFile:stationsFilePath];
-            _stationsArray = [NSKeyedUnarchiver unarchiveObjectWithData:stationsData];
-            NSString *regionsFilePath = [NSString stringWithFormat:@"%@/%@", baseDir, @"regions.dat"];
-            if([fileMan fileExistsAtPath:regionsFilePath]){
-                NSData *regionsData = [[NSData alloc] initWithContentsOfFile:regionsFilePath];
-                _regionsDictionary = [NSKeyedUnarchiver unarchiveObjectWithData:regionsData];
-            }else{
-                _regionsDictionary = [[NSMutableDictionary alloc] init];
-                [userDefs removeObjectForKey:USER_DEFAULTS_LAST_SYNC_DATE_ID];
-                [userDefs synchronize];
-            };
-        }else{
-            _stationsArray = [[NSMutableArray alloc] init];
-            _regionsDictionary = [[NSMutableDictionary alloc] init];
-            [userDefs removeObjectForKey:USER_DEFAULTS_LAST_SYNC_DATE_ID];
-            [userDefs synchronize];
-        };
-        isCitySelectedByGeolocationOnceAtThisSession = NO;
-        [self updateLocalDatabase];
+        self.isSyncInProgress = NO;
         
+        self.stations = [self retriveStations];
+        self.regionsDictionary = [self retriveRegions];
+        
+        if (self.stations == nil || self.regionsDictionary == nil) {
+            [[NSUserDefaults standardUserDefaults] removeObjectForKey:kUserDefaultsKey_LastSyncDate];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+        }
+    
+        self.isCitySelectedByGeolocationOnceAtThisSession = NO;
+        [self syncLocalDatabase];
         
         NSMutableArray *lessThan1 = [[NSMutableArray alloc] init];
         NSMutableArray *lessThan3 = [[NSMutableArray alloc] init];
@@ -77,13 +82,13 @@
         NSMutableArray *lessThan10 = [[NSMutableArray alloc] init];
         NSMutableArray *lessThan15 = [[NSMutableArray alloc] init];
         NSMutableArray *moreThan15 = [[NSMutableArray alloc] init];
-        _stationsByDistance = [[NSMutableDictionary alloc] init];
-        [_stationsByDistance setObject:lessThan1 forKey:@"lessThan1"];
-        [_stationsByDistance setObject:lessThan3 forKey:@"lessThan3"];
-        [_stationsByDistance setObject:lessThan5 forKey:@"lessThan5"];
-        [_stationsByDistance setObject:lessThan10 forKey:@"lessThan10"];
-        [_stationsByDistance setObject:lessThan15 forKey:@"lessThan15"];
-        [_stationsByDistance setObject:moreThan15 forKey:@"moreThan15"];
+        self.stationsByDistance = [[NSMutableDictionary alloc] init];
+        [self.stationsByDistance setObject:lessThan1 forKey:kStationsFilteringByDistanceKey_LessThan1];
+        [self.stationsByDistance setObject:lessThan3 forKey:kStationsFilteringByDistanceKey_LessThan3];
+        [self.stationsByDistance setObject:lessThan5 forKey:kStationsFilteringByDistanceKey_LessThan5];
+        [self.stationsByDistance setObject:lessThan10 forKey:kStationsFilteringByDistanceKey_LessThan10];
+        [self.stationsByDistance setObject:lessThan15 forKey:kStationsFilteringByDistanceKey_LessThan15];
+        [self.stationsByDistance setObject:moreThan15 forKey:kStationsFilteringByDistanceKey_MoreThan15];
         
         NSMutableArray *lessThan1filter = [[NSMutableArray alloc] init];
         NSMutableArray *lessThan3filter = [[NSMutableArray alloc] init];
@@ -91,122 +96,102 @@
         NSMutableArray *lessThan10filter = [[NSMutableArray alloc] init];
         NSMutableArray *lessThan15filter = [[NSMutableArray alloc] init];
         NSMutableArray *moreThan15filter = [[NSMutableArray alloc] init];
-        _filteredDictionary = [[NSMutableDictionary alloc] init];
-        [_filteredDictionary setObject:lessThan1filter forKey:@"lessThan1"];
-        [_filteredDictionary setObject:lessThan3filter forKey:@"lessThan3"];
-        [_filteredDictionary setObject:lessThan5filter forKey:@"lessThan5"];
-        [_filteredDictionary setObject:lessThan10filter forKey:@"lessThan10"];
-        [_filteredDictionary setObject:lessThan15filter forKey:@"lessThan15"];
-        [_filteredDictionary setObject:moreThan15filter forKey:@"moreThan15"];
+        self.filteredDictionary = [[NSMutableDictionary alloc] init];
+        [self.filteredDictionary setObject:lessThan1filter forKey:kStationsFilteringByDistanceKey_LessThan1];
+        [self.filteredDictionary setObject:lessThan3filter forKey:kStationsFilteringByDistanceKey_LessThan3];
+        [self.filteredDictionary setObject:lessThan5filter forKey:kStationsFilteringByDistanceKey_LessThan5];
+        [self.filteredDictionary setObject:lessThan10filter forKey:kStationsFilteringByDistanceKey_LessThan10];
+        [self.filteredDictionary setObject:lessThan15filter forKey:kStationsFilteringByDistanceKey_LessThan15];
+        [self.filteredDictionary setObject:moreThan15filter forKey:kStationsFilteringByDistanceKey_MoreThan15];
         
-        selectedCity = 0;
-        curLocation = CLLocationCoordinate2DMake(0, 0);
-        isSearchBarShowed = NO;
+        self.selectedCity = 0;
+        self.curLocation = CLLocationCoordinate2DMake(0, 0);
+        self.isSearchBarShown = NO;
 
-        _mapController = [[HSStationsMapViewController alloc] initWithNibName:@"HSStationsMapViewController" bundle:nil];
-        _mapController.stationsArray = _stationsArray;
-        [_mapController reloadMapPoints];
+        self.mapController = [[HSStationsMapViewController alloc] initWithStations:self.stations];
+        [self.mapController reloadMapPoints];
         
-        _blockDidScrollDelegateCall = NO;
-    };
+        self.blockDidScrollDelegateCall = NO;
+    }
     return self;
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.title = @"Cтанции";
     
     UIButton *rightBarBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     rightBarBtn.frame = CGRectMake(0.0, 0.0, 33.0, 30.0);
-    [rightBarBtn setImage:[UIImage imageNamed:@"DonorStations_navBarMapBtn_norm"] forState:UIControlStateNormal];
-    [rightBarBtn setImage:[UIImage imageNamed:@"DonorStations_navBarMapBtn_press"] forState:UIControlStateHighlighted];
+    [rightBarBtn setImage:[UIImage imageNamed:@"navBarMapBtn_norm"] forState:UIControlStateNormal];
+    [rightBarBtn setImage:[UIImage imageNamed:@"navBarMapBtn_press"] forState:UIControlStateHighlighted];
     [rightBarBtn addTarget:self action:@selector(onShowMap:) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightBarBtn];
     self.navigationItem.rightBarButtonItem = rightBarButtonItem;
     
-    UIImage *searchBarImage = [UIImage imageNamed:@"DonorStations_searchBarBackground"];
+    UIImage *searchBarImage = [UIImage imageNamed:@"searchBarBackground"];
     [self.searchDisplayController.searchBar setBackgroundImage:searchBarImage];
-    [self.searchDisplayController.searchBar setImage:[UIImage imageNamed:@"DonorStations_searchBarSearchIcon"] forSearchBarIcon:UISearchBarIconSearch state:UIControlStateNormal];
-    [self.searchDisplayController.searchBar setImage:[UIImage imageNamed:@"DonorStations_searchBarClearIcon"] forSearchBarIcon:UISearchBarIconClear state:UIControlStateNormal];
+    [self.searchDisplayController.searchBar setImage:[UIImage imageNamed:@"searchBarSearchIcon"] forSearchBarIcon:UISearchBarIconSearch state:UIControlStateNormal];
+    [self.searchDisplayController.searchBar setImage:[UIImage imageNamed:@"searchBarClearIcon"] forSearchBarIcon:UISearchBarIconClear state:UIControlStateNormal];
     self.searchDisplayController.searchBar.tintColor = DONOR_RED_COLOR;
     
-    UIImage *searchFieldImage = [[UIImage imageNamed:@"DonorStations_searchBarFieldBackground"] stretchableImageWithLeftCapWidth:20 topCapHeight:4];
+    UIImage *searchFieldImage = [[UIImage imageNamed:@"searchBarFieldBackground"] stretchableImageWithLeftCapWidth:20 topCapHeight:4];
     [self.searchDisplayController.searchBar setSearchFieldBackgroundImage:searchFieldImage forState:UIControlStateNormal];
-    for(UIView *oneView in self.searchDisplayController.searchBar.subviews){
-        if([oneView isKindOfClass:[UITextField class]]){
+    for (UIView *oneView in self.searchDisplayController.searchBar.subviews) {
+        if ([oneView isKindOfClass:[UITextField class]]) {
             ((UITextField *)oneView).textColor = DONOR_SEARCH_FIELD_TEXT_COLOR;
-        };
-    };
-    
-    
-    
-};
+        }
+    }
+}
 
-- (void)viewWillAppear:(BOOL)animated{
+- (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [self requestUserLocation];
-};
+}
 
-- (void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
-};
-
-- (void)viewWillDisappear:(BOOL)animated{
-    [super viewWillDisappear:animated];
-};
-
-- (void)viewDidDisappear:(BOOL)animated{
+- (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
     
-    if(self.locationManager){
+    if (self.locationManager) {
         [self.locationManager stopUpdatingLocation];
-    };
+    }
     
     [MBProgressHUD hideHUDForView:self.view animated:YES];
-};
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-};
+}
 
 #pragma mark - View Controller's routines
 
-- (void)saveLastChoice{
-    NSUserDefaults *userDefs = [NSUserDefaults standardUserDefaults];
-    [userDefs setObject:[NSNumber numberWithInt:_region_id] forKey:USER_DEFAULTS_LAST_SELECTED_REGION_ID];
-    [userDefs setObject:[NSNumber numberWithInt:_district_id] forKey:USER_DEFAULTS_LAST_SELECTED_DISTRICT_ID];
-    [userDefs synchronize];
-};
-
-- (void)loadLastChoice{
-    NSNumber *userDefsObj = nil;
-    NSUserDefaults *userDefs = [NSUserDefaults standardUserDefaults];
-    userDefsObj = [userDefs objectForKey:USER_DEFAULTS_LAST_SELECTED_REGION_ID];
-    _region_id = userDefsObj ? [userDefsObj integerValue] : -1;
-    userDefsObj = [userDefs objectForKey:USER_DEFAULTS_LAST_SELECTED_DISTRICT_ID];
-    _district_id = userDefsObj ? [userDefsObj integerValue] : -1;
-    
-    //NSLog(@"Loading last choice: region = %d, district = %d", _region_id, _district_id);
+- (void)saveLastChoice {
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setObject:[NSNumber numberWithInt:self.region_id] forKey:kUserDefaultsKey_LastSelectedRegion];
+    [userDefaults setObject:[NSNumber numberWithInt:self.district_id] forKey:kUserDefaultsKey_LastSelectedDistrict];
+    [userDefaults synchronize];
 }
 
-- (void)updateStations{
-    if(isSyncInProgress){
+- (void)loadLastChoice {
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    
+    NSNumber *regionId = [userDefaults objectForKey:kUserDefaultsKey_LastSelectedRegion];
+    self.region_id = regionId != nil ? [regionId integerValue] : -1;
+    
+    NSNumber *districtId = [userDefaults objectForKey:kUserDefaultsKey_LastSelectedDistrict];
+    self.district_id = districtId != nil ? [districtId integerValue] : -1;
+}
+
+- (void)updateStations {
+    if (self.isSyncInProgress) {
         [self performSelector:@selector(updateStations) withObject:nil afterDelay:0.25f];
         return;
-    };
+    }
     
-    int totalDistrics = 0;
-    for(NSMutableDictionary *oneRegion in [[_regionsDictionary objectEnumerator] allObjects]){
-        
-        totalDistrics += ([[[oneRegion objectEnumerator] allObjects] count]-1);
-    };
-    NSLog(@"UPDATING VIEW. TOTAL RECORDS: %d, REGIONS: %d DISTRICTS: %d", [_stationsArray count], [[[_regionsDictionary objectEnumerator] allObjects] count], totalDistrics);
+    int totalDistricts = 0;
+    for (NSMutableDictionary *oneRegion in [[self.regionsDictionary objectEnumerator] allObjects]) {
+        totalDistricts += ([[[oneRegion objectEnumerator] allObjects] count]-1);
+    }
+    NSLog(@"UPDATING VIEW. TOTAL RECORDS: %d, REGIONS: %d DISTRICTS: %d",
+            [self.stations count], [[[self.regionsDictionary objectEnumerator] allObjects] count], totalDistricts);
     
     //@"До 1 км";
     //@"До 3 км";
@@ -214,12 +199,12 @@
     //@"До 10 км";
     //@"До 15 км";
     //@"Более 15 км";
-    NSMutableArray *lessThan1 = [_stationsByDistance objectForKey:@"lessThan1"];
-    NSMutableArray *lessThan3 = [_stationsByDistance objectForKey:@"lessThan3"];
-    NSMutableArray *lessThan5 = [_stationsByDistance objectForKey:@"lessThan5"];
-    NSMutableArray *lessThan10 = [_stationsByDistance objectForKey:@"lessThan10"];
-    NSMutableArray *lessThan15 = [_stationsByDistance objectForKey:@"lessThan15"];
-    NSMutableArray *moreThan15 = [_stationsByDistance objectForKey:@"moreThan15"];
+    NSMutableArray *lessThan1 = [self.stationsByDistance objectForKey:kStationsFilteringByDistanceKey_LessThan1];
+    NSMutableArray *lessThan3 = [self.stationsByDistance objectForKey:kStationsFilteringByDistanceKey_LessThan3];
+    NSMutableArray *lessThan5 = [self.stationsByDistance objectForKey:kStationsFilteringByDistanceKey_LessThan5];
+    NSMutableArray *lessThan10 = [self.stationsByDistance objectForKey:kStationsFilteringByDistanceKey_LessThan10];
+    NSMutableArray *lessThan15 = [self.stationsByDistance objectForKey:kStationsFilteringByDistanceKey_LessThan15];
+    NSMutableArray *moreThan15 = [self.stationsByDistance objectForKey:kStationsFilteringByDistanceKey_MoreThan15];
     
     [lessThan1 removeAllObjects];
     [lessThan3 removeAllObjects];
@@ -228,358 +213,348 @@
     [lessThan15 removeAllObjects];
     [moreThan15 removeAllObjects];
     
-    for(NSDictionary *oneStation in _stationsArray){
-        if(_region_id>=0){
-            if([[oneStation objectForKey:@"region_id"] integerValue] != _region_id) continue;
-        };
-        if(_district_id>=0){
-            if([[oneStation objectForKey:@"district_id"] integerValue] != _district_id) continue;
-        };
+    for (HSStationInfo *stationInfo in self.stations) {
+        if (self.region_id >= 0) {
+            if ([stationInfo.region_id integerValue] != self.region_id) continue;
+        }
         
-        if([oneStation objectForKey:@"_distance"]==nil){
-            [moreThan15 addObject:oneStation];
+        if (self.district_id >= 0) {
+            if ([stationInfo.district_id integerValue] != self.district_id) continue;
+        }
+        
+        if (stationInfo.distance == nil) {
+            [moreThan15 addObject:stationInfo];
             continue;
-        };
+        }
         
-        double curDist = [[oneStation objectForKey:@"_distance"] doubleValue];
-        if(curDist<1000){
-            [lessThan1 addObject:oneStation];
-        }else if(curDist<3000){
-            [lessThan3 addObject:oneStation];
-        }else if(curDist<5000){
-            [lessThan5 addObject:oneStation];
-        }else if(curDist<10000){
-            [lessThan10 addObject:oneStation];
-        }else if(curDist<15000){
-            [lessThan15 addObject:oneStation];
-        }else{
-            [moreThan15 addObject:oneStation];
-        };
-    };
+        double distance = [stationInfo.distance doubleValue];
+        if (distance < 1000) {
+            [lessThan1 addObject:stationInfo];
+        } else if (distance < 3000) {
+            [lessThan3 addObject:stationInfo];
+        } else if (distance < 5000) {
+            [lessThan5 addObject:stationInfo];
+        } else if (distance < 10000) {
+            [lessThan10 addObject:stationInfo];
+        } else if (distance < 15000) {
+            [lessThan15 addObject:stationInfo];
+        } else{
+            [moreThan15 addObject:stationInfo];
+        }
+    }
     
-    [lessThan1 sortUsingComparator:^NSComparisonResult(id obj1, id obj2){
-        double dist1 = [[obj1 objectForKey:@"_distance"] doubleValue];
-        double dist2 = [[obj2 objectForKey:@"_distance"] doubleValue];
-        if(dist1>dist2) return NSOrderedAscending;
-        if(dist1<dist2) return NSOrderedDescending;
+    [lessThan1 sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        HSStationInfo *first = (HSStationInfo *)obj1;
+        HSStationInfo *second = (HSStationInfo *)obj2;
+        double firstDistance = [first.distance doubleValue];
+        double secondDistance = [second.distance doubleValue];
+        if (firstDistance > secondDistance) return NSOrderedAscending;
+        if (firstDistance < secondDistance) return NSOrderedDescending;
         return NSOrderedSame;
     }];
     
     [self updateRegionLabel];
     
-    
-    [_stationsTable reloadData];
+    [self.stationsTable reloadData];
     
     [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-};
+}
 
-- (IBAction)onPressChangeCity:(id)sender{
-    HSStationsSelectCityViewController *selCity = [[HSStationsSelectCityViewController alloc] initWithNibName:@"HSStationsSelectCityViewController" bundle:nil];
-    selCity.delegate = self;
-    selCity.regionId = _region_id;
-    selCity.districtId = _district_id;
-    [self.navigationController presentModalViewController:selCity animated:YES];
-    
-    //id myNav = self.navigationController;
-    //NSLog(@"Navigation bar class: %@", [[myNav class] description]);
-};
+- (IBAction)onPressChangeCity:(id)sender {
+    HSStationsSelectCityViewController *selectCityViewController = [[HSStationsSelectCityViewController alloc] initWithNibName:@"HSStationsSelectCityViewController" bundle:nil];
+    selectCityViewController.delegate = self;
+    selectCityViewController.regionId = self.region_id;
+    selectCityViewController.districtId = self.district_id;
+    [self.navigationController presentModalViewController:selectCityViewController animated:YES];
+}
 
-- (void)updateRegionLabel{
-    if(_region_id>0){
-        NSDictionary *curRegion = [_regionsDictionary objectForKey:[NSNumber numberWithInt:_region_id]];;
-        if(curRegion){
-            _curCityLabel.text = [curRegion objectForKey:@"region_name"];
-        }else{
-            _curCityLabel.text = @"Неизвестный регион";
-        };
+- (void)updateRegionLabel {
+    if (self.region_id > 0) {
+        NSDictionary *region = [self.regionsDictionary objectForKey:[NSNumber numberWithInt:self.region_id]];;
+        if (region) {
+            self.curCityLabel.text = [region objectForKey:@"region_name"];
+        } else {
+            self.curCityLabel.text = kLabelTitle_UnknownRegion;
+        }
         return;
-    };
-    if(_district_id>0){
-        for(id oneRegionId in [[_regionsDictionary keyEnumerator] allObjects]){
-            NSDictionary *curRegion = [_regionsDictionary objectForKey:oneRegionId];
+    }
+    if (self.district_id > 0) {
+        for (id regionId in [[self.regionsDictionary keyEnumerator] allObjects]) {
+            NSDictionary *region = [self.regionsDictionary objectForKey:regionId];
             
-            for(id oneDistrictId in [[curRegion keyEnumerator] allObjects]){
-                if([oneDistrictId isKindOfClass:[NSString class]] && [oneDistrictId isEqualToString:@"region_name"]) continue;
+            for (id oneDistrictId in [[region keyEnumerator] allObjects]) {
+                if ([oneDistrictId isKindOfClass:[NSString class]] && [oneDistrictId isEqualToString:@"region_name"]) continue;
                 
-                if([oneDistrictId isKindOfClass:[NSNumber class]] && [oneDistrictId integerValue]==_district_id){
-                    _curCityLabel.text = [curRegion objectForKey:oneDistrictId];
+                if ([oneDistrictId isKindOfClass:[NSNumber class]] && [oneDistrictId integerValue] == self.district_id) {
+                    self.curCityLabel.text = [region objectForKey:oneDistrictId];
                     return;
-                };
-            };
-        };
-        
+                }
+            }
+        }
         return;
-    };
+    }
     
-    _curCityLabel.text = @"Неизвестный регион";
+    self.curCityLabel.text = kLabelTitle_UnknownRegion;
     return;
-};
+}
 
-- (void)onShowMap:(id)sender{
-    if(_mapController==nil){
-        _mapController = [[HSStationsMapViewController alloc] initWithNibName:@"HSStationsMapViewController" bundle:nil];
-        _mapController.stationsArray = _stationsArray;
-        [_mapController reloadMapPoints];
-    };
-    _mapController.center = curLocation;
-    _mapController.span = MKCoordinateSpanMake(0.2, 0.2);
-    [_mapController updateMapPosition];
-    [self.navigationController pushViewController:_mapController animated:YES];
-};
+- (void)onShowMap:(id)sender {
+    if (self.mapController == nil) {
+        self.mapController = [[HSStationsMapViewController alloc] initWithStations:self.stations];
+        [self.mapController reloadMapPoints];
+    }
+    self.mapController.center = self.curLocation;
+    self.mapController.span = MKCoordinateSpanMake(0.2, 0.2);
+    [self.mapController updateMapPosition];
+    [self.navigationController pushViewController:self.mapController animated:YES];
+}
 
 #pragma mark - Synchronization with Parse
-
-- (void)updateLocalDatabase{
+- (void)syncLocalDatabase {
+    const NSUInteger kStationsRequestLimit = 1000;
+    
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     PFQuery *stationsQuery = [PFQuery queryWithClassName:@"YAStations"];
-    stationsQuery.limit = 1000;
+    stationsQuery.limit = kStationsRequestLimit;
     
-    NSDate *latestChangeDateLocal = [[NSUserDefaults standardUserDefaults] objectForKey:@"latestStationsChangedDate"];
-    if(latestChangeDateLocal){
+    NSDate *latestChangeDateLocal = [[NSUserDefaults standardUserDefaults] objectForKey:kUserDefaultsKey_LastSyncDate];
+    if (latestChangeDateLocal != nil) {
         [stationsQuery whereKey:@"updatedAt" greaterThan:latestChangeDateLocal];
-    };
+    }
     
-    [stationsQuery findObjectsInBackgroundWithTarget:self selector:@selector(isNewRecorsdInServer:error:)];
-};
+    [stationsQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (error) {
+            NSLog(@"Cannot connected to Parse");
+            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+        } else if (objects.count > 0) {
+            NSLog(@"Stations: need to update, updating...");
+            [self updateLocalDatabaseWithStations:objects];
+        } else {
+            [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:kUserDefaultsKey_LastSyncDate];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+        }
+    }];
+}
 
-- (void)isNewRecorsdInServer:(NSArray *)result error:(NSError *)error{
-    if(error){
-        NSLog(@"Cannot connected to Parse");
-        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-        return;
-    };
+- (void)updateLocalDatabaseWithStations:(NSArray *)stations {
+    NSLog(@"Local database will be updated with %d entities.", [stations count]);
     
-    if([result count]>0){
-        NSLog(@"Stations: need to update, updating...", [result count]);
-        
-        isSyncInProgress = YES;
-        PFQuery *stationsQuery = [PFQuery queryWithClassName:@"YAStations"];
-        stationsQuery.limit = 1000;
-        [stationsQuery findObjectsInBackgroundWithTarget:self selector:@selector(processDataFromServer:error:)];
-    }else{
-        [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:USER_DEFAULTS_LAST_SYNC_DATE_ID];
-        [[NSUserDefaults standardUserDefaults] synchronize];
-        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-    };
-};
+    self.isSyncInProgress = YES;
 
-- (void)processDataFromServer:(NSArray *)result error:(NSError *)error{
-    if(error){
-        NSLog(@"Cannot connected to Parse");
-        [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-        isSyncInProgress = NO;
-        return;
-    };
-    
-    NSLog(@"Received %d records from Parse!", [result count]);
-    
-    NSMutableArray *newRecords = [[NSMutableArray alloc] init];
-    PFObject *oneObj = nil;
-    NSMutableDictionary *oneRecDic = nil;
-    for(oneObj in result){
-        oneRecDic = [[NSMutableDictionary alloc] init];
-        for(NSString *oneKey in [oneObj allKeys]){
-            [oneRecDic setObject:[oneObj objectForKey:oneKey] forKey:oneKey];
-        };
-        [newRecords addObject:oneRecDic];
-        
-        
-        // Form regions dictionary
-        if([oneObj objectForKey:@"region_id"] && [oneObj objectForKey:@"region_name"]){
-            NSMutableDictionary *curRegion = [_regionsDictionary objectForKey:[oneObj objectForKey:@"region_id"]];
-            if(curRegion==nil){
-                curRegion = [[NSMutableDictionary alloc] init];
-                [curRegion setObject:[oneObj objectForKey:@"region_name"] forKey:@"region_name"];
-                [_regionsDictionary setObject:curRegion forKey:[oneObj objectForKey:@"region_id"]];
-            };
-            if([oneObj objectForKey:@"district_name"] && [oneObj objectForKey:@"district_id"]){
-                [curRegion setObject:[oneObj objectForKey:@"district_name"] forKey:[oneObj objectForKey:@"district_id"]];
-            };
-        };
-    };
-    
-    [_stationsArray removeAllObjects];
-    [_stationsArray addObjectsFromArray:newRecords];
-    isSyncInProgress = NO;
-    // Saving to local file
+    [self updateStationsWithStations:stations];
+    [self updateRegionsWithStations:self.stations];
     [self saveDatabase];
+
+    [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:kUserDefaultsKey_LastSyncDate];
+    [[NSUserDefaults standardUserDefaults] synchronize];
     
-    if(_mapController){
-        _mapController.stationsArray = _stationsArray;
-        [_mapController reloadMapPoints];
-    };
+    self.isSyncInProgress = NO;
     
-    if((_region_id==-1 && _district_id==-1) || [_curCityLabel.text isEqualToString:@"Неизвестный регион"]){
+    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+    [self reloadMapViewController];
+    [self updateUserLocationIfNeeded];
+}
+
+- (NSInteger *)indexOfStationById:(PFObject *)station inStationsInfo:(NSArray *)stationsInfo {
+    THROW_IF_ARGUMENT_NIL(station);
+    THROW_IF_ARGUMENT_NIL(stationsInfo);
+    for (HSStationInfo *stationInfo in stationsInfo) {
+        if ([station.objectId isEqualToString:stationInfo.objectId]) {
+            return [stationsInfo indexOfObject:stationInfo];
+        }
+    }
+    return NSNotFound;
+}
+
+- (void)updateStationsWithStations:(NSArray *)stations {
+    THROW_IF_ARGUMENT_NIL(stations);
+    NSMutableArray *updatedStations = [[NSMutableArray alloc] initWithArray:self.stations];
+    for (PFObject *station in stations) {
+        NSUInteger updateIndex = [self indexOfStationById:station inStationsInfo:updatedStations];
+        if (updateIndex == NSNotFound) {
+            [updatedStations addObject:[[HSStationInfo alloc] initWithRemoteStation:station]];
+        } else {
+            HSStationInfo *updatedStationInfo = updatedStations[updateIndex];
+            [updatedStationInfo updateWithRemoteStation:station];
+        }
+    }
+    
+    self.stations = updatedStations;
+}
+
+- (void)updateRegionsWithStations:(NSArray *)stations {
+    NSMutableDictionary *newRegionsDictionary = [[NSMutableDictionary alloc] init];
+    for (HSStationInfo *stationInfo in stations) {
+        if (stationInfo.region_id != nil && stationInfo.region_name != nil) {
+            NSMutableDictionary *region = [self.regionsDictionary objectForKey:stationInfo.region_id];
+            if (region == nil) {
+                region = [[NSMutableDictionary alloc] init];
+                [region setObject:stationInfo.region_name forKey:@"region_name"];
+                [newRegionsDictionary setObject:region forKey:stationInfo.region_id];
+            }
+            if (stationInfo.district_id != nil && stationInfo.district_name != nil) {
+                [region setObject:stationInfo.district_name forKey:stationInfo.district_id];
+            }
+        }
+    }
+    
+    self.regionsDictionary = newRegionsDictionary;
+}
+
+- (void)reloadMapViewController {
+    if (self.mapController) {
+        self.mapController.stations = self.stations;
+        [self.mapController reloadMapPoints];
+    }
+}
+
+- (void)updateUserLocationIfNeeded {
+    if ((self.region_id == kRegions_UndefinedId && self.district_id == kDistrict_UndefinedId) ||
+            [self.curCityLabel.text isEqualToString:kLabelTitle_UnknownRegion]) {
         [self requestUserLocation];
-    };
-    
-    
-    [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:USER_DEFAULTS_LAST_SYNC_DATE_ID];
-};
-
-
-- (void)saveDatabase{
-    //Saving stations
-    NSString *baseDir = [[NSHomeDirectory() stringByAppendingPathComponent:@"Library"] stringByAppendingPathComponent:@"Caches"];
-    NSString *stationsFilePath = [NSString stringWithFormat:@"%@/%@", baseDir, @"stations.dat"];
-    NSFileManager *fileMan = [NSFileManager defaultManager];
-    if([fileMan fileExistsAtPath:stationsFilePath]){
-        [fileMan removeItemAtPath:stationsFilePath error:nil];
-    };
-    NSData *arrayData = [NSKeyedArchiver archivedDataWithRootObject:_stationsArray];
-    [fileMan createFileAtPath:stationsFilePath contents:arrayData attributes:nil];
-    
-    //Saving regions
-    NSString *regionsFilePath = [NSString stringWithFormat:@"%@/%@", baseDir, @"regions.dat"];
-    if([fileMan fileExistsAtPath:regionsFilePath]){
-        [fileMan removeItemAtPath:regionsFilePath error:nil];
-    };
-    NSData *dictionaryData = [NSKeyedArchiver archivedDataWithRootObject:_regionsDictionary];
-    [fileMan createFileAtPath:regionsFilePath contents:dictionaryData attributes:nil];
-    [self updateStations];
-};
+    }
+}
 
 #pragma mark - Current location determine method
 
-- (void)requestUserLocation{
-    if([CLLocationManager locationServicesEnabled] == YES) {
+- (void)requestUserLocation {
+    if ([CLLocationManager locationServicesEnabled] == YES) {
         self.locationManager = [[CLLocationManager alloc] init];
         self.locationManager.delegate = self;
         self.locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
         self.locationManager.distanceFilter = 100;
-    }else{
-        self.locationManager = nil;
-    };
-    
-    if(self.locationManager){
         [self.locationManager startUpdatingLocation];
-    }else{
+    } else {
+        self.locationManager = nil;
         [self updateStations];
-    };
-};
+    }
+}
 
 - (CLLocationDistance)distanceBetweenPoint:(CLLocationCoordinate2D)from toPoint:(CLLocationCoordinate2D)to{
     CLLocation *locationFrom = [[CLLocation alloc] initWithLatitude:from.latitude longitude:from.longitude];
     CLLocation *locationTo = [[CLLocation alloc] initWithLatitude:to.latitude longitude:to.longitude];
-    //NSLog(@"Distance between (%.5f, %.5f) and (%.5f, %.5f) = %.2f", from.latitude, from.longitude, to.latitude, to.longitude, [locationTo distanceFromLocation:locationFrom]);
     return [locationTo distanceFromLocation:locationFrom];
-};
+}
 
 - (void)locationManager:(CLLocationManager*)manager didFailWithError:(NSError*)error {
     NSLog(@"Cannot determine current location! Error: %@", [error localizedDescription]);
-    curLocation = CLLocationCoordinate2DMake(0, 0);
+    self.curLocation = CLLocationCoordinate2DMake(0, 0);
     [self selectCityByLocation:[[CLLocation alloc] initWithLatitude:0 longitude:0]];
-};
+}
 
 - (void)locationManager:(CLLocationManager*)manager didUpdateLocations:(NSArray*)locations {
     CLLocation *location = [locations lastObject];
-    curLocation = location.coordinate;
-    if(_mapController) _mapController.center = curLocation;
+    self.curLocation = location.coordinate;
+    if (self.mapController) self.mapController.center = self.curLocation;
     
     
-    NSLog(@"Location determined (IOS 6): %.7f, %.7f", curLocation.latitude, curLocation.longitude);
+    NSLog(@"Location determined (IOS 6): %.7f, %.7f", self.curLocation.latitude, self.curLocation.longitude);
     [self selectCityByLocation:location];
     [manager stopUpdatingLocation];
-};
+}
 
-- (void)locationManager:(CLLocationManager*)manager didUpdateToLocation:(CLLocation*)newLocation fromLocation:(CLLocation*)oldLocation {
-    curLocation  = newLocation.coordinate;
-    if(_mapController) _mapController.center = curLocation;
+- (void)locationManager:(CLLocationManager*)manager didUpdateToLocation:(CLLocation*)newLocation
+        fromLocation:(CLLocation*)oldLocation {
+    self.curLocation  = newLocation.coordinate;
+    if (self.mapController) self.mapController.center = self.curLocation;
     
-    NSLog(@"Location determined (IOS 5): %.7f, %.7f", curLocation.latitude, curLocation.longitude);
+    NSLog(@"Location determined (IOS 5): %.7f, %.7f", self.curLocation.latitude, self.curLocation.longitude);
     [self selectCityByLocation:newLocation];
     [manager stopUpdatingLocation];
-};
+}
 
 - (void)selectCityByLocation:(CLLocation *)location{
     [self updateStationsByDistanceFromLocation:location.coordinate];
     
-    if(isCitySelectedByGeolocationOnceAtThisSession){
+    if (self.isCitySelectedByGeolocationOnceAtThisSession) {
         [self updateStations];
         return;
-    };
+    }
     
     CLLocationCoordinate2D coord = [location coordinate];
-    NSString* url = [NSString stringWithFormat:@"http://maps.googleapis.com/maps/api/geocode/json?latlng=%@&language=ru&sensor=true", [NSString stringWithFormat:@"%f,%f", coord.latitude, coord.longitude]];
-    HSSingleReqest *request = [[HSSingleReqest alloc] initWithURL:url andDelegate:self andCallbackFunction:@selector(regionWasDetermined:data:) andErrorCallBackFunction:@selector(regionCannotBeDetermined:data:)];
+    NSString *url = [NSString stringWithFormat:
+            @"http://maps.googleapis.com/maps/api/geocode/json?latlng=%@&language=ru&sensor=true",
+            [NSString stringWithFormat:@"%f,%f", coord.latitude, coord.longitude]];
+    HSSingleReqest *request = [[HSSingleReqest alloc] initWithURL:url andDelegate:self
+            andCallbackFunction:@selector(regionWasDetermined:data:)
+            andErrorCallBackFunction:@selector(regionCannotBeDetermined:data:)];
     request.method = HSHTTPMethodGET;
     request.url = url;
     [request sendRequest];
-};
+}
 
 - (void)updateStationsByDistanceFromLocation:(CLLocationCoordinate2D)curPoint{
-    for(NSMutableDictionary *oneStation in _stationsArray){
-        CLLocationCoordinate2D stationPoint = CLLocationCoordinate2DMake([[oneStation objectForKey:@"lat"] doubleValue], [[oneStation objectForKey:@"lon"] doubleValue]);
-        double curDist = [self distanceBetweenPoint:curPoint toPoint:stationPoint];
-        [oneStation setObject:[NSNumber numberWithDouble:curDist] forKey:@"_distance"];
-    };
-};
+    for (HSStationInfo *stationInfo in self.stations) {
+        CLLocationCoordinate2D stationPoint =
+                CLLocationCoordinate2DMake([stationInfo.lat doubleValue], [stationInfo.lon doubleValue]);
+        double distance = [self distanceBetweenPoint:curPoint toPoint:stationPoint];
+        stationInfo.distance = [NSNumber numberWithDouble:distance];
+    }
+}
 
 - (void)regionWasDetermined:(HSSingleReqest*)request data:(NSData*)data {
-    //NSString *locality = nil;
     BOOL isFoundedRegion = NO;
     BOOL noLocality = NO, noArea1 = NO, noArea2 = NO;
     NSDictionary* json = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
     NSString* name;
-    if([json isKindOfClass:[NSDictionary class]]){
+    if ([json isKindOfClass:[NSDictionary class]]) {
         NSString* status = [json objectForKey:@"status"];
-        if([status isEqualToString:@"OK"] == YES) {
+        if ([status isEqualToString:@"OK"] == YES) {
             NSArray* results = [json objectForKey:@"results"];
-            if([results count] > 0) {
+            if ([results count] > 0) {
                 NSDictionary* first = [results objectAtIndex:0];
                 NSArray* addressComponents = [first objectForKey:@"address_components"];
-                for(NSDictionary * item in addressComponents) {
+                for (NSDictionary * item in addressComponents) {
                     
                     NSString* type = [[item objectForKey:@"types"] objectAtIndex:0];
-                    if(!noLocality && !noArea1 && !noArea2 && [type isEqualToString:@"locality"] == YES) {
+                    if (!noLocality && !noArea1 && !noArea2 && [type isEqualToString:@"locality"] == YES) {
                         name = [item objectForKey:@"long_name"];
-                        if([name isKindOfClass:[NSString class]] == YES) {
-                            if([self tryToSetRegionWithStr:name]){
+                        if ([name isKindOfClass:[NSString class]] == YES) {
+                            if ([self tryToSetRegionWithStr:name]) {
                                 isFoundedRegion = YES;
                                 break;
-                            };
+                            }
                             noLocality = YES;
-                        };
-                    };
-                    if(noLocality && !noArea1 && !noArea2 && [type isEqualToString:@"administrative_area_level_1"] == YES) {
+                        }
+                    }
+                    if (noLocality && !noArea1 && !noArea2 && [type isEqualToString:@"administrative_area_level_1"] == YES) {
                         name = [item objectForKey:@"long_name"];
-                        if([name isKindOfClass:[NSString class]] == YES) {
-                            if([self tryToSetRegionWithStr:name]){
+                        if ([name isKindOfClass:[NSString class]] == YES) {
+                            if ([self tryToSetRegionWithStr:name]) {
                                 isFoundedRegion = YES;
                                 break;
-                            };
+                            }
                             noArea1 = YES;
-                        };
-                    };
-                    if(noLocality && noArea1 && !noArea2 && [type isEqualToString:@"administrative_area_level_1"] == YES) {
+                        }
+                    }
+                    if (noLocality && noArea1 && !noArea2 && [type isEqualToString:@"administrative_area_level_1"] == YES) {
                         name = [item objectForKey:@"long_name"];
-                        if([name isKindOfClass:[NSString class]] == YES) {
-                            if([self tryToSetRegionWithStr:name]){
+                        if ([name isKindOfClass:[NSString class]] == YES) {
+                            if ([self tryToSetRegionWithStr:name]) {
                                 isFoundedRegion = YES;
                                 break;
-                            };
+                            }
                             noArea2 = YES;
-                        };
-                    };
-                };
-            };
-        };
-    };
+                        }
+                    }
+                }
+            }
+        }
+    }
     
     
     
-    if(!isFoundedRegion){
+    if (!isFoundedRegion) {
         NSString* resultStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
         NSLog(@"Cannot determine current region! Reply from geocoder: %@", resultStr);
         [self loadLastChoice];
     }else{
-        //perform geocoding for current region area
-        //[self requestCurrentRegionAreaWithRegionName:name];
-        isCitySelectedByGeolocationOnceAtThisSession = YES;
+        self.isCitySelectedByGeolocationOnceAtThisSession = YES;
     }
     
     [self updateStations];
-};
+}
 
 
 - (void)regionCannotBeDetermined:(HSSingleReqest*)request data:(NSError *)error{
@@ -587,101 +562,101 @@
 
     [self loadLastChoice];
     [self updateStations];
-};
+}
 
 - (void)requestCurrentRegionAreaWithRegionName:(NSString *)regionName{
-    if(regionName){
+    if (regionName) {
         NSString* url = [NSString stringWithFormat:@"http://maps.googleapis.com/maps/api/geocode/json?address=%@&language=ru&sensor=true", regionName];
         HSSingleReqest *request = [[HSSingleReqest alloc] initWithURL:url andDelegate:self andCallbackFunction:@selector(regionAreaWasDetermined:data:) andErrorCallBackFunction:@selector(regionAreaCannotBeDetermined:data:)];
         request.method = HSHTTPMethodGET;
         request.url = url;
         [request sendRequest];
-    };
-};
+    }
+}
 
 - (void)regionAreaWasDetermined:(HSSingleReqest*)request data:(NSData*)data{
-    _mapController.center = CLLocationCoordinate2DMake(0, 0);
-    _mapController.span = MKCoordinateSpanMake(0, 0);
+    self.mapController.center = CLLocationCoordinate2DMake(0, 0);
+    self.mapController.span = MKCoordinateSpanMake(0, 0);
     
     NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-    if([json isKindOfClass:[NSDictionary class]]){
+    if ([json isKindOfClass:[NSDictionary class]]) {
         NSString *status = [json objectForKey:@"status"];
-        if([status isEqualToString:@"OK"] == YES) {
+        if ([status isEqualToString:@"OK"] == YES) {
             NSArray *results = [json objectForKey:@"results"];
-            if([results count] > 0) {
+            if ([results count] > 0) {
                 NSDictionary *first = [results objectAtIndex:0];
                 NSDictionary *geometry = [first objectForKey:@"geometry"];
-                if(geometry){
+                if (geometry) {
                     CLLocationCoordinate2D curCardCenter;
                     curCardCenter.latitude = [[[geometry objectForKey:@"location"] objectForKey:@"lat"] doubleValue];
                     curCardCenter.longitude = [[[geometry objectForKey:@"location"] objectForKey:@"lng"] doubleValue];
-                    _mapController.center = curCardCenter;
+                    self.mapController.center = curCardCenter;
                     NSDictionary *southWest = [[geometry objectForKey:@"viewport"] objectForKey:@"southwest"];
                     NSDictionary *northEast = [[geometry objectForKey:@"viewport"] objectForKey:@"northeast"];
-                    if(southWest && northEast){
+                    if (southWest && northEast) {
                         MKCoordinateSpan curRegionSpan;
                         curRegionSpan.latitudeDelta = fabs([[southWest objectForKey:@"lat"] doubleValue] - [[northEast objectForKey:@"lat"] doubleValue])/2.0;
                         curRegionSpan.longitudeDelta = fabs([[southWest objectForKey:@"lng"] doubleValue] - [[northEast objectForKey:@"lng"] doubleValue])/2.0;
-                        _mapController.span = curRegionSpan;
-                    };
-                };
-            };
-        };
-    };
-};
+                        self.mapController.span = curRegionSpan;
+                    }
+                }
+            }
+        }
+    }
+}
 
 - (void)regionAreaCannotBeDetermined:(HSSingleReqest*)request data:(NSError *)error{
     NSLog(@"Cannot determine region area throught google! Message: %@", [error localizedDescription]);
-};
+}
 
 - (BOOL)isRegion:(NSString *)region1 equalToRegion:(NSString *)region2{
     NSRange containsRange = [region1 rangeOfString:region2];
-    if(containsRange.location!=NSNotFound){
+    if (containsRange.location!=NSNotFound) {
         return YES;
     }else{
         containsRange = [region2 rangeOfString:region1];
-        if(containsRange.location!=NSNotFound){
+        if (containsRange.location!=NSNotFound) {
             return YES;
-        };
-    };
+        }
+    }
 
     return NO;
-};
+}
 
 - (BOOL)tryToSetRegionWithStr:(NSString *)regionStr{
-    if(regionStr && _regionsDictionary && [_regionsDictionary count]>0){
+    if (regionStr && self.regionsDictionary && [self.regionsDictionary count]>0) {
         NSLog(@"Region: %@", regionStr);
         
         BOOL isFounded = NO;
-        for(id oneRegionId in [[_regionsDictionary keyEnumerator] allObjects]){
-            NSDictionary *curRegion = [_regionsDictionary objectForKey:oneRegionId];
+        for (id oneRegionId in [[self.regionsDictionary keyEnumerator] allObjects]) {
+            NSDictionary *curRegion = [self.regionsDictionary objectForKey:oneRegionId];
             NSString *curRegionName = [curRegion objectForKey:@"region_name"];
             
-            if([self isRegion:curRegionName equalToRegion:regionStr]){
+            if ([self isRegion:curRegionName equalToRegion:regionStr]) {
                 isFounded = YES;
-                _region_id = [oneRegionId integerValue];
-                _district_id = -1;
+                self.region_id = [oneRegionId integerValue];
+                self.district_id = -1;
                 break;
-            };
+            }
             
-            for(id oneDistrictId in [[curRegion keyEnumerator] allObjects]){
-                if([oneDistrictId isKindOfClass:[NSString class]] && [oneDistrictId isEqualToString:@"region_name"]) continue;
+            for (id oneDistrictId in [[curRegion keyEnumerator] allObjects]) {
+                if ([oneDistrictId isKindOfClass:[NSString class]] && [oneDistrictId isEqualToString:@"region_name"]) continue;
                 
                 NSString *curDistrictName = [curRegion objectForKey:oneDistrictId];
-                if([self isRegion:curDistrictName equalToRegion:regionStr]){
+                if ([self isRegion:curDistrictName equalToRegion:regionStr]) {
                     isFounded = YES;
-                    _region_id = -1;
-                    _district_id = [oneDistrictId integerValue];
+                    self.region_id = -1;
+                    self.district_id = [oneDistrictId integerValue];
                     break;
-                };
-            };
-        };
+                }
+            }
+        }
         
         return isFounded;
-    };
+    }
     
     return NO;
-};
+}
 
 - (void)updateListWithRegion:(NSString *)regionStr{
     [self tryToSetRegionWithStr:regionStr];
@@ -690,133 +665,131 @@
     [self updateStations];
     
     //[MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-};
+}
 
 #pragma mark - Table view delegate routines
 
 - (BOOL)isSearchModeForTable:(UITableView *)tableView{
     return tableView==self.searchDisplayController.searchResultsTableView ? YES : NO;
-};
+}
 
-- (NSDictionary *)dictionaryForTable:(UITableView *)tableView forStationKeyPath:(NSIndexPath *)indexPath{
-    NSMutableDictionary *currentStationsDictionary = [self isSearchModeForTable:tableView] ? _filteredDictionary : _stationsByDistance;
+- (HSStationInfo *)stationInfoForTable:(UITableView *)tableView forStationKeyPath:(NSIndexPath *)indexPath{
+    NSMutableDictionary *currentStationsDictionary =
+            [self isSearchModeForTable:tableView] ? self.filteredDictionary : self.stationsByDistance;
     NSArray *curSectionArray = nil;
-    NSDictionary *curDict = nil;
     
     switch ([indexPath section]) {
         case 0:
-            curSectionArray = [currentStationsDictionary objectForKey:@"lessThan1"];
+            curSectionArray = [currentStationsDictionary objectForKey:kStationsFilteringByDistanceKey_LessThan1];
             break;
         case 1:
-            curSectionArray = [currentStationsDictionary objectForKey:@"lessThan3"];
+            curSectionArray = [currentStationsDictionary objectForKey:kStationsFilteringByDistanceKey_LessThan3];
             break;
         case 2:
-            curSectionArray = [currentStationsDictionary objectForKey:@"lessThan5"];
+            curSectionArray = [currentStationsDictionary objectForKey:kStationsFilteringByDistanceKey_LessThan5];
             break;
         case 3:
-            curSectionArray = [currentStationsDictionary objectForKey:@"lessThan10"];
+            curSectionArray = [currentStationsDictionary objectForKey:kStationsFilteringByDistanceKey_LessThan10];
             break;
         case 4:
-            curSectionArray = [currentStationsDictionary objectForKey:@"lessThan15"];
+            curSectionArray = [currentStationsDictionary objectForKey:kStationsFilteringByDistanceKey_LessThan15];
             break;
         case 5:
-            curSectionArray = [currentStationsDictionary objectForKey:@"moreThan15"];
+            curSectionArray = [currentStationsDictionary objectForKey:kStationsFilteringByDistanceKey_MoreThan15];
             break;
-    };
-    if(curSectionArray==nil || [curSectionArray count]<=[indexPath row]){
+    }
+    if (curSectionArray==nil || [curSectionArray count]<=[indexPath row]) {
         return nil;
-    };
+    }
     
-    curDict = [curSectionArray objectAtIndex:[indexPath row]];
-    
-    return curDict;
-};
+    return [curSectionArray objectAtIndex:[indexPath row]];
+}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    NSMutableDictionary *currentStationsDictionary = [self isSearchModeForTable:tableView] ? _filteredDictionary : _stationsByDistance;
+    NSMutableDictionary *currentStationsDictionary = [self isSearchModeForTable:tableView] ? self.filteredDictionary : self.stationsByDistance;
     
     return [[[currentStationsDictionary keyEnumerator] allObjects] count];
-};
+}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    NSMutableDictionary *currentStationsDictionary = [self isSearchModeForTable:tableView] ? _filteredDictionary : _stationsByDistance;
+    NSMutableDictionary *currentStationsDictionary = [self isSearchModeForTable:tableView] ? self.filteredDictionary : self.stationsByDistance;
 
     switch (section) {
         case 0:
-            return [[currentStationsDictionary objectForKey:@"lessThan1"] count];
+            return [[currentStationsDictionary objectForKey:kStationsFilteringByDistanceKey_LessThan1] count];
             break;
         case 1:
-            return [[currentStationsDictionary objectForKey:@"lessThan3"] count];
+            return [[currentStationsDictionary objectForKey:kStationsFilteringByDistanceKey_LessThan3] count];
             break;
         case 2:
-            return [[currentStationsDictionary objectForKey:@"lessThan5"] count];
+            return [[currentStationsDictionary objectForKey:kStationsFilteringByDistanceKey_LessThan5] count];
             break;
         case 3:
-            return [[currentStationsDictionary objectForKey:@"lessThan10"] count];
+            return [[currentStationsDictionary objectForKey:kStationsFilteringByDistanceKey_LessThan10] count];
             break;
         case 4:
-            return [[currentStationsDictionary objectForKey:@"lessThan15"] count];
+            return [[currentStationsDictionary objectForKey:kStationsFilteringByDistanceKey_LessThan15] count];
             break;
         case 5:
-            return [[currentStationsDictionary objectForKey:@"moreThan15"] count];
+            return [[currentStationsDictionary objectForKey:kStationsFilteringByDistanceKey_MoreThan15] count];
             break;
             
         default:
             return 0;
             break;
-    };
-};
+    }
+}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    NSMutableDictionary *currentStationsDictionary = [self isSearchModeForTable:tableView] ? _filteredDictionary : _stationsByDistance;
+    NSMutableDictionary *currentStationsDictionary = [self isSearchModeForTable:tableView] ? self.filteredDictionary : self.stationsByDistance;
     
     NSInteger elementsConnt = 0;
     switch (section) {
         case 0:
-            elementsConnt = [[currentStationsDictionary objectForKey:@"lessThan1"] count];
+            elementsConnt = [[currentStationsDictionary objectForKey:kStationsFilteringByDistanceKey_LessThan1] count];
             break;
         case 1:
-            elementsConnt = [[currentStationsDictionary objectForKey:@"lessThan3"] count];
+            elementsConnt = [[currentStationsDictionary objectForKey:kStationsFilteringByDistanceKey_LessThan3] count];
             break;
         case 2:
-            elementsConnt = [[currentStationsDictionary objectForKey:@"lessThan5"] count];
+            elementsConnt = [[currentStationsDictionary objectForKey:kStationsFilteringByDistanceKey_LessThan5] count];
             break;
         case 3:
-            elementsConnt = [[currentStationsDictionary objectForKey:@"lessThan10"] count];
+            elementsConnt = [[currentStationsDictionary objectForKey:kStationsFilteringByDistanceKey_LessThan10] count];
             break;
         case 4:
-            elementsConnt = [[currentStationsDictionary objectForKey:@"lessThan15"] count];
+            elementsConnt = [[currentStationsDictionary objectForKey:kStationsFilteringByDistanceKey_LessThan15] count];
             break;
         case 5:
-            elementsConnt = [[currentStationsDictionary objectForKey:@"moreThan15"] count];
+            elementsConnt = [[currentStationsDictionary objectForKey:kStationsFilteringByDistanceKey_MoreThan15] count];
             break;
             
         default:
             return 0;
             break;
-    };
+    }
     
     return elementsConnt>0 ? 30.0 : 0.0;
-};
+}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    //return STATION_ROW_HEIGHT;
-    NSDictionary *curDict = [self dictionaryForTable:tableView forStationKeyPath:indexPath];
-    if(curDict==nil) return 0.0;
+    HSStationInfo *stationInfo = [self stationInfoForTable:tableView forStationKeyPath:indexPath];
+    if (stationInfo == nil) {
+        return 0.0f;
+    }
     
-    NSString *nameStr = [curDict objectForKey:@"name"];
-    NSString *addressStr = [curDict objectForKey:@"shortaddress"] ? [curDict objectForKey:@"shortaddress"] : [curDict objectForKey:@"address"];
-    NSString *labelStr = [NSString stringWithFormat:@"%@\n%@", (nameStr ? nameStr : @""), (addressStr ? addressStr : @"")];
-    CGSize labelSize = [labelStr sizeWithFont:[UIFont fontWithName:@"Helvetica" size:14] constrainedToSize:CGSizeMake(300, 100500) lineBreakMode:NSLineBreakByWordWrapping];
-    
-    //NSLog(@"Height for index path (%d, %d) = %.1f", indexPath.section, indexPath.row, labelSize.height+10.0);
-    return labelSize.height+10.0;
- };
+    NSString *address = stationInfo.shortaddress != nil ? stationInfo.shortaddress : stationInfo.address;
+    NSString *label = [NSString stringWithFormat:@"%@\n%@",
+            (stationInfo.name != nil ? stationInfo.name : @""), (address != nil ? address : @"")];
+    CGSize labelSize = [label sizeWithFont:[UIFont fontWithName:@"Helvetica" size:14]
+            constrainedToSize:CGSizeMake(300, 100500) lineBreakMode:NSLineBreakByWordWrapping];
+    return labelSize.height + 10.0f;
+ }
 
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     float headerHeight = [self tableView:tableView heightForHeaderInSection:section];
-    if(headerHeight<=0) return nil;
+    if (headerHeight<=0) return nil;
     
     NSString *headerStr = nil;
     switch (section) {
@@ -842,7 +815,7 @@
         default:
             headerStr = @"";
             break;
-    };
+    }
     
     UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, headerHeight)];
     headerView.clipsToBounds = NO;
@@ -858,7 +831,7 @@
     [headerView addSubview:headerLabel];
     
     return headerView;
-};
+}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     NSString *cellID;
@@ -868,7 +841,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
     UILabel *regionLabel;
     UIImageView *separator = nil;
-    if(cell==nil){
+    if (cell==nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellID];
         cell.backgroundColor = [UIColor clearColor];
         
@@ -891,84 +864,91 @@
         separator = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"DonorStations_tableCellSeparator"]];
         separator.tag = 11;
         [cell addSubview:separator];
-    };
+    }
     
     regionLabel = (UILabel *)[cell viewWithTag:10];
-    NSDictionary *curDict = [self dictionaryForTable:tableView forStationKeyPath:indexPath];
-    NSString *nameStr = [curDict objectForKey:@"name"];
-    NSString *addressStr = [curDict objectForKey:@"shortaddress"] ? [curDict objectForKey:@"shortaddress"] : [curDict objectForKey:@"address"];
-    regionLabel.text = [NSString stringWithFormat:@"%@\n%@", (nameStr ? nameStr : @""), (addressStr ? addressStr : @"")];
-    if([[[UIDevice currentDevice] systemVersion] floatValue]>=6.0){
+    HSStationInfo *stationInfo = [self stationInfoForTable:tableView forStationKeyPath:indexPath];
+    
+    NSString *name = stationInfo.name;
+    NSString *address = stationInfo.shortaddress != nil ? stationInfo.shortaddress : stationInfo.address;
+    regionLabel.text = [NSString stringWithFormat:@"%@\n%@",
+            (name != nil ? name : @""), (address != nil ? address : @"")];
+
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 6.0) {
         NSMutableAttributedString *attributedStr = [[NSMutableAttributedString alloc] initWithString:regionLabel.text];
-        [attributedStr addAttribute:NSForegroundColorAttributeName value:DONOR_TEXT_COLOR range:NSMakeRange(0, [nameStr length])];
-        [attributedStr addAttribute:NSForegroundColorAttributeName value:DONOR_GREEN_COLOR range:NSMakeRange([nameStr length]+1, [addressStr length])];
+        [attributedStr addAttribute:NSForegroundColorAttributeName value:DONOR_TEXT_COLOR
+                range:NSMakeRange(0, [name length])];
+        [attributedStr addAttribute:NSForegroundColorAttributeName value:DONOR_GREEN_COLOR
+                range:NSMakeRange([name length] + 1, [name length])];
         regionLabel.attributedText = attributedStr;
         regionLabel.highlightedTextColor = DONOR_RED_COLOR;
-    };
+    }
     CGRect regionLabelFrame = regionLabel.frame;
-    regionLabelFrame.size.height = cellHeight-10;
+    regionLabelFrame.size.height = cellHeight - 10;
     regionLabel.frame = regionLabelFrame;
     
     separator = (UIImageView *)[cell viewWithTag:11];
     CGRect separatorFrame = separator.frame;
-    separatorFrame.origin = CGPointMake(12, cellHeight-3);
+    separatorFrame.origin = CGPointMake(12, cellHeight - 3);
     separator.frame = separatorFrame;
     
     return cell;
-    
-};
+}
 
+
+- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    self.selectedStationInfo = [self stationInfoForTable:tableView forStationKeyPath:indexPath];
+    return indexPath;
+}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSDictionary *curDict = [self dictionaryForTable:tableView forStationKeyPath:indexPath];
-    if(curDict){
-        HSStationCardViewController *cardViewController = [[HSStationCardViewController alloc] initWithNibName:@"HSStationCardViewController" bundle:nil];
-        cardViewController.stationDictionary = curDict;
+    HSStationInfo *stationInfo = [self stationInfoForTable:tableView forStationKeyPath:indexPath];
+    if (stationInfo) {
+        HSStationCardViewController *cardViewController = [[HSStationCardViewController alloc]
+                initWithStationInfo:stationInfo];
         [self.navigationController pushViewController:cardViewController animated:YES];
-    };
+    }
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-};
+}
 
 
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell
+        forRowAtIndexPath:(NSIndexPath *)indexPath {
     tableView.backgroundColor = [UIColor clearColor];
-    
-};
+}
 
 
 #pragma mark - Supporting for sliding search-bar
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    if(_blockDidScrollDelegateCall || self.searchDisplayController.isActive) return;
+    if (self.blockDidScrollDelegateCall || self.searchDisplayController.isActive) return;
     
     float offset = scrollView.contentOffset.y;
     UIView *searchBar = (UIView *)self.searchDisplayController.searchBar;
-    if(offset<0){
-        isSearchBarShowed = ((-offset)>searchBar.frame.size.height) ? YES : NO;
+    if (offset<0) {
+        self.isSearchBarShown = ((-offset)>searchBar.frame.size.height) ? YES : NO;
     }else{
-        isSearchBarShowed = NO;
-    };
+        self.isSearchBarShown = NO;
+    }
     
     CGRect searchBarRect = searchBar.frame;
-    float barOffset = isSearchBarShowed ? searchBar.frame.size.height : (-offset);
+    float barOffset = self.isSearchBarShown ? searchBar.frame.size.height : (-offset);
     searchBarRect.origin.y = scrollView.frame.origin.y - searchBar.frame.size.height + barOffset;
     searchBar.frame = searchBarRect;
     
     scrollView.contentInset = UIEdgeInsetsMake(barOffset>0 ? barOffset : 0, 0, 0, 0);
-    //NSLog(@"scrollViewDidScroll: %.0f (%@), barOffset = %.0f", scrollView.contentOffset.y, isSearchBarShowed ? @"SHOW" : @"HIDE", barOffset);
-    
-};
+}
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
-    _blockDidScrollDelegateCall = NO;
-};
+    self.blockDidScrollDelegateCall = NO;
+}
 
 - (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset{
-    if(targetContentOffset->y < 0){
-        //NSLog(@"END DRAGGING: offset: %.0f->%.0f; %@ bar", scrollView.contentOffset.y, targetContentOffset->y, isSearchBarShowed ? @"SHOW" : @"HIDE");
+    if (targetContentOffset->y < 0) {
+        //NSLog(@"END DRAGGING: offset: %.0f->%.0f; %@ bar", scrollView.contentOffset.y, targetContentOffset->y, self.isSearchBarShown ? @"SHOW" : @"HIDE");
         UIView *searchBar = (UIView *)self.searchDisplayController.searchBar;
-        if(isSearchBarShowed){
+        if (self.isSearchBarShown) {
             [UIView animateWithDuration:0.5 animations:^{
                 scrollView.contentInset = UIEdgeInsetsMake(searchBar.bounds.size.height, 0, 0, 0);
                 CGRect searchBarRect = searchBar.frame;
@@ -976,108 +956,152 @@
                 searchBar.frame = searchBarRect;
             }];
         }else{
-            _blockDidScrollDelegateCall = YES;
+            self.blockDidScrollDelegateCall = YES;
             [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
                 scrollView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
                 CGRect searchBarRect = searchBar.frame;
                 searchBarRect.origin.y = scrollView.frame.origin.y - searchBarRect.size.height;
                 searchBar.frame = searchBarRect;
-            } completion:^(BOOL finished){
-                _blockDidScrollDelegateCall = NO;
+            } completion:^(BOOL finished) {
+                self.blockDidScrollDelegateCall = NO;
             }];
-        };
-    };
-};
+        }
+    }
+}
 
 
 
 #pragma mark - UISearchDisplayController Delegate Methods
 
-- (void) searchDisplayControllerWillBeginSearch:(UISearchDisplayController *)controller{
+- (void) searchDisplayControllerWillBeginSearch:(UISearchDisplayController *)controller {
     [self.searchDisplayController.searchBar setShowsCancelButton:YES animated:YES];
-    for(UIView *oneView in self.searchDisplayController.searchBar.subviews){
-        if([oneView isKindOfClass:[UIButton class]]){
+    for (UIView *oneView in self.searchDisplayController.searchBar.subviews) {
+        if ([oneView isKindOfClass:[UIButton class]]) {
             [(UIButton *)oneView setTitle:@"Отменить" forState:UIControlStateNormal];
-        };
-    };
-};
+        }
+    }
+}
 
-- (void) searchDisplayControllerDidBeginSearch:(UISearchDisplayController *)controller{
-    
-};
-- (void) searchDisplayControllerWillEndSearch:(UISearchDisplayController *)controller{
-    
-};
-- (void) searchDisplayControllerDidEndSearch:(UISearchDisplayController *)controller{
-    
-};
+- (BOOL)searchDisplayController:(UISearchDisplayController *)controller
+        shouldReloadTableForSearchString:(NSString *)searchString {
 
-- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString{
 	NSString *str;
     NSRange substringRange;
     BOOL isResults = NO;
     
-	for (NSString *oneKey in [[_stationsByDistance keyEnumerator] allObjects]){
-        NSMutableArray *curDistArray = [_stationsByDistance objectForKey:oneKey];
-        NSMutableArray *curDistArrayFiltered = [_filteredDictionary objectForKey:oneKey];
+	for (NSString *oneKey in [[self.stationsByDistance keyEnumerator] allObjects]) {
+        NSMutableArray *curDistArray = [self.stationsByDistance objectForKey:oneKey];
+        NSMutableArray *curDistArrayFiltered = [self.filteredDictionary objectForKey:oneKey];
         [curDistArrayFiltered removeAllObjects];
         
-        for(NSMutableDictionary *oneStation in curDistArray){
-            str = [oneStation objectForKey:@"name"];
+        for (HSStationInfo *stationInfo in curDistArray) {
+            str = stationInfo.name;
             substringRange = [str rangeOfString:searchString options:(NSCaseInsensitiveSearch|NSDiacriticInsensitiveSearch) range:NSMakeRange(0, [str length])];
-            if(substringRange.location != NSNotFound){
-                [curDistArrayFiltered addObject:oneStation];
+            if (substringRange.location != NSNotFound) {
+                [curDistArrayFiltered addObject:stationInfo];
                 isResults = YES;
                 continue;
-            }else{
-                str = [oneStation objectForKey:@"address"];
+            } else {
+                str = stationInfo.address;
                 substringRange = [str rangeOfString:searchString options:(NSCaseInsensitiveSearch|NSDiacriticInsensitiveSearch) range:NSMakeRange(0, [str length])];
-                if(substringRange.location != NSNotFound){
-                    [curDistArrayFiltered addObject:oneStation];
+                if (substringRange.location != NSNotFound) {
+                    [curDistArrayFiltered addObject:stationInfo];
                     isResults = YES;
                     continue;
-                };
-            };
-        };
-	};
+                }
+            }
+        }
+	}
     
-    if(!isResults){
+    if (!isResults) {
         double delayInSeconds = 0.001;
         dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
-        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-            for(UIView *oneView in self.searchDisplayController.searchResultsTableView.subviews){
-                if([oneView isKindOfClass:[UILabel class]]){
+        dispatch_after(popTime, dispatch_get_main_queue(), ^(void) {
+            for (UIView *oneView in self.searchDisplayController.searchResultsTableView.subviews) {
+                if ([oneView isKindOfClass:[UILabel class]]) {
                     [(UILabel *)oneView setText:@"Не найдено"];
-                };
-            };
+                }
+            }
         });
-    };
+    }
     
-    
-    // Return YES to cause the search result table view to be reloaded.
     return YES;
-};
+}
 
-
-- (void)searchDisplayController:(UISearchDisplayController *)controller willShowSearchResultsTableView:(UITableView *)tableView{
-    
-};
-- (void)searchDisplayController:(UISearchDisplayController *)controller didShowSearchResultsTableView:(UITableView *)tableView{
-    //CGRect rct = tableView.frame;
-    //tableView.frame = CGRectMake(rct.origin.x, rct.origin.y, 240.0, rct.size.height);
+- (void)searchDisplayController:(UISearchDisplayController *)controller
+        didShowSearchResultsTableView:(UITableView *)tableView {
     tableView.backgroundColor = [UIColor clearColor];
     tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
-    _stationsTable.hidden = YES;
-};
-- (void)searchDisplayController:(UISearchDisplayController *)controller willHideSearchResultsTableView:(UITableView *)tableView{
-    _stationsTable.hidden = NO;
-};
-- (void)searchDisplayController:(UISearchDisplayController *)controller didHideSearchResultsTableView:(UITableView *)tableView{
+    self.stationsTable.hidden = YES;
+}
+
+- (void)searchDisplayController:(UISearchDisplayController *)controller
+        willHideSearchResultsTableView:(UITableView *)tableView {
+    self.stationsTable.hidden = NO;
+}
+
+#pragma mark - Private
+#pragma mark - Local database management
+- (NSString *)databaseDirectoryPath {
+    return [[NSHomeDirectory() stringByAppendingPathComponent:@"Library"] stringByAppendingPathComponent:@"Caches"];
+}
+
+- (NSString *)stationsDatabaseFilePath {
+    return [NSString stringWithFormat:@"%@/%@", [self databaseDirectoryPath], @"stations.dat"];
+}
+
+- (NSString *)regionsDatabaseFilePath {
+    return [NSString stringWithFormat:@"%@/%@", [self databaseDirectoryPath], @"regions.dat"];
+}
+
+- (void)saveDatabase{
+    [self saveStations:self.stations];
+    [self saveRegions:self.regionsDictionary];
+    [self updateStations];
+}
+
+- (void)saveStations:(NSArray *)stations {
+    NSFileManager *fileMananager = [NSFileManager defaultManager];
     
-};
+    if ([fileMananager fileExistsAtPath:[self stationsDatabaseFilePath]]) {
+        [fileMananager removeItemAtPath:[self stationsDatabaseFilePath] error:nil];
+    }
+    
+    NSData *arrayData = [NSKeyedArchiver archivedDataWithRootObject:stations];
+    [fileMananager createFileAtPath:[self stationsDatabaseFilePath] contents:arrayData attributes:nil];
+}
 
+- (void)saveRegions:(NSDictionary *)regions {
+    NSFileManager *fileMananager = [NSFileManager defaultManager];
+    
+    if ([fileMananager fileExistsAtPath:[self regionsDatabaseFilePath]]) {
+        [fileMananager removeItemAtPath:[self regionsDatabaseFilePath] error:nil];
+    }
+    
+    NSData *dictionaryData = [NSKeyedArchiver archivedDataWithRootObject:self.regionsDictionary];
+    [fileMananager createFileAtPath:[self regionsDatabaseFilePath] contents:dictionaryData attributes:nil];
+}
 
+- (NSArray *)retriveStations {
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSString *stationsDatabaseFilePath = [self stationsDatabaseFilePath];
+    if (![fileManager fileExistsAtPath:stationsDatabaseFilePath]) {
+        return nil;
+    }
+    
+    NSData *stationsData = [[NSData alloc] initWithContentsOfFile:stationsDatabaseFilePath];
+    return [NSKeyedUnarchiver unarchiveObjectWithData:stationsData];
+}
 
-
+- (NSDictionary *)retriveRegions {
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSString *regionsDatabaseFilePath = [self regionsDatabaseFilePath];
+    if (![fileManager fileExistsAtPath:regionsDatabaseFilePath]) {
+        return nil;
+    }
+    
+    NSData *regionsData = [[NSData alloc] initWithContentsOfFile:regionsDatabaseFilePath];
+    return [NSKeyedUnarchiver unarchiveObjectWithData:regionsData];
+}
 @end

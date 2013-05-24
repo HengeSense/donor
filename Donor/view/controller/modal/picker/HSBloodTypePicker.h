@@ -6,10 +6,10 @@
 //  Copyright (c) 2013 Hint Solutions. All rights reserved.
 //
 
-#import "HSPicker.h"
+#import "HSPickerModal.h"
 #import "HSBloodType.h"
 
-@interface HSBloodTypePicker : HSPicker
+@interface HSBloodTypePicker : HSPickerModal
 
 /// @name UI properties
 @property (nonatomic, weak) IBOutlet UIButton *buttonBloodGroupO;
