@@ -32,5 +32,10 @@
 - (void)saveLastChoice;
 - (void)requestCurrentRegionAreaWithRegionName:(NSString *)regionName;
 
+/**
+ * Find and select station by specifed address.
+ */
+- (void)selectStationByAddress:(NSString *)address;
+
 
 @end

@@ -123,25 +123,27 @@ static const NSUInteger kDistrict_UndefinedId = -1;
     
     UIButton *rightBarBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     rightBarBtn.frame = CGRectMake(0.0, 0.0, 33.0, 30.0);
-    [rightBarBtn setImage:[UIImage imageNamed:@"navBarMapBtn_norm"] forState:UIControlStateNormal];
-    [rightBarBtn setImage:[UIImage imageNamed:@"navBarMapBtn_press"] forState:UIControlStateHighlighted];
+    [rightBarBtn setImage:[UIImage imageNamed:@"DonorStations_navBarMapBtn_norm"] forState:UIControlStateNormal];
+    [rightBarBtn setImage:[UIImage imageNamed:@"DonorStations_navBarMapBtn_press"] forState:UIControlStateHighlighted];
     [rightBarBtn addTarget:self action:@selector(onShowMap:) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightBarBtn];
     self.navigationItem.rightBarButtonItem = rightBarButtonItem;
     
-    UIImage *searchBarImage = [UIImage imageNamed:@"searchBarBackground"];
+    UIImage *searchBarImage = [UIImage imageNamed:@"DonorStations_searchBarBackground"];
     [self.searchDisplayController.searchBar setBackgroundImage:searchBarImage];
-    [self.searchDisplayController.searchBar setImage:[UIImage imageNamed:@"searchBarSearchIcon"] forSearchBarIcon:UISearchBarIconSearch state:UIControlStateNormal];
-    [self.searchDisplayController.searchBar setImage:[UIImage imageNamed:@"searchBarClearIcon"] forSearchBarIcon:UISearchBarIconClear state:UIControlStateNormal];
+    [self.searchDisplayController.searchBar setImage:[UIImage imageNamed:@"DonorStations_searchBarSearchIcon"] forSearchBarIcon:UISearchBarIconSearch state:UIControlStateNormal];
+    [self.searchDisplayController.searchBar setImage:[UIImage imageNamed:@"DonorStations_searchBarClearIcon"] forSearchBarIcon:UISearchBarIconClear state:UIControlStateNormal];
     self.searchDisplayController.searchBar.tintColor = DONOR_RED_COLOR;
     
-    UIImage *searchFieldImage = [[UIImage imageNamed:@"searchBarFieldBackground"] stretchableImageWithLeftCapWidth:20 topCapHeight:4];
+    UIImage *searchFieldImage = [[UIImage imageNamed:@"DonorStations_searchBarFieldBackground"] stretchableImageWithLeftCapWidth:20 topCapHeight:4];
     [self.searchDisplayController.searchBar setSearchFieldBackgroundImage:searchFieldImage forState:UIControlStateNormal];
     for (UIView *oneView in self.searchDisplayController.searchBar.subviews) {
         if ([oneView isKindOfClass:[UITextField class]]) {
             ((UITextField *)oneView).textColor = DONOR_SEARCH_FIELD_TEXT_COLOR;
         }
     }
+    
+    [self loadLastChoice];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -162,7 +164,6 @@ static const NSUInteger kDistrict_UndefinedId = -1;
 }
 
 #pragma mark - View Controller's routines
-
 - (void)saveLastChoice {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults setObject:[NSNumber numberWithInt:self.region_id] forKey:kUserDefaultsKey_LastSelectedRegion];
@@ -174,10 +175,30 @@ static const NSUInteger kDistrict_UndefinedId = -1;
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     
     NSNumber *regionId = [userDefaults objectForKey:kUserDefaultsKey_LastSelectedRegion];
-    self.region_id = regionId != nil ? [regionId integerValue] : -1;
+    self.region_id = regionId != nil ? [regionId integerValue] : kRegions_UndefinedId;
     
     NSNumber *districtId = [userDefaults objectForKey:kUserDefaultsKey_LastSelectedDistrict];
-    self.district_id = districtId != nil ? [districtId integerValue] : -1;
+    self.district_id = districtId != nil ? [districtId integerValue] : kDistrict_UndefinedId;
+}
+
+- (void)selectStationByAddress:(NSString *)address {
+    THROW_IF_ARGUMENT_NIL(address);
+    NSPredicate *addressPredicate =
+            [NSPredicate predicateWithFormat:@"(address like[cd] %@) OR (shortaddress like[cd] %@)", address, address];
+    NSArray *stationsWithAddress = [self.stations filteredArrayUsingPredicate:addressPredicate];
+    if (stationsWithAddress.count == 0) {
+        return;
+    }
+    
+    [self updateStations];
+    
+    NSIndexPath *stationInfoIndexPath =
+            [self indexPathForStationInfo:stationsWithAddress[0] forTableView:self.stationsTable];
+    if (stationInfoIndexPath != nil) {
+        [self.stationsTable selectRowAtIndexPath:stationInfoIndexPath animated:YES
+                scrollPosition:UITableViewScrollPositionMiddle];
+        self.selectedStationInfo = stationsWithAddress[0];
+    }
 }
 
 - (void)updateStations {
@@ -188,7 +209,7 @@ static const NSUInteger kDistrict_UndefinedId = -1;
     
     int totalDistricts = 0;
     for (NSMutableDictionary *oneRegion in [[self.regionsDictionary objectEnumerator] allObjects]) {
-        totalDistricts += ([[[oneRegion objectEnumerator] allObjects] count]-1);
+        totalDistricts += ([[[oneRegion objectEnumerator] allObjects] count] - 1);
     }
     NSLog(@"UPDATING VIEW. TOTAL RECORDS: %d, REGIONS: %d DISTRICTS: %d",
             [self.stations count], [[[self.regionsDictionary objectEnumerator] allObjects] count], totalDistricts);
@@ -387,7 +408,7 @@ static const NSUInteger kDistrict_UndefinedId = -1;
     NSMutableDictionary *newRegionsDictionary = [[NSMutableDictionary alloc] init];
     for (HSStationInfo *stationInfo in stations) {
         if (stationInfo.region_id != nil && stationInfo.region_name != nil) {
-            NSMutableDictionary *region = [self.regionsDictionary objectForKey:stationInfo.region_id];
+            NSMutableDictionary *region = [newRegionsDictionary objectForKey:stationInfo.region_id];
             if (region == nil) {
                 region = [[NSMutableDictionary alloc] init];
                 [region setObject:stationInfo.region_name forKey:@"region_name"];
@@ -635,7 +656,7 @@ static const NSUInteger kDistrict_UndefinedId = -1;
             if ([self isRegion:curRegionName equalToRegion:regionStr]) {
                 isFounded = YES;
                 self.region_id = [oneRegionId integerValue];
-                self.district_id = -1;
+                self.district_id = kDistrict_UndefinedId;
                 break;
             }
             
@@ -645,7 +666,7 @@ static const NSUInteger kDistrict_UndefinedId = -1;
                 NSString *curDistrictName = [curRegion objectForKey:oneDistrictId];
                 if ([self isRegion:curDistrictName equalToRegion:regionStr]) {
                     isFounded = YES;
-                    self.region_id = -1;
+                    self.region_id = kRegions_UndefinedId;
                     self.district_id = [oneDistrictId integerValue];
                     break;
                 }
@@ -673,7 +694,44 @@ static const NSUInteger kDistrict_UndefinedId = -1;
     return tableView==self.searchDisplayController.searchResultsTableView ? YES : NO;
 }
 
-- (HSStationInfo *)stationInfoForTable:(UITableView *)tableView forStationKeyPath:(NSIndexPath *)indexPath{
+- (NSIndexPath *)indexPathForStationInfo:(HSStationInfo *)stationInfo forTableView:(UITableView *)tableView {
+    NSMutableDictionary *currentStationsDictionary =
+            [self isSearchModeForTable:tableView] ? self.filteredDictionary : self.stationsByDistance;
+ 
+    NSArray *lessThan1 = [currentStationsDictionary objectForKey:kStationsFilteringByDistanceKey_LessThan1];
+    if ([lessThan1 containsObject:stationInfo]) {
+        return [NSIndexPath indexPathForRow:[lessThan1 indexOfObject:stationInfo] inSection:0];
+    }
+    
+    NSArray *lessThan3 = [currentStationsDictionary objectForKey:kStationsFilteringByDistanceKey_LessThan3];
+    if ([lessThan3 containsObject:stationInfo]) {
+        return [NSIndexPath indexPathForRow:[lessThan3 indexOfObject:stationInfo] inSection:1];
+    }
+
+    NSArray *lessThan5 = [currentStationsDictionary objectForKey:kStationsFilteringByDistanceKey_LessThan5];
+    if ([lessThan5 containsObject:stationInfo]) {
+        return [NSIndexPath indexPathForRow:[lessThan5 indexOfObject:stationInfo] inSection:2];
+    }
+
+    NSArray *lessThan10 = [currentStationsDictionary objectForKey:kStationsFilteringByDistanceKey_LessThan10];
+    if ([lessThan10 containsObject:stationInfo]) {
+        return [NSIndexPath indexPathForRow:[lessThan10 indexOfObject:stationInfo] inSection:3];
+    }
+
+    NSArray *lessThan15 = [currentStationsDictionary objectForKey:kStationsFilteringByDistanceKey_LessThan15];
+    if ([lessThan15 containsObject:stationInfo]) {
+        return [NSIndexPath indexPathForRow:[lessThan15 indexOfObject:stationInfo] inSection:4];
+    }
+
+    NSArray *moreThan15 = [currentStationsDictionary objectForKey:kStationsFilteringByDistanceKey_MoreThan15];
+    if ([moreThan15 containsObject:stationInfo]) {
+        return [NSIndexPath indexPathForRow:[moreThan15 indexOfObject:stationInfo] inSection:5];
+    }
+   
+    return nil;
+}
+
+- (HSStationInfo *)stationInfoForTable:(UITableView *)tableView forStationKeyPath:(NSIndexPath *)indexPath {
     NSMutableDictionary *currentStationsDictionary =
             [self isSearchModeForTable:tableView] ? self.filteredDictionary : self.stationsByDistance;
     NSArray *curSectionArray = nil;
@@ -867,7 +925,11 @@ static const NSUInteger kDistrict_UndefinedId = -1;
     }
     
     regionLabel = (UILabel *)[cell viewWithTag:10];
+    
     HSStationInfo *stationInfo = [self stationInfoForTable:tableView forStationKeyPath:indexPath];
+    if (stationInfo == self.selectedStationInfo) {
+        [cell setHighlighted:YES animated:YES];
+    }
     
     NSString *name = stationInfo.name;
     NSString *address = stationInfo.shortaddress != nil ? stationInfo.shortaddress : stationInfo.address;
@@ -916,6 +978,10 @@ static const NSUInteger kDistrict_UndefinedId = -1;
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell
         forRowAtIndexPath:(NSIndexPath *)indexPath {
     tableView.backgroundColor = [UIColor clearColor];
+    HSStationInfo *cellStationInfo = [self stationInfoForTable:tableView forStationKeyPath:indexPath];
+    if (cellStationInfo == self.selectedStationInfo) {
+        cell.highlighted = YES;
+    }
 }
 
 

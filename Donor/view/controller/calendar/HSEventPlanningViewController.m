@@ -396,7 +396,10 @@ static const NSUInteger kCommentsTextViewSymbolsMax = 260;
 }
 
 - (IBAction)selectBloodDonationCenterAddress: (id)sender {
-    self.addressPicker.selectedStationInfo = self.currentEditedEvent.labAddress;
+    
+    if (self.currentEditedEvent.labAddress != nil) {
+        [self.addressPicker selectStationByAddress:self.currentEditedEvent.labAddress];
+    }
     [self.addressPicker showWithCompletion: ^(BOOL isDone) {
         if (isDone) {
             self.currentEditedEvent.labAddress = self.addressPicker.selectedStationInfo.address;

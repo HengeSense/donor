@@ -57,6 +57,7 @@
 }
 
 - (void)configureNavigationBar {
+    self.navigationItem.rightBarButtonItem = nil;
 }
 
 @end
