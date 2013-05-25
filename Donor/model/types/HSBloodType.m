@@ -8,6 +8,8 @@
 
 #import "HSBloodType.h"
 
+static NSString * const kPlaceholder_UnknownType = @"\u2015"; // horizontal bar
+
 NSString *bloodGroupToString(HSBloodGroupType bloodGroup) {
     switch (bloodGroup)
     {
@@ -20,7 +22,7 @@ NSString *bloodGroupToString(HSBloodGroupType bloodGroup) {
         case HSBloodGroupType_AB:
             return @"AB(IV)";
         default:
-            return @"";
+            return kPlaceholder_UnknownType;
     }
     
 }
@@ -32,6 +34,6 @@ NSString *bloodRhToString(HSBloodRhType bloodRh) {
         case HSBloodRhType_Negative:
             return @"RH-";
         default:
-            return @"";
+            return kPlaceholder_UnknownType;
     }
 }

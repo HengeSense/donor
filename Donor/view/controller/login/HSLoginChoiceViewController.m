@@ -187,6 +187,8 @@
             userInfo.name = firstName;
             userInfo.secondName = secondName;
             userInfo.sex = isMale ? HSSexType_Mail : HSSexType_Femail;
+            userInfo.bloodGroup = HSBloodGroupType_Unknown;
+            userInfo.bloodRh = HSBloodRhType_Unknown;
             [userInfo applyChanges];
             [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                 completion(succeeded, error);

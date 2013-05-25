@@ -47,11 +47,11 @@
     [self configureUI];
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     if (self.currentContentViewController == nil) {
-        // First apearance and ads should be shown
-        [self showAdsView:nil];
+        // First apearance and info should be shown
+        [self showInfoView:nil];
     }
 }
 

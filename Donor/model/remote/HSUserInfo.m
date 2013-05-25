@@ -33,8 +33,8 @@ static NSString * const kRemoteUserField_Platform = @"platform";
         self.name = [user objectForKey:kRemoteUserField_Name];
         self.secondName = [user objectForKey:kRemoteUserField_SecondName];
         self.email = [user email];
-        self.bloodGroup = [[user objectForKey:kRemoteUserField_BloodGroup] unsignedIntegerValue];
-        self.bloodRh = [[user objectForKey:kRemoteUserField_BloodRh] unsignedIntegerValue];
+        self.bloodGroup = [[user objectForKey:kRemoteUserField_BloodGroup] integerValue];
+        self.bloodRh = [[user objectForKey:kRemoteUserField_BloodRh] integerValue];
         self.sex = [[user objectForKey:kRemoteUserField_Sex] unsignedIntegerValue];
         self.devicePlatform = devicePlatformFromString([user objectForKey:kRemoteUserField_Platform]);
     }
@@ -52,8 +52,8 @@ static NSString * const kRemoteUserField_Platform = @"platform";
     if (self.email != nil) {
         [self.user setEmail:self.email];
     }
-    [self.user setObject:[NSNumber numberWithUnsignedInteger:self.bloodGroup] forKey:kRemoteUserField_BloodGroup];
-    [self.user setObject:[NSNumber numberWithUnsignedInteger:self.bloodRh] forKey:kRemoteUserField_BloodRh];
+    [self.user setObject:[NSNumber numberWithInteger:self.bloodGroup] forKey:kRemoteUserField_BloodGroup];
+    [self.user setObject:[NSNumber numberWithInteger:self.bloodRh] forKey:kRemoteUserField_BloodRh];
     [self.user setObject:[NSNumber numberWithUnsignedInteger:self.sex] forKey:kRemoteUserField_Sex];
     [self.user setObject: devicePlatformToString(self.devicePlatform) forKey:kRemoteUserField_Platform];
 }

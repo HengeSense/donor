@@ -18,9 +18,14 @@
 @implementation HSBloodTypePicker
 
 #pragma mark - UI life cycle
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    [self configureUI];
+}
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self configureUI];
+    [self updateUI];
 }
 
 #pragma mark - UI presentation
@@ -57,15 +62,20 @@
 #pragma mark - Private
 #pragma mark - UI configuration
 - (void)configureUI {
+    [self changeLabel:self.labelBloodGroup toSelected:YES];
+    [self changeLabel:self.labelBloodRh toSelected:YES];
+}
+
+- (void)updateUI {
     [self updateUIWithBloodGroup:self.bloodGroup];
     [self updateUIWithBloodRh:self.bloodRh];
 }
 
 - (void)updateUIWithBloodGroup:(HSBloodGroupType)bloodGroup {
-    NSArray *bloodGroupButtons =
-            @[self.buttonBloodGroupO, self.buttonBloodGroupA, self.buttonBloodGroupB, self.buttonBloodGroupAB];
-    NSArray *bloodGroupLabels =
-            @[self.labelBloodBloodGroupO, self.labelBloodGroupA, self.labelBloodGroupB, self.labelBloodGroupAB];
+    NSArray *bloodGroupButtons = @[self.buttonBloodGroupUnknown, self.buttonBloodGroupO, self.buttonBloodGroupA,
+            self.buttonBloodGroupB, self.buttonBloodGroupAB];
+    NSArray *bloodGroupLabels = @[self.labelBloodGroupUnknown, self.labelBloodGroupO, self.labelBloodGroupA,
+            self.labelBloodGroupB, self.labelBloodGroupAB];
     
     if ([bloodGroupButtons count] != [bloodGroupLabels count]) {
         @throw [NSException exceptionWithName:NSInternalInconsistencyException
@@ -82,8 +92,8 @@
 }
 
 - (void)updateUIWithBloodRh:(HSBloodRhType)bloodRh {
-    NSArray *bloodRhButtons = @[self.buttonBloodRhP, self.buttonBloodRhN];
-    NSArray *bloodRhLabels = @[self.labelBloodRhP, self.labelBloodRhN];
+    NSArray *bloodRhButtons = @[self.buttonBloodRhUnknown, self.buttonBloodRhP, self.buttonBloodRhN];
+    NSArray *bloodRhLabels = @[self.labelBloodRhUnknown, self.labelBloodRhP, self.labelBloodRhN];
     
     if ([bloodRhButtons count] != [bloodRhLabels count]) {
         @throw [NSException exceptionWithName:NSInternalInconsistencyException
@@ -124,6 +134,7 @@
         case HSBloodGroupType_A:
         case HSBloodGroupType_B:
         case HSBloodGroupType_AB:
+        case HSBloodGroupType_Unknown:
             break;
         default:
             @throw [NSException exceptionWithName:NSInternalInconsistencyException
@@ -136,6 +147,7 @@
     switch (tag) {
         case HSBloodRhType_Positive:
         case HSBloodRhType_Negative:
+        case HSBloodRhType_Unknown:
             break;
         default:
             @throw [NSException exceptionWithName:NSInternalInconsistencyException
@@ -144,4 +156,8 @@
     }
 }
 
+- (void)viewDidUnload {
+    [self setLabelBloodGroup:nil];
+    [super viewDidUnload];
+}
 @end
