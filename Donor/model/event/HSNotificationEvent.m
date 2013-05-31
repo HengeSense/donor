@@ -90,6 +90,7 @@ static NSString * const kObservingKey_ScheduleDate = @"scheduleDate";
     notification.alertBody = alertBody;
     notification.alertAction = alertAction;
     notification.userInfo = userInfo;
+    notification.timeZone = [NSTimeZone defaultTimeZone];
     
     [[UIApplication sharedApplication] scheduleLocalNotification:notification];
     

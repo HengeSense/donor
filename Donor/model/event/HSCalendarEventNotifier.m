@@ -117,8 +117,6 @@ static NSString * const kHSCalendarEventNotifierObservingContext = @"kHSCalendar
             } else if ([notificationEvent isConfirmationLocalNotification:localNotification]) {
                 [self fireCalendarNotificationWithEvent:notificationEvent nature:HSNotificationNatureType_Confirmation
                                                  source:HSNotificationSourceType_Local];
-            } else {
-                NSLog(@"Undefined local notification nature type, will be ignored");
             }
             break;
         }

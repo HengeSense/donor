@@ -15,7 +15,7 @@
 @implementation HSFinishRestEvent
 
 - (NSDate *)reminderFireDateDefault {
-    return [self.scheduleDate dateMovedToHour:12 minute:00];
+    return [self.scheduleDate dateMovedToHour:17 minute:45];
 }
 
 - (void)scheduleConfirmationLocalNotification {
@@ -38,7 +38,7 @@
             
     [super scheduleLocalNotificationAtDate:correctedFireDate withAlertAction:nil
             alertBody:bloodDonationTypeToFinishRestEventMessage(self.bloodDonationType)
-            userInfo:[self localNotificationBaseUserInfo]];
+            userInfo:[self reminderLocalNotificationBaseUserInfo]];
 }
 
 #pragma mark - HSUIDProvider protocol implementation
