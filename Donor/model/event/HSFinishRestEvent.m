@@ -15,7 +15,7 @@
 @implementation HSFinishRestEvent
 
 - (NSDate *)reminderFireDateDefault {
-    return [self.scheduleDate dateMovedToHour:17 minute:45];
+    return [self.scheduleDate dateMovedToHour:12 minute:00];
 }
 
 - (void)scheduleConfirmationLocalNotification {
