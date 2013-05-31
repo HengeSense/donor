@@ -74,7 +74,7 @@ static PFUser *_mocCurrentUser = nil;
     HSBloodRemoteEvent *testEvent = [[HSBloodRemoteEvent alloc] init];
     
     [[calendar expect] checkUnlockedModelPrecondition];
-    STAssertThrows([calendar addBloodRemoteEvent:testEvent completion:nil],
+    STAssertThrows([calendar addBloodRemoteEvent:testEvent ignoreRestPeriod:NO completion:nil],
             @"Model is locked. This method invocation should rise exception");
     [calendar verify];
 
@@ -84,7 +84,7 @@ static PFUser *_mocCurrentUser = nil;
     [calendar verify];
 
     [[calendar expect] checkUnlockedModelPrecondition];
-    STAssertThrows([calendar replaceBloodRemoteEvent:testEvent withEvent:testEvent completion:nil],
+    STAssertThrows([calendar replaceBloodRemoteEvent:testEvent withEvent:testEvent ignoreRestPeriod:NO completion:nil],
             @"Model is locked. This method invocation should rise exception");
     [calendar verify];
     
@@ -124,7 +124,7 @@ static PFUser *_mocCurrentUser = nil;
     // Add donation event
     [[donationEvent expect] scheduleConfirmationLocalNotification];
     [[donationEvent expect] scheduleReminderLocalNotificationAtDate:OCMOCK_ANY];
-    [calendar addBloodRemoteEvent:donationEvent completion:nil];
+    [calendar addBloodRemoteEvent:donationEvent ignoreRestPeriod:NO completion:nil];
     [donationEvent verify];
     
     // Remove donation event
@@ -136,7 +136,7 @@ static PFUser *_mocCurrentUser = nil;
     id testEvent = [OCMockObject partialMockForObject:[[HSBloodTestsEvent alloc] init]];
     // Add test event
     [[testEvent expect] scheduleReminderLocalNotificationAtDate:OCMOCK_ANY];
-    [calendar addBloodRemoteEvent:testEvent completion:nil];
+    [calendar addBloodRemoteEvent:testEvent ignoreRestPeriod:NO completion:nil];
     [testEvent verify];
     
     // Remove test event
@@ -145,11 +145,11 @@ static PFUser *_mocCurrentUser = nil;
     [testEvent verify];
 
     // Replace events
-    [calendar addBloodRemoteEvent:donationEvent completion:nil];
+    [calendar addBloodRemoteEvent:donationEvent ignoreRestPeriod:NO completion:nil];
 
     [[donationEvent expect] cancelScheduledLocalNotifications];
     [[testEvent expect] scheduleReminderLocalNotificationAtDate:OCMOCK_ANY];
-    [calendar replaceBloodRemoteEvent:donationEvent withEvent:testEvent completion:nil];
+    [calendar replaceBloodRemoteEvent:donationEvent withEvent:testEvent ignoreRestPeriod:NO completion:nil];
     [testEvent verify];
     [donationEvent verify];
 
@@ -186,7 +186,7 @@ static PFUser *_mocCurrentUser = nil;
     // Test for blood donation event.
     id donationEvent = [OCMockObject partialMockForObject:[[HSBloodDonationEvent alloc] init]];
     // Add donation event
-    [calendar addBloodRemoteEvent:donationEvent completion:^(BOOL success, NSError *error) {
+    [calendar addBloodRemoteEvent:donationEvent ignoreRestPeriod:NO completion:^(BOOL success, NSError *error) {
         STAssertTrue(success, @"Add event to calendar should be success.");
     }];
     STAssertTrue([[calendar allEvents] containsObject:donationEvent],
@@ -202,7 +202,7 @@ static PFUser *_mocCurrentUser = nil;
     // Test for blood test event.
     id testEvent = [OCMockObject partialMockForObject:[[HSBloodTestsEvent alloc] init]];
     // Add test event
-    [calendar addBloodRemoteEvent:testEvent completion:^(BOOL success, NSError *error) {
+    [calendar addBloodRemoteEvent:testEvent ignoreRestPeriod:NO completion:^(BOOL success, NSError *error) {
         STAssertTrue(success, @"Add event to calendar should be success.");
     }];
     STAssertTrue([[calendar allEvents] containsObject:testEvent],
@@ -216,8 +216,8 @@ static PFUser *_mocCurrentUser = nil;
             @"Removing event was successfull so it shouldn't be in the calendar event list.");
     
     // Replace events
-    [calendar addBloodRemoteEvent:donationEvent completion:nil];
-    [calendar replaceBloodRemoteEvent:donationEvent withEvent:testEvent
+    [calendar addBloodRemoteEvent:donationEvent ignoreRestPeriod:NO completion:nil];
+    [calendar replaceBloodRemoteEvent:donationEvent withEvent:testEvent ignoreRestPeriod:NO
             completion:^(BOOL success, NSError *error)
     {
         STAssertTrue(success, @"Replacing event in calendar should be success.");
