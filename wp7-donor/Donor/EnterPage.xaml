@@ -51,8 +51,8 @@
                 </controls:PivotItem.Header>
 
                 <StackPanel>
-                    
-                    <Image Width="249" Source="/Donor;component/images/donor_enter_logo.png" />
+
+                    <Image Width="300"  Source="/Donor;component/images/Donor_Iphone_logo.png" />
                     
                             <Button Name="Login" 
 						    Content="{Binding Login, Source={StaticResource Loc}}" 						
@@ -75,7 +75,7 @@
 
                             <Button Name="RegisterShowButton" 
 						    Content="Регистрация" 
-                            Margin="0,40,0,10"
+                            Margin="0,30,0,10"
 						    FontSize="24"
 						    Background="#FFDD6020" Foreground="White"
 						    BorderBrush="#FFDD6020" 

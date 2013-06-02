@@ -477,6 +477,7 @@
     <Content Include="images\achieves\Achive-donor_firstBlood_unavailible.png" />
     <Content Include="images\achieves\Achive-donor_secondBlood_unavailible.png" />
     <Content Include="images\achieves\Achive-donor_unavailible.png" />
+    <Resource Include="images\Donor_Iphone_logo.png" />
     <Content Include="images\ic_donors_act.png" />
     <Resource Include="images\ic_search.png" />
     <Content Include="images\ic_menu_achivement_normal.png" />

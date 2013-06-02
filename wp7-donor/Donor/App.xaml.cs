@@ -25,8 +25,8 @@ namespace Donor
         public const string FlurryKey = "BFKZPN5DWWWSDZ9WDMB5";
         public const string ACCESS_TOKEN = "059db4f010c5f40bf4a73a28222dd3e3";
 
-        public const string Foursquare_client_id = "FUBHCGLZXTZDDAPM21ZOGX1QNMTFB41W1C0KBPMA1UNZQEPJ";
-        public const string Foursquare_secret = "JUM5XCW0Q0MCFYZOOMN2UHND44RGBMWJB2Y2WX3N0SDYNSTJ";
+        public const string Foursquare_client_id = "SCVGUV4WOSZKD3NJ53D1EHBTKU3RC0QAVGCB40D10Y14IGQM";
+        public const string Foursquare_secret = "CF3PIZ24E14TGKNEQ3NXUNDXVDB2MD2ZI12RJV4V13LEUFJZ";
 
         //private static MainViewModel viewModel = null;
 
