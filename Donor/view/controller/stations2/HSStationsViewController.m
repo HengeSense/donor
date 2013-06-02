@@ -32,6 +32,10 @@ static NSString * const kStationsFilteringByDistanceKey_LessThan10 = @"lessThan1
 static NSString * const kStationsFilteringByDistanceKey_LessThan15 = @"lessThan15";
 static NSString * const kStationsFilteringByDistanceKey_MoreThan15 = @"moreThan15";
 
+#pragma mark - UI tags
+static const NSUInteger kCellRegionLabelTag = 10;
+static const NSUInteger kCellSeparatorViewTag = 11;
+
 #pragma mark - Region constants
 static const NSUInteger kRegions_UndefinedId = -1;
 
@@ -761,17 +765,24 @@ static const NSUInteger kDistrict_UndefinedId = -1;
         return nil;
     }
     
-    return [curSectionArray objectAtIndex:[indexPath row]];
+    if (indexPath.row < curSectionArray.count) {
+        return [curSectionArray objectAtIndex:indexPath.row];
+    } else {
+        NSLog(@"Requested missing station info for table row: %ld", indexPath.row);
+        return nil;
+    }
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    NSMutableDictionary *currentStationsDictionary = [self isSearchModeForTable:tableView] ? self.filteredDictionary : self.stationsByDistance;
-    
+    NSMutableDictionary *currentStationsDictionary = [self isSearchModeForTable:tableView] ?
+            self.filteredDictionary : self.stationsByDistance;
+
     return [[[currentStationsDictionary keyEnumerator] allObjects] count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    NSMutableDictionary *currentStationsDictionary = [self isSearchModeForTable:tableView] ? self.filteredDictionary : self.stationsByDistance;
+    NSMutableDictionary *currentStationsDictionary = [self isSearchModeForTable:tableView] ?
+            self.filteredDictionary : self.stationsByDistance;
 
     switch (section) {
         case 0:
@@ -800,35 +811,8 @@ static const NSUInteger kDistrict_UndefinedId = -1;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    NSMutableDictionary *currentStationsDictionary = [self isSearchModeForTable:tableView] ? self.filteredDictionary : self.stationsByDistance;
-    
-    NSInteger elementsConnt = 0;
-    switch (section) {
-        case 0:
-            elementsConnt = [[currentStationsDictionary objectForKey:kStationsFilteringByDistanceKey_LessThan1] count];
-            break;
-        case 1:
-            elementsConnt = [[currentStationsDictionary objectForKey:kStationsFilteringByDistanceKey_LessThan3] count];
-            break;
-        case 2:
-            elementsConnt = [[currentStationsDictionary objectForKey:kStationsFilteringByDistanceKey_LessThan5] count];
-            break;
-        case 3:
-            elementsConnt = [[currentStationsDictionary objectForKey:kStationsFilteringByDistanceKey_LessThan10] count];
-            break;
-        case 4:
-            elementsConnt = [[currentStationsDictionary objectForKey:kStationsFilteringByDistanceKey_LessThan15] count];
-            break;
-        case 5:
-            elementsConnt = [[currentStationsDictionary objectForKey:kStationsFilteringByDistanceKey_MoreThan15] count];
-            break;
-            
-        default:
-            return 0;
-            break;
-    }
-    
-    return elementsConnt>0 ? 30.0 : 0.0;
+    NSInteger elementsConnt = [self tableView:tableView numberOfRowsInSection:section];
+    return elementsConnt > 0 ? 30.0f : 0.0f;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -879,7 +863,6 @@ static const NSUInteger kDistrict_UndefinedId = -1;
     UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, headerHeight)];
     headerView.clipsToBounds = NO;
     UIImageView *headerBackground = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"DonorStations_tableHeaderBackground"]];
-    //headerBackground.frame = headerView.bounds;
     [headerView addSubview:headerBackground];
     UILabel *headerLabel = [[UILabel alloc] initWithFrame:headerView.bounds];
     headerLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:16.0];
@@ -893,19 +876,16 @@ static const NSUInteger kDistrict_UndefinedId = -1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSString *cellID;
-    cellID = @"InvitroOnlineRootHistoryCellID";
+    static NSString * const cellID = @"StationsCellID";
     
     float cellHeight = [self tableView:tableView heightForRowAtIndexPath:indexPath];
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
-    UILabel *regionLabel;
-    UIImageView *separator = nil;
-    if (cell==nil) {
+    if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellID];
         cell.backgroundColor = [UIColor clearColor];
         
-        regionLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, 300, cellHeight-10)];
-        regionLabel.tag = 10;
+        UILabel *regionLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, 300, cellHeight-10)];
+        regionLabel.tag = kCellRegionLabelTag;
         regionLabel.font = [UIFont fontWithName:@"Helvetica" size:14];
         regionLabel.textColor = DONOR_TEXT_COLOR;
         regionLabel.highlightedTextColor = DONOR_RED_COLOR;
@@ -920,13 +900,12 @@ static const NSUInteger kDistrict_UndefinedId = -1;
         cell.selectedBackgroundView.alpha = 1.0;
         cell.selectedBackgroundView.backgroundColor = RGBA_COLOR(0, 0, 0, 0.1);
         
-        separator = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"DonorStations_tableCellSeparator"]];
-        separator.tag = 11;
-        [cell addSubview:separator];
+        UIImageView *separatorView =
+                [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"DonorStations_tableCellSeparator"]];
+        separatorView.tag = kCellSeparatorViewTag;
+        [cell addSubview:separatorView];
     }
-    
-    regionLabel = (UILabel *)[cell viewWithTag:10];
-    
+        
     HSStationInfo *stationInfo = [self stationInfoForTable:tableView forStationKeyPath:indexPath];
     if (stationInfo == self.selectedStationInfo) {
         [cell setHighlighted:YES animated:YES];
@@ -934,6 +913,8 @@ static const NSUInteger kDistrict_UndefinedId = -1;
     
     NSString *name = stationInfo.name;
     NSString *address = stationInfo.shortaddress != nil ? stationInfo.shortaddress : stationInfo.address;
+    
+    UILabel *regionLabel = (UILabel *)[cell viewWithTag:kCellRegionLabelTag];
     regionLabel.text = [NSString stringWithFormat:@"%@\n%@",
             (name != nil ? name : @""), (address != nil ? address : @"")];
 
@@ -942,25 +923,32 @@ static const NSUInteger kDistrict_UndefinedId = -1;
         [attributedStr addAttribute:NSForegroundColorAttributeName value:DONOR_TEXT_COLOR
                 range:NSMakeRange(0, [name length])];
         [attributedStr addAttribute:NSForegroundColorAttributeName value:DONOR_GREEN_COLOR
-                range:NSMakeRange([name length] + 1, [name length])];
+                range:NSMakeRange([name length] + 1, [address length])];
         regionLabel.attributedText = attributedStr;
-        regionLabel.highlightedTextColor = DONOR_RED_COLOR;
     }
     CGRect regionLabelFrame = regionLabel.frame;
     regionLabelFrame.size.height = cellHeight - 10;
     regionLabel.frame = regionLabelFrame;
     
-    separator = (UIImageView *)[cell viewWithTag:11];
-    CGRect separatorFrame = separator.frame;
+    UIView *separatorView = [cell viewWithTag:kCellSeparatorViewTag];
+    CGRect separatorFrame = separatorView.frame;
     separatorFrame.origin = CGPointMake(12, cellHeight - 3);
-    separator.frame = separatorFrame;
+    separatorView.frame = separatorFrame;
     
     return cell;
 }
 
 
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSIndexPath *deselectIndexPath = nil;
+    if (self.selectedStationInfo != nil) {
+        deselectIndexPath = [self indexPathForStationInfo:self.selectedStationInfo forTableView:tableView];
+    }
     self.selectedStationInfo = [self stationInfoForTable:tableView forStationKeyPath:indexPath];
+    if (deselectIndexPath != nil) {
+        [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:deselectIndexPath]
+                withRowAnimation:UITableViewRowAnimationNone];
+    }
     return indexPath;
 }
 
@@ -980,9 +968,9 @@ static const NSUInteger kDistrict_UndefinedId = -1;
         forRowAtIndexPath:(NSIndexPath *)indexPath {
     tableView.backgroundColor = [UIColor clearColor];
     HSStationInfo *cellStationInfo = [self stationInfoForTable:tableView forStationKeyPath:indexPath];
-    if (cellStationInfo == self.selectedStationInfo) {
-        cell.highlighted = YES;
-    }
+
+    BOOL highlighting = cellStationInfo == self.selectedStationInfo;
+    cell.highlighted = highlighting;
 }
 
 
