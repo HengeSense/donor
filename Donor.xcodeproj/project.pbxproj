@@ -130,33 +130,6 @@
 		404470131712AF2300DF0561 /* HSItsBetaAchievementsHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 404470121712AF2300DF0561 /* HSItsBetaAchievementsHeader.xib */; };
 		40595AF4170C4086007B2C61 /* HSItsBetaAchievementsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40595AF2170C4086007B2C61 /* HSItsBetaAchievementsViewController.m */; };
 		40595AF5170C4086007B2C61 /* HSItsBetaAchievementsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40595AF3170C4086007B2C61 /* HSItsBetaAchievementsViewController.xib */; };
-		4097890A17097B8E0054042A /* CIColor+ItsBeta.m in Sources */ = {isa = PBXBuildFile; fileRef = 409788E717097B8E0054042A /* CIColor+ItsBeta.m */; };
-		4097890B17097B8E0054042A /* NSDate+ItsBeta.m in Sources */ = {isa = PBXBuildFile; fileRef = 409788E917097B8E0054042A /* NSDate+ItsBeta.m */; };
-		4097890C17097B8E0054042A /* UIColor+ItsBeta.m in Sources */ = {isa = PBXBuildFile; fileRef = 409788EB17097B8E0054042A /* UIColor+ItsBeta.m */; };
-		4097890D17097B8E0054042A /* ItsBetaApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 409788ED17097B8E0054042A /* ItsBetaApi.m */; };
-		4097890E17097B8E0054042A /* ItsBetaFastCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 409788EF17097B8E0054042A /* ItsBetaFastCache.m */; };
-		4097890F17097B8E0054042A /* ItsBetaQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 409788F117097B8E0054042A /* ItsBetaQueue.m */; };
-		4097891017097B8E0054042A /* ItsBetaRest.m in Sources */ = {isa = PBXBuildFile; fileRef = 409788F317097B8E0054042A /* ItsBetaRest.m */; };
-		4097891117097B8E0054042A /* ItsBeta.m in Sources */ = {isa = PBXBuildFile; fileRef = 409788F517097B8E0054042A /* ItsBeta.m */; };
-		4097891217097B8E0054042A /* ItsBetaApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 409788F717097B8E0054042A /* ItsBetaApplication.m */; };
-		4097891317097B8E0054042A /* ItsBetaCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 409788F917097B8E0054042A /* ItsBetaCategory.m */; };
-		4097891417097B8E0054042A /* ItsBetaCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 409788FB17097B8E0054042A /* ItsBetaCore.m */; };
-		4097891517097B8E0054042A /* ItsBetaImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 409788FD17097B8E0054042A /* ItsBetaImage.m */; };
-		4097891617097B8E0054042A /* ItsBetaObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 409788FF17097B8E0054042A /* ItsBetaObject.m */; };
-		4097891717097B8E0054042A /* ItsBetaObjectTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4097890117097B8E0054042A /* ItsBetaObjectTemplate.m */; };
-		4097891817097B8E0054042A /* ItsBetaObjectType.m in Sources */ = {isa = PBXBuildFile; fileRef = 4097890317097B8E0054042A /* ItsBetaObjectType.m */; };
-		4097891917097B8E0054042A /* ItsBetaParams.m in Sources */ = {isa = PBXBuildFile; fileRef = 4097890517097B8E0054042A /* ItsBetaParams.m */; };
-		4097891A17097B8E0054042A /* ItsBetaPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4097890717097B8E0054042A /* ItsBetaPlayer.m */; };
-		4097891B17097B8E0054042A /* ItsBetaProject.m in Sources */ = {isa = PBXBuildFile; fileRef = 4097890917097B8E0054042A /* ItsBetaProject.m */; };
-		4097892F170990F60054042A /* ItsBetaFacebook.m in Sources */ = {isa = PBXBuildFile; fileRef = 40978926170990F60054042A /* ItsBetaFacebook.m */; };
-		40978930170990F60054042A /* ItsBetaFacebookIPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 40978928170990F60054042A /* ItsBetaFacebookIPad.m */; };
-		40978931170990F60054042A /* ItsBetaFacebookIPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40978929170990F60054042A /* ItsBetaFacebookIPad.xib */; };
-		40978932170990F60054042A /* ItsBetaFacebookIPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 4097892B170990F60054042A /* ItsBetaFacebookIPhone.m */; };
-		40978933170990F60054042A /* ItsBetaFacebookIPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4097892C170990F60054042A /* ItsBetaFacebookIPhone.xib */; };
-		40978934170990F60054042A /* ItsBetaGraphUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4097892E170990F60054042A /* ItsBetaGraphUser.m */; };
-		4097893817099DFC0054042A /* NSURL+ItsBeta.m in Sources */ = {isa = PBXBuildFile; fileRef = 4097893717099DFC0054042A /* NSURL+ItsBeta.m */; };
-		4097893B17099E640054042A /* NSString+ItsBeta.m in Sources */ = {isa = PBXBuildFile; fileRef = 4097893A17099E640054042A /* NSString+ItsBeta.m */; };
-		4097893E17099F1B0054042A /* NSDictionary+ItsBeta.m in Sources */ = {isa = PBXBuildFile; fileRef = 4097893D17099F1A0054042A /* NSDictionary+ItsBeta.m */; };
 		409F0D1E170F039800E0AF77 /* HSItsBetaAchievementsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 409F0D1D170F039800E0AF77 /* HSItsBetaAchievementsCell.m */; };
 		409F0D26170F082500E0AF77 /* HSItsBetaAchievementsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 409F0D25170F082400E0AF77 /* HSItsBetaAchievementsCell.xib */; };
 		40D5FF631714409A00821B01 /* HSItsBetaAchievementDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40D5FF611714409900821B01 /* HSItsBetaAchievementDetailViewController.m */; };
@@ -418,6 +391,40 @@
 		68D6CD9716E22A8900972D41 /* HSBloodRemoteEvent+LocalNotification_Protected.m in Sources */ = {isa = PBXBuildFile; fileRef = 68D6CD9616E22A8800972D41 /* HSBloodRemoteEvent+LocalNotification_Protected.m */; };
 		68E535061747BB43008E44E6 /* map.png in Resources */ = {isa = PBXBuildFile; fileRef = 68E535041747BB43008E44E6 /* map.png */; };
 		68E535071747BB43008E44E6 /* map@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68E535051747BB43008E44E6 /* map@2x.png */; };
+		68E762C5175887EE006009A7 /* CIColor+ItsBeta.m in Sources */ = {isa = PBXBuildFile; fileRef = 68E76285175887ED006009A7 /* CIColor+ItsBeta.m */; };
+		68E762C6175887EE006009A7 /* NSDate+ItsBeta.m in Sources */ = {isa = PBXBuildFile; fileRef = 68E76287175887ED006009A7 /* NSDate+ItsBeta.m */; };
+		68E762C7175887EE006009A7 /* NSDictionary+ItsBeta.m in Sources */ = {isa = PBXBuildFile; fileRef = 68E76289175887ED006009A7 /* NSDictionary+ItsBeta.m */; };
+		68E762C8175887EE006009A7 /* NSString+ItsBeta.m in Sources */ = {isa = PBXBuildFile; fileRef = 68E7628B175887ED006009A7 /* NSString+ItsBeta.m */; };
+		68E762C9175887EE006009A7 /* NSURL+ItsBeta.m in Sources */ = {isa = PBXBuildFile; fileRef = 68E7628D175887ED006009A7 /* NSURL+ItsBeta.m */; };
+		68E762CA175887EE006009A7 /* UIColor+ItsBeta.m in Sources */ = {isa = PBXBuildFile; fileRef = 68E7628F175887ED006009A7 /* UIColor+ItsBeta.m */; };
+		68E762CB175887EE006009A7 /* ItsBetaFacebook.m in Sources */ = {isa = PBXBuildFile; fileRef = 68E76292175887ED006009A7 /* ItsBetaFacebook.m */; };
+		68E762CC175887EE006009A7 /* ItsBetaFacebookIPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 68E76294175887ED006009A7 /* ItsBetaFacebookIPad.m */; };
+		68E762CD175887EE006009A7 /* ItsBetaFacebookIPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68E76295175887ED006009A7 /* ItsBetaFacebookIPad.xib */; };
+		68E762CE175887EE006009A7 /* ItsBetaFacebookIPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 68E76297175887ED006009A7 /* ItsBetaFacebookIPhone.m */; };
+		68E762CF175887EE006009A7 /* ItsBetaFacebookIPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68E76298175887ED006009A7 /* ItsBetaFacebookIPhone.xib */; };
+		68E762D0175887EE006009A7 /* ItsBetaGraphUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 68E7629A175887ED006009A7 /* ItsBetaGraphUser.m */; };
+		68E762D1175887EE006009A7 /* ItsBetaApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 68E7629C175887ED006009A7 /* ItsBetaApi.m */; };
+		68E762D2175887EE006009A7 /* ItsBetaFastCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 68E7629E175887ED006009A7 /* ItsBetaFastCache.m */; };
+		68E762D3175887EE006009A7 /* ItsBetaQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 68E762A0175887ED006009A7 /* ItsBetaQueue.m */; };
+		68E762D4175887EE006009A7 /* ItsBetaRest.m in Sources */ = {isa = PBXBuildFile; fileRef = 68E762A2175887ED006009A7 /* ItsBetaRest.m */; };
+		68E762D5175887EE006009A7 /* ItsBetaVk.m in Sources */ = {isa = PBXBuildFile; fileRef = 68E762A5175887ED006009A7 /* ItsBetaVk.m */; };
+		68E762D6175887EE006009A7 /* ItsBetaVkIPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 68E762A7175887ED006009A7 /* ItsBetaVkIPad.m */; };
+		68E762D7175887EE006009A7 /* ItsBetaVkIPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68E762A8175887ED006009A7 /* ItsBetaVkIPad.xib */; };
+		68E762D8175887EE006009A7 /* ItsBetaVkIPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 68E762AA175887ED006009A7 /* ItsBetaVkIPhone.m */; };
+		68E762D9175887EE006009A7 /* ItsBetaVkIPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68E762AB175887ED006009A7 /* ItsBetaVkIPhone.xib */; };
+		68E762DA175887EE006009A7 /* ItsBetaVkUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 68E762AD175887ED006009A7 /* ItsBetaVkUser.m */; };
+		68E762DB175887EE006009A7 /* ItsBeta.m in Sources */ = {isa = PBXBuildFile; fileRef = 68E762AF175887ED006009A7 /* ItsBeta.m */; };
+		68E762DC175887EE006009A7 /* ItsBetaApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 68E762B1175887ED006009A7 /* ItsBetaApplication.m */; };
+		68E762DD175887EE006009A7 /* ItsBetaCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 68E762B3175887ED006009A7 /* ItsBetaCategory.m */; };
+		68E762DE175887EE006009A7 /* ItsBetaCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 68E762B5175887ED006009A7 /* ItsBetaCore.m */; };
+		68E762DF175887EE006009A7 /* ItsBetaImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 68E762B7175887ED006009A7 /* ItsBetaImage.m */; };
+		68E762E0175887EE006009A7 /* ItsBetaObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 68E762B9175887ED006009A7 /* ItsBetaObject.m */; };
+		68E762E1175887EE006009A7 /* ItsBetaObjectTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = 68E762BB175887ED006009A7 /* ItsBetaObjectTemplate.m */; };
+		68E762E2175887EE006009A7 /* ItsBetaObjectType.m in Sources */ = {isa = PBXBuildFile; fileRef = 68E762BD175887ED006009A7 /* ItsBetaObjectType.m */; };
+		68E762E3175887EE006009A7 /* ItsBetaParams.m in Sources */ = {isa = PBXBuildFile; fileRef = 68E762BF175887ED006009A7 /* ItsBetaParams.m */; };
+		68E762E4175887EE006009A7 /* ItsBetaPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 68E762C1175887ED006009A7 /* ItsBetaPlayer.m */; };
+		68E762E5175887EE006009A7 /* ItsBetaProject.m in Sources */ = {isa = PBXBuildFile; fileRef = 68E762C3175887ED006009A7 /* ItsBetaProject.m */; };
+		68E762E6175887EE006009A7 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 68E762C4175887EE006009A7 /* README.md */; };
 		68EB2758163090B90092FDBA /* HSCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 68EB2757163090B90092FDBA /* HSCalendar.m */; };
 		68EB275C163091190092FDBA /* HSEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 68EB275B163091190092FDBA /* HSEvent.m */; };
 		68EB27601630952A0092FDBA /* HSCalendarException.m in Sources */ = {isa = PBXBuildFile; fileRef = 68EB275F1630952A0092FDBA /* HSCalendarException.m */; };
@@ -806,58 +813,6 @@
 		40595AF1170C4086007B2C61 /* HSItsBetaAchievementsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSItsBetaAchievementsViewController.h; sourceTree = "<group>"; };
 		40595AF2170C4086007B2C61 /* HSItsBetaAchievementsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSItsBetaAchievementsViewController.m; sourceTree = "<group>"; };
 		40595AF3170C4086007B2C61 /* HSItsBetaAchievementsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HSItsBetaAchievementsViewController.xib; sourceTree = "<group>"; };
-		409788E617097B8E0054042A /* CIColor+ItsBeta.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CIColor+ItsBeta.h"; sourceTree = "<group>"; };
-		409788E717097B8E0054042A /* CIColor+ItsBeta.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CIColor+ItsBeta.m"; sourceTree = "<group>"; };
-		409788E817097B8E0054042A /* NSDate+ItsBeta.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+ItsBeta.h"; sourceTree = "<group>"; };
-		409788E917097B8E0054042A /* NSDate+ItsBeta.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+ItsBeta.m"; sourceTree = "<group>"; };
-		409788EA17097B8E0054042A /* UIColor+ItsBeta.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+ItsBeta.h"; sourceTree = "<group>"; };
-		409788EB17097B8E0054042A /* UIColor+ItsBeta.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+ItsBeta.m"; sourceTree = "<group>"; };
-		409788EC17097B8E0054042A /* ItsBetaApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItsBetaApi.h; sourceTree = "<group>"; };
-		409788ED17097B8E0054042A /* ItsBetaApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItsBetaApi.m; sourceTree = "<group>"; };
-		409788EE17097B8E0054042A /* ItsBetaFastCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItsBetaFastCache.h; sourceTree = "<group>"; };
-		409788EF17097B8E0054042A /* ItsBetaFastCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItsBetaFastCache.m; sourceTree = "<group>"; };
-		409788F017097B8E0054042A /* ItsBetaQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItsBetaQueue.h; sourceTree = "<group>"; };
-		409788F117097B8E0054042A /* ItsBetaQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItsBetaQueue.m; sourceTree = "<group>"; };
-		409788F217097B8E0054042A /* ItsBetaRest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItsBetaRest.h; sourceTree = "<group>"; };
-		409788F317097B8E0054042A /* ItsBetaRest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItsBetaRest.m; sourceTree = "<group>"; };
-		409788F417097B8E0054042A /* ItsBeta.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItsBeta.h; sourceTree = "<group>"; };
-		409788F517097B8E0054042A /* ItsBeta.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItsBeta.m; sourceTree = "<group>"; };
-		409788F617097B8E0054042A /* ItsBetaApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItsBetaApplication.h; sourceTree = "<group>"; };
-		409788F717097B8E0054042A /* ItsBetaApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItsBetaApplication.m; sourceTree = "<group>"; };
-		409788F817097B8E0054042A /* ItsBetaCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItsBetaCategory.h; sourceTree = "<group>"; };
-		409788F917097B8E0054042A /* ItsBetaCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItsBetaCategory.m; sourceTree = "<group>"; };
-		409788FA17097B8E0054042A /* ItsBetaCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItsBetaCore.h; sourceTree = "<group>"; };
-		409788FB17097B8E0054042A /* ItsBetaCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItsBetaCore.m; sourceTree = "<group>"; };
-		409788FC17097B8E0054042A /* ItsBetaImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItsBetaImage.h; sourceTree = "<group>"; };
-		409788FD17097B8E0054042A /* ItsBetaImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItsBetaImage.m; sourceTree = "<group>"; };
-		409788FE17097B8E0054042A /* ItsBetaObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItsBetaObject.h; sourceTree = "<group>"; };
-		409788FF17097B8E0054042A /* ItsBetaObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItsBetaObject.m; sourceTree = "<group>"; };
-		4097890017097B8E0054042A /* ItsBetaObjectTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItsBetaObjectTemplate.h; sourceTree = "<group>"; };
-		4097890117097B8E0054042A /* ItsBetaObjectTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItsBetaObjectTemplate.m; sourceTree = "<group>"; };
-		4097890217097B8E0054042A /* ItsBetaObjectType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItsBetaObjectType.h; sourceTree = "<group>"; };
-		4097890317097B8E0054042A /* ItsBetaObjectType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItsBetaObjectType.m; sourceTree = "<group>"; };
-		4097890417097B8E0054042A /* ItsBetaParams.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItsBetaParams.h; sourceTree = "<group>"; };
-		4097890517097B8E0054042A /* ItsBetaParams.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItsBetaParams.m; sourceTree = "<group>"; };
-		4097890617097B8E0054042A /* ItsBetaPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItsBetaPlayer.h; sourceTree = "<group>"; };
-		4097890717097B8E0054042A /* ItsBetaPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItsBetaPlayer.m; sourceTree = "<group>"; };
-		4097890817097B8E0054042A /* ItsBetaProject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItsBetaProject.h; sourceTree = "<group>"; };
-		4097890917097B8E0054042A /* ItsBetaProject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItsBetaProject.m; sourceTree = "<group>"; };
-		40978925170990F60054042A /* ItsBetaFacebook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItsBetaFacebook.h; sourceTree = "<group>"; };
-		40978926170990F60054042A /* ItsBetaFacebook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItsBetaFacebook.m; sourceTree = "<group>"; };
-		40978927170990F60054042A /* ItsBetaFacebookIPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItsBetaFacebookIPad.h; sourceTree = "<group>"; };
-		40978928170990F60054042A /* ItsBetaFacebookIPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItsBetaFacebookIPad.m; sourceTree = "<group>"; };
-		40978929170990F60054042A /* ItsBetaFacebookIPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ItsBetaFacebookIPad.xib; sourceTree = "<group>"; };
-		4097892A170990F60054042A /* ItsBetaFacebookIPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItsBetaFacebookIPhone.h; sourceTree = "<group>"; };
-		4097892B170990F60054042A /* ItsBetaFacebookIPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItsBetaFacebookIPhone.m; sourceTree = "<group>"; };
-		4097892C170990F60054042A /* ItsBetaFacebookIPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ItsBetaFacebookIPhone.xib; sourceTree = "<group>"; };
-		4097892D170990F60054042A /* ItsBetaGraphUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItsBetaGraphUser.h; sourceTree = "<group>"; };
-		4097892E170990F60054042A /* ItsBetaGraphUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItsBetaGraphUser.m; sourceTree = "<group>"; };
-		4097893617099DFC0054042A /* NSURL+ItsBeta.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+ItsBeta.h"; sourceTree = "<group>"; };
-		4097893717099DFC0054042A /* NSURL+ItsBeta.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+ItsBeta.m"; sourceTree = "<group>"; };
-		4097893917099E630054042A /* NSString+ItsBeta.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+ItsBeta.h"; sourceTree = "<group>"; };
-		4097893A17099E640054042A /* NSString+ItsBeta.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+ItsBeta.m"; sourceTree = "<group>"; };
-		4097893C17099F1A0054042A /* NSDictionary+ItsBeta.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+ItsBeta.h"; sourceTree = "<group>"; };
-		4097893D17099F1A0054042A /* NSDictionary+ItsBeta.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+ItsBeta.m"; sourceTree = "<group>"; };
 		409F0D1C170F039800E0AF77 /* HSItsBetaAchievementsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSItsBetaAchievementsCell.h; sourceTree = "<group>"; };
 		409F0D1D170F039800E0AF77 /* HSItsBetaAchievementsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSItsBetaAchievementsCell.m; sourceTree = "<group>"; };
 		409F0D25170F082400E0AF77 /* HSItsBetaAchievementsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HSItsBetaAchievementsCell.xib; sourceTree = "<group>"; };
@@ -1259,6 +1214,69 @@
 		68D6CD9616E22A8800972D41 /* HSBloodRemoteEvent+LocalNotification_Protected.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "HSBloodRemoteEvent+LocalNotification_Protected.m"; sourceTree = "<group>"; };
 		68E535041747BB43008E44E6 /* map.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map.png; sourceTree = "<group>"; };
 		68E535051747BB43008E44E6 /* map@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map@2x.png"; sourceTree = "<group>"; };
+		68E76284175887ED006009A7 /* CIColor+ItsBeta.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CIColor+ItsBeta.h"; sourceTree = "<group>"; };
+		68E76285175887ED006009A7 /* CIColor+ItsBeta.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CIColor+ItsBeta.m"; sourceTree = "<group>"; };
+		68E76286175887ED006009A7 /* NSDate+ItsBeta.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+ItsBeta.h"; sourceTree = "<group>"; };
+		68E76287175887ED006009A7 /* NSDate+ItsBeta.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+ItsBeta.m"; sourceTree = "<group>"; };
+		68E76288175887ED006009A7 /* NSDictionary+ItsBeta.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+ItsBeta.h"; sourceTree = "<group>"; };
+		68E76289175887ED006009A7 /* NSDictionary+ItsBeta.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+ItsBeta.m"; sourceTree = "<group>"; };
+		68E7628A175887ED006009A7 /* NSString+ItsBeta.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+ItsBeta.h"; sourceTree = "<group>"; };
+		68E7628B175887ED006009A7 /* NSString+ItsBeta.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+ItsBeta.m"; sourceTree = "<group>"; };
+		68E7628C175887ED006009A7 /* NSURL+ItsBeta.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+ItsBeta.h"; sourceTree = "<group>"; };
+		68E7628D175887ED006009A7 /* NSURL+ItsBeta.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+ItsBeta.m"; sourceTree = "<group>"; };
+		68E7628E175887ED006009A7 /* UIColor+ItsBeta.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+ItsBeta.h"; sourceTree = "<group>"; };
+		68E7628F175887ED006009A7 /* UIColor+ItsBeta.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+ItsBeta.m"; sourceTree = "<group>"; };
+		68E76291175887ED006009A7 /* ItsBetaFacebook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItsBetaFacebook.h; sourceTree = "<group>"; };
+		68E76292175887ED006009A7 /* ItsBetaFacebook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItsBetaFacebook.m; sourceTree = "<group>"; };
+		68E76293175887ED006009A7 /* ItsBetaFacebookIPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItsBetaFacebookIPad.h; sourceTree = "<group>"; };
+		68E76294175887ED006009A7 /* ItsBetaFacebookIPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItsBetaFacebookIPad.m; sourceTree = "<group>"; };
+		68E76295175887ED006009A7 /* ItsBetaFacebookIPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ItsBetaFacebookIPad.xib; sourceTree = "<group>"; };
+		68E76296175887ED006009A7 /* ItsBetaFacebookIPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItsBetaFacebookIPhone.h; sourceTree = "<group>"; };
+		68E76297175887ED006009A7 /* ItsBetaFacebookIPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItsBetaFacebookIPhone.m; sourceTree = "<group>"; };
+		68E76298175887ED006009A7 /* ItsBetaFacebookIPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ItsBetaFacebookIPhone.xib; sourceTree = "<group>"; };
+		68E76299175887ED006009A7 /* ItsBetaGraphUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItsBetaGraphUser.h; sourceTree = "<group>"; };
+		68E7629A175887ED006009A7 /* ItsBetaGraphUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItsBetaGraphUser.m; sourceTree = "<group>"; };
+		68E7629B175887ED006009A7 /* ItsBetaApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItsBetaApi.h; sourceTree = "<group>"; };
+		68E7629C175887ED006009A7 /* ItsBetaApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItsBetaApi.m; sourceTree = "<group>"; };
+		68E7629D175887ED006009A7 /* ItsBetaFastCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItsBetaFastCache.h; sourceTree = "<group>"; };
+		68E7629E175887ED006009A7 /* ItsBetaFastCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItsBetaFastCache.m; sourceTree = "<group>"; };
+		68E7629F175887ED006009A7 /* ItsBetaQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItsBetaQueue.h; sourceTree = "<group>"; };
+		68E762A0175887ED006009A7 /* ItsBetaQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItsBetaQueue.m; sourceTree = "<group>"; };
+		68E762A1175887ED006009A7 /* ItsBetaRest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItsBetaRest.h; sourceTree = "<group>"; };
+		68E762A2175887ED006009A7 /* ItsBetaRest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItsBetaRest.m; sourceTree = "<group>"; };
+		68E762A4175887ED006009A7 /* ItsBetaVk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItsBetaVk.h; sourceTree = "<group>"; };
+		68E762A5175887ED006009A7 /* ItsBetaVk.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItsBetaVk.m; sourceTree = "<group>"; };
+		68E762A6175887ED006009A7 /* ItsBetaVkIPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItsBetaVkIPad.h; sourceTree = "<group>"; };
+		68E762A7175887ED006009A7 /* ItsBetaVkIPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItsBetaVkIPad.m; sourceTree = "<group>"; };
+		68E762A8175887ED006009A7 /* ItsBetaVkIPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ItsBetaVkIPad.xib; sourceTree = "<group>"; };
+		68E762A9175887ED006009A7 /* ItsBetaVkIPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItsBetaVkIPhone.h; sourceTree = "<group>"; };
+		68E762AA175887ED006009A7 /* ItsBetaVkIPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItsBetaVkIPhone.m; sourceTree = "<group>"; };
+		68E762AB175887ED006009A7 /* ItsBetaVkIPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ItsBetaVkIPhone.xib; sourceTree = "<group>"; };
+		68E762AC175887ED006009A7 /* ItsBetaVkUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItsBetaVkUser.h; sourceTree = "<group>"; };
+		68E762AD175887ED006009A7 /* ItsBetaVkUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItsBetaVkUser.m; sourceTree = "<group>"; };
+		68E762AE175887ED006009A7 /* ItsBeta.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItsBeta.h; sourceTree = "<group>"; };
+		68E762AF175887ED006009A7 /* ItsBeta.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItsBeta.m; sourceTree = "<group>"; };
+		68E762B0175887ED006009A7 /* ItsBetaApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItsBetaApplication.h; sourceTree = "<group>"; };
+		68E762B1175887ED006009A7 /* ItsBetaApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItsBetaApplication.m; sourceTree = "<group>"; };
+		68E762B2175887ED006009A7 /* ItsBetaCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItsBetaCategory.h; sourceTree = "<group>"; };
+		68E762B3175887ED006009A7 /* ItsBetaCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItsBetaCategory.m; sourceTree = "<group>"; };
+		68E762B4175887ED006009A7 /* ItsBetaCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItsBetaCore.h; sourceTree = "<group>"; };
+		68E762B5175887ED006009A7 /* ItsBetaCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItsBetaCore.m; sourceTree = "<group>"; };
+		68E762B6175887ED006009A7 /* ItsBetaImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItsBetaImage.h; sourceTree = "<group>"; };
+		68E762B7175887ED006009A7 /* ItsBetaImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItsBetaImage.m; sourceTree = "<group>"; };
+		68E762B8175887ED006009A7 /* ItsBetaObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItsBetaObject.h; sourceTree = "<group>"; };
+		68E762B9175887ED006009A7 /* ItsBetaObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItsBetaObject.m; sourceTree = "<group>"; };
+		68E762BA175887ED006009A7 /* ItsBetaObjectTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItsBetaObjectTemplate.h; sourceTree = "<group>"; };
+		68E762BB175887ED006009A7 /* ItsBetaObjectTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItsBetaObjectTemplate.m; sourceTree = "<group>"; };
+		68E762BC175887ED006009A7 /* ItsBetaObjectType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItsBetaObjectType.h; sourceTree = "<group>"; };
+		68E762BD175887ED006009A7 /* ItsBetaObjectType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItsBetaObjectType.m; sourceTree = "<group>"; };
+		68E762BE175887ED006009A7 /* ItsBetaParams.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItsBetaParams.h; sourceTree = "<group>"; };
+		68E762BF175887ED006009A7 /* ItsBetaParams.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItsBetaParams.m; sourceTree = "<group>"; };
+		68E762C0175887ED006009A7 /* ItsBetaPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItsBetaPlayer.h; sourceTree = "<group>"; };
+		68E762C1175887ED006009A7 /* ItsBetaPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItsBetaPlayer.m; sourceTree = "<group>"; };
+		68E762C2175887ED006009A7 /* ItsBetaProject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItsBetaProject.h; sourceTree = "<group>"; };
+		68E762C3175887ED006009A7 /* ItsBetaProject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItsBetaProject.m; sourceTree = "<group>"; };
+		68E762C4175887EE006009A7 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		68EB2756163090B90092FDBA /* HSCalendar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSCalendar.h; sourceTree = "<group>"; };
 		68EB2757163090B90092FDBA /* HSCalendar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSCalendar.m; sourceTree = "<group>"; };
 		68EB275A163091190092FDBA /* HSEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSEvent.h; sourceTree = "<group>"; };
@@ -1963,90 +1981,6 @@
 			path = Images;
 			sourceTree = "<group>";
 		};
-		409788E317097B8E0054042A /* ItsBeta */ = {
-			isa = PBXGroup;
-			children = (
-				409788E417097B8E0054042A /* Internal */,
-				409788F417097B8E0054042A /* ItsBeta.h */,
-				409788F517097B8E0054042A /* ItsBeta.m */,
-				409788F617097B8E0054042A /* ItsBetaApplication.h */,
-				409788F717097B8E0054042A /* ItsBetaApplication.m */,
-				409788F817097B8E0054042A /* ItsBetaCategory.h */,
-				409788F917097B8E0054042A /* ItsBetaCategory.m */,
-				409788FA17097B8E0054042A /* ItsBetaCore.h */,
-				409788FB17097B8E0054042A /* ItsBetaCore.m */,
-				409788FC17097B8E0054042A /* ItsBetaImage.h */,
-				409788FD17097B8E0054042A /* ItsBetaImage.m */,
-				409788FE17097B8E0054042A /* ItsBetaObject.h */,
-				409788FF17097B8E0054042A /* ItsBetaObject.m */,
-				4097890017097B8E0054042A /* ItsBetaObjectTemplate.h */,
-				4097890117097B8E0054042A /* ItsBetaObjectTemplate.m */,
-				4097890217097B8E0054042A /* ItsBetaObjectType.h */,
-				4097890317097B8E0054042A /* ItsBetaObjectType.m */,
-				4097890417097B8E0054042A /* ItsBetaParams.h */,
-				4097890517097B8E0054042A /* ItsBetaParams.m */,
-				4097890617097B8E0054042A /* ItsBetaPlayer.h */,
-				4097890717097B8E0054042A /* ItsBetaPlayer.m */,
-				4097890817097B8E0054042A /* ItsBetaProject.h */,
-				4097890917097B8E0054042A /* ItsBetaProject.m */,
-			);
-			name = ItsBeta;
-			path = Libs/ItsBeta;
-			sourceTree = "<group>";
-		};
-		409788E417097B8E0054042A /* Internal */ = {
-			isa = PBXGroup;
-			children = (
-				409788E517097B8E0054042A /* Extension */,
-				40978924170990F60054042A /* Facebook */,
-				409788EC17097B8E0054042A /* ItsBetaApi.h */,
-				409788ED17097B8E0054042A /* ItsBetaApi.m */,
-				409788EE17097B8E0054042A /* ItsBetaFastCache.h */,
-				409788EF17097B8E0054042A /* ItsBetaFastCache.m */,
-				409788F017097B8E0054042A /* ItsBetaQueue.h */,
-				409788F117097B8E0054042A /* ItsBetaQueue.m */,
-				409788F217097B8E0054042A /* ItsBetaRest.h */,
-				409788F317097B8E0054042A /* ItsBetaRest.m */,
-			);
-			path = Internal;
-			sourceTree = "<group>";
-		};
-		409788E517097B8E0054042A /* Extension */ = {
-			isa = PBXGroup;
-			children = (
-				409788E817097B8E0054042A /* NSDate+ItsBeta.h */,
-				409788E917097B8E0054042A /* NSDate+ItsBeta.m */,
-				4097893617099DFC0054042A /* NSURL+ItsBeta.h */,
-				4097893717099DFC0054042A /* NSURL+ItsBeta.m */,
-				4097893917099E630054042A /* NSString+ItsBeta.h */,
-				4097893A17099E640054042A /* NSString+ItsBeta.m */,
-				4097893C17099F1A0054042A /* NSDictionary+ItsBeta.h */,
-				4097893D17099F1A0054042A /* NSDictionary+ItsBeta.m */,
-				409788E617097B8E0054042A /* CIColor+ItsBeta.h */,
-				409788E717097B8E0054042A /* CIColor+ItsBeta.m */,
-				409788EA17097B8E0054042A /* UIColor+ItsBeta.h */,
-				409788EB17097B8E0054042A /* UIColor+ItsBeta.m */,
-			);
-			path = Extension;
-			sourceTree = "<group>";
-		};
-		40978924170990F60054042A /* Facebook */ = {
-			isa = PBXGroup;
-			children = (
-				40978925170990F60054042A /* ItsBetaFacebook.h */,
-				40978926170990F60054042A /* ItsBetaFacebook.m */,
-				40978927170990F60054042A /* ItsBetaFacebookIPad.h */,
-				40978928170990F60054042A /* ItsBetaFacebookIPad.m */,
-				40978929170990F60054042A /* ItsBetaFacebookIPad.xib */,
-				4097892A170990F60054042A /* ItsBetaFacebookIPhone.h */,
-				4097892B170990F60054042A /* ItsBetaFacebookIPhone.m */,
-				4097892C170990F60054042A /* ItsBetaFacebookIPhone.xib */,
-				4097892D170990F60054042A /* ItsBetaGraphUser.h */,
-				4097892E170990F60054042A /* ItsBetaGraphUser.m */,
-			);
-			path = Facebook;
-			sourceTree = "<group>";
-		};
 		40D5FF74171579D100821B01 /* ItsBeta */ = {
 			isa = PBXGroup;
 			children = (
@@ -2171,7 +2105,7 @@
 				6871DF611681184B004E5EBB /* TestFlightSDK */,
 				685088EB1667F6D3004EC3CC /* Flurry */,
 				685CB2FA163F202C004FF9AC /* MBProgressHUD */,
-				409788E317097B8E0054042A /* ItsBeta */,
+				68E76281175887ED006009A7 /* ItsBeta */,
 			);
 			name = Libs;
 			sourceTree = "<group>";
@@ -2968,6 +2902,109 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		68E76281175887ED006009A7 /* ItsBeta */ = {
+			isa = PBXGroup;
+			children = (
+				68E76282175887ED006009A7 /* Internal */,
+				68E762AE175887ED006009A7 /* ItsBeta.h */,
+				68E762AF175887ED006009A7 /* ItsBeta.m */,
+				68E762B0175887ED006009A7 /* ItsBetaApplication.h */,
+				68E762B1175887ED006009A7 /* ItsBetaApplication.m */,
+				68E762B2175887ED006009A7 /* ItsBetaCategory.h */,
+				68E762B3175887ED006009A7 /* ItsBetaCategory.m */,
+				68E762B4175887ED006009A7 /* ItsBetaCore.h */,
+				68E762B5175887ED006009A7 /* ItsBetaCore.m */,
+				68E762B6175887ED006009A7 /* ItsBetaImage.h */,
+				68E762B7175887ED006009A7 /* ItsBetaImage.m */,
+				68E762B8175887ED006009A7 /* ItsBetaObject.h */,
+				68E762B9175887ED006009A7 /* ItsBetaObject.m */,
+				68E762BA175887ED006009A7 /* ItsBetaObjectTemplate.h */,
+				68E762BB175887ED006009A7 /* ItsBetaObjectTemplate.m */,
+				68E762BC175887ED006009A7 /* ItsBetaObjectType.h */,
+				68E762BD175887ED006009A7 /* ItsBetaObjectType.m */,
+				68E762BE175887ED006009A7 /* ItsBetaParams.h */,
+				68E762BF175887ED006009A7 /* ItsBetaParams.m */,
+				68E762C0175887ED006009A7 /* ItsBetaPlayer.h */,
+				68E762C1175887ED006009A7 /* ItsBetaPlayer.m */,
+				68E762C2175887ED006009A7 /* ItsBetaProject.h */,
+				68E762C3175887ED006009A7 /* ItsBetaProject.m */,
+				68E762C4175887EE006009A7 /* README.md */,
+			);
+			name = ItsBeta;
+			path = Libs/ItsBetaSDK/ItsBeta;
+			sourceTree = "<group>";
+		};
+		68E76282175887ED006009A7 /* Internal */ = {
+			isa = PBXGroup;
+			children = (
+				68E76283175887ED006009A7 /* Extension */,
+				68E76290175887ED006009A7 /* Facebook */,
+				68E7629B175887ED006009A7 /* ItsBetaApi.h */,
+				68E7629C175887ED006009A7 /* ItsBetaApi.m */,
+				68E7629D175887ED006009A7 /* ItsBetaFastCache.h */,
+				68E7629E175887ED006009A7 /* ItsBetaFastCache.m */,
+				68E7629F175887ED006009A7 /* ItsBetaQueue.h */,
+				68E762A0175887ED006009A7 /* ItsBetaQueue.m */,
+				68E762A1175887ED006009A7 /* ItsBetaRest.h */,
+				68E762A2175887ED006009A7 /* ItsBetaRest.m */,
+				68E762A3175887ED006009A7 /* Vk */,
+			);
+			path = Internal;
+			sourceTree = "<group>";
+		};
+		68E76283175887ED006009A7 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				68E76284175887ED006009A7 /* CIColor+ItsBeta.h */,
+				68E76285175887ED006009A7 /* CIColor+ItsBeta.m */,
+				68E76286175887ED006009A7 /* NSDate+ItsBeta.h */,
+				68E76287175887ED006009A7 /* NSDate+ItsBeta.m */,
+				68E76288175887ED006009A7 /* NSDictionary+ItsBeta.h */,
+				68E76289175887ED006009A7 /* NSDictionary+ItsBeta.m */,
+				68E7628A175887ED006009A7 /* NSString+ItsBeta.h */,
+				68E7628B175887ED006009A7 /* NSString+ItsBeta.m */,
+				68E7628C175887ED006009A7 /* NSURL+ItsBeta.h */,
+				68E7628D175887ED006009A7 /* NSURL+ItsBeta.m */,
+				68E7628E175887ED006009A7 /* UIColor+ItsBeta.h */,
+				68E7628F175887ED006009A7 /* UIColor+ItsBeta.m */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		68E76290175887ED006009A7 /* Facebook */ = {
+			isa = PBXGroup;
+			children = (
+				68E76291175887ED006009A7 /* ItsBetaFacebook.h */,
+				68E76292175887ED006009A7 /* ItsBetaFacebook.m */,
+				68E76293175887ED006009A7 /* ItsBetaFacebookIPad.h */,
+				68E76294175887ED006009A7 /* ItsBetaFacebookIPad.m */,
+				68E76295175887ED006009A7 /* ItsBetaFacebookIPad.xib */,
+				68E76296175887ED006009A7 /* ItsBetaFacebookIPhone.h */,
+				68E76297175887ED006009A7 /* ItsBetaFacebookIPhone.m */,
+				68E76298175887ED006009A7 /* ItsBetaFacebookIPhone.xib */,
+				68E76299175887ED006009A7 /* ItsBetaGraphUser.h */,
+				68E7629A175887ED006009A7 /* ItsBetaGraphUser.m */,
+			);
+			path = Facebook;
+			sourceTree = "<group>";
+		};
+		68E762A3175887ED006009A7 /* Vk */ = {
+			isa = PBXGroup;
+			children = (
+				68E762A4175887ED006009A7 /* ItsBetaVk.h */,
+				68E762A5175887ED006009A7 /* ItsBetaVk.m */,
+				68E762A6175887ED006009A7 /* ItsBetaVkIPad.h */,
+				68E762A7175887ED006009A7 /* ItsBetaVkIPad.m */,
+				68E762A8175887ED006009A7 /* ItsBetaVkIPad.xib */,
+				68E762A9175887ED006009A7 /* ItsBetaVkIPhone.h */,
+				68E762AA175887ED006009A7 /* ItsBetaVkIPhone.m */,
+				68E762AB175887ED006009A7 /* ItsBetaVkIPhone.xib */,
+				68E762AC175887ED006009A7 /* ItsBetaVkUser.h */,
+				68E762AD175887ED006009A7 /* ItsBetaVkUser.m */,
+			);
+			path = Vk;
+			sourceTree = "<group>";
+		};
 		68EB27531630906A0092FDBA /* model */ = {
 			isa = PBXGroup;
 			children = (
@@ -3635,8 +3672,6 @@
 				6864D6241708B3C400F150F9 /* Default.png in Resources */,
 				6864D6251708B3C400F150F9 /* Default@2x.png in Resources */,
 				687A436C16F7C19400958347 /* CKAuthViewController.xib in Resources */,
-				40978931170990F60054042A /* ItsBetaFacebookIPad.xib in Resources */,
-				40978933170990F60054042A /* ItsBetaFacebookIPhone.xib in Resources */,
 				40595AF5170C4086007B2C61 /* HSItsBetaAchievementsViewController.xib in Resources */,
 				409F0D26170F082500E0AF77 /* HSItsBetaAchievementsCell.xib in Resources */,
 				404470131712AF2300DF0561 /* HSItsBetaAchievementsHeader.xib in Resources */,
@@ -3676,6 +3711,11 @@
 				68F788E1171AE4E100BBF59A /* AdViewController.xib in Resources */,
 				68E535061747BB43008E44E6 /* map.png in Resources */,
 				68E535071747BB43008E44E6 /* map@2x.png in Resources */,
+				68E762CD175887EE006009A7 /* ItsBetaFacebookIPad.xib in Resources */,
+				68E762CF175887EE006009A7 /* ItsBetaFacebookIPhone.xib in Resources */,
+				68E762D7175887EE006009A7 /* ItsBetaVkIPad.xib in Resources */,
+				68E762D9175887EE006009A7 /* ItsBetaVkIPhone.xib in Resources */,
+				68E762E6175887EE006009A7 /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3819,31 +3859,6 @@
 				687A436A16F7C19400958347 /* CKAuthViewController.m in Sources */,
 				687A436B16F7C19400958347 /* SubscribeAlertView.m in Sources */,
 				6864D6291708CB4900F150F9 /* HSMailChimp.m in Sources */,
-				4097890A17097B8E0054042A /* CIColor+ItsBeta.m in Sources */,
-				4097890B17097B8E0054042A /* NSDate+ItsBeta.m in Sources */,
-				4097890C17097B8E0054042A /* UIColor+ItsBeta.m in Sources */,
-				4097890D17097B8E0054042A /* ItsBetaApi.m in Sources */,
-				4097890E17097B8E0054042A /* ItsBetaFastCache.m in Sources */,
-				4097890F17097B8E0054042A /* ItsBetaQueue.m in Sources */,
-				4097891017097B8E0054042A /* ItsBetaRest.m in Sources */,
-				4097891117097B8E0054042A /* ItsBeta.m in Sources */,
-				4097891217097B8E0054042A /* ItsBetaApplication.m in Sources */,
-				4097891317097B8E0054042A /* ItsBetaCategory.m in Sources */,
-				4097891417097B8E0054042A /* ItsBetaCore.m in Sources */,
-				4097891517097B8E0054042A /* ItsBetaImage.m in Sources */,
-				4097891617097B8E0054042A /* ItsBetaObject.m in Sources */,
-				4097891717097B8E0054042A /* ItsBetaObjectTemplate.m in Sources */,
-				4097891817097B8E0054042A /* ItsBetaObjectType.m in Sources */,
-				4097891917097B8E0054042A /* ItsBetaParams.m in Sources */,
-				4097891A17097B8E0054042A /* ItsBetaPlayer.m in Sources */,
-				4097891B17097B8E0054042A /* ItsBetaProject.m in Sources */,
-				4097892F170990F60054042A /* ItsBetaFacebook.m in Sources */,
-				40978930170990F60054042A /* ItsBetaFacebookIPad.m in Sources */,
-				40978932170990F60054042A /* ItsBetaFacebookIPhone.m in Sources */,
-				40978934170990F60054042A /* ItsBetaGraphUser.m in Sources */,
-				4097893817099DFC0054042A /* NSURL+ItsBeta.m in Sources */,
-				4097893B17099E640054042A /* NSString+ItsBeta.m in Sources */,
-				4097893E17099F1B0054042A /* NSDictionary+ItsBeta.m in Sources */,
 				40595AF4170C4086007B2C61 /* HSItsBetaAchievementsViewController.m in Sources */,
 				409F0D1E170F039800E0AF77 /* HSItsBetaAchievementsCell.m in Sources */,
 				404470111712AF1000DF0561 /* HSItsBetaAchievementsHeader.m in Sources */,
@@ -3867,6 +3882,35 @@
 				6823C11C1747C1FA0085B13F /* HSStationsPickerViewController.m in Sources */,
 				6823C120174926310085B13F /* HSStationInfo.m in Sources */,
 				68C42782174FB15900D477B2 /* NSObject+NSCodingSupportForProperties.m in Sources */,
+				68E762C5175887EE006009A7 /* CIColor+ItsBeta.m in Sources */,
+				68E762C6175887EE006009A7 /* NSDate+ItsBeta.m in Sources */,
+				68E762C7175887EE006009A7 /* NSDictionary+ItsBeta.m in Sources */,
+				68E762C8175887EE006009A7 /* NSString+ItsBeta.m in Sources */,
+				68E762C9175887EE006009A7 /* NSURL+ItsBeta.m in Sources */,
+				68E762CA175887EE006009A7 /* UIColor+ItsBeta.m in Sources */,
+				68E762CB175887EE006009A7 /* ItsBetaFacebook.m in Sources */,
+				68E762CC175887EE006009A7 /* ItsBetaFacebookIPad.m in Sources */,
+				68E762CE175887EE006009A7 /* ItsBetaFacebookIPhone.m in Sources */,
+				68E762D0175887EE006009A7 /* ItsBetaGraphUser.m in Sources */,
+				68E762D1175887EE006009A7 /* ItsBetaApi.m in Sources */,
+				68E762D2175887EE006009A7 /* ItsBetaFastCache.m in Sources */,
+				68E762D3175887EE006009A7 /* ItsBetaQueue.m in Sources */,
+				68E762D4175887EE006009A7 /* ItsBetaRest.m in Sources */,
+				68E762D5175887EE006009A7 /* ItsBetaVk.m in Sources */,
+				68E762D6175887EE006009A7 /* ItsBetaVkIPad.m in Sources */,
+				68E762D8175887EE006009A7 /* ItsBetaVkIPhone.m in Sources */,
+				68E762DA175887EE006009A7 /* ItsBetaVkUser.m in Sources */,
+				68E762DB175887EE006009A7 /* ItsBeta.m in Sources */,
+				68E762DC175887EE006009A7 /* ItsBetaApplication.m in Sources */,
+				68E762DD175887EE006009A7 /* ItsBetaCategory.m in Sources */,
+				68E762DE175887EE006009A7 /* ItsBetaCore.m in Sources */,
+				68E762DF175887EE006009A7 /* ItsBetaImage.m in Sources */,
+				68E762E0175887EE006009A7 /* ItsBetaObject.m in Sources */,
+				68E762E1175887EE006009A7 /* ItsBetaObjectTemplate.m in Sources */,
+				68E762E2175887EE006009A7 /* ItsBetaObjectType.m in Sources */,
+				68E762E3175887EE006009A7 /* ItsBetaParams.m in Sources */,
+				68E762E4175887EE006009A7 /* ItsBetaPlayer.m in Sources */,
+				68E762E5175887EE006009A7 /* ItsBetaProject.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

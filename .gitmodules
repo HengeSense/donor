@@ -10,3 +10,6 @@
 [submodule "Libs/ChimpKit"]
 	path = Libs/ChimpKit
 	url = https://github.com/mailchimp/ChimpKit2.git
+[submodule "Libs/ItsBetaSDK"]
+	path = Libs/ItsBetaSDK
+	url = https://github.com/HintSoluitons/itsbeta-sdk.git

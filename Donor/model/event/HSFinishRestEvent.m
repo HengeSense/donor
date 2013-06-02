@@ -38,7 +38,7 @@
             
     [super scheduleLocalNotificationAtDate:correctedFireDate withAlertAction:nil
             alertBody:bloodDonationTypeToFinishRestEventMessage(self.bloodDonationType)
-            userInfo:[self localNotificationBaseUserInfo]];
+            userInfo:[self reminderLocalNotificationBaseUserInfo]];
 }
 
 #pragma mark - HSUIDProvider protocol implementation
