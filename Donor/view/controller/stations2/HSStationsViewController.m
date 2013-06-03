@@ -42,6 +42,11 @@ static const NSUInteger kRegions_UndefinedId = -1;
 #pragma mark - District constants
 static const NSUInteger kDistrict_UndefinedId = -1;
 
+#pragma mark - Stations database
+static NSString * const kStationsDatabase_SupportedVersionMinorKey = @"kStationsDatabaseSupportedVersionsMinorKey";
+static NSString * const kStationsDatabase_SupportedVersionMinorValue = @"1.0";
+static NSString * const kStationsDatabase_CurrentVersionKey = @"kStationsDatabase_CurrentVersionKey";
+
 @interface HSStationsViewController () <CLLocationManagerDelegate, MKMapViewDelegate, UISearchDisplayDelegate>
 
 @property (nonatomic, assign) NSUInteger selectedCity;
@@ -1113,6 +1118,7 @@ static const NSUInteger kDistrict_UndefinedId = -1;
 - (void)saveDatabase{
     [self saveStations:self.stations];
     [self saveRegions:self.regionsDictionary];
+    [self saveDatabaseCurrentVersion];
     [self updateStations];
 }
 
@@ -1139,6 +1145,10 @@ static const NSUInteger kDistrict_UndefinedId = -1;
 }
 
 - (NSArray *)retriveStations {
+    if (![self isSavedDatabaseSupported]) {
+        return nil;
+    }
+    
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSString *stationsDatabaseFilePath = [self stationsDatabaseFilePath];
     if (![fileManager fileExistsAtPath:stationsDatabaseFilePath]) {
@@ -1150,6 +1160,10 @@ static const NSUInteger kDistrict_UndefinedId = -1;
 }
 
 - (NSDictionary *)retriveRegions {
+    if (![self isSavedDatabaseSupported]) {
+        return nil;
+    }
+    
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSString *regionsDatabaseFilePath = [self regionsDatabaseFilePath];
     if (![fileManager fileExistsAtPath:regionsDatabaseFilePath]) {
@@ -1158,5 +1172,32 @@ static const NSUInteger kDistrict_UndefinedId = -1;
     
     NSData *regionsData = [[NSData alloc] initWithContentsOfFile:regionsDatabaseFilePath];
     return [NSKeyedUnarchiver unarchiveObjectWithData:regionsData];
+}
+
+- (BOOL)saveDatabaseCurrentVersion {
+    [[NSUserDefaults standardUserDefaults] setObject:[self databaseCurrentSavedVersion]
+            forKey:kStationsDatabase_CurrentVersionKey];
+    return [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (NSNumber *)retriveDatabaseCurrentVersion {
+    return [[NSUserDefaults standardUserDefaults] objectForKey:kStationsDatabase_CurrentVersionKey];
+}
+
+- (NSNumber *)databaseSupportedMinorVersion {
+    return @1.0;
+}
+
+- (NSNumber *)databaseCurrentSavedVersion {
+    return @1.0;
+}
+
+- (BOOL)isSavedDatabaseSupported {
+    NSNumber *currentDatabaseVersion = [self retriveDatabaseCurrentVersion];
+    if (currentDatabaseVersion == nil ||
+            [currentDatabaseVersion compare:[self databaseSupportedMinorVersion]] == NSOrderedAscending) {
+        return NO;
+    }
+    return YES;
 }
 @end
