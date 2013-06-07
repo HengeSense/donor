@@ -73,17 +73,7 @@ static NSString * const kStationsDatabase_CurrentVersionKey = @"kStationsDatabas
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         self.isSyncInProgress = NO;
-        
-        self.stations = [self retriveStations];
-        self.regionsDictionary = [self retriveRegions];
-        
-        if (self.stations == nil || self.regionsDictionary == nil) {
-            [[NSUserDefaults standardUserDefaults] removeObjectForKey:kUserDefaultsKey_LastSyncDate];
-            [[NSUserDefaults standardUserDefaults] synchronize];
-        }
-    
         self.isCitySelectedByGeolocationOnceAtThisSession = NO;
-        [self syncLocalDatabase];
         
         NSMutableArray *lessThan1 = [[NSMutableArray alloc] init];
         NSMutableArray *lessThan3 = [[NSMutableArray alloc] init];
@@ -118,7 +108,6 @@ static NSString * const kStationsDatabase_CurrentVersionKey = @"kStationsDatabas
         self.isSearchBarShown = NO;
 
         self.mapController = [[HSStationsMapViewController alloc] initWithStations:self.stations];
-        [self.mapController reloadMapPoints];
         
         self.blockDidScrollDelegateCall = NO;
     }
@@ -127,9 +116,19 @@ static NSString * const kStationsDatabase_CurrentVersionKey = @"kStationsDatabas
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    [self configureUI];
+    [self loadStations];
+    [self reloadMapViewController];
+    [self loadLastChoice];
+}
+
+- (void)configureUI {
     self.title = @"Cтанции";
-    
+    [self configureNavigationBar];
+    [self configureSearchBar];
+}
+
+- (void)configureNavigationBar {
     UIButton *rightBarBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     rightBarBtn.frame = CGRectMake(0.0, 0.0, 33.0, 30.0);
     [rightBarBtn setImage:[UIImage imageNamed:@"DonorStations_navBarMapBtn_norm"] forState:UIControlStateNormal];
@@ -137,7 +136,9 @@ static NSString * const kStationsDatabase_CurrentVersionKey = @"kStationsDatabas
     [rightBarBtn addTarget:self action:@selector(onShowMap:) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightBarBtn];
     self.navigationItem.rightBarButtonItem = rightBarButtonItem;
-    
+}
+
+- (void)configureSearchBar {
     UIImage *searchBarImage = [UIImage imageNamed:@"DonorStations_searchBarBackground"];
     [self.searchDisplayController.searchBar setBackgroundImage:searchBarImage];
     [self.searchDisplayController.searchBar setImage:[UIImage imageNamed:@"DonorStations_searchBarSearchIcon"] forSearchBarIcon:UISearchBarIconSearch state:UIControlStateNormal];
@@ -145,20 +146,18 @@ static NSString * const kStationsDatabase_CurrentVersionKey = @"kStationsDatabas
     self.searchDisplayController.searchBar.tintColor = DONOR_RED_COLOR;
     
     UIImage *searchFieldImage = [[UIImage imageNamed:@"DonorStations_searchBarFieldBackground"] stretchableImageWithLeftCapWidth:20 topCapHeight:4];
-    [self.searchDisplayController.searchBar setSearchFieldBackgroundImage:searchFieldImage forState:UIControlStateNormal];
+    [self.searchDisplayController.searchBar setSearchFieldBackgroundImage:searchFieldImage
+            forState:UIControlStateNormal];
     for (UIView *oneView in self.searchDisplayController.searchBar.subviews) {
         if ([oneView isKindOfClass:[UITextField class]]) {
             ((UITextField *)oneView).textColor = DONOR_SEARCH_FIELD_TEXT_COLOR;
         }
     }
-    
-    [self loadLastChoice];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [self requestUserLocation];
 }
 
@@ -168,8 +167,6 @@ static NSString * const kStationsDatabase_CurrentVersionKey = @"kStationsDatabas
     if (self.locationManager) {
         [self.locationManager stopUpdatingLocation];
     }
-    
-    [MBProgressHUD hideHUDForView:self.view animated:YES];
 }
 
 #pragma mark - View Controller's routines
@@ -204,8 +201,6 @@ static NSString * const kStationsDatabase_CurrentVersionKey = @"kStationsDatabas
     NSIndexPath *stationInfoIndexPath =
             [self indexPathForStationInfo:stationsWithAddress[0] forTableView:self.stationsTable];
     if (stationInfoIndexPath != nil) {
-        [self.stationsTable selectRowAtIndexPath:stationInfoIndexPath animated:YES
-                scrollPosition:UITableViewScrollPositionMiddle];
         self.selectedStationInfo = stationsWithAddress[0];
     }
 }
@@ -215,6 +210,9 @@ static NSString * const kStationsDatabase_CurrentVersionKey = @"kStationsDatabas
         [self performSelector:@selector(updateStations) withObject:nil afterDelay:0.25f];
         return;
     }
+    
+    BOOL isSomeProgressHudVisible = [MBProgressHUD HUDForView:self.view] != nil;
+    MBProgressHUD *progressHud = [MBProgressHUD showHUDAddedTo:self.view animated:!isSomeProgressHudVisible];
     
     int totalDistricts = 0;
     for (NSMutableDictionary *oneRegion in [[self.regionsDictionary objectEnumerator] allObjects]) {
@@ -285,9 +283,10 @@ static NSString * const kStationsDatabase_CurrentVersionKey = @"kStationsDatabas
     
     [self updateRegionLabel];
     
-    [self.stationsTable reloadData];
+    [self reloadStationsTableViewWithSavedSelection];
     
-    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+    BOOL isAnotherProgressHudsVisible = [[MBProgressHUD allHUDsForView:self.view] count] > 1;
+    [progressHud hide:!isAnotherProgressHudsVisible];
 }
 
 - (IBAction)onPressChangeCity:(id)sender {
@@ -340,10 +339,24 @@ static NSString * const kStationsDatabase_CurrentVersionKey = @"kStationsDatabas
 }
 
 #pragma mark - Synchronization with Parse
-- (void)syncLocalDatabase {
+- (void)loadStations {
+    MBProgressHUD *progressHud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+
+    self.stations = [self retriveStations];
+    self.regionsDictionary = [self retriveRegions];
+    
+    if (self.stations == nil || self.regionsDictionary == nil) {
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:kUserDefaultsKey_LastSyncDate];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
+    [self syncLocalDatabaseCompletion:^{
+        [progressHud hide:YES];
+    }];
+}
+
+- (void)syncLocalDatabaseCompletion:(void(^)(void))completion {
     const NSUInteger kStationsRequestLimit = 1000;
     
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     PFQuery *stationsQuery = [PFQuery queryWithClassName:@"YAStations"];
     stationsQuery.limit = kStationsRequestLimit;
     
@@ -351,23 +364,33 @@ static NSString * const kStationsDatabase_CurrentVersionKey = @"kStationsDatabas
     if (latestChangeDateLocal != nil) {
         [stationsQuery whereKey:@"updatedAt" greaterThan:latestChangeDateLocal];
     }
-    
+        
     [stationsQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (error) {
             NSLog(@"Cannot connected to Parse");
-            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+            if (completion) {
+                completion();
+            }
         } else if (objects.count > 0) {
             NSLog(@"Stations: need to update, updating...");
-            [self updateLocalDatabaseWithStations:objects];
+            [self updateLocalDatabaseWithStations:objects completion:^{
+                [self reloadMapViewController];
+                [self updateUserLocationIfNeeded];
+                if (completion) {
+                    completion();
+                }
+            }];
         } else {
             [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:kUserDefaultsKey_LastSyncDate];
             [[NSUserDefaults standardUserDefaults] synchronize];
-            [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+            if (completion) {
+                completion();
+            }
         }
     }];
 }
 
-- (void)updateLocalDatabaseWithStations:(NSArray *)stations {
+- (void)updateLocalDatabaseWithStations:(NSArray *)stations completion:(void(^)(void))completion{
     NSLog(@"Local database will be updated with %d entities.", [stations count]);
     
     self.isSyncInProgress = YES;
@@ -381,9 +404,9 @@ static NSString * const kStationsDatabase_CurrentVersionKey = @"kStationsDatabas
     
     self.isSyncInProgress = NO;
     
-    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
-    [self reloadMapViewController];
-    [self updateUserLocationIfNeeded];
+    if (completion) {
+        completion();
+    }
 }
 
 - (NSInteger *)indexOfStationById:(PFObject *)station inStationsInfo:(NSArray *)stationsInfo {
@@ -530,7 +553,7 @@ static NSString * const kStationsDatabase_CurrentVersionKey = @"kStationsDatabas
     NSString* name;
     if ([json isKindOfClass:[NSDictionary class]]) {
         NSString* status = [json objectForKey:@"status"];
-        if ([status isEqualToString:@"OK"] == YES) {
+        if ([status isEqualToString:@"OK"]) {
             NSArray* results = [json objectForKey:@"results"];
             if ([results count] > 0) {
                 NSDictionary* first = [results objectAtIndex:0];
@@ -692,10 +715,7 @@ static NSString * const kStationsDatabase_CurrentVersionKey = @"kStationsDatabas
 - (void)updateListWithRegion:(NSString *)regionStr{
     [self tryToSetRegionWithStr:regionStr];
     
-    
     [self updateStations];
-    
-    //[MBProgressHUD hideAllHUDsForView:self.view animated:YES];
 }
 
 #pragma mark - Table view delegate routines
@@ -903,7 +923,7 @@ static NSString * const kStationsDatabase_CurrentVersionKey = @"kStationsDatabas
         cell.selectedBackgroundView = [[UIView alloc] initWithFrame:backgroundSelectedFrame];
         cell.selectedBackgroundView.clipsToBounds = YES;
         cell.selectedBackgroundView.alpha = 1.0;
-        cell.selectedBackgroundView.backgroundColor = RGBA_COLOR(0, 0, 0, 0.1);
+        cell.selectedBackgroundView.backgroundColor = RGBA_COLOR(0, 0, 0.0, 0.1);
         
         UIImageView *separatorView =
                 [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"DonorStations_tableCellSeparator"]];
@@ -912,9 +932,9 @@ static NSString * const kStationsDatabase_CurrentVersionKey = @"kStationsDatabas
     }
         
     HSStationInfo *stationInfo = [self stationInfoForTable:tableView forStationKeyPath:indexPath];
-    if (stationInfo == self.selectedStationInfo) {
-        [cell setHighlighted:YES animated:YES];
-    }
+    BOOL cellIsSelected = stationInfo == self.selectedStationInfo;
+    cell.selected = cellIsSelected;
+    cell.highlighted = cellIsSelected;
     
     NSString *name = stationInfo.name;
     NSString *address = stationInfo.shortaddress != nil ? stationInfo.shortaddress : stationInfo.address;
@@ -943,17 +963,8 @@ static NSString * const kStationsDatabase_CurrentVersionKey = @"kStationsDatabas
     return cell;
 }
 
-
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSIndexPath *deselectIndexPath = nil;
-    if (self.selectedStationInfo != nil) {
-        deselectIndexPath = [self indexPathForStationInfo:self.selectedStationInfo forTableView:tableView];
-    }
     self.selectedStationInfo = [self stationInfoForTable:tableView forStationKeyPath:indexPath];
-    if (deselectIndexPath != nil) {
-        [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:deselectIndexPath]
-                withRowAnimation:UITableViewRowAnimationNone];
-    }
     return indexPath;
 }
 
@@ -971,11 +982,8 @@ static NSString * const kStationsDatabase_CurrentVersionKey = @"kStationsDatabas
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell
         forRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     tableView.backgroundColor = [UIColor clearColor];
-    HSStationInfo *cellStationInfo = [self stationInfoForTable:tableView forStationKeyPath:indexPath];
-
-    BOOL highlighting = cellStationInfo == self.selectedStationInfo;
-    cell.highlighted = highlighting;
 }
 
 
@@ -1102,6 +1110,21 @@ static NSString * const kStationsDatabase_CurrentVersionKey = @"kStationsDatabas
 }
 
 #pragma mark - Private
+#pragma mark - Table view utlity
+- (void)reloadStationsTableViewWithSavedSelection {
+    [self.stationsTable reloadData];
+
+    NSIndexPath *selectedIndexPath = nil;
+    if (self.selectedStationInfo != nil) {
+        selectedIndexPath = [self indexPathForStationInfo:self.selectedStationInfo forTableView:self.stationsTable];
+    }
+
+    if (selectedIndexPath != nil) {
+        [self.stationsTable selectRowAtIndexPath:selectedIndexPath animated:NO
+                scrollPosition:UITableViewScrollPositionNone];
+    }
+}
+
 #pragma mark - Local database management
 - (NSString *)databaseDirectoryPath {
     return [[NSHomeDirectory() stringByAppendingPathComponent:@"Library"] stringByAppendingPathComponent:@"Caches"];
