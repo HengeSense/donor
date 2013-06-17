@@ -253,8 +253,8 @@ namespace Donor
 
         private MessagePrompt messagePrompt;
         private int Sex = 0;
-        private int BloodGroup = 0;
-        private int RHEdit = 0;
+        private int BloodGroup = -1;
+        private int RHEdit = -1;
         private bool UserDataSet = false;
 
         private string passwordsaved = "";
@@ -485,13 +485,13 @@ namespace Donor
 
             try
             {
-                this.BloudTypeGroupEdit.SelectedIndex = this.BloodGroup;
+                this.BloudTypeGroupEdit.SelectedIndex = (this.BloodGroup+1);
             }
             catch { };
 
             try
             {
-                this.RHedit.SelectedIndex = this.RHEdit;
+                this.RHedit.SelectedIndex = (this.RHEdit+1);
             }
             catch { };
         }
@@ -555,7 +555,7 @@ namespace Donor
         {
             try
             {
-                ViewModelLocator.MainStatic.User.BloodGroup = this.BloudTypeGroupEdit.SelectedIndex;
+                ViewModelLocator.MainStatic.User.BloodGroup = (this.BloudTypeGroupEdit.SelectedIndex -1);
             }
             catch { };
 
@@ -567,7 +567,7 @@ namespace Donor
 
             try
             {
-                ViewModelLocator.MainStatic.User.BloodRh = this.RHedit.SelectedIndex;
+                ViewModelLocator.MainStatic.User.BloodRh = (this.RHedit.SelectedIndex -1);
             }
             catch { };
 

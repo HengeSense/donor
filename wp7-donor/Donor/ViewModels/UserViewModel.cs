@@ -643,7 +643,12 @@ namespace Donor.ViewModels
             }
             get
             {
-                return this.OutBloodGroup + " " + this.OutBloodRh;
+                if ((this.BloodGroup == -1) && (this.BloodRh == -1))
+                {
+                    return this.OutBloodGroup;
+                } else {
+                    return this.OutBloodGroup + " " + this.OutBloodRh;
+                };
             }
         }
 
@@ -671,7 +676,10 @@ namespace Donor.ViewModels
             {
                 string outstr = "";
                 switch (this.BloodRh)
-                {                
+                {
+                    case -1:
+                        outstr = Donor.AppResources.UnknownBloodGroup;
+                        break;
                     case 0:
                         outstr = "RH+";
                         break;
@@ -694,9 +702,12 @@ namespace Donor.ViewModels
                 string outstr = Donor.AppResources.DontSelected2;
                 switch (this.BloodGroup)
                 {
-                    // (0 – I, 1 – II, 2 – III, 3 – IV)                    
+                    // (0 – I, 1 – II, 2 – III, 3 – IV)  
+                    case -1:
+                        outstr = Donor.AppResources.UnknownBloodGroup;
+                        break;
                     case 0:
-                        outstr = Donor.AppResources.FirrstBloodGroup;
+                        outstr = Donor.AppResources.FirstBloodGroup;
                         break;
                     case 1:
                         outstr = Donor.AppResources.SecondBloodGroup;

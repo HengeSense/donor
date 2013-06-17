@@ -777,4 +777,7 @@ By using this application, you consent to the collection and use of this informa
   <data name="YourReviewDescription" xml:space="preserve">
     <value>Ваш отзыв</value>
   </data>
+  <data name="UnknownBloodGroup" xml:space="preserve">
+    <value>Не знаю</value>
+  </data>
 </root>

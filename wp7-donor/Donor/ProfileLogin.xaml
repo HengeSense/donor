@@ -370,6 +370,9 @@ Visibility="Collapsed" Name="SaveEditProfileButton" Click="SaveEditProfileButton
                                 </toolkit:ListPicker.ItemTemplate>
                                 <toolkit:ListPicker.Items>
                                     <toolkit:ListPickerItem>
+                                        <TextBlock Text="{Binding UnknownBloodGroup, Source={StaticResource Loc}}"/>
+                                    </toolkit:ListPickerItem>
+                                    <toolkit:ListPickerItem>
                                         <TextBlock Text="{Binding FirstBloodGroup, Source={StaticResource Loc}}"/>
                                     </toolkit:ListPickerItem>
                                     <toolkit:ListPickerItem>
@@ -400,6 +403,9 @@ Visibility="Collapsed" Name="SaveEditProfileButton" Click="SaveEditProfileButton
                                     </DataTemplate>
                                 </toolkit:ListPicker.ItemTemplate>
                                 <toolkit:ListPicker.Items>
+                                    <toolkit:ListPickerItem>
+                                        <TextBlock Text="{Binding UnknownBloodGroup, Source={StaticResource Loc}}"/>
+                                    </toolkit:ListPickerItem>
                                     <toolkit:ListPickerItem>
                                         <TextBlock Text="RH+"/>
                                     </toolkit:ListPickerItem>
