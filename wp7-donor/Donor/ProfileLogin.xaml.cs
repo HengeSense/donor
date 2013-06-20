@@ -128,8 +128,8 @@ namespace Donor
             try
             {
                 this.Sex = ViewModelLocator.MainStatic.User.Sex;
-                this.BloodGroup = ViewModelLocator.MainStatic.User.BloodGroup;
-                this.RHEdit = ViewModelLocator.MainStatic.User.BloodRh;
+                this.BloodGroup = ViewModelLocator.MainStatic.User.BloodGroup + 1;
+                this.RHEdit = ViewModelLocator.MainStatic.User.BloodRh + 1;
                 this.UserDataSet = true;
             }
             catch { };
@@ -355,8 +355,8 @@ namespace Donor
                             try
                             {
                                 this.Sex = ViewModelLocator.MainStatic.User.Sex;
-                                this.BloodGroup = ViewModelLocator.MainStatic.User.BloodGroup;
-                                this.RHEdit = ViewModelLocator.MainStatic.User.BloodRh;
+                                this.BloodGroup = (ViewModelLocator.MainStatic.User.BloodGroup + 1);
+                                this.RHEdit = (ViewModelLocator.MainStatic.User.BloodRh + 1);
                                 this.UserDataSet = true;
                             }
                             catch { };
@@ -407,8 +407,8 @@ namespace Donor
                                 if (this.UserDataSet == false)
                                 {
                                     this.Sex = ViewModelLocator.MainStatic.User.Sex;
-                                    this.BloodGroup = ViewModelLocator.MainStatic.User.BloodGroup;
-                                    this.RHEdit = ViewModelLocator.MainStatic.User.BloodRh;
+                                    this.BloodGroup = (ViewModelLocator.MainStatic.User.BloodGroup+1);
+                                    this.RHEdit = (ViewModelLocator.MainStatic.User.BloodRh+1);
                                     this.UserDataSet = true;
                                 };
                             }
@@ -485,13 +485,13 @@ namespace Donor
 
             try
             {
-                this.BloudTypeGroupEdit.SelectedIndex = (this.BloodGroup+1);
+                this.BloudTypeGroupEdit.SelectedIndex = this.BloodGroup;
             }
             catch { };
 
             try
             {
-                this.RHedit.SelectedIndex = (this.RHEdit+1);
+                this.RHedit.SelectedIndex = this.RHEdit;
             }
             catch { };
         }
@@ -555,7 +555,7 @@ namespace Donor
         {
             try
             {
-                ViewModelLocator.MainStatic.User.BloodGroup = (this.BloudTypeGroupEdit.SelectedIndex -1);
+                ViewModelLocator.MainStatic.User.BloodGroup = (this.BloudTypeGroupEdit.SelectedIndex - 1);
             }
             catch { };
 
@@ -567,7 +567,7 @@ namespace Donor
 
             try
             {
-                ViewModelLocator.MainStatic.User.BloodRh = (this.RHedit.SelectedIndex -1);
+                ViewModelLocator.MainStatic.User.BloodRh = this.RHedit.SelectedIndex - 1;
             }
             catch { };
 

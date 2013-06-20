@@ -217,7 +217,7 @@ namespace Donor.ViewModels
                 request.AddParameter("user_id", ViewModelLocator.MainStatic.User.FacebookId);
                 request.AddParameter("user_token", ViewModelLocator.MainStatic.User.FacebookToken);
                 request.AddParameter("activation_code", activation_code);
-                request.AddParameter("unique", "f");
+                //request.AddParameter("unique", "f");
                 client.ExecuteAsync(request, response =>
                 {
                     try
@@ -466,6 +466,7 @@ namespace Donor.ViewModels
                                     ViewModelLocator.MainStatic.SaveSettingsToStorage();
 
                                     ViewModelLocator.BadgesStatic.CurrentBadge = ViewModelLocator.BadgesStatic.AvailableAchieves.FirstOrDefault(c=>c.Api_name=="donorfriend");
+                                    ViewModelLocator.BadgesStatic.AvailableAchieves.FirstOrDefault(c => c.Api_name == "donorfriend").Status = true;
                                     ViewModelLocator.BadgesStatic.ShowBadgeMessage();
                                 });
                             };
