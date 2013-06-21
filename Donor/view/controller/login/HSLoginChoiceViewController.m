@@ -171,8 +171,8 @@
     NSString *infoRequestPath = @"me/?fields=first_name,last_name,email,gender";
     [self specifyPlatformInfoForUser:user];
     MBProgressHUD *progressHud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
-    PF_FBRequest *infoRequest = [PF_FBRequest requestForGraphPath:infoRequestPath];
-    [infoRequest startWithCompletionHandler:^(PF_FBRequestConnection *connection, id result, NSError *error) {
+    FBRequest *infoRequest = [FBRequest requestForGraphPath:infoRequestPath];
+    [infoRequest startWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
         [progressHud hide:YES];
         if (!error) {
             NSDictionary *userData = (NSDictionary *)result;

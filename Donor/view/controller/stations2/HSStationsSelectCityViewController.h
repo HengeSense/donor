@@ -3,6 +3,7 @@
 //  Donor
 //
 //  Created by Eugine Korobovsky on 09.04.13.
+//  Updated by Sergey Seroshtan on 25.05.13.
 //  Copyright (c) 2013 Hint Solutions. All rights reserved.
 //
 

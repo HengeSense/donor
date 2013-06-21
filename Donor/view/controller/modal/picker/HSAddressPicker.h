@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "HSPicker.h"
+#import "HSPickerModal.h"
 
-@interface HSAddressPicker : HSPicker
+@interface HSAddressPicker : HSPickerModal
 
 /**
  * Currently selected address.

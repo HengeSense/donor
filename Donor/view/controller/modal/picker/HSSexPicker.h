@@ -6,13 +6,13 @@
 //  Copyright (c) 2012 Hint Solutions. All rights reserved.
 //
 
-#import "HSPicker.h"
+#import "HSPickerModal.h"
 #import "HSSexType.h"
 
 /**
  * Picker for selection person sex.
  */
-@interface HSSexPicker : HSPicker
+@interface HSSexPicker : HSPickerModal
 
 /// @name Selection properties
 /**

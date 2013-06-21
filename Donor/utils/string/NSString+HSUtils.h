@@ -10,4 +10,5 @@
 
 @interface NSString (HSUtils)
 - (BOOL)isNotEmpty;
+- (NSString *)capitalizedFirstLetterString;
 @end

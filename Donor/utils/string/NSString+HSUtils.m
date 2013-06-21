@@ -14,4 +14,12 @@
     return self.length > 0;
 }
 
+- (NSString *)capitalizedFirstLetterString {
+    if (self.length == 0) {
+        return self;
+    }
+    return [self stringByReplacingCharactersInRange:NSMakeRange(0,1)
+        withString:[[self substringToIndex:1] capitalizedString]];
+}
+
 @end
