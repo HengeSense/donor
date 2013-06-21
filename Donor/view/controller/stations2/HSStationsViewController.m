@@ -189,6 +189,9 @@ static NSString * const kStationsDatabase_CurrentVersionKey = @"kStationsDatabas
 
 - (void)selectStationByAddress:(NSString *)address {
     THROW_IF_ARGUMENT_NIL(address);
+    
+    [self updateStations];
+
     NSPredicate *addressPredicate =
             [NSPredicate predicateWithFormat:@"(address like[cd] %@) OR (shortaddress like[cd] %@)", address, address];
     NSArray *stationsWithAddress = [self.stations filteredArrayUsingPredicate:addressPredicate];
@@ -196,12 +199,12 @@ static NSString * const kStationsDatabase_CurrentVersionKey = @"kStationsDatabas
         return;
     }
     
-    [self updateStations];
-    
     NSIndexPath *stationInfoIndexPath =
             [self indexPathForStationInfo:stationsWithAddress[0] forTableView:self.stationsTable];
     if (stationInfoIndexPath != nil) {
         self.selectedStationInfo = stationsWithAddress[0];
+        [self.stationsTable selectRowAtIndexPath:stationInfoIndexPath animated:NO
+                scrollPosition:UITableViewScrollPositionMiddle];
     }
 }
 
