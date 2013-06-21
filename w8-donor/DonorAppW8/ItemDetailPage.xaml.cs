@@ -1,4 +1,4 @@
-﻿using DonorAppW8.Data;
+﻿//using DonorAppW8.Data;
 
 using System;
 using System.Collections.Generic;
@@ -47,10 +47,10 @@ namespace DonorAppW8
             }
 
             // TODO: Создание соответствующей модели данных для области проблемы, чтобы заменить пример данных
-            var item = SampleDataSource.GetItem((String)navigationParameter);
-            this.DefaultViewModel["Group"] = item.Group;
-            this.DefaultViewModel["Items"] = item.Group.Items;
-            this.flipView.SelectedItem = item;
+            //var item = SampleDataSource.GetItem((String)navigationParameter);
+            //this.DefaultViewModel["Group"] = item.Group;
+            //this.DefaultViewModel["Items"] = item.Group.Items;
+            //this.flipView.SelectedItem = item;
         }
 
         /// <summary>
@@ -61,8 +61,8 @@ namespace DonorAppW8
         /// <param name="pageState">Пустой словарь, заполняемый сериализуемым состоянием.</param>
         protected override void SaveState(Dictionary<String, Object> pageState)
         {
-            var selectedItem = (SampleDataItem)this.flipView.SelectedItem;
-            pageState["SelectedItem"] = selectedItem.UniqueId;
+            //var selectedItem = (SampleDataItem)this.flipView.SelectedItem;
+            //pageState["SelectedItem"] = selectedItem.UniqueId;
         }
     }
 }

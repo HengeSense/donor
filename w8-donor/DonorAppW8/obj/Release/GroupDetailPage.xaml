@@ -16,8 +16,7 @@
         <!-- Коллекция элементов, отображаемых на этой странице -->
         <CollectionViewSource
             x:Name="itemsViewSource"
-            Source="{Binding Items}"
-            d:Source="{Binding AllGroups[0].Items, Source={d:DesignInstance Type=data:SampleDataSource, IsDesignTimeCreatable=True}}"/>
+            Source="{Binding Items}"/>
     </Page.Resources>
 
     <!--
@@ -25,10 +24,9 @@
         * Строка 0 содержит кнопку "Назад" и заголовок страницы
         * Строка 1 содержит оставшуюся часть страницы
     -->
-    <Grid
+    <Grid Background="#271B16"
         Style="{StaticResource LayoutRootStyle}"
-        DataContext="{Binding Group}"
-        d:DataContext="{Binding AllGroups[0], Source={d:DesignInstance Type=data:SampleDataSource, IsDesignTimeCreatable=True}}">
+        DataContext="{Binding Group}">
 
         <Grid.RowDefinitions>
             <RowDefinition Height="140"/>
@@ -42,6 +40,7 @@
             AutomationProperties.Name="Items In Group"
             TabIndex="1"
             Grid.RowSpan="2"
+            Margin="0,20,0,0"
             Padding="120,126,120,50"
             ItemsSource="{Binding Source={StaticResource itemsViewSource}}"
             ItemTemplate="{StaticResource Standard500x130ItemTemplate}"
@@ -90,7 +89,7 @@
         </ListView>
 
         <!-- Кнопка "Назад" и заголовок страницы -->
-        <Grid>
+        <Grid Background="#7F0000">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>

@@ -21,10 +21,6 @@ C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\obj\Release\GroupD
 C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\obj\Release\ItemDetailPage.xaml
 C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\obj\Release\DonorAppW8.exe
 C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\obj\Release\DonorAppW8.pdb
-C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\obj\Release\priconfig.xml.intermediate
-C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\obj\Release\layout.resfiles.intermediate
-C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\obj\Release\resources.resfiles.intermediate
-C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\obj\Release\pri.resfiles.intermediate
 C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\obj\Release\priconfig.xml
 C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\obj\Release\layout.resfiles
 C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\obj\Release\resources.resfiles
@@ -50,4 +46,13 @@ C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\obj\Release\Callis
 C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\obj\Release\GalaSoft.MvvmLight.Extras.Win8.pri.xml
 C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\obj\Release\GalaSoft.MvvmLight.Win8.pri.xml
 C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\obj\Release\Microsoft.Practices.ServiceLocation.pri.xml
-C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\obj\Release\DonorAppW8.csprojResolveAssemblyReference.cache
+C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\bin\Release\Newtonsoft.Json.dll
+C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\bin\Release\Parse.dll
+C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\bin\Release\Parse.WinRT.dll
+C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\bin\Release\Newtonsoft.Json.xml
+C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\bin\Release\Parse.xml
+C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\bin\Release\Parse.WinRT.xml
+C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\obj\Release\priconfig.xml.intermediate
+C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\obj\Release\layout.resfiles.intermediate
+C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\obj\Release\resources.resfiles.intermediate
+C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\obj\Release\pri.resfiles.intermediate

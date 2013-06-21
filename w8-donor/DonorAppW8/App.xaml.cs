@@ -1,5 +1,6 @@
 ﻿using DonorAppW8.Common;
-
+using DonorAppW8.ViewModel;
+using Parse;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -33,6 +34,11 @@ namespace DonorAppW8
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+
+             ParseClient.Initialize("EIpakVdZblHedhqgxMgiEVnIGCRGvWdy9v8gkKZu", "ySYoofvVEllJkz0krRv0mrKUMNc2pH50Jnyl14JR");
+             ParseFacebookUtils.Initialize("264918200296425");
+
+             
         }
 
         /// <summary>

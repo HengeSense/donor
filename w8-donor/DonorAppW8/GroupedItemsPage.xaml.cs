@@ -1,5 +1,6 @@
-﻿using DonorAppW8.Data;
-
+﻿using DonorAppW8.DataModel;
+//using DonorAppW8.Data;
+using DonorAppW8.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -26,6 +27,8 @@ namespace DonorAppW8
         public GroupedItemsPage()
         {
             this.InitializeComponent();
+
+            ViewModelLocator.MainStatic.LoadData();
         }
 
         /// <summary>
@@ -40,8 +43,8 @@ namespace DonorAppW8
         protected override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
         {
             // TODO: Создание соответствующей модели данных для области проблемы, чтобы заменить пример данных
-            var sampleDataGroups = SampleDataSource.GetGroups((String)navigationParameter);
-            this.DefaultViewModel["Groups"] = sampleDataGroups;
+            //var sampleDataGroups = SampleDataSource.GetGroups((String)navigationParameter);
+            //this.DefaultViewModel["Groups"] = sampleDataGroups;
         }
 
         /// <summary>
@@ -56,7 +59,7 @@ namespace DonorAppW8
 
             // Переход к соответствующей странице назначения и настройка новой страницы
             // путем передачи необходимой информации в виде параметра навигации
-            this.Frame.Navigate(typeof(GroupDetailPage), ((SampleDataGroup)group).UniqueId);
+            this.Frame.Navigate(typeof(GroupDetailPage), (group as RssDataGroup).UniqueId);
         }
 
         /// <summary>
@@ -69,7 +72,7 @@ namespace DonorAppW8
         {
             // Переход к соответствующей странице назначения и настройка новой страницы
             // путем передачи необходимой информации в виде параметра навигации
-            var itemId = ((SampleDataItem)e.ClickedItem).UniqueId;
+            var itemId = "test"; // ((SampleDataItem)e.ClickedItem).UniqueId;
             this.Frame.Navigate(typeof(ItemDetailPage), itemId);
         }
     }

@@ -1,0 +1,783 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AbsContras" xml:space="preserve">
+    <value>Абсолютные противопоказания</value>
+  </data>
+  <data name="Add" xml:space="preserve">
+    <value>Добавить</value>
+  </data>
+  <data name="AddEvent" xml:space="preserve">
+    <value>Запланировать</value>
+  </data>
+  <data name="AddReview" xml:space="preserve">
+    <value>Добавить отзыв</value>
+  </data>
+  <data name="Ads" xml:space="preserve">
+    <value>Объявления</value>
+  </data>
+  <data name="AdsTitle" xml:space="preserve">
+    <value>Объявления</value>
+  </data>
+  <data name="AskQuestion" xml:space="preserve">
+    <value>О нас</value>
+  </data>
+  <data name="BeforeBloodGive" xml:space="preserve">
+    <value>Перед кроводачей</value>
+  </data>
+  <data name="BeforeTime" xml:space="preserve">
+    <value>Сдача</value>
+  </data>
+  <data name="BloodGivedFor" xml:space="preserve">
+    <value>Кровь сдается для</value>
+  </data>
+  <data name="BloodGiveMore" xml:space="preserve">
+    <value>Подробности</value>
+  </data>
+  <data name="BloodGiveTitle" xml:space="preserve">
+    <value>кроводача</value>
+  </data>
+  <data name="BloodGiveType" xml:space="preserve">
+    <value>Вид кроводачи</value>
+  </data>
+  <data name="BloodGroup" xml:space="preserve">
+    <value>Группа крови</value>
+  </data>
+  <data name="BloodStations" xml:space="preserve">
+    <value>Станции переливания крови</value>
+  </data>
+  <data name="Calendar" xml:space="preserve">
+    <value>Календарь</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Отменить</value>
+  </data>
+  <data name="CantEnterCheckNetwork" xml:space="preserve">
+    <value>Не удается выполнить вход. Убедитесь, что режим "в самолете" выключен и имеется сетевое соединение.</value>
+  </data>
+  <data name="Change" xml:space="preserve">
+    <value>Изменить</value>
+  </data>
+  <data name="City" xml:space="preserve">
+    <value>Город</value>
+  </data>
+  <data name="CommentLabel" xml:space="preserve">
+    <value>Комментарий:</value>
+  </data>
+  <data name="CommentLabelEdit" xml:space="preserve">
+    <value>Комментарий</value>
+  </data>
+  <data name="ContrasHeader" xml:space="preserve">
+    <value>противопоказания</value>
+  </data>
+  <data name="DateAndTime" xml:space="preserve">
+    <value>Дата и время</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Удалить</value>
+  </data>
+  <data name="DonorsForChildren" xml:space="preserve">
+    <value>Доноры детям</value>
+  </data>
+  <data name="EmailHelp" xml:space="preserve">
+    <value>E-mail</value>
+  </data>
+  <data name="EnterEmail" xml:space="preserve">
+    <value>Введите e-mail</value>
+  </data>
+  <data name="EnterLoginAndPasswordToRegister" xml:space="preserve">
+    <value>Если у вас нет аккаунта, введите пароль и e-mail для начала регистрации.</value>
+  </data>
+  <data name="EnterPassword" xml:space="preserve">
+    <value>Введите пароль</value>
+  </data>
+  <data name="EnterToWorkWithCalendar" xml:space="preserve">
+    <value>Пожалуйста войдите, чтобы иметь возможность работать с календарем событий.</value>
+  </data>
+  <data name="Event" xml:space="preserve">
+    <value>Cобытие</value>
+  </data>
+  <data name="EventType" xml:space="preserve">
+    <value>Тип события</value>
+  </data>
+  <data name="Filter" xml:space="preserve">
+    <value>Фильтр</value>
+  </data>
+  <data name="ForDonorsStation" xml:space="preserve">
+    <value>для доноров</value>
+  </data>
+  <data name="GivedBloodCount" xml:space="preserve">
+    <value>Записано кроводач</value>
+  </data>
+  <data name="Help" xml:space="preserve">
+    <value>Справка</value>
+  </data>
+  <data name="HelpRules" xml:space="preserve">
+    <value>памятка</value>
+  </data>
+  <data name="InfoDonorsEmail" xml:space="preserve">
+    <value>info@donors.ru</value>
+  </data>
+  <data name="KnowResult" xml:space="preserve">
+    <value>Узнать результат</value>
+  </data>
+  <data name="Loading" xml:space="preserve">
+    <value>Загрузка...</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Вход</value>
+  </data>
+  <data name="MainStationPivot" xml:space="preserve">
+    <value>основное</value>
+  </data>
+  <data name="Map" xml:space="preserve">
+    <value>карта</value>
+  </data>
+  <data name="MapStation" xml:space="preserve">
+    <value>Станция</value>
+  </data>
+  <data name="Menu" xml:space="preserve">
+    <value>Меню</value>
+  </data>
+  <data name="Moscow" xml:space="preserve">
+    <value>Москва</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Имя</value>
+  </data>
+  <data name="News" xml:space="preserve">
+    <value>Новости</value>
+  </data>
+  <data name="NoEvents" xml:space="preserve">
+    <value>Нет событий</value>
+  </data>
+  <data name="NoStations" xml:space="preserve">
+    <value>Станций не найдено. Измените параметры фильтра.</value>
+  </data>
+  <data name="OnMap" xml:space="preserve">
+    <value>На карте</value>
+  </data>
+  <data name="Phone" xml:space="preserve">
+    <value>Телефон</value>
+  </data>
+  <data name="Place" xml:space="preserve">
+    <value>Место</value>
+  </data>
+  <data name="Plans" xml:space="preserve">
+    <value>Планы</value>
+  </data>
+  <data name="PodariZhizn" xml:space="preserve">
+    <value>http://podari-zhizn.ru</value>
+  </data>
+  <data name="Profile" xml:space="preserve">
+    <value>Профиль</value>
+  </data>
+  <data name="RecepientTime" xml:space="preserve">
+    <value>Время приема</value>
+  </data>
+  <data name="Recomendations" xml:space="preserve">
+    <value>рекомендации</value>
+  </data>
+  <data name="RegionalCheck" xml:space="preserve">
+    <value>Прием региональной прописки</value>
+  </data>
+  <data name="Registration" xml:space="preserve">
+    <value>Регистрация</value>
+  </data>
+  <data name="RememberBefore" xml:space="preserve">
+    <value>Напоминание за:</value>
+  </data>
+  <data name="Reminder" xml:space="preserve">
+    <value>Напоминание</value>
+  </data>
+  <data name="ReminderBeforeEdit" xml:space="preserve">
+    <value>Напомнить за</value>
+  </data>
+  <data name="SaturdayWork" xml:space="preserve">
+    <value>Работаем по субботам</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Сохранить</value>
+  </data>
+  <data name="Sex" xml:space="preserve">
+    <value>Пол</value>
+  </data>
+  <data name="Site" xml:space="preserve">
+    <value>Сайт</value>
+  </data>
+  <data name="StationAds" xml:space="preserve">
+    <value>объявления</value>
+  </data>
+  <data name="StationReviews" xml:space="preserve">
+    <value>отзывы</value>
+  </data>
+  <data name="Stations" xml:space="preserve">
+    <value>Станции</value>
+  </data>
+  <data name="StationSearch" xml:space="preserve">
+    <value>Поиск станции</value>
+  </data>
+  <data name="StationWriteReview" xml:space="preserve">
+    <value>Оставить отзыв</value>
+  </data>
+  <data name="StPetersburg" xml:space="preserve">
+    <value>Санкт-Петербург</value>
+  </data>
+  <data name="String1" xml:space="preserve">
+    <value>Добавить событие</value>
+  </data>
+  <data name="String2" xml:space="preserve">
+    <value>Было выполнено</value>
+  </data>
+  <data name="TempContras" xml:space="preserve">
+    <value>Временные противопоказания</value>
+  </data>
+  <data name="Today" xml:space="preserve">
+    <value>Сегодня</value>
+  </data>
+  <data name="TransportStation" xml:space="preserve">
+    <value>Проезд</value>
+  </data>
+  <data name="UncorrectLoginData" xml:space="preserve">
+    <value>Указаны некорректные данные.</value>
+  </data>
+  <data name="Vote" xml:space="preserve">
+    <value>Голосовать</value>
+  </data>
+  <data name="vote_buffet" xml:space="preserve">
+    <value>Буфет:</value>
+  </data>
+  <data name="vote_laboratory" xml:space="preserve">
+    <value>Лаборатория:</value>
+  </data>
+  <data name="vote_organization_donation" xml:space="preserve">
+    <value>Организация кроводачи:</value>
+  </data>
+  <data name="vote_physician" xml:space="preserve">
+    <value>Врач-терапевт:</value>
+  </data>
+  <data name="vote_registry" xml:space="preserve">
+    <value>Регистратура:</value>
+  </data>
+  <data name="vote_room" xml:space="preserve">
+    <value>Помещение:</value>
+  </data>
+  <data name="vote_schedule" xml:space="preserve">
+    <value>График работы:</value>
+  </data>
+  <data name="WasFinished" xml:space="preserve">
+    <value>Было выполнено</value>
+  </data>
+  <data name="YouCanGiveBloodIf" xml:space="preserve">
+    <value>Вы можете сдать кровь, если:</value>
+  </data>
+  <data name="YourName" xml:space="preserve">
+    <value>Ваше имя</value>
+  </data>
+  <data name="Apply" xml:space="preserve">
+    <value>Применить</value>
+  </data>
+  <data name="Exit" xml:space="preserve">
+    <value>Выход</value>
+  </data>
+  <data name="Share" xml:space="preserve">
+    <value>Поделиться</value>
+  </data>
+  <data name="String3" xml:space="preserve">
+    <value>противопоказания</value>
+  </data>
+  <data name="AccountHeader" xml:space="preserve">
+    <value>аккаунт</value>
+  </data>
+  <data name="ConfirmPassword" xml:space="preserve">
+    <value>Подтвердите пароль</value>
+  </data>
+  <data name="Female" xml:space="preserve">
+    <value>Женский</value>
+  </data>
+  <data name="FirstBloodGroup" xml:space="preserve">
+    <value>O(I)</value>
+  </data>
+  <data name="ForthBloodGroup" xml:space="preserve">
+    <value>AB(IV)</value>
+  </data>
+  <data name="Male" xml:space="preserve">
+    <value>Мужской</value>
+  </data>
+  <data name="NextBloodGive" xml:space="preserve">
+    <value>Следующая кроводача</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Пароль</value>
+  </data>
+  <data name="ProfileHeader" xml:space="preserve">
+    <value>профиль</value>
+  </data>
+  <data name="RestorePassoword" xml:space="preserve">
+    <value>Восстановить пароль</value>
+  </data>
+  <data name="RhFactor" xml:space="preserve">
+    <value>Резус-фактор</value>
+  </data>
+  <data name="SecondBloodGroup" xml:space="preserve">
+    <value>A(II)</value>
+  </data>
+  <data name="ThirdBloodGroup" xml:space="preserve">
+    <value>B(III)</value>
+  </data>
+  <data name="ReadQrCode" xml:space="preserve">
+    <value>Считать QR код</value>
+  </data>
+  <data name="FacebookUnlinkedMessage" xml:space="preserve">
+    <value>Связь с Facebook разорвана</value>
+  </data>
+  <data name="Analisis" xml:space="preserve">
+    <value>Анализ</value>
+  </data>
+  <data name="DataSend" xml:space="preserve">
+    <value>Данные отправлены</value>
+  </data>
+  <data name="Donors" xml:space="preserve">
+    <value>Доноры</value>
+  </data>
+  <data name="DontFinished" xml:space="preserve">
+    <value>Еще не отмечено как выполненное</value>
+  </data>
+  <data name="DoYouGiveBloodToday" xml:space="preserve">
+    <value>Вы сегодня сдавали кровь?</value>
+  </data>
+  <data name="EmptyType" xml:space="preserve">
+    <value>empty</value>
+  </data>
+  <data name="Finished" xml:space="preserve">
+    <value>Выполнено</value>
+  </data>
+  <data name="PlanedBloodGive" xml:space="preserve">
+    <value>Запланировано: </value>
+  </data>
+  <data name="PossibleBloodGive" xml:space="preserve">
+    <value>Можно сдавать: </value>
+  </data>
+  <data name="Reminder15Minutes" xml:space="preserve">
+    <value>15 минут</value>
+  </data>
+  <data name="Reminder1Day" xml:space="preserve">
+    <value>1 день</value>
+  </data>
+  <data name="Reminder1Hour" xml:space="preserve">
+    <value>1 час</value>
+  </data>
+  <data name="Reminder1Week" xml:space="preserve">
+    <value>1 неделя</value>
+  </data>
+  <data name="Reminder2Days" xml:space="preserve">
+    <value>2 дня</value>
+  </data>
+  <data name="YouGiveBlood" xml:space="preserve">
+    <value>Вы сдали: </value>
+  </data>
+  <data name="YouHaveBloodGiveTomorrow" xml:space="preserve">
+    <value>Завтра у вас запланирована кроводача.</value>
+  </data>
+  <data name="BloodGiveTitle2" xml:space="preserve">
+    <value>Кроводача</value>
+  </data>
+  <data name="DontExists" xml:space="preserve">
+    <value>отсутствует</value>
+  </data>
+  <data name="DontFilledData" xml:space="preserve">
+    <value>Не указано</value>
+  </data>
+  <data name="DontSelected" xml:space="preserve">
+    <value>не выбран</value>
+  </data>
+  <data name="DontSelected2" xml:space="preserve">
+    <value>не выбрано</value>
+  </data>
+  <data name="FirrstBloodGroup" xml:space="preserve">
+    <value>O(I)</value>
+  </data>
+  <data name="FridayShort" xml:space="preserve">
+    <value>Пт</value>
+  </data>
+  <data name="Granulocytes" xml:space="preserve">
+    <value>Гранулоциты</value>
+  </data>
+  <data name="HolidayType" xml:space="preserve">
+    <value>Праздник</value>
+  </data>
+  <data name="MondayShort" xml:space="preserve">
+    <value>Пн</value>
+  </data>
+  <data name="NeedRegistrationInMoscow" xml:space="preserve">
+    <value>Требуется регистрация в Москве или Московской области</value>
+  </data>
+  <data name="NotTooMuchDaysFromLastBloodGive" xml:space="preserve">
+    <value>Прошло мало времени с последней кроводачи. </value>
+  </data>
+  <data name="Plasma" xml:space="preserve">
+    <value>Плазма</value>
+  </data>
+  <data name="Platelets" xml:space="preserve">
+    <value>Тромбоциты</value>
+  </data>
+  <data name="PossibleBloodGiveTitle" xml:space="preserve">
+    <value>- возможная сдача</value>
+  </data>
+  <data name="PossibleGiveBloodStartingFrom" xml:space="preserve">
+    <value> можно сдавать с </value>
+  </data>
+  <data name="SaturdayShort" xml:space="preserve">
+    <value>Сб</value>
+  </data>
+  <data name="SundayShort" xml:space="preserve">
+    <value>Вс</value>
+  </data>
+  <data name="ThursdayShort" xml:space="preserve">
+    <value>Чт</value>
+  </data>
+  <data name="TuesdayShort" xml:space="preserve">
+    <value>Вт</value>
+  </data>
+  <data name="WednesdayShort" xml:space="preserve">
+    <value>Ср</value>
+  </data>
+  <data name="WholeBlood" xml:space="preserve">
+    <value>Цельная кровь</value>
+  </data>
+  <data name="YouCanPlanBlood" xml:space="preserve">
+    <value>Вы можете запланировать кроводачу: </value>
+  </data>
+  <data name="YouCanPlanBlood2" xml:space="preserve">
+    <value>Вы можете запланировать кроводачу</value>
+  </data>
+  <data name="YouCantPlanBloodGiveThisDay" xml:space="preserve">
+    <value>В данный день вы еще не можете производить сдачу крови.</value>
+  </data>
+  <data name="YouGiveBloodThanks" xml:space="preserve">
+    <value>Вы сдали кровь. Спасибо! Рассчитан интервал до следующей возможной кроводачи</value>
+  </data>
+  <data name="YouHaveEventAtThisDay" xml:space="preserve">
+    <value>На этот день у вас уже запланировано событие</value>
+  </data>
+  <data name="SecondName" xml:space="preserve">
+    <value>Фамилия</value>
+  </data>
+  <data name="UserBirthday" xml:space="preserve">
+    <value>Дата рождения</value>
+  </data>
+  <data name="ReadQRAboutText" xml:space="preserve">
+    <value>Для активации достижения сделайте скан QR кода с наклейки к донорской справке. &lt;a href="http://www.blood.ru"&gt;Подробнее о достижениях&lt;/a&gt;.
+Функционал дотижений доступен только в СПК ГНЦ РАМН. (http://www.blood.ru)</value>
+  </data>
+  <data name="EnterYourEmailForRestorePassword" xml:space="preserve">
+    <value>Введите ваш e-mail</value>
+  </data>
+  <data name="RestoreEmailSend" xml:space="preserve">
+    <value>На указанный e-mail отправлено письмо с инструкцией по востановлению доступа к учетной записи.</value>
+  </data>
+  <data name="RestorePassword" xml:space="preserve">
+    <value>Востановление пароля</value>
+  </data>
+  <data name="FacebookLogin" xml:space="preserve">
+    <value>Вход через Facebook</value>
+  </data>
+  <data name="FacebookLinking" xml:space="preserve">
+    <value>Привязать профиль Facebook</value>
+  </data>
+  <data name="String" xml:space="preserve">
+    <value />
+  </data>
+  <data name="FacebookUnLinking" xml:space="preserve">
+    <value>Привязан профиль Facebook</value>
+  </data>
+  <data name="RestoreEmailProblem" xml:space="preserve">
+    <value>Пользователь с указанной почтой не зарегистрирован</value>
+  </data>
+  <data name="Achieves" xml:space="preserve">
+    <value>достижения</value>
+  </data>
+  <data name="MyBadges" xml:space="preserve">
+    <value>Мои значки</value>
+  </data>
+  <data name="AchievesMenu" xml:space="preserve">
+    <value>Достижения</value>
+  </data>
+  <data name="PrivacyPolicyDescription" xml:space="preserve">
+    <value>&lt;p&gt;Donor application PRIVACY POLICY&lt;/p&gt;
+&lt;p&gt;This application is owned and operated by Hintsolutions. Your privacy on the Internet is of the utmost importance to us. At Donor application, we want to make your experience online satisfying and safe.&lt;br&gt;
+Because we gather certain types of information about our users, we feel you should fully understand our policy and the terms and conditions surrounding the capture and use of that information. This privacy statement discloses what information we gather and how we use it.&lt;br&gt;
+INFORMATION Donor application GATHERS AND TRACKS&lt;br&gt;
+EYES INTM gathers two types of information about users:&lt;br&gt;
+• Information that users provide through optional, voluntary submissions. These are voluntary submissions to receive our electronic newsletters, to participate in our message boards or forums, to email a friend, and from participation in polls and surveys.&lt;br&gt;
+• Information Donor application gathers through aggregated tracking information derived mainly by tallying page views throughout our applications. This information allows us to better tailor our content to readers’ needs and to help our advertisers and sponsors better understand the demographics of our audience. Because Donor application derives its revenue mainly from sponsorships and advertising, providing such aggregated demographic data is essential to keeping our service free to users. Under no circumstances does Donor application divulge any information about an individual user to a third party.&lt;br&gt;
+Donor application Gathers User Information in the Following Processes:&lt;br&gt;
+Optional Voluntary Information&lt;br&gt;
+We offer the following free services, which require some type of voluntary submission of personal information by users:&lt;br&gt;
+1. Electronic newsletters policy (Dispatches)&lt;br&gt;
+We will offer a free electronic newsletter to users. Donor application gathers the email addresses of users who voluntarily subscribe. Users may remove themselves from this mailing list by following the link provided in every newsletter that points users to the subscription management page. Users can also subscribe to the newsletters at the time of registration.&lt;br&gt;
+2. Message boards/forums policy&lt;br&gt;
+Users of the application’s Message Boards and Forums must register separately for these services (both are free of charge) in order to post messages, although they needn’t register to visit the application. During registration the user is required to supply a username, password, and email address.&lt;br&gt;
+3. «E-mail this to a friend» policy&lt;br&gt;
+Our application users can choose to electronically forward a link, page, or documents to someone else by clicking «e-mail this to a friend». The user must provide their email address, as well as that of the recipient. This information is used only in the case of transmission errors and, of course, to let the recipient know who sent the email. The information is not used for any other purpose.&lt;br&gt;
+4. Polling&lt;br&gt;
+We may offer interactive polls to users so they can easily share their opinions with other users and see what our audience thinks about important issues. Opinions or other responses to polls are aggregated and are not identifiable to any particular user. Donor application may use a system to «tag» users after they have voted, so they can vote only once on a particular question. This tag is not correlated with information about individual users.&lt;br&gt;
+5. Surveys&lt;br&gt;
+Donor application may occasionally conduct user surveys to better target our content to our audience. We sometimes share the aggregated demographic information in these surveys with our sponsors, advertisers and partners. We never share any of this information about specific individuals with any third party.&lt;br&gt;
+Children&lt;br&gt;
+Consistent with the Federal Children’s Online Privacy Protection Act of 1998 (COPPA), we will never knowingly request personally identifiable information from anyone under the age of 13 without requesting parental consent.&lt;br&gt;
+Usage Tracking&lt;br&gt;
+Donor application tracks user traffic patterns throughout all of our applications. However, we do not correlate this information with data about individual users. Donor application does break down overall usage statistics according to a user’s domain name, browser type, and MIME type by reading this information from the browser string (information contained in every user’s browser).&lt;br&gt;
+Donor application sometimes tracks and catalogs the search terms that users enter in our Search function, but this tracking is never associated with individual users. We use tracking information to determine which areas of our applications users like and don’t like based on traffic to those areas. We do not track what individual users read, but rather how well each page performs overall. This helps us continue to build a better service for you.&lt;br&gt;
+Cookies&lt;br&gt;
+We may place a text file called a «cookie» in the browser files of your computer. The cookie itself does not contain Personal Information although it will enable us to relate your use of this application to information that you have specifically and knowingly provided. But the only personal information a cookie can contain is information you supply yourself. A cookie can’t read data off your hard disk or read cookie files created by other applications. Donor application uses cookies to track user traffic patterns (as described above). Our advertising system delivers a one-time cookie to better track ad impressions and click rates.&lt;br&gt;
+You can refuse cookies by turning them off in your browser. If you’ve set your browser to warn you before accepting cookies, you will receive the warning message with each cookie. You do not need to have cookies turned on to use this application. However, you do need cookies to participate actively in message boards, forums, polling and surveys.&lt;br&gt;
+USE OF INFORMATION&lt;br&gt;
+Donor application uses any information voluntarily given by our users to enhance their experience in our network of applications, whether to provide interactive or personalized elements on the applications or to better prepare future content based on the interests of our users.&lt;br&gt;
+As stated above, we use information that users voluntarily provide in order to send out electronic newsletters and to enable users to participate in polls, surveys, message boards, and forums. We send out newsletters to subscribers on a regular schedule (depending on the newsletter), and occasionally send out special editions when we think subscribers might be particularly interested in something we are doing. Donor application never shares newsletter mailing lists with any third parties, including advertisers, sponsors or partners.&lt;br&gt;
+When we use tracking information to determine which areas of our applications users like and don’t like based on traffic to those areas. We do not track what individual users read, but rather how well each page performs overall. This helps us continue to build a better service for you. We track search terms entered in Search function as one of many measures of what interests our users. But we don’t track which terms a particular user enters.&lt;br&gt;
+Donor application use phone location information to determinate nearest stations and allow our users to usemap services We will not disclose any information about user location any third party, except to comply with applicable law or valid legal process or to protect the personal safety of our users or the public.&lt;br&gt;
+Donor application creates aggregate reports on user demographics and traffic patterns for advertisers, sponsors and partners. This allows our advertisers to advertise more effectively, and allows our users to receive advertisements that are pertinent to their needs. Because we don’t track the usage patterns of individual users, an advertiser or sponsor will never know that a specific user clicked their ad. We will not disclose any information about any individual user except to comply with applicable law or valid legal process or to protect the personal safety of our users or the public.&lt;br&gt;
+SHARING OF THE INFORMATION&lt;br&gt;
+Donor application uses the above-described information to tailor our content to suit your needs and help our advertisers better understand our audience’s demographics. This is essential to keeping our service free. We will not share information about individual users with any third party, except to comply with applicable law or valid legal process or to protect the personal safety of our users or the public.&lt;br&gt;
+SECURITY&lt;br&gt;
+Donor application operates secure data networks protected by industry standard firewall and password protection systems. Our security and privacy policies are periodically reviewed and enhanced as necessary and only authorized individuals have access to the information provided by our customers.&lt;br&gt;
+OPT-OUT POLICY&lt;br&gt;
+We give users options wherever necessary and practical. Such choices include:&lt;br&gt;
+• Opting not to register to receive our electronic newsletters.&lt;br&gt;
+• Opting not to participate in certain interactive areas, which completely alleviates the need to gather any personally identifiable information from our users.&lt;br&gt;
+YOUR CONSENT&lt;br&gt;
+By using this application, you consent to the collection and use of this information by Donor application If we decide to change our privacy policy, we will post those changes on this page so that you are always aware of what information we collect, how we use it, and under what circumstances we disclose it.&lt;/p&gt;</value>
+  </data>
+  <data name="DonorappSite" xml:space="preserve">
+    <value>http://donorapp.ru/</value>
+  </data>
+  <data name="YadonorSite" xml:space="preserve">
+    <value>http://yadonor.ru/</value>
+  </data>
+  <data name="AfterBloodDonation" xml:space="preserve">
+    <value>После сдачи крови</value>
+  </data>
+  <data name="AfterBloodDonationDescription" xml:space="preserve">
+    <value>• 10–15 минут посидите спокойно и, если вы хорошо себя чувствуете (не испытываете слабости или головокружения), пройдите в буфет и выпейте сладкий чай.&lt;br/&gt;
+• Если вы почувствовали головокружение, обратитесь к медперсоналу. Самый простой способ помочь себе – лечь и поднять ноги выше головы или сесть и опустить голову между колен. Ни в коем случае не пытайтесь идти или вести машину, если у вас кружится голова!&lt;br/&gt;
+• В течение 3–4 часов не снимайте повязку и старайтесь ее не мочить. Это убережет вас от возникновения синяка (если синяк появился, на ночь сделайте повязку с гепариновой мазью и/или троксевазином).&lt;br/&gt;                          
+• Избегайте в этот день тяжелых физических и спортивных нагрузок, подъема тяжестей, в том числе и сумок с покупками.&lt;br/&gt;
+• Полноценно и регулярно питайтесь в течение 2 суток после донации и выпивайте не менее 2 литров жидкости в день: соки, воду, некрепкий чай (алкоголь не рекомендуется).&lt;br/&gt;</value>
+  </data>
+  <data name="DisableGeolocation" xml:space="preserve">
+    <value>Отключить геолокацию</value>
+  </data>
+  <data name="donorfriendDescription" xml:space="preserve">
+    <value>Помочь спасти жизнь</value>
+  </data>
+  <data name="donorfriendTitle" xml:space="preserve">
+    <value>Друг донора</value>
+  </data>
+  <data name="EnableGeolocation" xml:space="preserve">
+    <value>Включить геолокацию</value>
+  </data>
+  <data name="first_bloodDescription" xml:space="preserve">
+    <value>Сдал кровь первый раз</value>
+  </data>
+  <data name="first_bloodTitle" xml:space="preserve">
+    <value>Первая сдача крови</value>
+  </data>
+  <data name="FreeCallFromRegions" xml:space="preserve">
+    <value>(звонок из регионов бесплатный)</value>
+  </data>
+  <data name="HelpRecomendations" xml:space="preserve">
+    <value>• Не приходите сдавать кровь, если вы чувствуете недомогание (озноб, головокружение, головную боль, слабость).&lt;br/&gt;
+                                    • Не курите за час до донации.&lt;br/&gt;
+                                    • Не принимайте алкоголь за 48 часов до донации.&lt;br/&gt;
+                                    • Обязательно выспитесь и съешьте легкий завтрак (сладкий чай, сухое печенье, каша на воде).&lt;br/&gt;
+                                    • Старайтесь ограничить прием жирной и жареной пищи накануне сдачи крови.&lt;br/&gt;
+                                    • За три дня до донации откажитесь от приема анальгетиков и аспирина, а также содержащих их лекарств (эти вещества ухудшают свертываемость крови).&lt;br/&gt;
+                                    • Во время осмотра врачом перед донацией откровенно отвечайте на его вопросы и не скрывайте информацию о принятых лекарствах и перенесенных заболеваниях.&lt;br/&gt;</value>
+  </data>
+  <data name="Itsbeta" xml:space="preserve">
+    <value>Itsbeta</value>
+  </data>
+  <data name="NoData" xml:space="preserve">
+    <value>Данных нет.</value>
+  </data>
+  <data name="PrivacyPolicy" xml:space="preserve">
+    <value>Политика конфиденциальности</value>
+  </data>
+  <data name="RateAppButton" xml:space="preserve">
+    <value>Оценить приложение</value>
+  </data>
+  <data name="ReadMore" xml:space="preserve">
+    <value>Читать дальше</value>
+  </data>
+  <data name="secondbloodDescription" xml:space="preserve">
+    <value>Сдал кровь второй раз</value>
+  </data>
+  <data name="secondbloodTitle" xml:space="preserve">
+    <value>Два подряд</value>
+  </data>
+  <data name="SelectDate" xml:space="preserve">
+    <value>Выберите дату</value>
+  </data>
+  <data name="SelectDatePopup" xml:space="preserve">
+    <value>УКАЖИТЕ ДАТУ</value>
+  </data>
+  <data name="SelectTimePopup" xml:space="preserve">
+    <value>УКАЖИТЕ ВРЕМЯ</value>
+  </data>
+  <data name="Soon" xml:space="preserve">
+    <value>Скоро</value>
+  </data>
+  <data name="StationAddress" xml:space="preserve">
+    <value>Адрес</value>
+  </data>
+  <data name="StationChief" xml:space="preserve">
+    <value>Руководитель</value>
+  </data>
+  <data name="StationDistrict" xml:space="preserve">
+    <value>Район</value>
+  </data>
+  <data name="StationEmail" xml:space="preserve">
+    <value>Почта</value>
+  </data>
+  <data name="StationFilter" xml:space="preserve">
+    <value>Фильтр станций</value>
+  </data>
+  <data name="StationRegion" xml:space="preserve">
+    <value>Регион</value>
+  </data>
+  <data name="YouCanGiveBloodIfDescription" xml:space="preserve">
+    <value>• вы не употребляли алкоголь за последние 48 часов;&lt;br/&gt;
+• вы не принимали анальгетики за последние 72 часа;&lt;br/&gt;
+• для женщин: после окончания менструации прошло 5 дней;&lt;br/&gt;
+• вам не удаляли зуб за последние 10 дней;&lt;br/&gt;
+• вы не принимали антибиотики за последние 2 недели;&lt;br/&gt;
+• вы не болели ангиной, гриппом, ОРВИ за последний месяц;&lt;br/&gt;
+• у вас не было обострения аллергии за последние 2 месяца.&lt;br/&gt;</value>
+  </data>
+  <data name="YourRate" xml:space="preserve">
+    <value>Ваша оценка</value>
+  </data>
+  <data name="YourReviewDescription" xml:space="preserve">
+    <value>Ваш отзыв</value>
+  </data>
+  <data name="UnknownBloodGroup" xml:space="preserve">
+    <value>Не знаю</value>
+  </data>
+</root>

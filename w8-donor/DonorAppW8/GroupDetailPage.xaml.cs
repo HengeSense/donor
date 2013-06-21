@@ -1,5 +1,6 @@
-﻿using DonorAppW8.Data;
+﻿//using DonorAppW8.Data;
 
+using DonorAppW8.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -41,7 +42,8 @@ namespace DonorAppW8
         protected override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
         {
             // TODO: Создание соответствующей модели данных для области проблемы, чтобы заменить пример данных
-            var group = SampleDataSource.GetGroup((String)navigationParameter);
+            //var group = ViewModelLocator.MainStatic..GetGroup((String)navigationParameter);
+            var group = ViewModelLocator.MainStatic.Groups.FirstOrDefault(c => c.UniqueId ==(String)navigationParameter);
             this.DefaultViewModel["Group"] = group;
             this.DefaultViewModel["Items"] = group.Items;
         }
@@ -56,7 +58,7 @@ namespace DonorAppW8
         {
             // Переход к соответствующей странице назначения и настройка новой страницы
             // путем передачи необходимой информации в виде параметра навигации
-            var itemId = ((SampleDataItem)e.ClickedItem).UniqueId;
+            var itemId = "test";// ((SampleDataItem)e.ClickedItem).UniqueId;
             this.Frame.Navigate(typeof(ItemDetailPage), itemId);
         }
     }

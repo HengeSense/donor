@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CommonDonor
+namespace DonorAppW8.DataModel
 {
-    public class Class1
+    class VIewModelBase
     {
     }
 }

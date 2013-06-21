@@ -7,30 +7,109 @@
     xmlns:local="using:DonorAppW8"
     xmlns:data="using:DonorAppW8.Data"
     xmlns:common="using:DonorAppW8.Common"
+
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Page.Resources>
+        <Page.Resources>
+            <Style x:Key="ExtendedTextStyle" TargetType="TextBlock" BasedOn="{StaticResource BasicTextStyle}">
+                <Setter Property="LineHeight" Value="40"/>
+                <Setter Property="LineStackingStrategy" Value="BlockLineHeight"/>
+                <!-- Properly align text along its baseline -->
+                <Setter Property="RenderTransform">
+                    <Setter.Value>
+                        <TranslateTransform X="-1" Y="4"/>
+                    </Setter.Value>
+                </Setter>
+            </Style>
 
-        <!--
+            <Style x:Key="ExtendedTitleTextStyle" TargetType="TextBlock" BasedOn="{StaticResource ExtendedTextStyle}">
+                <Setter Property="FontWeight" Value="SemiBold"/>
+            </Style>
+
+            <DataTemplate x:Key="CustomItemTemplate">
+                <Grid HorizontalAlignment="Left">
+                    <Border Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}">
+                        <Image Source="{Binding Image}" Stretch="UniformToFill" 
+                   AutomationProperties.Name="{Binding Title}"/>
+                    </Border>
+                    <StackPanel Background="{StaticResource ListViewItemOverlayBackgroundThemeBrush}" VerticalAlignment="Bottom">
+                        <TextBlock Text="{Binding Title}" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}"  
+                       Style="{StaticResource ExtendedTitleTextStyle}" Height="90" Margin="15,0,15,0" FontSize="30" />
+                    </StackPanel>
+                </Grid>
+            </DataTemplate>
+
+            <DataTemplate x:Key="CustomItemTemplate2">
+                <Grid HorizontalAlignment="Right">
+                    <Border Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}">
+                        <Image Source="{Binding Image}" Stretch="UniformToFill" 
+                   AutomationProperties.Name="{Binding Title}"/>
+                    </Border>
+                    <StackPanel Background="{StaticResource ListViewItemOverlayBackgroundThemeBrush}" VerticalAlignment="Top">
+                        <TextBlock Text="{Binding Title}" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}"  
+                       Style="{StaticResource ExtendedTitleTextStyle}" Height="90" Margin="15,0,15,0" FontSize="30" />
+                    </StackPanel>
+                </Grid>
+            </DataTemplate>
+
+            <DataTemplate x:Key="NewsItemTemplate">
+                <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="White">
+                    <Border Background="White" BorderBrush="Gray" BorderThickness="2">
+                        <Image Source="{Binding Image}" Stretch="UniformToFill" Opacity="0" />
+                    </Border>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="210"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Image Grid.Row="0" Source="{Binding Image}" Stretch="Uniform" Height="190"
+                   AutomationProperties.Name="{Binding Title}" Margin="20" VerticalAlignment="Top"/>
+                        <StackPanel Grid.Row="1" VerticalAlignment="Top" Margin="10,-10,10,0">
+                            <TextBlock Text="{Binding Title}"  
+                            Style="{StaticResource SubheaderTextStyle}" 
+                            Margin="15,0,15,0" MaxHeight="90"/>
+                            <TextBlock Text="{Binding OneLineContent}"  
+                            Style="{StaticResource BodyTextStyle}" 
+                            Margin="15,10,15,0" MaxHeight="60"/>
+                        </StackPanel>
+                    </Grid>
+                </Grid>
+            </DataTemplate>
+
+            <local:MyDataTemplateSelector x:Key="MyDataSelector" 
+            Template1="{StaticResource CustomItemTemplate}" 
+            Template2="{StaticResource NewsItemTemplate}"/>
+
+            <!--
             Коллекция отображаемых на этой странице сгруппированных элементов, привязанных к подмножеству
             полного списка элементов, поскольку элементы в группах не могут быть виртуализированы
         -->
-        <CollectionViewSource
+            <!--
+        ItemsSource="{Binding Path=Groups}"
+            DataContext="{Binding Main, Source={StaticResource Locator}}"
+        -->
+            <!--<CollectionViewSource
             x:Name="groupedItemsViewSource"
             Source="{Binding Groups}"
             IsSourceGrouped="true"
-            ItemsPath="TopItems"
-            d:Source="{Binding AllGroups, Source={d:DesignInstance Type=data:SampleDataSource, IsDesignTimeCreatable=True}}"/>
-    </Page.Resources>
+            ItemsPath="TopItems"            
+            d:Source="{Binding Main.AllGroups, Source={StaticResource Locator}, Mode=TwoWay}"/>-->
+            <CollectionViewSource
+            x:Name="groupedItemsViewSource"
+            Source="{Binding MainStatic.Groups, Source={StaticResource Locator}}"
+            IsSourceGrouped="true"
+            ItemsPath="Items"
+            d:Source="{Binding MainStatic.Groups, Source={StaticResource Locator}}"/>
+        </Page.Resources>
 
     <!--
         Эта сетка выступает в роли корневой области страницы и определяет две строки:
         * Строка 0 содержит кнопку "Назад" и заголовок страницы
         * Строка 1 содержит оставшуюся часть страницы
     -->
-    <Grid Style="{StaticResource LayoutRootStyle}">
+    <Grid Style="{StaticResource LayoutRootStyle}" Background="#271B16">
         <Grid.RowDefinitions>
             <RowDefinition Height="140"/>
             <RowDefinition Height="*"/>
@@ -42,6 +121,7 @@
             AutomationProperties.AutomationId="ItemGridView"
             AutomationProperties.Name="Grouped Items"
             Grid.RowSpan="2"
+            Margin="0,20,0,0"
             Padding="116,137,40,46"
             ItemsSource="{Binding Source={StaticResource groupedItemsViewSource}}"
             ItemTemplate="{StaticResource Standard250x250ItemTemplate}"
@@ -119,13 +199,13 @@
         </ListView>
 
         <!-- Кнопка "Назад" и заголовок страницы -->
-        <Grid>
+        <Grid Background="#7F0000">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Button x:ConnectionId='3' x:Name="backButton"                IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}" Style="{StaticResource BackButtonStyle}"/>
-            <TextBlock x:Name="pageTitle" Text="{StaticResource AppName}" Grid.Column="1" IsHitTestVisible="false" Style="{StaticResource PageHeaderTextStyle}"/>
+            <TextBlock x:Name="pageTitle" Text="Донор" Grid.Column="1" IsHitTestVisible="false" Style="{StaticResource PageHeaderTextStyle}"/>
         </Grid>
 
         <VisualStateManager.VisualStateGroups>
