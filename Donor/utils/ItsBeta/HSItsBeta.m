@@ -30,18 +30,25 @@
     [ItsBeta playerLoginFacebookWithViewController:viewController
         callback:^(ItsBetaPlayer *player, NSError *error) {
             if (error != nil) {
-                if ([error code] != ItsBetaErrorFacebookAuth) {
+                if ([error.domain isEqualToString:ItsBetaErrorDomain] && [error code] != ItsBetaErrorFacebookAuth) {
                     [HSAlertViewController showWithMessage:
-                            @"Возникла ошибка при подключении itsbeta. Попробуйте позже"];
+                            @"Возникла ошибка при подключении itsbeta. Попробуйте позже."];
                 }
                 if (completion != nil) {
                     completion(error);
                 }
-            } else {
+            } else if ([player isHavePermissions]) {
                 PFRelation* relation = [user relationforKey:@"ItsBeta"];
                 [[relation query] findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
                     [self linkItsBeta:viewController player:player user:user objects:objects completion:completion];
                 }];
+            }
+            else {
+                [HSAlertViewController showWithTitle:@"Возникла ошибка при подключении itsbeta"
+                        message:@"Размещение публикаций от имени itsbeta запрещено."];
+                if (completion != nil) {
+                    completion(error);
+                }
             }
         }
      ];
@@ -49,7 +56,7 @@
 
 + (void)linkItsBeta:(UIViewController*)viewController player:(ItsBetaPlayer*)player user:(PFUser*)user
         objects:(NSArray*)objects completion:(void(^)(NSError *error))completion {
-    if ([player isLogined] == YES) {
+    if ([player isLogined] == YES && [player isHavePermissions]) {
         BOOL created = NO;
         PFObject* itsbeta = nil;
         if ([objects count] > 0) {
