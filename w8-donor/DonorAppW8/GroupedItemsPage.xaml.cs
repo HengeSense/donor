@@ -1,6 +1,7 @@
 ﻿using DonorAppW8.DataModel;
 //using DonorAppW8.Data;
 using DonorAppW8.ViewModel;
+using DonorAppW8.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -59,7 +60,14 @@ namespace DonorAppW8
 
             // Переход к соответствующей странице назначения и настройка новой страницы
             // путем передачи необходимой информации в виде параметра навигации
-            this.Frame.Navigate(typeof(GroupDetailPage), (group as RssDataGroup).UniqueId);
+            if ((group as RssDataGroup).UniqueId == "Ads")
+            {
+                this.Frame.Navigate(typeof(AdGroupDetailPage), (group as RssDataGroup).UniqueId);
+            };
+            if ((group as RssDataGroup).UniqueId == "News")
+            {
+                this.Frame.Navigate(typeof(NewsGroupDetailPage), (group as RssDataGroup).UniqueId);
+            };
         }
 
         /// <summary>
@@ -72,8 +80,15 @@ namespace DonorAppW8
         {
             // Переход к соответствующей странице назначения и настройка новой страницы
             // путем передачи необходимой информации в виде параметра навигации
-            var itemId = "test"; // ((SampleDataItem)e.ClickedItem).UniqueId;
-            this.Frame.Navigate(typeof(ItemDetailPage), itemId);
+            //var itemId = "test"; // ((SampleDataItem)e.ClickedItem).UniqueId;
+            if (e.ClickedItem.GetType() == typeof(AdsViewModel))
+            {
+                this.Frame.Navigate(typeof(AdDetailPage), ((AdsViewModel)e.ClickedItem).UniqueId);
+            };
+            if (e.ClickedItem.GetType() == typeof(NewsViewModel))
+            {
+                this.Frame.Navigate(typeof(NewsViewModel), ((NewsViewModel)e.ClickedItem).UniqueId);
+            };
         }
     }
 }

@@ -52,6 +52,7 @@ namespace DonorAppW8.ViewModel
             {
                 ViewModelLocator.MainStatic.News.LoadNews();
                 ViewModelLocator.MainStatic.Ads.LoadAds();
+                ViewModelLocator.MainStatic.Stations.LoadStations();
                 this.IsDataLoaded = true;
             };
         }

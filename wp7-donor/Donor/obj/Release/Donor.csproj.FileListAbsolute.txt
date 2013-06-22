@@ -140,4 +140,3 @@ C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\obj\Release\Pages\Even
 C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\obj\Release\Pages\Stations\MapPage.g.cs
 C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\obj\Release\Pages\Events\EventEditPage.g.cs
 C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\obj\Release\Pages\Achieves\QRread.g.cs
-C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\obj\Release\Donor.csprojResolveAssemblyReference.cache

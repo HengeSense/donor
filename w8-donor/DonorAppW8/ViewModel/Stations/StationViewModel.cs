@@ -13,6 +13,8 @@ using System.Collections.Generic;
 using GalaSoft.MvvmLight;
 using System.Text.RegularExpressions;
 using DonorAppW8.ViewModel;
+using Parse;
+using DonorAppW8.DataModel;
 
 namespace DonorAppW8.ViewModels
 {
@@ -188,8 +190,29 @@ namespace DonorAppW8.ViewModels
         /// <summary>
         /// Загрузка станций с parse.com
         /// </summary>
-        public void LoadStations()
+        public async void LoadStations()
         {
+            ParseQuery<ParseObject> query = ParseObject.GetQuery("YAStations");
+            query = query.Limit(100);
+            IEnumerable<ParseObject> results = await query.FindAsync();
+            foreach (var station in results)
+            {
+                YAStationItem stationitem = new YAStationItem();
+                stationitem.Name = station.Get<string>("name");
+                stationitem.ObjectId = station.ObjectId;
+                stationitem.Address = station.Get<string>("address");
+                stationitem.District_name = station.Get<string>("district_name");
+                stationitem.Region_name = station.Get<string>("region_name");
+
+                this.Items.Add(stationitem);
+            };
+            RssDataGroup adgroup = new RssDataGroup();
+            adgroup.Title = "Станции";
+            adgroup.UniqueId = "Stations";
+
+            adgroup.Items = new ObservableCollection<object>(this.Items);
+            ViewModelLocator.MainStatic.Groups.Add(adgroup);
+            RaisePropertyChanged("Items");
             /*myCoordinateWatcher = new GeoCoordinateWatcher(GeoPositionAccuracy.Default);
             myCoordinateWatcher.PositionChanged += new EventHandler<GeoPositionChangedEventArgs<GeoCoordinate>>(myCoordinateWatcher_PositionChanged);
             myCoordinateWatcher.Start();

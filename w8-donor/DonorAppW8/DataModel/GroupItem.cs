@@ -13,7 +13,7 @@ namespace DonorAppW8.DataModel
         public RssDataGroup()
         {
         }
-        public int itemsCount = 9;
+        public int itemsCount = 6;
 
         private int _order = 0;
         public int Order
@@ -53,13 +53,20 @@ namespace DonorAppW8.DataModel
             {
                 this._items = value;
                 RaisePropertyChanged("Items");
+                RaisePropertyChanged("TopItems");
             }
         }
 
         private ObservableCollection<object> _topItem = new ObservableCollection<object>();
         public ObservableCollection<object> TopItems
         {
-            get { return this._topItem; }
+            get {
+                _topItem = new ObservableCollection<object>();
+                foreach (var item in this._items.Take(itemsCount)) {
+                    _topItem.Add(item);
+                };
+                return _topItem; 
+            }
         }
     }
 }

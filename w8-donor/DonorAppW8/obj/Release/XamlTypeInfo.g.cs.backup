@@ -132,11 +132,15 @@ namespace DonorAppW8.DonorAppW8_XamlTypeInfo
 
         private object Activate_6_GroupedItemsPage() { return new global::DonorAppW8.GroupedItemsPage(); }
 
-        private object Activate_7_GroupDetailPage() { return new global::DonorAppW8.GroupDetailPage(); }
+        private object Activate_7_AdGroupDetailPage() { return new global::DonorAppW8.AdGroupDetailPage(); }
 
         private object Activate_8_RichTextColumns() { return new global::DonorAppW8.Common.RichTextColumns(); }
 
-        private object Activate_9_ItemDetailPage() { return new global::DonorAppW8.ItemDetailPage(); }
+        private object Activate_9_AdDetailPage() { return new global::DonorAppW8.AdDetailPage(); }
+
+        private object Activate_10_NewsDetailPage() { return new global::DonorAppW8.NewsDetailPage(); }
+
+        private object Activate_11_NewsGroupDetailPage() { return new global::DonorAppW8.NewsGroupDetailPage(); }
 
 
         private global::Windows.UI.Xaml.Markup.IXamlType CreateXamlType(string typeName)
@@ -208,6 +212,7 @@ namespace DonorAppW8.DonorAppW8_XamlTypeInfo
                 userType = new global::DonorAppW8.DonorAppW8_XamlTypeInfo.XamlUserType(this, typeName, typeof(global::DonorAppW8.MyDataTemplateSelector), GetXamlTypeByName("Windows.UI.Xaml.Controls.DataTemplateSelector"));
                 userType.Activator = Activate_5_MyDataTemplateSelector;
                 userType.AddMemberName("Template1");
+                userType.AddMemberName("Template3");
                 userType.AddMemberName("Template2");
                 xamlType = userType;
                 break;
@@ -218,9 +223,9 @@ namespace DonorAppW8.DonorAppW8_XamlTypeInfo
                 xamlType = userType;
                 break;
 
-            case "DonorAppW8.GroupDetailPage":
-                userType = new global::DonorAppW8.DonorAppW8_XamlTypeInfo.XamlUserType(this, typeName, typeof(global::DonorAppW8.GroupDetailPage), GetXamlTypeByName("DonorAppW8.Common.LayoutAwarePage"));
-                userType.Activator = Activate_7_GroupDetailPage;
+            case "DonorAppW8.AdGroupDetailPage":
+                userType = new global::DonorAppW8.DonorAppW8_XamlTypeInfo.XamlUserType(this, typeName, typeof(global::DonorAppW8.AdGroupDetailPage), GetXamlTypeByName("DonorAppW8.Common.LayoutAwarePage"));
+                userType.Activator = Activate_7_AdGroupDetailPage;
                 xamlType = userType;
                 break;
 
@@ -233,9 +238,21 @@ namespace DonorAppW8.DonorAppW8_XamlTypeInfo
                 xamlType = userType;
                 break;
 
-            case "DonorAppW8.ItemDetailPage":
-                userType = new global::DonorAppW8.DonorAppW8_XamlTypeInfo.XamlUserType(this, typeName, typeof(global::DonorAppW8.ItemDetailPage), GetXamlTypeByName("DonorAppW8.Common.LayoutAwarePage"));
-                userType.Activator = Activate_9_ItemDetailPage;
+            case "DonorAppW8.AdDetailPage":
+                userType = new global::DonorAppW8.DonorAppW8_XamlTypeInfo.XamlUserType(this, typeName, typeof(global::DonorAppW8.AdDetailPage), GetXamlTypeByName("DonorAppW8.Common.LayoutAwarePage"));
+                userType.Activator = Activate_9_AdDetailPage;
+                xamlType = userType;
+                break;
+
+            case "DonorAppW8.NewsDetailPage":
+                userType = new global::DonorAppW8.DonorAppW8_XamlTypeInfo.XamlUserType(this, typeName, typeof(global::DonorAppW8.NewsDetailPage), GetXamlTypeByName("DonorAppW8.Common.LayoutAwarePage"));
+                userType.Activator = Activate_10_NewsDetailPage;
+                xamlType = userType;
+                break;
+
+            case "DonorAppW8.NewsGroupDetailPage":
+                userType = new global::DonorAppW8.DonorAppW8_XamlTypeInfo.XamlUserType(this, typeName, typeof(global::DonorAppW8.NewsGroupDetailPage), GetXamlTypeByName("DonorAppW8.Common.LayoutAwarePage"));
+                userType.Activator = Activate_11_NewsGroupDetailPage;
                 xamlType = userType;
                 break;
 
@@ -302,32 +319,42 @@ namespace DonorAppW8.DonorAppW8_XamlTypeInfo
             var that = (global::DonorAppW8.MyDataTemplateSelector)instance;
             that.Template1 = (global::Windows.UI.Xaml.DataTemplate)Value;
         }
-        private object get_2_MyDataTemplateSelector_Template2(object instance)
+        private object get_2_MyDataTemplateSelector_Template3(object instance)
+        {
+            var that = (global::DonorAppW8.MyDataTemplateSelector)instance;
+            return that.Template3;
+        }
+        private void set_2_MyDataTemplateSelector_Template3(object instance, object Value)
+        {
+            var that = (global::DonorAppW8.MyDataTemplateSelector)instance;
+            that.Template3 = (global::Windows.UI.Xaml.DataTemplate)Value;
+        }
+        private object get_3_MyDataTemplateSelector_Template2(object instance)
         {
             var that = (global::DonorAppW8.MyDataTemplateSelector)instance;
             return that.Template2;
         }
-        private void set_2_MyDataTemplateSelector_Template2(object instance, object Value)
+        private void set_3_MyDataTemplateSelector_Template2(object instance, object Value)
         {
             var that = (global::DonorAppW8.MyDataTemplateSelector)instance;
             that.Template2 = (global::Windows.UI.Xaml.DataTemplate)Value;
         }
-        private object get_3_RichTextColumns_RichTextContent(object instance)
+        private object get_4_RichTextColumns_RichTextContent(object instance)
         {
             var that = (global::DonorAppW8.Common.RichTextColumns)instance;
             return that.RichTextContent;
         }
-        private void set_3_RichTextColumns_RichTextContent(object instance, object Value)
+        private void set_4_RichTextColumns_RichTextContent(object instance, object Value)
         {
             var that = (global::DonorAppW8.Common.RichTextColumns)instance;
             that.RichTextContent = (global::Windows.UI.Xaml.Controls.RichTextBlock)Value;
         }
-        private object get_4_RichTextColumns_ColumnTemplate(object instance)
+        private object get_5_RichTextColumns_ColumnTemplate(object instance)
         {
             var that = (global::DonorAppW8.Common.RichTextColumns)instance;
             return that.ColumnTemplate;
         }
-        private void set_4_RichTextColumns_ColumnTemplate(object instance, object Value)
+        private void set_5_RichTextColumns_ColumnTemplate(object instance, object Value)
         {
             var that = (global::DonorAppW8.Common.RichTextColumns)instance;
             that.ColumnTemplate = (global::Windows.UI.Xaml.DataTemplate)Value;
@@ -352,25 +379,31 @@ namespace DonorAppW8.DonorAppW8_XamlTypeInfo
                 xamlMember.Getter = get_1_MyDataTemplateSelector_Template1;
                 xamlMember.Setter = set_1_MyDataTemplateSelector_Template1;
                 break;
+            case "DonorAppW8.MyDataTemplateSelector.Template3":
+                userType = (global::DonorAppW8.DonorAppW8_XamlTypeInfo.XamlUserType)GetXamlTypeByName("DonorAppW8.MyDataTemplateSelector");
+                xamlMember = new global::DonorAppW8.DonorAppW8_XamlTypeInfo.XamlMember(this, "Template3", "Windows.UI.Xaml.DataTemplate");
+                xamlMember.Getter = get_2_MyDataTemplateSelector_Template3;
+                xamlMember.Setter = set_2_MyDataTemplateSelector_Template3;
+                break;
             case "DonorAppW8.MyDataTemplateSelector.Template2":
                 userType = (global::DonorAppW8.DonorAppW8_XamlTypeInfo.XamlUserType)GetXamlTypeByName("DonorAppW8.MyDataTemplateSelector");
                 xamlMember = new global::DonorAppW8.DonorAppW8_XamlTypeInfo.XamlMember(this, "Template2", "Windows.UI.Xaml.DataTemplate");
-                xamlMember.Getter = get_2_MyDataTemplateSelector_Template2;
-                xamlMember.Setter = set_2_MyDataTemplateSelector_Template2;
+                xamlMember.Getter = get_3_MyDataTemplateSelector_Template2;
+                xamlMember.Setter = set_3_MyDataTemplateSelector_Template2;
                 break;
             case "DonorAppW8.Common.RichTextColumns.RichTextContent":
                 userType = (global::DonorAppW8.DonorAppW8_XamlTypeInfo.XamlUserType)GetXamlTypeByName("DonorAppW8.Common.RichTextColumns");
                 xamlMember = new global::DonorAppW8.DonorAppW8_XamlTypeInfo.XamlMember(this, "RichTextContent", "Windows.UI.Xaml.Controls.RichTextBlock");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_3_RichTextColumns_RichTextContent;
-                xamlMember.Setter = set_3_RichTextColumns_RichTextContent;
+                xamlMember.Getter = get_4_RichTextColumns_RichTextContent;
+                xamlMember.Setter = set_4_RichTextColumns_RichTextContent;
                 break;
             case "DonorAppW8.Common.RichTextColumns.ColumnTemplate":
                 userType = (global::DonorAppW8.DonorAppW8_XamlTypeInfo.XamlUserType)GetXamlTypeByName("DonorAppW8.Common.RichTextColumns");
                 xamlMember = new global::DonorAppW8.DonorAppW8_XamlTypeInfo.XamlMember(this, "ColumnTemplate", "Windows.UI.Xaml.DataTemplate");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_4_RichTextColumns_ColumnTemplate;
-                xamlMember.Setter = set_4_RichTextColumns_ColumnTemplate;
+                xamlMember.Getter = get_5_RichTextColumns_ColumnTemplate;
+                xamlMember.Setter = set_5_RichTextColumns_ColumnTemplate;
                 break;
             }
             return xamlMember;

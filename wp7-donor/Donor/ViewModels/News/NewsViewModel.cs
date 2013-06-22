@@ -101,7 +101,7 @@ namespace Donor.ViewModels
                 bw.DoWork += delegate
                 {
                     var client = new RestClient("http://yadonor.ru");
-                    var request = new RestRequest("ru/news_rss/", Method.GET);
+                    var request = new RestRequest("rss/news.rss", Method.GET);
                     request.Parameters.Clear();
 
                     client.ExecuteAsync(request, response =>

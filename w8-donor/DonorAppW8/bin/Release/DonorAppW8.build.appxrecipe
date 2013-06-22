@@ -19,7 +19,7 @@
     <AppxPackagedFile Include="C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\bin\Release\DonorAppW8.pdb">
       <PackagePath>DonorAppW8.pdb</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\packages\Callisto.1.2.9\lib\winrt45\Callisto.dll">
+    <AppxPackagedFile Include="C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\packages\Callisto.1.3.0\lib\winrt45\Callisto.dll">
       <PackagePath>Callisto.dll</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\packages\MvvmLightLibs.4.1.27.0\lib\netcore45\GalaSoft.MvvmLight.Extras.Win8.dll">
@@ -67,6 +67,9 @@
     <AppxPackagedFile Include="C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\packages\Parse.1.2.4\lib\netcore45\Parse.WinRT.xml">
       <PackagePath>Parse.WinRT.xml</PackagePath>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\appicon.png">
+      <PackagePath>appicon.png</PackagePath>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\Assets\Logo.png">
       <PackagePath>Assets\Logo.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
@@ -92,6 +95,9 @@
     <AppxPackagedFile Include="C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\Assets\DarkGray.png">
       <PackagePath>Assets\DarkGray.png</PackagePath>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\metadata.xml">
+      <PackagePath>metadata.xml</PackagePath>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\MVVMLight.Nuget.Readme.txt">
       <PackagePath>MVVMLight.Nuget.Readme.txt</PackagePath>
     </AppxPackagedFile>
@@ -104,13 +110,19 @@
     <AppxPackagedFile Include="C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\bin\Release\GroupedItemsPage.xaml">
       <PackagePath>GroupedItemsPage.xaml</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\bin\Release\GroupDetailPage.xaml">
-      <PackagePath>GroupDetailPage.xaml</PackagePath>
+    <AppxPackagedFile Include="C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\bin\Release\Pages\Ads\AdGroupDetailPage.xaml">
+      <PackagePath>Pages\Ads\AdGroupDetailPage.xaml</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\bin\Release\ItemDetailPage.xaml">
-      <PackagePath>ItemDetailPage.xaml</PackagePath>
+    <AppxPackagedFile Include="C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\bin\Release\Pages\Ads\AdDetailPage.xaml">
+      <PackagePath>Pages\Ads\AdDetailPage.xaml</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\packages\Callisto.1.2.9\lib\winrt45\Callisto\themes\Generic.xaml">
+    <AppxPackagedFile Include="C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\bin\Release\Pages\News\NewsDetailPage.xaml">
+      <PackagePath>Pages\News\NewsDetailPage.xaml</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\bin\Release\Pages\News\NewsGroupDetailPage.xaml">
+      <PackagePath>Pages\News\NewsGroupDetailPage.xaml</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\packages\Callisto.1.3.0\lib\winrt45\Callisto\themes\Generic.xaml">
       <PackagePath>Callisto\themes\Generic.xaml</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\bin\Release\resources.pri">

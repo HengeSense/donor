@@ -1,3 +1,4 @@
+appicon.png
 Assets\DarkGray.png
 Assets\LightGray.png
 Assets\Logo.png
@@ -7,7 +8,10 @@ Assets\SplashScreen.png
 Assets\StoreLogo.png
 App.xaml
 Common\StandardStyles.xaml
-GroupDetailPage.xaml
 GroupedItemsPage.xaml
-ItemDetailPage.xaml
+Pages\Ads\AdDetailPage.xaml
+Pages\Ads\AdGroupDetailPage.xaml
+Pages\News\NewsDetailPage.xaml
+Pages\News\NewsGroupDetailPage.xaml
+metadata.xml
 MVVMLight.Nuget.Readme.txt

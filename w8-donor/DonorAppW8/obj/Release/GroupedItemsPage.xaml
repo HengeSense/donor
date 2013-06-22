@@ -69,20 +69,42 @@
                 </Grid>
             </DataTemplate>
 
+        <DataTemplate x:Key="StationsItemTemplate">
+            <Grid HorizontalAlignment="Left" Width="250" Height="250" Background="White">
+                <Grid>
+                    <StackPanel Grid.Row="0" VerticalAlignment="Top" Margin="10,10,10,0">
+                        <TextBlock Text="{Binding Name}" Foreground="Black"
+                            Style="{StaticResource SubheaderTextStyle}" 
+                            Margin="15,0,15,0" MaxHeight="140"/>
+                        <TextBlock Text="{Binding Address}" Foreground="Black" 
+                            Style="{StaticResource BodyTextStyle}" 
+                            Margin="15,10,15,0" MaxHeight="70"/>
+                        <TextBlock Text="{Binding Region_name}" Foreground="Black" 
+                            Style="{StaticResource BodyTextStyle}" 
+                            Margin="15,10,15,0" MaxHeight="30"/>
+                        <TextBlock Text="{Binding District_name}" Foreground="Black" 
+                            Style="{StaticResource BodyTextStyle}" 
+                            Margin="15,10,15,0" MaxHeight="30"/>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+        </DataTemplate>
+
         <DataTemplate x:Key="NewsStandard250x250ItemTemplate">
             <Grid HorizontalAlignment="Left" Width="250" Height="250">
                 <Border Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}">
                     <Image Source="{Binding Image}" Stretch="UniformToFill" AutomationProperties.Name="{Binding Title}"/>
                 </Border>
                 <StackPanel VerticalAlignment="Bottom" Background="{StaticResource ListViewItemOverlayBackgroundThemeBrush}">
-                    <TextBlock Text="{Binding Title}" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" Style="{StaticResource TitleTextStyle}" Height="60" Margin="15,0,15,0"/>
-                    <TextBlock Text="{Binding Body}" Foreground="{StaticResource ListViewItemOverlaySecondaryForegroundThemeBrush}" Style="{StaticResource CaptionTextStyle}" TextWrapping="NoWrap" Margin="15,0,15,10"/>
+                    <TextBlock Text="{Binding Title}" Foreground="#DF8D4B" Style="{StaticResource TitleTextStyle}" Margin="15,0,15,0"/>
+                    <TextBlock Text="{Binding Body}" Foreground="#CBB2A3" Style="{StaticResource CaptionTextStyle}" TextWrapping="NoWrap" Margin="15,0,15,10"/>
                 </StackPanel>
             </Grid>
         </DataTemplate>
 
         <local:MyDataTemplateSelector x:Key="MyDataSelector" 
             Template1="{StaticResource NewsStandard250x250ItemTemplate}" 
+            Template3="{StaticResource StationsItemTemplate}" 
             Template2="{StaticResource AdsItemTemplate}"/>
 
             <!--
@@ -103,7 +125,7 @@
             x:Name="groupedItemsViewSource"
             Source="{Binding MainStatic.Groups, Source={StaticResource Locator}}"
             IsSourceGrouped="true"
-            ItemsPath="Items"
+            ItemsPath="TopItems"
             d:Source="{Binding MainStatic.Groups, Source={StaticResource Locator}}"/>
         </Page.Resources>
 

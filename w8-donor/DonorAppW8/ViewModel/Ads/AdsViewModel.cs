@@ -40,7 +40,7 @@ namespace DonorAppW8.ViewModels
         public async void LoadAds()
         {
             ParseQuery<ParseObject> query = ParseObject.GetQuery("Ads");
-            query = query.Limit(10);
+            query = query.Limit(30);
             IEnumerable<ParseObject> results = await query.FindAsync();
             foreach (var advert in results)
             {
@@ -49,12 +49,15 @@ namespace DonorAppW8.ViewModels
                 aditem.Body = advert.Get<string>("body");
                 aditem.Url = advert.Get<string>("url");
                 aditem.CreatedTimestamp = advert.Get<long>("createdTimestamp");
+                aditem.ObjectId = advert.ObjectId;
+                aditem.UniqueId = advert.ObjectId;
 
                 this.Items.Add(aditem);
             };
             RssDataGroup adgroup = new RssDataGroup();
             adgroup.Title = "Объявления";
             adgroup.UniqueId = "Ads";
+            
             adgroup.Items = new ObservableCollection<object>(this.Items);
             ViewModelLocator.MainStatic.Groups.Add(adgroup);
             RaisePropertyChanged("Items");
