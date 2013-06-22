@@ -16,17 +16,17 @@
     <AppXManifest Include="C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\bin\Release\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2013-06-21T15:32:47.089</Modified>
+      <Modified>2013-06-22T10:07:32.267</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\bin\Release\DonorAppW8.exe">
       <PackagePath>DonorAppW8.exe</PackagePath>
-      <Modified>2013-06-21T15:34:01.408</Modified>
+      <Modified>2013-06-22T10:07:30.598</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\bin\Release\DonorAppW8.pdb">
       <PackagePath>DonorAppW8.pdb</PackagePath>
-      <Modified>2013-06-21T15:34:01.359</Modified>
+      <Modified>2013-06-22T10:07:30.516</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\packages\Callisto.1.2.9\lib\winrt45\Callisto.dll">
       <PackagePath>Callisto.dll</PackagePath>
@@ -138,7 +138,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\bin\Release\GroupedItemsPage.xaml">
       <PackagePath>GroupedItemsPage.xaml</PackagePath>
-      <Modified>2013-06-21T15:33:58.153</Modified>
+      <Modified>2013-06-22T10:05:47.580</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\bin\Release\GroupDetailPage.xaml">
       <PackagePath>GroupDetailPage.xaml</PackagePath>
@@ -154,7 +154,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\bin\Release\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2013-06-21T15:32:46.556</Modified>
+      <Modified>2013-06-22T10:07:31.385</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

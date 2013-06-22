@@ -50,7 +50,7 @@ namespace DonorAppW8.ViewModel
         {
             if (IsDataLoaded == false)
             {
-                //ViewModelLocator.MainStatic.News.LoadNews();
+                ViewModelLocator.MainStatic.News.LoadNews();
                 ViewModelLocator.MainStatic.Ads.LoadAds();
                 this.IsDataLoaded = true;
             };

@@ -54,33 +54,36 @@
                 </Grid>
             </DataTemplate>
 
-            <DataTemplate x:Key="NewsItemTemplate">
-                <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="White">
-                    <Border Background="White" BorderBrush="Gray" BorderThickness="2">
-                        <Image Source="{Binding Image}" Stretch="UniformToFill" Opacity="0" />
-                    </Border>
+            <DataTemplate x:Key="AdsItemTemplate">
+            <Grid HorizontalAlignment="Left" Width="250" Height="250" Background="White">
                     <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="210"/>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
-                        <Image Grid.Row="0" Source="{Binding Image}" Stretch="Uniform" Height="190"
-                   AutomationProperties.Name="{Binding Title}" Margin="20" VerticalAlignment="Top"/>
-                        <StackPanel Grid.Row="1" VerticalAlignment="Top" Margin="10,-10,10,0">
-                            <TextBlock Text="{Binding Title}"  
+                        <StackPanel Grid.Row="0" VerticalAlignment="Top" Margin="10,10,10,0">
+                            <TextBlock Text="{Binding Title}" Foreground="Black"
                             Style="{StaticResource SubheaderTextStyle}" 
-                            Margin="15,0,15,0" MaxHeight="90"/>
-                            <TextBlock Text="{Binding OneLineContent}"  
+                            Margin="15,0,15,0" MaxHeight="140"/>
+                        <TextBlock Text="{Binding Body}" Foreground="Black" 
                             Style="{StaticResource BodyTextStyle}" 
-                            Margin="15,10,15,0" MaxHeight="60"/>
+                            Margin="15,10,15,0" MaxHeight="70"/>
                         </StackPanel>
                     </Grid>
                 </Grid>
             </DataTemplate>
 
-            <local:MyDataTemplateSelector x:Key="MyDataSelector" 
-            Template1="{StaticResource CustomItemTemplate}" 
-            Template2="{StaticResource NewsItemTemplate}"/>
+        <DataTemplate x:Key="NewsStandard250x250ItemTemplate">
+            <Grid HorizontalAlignment="Left" Width="250" Height="250">
+                <Border Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}">
+                    <Image Source="{Binding Image}" Stretch="UniformToFill" AutomationProperties.Name="{Binding Title}"/>
+                </Border>
+                <StackPanel VerticalAlignment="Bottom" Background="{StaticResource ListViewItemOverlayBackgroundThemeBrush}">
+                    <TextBlock Text="{Binding Title}" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" Style="{StaticResource TitleTextStyle}" Height="60" Margin="15,0,15,0"/>
+                    <TextBlock Text="{Binding Body}" Foreground="{StaticResource ListViewItemOverlaySecondaryForegroundThemeBrush}" Style="{StaticResource CaptionTextStyle}" TextWrapping="NoWrap" Margin="15,0,15,10"/>
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
+
+        <local:MyDataTemplateSelector x:Key="MyDataSelector" 
+            Template1="{StaticResource NewsStandard250x250ItemTemplate}" 
+            Template2="{StaticResource AdsItemTemplate}"/>
 
             <!--
             Коллекция отображаемых на этой странице сгруппированных элементов, привязанных к подмножеству
@@ -124,16 +127,19 @@
             Margin="0,20,0,0"
             Padding="116,137,40,46"
             ItemsSource="{Binding Source={StaticResource groupedItemsViewSource}}"
-            ItemTemplate="{StaticResource Standard250x250ItemTemplate}"
+            ItemTemplateSelector="{StaticResource MyDataSelector}"
             SelectionMode="None"
             IsSwipeEnabled="false"
             IsItemClickEnabled="True"
                                           >
 
             <GridView.ItemsPanel>
-                <ItemsPanelTemplate>                        
-                    <VirtualizingStackPanel Orientation="Horizontal"/>
+                <ItemsPanelTemplate>
+                    <VariableSizedWrapGrid Orientation="Vertical"/>
                 </ItemsPanelTemplate>
+                <!--<ItemsPanelTemplate>                        
+                    <VirtualizingStackPanel Orientation="Horizontal"/>
+                </ItemsPanelTemplate>-->
             </GridView.ItemsPanel>
             <GridView.GroupStyle>
                 <GroupStyle>
@@ -154,7 +160,7 @@
                     </GroupStyle.HeaderTemplate>
                     <GroupStyle.Panel>
                         <ItemsPanelTemplate>
-                            <VariableSizedWrapGrid Orientation="Vertical" Margin="0,0,80,0"/>
+                            <VariableSizedWrapGrid Orientation="Vertical" Margin="0,0,80,0" MaximumRowsOrColumns="9"/>
                         </ItemsPanelTemplate>
                     </GroupStyle.Panel>
                 </GroupStyle>

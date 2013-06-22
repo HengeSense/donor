@@ -14,6 +14,15 @@ using System.Xml;
 using System.Xml.Linq;
 using GalaSoft.MvvmLight;
 using Parse;
+using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Imaging;
+using Windows.Web.Syndication;
+using System.Threading.Tasks;
+using Windows.Storage;
+using DonorAppW8.DataModel;
+using DonorAppW8.ViewModel;
+using System.IO;
+
 
 namespace DonorAppW8.ViewModels
 {
@@ -24,52 +33,93 @@ namespace DonorAppW8.ViewModels
             this.Items = new ObservableCollection<NewsViewModel>();
         }
 
-        public void LoadNewsParse()
+        public async Task<bool> AddGroupForFeedAsync(string feedUrl, string ID = "1", string titleRss = "")
         {
-            /*if ((ViewModelLocator.MainStatic.News.Items.Count() == 0) || (ViewModelLocator.MainStatic.Settings.NewsUpdated.AddHours(1) < DateTime.Now))
-            {
-            var bw = new BackgroundWorker();
-            bw.DoWork += delegate
-            {
-                var client = new RestClient("https://api.parse.com");
-                var request = new RestRequest("1/classes/News?order=-createdTimestamp&limit=50", Method.GET);
-                request.Parameters.Clear();
-                request.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
-                request.AddHeader("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
+            string clearedContent = String.Empty;
 
-                client.ExecuteAsync(request, response =>
+            if (ViewModelLocator.MainStatic.Groups.FirstOrDefault(c => c.UniqueId == ID) != null) return false;
+
+            var feed = await new SyndicationClient().RetrieveFeedAsync(new Uri(feedUrl));
+            //var localFolder = await ApplicationData.Current.LocalFolder.CreateFolderAsync("Data", CreationCollisionOption.OpenIfExists);
+            //получаем/перезаписываем файл с именем "ID".rss
+            //var fileToSave = await localFolder.CreateFileAsync(ID + ".rss", CreationCollisionOption.ReplaceExisting);
+
+            //сохраняем фид в этот файл
+            //await feed.GetXmlDocument(SyndicationFormat.Rss20).SaveToFileAsync(fileToSave);
+
+            var feedGroup = new RssDataGroup();
+            feedGroup.UniqueId = ID;
+            feedGroup.Title = titleRss;
+            //feedGroup.subtitle = feed.Subtitle != null ? feed.Subtitle.Text : null;
+            //feedGroup.imagePath = feed.ImageUri != null ? feed.ImageUri.ToString() : null;
+
+            foreach (var i in feed.Items)
+            {
+                string imagePath = null;
+                try
                 {
-                    try
+                    imagePath = GetImageFromPostContents(i); ;
+                }
+                catch { };
+
+                if (i.Summary != null)
+                    clearedContent = Windows.Data.Html.HtmlUtilities.ConvertToText(i.Summary.Text);
+                else
+                    if (i.Content != null)
+                        clearedContent = Windows.Data.Html.HtmlUtilities.ConvertToText(i.Content.Text);
+
+                /*if (imagePath != null && feedGroup.Image == null)
+                    feedGroup.SetImage(imagePath);*/
+
+                if (imagePath == null) imagePath = "ms-appx:///Assets/DarkGray.png";
+
+                try
+                {
+                    NewsViewModel news = new NewsViewModel();
+                    news.ObjectId = i.Id;
+                    news.UniqueId = i.Id;
+                    news.Title = i.Title.Text;
+                    news.Body = clearedContent;
+                    news.ImagePath = imagePath;
+                    news.Url = i.Id.ToString();
+                    this.Items.Add(news);
+                    /*new RssDataItem(
+                        uniqueId: i.Id, title: i.Title.Text, subtitle: null, imagePath: imagePath,
+                        description: null, content: clearedContent, @group: feedGroup))*/
+                    feedGroup.Items.Add(news);
+                }
+                catch { };
+            }
+
+            ViewModelLocator.MainStatic.Groups.Remove(ViewModelLocator.MainStatic.Groups.FirstOrDefault(c => c.UniqueId == feedGroup.UniqueId));
+            ViewModelLocator.MainStatic.Groups.Add(feedGroup);
+            //AllGroups = SortItems();
+            return true;
+        }
+
+        private static string GetImageFromPostContents(SyndicationItem item)
+        {
+            string text2search = "";
+
+            if (item.Content != null) text2search += item.Content.Text;
+            if (item.Summary != null) text2search += item.Summary.Text;
+
+            return Regex.Matches(text2search,
+                    @"(?<=<img\s+[^>]*?src=(?<q>['""]))(?<url>.+?)(?=\k<q>)",
+                    RegexOptions.IgnoreCase)
+                .Cast<Match>()
+                .Where(m =>
+                {
+                    Uri url;
+                    if (Uri.TryCreate(m.Groups[0].Value, UriKind.Absolute, out url))
                     {
-                        //var bw = new BackgroundWorker();
-                        //bw.DoWork += delegate
-                        //{
-                            try
-                            {
-                                ObservableCollection<NewsViewModel> newslist1 = new ObservableCollection<NewsViewModel>();
-                                JObject o = JObject.Parse(response.Content.ToString());
-                                newslist1 = JsonConvert.DeserializeObject<ObservableCollection<NewsViewModel>>(o["results"].ToString());                                
-
-                                Deployment.Current.Dispatcher.BeginInvoke(() =>
-                                {
-                                    ViewModelLocator.MainStatic.Settings.NewsUpdated = DateTime.Now;
-                                    ViewModelLocator.MainStatic.SaveSettingsToStorage();
-
-                                    this.Items = new ObservableCollection<NewsViewModel>(newslist1);                                
-                                    IsolatedStorageHelper.SaveSerializableObject<ObservableCollection<NewsViewModel>>(ViewModelLocator.MainStatic.News.Items, "news.xml");
-                                });
-                            }
-                            catch { };
-                        //};
-                        //bw.RunWorkerAsync();
+                        string ext = Path.GetExtension(url.AbsolutePath).ToLower();
+                        if (ext == ".png" || ext == ".jpg" || ext == ".bmp") return true;
                     }
-                    catch
-                    {
-                    };
-                });
-            };
-            bw.RunWorkerAsync();
-            };*/
+                    return false;
+                })
+                .Select(m => m.Groups[0].Value)
+                .FirstOrDefault();
         }
 
         private NewsViewModel _currentNews = null;
@@ -86,8 +136,9 @@ namespace DonorAppW8.ViewModels
             }
         }
 
-        public void LoadNews()
+        public async void LoadNews()
         {
+            await AddGroupForFeedAsync("http://yadonor.ru/rss/news.rss", "News", "Новости");
             /*if ((ViewModelLocator.MainStatic.News.Items.Count() == 0) || (ViewModelLocator.MainStatic.Settings.NewsUpdated.AddHours(1) < DateTime.Now))
             {
                 var bw = new BackgroundWorker();
@@ -194,7 +245,61 @@ namespace DonorAppW8.ViewModels
             }
         }
 
+        private string _uniqueId;
+        public string UniqueId
+        {
+            get
+            {
+                return _uniqueId;
+            }
+            set
+            {
+                _uniqueId = value;
+                RaisePropertyChanged("UniqueId");
+            }
+        }
+
         public string ObjectId { get; set; }
+
+
+        private ImageSource _image = null;
+
+        private string _imagePath = string.Empty;
+        public string ImagePath
+        {
+            get { return this._imagePath; }
+            set {
+                _imagePath = value;
+                RaisePropertyChanged("ImagePath");
+            }
+        }
+
+        private static Uri _baseUri = new Uri("ms-appx:///");
+        public ImageSource Image
+        {
+            get
+            {
+                if (this._image == null && this.ImagePath != null)
+                {
+                    this._image = new BitmapImage(new Uri(_baseUri, this.ImagePath));
+                }
+                return this._image;
+            }
+
+            set
+            {
+                this.ImagePath = null;
+                this._image = value;
+                RaisePropertyChanged("Image");                
+            }
+        }
+
+        public void SetImage(String path)
+        {
+            this._image = null;
+            this.ImagePath = path;
+            RaisePropertyChanged("Image");
+        }
 
 
         private string _body;

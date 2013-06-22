@@ -13,7 +13,7 @@ namespace DonorAppW8.DataModel
         public RssDataGroup()
         {
         }
-        public int itemsCount = 10;
+        public int itemsCount = 9;
 
         private int _order = 0;
         public int Order

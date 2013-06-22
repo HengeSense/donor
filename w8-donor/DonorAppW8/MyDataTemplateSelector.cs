@@ -21,8 +21,11 @@ namespace DonorAppW8
         {
             try
             {
-                NewsViewModel dataItem = item as NewsViewModel;
-
+                //NewsViewModel dataItem = item as NewsViewModel;
+                if (item.GetType() == typeof(AdsViewModel))
+                {
+                    return Template2;
+                };
                 /*if (dataItem.Group.UniqueId.Contains("MainNews") || dataItem.Group.UniqueId.Contains("Tourist"))
                 //dataItem.Group.UniqueId.Contains("http://rybinsk.ru/news-2013?format=feed") || 
                 {
