@@ -99,5 +99,10 @@ namespace DonorAppW8
                 this.Frame.Navigate(typeof(StationDetailPage), ((YAStationItem)e.ClickedItem).UniqueId);
             };
         }
+
+        private void MapButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(MapPage));
+        }
     }
 }

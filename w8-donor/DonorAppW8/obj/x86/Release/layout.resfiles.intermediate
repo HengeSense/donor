@@ -15,6 +15,7 @@ Controls\TouristControl.xaml
 GroupedItemsPage.xaml
 Pages\Ads\AdDetailPage.xaml
 Pages\Ads\AdGroupDetailPage.xaml
+Pages\Map\MapPage.xaml
 Pages\News\NewsDetailPage.xaml
 Pages\News\NewsGroupDetailPage.xaml
 Pages\Stations\StationDetailPage.xaml
