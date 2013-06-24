@@ -49,18 +49,22 @@ namespace DonorAppW8
                 navigationParameter = pageState["SelectedItem"];
             }
 
-            // TODO: Создание соответствующей модели данных для области проблемы, чтобы заменить пример данных
-            var item = ViewModelLocator.MainStatic.Stations.Items.FirstOrDefault(c => c.UniqueId == (String)navigationParameter);
-            this.DefaultViewModel["Group"] = ViewModelLocator.MainStatic.Groups.FirstOrDefault(c=>c.UniqueId=="CurrentStations");
-            this.DefaultViewModel["Items"] = ViewModelLocator.MainStatic.Groups.FirstOrDefault(c => c.UniqueId == "CurrentStations").Items;
-            this.flipView.SelectedItem = item;
+            try
+            {
+                // TODO: Создание соответствующей модели данных для области проблемы, чтобы заменить пример данных
+                var item = ViewModelLocator.MainStatic.Stations.Items.FirstOrDefault(c => c.UniqueId == (String)navigationParameter);
+                this.DefaultViewModel["Group"] = ViewModelLocator.MainStatic.Groups.FirstOrDefault(c => c.UniqueId == "CurrentStations");
+                this.DefaultViewModel["Items"] = ViewModelLocator.MainStatic.Groups.FirstOrDefault(c => c.UniqueId == "CurrentStations").Items;
+                this.flipView.SelectedItem = item;
 
-            Pushpin pushpin = new Pushpin();
+                Pushpin pushpin = new Pushpin();
                 MapLayer.SetPosition(pushpin, new Location(item.Lat, item.Lon));
                 pushpin.Name = item.UniqueId;
                 //pushpin.Tapped += pushpinTapped;
                 //map.Children.Add(pushpin);
-            //map.SetView(new Location(ViewModelLocator.MainStatic.Stations.Latitued, ViewModelLocator.MainStatic.Stations.Longitude), 11);
+                //map.SetView(new Location(ViewModelLocator.MainStatic.Stations.Latitued, ViewModelLocator.MainStatic.Stations.Longitude), 11);
+            }
+            catch { };
         }
 
         /// <summary>

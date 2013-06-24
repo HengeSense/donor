@@ -16,17 +16,17 @@
     <AppXManifest Include="C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\bin\x86\Release\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2013-06-24T13:50:15.126</Modified>
+      <Modified>2013-06-24T14:14:29.515</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\bin\x86\Release\DonorAppW8.exe">
       <PackagePath>DonorAppW8.exe</PackagePath>
-      <Modified>2013-06-24T13:58:26.627</Modified>
+      <Modified>2013-06-24T14:17:53.454</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\bin\x86\Release\DonorAppW8.pdb">
       <PackagePath>DonorAppW8.pdb</PackagePath>
-      <Modified>2013-06-24T13:58:26.543</Modified>
+      <Modified>2013-06-24T14:17:53.403</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\m0rg0_000\AppData\Local\Microsoft SDKs\Windows\v8.0\ExtensionSDKs\Bing.Maps.Xaml\1.0\References\commonconfiguration\neutral\Bing.Maps.winmd">
       <PackagePath>Bing.Maps.winmd</PackagePath>
@@ -474,7 +474,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\bin\x86\Release\GroupedItemsPage.xaml">
       <PackagePath>GroupedItemsPage.xaml</PackagePath>
-      <Modified>2013-06-24T12:38:25.754</Modified>
+      <Modified>2013-06-24T14:17:49.420</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\bin\x86\Release\Pages\Ads\AdGroupDetailPage.xaml">
       <PackagePath>Pages\Ads\AdGroupDetailPage.xaml</PackagePath>

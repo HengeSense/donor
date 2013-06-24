@@ -46,6 +46,7 @@ namespace DonorAppW8
             // TODO: Создание соответствующей модели данных для области проблемы, чтобы заменить пример данных
             //var sampleDataGroups = SampleDataSource.GetGroups((String)navigationParameter);
             //this.DefaultViewModel["Groups"] = sampleDataGroups;
+            zommedOutView.ItemsSource = groupedItemsViewSource.View.CollectionGroups;
         }
 
         /// <summary>
