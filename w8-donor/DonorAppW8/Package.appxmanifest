@@ -15,13 +15,18 @@
   </Resources>
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="DonorAppW8.App">
-      <VisualElements DisplayName="Донор" Logo="Assets\Logo.png" SmallLogo="Assets\SmallLogo.png" Description="DonorAppW8" ForegroundText="light" BackgroundColor="#CF0707">
-        <DefaultTile ShowName="allLogos" />
+      <VisualElements DisplayName="Донор" Logo="Assets\Logo.png" SmallLogo="Assets\SmallLogo.png" Description="Донор" ForegroundText="light" BackgroundColor="#CF0707">
+        <DefaultTile ShowName="allLogos" ShortName="Донор" />
         <SplashScreen Image="Assets\SplashScreen.png" />
+        <InitialRotationPreference>
+          <Rotation Preference="landscape" />
+          <Rotation Preference="landscapeFlipped" />
+        </InitialRotationPreference>
       </VisualElements>
     </Application>
   </Applications>
   <Capabilities>
     <Capability Name="internetClient" />
+    <DeviceCapability Name="location" />
   </Capabilities>
 </Package>

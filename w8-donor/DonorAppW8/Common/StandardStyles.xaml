@@ -1750,7 +1750,7 @@
       Шаблон элемента 190 на 130 пикселей для отображения эскизов, как на странице FileOpenPickerPage
       Включает подробную всплывающую подсказку для отображения заголовка и текста описания
   -->
-    <DataTemplate x:Key="StandardFileWithTooltip190x130ItemTemplate">
+    <!--<DataTemplate x:Key="StandardFileWithTooltip190x130ItemTemplate">
         <Grid>
             <Grid Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}">
                 <Image
@@ -1794,7 +1794,7 @@
                 </ToolTip>
             </ToolTipService.ToolTip>
         </Grid>
-    </DataTemplate>
+    </DataTemplate>-->
 
     <!-- Стили ScrollViewer -->
 

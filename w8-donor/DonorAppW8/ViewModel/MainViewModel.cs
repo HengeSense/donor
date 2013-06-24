@@ -52,7 +52,8 @@ namespace DonorAppW8.ViewModel
             {
                 ViewModelLocator.MainStatic.News.LoadNews();
                 ViewModelLocator.MainStatic.Ads.LoadAds();
-                ViewModelLocator.MainStatic.Stations.LoadStations();
+                //ViewModelLocator.MainStatic.Stations.LoadStations();
+                ViewModelLocator.MainStatic.Stations.LoadCurrentRegion();
                 this.IsDataLoaded = true;
             };
         }

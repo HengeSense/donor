@@ -68,6 +68,10 @@ namespace DonorAppW8
             {
                 this.Frame.Navigate(typeof(NewsGroupDetailPage), (group as RssDataGroup).UniqueId);
             };
+            if ((group as RssDataGroup).UniqueId == "CurrentStations")
+            {
+                this.Frame.Navigate(typeof(StationsGroupDetailPage), (group as RssDataGroup).UniqueId);
+            };
         }
 
         /// <summary>
@@ -88,6 +92,10 @@ namespace DonorAppW8
             if (e.ClickedItem.GetType() == typeof(NewsViewModel))
             {
                 this.Frame.Navigate(typeof(NewsViewModel), ((NewsViewModel)e.ClickedItem).UniqueId);
+            };
+            if (e.ClickedItem.GetType() == typeof(YAStationItem))
+            {
+                this.Frame.Navigate(typeof(StationDetailPage), ((YAStationItem)e.ClickedItem).UniqueId);
             };
         }
     }

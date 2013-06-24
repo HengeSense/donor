@@ -15,6 +15,9 @@ using System.Text.RegularExpressions;
 using DonorAppW8.ViewModel;
 using Parse;
 using DonorAppW8.DataModel;
+using System.Threading.Tasks;
+using System.Net.Http;
+using Windows.Devices.Geolocation;
 
 namespace DonorAppW8.ViewModels
 {
@@ -30,45 +33,6 @@ namespace DonorAppW8.ViewModels
 
             this.Items = new ObservableCollection<YAStationItem>();
         }
-
-        public void UpdateCoordinatesWatcher()
-        {
-            /*try
-            {
-                myCoordinateWatcher.Stop();
-                myCoordinateWatcher = new GeoCoordinateWatcher(GeoPositionAccuracy.Default);
-                myCoordinateWatcher.PositionChanged += new EventHandler<GeoPositionChangedEventArgs<GeoCoordinate>>(myCoordinateWatcher_PositionChanged);
-                myCoordinateWatcher.Start();
-            }
-            catch { };*/
-        }
-
-        /*public GeoCoordinateWatcher myCoordinateWatcher;
-        private bool _getCoordinates = false;
-        /// <summary>
-        /// Обновилось положение устройства
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        void myCoordinateWatcher_PositionChanged(object sender, GeoPositionChangedEventArgs<GeoCoordinate> e)
-        {
-            if (ViewModelLocator.MainStatic.Settings.Location == true)
-            {
-                if (((!e.Position.Location.IsUnknown) && (_getCoordinates == false)))
-                {
-                    Latitued = e.Position.Location.Latitude;
-                    Longitude = e.Position.Location.Longitude;
-
-                    _getCoordinates = true;
-                    GetPlaceInfo(Latitued, Longitude);
-                };
-            }
-            else
-            {
-                Latitued = 55.45;
-                Longitude = 37.36;                
-            };            
-        }*/
 
         private string _currentState = "";
         public string CurrentState {
@@ -121,49 +85,6 @@ namespace DonorAppW8.ViewModels
         }
 
         /// <summary>
-        /// Получаем информацию по координатам о местонахождении пользователя
-        /// </summary>
-        /// <param name="lat"></param>
-        /// <param name="lon"></param>
-        public void GetPlaceInfo(double lat, double lon)
-        {
-            /*
-            ///reverse?format=json&lat=58.17&lon=38.6&zoom=18&addressdetails=1
-            var client = new RestClient("http://nominatim.openstreetmap.org");
-            var request = new RestRequest("reverse?format=json&zoom=18&addressdetails=1&lat=" + lat.ToString().Replace(",", ".") + "&lon=" + lon.ToString().Replace(",", "."), Method.GET);
-            request.Parameters.Clear();
-            client.ExecuteAsync(request, response =>
-            {
-                try
-                {                    
-                    JObject o = JObject.Parse(response.Content.ToString());
-                    string state = o["address"]["state"].ToString();
-                    string town = "";
-                    try
-                    {                        
-                        town = o["address"]["city"].ToString();
-                        if (town=="Москва") {
-                            state = town;
-                        };                        
-                    }
-                    catch {
-                        //MessageBox.Show(ex.Message.ToString());
-                    };
-                    //MessageBox.Show("Регион - " + state + "\nгород - " + town + "\nlat=" + lat.ToString().Replace(",", ".") + "\nlon=" + lon.ToString().Replace(",", "."));
-                    CurrentState = state;
-                    UpdateDistanceItems();
-                }
-                catch
-                {
-                };
-
-            });*/
-        }
-
-        public double Latitued =  55.45;
-        public double Longitude = 37.36; 
-
-        /// <summary>
         /// выбранный город
         /// </summary>
         public string SelectedCity { get; set; }
@@ -187,146 +108,155 @@ namespace DonorAppW8.ViewModels
         //selected station for edit
         public string SelectedStation { get; set; }
 
+        private string _town = "Москва";
+        public string Town
+        {
+            get
+            {
+                return _town;
+            }
+            set
+            {
+                if (_town!=value)
+                {
+                _town = value;
+                RaisePropertyChanged("Town");
+                };
+            }
+        }
+
+        private string _street = "Арбат";
+        public string Street
+        {
+            get
+            {
+                return _street;
+            }
+            set
+            {
+                if (_street != value)
+                {
+                    _street = value;
+                    RaisePropertyChanged("Street");
+                };
+            }
+        }
+
+        private string _state = "Москва";
+        public string State
+        {
+            get
+            {
+                return _state;
+            }
+            set
+            {
+                if (_state != value)
+                {
+                    _state = value;
+                    RaisePropertyChanged("State");
+                };
+            }
+        }
+
+        public async Task<string> MakeWebRequest(string url = "")
+        {
+            HttpClient http = new System.Net.Http.HttpClient();
+            HttpResponseMessage response = await http.GetAsync(url);
+            return await response.Content.ReadAsStringAsync();
+        }
+
+        public async Task<bool> GetPlaceInfo(double lat, double lon)
+        {
+            var roamingSettings = Windows.Storage.ApplicationData.Current.RoamingSettings;
+            //if (roamingSettings.Values["street"].ToString() == "")
+            //{
+            var responseText = await MakeWebRequest("http://nominatim.openstreetmap.org/reverse?format=json&zoom=18&addressdetails=1&lat=" + lat.ToString().Replace(",", ".") + "&lon=" + lon.ToString().Replace(",", "."));
+            try
+            {
+                JObject o = JObject.Parse(responseText.ToString());
+                string town = "Москва";
+                try {
+                    town = o["address"]["city"].ToString(); } catch {};
+                string road = "";
+                try
+                {
+                    road = o["address"]["road"].ToString();
+                } catch {};
+                string state = o["address"]["state"].ToString();
+                ViewModelLocator.MainStatic.Stations.Street = road;
+                ViewModelLocator.MainStatic.Stations.Town = town;
+                ViewModelLocator.MainStatic.Stations.State = state;
+            }
+            catch
+            {
+            };
+            return true;
+            //};
+        }
+        public double Latitued = 55.45;
+        public double Longitude = 37.36; 
+
+        public async void LoadCurrentRegion()
+        {
+            try
+            {
+                var geolocator = new Geolocator();
+                Geoposition position = await geolocator.GetGeopositionAsync();
+                var str = position.ToString();
+                Latitued = position.Coordinate.Latitude;
+                Longitude = position.Coordinate.Longitude;
+                await GetPlaceInfo(Latitued, Longitude);
+
+                LoadStations();
+            }
+            catch { };
+        }
+
         /// <summary>
         /// Загрузка станций с parse.com
         /// </summary>
         public async void LoadStations()
         {
-            ParseQuery<ParseObject> query = ParseObject.GetQuery("YAStations");
+            ParseQuery<ParseObject> query = from yastation in ParseObject.GetQuery("YAStations")
+                                            where yastation.Get<string>("region_name").StartsWith(this.State.Trim())
+                                            select yastation;
+            //ParseObject.GetQuery("YAStations");
             query = query.Limit(100);
             IEnumerable<ParseObject> results = await query.FindAsync();
             foreach (var station in results)
             {
-                YAStationItem stationitem = new YAStationItem();
-                stationitem.Name = station.Get<string>("name");
-                stationitem.ObjectId = station.ObjectId;
-                stationitem.Address = station.Get<string>("address");
-                stationitem.District_name = station.Get<string>("district_name");
-                stationitem.Region_name = station.Get<string>("region_name");
+                try
+                {
+                    YAStationItem stationitem = new YAStationItem();
+                    stationitem.Name = station.Get<string>("name");
+                    stationitem.ObjectId = station.ObjectId;
+                    stationitem.UniqueId = station.ObjectId;
+                    stationitem.Address = station.Get<string>("address");
+                    stationitem.District_name = station.Get<string>("district_name");
+                    stationitem.Region_name = station.Get<string>("region_name");
+                    stationitem.Town = station.Get<string>("town");
 
-                this.Items.Add(stationitem);
+                    try { stationitem.Work_time = station.Get<string>("work_time"); } catch {};
+                    try { stationitem.Site = station.Get<string>("site");} catch {};
+                    try { stationitem.Phone = station.Get<string>("phone");} catch {};
+                    try { stationitem.Chief = station.Get<string>("chief");} catch {};
+                    try { stationitem.Shortaddress = station.Get<string>("shortaddress");} catch {};
+                    try { stationitem.Email = station.Get<string>("email");} catch {};
+                    try { stationitem.Lat = station.Get<double>("lat");} catch {};
+                    try { stationitem.Lon = station.Get<double>("lon"); } catch { };
+
+                    ViewModelLocator.MainStatic.Stations.Items.Add(stationitem);
+                }
+                catch { };
             };
             RssDataGroup adgroup = new RssDataGroup();
             adgroup.Title = "Станции";
-            adgroup.UniqueId = "Stations";
+            adgroup.UniqueId = "CurrentStations";
 
             adgroup.Items = new ObservableCollection<object>(this.Items);
             ViewModelLocator.MainStatic.Groups.Add(adgroup);
             RaisePropertyChanged("Items");
-            /*myCoordinateWatcher = new GeoCoordinateWatcher(GeoPositionAccuracy.Default);
-            myCoordinateWatcher.PositionChanged += new EventHandler<GeoPositionChangedEventArgs<GeoCoordinate>>(myCoordinateWatcher_PositionChanged);
-            myCoordinateWatcher.Start();
-
-            try
-            {
-                ObservableCollection<YAStationItem> stationslist1 = new ObservableCollection<YAStationItem>();
-                stationslist1 = IsolatedStorageHelper.LoadSerializableObject<ObservableCollection<YAStationItem>>("yastations.xml");
-                this.Items = stationslist1;
-            }
-            catch { 
-                this.Items = new ObservableCollection<YAStationItem>(); 
-            };
-
-            // загружаем станции если их нет или дата последнего обновления была более чем одни сутки в прошлом
-            //(ViewModelLocator.MainStatic.Settings.StationsUpdated.AddDays(1) < DateTime.Now)
-            //ViewModelLocator.MainStatic.Loadin
-            if ((ViewModelLocator.MainStatic.Stations.Items.Count() == 0) && (ViewModelLocator.MainStatic.Settings.StationsUpdated.AddDays(7) < DateTime.Now))
-            {            
-            var bw = new BackgroundWorker();
-            bw.DoWork += delegate
-            {
-            var client = new RestClient("https://api.parse.com");
-            var request = new RestRequest("1/classes/YAStations?limit=1000", Method.GET);
-            request.Parameters.Clear();
-
-            request.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
-            request.AddHeader("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
-
-            client.ExecuteAsync(request, response =>
-            {
-                try
-                {
-                    ObservableCollection<YAStationItem> eventslist1 = new ObservableCollection<YAStationItem>();
-                    JObject o = JObject.Parse(response.Content.ToString());
-                    eventslist1 = JsonConvert.DeserializeObject<ObservableCollection<YAStationItem>>(o["results"].ToString());
-
-                        Deployment.Current.Dispatcher.BeginInvoke(() =>
-                        {
-                            ViewModelLocator.MainStatic.Settings.StationsUpdated = DateTime.Now;
-                            ViewModelLocator.MainStatic.SaveSettingsToStorage();
-                            this.Items = eventslist1;
-
-                            IsolatedStorageHelper.SaveSerializableObject<ObservableCollection<YAStationItem>>(this.Items, "yastations.xml");
-
-                            RaisePropertyChanged("Items");
-                            UpdateDistanceItems();
-                            RaisePropertyChanged("DistrictItems");  
-                        });                       
-                    
-                }
-                catch
-                {
-                };
-                
-            });
-            };
-            bw.RunWorkerAsync();
-            } else {
-                var bw = new BackgroundWorker();
-                bw.DoWork += delegate
-                {
-                    var client = new RestClient("https://api.parse.com");
-                    var request = new RestRequest("1/classes/YAStations?limit=1000&where={\"updatedAt\":{\"$gte\":{\"__type\":\"Date\",\"iso\":\"" + ViewModelLocator.MainStatic.Settings.StationsUpdated.ToUniversalTime().ToString("s") + "\"}}}", Method.GET);
-                    request.Parameters.Clear();
-
-                    request.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
-                    request.AddHeader("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
-
-                    client.ExecuteAsync(request, response =>
-                    {
-                        try
-                        {
-                            ObservableCollection<YAStationItem> eventslist1 = new ObservableCollection<YAStationItem>();
-                            JObject o = JObject.Parse(response.Content.ToString());
-                            eventslist1 = JsonConvert.DeserializeObject<ObservableCollection<YAStationItem>>(o["results"].ToString());
-
-                            Deployment.Current.Dispatcher.BeginInvoke(() =>
-                            {
-                                ViewModelLocator.MainStatic.Settings.StationsUpdated = DateTime.Now;
-                                ViewModelLocator.MainStatic.SaveSettingsToStorage();
-                                foreach (var item in eventslist1)
-                                {
-                                    try
-                                    {
-                                        if (this.Items.FirstOrDefault(c => c.ObjectId == item.ObjectId) != null)
-                                        {
-                                            this.Items.Remove(this.Items.FirstOrDefault(c => c.ObjectId == item.ObjectId));
-                                            this.Items.Add(item);
-                                        }
-                                        else
-                                        {
-                                            this.Items.Add(item);
-                                        };
-                                    }
-                                    catch { };
-                                };
-
-                                IsolatedStorageHelper.SaveSerializableObject<ObservableCollection<YAStationItem>>(this.Items, "yastations.xml");
-
-                                RaisePropertyChanged("Items");
-                                UpdateDistanceItems();
-                                RaisePropertyChanged("DistrictItems");
-                            });
-
-                        }
-                        catch
-                        {
-                        };
-
-                    });
-                };
-                bw.RunWorkerAsync();
-            };*/
         }
 
         private ObservableCollection<TownItem> _districtItems = new ObservableCollection<TownItem>();
@@ -537,7 +467,37 @@ namespace DonorAppW8.ViewModels
             set
             {
                 _name = value;
+                _title = value;
                 RaisePropertyChanged("Name");
+                RaisePropertyChanged("Title");
+            }
+        }
+
+        private string _title = "";
+        public string Title
+        {
+            get
+            {
+                return _title;
+            }
+            set
+            {
+                _title = value;
+                RaisePropertyChanged("Title");
+            }
+        }
+
+        private string _uniqueId = "";
+        public string UniqueId
+        {
+            get
+            {
+                return _uniqueId;
+            }
+            set
+            {
+                _uniqueId = value;
+                RaisePropertyChanged("UniqueId");
             }
         }
 
@@ -912,239 +872,6 @@ namespace DonorAppW8.ViewModels
 
             private set { }
         }
-    }
-
-    public class StationViewModel: ViewModelBase
-    {
-        public StationViewModel() {
-        }
-
-        /// <summary>
-        /// Station title
-        /// </summary>
-        private string _title;
-        public string Title
-        {
-            get {
-                return Char.ToLowerInvariant(_title[0]) + _title.Substring(1);
-                //return _title; 
-            }
-            set { _title = value; RaisePropertyChanged("Title"); }
-        }
-
-        //public ReviewsListViewModel Reviews { get; set; }
-
-        /// <summary>
-        /// City name for station
-        /// </summary>
-        private string _city;
-        public string City {
-            get { return _city; }
-            set { _city = value; RaisePropertyChanged("City"); }
-        }
-
-        /// <summary>
-        /// Station street
-        /// </summary>
-        private string _adress;
-        public string Adress
-        {
-            get { return _adress; }
-            set { _adress = value; RaisePropertyChanged("Adress"); }
-        }
-
-        private string _lat;
-        public string Lat
-        {
-            get
-            {
-                return _lat;
-            }
-            set
-            {
-                _lat = value;
-                RaisePropertyChanged("Lat");
-            }
-        }
-
-        private string _lon;
-        public string Lon
-        {
-            get
-            {
-                return _lon;
-            }
-            set
-            {
-                _lon = value;
-                RaisePropertyChanged("Lon");
-            }
-        }
-
-        public string Distance
-        {
-            get
-            {
-                double distanceInMeter;
-
-                //GeoCoordinate currentLocation = new GeoCoordinate(Convert.ToDouble(ViewModelLocator.MainStatic.Stations.Latitued.ToString()), Convert.ToDouble(ViewModelLocator.MainStatic.Stations.Longitude.ToString()));
-                //GeoCoordinate clientLocation = new GeoCoordinate(Convert.ToDouble(this.Lat.ToString()), Convert.ToDouble(this.Lon.ToString()));
-                distanceInMeter = 1;// currentLocation.GetDistanceTo(clientLocation);
-
-                return (Math.Round(distanceInMeter / 1000)).ToString();
-            }
-
-            private set { }
-        }
-
-        public string LatLon
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
-        /// Station site url
-        /// </summary>
-        private string _url;
-        public string Url
-        {
-            get { return _url; }
-            set { _url = value; RaisePropertyChanged("Url");  }
-        }
-
-        public string NidUrl
-        {
-            get { return "http://www.podari-zhizn.ru/main/node/"+this.Nid.ToString(); }
-            private set {}
-        }
-
-        /// <summary>
-        /// Station description
-        /// </summary>
-        private string _description;
-        public string Description
-        {
-            get { return _description; }
-            set { _description = value; RaisePropertyChanged("Description"); }
-        }
-
-        /// <summary>
-        /// Station phone
-        /// </summary>
-        private string _phone;
-        public string Phone
-        {
-            get { return _phone; }
-            set { _phone = value; RaisePropertyChanged("Phone"); }
-        }
-
-        /// <summary>
-        /// Blood for ...
-        /// </summary>
-        private string _bloodFor;
-        public string BloodFor
-        {
-            get {
-                if (_bloodFor == "")
-                {
-                    return Donor.AppResources.DontFilledData; 
-                }
-                else
-                {
-                    return _bloodFor; 
-                };
-                
-            }
-            set { _bloodFor = value; RaisePropertyChanged("BloodFor"); }
-        }        
-
-        /// <summary>
-        /// Время приема
-        /// </summary>
-        private string _receiptTime;
-        public string ReceiptTime
-        {
-            get {
-                if (_receiptTime == "")
-                {
-                    return Donor.AppResources.DontFilledData;
-                }
-                else
-                {
-                    return _receiptTime;
-                };
-            }
-            set { _receiptTime = value; RaisePropertyChanged("ReceiptTime"); }
-        }
-
-        /// <summary>
-        /// проезд
-        /// </summary>
-        private string _transportation;
-        public string Transportaion
-        {
-            get {
-                    if (_transportation == "")
-                    {
-                        return Donor.AppResources.DontFilledData;
-                    }
-                    else
-                    {
-                        return _transportation;
-                    };
-                }
-            set { _transportation = value; RaisePropertyChanged("Transportaion"); }
-        }
-
-        private string _objectId;
-        public string objectId
-        {
-            get { return _objectId; }
-            set { _objectId = value; }
-        }
-
-        /// <summary>
-        /// работа по субботам
-        /// </summary>
-        private bool _saturdayWork;
-        public bool SaturdayWork
-        {
-            get { return _saturdayWork; }
-            set { _saturdayWork = value; }
-        }
-
-        private bool _donorsForChildrens;
-        public bool DonorsForChildrens
-        {
-            get { return _donorsForChildrens; }
-            set { _donorsForChildrens = value; }
-        }
-
-        private bool _regionalRegistration;
-        public bool RegionalRegistration
-        {
-            get { return _regionalRegistration; }
-            set { _regionalRegistration = value; RaisePropertyChanged("RegionalRegistration"); }
-        }
-
-        public string RegionalRegistrationString
-        {
-            get {
-                if (true)
-                {
-                    return Donor.AppResources.NeedRegistrationInMoscow;
-                }
-                else
-                {
-                    //return "Не требуется регистрация в Москве или Московской области.";
-                };
-            }
-            private set {}
-        }
-
-        public Int64 Nid { get; set; }
-        
     }
 
     public class ARStation //: ARItem

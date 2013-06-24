@@ -58,7 +58,10 @@ C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\obj\Release\Pages\
 C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\obj\Release\Pages\News\NewsGroupDetailPage.g.cs
 C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\obj\Release\Pages\News\NewsDetailPage.xaml
 C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\obj\Release\Pages\News\NewsGroupDetailPage.xaml
-C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\obj\Release\priconfig.xml.intermediate
-C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\obj\Release\layout.resfiles.intermediate
-C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\obj\Release\resources.resfiles.intermediate
-C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\obj\Release\pri.resfiles.intermediate
+C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\obj\Release\DonorAppW8.csprojResolveAssemblyReference.cache
+C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\obj\Release\Pages\Stations\StationDetailPage.g.i.cs
+C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\obj\Release\Pages\Stations\StationDetailPage.g.cs
+C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\obj\Release\Pages\Stations\StationsGroupDetailPage.g.i.cs
+C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\obj\Release\Pages\Stations\StationsGroupDetailPage.g.cs
+C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\obj\Release\Pages\Stations\StationDetailPage.xaml
+C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\obj\Release\Pages\Stations\StationsGroupDetailPage.xaml

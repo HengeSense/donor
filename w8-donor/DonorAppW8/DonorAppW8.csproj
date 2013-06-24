@@ -103,6 +103,15 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\About.xaml.cs">
+      <DependentUpon>About.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Privacy.xaml.cs">
+      <DependentUpon>Privacy.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\TouristControl.xaml.cs">
+      <DependentUpon>TouristControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DataModel\GroupItem.cs" />
     <Compile Include="DataModel\VIewModelBase.cs" />
     <Compile Include="GroupedItemsPage.xaml.cs">
@@ -120,6 +129,12 @@
     </Compile>
     <Compile Include="Pages\News\NewsGroupDetailPage.xaml.cs">
       <DependentUpon>NewsGroupDetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Stations\StationDetailPage.xaml.cs">
+      <DependentUpon>StationDetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Stations\StationsGroupDetailPage.xaml.cs">
+      <DependentUpon>StationsGroupDetailPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Common\BindableBase.cs" />
@@ -153,12 +168,25 @@
   <ItemGroup>
     <Content Include="appicon.png" />
     <Content Include="Assets\Logo.png" />
+    <Content Include="Assets\logo_header.png" />
     <Content Include="Assets\SmallLogo.png" />
     <Content Include="Assets\SplashScreen.png" />
     <Content Include="Assets\StoreLogo.png" />
     <Content Include="Assets\LightGray.png" />
     <Content Include="Assets\MediumGray.png" />
     <Content Include="Assets\DarkGray.png" />
+    <Page Include="Controls\About.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Privacy.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\TouristControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Content Include="metadata.xml" />
     <Content Include="MVVMLight.Nuget.Readme.txt" />
   </ItemGroup>
@@ -188,6 +216,14 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Pages\News\NewsGroupDetailPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Stations\StationDetailPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Stations\StationsGroupDetailPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -225,8 +261,16 @@
     </PRIResource>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Pages\Stations\" />
+    <Folder Include="Pages\Map\" />
     <Folder Include="Pages\User\" />
+  </ItemGroup>
+  <ItemGroup>
+    <SDKReference Include="Bing.Maps.Xaml, Version=1.0">
+      <Name>Bing Maps for C#, C++, or Visual Basic</Name>
+    </SDKReference>
+    <SDKReference Include="Microsoft.VCLibs, version=11.0">
+      <Name>Microsoft Visual C++ Runtime Package</Name>
+    </SDKReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '11.0' ">
     <VisualStudioVersion>11.0</VisualStudioVersion>
