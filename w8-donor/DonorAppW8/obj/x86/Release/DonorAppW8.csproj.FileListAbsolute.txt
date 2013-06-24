@@ -75,7 +75,6 @@ C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\obj\x86\Release\Co
 C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\obj\x86\Release\Controls\About.xaml
 C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\obj\x86\Release\Controls\Privacy.xaml
 C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\obj\x86\Release\Controls\TouristControl.xaml
-C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\obj\x86\Release\DonorAppW8.csprojResolveAssemblyReference.cache
 C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\obj\x86\Release\priconfig.xml.intermediate
 C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\obj\x86\Release\layout.resfiles.intermediate
 C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\obj\x86\Release\resources.resfiles.intermediate

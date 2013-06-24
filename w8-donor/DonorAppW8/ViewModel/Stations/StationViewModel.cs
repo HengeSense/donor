@@ -18,6 +18,7 @@ using DonorAppW8.DataModel;
 using System.Threading.Tasks;
 using System.Net.Http;
 using Windows.Devices.Geolocation;
+using Bing.Maps;
 
 namespace DonorAppW8.ViewModels
 {
@@ -796,6 +797,7 @@ namespace DonorAppW8.ViewModels
             {
                 _lat = value;
                 RaisePropertyChanged("Lat");
+                RaisePropertyChanged("Center");
             }
         }
         public double LatDouble
@@ -826,8 +828,17 @@ namespace DonorAppW8.ViewModels
             {
                 _lon = value;
                 RaisePropertyChanged("Lon");
+                RaisePropertyChanged("Center");
             }
         }
+
+        private Location _center;
+        public Location Center
+        {
+            get { return new Location(this.Lat, this.Lon); }
+        }
+
+
         public double LonDouble
         {
             private set

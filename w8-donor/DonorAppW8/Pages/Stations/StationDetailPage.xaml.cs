@@ -5,6 +5,7 @@ using DonorAppW8.ViewModel;
 using DonorAppW8.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using Windows.Foundation;
@@ -53,16 +54,10 @@ namespace DonorAppW8
             {
                 // TODO: Создание соответствующей модели данных для области проблемы, чтобы заменить пример данных
                 var item = ViewModelLocator.MainStatic.Stations.Items.FirstOrDefault(c => c.UniqueId == (String)navigationParameter);
+                ViewModelLocator.MainStatic.Stations.CurrentStation = item;
                 this.DefaultViewModel["Group"] = ViewModelLocator.MainStatic.Groups.FirstOrDefault(c => c.UniqueId == "CurrentStations");
                 this.DefaultViewModel["Items"] = ViewModelLocator.MainStatic.Groups.FirstOrDefault(c => c.UniqueId == "CurrentStations").Items;
                 this.flipView.SelectedItem = item;
-
-                Pushpin pushpin = new Pushpin();
-                MapLayer.SetPosition(pushpin, new Location(item.Lat, item.Lon));
-                pushpin.Name = item.UniqueId;
-                //pushpin.Tapped += pushpinTapped;
-                //map.Children.Add(pushpin);
-                //map.SetView(new Location(ViewModelLocator.MainStatic.Stations.Latitued, ViewModelLocator.MainStatic.Stations.Longitude), 11);
             }
             catch { };
         }
@@ -82,5 +77,90 @@ namespace DonorAppW8
             }
             catch { };
         }
+
+        private void flipView_Loaded(object sender, RoutedEventArgs e)
+        {
+            /*DependencyObject deObj = sender as DependencyObject;
+            vtree(deObj, 0);*/
+            try
+            {              
+                var selectedItem = (YAStationItem)this.flipView.SelectedItem;
+
+                Pushpin pushpin = new Pushpin();
+                MapLayer.SetPosition(pushpin, new Location(selectedItem.Lat, selectedItem.Lon));
+                pushpin.Name = selectedItem.UniqueId;
+                //pushpin.Tapped += pushpinTapped;
+                this.map.Children.Clear();
+                this.map.Children.Add(pushpin);
+                this.map.SetView(new Location(selectedItem.Lat, selectedItem.Lon), 11);
+            }
+            catch { };
+        }
+
+        private void vtree(DependencyObject obj, int level)
+        {
+            try
+            {
+                if (obj.GetType() == typeof(Map))
+                {
+                    Map map = (Map)obj;
+                    var selectedItem = ViewModelLocator.MainStatic.Stations.CurrentStation;
+
+                    Pushpin pushpin = new Pushpin();
+                    MapLayer.SetPosition(pushpin, new Location(selectedItem.Lat, selectedItem.Lon));
+                    pushpin.Name = selectedItem.UniqueId;
+                    //pushpin.Tapped += pushpinTapped;
+                    map.Children.Clear();
+                    map.Children.Add(pushpin);
+                    map.SetView(new Location(selectedItem.Lat, selectedItem.Lon), 12);
+                };
+
+                //Debug.WriteLine(String.Format("Type:{0} Name:{1}", obj.GetType().Name.ToString(), obj.GetValue(FrameworkElement.NameProperty)));
+            }
+            catch { };
+            for (int i = 0; i < VisualTreeHelper.GetChildrenCount(obj); ++i)
+            {
+                vtree(VisualTreeHelper.GetChild(obj, i), ++level);
+            }
+        }
+
+        private void map_Loaded(object sender, RoutedEventArgs e)
+        {
+            /*try
+            {
+                Map map = (Map)sender;
+                var selectedItem = (YAStationItem)ViewModelLocator.MainStatic.Stations.Items.FirstOrDefault(c => c.Name == map.Tag.ToString());
+
+                Pushpin pushpin = new Pushpin();
+                MapLayer.SetPosition(pushpin, new Location(selectedItem.Lat, selectedItem.Lon));
+                pushpin.Name = selectedItem.UniqueId;
+                //pushpin.Tapped += pushpinTapped;
+                map.Children.Add(pushpin);
+                map.SetView(new Location(selectedItem.Lat, selectedItem.Lon), 11);
+            }
+            catch { };*/
+        }
+
+        private void flipView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ViewModelLocator.MainStatic.Stations.CurrentStation = (YAStationItem)this.flipView.SelectedItem;
+            /*ViewModelLocator.MainStatic.Stations.CurrentStation = (YAStationItem)this.flipView.SelectedItem;
+            DependencyObject deObj = sender as DependencyObject;
+            vtree(deObj, 0);*/
+            try
+            {
+                var selectedItem = (YAStationItem)this.flipView.SelectedItem;
+
+                Pushpin pushpin = new Pushpin();
+                MapLayer.SetPosition(pushpin, new Location(selectedItem.Lat, selectedItem.Lon));
+                pushpin.Name = selectedItem.UniqueId;
+                //pushpin.Tapped += pushpinTapped;
+                this.map.Children.Clear();
+                this.map.Children.Add(pushpin);
+                this.map.SetView(new Location(selectedItem.Lat, selectedItem.Lon), 11);
+            }
+            catch { };
+        }
+
     }
 }
