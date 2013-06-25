@@ -87,8 +87,8 @@ namespace DonorAppW8
         protected override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
         {
             ObservableCollection<YAStationItem> mapsdata = new ObservableCollection<YAStationItem>();
-            mapsdata = ViewModelLocator.MainStatic.Stations.Items;
-            foreach (YAStationItem item in mapsdata)
+            //mapsdata = ViewModelLocator.MainStatic.Stations.Items;
+            foreach (YAStationItem item in ViewModelLocator.MainStatic.Stations.Items)
             {
                 Pushpin pushpin = new Pushpin();
                 MapLayer.SetPosition(pushpin, item.Center);

@@ -138,6 +138,7 @@
                 <StackPanel Orientation="Horizontal"/>
                 <StackPanel Grid.Column="1" HorizontalAlignment="Right" Orientation="Horizontal">
                     <Button x:ConnectionId='1' x:Name="MapButton" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Style="{StaticResource MapAppBarButtonStyle}"                        />
+                    <Button x:ConnectionId='2' x:Name="SettingsButton" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Style="{StaticResource SettingsAppBarButtonStyle}"                             />
                     <!--<Button x:Name="WriteProblem1AppBarButton" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Style="{StaticResource WriteProblem1AppBarButtonStyle}" Click="WriteProblem1AppBarButton_Click"/>-->
                 </StackPanel>
             </Grid>
@@ -158,7 +159,7 @@
         <SemanticZoom Grid.RowSpan="2">
             <SemanticZoom.ZoomedInView>
                 <!-- Сетка с горизонтальной прокруткой используется в большинстве состояний представления -->
-                <GridView x:ConnectionId='5'
+                <GridView x:ConnectionId='6'
             x:Name="itemGridView"
             AutomationProperties.AutomationId="ItemGridView"
             AutomationProperties.Name="Grouped Items"
@@ -185,7 +186,7 @@
                             <GroupStyle.HeaderTemplate>
                                 <DataTemplate>
                                     <Grid Margin="1,0,0,6">
-                                        <Button x:ConnectionId='6'
+                                        <Button x:ConnectionId='7'
                                     AutomationProperties.Name="Group Title"
                                                         
                                     Style="{StaticResource TextPrimaryButtonStyle}" >
@@ -238,7 +239,7 @@
         </SemanticZoom>
 
             <!-- Список с вертикальной прокруткой используется только в прикрепленном представлении -->
-        <ListView x:ConnectionId='2'
+        <ListView x:ConnectionId='3'
             x:Name="itemListView"
             AutomationProperties.AutomationId="ItemListView"
             AutomationProperties.Name="Grouped Items"
@@ -258,7 +259,7 @@
                     <GroupStyle.HeaderTemplate>
                         <DataTemplate>
                             <Grid Margin="7,7,0,0">
-                                <Button x:ConnectionId='4'
+                                <Button x:ConnectionId='5'
                                     AutomationProperties.Name="Group Title"
                                                         
                                     Style="{StaticResource TextPrimaryButtonStyle}">
@@ -280,7 +281,7 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Button x:ConnectionId='3' x:Name="backButton"                IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}" Style="{StaticResource BackButtonStyle}"/>
+            <Button x:ConnectionId='4' x:Name="backButton"                IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}" Style="{StaticResource BackButtonStyle}"/>
             <!--<TextBlock x:Name="pageTitle" Text="Донор" Grid.Column="1" IsHitTestVisible="false" Style="{StaticResource PageHeaderTextStyle}"/>-->
             <Image Source="Assets/logo_header.png" Grid.Column="1" IsHitTestVisible="false" HorizontalAlignment="Left"/>
         </Grid>

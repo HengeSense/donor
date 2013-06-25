@@ -22,6 +22,8 @@ using Bing.Maps;
 
 namespace DonorAppW8.ViewModels
 {
+
+
     public class StationsListViewModel: ViewModelBase
     {
         public StationsListViewModel()
@@ -156,6 +158,8 @@ namespace DonorAppW8.ViewModels
                 {
                     _state = value;
                     RaisePropertyChanged("State");
+                    RaisePropertyChanged("CurrentItems");
+                    RaisePropertyChanged("RegionItems");
                 };
             }
         }
@@ -214,15 +218,11 @@ namespace DonorAppW8.ViewModels
             catch { };
         }
 
-        /// <summary>
-        /// Загрузка станций с parse.com
-        /// </summary>
-        public async void LoadStations()
+        public async void LoadCurrentStations()
         {
             ParseQuery<ParseObject> query = from yastation in ParseObject.GetQuery("YAStations")
                                             where yastation.Get<string>("region_name").StartsWith(this.State.Trim())
                                             select yastation;
-            //ParseObject.GetQuery("YAStations");
             query = query.Limit(100);
             IEnumerable<ParseObject> results = await query.FindAsync();
             foreach (var station in results)
@@ -238,14 +238,22 @@ namespace DonorAppW8.ViewModels
                     stationitem.Region_name = station.Get<string>("region_name");
                     stationitem.Town = station.Get<string>("town");
 
-                    try { stationitem.Work_time = station.Get<string>("work_time"); } catch {};
-                    try { stationitem.Site = station.Get<string>("site");} catch {};
-                    try { stationitem.Phone = station.Get<string>("phone");} catch {};
-                    try { stationitem.Chief = station.Get<string>("chief");} catch {};
-                    try { stationitem.Shortaddress = station.Get<string>("shortaddress");} catch {};
-                    try { stationitem.Email = station.Get<string>("email");} catch {};
-                    try { stationitem.Lat = station.Get<double>("lat");} catch {};
-                    try { stationitem.Lon = station.Get<double>("lon"); } catch { };
+                    try { stationitem.Work_time = station.Get<string>("work_time"); }
+                    catch { };
+                    try { stationitem.Site = station.Get<string>("site"); }
+                    catch { };
+                    try { stationitem.Phone = station.Get<string>("phone"); }
+                    catch { };
+                    try { stationitem.Chief = station.Get<string>("chief"); }
+                    catch { };
+                    try { stationitem.Shortaddress = station.Get<string>("shortaddress"); }
+                    catch { };
+                    try { stationitem.Email = station.Get<string>("email"); }
+                    catch { };
+                    try { stationitem.Lat = station.Get<double>("lat"); }
+                    catch { };
+                    try { stationitem.Lon = station.Get<double>("lon"); }
+                    catch { };
 
                     ViewModelLocator.MainStatic.Stations.Items.Add(stationitem);
                 }
@@ -255,9 +263,61 @@ namespace DonorAppW8.ViewModels
             adgroup.Title = "Станции";
             adgroup.UniqueId = "CurrentStations";
 
-            adgroup.Items = new ObservableCollection<object>(this.Items);
+            adgroup.Items = new ObservableCollection<object>(this.CurrentItems);
             ViewModelLocator.MainStatic.Groups.Add(adgroup);
             RaisePropertyChanged("Items");
+            RaisePropertyChanged("CurrentItems");
+        }
+
+        public void UpdateStationsGroup()
+        {
+            try
+            {
+                ViewModelLocator.MainStatic.Groups.FirstOrDefault(c => c.UniqueId == "CurrentStations").Items = new ObservableCollection<object>(this.CurrentItems);
+            }
+            catch { };
+        }
+
+        /// <summary>
+        /// Загрузка станций с parse.com
+        /// </summary>
+        public async void LoadStations()
+        {
+            //LoadCurrentStations();
+            try
+            {
+                HttpClient http = new System.Net.Http.HttpClient();
+                http.DefaultRequestHeaders.Add("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
+                http.DefaultRequestHeaders.Add("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
+
+                HttpResponseMessage response = await http.GetAsync("https://api.parse.com/1/classes/YAStations?limit=1000");
+                response.Headers.Add("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
+                response.Headers.Add("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
+
+                string json = await response.Content.ReadAsStringAsync();
+
+                ObservableCollection<YAStationItem> eventslist1 = new ObservableCollection<YAStationItem>();
+                JObject o = JObject.Parse(json.ToString());
+                eventslist1 = JsonConvert.DeserializeObject<ObservableCollection<YAStationItem>>(o["results"].ToString());
+
+                this.Items = eventslist1;
+            }
+            catch { };
+
+            try
+            {
+                RssDataGroup adgroup = new RssDataGroup();
+                adgroup.Title = "Станции";
+                adgroup.UniqueId = "CurrentStations";
+
+                adgroup.Items = new ObservableCollection<object>(this.CurrentItems);
+                ViewModelLocator.MainStatic.Groups.Add(adgroup);
+            }
+            catch { };
+            
+            RaisePropertyChanged("Items");
+            RaisePropertyChanged("CurrentItems");
+            RaisePropertyChanged("RegionItems");
         }
 
         private ObservableCollection<TownItem> _districtItems = new ObservableCollection<TownItem>();
@@ -332,6 +392,40 @@ namespace DonorAppW8.ViewModels
                 _items = value;
                 UpdateDistanceItems();
                 RaisePropertyChanged("Items");
+                RaisePropertyChanged("CurrentItems");
+            }
+        }
+
+        public ObservableCollection<YAStationItem> CurrentItems
+        {
+            get
+            {
+                ObservableCollection<YAStationItem> citems = new ObservableCollection<YAStationItem>();
+                var regitems = from item in this.Items
+                               where item.Region_name.StartsWith(this.State.Trim())
+                               select item;
+                foreach (var item in regitems)
+                {
+                    citems.Add(item);
+                };
+                return citems;
+            }
+        }
+
+        public ObservableCollection<RegionItem> RegionItems
+        {
+            get
+            {
+                ObservableCollection<RegionItem> citems = new ObservableCollection<RegionItem>();
+                foreach (var item in this.Items)
+                {
+                    if (citems.FirstOrDefault(c => c.Title==item.Region_name)==null)
+                    {
+                        citems.Add(new RegionItem() { Title = item.Region_name });
+                    };
+                    ///citems.Add(item);
+                };
+                return citems;
             }
         }
 
@@ -714,7 +808,9 @@ namespace DonorAppW8.ViewModels
             set
             {
                 _objectId = value;
+                _uniqueId = value;
                 RaisePropertyChanged("ObjectId");
+                RaisePropertyChanged("UniqueId");
             }
         }
 

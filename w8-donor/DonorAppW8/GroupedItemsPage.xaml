@@ -138,6 +138,7 @@
                 <StackPanel Orientation="Horizontal"/>
                 <StackPanel Grid.Column="1" HorizontalAlignment="Right" Orientation="Horizontal">
                     <Button x:Name="MapButton" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Style="{StaticResource MapAppBarButtonStyle}" Click="MapButton_Click"/>
+                    <Button x:Name="SettingsButton" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Style="{StaticResource SettingsAppBarButtonStyle}" Click="SettingsButton_Click"/>
                     <!--<Button x:Name="WriteProblem1AppBarButton" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Style="{StaticResource WriteProblem1AppBarButtonStyle}" Click="WriteProblem1AppBarButton_Click"/>-->
                 </StackPanel>
             </Grid>

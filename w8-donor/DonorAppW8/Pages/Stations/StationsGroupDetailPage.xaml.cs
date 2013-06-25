@@ -50,10 +50,10 @@ namespace DonorAppW8
             //var group = ViewModelLocator.MainStatic..GetGroup((String)navigationParameter);
             var group = ViewModelLocator.MainStatic.Groups.FirstOrDefault(c => c.UniqueId ==(String)navigationParameter);
             this.DefaultViewModel["Group"] = group;
-            this.DefaultViewModel["Items"] = group.Items;
+            this.DefaultViewModel["Items"] = ViewModelLocator.MainStatic.Stations.CurrentItems;
 
             ObservableCollection<YAStationItem> mapsdata = new ObservableCollection<YAStationItem>();
-            mapsdata = ViewModelLocator.MainStatic.Stations.Items;
+            mapsdata = ViewModelLocator.MainStatic.Stations.CurrentItems;
             foreach (YAStationItem item in mapsdata)
             {
                 Pushpin pushpin = new Pushpin();
@@ -63,6 +63,7 @@ namespace DonorAppW8
                 map.Children.Add(pushpin);
             };
             map.SetView(new Location(ViewModelLocator.MainStatic.Stations.Latitued, ViewModelLocator.MainStatic.Stations.Longitude), 11);
+            
         }
 
         Flyout box = new Flyout();
@@ -71,7 +72,7 @@ namespace DonorAppW8
         {
             Pushpin tappedpin = sender as Pushpin;  // gets the pin that was tapped
             if (null == tappedpin) return;  // null check to prevent bad stuff if it wasn't a pin.
-            ViewModelLocator.MainStatic.Stations.CurrentStation = (YAStationItem)ViewModelLocator.MainStatic.Stations.Items.FirstOrDefault(c => c.UniqueId.ToString() == tappedpin.Name.ToString());
+            ViewModelLocator.MainStatic.Stations.CurrentStation = (YAStationItem)ViewModelLocator.MainStatic.Stations.CurrentItems.FirstOrDefault(c => c.UniqueId.ToString() == tappedpin.Name.ToString());
 
             var x = MapLayer.GetPosition(tappedpin);
 
@@ -101,6 +102,52 @@ namespace DonorAppW8
             // путем передачи необходимой информации в виде параметра навигации
             var itemId = ((YAStationItem)e.ClickedItem).UniqueId;
             this.Frame.Navigate(typeof(StationDetailPage), itemId);
+        }
+
+        private void RegionSelect_Click(object sender, RoutedEventArgs e)
+        {
+            Flyout f = new Flyout();
+            f.PlacementTarget = sender as UIElement;
+            f.Placement = PlacementMode.Top;
+
+            Menu menu = new Menu();
+
+            MenuItem mi = new MenuItem();
+            mi.Tag = "Easy";
+            //mi.Tapped += ItemClicked;
+            mi.Text = "Easy Game";
+            mi.MenuTextMargin = new Thickness(28, 10, 28, 12);
+
+            MenuItem mi2 = new MenuItem();
+            mi2.Text = "Medium Game";
+            mi2.Tag = "Medium";
+            //mi2.Tapped += ItemClicked;
+            mi2.MenuTextMargin = new Thickness(28, 10, 28, 12);
+
+            MenuItem mi3 = new MenuItem();
+            mi3.Text = "Hard Game";
+            //mi3.Command = new CommandTest();
+            mi3.CommandParameter = "test param from command";
+            mi3.MenuTextMargin = new Thickness(28, 10, 28, 12);
+
+            ToggleMenuItem tmi = new ToggleMenuItem();
+            tmi.Text = "Enable Logging";
+            //tmi.IsChecked = chk;
+            tmi.Tapped += (a, b) =>
+            {
+                //chk = !chk;
+            };
+
+            menu.Items.Add(mi);
+            menu.Items.Add(mi2);
+            menu.Items.Add(new MenuItemSeparator());
+            menu.Items.Add(new MenuItem() { Text = "Foobar something really long", Tag = "Long menu option", MenuTextMargin = new Thickness(28, 10, 28, 12) });
+            menu.Items.Add(tmi);
+            menu.Items.Add(new MenuItemSeparator());
+            menu.Items.Add(mi3);
+            f.HostMargin = new Thickness(0); // on menu flyouts set HostMargin to 0
+            f.Content = menu;
+            f.IsOpen = true;
         }
     }
 }

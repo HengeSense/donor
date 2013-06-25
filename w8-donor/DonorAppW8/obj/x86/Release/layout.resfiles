@@ -18,6 +18,7 @@ Pages\Ads\AdGroupDetailPage.xaml
 Pages\Map\MapPage.xaml
 Pages\News\NewsDetailPage.xaml
 Pages\News\NewsGroupDetailPage.xaml
+Pages\Stations\RegionSelectPage.xaml
 Pages\Stations\StationDetailPage.xaml
 Pages\Stations\StationsGroupDetailPage.xaml
 metadata.xml

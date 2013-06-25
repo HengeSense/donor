@@ -104,5 +104,10 @@ namespace DonorAppW8
         {
             this.Frame.Navigate(typeof(MapPage));
         }
+
+        private void SettingsButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(RegionSelectPage));
+        }
     }
 }

@@ -520,6 +520,12 @@
     </Style>
     -->
 
+    <Style x:Key="SettingsAppBarButtonStyle" TargetType="ButtonBase" BasedOn="{StaticResource AppBarButtonStyle}">
+        <Setter Property="AutomationProperties.AutomationId" Value="SettingsAppBarButton"/>
+        <Setter Property="AutomationProperties.Name" Value="Изменить регион"/>
+        <Setter Property="Content" Value="&#xE115;"/>
+    </Style>
+
     <!--
     <Style x:Key="VideoAppBarButtonStyle" TargetType="ButtonBase" BasedOn="{StaticResource AppBarButtonStyle}">
         <Setter Property="AutomationProperties.AutomationId" Value="VideoAppBarButton"/>
@@ -1710,6 +1716,18 @@
                 <TextBlock Text="{Binding Title}" Style="{StaticResource ItemTextStyle}" MaxHeight="40"/>
                 <TextBlock Text="{Binding Subtitle}" Style="{StaticResource CaptionTextStyle}" TextWrapping="NoWrap"/>
             </StackPanel>
+        </Grid>
+    </DataTemplate>
+
+    <DataTemplate x:Key="RegionStandard80ItemTemplate">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Border Grid.Column="0" BorderBrush="#C0A89A" BorderThickness="2" Background="#261D1A" Width="120" Height="60">
+                <!--<Image Source="{Binding Image}" Stretch="UniformToFill"/>-->
+                <TextBlock Margin="6" Foreground="#DF8D4B" Text="{Binding Title}" Style="{StaticResource ItemTextStyle}" MaxHeight="55"/>
+            </Border>            
         </Grid>
     </DataTemplate>
 

@@ -8,7 +8,7 @@
     xmlns:bm="using:Bing.Maps" 
     xmlns:Controls="using:Callisto.Controls"
     x:Name="pageRoot"
-    x:Class="DonorAppW8.StationsGroupDetailPage"
+    x:Class="DonorAppW8.RegionSelectPage"
     DataContext="{Binding DefaultViewModel, RelativeSource={RelativeSource Mode=Self}}" 
     mc:Ignorable="d">
 
@@ -112,33 +112,12 @@
 			Margin="0,30,0,0"
 			Padding="120,126,120,50"
 			ItemsSource="{Binding Source={StaticResource itemsViewSource}}"
-			ItemTemplate="{StaticResource StationStandard500x130ItemTemplate}"
+			ItemTemplate="{StaticResource RegionStandard80ItemTemplate}"
 			SelectionMode="None"
 			IsSwipeEnabled="false"
 			IsItemClickEnabled="True"
 			ItemClick="ItemView_ItemClick">
-
-			<GridView.Header>
-				<StackPanel Width="480" Margin="0,4,14,0" VerticalAlignment="Top">
-					<TextBlock Text="Карта станций" Margin="0,0,18,20" Style="{StaticResource SubheaderTextStyle}" MaxHeight="60"/>
-                    <!--<StackPanel>
-                        <Controls:DropDownButton Content="Выбор региона" 
-                                                 Name="RegionSelect"
-                                             HorizontalAlignment="Stretch" 
-                                             VerticalAlignment="Stretch" Click="RegionSelect_Click"/>
-                    </StackPanel>-->
-                    <!--<Image Source="{Binding Image}" Height="400" Margin="0,0,18,20" Stretch="UniformToFill" AutomationProperties.Name="{Binding Title}"/>-->
-					<bm:Map x:Name="map" MinHeight="360"
-						Credentials="AsqrQmbS1KDNegV3DX6dFn0hQrFsDryl71O0gvH_Uk8M1A-u3gSjT-qolzYRp-SK" 
-						ZoomLevel="14" Heading="14">
-						<bm:Map.Center>
-							<bm:Location 
-								Longitude="{Binding MainStatic.Stations.Latitued, Source={StaticResource Locator}}" 
-								Latitude="{Binding MainStatic.Stations.Longitude, Source={StaticResource Locator}}" />
-						</bm:Map.Center>
-					</bm:Map>
-				</StackPanel>
-			</GridView.Header>
+		
 			<GridView.ItemContainerStyle>
 				<Style TargetType="FrameworkElement">
 					<Setter Property="Margin" Value="52,0,0,10"/>
@@ -178,7 +157,7 @@
 				<ColumnDefinition Width="*"/>
 			</Grid.ColumnDefinitions>
 			<Button x:Name="backButton" Click="GoBack" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}" Style="{StaticResource BackButtonStyle}"/>
-			<TextBlock x:Name="pageTitle" Text="{Binding Title}" Style="{StaticResource PageHeaderTextStyle}" Grid.Column="1" IsHitTestVisible="false"/>
+			<TextBlock x:Name="pageTitle" Text="Выбор региона" Style="{StaticResource PageHeaderTextStyle}" Grid.Column="1" IsHitTestVisible="false"/>
 		</Grid>
 
 	</Grid>

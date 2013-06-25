@@ -341,6 +341,9 @@
     <AppxPackagedFile Include="C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\bin\x86\Release\App.xaml">
       <PackagePath>App.xaml</PackagePath>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\bin\x86\Release\Pages\Stations\RegionSelectPage.xaml">
+      <PackagePath>Pages\Stations\RegionSelectPage.xaml</PackagePath>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\bin\x86\Release\Pages\Map\MapPage.xaml">
       <PackagePath>Pages\Map\MapPage.xaml</PackagePath>
     </AppxPackagedFile>

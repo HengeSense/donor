@@ -19,6 +19,9 @@ namespace DonorAppW8.ViewModel
     /// </summary>
     public class MainViewModel : ViewModelBase
     {
+        public const string XParseApplicationId = "EIpakVdZblHedhqgxMgiEVnIGCRGvWdy9v8gkKZu";
+        public const string XParseRESTAPIKey = "wPvwRKxX2b2vyrRprFwIbaE5t3kyDQq11APZ0qXf";
+
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
         /// </summary>

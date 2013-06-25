@@ -8,6 +8,29 @@ using System.Threading.Tasks;
 
 namespace DonorAppW8.DataModel
 {
+
+    public class RegionItem : ViewModelBase
+    {
+        public RegionItem()
+        {
+        }
+
+        private string _title = "";
+        public string Title
+        {
+            get
+            {
+                return _title;
+            }
+            set
+            {
+                _title = value;
+                RaisePropertyChanged("Title");
+            }
+        }
+        public string UniqueId = "";
+    }
+
     public class RssDataGroup: ViewModelBase
     {
         public RssDataGroup()
