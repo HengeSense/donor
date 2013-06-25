@@ -16,17 +16,17 @@
     <AppXManifest Include="C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\bin\x86\Debug\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2013-06-25T20:18:37.872</Modified>
+      <Modified>2013-06-25T20:45:16.792</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\bin\x86\Debug\DonorAppW8.exe">
       <PackagePath>DonorAppW8.exe</PackagePath>
-      <Modified>2013-06-25T20:31:50.621</Modified>
+      <Modified>2013-06-25T20:49:02.783</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\bin\x86\Debug\DonorAppW8.pdb">
       <PackagePath>DonorAppW8.pdb</PackagePath>
-      <Modified>2013-06-25T20:31:50.569</Modified>
+      <Modified>2013-06-25T20:49:02.731</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\m0rg0_000\AppData\Local\Microsoft SDKs\Windows\v8.0\ExtensionSDKs\Bing.Maps.Xaml\1.0\References\commonconfiguration\neutral\Bing.Maps.winmd">
       <PackagePath>Bing.Maps.winmd</PackagePath>
@@ -408,6 +408,10 @@
       <PackagePath>appicon.png</PackagePath>
       <Modified>2013-06-22T15:05:21.182</Modified>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\Assets\contras_image.png">
+      <PackagePath>Assets\contras_image.png</PackagePath>
+      <Modified>2013-06-25T20:38:35.532</Modified>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\Assets\Logo.png">
       <PackagePath>Assets\Logo.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
@@ -426,6 +430,10 @@
       <PackagePath>Assets\SplashScreen.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
       <Modified>2013-05-15T12:50:52.007</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\Assets\stations_image.png">
+      <PackagePath>Assets\stations_image.png</PackagePath>
+      <Modified>2013-06-25T20:38:35.535</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\Assets\StoreLogo.png">
       <PackagePath>Assets\StoreLogo.png</PackagePath>
@@ -514,7 +522,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\bin\x86\Debug\GroupedItemsPage.xaml">
       <PackagePath>GroupedItemsPage.xaml</PackagePath>
-      <Modified>2013-06-25T19:18:46.750</Modified>
+      <Modified>2013-06-25T20:46:38.852</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\bin\x86\Debug\Pages\Ads\AdGroupDetailPage.xaml">
       <PackagePath>Pages\Ads\AdGroupDetailPage.xaml</PackagePath>
@@ -546,7 +554,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\bin\x86\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2013-06-25T20:18:36.510</Modified>
+      <Modified>2013-06-25T20:45:15.150</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

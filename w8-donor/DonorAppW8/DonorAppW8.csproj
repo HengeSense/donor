@@ -185,6 +185,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="appicon.png" />
+    <Content Include="Assets\contras_image.png" />
     <Content Include="Assets\donor_news_images %281%29.jpg" />
     <Content Include="Assets\donor_news_images %282%29.jpg" />
     <Content Include="Assets\donor_news_images %283%29.jpg" />
@@ -195,6 +196,7 @@
     <Content Include="Assets\logo_header.png" />
     <Content Include="Assets\SmallLogo.png" />
     <Content Include="Assets\SplashScreen.png" />
+    <Content Include="Assets\stations_image.png" />
     <Content Include="Assets\StoreLogo.png" />
     <Content Include="Assets\LightGray.png" />
     <Content Include="Assets\MediumGray.png" />

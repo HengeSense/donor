@@ -59,6 +59,7 @@ namespace DonorAppW8.ViewModels
             adgroup.Title = "Объявления";
             adgroup.UniqueId = "Ads";
             adgroup.Order = 2;
+            adgroup.ImagePath = "ms-appx:///Assets/donor_news_images (4).jpg";
             
             adgroup.Items = new ObservableCollection<object>(this.Items);
             ViewModelLocator.MainStatic.Groups.Add(adgroup);

@@ -1,4 +1,5 @@
 appicon.png
+Assets\contras_image.png
 Assets\DarkGray.png
 Assets\donor_news_images (1).jpg
 Assets\donor_news_images (2).jpg
@@ -12,6 +13,7 @@ Assets\logo_header.png
 Assets\MediumGray.png
 Assets\SmallLogo.png
 Assets\SplashScreen.png
+Assets\stations_image.png
 Assets\StoreLogo.png
 App.xaml
 Common\StandardStyles.xaml

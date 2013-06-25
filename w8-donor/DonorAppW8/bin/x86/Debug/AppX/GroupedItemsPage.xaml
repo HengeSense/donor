@@ -238,7 +238,7 @@
                             <Grid HorizontalAlignment="Right">
                                 <Border Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}">
                                     <Image Stretch="UniformToFill" 
-                                        AutomationProperties.Name="{Binding Group.Title}" Source="Assets/LightGray.png"/>
+                                        AutomationProperties.Name="{Binding Group.Title}" Source="{Binding Group.Image}"/>
                                 </Border>
                                 <StackPanel Background="{StaticResource ListViewItemOverlayBackgroundThemeBrush}" VerticalAlignment="Top">
                                     <TextBlock Text="{Binding Group.Title}" Foreground="White"  

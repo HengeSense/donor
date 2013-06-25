@@ -265,6 +265,7 @@ namespace DonorAppW8.ViewModels
             adgroup.Title = "Станции";
             adgroup.UniqueId = "CurrentStations";
             adgroup.Order = 3;
+            adgroup.ImagePath = "ms-appx:///Assets/stations_image.png";
 
             adgroup.Items = new ObservableCollection<object>(this.CurrentItems);
             ViewModelLocator.MainStatic.Groups.Add(adgroup);
@@ -313,6 +314,7 @@ namespace DonorAppW8.ViewModels
                         adgroup.Title = "Станции";
                         adgroup.UniqueId = "CurrentStations";
                         adgroup.Order = 3;
+                        adgroup.ImagePath = "ms-appx:///Assets/stations_image.png";
 
                         adgroup.Items = new ObservableCollection<object>(this.CurrentItems);
                         if (ViewModelLocator.MainStatic.Groups.FirstOrDefault(c => c.UniqueId == "CurrentStations") == null)
@@ -376,6 +378,7 @@ namespace DonorAppW8.ViewModels
                 RssDataGroup adgroup = new RssDataGroup();
                 adgroup.Title = "Станции";
                 adgroup.UniqueId = "CurrentStations";
+                adgroup.ImagePath = "ms-appx:///Assets/stations_image.png";
                 adgroup.Order = 3;
 
                 adgroup.Items = new ObservableCollection<object>(this.CurrentItems);

@@ -80,6 +80,7 @@ namespace DonorAppW8.ViewModel.Contras
                 adgroup.Title = "Справка";
                 adgroup.UniqueId = "Help";
                 adgroup.Order = 10;
+                adgroup.ImagePath = "ms-appx:///Assets/contras_image.png";
 
                 adgroup.Items = new ObservableCollection<object>();
 

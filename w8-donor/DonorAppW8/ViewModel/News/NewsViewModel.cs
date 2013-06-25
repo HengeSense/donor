@@ -100,6 +100,7 @@ namespace DonorAppW8.ViewModels
             }
 
             feedGroup.Order = 0;
+            feedGroup.ImagePath = "ms-appx:///Assets/donor_news_images (1).jpg";
             ViewModelLocator.MainStatic.Groups.Remove(ViewModelLocator.MainStatic.Groups.FirstOrDefault(c => c.UniqueId == feedGroup.UniqueId));
             ViewModelLocator.MainStatic.Groups.Add(feedGroup);
             ViewModelLocator.MainStatic.GroupUpdated();

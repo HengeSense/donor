@@ -304,6 +304,9 @@
     <AppxPackagedFile Include="C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\appicon.png">
       <PackagePath>appicon.png</PackagePath>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\Assets\contras_image.png">
+      <PackagePath>Assets\contras_image.png</PackagePath>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\Assets\Logo.png">
       <PackagePath>Assets\Logo.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
@@ -318,6 +321,9 @@
     <AppxPackagedFile Include="C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\Assets\SplashScreen.png">
       <PackagePath>Assets\SplashScreen.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\Assets\stations_image.png">
+      <PackagePath>Assets\stations_image.png</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\Assets\StoreLogo.png">
       <PackagePath>Assets\StoreLogo.png</PackagePath>
