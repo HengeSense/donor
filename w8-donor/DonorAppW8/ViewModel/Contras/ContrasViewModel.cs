@@ -79,6 +79,7 @@ namespace DonorAppW8.ViewModel.Contras
                 RssDataGroup adgroup = new RssDataGroup();
                 adgroup.Title = "Справка";
                 adgroup.UniqueId = "Help";
+                adgroup.Order = 10;
 
                 adgroup.Items = new ObservableCollection<object>();
 
@@ -122,6 +123,7 @@ namespace DonorAppW8.ViewModel.Contras
 
 
                 ViewModelLocator.MainStatic.Groups.Add(adgroup);
+                ViewModelLocator.MainStatic.GroupUpdated();
             }
             catch { };
         }

@@ -99,8 +99,10 @@ namespace DonorAppW8.ViewModels
                 catch { };
             }
 
+            feedGroup.Order = 0;
             ViewModelLocator.MainStatic.Groups.Remove(ViewModelLocator.MainStatic.Groups.FirstOrDefault(c => c.UniqueId == feedGroup.UniqueId));
             ViewModelLocator.MainStatic.Groups.Add(feedGroup);
+            ViewModelLocator.MainStatic.GroupUpdated();
             //AllGroups = SortItems();
             return true;
         }

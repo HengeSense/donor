@@ -57,9 +57,11 @@ namespace DonorAppW8.ViewModels
             RssDataGroup adgroup = new RssDataGroup();
             adgroup.Title = "Объявления";
             adgroup.UniqueId = "Ads";
+            adgroup.Order = 2;
             
             adgroup.Items = new ObservableCollection<object>(this.Items);
             ViewModelLocator.MainStatic.Groups.Add(adgroup);
+            ViewModelLocator.MainStatic.GroupUpdated();
             RaisePropertyChanged("Items");
             /*if ((ViewModelLocator.MainStatic.Ads.Items.Count() == 0) || (ViewModelLocator.MainStatic.Settings.AdsUpdated.AddHours(1) < DateTime.Now))
             {

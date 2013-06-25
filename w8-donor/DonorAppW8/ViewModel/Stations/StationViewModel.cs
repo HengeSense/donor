@@ -262,9 +262,11 @@ namespace DonorAppW8.ViewModels
             RssDataGroup adgroup = new RssDataGroup();
             adgroup.Title = "Станции";
             adgroup.UniqueId = "CurrentStations";
+            adgroup.Order = 3;
 
             adgroup.Items = new ObservableCollection<object>(this.CurrentItems);
             ViewModelLocator.MainStatic.Groups.Add(adgroup);
+            ViewModelLocator.MainStatic.GroupUpdated();
             RaisePropertyChanged("Items");
             RaisePropertyChanged("CurrentItems");
         }
@@ -309,9 +311,11 @@ namespace DonorAppW8.ViewModels
                 RssDataGroup adgroup = new RssDataGroup();
                 adgroup.Title = "Станции";
                 adgroup.UniqueId = "CurrentStations";
+                adgroup.Order = 3;
 
                 adgroup.Items = new ObservableCollection<object>(this.CurrentItems);
                 ViewModelLocator.MainStatic.Groups.Add(adgroup);
+                ViewModelLocator.MainStatic.GroupUpdated();
             }
             catch { };
             

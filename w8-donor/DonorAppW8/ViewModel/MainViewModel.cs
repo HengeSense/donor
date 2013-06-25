@@ -3,6 +3,7 @@ using DonorAppW8.ViewModel.Contras;
 using DonorAppW8.ViewModels;
 using GalaSoft.MvvmLight;
 using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace DonorAppW8.ViewModel
 {
@@ -43,13 +44,38 @@ namespace DonorAppW8.ViewModel
             set
             {
                 _groups = value;
-                RaisePropertyChanged("Groups");
+                //RaisePropertyChanged("Groups");
+                //RaisePropertyChanged("SortedGroups");
+                GroupUpdated();
+                
             }
             get
             {
                 return _groups;
             }
         }
+
+        public void GroupUpdated()
+        {
+            RaisePropertyChanged("Groups");
+            RaisePropertyChanged("SortedGroups");
+        }
+
+        public ObservableCollection<RssDataGroup> SortedGroups
+        {
+            private set { }
+            get
+            {
+                ObservableCollection<RssDataGroup> temp = new ObservableCollection<RssDataGroup>();
+                var sorted = Groups.OrderBy(c => c.Order);
+                foreach (var item in sorted)
+                {
+                    temp.Add(item);
+                };
+                return temp;
+            }
+        }
+
 
         public void LoadData()
         {

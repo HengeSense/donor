@@ -129,10 +129,10 @@
             d:Source="{Binding Main.AllGroups, Source={StaticResource Locator}, Mode=TwoWay}"/>-->
             <CollectionViewSource
             x:Name="groupedItemsViewSource"
-            Source="{Binding MainStatic.Groups, Source={StaticResource Locator}}"
+            Source="{Binding MainStatic.SortedGroups, Source={StaticResource Locator}}"
             IsSourceGrouped="true"
             ItemsPath="TopItems"
-            d:Source="{Binding MainStatic.Groups, Source={StaticResource Locator}}"/>
+            d:Source="{Binding MainStatic.SortedGroups, Source={StaticResource Locator}}"/>
         </Page.Resources>
 
     <common:LayoutAwarePage.BottomAppBar>
