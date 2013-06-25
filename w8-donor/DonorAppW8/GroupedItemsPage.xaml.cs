@@ -79,17 +79,22 @@ namespace DonorAppW8
         {
             try
             {
-                var viewAboutPage = new SettingsCommand("", "Сайт проекта", cmd =>
+                var viewAboutPage = new SettingsCommand("site", "Сайт проекта", cmd =>
                 {
                     Launcher.LaunchUriAsync(new Uri("http://donorapp.ru/"));
                 });
-                args.Request.ApplicationCommands.Add(viewAboutPage);
+                if (args.Request.ApplicationCommands.FirstOrDefault(c => c.Id == "site") == null)
+                {
+                    args.Request.ApplicationCommands.Add(viewAboutPage);
+                };
 
-                var PrivacyLink = new SettingsCommand("", "Политика конфиденциальности", cmd =>
+                var PrivacyLink = new SettingsCommand("privacy", "Политика конфиденциальности", cmd =>
                 {
                     Launcher.LaunchUriAsync(new Uri("http://donorapp.ru/privacy.html"));
                 });
-                args.Request.ApplicationCommands.Add(PrivacyLink);
+                if (args.Request.ApplicationCommands.FirstOrDefault(c=>c.Id=="privacy")==null) {
+                    args.Request.ApplicationCommands.Add(PrivacyLink);
+                };
             }
             catch { };
         }

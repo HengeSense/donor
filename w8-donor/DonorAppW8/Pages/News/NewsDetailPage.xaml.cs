@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Windows.ApplicationModel.DataTransfer;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -53,6 +54,28 @@ namespace DonorAppW8
             this.DefaultViewModel["Group"] = ViewModelLocator.MainStatic.Groups.FirstOrDefault(c=>c.UniqueId=="News");
             this.DefaultViewModel["Items"] = ViewModelLocator.MainStatic.Groups.FirstOrDefault(c => c.UniqueId == "News").Items;
             this.flipView.SelectedItem = item;
+        }
+
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            base.OnNavigatedFrom(e);
+            DataTransferManager.GetForCurrentView().DataRequested -= Share_DataRequested;
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            DataTransferManager.GetForCurrentView().DataRequested += Share_DataRequested;
+        }
+
+        private void Share_DataRequested(DataTransferManager sender, DataRequestedEventArgs args)
+        {
+            var selectedItem = (NewsViewModel)this.flipView.SelectedItem;
+
+            args.Request.Data.Properties.Title = selectedItem.Title;
+            args.Request.Data.Properties.Description = selectedItem.Body;
+            //args.Request.Data.Properties.Thumbnail = selectedItem.Image;
+            args.Request.Data.SetText(selectedItem.Body);
         }
 
         /// <summary>

@@ -725,7 +725,7 @@ namespace DonorAppW8.ViewModels
             }
         }
 
-        private string _phone = "";
+        private string _phone = "нет";
         /// <summary>
         /// телефон станции
         /// </summary>
@@ -757,7 +757,7 @@ namespace DonorAppW8.ViewModels
             }
         }
 
-        private string _site = "";
+        private string _site = "нет";
         /// <summary>
         /// сайт станции
         /// </summary>
@@ -807,7 +807,7 @@ namespace DonorAppW8.ViewModels
             }
         }
 
-        private string _address = "";
+        private string _address = "нет";
         /// <summary>
         /// Адрес станции переливания
         /// </summary>
@@ -893,7 +893,7 @@ namespace DonorAppW8.ViewModels
             }
         }
 
-        private string _email = "";
+        private string _email = "нет";
         /// <summary>
         /// Email станции переливания крови
         /// </summary>
@@ -927,7 +927,7 @@ namespace DonorAppW8.ViewModels
             }
         }
 
-        private string _work_time = "";
+        private string _work_time = "нет";
         /// <summary>
         /// время работы станции
         /// </summary>

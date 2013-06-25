@@ -16,17 +16,17 @@
     <AppXManifest Include="C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\bin\x86\Debug\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2013-06-25T20:45:16.792</Modified>
+      <Modified>2013-06-25T21:14:47.688</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\bin\x86\Debug\DonorAppW8.exe">
       <PackagePath>DonorAppW8.exe</PackagePath>
-      <Modified>2013-06-25T20:49:02.783</Modified>
+      <Modified>2013-06-25T21:14:45.630</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\bin\x86\Debug\DonorAppW8.pdb">
       <PackagePath>DonorAppW8.pdb</PackagePath>
-      <Modified>2013-06-25T20:49:02.731</Modified>
+      <Modified>2013-06-25T21:14:45.579</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\m0rg0_000\AppData\Local\Microsoft SDKs\Windows\v8.0\ExtensionSDKs\Bing.Maps.Xaml\1.0\References\commonconfiguration\neutral\Bing.Maps.winmd">
       <PackagePath>Bing.Maps.winmd</PackagePath>
@@ -498,7 +498,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\bin\x86\Debug\Pages\Stations\RegionSelectPage.xaml">
       <PackagePath>Pages\Stations\RegionSelectPage.xaml</PackagePath>
-      <Modified>2013-06-25T11:20:14.337</Modified>
+      <Modified>2013-06-25T21:02:06.520</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\bin\x86\Debug\Pages\Map\MapPage.xaml">
       <PackagePath>Pages\Map\MapPage.xaml</PackagePath>
@@ -554,7 +554,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\bin\x86\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2013-06-25T20:45:15.150</Modified>
+      <Modified>2013-06-25T21:14:46.420</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>
