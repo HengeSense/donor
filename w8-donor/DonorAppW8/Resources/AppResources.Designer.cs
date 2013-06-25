@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Donor {
+namespace DonorAppW8 {
     using System;
     using System.Reflection;
     

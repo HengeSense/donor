@@ -53,20 +53,7 @@
                 </Grid>
             </DataTemplate>
 
-            <DataTemplate x:Key="AdsItemTemplate">
-            <Grid HorizontalAlignment="Left" Width="250" Height="250" Background="White">
-                    <Grid>
-                        <StackPanel Grid.Row="0" VerticalAlignment="Top" Margin="10,10,10,0">
-                            <TextBlock Text="{Binding Title}" Foreground="Black"
-                            Style="{StaticResource SubheaderTextStyle}" 
-                            Margin="15,0,15,0" MaxHeight="140"/>
-                        <TextBlock Text="{Binding Body}" Foreground="Black" 
-                            Style="{StaticResource BodyTextStyle}" 
-                            Margin="15,10,15,0" MaxHeight="70"/>
-                        </StackPanel>
-                    </Grid>
-                </Grid>
-            </DataTemplate>
+
 
         <DataTemplate x:Key="ContrasItemTemplate">
             <Grid Width="250" Height="115" Background="White">

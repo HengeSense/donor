@@ -83,7 +83,7 @@ namespace DonorAppW8.ViewModel.Contras
                 adgroup.Items = new ObservableCollection<object>();
 
                 var item = new HelpItem();
-                item.Title = "Перед кроводачей";
+                item.Title = "Перед кроводачей, условия сдачи крови";
                 item.UniqueId = "before";
                 item.ImagePath = "ms-appx:///Assets/donor_news_images (1).jpg";
                 adgroup.Items.Add(item);

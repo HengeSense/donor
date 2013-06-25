@@ -1724,10 +1724,26 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Border Grid.Column="0" BorderBrush="#C0A89A" BorderThickness="2" Background="#261D1A" Width="120" Height="60">
+            <Border Grid.Column="0" Background="White" Width="160" Height="70">
                 <!--<Image Source="{Binding Image}" Stretch="UniformToFill"/>-->
-                <TextBlock Margin="6" Foreground="#DF8D4B" Text="{Binding Title}" Style="{StaticResource ItemTextStyle}" MaxHeight="55"/>
+                <TextBlock Margin="6" Foreground="#7F0000" Text="{Binding Title}" Style="{StaticResource ItemTextStyle}" MaxHeight="65"/>
             </Border>            
+        </Grid>
+    </DataTemplate>
+    
+
+    <DataTemplate x:Key="AdsItemTemplate">
+        <Grid HorizontalAlignment="Left" Width="250" Height="250" Background="White">
+            <Grid>
+                <StackPanel Grid.Row="0" VerticalAlignment="Top" Margin="10,10,10,0">
+                    <TextBlock Text="{Binding Title}" Foreground="#00ABB5"
+                            Style="{StaticResource SubheaderTextStyle}" 
+                            Margin="15,0,15,0" MaxHeight="140"/>
+                    <TextBlock Text="{Binding Body}" Foreground="Black" 
+                            Style="{StaticResource BodyTextStyle}" 
+                            Margin="15,10,15,0" MaxHeight="70"/>
+                </StackPanel>
+            </Grid>
         </Grid>
     </DataTemplate>
 

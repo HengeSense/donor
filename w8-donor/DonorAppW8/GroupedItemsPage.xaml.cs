@@ -8,6 +8,10 @@ using System.IO;
 using System.Linq;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Networking.Connectivity;
+using Windows.System;
+using Windows.UI.ApplicationSettings;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -41,13 +45,55 @@ namespace DonorAppW8
         /// </param>
         /// <param name="pageState">Словарь состояния, сохраненного данной страницей в ходе предыдущего
         /// сеанса. Это значение будет равно NULL при первом посещении страницы.</param>
-        protected override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
+        protected async override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
         {
             // TODO: Создание соответствующей модели данных для области проблемы, чтобы заменить пример данных
             //var sampleDataGroups = SampleDataSource.GetGroups((String)navigationParameter);
             //this.DefaultViewModel["Groups"] = sampleDataGroups;
             zommedOutView.ItemsSource = groupedItemsViewSource.View.CollectionGroups;
+
+            //show offline message
+            if (NetworkInformation.GetInternetConnectionProfile().GetNetworkConnectivityLevel() !=
+                          NetworkConnectivityLevel.InternetAccess)
+            {
+                var msg = new MessageDialog("Для работы приложения необходимо к интернет подключение.");
+                    await msg.ShowAsync();
+            }
         }
+
+
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            //SettingsPane.GetForCurrentView().CommandsRequested -= Settings_CommandsRequested;
+            base.OnNavigatedFrom(e);
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            SettingsPane.GetForCurrentView().CommandsRequested += Settings_CommandsRequested;
+            base.OnNavigatedTo(e);
+        }
+
+        void Settings_CommandsRequested(SettingsPane sender, SettingsPaneCommandsRequestedEventArgs args)
+        {
+            try
+            {
+                var viewAboutPage = new SettingsCommand("", "Сайт проекта", cmd =>
+                {
+                    Launcher.LaunchUriAsync(new Uri("http://donorapp.ru/"));
+                });
+                args.Request.ApplicationCommands.Add(viewAboutPage);
+
+                var PrivacyLink = new SettingsCommand("", "Политика конфиденциальности", cmd =>
+                {
+                    Launcher.LaunchUriAsync(new Uri("http://donorapp.ru/privacy.html"));
+                });
+                args.Request.ApplicationCommands.Add(PrivacyLink);
+            }
+            catch { };
+        }
+
+
 
         /// <summary>
         /// Вызывается при нажатии заголовка группы.
@@ -97,6 +143,17 @@ namespace DonorAppW8
             if (e.ClickedItem.GetType() == typeof(YAStationItem))
             {
                 this.Frame.Navigate(typeof(StationDetailPage), ((YAStationItem)e.ClickedItem).UniqueId);
+            };
+            if (e.ClickedItem.GetType() == typeof(HelpItem))
+            {
+                if (((HelpItem)e.ClickedItem).UniqueId == "before")
+                {
+                    this.Frame.Navigate(typeof(BeforeBloodGivePage));
+                };
+                if (((HelpItem)e.ClickedItem).UniqueId == "contras")
+                {
+                    this.Frame.Navigate(typeof(ContrasListPage));
+                };
             };
         }
 

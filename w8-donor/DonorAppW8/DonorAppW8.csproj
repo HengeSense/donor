@@ -124,6 +124,12 @@
       <DependentUpon>AdDetailPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="MyDataTemplateSelector.cs" />
+    <Compile Include="Pages\Help\ContrasListPage.xaml.cs">
+      <DependentUpon>ContrasListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Help\BeforeBloodGivePage.xaml.cs">
+      <DependentUpon>BeforeBloodGivePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Map\MapPage.xaml.cs">
       <DependentUpon>MapPage.xaml</DependentUpon>
     </Compile>
@@ -153,6 +159,7 @@
       <DependentUpon>AppResources.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="VariableSizeGridView.cs">
       <CustomToolNamespace>DonorAppW8</CustomToolNamespace>
@@ -171,6 +178,10 @@
     <None Include="Common\ReadMe.txt" />
     <None Include="DonorAppW8_TemporaryKey.pfx" />
     <None Include="packages.config" />
+    <PRIResource Include="Resources\AppResources.resw">
+      <CustomToolNamespace>DonorAppW8</CustomToolNamespace>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </PRIResource>
   </ItemGroup>
   <ItemGroup>
     <Content Include="appicon.png" />
@@ -188,6 +199,14 @@
     <Content Include="Assets\LightGray.png" />
     <Content Include="Assets\MediumGray.png" />
     <Content Include="Assets\DarkGray.png" />
+    <Page Include="Pages\Help\BeforeBloodGivePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Help\ContrasListPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Pages\Stations\RegionSelectPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -277,12 +296,12 @@
     <PRIResource Include="Resources\AppResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
-      <CustomToolNamespace>Donor</CustomToolNamespace>
+      <CustomToolNamespace>DonorAppW8</CustomToolNamespace>
       <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </PRIResource>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Pages\Help\" />
     <Folder Include="Pages\User\" />
   </ItemGroup>
   <ItemGroup>

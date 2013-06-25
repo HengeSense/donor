@@ -4,6 +4,7 @@
              xmlns:localData="using:DonorAppW8.Data" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:vm="using:DonorAppW8.ViewModel" 
+             xmlns:my="clr-namespace:DonorAppW8"
              mc:Ignorable="d">
 
     <Application.Resources>
@@ -20,6 +21,7 @@
             <!-- Ресурсы, зависящие от приложения -->
 
             <x:String x:Key="AppName">DonorAppW8</x:String>
+            
         <vm:ViewModelLocator x:Key="Locator" d:IsDataSource="True" /></ResourceDictionary>
     </Application.Resources>
 </Application>

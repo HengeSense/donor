@@ -67,7 +67,7 @@
             Margin="0,30,0,0"
             Padding="120,126,120,50"
             ItemsSource="{Binding Source={StaticResource itemsViewSource}}"
-            ItemTemplate="{StaticResource AdsStandard500x130ItemTemplate}"
+            ItemTemplate="{StaticResource AdsItemTemplate}"
             SelectionMode="None"
             IsSwipeEnabled="false"
             IsItemClickEnabled="True"
