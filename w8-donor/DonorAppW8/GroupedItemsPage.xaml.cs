@@ -50,6 +50,7 @@ namespace DonorAppW8
             // TODO: Создание соответствующей модели данных для области проблемы, чтобы заменить пример данных
             //var sampleDataGroups = SampleDataSource.GetGroups((String)navigationParameter);
             //this.DefaultViewModel["Groups"] = sampleDataGroups;
+            
             zommedOutView.ItemsSource = groupedItemsViewSource.View.CollectionGroups;
 
             //show offline message
@@ -129,32 +130,37 @@ namespace DonorAppW8
         /// <param name="e">Данные о событии, описывающие нажатый элемент.</param>
         void ItemView_ItemClick(object sender, ItemClickEventArgs e)
         {
-            // Переход к соответствующей странице назначения и настройка новой страницы
-            // путем передачи необходимой информации в виде параметра навигации
-            //var itemId = "test"; // ((SampleDataItem)e.ClickedItem).UniqueId;
-            if (e.ClickedItem.GetType() == typeof(AdsViewModel))
+            try
             {
-                this.Frame.Navigate(typeof(AdDetailPage), ((AdsViewModel)e.ClickedItem).UniqueId);
-            };
-            if (e.ClickedItem.GetType() == typeof(NewsViewModel))
-            {
-                this.Frame.Navigate(typeof(NewsDetailPage), ((NewsViewModel)e.ClickedItem).UniqueId);
-            };
-            if (e.ClickedItem.GetType() == typeof(YAStationItem))
-            {
-                this.Frame.Navigate(typeof(StationDetailPage), ((YAStationItem)e.ClickedItem).UniqueId);
-            };
-            if (e.ClickedItem.GetType() == typeof(HelpItem))
-            {
-                if (((HelpItem)e.ClickedItem).UniqueId == "before")
+                // Переход к соответствующей странице назначения и настройка новой страницы
+                // путем передачи необходимой информации в виде параметра навигации
+                //var itemId = "test"; // ((SampleDataItem)e.ClickedItem).UniqueId;
+                if (e.ClickedItem.GetType() == typeof(AdsViewModel))
                 {
-                    this.Frame.Navigate(typeof(BeforeBloodGivePage));
+                    this.Frame.Navigate(typeof(AdDetailPage), ((AdsViewModel)e.ClickedItem).UniqueId);
                 };
-                if (((HelpItem)e.ClickedItem).UniqueId == "contras")
+                if (e.ClickedItem.GetType() == typeof(NewsViewModel))
                 {
-                    this.Frame.Navigate(typeof(ContrasListPage));
+                    this.Frame.Navigate(typeof(NewsDetailPage), ((NewsViewModel)e.ClickedItem).UniqueId);
                 };
-            };
+                if (e.ClickedItem.GetType() == typeof(YAStationItem))
+                {
+                    ViewModelLocator.MainStatic.Stations.CurrentStation = (YAStationItem)e.ClickedItem;
+                    this.Frame.Navigate(typeof(StationDetailPage), ((YAStationItem)e.ClickedItem).UniqueId);
+                };
+                if (e.ClickedItem.GetType() == typeof(HelpItem))
+                {
+                    if (((HelpItem)e.ClickedItem).UniqueId == "before")
+                    {
+                        this.Frame.Navigate(typeof(BeforeBloodGivePage));
+                    };
+                    if (((HelpItem)e.ClickedItem).UniqueId == "contras")
+                    {
+                        this.Frame.Navigate(typeof(ContrasListPage));
+                    };
+                };
+            }
+            catch { };
         }
 
         private void MapButton_Click(object sender, RoutedEventArgs e)

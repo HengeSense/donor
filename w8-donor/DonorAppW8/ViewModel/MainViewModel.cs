@@ -44,9 +44,9 @@ namespace DonorAppW8.ViewModel
             set
             {
                 _groups = value;
-                //RaisePropertyChanged("Groups");
-                //RaisePropertyChanged("SortedGroups");
-                GroupUpdated();
+                RaisePropertyChanged("Groups");
+                RaisePropertyChanged("SortedGroups");
+                //GroupUpdated();
                 
             }
             get
@@ -57,8 +57,16 @@ namespace DonorAppW8.ViewModel
 
         public void GroupUpdated()
         {
-            RaisePropertyChanged("Groups");
-            RaisePropertyChanged("SortedGroups");
+            ObservableCollection<RssDataGroup> temp = new ObservableCollection<RssDataGroup>();
+            var sorted = Groups.OrderBy(c => c.Order);
+            foreach (var item in sorted)
+            {
+                temp.Add(item);
+            };
+            //Groups = temp;
+
+            //RaisePropertyChanged("Groups");
+            //RaisePropertyChanged("SortedGroups");
         }
 
         public ObservableCollection<RssDataGroup> SortedGroups
@@ -77,7 +85,7 @@ namespace DonorAppW8.ViewModel
         }
 
 
-        public void LoadData()
+        public async void LoadData()
         {
             if (IsDataLoaded == false)
             {

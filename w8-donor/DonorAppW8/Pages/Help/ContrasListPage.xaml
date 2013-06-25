@@ -120,7 +120,7 @@
 		
 			<GridView.ItemContainerStyle>
 				<Style TargetType="FrameworkElement">
-					<Setter Property="Margin" Value="42,0,0,10"/>
+                    <Setter Property="Margin" Value="0,0,42,10"/>
 				</Style>
 			</GridView.ItemContainerStyle>
 		</GridView>

@@ -19,6 +19,7 @@ using System.Threading.Tasks;
 using System.Net.Http;
 using Windows.Devices.Geolocation;
 using Bing.Maps;
+using Windows.Storage;
 
 namespace DonorAppW8.ViewModels
 {
@@ -202,7 +203,7 @@ namespace DonorAppW8.ViewModels
         public double Latitued = 55.45;
         public double Longitude = 37.36; 
 
-        public async void LoadCurrentRegion()
+        public async Task<bool> LoadCurrentRegion()
         {
             try
             {
@@ -216,6 +217,7 @@ namespace DonorAppW8.ViewModels
                 LoadStations();
             }
             catch { };
+            return true;
         }
 
         public async void LoadCurrentStations()
@@ -280,11 +282,64 @@ namespace DonorAppW8.ViewModels
             catch { };
         }
 
+        public async Task<bool> LoadCachedStations()
+        {
+            var localFolder = await ApplicationData.Current.LocalFolder.CreateFolderAsync
+               ("Data", CreationCollisionOption.OpenIfExists);
+
+            //получаем список файлов в папке Data
+            var cachedFeeds = await localFolder.GetFilesAsync();
+
+            //получаем список всех файлов, имя которых config.xml
+            var feedsToLoad = from feeds in cachedFeeds
+                              where feeds.Name.EndsWith("stations.json")
+                              select feeds;
+            var feedsEntries = feedsToLoad as StorageFile[] ?? feedsToLoad.ToArray();
+            if (feedsEntries.Any())
+            {
+                var data = feedsEntries.First();
+                try
+                {
+                    string json = await Windows.Storage.FileIO.ReadTextAsync(data);
+
+                    ObservableCollection<YAStationItem> eventslist1 = new ObservableCollection<YAStationItem>();
+                    JObject o = JObject.Parse(json.ToString());
+                    eventslist1 = JsonConvert.DeserializeObject<ObservableCollection<YAStationItem>>(o["results"].ToString());
+                    this.Items = eventslist1;
+
+                    try
+                    {
+                        RssDataGroup adgroup = new RssDataGroup();
+                        adgroup.Title = "Станции";
+                        adgroup.UniqueId = "CurrentStations";
+                        adgroup.Order = 3;
+
+                        adgroup.Items = new ObservableCollection<object>(this.CurrentItems);
+                        if (ViewModelLocator.MainStatic.Groups.FirstOrDefault(c => c.UniqueId == "CurrentStations") == null)
+                        {
+                            ViewModelLocator.MainStatic.Groups.Add(adgroup);
+                        }
+                        else
+                        {
+                            ViewModelLocator.MainStatic.Groups.FirstOrDefault(c => c.UniqueId == "CurrentStations").Items = adgroup.Items;
+                        };
+
+                        ViewModelLocator.MainStatic.GroupUpdated();
+                    }
+                    catch { };
+
+                }
+                catch { };
+            };
+            return true;
+        }
+
         /// <summary>
         /// Загрузка станций с parse.com
         /// </summary>
         public async void LoadStations()
         {
+            LoadCachedStations();
             //LoadCurrentStations();
             try
             {
@@ -302,6 +357,16 @@ namespace DonorAppW8.ViewModels
                 JObject o = JObject.Parse(json.ToString());
                 eventslist1 = JsonConvert.DeserializeObject<ObservableCollection<YAStationItem>>(o["results"].ToString());
 
+                try
+                {
+                    var localFolder = await ApplicationData.Current.LocalFolder.CreateFolderAsync
+                    ("Data", CreationCollisionOption.OpenIfExists);
+                    //получаем/перезаписываем файл с именем "ID".rss
+                    var fileToSave = await localFolder.CreateFileAsync("stations.json", CreationCollisionOption.ReplaceExisting);
+                    await Windows.Storage.FileIO.WriteTextAsync(fileToSave, json);
+                }
+                catch { };
+
                 this.Items = eventslist1;
             }
             catch { };
@@ -314,7 +379,14 @@ namespace DonorAppW8.ViewModels
                 adgroup.Order = 3;
 
                 adgroup.Items = new ObservableCollection<object>(this.CurrentItems);
-                ViewModelLocator.MainStatic.Groups.Add(adgroup);
+                if (ViewModelLocator.MainStatic.Groups.FirstOrDefault(c => c.UniqueId == "CurrentStations")==null)
+                {
+                    ViewModelLocator.MainStatic.Groups.Add(adgroup);
+                }
+                else {
+                    ViewModelLocator.MainStatic.Groups.FirstOrDefault(c => c.UniqueId == "CurrentStations").Items = adgroup.Items;
+                };
+                
                 ViewModelLocator.MainStatic.GroupUpdated();
             }
             catch { };

@@ -72,10 +72,10 @@
             <Grid HorizontalAlignment="Left" Width="250" Height="250" Background="White">
                 <Grid>
                     <StackPanel Grid.Row="0" VerticalAlignment="Top" Margin="10,10,10,0">
-                        <TextBlock Text="{Binding Title}" Foreground="Black"
+                        <TextBlock Text="{Binding Name}" Foreground="Black"
                             Style="{StaticResource SubheaderTextStyle}" 
                             Margin="15,0,15,0" MaxHeight="140"/>
-                        <TextBlock Text="{Binding Description}" Foreground="Black" 
+                        <TextBlock Text="{Binding Address}" Foreground="Black" 
                             Style="{StaticResource BodyTextStyle}" 
                             Margin="15,10,15,0" MaxHeight="90"/>                        
                     </StackPanel>
@@ -129,10 +129,9 @@
             d:Source="{Binding Main.AllGroups, Source={StaticResource Locator}, Mode=TwoWay}"/>-->
             <CollectionViewSource
             x:Name="groupedItemsViewSource"
-            Source="{Binding MainStatic.SortedGroups, Source={StaticResource Locator}}"
+            Source="{Binding MainStatic.Groups, Source={StaticResource Locator}}"
             IsSourceGrouped="true"
-            ItemsPath="TopItems"
-            d:Source="{Binding MainStatic.SortedGroups, Source={StaticResource Locator}}"/>
+            ItemsPath="TopItems"/>
         </Page.Resources>
 
     <common:LayoutAwarePage.BottomAppBar>

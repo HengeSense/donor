@@ -146,7 +146,7 @@ namespace DonorAppW8.ViewModels
             }
         }
 
-        public async void LoadNews()
+        public async Task<bool> LoadNews()
         {
             await AddGroupForFeedAsync("http://yadonor.ru/rss/news.rss", "News", "Новости");
             /*if ((ViewModelLocator.MainStatic.News.Items.Count() == 0) || (ViewModelLocator.MainStatic.Settings.NewsUpdated.AddHours(1) < DateTime.Now))
@@ -206,6 +206,7 @@ namespace DonorAppW8.ViewModels
                 };
                 bw.RunWorkerAsync();
             };*/
+            return true;
         }
 
 

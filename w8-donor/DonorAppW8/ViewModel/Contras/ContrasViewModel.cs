@@ -128,7 +128,7 @@ namespace DonorAppW8.ViewModel.Contras
             catch { };
         }
 
-        public async void LoadContras()
+        public async Task<bool> LoadContras()
         {           
 
             try
@@ -179,6 +179,8 @@ namespace DonorAppW8.ViewModel.Contras
                 CreateHelpGroup();
             }
             else { };
+
+            return true;
         }
     }
 }

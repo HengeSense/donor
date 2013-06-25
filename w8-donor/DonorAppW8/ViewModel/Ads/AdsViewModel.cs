@@ -13,6 +13,7 @@ using GalaSoft.MvvmLight;
 using DonorAppW8.ViewModel;
 using Parse;
 using DonorAppW8.DataModel;
+using System.Threading.Tasks;
 
 namespace DonorAppW8.ViewModels
 {
@@ -37,7 +38,7 @@ namespace DonorAppW8.ViewModels
             }
         }
 
-        public async void LoadAds()
+        public async Task<bool> LoadAds()
         {
             ParseQuery<ParseObject> query = ParseObject.GetQuery("Ads");
             query = query.Limit(30);
@@ -106,6 +107,7 @@ namespace DonorAppW8.ViewModels
             };
             bw.RunWorkerAsync();
             };*/
+            return true;
         }
 
         public List<AdsViewModel> LoadStationAds(string objectid)
