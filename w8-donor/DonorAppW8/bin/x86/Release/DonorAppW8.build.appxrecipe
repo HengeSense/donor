@@ -332,6 +332,24 @@
     <AppxPackagedFile Include="C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\Assets\DarkGray.png">
       <PackagePath>Assets\DarkGray.png</PackagePath>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\Assets\donor_news_images %281%29.jpg">
+      <PackagePath>Assets\donor_news_images %281%29.jpg</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\Assets\donor_news_images %282%29.jpg">
+      <PackagePath>Assets\donor_news_images %282%29.jpg</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\Assets\donor_news_images %283%29.jpg">
+      <PackagePath>Assets\donor_news_images %283%29.jpg</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\Assets\donor_news_images %284%29.jpg">
+      <PackagePath>Assets\donor_news_images %284%29.jpg</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\Assets\donor_news_images %285%29.jpg">
+      <PackagePath>Assets\donor_news_images %285%29.jpg</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\Assets\donor_news_images %286%29.jpg">
+      <PackagePath>Assets\donor_news_images %286%29.jpg</PackagePath>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\metadata.xml">
       <PackagePath>metadata.xml</PackagePath>
     </AppxPackagedFile>

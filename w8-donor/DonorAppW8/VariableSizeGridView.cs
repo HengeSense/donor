@@ -1,4 +1,5 @@
-﻿//using DonorAppW8.Data;
+﻿using DonorAppW8.DataModel;
+//using DonorAppW8.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,6 +23,8 @@ namespace DonorAppW8
                 int index = -1;
 
                 int group = -1;
+
+
 
                 /*if (dataItem.Group.UniqueId.Contains("stas"))
                 {
@@ -62,6 +65,14 @@ namespace DonorAppW8
                         rowVal = 4;
                     }
                 }*/
+
+                colVal = 1;
+                rowVal = 1;
+                if (dataItem.GetType() == typeof(HelpItem))
+                {
+                    colVal = 2;
+                    rowVal = 1;
+                };
 
                 VariableSizedWrapGrid.SetRowSpan(element as UIElement, rowVal);
                 VariableSizedWrapGrid.SetColumnSpan(element as UIElement, colVal);

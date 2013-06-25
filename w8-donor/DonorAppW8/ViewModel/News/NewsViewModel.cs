@@ -52,7 +52,7 @@ namespace DonorAppW8.ViewModels
             feedGroup.Title = titleRss;
             //feedGroup.subtitle = feed.Subtitle != null ? feed.Subtitle.Text : null;
             //feedGroup.imagePath = feed.ImageUri != null ? feed.ImageUri.ToString() : null;
-
+            var num = 1;
             foreach (var i in feed.Items)
             {
                 string imagePath = null;
@@ -71,7 +71,15 @@ namespace DonorAppW8.ViewModels
                 /*if (imagePath != null && feedGroup.Image == null)
                     feedGroup.SetImage(imagePath);*/
 
-                if (imagePath == null) imagePath = "ms-appx:///Assets/DarkGray.png";
+                if (imagePath == null)
+                {
+                    if (num == 7) { num = 1; };
+                    if (num < 7)
+                    {
+                        imagePath = "ms-appx:///Assets/donor_news_images ("+num.ToString()+").jpg";
+                        num++;
+                    }
+                };
 
                 try
                 {

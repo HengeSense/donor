@@ -1,4 +1,5 @@
 using DonorAppW8.DataModel;
+using DonorAppW8.ViewModel.Contras;
 using DonorAppW8.ViewModels;
 using GalaSoft.MvvmLight;
 using System.Collections.ObjectModel;
@@ -30,6 +31,7 @@ namespace DonorAppW8.ViewModel
             News = new NewsListViewModel();
             Stations = new StationsListViewModel();
             Ads = new AdsListViewModel();
+            Contras = new ContraListViewModel();
 
             this.IsDataStartLoaded = false;
             this.FbId = "";
@@ -57,6 +59,7 @@ namespace DonorAppW8.ViewModel
                 ViewModelLocator.MainStatic.Ads.LoadAds();
                 //ViewModelLocator.MainStatic.Stations.LoadStations();
                 ViewModelLocator.MainStatic.Stations.LoadCurrentRegion();
+                ViewModelLocator.MainStatic.Contras.LoadContras();
                 this.IsDataLoaded = true;
             };
         }
@@ -95,6 +98,7 @@ namespace DonorAppW8.ViewModel
         public NewsListViewModel News { get; set; }
         public AdsListViewModel Ads { get; set; }
         public StationsListViewModel Stations { get; set; }
+        public ContraListViewModel Contras { get; set; }
 
         public bool IsSettings = false;
 

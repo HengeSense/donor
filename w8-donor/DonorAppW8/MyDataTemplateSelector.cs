@@ -1,4 +1,5 @@
-﻿//using DonorAppW8.Data;
+﻿using DonorAppW8.ViewModel.Contras;
+//using DonorAppW8.Data;
 using DonorAppW8.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,7 @@ namespace DonorAppW8
         public DataTemplate Template1 { get; set; }
         public DataTemplate Template2 { get; set; }
         public DataTemplate Template3 { get; set; }
+        public DataTemplate Template4 { get; set; }
         //NewsItemTemplate
 
         protected override DataTemplate SelectTemplateCore(object item, DependencyObject container)
@@ -30,6 +32,10 @@ namespace DonorAppW8
                 if (item.GetType() == typeof(YAStationItem))
                 {
                     return Template3;
+                };
+                if (item.GetType() == typeof(ContraViewModel))
+                {
+                    return Template4;
                 };
                 /*if (dataItem.Group.UniqueId.Contains("MainNews") || dataItem.Group.UniqueId.Contains("Tourist"))
                 //dataItem.Group.UniqueId.Contains("http://rybinsk.ru/news-2013?format=feed") || 

@@ -92,7 +92,7 @@ namespace DonorAppW8
             };
             if (e.ClickedItem.GetType() == typeof(NewsViewModel))
             {
-                this.Frame.Navigate(typeof(NewsViewModel), ((NewsViewModel)e.ClickedItem).UniqueId);
+                this.Frame.Navigate(typeof(NewsDetailPage), ((NewsViewModel)e.ClickedItem).UniqueId);
             };
             if (e.ClickedItem.GetType() == typeof(YAStationItem))
             {

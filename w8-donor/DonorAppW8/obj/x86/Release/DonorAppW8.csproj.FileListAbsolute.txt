@@ -78,7 +78,10 @@ C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\obj\x86\Release\Co
 C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\obj\x86\Release\Pages\Map\MapPage.g.i.cs
 C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\obj\x86\Release\Pages\Map\MapPage.g.cs
 C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\obj\x86\Release\Pages\Map\MapPage.xaml
-C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\obj\x86\Release\DonorAppW8.csprojResolveAssemblyReference.cache
 C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\obj\x86\Release\Pages\Stations\RegionSelectPage.g.i.cs
 C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\obj\x86\Release\Pages\Stations\RegionSelectPage.g.cs
 C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\obj\x86\Release\Pages\Stations\RegionSelectPage.xaml
+C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\obj\x86\Release\priconfig.xml.intermediate
+C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\obj\x86\Release\layout.resfiles.intermediate
+C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\obj\x86\Release\resources.resfiles.intermediate
+C:\Users\m0rg0_000\Documents\GitHub\donor\w8-donor\DonorAppW8\obj\x86\Release\pri.resfiles.intermediate
