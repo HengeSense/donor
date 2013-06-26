@@ -37,5 +37,11 @@
  */
 - (void)selectStationByAddress:(NSString *)address;
 
+/// @name Protected
+/// @name UI configuration
+- (void)configureUI;
+- (void)configureNavigationBar;
+- (void)configureSearchBar;
+
 
 @end

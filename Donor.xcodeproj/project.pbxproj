@@ -173,6 +173,7 @@
 		6846116B16A6157000EE9030 /* profile_facebook_link_button_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 6846116716A6157000EE9030 /* profile_facebook_link_button_pressed.png */; };
 		6846116C16A6157000EE9030 /* profile_facebook_link_button_pressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6846116816A6157000EE9030 /* profile_facebook_link_button_pressed@2x.png */; };
 		6846117116A61B7B00EE9030 /* libCrittercism_v3_4_5.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6846117016A61B7B00EE9030 /* libCrittercism_v3_4_5.a */; };
+		684E4632177AAF8D001C43F8 /* DonorStations_searchBarFieldBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 684E4631177AAF8D001C43F8 /* DonorStations_searchBarFieldBackground.png */; };
 		685088C91666B6A3004EC3CC /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 685088C81666B6A3004EC3CC /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		685088CB1666B6AC004EC3CC /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 685088CA1666B6AC004EC3CC /* libsqlite3.dylib */; };
 		685088CD1666B715004EC3CC /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 685088CC1666B715004EC3CC /* Accounts.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -865,6 +866,7 @@
 		6846116E16A61B7B00EE9030 /* Crittercism.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Crittercism.h; sourceTree = "<group>"; };
 		6846116F16A61B7B00EE9030 /* CrittercismDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CrittercismDelegate.h; sourceTree = "<group>"; };
 		6846117016A61B7B00EE9030 /* libCrittercism_v3_4_5.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libCrittercism_v3_4_5.a; sourceTree = "<group>"; };
+		684E4631177AAF8D001C43F8 /* DonorStations_searchBarFieldBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = DonorStations_searchBarFieldBackground.png; path = Donor/view/controller/stations2/images/DonorStations_searchBarFieldBackground.png; sourceTree = SOURCE_ROOT; };
 		685088C81666B6A3004EC3CC /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		685088CA1666B6AC004EC3CC /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		685088CC1666B715004EC3CC /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
@@ -3128,6 +3130,7 @@
 				CEE388971718B90C001B6F0A /* DonorStations_searchBarBackground@2x.png */,
 				CEE388981718B90C001B6F0A /* DonorStations_searchBarClearIcon.png */,
 				CEE388991718B90C001B6F0A /* DonorStations_searchBarClearIcon@2x.png */,
+				684E4631177AAF8D001C43F8 /* DonorStations_searchBarFieldBackground.png */,
 				CEE3889A1718B90C001B6F0A /* DonorStations_searchBarFieldBackground@2x.png */,
 				CEE3889B1718B90C001B6F0A /* DonorStations_searchBarSearchIcon.png */,
 				CEE3889C1718B90C001B6F0A /* DonorStations_searchBarSearchIcon@2x.png */,
@@ -3716,6 +3719,7 @@
 				68E762D7175887EE006009A7 /* ItsBetaVkIPad.xib in Resources */,
 				68E762D9175887EE006009A7 /* ItsBetaVkIPhone.xib in Resources */,
 				68E762E6175887EE006009A7 /* README.md in Resources */,
+				684E4632177AAF8D001C43F8 /* DonorStations_searchBarFieldBackground.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

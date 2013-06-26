@@ -17,11 +17,6 @@
 @implementation HSStationsPickerViewController
 
 #pragma mark - Lifecycle
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    [self configureUI];
-}
-
 -(void)viewWillDisappear:(BOOL)animated {
     if ([self.rootNavigationController.viewControllers indexOfObject:self] == NSNotFound) {
         if (self.completion) {
@@ -47,6 +42,7 @@
 #pragma mark - UITableViewDelegate overriding
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     // Prevent actions from super class
+    [self hideWithDone:YES];
 }
 
 #pragma mark - Private
@@ -54,6 +50,7 @@
 - (void)configureUI {
     self.title = @"Выбор станции";
     [self configureNavigationBar];
+    [self configureSearchBar];
 }
 
 - (void)configureNavigationBar {
