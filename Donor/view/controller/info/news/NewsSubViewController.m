@@ -16,7 +16,7 @@
 #import "HSModelCommon.h"
 #import "HSAlertViewController.h"
 
-static NSString * const kDonorNewsRSSLink = @"http://yadonor.ru/ru/news_rss/";
+static NSString * const kDonorNewsRSSLink = @"http://yadonor.ru/rss/news.rss";
 
 @interface NewsSubViewController () <UITableViewDataSource, UITableViewDelegate, MWFeedParserDelegate>
 
