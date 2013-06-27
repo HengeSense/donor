@@ -73,7 +73,11 @@ static NSString * const kRemoteEventField_Type = @"type";
 }
 
 - (void) setScheduleDate: (NSDate *)scheduledDate {
-    [self.remoteEvent setObject: scheduledDate forKey: kRemoteEventField_Date];
+    if (scheduledDate == nil) {
+        [self.remoteEvent removeObjectForKey:kRemoteEventField_Date];
+    } else {
+        [self.remoteEvent setObject: scheduledDate forKey: kRemoteEventField_Date];
+    }
 }
 
 - (NSString *)labAddress {
@@ -81,15 +85,23 @@ static NSString * const kRemoteEventField_Type = @"type";
 }
 
 - (void) setLabAddress: (NSString *)labAddress {
-    [self.remoteEvent setObject: labAddress forKey: kRemoteEventField_Address];
-}
-
-- (void)setComments: (NSString *)comments {
-    [self.remoteEvent setObject: comments forKey: kRemoteEventField_Comment];
+    if (labAddress == nil) {
+        [self.remoteEvent removeObjectForKey:kRemoteEventField_Address];
+    } else {
+        [self.remoteEvent setObject: labAddress forKey: kRemoteEventField_Address];
+    }
 }
 
 - (NSString *)comments {
     return [self.remoteEvent objectForKey: kRemoteEventField_Comment];
+}
+
+- (void)setComments: (NSString *)comments {
+    if (comments == nil) {
+        [self.remoteEvent removeObjectForKey:kRemoteEventField_Comment];
+    } else {
+        [self.remoteEvent setObject: comments forKey: kRemoteEventField_Comment];
+    }
 }
 
 - (NSDate *)reminderFireDate {
@@ -98,7 +110,9 @@ static NSString * const kRemoteEventField_Type = @"type";
 }
 
 - (void)setReminderFireDate:(NSDate *)reminderFireDate {
-    if (reminderFireDate != nil) {
+    if (reminderFireDate == nil) {
+        [self.remoteEvent removeObjectForKey:kRemoteEventField_ReminderDate];
+    } else {
         [self.remoteEvent setObject:reminderFireDate forKey:kRemoteEventField_ReminderDate];
     }
     [super setReminderFireDate:reminderFireDate];

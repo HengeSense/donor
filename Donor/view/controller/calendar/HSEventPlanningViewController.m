@@ -402,9 +402,7 @@ static const NSUInteger kCommentsTextViewSymbolsMax = 260;
     }
     [self.addressPicker showWithCompletion: ^(BOOL isDone) {
         if (isDone) {
-            id correctedLabAddress = self.addressPicker.selectedStationInfo.address ?
-                    self.addressPicker.selectedStationInfo.address : [NSNull null];
-            self.currentEditedEvent.labAddress = correctedLabAddress;
+            self.currentEditedEvent.labAddress = self.addressPicker.selectedStationInfo.address;
             [self updateUIComponents];
         }
     }];
