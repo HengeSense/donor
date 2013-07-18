@@ -293,6 +293,7 @@ namespace Donor.ViewModels
 
         public async void LoadTipsFromFoursquareForStation()
         {
+            try {
             ViewModelLocator.MainStatic.Loading = true;
             Items = new ObservableCollection<ReviewsViewModel>();
             reviewsum = 0;
@@ -343,7 +344,8 @@ namespace Donor.ViewModels
             catch { };
             ViewModelLocator.MainStatic.Loading = false;
             RaisePropertyChanged("Items");
-        }
+            } catch {};
+        } 
 
     }
 

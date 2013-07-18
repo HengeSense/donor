@@ -140,4 +140,3 @@ C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\obj\Debug\Pages\Events
 C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\obj\Debug\Pages\Events\CalendarYearPage.g.cs
 C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\obj\Debug\Pages\Stations\MapPage.g.cs
 C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\obj\Debug\Pages\Achieves\QRread.g.cs
-C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\obj\Debug\Donor.csprojResolveAssemblyReference.cache

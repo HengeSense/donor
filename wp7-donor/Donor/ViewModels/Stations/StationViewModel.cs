@@ -57,23 +57,26 @@ namespace Donor.ViewModels
         /// <param name="e"></param>
         void myCoordinateWatcher_PositionChanged(object sender, GeoPositionChangedEventArgs<GeoCoordinate> e)
         {
-            if (ViewModelLocator.MainStatic.Settings.Location == true)
+            try
             {
-                if (((!e.Position.Location.IsUnknown) && (_getCoordinates == false)))
+                if (ViewModelLocator.MainStatic.Settings.Location == true)
                 {
-                    Latitued = e.Position.Location.Latitude;
-                    Longitude = e.Position.Location.Longitude;
+                    if (((!e.Position.Location.IsUnknown) && (_getCoordinates == false)))
+                    {
+                        Latitued = e.Position.Location.Latitude;
+                        Longitude = e.Position.Location.Longitude;
 
-                    _getCoordinates = true;
-                    GetPlaceInfo(Latitued, Longitude);
+                        _getCoordinates = true;
+                        GetPlaceInfo(Latitued, Longitude);
+                    };
+                }
+                else
+                {
+                    Latitued = 55.45;
+                    Longitude = 37.36;
                 };
             }
-            else
-            {
-                Latitued = 55.45;
-                Longitude = 37.36;                
-            };
-            
+            catch { };
         }
 
         private string _currentState = "";
@@ -133,36 +136,41 @@ namespace Donor.ViewModels
         /// <param name="lon"></param>
         public void GetPlaceInfo(double lat, double lon)
         {
-            ///reverse?format=json&lat=58.17&lon=38.6&zoom=18&addressdetails=1
-            var client = new RestClient("http://nominatim.openstreetmap.org");
-            var request = new RestRequest("reverse?format=json&zoom=18&addressdetails=1&lat=" + lat.ToString().Replace(",", ".") + "&lon=" + lon.ToString().Replace(",", "."), Method.GET);
-            request.Parameters.Clear();
-            client.ExecuteAsync(request, response =>
+            try
             {
-                try
-                {                    
-                    JObject o = JObject.Parse(response.Content.ToString());
-                    string state = o["address"]["state"].ToString();
-                    string town = "";
-                    try
-                    {                        
-                        town = o["address"]["city"].ToString();
-                        if (town=="Москва") {
-                            state = town;
-                        };                        
-                    }
-                    catch {
-                        //MessageBox.Show(ex.Message.ToString());
-                    };
-                    //MessageBox.Show("Регион - " + state + "\nгород - " + town + "\nlat=" + lat.ToString().Replace(",", ".") + "\nlon=" + lon.ToString().Replace(",", "."));
-                    CurrentState = state;
-                    UpdateDistanceItems();
-                }
-                catch
+                ///reverse?format=json&lat=58.17&lon=38.6&zoom=18&addressdetails=1
+                var client = new RestClient("http://nominatim.openstreetmap.org");
+                var request = new RestRequest("reverse?format=json&zoom=18&addressdetails=1&lat=" + lat.ToString().Replace(",", ".") + "&lon=" + lon.ToString().Replace(",", "."), Method.GET);
+                request.Parameters.Clear();
+                client.ExecuteAsync(request, response =>
                 {
-                };
-
-            });
+                    try
+                    {
+                        JObject o = JObject.Parse(response.Content.ToString());
+                        string state = o["address"]["state"].ToString();
+                        string town = "";
+                        try
+                        {
+                            town = o["address"]["city"].ToString();
+                            if (town == "Москва")
+                            {
+                                state = town;
+                            };
+                        }
+                        catch
+                        {
+                            //MessageBox.Show(ex.Message.ToString());
+                        };
+                        //MessageBox.Show("Регион - " + state + "\nгород - " + town + "\nlat=" + lat.ToString().Replace(",", ".") + "\nlon=" + lon.ToString().Replace(",", "."));
+                        CurrentState = state;
+                        UpdateDistanceItems();
+                    }
+                    catch
+                    {
+                    };
+                });
+            }
+            catch { };
         }
 
         public double Latitued =  55.45;

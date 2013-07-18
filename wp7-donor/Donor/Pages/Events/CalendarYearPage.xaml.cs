@@ -83,21 +83,25 @@ namespace Donor
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
-            //DateTime date = ViewModelLocator.MainStatic.Events.PossibleGiveBlood("Тромбоциты");
-            this.Monthes.Title = ViewModelLocator.MainStatic.Events.CurrentMonth.Year.ToString();
+            try
+            {
+                //DateTime date = ViewModelLocator.MainStatic.Events.PossibleGiveBlood("Тромбоциты");
+                this.Monthes.Title = ViewModelLocator.MainStatic.Events.CurrentMonth.Year.ToString();
 
-            previndex = 2;
-            this.Monthes.SelectedIndex = 2;
+                previndex = 2;
+                this.Monthes.SelectedIndex = 2;
 
-            this.EventsList2Prev.ItemsSource = null;
-            this.EventsListPrev.ItemsSource = null;
-            this.EventsList.ItemsSource = ViewModelLocator.MainStatic.Events.ThisMonthItems;
-            this.EventsListNext.ItemsSource = null;
-            this.EventsListNext2.ItemsSource = null;
+                this.EventsList2Prev.ItemsSource = null;
+                this.EventsListPrev.ItemsSource = null;
+                this.EventsList.ItemsSource = ViewModelLocator.MainStatic.Events.ThisMonthItems;
+                this.EventsListNext.ItemsSource = null;
+                this.EventsListNext2.ItemsSource = null;
 
-            this.NextMonth.Header = ViewModelLocator.MainStatic.Events.NextMonthString;
-            this.ThisMonth.Header = ViewModelLocator.MainStatic.Events.CurrentMonthString;
-            this.PrevMonth.Header = ViewModelLocator.MainStatic.Events.PrevMonthString;
+                this.NextMonth.Header = ViewModelLocator.MainStatic.Events.NextMonthString;
+                this.ThisMonth.Header = ViewModelLocator.MainStatic.Events.CurrentMonthString;
+                this.PrevMonth.Header = ViewModelLocator.MainStatic.Events.PrevMonthString;
+            }
+            catch { };
         }
 
 
@@ -130,19 +134,32 @@ namespace Donor
 
         private void MonthCalendarButton_Click(object sender, EventArgs e)
         {
-            NavigationService.Navigate(new Uri("/Pages/Events/CalendarMonthPage.xaml", UriKind.Relative));
+            try
+            {
+                NavigationService.Navigate(new Uri("/Pages/Events/CalendarMonthPage.xaml", UriKind.Relative));
+            }
+            catch { };
         }
 
         private void AddEventButton_Click(object sender, EventArgs e)
         {
-            NavigationService.Navigate(new Uri("/Pages/Events/EventEditPage.xaml", UriKind.Relative));
+            try
+            {
+                NavigationService.Navigate(new Uri("/Pages/Events/EventEditPage.xaml", UriKind.Relative));
+            }
+            catch { };
         }
 
         private void Pivot_Loaded(object sender, RoutedEventArgs e)
         {
-            if (ViewModelLocator.MainStatic.Events.CurrentMonth == null) {
-                ViewModelLocator.MainStatic.Events.CurrentMonth = DateTime.Now;
-            };
+            try
+            {
+                if (ViewModelLocator.MainStatic.Events.CurrentMonth == null)
+                {
+                    ViewModelLocator.MainStatic.Events.CurrentMonth = DateTime.Now;
+                };
+            }
+            catch { };
         }
 
         private void Monthes_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -152,25 +169,29 @@ namespace Donor
 
         private void TodayButton_Click(object sender, EventArgs e)
         {
-            previndex = 2;
-
-            ViewModelLocator.MainStatic.Events.CurrentMonth = DateTime.Now;
-
-            this.Monthes.Title = ViewModelLocator.MainStatic.Events.CurrentMonth.Year.ToString();
-
             try
             {
-                this.Monthes.SelectedIndex = 2;
+                previndex = 2;
+
+                ViewModelLocator.MainStatic.Events.CurrentMonth = DateTime.Now;
+
+                this.Monthes.Title = ViewModelLocator.MainStatic.Events.CurrentMonth.Year.ToString();
+
+                try
+                {
+                    this.Monthes.SelectedIndex = 2;
+                }
+                catch { };
+
+                this.EventsListPrev.ItemsSource = ViewModelLocator.MainStatic.Events.PrevMonthItems;
+                this.EventsList.ItemsSource = ViewModelLocator.MainStatic.Events.ThisMonthItems;
+                this.EventsListNext.ItemsSource = ViewModelLocator.MainStatic.Events.NextMonthItems;
+
+                this.NextMonth.Header = ViewModelLocator.MainStatic.Events.NextMonthString;
+                this.ThisMonth.Header = ViewModelLocator.MainStatic.Events.CurrentMonthString;
+                this.PrevMonth.Header = ViewModelLocator.MainStatic.Events.PrevMonthString;
             }
             catch { };
-
-            this.EventsListPrev.ItemsSource = ViewModelLocator.MainStatic.Events.PrevMonthItems;
-            this.EventsList.ItemsSource = ViewModelLocator.MainStatic.Events.ThisMonthItems;
-            this.EventsListNext.ItemsSource = ViewModelLocator.MainStatic.Events.NextMonthItems;
-
-            this.NextMonth.Header = ViewModelLocator.MainStatic.Events.NextMonthString;
-            this.ThisMonth.Header = ViewModelLocator.MainStatic.Events.CurrentMonthString;
-            this.PrevMonth.Header = ViewModelLocator.MainStatic.Events.PrevMonthString;
         }
 
         private void EventsListNext2_Tap(object sender, System.Windows.Input.GestureEventArgs e)

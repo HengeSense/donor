@@ -28,20 +28,31 @@ namespace Donor
         public StationPage()
         {
             InitializeComponent();
-            this.MainPanorama.DefaultItem = this.MainPanorama.Items[0];
+            try
+            {
+                this.MainPanorama.DefaultItem = this.MainPanorama.Items[0];
+            }
+            catch { };
         }
 
         private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                GeoCoordinate currentLocation = new GeoCoordinate(Convert.ToDouble(ViewModelLocator.MainStatic.Stations.Latitued.ToString()), Convert.ToDouble(ViewModelLocator.MainStatic.Stations.Longitude.ToString()));
+                map1.Children.Add(new Pushpin() { Location = currentLocation, Content = "Я" });
+                GeoCoordinate stationLocation = new GeoCoordinate(ViewModelLocator.MainStatic.Stations.CurrentStation.Lat, ViewModelLocator.MainStatic.Stations.CurrentStation.Lon);
+                map1.Children.Add(new Pushpin() { Location = stationLocation, Content = ViewModelLocator.MainStatic.Stations.CurrentStation.Name });
+                map1.ZoomLevel = 14;
+                map1.Center = stationLocation;
+            }
+            catch { };
 
-            GeoCoordinate currentLocation = new GeoCoordinate(Convert.ToDouble(ViewModelLocator.MainStatic.Stations.Latitued.ToString()), Convert.ToDouble(ViewModelLocator.MainStatic.Stations.Longitude.ToString()));
-            map1.Children.Add(new Pushpin() { Location = currentLocation, Content = "Я" });
-            GeoCoordinate stationLocation = new GeoCoordinate(ViewModelLocator.MainStatic.Stations.CurrentStation.Lat, ViewModelLocator.MainStatic.Stations.CurrentStation.Lon);
-            map1.Children.Add(new Pushpin() { Location = stationLocation, Content = ViewModelLocator.MainStatic.Stations.CurrentStation.Name });
-            map1.ZoomLevel = 14;
-            map1.Center = stationLocation;
-
-            ViewModelLocator.MainStatic.Reviews.LoadTipsFromFoursquareForStation();
+            try
+            {
+                ViewModelLocator.MainStatic.Reviews.LoadTipsFromFoursquareForStation();
+            }
+            catch { };
         }
 
         private void ReviewsLoaded(object sender, EventArgs e)
