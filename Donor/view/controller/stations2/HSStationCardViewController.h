@@ -11,6 +11,8 @@
 
 #import "HSStationInfo.h"
 
+@class DYRateView;
+
 @interface HSStationCardViewController : UIViewController
 
 /// @name Initialization
@@ -26,7 +28,20 @@
 
 @property (nonatomic, strong) IBOutlet UILabel *nameLabel;
 @property (nonatomic, strong) IBOutlet UIImageView *dottedLine1;
-@property (nonatomic, strong) IBOutlet UIView *raterView;
+
+/// @name User ratings UI
+@property (nonatomic, strong) IBOutlet DYRateView *rateView;
+@property (nonatomic, strong) IBOutlet UILabel *rateCountLabel;
+@property (strong, nonatomic) IBOutlet UIButton *doReviewButton;
+
+@property (strong, nonatomic) IBOutlet UILabel *reviewsLabel;
+@property (strong, nonatomic) IBOutlet UILabel *reviewsCountLabel;
+@property (strong, nonatomic) IBOutlet UIImageView *reviewsArrowImage;
+@property (strong, nonatomic) IBOutlet UIImageView *reviewsTopSeparationLine;
+
+@property (strong, nonatomic) IBOutlet UIButton *showReviewsButton;
+
+
 @property (nonatomic, strong) IBOutlet UIImageView *dottedLine2;
 @property (nonatomic, strong) IBOutlet UILabel *regionTitle;
 @property (nonatomic, strong) IBOutlet UILabel *regionLabel;
@@ -46,5 +61,9 @@
 @property (nonatomic, strong) IBOutlet UILabel *citeLabel;
 @property (nonatomic, strong) IBOutlet UIButton *goToSiteButton;
 @property (nonatomic, strong) IBOutlet UIButton *showOnMapButton;
+
+/// @name UI Actions
+- (IBAction)showReviews:(id)sender;
+- (IBAction)doReview:(id)sender;
 
 @end

@@ -136,14 +136,65 @@
 		40D5FF641714409A00821B01 /* HSItsBetaAchievementDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40D5FF621714409900821B01 /* HSItsBetaAchievementDetailViewController.xib */; };
 		40D5FF77171579D100821B01 /* HSItsBeta.m in Sources */ = {isa = PBXBuildFile; fileRef = 40D5FF76171579D100821B01 /* HSItsBeta.m */; };
 		6802A1671665D4FD0034B124 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 371CBA5215AFD452008CA154 /* Parse.framework */; };
+		68187E53178FFE410056BB9A /* Foursquare2.m in Sources */ = {isa = PBXBuildFile; fileRef = 68187E47178FFE410056BB9A /* Foursquare2.m */; };
+		68187E54178FFE410056BB9A /* FSRequester.m in Sources */ = {isa = PBXBuildFile; fileRef = 68187E49178FFE410056BB9A /* FSRequester.m */; };
+		68187E55178FFE410056BB9A /* FSTargetCallback.m in Sources */ = {isa = PBXBuildFile; fileRef = 68187E4B178FFE410056BB9A /* FSTargetCallback.m */; };
+		68187E56178FFE410056BB9A /* FSWebLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 68187E4D178FFE410056BB9A /* FSWebLogin.m */; };
+		68187E57178FFE410056BB9A /* FSWebLogin.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68187E4E178FFE410056BB9A /* FSWebLogin.xib */; };
+		68187E58178FFE410056BB9A /* pin.png in Resources */ = {isa = PBXBuildFile; fileRef = 68187E4F178FFE410056BB9A /* pin.png */; };
+		68187E59178FFE410056BB9A /* pin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68187E50178FFE410056BB9A /* pin@2x.png */; };
+		68187E5A178FFE410056BB9A /* poweredByFoursquare_gray.png in Resources */ = {isa = PBXBuildFile; fileRef = 68187E51178FFE410056BB9A /* poweredByFoursquare_gray.png */; };
+		68187E5B178FFE410056BB9A /* poweredByFoursquare_gray@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68187E52178FFE410056BB9A /* poweredByFoursquare_gray@2x.png */; };
+		68187E80179171440056BB9A /* DYRateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 68187E7F179171440056BB9A /* DYRateView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		68187E881792AA400056BB9A /* HSStationInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 68187E831792AA400056BB9A /* HSStationInfo.m */; };
+		68187E891792AA400056BB9A /* HSUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 68187E871792AA400056BB9A /* HSUserInfo.m */; };
+		68187E8C1792AA700056BB9A /* HSStationReview.m in Sources */ = {isa = PBXBuildFile; fileRef = 68187E8B1792AA700056BB9A /* HSStationReview.m */; };
+		68187E901792AD2C0056BB9A /* HSStationReviewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68187E8E1792AD290056BB9A /* HSStationReviewsViewController.m */; };
+		68187E911792AD2C0056BB9A /* HSStationReviewsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68187E8F1792AD2B0056BB9A /* HSStationReviewsViewController.xib */; };
+		68187E941792B5B70056BB9A /* HSViewUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 68187E931792B5B70056BB9A /* HSViewUtils.m */; };
+		68187E9A17930F570056BB9A /* foursquare_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 68187E9617930F570056BB9A /* foursquare_logo.png */; };
+		68187E9B17930F570056BB9A /* foursquare_logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68187E9717930F570056BB9A /* foursquare_logo@2x.png */; };
+		68187E9C17930F570056BB9A /* station_review_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 68187E9817930F570056BB9A /* station_review_icon.png */; };
+		68187E9D17930F570056BB9A /* station_review_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68187E9917930F570056BB9A /* station_review_icon@2x.png */; };
+		68187ECB17930FAE0056BB9A /* delete_mark_active.png in Resources */ = {isa = PBXBuildFile; fileRef = 68187EA017930FAE0056BB9A /* delete_mark_active.png */; };
+		68187ECC17930FAE0056BB9A /* delete_mark_active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68187EA117930FAE0056BB9A /* delete_mark_active@2x.png */; };
+		68187ECD17930FAE0056BB9A /* delete_mark_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 68187EA217930FAE0056BB9A /* delete_mark_pressed.png */; };
+		68187ECE17930FAE0056BB9A /* delete_mark_pressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68187EA317930FAE0056BB9A /* delete_mark_pressed@2x.png */; };
+		68187ECF17930FAE0056BB9A /* event_done_button_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 68187EA417930FAE0056BB9A /* event_done_button_normal.png */; };
+		68187ED017930FAE0056BB9A /* event_done_button_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68187EA517930FAE0056BB9A /* event_done_button_normal@2x.png */; };
+		68187ED117930FAE0056BB9A /* event_done_button_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 68187EA617930FAE0056BB9A /* event_done_button_pressed.png */; };
+		68187ED217930FAE0056BB9A /* event_done_button_pressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68187EA717930FAE0056BB9A /* event_done_button_pressed@2x.png */; };
+		68187ED317930FAE0056BB9A /* icon_blood.png in Resources */ = {isa = PBXBuildFile; fileRef = 68187EAA17930FAE0056BB9A /* icon_blood.png */; };
+		68187ED417930FAE0056BB9A /* icon_blood@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68187EAB17930FAE0056BB9A /* icon_blood@2x.png */; };
+		68187ED517930FAE0056BB9A /* icon_blood_check.png in Resources */ = {isa = PBXBuildFile; fileRef = 68187EAC17930FAE0056BB9A /* icon_blood_check.png */; };
+		68187ED617930FAE0056BB9A /* icon_blood_check@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68187EAD17930FAE0056BB9A /* icon_blood_check@2x.png */; };
+		68187ED717930FAE0056BB9A /* icon_blood_plan.png in Resources */ = {isa = PBXBuildFile; fileRef = 68187EAE17930FAE0056BB9A /* icon_blood_plan.png */; };
+		68187ED817930FAE0056BB9A /* icon_blood_plan@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68187EAF17930FAE0056BB9A /* icon_blood_plan@2x.png */; };
+		68187ED917930FAE0056BB9A /* icon_granulocytes.png in Resources */ = {isa = PBXBuildFile; fileRef = 68187EB117930FAE0056BB9A /* icon_granulocytes.png */; };
+		68187EDA17930FAE0056BB9A /* icon_granulocytes@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68187EB217930FAE0056BB9A /* icon_granulocytes@2x.png */; };
+		68187EDB17930FAE0056BB9A /* icon_granulocytes_check.png in Resources */ = {isa = PBXBuildFile; fileRef = 68187EB317930FAE0056BB9A /* icon_granulocytes_check.png */; };
+		68187EDC17930FAE0056BB9A /* icon_granulocytes_check@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68187EB417930FAE0056BB9A /* icon_granulocytes_check@2x.png */; };
+		68187EDD17930FAE0056BB9A /* icon_granulocytes_plan.png in Resources */ = {isa = PBXBuildFile; fileRef = 68187EB517930FAE0056BB9A /* icon_granulocytes_plan.png */; };
+		68187EDE17930FAE0056BB9A /* icon_granulocytes_plan@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68187EB617930FAE0056BB9A /* icon_granulocytes_plan@2x.png */; };
+		68187EDF17930FAE0056BB9A /* icon_plasma.png in Resources */ = {isa = PBXBuildFile; fileRef = 68187EB817930FAE0056BB9A /* icon_plasma.png */; };
+		68187EE017930FAE0056BB9A /* icon_plasma@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68187EB917930FAE0056BB9A /* icon_plasma@2x.png */; };
+		68187EE117930FAE0056BB9A /* icon_plasma_check.png in Resources */ = {isa = PBXBuildFile; fileRef = 68187EBA17930FAE0056BB9A /* icon_plasma_check.png */; };
+		68187EE217930FAE0056BB9A /* icon_plasma_check@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68187EBB17930FAE0056BB9A /* icon_plasma_check@2x.png */; };
+		68187EE317930FAE0056BB9A /* icon_plasma_plan.png in Resources */ = {isa = PBXBuildFile; fileRef = 68187EBC17930FAE0056BB9A /* icon_plasma_plan.png */; };
+		68187EE417930FAE0056BB9A /* icon_plasma_plan@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68187EBD17930FAE0056BB9A /* icon_plasma_plan@2x.png */; };
+		68187EE517930FAE0056BB9A /* icon_plateletes.png in Resources */ = {isa = PBXBuildFile; fileRef = 68187EBF17930FAE0056BB9A /* icon_plateletes.png */; };
+		68187EE617930FAE0056BB9A /* icon_plateletes@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68187EC017930FAE0056BB9A /* icon_plateletes@2x.png */; };
+		68187EE717930FAE0056BB9A /* icon_plateletes_check.png in Resources */ = {isa = PBXBuildFile; fileRef = 68187EC117930FAE0056BB9A /* icon_plateletes_check.png */; };
+		68187EE817930FAE0056BB9A /* icon_plateletes_check@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68187EC217930FAE0056BB9A /* icon_plateletes_check@2x.png */; };
+		68187EE917930FAE0056BB9A /* icon_plateletes_plan.png in Resources */ = {isa = PBXBuildFile; fileRef = 68187EC317930FAE0056BB9A /* icon_plateletes_plan.png */; };
+		68187EEA17930FAE0056BB9A /* icon_plateletes_plan@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68187EC417930FAE0056BB9A /* icon_plateletes_plan@2x.png */; };
+		68187EEB17930FAE0056BB9A /* icon_test_plan.png in Resources */ = {isa = PBXBuildFile; fileRef = 68187EC617930FAE0056BB9A /* icon_test_plan.png */; };
+		68187EEC17930FAE0056BB9A /* icon_test_plan@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68187EC717930FAE0056BB9A /* icon_test_plan@2x.png */; };
+		68187EED17930FAE0056BB9A /* map.png in Resources */ = {isa = PBXBuildFile; fileRef = 68187EC917930FAE0056BB9A /* map.png */; };
+		68187EEE17930FAE0056BB9A /* map@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68187ECA17930FAE0056BB9A /* map@2x.png */; };
 		6823C11C1747C1FA0085B13F /* HSStationsPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6823C11B1747C1FA0085B13F /* HSStationsPickerViewController.m */; };
-		6823C120174926310085B13F /* HSStationInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6823C11F174926310085B13F /* HSStationInfo.m */; };
 		6830C1CD174A940900015255 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6830C1CC174A940900015255 /* FacebookSDK.framework */; };
 		683F8A81164573860066C47A /* HSBloodDonationType.m in Sources */ = {isa = PBXBuildFile; fileRef = 683F8A80164573860066C47A /* HSBloodDonationType.m */; };
-		683F8A9716468E300066C47A /* event_done_button_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 683F8A9316468E300066C47A /* event_done_button_normal.png */; };
-		683F8A9816468E300066C47A /* event_done_button_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 683F8A9416468E300066C47A /* event_done_button_normal@2x.png */; };
-		683F8A9916468E300066C47A /* event_done_button_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 683F8A9516468E300066C47A /* event_done_button_pressed.png */; };
-		683F8A9A16468E300066C47A /* event_done_button_pressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 683F8A9616468E300066C47A /* event_done_button_pressed@2x.png */; };
 		683F8A9D1648C0EA0066C47A /* HSDayHolidayEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 683F8A9C1648C0E90066C47A /* HSDayHolidayEvent.m */; };
 		683F8AA01649B8C10066C47A /* NSDate+HSCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 683F8A9F1649B8C10066C47A /* NSDate+HSCalendar.m */; };
 		6846114016A544FC00EE9030 /* login_base_auth_button_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 6846113216A544FC00EE9030 /* login_base_auth_button_normal.png */; };
@@ -181,32 +232,6 @@
 		685088D11666B74B004EC3CC /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 685088D01666B74B004EC3CC /* AdSupport.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		685088F01667F702004EC3CC /* libFlurry.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 685088EF1667F702004EC3CC /* libFlurry.a */; };
 		685CB2F8163F200A004FF9AC /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 685CB2F7163F2008004FF9AC /* MBProgressHUD.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		685CB3131640E87F004FF9AC /* icon_blood.png in Resources */ = {isa = PBXBuildFile; fileRef = 685CB2FE1640E87E004FF9AC /* icon_blood.png */; };
-		685CB3141640E87F004FF9AC /* icon_blood@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 685CB2FF1640E87E004FF9AC /* icon_blood@2x.png */; };
-		685CB3151640E87F004FF9AC /* icon_blood_check.png in Resources */ = {isa = PBXBuildFile; fileRef = 685CB3001640E87E004FF9AC /* icon_blood_check.png */; };
-		685CB3161640E87F004FF9AC /* icon_blood_plan.png in Resources */ = {isa = PBXBuildFile; fileRef = 685CB3011640E87E004FF9AC /* icon_blood_plan.png */; };
-		685CB3171640E87F004FF9AC /* icon_granulocytes.png in Resources */ = {isa = PBXBuildFile; fileRef = 685CB3031640E87E004FF9AC /* icon_granulocytes.png */; };
-		685CB3181640E87F004FF9AC /* icon_granulocytes@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 685CB3041640E87E004FF9AC /* icon_granulocytes@2x.png */; };
-		685CB3191640E87F004FF9AC /* icon_granulocytes_check.png in Resources */ = {isa = PBXBuildFile; fileRef = 685CB3051640E87E004FF9AC /* icon_granulocytes_check.png */; };
-		685CB31A1640E87F004FF9AC /* icon_granulocytes_plan.png in Resources */ = {isa = PBXBuildFile; fileRef = 685CB3061640E87E004FF9AC /* icon_granulocytes_plan.png */; };
-		685CB31B1640E87F004FF9AC /* icon_plasma.png in Resources */ = {isa = PBXBuildFile; fileRef = 685CB3081640E87E004FF9AC /* icon_plasma.png */; };
-		685CB31C1640E87F004FF9AC /* icon_plasma@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 685CB3091640E87E004FF9AC /* icon_plasma@2x.png */; };
-		685CB31D1640E87F004FF9AC /* icon_plasma_check.png in Resources */ = {isa = PBXBuildFile; fileRef = 685CB30A1640E87E004FF9AC /* icon_plasma_check.png */; };
-		685CB31E1640E87F004FF9AC /* icon_plasma_plan.png in Resources */ = {isa = PBXBuildFile; fileRef = 685CB30B1640E87E004FF9AC /* icon_plasma_plan.png */; };
-		685CB31F1640E87F004FF9AC /* icon_plateletes.png in Resources */ = {isa = PBXBuildFile; fileRef = 685CB30D1640E87E004FF9AC /* icon_plateletes.png */; };
-		685CB3201640E87F004FF9AC /* icon_plateletes@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 685CB30E1640E87E004FF9AC /* icon_plateletes@2x.png */; };
-		685CB3211640E87F004FF9AC /* icon_plateletes_check.png in Resources */ = {isa = PBXBuildFile; fileRef = 685CB30F1640E87E004FF9AC /* icon_plateletes_check.png */; };
-		685CB3221640E87F004FF9AC /* icon_plateletes_plan.png in Resources */ = {isa = PBXBuildFile; fileRef = 685CB3101640E87E004FF9AC /* icon_plateletes_plan.png */; };
-		685CB3231640E87F004FF9AC /* icon_test_plan.png in Resources */ = {isa = PBXBuildFile; fileRef = 685CB3121640E87E004FF9AC /* icon_test_plan.png */; };
-		685CB3251640E947004FF9AC /* icon_test_plan@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 685CB3241640E947004FF9AC /* icon_test_plan@2x.png */; };
-		685CB3271640ED41004FF9AC /* icon_blood_check@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 685CB3261640ED41004FF9AC /* icon_blood_check@2x.png */; };
-		685CB3291640ED4B004FF9AC /* icon_granulocytes_check@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 685CB3281640ED4B004FF9AC /* icon_granulocytes_check@2x.png */; };
-		685CB32B1640ED55004FF9AC /* icon_plasma_check@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 685CB32A1640ED55004FF9AC /* icon_plasma_check@2x.png */; };
-		685CB32D1640ED62004FF9AC /* icon_plateletes_check@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 685CB32C1640ED62004FF9AC /* icon_plateletes_check@2x.png */; };
-		685CB32F1640EEBF004FF9AC /* icon_blood_plan@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 685CB32E1640EEBF004FF9AC /* icon_blood_plan@2x.png */; };
-		685CB3311640EED7004FF9AC /* icon_granulocytes_plan@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 685CB3301640EED7004FF9AC /* icon_granulocytes_plan@2x.png */; };
-		685CB3331640EEF4004FF9AC /* icon_plasma_plan@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 685CB3321640EEF4004FF9AC /* icon_plasma_plan@2x.png */; };
-		685CB3351640EF0F004FF9AC /* icon_plateletes_plan@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 685CB3341640EF0F004FF9AC /* icon_plateletes_plan@2x.png */; };
 		6864D5E9170865F900F150F9 /* HSSexType.m in Sources */ = {isa = PBXBuildFile; fileRef = 6864D5E8170865F900F150F9 /* HSSexType.m */; };
 		6864D5EC1708683A00F150F9 /* HSBloodType.m in Sources */ = {isa = PBXBuildFile; fileRef = 6864D5EB1708683A00F150F9 /* HSBloodType.m */; };
 		6864D5EF1708699C00F150F9 /* HSDevicePlatformType.m in Sources */ = {isa = PBXBuildFile; fileRef = 6864D5EE1708699C00F150F9 /* HSDevicePlatformType.m */; };
@@ -247,10 +272,6 @@
 		686BA62A163469C3004D7082 /* HSBloodDonorTests_Calendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 686BA629163469C3004D7082 /* HSBloodDonorTests_Calendar.m */; };
 		6871DF641681184B004E5EBB /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6871DF621681184B004E5EBB /* libTestFlight.a */; };
 		687704BB16EE62A700DF332F /* HSCalendarEventNotifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 687704BA16EE62A700DF332F /* HSCalendarEventNotifier.m */; };
-		68779289165266890003D818 /* delete_mark_active.png in Resources */ = {isa = PBXBuildFile; fileRef = 68779285165266890003D818 /* delete_mark_active.png */; };
-		6877928A165266890003D818 /* delete_mark_active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68779286165266890003D818 /* delete_mark_active@2x.png */; };
-		6877928B165266890003D818 /* delete_mark_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 68779287165266890003D818 /* delete_mark_pressed.png */; };
-		6877928C165266890003D818 /* delete_mark_pressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68779288165266890003D818 /* delete_mark_pressed@2x.png */; };
 		687A430216F5CEFC00958347 /* libOCMock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 687A42FA16F5CEFC00958347 /* libOCMock.a */; };
 		687A430B16F5E54500958347 /* libOCMock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 687A42FA16F5CEFC00958347 /* libOCMock.a */; };
 		687A431516F629B900958347 /* Swizzler.m in Sources */ = {isa = PBXBuildFile; fileRef = 687A431416F629B900958347 /* Swizzler.m */; };
@@ -259,6 +280,7 @@
 		687A436A16F7C19400958347 /* CKAuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 687A436416F7C19400958347 /* CKAuthViewController.m */; };
 		687A436B16F7C19400958347 /* SubscribeAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 687A436616F7C19400958347 /* SubscribeAlertView.m */; };
 		687A436C16F7C19400958347 /* CKAuthViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 687A436816F7C19400958347 /* CKAuthViewController.xib */; };
+		687B72741797E61200832B9D /* HSUIResources.m in Sources */ = {isa = PBXBuildFile; fileRef = 687B72731797E61200832B9D /* HSUIResources.m */; };
 		687E58F916AD5CE2009D0A8F /* Appirater.m in Sources */ = {isa = PBXBuildFile; fileRef = 687E58DE16AD5CE2009D0A8F /* Appirater.m */; };
 		687E58FA16AD5CE2009D0A8F /* AppiraterLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 687E58E016AD5CE2009D0A8F /* AppiraterLocalizable.strings */; };
 		68893A3F16518CA800955990 /* BloodDonor_tutorial_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 68893A3316518CA800955990 /* BloodDonor_tutorial_1.png */; };
@@ -292,7 +314,6 @@
 		689B00CE16A7783400B5CA4C /* vkontakteButtonPressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 689B00C216A7783400B5CA4C /* vkontakteButtonPressed@2x.png */; };
 		689B00FD16AC37CC00B5CA4C /* recommendations.json in Resources */ = {isa = PBXBuildFile; fileRef = 689B00FC16AC37CC00B5CA4C /* recommendations.json */; };
 		689B010F16ACA69A00B5CA4C /* UIView+HSLayoutManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 689B010E16ACA69A00B5CA4C /* UIView+HSLayoutManager.m */; };
-		68B28E3317071DE3009FE0F8 /* HSUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B28E3217071DE3009FE0F8 /* HSUserInfo.m */; };
 		68B413281700140000BB32FF /* HSNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B413271700140000BB32FF /* HSNotification.m */; };
 		68B455B81635BC5100811A0F /* HSEventRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B455B71635BC5100811A0F /* HSEventRenderer.m */; };
 		68B455BC1635C0B500811A0F /* HSBloodDonationEventRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B455BB1635C0B500811A0F /* HSBloodDonationEventRenderer.m */; };
@@ -390,8 +411,6 @@
 		68D6CD9216DD34EF00972D41 /* HSContactView.m in Sources */ = {isa = PBXBuildFile; fileRef = 68D6CD9116DD34EF00972D41 /* HSContactView.m */; };
 		68D6CD9416DD351800972D41 /* HSContactView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68D6CD9316DD351800972D41 /* HSContactView.xib */; };
 		68D6CD9716E22A8900972D41 /* HSBloodRemoteEvent+LocalNotification_Protected.m in Sources */ = {isa = PBXBuildFile; fileRef = 68D6CD9616E22A8800972D41 /* HSBloodRemoteEvent+LocalNotification_Protected.m */; };
-		68E535061747BB43008E44E6 /* map.png in Resources */ = {isa = PBXBuildFile; fileRef = 68E535041747BB43008E44E6 /* map.png */; };
-		68E535071747BB43008E44E6 /* map@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68E535051747BB43008E44E6 /* map@2x.png */; };
 		68E762C5175887EE006009A7 /* CIColor+ItsBeta.m in Sources */ = {isa = PBXBuildFile; fileRef = 68E76285175887ED006009A7 /* CIColor+ItsBeta.m */; };
 		68E762C6175887EE006009A7 /* NSDate+ItsBeta.m in Sources */ = {isa = PBXBuildFile; fileRef = 68E76287175887ED006009A7 /* NSDate+ItsBeta.m */; };
 		68E762C7175887EE006009A7 /* NSDictionary+ItsBeta.m in Sources */ = {isa = PBXBuildFile; fileRef = 68E76289175887ED006009A7 /* NSDictionary+ItsBeta.m */; };
@@ -822,17 +841,77 @@
 		40D5FF621714409900821B01 /* HSItsBetaAchievementDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HSItsBetaAchievementDetailViewController.xib; sourceTree = "<group>"; };
 		40D5FF75171579D100821B01 /* HSItsBeta.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSItsBeta.h; sourceTree = "<group>"; };
 		40D5FF76171579D100821B01 /* HSItsBeta.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSItsBeta.m; sourceTree = "<group>"; };
+		68187E46178FFE410056BB9A /* Foursquare2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Foursquare2.h; sourceTree = "<group>"; };
+		68187E47178FFE410056BB9A /* Foursquare2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Foursquare2.m; sourceTree = "<group>"; };
+		68187E48178FFE410056BB9A /* FSRequester.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSRequester.h; sourceTree = "<group>"; };
+		68187E49178FFE410056BB9A /* FSRequester.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSRequester.m; sourceTree = "<group>"; };
+		68187E4A178FFE410056BB9A /* FSTargetCallback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSTargetCallback.h; sourceTree = "<group>"; };
+		68187E4B178FFE410056BB9A /* FSTargetCallback.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSTargetCallback.m; sourceTree = "<group>"; };
+		68187E4C178FFE410056BB9A /* FSWebLogin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSWebLogin.h; sourceTree = "<group>"; };
+		68187E4D178FFE410056BB9A /* FSWebLogin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSWebLogin.m; sourceTree = "<group>"; };
+		68187E4E178FFE410056BB9A /* FSWebLogin.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FSWebLogin.xib; sourceTree = "<group>"; };
+		68187E4F178FFE410056BB9A /* pin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pin.png; sourceTree = "<group>"; };
+		68187E50178FFE410056BB9A /* pin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pin@2x.png"; sourceTree = "<group>"; };
+		68187E51178FFE410056BB9A /* poweredByFoursquare_gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = poweredByFoursquare_gray.png; sourceTree = "<group>"; };
+		68187E52178FFE410056BB9A /* poweredByFoursquare_gray@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "poweredByFoursquare_gray@2x.png"; sourceTree = "<group>"; };
+		68187E7E179171440056BB9A /* DYRateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DYRateView.h; sourceTree = "<group>"; };
+		68187E7F179171440056BB9A /* DYRateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DYRateView.m; sourceTree = "<group>"; };
+		68187E821792AA400056BB9A /* HSStationInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSStationInfo.h; sourceTree = "<group>"; };
+		68187E831792AA400056BB9A /* HSStationInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSStationInfo.m; sourceTree = "<group>"; };
+		68187E861792AA400056BB9A /* HSUserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSUserInfo.h; sourceTree = "<group>"; };
+		68187E871792AA400056BB9A /* HSUserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSUserInfo.m; sourceTree = "<group>"; };
+		68187E8A1792AA700056BB9A /* HSStationReview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSStationReview.h; sourceTree = "<group>"; };
+		68187E8B1792AA700056BB9A /* HSStationReview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSStationReview.m; sourceTree = "<group>"; };
+		68187E8D1792AD290056BB9A /* HSStationReviewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HSStationReviewsViewController.h; path = Donor/view/controller/stations2/HSStationReviewsViewController.h; sourceTree = SOURCE_ROOT; };
+		68187E8E1792AD290056BB9A /* HSStationReviewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HSStationReviewsViewController.m; path = Donor/view/controller/stations2/HSStationReviewsViewController.m; sourceTree = SOURCE_ROOT; };
+		68187E8F1792AD2B0056BB9A /* HSStationReviewsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HSStationReviewsViewController.xib; path = Donor/view/controller/stations2/HSStationReviewsViewController.xib; sourceTree = SOURCE_ROOT; };
+		68187E921792B5B70056BB9A /* HSViewUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSViewUtils.h; sourceTree = "<group>"; };
+		68187E931792B5B70056BB9A /* HSViewUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSViewUtils.m; sourceTree = "<group>"; };
+		68187E9617930F570056BB9A /* foursquare_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = foursquare_logo.png; sourceTree = "<group>"; };
+		68187E9717930F570056BB9A /* foursquare_logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "foursquare_logo@2x.png"; sourceTree = "<group>"; };
+		68187E9817930F570056BB9A /* station_review_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = station_review_icon.png; sourceTree = "<group>"; };
+		68187E9917930F570056BB9A /* station_review_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "station_review_icon@2x.png"; sourceTree = "<group>"; };
+		68187EA017930FAE0056BB9A /* delete_mark_active.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = delete_mark_active.png; sourceTree = "<group>"; };
+		68187EA117930FAE0056BB9A /* delete_mark_active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "delete_mark_active@2x.png"; sourceTree = "<group>"; };
+		68187EA217930FAE0056BB9A /* delete_mark_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = delete_mark_pressed.png; sourceTree = "<group>"; };
+		68187EA317930FAE0056BB9A /* delete_mark_pressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "delete_mark_pressed@2x.png"; sourceTree = "<group>"; };
+		68187EA417930FAE0056BB9A /* event_done_button_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = event_done_button_normal.png; sourceTree = "<group>"; };
+		68187EA517930FAE0056BB9A /* event_done_button_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "event_done_button_normal@2x.png"; sourceTree = "<group>"; };
+		68187EA617930FAE0056BB9A /* event_done_button_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = event_done_button_pressed.png; sourceTree = "<group>"; };
+		68187EA717930FAE0056BB9A /* event_done_button_pressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "event_done_button_pressed@2x.png"; sourceTree = "<group>"; };
+		68187EAA17930FAE0056BB9A /* icon_blood.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_blood.png; sourceTree = "<group>"; };
+		68187EAB17930FAE0056BB9A /* icon_blood@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_blood@2x.png"; sourceTree = "<group>"; };
+		68187EAC17930FAE0056BB9A /* icon_blood_check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_blood_check.png; sourceTree = "<group>"; };
+		68187EAD17930FAE0056BB9A /* icon_blood_check@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_blood_check@2x.png"; sourceTree = "<group>"; };
+		68187EAE17930FAE0056BB9A /* icon_blood_plan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_blood_plan.png; sourceTree = "<group>"; };
+		68187EAF17930FAE0056BB9A /* icon_blood_plan@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_blood_plan@2x.png"; sourceTree = "<group>"; };
+		68187EB117930FAE0056BB9A /* icon_granulocytes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_granulocytes.png; sourceTree = "<group>"; };
+		68187EB217930FAE0056BB9A /* icon_granulocytes@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_granulocytes@2x.png"; sourceTree = "<group>"; };
+		68187EB317930FAE0056BB9A /* icon_granulocytes_check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_granulocytes_check.png; sourceTree = "<group>"; };
+		68187EB417930FAE0056BB9A /* icon_granulocytes_check@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_granulocytes_check@2x.png"; sourceTree = "<group>"; };
+		68187EB517930FAE0056BB9A /* icon_granulocytes_plan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_granulocytes_plan.png; sourceTree = "<group>"; };
+		68187EB617930FAE0056BB9A /* icon_granulocytes_plan@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_granulocytes_plan@2x.png"; sourceTree = "<group>"; };
+		68187EB817930FAE0056BB9A /* icon_plasma.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_plasma.png; sourceTree = "<group>"; };
+		68187EB917930FAE0056BB9A /* icon_plasma@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_plasma@2x.png"; sourceTree = "<group>"; };
+		68187EBA17930FAE0056BB9A /* icon_plasma_check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_plasma_check.png; sourceTree = "<group>"; };
+		68187EBB17930FAE0056BB9A /* icon_plasma_check@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_plasma_check@2x.png"; sourceTree = "<group>"; };
+		68187EBC17930FAE0056BB9A /* icon_plasma_plan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_plasma_plan.png; sourceTree = "<group>"; };
+		68187EBD17930FAE0056BB9A /* icon_plasma_plan@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_plasma_plan@2x.png"; sourceTree = "<group>"; };
+		68187EBF17930FAE0056BB9A /* icon_plateletes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_plateletes.png; sourceTree = "<group>"; };
+		68187EC017930FAE0056BB9A /* icon_plateletes@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_plateletes@2x.png"; sourceTree = "<group>"; };
+		68187EC117930FAE0056BB9A /* icon_plateletes_check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_plateletes_check.png; sourceTree = "<group>"; };
+		68187EC217930FAE0056BB9A /* icon_plateletes_check@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_plateletes_check@2x.png"; sourceTree = "<group>"; };
+		68187EC317930FAE0056BB9A /* icon_plateletes_plan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_plateletes_plan.png; sourceTree = "<group>"; };
+		68187EC417930FAE0056BB9A /* icon_plateletes_plan@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_plateletes_plan@2x.png"; sourceTree = "<group>"; };
+		68187EC617930FAE0056BB9A /* icon_test_plan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_test_plan.png; sourceTree = "<group>"; };
+		68187EC717930FAE0056BB9A /* icon_test_plan@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_test_plan@2x.png"; sourceTree = "<group>"; };
+		68187EC917930FAE0056BB9A /* map.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map.png; sourceTree = "<group>"; };
+		68187ECA17930FAE0056BB9A /* map@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map@2x.png"; sourceTree = "<group>"; };
 		6823C11A1747C1FA0085B13F /* HSStationsPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSStationsPickerViewController.h; sourceTree = "<group>"; };
 		6823C11B1747C1FA0085B13F /* HSStationsPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSStationsPickerViewController.m; sourceTree = "<group>"; };
 		6823C11D1747C4080085B13F /* HSPicker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HSPicker.h; sourceTree = "<group>"; };
-		6823C11E174926300085B13F /* HSStationInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSStationInfo.h; sourceTree = "<group>"; };
-		6823C11F174926310085B13F /* HSStationInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSStationInfo.m; sourceTree = "<group>"; };
 		6830C1CC174A940900015255 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = Libs/FacebookSDK.framework; sourceTree = "<group>"; };
 		683F8A80164573860066C47A /* HSBloodDonationType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSBloodDonationType.m; sourceTree = "<group>"; };
-		683F8A9316468E300066C47A /* event_done_button_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = event_done_button_normal.png; sourceTree = "<group>"; };
-		683F8A9416468E300066C47A /* event_done_button_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "event_done_button_normal@2x.png"; sourceTree = "<group>"; };
-		683F8A9516468E300066C47A /* event_done_button_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = event_done_button_pressed.png; sourceTree = "<group>"; };
-		683F8A9616468E300066C47A /* event_done_button_pressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "event_done_button_pressed@2x.png"; sourceTree = "<group>"; };
 		683F8A9B1648C0E80066C47A /* HSDayHolidayEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSDayHolidayEvent.h; sourceTree = "<group>"; };
 		683F8A9C1648C0E90066C47A /* HSDayHolidayEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSDayHolidayEvent.m; sourceTree = "<group>"; };
 		683F8A9E1649B8C10066C47A /* NSDate+HSCalendar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+HSCalendar.h"; sourceTree = "<group>"; };
@@ -876,32 +955,6 @@
 		685088EF1667F702004EC3CC /* libFlurry.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry.a; sourceTree = "<group>"; };
 		685CB2F6163F2005004FF9AC /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MBProgressHUD.h; path = Libs/MBProgressHUD/MBProgressHUD.h; sourceTree = "<group>"; };
 		685CB2F7163F2008004FF9AC /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MBProgressHUD.m; path = Libs/MBProgressHUD/MBProgressHUD.m; sourceTree = "<group>"; };
-		685CB2FE1640E87E004FF9AC /* icon_blood.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_blood.png; sourceTree = "<group>"; };
-		685CB2FF1640E87E004FF9AC /* icon_blood@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_blood@2x.png"; sourceTree = "<group>"; };
-		685CB3001640E87E004FF9AC /* icon_blood_check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_blood_check.png; sourceTree = "<group>"; };
-		685CB3011640E87E004FF9AC /* icon_blood_plan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_blood_plan.png; sourceTree = "<group>"; };
-		685CB3031640E87E004FF9AC /* icon_granulocytes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_granulocytes.png; sourceTree = "<group>"; };
-		685CB3041640E87E004FF9AC /* icon_granulocytes@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_granulocytes@2x.png"; sourceTree = "<group>"; };
-		685CB3051640E87E004FF9AC /* icon_granulocytes_check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_granulocytes_check.png; sourceTree = "<group>"; };
-		685CB3061640E87E004FF9AC /* icon_granulocytes_plan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_granulocytes_plan.png; sourceTree = "<group>"; };
-		685CB3081640E87E004FF9AC /* icon_plasma.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_plasma.png; sourceTree = "<group>"; };
-		685CB3091640E87E004FF9AC /* icon_plasma@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_plasma@2x.png"; sourceTree = "<group>"; };
-		685CB30A1640E87E004FF9AC /* icon_plasma_check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_plasma_check.png; sourceTree = "<group>"; };
-		685CB30B1640E87E004FF9AC /* icon_plasma_plan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_plasma_plan.png; sourceTree = "<group>"; };
-		685CB30D1640E87E004FF9AC /* icon_plateletes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_plateletes.png; sourceTree = "<group>"; };
-		685CB30E1640E87E004FF9AC /* icon_plateletes@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_plateletes@2x.png"; sourceTree = "<group>"; };
-		685CB30F1640E87E004FF9AC /* icon_plateletes_check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_plateletes_check.png; sourceTree = "<group>"; };
-		685CB3101640E87E004FF9AC /* icon_plateletes_plan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_plateletes_plan.png; sourceTree = "<group>"; };
-		685CB3121640E87E004FF9AC /* icon_test_plan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_test_plan.png; sourceTree = "<group>"; };
-		685CB3241640E947004FF9AC /* icon_test_plan@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_test_plan@2x.png"; sourceTree = "<group>"; };
-		685CB3261640ED41004FF9AC /* icon_blood_check@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_blood_check@2x.png"; sourceTree = "<group>"; };
-		685CB3281640ED4B004FF9AC /* icon_granulocytes_check@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_granulocytes_check@2x.png"; sourceTree = "<group>"; };
-		685CB32A1640ED55004FF9AC /* icon_plasma_check@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_plasma_check@2x.png"; sourceTree = "<group>"; };
-		685CB32C1640ED62004FF9AC /* icon_plateletes_check@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_plateletes_check@2x.png"; sourceTree = "<group>"; };
-		685CB32E1640EEBF004FF9AC /* icon_blood_plan@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_blood_plan@2x.png"; sourceTree = "<group>"; };
-		685CB3301640EED7004FF9AC /* icon_granulocytes_plan@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_granulocytes_plan@2x.png"; sourceTree = "<group>"; };
-		685CB3321640EEF4004FF9AC /* icon_plasma_plan@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_plasma_plan@2x.png"; sourceTree = "<group>"; };
-		685CB3341640EF0F004FF9AC /* icon_plateletes_plan@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_plateletes_plan@2x.png"; sourceTree = "<group>"; };
 		6864D5E7170865F900F150F9 /* HSSexType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSSexType.h; sourceTree = "<group>"; };
 		6864D5E8170865F900F150F9 /* HSSexType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSSexType.m; sourceTree = "<group>"; };
 		6864D5EA1708683A00F150F9 /* HSBloodType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSBloodType.h; sourceTree = "<group>"; };
@@ -969,10 +1022,6 @@
 		687704B016E6642C00DF332F /* HSUIDProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSUIDProvider.h; sourceTree = "<group>"; };
 		687704B916EE62A700DF332F /* HSCalendarEventNotifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSCalendarEventNotifier.h; sourceTree = "<group>"; };
 		687704BA16EE62A700DF332F /* HSCalendarEventNotifier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSCalendarEventNotifier.m; sourceTree = "<group>"; };
-		68779285165266890003D818 /* delete_mark_active.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = delete_mark_active.png; sourceTree = "<group>"; };
-		68779286165266890003D818 /* delete_mark_active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "delete_mark_active@2x.png"; sourceTree = "<group>"; };
-		68779287165266890003D818 /* delete_mark_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = delete_mark_pressed.png; sourceTree = "<group>"; };
-		68779288165266890003D818 /* delete_mark_pressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "delete_mark_pressed@2x.png"; sourceTree = "<group>"; };
 		687A42F816F51C5300958347 /* HSCalendarEventNotificationHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSCalendarEventNotificationHandler.h; sourceTree = "<group>"; };
 		687A42FA16F5CEFC00958347 /* libOCMock.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libOCMock.a; sourceTree = "<group>"; };
 		687A430C16F5E5F000958347 /* NSNotificationCenter+OCMAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNotificationCenter+OCMAdditions.h"; sourceTree = "<group>"; };
@@ -992,6 +1041,8 @@
 		687A436516F7C19400958347 /* SubscribeAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubscribeAlertView.h; sourceTree = "<group>"; };
 		687A436616F7C19400958347 /* SubscribeAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubscribeAlertView.m; sourceTree = "<group>"; };
 		687A436816F7C19400958347 /* CKAuthViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CKAuthViewController.xib; sourceTree = "<group>"; };
+		687B72721797E61200832B9D /* HSUIResources.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSUIResources.h; sourceTree = "<group>"; };
+		687B72731797E61200832B9D /* HSUIResources.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSUIResources.m; sourceTree = "<group>"; };
 		687E58DD16AD5CE2009D0A8F /* Appirater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Appirater.h; sourceTree = "<group>"; };
 		687E58DE16AD5CE2009D0A8F /* Appirater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Appirater.m; sourceTree = "<group>"; };
 		687E58DF16AD5CE2009D0A8F /* AppiraterDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppiraterDelegate.h; sourceTree = "<group>"; };
@@ -1054,8 +1105,6 @@
 		689B00FC16AC37CC00B5CA4C /* recommendations.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = recommendations.json; sourceTree = "<group>"; };
 		689B010D16ACA69A00B5CA4C /* UIView+HSLayoutManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+HSLayoutManager.h"; sourceTree = "<group>"; };
 		689B010E16ACA69A00B5CA4C /* UIView+HSLayoutManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+HSLayoutManager.m"; sourceTree = "<group>"; };
-		68B28E3117071DE3009FE0F8 /* HSUserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSUserInfo.h; sourceTree = "<group>"; };
-		68B28E3217071DE3009FE0F8 /* HSUserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSUserInfo.m; sourceTree = "<group>"; };
 		68B413261700140000BB32FF /* HSNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSNotification.h; sourceTree = "<group>"; };
 		68B413271700140000BB32FF /* HSNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSNotification.m; sourceTree = "<group>"; };
 		68B455B61635BC5100811A0F /* HSEventRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HSEventRenderer.h; path = event/HSEventRenderer.h; sourceTree = "<group>"; };
@@ -1214,8 +1263,6 @@
 		68D6CD9316DD351800972D41 /* HSContactView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HSContactView.xib; sourceTree = "<group>"; };
 		68D6CD9516E22A8600972D41 /* HSBloodRemoteEvent+LocalNotification_Protected.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "HSBloodRemoteEvent+LocalNotification_Protected.h"; sourceTree = "<group>"; };
 		68D6CD9616E22A8800972D41 /* HSBloodRemoteEvent+LocalNotification_Protected.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "HSBloodRemoteEvent+LocalNotification_Protected.m"; sourceTree = "<group>"; };
-		68E535041747BB43008E44E6 /* map.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map.png; sourceTree = "<group>"; };
-		68E535051747BB43008E44E6 /* map@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map@2x.png"; sourceTree = "<group>"; };
 		68E76284175887ED006009A7 /* CIColor+ItsBeta.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CIColor+ItsBeta.h"; sourceTree = "<group>"; };
 		68E76285175887ED006009A7 /* CIColor+ItsBeta.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CIColor+ItsBeta.m"; sourceTree = "<group>"; };
 		68E76286175887ED006009A7 /* NSDate+ItsBeta.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+ItsBeta.h"; sourceTree = "<group>"; };
@@ -1673,11 +1720,12 @@
 		3758525915AEE959006DF7E1 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				68187E9E17930FAE0056BB9A /* calendar */,
 				6864D6161708B3C400F150F9 /* icons */,
-				6864D61B1708B3C400F150F9 /* splash */,
 				689B00B516A7783400B5CA4C /* info */,
 				685088E01667638A004EC3CC /* profile */,
-				685CB2FB1640E87A004FF9AC /* Calendar */,
+				6864D61B1708B3C400F150F9 /* splash */,
+				68187E9517930F560056BB9A /* station */,
 				68893A3216518CA800955990 /* tutorial */,
 				858EE0AA161D38D000A09858 /* userLocation.png */,
 				8585E179161AB04C00275AE7 /* check.png */,
@@ -1992,19 +2040,181 @@
 			path = ItsBeta;
 			sourceTree = "<group>";
 		};
-		683F8A9216468E300066C47A /* Buttons */ = {
+		68187E45178FFE410056BB9A /* Foursquare2 */ = {
 			isa = PBXGroup;
 			children = (
-				68779285165266890003D818 /* delete_mark_active.png */,
-				68779286165266890003D818 /* delete_mark_active@2x.png */,
-				68779287165266890003D818 /* delete_mark_pressed.png */,
-				68779288165266890003D818 /* delete_mark_pressed@2x.png */,
-				683F8A9316468E300066C47A /* event_done_button_normal.png */,
-				683F8A9416468E300066C47A /* event_done_button_normal@2x.png */,
-				683F8A9516468E300066C47A /* event_done_button_pressed.png */,
-				683F8A9616468E300066C47A /* event_done_button_pressed@2x.png */,
+				68187E46178FFE410056BB9A /* Foursquare2.h */,
+				68187E47178FFE410056BB9A /* Foursquare2.m */,
+				68187E48178FFE410056BB9A /* FSRequester.h */,
+				68187E49178FFE410056BB9A /* FSRequester.m */,
+				68187E4A178FFE410056BB9A /* FSTargetCallback.h */,
+				68187E4B178FFE410056BB9A /* FSTargetCallback.m */,
+				68187E4C178FFE410056BB9A /* FSWebLogin.h */,
+				68187E4D178FFE410056BB9A /* FSWebLogin.m */,
+				68187E4E178FFE410056BB9A /* FSWebLogin.xib */,
+				68187E4F178FFE410056BB9A /* pin.png */,
+				68187E50178FFE410056BB9A /* pin@2x.png */,
+				68187E51178FFE410056BB9A /* poweredByFoursquare_gray.png */,
+				68187E52178FFE410056BB9A /* poweredByFoursquare_gray@2x.png */,
 			);
-			path = Buttons;
+			name = Foursquare2;
+			path = Libs/Foursquare2;
+			sourceTree = "<group>";
+		};
+		68187E7D179171440056BB9A /* DYRateView */ = {
+			isa = PBXGroup;
+			children = (
+				68187E7E179171440056BB9A /* DYRateView.h */,
+				68187E7F179171440056BB9A /* DYRateView.m */,
+			);
+			name = DYRateView;
+			path = Libs/DYRateView;
+			sourceTree = "<group>";
+		};
+		68187E811792AA400056BB9A /* station */ = {
+			isa = PBXGroup;
+			children = (
+				68187E821792AA400056BB9A /* HSStationInfo.h */,
+				68187E831792AA400056BB9A /* HSStationInfo.m */,
+				68187E841792AA400056BB9A /* review */,
+			);
+			path = station;
+			sourceTree = "<group>";
+		};
+		68187E841792AA400056BB9A /* review */ = {
+			isa = PBXGroup;
+			children = (
+				68187E8A1792AA700056BB9A /* HSStationReview.h */,
+				68187E8B1792AA700056BB9A /* HSStationReview.m */,
+			);
+			path = review;
+			sourceTree = "<group>";
+		};
+		68187E851792AA400056BB9A /* user */ = {
+			isa = PBXGroup;
+			children = (
+				68187E861792AA400056BB9A /* HSUserInfo.h */,
+				68187E871792AA400056BB9A /* HSUserInfo.m */,
+			);
+			path = user;
+			sourceTree = "<group>";
+		};
+		68187E9517930F560056BB9A /* station */ = {
+			isa = PBXGroup;
+			children = (
+				68187E9617930F570056BB9A /* foursquare_logo.png */,
+				68187E9717930F570056BB9A /* foursquare_logo@2x.png */,
+				68187E9817930F570056BB9A /* station_review_icon.png */,
+				68187E9917930F570056BB9A /* station_review_icon@2x.png */,
+			);
+			path = station;
+			sourceTree = "<group>";
+		};
+		68187E9E17930FAE0056BB9A /* calendar */ = {
+			isa = PBXGroup;
+			children = (
+				68187E9F17930FAE0056BB9A /* buttons */,
+				68187EA817930FAE0056BB9A /* events */,
+				68187EC817930FAE0056BB9A /* views */,
+			);
+			path = calendar;
+			sourceTree = "<group>";
+		};
+		68187E9F17930FAE0056BB9A /* buttons */ = {
+			isa = PBXGroup;
+			children = (
+				68187EA017930FAE0056BB9A /* delete_mark_active.png */,
+				68187EA117930FAE0056BB9A /* delete_mark_active@2x.png */,
+				68187EA217930FAE0056BB9A /* delete_mark_pressed.png */,
+				68187EA317930FAE0056BB9A /* delete_mark_pressed@2x.png */,
+				68187EA417930FAE0056BB9A /* event_done_button_normal.png */,
+				68187EA517930FAE0056BB9A /* event_done_button_normal@2x.png */,
+				68187EA617930FAE0056BB9A /* event_done_button_pressed.png */,
+				68187EA717930FAE0056BB9A /* event_done_button_pressed@2x.png */,
+			);
+			path = buttons;
+			sourceTree = "<group>";
+		};
+		68187EA817930FAE0056BB9A /* events */ = {
+			isa = PBXGroup;
+			children = (
+				68187EA917930FAE0056BB9A /* blood */,
+				68187EB017930FAE0056BB9A /* granulocytes */,
+				68187EB717930FAE0056BB9A /* plasma */,
+				68187EBE17930FAE0056BB9A /* plateletes */,
+				68187EC517930FAE0056BB9A /* test */,
+			);
+			path = events;
+			sourceTree = "<group>";
+		};
+		68187EA917930FAE0056BB9A /* blood */ = {
+			isa = PBXGroup;
+			children = (
+				68187EAA17930FAE0056BB9A /* icon_blood.png */,
+				68187EAB17930FAE0056BB9A /* icon_blood@2x.png */,
+				68187EAC17930FAE0056BB9A /* icon_blood_check.png */,
+				68187EAD17930FAE0056BB9A /* icon_blood_check@2x.png */,
+				68187EAE17930FAE0056BB9A /* icon_blood_plan.png */,
+				68187EAF17930FAE0056BB9A /* icon_blood_plan@2x.png */,
+			);
+			path = blood;
+			sourceTree = "<group>";
+		};
+		68187EB017930FAE0056BB9A /* granulocytes */ = {
+			isa = PBXGroup;
+			children = (
+				68187EB117930FAE0056BB9A /* icon_granulocytes.png */,
+				68187EB217930FAE0056BB9A /* icon_granulocytes@2x.png */,
+				68187EB317930FAE0056BB9A /* icon_granulocytes_check.png */,
+				68187EB417930FAE0056BB9A /* icon_granulocytes_check@2x.png */,
+				68187EB517930FAE0056BB9A /* icon_granulocytes_plan.png */,
+				68187EB617930FAE0056BB9A /* icon_granulocytes_plan@2x.png */,
+			);
+			path = granulocytes;
+			sourceTree = "<group>";
+		};
+		68187EB717930FAE0056BB9A /* plasma */ = {
+			isa = PBXGroup;
+			children = (
+				68187EB817930FAE0056BB9A /* icon_plasma.png */,
+				68187EB917930FAE0056BB9A /* icon_plasma@2x.png */,
+				68187EBA17930FAE0056BB9A /* icon_plasma_check.png */,
+				68187EBB17930FAE0056BB9A /* icon_plasma_check@2x.png */,
+				68187EBC17930FAE0056BB9A /* icon_plasma_plan.png */,
+				68187EBD17930FAE0056BB9A /* icon_plasma_plan@2x.png */,
+			);
+			path = plasma;
+			sourceTree = "<group>";
+		};
+		68187EBE17930FAE0056BB9A /* plateletes */ = {
+			isa = PBXGroup;
+			children = (
+				68187EBF17930FAE0056BB9A /* icon_plateletes.png */,
+				68187EC017930FAE0056BB9A /* icon_plateletes@2x.png */,
+				68187EC117930FAE0056BB9A /* icon_plateletes_check.png */,
+				68187EC217930FAE0056BB9A /* icon_plateletes_check@2x.png */,
+				68187EC317930FAE0056BB9A /* icon_plateletes_plan.png */,
+				68187EC417930FAE0056BB9A /* icon_plateletes_plan@2x.png */,
+			);
+			path = plateletes;
+			sourceTree = "<group>";
+		};
+		68187EC517930FAE0056BB9A /* test */ = {
+			isa = PBXGroup;
+			children = (
+				68187EC617930FAE0056BB9A /* icon_test_plan.png */,
+				68187EC717930FAE0056BB9A /* icon_test_plan@2x.png */,
+			);
+			path = test;
+			sourceTree = "<group>";
+		};
+		68187EC817930FAE0056BB9A /* views */ = {
+			isa = PBXGroup;
+			children = (
+				68187EC917930FAE0056BB9A /* map.png */,
+				68187ECA17930FAE0056BB9A /* map@2x.png */,
+			);
+			path = views;
 			sourceTree = "<group>";
 		};
 		683FDACA169E727100B3BF51 /* error */ = {
@@ -2098,16 +2308,18 @@
 		685CB2F9163F2016004FF9AC /* Libs */ = {
 			isa = PBXGroup;
 			children = (
-				6864D6AB17174B8400F150F9 /* MWFeedParser */,
-				687A434816F7B60200958347 /* ChimpKit */,
-				68B8304416D186CF00533701 /* FTCoreText */,
-				68B8304916D186CF00533701 /* TTTAttributedLabel */,
 				687E58DB16AD5CE2009D0A8F /* Appirater */,
+				687A434816F7B60200958347 /* ChimpKit */,
 				6846116D16A61B7B00EE9030 /* CrittercismSDK */,
-				6871DF611681184B004E5EBB /* TestFlightSDK */,
-				685088EB1667F6D3004EC3CC /* Flurry */,
-				685CB2FA163F202C004FF9AC /* MBProgressHUD */,
+				68187E7D179171440056BB9A /* DYRateView */,
 				68E76281175887ED006009A7 /* ItsBeta */,
+				685088EB1667F6D3004EC3CC /* Flurry */,
+				68187E45178FFE410056BB9A /* Foursquare2 */,
+				68B8304416D186CF00533701 /* FTCoreText */,
+				685CB2FA163F202C004FF9AC /* MBProgressHUD */,
+				6864D6AB17174B8400F150F9 /* MWFeedParser */,
+				6871DF611681184B004E5EBB /* TestFlightSDK */,
+				68B8304916D186CF00533701 /* TTTAttributedLabel */,
 			);
 			name = Libs;
 			sourceTree = "<group>";
@@ -2119,89 +2331,6 @@
 				685CB2F7163F2008004FF9AC /* MBProgressHUD.m */,
 			);
 			name = MBProgressHUD;
-			sourceTree = "<group>";
-		};
-		685CB2FB1640E87A004FF9AC /* Calendar */ = {
-			isa = PBXGroup;
-			children = (
-				683F8A9216468E300066C47A /* Buttons */,
-				685CB2FC1640E87E004FF9AC /* Events */,
-				68E535031747BB43008E44E6 /* Views */,
-			);
-			path = Calendar;
-			sourceTree = "<group>";
-		};
-		685CB2FC1640E87E004FF9AC /* Events */ = {
-			isa = PBXGroup;
-			children = (
-				685CB2FD1640E87E004FF9AC /* blood */,
-				685CB3021640E87E004FF9AC /* granulocytes */,
-				685CB3071640E87E004FF9AC /* plasma */,
-				685CB30C1640E87E004FF9AC /* plateletes */,
-				685CB3111640E87E004FF9AC /* test */,
-			);
-			path = Events;
-			sourceTree = "<group>";
-		};
-		685CB2FD1640E87E004FF9AC /* blood */ = {
-			isa = PBXGroup;
-			children = (
-				685CB2FE1640E87E004FF9AC /* icon_blood.png */,
-				685CB2FF1640E87E004FF9AC /* icon_blood@2x.png */,
-				685CB3001640E87E004FF9AC /* icon_blood_check.png */,
-				685CB3261640ED41004FF9AC /* icon_blood_check@2x.png */,
-				685CB3011640E87E004FF9AC /* icon_blood_plan.png */,
-				685CB32E1640EEBF004FF9AC /* icon_blood_plan@2x.png */,
-			);
-			path = blood;
-			sourceTree = "<group>";
-		};
-		685CB3021640E87E004FF9AC /* granulocytes */ = {
-			isa = PBXGroup;
-			children = (
-				685CB3031640E87E004FF9AC /* icon_granulocytes.png */,
-				685CB3041640E87E004FF9AC /* icon_granulocytes@2x.png */,
-				685CB3051640E87E004FF9AC /* icon_granulocytes_check.png */,
-				685CB3281640ED4B004FF9AC /* icon_granulocytes_check@2x.png */,
-				685CB3061640E87E004FF9AC /* icon_granulocytes_plan.png */,
-				685CB3301640EED7004FF9AC /* icon_granulocytes_plan@2x.png */,
-			);
-			path = granulocytes;
-			sourceTree = "<group>";
-		};
-		685CB3071640E87E004FF9AC /* plasma */ = {
-			isa = PBXGroup;
-			children = (
-				685CB3081640E87E004FF9AC /* icon_plasma.png */,
-				685CB3091640E87E004FF9AC /* icon_plasma@2x.png */,
-				685CB30A1640E87E004FF9AC /* icon_plasma_check.png */,
-				685CB32A1640ED55004FF9AC /* icon_plasma_check@2x.png */,
-				685CB30B1640E87E004FF9AC /* icon_plasma_plan.png */,
-				685CB3321640EEF4004FF9AC /* icon_plasma_plan@2x.png */,
-			);
-			path = plasma;
-			sourceTree = "<group>";
-		};
-		685CB30C1640E87E004FF9AC /* plateletes */ = {
-			isa = PBXGroup;
-			children = (
-				685CB30D1640E87E004FF9AC /* icon_plateletes.png */,
-				685CB30E1640E87E004FF9AC /* icon_plateletes@2x.png */,
-				685CB30F1640E87E004FF9AC /* icon_plateletes_check.png */,
-				685CB32C1640ED62004FF9AC /* icon_plateletes_check@2x.png */,
-				685CB3101640E87E004FF9AC /* icon_plateletes_plan.png */,
-				685CB3341640EF0F004FF9AC /* icon_plateletes_plan@2x.png */,
-			);
-			path = plateletes;
-			sourceTree = "<group>";
-		};
-		685CB3111640E87E004FF9AC /* test */ = {
-			isa = PBXGroup;
-			children = (
-				685CB3121640E87E004FF9AC /* icon_test_plan.png */,
-				685CB3241640E947004FF9AC /* icon_test_plan@2x.png */,
-			);
-			path = test;
 			sourceTree = "<group>";
 		};
 		6864D5E6170865C000F150F9 /* types */ = {
@@ -2340,6 +2469,10 @@
 				689B010E16ACA69A00B5CA4C /* UIView+HSLayoutManager.m */,
 				6864D67217128FAC00F150F9 /* UIView+HSSubviewManagement.h */,
 				6864D67317128FAC00F150F9 /* UIView+HSSubviewManagement.m */,
+				68187E921792B5B70056BB9A /* HSViewUtils.h */,
+				68187E931792B5B70056BB9A /* HSViewUtils.m */,
+				687B72721797E61200832B9D /* HSUIResources.h */,
+				687B72731797E61200832B9D /* HSUIResources.m */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -2504,17 +2637,6 @@
 				689B00C216A7783400B5CA4C /* vkontakteButtonPressed@2x.png */,
 			);
 			path = news;
-			sourceTree = "<group>";
-		};
-		68B28E3017071DBB009FE0F8 /* remote */ = {
-			isa = PBXGroup;
-			children = (
-				68B28E3117071DE3009FE0F8 /* HSUserInfo.h */,
-				68B28E3217071DE3009FE0F8 /* HSUserInfo.m */,
-				6823C11E174926300085B13F /* HSStationInfo.h */,
-				6823C11F174926310085B13F /* HSStationInfo.m */,
-			);
-			path = remote;
 			sourceTree = "<group>";
 		};
 		68B455B41635BC0700811A0F /* renderer */ = {
@@ -2895,15 +3017,6 @@
 			path = persistence;
 			sourceTree = "<group>";
 		};
-		68E535031747BB43008E44E6 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				68E535041747BB43008E44E6 /* map.png */,
-				68E535051747BB43008E44E6 /* map@2x.png */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
 		68E76281175887ED006009A7 /* ItsBeta */ = {
 			isa = PBXGroup;
 			children = (
@@ -3012,10 +3125,11 @@
 			children = (
 				68F7F3EF1638878800740CCF /* HSModelCommon.h */,
 				68F7F3F01638878800740CCF /* HSModelCommon.m */,
-				6864D5E6170865C000F150F9 /* types */,
-				68B28E3017071DBB009FE0F8 /* remote */,
 				68EB27541630906A0092FDBA /* calendar */,
 				68EB27551630906A0092FDBA /* event */,
+				68187E811792AA400056BB9A /* station */,
+				6864D5E6170865C000F150F9 /* types */,
+				68187E851792AA400056BB9A /* user */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -3106,6 +3220,9 @@
 				CEE388871718B90C001B6F0A /* HSStationsViewController.h */,
 				CEE388881718B90C001B6F0A /* HSStationsViewController.m */,
 				CEE388891718B90C001B6F0A /* HSStationsViewController.xib */,
+				68187E8D1792AD290056BB9A /* HSStationReviewsViewController.h */,
+				68187E8E1792AD290056BB9A /* HSStationReviewsViewController.m */,
+				68187E8F1792AD2B0056BB9A /* HSStationReviewsViewController.xib */,
 				CEE3888A1718B90C001B6F0A /* images */,
 			);
 			name = stations2;
@@ -3541,36 +3658,6 @@
 				8585E17F161AB04C00275AE7 /* clearButton.png in Resources */,
 				8585E180161AB04C00275AE7 /* clearButton@2x.png in Resources */,
 				858EE0AB161D38D000A09858 /* userLocation.png in Resources */,
-				685CB3131640E87F004FF9AC /* icon_blood.png in Resources */,
-				685CB3141640E87F004FF9AC /* icon_blood@2x.png in Resources */,
-				685CB3151640E87F004FF9AC /* icon_blood_check.png in Resources */,
-				685CB3161640E87F004FF9AC /* icon_blood_plan.png in Resources */,
-				685CB3171640E87F004FF9AC /* icon_granulocytes.png in Resources */,
-				685CB3181640E87F004FF9AC /* icon_granulocytes@2x.png in Resources */,
-				685CB3191640E87F004FF9AC /* icon_granulocytes_check.png in Resources */,
-				685CB31A1640E87F004FF9AC /* icon_granulocytes_plan.png in Resources */,
-				685CB31B1640E87F004FF9AC /* icon_plasma.png in Resources */,
-				685CB31C1640E87F004FF9AC /* icon_plasma@2x.png in Resources */,
-				685CB31D1640E87F004FF9AC /* icon_plasma_check.png in Resources */,
-				685CB31E1640E87F004FF9AC /* icon_plasma_plan.png in Resources */,
-				685CB31F1640E87F004FF9AC /* icon_plateletes.png in Resources */,
-				685CB3201640E87F004FF9AC /* icon_plateletes@2x.png in Resources */,
-				685CB3211640E87F004FF9AC /* icon_plateletes_check.png in Resources */,
-				685CB3221640E87F004FF9AC /* icon_plateletes_plan.png in Resources */,
-				685CB3231640E87F004FF9AC /* icon_test_plan.png in Resources */,
-				685CB3251640E947004FF9AC /* icon_test_plan@2x.png in Resources */,
-				685CB3271640ED41004FF9AC /* icon_blood_check@2x.png in Resources */,
-				685CB3291640ED4B004FF9AC /* icon_granulocytes_check@2x.png in Resources */,
-				685CB32B1640ED55004FF9AC /* icon_plasma_check@2x.png in Resources */,
-				685CB32D1640ED62004FF9AC /* icon_plateletes_check@2x.png in Resources */,
-				685CB32F1640EEBF004FF9AC /* icon_blood_plan@2x.png in Resources */,
-				685CB3311640EED7004FF9AC /* icon_granulocytes_plan@2x.png in Resources */,
-				685CB3331640EEF4004FF9AC /* icon_plasma_plan@2x.png in Resources */,
-				685CB3351640EF0F004FF9AC /* icon_plateletes_plan@2x.png in Resources */,
-				683F8A9716468E300066C47A /* event_done_button_normal.png in Resources */,
-				683F8A9816468E300066C47A /* event_done_button_normal@2x.png in Resources */,
-				683F8A9916468E300066C47A /* event_done_button_pressed.png in Resources */,
-				683F8A9A16468E300066C47A /* event_done_button_pressed@2x.png in Resources */,
 				68893A3F16518CA800955990 /* BloodDonor_tutorial_1.png in Resources */,
 				68893A4016518CA800955990 /* BloodDonor_tutorial_1@2x.png in Resources */,
 				68893A4116518CA800955990 /* BloodDonor_tutorial_2.png in Resources */,
@@ -3583,10 +3670,6 @@
 				68893A4816518CA800955990 /* BloodDonor_tutorial_5@2x.png in Resources */,
 				68893A4916518CA800955990 /* BloodDonor_tutorial_6.png in Resources */,
 				68893A4A16518CA800955990 /* BloodDonor_tutorial_6@2x.png in Resources */,
-				68779289165266890003D818 /* delete_mark_active.png in Resources */,
-				6877928A165266890003D818 /* delete_mark_active@2x.png in Resources */,
-				6877928B165266890003D818 /* delete_mark_pressed.png in Resources */,
-				6877928C165266890003D818 /* delete_mark_pressed@2x.png in Resources */,
 				68F3B30C16754A85003E8376 /* contraindications.json in Resources */,
 				688F7F7D169FCD29008581D4 /* HSAlertViewController.xib in Resources */,
 				6846114016A544FC00EE9030 /* login_base_auth_button_normal.png in Resources */,
@@ -3712,14 +3795,58 @@
 				CEE388C81718B90C001B6F0A /* DonorStations_tableHeaderBackground@2x.png in Resources */,
 				6864D6C0171ACE8A00F150F9 /* news_template.html in Resources */,
 				68F788E1171AE4E100BBF59A /* AdViewController.xib in Resources */,
-				68E535061747BB43008E44E6 /* map.png in Resources */,
-				68E535071747BB43008E44E6 /* map@2x.png in Resources */,
 				68E762CD175887EE006009A7 /* ItsBetaFacebookIPad.xib in Resources */,
 				68E762CF175887EE006009A7 /* ItsBetaFacebookIPhone.xib in Resources */,
 				68E762D7175887EE006009A7 /* ItsBetaVkIPad.xib in Resources */,
 				68E762D9175887EE006009A7 /* ItsBetaVkIPhone.xib in Resources */,
 				68E762E6175887EE006009A7 /* README.md in Resources */,
 				684E4632177AAF8D001C43F8 /* DonorStations_searchBarFieldBackground.png in Resources */,
+				68187E57178FFE410056BB9A /* FSWebLogin.xib in Resources */,
+				68187E58178FFE410056BB9A /* pin.png in Resources */,
+				68187E59178FFE410056BB9A /* pin@2x.png in Resources */,
+				68187E5A178FFE410056BB9A /* poweredByFoursquare_gray.png in Resources */,
+				68187E5B178FFE410056BB9A /* poweredByFoursquare_gray@2x.png in Resources */,
+				68187E911792AD2C0056BB9A /* HSStationReviewsViewController.xib in Resources */,
+				68187E9A17930F570056BB9A /* foursquare_logo.png in Resources */,
+				68187E9B17930F570056BB9A /* foursquare_logo@2x.png in Resources */,
+				68187E9C17930F570056BB9A /* station_review_icon.png in Resources */,
+				68187E9D17930F570056BB9A /* station_review_icon@2x.png in Resources */,
+				68187ECB17930FAE0056BB9A /* delete_mark_active.png in Resources */,
+				68187ECC17930FAE0056BB9A /* delete_mark_active@2x.png in Resources */,
+				68187ECD17930FAE0056BB9A /* delete_mark_pressed.png in Resources */,
+				68187ECE17930FAE0056BB9A /* delete_mark_pressed@2x.png in Resources */,
+				68187ECF17930FAE0056BB9A /* event_done_button_normal.png in Resources */,
+				68187ED017930FAE0056BB9A /* event_done_button_normal@2x.png in Resources */,
+				68187ED117930FAE0056BB9A /* event_done_button_pressed.png in Resources */,
+				68187ED217930FAE0056BB9A /* event_done_button_pressed@2x.png in Resources */,
+				68187ED317930FAE0056BB9A /* icon_blood.png in Resources */,
+				68187ED417930FAE0056BB9A /* icon_blood@2x.png in Resources */,
+				68187ED517930FAE0056BB9A /* icon_blood_check.png in Resources */,
+				68187ED617930FAE0056BB9A /* icon_blood_check@2x.png in Resources */,
+				68187ED717930FAE0056BB9A /* icon_blood_plan.png in Resources */,
+				68187ED817930FAE0056BB9A /* icon_blood_plan@2x.png in Resources */,
+				68187ED917930FAE0056BB9A /* icon_granulocytes.png in Resources */,
+				68187EDA17930FAE0056BB9A /* icon_granulocytes@2x.png in Resources */,
+				68187EDB17930FAE0056BB9A /* icon_granulocytes_check.png in Resources */,
+				68187EDC17930FAE0056BB9A /* icon_granulocytes_check@2x.png in Resources */,
+				68187EDD17930FAE0056BB9A /* icon_granulocytes_plan.png in Resources */,
+				68187EDE17930FAE0056BB9A /* icon_granulocytes_plan@2x.png in Resources */,
+				68187EDF17930FAE0056BB9A /* icon_plasma.png in Resources */,
+				68187EE017930FAE0056BB9A /* icon_plasma@2x.png in Resources */,
+				68187EE117930FAE0056BB9A /* icon_plasma_check.png in Resources */,
+				68187EE217930FAE0056BB9A /* icon_plasma_check@2x.png in Resources */,
+				68187EE317930FAE0056BB9A /* icon_plasma_plan.png in Resources */,
+				68187EE417930FAE0056BB9A /* icon_plasma_plan@2x.png in Resources */,
+				68187EE517930FAE0056BB9A /* icon_plateletes.png in Resources */,
+				68187EE617930FAE0056BB9A /* icon_plateletes@2x.png in Resources */,
+				68187EE717930FAE0056BB9A /* icon_plateletes_check.png in Resources */,
+				68187EE817930FAE0056BB9A /* icon_plateletes_check@2x.png in Resources */,
+				68187EE917930FAE0056BB9A /* icon_plateletes_plan.png in Resources */,
+				68187EEA17930FAE0056BB9A /* icon_plateletes_plan@2x.png in Resources */,
+				68187EEB17930FAE0056BB9A /* icon_test_plan.png in Resources */,
+				68187EEC17930FAE0056BB9A /* icon_test_plan@2x.png in Resources */,
+				68187EED17930FAE0056BB9A /* map.png in Resources */,
+				68187EEE17930FAE0056BB9A /* map@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3847,7 +3974,6 @@
 				68D6CD9716E22A8900972D41 /* HSBloodRemoteEvent+LocalNotification_Protected.m in Sources */,
 				687704BB16EE62A700DF332F /* HSCalendarEventNotifier.m in Sources */,
 				68B413281700140000BB32FF /* HSNotification.m in Sources */,
-				68B28E3317071DE3009FE0F8 /* HSUserInfo.m in Sources */,
 				6864D5E9170865F900F150F9 /* HSSexType.m in Sources */,
 				6864D5EC1708683A00F150F9 /* HSBloodType.m in Sources */,
 				6864D5EF1708699C00F150F9 /* HSDevicePlatformType.m in Sources */,
@@ -3884,7 +4010,6 @@
 				68F788E0171AE4E100BBF59A /* AdViewController.m in Sources */,
 				68F788E4171CA57D00BBF59A /* HSTabBarView.m in Sources */,
 				6823C11C1747C1FA0085B13F /* HSStationsPickerViewController.m in Sources */,
-				6823C120174926310085B13F /* HSStationInfo.m in Sources */,
 				68C42782174FB15900D477B2 /* NSObject+NSCodingSupportForProperties.m in Sources */,
 				68E762C5175887EE006009A7 /* CIColor+ItsBeta.m in Sources */,
 				68E762C6175887EE006009A7 /* NSDate+ItsBeta.m in Sources */,
@@ -3915,6 +4040,17 @@
 				68E762E3175887EE006009A7 /* ItsBetaParams.m in Sources */,
 				68E762E4175887EE006009A7 /* ItsBetaPlayer.m in Sources */,
 				68E762E5175887EE006009A7 /* ItsBetaProject.m in Sources */,
+				68187E53178FFE410056BB9A /* Foursquare2.m in Sources */,
+				68187E54178FFE410056BB9A /* FSRequester.m in Sources */,
+				68187E55178FFE410056BB9A /* FSTargetCallback.m in Sources */,
+				68187E56178FFE410056BB9A /* FSWebLogin.m in Sources */,
+				68187E80179171440056BB9A /* DYRateView.m in Sources */,
+				68187E881792AA400056BB9A /* HSStationInfo.m in Sources */,
+				68187E891792AA400056BB9A /* HSUserInfo.m in Sources */,
+				68187E8C1792AA700056BB9A /* HSStationReview.m in Sources */,
+				68187E901792AD2C0056BB9A /* HSStationReviewsViewController.m in Sources */,
+				68187E941792B5B70056BB9A /* HSViewUtils.m in Sources */,
+				687B72741797E61200832B9D /* HSUIResources.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
