@@ -26,4 +26,8 @@
 - (id)initWithReviewerName:(NSString *)reviewerName rating:(NSNumber *)rating review:(NSString *)review
         date:(NSDate *)date;
 
+/// @name Utility
++ (NSArray *)getRatedStationReviews:(NSArray *)reviews;
++ (double)calculateStationRatingWithReviews:(NSArray *)reviews;
++ (NSUInteger)calculateRatedStationsWithReviews:(NSArray *)reviews;
 @end

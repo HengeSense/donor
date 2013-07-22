@@ -8,13 +8,17 @@
 //
 
 #import "HSStationCardViewController.h"
+
+#import "MBProgressHUD.h"
+
 #import "HSStationsMapViewController.h"
-
 #import "HSStationReviewsViewController.h"
+#import "HSAlertViewController.h"
 
-#import "Foursquare2.h"
+#import "HSFoursquare.h"
 #import "DYRateView.h"
 #import "HSViewUtils.h"
+#import "UIView+HSLayoutManager.h"
 
 #import "HSStationReview.h"
 
@@ -22,9 +26,10 @@
 static const CGFloat kVerticalTab_Label = 10.0f;
 static const CGFloat kVerticalTab_ShowOnMapButton = 20.0f;
 
-@interface HSStationCardViewController () <DYRateViewDelegate>
+@interface HSStationCardViewController ()
 
 @property (nonatomic, strong) HSStationInfo *stationInfo;
+@property (nonatomic, strong) NSArray *stationReviews;
 
 @end
 
@@ -43,9 +48,86 @@ static const CGFloat kVerticalTab_ShowOnMapButton = 20.0f;
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self configureUI];
+    [self layoutUI];
 }
 
-- (void)viewWillAppear:(BOOL)animated{
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.scrollView adjustAsContentView];
+    if (self.stationReviews == nil) {
+        [self loadStationReviews];
+    }
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+}
+
+- (IBAction)onGoToSitePressed:(id)sender{
+    NSString *site = self.stationInfo.site;
+    if(site){
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:site]];
+    };
+};
+
+- (IBAction)onShowOnMapPressed:(id)sender{
+    HSStationsMapViewController *mapViewConroller =
+            [[HSStationsMapViewController alloc] initWithStations:[NSArray arrayWithObject:self.stationInfo]];
+    [self.navigationController pushViewController:mapViewConroller animated:YES];
+};
+
+- (IBAction)showReviews:(id)sender {
+    HSStationReviewsViewController *vc = [[HSStationReviewsViewController alloc]
+            initWithStationName:self.stationInfo.name stationReviews:self.stationReviews];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (IBAction)doReview:(id)sender {
+    NSLog([NSString stringWithFormat:@"%@ stub.", NSStringFromSelector(_cmd)]);
+}
+
+#pragma mark - Private
+#pragma mark - UI configuration
+- (void)configureUI {
+    self.title = @"Станция";
+    
+    [self configureContentViews];
+    [self configureNavigationBar];
+
+    [self.scrollView addSubview:self.stationContentView];
+    self.scrollView.contentSize = self.stationContentView.bounds.size;
+}
+
+- (void)configureNavigationBar {
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Назад"
+            style:UIBarButtonItemStyleBordered target:nil action:nil];
+}
+
+- (void)configureContentViews {
+    // Rate view
+    self.rateView.editable = NO;
+    self.rateView.padding = 10.0;
+    self.rateView.backgroundColor = [UIColor clearColor];
+    self.rateView.emptyStarImage = [UIImage imageNamed:@"ratedStarEmpty"];
+    self.rateView.fullStarImage = [UIImage imageNamed:@"ratedStarFill"];
+    
+    self.rateCountLabel.text = @" ";
+    
+    // Rate buttons
+    [self.doReviewButton setTitleColor:self.doReviewButton.titleLabel.textColor forState:UIControlStateNormal];
+    [self.doReviewButton setTitleColor:self.doReviewButton.titleLabel.textColor forState:UIControlStateHighlighted];
+    
+    // Reviews label
+    self.reviewsCountLabel.text = @" ";
+}
+
+#pragma mark - UI layout
+- (void)layoutUI {
+    [self layoutContentView];
+    [self layoutRootView];
+}
+
+- (void)layoutContentView {
     self.nameLabel.text = self.stationInfo.name;
     self.regionLabel.text = self.stationInfo.region_name;
     self.districtLabel.text = self.stationInfo.district_name;
@@ -130,90 +212,35 @@ static const CGFloat kVerticalTab_ShowOnMapButton = 20.0f;
     CGRect contentFrame = self.stationContentView.frame;
     contentFrame.size.height = curY;
     self.stationContentView.frame = contentFrame;
-    self.scrollView.contentSize = contentFrame.size;
-};
-
-- (IBAction)onGoToSitePressed:(id)sender{
-    NSString *site = self.stationInfo.site;
-    if(site){
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:site]];
-    };
-};
-
-- (IBAction)onShowOnMapPressed:(id)sender{
-    HSStationsMapViewController *mapViewConroller =
-            [[HSStationsMapViewController alloc] initWithStations:[NSArray arrayWithObject:self.stationInfo]];
-    [self.navigationController pushViewController:mapViewConroller animated:YES];
-};
-
-- (IBAction)showReviews:(id)sender {
-    NSMutableArray *stationReviews = [NSMutableArray array];
-    [stationReviews addObject:[[HSStationReview alloc] initWithReviewerName:@"user1" rating:@1 review:@"rating1"]];
-    [stationReviews addObject:[[HSStationReview alloc] initWithReviewerName:@"user2" rating:@2 review:@"rating2"]];
-    [stationReviews addObject:[[HSStationReview alloc] initWithReviewerName:@"user3" rating:@3 review:@"rating3"]];
-    [stationReviews addObject:[[HSStationReview alloc] initWithReviewerName:@"user4" rating:@4 review:@"rating4"]];
-    [stationReviews addObject:[[HSStationReview alloc] initWithReviewerName:@"user5" rating:@5 review:@"rating5"]];
-    
-    HSStationReviewsViewController *vc =
-            [[HSStationReviewsViewController alloc] initWithStationName:self.stationInfo.name
-            stationReviews:stationReviews];
-    [self.navigationController pushViewController:vc animated:YES];
 }
 
-- (IBAction)doReview:(id)sender {
-    NSLog([NSString stringWithFormat:@"%@ stub.", NSStringFromSelector(_cmd)]);
+- (void)layoutRootView {
+    self.scrollView.contentSize = self.stationContentView.frame.size;
 }
 
-#pragma mark - Private
-#pragma mark - UI configuration
-- (void)configureUI {
-    self.title = @"Станция";
-    
-    [self configureRateViews];
-    [self configureNavigationBar];
-
-    [self.scrollView addSubview:self.stationContentView];
-    self.scrollView.contentSize = self.stationContentView.bounds.size;
-}
-
-- (void)configureNavigationBar {
-    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Назад"
-            style:UIBarButtonItemStyleBordered target:nil action:nil];
-}
-
-- (void)configureRateViews {
-    // Rate view
-    self.rateView.editable = YES;
-    self.rateView.delegate = self;
-    self.rateView.padding = 10.0;
-    self.rateView.backgroundColor = [UIColor clearColor];
-    self.rateView.emptyStarImage = [UIImage imageNamed:@"ratedStarEmpty"];
-    self.rateView.fullStarImage = [UIImage imageNamed:@"ratedStarFill"];
-    
-    self.rateCountLabel.text = @" ";
-    
-    // Rate buttons
-    [self.doReviewButton setTitleColor:self.doReviewButton.titleLabel.textColor forState:UIControlStateNormal];
-    [self.doReviewButton setTitleColor:self.doReviewButton.titleLabel.textColor forState:UIControlStateHighlighted];
-}
-
-#pragma mark - DYRateViewDelegate
-- (void)rateView:(DYRateView *)rateView changedToNewRate:(NSNumber *)rate {
-    NSUInteger correctedRate = [rate unsignedIntegerValue];
-    if (correctedRate < 1) {
-        correctedRate = 0;
-    } else if (correctedRate < 2) {
-        correctedRate *= 1;
-    } else if (correctedRate < 3) {
-        correctedRate *= 10;
-    } else if (correctedRate < 4) {
-        correctedRate *= 100;
-    } else if (correctedRate < 5) {
-        correctedRate *= 1000;
-    } else {
-        correctedRate *= 10000;
+#pragma mark - UI feed
+- (void)feedUI {
+    if (self.stationReviews == nil) {
+        NSLog(@"No statio reviews to feed UI");
+        return;
     }
-    self.rateCountLabel.text = [NSString stringWithFormat:@"(%u)", correctedRate];
+    self.rateView.rate = [HSStationReview calculateStationRatingWithReviews:self.stationReviews];
+    self.rateCountLabel.text = [NSString stringWithFormat:@"%.2f",self.rateView.rate];
+    self.reviewsCountLabel.text = [NSString stringWithFormat:@"%u", self.stationReviews.count];
+}
+
+#pragma mark - Station reviews
+- (void)loadStationReviews {
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+    [[HSFoursquare sharedInstance] getStationReviews:self.stationInfo completion:^(BOOL success, id result) {
+        [hud hide:YES];
+        if (success) {
+            self.stationReviews = result;
+            [self feedUI];
+        } else {
+            [HSAlertViewController showWithMessage:@"Произошла ошибка загрузки отзывов."];
+        }
+    }];
 }
 
 @end

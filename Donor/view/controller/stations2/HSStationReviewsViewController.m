@@ -206,16 +206,12 @@ static const CGFloat kSectionsVerticalPadding = 10.0f;
 #pragma mark - UI feed
 - (void)feedUI {
     self.stationNameLabel.text = self.stationName;
-    self.stationReviewsCountLabel.text = [NSString stringWithFormat:@"%u", self.stationReviews.count];
-    self.stationRateView.rate = [[self calculateStationRatingWithReviews:self.stationReviews] floatValue];
+    self.stationReviewsCountLabel.text = [NSString stringWithFormat:@"%u",
+            [HSStationReview calculateRatedStationsWithReviews:self.stationReviews]];
+    self.stationRateView.rate = [HSStationReview calculateStationRatingWithReviews:self.stationReviews];
 }
 
 #pragma mark - UI feed helpers
-- (NSNumber *)calculateStationRatingWithReviews:(NSArray *)reviews {
-    THROW_IF_ARGUMENT_NIL(reviews);
-    return [reviews valueForKeyPath:@"@avg.rating"];
-}
-
 - (NSString *)formatDate:(NSDate *)date {
     THROW_IF_ARGUMENT_NIL(date);
     static NSDateFormatter *formatter = nil;

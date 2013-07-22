@@ -134,7 +134,6 @@
 		409F0D26170F082500E0AF77 /* HSItsBetaAchievementsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 409F0D25170F082400E0AF77 /* HSItsBetaAchievementsCell.xib */; };
 		40D5FF631714409A00821B01 /* HSItsBetaAchievementDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40D5FF611714409900821B01 /* HSItsBetaAchievementDetailViewController.m */; };
 		40D5FF641714409A00821B01 /* HSItsBetaAchievementDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40D5FF621714409900821B01 /* HSItsBetaAchievementDetailViewController.xib */; };
-		40D5FF77171579D100821B01 /* HSItsBeta.m in Sources */ = {isa = PBXBuildFile; fileRef = 40D5FF76171579D100821B01 /* HSItsBeta.m */; };
 		6802A1671665D4FD0034B124 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 371CBA5215AFD452008CA154 /* Parse.framework */; };
 		68187E53178FFE410056BB9A /* Foursquare2.m in Sources */ = {isa = PBXBuildFile; fileRef = 68187E47178FFE410056BB9A /* Foursquare2.m */; };
 		68187E54178FFE410056BB9A /* FSRequester.m in Sources */ = {isa = PBXBuildFile; fileRef = 68187E49178FFE410056BB9A /* FSRequester.m */; };
@@ -256,7 +255,6 @@
 		6864D6231708B3C400F150F9 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6864D61C1708B3C400F150F9 /* Default-568h@2x.png */; };
 		6864D6241708B3C400F150F9 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 6864D61D1708B3C400F150F9 /* Default.png */; };
 		6864D6251708B3C400F150F9 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6864D61E1708B3C400F150F9 /* Default@2x.png */; };
-		6864D6291708CB4900F150F9 /* HSMailChimp.m in Sources */ = {isa = PBXBuildFile; fileRef = 6864D6281708CB4900F150F9 /* HSMailChimp.m */; };
 		6864D66F17127A0600F150F9 /* HSEventShortInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6864D66E17127A0600F150F9 /* HSEventShortInfoView.m */; };
 		6864D67117127A3700F150F9 /* HSEventShortInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6864D67017127A3700F150F9 /* HSEventShortInfoView.xib */; };
 		6864D67417128FAC00F150F9 /* UIView+HSSubviewManagement.m in Sources */ = {isa = PBXBuildFile; fileRef = 6864D67317128FAC00F150F9 /* UIView+HSSubviewManagement.m */; };
@@ -281,6 +279,14 @@
 		687A436B16F7C19400958347 /* SubscribeAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 687A436616F7C19400958347 /* SubscribeAlertView.m */; };
 		687A436C16F7C19400958347 /* CKAuthViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 687A436816F7C19400958347 /* CKAuthViewController.xib */; };
 		687B72741797E61200832B9D /* HSUIResources.m in Sources */ = {isa = PBXBuildFile; fileRef = 687B72731797E61200832B9D /* HSUIResources.m */; };
+		687B727F1797F72300832B9D /* HSFlurryAnalytics.m in Sources */ = {isa = PBXBuildFile; fileRef = 687B72781797F72300832B9D /* HSFlurryAnalytics.m */; };
+		687B72801797F72300832B9D /* HSItsBeta.m in Sources */ = {isa = PBXBuildFile; fileRef = 687B727B1797F72300832B9D /* HSItsBeta.m */; };
+		687B72811797F72300832B9D /* HSMailChimp.m in Sources */ = {isa = PBXBuildFile; fileRef = 687B727E1797F72300832B9D /* HSMailChimp.m */; };
+		687B72851797F78B00832B9D /* HSFoursquare.m in Sources */ = {isa = PBXBuildFile; fileRef = 687B72841797F78B00832B9D /* HSFoursquare.m */; };
+		687B72891798140C00832B9D /* HSFoursquareVenue.m in Sources */ = {isa = PBXBuildFile; fileRef = 687B72881798140C00832B9D /* HSFoursquareVenue.m */; };
+		687B728D179D3F7D00832B9D /* HSFoursquareTip.m in Sources */ = {isa = PBXBuildFile; fileRef = 687B728C179D3F7D00832B9D /* HSFoursquareTip.m */; };
+		687B7290179D455D00832B9D /* HSDictionaryBasedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 687B728F179D455D00832B9D /* HSDictionaryBasedObject.m */; };
+		687B7293179D4DBF00832B9D /* HSFoursquareObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 687B7292179D4DBF00832B9D /* HSFoursquareObject.m */; };
 		687E58F916AD5CE2009D0A8F /* Appirater.m in Sources */ = {isa = PBXBuildFile; fileRef = 687E58DE16AD5CE2009D0A8F /* Appirater.m */; };
 		687E58FA16AD5CE2009D0A8F /* AppiraterLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 687E58E016AD5CE2009D0A8F /* AppiraterLocalizable.strings */; };
 		68893A3F16518CA800955990 /* BloodDonor_tutorial_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 68893A3316518CA800955990 /* BloodDonor_tutorial_1.png */; };
@@ -297,7 +303,6 @@
 		68893A4A16518CA800955990 /* BloodDonor_tutorial_6@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68893A3E16518CA800955990 /* BloodDonor_tutorial_6@2x.png */; };
 		688F7F7C169FCD29008581D4 /* HSAlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 688F7F7A169FCD29008581D4 /* HSAlertViewController.m */; };
 		688F7F7D169FCD29008581D4 /* HSAlertViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 688F7F7B169FCD29008581D4 /* HSAlertViewController.xib */; };
-		688F7F8716A012FD008581D4 /* HSFlurryAnalytics.m in Sources */ = {isa = PBXBuildFile; fileRef = 688F7F8516A012FD008581D4 /* HSFlurryAnalytics.m */; };
 		688F7F8A16A01343008581D4 /* NSString+HSUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 688F7F8916A01343008581D4 /* NSString+HSUtils.m */; };
 		688F7FCA16A308A5008581D4 /* NSUnderlinedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 688F7FC916A308A5008581D4 /* NSUnderlinedButton.m */; };
 		689B00C316A7783400B5CA4C /* facebookButtonNormal.png in Resources */ = {isa = PBXBuildFile; fileRef = 689B00B716A7783400B5CA4C /* facebookButtonNormal.png */; };
@@ -839,8 +844,6 @@
 		40D5FF601714409900821B01 /* HSItsBetaAchievementDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSItsBetaAchievementDetailViewController.h; sourceTree = "<group>"; };
 		40D5FF611714409900821B01 /* HSItsBetaAchievementDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSItsBetaAchievementDetailViewController.m; sourceTree = "<group>"; };
 		40D5FF621714409900821B01 /* HSItsBetaAchievementDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HSItsBetaAchievementDetailViewController.xib; sourceTree = "<group>"; };
-		40D5FF75171579D100821B01 /* HSItsBeta.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSItsBeta.h; sourceTree = "<group>"; };
-		40D5FF76171579D100821B01 /* HSItsBeta.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSItsBeta.m; sourceTree = "<group>"; };
 		68187E46178FFE410056BB9A /* Foursquare2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Foursquare2.h; sourceTree = "<group>"; };
 		68187E47178FFE410056BB9A /* Foursquare2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Foursquare2.m; sourceTree = "<group>"; };
 		68187E48178FFE410056BB9A /* FSRequester.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSRequester.h; sourceTree = "<group>"; };
@@ -990,8 +993,6 @@
 		6864D61C1708B3C400F150F9 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		6864D61D1708B3C400F150F9 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		6864D61E1708B3C400F150F9 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
-		6864D6271708CB4900F150F9 /* HSMailChimp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSMailChimp.h; sourceTree = "<group>"; };
-		6864D6281708CB4900F150F9 /* HSMailChimp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSMailChimp.m; sourceTree = "<group>"; };
 		6864D66D17127A0500F150F9 /* HSEventShortInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSEventShortInfoView.h; sourceTree = "<group>"; };
 		6864D66E17127A0600F150F9 /* HSEventShortInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSEventShortInfoView.m; sourceTree = "<group>"; };
 		6864D67017127A3700F150F9 /* HSEventShortInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HSEventShortInfoView.xib; sourceTree = "<group>"; };
@@ -1043,6 +1044,22 @@
 		687A436816F7C19400958347 /* CKAuthViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CKAuthViewController.xib; sourceTree = "<group>"; };
 		687B72721797E61200832B9D /* HSUIResources.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSUIResources.h; sourceTree = "<group>"; };
 		687B72731797E61200832B9D /* HSUIResources.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSUIResources.m; sourceTree = "<group>"; };
+		687B72771797F72300832B9D /* HSFlurryAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSFlurryAnalytics.h; sourceTree = "<group>"; };
+		687B72781797F72300832B9D /* HSFlurryAnalytics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSFlurryAnalytics.m; sourceTree = "<group>"; };
+		687B727A1797F72300832B9D /* HSItsBeta.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSItsBeta.h; sourceTree = "<group>"; };
+		687B727B1797F72300832B9D /* HSItsBeta.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSItsBeta.m; sourceTree = "<group>"; };
+		687B727D1797F72300832B9D /* HSMailChimp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSMailChimp.h; sourceTree = "<group>"; };
+		687B727E1797F72300832B9D /* HSMailChimp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSMailChimp.m; sourceTree = "<group>"; };
+		687B72831797F78B00832B9D /* HSFoursquare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSFoursquare.h; sourceTree = "<group>"; };
+		687B72841797F78B00832B9D /* HSFoursquare.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSFoursquare.m; sourceTree = "<group>"; };
+		687B72871798140C00832B9D /* HSFoursquareVenue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSFoursquareVenue.h; sourceTree = "<group>"; };
+		687B72881798140C00832B9D /* HSFoursquareVenue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSFoursquareVenue.m; sourceTree = "<group>"; };
+		687B728B179D3F7D00832B9D /* HSFoursquareTip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSFoursquareTip.h; sourceTree = "<group>"; };
+		687B728C179D3F7D00832B9D /* HSFoursquareTip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSFoursquareTip.m; sourceTree = "<group>"; };
+		687B728E179D455D00832B9D /* HSDictionaryBasedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSDictionaryBasedObject.h; sourceTree = "<group>"; };
+		687B728F179D455D00832B9D /* HSDictionaryBasedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSDictionaryBasedObject.m; sourceTree = "<group>"; };
+		687B7291179D4DBF00832B9D /* HSFoursquareObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSFoursquareObject.h; sourceTree = "<group>"; };
+		687B7292179D4DBF00832B9D /* HSFoursquareObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSFoursquareObject.m; sourceTree = "<group>"; };
 		687E58DD16AD5CE2009D0A8F /* Appirater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Appirater.h; sourceTree = "<group>"; };
 		687E58DE16AD5CE2009D0A8F /* Appirater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Appirater.m; sourceTree = "<group>"; };
 		687E58DF16AD5CE2009D0A8F /* AppiraterDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppiraterDelegate.h; sourceTree = "<group>"; };
@@ -1084,8 +1101,6 @@
 		688F7F79169FCD29008581D4 /* HSAlertViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSAlertViewController.h; sourceTree = "<group>"; };
 		688F7F7A169FCD29008581D4 /* HSAlertViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSAlertViewController.m; sourceTree = "<group>"; };
 		688F7F7B169FCD29008581D4 /* HSAlertViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HSAlertViewController.xib; sourceTree = "<group>"; };
-		688F7F8416A012FD008581D4 /* HSFlurryAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSFlurryAnalytics.h; sourceTree = "<group>"; };
-		688F7F8516A012FD008581D4 /* HSFlurryAnalytics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSFlurryAnalytics.m; sourceTree = "<group>"; };
 		688F7F8816A01343008581D4 /* NSString+HSUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+HSUtils.h"; sourceTree = "<group>"; };
 		688F7F8916A01343008581D4 /* NSString+HSUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+HSUtils.m"; sourceTree = "<group>"; };
 		688F7FC816A308A5008581D4 /* NSUnderlinedButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSUnderlinedButton.h; sourceTree = "<group>"; };
@@ -2031,15 +2046,6 @@
 			path = Images;
 			sourceTree = "<group>";
 		};
-		40D5FF74171579D100821B01 /* ItsBeta */ = {
-			isa = PBXGroup;
-			children = (
-				40D5FF75171579D100821B01 /* HSItsBeta.h */,
-				40D5FF76171579D100821B01 /* HSItsBeta.m */,
-			);
-			path = ItsBeta;
-			sourceTree = "<group>";
-		};
 		68187E45178FFE410056BB9A /* Foursquare2 */ = {
 			isa = PBXGroup;
 			children = (
@@ -2405,15 +2411,6 @@
 			path = splash;
 			sourceTree = "<group>";
 		};
-		6864D6261708CB2800F150F9 /* MailChimp */ = {
-			isa = PBXGroup;
-			children = (
-				6864D6271708CB4900F150F9 /* HSMailChimp.h */,
-				6864D6281708CB4900F150F9 /* HSMailChimp.m */,
-			);
-			path = MailChimp;
-			sourceTree = "<group>";
-		};
 		6864D6AB17174B8400F150F9 /* MWFeedParser */ = {
 			isa = PBXGroup;
 			children = (
@@ -2551,6 +2548,69 @@
 			path = Libs/ChimpKit/Core/Nibs;
 			sourceTree = "<group>";
 		};
+		687B72751797F72300832B9D /* service */ = {
+			isa = PBXGroup;
+			children = (
+				687B728E179D455D00832B9D /* HSDictionaryBasedObject.h */,
+				687B728F179D455D00832B9D /* HSDictionaryBasedObject.m */,
+				687B72761797F72300832B9D /* FlurryAnalytics */,
+				687B72821797F75A00832B9D /* Foursquare */,
+				687B72791797F72300832B9D /* ItsBeta */,
+				687B727C1797F72300832B9D /* MailChimp */,
+			);
+			path = service;
+			sourceTree = "<group>";
+		};
+		687B72761797F72300832B9D /* FlurryAnalytics */ = {
+			isa = PBXGroup;
+			children = (
+				687B72771797F72300832B9D /* HSFlurryAnalytics.h */,
+				687B72781797F72300832B9D /* HSFlurryAnalytics.m */,
+			);
+			path = FlurryAnalytics;
+			sourceTree = "<group>";
+		};
+		687B72791797F72300832B9D /* ItsBeta */ = {
+			isa = PBXGroup;
+			children = (
+				687B727A1797F72300832B9D /* HSItsBeta.h */,
+				687B727B1797F72300832B9D /* HSItsBeta.m */,
+			);
+			path = ItsBeta;
+			sourceTree = "<group>";
+		};
+		687B727C1797F72300832B9D /* MailChimp */ = {
+			isa = PBXGroup;
+			children = (
+				687B727D1797F72300832B9D /* HSMailChimp.h */,
+				687B727E1797F72300832B9D /* HSMailChimp.m */,
+			);
+			path = MailChimp;
+			sourceTree = "<group>";
+		};
+		687B72821797F75A00832B9D /* Foursquare */ = {
+			isa = PBXGroup;
+			children = (
+				687B72831797F78B00832B9D /* HSFoursquare.h */,
+				687B72841797F78B00832B9D /* HSFoursquare.m */,
+				687B7286179813F400832B9D /* private */,
+			);
+			path = Foursquare;
+			sourceTree = "<group>";
+		};
+		687B7286179813F400832B9D /* private */ = {
+			isa = PBXGroup;
+			children = (
+				687B7291179D4DBF00832B9D /* HSFoursquareObject.h */,
+				687B7292179D4DBF00832B9D /* HSFoursquareObject.m */,
+				687B728B179D3F7D00832B9D /* HSFoursquareTip.h */,
+				687B728C179D3F7D00832B9D /* HSFoursquareTip.m */,
+				687B72871798140C00832B9D /* HSFoursquareVenue.h */,
+				687B72881798140C00832B9D /* HSFoursquareVenue.m */,
+			);
+			path = private;
+			sourceTree = "<group>";
+		};
 		687E58DB16AD5CE2009D0A8F /* Appirater */ = {
 			isa = PBXGroup;
 			children = (
@@ -2586,21 +2646,9 @@
 			isa = PBXGroup;
 			children = (
 				68C4277F174FB11C00D477B2 /* persistence */,
-				688F7F8316A012FD008581D4 /* FlurryAnalytics */,
-				6864D6261708CB2800F150F9 /* MailChimp */,
 				688F7F8616A012FD008581D4 /* string */,
-				40D5FF74171579D100821B01 /* ItsBeta */,
 			);
 			path = utils;
-			sourceTree = "<group>";
-		};
-		688F7F8316A012FD008581D4 /* FlurryAnalytics */ = {
-			isa = PBXGroup;
-			children = (
-				688F7F8416A012FD008581D4 /* HSFlurryAnalytics.h */,
-				688F7F8516A012FD008581D4 /* HSFlurryAnalytics.m */,
-			);
-			path = FlurryAnalytics;
 			sourceTree = "<group>";
 		};
 		688F7F8616A012FD008581D4 /* string */ = {
@@ -3127,6 +3175,7 @@
 				68F7F3F01638878800740CCF /* HSModelCommon.m */,
 				68EB27541630906A0092FDBA /* calendar */,
 				68EB27551630906A0092FDBA /* event */,
+				687B72751797F72300832B9D /* service */,
 				68187E811792AA400056BB9A /* station */,
 				6864D5E6170865C000F150F9 /* types */,
 				68187E851792AA400056BB9A /* user */,
@@ -3915,7 +3964,6 @@
 				683F8A9D1648C0EA0066C47A /* HSDayHolidayEvent.m in Sources */,
 				683F8AA01649B8C10066C47A /* NSDate+HSCalendar.m in Sources */,
 				688F7F7C169FCD29008581D4 /* HSAlertViewController.m in Sources */,
-				688F7F8716A012FD008581D4 /* HSFlurryAnalytics.m in Sources */,
 				688F7F8A16A01343008581D4 /* NSString+HSUtils.m in Sources */,
 				688F7FCA16A308A5008581D4 /* NSUnderlinedButton.m in Sources */,
 				687E58F916AD5CE2009D0A8F /* Appirater.m in Sources */,
@@ -3988,12 +4036,10 @@
 				687A436916F7C19400958347 /* ChimpKit.m in Sources */,
 				687A436A16F7C19400958347 /* CKAuthViewController.m in Sources */,
 				687A436B16F7C19400958347 /* SubscribeAlertView.m in Sources */,
-				6864D6291708CB4900F150F9 /* HSMailChimp.m in Sources */,
 				40595AF4170C4086007B2C61 /* HSItsBetaAchievementsViewController.m in Sources */,
 				409F0D1E170F039800E0AF77 /* HSItsBetaAchievementsCell.m in Sources */,
 				404470111712AF1000DF0561 /* HSItsBetaAchievementsHeader.m in Sources */,
 				40D5FF631714409A00821B01 /* HSItsBetaAchievementDetailViewController.m in Sources */,
-				40D5FF77171579D100821B01 /* HSItsBeta.m in Sources */,
 				6864D66F17127A0600F150F9 /* HSEventShortInfoView.m in Sources */,
 				6864D67417128FAC00F150F9 /* UIView+HSSubviewManagement.m in Sources */,
 				CEE388A61718B90C001B6F0A /* HSHTTPControl.m in Sources */,
@@ -4051,6 +4097,14 @@
 				68187E901792AD2C0056BB9A /* HSStationReviewsViewController.m in Sources */,
 				68187E941792B5B70056BB9A /* HSViewUtils.m in Sources */,
 				687B72741797E61200832B9D /* HSUIResources.m in Sources */,
+				687B727F1797F72300832B9D /* HSFlurryAnalytics.m in Sources */,
+				687B72801797F72300832B9D /* HSItsBeta.m in Sources */,
+				687B72811797F72300832B9D /* HSMailChimp.m in Sources */,
+				687B72851797F78B00832B9D /* HSFoursquare.m in Sources */,
+				687B72891798140C00832B9D /* HSFoursquareVenue.m in Sources */,
+				687B728D179D3F7D00832B9D /* HSFoursquareTip.m in Sources */,
+				687B7290179D455D00832B9D /* HSDictionaryBasedObject.m in Sources */,
+				687B7293179D4DBF00832B9D /* HSFoursquareObject.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
