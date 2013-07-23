@@ -11,9 +11,10 @@
 
 #import "MBProgressHUD.h"
 
+#import "HSAlertViewController.h"
 #import "HSStationsMapViewController.h"
 #import "HSStationReviewsViewController.h"
-#import "HSAlertViewController.h"
+#import "HSAddStationReviewViewController.h"
 
 #import "HSFoursquare.h"
 #import "DYRateView.h"
@@ -36,6 +37,7 @@ static const CGFloat kVerticalTab_ShowOnMapButton = 20.0f;
 @implementation HSStationCardViewController
 
 - (id)initWithStationInfo:(HSStationInfo *)stationInfo {
+    THROW_IF_ARGUMENT_NIL(stationInfo);
     self = [super initWithNibName:NSStringFromClass(self.class) bundle:nil];
     if (self) {
         self.stationInfo = stationInfo;
@@ -83,7 +85,9 @@ static const CGFloat kVerticalTab_ShowOnMapButton = 20.0f;
 }
 
 - (IBAction)doReview:(id)sender {
-    NSLog([NSString stringWithFormat:@"%@ stub.", NSStringFromSelector(_cmd)]);
+    HSAddStationReviewViewController *vc = [[HSAddStationReviewViewController alloc]
+            initWithStationInfo:self.stationInfo];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark - Private
@@ -93,9 +97,7 @@ static const CGFloat kVerticalTab_ShowOnMapButton = 20.0f;
     
     [self configureContentViews];
     [self configureNavigationBar];
-
-    [self.scrollView addSubview:self.stationContentView];
-    self.scrollView.contentSize = self.stationContentView.bounds.size;
+    [self configureRootView];
 }
 
 - (void)configureNavigationBar {
@@ -119,6 +121,10 @@ static const CGFloat kVerticalTab_ShowOnMapButton = 20.0f;
     
     // Reviews label
     self.reviewsCountLabel.text = @" ";
+}
+
+- (void)configureRootView {
+    [self.scrollView addSubview:self.stationContentView];
 }
 
 #pragma mark - UI layout

@@ -265,6 +265,14 @@
 		6864D6BB17174CCE00F150F9 /* GTMNSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 6864D6BA17174CCE00F150F9 /* GTMNSString+HTML.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		6864D6BE17174D0000F150F9 /* NSDate+InternetDateTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 6864D6BD17174D0000F150F9 /* NSDate+InternetDateTime.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		6864D6C0171ACE8A00F150F9 /* news_template.html in Resources */ = {isa = PBXBuildFile; fileRef = 6864D6BF171ACE8A00F150F9 /* news_template.html */; };
+		68658983179E77CA00A62B29 /* content_button_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 6865897F179E77CA00A62B29 /* content_button_normal.png */; };
+		68658984179E77CA00A62B29 /* content_button_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68658980179E77CA00A62B29 /* content_button_normal@2x.png */; };
+		68658985179E77CA00A62B29 /* content_button_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 68658981179E77CA00A62B29 /* content_button_pressed.png */; };
+		68658986179E77CA00A62B29 /* content_button_pressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68658982179E77CA00A62B29 /* content_button_pressed@2x.png */; };
+		6865898B179E78F300A62B29 /* tutorialDotActive.png in Resources */ = {isa = PBXBuildFile; fileRef = 68658987179E78F300A62B29 /* tutorialDotActive.png */; };
+		6865898C179E78F300A62B29 /* tutorialDotActive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68658988179E78F300A62B29 /* tutorialDotActive@2x.png */; };
+		6865898D179E78F300A62B29 /* tutorialDotNormal.png in Resources */ = {isa = PBXBuildFile; fileRef = 68658989179E78F300A62B29 /* tutorialDotNormal.png */; };
+		6865898E179E78F300A62B29 /* tutorialDotNormal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6865898A179E78F300A62B29 /* tutorialDotNormal@2x.png */; };
 		686BA62216344DE2004D7082 /* HSCalendarDayButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 686BA62116344DE2004D7082 /* HSCalendarDayButton.m */; };
 		686BA62716345D0E004D7082 /* NSCalendar+HSCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 686BA62616345D0E004D7082 /* NSCalendar+HSCalendar.m */; };
 		686BA62A163469C3004D7082 /* HSBloodDonorTests_Calendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 686BA629163469C3004D7082 /* HSBloodDonorTests_Calendar.m */; };
@@ -287,6 +295,8 @@
 		687B728D179D3F7D00832B9D /* HSFoursquareTip.m in Sources */ = {isa = PBXBuildFile; fileRef = 687B728C179D3F7D00832B9D /* HSFoursquareTip.m */; };
 		687B7290179D455D00832B9D /* HSDictionaryBasedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 687B728F179D455D00832B9D /* HSDictionaryBasedObject.m */; };
 		687B7293179D4DBF00832B9D /* HSFoursquareObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 687B7292179D4DBF00832B9D /* HSFoursquareObject.m */; };
+		687B7297179D767100832B9D /* HSAddStationReviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 687B7295179D767000832B9D /* HSAddStationReviewViewController.m */; };
+		687B7298179D767100832B9D /* HSAddStationReviewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 687B7296179D767100832B9D /* HSAddStationReviewViewController.xib */; };
 		687E58F916AD5CE2009D0A8F /* Appirater.m in Sources */ = {isa = PBXBuildFile; fileRef = 687E58DE16AD5CE2009D0A8F /* Appirater.m */; };
 		687E58FA16AD5CE2009D0A8F /* AppiraterLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 687E58E016AD5CE2009D0A8F /* AppiraterLocalizable.strings */; };
 		68893A3F16518CA800955990 /* BloodDonor_tutorial_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 68893A3316518CA800955990 /* BloodDonor_tutorial_1.png */; };
@@ -491,10 +501,6 @@
 		8509917A15D903B0002FCFDE /* spoilerButtonClose@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8509917215D903B0002FCFDE /* spoilerButtonClose@2x.png */; };
 		8509917B15D903B0002FCFDE /* spoilerButtonOpen.png in Resources */ = {isa = PBXBuildFile; fileRef = 8509917315D903B0002FCFDE /* spoilerButtonOpen.png */; };
 		8509917C15D903B0002FCFDE /* spoilerButtonOpen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8509917415D903B0002FCFDE /* spoilerButtonOpen@2x.png */; };
-		8512458F1603443B00752AE1 /* tutorialDotActive.png in Resources */ = {isa = PBXBuildFile; fileRef = 8512457D1603443B00752AE1 /* tutorialDotActive.png */; };
-		851245901603443B00752AE1 /* tutorialDotActive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8512457E1603443B00752AE1 /* tutorialDotActive@2x.png */; };
-		851245911603443B00752AE1 /* tutorialDotNormal.png in Resources */ = {isa = PBXBuildFile; fileRef = 8512457F1603443B00752AE1 /* tutorialDotNormal.png */; };
-		851245921603443B00752AE1 /* tutorialDotNormal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 851245801603443B00752AE1 /* tutorialDotNormal@2x.png */; };
 		856B398415CEDEE100F0DEA7 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 856B398315CEDEE100F0DEA7 /* MessageUI.framework */; };
 		856B398A15CEDF2A00F0DEA7 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 856B398915CEDF2A00F0DEA7 /* CoreFoundation.framework */; };
 		8585E172161A991E00275AE7 /* userLocation@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8585E170161A991E00275AE7 /* userLocation@2x.png */; };
@@ -1012,6 +1018,14 @@
 		6864D6BC17174CFF00F150F9 /* NSDate+InternetDateTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+InternetDateTime.h"; sourceTree = "<group>"; };
 		6864D6BD17174D0000F150F9 /* NSDate+InternetDateTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+InternetDateTime.m"; sourceTree = "<group>"; };
 		6864D6BF171ACE8A00F150F9 /* news_template.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = news_template.html; sourceTree = "<group>"; };
+		6865897F179E77CA00A62B29 /* content_button_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = content_button_normal.png; sourceTree = "<group>"; };
+		68658980179E77CA00A62B29 /* content_button_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "content_button_normal@2x.png"; sourceTree = "<group>"; };
+		68658981179E77CA00A62B29 /* content_button_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = content_button_pressed.png; sourceTree = "<group>"; };
+		68658982179E77CA00A62B29 /* content_button_pressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "content_button_pressed@2x.png"; sourceTree = "<group>"; };
+		68658987179E78F300A62B29 /* tutorialDotActive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tutorialDotActive.png; sourceTree = "<group>"; };
+		68658988179E78F300A62B29 /* tutorialDotActive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tutorialDotActive@2x.png"; sourceTree = "<group>"; };
+		68658989179E78F300A62B29 /* tutorialDotNormal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tutorialDotNormal.png; sourceTree = "<group>"; };
+		6865898A179E78F300A62B29 /* tutorialDotNormal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tutorialDotNormal@2x.png"; sourceTree = "<group>"; };
 		686BA62016344DE2004D7082 /* HSCalendarDayButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSCalendarDayButton.h; sourceTree = "<group>"; };
 		686BA62116344DE2004D7082 /* HSCalendarDayButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSCalendarDayButton.m; sourceTree = "<group>"; };
 		686BA62516345D0E004D7082 /* NSCalendar+HSCalendar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSCalendar+HSCalendar.h"; sourceTree = "<group>"; };
@@ -1060,6 +1074,9 @@
 		687B728F179D455D00832B9D /* HSDictionaryBasedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSDictionaryBasedObject.m; sourceTree = "<group>"; };
 		687B7291179D4DBF00832B9D /* HSFoursquareObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSFoursquareObject.h; sourceTree = "<group>"; };
 		687B7292179D4DBF00832B9D /* HSFoursquareObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSFoursquareObject.m; sourceTree = "<group>"; };
+		687B7294179D767000832B9D /* HSAddStationReviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HSAddStationReviewViewController.h; path = Donor/view/controller/stations2/HSAddStationReviewViewController.h; sourceTree = SOURCE_ROOT; };
+		687B7295179D767000832B9D /* HSAddStationReviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HSAddStationReviewViewController.m; path = Donor/view/controller/stations2/HSAddStationReviewViewController.m; sourceTree = SOURCE_ROOT; };
+		687B7296179D767100832B9D /* HSAddStationReviewViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HSAddStationReviewViewController.xib; path = Donor/view/controller/stations2/HSAddStationReviewViewController.xib; sourceTree = SOURCE_ROOT; };
 		687E58DD16AD5CE2009D0A8F /* Appirater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Appirater.h; sourceTree = "<group>"; };
 		687E58DE16AD5CE2009D0A8F /* Appirater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Appirater.m; sourceTree = "<group>"; };
 		687E58DF16AD5CE2009D0A8F /* AppiraterDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppiraterDelegate.h; sourceTree = "<group>"; };
@@ -1394,10 +1411,6 @@
 		8509917215D903B0002FCFDE /* spoilerButtonClose@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "spoilerButtonClose@2x.png"; sourceTree = "<group>"; };
 		8509917315D903B0002FCFDE /* spoilerButtonOpen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spoilerButtonOpen.png; sourceTree = "<group>"; };
 		8509917415D903B0002FCFDE /* spoilerButtonOpen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "spoilerButtonOpen@2x.png"; sourceTree = "<group>"; };
-		8512457D1603443B00752AE1 /* tutorialDotActive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tutorialDotActive.png; sourceTree = "<group>"; };
-		8512457E1603443B00752AE1 /* tutorialDotActive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tutorialDotActive@2x.png"; sourceTree = "<group>"; };
-		8512457F1603443B00752AE1 /* tutorialDotNormal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tutorialDotNormal.png; sourceTree = "<group>"; };
-		851245801603443B00752AE1 /* tutorialDotNormal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tutorialDotNormal@2x.png"; sourceTree = "<group>"; };
 		856B398315CEDEE100F0DEA7 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		856B398515CEDEF600F0DEA7 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		856B398915CEDF2A00F0DEA7 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
@@ -1742,38 +1755,6 @@
 				6864D61B1708B3C400F150F9 /* splash */,
 				68187E9517930F560056BB9A /* station */,
 				68893A3216518CA800955990 /* tutorial */,
-				858EE0AA161D38D000A09858 /* userLocation.png */,
-				8585E179161AB04C00275AE7 /* check.png */,
-				8585E17A161AB04C00275AE7 /* check@2x.png */,
-				8585E17B161AB04C00275AE7 /* clearButton.png */,
-				8585E17C161AB04C00275AE7 /* clearButton@2x.png */,
-				8585E170161A991E00275AE7 /* userLocation@2x.png */,
-				8512457D1603443B00752AE1 /* tutorialDotActive.png */,
-				8512457E1603443B00752AE1 /* tutorialDotActive@2x.png */,
-				8512457F1603443B00752AE1 /* tutorialDotNormal.png */,
-				851245801603443B00752AE1 /* tutorialDotNormal@2x.png */,
-				85ADBCC115E8E071006E6CB7 /* sharingBackground@2x.png */,
-				85ADBCC215E8E071006E6CB7 /* sharingBackground.png */,
-				85ADBCB915E8DFF9006E6CB7 /* sharingCancelButtonNormal@2x.png */,
-				85ADBCBA15E8DFF9006E6CB7 /* sharingCancelButtonPressed@2x.png */,
-				85ADBCBB15E8DFF9006E6CB7 /* sharingCancelButtonPressed.png */,
-				85ADBCBC15E8DFF9006E6CB7 /* sharingCancelButtonNormal.png */,
-				8594B18E15DBC25000896105 /* calendarInfoButtonNormal.png */,
-				8594B18F15DBC25000896105 /* calendarInfoButtonNormal@2x.png */,
-				8594B19015DBC25000896105 /* calendarInfoButtonPressed.png */,
-				8594B19115DBC25000896105 /* calendarInfoButtonPressed@2x.png */,
-				8594B19215DBC25000896105 /* calendarInfoSectionBackground.png */,
-				8594B19315DBC25000896105 /* calendarInfoSectionBackground@2x.png */,
-				8594B17E15DBB49700896105 /* dot.png */,
-				8594B17F15DBB49700896105 /* dot@2x.png */,
-				8509916D15D903B0002FCFDE /* recomendationIcon.png */,
-				8509916E15D903B0002FCFDE /* recomendationIcon@2x.png */,
-				8509916F15D903B0002FCFDE /* spoilerBackground.png */,
-				8509917015D903B0002FCFDE /* spoilerBackground@2x.png */,
-				8509917115D903B0002FCFDE /* spoilerButtonClose.png */,
-				8509917215D903B0002FCFDE /* spoilerButtonClose@2x.png */,
-				8509917315D903B0002FCFDE /* spoilerButtonOpen.png */,
-				8509917415D903B0002FCFDE /* spoilerButtonOpen@2x.png */,
 				85040C0C15CEAE7F00CD3A16 /* absoluteSegmentButtonNotSelected.png */,
 				85040C0D15CEAE7F00CD3A16 /* absoluteSegmentButtonNotSlected@2x.png */,
 				85040C0715CEAE7F00CD3A16 /* absoluteSegmentButtonSelected.png */,
@@ -1821,6 +1802,12 @@
 				374DFFFD15BD351E0094CEFE /* calendarCompletedWholeBloodIcon@2x.png */,
 				370FA66D15B433E100FC1C86 /* calendarIcon.png */,
 				370FA66E15B433E100FC1C86 /* calendarIcon@2x.png */,
+				8594B18E15DBC25000896105 /* calendarInfoButtonNormal.png */,
+				8594B18F15DBC25000896105 /* calendarInfoButtonNormal@2x.png */,
+				8594B19015DBC25000896105 /* calendarInfoButtonPressed.png */,
+				8594B19115DBC25000896105 /* calendarInfoButtonPressed@2x.png */,
+				8594B19215DBC25000896105 /* calendarInfoSectionBackground.png */,
+				8594B19315DBC25000896105 /* calendarInfoSectionBackground@2x.png */,
 				37B1364815B538610022B8D8 /* calendarItemBorder.png */,
 				37B1364915B538610022B8D8 /* calendarItemBorder@2x.png */,
 				37B1364A15B538610022B8D8 /* calendarItemRectangle.png */,
@@ -1857,6 +1844,14 @@
 				859CF5C015C7E4D300499FFA /* cellDottedLine@2x.png */,
 				85BE8D0715C1601E00CF5606 /* cellLocation.png */,
 				85BE8D0815C1601E00CF5606 /* cellLocation@2x.png */,
+				8585E179161AB04C00275AE7 /* check.png */,
+				8585E17A161AB04C00275AE7 /* check@2x.png */,
+				8585E17B161AB04C00275AE7 /* clearButton.png */,
+				8585E17C161AB04C00275AE7 /* clearButton@2x.png */,
+				6865897F179E77CA00A62B29 /* content_button_normal.png */,
+				68658980179E77CA00A62B29 /* content_button_normal@2x.png */,
+				68658981179E77CA00A62B29 /* content_button_pressed.png */,
+				68658982179E77CA00A62B29 /* content_button_pressed@2x.png */,
 				85040C3515CEC29A00CD3A16 /* contraindicationsSectionBackground.png */,
 				85040C3415CEC29300CD3A16 /* contraindicationsSectionBackground@2x.png */,
 				370FA67115B433E100FC1C86 /* doneButtonNormal.png */,
@@ -1869,6 +1864,8 @@
 				85A0DBE015CFBAC0008618F8 /* donorForChildrenIconDisabled@2x.png */,
 				370FA67515B433E100FC1C86 /* donorIcon.png */,
 				370FA67615B433E100FC1C86 /* donorIcon@2x.png */,
+				8594B17E15DBB49700896105 /* dot.png */,
+				8594B17F15DBB49700896105 /* dot@2x.png */,
 				85A8F7A415CF8C2900535E7E /* dottedineStations@2x.png */,
 				370FA67715B433E100FC1C86 /* dottedLine.png */,
 				370FA67815B433E100FC1C86 /* dottedLine@2x.png */,
@@ -1942,6 +1939,8 @@
 				8593A8CF15D10B3200EA51F2 /* ratedStarEmpty@2x.png */,
 				8593A8D115D10B3200EA51F2 /* ratedStarFill.png */,
 				8593A8D215D10B3200EA51F2 /* ratedStarFill@2x.png */,
+				8509916D15D903B0002FCFDE /* recomendationIcon.png */,
+				8509916E15D903B0002FCFDE /* recomendationIcon@2x.png */,
 				85A0DBE115CFBAC0008618F8 /* regionalRegistrationIcon.png */,
 				85A0DBE215CFBAC0008618F8 /* regionalRegistrationIcon@2x.png */,
 				85A0DBE315CFBAC0008618F8 /* regionalRegistrationIconDisabled.png */,
@@ -1970,8 +1969,20 @@
 				85B3600515C922D000F20CDA /* shareButtonNormal@2x.png */,
 				85B3600415C922D000F20CDA /* shareButtonPressed.png */,
 				85B3600315C922D000F20CDA /* shareButtonPressed@2x.png */,
+				85ADBCC215E8E071006E6CB7 /* sharingBackground.png */,
+				85ADBCC115E8E071006E6CB7 /* sharingBackground@2x.png */,
+				85ADBCBC15E8DFF9006E6CB7 /* sharingCancelButtonNormal.png */,
+				85ADBCB915E8DFF9006E6CB7 /* sharingCancelButtonNormal@2x.png */,
+				85ADBCBB15E8DFF9006E6CB7 /* sharingCancelButtonPressed.png */,
+				85ADBCBA15E8DFF9006E6CB7 /* sharingCancelButtonPressed@2x.png */,
 				8593A8CC15D1039000EA51F2 /* showOnMapIcon.png */,
 				8593A8CB15D1039000EA51F2 /* showOnMapIcon@2x.png */,
+				8509916F15D903B0002FCFDE /* spoilerBackground.png */,
+				8509917015D903B0002FCFDE /* spoilerBackground@2x.png */,
+				8509917115D903B0002FCFDE /* spoilerButtonClose.png */,
+				8509917215D903B0002FCFDE /* spoilerButtonClose@2x.png */,
+				8509917315D903B0002FCFDE /* spoilerButtonOpen.png */,
+				8509917415D903B0002FCFDE /* spoilerButtonOpen@2x.png */,
 				8593A8DF15D132CE00EA51F2 /* stationRateBackground.png */,
 				8593A8E715D132CE00EA51F2 /* stationRateBackground@2x.png */,
 				85A0DC0215CFD6A7008618F8 /* stationsFilterButtonNotSelected.png */,
@@ -2017,6 +2028,8 @@
 				85040C0A15CEAE7F00CD3A16 /* timeSegmentButtonNotSelected@2x.png */,
 				85040C0915CEAE7F00CD3A16 /* timeSegmentButtonSelected.png */,
 				85040C0815CEAE7F00CD3A16 /* timeSegmentButtonSelected@2x.png */,
+				858EE0AA161D38D000A09858 /* userLocation.png */,
+				8585E170161A991E00275AE7 /* userLocation@2x.png */,
 				8593A8E515D132CE00EA51F2 /* voteButtonNotSelected.png */,
 				8593A8E315D132CE00EA51F2 /* voteButtonNotSelected@2x.png */,
 				8593A8E615D132CE00EA51F2 /* voteButtonSelected.png */,
@@ -2638,6 +2651,10 @@
 				68893A3C16518CA800955990 /* BloodDonor_tutorial_5@2x.png */,
 				68893A3D16518CA800955990 /* BloodDonor_tutorial_6.png */,
 				68893A3E16518CA800955990 /* BloodDonor_tutorial_6@2x.png */,
+				68658987179E78F300A62B29 /* tutorialDotActive.png */,
+				68658988179E78F300A62B29 /* tutorialDotActive@2x.png */,
+				68658989179E78F300A62B29 /* tutorialDotNormal.png */,
+				6865898A179E78F300A62B29 /* tutorialDotNormal@2x.png */,
 			);
 			path = tutorial;
 			sourceTree = "<group>";
@@ -3272,6 +3289,9 @@
 				68187E8D1792AD290056BB9A /* HSStationReviewsViewController.h */,
 				68187E8E1792AD290056BB9A /* HSStationReviewsViewController.m */,
 				68187E8F1792AD2B0056BB9A /* HSStationReviewsViewController.xib */,
+				687B7294179D767000832B9D /* HSAddStationReviewViewController.h */,
+				687B7295179D767000832B9D /* HSAddStationReviewViewController.m */,
+				687B7296179D767100832B9D /* HSAddStationReviewViewController.xib */,
 				CEE3888A1718B90C001B6F0A /* images */,
 			);
 			name = stations2;
@@ -3697,10 +3717,6 @@
 				85ADBCC015E8DFF9006E6CB7 /* sharingCancelButtonNormal.png in Resources */,
 				85ADBCC315E8E071006E6CB7 /* sharingBackground@2x.png in Resources */,
 				85ADBCC415E8E071006E6CB7 /* sharingBackground.png in Resources */,
-				8512458F1603443B00752AE1 /* tutorialDotActive.png in Resources */,
-				851245901603443B00752AE1 /* tutorialDotActive@2x.png in Resources */,
-				851245911603443B00752AE1 /* tutorialDotNormal.png in Resources */,
-				851245921603443B00752AE1 /* tutorialDotNormal@2x.png in Resources */,
 				8585E172161A991E00275AE7 /* userLocation@2x.png in Resources */,
 				8585E17D161AB04C00275AE7 /* check.png in Resources */,
 				8585E17E161AB04C00275AE7 /* check@2x.png in Resources */,
@@ -3896,6 +3912,15 @@
 				68187EEC17930FAE0056BB9A /* icon_test_plan@2x.png in Resources */,
 				68187EED17930FAE0056BB9A /* map.png in Resources */,
 				68187EEE17930FAE0056BB9A /* map@2x.png in Resources */,
+				687B7298179D767100832B9D /* HSAddStationReviewViewController.xib in Resources */,
+				68658983179E77CA00A62B29 /* content_button_normal.png in Resources */,
+				68658984179E77CA00A62B29 /* content_button_normal@2x.png in Resources */,
+				68658985179E77CA00A62B29 /* content_button_pressed.png in Resources */,
+				68658986179E77CA00A62B29 /* content_button_pressed@2x.png in Resources */,
+				6865898B179E78F300A62B29 /* tutorialDotActive.png in Resources */,
+				6865898C179E78F300A62B29 /* tutorialDotActive@2x.png in Resources */,
+				6865898D179E78F300A62B29 /* tutorialDotNormal.png in Resources */,
+				6865898E179E78F300A62B29 /* tutorialDotNormal@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4105,6 +4130,7 @@
 				687B728D179D3F7D00832B9D /* HSFoursquareTip.m in Sources */,
 				687B7290179D455D00832B9D /* HSDictionaryBasedObject.m in Sources */,
 				687B7293179D4DBF00832B9D /* HSFoursquareObject.m in Sources */,
+				687B7297179D767100832B9D /* HSAddStationReviewViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

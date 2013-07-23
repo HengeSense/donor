@@ -156,7 +156,8 @@
         } else {
             self.doneButton.enabled = !self.currentBloodRemoteEvent.isDone;
         }
-
+        
+        rootScrollViewContentSize.height += self.doneButton.bounds.size.height;
     } else if (self.bloodTestsEvent != nil) {
         // Display view for blood tests event.
         self.currentBloodRemoteEvent = self.bloodTestsEvent;

@@ -44,9 +44,9 @@
                     NSArray *filteredByNameRawTips = [rawTips filteredArrayUsingPredicate:nameFilter];
                     NSArray *tips = [HSFoursquareTip arrayWithDictionaryBasedObjects:filteredByNameRawTips];
                     NSArray *stationReviews = [self createStationReviewsFromTips:tips];
-                    completion (success, stationReviews);
+                    completion(success, stationReviews);
                 } else {
-                    NSLog(@"Fail");
+                    completion(NO, nil);
                 }
             }];
 }

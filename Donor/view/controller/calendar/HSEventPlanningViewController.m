@@ -46,7 +46,7 @@ static const CGFloat kViewShiftedByKeyboardDuration = 0.3f;
 static const CGFloat kTabBarHeight = 55.0f;
 
 #pragma mark - UI text fields constants
-static const NSUInteger kCommentsTextViewSymbolsMax = 260;
+static const NSUInteger kCommentsTextViewSymbolsMax = 250;
 
 #pragma mark - Private interface declaration
 @interface HSEventPlanningViewController () <UITextViewDelegate>
@@ -283,8 +283,7 @@ static const NSUInteger kCommentsTextViewSymbolsMax = 260;
 - (void)configureComponents {
     [self.rootScrollView addSubview: self.contentView];
     self.rootScrollView.contentSize = self.contentView.bounds.size;
-    self.commentsTextView.backgroundColor = [UIColor colorWithPatternImage:
-                                             [UIImage imageNamed: @"eventCommentBackground.png"]];
+    self.commentsTextView.backgroundColor = [UIColor clearColor];
     
     self.flexibleViewInitialFrame = self.dataAndPlaceView.frame;
     
@@ -441,12 +440,25 @@ static const NSUInteger kCommentsTextViewSymbolsMax = 260;
     if([text isEqualToString:@"\n"]) {
         [textView resignFirstResponder];
         return NO;
-    } else if (self.commentsTextView.text.length > kCommentsTextViewSymbolsMax) {
-        return NO;
+    } else if (textView.text.length > (kCommentsTextViewSymbolsMax - 1)) {
+        if ([text isEqualToString:@""]) {
+            return YES;
+        } else {
+            return NO;
+        }
     }
     
     return YES;
 }
+
+- (void)textViewDidChange:(UITextView *)textView {
+    if (textView.text.length > kCommentsTextViewSymbolsMax) {
+        textView.text = [textView.text stringByReplacingCharactersInRange:
+                NSMakeRange(kCommentsTextViewSymbolsMax, textView.text.length - kCommentsTextViewSymbolsMax)
+                withString:@""];
+    }
+}
+
 
 #pragma mark - Private interface implementation
 #pragma mark - Configuring HSEventPlanningViewController for different modes

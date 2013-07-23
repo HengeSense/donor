@@ -59,4 +59,21 @@
     return color;
 }
 
++ (UIColor *)contentButtonTitleNormalColor {
+    static UIColor *color = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        color = [UIColor colorWithRed:206./255 green:163./255 blue:156./255 alpha:1.];
+    });
+    return color;
+}
+
++ (UIColor *)contentButtonTitlePressedColor {
+    static UIColor *color = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        color = [UIColor colorWithRed:186./255 green:128./255 blue:120./255 alpha:1.];
+    });
+    return color;
+}
 @end

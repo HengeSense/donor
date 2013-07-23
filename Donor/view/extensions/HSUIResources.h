@@ -19,4 +19,7 @@
 + (UIFont *)specialTitleLabelFont;
 + (UIColor *)specialTitleLabelColor;
 
++ (UIColor *)contentButtonTitleNormalColor;
++ (UIColor *)contentButtonTitlePressedColor;
+
 @end
