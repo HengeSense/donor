@@ -10,6 +10,9 @@
 
 @class DYRateView;
 @class HSStationInfo;
+@class HSStationReview;
+
+@protocol HSAddStationReviewDelegate;
 
 @interface HSAddStationReviewViewController : UIViewController
 
@@ -30,7 +33,19 @@
 @property (weak, nonatomic) IBOutlet UITextView *reviewTextView;
 @property (weak, nonatomic) IBOutlet UIButton *addReviewButton;
 
+
+/// @name Functional
+@property (nonatomic, assign) id<HSAddStationReviewDelegate>delegate;
+
 /// @name UI actions
 - (IBAction)addReview:(id)sender;
 
 @end
+
+@protocol HSAddStationReviewDelegate <NSObject>
+@required
+- (void)stationReviewsWasUpdated;
+
+@end
+
+

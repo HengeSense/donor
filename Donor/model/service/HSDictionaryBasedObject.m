@@ -25,7 +25,7 @@
     return self;
 }
 
-+ (NSArray *)arrayWithDictionaryBasedObjects:(NSArray *)dictionaries {
++ (NSArray *)arrayWithUnderlyingDictionaries:(NSArray *)dictionaries {
     THROW_IF_ARGUMENT_NIL(dictionaries);
     NSMutableArray *result = [NSMutableArray arrayWithCapacity:dictionaries.count];
     for (NSDictionary *dict in dictionaries) {

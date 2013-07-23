@@ -27,7 +27,7 @@
 static const CGFloat kVerticalTab_Label = 10.0f;
 static const CGFloat kVerticalTab_ShowOnMapButton = 20.0f;
 
-@interface HSStationCardViewController ()
+@interface HSStationCardViewController () <HSAddStationReviewDelegate>
 
 @property (nonatomic, strong) HSStationInfo *stationInfo;
 @property (nonatomic, strong) NSArray *stationReviews;
@@ -87,7 +87,13 @@ static const CGFloat kVerticalTab_ShowOnMapButton = 20.0f;
 - (IBAction)doReview:(id)sender {
     HSAddStationReviewViewController *vc = [[HSAddStationReviewViewController alloc]
             initWithStationInfo:self.stationInfo];
+    vc.delegate = self;
     [self.navigationController pushViewController:vc animated:YES];
+}
+
+#pragma mark - HSAddStationReviewDelegate
+- (void)stationReviewsWasUpdated {
+    self.stationReviews = nil;
 }
 
 #pragma mark - Private
@@ -238,13 +244,13 @@ static const CGFloat kVerticalTab_ShowOnMapButton = 20.0f;
 #pragma mark - Station reviews
 - (void)loadStationReviews {
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
-    [[HSFoursquare sharedInstance] getStationReviews:self.stationInfo completion:^(BOOL success, id result) {
+    [HSFoursquare getStationReviews:self.stationInfo completion:^(BOOL success, id result) {
         [hud hide:YES];
         if (success) {
             self.stationReviews = result;
             [self feedUI];
         } else {
-            [HSAlertViewController showWithMessage:@"Произошла ошибка загрузки отзывов."];
+            [HSAlertViewController showWithMessage:@"Произошла ошибка загрузки отзывов"];
         }
     }];
 }

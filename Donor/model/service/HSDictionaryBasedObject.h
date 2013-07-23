@@ -19,6 +19,6 @@
 - (id)initWithDictionary:(NSDictionary *)underlyingDictionary;
 
 /// Factory creation
-+ (NSArray *)arrayWithDictionaryBasedObjects:(NSArray *)dictionaries;
++ (NSArray *)arrayWithUnderlyingDictionaries:(NSArray *)dictionaries;
 
 @end

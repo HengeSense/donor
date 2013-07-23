@@ -13,8 +13,7 @@
 #import "TestFlight.h"
 #import "Appirater.h"
 #import "HSFlurryAnalytics.h"
-#include "HSMailChimp.h"
-#include "Foursquare2.h"
+#import "HSMailChimp.h"
 
 #import "HSStationInfo.h"
 
@@ -41,9 +40,6 @@ static NSString * const ITSBETA_ACCESS_TOKEN = @"059db4f010c5f40bf4a73a28222dd3e
 static NSString * const MAILCHIMP_API_KEY = @"9392e150a6a0a5e66d42d2cd56d5d219-us4";
 static NSString * const MAILCHIMP_DONOR_LIST_ID = @"63b23fc742";
 static NSString * const CRASHLYTICS_ID = @"9d515447ae8b641e682dacd6b67757ba2762308f";
-static NSString * const FOURSQUARE_ID = @"SCVGUV4WOSZKD3NJ53D1EHBTKU3RC0QAVGCB40D10Y14IGQM";
-static NSString * const FOURSQUARE_SECRET = @"CF3PIZ24E14TGKNEQ3NXUNDXVDB2MD2ZI12RJV4V13LEUFJZ";
-static NSString * const FOURSQUARE_CALLBACK = @"http://donorapp.ru";
 
 #define IS_NEW_STATIONS YES
 
@@ -126,8 +122,6 @@ static NSString * const FOURSQUARE_CALLBACK = @"http://donorapp.ru";
     [ItsBeta setApplicationAccessToken:ITSBETA_ACCESS_TOKEN];
     [ItsBeta setApplicationProjectWhiteList:[NSArray arrayWithObjects:@"donor", nil]];
     [ItsBeta synchronizeApplication];
-    
-    [Foursquare2 setupFoursquareWithKey:FOURSQUARE_ID secret:FOURSQUARE_SECRET callbackURL:FOURSQUARE_CALLBACK];
 }
 
 - (void)launchServices {

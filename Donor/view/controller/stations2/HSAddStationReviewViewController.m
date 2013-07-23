@@ -8,13 +8,18 @@
 
 #import "HSAddStationReviewViewController.h"
 
+#import "HSAlertViewController.h"
+
 #import "DYRateView.h"
 #import "HSStationInfo.h"
+#import "HSStationReview.h"
 
+#import "HSFoursquare.h"
+#import "HSUIResources.h"
+
+#import "MBProgressHUD.h"
 #import "HSViewUtils.h"
 #import "UIView+HSLayoutManager.h"
-
-#import "HSUIResources.h"
 
 #pragma mark - UI text view constants
 static const NSUInteger kReviewTextSymbolsMax = 200;
@@ -59,15 +64,41 @@ static const CGFloat kSectionsVerticalPadding = 10.0f;
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
-    if (self.isKeyboardShown) {
-        [self.reviewTextView resignFirstResponder];
-    }
+    [self hideKeyboard];
     [self unregisterKeyboardObservers];
     [super viewWillDisappear:animated];
 }
 
 #pragma mark - UI actions
 - (IBAction)addReview:(id)sender {
+    [self hideKeyboard];
+    
+    HSStationReview *stationReview = [[HSStationReview alloc] init];
+    
+    NSCharacterSet *charactersToRemove = [[ NSCharacterSet alphanumericCharacterSet ] invertedSet ];
+    NSString *charsOnlyReviewText = [self.reviewTextView.text stringByTrimmingCharactersInSet:charactersToRemove];
+    if (charsOnlyReviewText.length < 10) {
+        [HSAlertViewController showWithMessage:@"Поле отзыва должно содержать минимум 10 символов"];
+        return;
+    }
+    
+    stationReview.review = self.reviewTextView.text;
+    stationReview.rating = [NSNumber numberWithFloat:self.stationRateView.rate];
+    stationReview.date = [NSDate date];
+    
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+    [HSFoursquare addStationReview:stationReview toStation:self.stationInfo completion:^(BOOL success, id result) {
+        [hud hide:YES];
+        if (success) {
+            if (self.delegate) {
+                [self.delegate stationReviewsWasUpdated];
+            }
+            [HSAlertViewController showWithMessage:@"Отзыв успешно опубликован"];
+        } else if (result != nil) {
+            [HSAlertViewController showWithMessage:@"Произошла ошибка публикации отзыва"];
+            NSLog(@"ERROR: Add station review. Reason: %@", result);
+        }
+    }];
 }
 
 #pragma mark - UITextViewDelegate protocol implementation
@@ -222,9 +253,10 @@ static const CGFloat kSectionsVerticalPadding = 10.0f;
     self.isKeyboardShown = NO;
 }
 
-- (void)viewDidUnload {
-    [self setStationNameLabel:nil];
-    [self setUnderStationNameLabelView:nil];
-    [super viewDidUnload];
+- (void)hideKeyboard {
+    if ([self.reviewTextView isFirstResponder]) {
+        [self.reviewTextView resignFirstResponder];
+    }
 }
+
 @end

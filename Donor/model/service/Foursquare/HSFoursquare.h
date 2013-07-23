@@ -11,14 +11,19 @@
 typedef void(^HSFoursquareCompletionType)(BOOL success, id result);
 
 @class HSStationInfo;
+@class HSStationReview;
 
 /**
  * This is domain specific wrapper for Foursquare framework.
  */
 @interface HSFoursquare : NSObject
 
-+ (id)sharedInstance;
+/// @name Foursquare API
++ (BOOL)isUserAuthenticated;
 
-- (void)getStationReviews:(HSStationInfo *)stationInfo completion:(HSFoursquareCompletionType)completion;
++ (void)getStationReviews:(HSStationInfo *)stationInfo completion:(HSFoursquareCompletionType)completion;
+
++ (void)addStationReview:(HSStationReview *)stationReview toStation:(HSStationInfo *)stationInfo
+         completion:(HSFoursquareCompletionType)completion;
 
 @end
