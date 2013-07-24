@@ -22,4 +22,16 @@
         withString:[[self substringToIndex:1] capitalizedString]];
 }
 
+
+- (NSString *)stringWithAlphanumericCharacters {
+    NSMutableString *result = [NSMutableString string];
+    for (NSUInteger pos = 0; pos < [self length]; ++pos) {
+        unichar ch = [self characterAtIndex:pos];
+        if ([[NSCharacterSet alphanumericCharacterSet] characterIsMember:ch]) {
+            [result appendString:[NSString stringWithCharacters:&ch length:1]];
+        }
+    }
+    return result;
+}
+
 @end

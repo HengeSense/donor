@@ -15,10 +15,12 @@
 #import "HSStationReview.h"
 
 #import "HSFoursquare.h"
+#import "HSFoursquareError.h"
 #import "HSUIResources.h"
 
 #import "MBProgressHUD.h"
 #import "HSViewUtils.h"
+#import "NSString+HSUtils.h"
 #import "UIView+HSLayoutManager.h"
 
 #pragma mark - UI text view constants
@@ -75,10 +77,8 @@ static const CGFloat kSectionsVerticalPadding = 10.0f;
     
     HSStationReview *stationReview = [[HSStationReview alloc] init];
     
-    NSCharacterSet *charactersToRemove = [[ NSCharacterSet alphanumericCharacterSet ] invertedSet ];
-    NSString *charsOnlyReviewText = [self.reviewTextView.text stringByTrimmingCharactersInSet:charactersToRemove];
-    if (charsOnlyReviewText.length < 10) {
-        [HSAlertViewController showWithMessage:@"Поле отзыва должно содержать минимум 10 символов"];
+    if ([[self.reviewTextView.text stringWithAlphanumericCharacters] length] < 10) {
+        [HSAlertViewController showWithMessage:@"Поле отзыва должно содержать минимум 10 символов\n(букв и/или цыфр)"];
         return;
     }
     
@@ -95,8 +95,11 @@ static const CGFloat kSectionsVerticalPadding = 10.0f;
             }
             [HSAlertViewController showWithMessage:@"Отзыв успешно опубликован"];
         } else if (result != nil) {
-            [HSAlertViewController showWithMessage:@"Произошла ошибка публикации отзыва"];
+            HSFoursquareError *error = result;
+            [HSAlertViewController showWithMessage:[error localizedDescription]];
             NSLog(@"ERROR: Add station review. Reason: %@", result);
+        } else {
+            // User cancel authentication, no need to notify him about it.
         }
     }];
 }

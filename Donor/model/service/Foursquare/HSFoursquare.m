@@ -15,6 +15,7 @@
 #import "HSStationInfo.h"
 #import "HSStationReview.h"
 
+#import "HSFoursquareError.h"
 #import "HSFoursquareVenue.h"
 #import "HSFoursquareTip.h"
 
@@ -75,7 +76,7 @@ static NSMutableDictionary *tipCache;
                             [stationReviews sortedArrayUsingDescriptors:@[dateDescriptor, reviwerNameDescriptor]];
                     completion(success, stationReviewsSorted);
                 } else {
-                    completion(NO, nil);
+                    completion(NO, [HSFoursquareError errorWithResponse:result]);
                 }
             }];
 }
@@ -86,16 +87,16 @@ static NSMutableDictionary *tipCache;
     THROW_IF_ARGUMENT_NIL(stationReview);
     THROW_IF_ARGUMENT_NIL(stationInfo);
     
-    void (^processSuccess)(HSStationReview *) = ^(HSStationReview *stationReview) {
+    void (^processSuccess)(id foursquareResult) = ^(id foursquareResult) {
+        (void)foursquareResult;
         if (completion) {
-            completion(YES, stationReview);
+            completion(YES, nil);
         }
     };
     
     void (^processFailure)(id) = ^(id foursquareResult){
-        (void)foursquareResult;
         if (completion) {
-            completion(NO, foursquareResult);
+            completion(NO, [HSFoursquareError errorWithResponse:foursquareResult]);
         }
     };
     
@@ -103,7 +104,7 @@ static NSMutableDictionary *tipCache;
             ^(HSFoursquareVenue *venue, HSStationReview *stationReview) {
                 NSString *review = stationReview.review;
                 if (stationReview.rating != nil) {
-                    review = [review stringByAppendingFormat:@" [Оценка станции - %d]", stationReview.rating.intValue];
+                    //review = [review stringByAppendingFormat:@" [Оценка станции - %d]", stationReview.rating.intValue];
                 }
                 [Foursquare2 addTip:review forVenue:venue.uid withURL:nil callback:^(BOOL success, id result) {
                     if (success) {

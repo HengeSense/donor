@@ -273,6 +273,7 @@
 		6865898C179E78F300A62B29 /* tutorialDotActive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68658988179E78F300A62B29 /* tutorialDotActive@2x.png */; };
 		6865898D179E78F300A62B29 /* tutorialDotNormal.png in Resources */ = {isa = PBXBuildFile; fileRef = 68658989179E78F300A62B29 /* tutorialDotNormal.png */; };
 		6865898E179E78F300A62B29 /* tutorialDotNormal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6865898A179E78F300A62B29 /* tutorialDotNormal@2x.png */; };
+		68658991179FB84600A62B29 /* HSFoursquareError.m in Sources */ = {isa = PBXBuildFile; fileRef = 68658990179FB84500A62B29 /* HSFoursquareError.m */; };
 		686BA62216344DE2004D7082 /* HSCalendarDayButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 686BA62116344DE2004D7082 /* HSCalendarDayButton.m */; };
 		686BA62716345D0E004D7082 /* NSCalendar+HSCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 686BA62616345D0E004D7082 /* NSCalendar+HSCalendar.m */; };
 		686BA62A163469C3004D7082 /* HSBloodDonorTests_Calendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 686BA629163469C3004D7082 /* HSBloodDonorTests_Calendar.m */; };
@@ -1026,6 +1027,8 @@
 		68658988179E78F300A62B29 /* tutorialDotActive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tutorialDotActive@2x.png"; sourceTree = "<group>"; };
 		68658989179E78F300A62B29 /* tutorialDotNormal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tutorialDotNormal.png; sourceTree = "<group>"; };
 		6865898A179E78F300A62B29 /* tutorialDotNormal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tutorialDotNormal@2x.png"; sourceTree = "<group>"; };
+		6865898F179FB84500A62B29 /* HSFoursquareError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSFoursquareError.h; sourceTree = "<group>"; };
+		68658990179FB84500A62B29 /* HSFoursquareError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSFoursquareError.m; sourceTree = "<group>"; };
 		686BA62016344DE2004D7082 /* HSCalendarDayButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSCalendarDayButton.h; sourceTree = "<group>"; };
 		686BA62116344DE2004D7082 /* HSCalendarDayButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSCalendarDayButton.m; sourceTree = "<group>"; };
 		686BA62516345D0E004D7082 /* NSCalendar+HSCalendar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSCalendar+HSCalendar.h"; sourceTree = "<group>"; };
@@ -2606,6 +2609,8 @@
 			children = (
 				687B72831797F78B00832B9D /* HSFoursquare.h */,
 				687B72841797F78B00832B9D /* HSFoursquare.m */,
+				6865898F179FB84500A62B29 /* HSFoursquareError.h */,
+				68658990179FB84500A62B29 /* HSFoursquareError.m */,
 				687B7286179813F400832B9D /* private */,
 			);
 			path = Foursquare;
@@ -4131,6 +4136,7 @@
 				687B7290179D455D00832B9D /* HSDictionaryBasedObject.m in Sources */,
 				687B7293179D4DBF00832B9D /* HSFoursquareObject.m in Sources */,
 				687B7297179D767100832B9D /* HSAddStationReviewViewController.m in Sources */,
+				68658991179FB84600A62B29 /* HSFoursquareError.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
