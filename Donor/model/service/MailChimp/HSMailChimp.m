@@ -41,7 +41,10 @@
 
 #pragma mark - Operations
 - (void)subscribeOrUpdateEmail:(NSString *)email withUserFirstName:(NSString *)firstName lastName:(NSString *)lastName {
-    THROW_IF_ARGUMENT_NIL(email);
+    if (email == nil || email.length == 0) {
+        // Fix for https://itsbeta.atlassian.net/browse/DOI-211
+        return;
+    }
     
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     [params setValue:self.listId forKey:@"id"];
