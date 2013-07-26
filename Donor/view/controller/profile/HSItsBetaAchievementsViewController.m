@@ -102,20 +102,29 @@
 - (void)refresh {
     [_contentExists removeAllObjects];
     [_contentAvailable removeAllObjects];
-    if([[ItsBeta objectsWithObjectTemplate:_objectTemplateInstall] count] > 0) {
-        [_contentExists addObject:_objectTemplateInstall];
-    } else {
-        [_contentAvailable addObject:_objectTemplateInstall];
+    
+    if (_objectTemplateInstall != nil) {
+        if([[ItsBeta objectsWithObjectTemplate:_objectTemplateInstall] count] > 0) {
+            [_contentExists addObject:_objectTemplateInstall];
+        } else {
+            [_contentAvailable addObject:_objectTemplateInstall];
+        }
     }
-    if([[ItsBeta objectsWithObjectTemplate:_objectTemplateFirstBlood] count] > 0) {
-        [_contentExists addObject:_objectTemplateFirstBlood];
-    } else {
-        [_contentAvailable addObject:_objectTemplateFirstBlood];
+    
+    if (_objectTemplateFirstBlood != nil) {
+        if([[ItsBeta objectsWithObjectTemplate:_objectTemplateFirstBlood] count] > 0) {
+            [_contentExists addObject:_objectTemplateFirstBlood];
+        } else {
+            [_contentAvailable addObject:_objectTemplateFirstBlood];
+        }
     }
-    if([[ItsBeta objectsWithObjectTemplate:_objectTemplateSecondBlood] count] > 0) {
-        [_contentExists addObject:_objectTemplateSecondBlood];
-    } else {
-        [_contentAvailable addObject:_objectTemplateSecondBlood];
+    
+    if (_objectTemplateSecondBlood != nil) {
+        if([[ItsBeta objectsWithObjectTemplate:_objectTemplateSecondBlood] count] > 0) {
+            [_contentExists addObject:_objectTemplateSecondBlood];
+        } else {
+            [_contentAvailable addObject:_objectTemplateSecondBlood];
+        }
     }
     [_tableView reloadData];
 }
