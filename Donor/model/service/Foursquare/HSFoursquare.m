@@ -104,7 +104,7 @@ static NSMutableDictionary *tipCache;
             ^(HSFoursquareVenue *venue, HSStationReview *stationReview) {
                 NSString *review = stationReview.review;
                 if (stationReview.rating != nil) {
-                    //review = [review stringByAppendingFormat:@" [Оценка станции - %d]", stationReview.rating.intValue];
+                    review = [review stringByAppendingFormat:@" [Оценка станции - %d]", stationReview.rating.intValue];
                 }
                 [Foursquare2 addTip:review forVenue:venue.uid withURL:nil callback:^(BOOL success, id result) {
                     if (success) {
@@ -145,25 +145,8 @@ static NSMutableDictionary *tipCache;
     }
 }
 
-+ (double)getDistanceBetweenStation:(HSStationInfo *)stationInfo andVenue:(HSFoursquareVenue *)venue {
-    THROW_IF_ARGUMENT_NIL(stationInfo);
-    THROW_IF_ARGUMENT_NIL(venue);
-    
-    const double R = 6371.0;
-    
-    double lat1 = stationInfo.lat.doubleValue;
-    double lon1 = stationInfo.lon.doubleValue;
-    
-    double lat2 = venue.lat.doubleValue;
-    double lon2 = venue.lon.doubleValue;
-    
-    double x = (lon2-lon1) * cos((lat1+lat2)/2);
-    double y = (lat2-lat1);
-    double d = sqrt(x*x + y*y) * R;
-    
-    return d;
-}
-
+#pragma mark - Private
+#pragma mark - Async API helpers
 + (void)findNearestVenueForStation:(HSStationInfo *)stationInfo completion:(HSFoursquareCompletionType)completion {
     THROW_IF_ARGUMENT_NIL(stationInfo);
     THROW_IF_ARGUMENT_NIL(completion);
@@ -200,9 +183,9 @@ static NSMutableDictionary *tipCache;
     THROW_IF_ARGUMENT_NIL(completion);
     
     [Foursquare2 addVenueWithName:stationInfo.name address:stationInfo.address crossStreet:nil city:stationInfo.town
-            state:stationInfo.region_name zip:nil phone:stationInfo.phone latitude:stationInfo.lat.stringValue
-            longitude:stationInfo.lon.stringValue primaryCategoryId:FOURSQUARE_HOSPITAL_CATEGORY_ID
-            callback:completion];
+            state:stationInfo.region_name zip:nil phone:nil
+            latitude:stationInfo.lat.stringValue longitude:stationInfo.lon.stringValue
+            primaryCategoryId:FOURSQUARE_HOSPITAL_CATEGORY_ID callback:completion];
 }
 
 + (void)getVenuesForStation:(HSStationInfo *)stationInfo completion:(HSFoursquareCompletionType)completion {
@@ -222,7 +205,26 @@ static NSMutableDictionary *tipCache;
             }];
 }
 
-#pragma mark - Private
+#pragma mark - Sync API helpers
++ (double)getDistanceBetweenStation:(HSStationInfo *)stationInfo andVenue:(HSFoursquareVenue *)venue {
+    THROW_IF_ARGUMENT_NIL(stationInfo);
+    THROW_IF_ARGUMENT_NIL(venue);
+    
+    const double R = 6371.0;
+    
+    double lat1 = stationInfo.lat.doubleValue;
+    double lon1 = stationInfo.lon.doubleValue;
+    
+    double lat2 = venue.lat.doubleValue;
+    double lon2 = venue.lon.doubleValue;
+    
+    double x = (lon2-lon1) * cos((lat1+lat2)/2);
+    double y = (lat2-lat1);
+    double d = sqrt(x*x + y*y) * R;
+    
+    return d;
+}
+
 + (NSRegularExpression *)ratingRegex {
     NSString *ratingPattern = @"\\[Оценка станции[\\s]*-[\\s]*([\\d]+)\\]";
     NSError *ratingRegexError = nil;
@@ -280,4 +282,5 @@ static NSMutableDictionary *tipCache;
     }
     return result;
 }
+
 @end

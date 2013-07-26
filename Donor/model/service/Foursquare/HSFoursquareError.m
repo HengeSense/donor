@@ -23,12 +23,13 @@ NSString * const HSFoursquareErrorDomain = @"HSFoursquareErrorDomain";
 
 #pragma mark - Initialization
 - (id)initWithResponse:(id)response {
-    THROW_IF_ARGUMENT_NIL(response);
     if ((self = [super initWithDomain:HSFoursquareErrorDomain code:0 userInfo:nil]) == nil) {
         return nil;
     }
     
-    if ([response isKindOfClass:[NSDictionary class]]) {
+    if (response == nil) {
+        self.type = HSFoursquareErrorType_Other;
+    } else if ([response isKindOfClass:[NSDictionary class]]) {
         self.statusCode = [[response valueForKeyPath:@"meta.code"] unsignedIntegerValue];
         self.type = [self errorTypeFromString:[response valueForKeyPath:@"meta.errorType"]];
         self.detail = [response valueForKeyPath:@"meta.errorDetail"];
