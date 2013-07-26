@@ -353,13 +353,17 @@ static const NSUInteger kCommentsTextViewSymbolsMax = 250;
 
 #pragma mark - User's interaction hadlers
 - (IBAction)removeBloodEvent: (id)sender {
+    if (![self.calendar isBloodRemoteEventExist:self.currentOriginalEvent]) {
+        NSLog(@"ERROR: Was made attempt to remove not existing blood remote event from the calendar.");
+        return;
+    }
+    
     MBProgressHUD *progressHud = [MBProgressHUD showHUDAddedTo: self.navigationController.view animated: YES];
     
-#warning Crash point. Check event existance.
     [self.calendar removeBloodRemoteEvent: self.currentOriginalEvent completion: ^(BOOL success, NSError *error) {
         [progressHud hide: YES];
         if (success) {
-            [HSFlurryAnalytics userDeletedCalendarEvent:self.currentEditedEvent];
+            [HSFlurryAnalytics userDeletedCalendarEvent:self.currentOriginalEvent];
             [self.navigationController popToRootViewControllerAnimated: YES];
         } else {
             [HSAlertViewController showWithTitle:@"Ошибка" message:[HSModelCommon localizedDescriptionForError:error]];

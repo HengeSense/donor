@@ -209,6 +209,9 @@ NSString * const kHSCalendarModelStateChangedKeyPath = @"isModelLockedStateInter
     }];
 }
 
+- (BOOL)isBloodRemoteEventExist:(HSBloodRemoteEvent *)bloodRemoteEvent {
+    return bloodRemoteEvent != nil && [self.bloodRemoteEvents containsObject:bloodRemoteEvent];
+}
 
 - (void)addBloodRemoteEvent: (HSBloodRemoteEvent *)bloodRemoteEvent ignoreRestPeriod:(BOOL)ignoreRestPeriod
                  completion:(CompletionBlockType)completion {

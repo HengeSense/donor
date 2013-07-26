@@ -63,6 +63,11 @@ extern NSString * const kHSCalendarModelStateChangedKeyPath;
 /// @name Remote blood events manipulation methods
 
 /**
+ * Check whether specified remote event exists in calendar.
+ */
+- (BOOL)isBloodRemoteEventExist:(HSBloodRemoteEvent *)bloodRemoteEvent;
+
+/**
  * Adds blood remote event. Server synchronized.
  * @param remoteBloodEvent - remote planning blood event
  * @param completion - completion block of code
