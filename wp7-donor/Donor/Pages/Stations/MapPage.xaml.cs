@@ -175,6 +175,7 @@ namespace Donor
             try
             {
                 string id = (sender as Pushpin).Tag.ToString();
+                ViewModelLocator.MainStatic.Stations.CurrentStation = ViewModelLocator.MainStatic.Stations.Items.FirstOrDefault(c=>c.ObjectId==id);
                 NavigationService.Navigate(new Uri("/Pages/Stations/StationPage.xaml?id=" + id, UriKind.Relative));
             }
             catch

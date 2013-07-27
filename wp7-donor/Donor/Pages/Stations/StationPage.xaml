@@ -117,6 +117,15 @@
 						        Style="{StaticResource Text24pxDF8D4B}" Tap="TextBlock_Tap_2"/>
                             </StackPanel>
 
+                            <StackPanel Margin="0,4" Visibility="{Binding Work_time, Converter={StaticResource StringConverter}}">
+                                <TextBlock TextWrapping="Wrap" Text="{Binding Work_time, Source={StaticResource Loc}}" 
+                                Style="{StaticResource Text36pxB9A194}" Margin="0,10,0,0"/>
+                                <TextBlock TextWrapping="Wrap" 
+						        Text="{Binding Work_time}" 
+                                           Style="{StaticResource Text24pxDF8D4B}" 
+                                           Margin="0,-4,0,0"/>
+                            </StackPanel>
+
                             <StackPanel Margin="0,4" Visibility="{Binding Email, Converter={StaticResource StringConverter}}">
                                 <TextBlock TextWrapping="Wrap" Text="{Binding StationEmail, Source={StaticResource Loc}}" 
                                 Style="{StaticResource Text36pxB9A194}" Margin="0,10,0,0"/>
@@ -182,8 +191,8 @@
                     </StackPanel>
                     <maps:Map Name="map1" Margin="0,10,0,0" 
                               CredentialsProvider="{StaticResource BingCredentials}" 
-                              MapPan="map1_MapPan" MapZoom="map1_MapZoom" ManipulationStarted="map1_ManipulationStarted" 
                               />
+                    <!--MapPan="map1_MapPan" MapZoom="map1_MapZoom" ManipulationStarted="map1_ManipulationStarted"-->
                 </Grid>
             </controls:PanoramaItem>
 

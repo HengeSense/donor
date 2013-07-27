@@ -780,4 +780,7 @@ By using this application, you consent to the collection and use of this informa
   <data name="UnknownBloodGroup" xml:space="preserve">
     <value>Не знаю</value>
   </data>
+  <data name="Work_time" xml:space="preserve">
+    <value>Время работы</value>
+  </data>
 </root>
