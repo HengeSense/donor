@@ -2,8 +2,80 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:bm ="using:Bing.Maps"
+    xmlns:dd ="using:Bing.Maps.Directions"
     xmlns:vm ="using:Bing.Maps.VenueMaps">
 
+    <!--
+    ******************************************************************
+            COLOR TABLE
+    ******************************************************************
+    -->
+    <Color x:Key="ColorTransparent">#00000000</Color>
+    <!-- Completely Transparent -->
+
+    <Color x:Key="ColorGB15">#1F1F1F</Color>
+    <Color x:Key="ColorGB25">#333333</Color>
+    <Color x:Key="ColorGB50">#666666</Color>
+    <Color x:Key="ColorGB75">#999999</Color>
+    <Color x:Key="ColorGBase">#CCCCCC</Color>
+    <Color x:Key="ColorGW75">#D9D9D9</Color>
+    <Color x:Key="ColorGW50">#E6E6E6</Color>
+    <Color x:Key="ColorGW25">#F2F2F2</Color>
+    <Color x:Key="ColorGW15">#F7F7F7</Color>
+
+    <Color x:Key="ColorA65GB25">#A6333333</Color>
+    <!-- 65% Alpha -->
+    <Color x:Key="ColorA501W15">#7FF2EFED</Color>
+    <!-- 50% Alpha -->
+
+    <Color x:Key="ColorA24GB15">#3D1F1F1F</Color>
+    <!-- 24% Alpha -->
+    <Color x:Key="ColorA47GB15">#781F1F1F</Color>
+    <!-- 47% Alpha -->
+    <Color x:Key="ColorA65GB15">#A61F1F1F</Color>
+    <!-- 65% Alpha -->
+
+    <Color x:Key="ColorBlack">#000000</Color>
+    <Color x:Key="ColorW">#FFFFFF</Color>
+    <Color x:Key="ColorA">#AAAAAA</Color>
+    <Color x:Key="ColorB">#BBBBBB</Color>
+    <Color x:Key="ColorY">#EFE4B0</Color>
+    <Color x:Key="ColorGreen">#FF00FF00</Color>
+    <Color x:Key="ColorDarkGreen">#FF00CC00</Color>
+
+    <Color x:Key="ColorA13W">#24FFFFFF</Color>
+    <!-- 13% Alpha -->
+    <Color x:Key="ColorA24W">#3DFFFFFF</Color>
+    <!-- 24% Alpha -->
+    <Color x:Key="ColorA30W">#4DFFFFFF</Color>
+    <!-- 30% Alpha -->
+    <Color x:Key="ColorA47W">#78FFFFFF</Color>
+    <!-- 47% Alpha -->
+    <Color x:Key="ColorA50W">#80FFFFFF</Color>
+    <!-- 50% Alpha -->
+
+    <Color x:Key="Color1W15">#F2EFED</Color>
+    <Color x:Key="Color1W25">#E9E4E1</Color>
+
+    <Color x:Key="ColorA651W25">#41E9E4E1</Color>
+    <!-- 65% Alpha -->
+
+    <Color x:Key="Color2B50">#291A56</Color>
+    <Color x:Key="Color2Base">#5133AB</Color>
+    <Color x:Key="Color3W50">#C680CA</Color>
+    <Color x:Key="Color3W15">#F7EAF5</Color>
+
+    <Color x:Key="Color3B50">#46004B</Color>
+    <Color x:Key="Color3B25">#230025</Color>
+
+    <Color x:Key="Color12Base">#009FEF</Color>
+    <Color x:Key="Color5Base">#CC1122</Color>
+    <Color x:Key="Color10Base">#008A00</Color>
+    <Color x:Key="Color8Base">#FF9900</Color>
+    <Color x:Key="Color11W75">#40C8C8</Color>
+    <Color x:Key="Color16Base">#2672EC</Color>
+    
+    
     <Color x:Key="TapColorRoad">#FF333333</Color>
     <Color x:Key="TapIconColorRoad">#FFFFFFFF</Color>
     <Color x:Key="PushColorRoad">#FFDDDDDD</Color>
@@ -24,7 +96,6 @@
     <Color x:Key="BackgroundStrokeColorAerialBE">#FF999999</Color>
     <Color x:Key="ForegroundFillColorAerialBE">White</Color>
 
-    
     <Color x:Key="InfoboxTextColorAerialBE">#FF4F84C4</Color>
     <Color x:Key="InfoboxBodyTextColorAerialBE">#FF666666</Color>
     <Color x:Key="PanelBackgroundColorAerialBE">White</Color>
@@ -62,7 +133,121 @@
 
     <SolidColorBrush x:Key="DefaultPushpinBackgroundBrush" Color="#FF4498FE"/>
     <SolidColorBrush x:Key="DefaultPushpinForegroundBrush" Color="#FFF7F4F2"/>
-    
+
+    <!-- Route step list View -->
+    <SolidColorBrush x:Key="RouteStepForegroundBrush" Color="{StaticResource ColorGB50}" />
+    <SolidColorBrush x:Key="RouteStepSelectedForegroundThemeBrush" Color="{StaticResource ColorW}" />
+    <SolidColorBrush x:Key="RouteStepPointerOverBackgroundThemeBrush" Color="{StaticResource ColorGB25}" />
+    <SolidColorBrush x:Key="RouteStepFocusBorderThemeBrush" Color="{StaticResource ColorBlack}" />
+    <SolidColorBrush x:Key="RouteStepPressedBackgroundThemeBrush" Color="{StaticResource ColorGB25}" />
+    <SolidColorBrush x:Key="RouteStepSelectedBackgroundThemeBrush" Color="{StaticResource ColorBlack}" />
+    <SolidColorBrush x:Key="AppChromeFillBrush" Color="{StaticResource ColorW}" />
+    <SolidColorBrush x:Key="RoadStepPOIFillNormalBrush" Color="{StaticResource ColorW}" />
+    <SolidColorBrush x:Key="RouteStepIconColorBrush" Color="{StaticResource ColorBlack}" />
+    <SolidColorBrush x:Key="RouteOverviewColorBrush" Color="{StaticResource ColorBlack}" />
+    <SolidColorBrush x:Key="RouteTitleColorBrush" Color="{StaticResource ColorBlack}" />
+    <SolidColorBrush x:Key="RouteNameColorBrush" Color="{StaticResource ColorBlack}" />
+    <SolidColorBrush x:Key="RouteSummaryBackgroundBrush" Color="{StaticResource ColorW}" />
+
+    <!-- RoadEndPOI -->
+    <SolidColorBrush x:Key="RoadEndPOIBorderNormalBrush" Color="{StaticResource Color5Base}" />
+    <SolidColorBrush x:Key="RoadEndPOIBorderHoverBrush" Color="{StaticResource ColorGB15}" />
+    <SolidColorBrush x:Key="RoadEndPOIBorderPressedBrush" Color="{StaticResource ColorGB15}" />
+
+    <SolidColorBrush x:Key="RoadEndPOIFillNormalBrush" Color="{StaticResource Color5Base}" />
+    <SolidColorBrush x:Key="RoadEndPOIFillHoverBrush" Color="{StaticResource ColorGB15}" />
+    <SolidColorBrush x:Key="RoadEndPOIFillPressedBrush" Color="{StaticResource ColorGB15}" />
+
+    <SolidColorBrush x:Key="RoadEndPOITextNormalBrush" Color="{StaticResource ColorW}" />
+    <SolidColorBrush x:Key="RoadEndPOITextHoverBrush" Color="{StaticResource ColorW}" />
+    <SolidColorBrush x:Key="RoadEndPOITextPressedBrush" Color="{StaticResource ColorW}" />
+
+
+    <!-- InputBox -->
+    <SolidColorBrush x:Key="InputBoxBorderBrush" Color="{StaticResource Color1W25}" />
+    <SolidColorBrush x:Key="InputBoxFillBrush" Color="{StaticResource ColorW}" />
+
+    <SolidColorBrush x:Key="InputBoxHintTextBrush" Color="{StaticResource ColorGB75}" />
+    <SolidColorBrush x:Key="InputBoxPrimaryTextBrush" Color="{StaticResource ColorGB25}" />
+
+
+    <SolidColorBrush x:Key="SettingsBorderBrush" Color="{StaticResource Color2B50}" />
+    <SolidColorBrush x:Key="SettingsFillBrush" Color="{StaticResource ColorW}" />
+    <SolidColorBrush x:Key="SettingsHeaderBrush" Color="{StaticResource Color2B50}" />
+    <SolidColorBrush x:Key="SettingsHeaderTextBrush" Color="{StaticResource ColorW}" />
+    <SolidColorBrush x:Key="SettingsHighlightBrush" Color="{StaticResource Color2Base}" />
+    <SolidColorBrush x:Key="SettingsHighlightTextBrush" Color="{StaticResource ColorW}" />
+    <SolidColorBrush x:Key="SettingsHistoryClearDoneBrush" Color="{StaticResource ColorY}" />
+
+    <!-- RoadStartPOI -->
+    <SolidColorBrush x:Key="RoadStartPOIBorderNormalBrush" Color="{StaticResource Color10Base}" />
+    <SolidColorBrush x:Key="RoadStartPOIBorderHoverBrush" Color="{StaticResource ColorGB15}" />
+    <SolidColorBrush x:Key="RoadStartPOIIBorderPressedBrush" Color="{StaticResource ColorGB15}" />
+
+    <SolidColorBrush x:Key="RoadStartPOIFillNormalBrush" Color="{StaticResource Color10Base}" />
+    <SolidColorBrush x:Key="RoadStartPOIFillHoverBrush" Color="{StaticResource ColorGB15}" />
+    <SolidColorBrush x:Key="RoadStartPOIFillPressedBrush" Color="{StaticResource ColorGB15}" />
+
+    <SolidColorBrush x:Key="RoadStartPOITextNormalBrush" Color="{StaticResource ColorW}" />
+    <SolidColorBrush x:Key="RoadStartPOITextHoverBrush" Color="{StaticResource ColorW}" />
+    <SolidColorBrush x:Key="RoadStartPOITextPressedBrush" Color="{StaticResource ColorW}" />
+
+    <!-- AerialStartPOI -->
+    <SolidColorBrush x:Key="AerialStartPOIBorderNormalBrush" Color="{StaticResource ColorGB50}" />
+    <SolidColorBrush x:Key="AerialStartPOIBorderHoverBrush" Color="{StaticResource ColorGB50}" />
+    <SolidColorBrush x:Key="AerialStartPOIIBorderPressedBrush" Color="{StaticResource ColorGB50}" />
+
+    <SolidColorBrush x:Key="AerialStartPOIFillNormalBrush" Color="{StaticResource Color10Base}" />
+    <SolidColorBrush x:Key="AerialStartPOIFillHoverBrush" Color="{StaticResource ColorW}" />
+    <SolidColorBrush x:Key="AerialStartPOIFillPressedBrush" Color="{StaticResource ColorW}" />
+
+    <SolidColorBrush x:Key="AerialStartPOITextNormalBrush" Color="{StaticResource ColorGB15}" />
+    <SolidColorBrush x:Key="AerialStartPOITextHoverBrush" Color="{StaticResource ColorGB15}" />
+    <SolidColorBrush x:Key="AerialStartPOITextPressedBrush" Color="{StaticResource ColorGB15}" />
+    <!-- Search Suggestions -->
+    <SolidColorBrush x:Key="SearchSuggestionFillBrush" Color="{StaticResource ColorW}" />
+    <SolidColorBrush x:Key="SuggestionItemTextNormalBrush" Color="{StaticResource ColorGB75}" />
+    <SolidColorBrush x:Key="SuggestionSelectedItemFillBrush" Color="{StaticResource ColorGW15}" />
+    <SolidColorBrush x:Key="SuggestionSelectedItemTextBrush" Color="{StaticResource ColorGB15}" />
+
+    <!-- FlyoutMenuItem -->
+    <SolidColorBrush x:Key="FlyoutMenuItemFillNormalBrush" Color="{StaticResource ColorTransparent}" />
+    <SolidColorBrush x:Key="FlyoutMenuItemFillHoverBrush" Color="{StaticResource ColorGBase}" />
+    <SolidColorBrush x:Key="FlyoutMenuItemFillPressedBrush" Color="{StaticResource ColorGB15}" />
+
+    <SolidColorBrush x:Key="FlyoutMenuItemTextNormalBrush" Color="{StaticResource ColorGB15}" />
+    <SolidColorBrush x:Key="FlyoutMenuItemTextHoverBrush" Color="{StaticResource ColorGB15}" />
+    <SolidColorBrush x:Key="FlyoutMenuItemTextPressedBrush" Color="{StaticResource ColorW}" />
+
+    <!-- AppChrome -->
+    <SolidColorBrush x:Key="AppChromeBorderBrush" Color="{StaticResource SystemColorButtonTextColor}" />
+    <SolidColorBrush x:Key="AppChromeHeaderFillBrush" Color="{StaticResource SystemColorWindowColor}" />
+   
+    <SolidColorBrush x:Key="ListViewItemForegroundBrush" Color="{StaticResource ColorGB25}" />
+    <SolidColorBrush x:Key="ListViewItemSelectedForegroundThemeBrush" Color="{StaticResource ColorW}" />
+    <SolidColorBrush x:Key="ListViewItemPointerOverBackgroundThemeBrush" Color="{StaticResource ColorGW50}" />
+    <SolidColorBrush x:Key="ListViewItemFocusBorderThemeBrush" Color="{StaticResource ColorBlack}" />
+    <SolidColorBrush x:Key="ListViewItemSelectedBackgroundThemeBrush" Color="{StaticResource ColorGB25}" />
+    <SolidColorBrush x:Key="ListViewItemSelectedPointerOverBackgroundThemeBrush" Color="{StaticResource ColorGB25}" />
+    <SolidColorBrush x:Key="ListViewItemPressedBackgroundThemeBrush" Color="{StaticResource ColorGW50}" />
+
+    <!-- Default text brush -->
+    <SolidColorBrush x:Key="DarkTextFillBrush" Color="{StaticResource ColorGB15}" />
+    <SolidColorBrush x:Key="DefaultTextFillBrush" Color="{StaticResource ColorGB25}" />
+    <SolidColorBrush x:Key="DefaultTextReverseFillBrush" Color="{StaticResource ColorW}" />
+    <SolidColorBrush x:Key="SubtleTextFillBrush" Color="{StaticResource ColorGB50}" />
+
+    <SolidColorBrush x:Key="DarkPopupFillNormalBrush" Color="{StaticResource ColorGB25}" />
+    <SolidColorBrush x:Key="DarkPopupTextNormalBrush" Color="{StaticResource ColorW}" />
+    <SolidColorBrush x:Key="DarkPopupMaskBrush" Color="{StaticResource ColorGB75}" />
+
+    <SolidColorBrush x:Key="POIMaskBrush" Color="{StaticResource Color1W15}" />
+
+    <!-- TrafficPin Color -->
+    <SolidColorBrush x:Key="RoadTrafficPOIBorderNormalBrush" Color="{StaticResource Color5Base}" />
+    <SolidColorBrush x:Key="RoadTrafficPOIFillNormalBrush" Color="White" />
+    <SolidColorBrush x:Key="RoadTrafficPOITextNormalBrush" Color="Black" />
+
     <x:Double x:Key="ControlHeight">40</x:Double>
     <x:Double x:Key="MapTypeMenuItemSize">40</x:Double>
     
@@ -79,16 +264,91 @@
     <x:Double x:Key="InfoboxWidth">280</x:Double>
     
     <!-- FONTS -->
-    <Style x:Key="BasicTextMedium" TargetType="TextBlock">
-        <Setter Property="FontFamily" Value="Segoe UI"/>
-        <Setter Property="FontSize" Value="14.66"/>
-        <Setter Property="LineHeight" Value="20"/>
-        <Setter Property="Typography.StylisticSet20" Value="True"/>
-        <Setter Property="Typography.DiscretionaryLigatures" Value="True"/>
+    <FontFamily x:Key="ContentControlThemeFontFamily">Segoe UI, Microsoft YaHei UI</FontFamily>
+    <FontFamily x:Key="SymbolFont">ms-appx:///Bing.Maps/Font/Bing_Maps_Symbol.ttf#Bing Maps Symbol</FontFamily>
+
+    <Style x:Key="BasicTextStyle" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="{StaticResource ContentControlThemeFontFamily}" />
+        <Setter Property="Typography.StylisticSet20" Value="True" />
+        <Setter Property="Typography.DiscretionaryLigatures" Value="True" />
+    </Style>
+
+    <Style x:Key="BasicTextSmall"
+               BasedOn="{StaticResource BasicTextStyle}"
+               TargetType="TextBlock">
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="LineHeight" Value="20" />
+    </Style>
+
+    <Style x:Key="SmallText-R-None"
+                   BasedOn="{StaticResource BasicTextSmall}"
+                   TargetType="TextBlock" />
+    
+    <Style x:Key="BasicTextMedium"
+               BasedOn="{StaticResource BasicTextStyle}"
+               TargetType="TextBlock">
+        <Setter Property="FontSize" Value="14.66" />
+        <Setter Property="LineHeight" Value="20" />
+    </Style>
+
+    <Style x:Key="BasicTextExtraSmall"
+                  BasedOn="{StaticResource BasicTextStyle}"
+                  TargetType="TextBlock">
+        <Setter Property="FontSize" Value="9" />
+        <Setter Property="LineHeight" Value="9" />
+    </Style>
+    
+    <!--  EXTRA SMALL TEXT 9  -->
+    <Style x:Key="ExtraSmallText-B-None"
+           BasedOn="{StaticResource BasicTextExtraSmall}"
+           TargetType="TextBlock">
+        <Setter Property="FontWeight" Value="Bold" />
+    </Style>
+    
+    <Style x:Key="SmallText-SL-None"
+           BasedOn="{StaticResource BasicTextSmall}"
+           TargetType="TextBlock">
+        <Setter Property="FontWeight" Value="SemiLight" />
+    </Style>
+
+    <Style x:Key="BasicTextMedium-RichTextBlock" TargetType="RichTextBlock">
+        <Setter Property="FontFamily" Value="{StaticResource ContentControlThemeFontFamily}" />
+        <Setter Property="FontSize" Value="14.66" />
+        <Setter Property="LineHeight" Value="20" />
+        <Setter Property="Typography.StylisticSet20" Value="True" />
+        <Setter Property="Typography.DiscretionaryLigatures" Value="True" />
     </Style>
 
     <Style x:Key="MediumText-R-None" TargetType="TextBlock" BasedOn="{StaticResource BasicTextMedium}">
         <Setter Property="FontWeight" Value="Normal"/>
+    </Style>
+
+    <Style x:Key="MediumText-SB-None" TargetType="TextBlock" BasedOn="{StaticResource BasicTextMedium}">
+        <Setter Property="FontWeight" Value="SemiBold" />
+    </Style>
+
+    <Style x:Key="SmallText-SB-None"
+           BasedOn="{StaticResource BasicTextSmall}"
+           TargetType="TextBlock">
+        <Setter Property="FontWeight" Value="SemiBold" />
+    </Style>
+
+    <Style x:Key="MediumText-R-None-RichTextBlock"
+           BasedOn="{StaticResource BasicTextMedium-RichTextBlock}"
+           TargetType="RichTextBlock" />
+    
+
+    <Style x:Key="MediumText-R-White-RichTextBlock"
+                  BasedOn="{StaticResource BasicTextMedium-RichTextBlock}"
+                  TargetType="RichTextBlock">
+        <Setter Property="Foreground" Value="{StaticResource DefaultTextReverseFillBrush}" />
+    </Style>
+
+    <Style x:Key="MediumText-R-White"
+                  BasedOn="{StaticResource BasicTextMedium}"
+                  TargetType="TextBlock">
+        <Setter Property="Foreground" Value="{StaticResource DefaultTextReverseFillBrush}" />
+
     </Style>
 
     <Style x:Key="CompassText" TargetType="TextBlock" BasedOn="{StaticResource BasicTextMedium}">
@@ -102,6 +362,455 @@
         <Setter Property="FontSize" Value="13"/>
         <Setter Property="Foreground" Value="Transparent"/>
     </Style>
+
+    <Style x:Key="POIButtonStyle" TargetType="Button">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid Background="Transparent">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="PointerOver" />
+                                <VisualState x:Name="Disabled" />
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="FocusStates">
+                                <VisualState x:Name="Focused">
+                                    <Storyboard>
+                                        <DoubleAnimation
+                                            Duration="0"
+                                                         Storyboard.TargetName="FocusVisualWhite"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         To="1" />
+                                        <DoubleAnimation
+                                            Duration="0"
+                                                         Storyboard.TargetName="FocusVisualBlack"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         To="1" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Unfocused" />
+                                <VisualState x:Name="PointerFocused" />
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Border x:Name="Border">
+                            <ContentPresenter
+                                x:Name="ContentPresenter"
+                                              Content="{TemplateBinding Content}"
+                                              ContentTemplate="{TemplateBinding ContentTemplate}"
+                                              ContentTransitions="{TemplateBinding ContentTransitions}" />
+                        </Border>
+                        <Rectangle
+                            x:Name="FocusVisualWhite"
+                                   IsHitTestVisible="False"
+                                   Opacity="0"
+                                   Stroke="{StaticResource FocusVisualWhiteStrokeThemeBrush}"
+                                   StrokeDashArray="1,1"
+                                   StrokeDashOffset="1.5"
+                                   StrokeEndLineCap="Square" />
+                        <Rectangle
+                            x:Name="FocusVisualBlack"
+                                   IsHitTestVisible="False"
+                                   Opacity="0"
+                                   Stroke="{StaticResource FocusVisualBlackStrokeThemeBrush}"
+                                   StrokeDashArray="1,1"
+                                   StrokeDashOffset="0.5"
+                                   StrokeEndLineCap="Square" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="watermarkText"
+                   BasedOn="{StaticResource MediumText-R-None}"
+                   TargetType="TextBlock">
+        <Setter Property="Foreground" Value="{StaticResource InputBoxHintTextBrush}" />
+        <Setter Property="TextTrimming" Value="WordEllipsis" />
+        <Setter Property="TextWrapping" Value="Wrap" />
+        <Setter Property="Margin" Value="11,5,0,0" />
+        <Setter Property="IsHitTestVisible" Value="False" />
+    </Style>
+
+    <Style x:Key="InputBox" TargetType="TextBox">
+        <Setter Property="FontSize" Value="14.66" />
+        <Setter Property="BorderBrush" Value="{StaticResource InputBoxBorderBrush}" />
+        <Setter Property="Foreground" Value="{StaticResource InputBoxPrimaryTextBrush}" />
+        <Setter Property="Background" Value="{StaticResource InputBoxFillBrush}" />
+        <Setter Property="Padding" Value="8,3,0,0" />
+        <Setter Property="TextWrapping" Value="Wrap" />
+        <Setter Property="Typography.StylisticSet20" Value="True" />
+        <Setter Property="Typography.DiscretionaryLigatures" Value="True" />
+    </Style>
+
+    <Style x:Key="DirectionsButtonStyle" TargetType="RadioButton">
+        <Setter Property="FontFamily" Value="{StaticResource SymbolFont}"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="FontSize" Value="24"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="RadioButton">
+                    <Grid Height="40" Width="40" Background="Transparent">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal"/>
+                                <VisualState x:Name="PointerOver">
+                                    <Storyboard>
+                                        <DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="PointerOverRectangle"/>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Pressed">
+                                    <Storyboard>
+                                        <DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="PointerOverRectangle"/>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="PointerOverRectangle">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource ToggleSwitchCurtainPressedBackgroundThemeBrush}"/>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Disabled"/>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="CheckStates">
+                                <VisualState x:Name="Checked">
+                                    <Storyboard>
+                                        <DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="CheckRectangle"/>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Unchecked"/>
+                                <VisualState x:Name="Indeterminate"/>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="FocusStates">
+                                <VisualState x:Name="Focused">
+                                    <Storyboard>
+                                        <DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="FocusVisualWhite"/>
+                                        <DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="FocusVisualBlack"/>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Unfocused"/>
+                                <VisualState x:Name="PointerFocused"/>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Rectangle x:Name="CheckRectangle" Fill="{StaticResource ToggleSwitchCurtainBackgroundThemeBrush}" Opacity="0"/>
+                        <Rectangle x:Name="PointerOverRectangle" Fill="{StaticResource ToggleSwitchCurtainPointerOverBackgroundThemeBrush}" Opacity="0"/>
+                        <Rectangle x:Name="FocusVisualWhite" Opacity="0" StrokeDashOffset="1.5" StrokeEndLineCap="Square" Stroke="{StaticResource FocusVisualWhiteStrokeThemeBrush}" StrokeDashArray="1,1" />
+                        <Rectangle x:Name="FocusVisualBlack" Opacity="0" StrokeDashOffset="0.5" StrokeEndLineCap="Square" Stroke="{StaticResource FocusVisualBlackStrokeThemeBrush}" StrokeDashArray="1,1" />
+                        <ContentPresenter
+                            x:Name="ContentPresenter"
+                            ContentTemplate="{TemplateBinding ContentTemplate}"
+                            ContentTransitions="{TemplateBinding ContentTransitions}"
+                            Content="{TemplateBinding Content}"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center"/>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="CurLocButtonStyle" TargetType="Button">
+        <Setter Property="Width" Value="32"/>
+        <Setter Property="Height" Value="32"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border
+                        x:Name="Border"
+                        Height="32"
+                        Width="32"
+                        BorderBrush="Transparent"
+                        BorderThickness="2">
+                        <Grid
+                            x:Name="Root"
+                            Background="{StaticResource TextBoxButtonBackgroundThemeBrush}">
+                            <TextBlock
+                                x:Name="Content"
+                                FontSize="20"
+                                FontFamily="{StaticResource SymbolFont}"
+                                Text="&#xE013;"
+                                FontWeight="Light"
+                                Foreground="{StaticResource TextBoxButtonForegroundThemeBrush}"
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Center"/>
+                            <Rectangle
+                                x:Name="FocusVisualWhite"
+                                IsHitTestVisible="False"
+                                Stroke="{StaticResource FocusVisualWhiteStrokeThemeBrush}"
+                                StrokeEndLineCap="Square"
+                                StrokeDashArray="1,1"
+                                Opacity="0"
+                                StrokeDashOffset="1.5" />
+                            <Rectangle
+                                x:Name="FocusVisualBlack"
+                                IsHitTestVisible="False"
+                                Stroke="{StaticResource FocusVisualBlackStrokeThemeBrush}"
+                                StrokeEndLineCap="Square"
+                                StrokeDashArray="1,1"
+                                Opacity="0"
+                                StrokeDashOffset="0.5" />
+                        </Grid>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal"/>
+                                <VisualState x:Name="Pressed">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Root" Storyboard.TargetProperty="Background">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource TextBoxButtonPressedBackgroundThemeBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Border" Storyboard.TargetProperty="BorderBrush">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource TextBoxButtonPressedBorderThemeBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Content" Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource TextBoxButtonPressedForegroundThemeBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="PointerOver">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Root" Storyboard.TargetProperty="Background">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource TextBoxButtonPointerOverBackgroundThemeBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Border" Storyboard.TargetProperty="BorderBrush">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource TextBoxButtonPointerOverBorderThemeBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Content" Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource TextBoxButtonPointerOverForegroundThemeBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Disabled">
+                                </VisualState>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="FocusStates">
+                                <VisualState x:Name="Focused">
+                                    <Storyboard>
+                                        <DoubleAnimation
+                                            Storyboard.TargetName="FocusVisualWhite"
+                                            Storyboard.TargetProperty="Opacity"
+                                            To="1"
+                                            Duration="0"/>
+                                        <DoubleAnimation
+                                            Storyboard.TargetName="FocusVisualBlack"
+                                            Storyboard.TargetProperty="Opacity"
+                                            To="1"
+                                            Duration="0"/>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Unfocused"/>
+                                <VisualState x:Name="PointerFocused"/>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+    <Style x:Key="SuggestionListBoxItemStyle" TargetType="ListBoxItem">
+        <Setter Property="Padding" Value="10,0,10,0" />
+        <Setter Property="HorizontalContentAlignment" Value="Left" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Background" Value="{StaticResource SearchSuggestionFillBrush}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Margin" Value="0,0,0,0" />
+        <Setter Property="FontFamily" Value="{StaticResource ContentControlThemeFontFamily}" />
+        <Setter Property="FontSize" Value="14.667" />
+        <Setter Property="Height" Value="36" />
+        <Setter Property="Foreground" Value="{StaticResource SuggestionItemTextNormalBrush}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ListBoxItem">
+                    <Grid x:Name="Root" Background="{TemplateBinding Background}">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="PointerOver">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SelectedFillColor" Storyboard.TargetProperty="Fill">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource SuggestionSelectedItemFillBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="contentPresenter" Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource SuggestionSelectedItemTextBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Pressed">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="FillColor" Storyboard.TargetProperty="Fill">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource FlyoutMenuItemFillPressedBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="contentPresenter" Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource FlyoutMenuItemTextPressedBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Disabled" />
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="SelectionStates">
+                                <VisualState x:Name="Unselected" />
+                                <VisualState x:Name="SelectedUnfocused">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SelectedFillColor" Storyboard.TargetProperty="Fill">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource SuggestionSelectedItemFillBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="contentPresenter" Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource SuggestionSelectedItemTextBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Selected">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SelectedFillColor" Storyboard.TargetProperty="Fill">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource SuggestionSelectedItemFillBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="contentPresenter" Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource SuggestionSelectedItemTextBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="FocusStates">
+                                <VisualState x:Name="Focused">
+                                    <Storyboard>
+                                        <DoubleAnimation Duration="0"
+                                                         Storyboard.TargetName="FocusVisualWhite"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         To="1" />
+                                        <DoubleAnimation Duration="0"
+                                                         Storyboard.TargetName="FocusVisualBlack"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         To="1" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Unfocused" />
+                                <VisualState x:Name="PointerFocused" />
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Rectangle x:Name="SelectedFillColor"
+                                   Margin="-10,0,-10,0"
+                                   Fill="{StaticResource FlyoutMenuItemFillNormalBrush}"
+                                   IsHitTestVisible="False"
+                                   RadiusX="1"
+                                   RadiusY="1" />
+                        <Rectangle x:Name="FillColor"
+                                   Margin="-10,0,-10,0"
+                                   Fill="{StaticResource FlyoutMenuItemFillNormalBrush}"
+                                   IsHitTestVisible="False"
+                                   RadiusX="1"
+                                   RadiusY="1" />
+                        <ContentPresenter x:Name="contentPresenter"
+                                          Margin="{TemplateBinding Padding}"
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                          Content="{TemplateBinding Content}"
+                                          ContentTemplate="{TemplateBinding ContentTemplate}" />
+                        <Rectangle x:Name="FocusVisualWhite"
+                                   Margin="-1,0,0,0"
+                                   IsHitTestVisible="False"
+                                   Opacity="0"
+                                   Stroke="{StaticResource FocusVisualWhiteStrokeThemeBrush}"
+                                   StrokeDashArray="1,1"
+                                   StrokeDashOffset="1.5"
+                                   StrokeEndLineCap="Square" />
+                        <Rectangle x:Name="FocusVisualBlack"
+                                   Margin="-1,0,0,0"
+                                   IsHitTestVisible="False"
+                                   Opacity="0"
+                                   Stroke="{StaticResource FocusVisualBlackStrokeThemeBrush}"
+                                   StrokeDashArray="1,1"
+                                   StrokeDashOffset="0.5"
+                                   StrokeEndLineCap="Square" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+    <Style x:Key="ActionButtonStyle" TargetType="Button">
+        <Setter Property="Foreground" Value="{StaticResource SettingsHeaderTextBrush}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border
+                        Width="32"
+                        Height="32"
+                        BorderBrush="{TemplateBinding Foreground}"
+                        BorderThickness="2">
+                        <Grid x:Name="Root" Background="{StaticResource SettingsHeaderBrush}">
+                            <TextBlock
+                                x:Name="Content"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                FontFamily="{StaticResource SymbolFont}"
+                                FontSize="18"
+                                FontWeight="Light"
+                                Foreground="{TemplateBinding Foreground}"
+                                Text="{TemplateBinding Content}" />
+                            <Rectangle
+                                x:Name="FocusVisualWhite"
+                                IsHitTestVisible="False"
+                                Opacity="0"
+                                Stroke="{StaticResource FocusVisualWhiteStrokeThemeBrush}"
+                                StrokeDashArray="1,1"
+                                StrokeDashOffset="1.5"
+                                StrokeEndLineCap="Square" />
+                            <Rectangle
+                                x:Name="FocusVisualBlack"
+                                IsHitTestVisible="False"
+                                Opacity="0"
+                                Stroke="{StaticResource FocusVisualBlackStrokeThemeBrush}"
+                                StrokeDashArray="1,1"
+                                StrokeDashOffset="0.5"
+                                StrokeEndLineCap="Square" />
+                        </Grid>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="Pressed">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Root" Storyboard.TargetProperty="Background">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource SettingsBorderBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="PointerOver">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Root" Storyboard.TargetProperty="Background">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource SettingsHighlightBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Content" Storyboard.TargetProperty="Foreground">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource SettingsHighlightTextBrush}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Disabled" />
+                            </VisualStateGroup>
+                            <VisualStateGroup x:Name="FocusStates">
+                                <VisualState x:Name="Focused">
+                                    <Storyboard>
+                                        <DoubleAnimation
+                                            Duration="0"
+                                            Storyboard.TargetName="FocusVisualWhite"
+                                            Storyboard.TargetProperty="Opacity"
+                                            To="1" />
+                                        <DoubleAnimation
+                                            Duration="0"
+                                            Storyboard.TargetName="FocusVisualBlack"
+                                            Storyboard.TargetProperty="Opacity"
+                                            To="1" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Unfocused" />
+                                <VisualState x:Name="PointerFocused" />
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+    <DataTemplate x:Key="SuggestionListBoxItemTemplate">
+        <TextBlock Text="{Binding}" TextTrimming="WordEllipsis" />
+    </DataTemplate>
 
     <Style TargetType="bm:MapItemsControl">
         <Setter Property="Template">
@@ -142,7 +851,6 @@
                         </Storyboard>
                     </VisualState>
                 </VisualStateGroup>
-                <!-- TODO (v-markfo): Investigate conflict with Scale text size -->
                 <VisualStateGroup x:Name="MapSizeStates">
                     <VisualState x:Name="Small">
                         <Storyboard>
@@ -1697,6 +2405,95 @@
             <TextBlock x:Name="textblock" TextWrapping="Wrap" Text="{TemplateBinding Text}" Foreground="{StaticResource InfoboxBodyTextColorBrushRoad}" FontFamily="Segoe UI" FontSize="12"/>
         </Grid>
     </ControlTemplate>
+
+    <ControlTemplate TargetType="bm:AccessibleContainer" x:Key="InfoboxTrafficTemplate">
+        <Grid x:Name="LayoutRoot" UseLayoutRounding="false">
+            <Grid.Resources>
+                <!-- Popup -->
+                <SolidColorBrush x:Key="PopupFillBrush" Color="{StaticResource ColorGB15}" />
+                <SolidColorBrush x:Key="PopupHyperlinkTextBrush" Color="{StaticResource ColorW}" />
+                <SolidColorBrush x:Key="PopupHyperlinkPointerOverTextBrush" Color="{StaticResource ColorGBase}" />
+                <SolidColorBrush x:Key="PopupHyperlinkPressedTextBrush" Color="{StaticResource ColorGB75}" />
+                <SolidColorBrush x:Key="PopupTextBrush" Color="{StaticResource ColorGW50}" />
+                <SolidColorBrush x:Key="PopupBorderBrush" Color="{StaticResource ColorGB15}" />
+                <Style x:Key="FlyoutText"
+                      BasedOn="{StaticResource BasicTextMedium}"
+                      TargetType="TextBlock">
+                    <Setter Property="FontWeight" Value="SemiLight" />
+                    <Setter Property="Foreground" Value="{StaticResource PopupTextBrush}" />
+                </Style>
+                <Style x:Key="BasicTextMediumLarge"
+                      BasedOn="{StaticResource BasicTextStyle}"
+                      TargetType="TextBlock">
+                    <Setter Property="FontSize" Value="20" />
+                    <Setter Property="LineHeight" Value="25" />
+                </Style>
+                <Style x:Key="MediumLargeText-R-White"
+                      BasedOn="{StaticResource BasicTextMediumLarge}"
+                      TargetType="TextBlock" >
+                    <Setter Property="Foreground" Value="{StaticResource DefaultTextReverseFillBrush}" />
+                </Style>
+            </Grid.Resources>
+            <Grid Margin="0,7,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <TextBlock
+                    x:Name="SeverityLabel"
+                    Grid.Column="0"
+                    Grid.Row="0"
+                    Margin="0,0,5,0"
+                    Text="Severity:"
+                    VerticalAlignment="Top"
+                    Style="{StaticResource FlyoutText}"/>
+                <TextBlock
+                    x:Name="SeverityTextBlock"
+                    Grid.Column="1"
+                    Grid.Row="0"
+                    TextWrapping="Wrap"
+                    VerticalAlignment="Top"
+                    Style="{StaticResource FlyoutText}"/>
+                <TextBlock
+                    x:Name="StartTimeLabel"
+                    Grid.Column="0"
+                    Grid.Row="1"
+                    Margin="0,0,5,0"
+                    Text="Start Time:"
+                    VerticalAlignment="Top"
+                    Style="{StaticResource FlyoutText}"/>
+                <TextBlock
+                    x:Name="StartTimeTextBlock"
+                    Grid.Column="1"
+                    Grid.Row="1"
+                    Text="{Binding Path=StartTime}"
+                    TextWrapping="Wrap"
+                    VerticalAlignment="Top"
+                    Style="{StaticResource FlyoutText}"/>
+                <TextBlock
+                    x:Name="EndTimeLabel"
+                    Grid.Column="0"
+                    Grid.Row="2"
+                    Margin="0,0,5,0"
+                    Text="Est. End time:"
+                    VerticalAlignment="Top"
+                    Style="{StaticResource FlyoutText}"/>
+                <TextBlock
+                    x:Name="EndTimeTextBlock"
+                    Grid.Column="1"
+                    Grid.Row="2"
+                    Text="{Binding Path=EndTime}"
+                    TextWrapping="Wrap"
+                    VerticalAlignment="Top"
+                    Style="{StaticResource FlyoutText}"/>
+            </Grid>
+        </Grid>
+    </ControlTemplate>
     
     <ControlTemplate TargetType="bm:AccessibleContainer" x:Key="InfoboxLinkTemplate">
         <Grid x:Name="LayoutRoot" UseLayoutRounding="false">
@@ -1720,34 +2517,15 @@
 
     <ControlTemplate TargetType="bm:AccessibleContainer" x:Key="InfoboxTemplate" >
         <StackPanel>
-            <VisualStateManager.VisualStateGroups>
-                <VisualStateGroup x:Name="MapTypeStates">
-                    <VisualState x:Name="Road">
-                        <Storyboard>
-                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="LayoutRoot">
-                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource PanelBackgroundColorBrushRoad}"/>
-                            </ObjectAnimationUsingKeyFrames>
-                            <ColorAnimation Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="Pointer" To="{StaticResource InfoboxPointerColorRoad}" Duration="0"/>
-                        </Storyboard>
-                    </VisualState>
-                    <VisualState x:Name="AerialBE">
-                        <Storyboard>
-                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="LayoutRoot">
-                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource PanelBackgroundColorBrushAerialBE}"/>
-                            </ObjectAnimationUsingKeyFrames>
-                            <ColorAnimation Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="Pointer" To="{StaticResource InfoboxPointerColorAerialBE}" Duration="0"/>
-                        </Storyboard>
-                    </VisualState>
-                </VisualStateGroup>
-            </VisualStateManager.VisualStateGroups>
-            <Grid x:Name="LayoutRoot" Background="{StaticResource PanelBackgroundColorBrushRoad}" Width="{StaticResource InfoboxWidth}">
+        <Grid x:Name="LayoutRoot" Background="{StaticResource PanelBackgroundColorBrushRoad}" Width="{StaticResource InfoboxWidth}">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" x:Name="bodyRowDefinition"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <bm:AccessibleContainer  AcceptPrimaryAction="False" Margin="15,10,28.724,10" Grid.Row="0" Template="{StaticResource InfoboxTitleTemplate}" x:Name="titleContainer"/>
+                <bm:AccessibleContainer AcceptPrimaryAction="False" Margin="15,10,28.724,10" Grid.Row="0" Template="{StaticResource InfoboxTitleTemplate}" x:Name="titleContainer"/>
                 <bm:AccessibleContainer AcceptPrimaryAction="False"  Margin= "15,0,15,0" Grid.Row="1" Template="{StaticResource InfoboxDescriptionTemplate}" x:Name="descriptionContainer"/>
+                <bm:AccessibleContainer AcceptPrimaryAction="False"  Margin= "15,0,15,0" Grid.Row="1" Template="{StaticResource InfoboxTrafficTemplate}" x:Name="trafficContainer"/>
                 <bm:AccessibleContainer AcceptPrimaryAction="False"  Margin= "15,5,0,10" Grid.Row="2" Template="{StaticResource InfoboxLinkTemplate}" x:Name="directionsContainer"/>
             </Grid>
             <Path x:Name="Pointer" Data="F1M64.2871,184.499L52.1501,138.499L34.2871,138.499z" Fill="{StaticResource InfoboxPointerColorBrushRoad}" Height="46" Opacity="0.60000598430633545" Stretch="Fill" HorizontalAlignment="Left" Width="30"/>
@@ -2057,11 +2835,1814 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+    <ControlTemplate TargetType="bm:AccessibleContainer" x:Key="RouteSummaryListItemHeaderTextTemplate">
+        <Grid x:Name="LayoutRoot" 
+              HorizontalAlignment="Stretch" 
+              VerticalAlignment="Stretch">
+            <TextBlock x:Name="textblock" 
+                       Text="{Binding Header}" 
+                       TextWrapping="Wrap"
+                       Margin="5,0,0,0" 
+                       VerticalAlignment="Top" 
+                       Foreground="Black"
+                       Style="{StaticResource SmallText-SB-None}"/>
+        </Grid>
+    </ControlTemplate>
+    
+     <ControlTemplate TargetType="bm:AccessibleContainer" x:Key="RouteHeaderTextTemplate">
+        <Grid 
+            x:Name="LayoutRoot" 
+            HorizontalAlignment="Stretch" 
+            VerticalAlignment="Top">
+            <TextBlock 
+                Text="{TemplateBinding Text}"
+                TextWrapping="Wrap"
+                Foreground="{StaticResource ListBoxForegroundThemeBrush}"
+                Style="{StaticResource MediumText-SB-None}"/>
+        </Grid>
+    </ControlTemplate>
+
+  
+    <ControlTemplate TargetType="bm:AccessibleContainer" x:Key="RouteDisclaimerTextTemplate">
+        <Grid x:Name="LayoutRoot" 
+              HorizontalAlignment="Stretch" 
+              VerticalAlignment="Top">
+            <TextBlock  
+                Text="{TemplateBinding Text}"
+                TextWrapping="Wrap"
+                Foreground="{StaticResource ListBoxForegroundThemeBrush}"
+                Style="{StaticResource SmallText-R-None}"/>
+        </Grid>
+    </ControlTemplate>
+
+    <ControlTemplate TargetType="bm:AccessibleContainer" x:Key="DirectionsLabelTemplate">
+        <Grid x:Name="LayoutRoot" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+            <TextBlock Text="{TemplateBinding Text}"
+                       TextWrapping="Wrap"
+                       Style="{StaticResource MediumText-R-White}"/>
+        </Grid>
+    </ControlTemplate>
+
+    <Style TargetType="dd:DirectionsInput">
+        <Setter Property="MinHeight" Value="86"/>
+        <Setter  Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="dd:DirectionsInput">
+                    <Grid>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="RouteOptions">
+                                <VisualState x:Name="Transit">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Visibility)" Storyboard.TargetName="DirectionsOptionsGroup">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed"/>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="TransitOptionsGroup">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="Visible"/>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Driving">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Visibility)" Storyboard.TargetName="DirectionsOptionsGroup">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="Visible"/>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="TransitOptionsGroup">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed"/>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="None">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Visibility)" Storyboard.TargetName="DirectionsOptionsGroup">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed"/>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="TransitOptionsGroup">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed"/>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <!-- Controls inside ScrollViewer seems not to be accessible to UI Automation-->
+                        <!--ScrollViewer
+                              VerticalScrollBarVisibility="Disabled"
+                              VerticalScrollMode="Disabled"
+                              HorizontalScrollBarVisibility="Disabled"
+                              HorizontalScrollMode="Disabled"
+                              ZoomMode="Disabled"
+                              IsTabStop="True"-->
+                        <Grid x:Name="RootElement">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.Resources>
+                                <CollectionViewSource x:Name="TransitModesViewSource" />
+                                <!-- Directions Options Toggle Button -->
+                                <SolidColorBrush x:Key="DirectionsOptionsArrowFillBrush" Color="{StaticResource ColorW}" />
+                                <SolidColorBrush x:Key="DirectionsOptionsArrowPointerOverFillBrush" Color="{StaticResource ColorGB75}" />
+
+                                <Style x:Key="DirectionsCheckBoxStyle" TargetType="CheckBox">
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="CheckBox">
+                                                <Grid Background="Transparent">
+                                                    <VisualStateManager.VisualStateGroups>
+                                                        <VisualStateGroup x:Name="CommonStates">
+                                                            <VisualState x:Name="Normal"/>
+                                                            <VisualState x:Name="PointerOver">
+                                                                <Storyboard>
+                                                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ArrowPolyline" Storyboard.TargetProperty="Fill">
+                                                                        <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource DirectionsOptionsArrowPointerOverFillBrush}"/>
+                                                                    </ObjectAnimationUsingKeyFrames>
+                                                                </Storyboard>
+                                                            </VisualState>
+                                                            <VisualState x:Name="Pressed">
+                                                                <Storyboard>
+                                                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ArrowPolyline" Storyboard.TargetProperty="Fill">
+                                                                        <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource DirectionsOptionsArrowPointerOverFillBrush}"/>
+                                                                    </ObjectAnimationUsingKeyFrames>
+                                                                </Storyboard>
+                                                            </VisualState>
+                                                            <VisualState x:Name="Disabled"/>
+                                                        </VisualStateGroup>
+                                                        <VisualStateGroup x:Name="CheckStates">
+                                                            <VisualState x:Name="Checked">
+                                                                <Storyboard>
+                                                                    <DoubleAnimation Duration="0:0:0.5" To="90" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.Rotation)" Storyboard.TargetName="ArrowPolyline">
+                                                                        <DoubleAnimation.EasingFunction>
+                                                                            <QuarticEase EasingMode="EaseInOut"/>
+                                                                        </DoubleAnimation.EasingFunction>
+                                                                    </DoubleAnimation>
+                                                                </Storyboard>
+                                                            </VisualState>
+                                                            <VisualState x:Name="Unchecked">
+                                                                <Storyboard>
+                                                                    <DoubleAnimation Duration="0:0:0.5" To="0" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.Rotation)" Storyboard.TargetName="ArrowPolyline">
+                                                                        <DoubleAnimation.EasingFunction>
+                                                                            <QuarticEase EasingMode="EaseInOut"/>
+                                                                        </DoubleAnimation.EasingFunction>
+                                                                    </DoubleAnimation>
+                                                                </Storyboard>
+                                                            </VisualState>
+                                                            <VisualState x:Name="Indeterminate"/>
+                                                        </VisualStateGroup>
+                                                        <VisualStateGroup x:Name="FocusStates">
+                                                            <VisualState x:Name="Focused">
+                                                                <Storyboard>
+                                                                    <DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="FocusVisualWhite"/>
+                                                                    <DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="FocusVisualBlack"/>
+                                                                </Storyboard>
+                                                            </VisualState>
+                                                            <VisualState x:Name="Unfocused"/>
+                                                            <VisualState x:Name="PointerFocused"/>
+                                                        </VisualStateGroup>
+                                                    </VisualStateManager.VisualStateGroups>
+                                                    <Grid>
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="60"/>
+                                                            <ColumnDefinition Width="*"/>
+                                                        </Grid.ColumnDefinitions>
+                                                        <Polyline
+                                                            x:Name="ArrowPolyline"
+                                                            Grid.Column="0"
+                                                                            Margin="40,0,0,0"
+                                                            Points="0,0 0,16 8,8"
+                                                            Fill="{StaticResource DirectionsOptionsArrowFillBrush}"
+                                                            VerticalAlignment="Center"
+                                                            HorizontalAlignment="Left"
+                                                            RenderTransformOrigin="0.5,0.5">
+                                                            <Polyline.RenderTransform>
+                                                                <CompositeTransform/>
+                                                            </Polyline.RenderTransform>
+                                                        </Polyline>
+                                                        <TextBlock
+                                                        Grid.Column="1"
+                                                        Margin="0,0,40,0"
+                                                        Text="{TemplateBinding Content}"
+                                                        TextTrimming="WordEllipsis"
+                                                        VerticalAlignment="Center"
+                                                        HorizontalAlignment="Left"
+                                                        Style="{StaticResource MediumText-R-White}"/>
+                                                    </Grid>
+                                                    <Rectangle x:Name="FocusVisualWhite" IsHitTestVisible="False" Opacity="0" StrokeDashOffset="1.5" StrokeEndLineCap="Square" Stroke="{StaticResource FocusVisualWhiteStrokeThemeBrush}" StrokeDashArray="1,1"/>
+                                                    <Rectangle x:Name="FocusVisualBlack" IsHitTestVisible="False" Opacity="0" StrokeDashOffset="0.5" StrokeEndLineCap="Square" Stroke="{StaticResource FocusVisualBlackStrokeThemeBrush}" StrokeDashArray="1,1"/>
+                                                </Grid>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </Grid.Resources>
+
+                            <StackPanel
+                                Grid.Row="0"
+                                Margin="40,0,40,0"
+                                Orientation="Vertical">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="15"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="15"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Border
+                                    Grid.Column="0"
+                                    Background="{StaticResource RoadStartPOIFillNormalBrush}"
+                                    x:Name="StartLocationBorder">
+                                        <TextBlock
+                                        Text="A"
+                                        Margin="-1,0,0,0"
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Center"
+                                        Foreground="{StaticResource RoadStartPOITextNormalBrush}"
+                                        Style="{StaticResource ExtraSmallText-B-None}"/>
+                                    </Border>
+                                    <Border
+                                    x:Name="OriginCluster"
+                                    Grid.Column="1"
+                                    Height="32">
+                                        <Grid Background="{StaticResource InputBoxFillBrush}">
+                                            <TextBox
+                                            x:Name="OriginField"
+                                            TextWrapping="NoWrap"
+                                            TabIndex="1"
+                                            Style="{StaticResource InputBox}">
+                                                <TextBox.InputScope>
+                                                    <InputScope>
+                                                        <InputScope.Names>
+                                                            <InputScopeName NameValue="Search"/>
+                                                        </InputScope.Names>
+                                                    </InputScope>
+                                                </TextBox.InputScope>
+                                            </TextBox>
+                                            <TextBlock
+                                            x:Name="OriginWatermak"
+                                            Text="From"
+                                            Style="{StaticResource watermarkText}"/>
+                                            <!-- Location Me feature is not included yet-->
+                                            <!--Button
+                                                x:Name="CurrentLocOrigin"
+                                                AutomationProperties.Name="My location"
+                                                AutomationProperties.HelpText="Use my current location"
+                                                ToolTipService.ToolTip="Use my current location"
+                                                TabIndex="2" Style="{StaticResource CurLocButtonStyle}"
+                                                HorizontalAlignment="Right"/-->
+                                        </Grid>
+                                    </Border>
+                                    <Button
+                                        x:Name="SwapDirections"
+                                        Grid.Column="2"
+                                        TabIndex="6"
+                                        Content="&#xE008;"
+                                        Style="{StaticResource ActionButtonStyle}"
+                                        AutomationProperties.AutomationId="SwapDirections"
+                                        AutomationProperties.ItemType="Swap Button"/>
+                                    <!--Currently no suggestion feature-->
+                                    <!--ListBox
+                                        x:Name="OriginSuggestionListBox"
+                                        Grid.Column="1"
+                                        Grid.ColumnSpan="2"
+                                        Grid.Row="1"
+                       
+                                        Visibility="Collapsed"
+                                        ItemTemplate="{StaticResource SuggestionListBoxItemTemplate}"
+                                        ItemContainerStyle="{StaticResource SuggestionListBoxItemStyle}" /-->
+                                    <Border
+                                        Grid.Column="0"
+                                        Grid.Row="3"
+                                         x:Name="EndLocationBorder"
+                                        Background="{StaticResource RoadEndPOIFillNormalBrush}">
+                                        <TextBlock
+                                        Text="B"
+                                        Margin="-1,0,0,0"
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Center"
+                                        Foreground="{StaticResource RoadEndPOITextNormalBrush}"
+                                        Style="{StaticResource ExtraSmallText-B-None}"/>
+                                    </Border>
+                                    <Border
+                                        x:Name="DestinationCluster"
+                                        Grid.Column="1"
+                                        Grid.Row="3"
+                                        Height="32">
+                                        <Grid Background="{StaticResource InputBoxFillBrush}">
+                                            <TextBox
+                                            x:Name="DestinationField"
+                                            TabIndex="3"
+                                            Style="{StaticResource InputBox}">
+                                                <TextBox.InputScope>
+                                                    <InputScope>
+                                                        <InputScope.Names>
+                                                            <InputScopeName NameValue="Search"/>
+                                                        </InputScope.Names>
+                                                    </InputScope>
+                                                </TextBox.InputScope>
+                                            </TextBox>
+                                            <TextBlock
+                                            Text="To"
+                                            x:Name="DestinationWatermark"
+                                            Style="{StaticResource watermarkText}"/>
+                                            <!-- Location Me feature is not included yet-->
+                                            <!--Button
+                                                x:Name="CurrentLocDestination"
+                                                AutomationProperties.Name="My Location"
+                                                AutomationProperties.HelpText="Use my current location"
+                                                ToolTipService.ToolTip="Use my current location"
+                                                TabIndex="4"
+                                                HorizontalAlignment="Right"
+                                                Style="{StaticResource CurLocButtonStyle}"/-->
+                                        </Grid>
+                                    </Border>
+                                    <Button
+                                        x:Name="DoDirectionsButton"
+                                        Grid.Column="2"
+                                        Grid.Row="3"
+                                        Content="&#x203A;"
+                                        TabIndex="5"
+                                        AutomationProperties.AutomationId="DoDirectionsButton"
+                                        AutomationProperties.ItemType="Go Button"
+                                        Style="{StaticResource ActionButtonStyle}"/>
+                                    <!--Currently no suggestion feature-->
+                                    <!--ListBox
+                                        x:Name="DestinationSuggestionListBox"
+                                        Grid.Column="1"
+                                        Grid.ColumnSpan="2"
+                                        Grid.Row="4"
+                                        Visibility="Collapsed"
+                                        ItemTemplate="{StaticResource SuggestionListBoxItemTemplate}"
+                                        ItemContainerStyle="{StaticResource SuggestionListBoxItemStyle}"/-->
+                                </Grid>
+                                <RichTextBlock
+                                    x:Name="DirectionsErrorText"
+                                    Margin="0,5,0,0"
+                                    TextWrapping="Wrap"
+                                    IsTextSelectionEnabled="True"
+                                    Visibility="Collapsed"
+                                    Style="{StaticResource MediumText-R-White-RichTextBlock}"/>
+                            </StackPanel>
+
+                            <StackPanel
+                                Grid.Row="1"
+                                Margin="40,15,40,15"
+                                Orientation="Horizontal">
+                                <RadioButton
+                                    x:Name="DrivingButton"
+                                    GroupName="DirectionsGroupMode"
+                                    Margin="0,0,10,0"
+                                    TabIndex="6"
+                                    Content="&#xe005;"
+                                    IsChecked="True"
+                                    AutomationProperties.AutomationId="DrivingButton"
+                                    Style="{StaticResource DirectionsButtonStyle}"/>
+                                <RadioButton
+                                    x:Name="TransitButton"
+                                    GroupName="DirectionsGroupMode"
+                                    Margin="0,0,10,0"
+                                    TabIndex="7"
+                                    Content="&#xe046;"
+                                    IsChecked="False"
+                                    AutomationProperties.AutomationId="TransitButton"
+                                    Style="{StaticResource DirectionsButtonStyle}"/>
+                                <RadioButton
+                                    x:Name="WalkingButton"
+                                    GroupName="DirectionsGroupMode"
+                                    TabIndex="8"
+                                    Content="&#xe006;"
+                                    IsChecked="False"
+                                    AutomationProperties.AutomationId="WalkingButton"
+                                    Style="{StaticResource DirectionsButtonStyle}"/>
+                            </StackPanel>
+
+                            <CheckBox 
+                                Grid.Row="2"
+                                x:Name="OptionsCheckBox"
+                                Height="40"
+                                HorizontalAlignment="Stretch"
+                                Style="{StaticResource DirectionsCheckBoxStyle}"/>
+                            <!--ScrollViewer
+                                Grid.Row="3"
+                                HorizontalScrollBarVisibility="Disabled"
+                                HorizontalScrollMode="Disabled"
+                                VerticalScrollBarVisibility="Auto"
+                                VerticalScrollMode="Enabled"
+                                ZoomMode="Disabled"-->
+                                <Grid 
+                                    Margin="40,15,40,15" 
+                                    Grid.Row="3">
+                                    <StackPanel
+                                         Visibility="Collapsed"
+                                         x:Name="TransitOptionsGroup"
+                                         HorizontalAlignment="Stretch"
+                                         Orientation="Vertical">
+                                        <ComboBox
+                                            x:Name="TransitModeComboBox"
+                                            AllowDrop="true"
+                                            ItemsSource="{Binding Source={StaticResource TransitModesViewSource}}"
+                                            HorizontalAlignment="Stretch"/>
+                                        <ContentControl 
+                                            x:Name="DatePicker"
+                                            Margin="0,15,0,0"
+                                            HorizontalAlignment="Stretch"
+                                            HorizontalContentAlignment="Stretch">
+                                            <ComboBox
+                                                x:Name="DateComboBox"
+                                                HorizontalAlignment="Stretch"/>
+                                        </ContentControl>
+                                        <ContentControl 
+                                            x:Name="TimePicker" 
+                                            Margin="0,15,0,0"
+                                            HorizontalAlignment="Stretch"
+                                            HorizontalContentAlignment="Stretch">
+                                            <StackPanel
+                                                x:Name="TransitTimePanel"
+                                                Orientation="Horizontal">
+                                                <ComboBox
+                                                    x:Name="HourComboBox"
+                                                    Width="81"/>
+                                                <TextBlock
+                                                    Text=":"
+                                                    Margin="4,0,3,0"
+                                                    VerticalAlignment="Center"
+                                                    Style="{StaticResource MediumText-R-White}"/>
+                                                <ComboBox
+                                                    x:Name="MinuteComboBox"
+                                                    Width="81"/>
+                                                <ComboBox
+                                                    x:Name="AMPMComboBox"
+                                                    Width="81"
+                                                    Margin="11,0,0,0"/>
+                                            </StackPanel>
+                                        </ContentControl>
+                                        <!--We need to add this support if map app use our UI-->
+                                        <!--StackPanel Orientation="Vertical">
+                                        <controls:TransitOptionsJapan
+                                            x:Name="TransitOptionsJapan"
+                                            Visibility="{Binding Path=AppRegion, Converter={StaticResource JapanTransitOptionsVisibilityConverter}}"
+                                            Margin="0,15,0,0"/>
+                                    </StackPanel-->
+
+                                    </StackPanel>
+
+                                    <StackPanel
+                                       Visibility="Collapsed"
+                                       x:Name="DirectionsOptionsGroup"
+                                       Orientation="Vertical">
+                                        <Grid  x:Name="DirectionsOptionsControl"
+                                            Width="Auto">
+                                            <StackPanel
+                                                Orientation="Vertical">
+                                                <bm:AccessibleContainer
+                                                    AcceptPrimaryAction="False"
+                                                    x:Name="AvoidHighwaysText"
+                                                    Template="{StaticResource DirectionsLabelTemplate}"/>
+                                                <ToggleSwitch
+                                                    x:Name="AvoidHighwaysOnOff"
+                                                    TabIndex="8"/>
+                                                <bm:AccessibleContainer
+                                                    AcceptPrimaryAction="False"
+                                                    Margin="0,10,0,0"
+                                                    x:Name="AvoidTollsText"
+                                                    Template="{StaticResource DirectionsLabelTemplate}"/>
+                                                <ToggleSwitch
+                                                    x:Name="AvoidTollsOnOff"
+                                                    TabIndex="8"/>
+                                            </StackPanel>
+                                        </Grid>
+                                    </StackPanel>
+                                </Grid>
+                            <!--/ScrollViewer-->
+                        </Grid>
+                        <!--/ScrollViewer-->
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="dd:RouteSummary">
+        <Setter Property="MinHeight" Value="86"/>
+        <Setter  Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="dd:RouteSummary">
+                    <Grid 
+                        x:Name="LayoutRoot" 
+                        Background="{StaticResource RouteSummaryBackgroundBrush}">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="RouteMode">
+                                <VisualState x:Name="Transit">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Visibility)" Storyboard.TargetName="DirectionsWalkingSummaryGrid">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed"/>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="TransitSummaryGrid">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="Visible"/>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="DrivingWalking">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Visibility)" Storyboard.TargetName="DirectionsWalkingSummaryGrid">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="Visible"/>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="TransitSummaryGrid">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed"/>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Grid.Resources>
+                            <x:String x:Key="Delimitter">&#x00A0;</x:String>
+                            <x:String x:Key="WordEllipsis">&#x25CB;</x:String>
+                            <CollectionViewSource x:Name="itineraryStepViewSource" 
+                                                  IsSourceGrouped="True" 
+                                                  ItemsPath="Items" />
+                             <CollectionViewSource x:Name="TransitSummaryViewSource" />
+                            <DataTemplate x:Name="InstructionTemplate">
+                                <Grid MinHeight="86">
+                                    <Grid Margin="20,10,24,10">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="40"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+                                        <TextBlock
+                                                x:Name="StepIcon"
+                                                Grid.Column="0"
+                                                Grid.Row="1"
+                                                Text="{Binding Icon}"
+                                                FontSize="21"
+                                                FontFamily="{StaticResource SymbolFont}"
+                                                VerticalAlignment="Top"
+                                                HorizontalAlignment="Left"/>
+
+                                        <StackPanel
+                                                Grid.Column="1"
+                                                Grid.Row="0"
+                                                Margin="0,0,0,-2"
+                                                Orientation="Horizontal">
+                                            <TextBlock
+                                                    Text="{Binding Distance}"
+                                                    Style="{StaticResource SmallText-SB-None}"/>
+                                        </StackPanel>
+
+                                        <RichTextBlock
+                                                Grid.Column="1"
+                                                Grid.Row="1"
+                                                IsTextSelectionEnabled="False"
+                                                TextWrapping="Wrap"
+                                                Style="{StaticResource MediumText-R-None-RichTextBlock}">
+                                            <Paragraph>
+                                                <Run Text="{Binding DisplayIndex}"/>
+                                                <Run Text=". "/>
+                                                <Run Text="{Binding Instruction}"/>
+                                            </Paragraph>
+                                        </RichTextBlock>
+
+                                        <TextBlock
+                                                Grid.Column="1"
+                                                Grid.Row="2"
+                                                Text="{Binding Hint}"
+                                                TextWrapping="Wrap"
+                                                VerticalAlignment="Top"
+                                                Style="{StaticResource SmallText-SL-None}"/>
+                                        <ItemsControl
+                                                Grid.Column="1"
+                                                Grid.Row="3"
+                                                ItemsSource="{Binding Warnings}">
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate>
+                                                    <Grid>
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="20"/>
+                                                            <ColumnDefinition Width="*"/>
+                                                        </Grid.ColumnDefinitions>
+                                                        <Grid.RowDefinitions>
+                                                            <RowDefinition Height="Auto"/>
+                                                        </Grid.RowDefinitions>
+                                                        <TextBlock
+                                                            Grid.Column="0"
+                                                            Grid.Row="1"
+                                                            Text="&#xE047;"
+                                                            FontSize="12"
+                                                            FontFamily="{StaticResource SymbolFont}"
+                                                            VerticalAlignment="Top"
+                                                            HorizontalAlignment="Left"/>
+                                                        <TextBlock
+                                                            Grid.Column="1"
+                                                            Grid.Row="0"
+                                                            Text="{Binding Message}"
+                                                            TextWrapping="Wrap"
+                                                            VerticalAlignment="Top"
+                                                            Style="{StaticResource SmallText-SL-None}"/>
+                                                    </Grid>
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
+                                    </Grid>
+                                </Grid>
+                            </DataTemplate>
+                            <DataTemplate x:Name="WaypointTemplate">
+                                <Grid MinHeight="86">
+                                    <Grid Margin="20,10,24,10">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="40"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+                                        <TextBlock
+                                                x:Name="StepIcon"
+                                                Grid.Column="0"
+                                                Grid.Row="1"
+                                                Text="{Binding Icon}"
+                                                Foreground="{Binding IconColor}"
+                                                FontSize="21"
+                                                FontFamily="{StaticResource SymbolFont}"
+                                                VerticalAlignment="Top"
+                                                HorizontalAlignment="Left"/>
+                                        <StackPanel
+                                                Grid.Column="1"
+                                                Grid.Row="0"
+                                                Margin="0,0,0,-2"
+                                                Orientation="Horizontal">
+                                            <TextBlock
+                                                    Text="{Binding Distance}"
+                                                    Style="{StaticResource SmallText-SB-None}"/>
+                                        </StackPanel>
+                                        
+                                        <RichTextBlock
+                                               Grid.Column="1"
+                                               Grid.Row="1"
+                                               IsTextSelectionEnabled="False"
+                                               TextWrapping="Wrap"
+                                               Style="{StaticResource MediumText-R-None-RichTextBlock}">
+                                            <Paragraph>
+                                                <Run Text="{Binding DisplayIndex}"/>
+                                                <Run Text=". "/>
+                                                <Run Text="{Binding Instruction}"/>
+                                            </Paragraph>
+                                        </RichTextBlock>
+
+                                        <TextBlock
+                                                Grid.Column="1"
+                                                Grid.Row="2"
+                                                Text="{Binding Path=Hint}"
+                                                TextWrapping="Wrap"
+                                                VerticalAlignment="Top"
+                                                Style="{StaticResource SmallText-SL-None}"/>
+                                    </Grid>
+                                </Grid>
+                            </DataTemplate>
+                            <DataTemplate x:Name="TransitWaypointTemplate">
+                                <Grid>
+                                    <Grid Margin="20,10,24,10">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="40"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+                                        <TextBlock
+                                                x:Name="StepIcon"
+                                                Grid.Column="0"
+                                                Grid.Row="0"
+                                                Text="{Binding Icon}"
+                                                Foreground="{Binding IconColor}"
+                                                FontSize="21"
+                                                FontFamily="{StaticResource SymbolFont}"
+                                                VerticalAlignment="Top"
+                                                HorizontalAlignment="Left"/>
+                                        <RichTextBlock
+                                                Grid.Column="1"
+                                                Grid.Row="0"
+                                                IsTextSelectionEnabled="False"
+                                                TextWrapping="Wrap"
+                                                Style="{StaticResource MediumText-R-None-RichTextBlock}">
+                                            <Paragraph>
+                                                <Run Text="{Binding TransitStop}"/>
+                                            </Paragraph>
+                                        </RichTextBlock>
+                                    </Grid>
+                                </Grid>
+                            </DataTemplate>
+                            <DataTemplate x:Name="TransitInstructionTemplate">
+                                <Grid MinHeight="86">
+                                    <Grid Margin="20,10,24,10">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="40"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+                                        <TextBlock
+                                            Grid.Column="0"
+                                            Grid.Row="1"
+                                            Text="{Binding Icon}"
+                                            FontSize="21"
+                                            FontFamily="{StaticResource SymbolFont}"
+                                            VerticalAlignment="Top"
+                                            HorizontalAlignment="Left"/>
+
+                                        <StackPanel
+                                            Grid.Column="1"
+                                            Grid.Row="0"
+                                            Margin="0,0,0,-2"
+                                            Orientation="Horizontal">
+                                            <TextBlock
+                                                    Text="{Binding TransitInstructionHeader}"
+                                                    Style="{StaticResource SmallText-SB-None}"/>
+                                        </StackPanel>
+                                        <RichTextBlock
+                                                Grid.Column="1"
+                                                Grid.Row="1"
+                                                Margin="0,0,0,2"
+                                                IsTextSelectionEnabled="False"
+                                                TextWrapping="Wrap"
+                                                Style="{StaticResource MediumText-R-None-RichTextBlock}">
+                                            <Paragraph>
+                                                <Run Text="{Binding Instruction}"/>
+                                            </Paragraph>
+                                        </RichTextBlock>
+                                        <RichTextBlock
+                                            Grid.Column="1"
+                                            Grid.Row="2"
+                                            Margin="0,0,0,2"
+                                            IsTextSelectionEnabled="False"
+                                            TextWrapping="Wrap"
+                                            Style="{StaticResource MediumText-R-None-RichTextBlock}">
+                                            <Paragraph>
+                                                <Run Text="{Binding TransitDepartureTime}"/>
+                                            </Paragraph>
+                                        </RichTextBlock>
+                                        <TextBlock
+                                            Grid.Column="1"
+                                            Grid.Row="3"
+                                            Text=" "
+                                            Style="{StaticResource SmallText-SB-None}"
+                                            VerticalAlignment="Top"
+                                            HorizontalAlignment="Left"/>
+                                        <TextBlock
+                                            Grid.Column="1"
+                                            Grid.Row="4"
+                                            Text="{Binding TransitArrivalInstructionHeader}"
+                                            Style="{StaticResource SmallText-SB-None}"
+                                            VerticalAlignment="Top"
+                                            HorizontalAlignment="Left"/>
+
+                                        <RichTextBlock
+                                            Grid.Column="1"
+                                            Grid.Row="5"
+                                            Margin="0,0,0,2"
+                                            IsTextSelectionEnabled="False"
+                                            TextWrapping="Wrap"
+                                            Style="{StaticResource MediumText-R-None-RichTextBlock}">
+                                            <Paragraph>
+                                                <Run Text="{Binding TransitArrivalInstruction}"/>
+                                            </Paragraph>
+                                        </RichTextBlock>
+                                        <RichTextBlock
+                                                Grid.Column="1"
+                                                Grid.Row="6"
+                                                Margin="0,0,0,2"
+                                                IsTextSelectionEnabled="False"
+                                                TextWrapping="Wrap"
+                                                Style="{StaticResource MediumText-R-None-RichTextBlock}">
+                                            <Paragraph>
+                                                <Run Text="{Binding TransitArrivalTime}"/>
+                                            </Paragraph>
+                                        </RichTextBlock>
+                                        <TextBlock
+                                            Grid.Column="1"
+                                            Grid.Row="7"
+                                            Text="{Binding Hint}"
+                                            TextWrapping="Wrap"
+                                            VerticalAlignment="Top"
+                                            FontWeight="Light"
+                                            Style="{StaticResource SmallText-SL-None}"/>
+                                    </Grid>
+                                </Grid>
+                            </DataTemplate>
+                            <DataTemplate x:Name="WalkInstructionTemplate">
+                                <Grid MinHeight="86">
+                                    <Grid Margin="20,10,24,10">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="40"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+                                        <TextBlock
+                                                x:Name="StepIcon"
+                                                Grid.Column="0"
+                                                Grid.Row="1"
+                                                Text="{Binding Icon}"
+                                                FontSize="21"
+                                                FontFamily="{StaticResource SymbolFont}"
+                                                VerticalAlignment="Top"
+                                                HorizontalAlignment="Left"/>
+
+                                        <StackPanel
+                                                Grid.Column="1"
+                                                Grid.Row="0"
+                                                Margin="0,0,0,-2"
+                                                VerticalAlignment="Top"
+                                                Orientation="Horizontal">
+                                            <TextBlock
+                                                    Text="{Binding Distance}"
+                                                    Style="{StaticResource SmallText-SB-None}"/>
+                                        </StackPanel>
+
+                                        <RichTextBlock
+                                                Grid.Column="1"
+                                                Grid.Row="1"
+                                                IsTextSelectionEnabled="False"
+                                                TextWrapping="Wrap"
+                                                Style="{StaticResource MediumText-R-None-RichTextBlock}">
+                                            <Paragraph>
+                                                <Run Text="{Binding Instruction}"/>
+                                            </Paragraph>
+                                        </RichTextBlock>
+
+                                        <TextBlock
+                                                Grid.Column="1"
+                                                Grid.Row="2"
+                                                Text="{Binding Hint}"
+                                                TextWrapping="Wrap"
+                                                VerticalAlignment="Top"
+                                                Style="{StaticResource SmallText-SL-None}"/>
+                                        <ItemsControl
+                                                Grid.Column="1"
+                                                Grid.Row="3"
+                                                ItemsSource="{Binding Warnings}">
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate>
+                                                    <Grid>
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="20"/>
+                                                            <ColumnDefinition Width="*"/>
+                                                        </Grid.ColumnDefinitions>
+                                                        <Grid.RowDefinitions>
+                                                            <RowDefinition Height="Auto"/>
+                                                        </Grid.RowDefinitions>
+                                                        <TextBlock
+                                                            Grid.Column="0"
+                                                            Grid.Row="1"
+                                                            Text="&#xE047;"
+                                                            FontSize="12"
+                                                            FontFamily="{StaticResource SymbolFont}"
+                                                            VerticalAlignment="Top"
+                                                            HorizontalAlignment="Left"/>
+                                                        <TextBlock
+                                                            Grid.Column="1"
+                                                            Grid.Row="0"
+                                                            Text="{Binding Message}"
+                                                            TextWrapping="Wrap"
+                                                            VerticalAlignment="Top"
+                                                            Style="{StaticResource SmallText-SL-None}"/>
+                                                    </Grid>
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
+                                    </Grid>
+                                </Grid>
+                            </DataTemplate>
+                            <DataTemplate x:Name="ListHeaderGrouped">
+                                <bm:AccessibleContainer
+                                    Margin="5, 0, 0, 15"
+                                    AcceptPrimaryAction="False"
+                                    AutomationProperties.Name="{Binding AutomationName}"
+                                    Template="{StaticResource RouteSummaryListItemHeaderTextTemplate}"/>
+                            </DataTemplate>
+                            <DataTemplate x:Name="ListHeaderDefault">
+                                <Grid></Grid>
+                            </DataTemplate>
+                            <DataTemplate x:Name="TransitSummaryItemTemplate">
+                                <StackPanel>
+                                    <TextBlock
+                                        Text="{Binding Summary}"
+                                        TextWrapping="Wrap"
+                                        Style="{StaticResource SmallText-SL-None}"/>
+                                    <TextBlock
+                                        Text="{Binding Icon}"
+                                        TextWrapping="Wrap"
+                                        FontFamily="{StaticResource SymbolFont}"
+                                        Style="{StaticResource MediumText-R-None}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                            <dd:RouteLegDataTemplateSelector x:Key="routeLegTemplateSelector"
+                                ItineraryItemTemplate="{StaticResource InstructionTemplate}"
+                                WaypointTemplate="{StaticResource WaypointTemplate}"
+                                TransitItineraryItemTemplate="{StaticResource TransitInstructionTemplate}"
+                                TransitWaypointTemplate ="{StaticResource TransitWaypointTemplate}"
+                                WalkItineraryItemTemplate="{StaticResource WalkInstructionTemplate}"
+                                GroupRouteLegHeaderItemTemplate="{StaticResource ListHeaderGrouped}"
+                                RouteLegHeaderItemTemplate="{StaticResource ListHeaderDefault}" />
+                            
+                            
+                            <Style TargetType="ListViewItem" x:Name="UnselectableContainerStyle">
+                                <Setter Property="Background" Value="Transparent"/>
+                                <Setter Property="TabNavigation" Value="Local"/>
+                                <Setter Property="Margin" Value="0"/>
+                                <Setter Property="Padding" Value="0"/>
+                                <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                                <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="ListViewItem">
+                                            <Border x:Name="LayoutRoot" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}">
+                                                <Grid x:Name="InnerGrid" Background="Transparent">
+                                                    <ContentPresenter 
+                                                        x:Name="ContentPresenter" 
+                                                        ContentTemplate="{TemplateBinding ContentTemplate}" 
+                                                        ContentTransitions="{TemplateBinding ContentTransitions}" 
+                                                        Content="{TemplateBinding Content}" 
+                                                        HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                                        Margin="{TemplateBinding Padding}" 
+                                                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                                </Grid>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+
+                            <Style x:Key="RegularContainerStyle" TargetType="ListViewItem">
+                                <Setter Property="Background" Value="Transparent"/>
+                                <Setter Property="TabNavigation" Value="Local"/>
+                                <Setter Property="Margin" Value="0"/>
+                                <Setter Property="Padding" Value="0"/>
+                                <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                                <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="ListViewItem">
+                                            <Border x:Name="LayoutRoot" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}">
+                                                <VisualStateManager.VisualStateGroups>
+                                                    <VisualStateGroup x:Name="CommonStates">
+                                                        <VisualState x:Name="Normal"/>
+                                                        <VisualState x:Name="PointerOver"/>
+                                                        <VisualState x:Name="Pressed">
+                                                            <Storyboard>
+                                                                <PointerDownThemeAnimation TargetName="InnerGrid"/>
+                                                            </Storyboard>
+                                                        </VisualState>
+                                                        <VisualState x:Name="PointerOverPressed">
+                                                            <Storyboard>
+                                                                <PointerDownThemeAnimation TargetName="InnerGrid"/>
+                                                            </Storyboard>
+                                                        </VisualState>
+                                                        <VisualState x:Name="Disabled">
+                                                            <Storyboard>
+                                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="InnerGrid">
+                                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="Transparent"/>
+                                                                </ObjectAnimationUsingKeyFrames>
+                                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="ContentPresenter">
+                                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource ListBoxItemDisabledForegroundThemeBrush}"/>
+                                                                </ObjectAnimationUsingKeyFrames>
+                                                            </Storyboard>
+                                                        </VisualState>
+                                                    </VisualStateGroup>
+                                                    <VisualStateGroup x:Name="SelectionStates">
+                                                        <VisualState x:Name="Unselected"/>
+                                                        <VisualState x:Name="Selected">
+                                                            <Storyboard>
+                                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="SelectedBackground">
+                                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource ListBoxItemSelectedBackgroundThemeBrush}"/>
+                                                                </ObjectAnimationUsingKeyFrames>
+                                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="ContentPresenter">
+                                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource ListBoxItemSelectedForegroundThemeBrush}"/>
+                                                                </ObjectAnimationUsingKeyFrames>
+                                                            </Storyboard>
+                                                        </VisualState>
+                                                        <VisualState x:Name="SelectedUnfocused">
+                                                            <Storyboard>
+                                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="SelectedBackground">
+                                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource ListBoxItemSelectedBackgroundThemeBrush}"/>
+                                                                </ObjectAnimationUsingKeyFrames>
+                                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="ContentPresenter">
+                                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource ListBoxItemSelectedForegroundThemeBrush}"/>
+                                                                </ObjectAnimationUsingKeyFrames>
+                                                            </Storyboard>
+                                                        </VisualState>
+                                                        <VisualState x:Name="UnselectedPointerOver">
+                                                            <Storyboard>
+                                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="InnerGrid">
+                                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource ListBoxItemPointerOverBackgroundThemeBrush}"/>
+                                                                </ObjectAnimationUsingKeyFrames>
+                                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="ContentPresenter">
+                                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource ListBoxItemPointerOverForegroundThemeBrush}"/>
+                                                                </ObjectAnimationUsingKeyFrames>
+                                                            </Storyboard>
+                                                        </VisualState>
+                                                    </VisualStateGroup>
+                                                    <VisualStateGroup x:Name="FocusStates">
+                                                        <VisualState x:Name="Focused">
+                                                            <Storyboard>
+                                                                <DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="FocusVisualWhite"/>
+                                                                <DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="FocusVisualBlack"/>
+                                                            </Storyboard>
+                                                        </VisualState>
+                                                        <VisualState x:Name="Unfocused"/>
+                                                        <VisualState x:Name="PointerFocused"/>
+                                                    </VisualStateGroup>
+                                                </VisualStateManager.VisualStateGroups>
+                                                <Grid x:Name="InnerGrid" Background="Transparent">
+                                                    <Rectangle x:Name="SelectedBackground" Fill="Transparent"/>
+                                                    <ContentPresenter x:Name="ContentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" ContentTransitions="{TemplateBinding ContentTransitions}" Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                                    <Rectangle x:Name="FocusVisualWhite" Opacity="0" StrokeDashOffset=".5" StrokeEndLineCap="Square" Stroke="{StaticResource FocusVisualWhiteStrokeThemeBrush}" StrokeDashArray="1,1"/>
+                                                    <Rectangle x:Name="FocusVisualBlack" Opacity="0" StrokeDashOffset="1.5" StrokeEndLineCap="Square" Stroke="{StaticResource FocusVisualBlackStrokeThemeBrush}" StrokeDashArray="1,1"/>
+                                                </Grid>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                            <dd:DirectionsContainerSelector x:Key="DirectionsContainerSelector"
+                                SelectableStyle="{StaticResource RegularContainerStyle}"
+                                UnSelectableStyle="{StaticResource UnselectableContainerStyle}" /> 
+                        </Grid.Resources>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>  
+                        <Grid
+                            x:Name="DirectionsWalkingSummaryGrid"
+                            Grid.Row="0"
+                            Margin="20,10,24,10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="40"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>        
+                            <TextBlock 
+                                x:Name="RouteSymbolTextblock"
+                                Grid.Column="0"
+                                Margin="0,1,0,0"
+                                Text="&#xE003;"
+                                FontSize="22"
+                                FontFamily="{StaticResource SymbolFont}"
+                                FontWeight="Light"
+                                VerticalAlignment="Top"
+                                Foreground="{StaticResource RouteStepIconColorBrush}"
+                                HorizontalAlignment="Left"/>
+                            <bm:AccessibleContainer
+                                x:Name="RouteNameTextblock"
+                                Grid.Column="1"
+                                Template="{StaticResource RouteHeaderTextTemplate}"
+                                AcceptPrimaryAction="False"/>
+                        </Grid>
+                        <Grid
+                            x:Name="TransitSummaryGrid"
+                            Grid.Row="0"
+                            Margin="20,10,24,10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="40"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                                
+                            <TextBlock 
+                                Grid.Column="0"
+                                Margin="0,1,0,0"
+                                Text="&#xE003;"
+                                FontSize="22"
+                                FontFamily="{StaticResource SymbolFont}"
+                                FontWeight="Light"
+                                VerticalAlignment="Top"
+                                Foreground ="{StaticResource RouteStepIconColorBrush}"
+                                HorizontalAlignment="Left"/>
+                            <StackPanel
+                                Grid.Column="1"
+                                Orientation="Vertical">
+                                <!-- Setting Visibility="Collapsed" for now. Used in future release when multiple routes available. -->
+                                <bm:AccessibleContainer Visibility="Collapsed"
+                                    Template="{StaticResource RouteHeaderTextTemplate}"
+                                    x:Name="TransitRouteNameTextblock"
+                                    AcceptPrimaryAction="False"/>
+                                <bm:CustomListView 
+                                    x:Name="TransitSummaryListView"
+                                    ItemsSource="{Binding Source={StaticResource TransitSummaryViewSource}}"
+                                    ItemTemplate="{StaticResource TransitSummaryItemTemplate}"
+                                    ItemContainerStyleSelector ="{StaticResource DirectionsContainerSelector}"
+                                    Foreground="{StaticResource ListBoxForegroundThemeBrush}"/>
+                            </StackPanel>
+                        </Grid>
+                        <bm:CustomListView 
+                            x:Name="ItineraryStepListView" 
+                            Grid.Row="1"
+                            ItemsSource="{Binding Source={StaticResource itineraryStepViewSource}}"
+                            ItemTemplateSelector="{StaticResource routeLegTemplateSelector}"
+                            ItemContainerStyleSelector="{StaticResource DirectionsContainerSelector}"
+                            Foreground="{StaticResource ListBoxForegroundThemeBrush}">
+                            <ListView.GroupStyle>
+                                <GroupStyle HeaderTemplateSelector="{StaticResource routeLegTemplateSelector}"/>
+                            </ListView.GroupStyle>
+                        </bm:CustomListView>
+
+                        <StackPanel
+                            Grid.Row="2"  
+                            Margin="20,15,24,15">
+                            <bm:AccessibleContainer
+                                x:Name="DisclaimerTextBlock"
+                                Template="{StaticResource RouteDisclaimerTextTemplate}"
+                                AcceptPrimaryAction="False"/>
+                        </StackPanel>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
     
     <!-- MAP LAYOUT -->
     <ControlTemplate TargetType="bm:Map" x:Key="MapTemplate">
         <Grid x:Name="mapRoot">
-            <Grid x:Name="mapPanel" Background="Blue">
+            <Grid x:Name="mapPanel" Background="Transparent">
+                <!-- Directions UIs-->
+                <bm:MapLayer x:Name="directionsUILayer">
+                    <bm:MapLayer.Resources>
+                        <!-- Maneuver icon resources -->
+                        <x:String x:Key="BearLeft">&#xE025;</x:String>
+                        <x:String x:Key="BearLeftThenBearLeft">&#xE025;</x:String>
+                        <x:String x:Key="BearLeftThenBearRight">&#xE025;</x:String>
+                        <x:String x:Key="BearLeftThenTurnLeft">&#xE025;</x:String>
+                        <x:String x:Key="BearLeftThenTurnRight">&#xE025;</x:String>
+                        <x:String x:Key="BearThenKeepLeft">&#xE025;</x:String>
+                        <x:String x:Key="BearThenMergeLeft">&#xE025;</x:String>
+
+                        <x:String x:Key="BearRight">&#xE026;</x:String>
+                        <x:String x:Key="BearRightThenBearLeft">&#xE026;</x:String>
+                        <x:String x:Key="BearRightThenBearRight">&#xE026;</x:String>
+                        <x:String x:Key="BearRightThenTurnLeft">&#xE026;</x:String>
+                        <x:String x:Key="BearRightThenTurnRight">&#xE026;</x:String>
+                        <x:String x:Key="BearThenKeepRight">&#xE026;</x:String>
+                        <x:String x:Key="BearThenMergeRight">&#xE026;</x:String>
+
+                        <x:String x:Key="EnterRoundaboutLeft">&#xE027;</x:String>
+                        <x:String x:Key="EnterThenExitRoundaboutLeft">&#xE027;</x:String>
+
+                        <x:String x:Key="EnterRoundabout">&#xE028;</x:String>
+                        <x:String x:Key="EnterThenExitRoundabout">&#xE028;</x:String>
+
+                        <x:String x:Key="ExitRoundaboutLeft">&#xE029;</x:String>
+
+                        <x:String x:Key="ExitRoundabout">&#xE030;</x:String>
+
+                        <x:String x:Key="ExitLeft">&#xE031;</x:String>
+                        <x:String x:Key="RampThenHighwayLeft">&#xE031;</x:String>
+                        <x:String x:Key="TakeRampLeft">&#xE031;</x:String>
+
+                        <x:String x:Key="ExitRight">&#xE032;</x:String>
+                        <x:String x:Key="RampThenHighwayRight">&#xE032;</x:String>
+                        <x:String x:Key="TakeRampRight">&#xE032;</x:String>
+
+                        <x:String x:Key="KeepLeft">&#xE033;</x:String>
+                        <x:String x:Key="KeepOnRampLeft">&#xE033;</x:String>
+                        <x:String x:Key="KeepToStayLeft">&#xE033;</x:String>
+
+                        <x:String x:Key="KeepRight">&#xE034;</x:String>
+                        <x:String x:Key="KeepOnRampRight">&#xE034;</x:String>
+                        <x:String x:Key="KeepToStayRight">&#xE034;</x:String>
+
+                        <x:String x:Key="Continue">&#xE035;</x:String>
+                        <x:String x:Key="KeepStraight">&#xE035;</x:String>
+                        <x:String x:Key="KeepOnRampStraight">&#xE035;</x:String>
+                        <x:String x:Key="KeepToStayStraight">&#xE035;</x:String>
+                        <x:String x:Key="RampThenStraight">&#xE035;</x:String>
+                        <x:String x:Key="TakeRampStraight">&#xE035;</x:String>
+
+                        <x:String x:Key="Merge">&#xE036;</x:String>
+
+                        <x:String x:Key="MergeLeft">&#xE037;</x:String>
+
+                        <x:String x:Key="MergeRight">&#xE038;</x:String>
+
+                        <x:String x:Key="RoadNameChange">&#xE039;</x:String>
+
+                        <x:String x:Key="StayLeft">&#xE040;</x:String>
+
+                        <x:String x:Key="StayRight">&#xE041;</x:String>
+
+                        <x:String x:Key="TurnLeft">&#xE042;</x:String>
+                        <x:String x:Key="TurnLeftThenBearLeft">&#xE042;</x:String>
+                        <x:String x:Key="TurnLeftThenBearRight">&#xE042;</x:String>
+                        <x:String x:Key="TurnLeftThenTurnLeft">&#xE042;</x:String>
+                        <x:String x:Key="TurnLeftThenTurnRight">&#xE042;</x:String>
+                        <x:String x:Key="TurnThenMergeLeft">&#xE042;</x:String>
+                        <x:String x:Key="TurnToStayLeft">&#xE042;</x:String>
+
+                        <x:String x:Key="TurnRight">&#xE043;</x:String>
+                        <x:String x:Key="TurnRightThenBearLeft">&#xE043;</x:String>
+                        <x:String x:Key="TurnRightThenBearRight">&#xE043;</x:String>
+                        <x:String x:Key="TurnRightThenTurnLeft">&#xE043;</x:String>
+                        <x:String x:Key="TurnRightThenTurnRight">&#xE043;</x:String>
+                        <x:String x:Key="TurnThenMergeRight">&#xE043;</x:String>
+                        <x:String x:Key="TurnToStayRight">&#xE043;</x:String>
+
+                        <x:String x:Key="UTurn">&#xE044;</x:String>
+
+                        <x:String x:Key="UTurnRight">&#xE045;</x:String>
+
+                        <x:String x:Key="Transfer">&#xE046; &#xE006; &#xE046;</x:String>
+
+                        <x:String x:Key="TakeTransit">&#xE046;</x:String>
+                       
+                        <x:String x:Key="Driving">&#xE005;</x:String>
+
+                        <x:String x:Key="Walk">&#xE006;</x:String>
+
+                        <x:String x:Key="TakeFerry">&#x26F4;</x:String>
+                        
+                        <!-- Itinerary Icon type-->
+                        <!-- Icon for Airplane and Other are not defined-->
+                        <!-- x:String x:Key="Airline">&#xE046;</x:String -->
+                        <x:String x:Key="Auto">&#xE005;</x:String>
+                        <x:String x:Key="Bus">&#xE046;</x:String>
+                        <x:String x:Key="Ferry">&#x26F4;</x:String>
+                        <x:String x:Key="Train">&#xE007;</x:String>
+                        <!--x:String x:Key="Other">&#xE046;</x:String-->
+                        
+                        <!--Waypoint Pushpin resources-->
+                        <x:Double x:Key="WaypointPushpinSize">30</x:Double>
+                        <x:Double x:Key="WaypointRectangleStrokeSize">3</x:Double>
+                        <x:Double x:Key="SelectedWaypointRectanglePushpinSize">30</x:Double>
+                        <x:Double x:Key="WaypointPointerHeight">52.25</x:Double>
+                        <x:Double x:Key="WaypointPointerWidth">15</x:Double>
+                        <x:Double x:Key="WaypointPointerBaseSize">13</x:Double>
+                        <Color x:Key="StartWaypointColor">Green</Color>
+                        <Color x:Key="EndWaypointColor">Red</Color>
+                        <Color x:Key="MiddleWaypointColor">DarkGray</Color>
+                        <Color x:Key="WaypointTapColor">Black</Color>
+                        <Color x:Key="WaypointHoverColor">LightGray</Color>
+                        <Color x:Key="SelectedWaypointColor">Black</Color>
+                        <SolidColorBrush x:Key="StartWaypointColorBrush" Color="{StaticResource StartWaypointColor}"/>
+                        <SolidColorBrush x:Key="EndWaypointColorBrush" Color="{StaticResource EndWaypointColor}"/>
+                        <SolidColorBrush x:Key="MiddleWaypointColorBrush" Color="{StaticResource MiddleWaypointColor}"/>
+                        <SolidColorBrush x:Key="WaypointHoverColorBrush" Color="{StaticResource WaypointHoverColor}"/>
+                        <SolidColorBrush x:Key="WaypointTapColorBrush" Color="{StaticResource WaypointTapColor}"/>
+                        <SolidColorBrush x:Key="SelectedWaypointColorBrush" Color="{StaticResource SelectedWaypointColor}"/>
+                        <!--Disambiguation Pushpin Resources-->
+                        <x:Double x:Key="SelectedDisambiguationPushpinSize">15</x:Double>
+                        <x:Double x:Key="DisambiguationPushpinSize">22</x:Double>
+                        <Color x:Key="DisambiguationPushpinColor">#FF4498FE</Color>
+                        <Color x:Key="DisambiguationTextColor">#FFF7F4F2</Color>
+                        <Color x:Key="SelectedDisambiguationColor">Black</Color>
+                        <SolidColorBrush x:Key="DisambiguationPushpinColorBrush" Color="{StaticResource DisambiguationPushpinColor}"/>
+                        <SolidColorBrush x:Key="DisambiguationTextColorBrush" Color="{StaticResource DisambiguationTextColor}"/>
+                        <SolidColorBrush x:Key="SelectedDisambiguationColorBrush" Color="{StaticResource SelectedDisambiguationColor}"/>
+                        <SolidColorBrush x:Key="DisambiguationHoverColorBrush" Color="{StaticResource SelectedDisambiguationColor}"/>
+                        <SolidColorBrush x:Key="DisambiguationTapColorBrush" Color="{StaticResource SelectedDisambiguationColor}"/>
+                        <!--Step Pushpin Resources-->
+                        <x:Double x:Key="StepPushpinSize">13</x:Double>
+                        <x:Double x:Key="StepPushpinStrokeThickness">3</x:Double>
+                        <Color x:Key="StepPushpinColor">White</Color>
+                        <Color x:Key="StepPushpinStrokeColor">Black</Color>
+                        <SolidColorBrush x:Key="StepPushpinColorBrush" Color="{StaticResource StepPushpinColor}"/>
+                        <SolidColorBrush x:Key="StepPushpinStrokeColorBrush" Color="{StaticResource StepPushpinStrokeColor}"/>
+                        <!--Transit pushpin resources-->
+                        <!-- RoadPopup -->
+                        <SolidColorBrush x:Key="RoadPopupFillNormalBrush" Color="{StaticResource ColorW}" />
+                        <SolidColorBrush x:Key="RoadPopupTextNormalBrush" Color="{StaticResource ColorGB25}" />
+                        <SolidColorBrush x:Key="RoadPopupFillPressedBrush" Color="{StaticResource ColorGB25}" />
+                        <SolidColorBrush x:Key="RoadPopupTextPressedBrush" Color="{StaticResource ColorW}" />
+                        <SolidColorBrush x:Key="RoadPopupMaskBrush" Color="{StaticResource ColorGB75}" />
+                        <!--Waypoint pushpin template-->
+                        <ControlTemplate TargetType="bm:Pushpin" x:Key="WaypointPushpinTemplate">
+                            <Grid UseLayoutRounding="False">
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup x:Name="CommonStates">
+                                        <VisualState x:Name="PointerOver">
+                                            <Storyboard>
+                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Background" Storyboard.TargetProperty="Fill">
+                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource WaypointHoverColorBrush}"/>
+                                                </ObjectAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </VisualState>
+                                        <VisualState x:Name="Pressed">
+                                            <Storyboard>
+                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Background" Storyboard.TargetProperty="Fill">
+                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource WaypointTapColorBrush}"/>
+                                                </ObjectAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </VisualState>
+                                        <VisualState x:Name="Normal"/>
+                                    </VisualStateGroup>
+                                    <VisualStateGroup x:Name="SelectionStates">
+                                        <VisualState x:Name="Selected">
+                                            <Storyboard>
+                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="Background">
+                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed"/>
+                                                </ObjectAnimationUsingKeyFrames>
+                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="SelectedBackground">
+                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="Visible"/>
+                                                </ObjectAnimationUsingKeyFrames>
+                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="WaypointText">
+                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed"/>
+                                                </ObjectAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </VisualState>
+                                        <VisualState x:Name="Unselected">
+                                            <Storyboard>
+                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="Background">
+                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="Visible"/>
+                                                </ObjectAnimationUsingKeyFrames>
+                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="SelectedBackground">
+                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed"/>
+                                                </ObjectAnimationUsingKeyFrames>
+                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="WaypointText">
+                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="Visible"/>
+                                                </ObjectAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </VisualState>
+                                    </VisualStateGroup>
+                                </VisualStateManager.VisualStateGroups>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                    <StackPanel Orientation="Horizontal"
+                                                Grid.Row="0">
+                                        <Grid VerticalAlignment="Top">
+                                            <Rectangle x:Name="Background" 
+                                                       Fill="{TemplateBinding Background}" 
+                                                       Stroke="Black"
+                                                       StrokeThickness="{StaticResource WaypointRectangleStrokeSize}"
+                                                       Width="{StaticResource WaypointPushpinSize}" 
+                                                       Height="{StaticResource WaypointPushpinSize}"/>
+                                           <Rectangle x:Name="SelectedBackground"
+                                                              Visibility="Collapsed"
+                                                              Fill="{StaticResource SelectedWaypointColorBrush}"
+                                                              HorizontalAlignment="Center"
+                                                              Width="{StaticResource SelectedWaypointRectanglePushpinSize}"
+                                                              Height="{StaticResource SelectedWaypointRectanglePushpinSize}" />
+                                            <TextBlock Foreground="White"
+                                                       x:Name="WaypointText"
+                                                       HorizontalAlignment="Center"
+                                                       VerticalAlignment="Center"
+                                                       FontSize="20"
+                                                       FontWeight="Bold"
+                                                       Text="{TemplateBinding Text}">
+                                            </TextBlock>
+                                            
+                                        </Grid>
+                                        <Path Data="M30,0.25 L38.75,51.5 L29.75,29.75"
+                                                 x:Name="Pointer"
+                                                 Fill="Black"
+                                                 Opacity="0.60000598430633545"
+                                                 HorizontalAlignment="Left"
+                                                 Height="{StaticResource WaypointPointerHeight}"
+                                                 Margin="-1,0,0,-2"
+                                                 Stretch="Fill"
+                                                 UseLayoutRounding="False"
+                                                 VerticalAlignment="Top"
+                                                 Width="{StaticResource WaypointPointerWidth}"/>
+                                    </StackPanel>
+                                        <Grid   HorizontalAlignment="Right"
+                                                Grid.Row="1"
+                                                Margin="-7.5"
+                                                Width="{StaticResource WaypointPointerBaseSize}"
+                                                Height="{StaticResource WaypointPointerBaseSize}"
+                                                UseLayoutRounding="False">
+                                        <Ellipse  Fill="Black"
+                                             StrokeThickness = "2"
+                                             Stroke="White"
+                                             Width="{StaticResource WaypointPointerBaseSize}"
+                                             Height="{StaticResource WaypointPointerBaseSize}"/>
+                                    </Grid>
+                            </Grid>
+                            
+                        </ControlTemplate>
+                        <!--Disambiguation pushpin template-->
+                        <ControlTemplate TargetType="bm:Pushpin" x:Key="DisambiguationPushpinTemplate">
+                            <Grid UseLayoutRounding="False">
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup x:Name="CommonStates">
+                                        <VisualState x:Name="PointerOver">
+                                            <Storyboard>
+                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Background" Storyboard.TargetProperty="Fill">
+                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource DisambiguationHoverColorBrush}"/>
+                                                </ObjectAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </VisualState>
+                                        <VisualState x:Name="Pressed">
+                                            <Storyboard>
+                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Background" Storyboard.TargetProperty="Fill">
+                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource DisambiguationTapColorBrush}"/>
+                                                </ObjectAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </VisualState>
+                                        <VisualState x:Name="Normal"/>
+                                    </VisualStateGroup>
+                                    <VisualStateGroup x:Name="SelectionStates">
+                                        <VisualState x:Name="Selected">
+                                            <Storyboard>
+                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="Background">
+                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed"/>
+                                                </ObjectAnimationUsingKeyFrames>
+                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="SelectedBackground">
+                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="Visible"/>
+                                                </ObjectAnimationUsingKeyFrames>
+                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="DisambiguationText">
+                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed"/>
+                                                </ObjectAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </VisualState>
+                                        <VisualState x:Name="Unselected">
+                                            <Storyboard>
+                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="Background">
+                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="Visible"/>
+                                                </ObjectAnimationUsingKeyFrames>
+                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="SelectedBackground">
+                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed"/>
+                                                </ObjectAnimationUsingKeyFrames>
+                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="DisambiguationText">
+                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="Visible"/>
+                                                </ObjectAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </VisualState>
+                                    </VisualStateGroup>
+                                </VisualStateManager.VisualStateGroups>
+                                    <Ellipse x:Name="Background"
+                                                        Fill="{StaticResource DisambiguationPushpinColorBrush}"
+                                                        StrokeThickness = "2"
+                                                        Stroke="{StaticResource DisambiguationTextColorBrush}"
+                                                        HorizontalAlignment="Center"
+                                                        Width="{StaticResource DisambiguationPushpinSize}"
+                                                        Height="{StaticResource DisambiguationPushpinSize}" />
+                                    <Ellipse x:Name="SelectedBackground"
+                                                        Visibility="Collapsed"
+                                                        Fill="{StaticResource SelectedDisambiguationColorBrush}"
+                                                        HorizontalAlignment="Center"
+                                                        Width="{StaticResource SelectedDisambiguationPushpinSize}"
+                                                        Height="{StaticResource SelectedDisambiguationPushpinSize}" />
+                                    <TextBlock  Foreground="{StaticResource DisambiguationTextColorBrush}"
+                                                x:Name="DisambiguationText"
+                                                HorizontalAlignment="Center"
+                                                VerticalAlignment="Center"
+                                                Text="{Binding Text, RelativeSource={RelativeSource TemplatedParent}}">
+                                    </TextBlock>
+                            </Grid>
+                        </ControlTemplate>
+                        <!--Step Pushpin template-->
+                        <ControlTemplate TargetType="bm:Pushpin" x:Key="StepPushpinTemplate">
+                            <Grid x:Name="LayoutRoot" 
+                              Width="{StaticResource StepPushpinSize}"
+                              Height="{StaticResource StepPushpinSize}" 
+                              UseLayoutRounding="False">
+                                <Ellipse  Fill="{StaticResource StepPushpinColorBrush}" 
+                                          StrokeThickness = "{StaticResource StepPushpinStrokeThickness}"
+                                          Stroke="{StaticResource StepPushpinStrokeColorBrush}"
+                                          Width="{StaticResource StepPushpinSize}" 
+                                          Height="{StaticResource StepPushpinSize}"/>
+                            </Grid>
+                        </ControlTemplate>
+                        <!--Transit bus/train pushpin-->
+                        <ControlTemplate TargetType="bm:Pushpin" x:Key="TransitPushpinTemplate">
+                            <Grid
+                                x:Name="LayoutRoot"
+                                MaxHeight="65"
+                                MaxWidth="440"
+                                CacheMode="BitmapCache"
+                                UseLayoutRounding="True">
+                                <Grid
+                                    x:Name="FlyoutContents"
+                                    Height="30"
+                                    MinWidth="30"
+                                    MaxWidth="440"
+                                    Margin="15,0,0,35"
+                                    VerticalAlignment="Bottom"
+                                    HorizontalAlignment="Left">
+                                    <Rectangle
+                                        x:Name="FlyoutRectangle"
+                                        Fill="{StaticResource RoadPopupFillNormalBrush}"
+                                        Stroke="{StaticResource RoadPopupTextNormalBrush}"
+                                        StrokeThickness="1"/>
+                                    <Rectangle
+                                        x:Name="SeparatorRectangle"
+                                        Width="30"
+                                        Stroke="{StaticResource RoadPopupTextNormalBrush}"
+                                        StrokeThickness="1"
+                                        HorizontalAlignment="Left"/>
+                                    <Border
+                                        x:Name="FlyoutBorder"
+                                        FlowDirection="LeftToRight"
+                                        BorderThickness="1">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Border
+                                                Grid.Column="0"
+                                                Height="28"
+                                                Width="28">
+                                                <TextBlock
+                                                    Foreground="Black"
+                                                    Text="{TemplateBinding Text}"
+                                                    FontFamily="{StaticResource SymbolFont}"
+                                                    VerticalAlignment="Center"
+                                                    HorizontalAlignment="Center"
+                                                    Style="{StaticResource MediumText-R-None}"/>
+                                            </Border>
+                                            <Border
+                                                x:Name="FlyoutStringBorder"
+                                                Grid.Column="1"
+                                                Height="28"
+                                                BorderThickness="1,0,0,0">
+                                                <TextBlock
+                                                    Foreground="Black"
+                                                    x:Name="FlyoutString"
+                                                    Margin="5,0,5,0"
+                                                    Text="{TemplateBinding Tag}"
+                                                    TextTrimming="WordEllipsis"
+                                                    VerticalAlignment="Center"
+                                                    Style="{StaticResource MediumText-R-None}"/>
+                                            </Border>
+                                        </Grid>
+                                    </Border>
+                                    <Button
+                                        x:Name="AutomationControl"
+                                        VerticalAlignment="Stretch"
+                                        HorizontalAlignment="Stretch"
+                                        AutomationProperties.Name="{Binding Path=AutomationName}"
+                                        AutomationProperties.AutomationId="{Binding Path=AutomationID}"
+                                        Style="{StaticResource POIButtonStyle}"/>
+                                </Grid>
+                                <Polyline
+                                    x:Name="Beak"
+                                    Points="15,0 0,36 25,0"
+                                    Height="36"
+                                    Width="25"
+                                    Fill="{StaticResource RoadPopupFillNormalBrush}"
+                                    Stroke="{StaticResource RoadPopupTextNormalBrush}"
+                                    StrokeThickness="1"
+                                    VerticalAlignment="Bottom"
+                                    HorizontalAlignment="Left"
+                                    RenderTransformOrigin="0.5,0.5">
+                                    <Polyline.RenderTransform>
+                                        <CompositeTransform/>
+                                    </Polyline.RenderTransform>
+                                </Polyline>
+                            </Grid>
+                        </ControlTemplate>
+                        <!--Transit Walk pushpin-->
+                        <ControlTemplate TargetType="bm:Pushpin" x:Key="TransitWalkPushpinTemplate">
+                            <Grid
+                                  x:Name="LayoutRoot"
+                                  MaxHeight="65"
+                                  MaxWidth="440"
+                                  CacheMode="BitmapCache">
+                                    <Grid
+                                        x:Name="FlyoutContents"
+                                        Height="30"
+                                        MinWidth="30"
+                                        MaxWidth="440"
+                                        Margin="15,0,0,35"
+                                        VerticalAlignment="Bottom"
+                                        HorizontalAlignment="Left">
+                                        <Rectangle
+                                            x:Name="FlyoutRectangle"
+                                            Fill="{StaticResource RoadPopupFillNormalBrush}"
+                                            Stroke="{StaticResource RoadPopupTextNormalBrush}"
+                                            StrokeThickness="1"/>
+                                        <Rectangle
+                                            x:Name="SeparatorRectangle"
+                                            Width="30"
+                                            Stroke="{StaticResource RoadPopupTextNormalBrush}"
+                                            StrokeThickness="1"
+                                            HorizontalAlignment="Left"/>
+                                        <Border
+                                            x:Name="FlyoutBorder"
+                                            FlowDirection="LeftToRight"
+                                            BorderThickness="1">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Border
+                                                    Grid.Column="0"
+                                                    Height="28"
+                                                    Width="28">
+                                                    <TextBlock
+                                                        Text="{StaticResource Walk}"
+                                                        FontFamily="{StaticResource SymbolFont}"
+                                                        VerticalAlignment="Center"
+                                                        HorizontalAlignment="Center"
+                                                        Foreground="Black"
+                                                        Style="{StaticResource MediumText-R-None}"/>
+                                                </Border>
+                                            </Grid>
+                                        </Border>
+                                        <Button
+                                            x:Name="AutomationControl"
+                                            VerticalAlignment="Stretch"
+                                            HorizontalAlignment="Stretch"
+                                            AutomationProperties.Name="{Binding Path=AutomationName}"
+                                            AutomationProperties.AutomationId="{Binding Path=AutomationID}"
+                                            Style="{StaticResource POIButtonStyle}"/>
+                                    </Grid>
+                                    <Polyline
+                                        x:Name="Beak"
+                                        Points="15,0 0,36 25,0"
+                                        Height="36"
+                                        Width="25"
+                                        Fill="{StaticResource RoadPopupFillNormalBrush}"
+                                        Stroke="{StaticResource RoadPopupTextNormalBrush}"
+                                        StrokeThickness="1"
+                                        VerticalAlignment="Bottom"
+                                        HorizontalAlignment="Left"
+                                        RenderTransformOrigin="0.5,0.5">
+                                        <Polyline.RenderTransform>
+                                            <CompositeTransform/>
+                                        </Polyline.RenderTransform>
+                                    </Polyline>
+                                </Grid>
+                        </ControlTemplate>
+                    </bm:MapLayer.Resources>
+                </bm:MapLayer>
+                <!--Traffic pushpin layer-->
+                <bm:MapLayer x:Name="trafficUILayer">
+                    <bm:MapLayer.Resources>
+                        <!-- Incident icon resources -->
+                        <x:String x:Key="Unknown">&#xE371;</x:String>
+                        <x:String x:Key="Acccident">&#xE367;</x:String>
+                        <x:String x:Key="Congestion">&#xE371;</x:String>
+                        <x:String x:Key="DisabledVehicle">&#xE371;</x:String>
+                        <x:String x:Key="MassTransit">&#xE371;</x:String>
+                        <x:String x:Key="Miscellaneous">&#xE371;</x:String>
+                        <x:String x:Key="OtherNews">&#xE371;</x:String>
+                        <x:String x:Key="PlannedEvent">&#xE371;</x:String>
+                        <x:String x:Key="RoadHazard">&#xE371;</x:String>
+                        <x:String x:Key="Construction">&#xE368;</x:String>
+                        <x:String x:Key="Alert">&#xE371;</x:String>
+                        <x:String x:Key="Weather">&#xE371;</x:String>
+                        
+                        <!--Pushpin template-->
+                        <!--This is default template for traffic incidents-->
+                        <ControlTemplate TargetType="bm:Pushpin" x:Key="TrafficIncidentPushpinDefaultTemplate">
+                            <Canvas HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup x:Name="SelectionStates">
+                                        <VisualState x:Name="Unselected">
+                                        </VisualState>
+                                        <VisualState x:Name="Selected">
+                                            <Storyboard>
+                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility" Storyboard.TargetName="FlyoutPin">
+                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="Visible"/>
+                                                </ObjectAnimationUsingKeyFrames>
+                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility" Storyboard.TargetName="NormalPin">
+                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed"/>
+                                                </ObjectAnimationUsingKeyFrames>
+                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(AutomationProperties.ItemStatus)" Storyboard.TargetName="AutomationControl">
+                                                    <DiscreteObjectKeyFrame KeyTime="0" Value="Selected"/>
+                                                </ObjectAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </VisualState>
+                                    </VisualStateGroup>
+                                </VisualStateManager.VisualStateGroups>
+
+                                <Grid
+                                    x:Name="Pin"
+                                    Canvas.Left="-13"
+                                    Canvas.Top="-13"
+                                    Height="26"
+                                    Width="26"
+                                    CacheMode="BitmapCache">
+                                    <Button
+                                        x:Name="AutomationControl"
+                                        Height="26"
+                                        Width="26"
+                                        IsHitTestVisible="False"
+                                        Style="{StaticResource POIButtonStyle}"/>
+                                    <Grid  
+                                        x:Name="TrianglePin"
+                                        Visibility="Visible">
+                                        <Polyline 
+						                                Points="0,22 24,22 12,0 0,22" 
+						                                Fill="{StaticResource RoadTrafficPOIBorderNormalBrush}"
+				                                    Stroke="{StaticResource  RoadTrafficPOIBorderNormalBrush}"  
+						                                StrokeThickness="1" 
+						                                StrokeLineJoin="Round" 
+						                                StrokeEndLineCap="Round" 
+						                                StrokeStartLineCap="Round"
+						                                VerticalAlignment="Center"
+						                                HorizontalAlignment="Center"/>
+                                        <Polyline
+                                            Margin="0,2,0,0"
+                                            Points="0,18 20,18 10,0 0,18"
+                                            Fill="{StaticResource RoadTrafficPOIFillNormalBrush}"
+                                            Stroke="{StaticResource RoadTrafficPOIFillNormalBrush}"
+                                            StrokeThickness="1"
+                                            StrokeLineJoin="Round"
+                                            StrokeEndLineCap="Round"
+                                            StrokeStartLineCap="Round"
+                                            VerticalAlignment="Center"
+                                            HorizontalAlignment="Center"/>
+                                    </Grid>
+
+                                    <Border
+                                        x:Name="PinFace"
+                                        Height="26"
+                                        Width="26"
+                                        Background="Transparent">
+                                        <Grid>
+                                            <TextBlock
+                                              Margin="0,6,0,0"
+                                              FontSize="12"
+                                              FontFamily="{StaticResource SymbolFont}"
+                                              Text="{TemplateBinding Text}"
+                                              Foreground="{StaticResource RoadTrafficPOITextNormalBrush}"
+                                              VerticalAlignment="Center"
+                                              HorizontalAlignment="Center"/>
+                                        </Grid>
+                                    </Border>
+                                </Grid>
+                                <Grid
+                                    x:Name="FlyoutPin"
+                                    Height="12"
+                                    Width="12"
+                                    Visibility="Collapsed"
+                                    VerticalAlignment="Center"
+                                    HorizontalAlignment="Center">
+                                    <Ellipse
+                                        Height="12"
+                                        Width="12"
+                                        Fill="{StaticResource POIMaskBrush}"
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Center"/>
+                                    <Ellipse
+                                        Height="8"
+                                        Width="8"
+                                        Fill="{StaticResource DarkPopupFillNormalBrush}"
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Center"/>
+                                </Grid>
+                            </Canvas>
+                        </ControlTemplate>
+                        <!--Override the default above if different pushpin should be displayed per incidenttype-->
+                        <!--Accident-->
+                        <!--ControlTemplate TargetType="bm:Pushpin" x:Key="AcccidentPushpinTemplate"> 
+                        </ControlTemplate-->
+                        <!--Disabled Vehicle-->
+                        <!--ControlTemplate TargetType="bm:Pushpin" x:Key="DisabledVehiclePushpinTemplate">
+                        </ControlTemplate-->
+                        <!--Mass Transit-->
+                        <!--ControlTemplate TargetType="bm:Pushpin" x:Key="MassTransitPushpinTemplate">
+                        </ControlTemplate-->
+                        <!--Miscellaneous-->
+                        <!--ControlTemplate TargetType="bm:Pushpin" x:Key="MiscellaneousPushpinTemplate">
+                        </ControlTemplate-->
+                        <!--Other News-->
+                        <!--ControlTemplate TargetType="bm:Pushpin" x:Key="OtherNewsPushpinTemplate">
+                        </ControlTemplate-->
+                        <!--Planned Event-->
+                        <!--ControlTemplate TargetType="bm:Pushpin" x:Key="PlannedEventPushpinTemplate">
+                        </ControlTemplate-->
+                        <!--Road Hazard-->
+                        <!--ControlTemplate TargetType="bm:Pushpin" x:Key="RoadHazardPushpinTemplate">
+                        </ControlTemplate-->
+                        <!--Construction-->
+                        <!--ControlTemplate TargetType="bm:Pushpin" x:Key="ConstructionPushpinTemplate">
+                        </ControlTemplate-->
+                        <!--Alert-->
+                        <!--ControlTemplate TargetType="bm:Pushpin" x:Key="AlertPushpinTemplate"> 
+                        </ControlTemplate-->
+                        <!--Weather-->
+                        <!--ControlTemplate TargetType="bm:Pushpin" x:Key="WeatherPushpinTemplate">
+                        </ControlTemplate-->
+                    </bm:MapLayer.Resources>
+                </bm:MapLayer>
                 <bm:MapLayer x:Name="internalUILayer">
                     <bm:MapLayer.Children>
                         <bm:AccessibleContainer 

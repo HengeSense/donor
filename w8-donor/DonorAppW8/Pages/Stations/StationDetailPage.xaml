@@ -86,8 +86,8 @@
                                     <RichTextBlock x:Name="richTextBlock" Width="460" Style="{StaticResource ItemRichTextStyle}" IsTextSelectionEnabled="False" VerticalAlignment="Top">
                                         <Paragraph>
                                             <Run FontSize="26.667" FontWeight="SemiBold" 
-                                            Foreground="#DF8D4B" 
-                                             Text="{Binding Name}"/>
+                                                Foreground="#DF8D4B"
+                                                Text="{Binding Name}"/>
                                             <LineBreak/>
                                             <LineBreak/>
                                             <LineBreak/>

@@ -120,7 +120,10 @@
 
 			<GridView.Header>
 				<StackPanel Width="480" Margin="0,4,14,0" VerticalAlignment="Top">
-					<TextBlock Text="Карта станций" Margin="0,0,18,20" Style="{StaticResource SubheaderTextStyle}" MaxHeight="60"/>
+					<TextBlock Text="Карта станций" Margin="0,0,18,20" 
+                               FontSize="26.667" FontWeight="SemiBold" 
+                               Foreground="#DF8D4B"
+                               Style="{StaticResource SubheaderTextStyle}" MaxHeight="60"/>
                     <!--<StackPanel>
                         <Controls:DropDownButton Content="Выбор региона" 
                                                  Name="RegionSelect"

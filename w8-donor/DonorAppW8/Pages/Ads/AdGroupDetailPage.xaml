@@ -75,7 +75,10 @@
 
             <GridView.Header>
                 <StackPanel Width="480" Margin="0,4,14,0" VerticalAlignment="Top">
-                    <TextBlock Text="Доска объявлений" Margin="0,0,18,20" Style="{StaticResource SubheaderTextStyle}" MaxHeight="60"/>
+                    <TextBlock Text="Доска объявлений" Margin="0,0,18,20" 
+                               FontSize="26.667" FontWeight="SemiBold" 
+                               Foreground="#DF8D4B"
+                               Style="{StaticResource SubheaderTextStyle}" MaxHeight="60"/>
                     <!--<Image Source="{Binding Image}" Height="400" Margin="0,0,18,20" Stretch="UniformToFill" AutomationProperties.Name="{Binding Title}"/>-->
                     <TextBlock Text="К нам постоянно поступает информация о нуждающихся в донорской крови детях 
 и взрослых. Мы размещаем ее на этой странице после тщательной проверки и гарантируем достоверность данных. Мы очень просим Вас помочь людям, обратившимся за помощью!
