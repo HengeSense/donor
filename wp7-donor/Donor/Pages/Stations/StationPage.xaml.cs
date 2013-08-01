@@ -50,6 +50,7 @@ namespace Donor
 
             try
             {
+                ViewModelLocator.MainStatic.Reviews.ZeroStationReview();
                 ViewModelLocator.MainStatic.Reviews.LoadTipsFromFoursquareForStation();
             }
             catch { };

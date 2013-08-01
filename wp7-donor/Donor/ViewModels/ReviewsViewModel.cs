@@ -71,6 +71,12 @@ namespace Donor.ViewModels
             }
         }
 
+        public void ZeroStationReview() {
+            reviewsum = 0;
+            reviewcount = 0;
+            RaisePropertyChanged("StationReview");
+        }
+
         private double reviewsum = 0;
         private double reviewcount = 0;
         public double StationReview
@@ -346,7 +352,6 @@ namespace Donor.ViewModels
             RaisePropertyChanged("Items");
             } catch {};
         } 
-
     }
 
     /// <summary>
