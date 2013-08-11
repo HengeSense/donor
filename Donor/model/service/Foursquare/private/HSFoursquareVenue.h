@@ -23,5 +23,6 @@
 - (NSString *)address;
 - (NSString *)city;
 - (NSString *)country;
+- (NSNumber *)tipCount;
 
 @end

@@ -40,6 +40,10 @@
     return [self.underlyingDictionary valueForKeyPath:@"location.country"];
 }
 
+- (NSNumber *)tipCount {
+    return [self.underlyingDictionary valueForKeyPath:@"stats.tipCount"];
+}
+
 #pragma mark - NSObject Overriding
 -(NSString *)description {
     return [NSString stringWithFormat:@"%@ (lat=%@, lon=%@)", self.name, self.lat, self.lon];

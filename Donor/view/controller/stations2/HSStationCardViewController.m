@@ -245,13 +245,15 @@ static const CGFloat kVerticalTab_ShowOnMapButton = 20.0f;
 - (void)loadStationReviews {
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
     [HSFoursquare getStationReviews:self.stationInfo completion:^(BOOL success, id result) {
-        [hud hide:YES];
-        if (success) {
-            self.stationReviews = result;
-            [self feedUI];
-        } else {
-            [HSAlertViewController showWithMessage:@"Произошла ошибка загрузки отзывов"];
-        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [hud hide:YES];
+            if (success) {
+                self.stationReviews = result;
+                [self feedUI];
+            } else {
+                [HSAlertViewController showWithMessage:@"Произошла ошибка загрузки отзывов"];
+            }
+        });
     }];
 }
 

@@ -36,5 +36,37 @@
     self.distance = nil;
 }
 
+- (NSString *)shortName {
+    if (![self.name isNotEmpty]) {
+        return nil;
+    }
+    
+    NSString *shortNameStringPattern = @"[^\"«']*[\"«']([^\"«»']+)";
+    
+    NSError *regexError = nil;
+    NSRegularExpression *shortNameStringRegex = [NSRegularExpression regularExpressionWithPattern:shortNameStringPattern
+            options:NSRegularExpressionCaseInsensitive error:&regexError];
+    
+    if (regexError) {
+        NSLog(@"Error in regex: %@", [regexError localizedDescription]);
+        return nil;
+    }
+    
+    NSTextCheckingResult *match =
+            [shortNameStringRegex firstMatchInString:self.name options:0 range:NSMakeRange(0, self.name.length)];
+    if (match) {
+        return [self.name substringWithRange:[match rangeAtIndex:1]];
+    }
+    
+    return nil;
+}
+
+- (NSString *)shortNameOrName {
+    NSString *result = self.shortName;
+    if (result == nil) {
+        return self.name;
+    }
+    return result;
+}
 
 @end

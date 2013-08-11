@@ -53,7 +53,8 @@ static NSMutableDictionary *tipCache;
     return [Foursquare2 isAuthorized];
 }
 
-+ (void)getStationReviews:(HSStationInfo *)stationInfo completion:(HSFoursquareCompletionType)completion {
+// Deprectated implementation
++ (void)getStationReviews2:(HSStationInfo *)stationInfo completion:(HSFoursquareCompletionType)completion {
     THROW_IF_ARGUMENT_NIL(stationInfo);
     THROW_IF_ARGUMENT_NIL(completion);
     [Foursquare2 searchTipNearbyLatitude:stationInfo.lat.stringValue longitude:stationInfo.lon.stringValue limit:nil
@@ -64,7 +65,7 @@ static NSMutableDictionary *tipCache;
                         completion(success, nil);
                     }
                     NSPredicate *nameFilter =
-                            [NSPredicate predicateWithFormat:@"venue.name like[cd] %@", stationInfo.name];
+                            [NSPredicate predicateWithFormat:@"venue.name like[cd] %@", stationInfo.shortNameOrName];
                     NSArray *filteredByNameRawTips = [rawTips filteredArrayUsingPredicate:nameFilter];
                     NSArray *tips = [HSFoursquareTip arrayWithUnderlyingDictionaries:filteredByNameRawTips];
                     NSArray *stationReviews = [self createStationReviewsFromTips:tips];
@@ -79,6 +80,55 @@ static NSMutableDictionary *tipCache;
                     completion(NO, [HSFoursquareError errorWithResponse:result]);
                 }
             }];
+}
+
++ (void)getStationReviews:(HSStationInfo *)stationInfo completion:(HSFoursquareCompletionType)completion {
+    THROW_IF_ARGUMENT_NIL(stationInfo);
+    THROW_IF_ARGUMENT_NIL(completion);
+
+    [Foursquare2 searchVenuesNearByLatitude:stationInfo.lat longitude:stationInfo.lon accuracyLL:nil altitude:nil
+            accuracyAlt:nil query:stationInfo.shortNameOrName limit:nil intent:intentGlobal radius:nil categoryId:nil
+            callback:^(BOOL success, id result) {
+                if (!success) {
+                    completion(NO, [HSFoursquareError errorWithResponse:result]);
+                    return;
+                }
+                NSArray *venues =
+                        [HSFoursquareVenue arrayWithUnderlyingDictionaries:[result valueForKeyPath:@"response.venues"]];
+                NSArray *venuesWithTips =
+                        [venues filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"tipCount > 0"]];
+                
+                NSMutableArray *stationReviews = [NSMutableArray array];
+                if (venuesWithTips.count == 0) {
+                    completion(YES, stationReviews);
+                    return;
+                }
+
+                NSLock *stationReviewsLock = [[NSLock alloc] init];
+                __block int32_t tipsInProcess = [venuesWithTips count];
+                for (HSFoursquareVenue *venue in venuesWithTips) {
+                    [Foursquare2 getTipsFromVenue:[venue uid] sort:sortRecent callback:^(BOOL success, id result) {
+                        if (success) {
+                            NSArray *tips = [HSFoursquareTip arrayWithUnderlyingDictionaries:
+                                    [result valueForKeyPath:@"response.tips.items"]];
+                            [stationReviewsLock lock];
+                            [stationReviews addObjectsFromArray:[self createStationReviewsFromTips:tips]];
+                            [stationReviewsLock unlock];
+                        } else {
+                            //TODO: Handle error
+                            NSLog(@"Error %@", [HSFoursquareError errorWithResponse:result]);
+                        }
+                        OSAtomicDecrement32(&tipsInProcess);
+                    }];
+                }
+                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+                    while (!OSAtomicCompareAndSwap32(0, 0, &tipsInProcess)) {
+                        [NSThread sleepForTimeInterval:0.001];
+                    }
+                    completion(YES, stationReviews);
+                });
+            }
+    ];
 }
 
 + (void)addStationReview:(HSStationReview *)stationReview toStation:(HSStationInfo *)stationInfo
@@ -182,8 +232,8 @@ static NSMutableDictionary *tipCache;
     THROW_IF_ARGUMENT_NIL(stationInfo);
     THROW_IF_ARGUMENT_NIL(completion);
     
-    [Foursquare2 addVenueWithName:stationInfo.name address:stationInfo.address crossStreet:nil city:stationInfo.town
-            state:stationInfo.region_name zip:nil phone:nil
+    [Foursquare2 addVenueWithName:stationInfo.shortNameOrName address:stationInfo.address crossStreet:nil
+            city:stationInfo.town state:stationInfo.region_name zip:nil phone:nil
             latitude:stationInfo.lat.stringValue longitude:stationInfo.lon.stringValue
             primaryCategoryId:FOURSQUARE_HOSPITAL_CATEGORY_ID callback:completion];
 }
@@ -193,7 +243,7 @@ static NSMutableDictionary *tipCache;
     THROW_IF_ARGUMENT_NIL(completion);
     
     [Foursquare2 searchVenuesNearByLatitude:stationInfo.lat longitude:stationInfo.lon accuracyLL:nil
-            altitude:nil accuracyAlt:nil query:stationInfo.name limit:nil intent:intentGlobal
+            altitude:nil accuracyAlt:nil query:stationInfo.shortNameOrName limit:nil intent:intentGlobal
             radius:nil categoryId:nil callback:^(BOOL success, id result) {
                 if (success) {
                     NSArray *rawVenues = [result valueForKeyPath:@"response.venues"];

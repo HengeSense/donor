@@ -46,4 +46,16 @@
 /// @name Dynamic properties
 @property (nonatomic, strong) NSNumber *distance;
 
+/// Additional accessors
+
+/**
+ * @return return station name enclosed between quotes if it exist, otherwise nil
+ */
+- (NSString *) shortName;
+
+/**
+ * @return [self shortName] if exists, otherwise [self name]
+ */
+- (NSString *)shortNameOrName;
+
 @end
