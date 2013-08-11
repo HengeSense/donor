@@ -11,6 +11,7 @@
 #import "HSStationsSelectCityViewController.h"
 #import "HSStationCardViewController.h"
 #import "HSStationsMapViewController.h"
+
 #import <Parse/Parse.h>
 #import "MBProgressHUD.h"
 #import "HSHTTPControl.h"
@@ -20,7 +21,6 @@
 static NSString * const kLabelTitle_UnknownRegion = @"Неизвестный регион";
 
 #pragma mark - User defaults keys
-static NSString * const kUserDefaultsKey_LastSyncDate = @"latestStationsChangedDate";
 static NSString * const kUserDefaultsKey_LastSelectedRegion = @"lastSelectedRegion";
 static NSString * const kUserDefaultsKey_LastSelectedDistrict = @"lastSelectedDistrict";
 
@@ -43,8 +43,9 @@ static const NSUInteger kRegions_UndefinedId = -1;
 static const NSUInteger kDistrict_UndefinedId = -1;
 
 #pragma mark - Stations database
-static NSString * const kStationsDatabase_SupportedVersionMinorKey = @"kStationsDatabaseSupportedVersionsMinorKey";
-static NSString * const kStationsDatabase_SupportedVersionMinorValue = @"1.0";
+static const NSUInteger kStationsDatabase_FullSyncPeriod = 31;
+static NSString * const kStationsDatabase_FullSyncLastDate = @"kStationsDatabase_FullSyncLastDate";
+static NSString * const kStationsDatabase_SyncLastDate = @"latestStationsChangedDate";
 static NSString * const kStationsDatabase_CurrentVersionKey = @"kStationsDatabase_CurrentVersionKey";
 
 @interface HSStationsViewController () <CLLocationManagerDelegate, MKMapViewDelegate, UISearchDisplayDelegate>
@@ -344,12 +345,16 @@ static NSString * const kStationsDatabase_CurrentVersionKey = @"kStationsDatabas
 #pragma mark - Synchronization with Parse
 - (void)loadStations {
     MBProgressHUD *progressHud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    if ([self needStationFullSync]) {
+        [self forceStationFullSync];
+    }
 
     self.stations = [self retriveStations];
     self.regionsDictionary = [self retriveRegions];
     
     if (self.stations == nil || self.regionsDictionary == nil) {
-        [[NSUserDefaults standardUserDefaults] removeObjectForKey:kUserDefaultsKey_LastSyncDate];
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:kStationsDatabase_SyncLastDate];
         [[NSUserDefaults standardUserDefaults] synchronize];
     }
     [self syncLocalDatabaseCompletion:^{
@@ -363,7 +368,7 @@ static NSString * const kStationsDatabase_CurrentVersionKey = @"kStationsDatabas
     PFQuery *stationsQuery = [PFQuery queryWithClassName:@"YAStations"];
     stationsQuery.limit = kStationsRequestLimit;
     
-    NSDate *latestChangeDateLocal = [[NSUserDefaults standardUserDefaults] objectForKey:kUserDefaultsKey_LastSyncDate];
+    NSDate *latestChangeDateLocal = [[NSUserDefaults standardUserDefaults] objectForKey:kStationsDatabase_SyncLastDate];
     if (latestChangeDateLocal != nil) {
         [stationsQuery whereKey:@"updatedAt" greaterThan:latestChangeDateLocal];
     }
@@ -384,7 +389,7 @@ static NSString * const kStationsDatabase_CurrentVersionKey = @"kStationsDatabas
                 }
             }];
         } else {
-            [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:kUserDefaultsKey_LastSyncDate];
+            [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:kStationsDatabase_SyncLastDate];
             [[NSUserDefaults standardUserDefaults] synchronize];
             if (completion) {
                 completion();
@@ -402,7 +407,10 @@ static NSString * const kStationsDatabase_CurrentVersionKey = @"kStationsDatabas
     [self updateRegionsWithStations:self.stations];
     [self saveDatabase];
 
-    [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:kUserDefaultsKey_LastSyncDate];
+    [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:kStationsDatabase_SyncLastDate];
+    if ([self needStationFullSync]) {
+        [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:kStationsDatabase_FullSyncLastDate];
+    }
     [[NSUserDefaults standardUserDefaults] synchronize];
     
     self.isSyncInProgress = NO;
@@ -1171,12 +1179,16 @@ static NSString * const kStationsDatabase_CurrentVersionKey = @"kStationsDatabas
 }
 
 - (NSArray *)retriveStations {
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSString *stationsDatabaseFilePath = [self stationsDatabaseFilePath];
+    
     if (![self isSavedDatabaseSupported]) {
+        if ([fileManager fileExistsAtPath:stationsDatabaseFilePath]) {
+            [fileManager removeItemAtPath:stationsDatabaseFilePath error:nil];
+        }
         return nil;
     }
     
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSString *stationsDatabaseFilePath = [self stationsDatabaseFilePath];
     if (![fileManager fileExistsAtPath:stationsDatabaseFilePath]) {
         return nil;
     }
@@ -1226,4 +1238,21 @@ static NSString * const kStationsDatabase_CurrentVersionKey = @"kStationsDatabas
     }
     return YES;
 }
+
+- (BOOL)needStationFullSync {
+    NSDate *fullSyncLastDate = [[NSUserDefaults standardUserDefaults] objectForKey:kStationsDatabase_FullSyncLastDate];
+    if (fullSyncLastDate == nil) {
+        return YES;
+    }
+    NSTimeInterval daysPast = labs([fullSyncLastDate timeIntervalSinceNow] / 60 / 60 / 24);
+    return daysPast > kStationsDatabase_FullSyncPeriod;
+}
+
+- (void)forceStationFullSync {
+    // Unversionized database will be removed during next launch.
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:kStationsDatabase_CurrentVersionKey];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:kStationsDatabase_SyncLastDate];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
 @end
