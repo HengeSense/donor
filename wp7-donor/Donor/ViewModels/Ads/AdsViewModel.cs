@@ -18,6 +18,7 @@ using MSPToolkit.Utilities;
 using System.Linq;
 using System.Text.RegularExpressions;
 using GalaSoft.MvvmLight;
+using System.Net.Http;
 
 namespace Donor.ViewModels
 {
@@ -42,50 +43,38 @@ namespace Donor.ViewModels
             }
         }
 
-        public void LoadAds()
+        public async void LoadAds()
         {
             if ((ViewModelLocator.MainStatic.Ads.Items.Count() == 0) || (ViewModelLocator.MainStatic.Settings.AdsUpdated.AddHours(1) < DateTime.Now))
             {
-            var bw = new BackgroundWorker();
-            bw.DoWork += delegate
-            {
-            var client = new RestClient("https://api.parse.com");
-            var request = new RestRequest("1/classes/Ads?order=-createdTimestamp&limit=50", Method.GET);
-            request.Parameters.Clear();
-            request.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
-            request.AddHeader("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
-            client.ExecuteAsync(request, response =>
-            {
+
+                HttpClient http = new System.Net.Http.HttpClient();
+                http.DefaultRequestHeaders.Add("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
+                http.DefaultRequestHeaders.Add("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
+                HttpResponseMessage httpresponse =
+                    await http.GetAsync("https://api.parse.com/1/classes/Ads?order=-createdTimestamp&limit=50");
+                string output = await httpresponse.Content.ReadAsStringAsync();
+
                 try
                 {
                         ObservableCollection<AdsViewModel> adslist1 = new ObservableCollection<AdsViewModel>();
-                        JObject o = JObject.Parse(response.Content.ToString());
+                        JObject o = JObject.Parse(output); //response.Content.ToString());
                         adslist1 = JsonConvert.DeserializeObject<ObservableCollection<AdsViewModel>>(o["results"].ToString());
 
                         var sortedAds = (from ads in adslist1
                                          orderby ads.CreatedTimestamp descending
                                          select ads);
-                        
 
-                        Deployment.Current.Dispatcher.BeginInvoke(() =>
-                        {
                             ViewModelLocator.MainStatic.Settings.AdsUpdated = DateTime.Now;
                             ViewModelLocator.MainStatic.SaveSettingsToStorage();
 
                             this.Items = new ObservableCollection<AdsViewModel>(sortedAds);
-                            IsolatedStorageHelper.SaveSerializableObject<ObservableCollection<AdsViewModel>>(ViewModelLocator.MainStatic.Ads.Items, "ads.xml");
-                        });                      
+                            IsolatedStorageHelper.SaveSerializableObject<ObservableCollection<AdsViewModel>>(ViewModelLocator.MainStatic.Ads.Items, "ads.xml");                   
                 }
                 catch
                 {
                 };
-                Deployment.Current.Dispatcher.BeginInvoke(() =>
-                {
-                    RaisePropertyChanged("Items");
-                });  
-            });
-            };
-            bw.RunWorkerAsync();
+                RaisePropertyChanged("Items");
             };
         }
 

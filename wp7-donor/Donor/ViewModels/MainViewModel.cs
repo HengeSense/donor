@@ -160,7 +160,7 @@ namespace Donor
         /// <summary>
         /// Creates and adds a few ItemViewModel objects into the Items collection.
         /// </summary>
-        public void LoadData()
+        public async void LoadData()
         {
             var bw = new BackgroundWorker();
             this.IsDataStartLoaded = true;
@@ -172,22 +172,21 @@ namespace Donor
                 {
                     this.LoadUserFromStorage();
 
-                    ViewModelLocator.MainStatic.Events.LoadDonorsSaturdays();
-                    
-                    ViewModelLocator.MainStatic.Stations.LoadStations();
+                    ViewModelLocator.MainStatic.Events.LoadDonorsSaturdays();                    
+                    //ViewModelLocator.MainStatic.Stations.LoadStations();
 
                     RaisePropertyChanged("Events");
                 });
 
-                Deployment.Current.Dispatcher.BeginInvoke(() =>
-                {
+                //Deployment.Current.Dispatcher.BeginInvoke(() =>
+                //{
                     ViewModelLocator.MainStatic.News.LoadNews();
                     ViewModelLocator.MainStatic.Ads.LoadAds();
                     ViewModelLocator.MainStatic.Contras.LoadContras();
-                    RaisePropertyChanged("News");
+                    //RaisePropertyChanged("News");
 
                     CreateApplicationTile(ViewModelLocator.MainStatic.Events.NearestEvents());
-                });            
+                //});            
             };
             bw.RunWorkerAsync();  
         }

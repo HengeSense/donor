@@ -21,6 +21,7 @@ using System.Runtime.Serialization;
 using System.Xml;
 using System.Xml.Linq;
 using GalaSoft.MvvmLight;
+using System.Net.Http;
 
 namespace Donor.ViewModels
 {
@@ -93,19 +94,16 @@ namespace Donor.ViewModels
             }
         }
 
-        public void LoadNews()
+        public async void LoadNews()
         {
-            if ((ViewModelLocator.MainStatic.News.Items.Count() == 0) || (ViewModelLocator.MainStatic.Settings.NewsUpdated.AddHours(1) < DateTime.Now))
+            if ((ViewModelLocator.MainStatic.News.Items.Count() == 0) || (ViewModelLocator.MainStatic.Settings.NewsUpdated.AddHours(4) < DateTime.Now))
             {
-                var bw = new BackgroundWorker();
-                bw.DoWork += delegate
-                {
-                    var client = new RestClient("http://yadonor.ru");
-                    var request = new RestRequest("rss/news.rss", Method.GET);
-                    request.Parameters.Clear();
 
-                    client.ExecuteAsync(request, response =>
-                    {
+                HttpClient http = new System.Net.Http.HttpClient();
+                HttpResponseMessage response =
+                    await http.GetAsync("http://yadonor.ru/rss/news.rss");
+                string output = await response.Content.ReadAsStringAsync();
+
                         try
                         {
                             try
@@ -113,9 +111,14 @@ namespace Donor.ViewModels
                                 ObservableCollection<NewsViewModel> newslist1 = new ObservableCollection<NewsViewModel>(); 
                                 try
                                 {
-                                    var xdoc = XDocument.Parse(response.Content.ToString());
+                                    var xdoc = XDocument.Parse(output.ToString());
+                                    var i = 0;
                                     foreach (XElement item in xdoc.Descendants("item"))
                                     {
+                                        if (i > 30)
+                                        {
+                                            break;
+                                        };
                                         var itemnews = new NewsViewModel();
                                         itemnews.Nid = 0;
                                         itemnews.Url = item.Element("guid").Value.ToString();
@@ -127,30 +130,25 @@ namespace Donor.ViewModels
                                         DateTime date = DateTime.Parse(item.Element("pubDate").Value.ToString());
                                         TimeSpan diff = date - origin;
                                         itemnews.CreatedTimestamp = (long)Math.Round(Math.Floor(diff.TotalSeconds));
+                                        //Items.Add(itemnews);
                                         newslist1.Add(itemnews);
+                                        i++;
                                     };
                                 }
                                 catch
                                 {
                                 };
-
-                                Deployment.Current.Dispatcher.BeginInvoke(() =>
-                                {
                                     ViewModelLocator.MainStatic.Settings.NewsUpdated = DateTime.Now;
                                     ViewModelLocator.MainStatic.SaveSettingsToStorage();
-                                    this.Items = new ObservableCollection<NewsViewModel>(newslist1);
+                                    Items = new ObservableCollection<NewsViewModel>(newslist1);
                                     RaisePropertyChanged("Items");
                                     IsolatedStorageHelper.SaveSerializableObject<ObservableCollection<NewsViewModel>>(ViewModelLocator.MainStatic.News.Items, "news.xml");
-                                });
                             }
                             catch { };
                         }
                         catch
                         {
                         };
-                    });
-                };
-                bw.RunWorkerAsync();
             };
         }
 

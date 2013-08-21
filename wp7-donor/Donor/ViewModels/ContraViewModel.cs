@@ -14,6 +14,7 @@ using RestSharp;
 using Newtonsoft.Json.Linq;
 using MSPToolkit.Utilities;
 using Newtonsoft.Json;
+using System.Net.Http;
 
 namespace Donor.ViewModels
 {
@@ -51,7 +52,7 @@ namespace Donor.ViewModels
 
         public ObservableCollection<ContraViewModel> Items { get; set; }
 
-        public void LoadContras()
+        public async void LoadContras()
         {
             try
             {
@@ -63,20 +64,17 @@ namespace Donor.ViewModels
 
             if ((ViewModelLocator.MainStatic.Contras.Items.Count == 0) || (ViewModelLocator.MainStatic.Settings.ContrasUpdated.AddDays(7) < DateTime.Now)) {
 
-            var client = new RestClient("https://api.parse.com");
-            var request = new RestRequest("1/classes/Contras", Method.GET);
-            request.Parameters.Clear();
-            request.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
-            request.AddHeader("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
-            client.ExecuteAsync(request, response =>
-            {
+                HttpClient http = new System.Net.Http.HttpClient();
+                http.DefaultRequestHeaders.Add("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
+                http.DefaultRequestHeaders.Add("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
+                HttpResponseMessage httpresponse =
+                    await http.GetAsync("https://api.parse.com/1/classes/Contras");
+                string output = await httpresponse.Content.ReadAsStringAsync();
+
                 try
                 {
-                    var bw = new BackgroundWorker();
-                    bw.DoWork += delegate
-                    {
                     ObservableCollection<ContraViewModel> contraslist1 = new ObservableCollection<ContraViewModel>();
-                    JObject o = JObject.Parse(response.Content.ToString());
+                    JObject o = JObject.Parse(output.ToString());
                     contraslist1 = JsonConvert.DeserializeObject<ObservableCollection<ContraViewModel>>(o["results"].ToString());
                     
                         Deployment.Current.Dispatcher.BeginInvoke(() =>
@@ -90,14 +88,11 @@ namespace Donor.ViewModels
 
                             this.NotifyPropertyChanged("Items");
                         });                        
-                    };
-                    bw.RunWorkerAsync();
                 }
                 catch
                 {
                 };
                 this.NotifyPropertyChanged("Items");
-            });
             } else {};
         }
 

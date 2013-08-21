@@ -397,7 +397,13 @@ namespace Donor
         {
             try
             {
-                NavigationService.Navigate(new Uri("/Pages/FacebookPages/FacebookLoginPage.xaml", UriKind.Relative));
+                if ((ViewModelLocator.MainStatic.User.UserLoading==false) || (ViewModelLocator.MainStatic.User.FacebookId == null && ViewModelLocator.MainStatic.User.FacebookId == ""))
+                {
+                    NavigationService.Navigate(new Uri("/Pages/FacebookPages/FacebookLoginPage.xaml", UriKind.Relative));
+                }
+                else
+                {
+                };
             }
             catch
             {
