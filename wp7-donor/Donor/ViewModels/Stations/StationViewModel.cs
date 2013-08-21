@@ -20,6 +20,7 @@ using System.Device.Location;
 using System.Collections.Generic;
 using GalaSoft.MvvmLight;
 using System.Text.RegularExpressions;
+using System.Net.Http;
 
 namespace Donor.ViewModels
 {
@@ -203,7 +204,7 @@ namespace Donor.ViewModels
         /// <summary>
         /// Загрузка станций с parse.com
         /// </summary>
-        public void LoadStations()
+        public async void LoadStations()
         {
             myCoordinateWatcher = new GeoCoordinateWatcher(GeoPositionAccuracy.Default);
             myCoordinateWatcher.PositionChanged += new EventHandler<GeoPositionChangedEventArgs<GeoCoordinate>>(myCoordinateWatcher_PositionChanged);
@@ -223,23 +224,29 @@ namespace Donor.ViewModels
             //(ViewModelLocator.MainStatic.Settings.StationsUpdated.AddDays(1) < DateTime.Now)
             //ViewModelLocator.MainStatic.Loadin
             if ((ViewModelLocator.MainStatic.Stations.Items.Count() == 0) && (ViewModelLocator.MainStatic.Settings.StationsUpdated.AddDays(7) < DateTime.Now))
-            {            
-            var bw = new BackgroundWorker();
-            bw.DoWork += delegate
             {
-            var client = new RestClient("https://api.parse.com");
-            var request = new RestRequest("1/classes/YAStations?limit=1000", Method.GET);
-            request.Parameters.Clear();
 
-            request.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
-            request.AddHeader("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
+                HttpClient http = new System.Net.Http.HttpClient();
+                http.DefaultRequestHeaders.Add("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
+                http.DefaultRequestHeaders.Add("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
+                HttpResponseMessage httpresponse =
+                    await http.GetAsync("https://api.parse.com/1/classes/YAStations?limit=1000");
+                string output = await httpresponse.Content.ReadAsStringAsync();
 
-            client.ExecuteAsync(request, response =>
-            {
+            //var bw = new BackgroundWorker();
+            //bw.DoWork += delegate
+            //{
+            //var client = new RestClient("https://api.parse.com");
+            //var request = new RestRequest("1/classes/YAStations?limit=1000", Method.GET);
+            //request.Parameters.Clear();
+            //request.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
+            //request.AddHeader("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
+            //client.ExecuteAsync(request, response =>
+            //{
                 try
                 {
                     ObservableCollection<YAStationItem> eventslist1 = new ObservableCollection<YAStationItem>();
-                    JObject o = JObject.Parse(response.Content.ToString());
+                    JObject o = JObject.Parse(output.ToString());
                     eventslist1 = JsonConvert.DeserializeObject<ObservableCollection<YAStationItem>>(o["results"].ToString());
 
                         Deployment.Current.Dispatcher.BeginInvoke(() =>
@@ -258,28 +265,33 @@ namespace Donor.ViewModels
                 }
                 catch
                 {
-                };
-                
-            });
-            };
-            bw.RunWorkerAsync();
+                };                
+            //});
+            //};
+            //bw.RunWorkerAsync();
             } else {
-                var bw = new BackgroundWorker();
-                bw.DoWork += delegate
-                {
-                    var client = new RestClient("https://api.parse.com");
-                    var request = new RestRequest("1/classes/YAStations?limit=1000&where={\"updatedAt\":{\"$gte\":{\"__type\":\"Date\",\"iso\":\"" + ViewModelLocator.MainStatic.Settings.StationsUpdated.ToUniversalTime().ToString("s") + "\"}}}", Method.GET);
-                    request.Parameters.Clear();
 
-                    request.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
-                    request.AddHeader("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
+                HttpClient http = new System.Net.Http.HttpClient();
+                http.DefaultRequestHeaders.Add("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
+                http.DefaultRequestHeaders.Add("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
+                HttpResponseMessage httpresponse =
+                    await http.GetAsync("https://api.parse.com/1/classes/YAStations?limit=1000&where={\"updatedAt\":{\"$gte\":{\"__type\":\"Date\",\"iso\":\"" + ViewModelLocator.MainStatic.Settings.StationsUpdated.ToUniversalTime().ToString("s") + "\"}}}");
+                string output = await httpresponse.Content.ReadAsStringAsync();
 
-                    client.ExecuteAsync(request, response =>
-                    {
+                //var bw = new BackgroundWorker();
+                //bw.DoWork += delegate
+                //{
+                    //var client = new RestClient("https://api.parse.com");
+                    //var request = new RestRequest("1/classes/YAStations?limit=1000&where={\"updatedAt\":{\"$gte\":{\"__type\":\"Date\",\"iso\":\"" + ViewModelLocator.MainStatic.Settings.StationsUpdated.ToUniversalTime().ToString("s") + "\"}}}", Method.GET);
+                    //request.Parameters.Clear();
+                    //request.AddHeader("X-Parse-Application-Id", MainViewModel.XParseApplicationId);
+                    //request.AddHeader("X-Parse-REST-API-Key", MainViewModel.XParseRESTAPIKey);
+                    //client.ExecuteAsync(request, response =>
+                    //{
                         try
                         {
                             ObservableCollection<YAStationItem> eventslist1 = new ObservableCollection<YAStationItem>();
-                            JObject o = JObject.Parse(response.Content.ToString());
+                            JObject o = JObject.Parse(output.ToString());
                             eventslist1 = JsonConvert.DeserializeObject<ObservableCollection<YAStationItem>>(o["results"].ToString());
 
                             Deployment.Current.Dispatcher.BeginInvoke(() =>
@@ -315,9 +327,9 @@ namespace Donor.ViewModels
                         {
                         };
 
-                    });
-                };
-                bw.RunWorkerAsync();
+                    //});
+                //};
+                //bw.RunWorkerAsync();
             };
         }
 

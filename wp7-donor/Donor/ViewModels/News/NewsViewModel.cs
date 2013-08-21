@@ -142,6 +142,7 @@ namespace Donor.ViewModels
                                     ViewModelLocator.MainStatic.SaveSettingsToStorage();
                                     Items = new ObservableCollection<NewsViewModel>(newslist1);
                                     RaisePropertyChanged("Items");
+                                    RaisePropertyChanged("NewItems");                                
                                     IsolatedStorageHelper.SaveSerializableObject<ObservableCollection<NewsViewModel>>(ViewModelLocator.MainStatic.News.Items, "news.xml");
                             }
                             catch { };

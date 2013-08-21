@@ -30,6 +30,7 @@ using Microsoft.Phone.Controls;
 using Microsoft.Phone.Tasks;
 using Microsoft.Phone.Net.NetworkInformation;
 using GalaSoft.MvvmLight;
+using System.Threading.Tasks;
 
 
 
@@ -55,9 +56,7 @@ namespace Donor
 
             Settings = new SettingsViewModel();
 
-            Qr = new QRViewModel();
-            
-            this.LoadFromIsolatedStorage();
+            Qr = new QRViewModel();           
 
             this.IsDataStartLoaded = false;
 
@@ -162,31 +161,30 @@ namespace Donor
         /// </summary>
         public async void LoadData()
         {
+            await this.LoadFromIsolatedStorage();
+
             var bw = new BackgroundWorker();
             this.IsDataStartLoaded = true;
 
+            ViewModelLocator.MainStatic.News.LoadNews();
+            ViewModelLocator.MainStatic.Ads.LoadAds();
+            ViewModelLocator.MainStatic.Contras.LoadContras();
+            ViewModelLocator.MainStatic.Stations.LoadStations();
+
             bw.DoWork += delegate
             {
-                //System.Threading.Thread.Sleep(400);
+                //System.Threading.Thread.Sleep(400);                
                 Deployment.Current.Dispatcher.BeginInvoke(() =>
                 {
                     this.LoadUserFromStorage();
-
-                    ViewModelLocator.MainStatic.Events.LoadDonorsSaturdays();                    
-                    //ViewModelLocator.MainStatic.Stations.LoadStations();
-
+                    ViewModelLocator.MainStatic.Events.LoadDonorsSaturdays();                   
                     RaisePropertyChanged("Events");
-                });
+                });               
 
-                //Deployment.Current.Dispatcher.BeginInvoke(() =>
-                //{
-                    ViewModelLocator.MainStatic.News.LoadNews();
-                    ViewModelLocator.MainStatic.Ads.LoadAds();
-                    ViewModelLocator.MainStatic.Contras.LoadContras();
-                    //RaisePropertyChanged("News");
-
+                Deployment.Current.Dispatcher.BeginInvoke(() =>
+                {
                     CreateApplicationTile(ViewModelLocator.MainStatic.Events.NearestEvents());
-                //});            
+                });            
             };
             bw.RunWorkerAsync();  
         }
@@ -350,7 +348,7 @@ namespace Donor
         /// <summary>
         /// 
         /// </summary>
-        public void LoadFromIsolatedStorage()
+        public async Task<bool> LoadFromIsolatedStorage()
         {
 
             this.LoadSettingsFromStorage();
@@ -399,6 +397,7 @@ namespace Donor
                     {
                         this.News.Items = newslist1;
                         RaisePropertyChanged("News");
+                        RaisePropertyChanged("NewItems"); 
                     });
                 }
                 catch //(System.IO.FileNotFoundException)
@@ -430,7 +429,8 @@ namespace Donor
                 };
 
             };
-            bw.RunWorkerAsync();            
+            bw.RunWorkerAsync();
+            return true;
         }
 
         public void SendToShare(string title, string link, string description, int length)
