@@ -65,7 +65,7 @@ static NSMutableDictionary *tipCache;
                         completion(success, nil);
                     }
                     NSPredicate *nameFilter =
-                            [NSPredicate predicateWithFormat:@"venue.name like[cd] %@", stationInfo.shortNameOrName];
+                            [NSPredicate predicateWithFormat:@"venue.name like[cd] %@", stationInfo.name];
                     NSArray *filteredByNameRawTips = [rawTips filteredArrayUsingPredicate:nameFilter];
                     NSArray *tips = [HSFoursquareTip arrayWithUnderlyingDictionaries:filteredByNameRawTips];
                     NSArray *stationReviews = [self createStationReviewsFromTips:tips];
@@ -87,7 +87,7 @@ static NSMutableDictionary *tipCache;
     THROW_IF_ARGUMENT_NIL(completion);
 
     [Foursquare2 searchVenuesNearByLatitude:stationInfo.lat longitude:stationInfo.lon accuracyLL:nil altitude:nil
-            accuracyAlt:nil query:stationInfo.shortNameOrName limit:nil intent:intentGlobal radius:nil categoryId:nil
+            accuracyAlt:nil query:stationInfo.name limit:nil intent:intentGlobal radius:nil categoryId:nil
             callback:^(BOOL success, id result) {
                 if (!success) {
                     completion(NO, [HSFoursquareError errorWithResponse:result]);
@@ -232,7 +232,7 @@ static NSMutableDictionary *tipCache;
     THROW_IF_ARGUMENT_NIL(stationInfo);
     THROW_IF_ARGUMENT_NIL(completion);
     
-    [Foursquare2 addVenueWithName:stationInfo.shortNameOrName address:stationInfo.address crossStreet:nil
+    [Foursquare2 addVenueWithName:stationInfo.name address:stationInfo.address crossStreet:nil
             city:stationInfo.town state:stationInfo.region_name zip:nil phone:nil
             latitude:stationInfo.lat.stringValue longitude:stationInfo.lon.stringValue
             primaryCategoryId:FOURSQUARE_HOSPITAL_CATEGORY_ID callback:completion];
@@ -243,7 +243,7 @@ static NSMutableDictionary *tipCache;
     THROW_IF_ARGUMENT_NIL(completion);
     
     [Foursquare2 searchVenuesNearByLatitude:stationInfo.lat longitude:stationInfo.lon accuracyLL:nil
-            altitude:nil accuracyAlt:nil query:stationInfo.shortNameOrName limit:nil intent:intentGlobal
+            altitude:nil accuracyAlt:nil query:stationInfo.name limit:nil intent:intentGlobal
             radius:nil categoryId:nil callback:^(BOOL success, id result) {
                 if (success) {
                     NSArray *rawVenues = [result valueForKeyPath:@"response.venues"];
