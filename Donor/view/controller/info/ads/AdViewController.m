@@ -7,11 +7,12 @@
 //
 
 #import "AdViewController.h"
-#import <Foundation/Foundation.h>
-#import "StationsViewController.h"
+
 #import "MBProgressHUD.h"
 #import "UIView+HSLayoutManager.h"
 #import "HSSocailShareViewController.h"
+
+#import "HSStationsViewController.h"
 
 static NSString * kShareBaseUrl_PodariZhizn = @"http://www.podari-zhizn.ru/main/node/";
 
@@ -54,7 +55,8 @@ static NSString * kShareBaseUrl_PodariZhizn = @"http://www.podari-zhizn.ru/main/
         [progressHud hide:YES];
         if (object)
         {
-            StationsViewController *controller = [[StationsViewController alloc] initWithNibName:@"StationsViewController" bundle:nil station:object];
+            HSStationsViewController *controller = [[HSStationsViewController alloc]
+                    initWithNibName:NSStringFromClass([HSStationsViewController class]) bundle:nil];
             [self.navigationController pushViewController:controller animated:YES];
         }
     }];

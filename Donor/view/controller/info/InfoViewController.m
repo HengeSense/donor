@@ -19,7 +19,6 @@
 #import "HSNewsViewController.h"
 #import "HSRecommendationsViewController.h"
 #import "HSContraindicationsViewController.h"
-#import "StationDescriptionViewController.h"
 
 #import "UIView+HSLayoutManager.h"
 

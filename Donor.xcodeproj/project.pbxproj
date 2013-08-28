@@ -387,26 +387,6 @@
 		68B8300716D1113B00533701 /* HSProfileDescriptionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68B82F9A16D1113B00533701 /* HSProfileDescriptionViewController.xib */; };
 		68B8300816D1113B00533701 /* HSProfileRegistrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B82F9C16D1113B00533701 /* HSProfileRegistrationViewController.m */; };
 		68B8300916D1113B00533701 /* HSProfileRegistrationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68B82F9D16D1113B00533701 /* HSProfileRegistrationViewController.xib */; };
-		68B8301216D1113B00533701 /* CoreLocationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B82FAC16D1113B00533701 /* CoreLocationController.m */; };
-		68B8301316D1113B00533701 /* FilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B82FAE16D1113B00533701 /* FilterViewController.m */; };
-		68B8301416D1113B00533701 /* FilterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68B82FAF16D1113B00533701 /* FilterViewController.xib */; };
-		68B8301516D1113B00533701 /* ForDonorsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B82FB116D1113B00533701 /* ForDonorsCell.m */; };
-		68B8301616D1113B00533701 /* ForDonorsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68B82FB216D1113B00533701 /* ForDonorsCell.xib */; };
-		68B8301716D1113B00533701 /* ReviewsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B82FB416D1113B00533701 /* ReviewsCell.m */; };
-		68B8301816D1113B00533701 /* ReviewsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68B82FB516D1113B00533701 /* ReviewsCell.xib */; };
-		68B8301B16D1113B00533701 /* StationDescriptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B82FBA16D1113B00533701 /* StationDescriptionViewController.m */; };
-		68B8301C16D1113B00533701 /* StationDescriptionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68B82FBB16D1113B00533701 /* StationDescriptionViewController.xib */; };
-		68B8301D16D1113B00533701 /* StationForDonorsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B82FBD16D1113B00533701 /* StationForDonorsViewController.m */; };
-		68B8301E16D1113B00533701 /* StationForDonorsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68B82FBE16D1113B00533701 /* StationForDonorsViewController.xib */; };
-		68B8301F16D1113B00533701 /* StationRateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B82FC016D1113B00533701 /* StationRateViewController.m */; };
-		68B8302016D1113B00533701 /* StationRateViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68B82FC116D1113B00533701 /* StationRateViewController.xib */; };
-		68B8302116D1113B00533701 /* StationReviewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B82FC316D1113B00533701 /* StationReviewsViewController.m */; };
-		68B8302216D1113B00533701 /* StationReviewsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68B82FC416D1113B00533701 /* StationReviewsViewController.xib */; };
-		68B8302316D1113B00533701 /* StationsAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B82FC616D1113B00533701 /* StationsAnnotation.m */; };
-		68B8302416D1113B00533701 /* StationsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B82FC816D1113B00533701 /* StationsCell.m */; };
-		68B8302516D1113B00533701 /* StationsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68B82FC916D1113B00533701 /* StationsCell.xib */; };
-		68B8302816D1113B00533701 /* StationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B82FCE16D1113B00533701 /* StationsViewController.m */; };
-		68B8302916D1113B00533701 /* StationsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68B82FCF16D1113B00533701 /* StationsViewController.xib */; };
 		68B8302D16D1803200533701 /* HSSocailShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B8302B16D1803200533701 /* HSSocailShareViewController.m */; };
 		68B8302E16D1803200533701 /* HSSocailShareViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68B8302C16D1803200533701 /* HSSocailShareViewController.xib */; };
 		68B8303D16D186B600533701 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B8303116D186B600533701 /* AppDelegate.m */; };
@@ -1234,37 +1214,6 @@
 		68B82F9B16D1113B00533701 /* HSProfileRegistrationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSProfileRegistrationViewController.h; sourceTree = "<group>"; };
 		68B82F9C16D1113B00533701 /* HSProfileRegistrationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSProfileRegistrationViewController.m; sourceTree = "<group>"; };
 		68B82F9D16D1113B00533701 /* HSProfileRegistrationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HSProfileRegistrationViewController.xib; sourceTree = "<group>"; };
-		68B82FAB16D1113B00533701 /* CoreLocationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreLocationController.h; sourceTree = "<group>"; };
-		68B82FAC16D1113B00533701 /* CoreLocationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreLocationController.m; sourceTree = "<group>"; };
-		68B82FAD16D1113B00533701 /* FilterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterViewController.h; sourceTree = "<group>"; };
-		68B82FAE16D1113B00533701 /* FilterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterViewController.m; sourceTree = "<group>"; };
-		68B82FAF16D1113B00533701 /* FilterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FilterViewController.xib; sourceTree = "<group>"; };
-		68B82FB016D1113B00533701 /* ForDonorsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForDonorsCell.h; sourceTree = "<group>"; };
-		68B82FB116D1113B00533701 /* ForDonorsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForDonorsCell.m; sourceTree = "<group>"; };
-		68B82FB216D1113B00533701 /* ForDonorsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ForDonorsCell.xib; sourceTree = "<group>"; };
-		68B82FB316D1113B00533701 /* ReviewsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReviewsCell.h; sourceTree = "<group>"; };
-		68B82FB416D1113B00533701 /* ReviewsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReviewsCell.m; sourceTree = "<group>"; };
-		68B82FB516D1113B00533701 /* ReviewsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReviewsCell.xib; sourceTree = "<group>"; };
-		68B82FB916D1113B00533701 /* StationDescriptionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StationDescriptionViewController.h; sourceTree = "<group>"; };
-		68B82FBA16D1113B00533701 /* StationDescriptionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StationDescriptionViewController.m; sourceTree = "<group>"; };
-		68B82FBB16D1113B00533701 /* StationDescriptionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StationDescriptionViewController.xib; sourceTree = "<group>"; };
-		68B82FBC16D1113B00533701 /* StationForDonorsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StationForDonorsViewController.h; sourceTree = "<group>"; };
-		68B82FBD16D1113B00533701 /* StationForDonorsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StationForDonorsViewController.m; sourceTree = "<group>"; };
-		68B82FBE16D1113B00533701 /* StationForDonorsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StationForDonorsViewController.xib; sourceTree = "<group>"; };
-		68B82FBF16D1113B00533701 /* StationRateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StationRateViewController.h; sourceTree = "<group>"; };
-		68B82FC016D1113B00533701 /* StationRateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StationRateViewController.m; sourceTree = "<group>"; };
-		68B82FC116D1113B00533701 /* StationRateViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StationRateViewController.xib; sourceTree = "<group>"; };
-		68B82FC216D1113B00533701 /* StationReviewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StationReviewsViewController.h; sourceTree = "<group>"; };
-		68B82FC316D1113B00533701 /* StationReviewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StationReviewsViewController.m; sourceTree = "<group>"; };
-		68B82FC416D1113B00533701 /* StationReviewsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StationReviewsViewController.xib; sourceTree = "<group>"; };
-		68B82FC516D1113B00533701 /* StationsAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StationsAnnotation.h; sourceTree = "<group>"; };
-		68B82FC616D1113B00533701 /* StationsAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StationsAnnotation.m; sourceTree = "<group>"; };
-		68B82FC716D1113B00533701 /* StationsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StationsCell.h; sourceTree = "<group>"; };
-		68B82FC816D1113B00533701 /* StationsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StationsCell.m; sourceTree = "<group>"; };
-		68B82FC916D1113B00533701 /* StationsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StationsCell.xib; sourceTree = "<group>"; };
-		68B82FCD16D1113B00533701 /* StationsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StationsViewController.h; sourceTree = "<group>"; };
-		68B82FCE16D1113B00533701 /* StationsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StationsViewController.m; sourceTree = "<group>"; };
-		68B82FCF16D1113B00533701 /* StationsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StationsViewController.xib; sourceTree = "<group>"; };
 		68B8302A16D1803200533701 /* HSSocailShareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSSocailShareViewController.h; sourceTree = "<group>"; };
 		68B8302B16D1803200533701 /* HSSocailShareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSSocailShareViewController.m; sourceTree = "<group>"; };
 		68B8302C16D1803200533701 /* HSSocailShareViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HSSocailShareViewController.xib; sourceTree = "<group>"; };
@@ -2747,7 +2696,6 @@
 				68B82F8716D1113B00533701 /* intro */,
 				68B82F8B16D1113B00533701 /* login */,
 				68B82F9716D1113B00533701 /* profile */,
-				68B82FAA16D1113B00533701 /* stations */,
 				CEE3887B1718B90B001B6F0A /* stations2 */,
 			);
 			path = controller;
@@ -2963,44 +2911,6 @@
 				40D5FF621714409900821B01 /* HSItsBetaAchievementDetailViewController.xib */,
 			);
 			path = profile;
-			sourceTree = "<group>";
-		};
-		68B82FAA16D1113B00533701 /* stations */ = {
-			isa = PBXGroup;
-			children = (
-				68B82FAB16D1113B00533701 /* CoreLocationController.h */,
-				68B82FAC16D1113B00533701 /* CoreLocationController.m */,
-				68B82FAD16D1113B00533701 /* FilterViewController.h */,
-				68B82FAE16D1113B00533701 /* FilterViewController.m */,
-				68B82FAF16D1113B00533701 /* FilterViewController.xib */,
-				68B82FB016D1113B00533701 /* ForDonorsCell.h */,
-				68B82FB116D1113B00533701 /* ForDonorsCell.m */,
-				68B82FB216D1113B00533701 /* ForDonorsCell.xib */,
-				68B82FB316D1113B00533701 /* ReviewsCell.h */,
-				68B82FB416D1113B00533701 /* ReviewsCell.m */,
-				68B82FB516D1113B00533701 /* ReviewsCell.xib */,
-				68B82FB916D1113B00533701 /* StationDescriptionViewController.h */,
-				68B82FBA16D1113B00533701 /* StationDescriptionViewController.m */,
-				68B82FBB16D1113B00533701 /* StationDescriptionViewController.xib */,
-				68B82FBC16D1113B00533701 /* StationForDonorsViewController.h */,
-				68B82FBD16D1113B00533701 /* StationForDonorsViewController.m */,
-				68B82FBE16D1113B00533701 /* StationForDonorsViewController.xib */,
-				68B82FBF16D1113B00533701 /* StationRateViewController.h */,
-				68B82FC016D1113B00533701 /* StationRateViewController.m */,
-				68B82FC116D1113B00533701 /* StationRateViewController.xib */,
-				68B82FC216D1113B00533701 /* StationReviewsViewController.h */,
-				68B82FC316D1113B00533701 /* StationReviewsViewController.m */,
-				68B82FC416D1113B00533701 /* StationReviewsViewController.xib */,
-				68B82FC516D1113B00533701 /* StationsAnnotation.h */,
-				68B82FC616D1113B00533701 /* StationsAnnotation.m */,
-				68B82FC716D1113B00533701 /* StationsCell.h */,
-				68B82FC816D1113B00533701 /* StationsCell.m */,
-				68B82FC916D1113B00533701 /* StationsCell.xib */,
-				68B82FCD16D1113B00533701 /* StationsViewController.h */,
-				68B82FCE16D1113B00533701 /* StationsViewController.m */,
-				68B82FCF16D1113B00533701 /* StationsViewController.xib */,
-			);
-			path = stations;
 			sourceTree = "<group>";
 		};
 		68B8302F16D186B600533701 /* app */ = {
@@ -3820,15 +3730,6 @@
 				68B8300516D1113B00533701 /* HSRestorePasswordViewCotroller.xib in Resources */,
 				68B8300716D1113B00533701 /* HSProfileDescriptionViewController.xib in Resources */,
 				68B8300916D1113B00533701 /* HSProfileRegistrationViewController.xib in Resources */,
-				68B8301416D1113B00533701 /* FilterViewController.xib in Resources */,
-				68B8301616D1113B00533701 /* ForDonorsCell.xib in Resources */,
-				68B8301816D1113B00533701 /* ReviewsCell.xib in Resources */,
-				68B8301C16D1113B00533701 /* StationDescriptionViewController.xib in Resources */,
-				68B8301E16D1113B00533701 /* StationForDonorsViewController.xib in Resources */,
-				68B8302016D1113B00533701 /* StationRateViewController.xib in Resources */,
-				68B8302216D1113B00533701 /* StationReviewsViewController.xib in Resources */,
-				68B8302516D1113B00533701 /* StationsCell.xib in Resources */,
-				68B8302916D1113B00533701 /* StationsViewController.xib in Resources */,
 				68B8302E16D1803200533701 /* HSSocailShareViewController.xib in Resources */,
 				68D6CD9416DD351800972D41 /* HSContactView.xib in Resources */,
 				6864D60A1708995E00F150F9 /* HSAddressPicker.xib in Resources */,
@@ -4044,17 +3945,6 @@
 				68B8300416D1113B00533701 /* HSRestorePasswordViewCotroller.m in Sources */,
 				68B8300616D1113B00533701 /* HSProfileDescriptionViewController.m in Sources */,
 				68B8300816D1113B00533701 /* HSProfileRegistrationViewController.m in Sources */,
-				68B8301216D1113B00533701 /* CoreLocationController.m in Sources */,
-				68B8301316D1113B00533701 /* FilterViewController.m in Sources */,
-				68B8301516D1113B00533701 /* ForDonorsCell.m in Sources */,
-				68B8301716D1113B00533701 /* ReviewsCell.m in Sources */,
-				68B8301B16D1113B00533701 /* StationDescriptionViewController.m in Sources */,
-				68B8301D16D1113B00533701 /* StationForDonorsViewController.m in Sources */,
-				68B8301F16D1113B00533701 /* StationRateViewController.m in Sources */,
-				68B8302116D1113B00533701 /* StationReviewsViewController.m in Sources */,
-				68B8302316D1113B00533701 /* StationsAnnotation.m in Sources */,
-				68B8302416D1113B00533701 /* StationsCell.m in Sources */,
-				68B8302816D1113B00533701 /* StationsViewController.m in Sources */,
 				68B8302D16D1803200533701 /* HSSocailShareViewController.m in Sources */,
 				68B8303D16D186B600533701 /* AppDelegate.m in Sources */,
 				68B8303E16D186B600533701 /* Common.m in Sources */,

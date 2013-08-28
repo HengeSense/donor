@@ -12,7 +12,6 @@
 /**
  * This enum type describes type of calendar day.
  */
-#warning Unused type
 typedef enum {
     HSDayType_Workday = 0,
     HSDayType_DayOff,

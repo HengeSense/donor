@@ -22,7 +22,6 @@
 
 #import "HSCalendarViewController.h"
 
-#import "StationsViewController.h"
 #import "InfoViewController.h"
 #import "HSLoginChoiceViewController.h"
 #import "Common.h"
