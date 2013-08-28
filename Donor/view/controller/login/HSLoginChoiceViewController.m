@@ -66,7 +66,7 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    [self setTabBarHidden:[PFUser currentUser] == nil animated:animated];
+    [self configureUIWithUserLoggedIn: [PFUser currentUser] != nil animated:animated];
 }
 
 - (IBAction)baseAuthorizationSelected:(id)sender {
@@ -140,7 +140,7 @@
     [self configureFacebookAuthButton];
     [self configureBaseAuthButton];
     [self configureRegistrationButton];
-    [self setTabBarHidden:YES animated:NO];
+    [self configureUIWithUserLoggedIn:NO animated:NO];
 }
 
 #pragma mark - Utility
@@ -201,9 +201,9 @@
 
 #pragma mark - Private
 #pragma mark - UI configuration
-- (void)setTabBarHidden:(BOOL)hidden animated:(BOOL)animated {
+- (void)configureUIWithUserLoggedIn:(BOOL)loggedIn animated:(BOOL)animated {
     AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    [appDelegate setTabBarHidden:hidden animated:animated];
+    [appDelegate configureUIWithUserLoggedIn:loggedIn animated:animated];
 }
 
 @end

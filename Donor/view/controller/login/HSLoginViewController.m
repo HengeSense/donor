@@ -28,7 +28,9 @@
 @implementation HSLoginViewController
 
 - (void)processAuthorizationSuccessWithUser:(PFUser *)user completion:(void(^)(void))completion {
-    [self showTabBar];
+    AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    [appDelegate configureUIWithUserLoggedIn:YES animated:YES];
+
     if (user.isNew) {
         [HSFlurryAnalytics userRegistered];
     }
@@ -60,10 +62,4 @@
     [userInfo applyChanges];
 }
 
-#pragma mark - Private
-#pragma mark - UI configuration
-- (void)showTabBar {
-    AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    [appDelegate setTabBarHidden:NO animated:YES];
-}
 @end

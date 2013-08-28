@@ -18,4 +18,8 @@
 
 - (void)setTabBarHidden:(BOOL)hidden animated:(BOOL)animated;
 
+/**
+ * This method should be invoked to configure common UI element (i.e. tabbar, pizzabtn, etc). 
+ */
+- (void)configureUIWithUserLoggedIn:(BOOL)userLoggedIn animated:(BOOL)animated;
 @end

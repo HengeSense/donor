@@ -468,6 +468,7 @@
 		68EB27681630A5780092FDBA /* HSBloodDonationEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 68EB27671630A5780092FDBA /* HSBloodDonationEvent.m */; };
 		68EB276C1630AA840092FDBA /* HSFinishRestEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 68EB276B1630AA840092FDBA /* HSFinishRestEvent.m */; };
 		68EB27711630AD930092FDBA /* HSDayPurposeModifierEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 68EB27701630AD930092FDBA /* HSDayPurposeModifierEvent.m */; };
+		68F1218517CD9FC800E4BA9A /* libPizzaBtn-1.2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 68F1218217CD9FC800E4BA9A /* libPizzaBtn-1.2.a */; };
 		68F3B30C16754A85003E8376 /* contraindications.json in Resources */ = {isa = PBXBuildFile; fileRef = 68F3B30B16754A85003E8376 /* contraindications.json */; };
 		68F788E0171AE4E100BBF59A /* AdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68F788DE171AE4E100BBF59A /* AdViewController.m */; };
 		68F788E1171AE4E100BBF59A /* AdViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68F788DF171AE4E100BBF59A /* AdViewController.xib */; };
@@ -1377,6 +1378,9 @@
 		68EB276F1630AD930092FDBA /* HSDayPurposeModifierEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSDayPurposeModifierEvent.h; sourceTree = "<group>"; };
 		68EB27701630AD930092FDBA /* HSDayPurposeModifierEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSDayPurposeModifierEvent.m; sourceTree = "<group>"; };
 		68EB27731630B02F0092FDBA /* HSCalendarTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSCalendarTypes.h; sourceTree = "<group>"; };
+		68F1218217CD9FC800E4BA9A /* libPizzaBtn-1.2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libPizzaBtn-1.2.a"; sourceTree = "<group>"; };
+		68F1218317CD9FC800E4BA9A /* PizzaBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PizzaBtn.h; sourceTree = "<group>"; };
+		68F1218417CD9FC800E4BA9A /* PizzaBtnVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PizzaBtnVersion.h; sourceTree = "<group>"; };
 		68F3B30B16754A85003E8376 /* contraindications.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = contraindications.json; sourceTree = "<group>"; };
 		68F788DD171AE4E100BBF59A /* AdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdViewController.h; sourceTree = "<group>"; };
 		68F788DE171AE4E100BBF59A /* AdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdViewController.m; sourceTree = "<group>"; };
@@ -1655,6 +1659,7 @@
 				6871DF641681184B004E5EBB /* libTestFlight.a in Frameworks */,
 				6846117116A61B7B00EE9030 /* libCrittercism_v3_4_5.a in Frameworks */,
 				CE8609CB170B7A0E00E4497A /* Crashlytics.framework in Frameworks */,
+				68F1218517CD9FC800E4BA9A /* libPizzaBtn-1.2.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2340,6 +2345,7 @@
 				68B8304416D186CF00533701 /* FTCoreText */,
 				685CB2FA163F202C004FF9AC /* MBProgressHUD */,
 				6864D6AB17174B8400F150F9 /* MWFeedParser */,
+				68F1218117CD9FC800E4BA9A /* PizzaBtn */,
 				6871DF611681184B004E5EBB /* TestFlightSDK */,
 				68B8304916D186CF00533701 /* TTTAttributedLabel */,
 			);
@@ -3261,6 +3267,17 @@
 				686BA629163469C3004D7082 /* HSBloodDonorTests_Calendar.m */,
 			);
 			path = calendar;
+			sourceTree = "<group>";
+		};
+		68F1218117CD9FC800E4BA9A /* PizzaBtn */ = {
+			isa = PBXGroup;
+			children = (
+				68F1218217CD9FC800E4BA9A /* libPizzaBtn-1.2.a */,
+				68F1218317CD9FC800E4BA9A /* PizzaBtn.h */,
+				68F1218417CD9FC800E4BA9A /* PizzaBtnVersion.h */,
+			);
+			name = PizzaBtn;
+			path = Libs/PizzaBtn/Example/Library;
 			sourceTree = "<group>";
 		};
 		68F3B30A16754A85003E8376 /* Data */ = {
@@ -4289,12 +4306,9 @@
 					"\"$(SRCROOT)/Libs/TestFlightSDK\"",
 					"\"$(SRCROOT)/Libs/CrittercismSDK\"",
 					"\"$(SRCROOT)/Libs/OCMock\"",
+					"\"$(SRCROOT)/Libs/PizzaBtn/Example/Library\"",
 				);
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-all_load",
-					"-fobjc-arc",
-				);
+				OTHER_LDFLAGS = "-fobjc-arc";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				USER_HEADER_SEARCH_PATHS = "Submodules/**";
@@ -4325,12 +4339,9 @@
 					"\"$(SRCROOT)/Libs/TestFlightSDK\"",
 					"\"$(SRCROOT)/Libs/CrittercismSDK\"",
 					"\"$(SRCROOT)/Libs/OCMock\"",
+					"\"$(SRCROOT)/Libs/PizzaBtn/Example/Library\"",
 				);
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-all_load",
-					"-fobjc-arc",
-				);
+				OTHER_LDFLAGS = "-fobjc-arc";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				USER_HEADER_SEARCH_PATHS = "Submodules/**";
@@ -4387,12 +4398,9 @@
 					"\"$(SRCROOT)/Libs/TestFlightSDK\"",
 					"\"$(SRCROOT)/Libs/CrittercismSDK\"",
 					"\"$(SRCROOT)/Libs/OCMock\"",
+					"\"$(SRCROOT)/Libs/PizzaBtn/Example/Library\"",
 				);
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-all_load",
-					"-fobjc-arc",
-				);
+				OTHER_LDFLAGS = "-fobjc-arc";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				USER_HEADER_SEARCH_PATHS = "Submodules/**";
@@ -4478,12 +4486,9 @@
 					"\"$(SRCROOT)/Libs/TestFlightSDK\"",
 					"\"$(SRCROOT)/Libs/CrittercismSDK\"",
 					"\"$(SRCROOT)/Libs/OCMock\"",
+					"\"$(SRCROOT)/Libs/PizzaBtn/Example/Library\"",
 				);
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-all_load",
-					"-fobjc-arc",
-				);
+				OTHER_LDFLAGS = "-fobjc-arc";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				USER_HEADER_SEARCH_PATHS = "Submodules/**";

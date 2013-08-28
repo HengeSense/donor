@@ -14,6 +14,7 @@
 #import "Appirater.h"
 #import "HSFlurryAnalytics.h"
 #import "HSMailChimp.h"
+#import "PizzaBtn.h"
 
 #import "HSStationInfo.h"
 
@@ -74,6 +75,15 @@ static NSString * const CRASHLYTICS_ID = @"9d515447ae8b641e682dacd6b67757ba27623
     [self.sTabBarController setTabBarHidden:hidden animated:animated];
 }
 
+- (void)configureUIWithUserLoggedIn:(BOOL)userLoggedIn animated:(BOOL)animated {
+    if (userLoggedIn) {
+        [PizzaBtn show];
+    } else {
+        [PizzaBtn hide];
+    }
+    [self setTabBarHidden:userLoggedIn == NO animated:animated];
+}
+
 - (BOOL)handleOpenURL:(NSURL*)url {
     BOOL handled = [PFFacebookUtils handleOpenURL:url];
     if(handled == NO) {
@@ -122,10 +132,14 @@ static NSString * const CRASHLYTICS_ID = @"9d515447ae8b641e682dacd6b67757ba27623
     [ItsBeta setApplicationAccessToken:ITSBETA_ACCESS_TOKEN];
     [ItsBeta setApplicationProjectWhiteList:[NSArray arrayWithObjects:@"donor", nil]];
     [ItsBeta synchronizeApplication];
+    
+    [PizzaBtn setAvailableOrientations:PizzaBtnInterfaceOrientationMaskPortrait];
 }
 
 - (void)launchServices {
     [Appirater appLaunched:YES];
+    [PizzaBtn open];
+    [PizzaBtn hide];
 }
 
 - (void)handleNotificationsIfExistsInOptions:(NSDictionary *)options {
