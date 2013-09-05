@@ -4,4 +4,3 @@ C:\Users\m0rg0_000\Documents\GitHub\donor\common-donor\CommonDonor\obj\Release\C
 C:\Users\m0rg0_000\Documents\GitHub\donor\common-donor\CommonDonor\obj\Release\CommonDonor.pdb
 C:\Users\m0rg0_000\Documents\GitHub\donor\common-donor\CommonDonor\bin\Release\Newtonsoft.Json.dll
 C:\Users\m0rg0_000\Documents\GitHub\donor\common-donor\CommonDonor\bin\Release\Newtonsoft.Json.xml
-C:\Users\m0rg0_000\Documents\GitHub\donor\common-donor\CommonDonor\obj\Release\CommonDonor.csprojResolveAssemblyReference.cache

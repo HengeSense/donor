@@ -1,8 +1,8 @@
-﻿<xapCache source="C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\Bin\Release\Donor.xap" wasSigned="False" certificateThumbprint="" TimeStampUrl="" lastWriteTime="05.09.2013 16:14:11">
+﻿<xapCache source="C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\Bin\Release\Donor.xap" wasSigned="False" certificateThumbprint="" TimeStampUrl="" lastWriteTime="05.09.2013 18:43:17">
   <file source="C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\Bin\Release\WMAppManifest.xml" archivePath="WMAppManifest.xml" lastWriteTime="05.05.2013 0:15:03" />
   <file source="C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\Background.png" archivePath="Background.png" lastWriteTime="15.03.2013 0:33:55" />
   <file source="C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\ApplicationIcon.png" archivePath="ApplicationIcon.png" lastWriteTime="15.03.2013 0:34:02" />
-  <file source="C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\obj\Release\Donor.dll" archivePath="Donor.dll" lastWriteTime="05.09.2013 16:14:04" />
+  <file source="C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\obj\Release\Donor.dll" archivePath="Donor.dll" lastWriteTime="05.09.2013 18:43:12" />
   <file source="C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\packages\AsyncOAuth.0.6.3-beta\lib\AsyncOAuth.dll" archivePath="AsyncOAuth.dll" lastWriteTime="29.04.2013 16:38:31" />
   <file source="C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\packages\BugSense.WP7.0.9.9.1\lib\sl3-wp\BugSense.dll" archivePath="BugSense.dll" lastWriteTime="05.02.2013 11:28:20" />
   <file source="C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\ButtonLibrary.dll" archivePath="ButtonLibrary.dll" lastWriteTime="05.09.2013 0:15:55" />

@@ -51,7 +51,8 @@
             AutomationProperties.Name="Item Details"
             TabIndex="1"
             Grid.RowSpan="2"
-            ItemsSource="{Binding Source={StaticResource itemsViewSource}}" Loaded="flipView_Loaded" SelectionChanged="flipView_SelectionChanged">
+            ItemsSource="{Binding Source={StaticResource itemsViewSource}}" 
+                  Loaded="flipView_Loaded" SelectionChanged="flipView_SelectionChanged">
 
             <FlipView.ItemContainerStyle>
                 <Style TargetType="FlipViewItem">
