@@ -16,15 +16,20 @@ using Newtonsoft.Json;
 using RestSharp;
 using Microsoft.Phone.Net.NetworkInformation;
 using System.Windows.Threading;
+using ButtonLibrary;
 
 namespace Donor
 {
     public partial class MainPage : PhoneApplicationPage
     {
+        public PizzaButtonControl HintButton = new PizzaButtonControl();
         // Constructor
         public MainPage()
         {
             InitializeComponent();
+            HintButton.IsAppBarEnabled = true;
+            HintButton.Open();
+            HintButton.IsAppBarEnabled = true;
 
             // Set the data context of the listbox control to the sample data
             DataContext = ViewModelLocator.MainStatic;

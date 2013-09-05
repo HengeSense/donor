@@ -58,6 +58,10 @@ namespace Donor.Controls
             DateTime FirstDayPrev = new DateTime(Date2.AddMonths(-1).Year, Date2.AddMonths(-1).Month, 1);
             DateTime FirstDay = new DateTime(Date.Year, Date.Month, 1);
             int daysbefore = (int)FirstDay.DayOfWeek;
+            if (FirstDay.DayOfWeek == DayOfWeek.Sunday)
+            {
+                daysbefore = 7;
+            }
 
             for (var i = (DateTime.DaysInMonth(FirstDayPrev.Year, FirstDayPrev.Month) - daysbefore + 2); i < (DateTime.DaysInMonth(FirstDayPrev.Year, FirstDayPrev.Month) +1); i++)
             {

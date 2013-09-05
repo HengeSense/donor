@@ -56,6 +56,7 @@
     <Reference Include="BugSense">
       <HintPath>..\packages\BugSense.WP7.0.9.9.1\lib\sl3-wp\BugSense.dll</HintPath>
     </Reference>
+    <Reference Include="ButtonLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="Coding4Fun.Phone.Audio">
       <HintPath>..\packages\Coding4Fun.Phone.Audio.1.6.1\lib\sl4-windowsphone71\Coding4Fun.Phone.Audio.dll</HintPath>
     </Reference>
@@ -432,6 +433,7 @@
     <Content Include="Background.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="ButtonLibrary.dll" />
     <Content Include="icons\Icon_analis_plan.png" />
     <Content Include="icons\Icon_blood.png" />
     <Content Include="icons\Icon_blood_check.png" />
@@ -482,6 +484,8 @@
     <Resource Include="images\ic_search.png" />
     <Content Include="images\ic_menu_achivement_normal.png" />
     <Resource Include="images\logo.png" />
+    <Content Include="libs\ButtonLibrary.dll" />
+    <Content Include="libs\ButtonLibrary.pdb" />
     <Content Include="libs\Phone.Controls.dll" />
     <Content Include="libs\Silverlight_ZXing_Core.dll" />
     <Content Include="libs\Silverlight_ZXing_Core.pdb" />
