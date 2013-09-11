@@ -548,10 +548,10 @@ namespace Donor.ViewModels
                     switch (want_event_give_type)
                     {
                         case "Тромбоциты":
-                            days_count = 14;
+                            days_count = 30;
                             break;
                         case "Плазма":
-                            days_count = 14;
+                            days_count = 30;
                             break;
                         case "Цельная кровь":
                             days_count = 30;
@@ -605,7 +605,7 @@ namespace Donor.ViewModels
                             days_count = 30;
                             break;
                         case "Плазма":
-                            days_count = 14;
+                            days_count = 30;
                             break;
                         case "Цельная кровь":
                             days_count = 30;
