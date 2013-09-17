@@ -22,6 +22,7 @@ using System.Xml;
 using System.Xml.Linq;
 using GalaSoft.MvvmLight;
 using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace Donor.ViewModels
 {
@@ -94,7 +95,7 @@ namespace Donor.ViewModels
             }
         }
 
-        public async void LoadNews()
+        public async Task<bool> LoadNews()
         {
             if ((ViewModelLocator.MainStatic.News.Items.Count() == 0) || (ViewModelLocator.MainStatic.Settings.NewsUpdated.AddHours(4) < DateTime.Now))
             {
@@ -151,6 +152,7 @@ namespace Donor.ViewModels
                         {
                         };
             };
+            return true;
         }
 
 

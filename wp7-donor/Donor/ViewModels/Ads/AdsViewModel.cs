@@ -19,6 +19,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using GalaSoft.MvvmLight;
 using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace Donor.ViewModels
 {
@@ -43,7 +44,7 @@ namespace Donor.ViewModels
             }
         }
 
-        public async void LoadAds()
+        public async Task<bool> LoadAds()
         {
             if ((ViewModelLocator.MainStatic.Ads.Items.Count() == 0) || (ViewModelLocator.MainStatic.Settings.AdsUpdated.AddHours(1) < DateTime.Now))
             {
@@ -76,6 +77,7 @@ namespace Donor.ViewModels
                 };
                 RaisePropertyChanged("Items");
             };
+            return true;
         }
 
         public List<AdsViewModel> LoadStationAds(string objectid)

@@ -21,6 +21,7 @@ using System.Collections.Generic;
 using GalaSoft.MvvmLight;
 using System.Text.RegularExpressions;
 using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace Donor.ViewModels
 {
@@ -204,7 +205,7 @@ namespace Donor.ViewModels
         /// <summary>
         /// Загрузка станций с parse.com
         /// </summary>
-        public async void LoadStations()
+        public async Task<bool> LoadStations()
         {
             myCoordinateWatcher = new GeoCoordinateWatcher(GeoPositionAccuracy.Default);
             myCoordinateWatcher.PositionChanged += new EventHandler<GeoPositionChangedEventArgs<GeoCoordinate>>(myCoordinateWatcher_PositionChanged);
@@ -331,6 +332,7 @@ namespace Donor.ViewModels
                 //};
                 //bw.RunWorkerAsync();
             };
+            return true;
         }
 
         private ObservableCollection<TownItem> _districtItems = new ObservableCollection<TownItem>();

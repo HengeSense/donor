@@ -141,4 +141,3 @@ C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\obj\Release\Pages\Stat
 C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\obj\Release\Pages\Events\EventEditPage.g.cs
 C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\obj\Release\Pages\Achieves\QRread.g.cs
 C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\Bin\Release\ButtonLibrary.dll
-C:\Users\m0rg0_000\Documents\GitHub\donor\wp7-donor\Donor\obj\Release\Donor.csprojResolveAssemblyReference.cache

@@ -15,6 +15,7 @@ using Newtonsoft.Json.Linq;
 using MSPToolkit.Utilities;
 using Newtonsoft.Json;
 using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace Donor.ViewModels
 {
@@ -52,7 +53,7 @@ namespace Donor.ViewModels
 
         public ObservableCollection<ContraViewModel> Items { get; set; }
 
-        public async void LoadContras()
+        public async Task<bool> LoadContras()
         {
             try
             {
@@ -94,6 +95,7 @@ namespace Donor.ViewModels
                 };
                 this.NotifyPropertyChanged("Items");
             } else {};
+            return true;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

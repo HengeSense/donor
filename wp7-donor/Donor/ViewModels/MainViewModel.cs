@@ -31,6 +31,7 @@ using Microsoft.Phone.Tasks;
 using Microsoft.Phone.Net.NetworkInformation;
 using GalaSoft.MvvmLight;
 using System.Threading.Tasks;
+using ButtonLibrary;
 
 
 
@@ -156,20 +157,26 @@ namespace Donor
             }
         }
 
+        public PizzaButtonControl HintButton = new PizzaButtonControl();
+
         /// <summary>
         /// Creates and adds a few ItemViewModel objects into the Items collection.
         /// </summary>
-        public async void LoadData()
+        public async Task<bool> LoadData()
         {
             await this.LoadFromIsolatedStorage();
 
             var bw = new BackgroundWorker();
             this.IsDataStartLoaded = true;
 
-            ViewModelLocator.MainStatic.News.LoadNews();
+            await ViewModelLocator.MainStatic.News.LoadNews();
             ViewModelLocator.MainStatic.Ads.LoadAds();
-            ViewModelLocator.MainStatic.Contras.LoadContras();
-            ViewModelLocator.MainStatic.Stations.LoadStations();
+            await ViewModelLocator.MainStatic.Contras.LoadContras();
+            await ViewModelLocator.MainStatic.Stations.LoadStations();
+
+            HintButton.IsAppBarEnabled = true;
+            HintButton.Open();
+            HintButton.IsAppBarEnabled = true;
 
             bw.DoWork += delegate
             {
@@ -186,7 +193,8 @@ namespace Donor
                     CreateApplicationTile(ViewModelLocator.MainStatic.Events.NearestEvents());
                 });            
             };
-            bw.RunWorkerAsync();  
+            bw.RunWorkerAsync();
+            return true;
         }
 
         /// <summary>

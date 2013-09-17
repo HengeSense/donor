@@ -548,16 +548,16 @@ namespace Donor.ViewModels
                     switch (want_event_give_type)
                     {
                         case "Тромбоциты":
-                            days_count = 30;
+                            days_count = 29;
                             break;
                         case "Плазма":
-                            days_count = 30;
+                            days_count = 29;
                             break;
                         case "Цельная кровь":
-                            days_count = 30;
+                            days_count = 29;
                             break;
                         case "Гранулоциты":
-                            days_count = 30;
+                            days_count = 29;
                             break;
                         default: break;
                     };
@@ -566,16 +566,16 @@ namespace Donor.ViewModels
                     switch (want_event_give_type)
                     {
                         case "Тромбоциты":
-                            days_count = 14;
+                            days_count = 13;
                             break;
                         case "Плазма":
-                            days_count = 14;
+                            days_count = 13;
                             break;
                         case "Цельная кровь":
-                            days_count = 14;
+                            days_count = 13;
                             break;
                         case "Гранулоциты":
-                            days_count = 14;
+                            days_count = 13;
                             break;
                         default: break;
                     };
@@ -584,16 +584,16 @@ namespace Donor.ViewModels
                     switch (want_event_give_type)
                     {
                         case "Тромбоциты":
-                            days_count = 30;
+                            days_count = 29;
                             break;
                         case "Плазма":
-                            days_count = 30;
+                            days_count = 29;
                             break;
                         case "Цельная кровь":
-                            days_count = 60;
+                            days_count = 59;
                             break;
                         case "Гранулоциты":
-                            days_count = 30;
+                            days_count = 29;
                             break;
                         default: break;
                     };
@@ -602,16 +602,16 @@ namespace Donor.ViewModels
                     switch (want_event_give_type)
                     {
                         case "Тромбоциты":
-                            days_count = 30;
+                            days_count = 29;
                             break;
                         case "Плазма":
-                            days_count = 30;
+                            days_count = 29;
                             break;
                         case "Цельная кровь":
-                            days_count = 30;
+                            days_count = 29;
                             break;
                         case "Гранулоциты":
-                            days_count = 365;
+                            days_count = 364;
                             break;
                         default: break;
                     };
