@@ -19,6 +19,8 @@ static const CGFloat kIndentationWidthBase = 10.0f;
 @implementation HSContraindicationCell
 
 - (void)layoutSubviews {
+    [super layoutSubviews];
+
     CGSize titleSize = [HSContraindicationCell calculateSizeFitToText:self.title.text font:self.title.font
             lineBreakMode:self.title.lineBreakMode indentation:self.indentationLevel];
 
@@ -52,8 +54,6 @@ static const CGFloat kIndentationWidthBase = 10.0f;
         indentationLabel.frame = indentationLabelFrame;
         [self addSubview:indentationLabel];
     }
-    
-    [super layoutSubviews];
 }
 
 + (void)initialize {
