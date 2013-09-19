@@ -36,7 +36,9 @@ static const CGFloat kSectionsVerticalPadding = 10.0f;
         return nil;
     }
     self.stationName = stationName;
-    self.stationReviews = stationReviews;
+    self.stationReviews =
+            [stationReviews sortedArrayUsingDescriptors:[NSArray arrayWithObject:
+            [[NSSortDescriptor alloc] initWithKey:@"date" ascending:NO]]];
     
     return self;
 }
