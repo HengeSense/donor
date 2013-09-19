@@ -32,6 +32,15 @@ static const NSUInteger kBottomTabBarHeight = 55;
     self.frame = contentViewFrame;
 }
 
+- (void)adjustAsContentViewWithHeaderHeight:(CGFloat)headerHeight footerHeight:(CGFloat)footerHeight {
+    NSUInteger screenHeight = [UIScreen mainScreen].bounds.size.height;
+    
+    CGRect contentViewFrame = CGRectZero;
+    contentViewFrame.origin.y = headerHeight;
+    contentViewFrame.size.height = screenHeight - headerHeight - footerHeight;
+    self.frame = contentViewFrame;
+}
+
 - (CGRect)defineContentFrameWithAdditionalTopHeight:(NSUInteger)additionalHeight {
     NSUInteger screenHeight = [UIScreen mainScreen].bounds.size.height;
     NSUInteger screenWidth = [UIScreen mainScreen].bounds.size.width;

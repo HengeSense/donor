@@ -10,6 +10,8 @@
 #import "HSStationsSelectCityViewController.h"
 #import "StationsDefs.h"
 
+#import "UIView+HSLayoutManager.h"
+
 @interface HSStationsSelectCityViewController ()
 
 @property (nonatomic, strong) NSMutableArray *regionsArray;
@@ -239,7 +241,7 @@
     [tableView deselectRowAtIndexPath:self.lastSelectedIndexPath animated:YES];
     self.lastSelectedIndexPath = indexPath;
     [tableView reloadData];
-    [tableView selectRowAtIndexPath:self.lastSelectedIndexPath animated:YES scrollPosition:UITableViewScrollPositionMiddle];
+    [tableView selectRowAtIndexPath:self.lastSelectedIndexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
 }
 
 

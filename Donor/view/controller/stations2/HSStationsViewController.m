@@ -12,6 +12,8 @@
 #import "HSStationCardViewController.h"
 #import "HSStationsMapViewController.h"
 
+#import "UIView+HSLayoutManager.h"
+
 #import <Parse/Parse.h>
 #import "MBProgressHUD.h"
 #import "HSHTTPControl.h"
@@ -159,6 +161,7 @@ static NSString * const kStationsDatabase_CurrentVersionKey = @"kStationsDatabas
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
+    [self.stationsTable adjustAsContentViewIncludeAdditionalNavigationBar:self.curCityButton];
     [self requestUserLocation];
 }
 

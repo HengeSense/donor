@@ -16,8 +16,9 @@
 @interface HSStationsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 /// @name UI properties
-@property (nonatomic, strong) IBOutlet UITableView *stationsTable;
-@property (nonatomic, strong) IBOutlet UILabel *curCityLabel;
+@property (nonatomic, weak) IBOutlet UITableView *stationsTable;
+@property (nonatomic, weak) IBOutlet UILabel *curCityLabel;
+@property (nonatomic, weak) IBOutlet UIButton *curCityButton;
 
 @property (nonatomic, strong) NSArray *stations;
 @property (nonatomic, strong) NSDictionary *regionsDictionary;

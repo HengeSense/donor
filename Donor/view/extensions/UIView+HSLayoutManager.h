@@ -27,6 +27,12 @@
 - (void)adjustViewWithOrigin:(CGPoint)origin;
 
 /**
+ * Adjust view frame between header and footer.
+ */
+-(void)adjustAsContentViewWithHeaderHeight:(CGFloat)headerHeight footerHeight:(CGFloat)footerHeight;
+
+
+/**
  * Moves view's frame under the screen bottom line.
  */
 - (void)shiftFromScreenToBottom;
@@ -65,4 +71,5 @@
  * Changes frame height.
  */
 - (void)changeFrameHeight:(CGFloat)height;
+
 @end
