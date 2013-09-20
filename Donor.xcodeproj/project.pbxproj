@@ -229,7 +229,6 @@
 		685088CD1666B715004EC3CC /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 685088CC1666B715004EC3CC /* Accounts.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		685088CF1666B738004EC3CC /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 685088CE1666B738004EC3CC /* StoreKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		685088D11666B74B004EC3CC /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 685088D01666B74B004EC3CC /* AdSupport.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		685088F01667F702004EC3CC /* libFlurry.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 685088EF1667F702004EC3CC /* libFlurry.a */; };
 		685CB2F8163F200A004FF9AC /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 685CB2F7163F2008004FF9AC /* MBProgressHUD.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		6864D5E9170865F900F150F9 /* HSSexType.m in Sources */ = {isa = PBXBuildFile; fileRef = 6864D5E8170865F900F150F9 /* HSSexType.m */; };
 		6864D5EC1708683A00F150F9 /* HSBloodType.m in Sources */ = {isa = PBXBuildFile; fileRef = 6864D5EB1708683A00F150F9 /* HSBloodType.m */; };
@@ -404,6 +403,7 @@
 		68BB405B162F0B9500098861 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 68BB4059162F0B9500098861 /* InfoPlist.strings */; };
 		68C4277B174F408500D477B2 /* HSStationInfoTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 68C4277A174F408500D477B2 /* HSStationInfoTest.m */; };
 		68C42782174FB15900D477B2 /* NSObject+NSCodingSupportForProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 68C42781174FB15900D477B2 /* NSObject+NSCodingSupportForProperties.m */; };
+		68CB7FA617EBFCEC005621B2 /* libFlurry_4.2.3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 68CB7FA517EBFCEC005621B2 /* libFlurry_4.2.3.a */; };
 		68D6CD9216DD34EF00972D41 /* HSContactView.m in Sources */ = {isa = PBXBuildFile; fileRef = 68D6CD9116DD34EF00972D41 /* HSContactView.m */; };
 		68D6CD9416DD351800972D41 /* HSContactView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68D6CD9316DD351800972D41 /* HSContactView.xib */; };
 		68D6CD9716E22A8900972D41 /* HSBloodRemoteEvent+LocalNotification_Protected.m in Sources */ = {isa = PBXBuildFile; fileRef = 68D6CD9616E22A8800972D41 /* HSBloodRemoteEvent+LocalNotification_Protected.m */; };
@@ -943,7 +943,6 @@
 		685088CE1666B738004EC3CC /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		685088D01666B74B004EC3CC /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		685088EC1667F6D3004EC3CC /* Flurry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Flurry.h; sourceTree = "<group>"; };
-		685088EF1667F702004EC3CC /* libFlurry.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry.a; sourceTree = "<group>"; };
 		685CB2F6163F2005004FF9AC /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MBProgressHUD.h; path = Libs/MBProgressHUD/MBProgressHUD.h; sourceTree = "<group>"; };
 		685CB2F7163F2008004FF9AC /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MBProgressHUD.m; path = Libs/MBProgressHUD/MBProgressHUD.m; sourceTree = "<group>"; };
 		6864D5E7170865F900F150F9 /* HSSexType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSSexType.h; sourceTree = "<group>"; };
@@ -1243,6 +1242,7 @@
 		68C4277A174F408500D477B2 /* HSStationInfoTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSStationInfoTest.m; sourceTree = "<group>"; };
 		68C42780174FB15900D477B2 /* NSObject+NSCodingSupportForProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+NSCodingSupportForProperties.h"; sourceTree = "<group>"; };
 		68C42781174FB15900D477B2 /* NSObject+NSCodingSupportForProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+NSCodingSupportForProperties.m"; sourceTree = "<group>"; };
+		68CB7FA517EBFCEC005621B2 /* libFlurry_4.2.3.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry_4.2.3.a; sourceTree = "<group>"; };
 		68D6CD9016DD34EF00972D41 /* HSContactView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSContactView.h; sourceTree = "<group>"; };
 		68D6CD9116DD34EF00972D41 /* HSContactView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSContactView.m; sourceTree = "<group>"; };
 		68D6CD9316DD351800972D41 /* HSContactView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HSContactView.xib; sourceTree = "<group>"; };
@@ -1587,7 +1587,6 @@
 				685088CD1666B715004EC3CC /* Accounts.framework in Frameworks */,
 				685088D11666B74B004EC3CC /* AdSupport.framework in Frameworks */,
 				685088C91666B6A3004EC3CC /* Social.framework in Frameworks */,
-				685088F01667F702004EC3CC /* libFlurry.a in Frameworks */,
 				685088CB1666B6AC004EC3CC /* libsqlite3.dylib in Frameworks */,
 				85A0F6F715B91E1500EBC942 /* AudioToolbox.framework in Frameworks */,
 				6802A1671665D4FD0034B124 /* Parse.framework in Frameworks */,
@@ -1605,6 +1604,7 @@
 				85A0F6FA15B91E2100EBC942 /* CFNetwork.framework in Frameworks */,
 				37153EA015AEBA3400C985C1 /* UIKit.framework in Frameworks */,
 				37153EA215AEBA3400C985C1 /* Foundation.framework in Frameworks */,
+				68CB7FA617EBFCEC005621B2 /* libFlurry_4.2.3.a in Frameworks */,
 				6871DF641681184B004E5EBB /* libTestFlight.a in Frameworks */,
 				6846117116A61B7B00EE9030 /* libCrittercism_v3_4_5.a in Frameworks */,
 				CE8609CB170B7A0E00E4497A /* Crashlytics.framework in Frameworks */,
@@ -2275,7 +2275,7 @@
 			isa = PBXGroup;
 			children = (
 				685088EC1667F6D3004EC3CC /* Flurry.h */,
-				685088EF1667F702004EC3CC /* libFlurry.a */,
+				68CB7FA517EBFCEC005621B2 /* libFlurry_4.2.3.a */,
 			);
 			name = Flurry;
 			path = Libs/Flurry;
