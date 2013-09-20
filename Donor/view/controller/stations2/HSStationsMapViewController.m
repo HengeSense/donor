@@ -135,7 +135,7 @@
     self = [super init];
     if(self){
         self.stationInfo = stationInfo;
-        self.delegate = self.delegate;
+        self.delegate = delegate;
     }
     
     return self;

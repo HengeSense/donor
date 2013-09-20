@@ -93,7 +93,8 @@
     
     [self.cityTable reloadData];
     if (self.lastSelectedIndexPath) {
-        [self.cityTable selectRowAtIndexPath:self.lastSelectedIndexPath animated:YES scrollPosition:UITableViewScrollPositionMiddle];
+        [self.cityTable selectRowAtIndexPath:self.lastSelectedIndexPath animated:YES
+                scrollPosition:UITableViewScrollPositionMiddle];
     }
 }
 
