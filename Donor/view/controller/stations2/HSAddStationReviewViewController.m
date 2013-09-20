@@ -93,11 +93,13 @@ static const CGFloat kSectionsVerticalPadding = 10.0f;
             if (self.delegate) {
                 [self.delegate stationReviewsWasUpdated];
             }
-            [HSAlertViewController showWithMessage:@"Отзыв успешно опубликован"];
+            [HSAlertViewController showWithMessage:@"Отзыв успешно опубликован" resultBlock:^(BOOL isOkButtonPressed) {
+                [self.navigationController popViewControllerAnimated:YES];
+            }];
         } else if (result != nil) {
             HSFoursquareError *error = result;
             [HSAlertViewController showWithMessage:[error localizedDescription]];
-            NSLog(@"ERROR: Add station review. Reason: %@", result);
+            NSLog(@"ERROR: Add station review. Reason: %@", error);
         } else {
             // User cancel authentication, no need to notify him about it.
         }
