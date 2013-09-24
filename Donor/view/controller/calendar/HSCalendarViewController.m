@@ -318,32 +318,21 @@
             filteredSetUsingPredicate:[NSPredicate predicateWithFormat:@"self isKindOfClass:%@",
             [HSBloodRemoteEvent class]]];
     if ([remoteBloodEvents count] > 0) {
-        [self editRemoteBloodEvents:[remoteBloodEvents allObjects]];
+        [self editRemoteBloodEvent:[[remoteBloodEvents allObjects] lastObject]];
     } else {
         [self createRemoteBloodEventsOnDate:dayButton.date];
     }
 }
 
-- (void)editRemoteBloodEvents:(NSArray *)remoteBloodEvents {
-    THROW_IF_ARGUMENT_NIL(remoteBloodEvents);
-    const size_t BLOOD_REMOTE_EVENTS_PER_DAY_MAX = 1;
-    if (remoteBloodEvents.count == 0) {
-        @throw [NSException exceptionWithName:NSInternalInconsistencyException
-                reason:@"No blood remote events was specified for editing." userInfo:nil];
-    } else if (remoteBloodEvents.count > BLOOD_REMOTE_EVENTS_PER_DAY_MAX) {
-        @throw [NSException exceptionWithName:NSInternalInconsistencyException
-                reason:[NSString stringWithFormat:@"Supported count of remote events per day is %zu,"
-                        " but actual value is greater.", BLOOD_REMOTE_EVENTS_PER_DAY_MAX] userInfo:nil];
-    }
+- (void)editRemoteBloodEvent:(HSBloodRemoteEvent *)remoteBloodEvent {
+    THROW_IF_ARGUMENT_NIL(remoteBloodEvent);
     
     HSBloodDonationEvent *bloodDonationEvent = nil;
     HSBloodTestsEvent *bloodTestsEvent = nil;
-    for (HSBloodRemoteEvent *remoteBloodEvent in remoteBloodEvents) {
-        if ([remoteBloodEvent isKindOfClass:[HSBloodDonationEvent class]]) {
-            bloodDonationEvent = (HSBloodDonationEvent *)remoteBloodEvent;
-        } else if ([remoteBloodEvent isKindOfClass:[HSBloodTestsEvent class]]) {
-            bloodTestsEvent = (HSBloodTestsEvent *)remoteBloodEvent;
-        }
+    if ([remoteBloodEvent isKindOfClass:[HSBloodDonationEvent class]]) {
+        bloodDonationEvent = (HSBloodDonationEvent *)remoteBloodEvent;
+    } else if ([remoteBloodEvent isKindOfClass:[HSBloodTestsEvent class]]) {
+        bloodTestsEvent = (HSBloodTestsEvent *)remoteBloodEvent;
     }
     
     UIViewController *pushedViewController = nil;
