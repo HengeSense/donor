@@ -71,8 +71,16 @@ static NSString * const kLinkedToFacebookTitle = @"привязан";
     [self configureItsBetaUI];
 }
 
+- (void)rollbabackChanges {
+    HSUserInfo *userInfo = [[HSUserInfo alloc] initWithUser:[PFUser currentUser]];
+    self.nameTextField.text = userInfo.name;
+    [self updateSexButtonWithSex:userInfo.sex];
+    [self updateBloodTypeButtonWithBloodGroup:userInfo.bloodGroup bloodRh:userInfo.bloodRh];
+}
+
 - (void)cancelEditPressed {
     [self hideCurrentActionSheetView];
+    [self rollbabackChanges];
 
     self.hiddenView.hidden = NO;
     self.facebookLinkUnlinkContainerView.hidden = YES;
