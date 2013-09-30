@@ -311,6 +311,14 @@
 		68893A4816518CA800955990 /* BloodDonor_tutorial_5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68893A3C16518CA800955990 /* BloodDonor_tutorial_5@2x.png */; };
 		68893A4916518CA800955990 /* BloodDonor_tutorial_6.png in Resources */ = {isa = PBXBuildFile; fileRef = 68893A3D16518CA800955990 /* BloodDonor_tutorial_6.png */; };
 		68893A4A16518CA800955990 /* BloodDonor_tutorial_6@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68893A3E16518CA800955990 /* BloodDonor_tutorial_6@2x.png */; };
+		688B668217F9E70400A3AC32 /* Icon-29.png in Resources */ = {isa = PBXBuildFile; fileRef = 688B667A17F9E70400A3AC32 /* Icon-29.png */; };
+		688B668317F9E70400A3AC32 /* Icon-29@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 688B667B17F9E70400A3AC32 /* Icon-29@2x.png */; };
+		688B668417F9E70400A3AC32 /* Icon-40.png in Resources */ = {isa = PBXBuildFile; fileRef = 688B667C17F9E70400A3AC32 /* Icon-40.png */; };
+		688B668517F9E70400A3AC32 /* Icon-40@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 688B667D17F9E70400A3AC32 /* Icon-40@2x.png */; };
+		688B668617F9E70400A3AC32 /* Icon-60.png in Resources */ = {isa = PBXBuildFile; fileRef = 688B667E17F9E70400A3AC32 /* Icon-60.png */; };
+		688B668717F9E70400A3AC32 /* Icon-60@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 688B667F17F9E70400A3AC32 /* Icon-60@2x.png */; };
+		688B668817F9E70400A3AC32 /* Icon-512.png in Resources */ = {isa = PBXBuildFile; fileRef = 688B668017F9E70400A3AC32 /* Icon-512.png */; };
+		688B668917F9E70400A3AC32 /* Icon-512@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 688B668117F9E70400A3AC32 /* Icon-512@2x.png */; };
 		688F7F7C169FCD29008581D4 /* HSAlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 688F7F7A169FCD29008581D4 /* HSAlertViewController.m */; };
 		688F7F7D169FCD29008581D4 /* HSAlertViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 688F7F7B169FCD29008581D4 /* HSAlertViewController.xib */; };
 		688F7F8A16A01343008581D4 /* NSString+HSUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 688F7F8916A01343008581D4 /* NSString+HSUtils.m */; };
@@ -1098,6 +1106,14 @@
 		68893A3C16518CA800955990 /* BloodDonor_tutorial_5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BloodDonor_tutorial_5@2x.png"; sourceTree = "<group>"; };
 		68893A3D16518CA800955990 /* BloodDonor_tutorial_6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BloodDonor_tutorial_6.png; sourceTree = "<group>"; };
 		68893A3E16518CA800955990 /* BloodDonor_tutorial_6@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BloodDonor_tutorial_6@2x.png"; sourceTree = "<group>"; };
+		688B667A17F9E70400A3AC32 /* Icon-29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-29.png"; sourceTree = "<group>"; };
+		688B667B17F9E70400A3AC32 /* Icon-29@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-29@2x.png"; sourceTree = "<group>"; };
+		688B667C17F9E70400A3AC32 /* Icon-40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-40.png"; sourceTree = "<group>"; };
+		688B667D17F9E70400A3AC32 /* Icon-40@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-40@2x.png"; sourceTree = "<group>"; };
+		688B667E17F9E70400A3AC32 /* Icon-60.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-60.png"; sourceTree = "<group>"; };
+		688B667F17F9E70400A3AC32 /* Icon-60@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-60@2x.png"; sourceTree = "<group>"; };
+		688B668017F9E70400A3AC32 /* Icon-512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-512.png"; sourceTree = "<group>"; };
+		688B668117F9E70400A3AC32 /* Icon-512@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-512@2x.png"; sourceTree = "<group>"; };
 		688F7F79169FCD29008581D4 /* HSAlertViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSAlertViewController.h; sourceTree = "<group>"; };
 		688F7F7A169FCD29008581D4 /* HSAlertViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSAlertViewController.m; sourceTree = "<group>"; };
 		688F7F7B169FCD29008581D4 /* HSAlertViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HSAlertViewController.xib; sourceTree = "<group>"; };
@@ -2364,6 +2380,14 @@
 		6864D6161708B3C400F150F9 /* icons */ = {
 			isa = PBXGroup;
 			children = (
+				688B667A17F9E70400A3AC32 /* Icon-29.png */,
+				688B667B17F9E70400A3AC32 /* Icon-29@2x.png */,
+				688B667C17F9E70400A3AC32 /* Icon-40.png */,
+				688B667D17F9E70400A3AC32 /* Icon-40@2x.png */,
+				688B667E17F9E70400A3AC32 /* Icon-60.png */,
+				688B667F17F9E70400A3AC32 /* Icon-60@2x.png */,
+				688B668017F9E70400A3AC32 /* Icon-512.png */,
+				688B668117F9E70400A3AC32 /* Icon-512@2x.png */,
 				6864D6171708B3C400F150F9 /* Icon-72.png */,
 				6864D6181708B3C400F150F9 /* Icon-72@2x.png */,
 				6864D6191708B3C400F150F9 /* Icon.png */,
@@ -3426,6 +3450,7 @@
 				370FA6C315B433E100FC1C86 /* yellowCancelButtonNormal.png in Resources */,
 				370FA6C415B433E100FC1C86 /* yellowCancelButtonNormal@2x.png in Resources */,
 				370FA6C515B433E100FC1C86 /* yellowCancelButtonPressed.png in Resources */,
+				688B668417F9E70400A3AC32 /* Icon-40.png in Resources */,
 				370FA6C615B433E100FC1C86 /* yellowCancelButtonPressed@2x.png in Resources */,
 				370FA6C715B433E100FC1C86 /* yellowDoneButtonNormal.png in Resources */,
 				370FA6C815B433E100FC1C86 /* yellowDoneButtonNormal@2x.png in Resources */,
@@ -3445,6 +3470,7 @@
 				37B1365515B538610022B8D8 /* calendarMonthBackground@2x.png in Resources */,
 				37B1365B15B53AF50022B8D8 /* calendarMonthLeftButton.png in Resources */,
 				37B1365C15B53AF50022B8D8 /* calendarMonthLeftButton@2x.png in Resources */,
+				688B668817F9E70400A3AC32 /* Icon-512.png in Resources */,
 				37B1365D15B53AF50022B8D8 /* calendarMonthRightButton.png in Resources */,
 				37B1365E15B53AF50022B8D8 /* calendarMonthRightButton@2x.png in Resources */,
 				37B1366115B56EA10022B8D8 /* calendarSliderTopBackground.png in Resources */,
@@ -3457,6 +3483,7 @@
 				37B1367C15B598820022B8D8 /* calendarSliderSectionShadowBottom@2x.png in Resources */,
 				85A2656515B7D48D00064061 /* modalViewShadow@2x.png in Resources */,
 				85A2656615B7D48D00064061 /* modalViewShadow.png in Resources */,
+				688B668217F9E70400A3AC32 /* Icon-29.png in Resources */,
 				85A2656715B7D48D00064061 /* sexLabel@2x.png in Resources */,
 				85A2656815B7D48D00064061 /* sexModalViewBackground@2x.png in Resources */,
 				85A2656915B7D48D00064061 /* sexLabel.png in Resources */,
@@ -3605,6 +3632,7 @@
 				8593A8E815D132CE00EA51F2 /* voteButtonSelected@2x.png in Resources */,
 				8593A8E915D132CE00EA51F2 /* voteRightButtonNotSelected@2x.png in Resources */,
 				8593A8EA15D132CE00EA51F2 /* voteRightButtonNotSelected.png in Resources */,
+				688B668517F9E70400A3AC32 /* Icon-40@2x.png in Resources */,
 				8593A8EB15D132CE00EA51F2 /* voteRightButtonSelected@2x.png in Resources */,
 				8593A8EC15D132CE00EA51F2 /* stationRateBackground.png in Resources */,
 				8593A8ED15D132CE00EA51F2 /* voteLeftButtonNotSelected@2x.png in Resources */,
@@ -3630,6 +3658,7 @@
 				8509917515D903B0002FCFDE /* recomendationIcon.png in Resources */,
 				8509917615D903B0002FCFDE /* recomendationIcon@2x.png in Resources */,
 				8509917715D903B0002FCFDE /* spoilerBackground.png in Resources */,
+				688B668717F9E70400A3AC32 /* Icon-60@2x.png in Resources */,
 				8509917815D903B0002FCFDE /* spoilerBackground@2x.png in Resources */,
 				8509917915D903B0002FCFDE /* spoilerButtonClose.png in Resources */,
 				8509917A15D903B0002FCFDE /* spoilerButtonClose@2x.png in Resources */,
@@ -3679,6 +3708,7 @@
 				6846114716A544FC00EE9030 /* login_facebook_auth_button_pressed@2x.png in Resources */,
 				6846114816A544FC00EE9030 /* login_logo.png in Resources */,
 				6846114916A544FC00EE9030 /* login_logo@2x.png in Resources */,
+				688B668617F9E70400A3AC32 /* Icon-60.png in Resources */,
 				6846114A16A544FC00EE9030 /* login_registration_button_normal.png in Resources */,
 				6846114B16A544FC00EE9030 /* login_registration_button_normal@2x.png in Resources */,
 				6846114C16A544FC00EE9030 /* login_registration_button_pressed.png in Resources */,
@@ -3729,6 +3759,7 @@
 				68B8300216D1113B00533701 /* HSLoginChoiceViewController.xib in Resources */,
 				68B8300516D1113B00533701 /* HSRestorePasswordViewCotroller.xib in Resources */,
 				68B8300716D1113B00533701 /* HSProfileDescriptionViewController.xib in Resources */,
+				688B668317F9E70400A3AC32 /* Icon-29@2x.png in Resources */,
 				68B8300916D1113B00533701 /* HSProfileRegistrationViewController.xib in Resources */,
 				68B8302E16D1803200533701 /* HSSocailShareViewController.xib in Resources */,
 				68D6CD9416DD351800972D41 /* HSContactView.xib in Resources */,
@@ -3749,6 +3780,7 @@
 				40595AF5170C4086007B2C61 /* HSItsBetaAchievementsViewController.xib in Resources */,
 				409F0D26170F082500E0AF77 /* HSItsBetaAchievementsCell.xib in Resources */,
 				404470131712AF2300DF0561 /* HSItsBetaAchievementsHeader.xib in Resources */,
+				688B668917F9E70400A3AC32 /* Icon-512@2x.png in Resources */,
 				40D5FF641714409A00821B01 /* HSItsBetaAchievementDetailViewController.xib in Resources */,
 				6864D67117127A3700F150F9 /* HSEventShortInfoView.xib in Resources */,
 				CEE388A81718B90C001B6F0A /* HSStationCardViewController.xib in Resources */,
