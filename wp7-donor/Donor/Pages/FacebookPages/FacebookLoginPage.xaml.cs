@@ -70,6 +70,7 @@ namespace facebook_windows_phone_sample.Pages
 
             if (oauthResult.IsSuccess)
             {
+
                 var accessToken = oauthResult.AccessToken;
                 LoginSucceded(accessToken);
             }
@@ -118,6 +119,33 @@ namespace facebook_windows_phone_sample.Pages
             };
 
             fb.GetAsync("me");
+
+        }
+
+        private void webBrowser1_Navigating(object sender, NavigatingEventArgs e)
+        {
+            //var test = e;
+            FacebookOAuthResult oauthResult;
+            if (!_fb.TryParseOAuthCallbackUrl(e.Uri, out oauthResult))
+            {
+                return;
+            }
+
+            if (oauthResult.IsSuccess)
+            {
+
+                var accessToken = oauthResult.AccessToken;
+                LoginSucceded(accessToken);
+            }
+            else
+            {
+                // user cancelled
+                MessageBox.Show(oauthResult.ErrorDescription);
+            }
+        }
+
+        private void webBrowser1_NavigationFailed(object sender, System.Windows.Navigation.NavigationFailedEventArgs e)
+        {
 
         }
     }
