@@ -13,6 +13,6 @@
 [submodule "Libs/ItsBetaSDK"]
 	path = Libs/ItsBetaSDK
 	url = https://github.com/HintSoluitons/itsbeta-sdk.git
-[submodule "Libs/PizzaBtn"]
-	path = Libs/PizzaBtn
-	url = https://github.com/pizzabtn/pizzabtn-ios.git
+[submodule "Libs/ProBtn"]
+	path = Libs/ProBtn
+	url = https://github.com/probtn/probtn-ios

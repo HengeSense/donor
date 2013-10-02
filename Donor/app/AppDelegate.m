@@ -14,7 +14,7 @@
 #import "Appirater.h"
 #import "HSFlurryAnalytics.h"
 #import "HSMailChimp.h"
-#import "PizzaBtn.h"
+#import "ProBtn.h"
 
 #import "HSStationInfo.h"
 
@@ -76,9 +76,9 @@ static NSString * const CRASHLYTICS_ID = @"9d515447ae8b641e682dacd6b67757ba27623
 
 - (void)configureUIWithUserLoggedIn:(BOOL)userLoggedIn animated:(BOOL)animated {
     if (userLoggedIn) {
-        [PizzaBtn show];
+        [ProBtn show];
     } else {
-        [PizzaBtn hide];
+        [ProBtn hide];
     }
     [self setTabBarHidden:userLoggedIn == NO animated:animated];
 }
@@ -132,13 +132,13 @@ static NSString * const CRASHLYTICS_ID = @"9d515447ae8b641e682dacd6b67757ba27623
     [ItsBeta setApplicationProjectWhiteList:[NSArray arrayWithObjects:@"donor", nil]];
     [ItsBeta synchronizeApplication];
     
-    [PizzaBtn setAvailableOrientations:PizzaBtnInterfaceOrientationMaskPortrait];
+    [ProBtn setAvailableOrientations:ProBtnInterfaceOrientationMaskPortrait];
 }
 
 - (void)launchServices {
     [Appirater appLaunched:YES];
-    [PizzaBtn open];
-    [PizzaBtn hide];
+    [ProBtn open];
+    [ProBtn hide];
 }
 
 - (void)handleNotificationsIfExistsInOptions:(NSDictionary *)options {
