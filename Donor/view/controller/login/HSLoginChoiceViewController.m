@@ -102,7 +102,7 @@
                         [progressHud hide:YES];
                         if (error.code == kPFErrorUserEmailTaken) {
                             // Possible user has base account?
-                            [HSAlertViewController showWithTitle:@"Вы уже зарегестрированы" message:@"Ввести пароль?"
+                            [HSAlertViewController showWithTitle:@"Вы уже зарегистрированы" message:@"Ввести пароль?"
                                     cancelButtonTitle:@"Отмена" okButtonTitle:@"Перейти"
                                     resultBlock:^(BOOL isOkButtonPressed) {
                                 if (isOkButtonPressed) {
