@@ -38,25 +38,46 @@ namespace facebook_windows_phone_sample.Pages
 
         private void webBrowser1_Loaded(object sender, RoutedEventArgs e)
         {
-            string access_token = HttpUtility.UrlDecode(ViewModelLocator.MainStatic.User.FacebookToken);
+            /*string access_token = HttpUtility.UrlDecode(ViewModelLocator.MainStatic.User.FacebookToken);
             string session = ViewModelLocator.MainStatic.User.FacebookToken;
 
             var parameters = new Dictionary<string, object>();
-            webBrowser1.Navigate(_fb.GetLogoutUrl(parameters));
+            webBrowser1.Navigate(_fb.GetLogoutUrl(parameters));*/
+            webBrowser1.Navigate(new Uri("https://www.facebook.com/logout.php?access_token=" + ViewModelLocator.MainStatic.User.FacebookToken + "&confirm=1&next=http://itsbeta.com/ru/"));
         }
 
         private Uri GetFacebookLogoutUrl(string appId, string extendedPermissions)
         {
             var parameters = new Dictionary<string, object>();
             parameters["next"] = "https://www.facebook.com/logout.php";
-            parameters["access_token"] = ViewModelLocator.MainStatic.User.FacebookToken;
+            parameters["access_token"] = ViewModelLocator.MainStatic.FbToken;
 
             return _fb.GetLogoutUrl(parameters);
         }
 
         private void webBrowser1_Navigated(object sender, System.Windows.Navigation.NavigationEventArgs e)
         {
-            this.NavigationService.GoBack();
+            if (ViewModelLocator.MainStatic.User.FacebookToken != "")
+            {
+                FacebookOAuthResult oauthResult;
+                if (e.Uri.AbsolutePath == "/ru/")
+                {
+                    try
+                    {
+                        ViewModelLocator.MainStatic.FbId = "";
+                        ViewModelLocator.MainStatic.FbToken = "";
+                        ViewModelLocator.MainStatic.User.FacebookToken = "";
+                        ViewModelLocator.MainStatic.User.Cleanup();
+                        ViewModelLocator.MainStatic.Cleanup();
+                        //MessageBox.Show("Выход осуществлен.");
+                        NavigationService.Navigate(new Uri("/MainPage.xaml?task=clearPath", UriKind.Relative));
+                    }
+                    catch { };
+                }
+                else
+                {
+                };
+            };
         }
     }
 }

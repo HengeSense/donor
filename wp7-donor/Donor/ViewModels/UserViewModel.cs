@@ -69,8 +69,8 @@ namespace Donor.ViewModels
             this.Password = "";
             this.NotifyAll();
 
-            ViewModelLocator.MainStatic.FbId = "";
-            ViewModelLocator.MainStatic.FbToken = "";
+            //ViewModelLocator.MainStatic.FbId = "";
+            //ViewModelLocator.MainStatic.FbToken = "";
             ViewModelLocator.MainStatic.User.Name = "";
             ViewModelLocator.MainStatic.User.SecondName = "";
 
@@ -89,7 +89,9 @@ namespace Donor.ViewModels
                 new FlurryWP7SDK.Models.Parameter("platform", "wp7") };
             FlurryWP7SDK.Api.LogEvent("User_logout", articleParams);
 
-            (Application.Current.RootVisual as PhoneApplicationFrame).GoBack();
+            //(Application.Current.RootVisual as PhoneApplicationFrame).GoBack();
+            (Application.Current.RootVisual as PhoneApplicationFrame).Navigate(new Uri("/Pages/FacebookPages/FacebookLogoutPage.xaml", UriKind.Relative));
+            
         }
 
         /// <summary>
@@ -610,9 +612,13 @@ namespace Donor.ViewModels
             get
             {
                 int gived = 0;
-                gived = (from item in ViewModelLocator.MainStatic.Events.UserItems
-                         where item.Type == "1" && item.Finished==true
-                        select item).Count();
+                try
+                {
+                    gived = (from item in ViewModelLocator.MainStatic.Events.UserItems
+                             where item.Type == "1" && item.Finished == true
+                             select item).Count();
+                }
+                catch { };
                 return gived;
             }
         }

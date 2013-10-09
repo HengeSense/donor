@@ -363,7 +363,8 @@ namespace Donor.ViewModels
                         ObservableCollection<TownItem> districtItems2 = districtItems;
                         districtItems = new ObservableCollection<TownItem>();
                         var itemsFilter = from townItem in districtItems2
-                                          where townItem.DistrictName.ToLower().Contains(FilterText.ToLower())
+                                          where townItem.DistrictName.ToLower().Contains(FilterText.ToLower()) ||
+                                          townItem.RegionName.ToLower().Contains(FilterText.ToLower())
                                           select townItem;
                         foreach (var item in itemsFilter)
                         {
@@ -379,7 +380,8 @@ namespace Donor.ViewModels
                         ObservableCollection<TownItem> districtItems2 = districtItems;
                         districtItems = new ObservableCollection<TownItem>();
                         var itemsFilter = from townItem in _districtItems
-                                          where townItem.DistrictName.ToLower().Contains(FilterText.ToLower())
+                                          where townItem.DistrictName.ToLower().Contains(FilterText.ToLower()) ||
+                                          townItem.RegionName.ToLower().Contains(FilterText.ToLower())
                                           select townItem;
                         foreach (var item in itemsFilter)
                         {

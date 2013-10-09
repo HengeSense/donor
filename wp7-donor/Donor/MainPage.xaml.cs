@@ -67,6 +67,26 @@ namespace Donor
         {
             this.ApplicationBar.IsVisible = false;
 
+            try
+            {
+                string currentTask = this.NavigationContext.QueryString["task"];
+                if (currentTask == "clearPath")
+                {
+                    try
+                    {
+                        if (NavigationService.CanGoBack)
+                        {
+                            while (NavigationService.RemoveBackEntry() != null)
+                            {
+                                NavigationService.RemoveBackEntry();
+                            };
+                        };
+                    }
+                    catch { };
+                };
+            }
+            catch { };
+
             try {
                 if (!ViewModelLocator.MainStatic.IsDataStartLoaded)
                 {

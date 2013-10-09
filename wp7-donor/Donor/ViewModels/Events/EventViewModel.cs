@@ -248,6 +248,7 @@ namespace Donor.ViewModels
                                     Deployment.Current.Dispatcher.BeginInvoke(() =>
                                     {
                                         ViewModelLocator.MainStatic.Events.UpdateItems();
+                                        ViewModelLocator.MainStatic.User.NotifyAll();
                                         ViewModelLocator.MainStatic.OnDataFLoaded(EventArgs.Empty);
                                         ViewModelLocator.MainStatic.IsDataLoaded = true;
                                     });
