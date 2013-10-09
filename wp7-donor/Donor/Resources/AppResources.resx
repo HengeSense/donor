@@ -783,4 +783,10 @@ By using this application, you consent to the collection and use of this informa
   <data name="Work_time" xml:space="preserve">
     <value>Время работы</value>
   </data>
+  <data name="Do_you_want_to_quit" xml:space="preserve">
+    <value>Вы действительно хотите выйти?</value>
+  </data>
+  <data name="FacebookUnlinkingWarning" xml:space="preserve">
+    <value>Если вы отвяжете учетную запись facebook, то вы не сможете войти в данный аккаунт используя ее (если позднее не привяжите ее заново). Вы действительно хотите это сделать?</value>
+  </data>
 </root>

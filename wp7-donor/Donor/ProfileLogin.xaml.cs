@@ -681,11 +681,36 @@ namespace Donor
             };
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void DeleteUserButton_Click(object sender, EventArgs e)
         {
-            emailsaved = "";
-            passwordsaved = "";
-            ViewModelLocator.MainStatic.User.LogoutAction(null);
+            try
+            {
+                var messagePrompt = new MessagePrompt
+                {
+                    Title = AppResources.Exit,
+                    Message = AppResources.Do_you_want_to_quit,
+                    IsCancelVisible = true
+                };
+                messagePrompt.ActionPopUpButtons.FirstOrDefault().Click += new RoutedEventHandler(customButton_Click);
+                messagePrompt.Show();
+            }
+            catch { };            
+        }
+
+        void customButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                emailsaved = "";
+                passwordsaved = "";
+                ViewModelLocator.MainStatic.User.LogoutAction(null);
+            }
+            catch { };
         }
 
         private void Login_Click(object sender, RoutedEventArgs e)
@@ -743,7 +768,28 @@ namespace Donor
 
         private void FacebookUnLinkingButton_Click(object sender, RoutedEventArgs e)
         {
-            ViewModelLocator.MainStatic.User.FacebookUnlinking();
+            try
+            {
+                var messagePrompt = new MessagePrompt
+                {
+                    Title = AppResources.FacebookUnLinking,
+                    Message = AppResources.FacebookUnlinkingWarning,
+                    IsCancelVisible = true
+                };
+                messagePrompt.ActionPopUpButtons.FirstOrDefault().Click += new RoutedEventHandler(customUnlinkingButton_Click);
+                messagePrompt.Show();
+            }
+            catch { };
+            
+        }
+
+        private void customUnlinkingButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                ViewModelLocator.MainStatic.User.FacebookUnlinking();
+            }
+            catch { };
         }
 
         private void email1_TextChanged(object sender, TextChangedEventArgs e)

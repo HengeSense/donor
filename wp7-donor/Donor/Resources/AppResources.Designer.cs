@@ -388,6 +388,15 @@ namespace Donor {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Вы действительно хотите выйти?.
+        /// </summary>
+        public static string Do_you_want_to_quit {
+            get {
+                return ResourceManager.GetString("Do_you_want_to_quit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to http://donorapp.ru/.
         /// </summary>
         public static string DonorappSite {
@@ -618,6 +627,15 @@ namespace Donor {
         public static string FacebookUnLinking {
             get {
                 return ResourceManager.GetString("FacebookUnLinking", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Если вы отвяжете учетную запись facebook, то вы не сможете войти в данный аккаунт используя ее (если позднее не привяжите ее заново). Вы действительно хотите это сделать?.
+        /// </summary>
+        public static string FacebookUnlinkingWarning {
+            get {
+                return ResourceManager.GetString("FacebookUnlinkingWarning", resourceCulture);
             }
         }
         
